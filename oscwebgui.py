@@ -93,12 +93,21 @@ class oscWebGui(object):
                 f = open(self.presetName+'.preset','w')
                 f.write(preset.replace(';','\n'))
                 f.close()
+            elif title.split(',')[0] == 'Fullscreen':
+                self.toggleFullscreen(title.split(',')[1])
             else:
                 param = title.split(',')[0]
                 name = title.split(',')[1]
                 value = float(title.split(',')[2])
                 self.sendOsc(param,name,value)
                     
+                    
+    def toggleFullscreen(self,e):
+        if e == '1':
+            self.window.fullscreen()
+        else:
+            self.window.unfullscreen()
+            
     def sendOsc(self,param,name,value):
         path = '/' + self.appName + '/' + param
         for i in range(len(self.target)):

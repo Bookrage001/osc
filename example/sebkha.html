@@ -63,6 +63,12 @@ $(document).ready(function(){
     
     $('#tabs').tabs();
     
+    $('#fullscreen').click(function(){
+      $(this).attr('data-e',Math.abs($(this).attr('data-e')-1));
+      var e = $(this).attr('data-e');
+      toggleFullscreen(e);
+    });
+    
 })
 
 function savePreset() {
@@ -96,14 +102,20 @@ function setValue(param,name,value) {
 function sendOsc(param, name, value){
     document.title = param + ',' + name + ',' + value
 } 
+function toggleFullscreen(e){
+  document.title = 'Fullscreen,' + e
+}
+
 </script>
 </head>
 
 <body>
 
+<div class="left">
 <div class="name" onclick="loadPreset();">Load</div>
 <div class="name" onclick="savePreset();">Save</div>
-
+</div>
+<div class="name right" id="fullscreen" data-e="0">Fullscreen</div>
 
 
 <div id="tabs">
