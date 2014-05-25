@@ -1,21 +1,21 @@
-import oscwebgui
+import oschtmlgui
 from os import path as os_path
 
 #Ports osc des clients NonMixer
 nmPorts = {
-    'MainMix':6666,
-    'Drums':6667,
-    'Basses':6668,
-    'Guitars':6669,
-    'MxSynths':6670,
-    'MxDrums':6671,
-    'Vocals':6672,
-    'Toms':6673,
-    'Acoustics':6674,
-    'MonitorsDag':6675,
-    'MonitorsJeannot':6676,
-    'MonitorsOrl':6677,
-    'Mains':6678,
+    'MainMix':'SCSon:6666',
+    'Drums':'SCSon:6667',
+    'Basses':'SCSon:6668',
+    'Guitars':'SCSon:6669',
+    'MxSynths':'SCSon:6670',
+    'MxDrums':'SCSon:6671',
+    'Vocals':'SCSon:6672',
+    'Toms':'SCSon:6673',
+    'Acoustics':'SCSon:6674',
+    'MonitorsDag':'SCSon:6675',
+    'MonitorsJeannot':'SCSon:6676',
+    'MonitorsOrl':'SCSon:6677',
+    'Mains':'SCSon:6678',
 }
 
 # Patch gui > NonMixer
@@ -115,9 +115,9 @@ example_path = os_path.dirname(os_path.abspath(__file__)) + '/example/'
 html_path = example_path + 'sebkha.html'
 preset_name = example_path + 'sebkha'
 
-gui = oscwebgui.oscWebGui(port=3333, target='127.0.0.1:3334', appName='oscWebGui', presetName=preset_name,html=html_path)
+gui = oschtmlgui.oscHtmlGui(port=3333, target='127.0.0.1:3334', appName='oscHtmlGui', presetName=preset_name,html=html_path)
 
-router = oscwebgui.oscRouter(port=3334, target='SCSon', pathPatch=pathPatch, paramPatch=paramPatch)
+router = oschtmlgui.oscRouter(port=3334, pathPatch=pathPatch, paramPatch=paramPatch)
 router.start()
 
 gui.main()
