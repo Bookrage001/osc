@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #encoding=utf8
 """
-Osc Web Gui
+Osc Html Gui
 Build your own OSC control gui with html/css/javascript !
 
 # Partial doc... check the example !
