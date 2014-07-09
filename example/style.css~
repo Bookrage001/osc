@@ -232,8 +232,8 @@ html, body {
         }
              .audiostrip .vertical-slider .value{
              position:absolute;
-             left:25px;
-             width:20px;
+             left:15px;
+             width:100%;
              margin-top:-10px;
              top:50%;
              }

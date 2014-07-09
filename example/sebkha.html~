@@ -119,7 +119,7 @@ function toggleFullscreen(e){
 
 
 <div id="tabs">
-    <ul><!--
+    <ul>
     <li><a href="#MainMix">MainMix</a></li>
     <li><a href="#Drums">Drums</a></li>
     <li><a href="#Basses">Basses</a></li>
@@ -128,11 +128,11 @@ function toggleFullscreen(e){
     <li><a href="#MxDrums">MxDrums</a></li>
     <li><a href="#Vocals">Vocals</a></li>
     <li><a href="#Toms">Toms</a></li>
-    <li><a href="#Mains">Mains</a></li>-->
-    <li><a href="#MonitorsJeannot">MonitorsJeannot</a></li><!--
+    <li><a href="#Mains">Mains</a></li>
+    <li><a href="#MonitorsJeannot">MonitorsJeannot</a></li>
     <li><a href="#MonitorsORL">MonitorsORL</a></li>
-    <li><a href="#MonitorsDag">MonitorsDag</a></li>-->
-    </ul><!--
+    <li><a href="#MonitorsDag">MonitorsDag</a></li>
+    </ul>
     <div id="MainMix">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="Drums"></div></td>
@@ -211,7 +211,7 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="MonitorsORL"></div></td>
         <td><div class="audiostrip"  name="MonitorsDag"></div></td>
     </tr></table>
-    </div> -->
+    </div> 
     <div id="MonitorsJeannot">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="mjMainMix"></div></td>
@@ -222,7 +222,7 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="mjMetronome"></div></td>
         <td><div class="audiostrip main"  name="MonitorsJeannot"></div></td>
     </tr></table>
-    </div><!--
+    </div>
     <div id="MonitorsORL">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="moMainMix"></div></td>
@@ -244,7 +244,7 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="mdMetronome"></div></td>
         <td><div class="audiostrip main"  name="MonitorsDag"></div></td>
     </tr></table>
-    </div> -->
+    </div> 
 </div>
 
 </body>

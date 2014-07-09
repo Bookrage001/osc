@@ -13,9 +13,9 @@ $(document).ready(function(){
     $('.audiostrip').each(function(){
     var n = $(this).attr('name')
         $(this).append('<div class="name">'+n+'</div>')
-        $(this).append('<div class="horizontal-slider" name="'+n+'" param="Pan"></div>')
+        //$(this).append('<div class="horizontal-slider" name="'+n+'" param="Pan"></div>')
         $(this).append('<div class="vertical-slider" name="'+n+'" param="Gain"></div>')
-        $(this).append('<div class="toggle" name="'+n+'" param="Mute">Mute</div>')
+        //$(this).append('<div class="toggle" name="'+n+'" param="Mute">Mute</div>')
     })
 
 
@@ -107,32 +107,34 @@ function toggleFullscreen(e){
 }
 
 </script>
+<style>
+.vertical-slider {
+  top: 50px!important;
+  bottom: 20px!important;
+}
+#tabs {
+  top:60px!important;
+}
+.name {
+  font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
 <div class="left">
-<div class="name" onclick="loadPreset();">Load</div>
+<div class="name" onclick="loadPreset();">Load</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div class="name" onclick="savePreset();">Save</div>
 </div>
 <div class="name right" id="fullscreen" data-e="0">Fullscreen</div>
 
 
 <div id="tabs">
-    <ul><!--
-    <li><a href="#MainMix">MainMix</a></li>
-    <li><a href="#Drums">Drums</a></li>
-    <li><a href="#Basses">Basses</a></li>
-    <li><a href="#Guitars">Guitars</a></li>
-    <li><a href="#MxSynths">MxSynths</a></li>
-    <li><a href="#MxDrums">MxDrums</a></li>
-    <li><a href="#Vocals">Vocals</a></li>
-    <li><a href="#Toms">Toms</a></li>
-    <li><a href="#Mains">Mains</a></li>-->
-    <li><a href="#MonitorsJeannot">MonitorsJeannot</a></li><!--
-    <li><a href="#MonitorsORL">MonitorsORL</a></li>
-    <li><a href="#MonitorsDag">MonitorsDag</a></li>-->
-    </ul><!--
+    <ul>
+    <li><a href="#MainMix">XXX</a></li>
+    <!--<li><a href="#MonitorsJeannot">MonitorsJeannot</a></li>-->
+    </ul>
     <div id="MainMix">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="Drums"></div></td>
@@ -141,77 +143,13 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="MxSynths"></div></td>
         <td><div class="audiostrip"  name="MxDrums"></div></td>
         <td><div class="audiostrip"  name="Vocals"></div></td>
+	<td><div class="audiostrip"  name="Acoustics"></div></td>
+        <td><div class="audiostrip main"  name="FOH"></div></td>
+        <!--<td> </td>
+        <td><div class="audiostrip"  name="DecoupeOrl"></div></td>
+        <td><div class="audiostrip"  name="DecoupeJeannot"></div></td>-->
     </tr></table>
-    </div>
-    <div id="Drums">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="Kick"></div></td>
-        <td><div class="audiostrip"  name="Snare"></div></td>
-        <td><div class="audiostrip"  name="Toms"></div></td>
-        <td><div class="audiostrip"  name="OH-L"></div></td>
-        <td><div class="audiostrip"  name="OH-R"></div></td>
-        <td><div class="audiostrip main"  name="Drums"></div></td>
-    </tr></table>
-    </div>
-    <div id="Basses">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="Bass_ORL"></div></td>
-        <td><div class="audiostrip"  name="FX_ORL"></div></td>
-        <td><div class="audiostrip"  name="Bass_Dag"></div></td>
-        <td><div class="audiostrip main"  name="Basses"></div></td>
-    </tr></table>
-    </div>
-    <div id="Guitars">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="Guitar_ORL"></div></td>
-        <td><div class="audiostrip"  name="Guitar_Dag"></div></td>
-        <td><div class="audiostrip main"  name="Guitars"></div></td>
-    </tr></table>
-    </div>
-    <div id="MxSynths">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="MxBass"></div></td>
-        <td><div class="audiostrip"  name="MxChords"></div></td>
-        <td><div class="audiostrip"  name="MxLead"></div></td>
-        <td><div class="audiostrip"  name="MxCtLead"></div></td>
-        <td><div class="audiostrip"  name="MxClassical"></div></td>
-        <td><div class="audiostrip main"  name="MxSynths"></div></td>
-    </tr></table>
-    </div>
-    <div id="MxDrums">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="MxKicks"></div></td>
-        <td><div class="audiostrip"  name="MxSnares"></div></td>
-        <td><div class="audiostrip"  name="MxCymbs"></div></td>
-        <td><div class="audiostrip"  name="MxCont"></div></td>
-        <td><div class="audiostrip"  name="MxSamples"></div></td>
-        <td><div class="audiostrip main"  name="MxDrums"></div></td>
-    </tr></table>
-    </div>
-    <div id="Vocals">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="Vx_ORL"></div></td>
-        <td><div class="audiostrip"  name="Vx_Dag"></div></td>
-        <td><div class="audiostrip"  name="Vx_Jeannot"></div></td>
-        <td><div class="audiostrip main"  name="Vocals"></div></td>
-    </tr></table>
-    </div>
-    <div id="Toms">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="Tom1"></div></td>
-        <td><div class="audiostrip"  name="Tom2"></div></td>
-        <td><div class="audiostrip"  name="Tom3"></div></td>
-        <td><div class="audiostrip main"  name="Toms"></div></td>
-    </tr></table>
-    </div> 
-    <div id="Mains">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="FOH"></div></td>
-        <td><div class="audiostrip"  name="MonitorsJeannot"></div></td>
-        <td><div class="audiostrip"  name="MonitorsORL"></div></td>
-        <td><div class="audiostrip"  name="MonitorsDag"></div></td>
-    </tr></table>
-    </div> -->
+    </div><!--
     <div id="MonitorsJeannot">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="mjMainMix"></div></td>
@@ -222,29 +160,7 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="mjMetronome"></div></td>
         <td><div class="audiostrip main"  name="MonitorsJeannot"></div></td>
     </tr></table>
-    </div><!--
-    <div id="MonitorsORL">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="moMainMix"></div></td>
-        <td><div class="audiostrip"  name="moDrums"></div></td>
-        <td><div class="audiostrip"  name="moBassORL"></div></td>
-        <td><div class="audiostrip"  name="moGuitarORL"></div></td>
-        <td><div class="audiostrip"  name="moVxORL"></div></td>
-        <td><div class="audiostrip"  name="moMetronome"></div></td>
-        <td><div class="audiostrip main"  name="MonitorsORL"></div></td>
-    </tr></table>
-    </div>
-    <div id="MonitorsDag">
-    <table class="table"><tr>
-        <td><div class="audiostrip"  name="mdMainMix"></div></td>
-        <td><div class="audiostrip"  name="mdDrums"></div></td>
-        <td><div class="audiostrip"  name="mdBassDag"></div></td>
-        <td><div class="audiostrip"  name="mdGuitarDag"></div></td>
-        <td><div class="audiostrip"  name="mdVoixDag"></div></td>
-        <td><div class="audiostrip"  name="mdMetronome"></div></td>
-        <td><div class="audiostrip main"  name="MonitorsDag"></div></td>
-    </tr></table>
-    </div> -->
+    </div>-->
 </div>
 
 </body>

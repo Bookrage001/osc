@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #encoding=utf8
 """
-Osc Html Gui
+Osc Web Gui
 Build your own OSC control gui with html/css/javascript !
 
 # Partial doc... check the example !
 
->>> import oschtmlgui
->>> gui = oscHtmlGui(html='/path/to/gui.html')
+>>> import oscwebgui
+>>> gui = oscWebGui(html='/path/to/gui.html')
 >>> gui.main()
 
 Parameters :
@@ -26,14 +26,14 @@ Html Gui:
   - 'Load' will recall values stored in presetName.preset and send osc messages for each value
   
   
-- The html gui must contain the following javascript function (/!\ not wrapped in a document.ready() function) :
+- The html gui must contain the following javascript function (not wrapped in a document.ready() function) :
   - setValue(param, name, value)  : this is required for preset loading and for external osc control, and must be adapted to the gui's elements
 
 """
 import gtk, webkit, gobject, liblo as _liblo
 
-class oscHtmlGui(object):
-    def __init__(self,port=3333, target='127.0.0.1:3334', appName='oscHtmlgui', presetName='oscHtmlgui', html=None):
+class oscWebGui(object):
+    def __init__(self,port=3333, target='127.0.0.1:3334', appName='oscWebGui', presetName='oscWebGui', html=None):
         
         self.port = port
         self.target = target.split(' ')
@@ -183,5 +183,4 @@ class oscRouter(object):
               target_param = ''
             
             for i in range(len(target_address)):
-              #print target_address[i]
               _liblo.send('osc.udp://'+target_address[i], target_path +target_param, args[1])            
