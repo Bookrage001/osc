@@ -117,33 +117,21 @@ html, body {
         
 
     .audiostrip .ui-slider {
-        background:rgba(70, 186, 191,0.3);
+        background:rgba(70, 186, 191,0.1);
         border: 1px solid rgba(70, 186, 191,0.1);
-
     }
         .audiostrip .ui-slider-range {
-         background:rgba(70, 186, 191,0.9);
+         background:rgba(70, 186, 191,0.6);
+         border-radius:0;
         }
         .audiostrip .ui-slider-handle {
-            border-radius:50%;
-            background:#fff;
+            background:rgba(255,255,255,0.3);
             color:#fff;
             border-color:transparent;
-            opacity:0.9;
-        }     
-        .audiostrip .ui-slider-handle:after {
-            content:"";
-            position:absolute;
-            width:26px;height:26px;
-            left:50%;
-            margin-left:-13px;
-            top:50%;
-            margin-top:-13px;
-            border-radius:50%;
-            background:#fff;
-            opacity:0.7;
-            border-color:transparent;
-        }
+            border-radius:0px;
+        }   
+        
+          
         .audiostrip .ui-slider-handle:before {
             content:"";
             position:absolute;
@@ -152,10 +140,10 @@ html, body {
             margin-left:-200px;
             top:50%;
             margin-top:-5000px;
-            border-radius:50%;
             border-color:transparent;
             background:#fff;
             opacity:0;
+            z-index:10000;
         }
     .audiostrip .horizontal-slider {
         display:inline-block;
@@ -197,14 +185,25 @@ html, body {
                  top:20px;
              }
          
+    .audiostrip .slider-container {
+        position: absolute;
+        height:auto;
+        top:40px;
+        bottom:30px;
+        left:0px;
+        right:0px;
+        width:auto;
+        overflow:hidden;
+    }
     .audiostrip .vertical-slider {
         position: absolute;
         height:auto;
-        top:110px;
-        bottom:50px;
-        left:50%;
-        width:8px;
-        margin-left:-4px;
+        top:0px;
+        bottom:10px;
+        left:0px;
+        right:0px;
+        width:auto;
+        overflow:visible;
     }
         .audiostrip .vertical-slider:before {
             content:"";
@@ -221,23 +220,25 @@ html, body {
             bottom:92%;
             left:1px;right:1px;
             height:1px;
-            background:rgba(70, 186, 191,0.4);
+            background:rgba(70, 186, 191,.2);
         }
         .audiostrip .vertical-slider .ui-slider-handle {
-            width: 8px;
+            width: auto;
             height: 8px;
-            left: 50%;
-            margin-left: -4px;
-            margin-bottom: -4px;
+            left: 0;right:0;
+
         }
              .audiostrip .vertical-slider .value{
              position:absolute;
-             left:25px;
-             width:20px;
+             left:0;
+             right:0;
              margin-top:-10px;
              top:50%;
+             text-align:center;
              }
-    
+             .audiostrip .vertical-slider .value:after{
+                content:" dB";
+             }    
     
     .audiostrip .toggle {
         position: absolute;
