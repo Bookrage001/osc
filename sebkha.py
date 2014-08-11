@@ -146,7 +146,7 @@ example_path = os_path.dirname(os_path.abspath(__file__)) + '/example/'
 html_path = example_path + 'sebkha.html'
 preset_name = example_path + 'sebkha'
 
-gui = oschtmlgui.oscHtmlGui(port=3333, target='127.0.0.1:3335', appName='oscWebGui', presetName=preset_name,html=html_path)
+gui = oschtmlgui.oscHtmlGui(port=3333, target='127.0.0.1:3334', appName='oscWebGui', presetName=preset_name,html=html_path)
 
 router = oschtmlgui.oscRouter(port=3334, pathPatch=pathPatch, paramPatch=paramPatch)
 router.start()
