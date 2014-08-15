@@ -10,7 +10,7 @@
 }
 
 body {
-    font-size:12px;
+    font-size:14px;
     line-height:20px;
     font-family:sans;
     background:#000;
@@ -43,7 +43,6 @@ html, body {
     right:0;
     padding:0;
     padding-top:10px;
-    border-top:1px solid rgba(70, 186, 191,0.3);
 }
 #tabs > ul {
     background:none;
@@ -70,6 +69,7 @@ html, body {
     border: 1px solid rgba(70, 186, 191,0.3);
     color:#fff;
     border-radius:4px;
+    padding:15px;
     text-overflow:ellipsis;
     overflow:hidden;
     
@@ -88,7 +88,7 @@ html, body {
 .table td {
     padding:4px;
 }
-.audiostrip {
+.audiostrip, .eqstrip {
     height: 100%;
     width: 100%;
     text-align: center;
@@ -104,13 +104,13 @@ html, body {
         position: absolute;
         top: 0px;
         left: 0px;
-        height:30px;
+        height:50px;
         right: 0px;
         text-overflow:ellipsis;
         overflow:hidden;
     }
         .audiostrip .name .ui-button-text {
-            padding:5px;
+            padding:15px;
         }
         
         
@@ -125,10 +125,11 @@ html, body {
          border-radius:0;
         }
         .audiostrip .ui-slider-handle {
-            background:rgba(255,255,255,0.3);
+            background:rgba(255,100,100,0.5);
             color:#fff;
             border-color:transparent;
             border-radius:0px;
+            border:0;
         }   
         
           
@@ -188,8 +189,8 @@ html, body {
     .audiostrip .slider-container {
         position: absolute;
         height:auto;
-        top:40px;
-        bottom:30px;
+        top:60px;
+        bottom:0px;
         left:0px;
         right:0px;
         width:auto;
@@ -199,7 +200,7 @@ html, body {
         position: absolute;
         height:auto;
         top:0px;
-        bottom:10px;
+        bottom:20px;
         left:0px;
         right:0px;
         width:auto;
@@ -224,7 +225,8 @@ html, body {
         }
         .audiostrip .vertical-slider .ui-slider-handle {
             width: auto;
-            height: 8px;
+            height: 1px;
+            margin:0;
             left: 0;right:0;
 
         }
@@ -232,7 +234,7 @@ html, body {
              position:absolute;
              left:0;
              right:0;
-             margin-top:-10px;
+             margin-top:-0px;
              top:50%;
              text-align:center;
              }
@@ -269,6 +271,6 @@ html, body {
     border: 1px solid rgba(70, 186, 191,0.1);
 }
 
-
+.save {margin-left:150px;}
 .left {float:left;}
 .right {float:right;}

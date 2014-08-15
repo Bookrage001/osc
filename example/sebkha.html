@@ -15,9 +15,18 @@ $(document).ready(function(){
         $(this).append('<div class="name">'+n+'</div>')
         //$(this).append('<div class="horizontal-slider" name="'+n+'" param="Pan"></div>')
         $(this).append('<div class="slider-container"><div class="vertical-slider" name="'+n+'" param="Gain"></div></div>')
-        $(this).append('<div class="toggle" name="'+n+'" param="Mute">Mute</div>')
+        //$(this).append('<div class="toggle" name="'+n+'" param="Mute">Mute</div>')
     })
+    
+    $('.eqstrip').each(function(){
+    var n = $(this).attr('name')
+        $(this).append('<div class="name">'+n+'</div>')
+        $(this).append('<div class="horizontal-slider" name="'+n+'" param="EQ_Gain_1"></div>')
+        $(this).append('<div class="horizontal-slider" name="'+n+'" param="EQ_Freq_1"></div>')
+        $(this).append('<div class="horizontal-slider" name="'+n+'" param="EQ_Band_1"></div>')
 
+
+    })
 
     $('.vertical-slider').slider({orientation: 'vertical',min:0,max:1,step:0.001,range: "min",value:0.921})
     $('.vertical-slider .ui-slider-handle').each(function(){$(this).append('<div class="value">'+-Math.round((0.921-$(this).parent('.vertical-slider').slider('value'))*76*100)/100+'</div>')})
@@ -29,13 +38,7 @@ $(document).ready(function(){
             $('.vertical-slider[name='+$(this).attr('name')+']').not(this).slider('value',ui.value).find('.value').text(ui.value)
         }
     })
-    $('.ui-slider-handle').click(function(e){
-        if( e.button == 1 ) {
-            e.preventDefault()
-            sendOsc($(this).parent().attr('param'), $(this).parent().attr('name'),0.921)
-            setValue($(this).parent().attr('param'),$(this).parent().attr('name'),0.921)
-        }
-    });
+
     $('.horizontal-slider').slider({orientation: 'horizontal',min:-1,max:1,step:0.01})
     $('.horizontal-slider .ui-slider-handle').each(function(){$(this).append('<div class="value">'+$(this).parent('.horizontal-slider').slider('value')+'</div>')})
     $('.horizontal-slider').on( "slide", function( event, ui ) {
@@ -122,7 +125,7 @@ function toggleFullscreen(e){
 
 <div class="left">
 <div class="name" onclick="loadPreset();">Load</div>
-<div class="name" onclick="savePreset();">Save</div>
+<div class="name save" onclick="savePreset();">Save</div>
 </div>
 <div class="name right" id="fullscreen" data-e="0">Fullscreen</div>
 
@@ -131,13 +134,13 @@ function toggleFullscreen(e){
     <ul>
     <li><a href="#MainMix">MainMix</a></li>
     <li><a href="#Drums">Drums</a></li>
+    <li><a href="#Toms">Toms</a></li>
     <li><a href="#Basses">Basses</a></li>
     <li><a href="#Guitars">Guitars</a></li>
+    <li><a href="#Vocals">Vocals</a></li>
     <li><a href="#MxSynths">MxSynths</a></li>
     <li><a href="#MxDrums">MxDrums</a></li>
-    <li><a href="#Vocals">Vocals</a></li>
-    <li><a href="#Acoustics">Acoustics</a></li>
-    <li><a href="#Toms">Toms</a></li>
+    <!--<li><a href="#Acoustics">Acoustics</a></li>-->
     <li><a href="#Mains">Mains</a></li>
     <li><a href="#MonitorsJeannot">MonitorsJeannot</a></li>
     <li><a href="#MonitorsORL">MonitorsORL</a></li>
@@ -151,7 +154,10 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="MxSynths"></div></td>
         <td><div class="audiostrip"  name="MxDrums"></div></td>
         <td><div class="audiostrip"  name="Vocals"></div></td>
-        <td><div class="audiostrip"  name="Acoustics"></div></td>
+        <!--<td><div class="audiostrip"  name="Acoustics"></div></td>-->
+        <td><div class="audiostrip main"  name="FOH"></div></td>
+        
+        <!--<td><div class="eqstrip"  name="Vocals"></div></td>-->
     </tr></table>
     </div>
     <div id="Drums">
@@ -225,7 +231,7 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="Vx_Jeannot"></div></td>
         <td><div class="audiostrip main"  name="Vocals"></div></td>
     </tr></table>
-    </div>
+    </div><!--
     <div id="Acoustics">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="PianoToy"></div></td>
@@ -233,7 +239,7 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="GuitarAc"></div></td>
         <td><div class="audiostrip main"  name="Acoustics"></div></td>
     </tr></table>
-    </div> 
+    </div> -->
     <div id="Toms">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="Tom1"></div></td>

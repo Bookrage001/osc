@@ -136,7 +136,23 @@ pathPatch = {
 paramPatch = {
     'Gain':'Gain/Gain%20(dB)',
     'Pan':'Mono%20Pan/Pan',
-    'Mute':'Gain/Mute'
+    'Mute':'Gain/Mute',
+    
+    'EQ_Gain_1':'',
+    'EQ_Freq_1':'',
+    'EQ_Band_1':'',
+    
+    'EQ_Gain_2':'',
+    'EQ_Freq_2':'',
+    'EQ_Band_2':'',
+    
+    'EQ_Gain_3':'',
+    'EQ_Freq_3':'',
+    'EQ_Band_3':'',
+    
+    'EQ_Gain_4':'',
+    'EQ_Freq_4':'',
+    'EQ_Band_4':''
 }
 
 
@@ -146,7 +162,7 @@ example_path = os_path.dirname(os_path.abspath(__file__)) + '/example/'
 html_path = example_path + 'sebkha.html'
 preset_name = example_path + 'sebkha'
 
-gui = oschtmlgui.oscHtmlGui(port=3333, target='127.0.0.1:3334', appName='oscWebGui', presetName=preset_name,html=html_path)
+gui = oschtmlgui.oscHtmlGui(port=3333, target='127.0.0.1:3334', appName='oscHtmlGui', presetName=preset_name,html=html_path)
 
 router = oschtmlgui.oscRouter(port=3334, pathPatch=pathPatch, paramPatch=paramPatch)
 router.start()
