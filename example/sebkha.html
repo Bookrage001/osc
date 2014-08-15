@@ -18,13 +18,58 @@ $(document).ready(function(){
         //$(this).append('<div class="toggle" name="'+n+'" param="Mute">Mute</div>')
     })
     
+    $('.gatestrip').each(function(){
+    var n = $(this).attr('name')
+        $(this).append(
+        '<div class="paramblock">'
+
+        +'<div class="slider-container"><div class="horizontal-slider" min="33.6" max="4800" name="'+n+'" param="LF_Key"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="240" max="23520" name="'+n+'" param="HF_Key"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="-70" max="20" name="'+n+'" param="Threshold"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="0" max="1000" name="'+n+'" param="Attack"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="2" max="2000" name="'+n+'" param="Hold"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="2" max="4000" name="'+n+'" param="Decay"></div></div>'
+        
+        
+        +'</div>'
+        
+        )
+
+    })
+    
     $('.eqstrip').each(function(){
     var n = $(this).attr('name')
-        $(this).append('<div class="name">'+n+'</div>')
-        $(this).append('<div class="horizontal-slider" name="'+n+'" param="EQ_Gain_1"></div>')
-        $(this).append('<div class="horizontal-slider" name="'+n+'" param="EQ_Freq_1"></div>')
-        $(this).append('<div class="horizontal-slider" name="'+n+'" param="EQ_Band_1"></div>')
-
+        $(this).append(
+        '<div class="paramblock">'
+        +'<span style="color:#FFF; display: block">1st Band</span>'
+        +'<div class="toggle" name="'+n+'" param="EQ_On_1">On</div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="-20" max="20" name="'+n+'" param="EQ_Gain_1"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="20" max="2000" name="'+n+'" param="EQ_Freq_1"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="0.125" max="8" name="'+n+'" param="EQ_Band_1"></div></div>'
+        +'</div>'
+        +'<div class="paramblock">'
+        +'<span style="color:#FFF; display: block">2nd Band</span>'
+        +'<div class="toggle" name="'+n+'" param="EQ_On_2">On</div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="-20" max="20" name="'+n+'" param="EQ_Gain_2"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="40" max="4000" name="'+n+'" param="EQ_Freq_2"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="0.125" max="8" name="'+n+'" param="EQ_Band_2"></div></div>'
+        +'</div>'
+        +'<div class="paramblock">'
+        +'<span style="color:#FFF; display: block">3rd Band</span>'
+        +'<div class="toggle" name="'+n+'" param="EQ_On_3">On</div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="-20" max="20" name="'+n+'" param="EQ_Gain_3"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="100" max="10000" name="'+n+'" param="EQ_Freq_3"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="0.125" max="8" name="'+n+'" param="EQ_Band_3"></div></div>'
+        +'</div>'
+        +'<div class="paramblock">'
+        +'<span style="color:#FFF; display: block">4th Band</span>'
+        +'<div class="toggle" name="'+n+'" param="EQ_On_4">On</div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="-20" max="20" name="'+n+'" param="EQ_Gain_4"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="200" max="20000" name="'+n+'" param="EQ_Freq_4"></div></div>'
+        +'<div class="slider-container"><div class="horizontal-slider" min="0.125" max="8" name="'+n+'" param="EQ_Band_4"></div></div>'
+        +'</div>'        
+        
+        )
 
     })
 
@@ -39,14 +84,17 @@ $(document).ready(function(){
         }
     })
 
-    $('.horizontal-slider').slider({orientation: 'horizontal',min:-1,max:1,step:0.01})
-    $('.horizontal-slider .ui-slider-handle').each(function(){$(this).append('<div class="value">'+$(this).parent('.horizontal-slider').slider('value')+'</div>')})
+    $('.horizontal-slider').slider({orientation: 'horizontal',min:0,max:1,step:0.001})
+    $('.horizontal-slider').each(function(){$(this).append('<div class="value">'+Math.round(1000*(parseFloat($(this).attr('min')) + (parseFloat($(this).attr('max'))-parseFloat($(this).attr('min')))*$(this).slider('value')))/1000+'</div><div class="label">'+$(this).attr('param')+'</div>')})
     $('.horizontal-slider').on( "slide", function( event, ui ) {
-        $(this).find('.value').text(ui.value)
+        var val = Math.round(1000*(parseFloat($(this).attr('min')) + (parseFloat($(this).attr('max'))-parseFloat($(this).attr('min')))*ui.value))/1000
+
+        $(this).find('.value').text(val)
         sendOsc($(this).attr('param'), $(this).attr('name'), ui.value)
+        /*
         if ($('.horizontal-slider[name='+$(this).attr('name')+']').length > 1) {
             $('.horizontal-slider[name='+$(this).attr('name')+']').not(this).slider('value',ui.value).find('.value').text(ui.value)
-        }
+        }*/
     });
     
     $('.name').button()
@@ -67,12 +115,29 @@ $(document).ready(function(){
         $(this).toggleClass('enabled');
         if ($(this).hasClass('enabled')) { value = 1.0 } else { value = 0.0 };
         sendOsc($(this).attr('param'), $(this).attr('name'), value);
+        /*
         if ($('.toggle[name='+$(this).attr('name')+']').length > 1) {
             $('.toggle[name='+$(this).attr('name')+']').not(this).toggleClass('enabled')
         }
+        */
     });
     
     $('#tabs').tabs();
+    $('.subtabs').tabs();
+    
+    $('.name').button()
+    $('.name').each(function(){
+        var name =  $(this).text()
+        if ($('#'+name).length != 0) {
+            $(this).click(function(){
+                var index = $('#tabs a[href="#'+name+'"]').parent().index();
+                $('#tabs').tabs({active:index});
+            })
+        } else {
+            $(this).addClass('disabled')
+        }
+    })
+    
     
     $('#fullscreen').click(function(){
       $(this).attr('data-e',Math.abs($(this).attr('data-e')-1));
@@ -88,7 +153,7 @@ function savePreset() {
         preset += $(this).attr('param') + ' ' + $(this).attr('name') + ' ' + $(this).slider('value') + ';'
     })
     $('.toggle').each(function(){
-        if ($(this).hasClass('enabled')) { var value = 1 } else { var value =0 }
+        if ($(this).hasClass('enabled')) { var value = 1.0 } else { var value = 0.0 }
         preset += $(this).attr('param') + ' ' + $(this).attr('name') + ' ' + value + ';'
     })
     document.title = 'Save' + ',' + preset
@@ -100,14 +165,19 @@ function loadPreset() {
 
 function setValue(param,name,value) {
     $('[param='+param+'][name='+name+']').each(function(){
-    if ($(this).hasClass('horizontal-slider') || $(this).hasClass('vertical-slider') ) {
+    if  ( $(this).hasClass('vertical-slider') ) {
         $(this).slider('value',value)
         var db = -Math.round((0.921-value)*76*100)/100
         $(this).find('.value').text(db)
     }
+    if ($(this).hasClass('horizontal-slider')) {
+        $(this).slider('value',value)
+        var val = Math.round(1000*(parseFloat($(this).attr('min')) + (parseFloat($(this).attr('max'))-parseFloat($(this).attr('min')))*value))/1000
+        $(this).find('.value').text(val)
+    }
     if ($(this).hasClass('toggle')) {
-        if (value == 1) {$(this).addClass('enabled')}
-        if (value == 0) {$(this).removeClass('enabled')}
+        if (value == 1.0) {$(this).addClass('enabled')}
+        if (value == 0.0) {$(this).removeClass('enabled')}
     }
     })
 }
@@ -145,7 +215,113 @@ function toggleFullscreen(e){
     <li><a href="#MonitorsJeannot">MonitorsJeannot</a></li>
     <li><a href="#MonitorsORL">MonitorsORL</a></li>
     <li><a href="#MonitorsDag">MonitorsDag</a></li>
+    <li><a href="#EQs">EQs</a></li>
+    <li><a href="#Gates">Gates</a></li>
     </ul>
+
+    <div id="EQs" class="subtabs">
+        <ul>
+            <li><a href="#eqKick">Kick</a></li>
+            <li><a href="#eqSnare">Snare</a></li>
+            <li><a href="#eqBass_Dag">Bass_Dag</a></li>
+            <li><a href="#eqVx_Dag">Vx_Dag</a></li>
+            <li><a href="#eqVx_ORL">Vx_ORL</a></li>
+            <li><a href="#eqMxBass">MxBass</a></li>
+            <li><a href="#eqMxKicks">MxKicks</a></li>
+            <li><a href="#eqOH-L">OH-L</a></li>
+            <li><a href="#eqOH-R">OH-R</a></li>
+            <li><a href="#eqTom1">Tom1</a></li>
+            <li><a href="#eqTom2">Tom2</a></li>
+            <li><a href="#eqTom3">Tom3</a></li>
+            <li><a href="#eqScape_Vx_Dag">Scape_Vx_Dag</a></li>
+            <li><a href="#eqMxCymbs">MxCymbs</a></li>
+            <li><a href="#eqDrums">Drums</a></li>
+        </ul>
+        <div id="eqKick">
+            <div class="eqstrip fxstrip"  name="Kick"></div>
+        </div>
+        <div id="eqSnare">
+            <div class="eqstrip fxstrip"  name="Snare"></div>       
+        </div>
+        <div id="eqBass_Dag">
+            <div class="eqstrip fxstrip"  name="Bass_Dag"></div>
+        </div>    
+        <div id="eqVx_Dag">
+            <div class="eqstrip fxstrip"  name="Vx_Dag"></div>
+        </div>
+        <div id="eqVx_ORL">
+            <div class="eqstrip fxstrip"  name="Vx_ORL"></div>
+        </div>
+        <div id="eqMxBass">
+            <div class="eqstrip fxstrip"  name="MxBass"></div>
+        </div>
+        <div id="eqMxKicks">
+            <div class="eqstrip fxstrip"  name="MxKicks"></div>
+        </div>
+        <div id="eqOH-L">
+            <div class="eqstrip fxstrip"  name="OH-L"></div>
+        </div>
+        <div id="eqOH-R">
+            <div class="eqstrip fxstrip"  name="OH-R"></div>
+        </div>
+        <div id="eqTom1">
+            <div class="eqstrip fxstrip"  name="Tom1"></div>
+        </div>
+        <div id="eqTom2">
+            <div class="eqstrip fxstrip"  name="Tom2"></div>
+        </div>
+        <div id="eqTom3">
+            <div class="eqstrip fxstrip"  name="Tom3"></div>
+        </div>
+        <div id="eqScape_Vx_Dag">
+            <div class="eqstrip fxstrip"  name="Scape_Vx_Dag"></div>
+        </div>
+        <div id="eqMxCymbs">
+            <div class="eqstrip fxstrip"  name="MxCymbs"></div>
+        </div>
+        <div id="eqDrums">
+            <div class="eqstrip fxstrip"  name="Drums"></div>
+        </div>
+    </div>
+
+
+    <div id="Gates" class="subtabs">
+        <ul>
+            <li><a href="#gateVx_Dag">Vx_Dag</a></li>
+            <li><a href="#gateVx_ORL">Vx_ORL</a></li>
+            <li><a href="#gateKick">Kick</a></li>
+            <li><a href="#gateSnare">Snare</a></li>
+            <li><a href="#gateTom1">Tom1</a></li>
+            <li><a href="#gateTom2">Tom2</a></li>
+            <li><a href="#gateTom3">Tom3</a></li>
+        </ul>
+        <div id="gateVx_Dag">
+            <div class="gatestrip fxstrip"  name="Vx_Dag"></div>
+        </div>
+        <div id="gateVx_ORL">
+            <div class="gatestrip fxstrip"  name="Vx_ORL"></div>       
+        </div>
+        <div id="gateKick">
+            <div class="gatestrip fxstrip"  name="Kick"></div>       
+        </div>
+        <div id="gateSnare">
+            <div class="gatestrip fxstrip"  name="Snare"></div>       
+        </div>
+        <div id="gateTom1">
+            <div class="gatestrip fxstrip"  name="Tom1"></div>       
+        </div>
+        <div id="gateTom2">
+            <div class="gatestrip fxstrip"  name="Tom2"></div>       
+        </div>
+        <div id="gateTom3">
+            <div class="gatestrip fxstrip"  name="Tom3"></div>       
+        </div>
+
+    </div>
+    
+
+
+
     <div id="MainMix">
     <table class="table"><tr>
         <td><div class="audiostrip"  name="Drums"></div></td>
@@ -156,8 +332,6 @@ function toggleFullscreen(e){
         <td><div class="audiostrip"  name="Vocals"></div></td>
         <!--<td><div class="audiostrip"  name="Acoustics"></div></td>-->
         <td><div class="audiostrip main"  name="FOH"></div></td>
-        
-        <!--<td><div class="eqstrip"  name="Vocals"></div></td>-->
     </tr></table>
     </div>
     <div id="Drums">

@@ -138,21 +138,34 @@ paramPatch = {
     'Pan':'Mono%20Pan/Pan',
     'Mute':'Gain/Mute',
     
-    'EQ_Gain_1':'',
-    'EQ_Freq_1':'',
-    'EQ_Band_1':'',
     
-    'EQ_Gain_2':'',
-    'EQ_Freq_2':'',
-    'EQ_Band_2':'',
+    'EQ_On_1':'4-band%20parametric%20filter/Section%201',
+    'EQ_Gain_1':'4-band%20parametric%20filter/Gain%201',
+    'EQ_Freq_1':'4-band%20parametric%20filter/Frequency%201',
+    'EQ_Band_1':'4-band%20parametric%20filter/Bandwidth%201',
     
-    'EQ_Gain_3':'',
-    'EQ_Freq_3':'',
-    'EQ_Band_3':'',
+    'EQ_On_2':'4-band%20parametric%20filter/Section%202',
+    'EQ_Gain_2':'4-band%20parametric%20filter/Gain%202',
+    'EQ_Freq_2':'4-band%20parametric%20filter/Frequency%202',
+    'EQ_Band_2':'4-band%20parametric%20filter/Bandwidth%202',
     
-    'EQ_Gain_4':'',
-    'EQ_Freq_4':'',
-    'EQ_Band_4':''
+    'EQ_On_3':'4-band%20parametric%20filter/Section%203',
+    'EQ_Gain_3':'4-band%20parametric%20filter/Gain%203',
+    'EQ_Freq_3':'4-band%20parametric%20filter/Frequency%203',
+    'EQ_Band_3':'4-band%20parametric%20filter/Bandwidth%203',
+    
+    'EQ_On_4':'4-band%20parametric%20filter/Section%204',
+    'EQ_Gain_4':'4-band%20parametric%20filter/Gain%204',
+    'EQ_Freq_4':'4-band%20parametric%20filter/Frequency%204',
+    'EQ_Band_4':'4-band%20parametric%20filter/Bandwidth%204',
+
+    'LF_Key':'Gate/LF%20key%20filter%20(Hz)',
+    'HF_Key':'Gate/HF%20key%20filter%20(Hz)',
+    'Threshold':'Gate/Threshold%20(dB)',
+    'Attack':'Gate/Attack%20(ms)',
+    'Hold':'Gate/Hold%20(ms)',
+    'Decay':'Gate/Decay%20(ms)',
+    
 }
 
 

@@ -29,7 +29,6 @@ html, body {
     left:0;
     right:0;
     bottom:0;
-
     background:none;
     border:none;
     padding:0;
@@ -88,7 +87,170 @@ html, body {
 .table td {
     padding:4px;
 }
-.audiostrip, .eqstrip {
+
+
+
+
+#tabs .subtabs {
+    position:absolute;
+    top:60px;
+    left:0;
+    right:0;
+    bottom:0;
+    background:none;
+    border:none;
+    padding:0;
+}
+#tabs .subtabs > div {
+    height:auto;
+    position:absolute;
+    top:50px;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:0;
+    padding-top:10px;
+}
+#tabs .subtabs > ul {
+    background:none;
+    border:none;
+    padding:0;
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout:fixed;
+}
+#tabs .subtabs > ul li{
+    display: table-cell;
+    float: none;
+    background:none;
+    border:none;
+    padding:4px;
+    width:100%;
+}
+#tabs .subtabs > ul li a {
+    display:block;
+    float:none;
+    text-align:center;
+    background:rgba(70, 186, 191,0.1);
+    border: 1px solid rgba(70, 186, 191,0.3);
+    color:#fff;
+    border-radius:4px;
+    padding:15px;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    
+}
+#tabs .subtabs > ul li.ui-tabs-active a {
+    background:rgba(70, 186, 191,.7);
+}
+
+
+
+/* FXSTRIP */
+
+.fxstrip {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position:relative;
+    display:block;
+    overflow:hidden;
+    
+}
+
+        
+    .fxstrip .paramblock {
+        width:48%;
+        display:inline-block;
+        padding-bottom:10px;
+        margin-top:10px;
+        border-bottom:1px solid rgba(70, 186, 191,0.3);
+
+    }
+    .fxstrip .paramblock:nth-child(2n) {
+        margin:0 1%;
+    }
+    
+    .fxstrip .slider-container {
+        width:auto;
+        height:50px;
+        overflow:hidden;padding:2px;
+    }
+    .fxstrip .horizontal-slider {
+        width:100%;
+        height:100%;
+        overflow:visible;
+    }
+    
+    
+    .fxstrip .ui-slider {
+        background:rgba(70, 186, 191,0.1);
+        border: 1px solid rgba(70, 186, 191,0.1);
+    }
+        .fxstrip .ui-slider-handle {
+            background:rgba(255,100,100,0.5);
+            color:#fff;
+            border-color:transparent;
+            border-radius:0px;
+            border:0;
+        }   
+        
+          
+        .fxstrip .ui-slider-handle:before {
+            content:"";
+            position:absolute;
+            width:10000px;height:10000px;
+            left:50%;
+            margin-left:-5000px;
+            top:50%;
+            margin-top:-5000px;
+            border-color:transparent;
+            background:#fff;
+            opacity:0;
+            z-index:10000;
+        }
+        .fxstrip .horizontal-slider .ui-slider-handle {
+            width: auto;
+            height: 100%;
+            margin:0;
+            width:4px;
+            top:0;
+
+        }
+
+        .fxstrip .horizontal-slider .value{
+            width:100%;
+            text-align:center;
+            color:#fff;
+
+        }
+        .fxstrip .horizontal-slider .label{
+            width:100%;
+            text-align:center;
+            color:#fff;
+        }
+    .fxstrip .toggle {
+        margin-bottom:5px;
+        height:40px;
+        padding:5px 10px;
+        text-align:center;
+        background:rgba(70, 186, 191,0.1);
+        border: 1px solid rgba(70, 186, 191,0.3);
+        color:#fff;
+
+    }
+        .fxstrip .toggle .ui-button-text {
+            padding:5px;
+        }
+        .fxstrip .toggle.enabled {
+            background:rgba(70, 186, 191,0.6);
+        }
+
+
+/* AUDIOSTRIP */
+
+.audiostrip {
     height: 100%;
     width: 100%;
     text-align: center;
@@ -112,8 +274,6 @@ html, body {
         .audiostrip .name .ui-button-text {
             padding:15px;
         }
-        
-        
         
 
     .audiostrip .ui-slider {
@@ -146,45 +306,7 @@ html, body {
             opacity:0;
             z-index:10000;
         }
-    .audiostrip .horizontal-slider {
-        display:inline-block;
-        position: absolute;
-        top:60px;
-        left: 0px;
-        right:0px;
-        height:8px;
-        margin-left:0px;
-    }
-        .audiostrip .horizontal-slider:before {
-            content:"";
-            position:absolute;
-            height:48px;width:100%;
-            top:-20px;
-            left:0;
-        }
-        .audiostrip .horizontal-slider:after {
-            content:"";
-            position:absolute;
-            left:50%;
-            top:1px;bottom:1px;
-            width:1px;
-            background:rgba(70, 186, 191,0.4);
-        }
-        .audiostrip .horizontal-slider .ui-slider-handle {
-            width: 8px;
-            height: 8px;
-            top: 50%;
-            margin-top: -4px;
-            margin-left:-4px;
-        }
-             .audiostrip .horizontal-slider .value{
-                 position:absolute;
-                 width:50px;
-                 margin-left:-25px;
-                 left:50%;
-                 text-align:center;
-                 top:20px;
-             }
+        
          
     .audiostrip .slider-container {
         position: absolute;
@@ -230,17 +352,38 @@ html, body {
             left: 0;right:0;
 
         }
-             .audiostrip .vertical-slider .value{
-             position:absolute;
-             left:0;
-             right:0;
-             margin-top:-0px;
-             top:50%;
-             text-align:center;
-             }
-             .audiostrip .vertical-slider .value:after{
-                content:" dB";
-             }    
+        .audiostrip .vertical-slider .value{
+            position:absolute;
+            left:0;
+            right:0;
+            margin-top:-0px;
+            top:50%;
+            text-align:center;
+        }
+        .audiostrip .vertical-slider .value:after{
+            content:" dB";
+        }
+
+        
+.audiostrip .name, .fxstrip .name {
+    color:#fff;
+    background:rgba(70, 186, 191,0.1);
+    border: 1px solid rgba(70, 186, 191,0.3);
+}
+.audiostrip .name.disabled, .fxstrip .name.disabled {
+    background:rgba(70, 186, 191,0.01);
+    border: 1px solid rgba(70, 186, 191,0.1);
+}
+
+.save {margin-left:150px;}
+.left {float:left;}
+.right {float:right;}
+
+
+
+
+/* 
+
     
     .audiostrip .toggle {
         position: absolute;
@@ -261,16 +404,4 @@ html, body {
             background:rgba(70, 186, 191,0.6);
         }
         
-.audiostrip .name {
-    color:#fff;
-    background:rgba(70, 186, 191,0.1);
-    border: 1px solid rgba(70, 186, 191,0.3);
-}
-.audiostrip .name.disabled {
-    background:rgba(70, 186, 191,0.01);
-    border: 1px solid rgba(70, 186, 191,0.1);
-}
-
-.save {margin-left:150px;}
-.left {float:left;}
-.right {float:right;}
+*/
