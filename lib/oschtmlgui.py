@@ -4,49 +4,79 @@
 Osc Html Gui
 Build your own OSC control gui with html/css/javascript !
 
-# Partial doc... check the example !
-
 >>> import oschtmlgui
->>> gui = oscHtmlGui(html='/path/to/gui.html')
+>>> gui = oscHtmlGui(config='/path/to/config.js')
 >>> gui.main()
 
 Parameters :
-  port,       input port for external control of the gui
-  target,     target_ip:target_port to send osc messages to, multiples targets can be specified, separated by a space
-  appName,    name of the gui window, prefix for osc messages
-  presetName, user values can be saved by the gui in presetName.preset
-  html,       path to the html gui
+  port        input port for external sync of the gui
+  appName     name of the gui window
+  presetName  user values can be saved by the gui in presetName.preset
+  config      path (relative or absolute) to the javascript config file which lists the widgets in the gui  
   
-Html Gui:
+Config file :
 
-- Build your html page like any other (including css stylesheets and javascript)
-- You can communicate with the gui engine by changing the document's title (document.title = newtitle), here are the recognized instructions :
-  - 'param, name, value' will send this osc message to the target(s) : '/appName/param name value' #value must be a number, it is converted to float anyway
-  - 'Save, preset' will store the preset in presetName.preset, preset must be of the form 'param name value;param name value;'
-  - 'Load' will recall values stored in presetName.preset and send osc messages for each value
-  
-  
-- The html gui must contain the following javascript function (/!\ not wrapped in a document.ready() function) :
-  - setValue(param, name, value)  : this is required for preset loading and for external osc control, and must be adapted to the gui's elements
+The config file is basically a javascript file which must define the variable TABS as a dictionnary :
+
+TABS = {
+    
+    // Here are the main tabs
+
+    id_of_tab_1:{
+        title: "title", // as displayed in the gui (uses id as fallback)
+        strips: {
+        
+            // List of widgets (only strips/vertical faders for now)
+        
+            id_of_strip_1: {
+                title: "title", // as displayed in the gui (uses id as fallback)
+                target: "ip_adress:port", // you can specify multiple targets separated spaces
+                path: "/osc/path",
+                args: "extra osc args", // separeted by spaces (optionnal) prepended to the numerical argument controled by the widget
+                range: {'min':0,'30%':10,'90%',20,'max':30}, // defines the range of the numerical argument, only min and max are required 
+                                                            // you can directly set range:'db' for a log scale (between -70db and 6dB, designed for non mixer)
+                color:'#333', // optionnal, css color definition (hex, rgb, rgba or standard color name)
+                scale1: // ONLY IF YOU WANT THE OSC MESSAGE TO BE RESCALED BETWEEN 0 AND 1
+            },
+            
+            id_of_strip_2  {
+                ...
+            }
+        }
+    },
+    
+    id_of_tab_2:{
+        title: "title",
+        // Nested tabs !!
+        id_of_subtab_1: {
+            title: "...",
+            strips: {
+                ...
+            }
+        }
+}
 
 """
 import gtk, webkit, gobject, liblo as _liblo
+from os import path as os_path
 
 class oscHtmlGui(object):
-    def __init__(self,port=3333, target='127.0.0.1:3334', appName='oscHtmlgui', presetName='oscHtmlgui', html=None):
+    def __init__(self,port=None, appName='oscHtmlgui', presetName='oscHtmlgui', config=None):
         
         self.port = port
-        self.target = target.split(' ')
-        self.appName = appName
         self.presetName = presetName
-        self.html = html
-        
-        if self.html == None:
-          raise Exception('You must specify the absolute path to the html gui file')
+        self.html =  os_path.dirname(os_path.abspath(__file__)) + '/base.html'
 
-        self.server = _liblo.ServerThread(self.port)
-        self.server.register_methods(self)
-        self.server.start()
+
+        try:
+            self.configfile = open(config,'r')
+        except:
+            raise Exception('*** config file file cannot be read !')
+        
+        if self.port:    
+            self.server = _liblo.ServerThread(self.port)
+            self.server.register_methods(self)
+            self.server.start()
         
         self.window = gtk.Window()
         self.window.set_title(appName)
@@ -59,7 +89,7 @@ class oscHtmlGui(object):
 
         self.browser.open(self.html)
 
-        self.window.set_default_size(800, 600)
+        self.window.set_default_size(400, 600)
         self.window.show_all()
         self.window.connect("destroy", gtk.main_quit)
         
@@ -77,17 +107,20 @@ class oscHtmlGui(object):
 
     def title_changed(self, title):
         if title != 'null':
-            if title.split(',')[0] == 'Load':
+            if title.split(',')[0] == 'INIT':
+                self.async_gtk_msg(self.browser.execute_script)(self.configfile.read())
+                self.async_gtk_msg(self.browser.execute_script)('init()')
+                
+            elif title.split(',')[0] == 'Load':
                 try:
                     f = open(self.presetName+'.preset','r')
                 except:
                     self.alertError(self.presetName+'.preset'+' not found !')
                     return
-                preset = f.read().split('\n')
-                for i in range(len(preset)-1):
-                    self.sendOsc('/'+preset[i].split(' ')[0],preset[i].split(' ')[1],float(preset[i].split(' ')[2]))
-                    self.setValue(preset[i].split(' ')[0],preset[i].split(' ')[1],float(preset[i].split(' ')[2]))
-
+                    
+                preset = f.read().replace('\n',';')
+                self.async_gtk_msg(self.browser.execute_script)('loadPreset("'+preset+'")')
+       
             elif title.split(',')[0] == 'Save':
                 try:
                     preset = title.split(',')[1]
@@ -97,13 +130,19 @@ class oscHtmlGui(object):
                     self.alertError('Preset Saved')
                 except:
                     self.alertError('Could not save the preset...')
+                    
             elif title.split(',')[0] == 'Fullscreen':
                 self.toggleFullscreen(title.split(',')[1])
-            else:
-                param = title.split(',')[0]
-                name = title.split(',')[1]
-                value = float(title.split(',')[2])
-                self.sendOsc(param,name,value)
+                
+            elif title.split(',')[0] == 'Send':
+                target = title.split(',')[1]
+                path = title.split(',')[2]
+                args = title.split(',')[3:]
+                try:
+                    args[-1] = float(args[-1])
+                except:
+                    pass
+                self.sendOsc(target,path,args)
                     
                     
     def toggleFullscreen(self,e):
@@ -112,13 +151,15 @@ class oscHtmlGui(object):
         else:
             self.window.unfullscreen()
             
-    def sendOsc(self,param,name,value):
-        path = '/' + self.appName + '/' + param
-        for i in range(len(self.target)):
-            _liblo.send('osc.udp://'+self.target[i], path, name, value)
+    def sendOsc(self,target,path,args):
+        if ' ' in target:
+            for i in range(len(target.split(' '))):
+                 _liblo.send('osc.udp://'+target[i], path, *args)
+        else:
+            _liblo.send('osc.udp://'+target, path, *args)
    
-    def setValue(self,param,name,value):
-        self.async_gtk_msg(self.browser.execute_script)('setValue("'+param+'","'+name+'",'+str(value)+')')
+    def receiveOsc(self,a):
+        self.async_gtk_msg(self.browser.execute_script)('receiveOsc("'+','.join(a)+'")')
         
     def alertError(self,error):
         self.async_gtk_msg(self.browser.execute_script)('alert("'+error+'")')
@@ -133,13 +174,13 @@ class oscHtmlGui(object):
 
         return fun2
 
-    @_liblo.make_method(None, 'sf')
+    @_liblo.make_method(None, None)
     def oscIn(self, path, args):
-        if '/'+self.appName in path:
-            param = path.split('/')[-1]
-            name = args[0]
-            value = args[1]
-            self.setValue(param,name,value)
+        a = []
+        a.append(path)
+        for i in range(len(args)):
+            a.append(str(args[i])) 
+        self.receiveOsc(a)
     
 # Utility : oscRouter routes incomming osc messages using a path patch and eventually a parameter patch
 # port         path          args       >>       port                          path                      arg

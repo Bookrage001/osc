@@ -7,7 +7,7 @@ from oschtmlgui import oscHtmlGui
 gui = oscHtmlGui(
     port=3333, 
     presetName='sebkhachott',
-    config='config.js'
+    config='monitorsorl.js'
 )
 
 
