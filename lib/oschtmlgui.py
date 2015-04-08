@@ -82,10 +82,13 @@ class oscHtmlGui(object):
         self.window.set_title(appName)
         self.browser = webkit.WebView()
 
-        self.box = gtk.VBox(homogeneous=False, spacing=0)
-        self.window.add(self.box)
 
-        self.box.pack_start(self.browser, expand=True, fill=True, padding=0)
+        self.w = gtk.ScrolledWindow()
+        self.w.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+
+
+        self.w.add(self.browser)
+        self.window.add(self.w)
 
         self.browser.open(self.html)
 
