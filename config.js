@@ -15,7 +15,7 @@ nmPorts = {
 }
 
 TABS = {
-    
+    /*
     testingshits: {
             widgets:{
                 button1: {
@@ -23,15 +23,16 @@ TABS = {
                     target:'localhost:6666',
                     path:'/osc/path/',
                     color:'#555522'          
-                },            Basses: {
-	            title:'Basses',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Basses/Gain/Gain%20(dB)/unscaled'
-            },
+                },            
+                Bassess: {
+	                title:'Bassess',
+	                range:'db',
+	                target:nmPorts['MainMix'],
+	                path:'SHIT'
+                },
             }
     },
-    
+    */
     MainMix: {
     
         title:'MainMix',
