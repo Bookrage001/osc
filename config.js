@@ -15,7 +15,7 @@ nmPorts = {
 }
 
 TABS = {
-    /*
+    
     testingshits: {
             widgets:{
                 button1: {
@@ -31,7 +31,7 @@ TABS = {
             },
             }
     },
-    */
+    
     MainMix: {
     
         title:'MainMix',

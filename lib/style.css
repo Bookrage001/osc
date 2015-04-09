@@ -171,7 +171,7 @@ a.on, a:active {
     font-size:13px; 
     border:1px solid rgba(0,0,0,0.2);
     padding:33px 0;
-
+    width:100px;
 }
 
 .widget .title {
@@ -213,20 +213,18 @@ a.on, a:active {
 
 
 /* BUTTON */
-.button {
-    width:100px;
-}
-.button-inner-wrapper {
+
+.button-wrapper {
     height:100%;
     overflow:hidden;
 
 }
-.push {
+.button {
     width:100%;
     height:100%;
     position:relative;
 }
-.push:after {
+.button:after {
     content:"";
     position:absolute;
     width:20px;
@@ -237,21 +235,19 @@ a.on, a:active {
     background:#222;
 
 }
-.push:active:after {
+.button.on:after {
     background:rgba(20,240,250,.4);
 }
 
 
 /* STRIP (vertical fader) */
-.strip {
-    width:100px;
-}
-.strip-inner-wrapper {
+
+.fader-wrapper {
     padding:20px 10px;
     overflow:hidden;
     height:100%;
 }
-.strip .fader{
+.fader{
     height:100%;
     width:18px;
 }
