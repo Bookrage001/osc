@@ -263,3 +263,90 @@
 .noUi-marker-vertical.noUi-marker-large {
 	width: 15px;
 }
+
+
+
+/* Custom css (oschtmlgui)
+ *
+ */
+.noUi-background {
+    background:#222;    
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:0px;
+    box-shadow:0 0 0;
+}
+}
+.noUi-target {
+    box-shadow:0 0 0;
+}
+.noUi-base {
+    z-index:2;
+    
+}
+.noUi-handle {
+    border-radius:0;
+    box-shadow:0 0 0;
+    background:rgba(255,255,255,0.2);
+    border-color:rgba(255,255,255,0.4);
+}
+.noUi-handle:after {
+    display:none;
+}
+
+.noUi-vertical .noUi-handle {
+    width:160%;
+    left:-30%;
+}
+.noUi-vertical .noUi-handle:before {
+    margin-top:2px;
+    background:rgba(255,255,255,0.3);
+    width:70%!important;
+    left:15%;
+}
+
+.noUi-horizontal .noUi-handle:before {
+    background:rgba(255,255,255,0.4);
+    width:1px!important;
+    left:15px;
+    height:16px;
+    margin-top:-1px;
+}
+.noUi-horizontal .noUi-dragable:after {
+    content:"";
+    position:absolute;
+    height:100%;
+    left:-5000px;
+    width:10000px;
+}
+
+.noUi-connect {
+    background:rgba(20,240,250,.4);
+    border:0;
+    border-radius:0;
+}
+.noUi-vertical .noUi-handle {
+    top:-18px;
+    aheight:60px;
+}
+.noUi-vertical .noUi-dragable:after {
+    content:"";
+    position:absolute;
+    height:10000px;
+    top:-5000px;
+    width:500px;
+    left:-250px;
+}
+.noUi-pips {
+    font-size:11px;
+    font-family:sans;
+}
+.noUi-value-vertical {
+    margin-top:-7px;
+}
+.noUi-marker-vertical.noUi-marker {
+    height:1px;
+}
+.noUi-marker-horizontal.noUi-marker {
+    width:1px;
+}
+

@@ -15,11 +15,27 @@ nmPorts = {
 }
 
 TABS = {
-    
+    /*
+    testingshits: {
+            widgets:{
+                button1: {
+                    type:'button',
+                    target:'localhost:6666',
+                    path:'/osc/path/',
+                    color:'#555522'          
+                },            Basses: {
+	            title:'Basses',
+	            range:'db',
+	            target:nmPorts['MainMix'],
+	            path:'/strip/Basses/Gain/Gain%20(dB)/unscaled'
+            },
+            }
+    },
+    */
     MainMix: {
     
         title:'MainMix',
-        strips:{
+        widgets:{
 	
             Drums: {
 	            title:'Drums',
@@ -85,7 +101,7 @@ TABS = {
         tabs:{
             Drumset: {
                 title:'Drumset',
-                strips: {
+                widgets: {
                     Kick: {
 	                    title:'Kick',
 	                    range:'db',
@@ -133,7 +149,7 @@ TABS = {
             },
             
             Toms: {
-                strips:{
+                widgets:{
                     Tom1: {
 	                    title:'Tom1',
 	                    range:'db',
@@ -168,7 +184,7 @@ TABS = {
     
     Basses: {
         title:'Basses',
-        strips:{
+        widgets:{
 
             Bass_ORL: {
 	            title:'Bass_ORL',
@@ -224,7 +240,7 @@ TABS = {
     
     Guitars: {
         title:'Guitars',
-        strips:{
+        widgets:{
                     
             Guitar_ORL: {
 	            title:'Guitar_ORL',
@@ -300,7 +316,7 @@ TABS = {
         
     MxSynths: {
         title:'MxSynths',
-        strips:{
+        widgets:{
 	
             MxBass: {
 	            title:'MxBass',
@@ -348,7 +364,7 @@ TABS = {
     
     MxDrums: {
         title:'MxDrums',
-        strips:{
+        widgets:{
 	    
             MxKicks: {
 	            title:'MxKicks',
@@ -396,7 +412,7 @@ TABS = {
             
     Acoustics: {
         title:'Acoustics',
-        strips:{
+        widgets:{
 	
             PianoToy: {
 	            title:'PianoToy',
@@ -430,7 +446,7 @@ TABS = {
     
     Vocals: {
         title:'Vocals',
-        strips:{
+        widgets:{
         
             Vx_ORL: {
 	            title:'Vx_ORL',
