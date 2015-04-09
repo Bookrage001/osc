@@ -168,13 +168,10 @@ class oscHtmlGui(object):
         self.async_gtk_msg(self.browser.execute_script)('alert("'+error+'")')
 
     def async_gtk_msg(self, fun):
-
         def worker((function, args, kwargs)):
             apply(function, args, kwargs)
-
         def fun2(*args, **kwargs):
             gobject.idle_add(worker, (fun, args, kwargs))
-
         return fun2
 
     @_liblo.make_method(None, None)

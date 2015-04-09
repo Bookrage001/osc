@@ -1,5 +1,5 @@
 nmPorts = {
-    'MainMix':'localhost:6666',
+    'MainMix':'SCSon:6666',
     'Drums':'SCSon:6667',
     'Basses':'SCSon:6668',
     'Guitars':'SCSon:6669',
