@@ -9,7 +9,7 @@ TABS = {
     MonitorsDag:{
         title: 'Monitor Dag-Z',
         
-        strips: {
+        widgets: {
 
             mdDrums: {
 			    title:'Drums',

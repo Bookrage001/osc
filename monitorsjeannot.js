@@ -9,7 +9,7 @@ TABS = {
     MonitorsJeannot:{
         title: 'Monitor Jeannot',
         
-        strips: {
+        widgets: {
 		
 
             mjDrums: {

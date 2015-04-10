@@ -9,7 +9,7 @@ TABS = {
     MonitorsORL:{
         title: 'Monitor ORL',
         
-        strips: {
+        widgets: {
 		
 
             moDrums: {
