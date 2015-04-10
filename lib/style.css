@@ -5,6 +5,7 @@
     text-decoration:none;
     outline:0;
     font:inherit;
+    cursor:crosshair!important;
 }
 * ::-moz-selection{
     background:rgba(0,0,0,0);
