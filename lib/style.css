@@ -73,8 +73,8 @@ a.on, a:active {
 }
 
 .navigation {
-    position:absolute;
-    top:0;
+    position:fixed;
+    //top:0;
     left:0;
     right:0;
     height:55px;
@@ -83,15 +83,17 @@ a.on, a:active {
     font-variant:small-caps;
     padding:10px 5px;
     font-size:13px;
-    box-shadow:0 0 0 1px #2A2A2A;
-
+    box-shadow:0;
+    border-bottom:1px solid #2A2A2A;
 }
+
 .main {
     box-shadow:0 0 8px 0 #111;
+    top:0;
     position:fixed;
     z-index:3;
     white-space:nowrap;
-    
+    border-bottom:0;
     overflow:hidden
 }
 .navigation ul {
@@ -164,13 +166,11 @@ a.on, a:active {
 .separator {
     width:20px;
     display:inline-block;
-    background:linear-gradient(90deg,#222,#2A2A2A,#2A2A2A,#2A2A2A,#222);
+    background:linear-gradient(90deg,#2A2A2A,#333,#333,#333,#2A2A2A);
     height:100%;
     position:relative;vertical-align:top;
     
 }
-
-
 .widget {
     display:inline-block;
     background:#333;
