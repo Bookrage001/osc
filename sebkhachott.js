@@ -15,24 +15,6 @@ nmPorts = {
 }
 
 TABS = {
-    /*
-    testingshits: {
-            widgets:{
-                button1: {
-                    type:'button',
-                    target:'localhost:6666',
-                    path:'/osc/path/',
-                    color:'#555522'          
-                },            
-                Bassess: {
-	                title:'Bassess',
-	                range:'db',
-	                target:nmPorts['MainMix'],
-	                path:'SHIT'
-                },
-            }
-    },
-    */
     MainMix: {
     
         title:'MainMix',
@@ -185,57 +167,90 @@ TABS = {
     
     Basses: {
         title:'Basses',
-        widgets:{
-
-            Bass_ORL: {
-	            title:'Bass_ORL',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled'
+        tabs:{
+            Main: {
+                widgets: {
+                    Bass_ORL: {
+	                    title:'Bass Orl',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled'
+                    },
+                    Bass_Dag: {
+	                    title:'Bass Dag',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled'
+                    },
+                    Basses: {
+	                    title:'Basses',
+	                    range:'db',
+	                    target:nmPorts['MainMix'],
+	                    path:'/strip/Basses/Gain/Gain%20(dB)/unscaled',
+	                    color:'#777'
+                    }
+                }
             },
-                   
-            Oct_Bass_ORL: {
-	            title:'Oct_Bass_ORL',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Oct_Bass_ORL/Gain/Gain%20(dB)/unscaled'
+            Orl: {
+                widgets:{
+                    Oct_Bass_ORL: {
+	                    title:'Octaver',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Oct_Bass_ORL/Gain/Gain%20(dB)/unscaled'
+                    },
+                    Disto_Bass_ORL: {
+	                    title:'Disto',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Disto_Bass_ORL/Gain/Gain%20(dB)/unscaled'
+                    },   
+                    FX_Bass_ORL: {
+	                    title:'Fx',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/FX_Bass_ORL/Gain/Gain%20(dB)/unscaled'
+                    },
+                    Bass_ORL: {
+	                    title:'Basse Orl',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled',
+	                    color:'#777'
+                    }
+                }
+            
             },
-                    
-            FX_Bass_ORL: {
-	            title:'FX_Bass_ORL',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/FX_Bass_ORL/Gain/Gain%20(dB)/unscaled'
-            },
-                    
-            Bass_Dag: {
-	            title:'Bass_Dag',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-                    
-            Oct_Bass_Dag: {
-	            title:'Oct_Bass_Dag',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Oct_Bass_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-                    
-            FX_Bass_Dag: {
-	            title:'FX_Bass_Dag',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/FX_Bass_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-            Basses: {
-	            title:'Basses',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Basses/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
-            }
-                
+            Dag: {
+                widgets:{
+                    Oct_Bass_Dag: {
+	                    title:'Octaver',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Oct_Bass_Dag/Gain/Gain%20(dB)/unscaled'
+                    },
+                    Disto_Bass_Dag: {
+	                    title:'Disto',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Disto_Bass_Dag/Gain/Gain%20(dB)/unscaled'
+                    },   
+                    FX_Bass_Dag: {
+	                    title:'Fx',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/FX_Bass_Dag/Gain/Gain%20(dB)/unscaled'
+                    },
+                    Bass_Dag: {
+	                    title:'Basse Dag',
+	                    range:'db',
+	                    target:nmPorts['Basses'],
+	                    path:'/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled',
+	                    color:'#777'
+                    }
+                }
+            
+            }                
         }
     },
     

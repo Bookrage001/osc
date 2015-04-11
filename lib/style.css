@@ -161,7 +161,14 @@ a.on, a:active {
 }
 
 
-
+.separator {
+    width:20px;
+    display:inline-block;
+    background:linear-gradient(90deg,#222,#2A2A2A,#2A2A2A,#2A2A2A,#222);
+    height:100%;
+    position:relative;vertical-align:top;
+    
+}
 
 
 .widget {
@@ -173,7 +180,10 @@ a.on, a:active {
     border:1px solid rgba(0,0,0,0.2);
     padding:35px 0;
     width:100px;
+    afloat:left;
+    vertical-align:top;
 }
+
 
 .widget .title {
     font-variant:small-caps;
@@ -238,6 +248,23 @@ a.on, a:active {
 }
 .button.on:after {
     background:rgba(20,240,250,.4);
+}
+
+/* STACK (contains any widgets) */
+
+.stack {
+    width:auto;
+    
+}
+.stack-wrapper {
+
+    height:100%;
+}
+.stack-wrapper .widget:last-child {
+    border-right:0;
+}
+.stack-wrapper .widget:first-child {
+    border-left:0;
 }
 
 
