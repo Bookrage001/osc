@@ -253,20 +253,45 @@ a.on, a:active {
 /* STACK (contains any widgets) */
 
 .stack {
-    width:auto;
-    
+    width:350px;
+    height:auto;
+    padding-bottom:0; 
 }
 .stack-wrapper {
 
     height:100%;
 }
-.stack-wrapper .widget:last-child {
+
+.stack-wrapper .widget {
     border-right:0;
-}
-.stack-wrapper .widget:first-child {
     border-left:0;
 }
-
+.stack .widget {
+    height:80px;
+    width:100%;
+    display:block;
+    padding:0;}
+.stack .fader {
+    height:18px;
+    width:100%;
+}
+.stack .fader-wrapper , .stack .button-wrapper {
+    padding:15px 20px;
+    float:right;
+    width:70%;
+}
+.stack .widget .title {
+    width:30%;
+    height:50%
+    
+}
+.stack .widget input {
+    width:30%;
+    height:50%;
+    left:0;
+    right:auto;
+    border-top:0;
+}
 
 /* STRIP (vertical fader) */
 
