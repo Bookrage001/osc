@@ -166,6 +166,7 @@ TABS = {
             EQs: {
                 tabs: {
                     EQ_Drums: {
+                        title:'Drumset',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -290,6 +291,7 @@ TABS = {
                         }
                     },
                     EQ_Kick: {
+                        title:'Kick',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -414,6 +416,7 @@ TABS = {
                         }
                     },
                     EQ_Snare: {
+                        title:'Snare',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -538,6 +541,7 @@ TABS = {
                         }
                     },
                     EQ_Tom1: {
+                        title:'Tom 1',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -662,6 +666,7 @@ TABS = {
                         }
                     },
                     EQ_Tom2: {
+                        title:'Tom 2',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -786,6 +791,7 @@ TABS = {
                         }
                     },
                     EQ_Tom3: {
+                        title:'Tom 3',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -910,6 +916,7 @@ TABS = {
                         }
                     },
                     EQ_OH_L: {
+                        title:'OH-L (ride)',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -1034,6 +1041,7 @@ TABS = {
                         }
                     },
                     EQ_OH_R: {
+                        title:'OH-R (hihat)',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -1246,9 +1254,137 @@ TABS = {
 	                    color:'#777'
                     }
                 }
-            
-            }                
-        }
+            },       
+            EQs: {
+                tabs: {
+                    EQ_Bass_Dag: {
+                        widgets: {
+                            EQ_1: {
+                                type:'stack',
+                                title: 'Band 1',
+                                widgets: {
+                                    EQ_Freq_1_Bass_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':20,'max':2000},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%201'
+                                    },
+                                    EQ_Band_1_Bass_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%201'
+                                    },
+                                    EQ_Gain_1_Bass_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Gain%201'
+                                    },
+                                    EQ_On_1_Bass_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Section%201'
+                                    }
+                                }
+                            },
+                            EQ_2: {
+                                type:'stack',
+                                title: 'Band 2',
+                                widgets: {
+                                    EQ_Freq_2_Bass_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':40,'max':4000},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%202'
+                                    },
+                                    EQ_Band_2_Bass_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%202'
+                                    },
+                                    EQ_Gain_2_Bass_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Gain%202'
+                                    },
+                                    EQ_On_2_Bass_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Section%202'
+                                    }
+                                }
+                            },
+                            EQ_3: {
+                                type:'stack',
+                                title: 'Band 3',
+                                widgets: {
+                                    EQ_Freq_3_Bass_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':100,'max':10000},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%203'
+                                    },
+                                    EQ_Band_3_Bass_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%203'
+                                    },
+                                    EQ_Gain_3_Bass_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Gain%203'
+                                    },
+                                    EQ_On_3_Bass_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Section%203'
+                                    }
+                                }
+                            },
+                            EQ_4: {
+                                type:'stack',
+                                title: 'Band 4',
+                                widgets: {
+                                    EQ_Freq_4_Bass_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':200,'max':20000},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%204'
+                                    },
+                                    EQ_Band_4_Bass_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%204'
+                                    },
+                                    EQ_Gain_4_Bass_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Gain%204'
+                                    },
+                                    EQ_On_4_Bass_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Basses'],
+                                        path:'/strip/Bass_Dag/4-band%20parametric%20filter/Section%204'
+                                    }
+                                }
+                            },
+                        }
+                    },        
+                
+                }
+            }      
+        },
     },
     
     Guitars: {
@@ -1329,98 +1465,490 @@ TABS = {
         
     MxSynths: {
         title:'MxSynths',
-        widgets:{
-	
-            MxBass: {
-	            title:'MxBass',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxBass/Gain/Gain%20(dB)/unscaled'
-            },
-                  
-            MxChords: {
-	            title:'MxChords',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxChords/Gain/Gain%20(dB)/unscaled'
-            },
+        tabs: {
+            Main:{
+               widgets:{
+
+                    MxBass: {
+                        title:'MxBass',
+                        range:'db',
+                        target:nmPorts['MxSynths'],
+                        path:'/strip/MxBass/Gain/Gain%20(dB)/unscaled'
+                    },
+                          
+                    MxChords: {
+                        title:'MxChords',
+                        range:'db',
+                        target:nmPorts['MxSynths'],
+                        path:'/strip/MxChords/Gain/Gain%20(dB)/unscaled'
+                    },
+                            
+                    MxLead: {
+                        title:'MxLead',
+                        range:'db',
+                        target:nmPorts['MxSynths'],
+                        path:'/strip/MxLead/Gain/Gain%20(dB)/unscaled'
+                    },
+                            
+                    MxCtLead: {
+                        title:'MxCtLead',
+                        range:'db',
+                        target:nmPorts['MxSynths'],
+                        path:'/strip/MxCtLead/Gain/Gain%20(dB)/unscaled'
+                    },        
                     
-            MxLead: {
-	            title:'MxLead',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxLead/Gain/Gain%20(dB)/unscaled'
+                    MxClassical: {
+                        title:'MxClassical',
+                        range:'db',
+                        target:nmPorts['MxSynths'],
+                        path:'/strip/MxClassical/Gain/Gain%20(dB)/unscaled'
+                    },
+                    MxSynths: {
+                        title:'MxSynths',
+                        range:'db',
+                        target:nmPorts['MainMix'],
+                        path:'/strip/MxSynths/Gain/Gain%20(dB)/unscaled',
+                        color:'#777'
+                    }
+                }
             },
-                    
-            MxCtLead: {
-	            title:'MxCtLead',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxCtLead/Gain/Gain%20(dB)/unscaled'
-            },        
-            
-            MxClassical: {
-	            title:'MxClassical',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxClassical/Gain/Gain%20(dB)/unscaled'
-            },
-            MxSynths: {
-	            title:'MxSynths',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/MxSynths/Gain/Gain%20(dB)/unscaled',
-                color:'#777'
+            EQs: {
+                tabs: {
+                    EQ_MxBass: {
+                        title:'MxBass',
+                        widgets: {
+                            EQ_1: {
+                                type:'stack',
+                                title: 'Band 1',
+                                widgets: {
+                                    EQ_Freq_1_MxBass: {
+                                        title:'Frequency',
+                                        range:{'min':20,'max':2000},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Frequency%201'
+                                    },
+                                    EQ_Band_1_MxBass: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Bandwidth%201'
+                                    },
+                                    EQ_Gain_1_MxBass: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Gain%201'
+                                    },
+                                    EQ_On_1_MxBass: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Section%201'
+                                    }
+                                }
+                            },
+                            EQ_2: {
+                                type:'stack',
+                                title: 'Band 2',
+                                widgets: {
+                                    EQ_Freq_2_MxBass: {
+                                        title:'Frequency',
+                                        range:{'min':40,'max':4000},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Frequency%202'
+                                    },
+                                    EQ_Band_2_MxBass: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Bandwidth%202'
+                                    },
+                                    EQ_Gain_2_MxBass: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Gain%202'
+                                    },
+                                    EQ_On_2_MxBass: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Section%202'
+                                    }
+                                }
+                            },
+                            EQ_3: {
+                                type:'stack',
+                                title: 'Band 3',
+                                widgets: {
+                                    EQ_Freq_3_MxBass: {
+                                        title:'Frequency',
+                                        range:{'min':100,'max':10000},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Frequency%203'
+                                    },
+                                    EQ_Band_3_MxBass: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Bandwidth%203'
+                                    },
+                                    EQ_Gain_3_MxBass: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Gain%203'
+                                    },
+                                    EQ_On_3_MxBass: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Section%203'
+                                    }
+                                }
+                            },
+                            EQ_4: {
+                                type:'stack',
+                                title: 'Band 4',
+                                widgets: {
+                                    EQ_Freq_4_MxBass: {
+                                        title:'Frequency',
+                                        range:{'min':200,'max':20000},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Frequency%204'
+                                    },
+                                    EQ_Band_4_MxBass: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Bandwidth%204'
+                                    },
+                                    EQ_Gain_4_MxBass: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Gain%204'
+                                    },
+                                    EQ_On_4_MxBass: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxSynths'],
+                                        path:'/strip/MxBass/4-band%20parametric%20filter/Section%204'
+                                    }
+                                }
+                            },
+                        }
+                    },
+                }
             }
         }
     },
     
     MxDrums: {
         title:'MxDrums',
-        widgets:{
-	    
-            MxKicks: {
-	            title:'MxKicks',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxKicks/Gain/Gain%20(dB)/unscaled'
+        tabs: {
+            Main: {
+                widgets:{
+	            
+                    MxKicks: {
+	                    title:'MxKicks',
+	                    range:'db',
+	                    target:nmPorts['MxDrums'],
+	                    path:'/strip/MxKicks/Gain/Gain%20(dB)/unscaled'
+                    },
+                           
+                    MxSnares: {
+	                    title:'MxSnares',
+	                    range:'db',
+	                    target:nmPorts['MxDrums'],
+	                    path:'/strip/MxSnares/Gain/Gain%20(dB)/unscaled'
+                    },
+                            
+                    MxCymbs: {
+	                    title:'MxCymbs',
+	                    range:'db',
+	                    target:nmPorts['MxDrums'],
+	                    path:'/strip/MxCymbs/Gain/Gain%20(dB)/unscaled'
+                    },
+                            
+                    MxCont: {
+	                    title:'MxCont',
+	                    range:'db',
+	                    target:nmPorts['MxDrums'],
+	                    path:'/strip/MxCont/Gain/Gain%20(dB)/unscaled'
+                    },
+                            
+                    MxSamples: {
+	                    title:'MxSamples',
+	                    range:'db',
+	                    target:nmPorts['MxDrums'],
+	                    path:'/strip/MxSamples/Gain/Gain%20(dB)/unscaled'
+                    },
+                    MxDrums: {
+	                    title:'MxDrums',
+	                    range:'db',
+	                    target:nmPorts['MainMix'],
+	                    path:'/strip/MxDrums/Gain/Gain%20(dB)/unscaled',
+	                    color:'#777'
+                    },
+                }
             },
-                   
-            MxSnares: {
-	            title:'MxSnares',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxSnares/Gain/Gain%20(dB)/unscaled'
-            },
-                    
-            MxCymbs: {
-	            title:'MxCymbs',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxCymbs/Gain/Gain%20(dB)/unscaled'
-            },
-                    
-            MxCont: {
-	            title:'MxCont',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxCont/Gain/Gain%20(dB)/unscaled'
-            },
-                    
-            MxSamples: {
-	            title:'MxSamples',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxSamples/Gain/Gain%20(dB)/unscaled'
-            },
-            MxDrums: {
-	            title:'MxDrums',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/MxDrums/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
-            },
+            EQs: {
+                tabs: {
+                    EQ_MxKicks: {
+                        title:'MxKicks',
+                        widgets: {
+                            EQ_1: {
+                                type:'stack',
+                                title: 'Band 1',
+                                widgets: {
+                                    EQ_Freq_1_MxKicks: {
+                                        title:'Frequency',
+                                        range:{'min':20,'max':2000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Frequency%201'
+                                    },
+                                    EQ_Band_1_MxKicks: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201'
+                                    },
+                                    EQ_Gain_1_MxKicks: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Gain%201'
+                                    },
+                                    EQ_On_1_MxKicks: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Section%201'
+                                    }
+                                }
+                            },
+                            EQ_2: {
+                                type:'stack',
+                                title: 'Band 2',
+                                widgets: {
+                                    EQ_Freq_2_MxKicks: {
+                                        title:'Frequency',
+                                        range:{'min':40,'max':4000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Frequency%202'
+                                    },
+                                    EQ_Band_2_MxKicks: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%202'
+                                    },
+                                    EQ_Gain_2_MxKicks: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Gain%202'
+                                    },
+                                    EQ_On_2_MxKicks: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Section%202'
+                                    }
+                                }
+                            },
+                            EQ_3: {
+                                type:'stack',
+                                title: 'Band 3',
+                                widgets: {
+                                    EQ_Freq_3_MxKicks: {
+                                        title:'Frequency',
+                                        range:{'min':100,'max':10000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Frequency%203'
+                                    },
+                                    EQ_Band_3_MxKicks: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%203'
+                                    },
+                                    EQ_Gain_3_MxKicks: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Gain%203'
+                                    },
+                                    EQ_On_3_MxKicks: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Section%203'
+                                    }
+                                }
+                            },
+                            EQ_4: {
+                                type:'stack',
+                                title: 'Band 4',
+                                widgets: {
+                                    EQ_Freq_4_MxKicks: {
+                                        title:'Frequency',
+                                        range:{'min':200,'max':20000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Frequency%204'
+                                    },
+                                    EQ_Band_4_MxKicks: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%204'
+                                    },
+                                    EQ_Gain_4_MxKicks: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Gain%204'
+                                    },
+                                    EQ_On_4_MxKicks: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxKicks/4-band%20parametric%20filter/Section%204'
+                                    }
+                                }
+                            },
+                        }
+                    },
+                    EQ_MxCymbs: {
+                        title:'MxCymbs',
+                        widgets: {
+                            EQ_1: {
+                                type:'stack',
+                                title: 'Band 1',
+                                widgets: {
+                                    EQ_Freq_1_MxCymbs: {
+                                        title:'Frequency',
+                                        range:{'min':20,'max':2000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Frequency%201'
+                                    },
+                                    EQ_Band_1_MxCymbs: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%201'
+                                    },
+                                    EQ_Gain_1_MxCymbs: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Gain%201'
+                                    },
+                                    EQ_On_1_MxCymbs: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Section%201'
+                                    }
+                                }
+                            },
+                            EQ_2: {
+                                type:'stack',
+                                title: 'Band 2',
+                                widgets: {
+                                    EQ_Freq_2_MxCymbs: {
+                                        title:'Frequency',
+                                        range:{'min':40,'max':4000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Frequency%202'
+                                    },
+                                    EQ_Band_2_MxCymbs: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%202'
+                                    },
+                                    EQ_Gain_2_MxCymbs: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Gain%202'
+                                    },
+                                    EQ_On_2_MxCymbs: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Section%202'
+                                    }
+                                }
+                            },
+                            EQ_3: {
+                                type:'stack',
+                                title: 'Band 3',
+                                widgets: {
+                                    EQ_Freq_3_MxCymbs: {
+                                        title:'Frequency',
+                                        range:{'min':100,'max':10000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Frequency%203'
+                                    },
+                                    EQ_Band_3_MxCymbs: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%203'
+                                    },
+                                    EQ_Gain_3_MxCymbs: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Gain%203'
+                                    },
+                                    EQ_On_3_MxCymbs: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Section%203'
+                                    }
+                                }
+                            },
+                            EQ_4: {
+                                type:'stack',
+                                title: 'Band 4',
+                                widgets: {
+                                    EQ_Freq_4_MxCymbs: {
+                                        title:'Frequency',
+                                        range:{'min':200,'max':20000},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Frequency%204'
+                                    },
+                                    EQ_Band_4_MxCymbs: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%204'
+                                    },
+                                    EQ_Gain_4_MxCymbs: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Gain%204'
+                                    },
+                                    EQ_On_4_MxCymbs: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['MxDrums'],
+                                        path:'/strip/MxCymbs/4-band%20parametric%20filter/Section%204'
+                                    }
+                                }
+                            },
+                        }
+                    },
+                }
+            }
         }
+
     },
             
     Acoustics: {
@@ -1545,6 +2073,7 @@ TABS = {
             EQs: {
                 tabs: {
                     EQ_Vx_ORL: {
+                        title:'ORL',
                         widgets: {
                             EQ_1: {
                                 type:'stack',
@@ -1663,6 +2192,256 @@ TABS = {
                                         title:'Enable EQ',
                                         target:nmPorts['Vocals'],
                                         path:'/strip/Vx_ORL/4-band%20parametric%20filter/Section%204'
+                                    }
+                                }
+                            },
+                        }
+                    },
+                    EQ_Vx_Dag: {
+                        title:'Dag',
+                        widgets: {
+                            EQ_1: {
+                                type:'stack',
+                                title: 'Band 1',
+                                widgets: {
+                                    EQ_Freq_1_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':20,'max':2000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%201'
+                                    },
+                                    EQ_Band_1_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%201'
+                                    },
+                                    EQ_Gain_1_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Gain%201'
+                                    },
+                                    EQ_On_1_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Section%201'
+                                    }
+                                }
+                            },
+                            EQ_2: {
+                                type:'stack',
+                                title: 'Band 2',
+                                widgets: {
+                                    EQ_Freq_2_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':40,'max':4000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%202'
+                                    },
+                                    EQ_Band_2_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%202'
+                                    },
+                                    EQ_Gain_2_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Gain%202'
+                                    },
+                                    EQ_On_2_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Section%202'
+                                    }
+                                }
+                            },
+                            EQ_3: {
+                                type:'stack',
+                                title: 'Band 3',
+                                widgets: {
+                                    EQ_Freq_3_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':100,'max':10000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%203'
+                                    },
+                                    EQ_Band_3_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%203'
+                                    },
+                                    EQ_Gain_3_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Gain%203'
+                                    },
+                                    EQ_On_3_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Section%203'
+                                    }
+                                }
+                            },
+                            EQ_4: {
+                                type:'stack',
+                                title: 'Band 4',
+                                widgets: {
+                                    EQ_Freq_4_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':200,'max':20000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%204'
+                                    },
+                                    EQ_Band_4_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%204'
+                                    },
+                                    EQ_Gain_4_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Gain%204'
+                                    },
+                                    EQ_On_4_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Vx_Dag/4-band%20parametric%20filter/Section%204'
+                                    }
+                                }
+                            },
+                        }
+                    },
+                    EQ_Scape_Vx_Dag: {
+                        title:'Scape Dag',
+                        widgets: {
+                            EQ_1: {
+                                type:'stack',
+                                title: 'Band 1',
+                                widgets: {
+                                    EQ_Freq_1_Scape_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':20,'max':2000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%201'
+                                    },
+                                    EQ_Band_1_Scape_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%201'
+                                    },
+                                    EQ_Gain_1_Scape_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%201'
+                                    },
+                                    EQ_On_1_Scape_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%201'
+                                    }
+                                }
+                            },
+                            EQ_2: {
+                                type:'stack',
+                                title: 'Band 2',
+                                widgets: {
+                                    EQ_Freq_2_Scape_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':40,'max':4000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%202'
+                                    },
+                                    EQ_Band_2_Scape_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%202'
+                                    },
+                                    EQ_Gain_2_Scape_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%202'
+                                    },
+                                    EQ_On_2_Scape_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%202'
+                                    }
+                                }
+                            },
+                            EQ_3: {
+                                type:'stack',
+                                title: 'Band 3',
+                                widgets: {
+                                    EQ_Freq_3_Scape_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':100,'max':10000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%203'
+                                    },
+                                    EQ_Band_3_Scape_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%203'
+                                    },
+                                    EQ_Gain_3_Scape_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%203'
+                                    },
+                                    EQ_On_3_Scape_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%203'
+                                    }
+                                }
+                            },
+                            EQ_4: {
+                                type:'stack',
+                                title: 'Band 4',
+                                widgets: {
+                                    EQ_Freq_4_Scape_Vx_Dag: {
+                                        title:'Frequency',
+                                        range:{'min':200,'max':20000},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%204'
+                                    },
+                                    EQ_Band_4_Scape_Vx_Dag: {
+                                        title:'BandWidth',
+                                        range:{'min':0.125,'max':8},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%204'
+                                    },
+                                    EQ_Gain_4_Scape_Vx_Dag: {
+                                        title:'Gain',
+                                        range:{'min':-20,'max':20},
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%204'
+                                    },
+                                    EQ_On_4_Scape_Vx_Dag: {
+                                        type:'button',
+                                        title:'Enable EQ',
+                                        target:nmPorts['Vocals'],
+                                        path:'/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%204'
                                     }
                                 }
                             },
