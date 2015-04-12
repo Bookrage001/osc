@@ -266,6 +266,9 @@ a.on, a:active {
     border-right:0;
     border-left:0;
 }
+.stack-wrapper .widget:nth-child(2n+2) {
+
+}
 .stack .widget {
     height:80px;
     width:100%;
@@ -275,8 +278,12 @@ a.on, a:active {
     height:18px;
     width:100%;
 }
-.stack .fader-wrapper , .stack .button-wrapper {
+.stack .fader-wrapper {
     padding:15px 20px;
+    float:right;
+    width:70%;
+}
+.stack .button-wrapper {
     float:right;
     width:70%;
 }

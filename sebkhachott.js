@@ -1168,9 +1168,10 @@ TABS = {
                 }
             },
             Gates: {
-                tabs:{
-                    Gate_Kick: {
+                widgets: {
+                    Gate_Kick:{
                         title:'Kick',
+                        type:'stack',
                         widgets: {
                             Gate_LF_Kick:{
                                 title:'LF filter',
@@ -1210,8 +1211,181 @@ TABS = {
                             }
                         
                         }
+                    },
+                    Gate_Snare: {
+                        title:'Snare',
+                        type:'stack',
+                        widgets: {
+                            Gate_LF_Snare:{
+                                title:'LF filter',
+                                range:{'min':33.6,'max':4800},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Snare/Gate/LF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_HF_Snare:{
+                                title:'HF filter',
+                                range:{'min':240,'max':23520},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Snare/Gate/HF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_Thresh_Snare:{
+                                title:'Threshold',
+                                range:{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 20},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Snare/Gate/Threshold%20(dB)/unscaled'
+                            },
+                            Gate_Attack_Snare:{
+                                title:'Attack (ms)',
+                                range:{'min': 0,'max': 1000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Snare/Gate/Attack%20(ms)/unscaled'
+                            },
+                            Gate_Hold_Snare:{
+                                title:'Hold (ms)',
+                                range:{'min': 2,'max': 2000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Snare/Gate/Hold%20(ms)/unscaled'
+                            },
+                            Gate_Decay_Snare:{
+                                title:'Decay (ms)',
+                                range:{'min': 2,'max': 4000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Snare/Gate/Decay%20(ms)/unscaled'
+                            }
+                        
+                        }
+                    },
+                    Gate_Tom1: {
+                        title:'Tom1',
+                        type:'stack',
+                        widgets: {
+                            Gate_LF_Tom1:{
+                                title:'LF filter',
+                                range:{'min':33.6,'max':4800},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom1/Gate/LF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_HF_Tom1:{
+                                title:'HF filter',
+                                range:{'min':240,'max':23520},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom1/Gate/HF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_Thresh_Tom1:{
+                                title:'Threshold',
+                                range:{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 20},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom1/Gate/Threshold%20(dB)/unscaled'
+                            },
+                            Gate_Attack_Tom1:{
+                                title:'Attack (ms)',
+                                range:{'min': 0,'max': 1000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom1/Gate/Attack%20(ms)/unscaled'
+                            },
+                            Gate_Hold_Tom1:{
+                                title:'Hold (ms)',
+                                range:{'min': 2,'max': 2000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom1/Gate/Hold%20(ms)/unscaled'
+                            },
+                            Gate_Decay_Tom1:{
+                                title:'Decay (ms)',
+                                range:{'min': 2,'max': 4000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom1/Gate/Decay%20(ms)/unscaled'
+                            }
+                        
+                        }
+                    },
+                    Gate_Tom2: {
+                        title:'Tom2',
+                        type:'stack',
+                        widgets: {
+                            Gate_LF_Tom2:{
+                                title:'LF filter',
+                                range:{'min':33.6,'max':4800},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom2/Gate/LF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_HF_Tom2:{
+                                title:'HF filter',
+                                range:{'min':240,'max':23520},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom2/Gate/HF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_Thresh_Tom2:{
+                                title:'Threshold',
+                                range:{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 20},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom2/Gate/Threshold%20(dB)/unscaled'
+                            },
+                            Gate_Attack_Tom2:{
+                                title:'Attack (ms)',
+                                range:{'min': 0,'max': 1000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom2/Gate/Attack%20(ms)/unscaled'
+                            },
+                            Gate_Hold_Tom2:{
+                                title:'Hold (ms)',
+                                range:{'min': 2,'max': 2000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom2/Gate/Hold%20(ms)/unscaled'
+                            },
+                            Gate_Decay_Tom2:{
+                                title:'Decay (ms)',
+                                range:{'min': 2,'max': 4000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom2/Gate/Decay%20(ms)/unscaled'
+                            }
+                        
+                        }
+                    },
+                    Gate_Tom3: {
+                        title:'Tom3',
+                        type:'stack',
+                        widgets: {
+                            Gate_LF_Tom3:{
+                                title:'LF filter',
+                                range:{'min':33.6,'max':4800},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom3/Gate/LF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_HF_Tom3:{
+                                title:'HF filter',
+                                range:{'min':240,'max':23520},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom3/Gate/HF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_Thresh_Tom3:{
+                                title:'Threshold',
+                                range:{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 20},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom3/Gate/Threshold%20(dB)/unscaled'
+                            },
+                            Gate_Attack_Tom3:{
+                                title:'Attack (ms)',
+                                range:{'min': 0,'max': 1000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom3/Gate/Attack%20(ms)/unscaled'
+                            },
+                            Gate_Hold_Tom3:{
+                                title:'Hold (ms)',
+                                range:{'min': 2,'max': 2000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom3/Gate/Hold%20(ms)/unscaled'
+                            },
+                            Gate_Decay_Tom3:{
+                                title:'Decay (ms)',
+                                range:{'min': 2,'max': 4000},
+                                target:nmPorts['Drums'],
+                                path:'/strip/Tom3/Gate/Decay%20(ms)/unscaled'
+                            }
+                        
+                        }
                     }
                 }
+
             }
         }
     },
@@ -2494,6 +2668,97 @@ TABS = {
                         }
                     },
                 }
+            },
+            Gates: {
+                widgets: {
+                    Gate_Vx_Dag: {
+                        title:'Vx_Dag',
+                        type:'stack',
+                        widgets: {
+                            Gate_LF_Vx_Dag:{
+                                title:'LF filter',
+                                range:{'min':33.6,'max':4800},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_Dag/Gate/LF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_HF_Vx_Dag:{
+                                title:'HF filter',
+                                range:{'min':240,'max':23520},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_Dag/Gate/HF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_Thresh_Vx_Dag:{
+                                title:'Threshold',
+                                range:{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 20},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_Dag/Gate/Threshold%20(dB)/unscaled'
+                            },
+                            Gate_Attack_Vx_Dag:{
+                                title:'Attack (ms)',
+                                range:{'min': 0,'max': 1000},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_Dag/Gate/Attack%20(ms)/unscaled'
+                            },
+                            Gate_Hold_Vx_Dag:{
+                                title:'Hold (ms)',
+                                range:{'min': 2,'max': 2000},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_Dag/Gate/Hold%20(ms)/unscaled'
+                            },
+                            Gate_Decay_Vx_Dag:{
+                                title:'Decay (ms)',
+                                range:{'min': 2,'max': 4000},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_Dag/Gate/Decay%20(ms)/unscaled'
+                            }
+                        
+                        }
+                    },
+                    Gate_Vx_ORL: {
+                        title:'Vx_ORL',
+                        type:'stack',
+                        widgets: {
+                            Gate_LF_Vx_ORL:{
+                                title:'LF filter',
+                                range:{'min':33.6,'max':4800},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_ORL/Gate/LF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_HF_Vx_ORL:{
+                                title:'HF filter',
+                                range:{'min':240,'max':23520},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_ORL/Gate/HF%20key%20filter%20(Hz)/unscaled'
+                            },
+                            Gate_Thresh_Vx_ORL:{
+                                title:'Threshold',
+                                range:{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 20},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_ORL/Gate/Threshold%20(dB)/unscaled'
+                            },
+                            Gate_Attack_Vx_ORL:{
+                                title:'Attack (ms)',
+                                range:{'min': 0,'max': 1000},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_ORL/Gate/Attack%20(ms)/unscaled'
+                            },
+                            Gate_Hold_Vx_ORL:{
+                                title:'Hold (ms)',
+                                range:{'min': 2,'max': 2000},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_ORL/Gate/Hold%20(ms)/unscaled'
+                            },
+                            Gate_Decay_Vx_ORL:{
+                                title:'Decay (ms)',
+                                range:{'min': 2,'max': 4000},
+                                target:nmPorts['Vocals'],
+                                path:'/strip/Vx_ORL/Gate/Decay%20(ms)/unscaled'
+                            }
+                        
+                        }
+                    }
+                }
+
             }
         }
     }
