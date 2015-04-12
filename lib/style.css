@@ -25,7 +25,29 @@ input::-webkit-selection{
 
 html, body {
     height:100%;
+    position:relative;
 }
+
+
+body:not(.loaded):after {
+    content:"LOADING";
+    font-family:sans;
+    color:#1A1A1A;
+    text-shadow:0 1px 0 #444;
+    font-size:14px;
+    font-weight:bold;
+    position:absolute;
+    text-align:center;
+    top:50%;
+    left:50%;
+    width:100px;
+    height:20px;
+    line-height:20px;
+    margin:-10px 0 0 -50px;
+}
+
+
+
 #__container__ {
     font-size:13px;
     line-height:12px;

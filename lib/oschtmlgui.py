@@ -92,7 +92,7 @@ class oscHtmlGui(object):
 
         self.browser.open(self.html)
 
-        self.window.set_default_size(400, 600)
+        self.window.set_default_size(800, 600)
         self.window.show_all()
         self.window.connect("destroy", gtk.main_quit)
         
