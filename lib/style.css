@@ -71,7 +71,10 @@ body:not(.loaded):after {
     display:none!important;
     top:auto!important;
     bottom:0!important;
+    left:0!important;
+    width:auto!important;
     right:0!important;
+    background:#333;
     
 }
 
