@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+x=io.connect();
+x.emit('sendOsc', {path:"/test",args:[12, 9],host:"127.0.0.1",port:7777});
+x.on('receiveOsc',function(data){
+    console.log(data) // data = {address: "PATH", args: [ARGS]}
+})
+
+</script>
+</head>
+<body>
+</body>
+</html>
