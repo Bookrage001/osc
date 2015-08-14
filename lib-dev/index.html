@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/socket.io/socket.io.js"></script>
+<title>OSCGUI</title>
+<style>
+/* Preloading style */
+html {
+    background:#21252b;
+    overflow: hidden;
+}
+body {
+    opacity:0;
+}
+</style>
 <script>
-x=io.connect();
-x.emit('sendOsc', {path:"/test",args:[12, 9],host:"127.0.0.1",port:7777});
-x.on('receiveOsc',function(data){
-    console.log(data) // data = {address: "PATH", args: [ARGS]}
+
+// mainProcess & renderProcess communication engine
+var ipc = require('ipc');
+
+// filesystem
+var fs = require('fs');
+
+// jquery
+window.$ = window.jQuery  = require( __dirname + "/js/jquery.min.js")
+
+// Sass (add stylesheets to var styles)
+var Sass = require( __dirname + "/js/sass.js")
+    Sass.setWorkerUrl(__dirname +  "/js/sass.worker.js");
+    var sass = new Sass()
+    sass.options({style: Sass.style.compact})
+
+var styles = ["/css/style.scss","/css/jquery.nouislider.scss"]
+  , stylesdata = ''
+  , done = 0;
+
+for (i in styles) {
+    fs.readFile(__dirname + styles[i], 'utf8', function (err,data) {
+        if (err) {return console.log(err);}
+        stylesdata +=  "\n" + data;
+        done += 1;
+        if (done==styles.length) {
+            sass.compile(stylesdata,function(d){
+              $('head').append('<style>body{opacity:1}'+d.text+'<\/style>')
+            })
+        }
+    });
+}
+
+
+// third-party js libraries
+require( __dirname + "/js/jquery.nicescroll.min.js")
+require( __dirname + "/js/jquery.nouislider.all.js")
+
+// main js
+require( __dirname + "/js/oschtmlgui.js")
+
+
+ipc.on('init',function(data){
+    $('body').append('<script>'+data+'<\/script>')
+    init();
+
 })
+ipc.send('init');
 
 </script>
+
 </head>
 <body>
+<div id="container"></div>
+<div id="sidepanel">
+    <div class="open-toggle">
+        <span class="bars"></span>
+    </div>
+    <ul id="options">
+        <li><div class="saveState">Save</div></li>
+        <li><div href="#" class="loadState">Load</div></li>
+        <li><div href="#" class="sendState">Send ALL</div></li>
+        <li><div href="#" class="goFullscreen">Fullscreen</div></li>
+    </ul>
+</div>
 </body>
 </html>

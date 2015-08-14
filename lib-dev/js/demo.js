@@ -1,17 +1,17 @@
 nmPorts = {
-    'MainMix':'SCSon:6666',
-    'Drums':'SCSon:6667',
-    'Basses':'SCSon:6668',
-    'Guitars':'SCSon:6669',
-    'MxSynths':'SCSon:6670',
-    'MxDrums':'SCSon:6671',
-    'Vocals':'SCSon:6672',
-    'Toms':'SCSon:6673',
-    'Acoustics':'SCSon:6674',
-    'MonitorsDag':'SCSon:6675',
-    'MonitorsJeannot':'SCSon:6676',
-    'MonitorsORL':'SCSon:6677',
-    'Mains':'SCSon:6678',
+    'MainMix':'localhost:6666',
+    'Drums':'localhost:6667',
+    'Basses':'localhost:6668',
+    'Guitars':'localhost:6669',
+    'MxSynths':'localhost:6670',
+    'MxDrums':'localhost:6671',
+    'Vocals':'localhost:6672',
+    'Toms':'localhost:6673',
+    'Acoustics':'localhost:6674',
+    'MonitorsDag':'localhost:6675',
+    'MonitorsJeannot':'localhost:6676',
+    'MonitorsORL':'localhost:6677',
+    'Mains':'localhost:6678',
 }
 
 TABS = {
@@ -23,10 +23,10 @@ TABS = {
                     widgets:{
 
                         xBasses: {
-	                        title:'Basses',
+	                        title:'BassesXXX',
 	                        range:'db',
-	                        target:nmPorts['MainMix'],
-	                        path:'/strip/Basses/Gain/Gain%20(dB)/unscaled'
+	                        target:nmPorts['MainMix']+' 127.0.0.1:125',
+	                        path:'/strip/Basses/Gain/Gain%20(dB)/unscaled',
                         },
 
                         xGuitars: {
@@ -52,7 +52,7 @@ TABS = {
 	                title:'Bassess',
 	                range:'db',
 	                target:nmPorts['MainMix'],
-	                path:'SHIT'
+	                path:'/SHIT'
                 },
             }
     },

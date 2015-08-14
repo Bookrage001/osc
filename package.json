@@ -1,22 +1,26 @@
 {
-	"name": "pornosc",
-	"description": "OSC control GUI (node/electron)",
-	"version": "0.0.1",
-	"main": "index.js",
-	"author": {
-		"name": "Jean-Emmanuel Doucet",
-		"email": "jeannot@ammd.net"
-	},
-	"dependencies": {
-        "osc": "1.2.1",
-        "express": "4.x",
-        "socket.io": "1.x"
-	},
-	"keywords": [
-		"osc"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/jean-emmanuel/oschtmlgui.git"
-	}
+  "name": "pornosc",
+  "description": "OSC control GUI (node/electron)",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": {
+    "name": "Jean-Emmanuel Doucet",
+    "email": "jeannot@ammd.net"
+  },
+  "dependencies": {
+    "osc": "1.2.1",
+    "express": "4.x",
+    "socket.io": "1.x",
+    "jquery" : "2.x"
+  },
+  "keywords": [
+    "osc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jean-emmanuel/oschtmlgui.git"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^0.2.5"
+  }
 }
