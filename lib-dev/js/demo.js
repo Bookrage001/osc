@@ -26,7 +26,7 @@ TABS = {
 	                        title:'BassesXXX',
 	                        range:'db',
 	                        target:nmPorts['MainMix']+' 127.0.0.1:125',
-	                        path:'/strip/Basses/Gain/Gain%20(dB)/unscaled',
+	                        path:'/test2',
                         },
 
                         xGuitars: {
@@ -40,19 +40,23 @@ TABS = {
                             target:'localhost:6666',
                             path:'/osc/path/',
                             color:'#555522'
-                        },
+                        }
                     }
 
                 },
-                sep: {
-                    type:'sep'
-                },
 
-                Bassess: {
-	                title:'Bassess',
-	                range:'db',
+                xypad_test: {
+	                title:'XY Pad',
+	                type:'rgb',
 	                target:nmPorts['MainMix'],
-	                path:'/SHIT'
+	                path:'/pad'
+                },
+                xypad_test2: {
+	                title:'XY Pad',
+	                type:'xy',
+	                target:nmPorts['MainMix'],
+	                path:'/SHIT',
+                    range:{x:{min:-10,max:10},y:{min:2,max:-4}}
                 },
             }
     },

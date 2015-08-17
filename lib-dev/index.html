@@ -50,6 +50,7 @@ for (i in styles) {
 // third-party js libraries
 require( __dirname + "/js/jquery.nicescroll.min.js")
 require( __dirname + "/js/jquery.nouislider.all.js")
+require( __dirname + "/js/jquery-ui.draggable.min.js")
 
 // main js
 require( __dirname + "/js/oschtmlgui.js")
@@ -76,6 +77,12 @@ ipc.send('init');
         <li><div href="#" class="loadState">Load</div></li>
         <li><div href="#" class="sendState">Send ALL</div></li>
         <li><div href="#" class="goFullscreen">Fullscreen</div></li>
+        <li>
+            <div class="inspector">
+                    Inspector
+                    <div class="result"><em>Click on a widget's title to inspect</em></div>
+            </div>
+        </li>
     </ul>
 </div>
 </body>

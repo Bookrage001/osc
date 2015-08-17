@@ -65,7 +65,7 @@
 }
 .noUi-handle {
 	border-radius:100%!important;
-	background:#528bff!important;
+	background:$color-accent!important;
 	box-shadow:0 0 10px 0px #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.2)!important
 }
 .noUi-horizontal .noUi-handle {
@@ -278,7 +278,7 @@
 }
 
 .noUi-connect {
-    background:#528bff;
+    background:$color-accent;
     border:0;
     border-radius:0;
 }

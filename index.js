@@ -97,7 +97,7 @@ ipc.on('init',function(event, data){
 
 ipc.on('sendOsc', function (event,data) {
 
-    for (i in data.target.split(' ').length) {
+    for (i in data.target.split(' ')) {
 
         var host = data.target.split(' ')[i].split(':')[0],
             port = data.target.split(' ')[i].split(':')[1];

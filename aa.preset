@@ -1,5 +1,6 @@
-fader:xBasses:-30.38
-fader:xGuitars:-30.77
+fader:xBasses:0.00
+fader:xGuitars:0.00
+button:button1:
 fader:Bassess:0.00
 fader:Drums:0.00
 fader:Basses:0.00
@@ -55,4 +56,3 @@ fader:FX_Vx_Dag_2:0.00
 fader:FX_Vx_Dag:0.00
 fader:Scape_Vx_Dag:0.00
 fader:Vx_Jeannot:0.00
-button:button1:1

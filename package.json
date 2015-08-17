@@ -10,9 +10,7 @@
   "dependencies": {
     "osc": "1.2.1",
     "express": "4.x",
-    "socket.io": "1.x",
-    "jquery" : "2.x"
-  },
+    "socket.io": "1.x"  },
   "keywords": [
     "osc"
   ],

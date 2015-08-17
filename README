@@ -1,3 +1,4 @@
 node_modules/osc/node_modules
 -> serialport remplacé par serialport-electron@1.7.4-temp pour compatibilité avec electron
+-> node_modules/osc/src/platforms/osc-node.js replace require()
 --> revenir à la version d'origine pour pouvoir lancer le server avec node
