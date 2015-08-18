@@ -22,13 +22,18 @@ TABS = {
                     type:'stack',
                     widgets:{
 
-                        xBasses: {
+                        Drums: {
 	                        title:'BassesXXX',
 	                        range:'db',
 	                        target:nmPorts['MainMix']+' 127.0.0.1:125',
 	                        path:'/test2',
                         },
-
+                        xypad_test: {
+        	                title:'XY Pad',
+        	                type:'rgb',
+        	                target:nmPorts['MainMix'],
+        	                path:'/pad'
+                        },
                         xGuitars: {
 	                        title:'Guitars',
 	                        range:'db',
@@ -65,7 +70,12 @@ TABS = {
 
         title:'MainMix',
         widgets:{
-
+            xypad_test: {
+                title:'XY Pad',
+                type:'rgb',
+                target:nmPorts['MainMix'],
+                path:'/pad'
+            },
             Drums: {
 	            title:'Drums',
 	            range:'db',
