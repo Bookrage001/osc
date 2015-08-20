@@ -28,9 +28,9 @@ TABS = {
 	                        target:nmPorts['MainMix']+' 127.0.0.1:125',
 	                        path:'/test2',
                         },
-                        xypad_test: {
+                        xypad_test2: {
         	                title:'XY Pad',
-        	                type:'rgb',
+        	                type:'xy',
         	                target:nmPorts['MainMix'],
         	                path:'/pad'
                         },
@@ -56,12 +56,17 @@ TABS = {
 	                target:nmPorts['MainMix'],
 	                path:'/pad'
                 },
+                button1: {
+                    type:'button',
+                    target:'localhost:6666',
+                    path:'/osc/path/',
+                    color:'#555522'
+                },
                 xypad_test2: {
 	                title:'XY Pad',
 	                type:'xy',
 	                target:nmPorts['MainMix'],
 	                path:'/SHIT',
-                    range:{x:{min:-10,max:10},y:{min:2,max:-4}}
                 },
             }
     },

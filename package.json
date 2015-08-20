@@ -10,7 +10,9 @@
   "dependencies": {
     "osc": "1.2.1",
     "express": "4.x",
-    "socket.io": "1.x"  },
+    "socket.io": "1.x",
+    "electron-compile": "0.8.3"
+},
   "keywords": [
     "osc"
   ],

@@ -23,28 +23,6 @@ var fs = require('fs');
 // jquery
 window.$ = window.jQuery  = require( __dirname + "/js/jquery.min.js")
 
-// Sass (add stylesheets to var styles)
-var Sass = require( __dirname + "/js/sass.js")
-    Sass.setWorkerUrl(__dirname +  "/js/sass.worker.js");
-    var sass = new Sass()
-    sass.options({style: Sass.style.compact})
-
-var styles = ["/css/style.scss","/css/jquery.nouislider.scss"]
-  , stylesdata = ''
-  , done = 0;
-
-for (i in styles) {
-    fs.readFile(__dirname + styles[i], 'utf8', function (err,data) {
-        if (err) {return console.log(err);}
-        stylesdata +=  "\n" + data;
-        done += 1;
-        if (done==styles.length) {
-            sass.compile(stylesdata,function(d){
-              $('head').append('<style>body{opacity:1}'+d.text+'<\/style>')
-            })
-        }
-    });
-}
 
 
 // third-party js libraries
@@ -56,34 +34,80 @@ require( __dirname + "/js/jquery-ui.draggable.min.js")
 require( __dirname + "/js/oschtmlgui.js")
 
 
-ipc.on('init',function(data){
-    $('body').append('<script>'+data+'<\/script>')
-    init();
 
+// Sass (add stylesheets to var styles)
+var Sass = require( __dirname + "/js/sass.js")
+    Sass.setWorkerUrl(__dirname +  "/js/sass.worker.js");
+    var sass = new Sass()
+    sass.options({style: Sass.style.compact})
+
+var styles = ["/css/style.scss","/css/jquery.nouislider.scss"]
+  , stylesdata = ''
+  , done = 0;
+
+for (i in styles) {
+
+    fs.readFile(__dirname + styles[i], 'utf8', function (err,data) {
+        if (err) {return console.log(err);}
+        stylesdata +=  "\n" + data;
+        done += 1;
+        if (done==styles.length) {
+            sass.compile(stylesdata,function(d){
+                $('body').append('<style>'+d.text+'<\/style>')
+                ipc.send('ready');
+            })
+        }
+    });
+
+}
+
+
+
+ipc.on('listSessions',function(data){
+    for (i in data) {
+        $('#lobby .list').append('<li><a data-session="'+i+'">'+data[i]+'<span>x</span></a></li>')
+    }
+    $('#lobby .list').append('<a data-session="browse">...</a>')
+    $('#lobby a').click(function(){
+        ipc.send('loadSession',$(this).data('session'))
+    })
+    $('#lobby a span').click(function(e){
+        ipc.send('removeSessionFromHistory',$(this).parent().data('session'))
+        $(this).parents('li').hide()
+        e.stopPropagation()
+    })
 })
-ipc.send('init');
+
+
+
+
+ipc.on('openSession',function(data){
+    TABS=false
+    require(data)
+    if (TABS!=false) {
+        init();
+    } else {
+        console.log('ERROR: invalid session file (TABS must be defined)')
+    }
+})
+
+
+
 
 </script>
 
 </head>
 <body>
-<div id="container"></div>
-<div id="sidepanel">
-    <div class="open-toggle">
-        <span class="bars"></span>
+<div id="lobby">
+    <div class="main">
+        <div class="header">
+            Session selection
+        </div>
+        <div class="list">
+        </div>
     </div>
-    <ul id="options">
-        <li><div class="saveState">Save</div></li>
-        <li><div href="#" class="loadState">Load</div></li>
-        <li><div href="#" class="sendState">Send ALL</div></li>
-        <li><div href="#" class="goFullscreen">Fullscreen</div></li>
-        <li>
-            <div class="inspector">
-                    Inspector
-                    <div class="result"><em>Click on a widget's title to inspect</em></div>
-            </div>
-        </li>
-    </ul>
 </div>
+<div id="container"></div>
+<div id="sidepanel"></div>
 </body>
 </html>

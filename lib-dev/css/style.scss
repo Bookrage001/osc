@@ -3,13 +3,27 @@
 $color-text:rgba(white,.9);
 $color-text-fade:transparentize($color-text,.4);
 
-$color-title:rgba(white,.05);
+
 
 $color-fg:#282c34;
 $color-bg:mix($color-fg,black,85);
 $color-accent:#528bff;
 $color-border:mix($color-fg,black,55);
 $nav-height:50px;
+
+$bg-title:rgba(white,.05);
+$bg-button:linear-gradient(#3a3f4b, #353b45);
+
+$sidepanel-size:300px;
+
+
+@mixin layer {
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom:0;
+}
 
 
 /////////////
@@ -43,7 +57,6 @@ html, body {
     height:100%;
     overflow:hidden;
     position:relative;
-    background:$color-bg;
 
 }
 body {
@@ -52,19 +65,60 @@ body {
     font-family:'Open Sans';
     color:$color-text;
     white-space:nowrap;
-}
-.content {
-    background:$color-fg;
+    opacity:1
 }
 
-$sidepanel-size:300px;
+
+
+
+
+#lobby {
+    background: $color-bg;
+    @include layer();
+    z-index: 2;
+    border:1px solid $color-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .main {
+        width:600px;
+    }
+    .header {
+        background: $bg-button;
+        padding:20px;
+        font-weight:bold;
+        box-shadow: 0 0 0 1px $color-border inset;
+    }
+    a {
+        display: block;
+        padding:10px;
+        padding-right:25px;
+        overflow: hidden;
+        background: $bg-button;
+        margin-top:10px;
+        box-shadow: 0 0 0 1px $color-border inset;
+        position: relative;
+
+        span {
+            position: absolute;
+            right:1px;
+            top:1px;
+            bottom:1px;
+
+            padding:9px;
+            background: $bg-button;
+        }
+    }
+}
+
+
+
+
+
 
 #container {
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+    background: $color-bg;
+    @include layer();
     overflow:hidden;
     transition:right .3s;
     &.sidepanel-open {
@@ -148,7 +202,7 @@ $sidepanel-size:300px;
         li {
             display:block;
             margin-bottom:15px;
-            background:$color-title;
+            background:$bg-button;
             border:1px solid $color-border;
             > div {
                 padding:10px;
@@ -218,7 +272,7 @@ a {
         list-style:none;
         display: flex;
         padding-left:5px;
-        li.on + li {border:0;}
+        li.on + li {border-image:none;border-left:1px solid transparent;}
         li {
             display:block;
             max-width:250px;
@@ -227,7 +281,8 @@ a {
             border-width:0 0 0 1px;
             border-image: linear-gradient($color-bg, $color-border 20px) 0 0 0 1 stretch;
             &:first-child, &.on {
-                border:0;
+                border-image:none;
+                border-left:1px solid transparent;
             }
 
 
@@ -251,6 +306,7 @@ a {
                     border:1px solid $color-border;
                     border-bottom-color:$color-fg;
                     color:$color-text;
+
                     &:before {
                         content:"";
                         position: absolute;
@@ -258,6 +314,7 @@ a {
                         left:0;
                         right:0;
                         bottom:0;
+                        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
                         background:linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0))
                     }
                     &:after {
@@ -287,6 +344,7 @@ a {
     bottom:0;
     padding:10px 5px 5px;
     border-top:1px solid $color-border;
+    background:$color-fg;
 
     .tab {
         //height:100%;
@@ -307,6 +365,7 @@ a {
     height:0px;
     width: 0px;
     overflow: hidden;
+    position: relative;
     &.on {
         height:100%;
         width:auto;
@@ -341,6 +400,9 @@ a {
     vertical-align:top;
     overflow: hidden;
     margin-right: 10px;
+    &:last-child {
+        margin-right: 0
+    }
     .title {
 
         padding:10px 10px;
@@ -351,8 +413,8 @@ a {
         text-overflow:ellipsis;
         overflow:hidden;
         height:35px;
-        border-radius:2px 2px 0 0 ;
-        background:linear-gradient(#3a3f4b, #353b45);
+        //border-radius:2px 2px 0 0 ;
+        background:$bg-button;
         box-shadow: 0 0 0 1px $color-bg inset;
     }
     input {
@@ -387,15 +449,17 @@ a {
 $button-size:20px;
 .button-wrapper {
     height:100%;
+    width:95px;
     overflow:hidden;
-    padding-left: 10px;
+    padding: 10px 0 40px;
+    position: relative;
     .button {
         width:100%;
         height:100%;
         position:relative;
         outline:1px solid $color-bg;
         outline-offset: -10px;
-        background:linear-gradient(#3a3f4b, #353b45);
+        background:$bg-button;
         box-shadow: 0 0 0 1px $color-bg inset;
         &:after{
             content:"";
@@ -415,6 +479,7 @@ $button-size:20px;
     input {
         position:absolute;
         bottom:0;
+        box-shadow: 0 0 1px 0 $color-border inset;
     }
 }
 
@@ -467,6 +532,8 @@ width:400px;
     float:right;
     width:70%;
     height:70px;
+    padding: 0 0 0 10px;
+    position: static;
 }
 .stack .widget .title {
     width:30%;
@@ -487,6 +554,7 @@ width:400px;
     width:70%;
     height:300px;
     padding-top:0;
+    padding-left:10px;
 }
 
 /* STRIP (vertical fader) */
@@ -519,11 +587,11 @@ width:400px;
 
 .xy-wrapper {
     width:400px;
-    padding: 10px 10px 140px;
+    padding: 10px 0px 140px;
     height:540px;
     overflow: hidden;
     .value {
-        margin-top:30px;
+        margin-top:10px;
         width:100%;
     }
     input {
@@ -541,7 +609,7 @@ width:400px;
     width:100%;
     height: 100%;
     border:1px solid $color-border;
-    background: $color-bg;
+    //background: $color-bg;
     overflow: hidden;
     .handle {
         position:absolute;
@@ -553,12 +621,13 @@ width:400px;
             position:absolute;
             top:-.5px;
             left:-1px;
-            box-shadow:0 0 10px 0px #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.2)!important;
+            //box-shadow:0 0 10px 0px #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.2)!important;
             border-radius:100%!important;
-            background:$color-accent!important;
-            width: 11px;
-            height: 11px;
-            margin:-5px 0 0 -5px;
+            //background:$color-accent!important;
+            width: 20px;
+            height: 20px;
+            margin:-10px 0 0 -10px;
+            box-shadow: 0 0 0 1000px rgba(black,.5), 0 0 0 1px rgba(white,.2);
         }
 
         span {
@@ -568,24 +637,8 @@ width:400px;
             width:2000px;
             height:2000px;
             margin:-1000px 0 0 -1000px;
-            opacity:.5;
-            &:after {
-                content:"";
-                position: absolute;
-                width:100%;
-                height:1px;
-                top:50%;
-                background: $color-accent
-            }
-            &:before {
-                content:"";
-                position: absolute;
-                height:100%;
-                width:1px;
-                top:0;
-                left:50%;
-                background: $color-accent
-            }
+            -webkit-mask: radial-gradient(circle,rgba(black,0) 0px , rgba(black,1) 1%);
+            opacity:.2;
         }
     }
 }
@@ -614,6 +667,11 @@ width:400px;
 	&:after {
 		background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* W3C */
 	}
+    .handle {
+        span {
+            //background: rgba(black,.35)
+        }
+    }
 }
 .hue {
     width:100%;
@@ -621,7 +679,7 @@ width:400px;
     border:1px solid $color-border;
     margin-top:10px;
     background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
-
+    overflow: hidden;
     .handle {
         position:absolute;
         height:100%;
@@ -630,23 +688,13 @@ width:400px;
         &:after {
             content:"";
             position:absolute;
-            top:100%;
+            top:50%;
             left:-1px;
-            box-shadow:0 0 10px 0px #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.2)!important;
+            box-shadow: 0 0 0 1000px rgba(black,.5), 0 0 0 1px rgba(white,.2);
             border-radius:100%!important;
-            background:$color-accent!important;
             width: 11px;
             height: 11px;
-            margin:4px 0 0 -5px;
-        }
-        &:before {
-            content:"";
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            width:1px;
-            background:$color-accent;
+            margin:-5px 0 0 -4px;
         }
         span {
             position:absolute;
@@ -655,7 +703,6 @@ width:400px;
             width:2000px;
             height:100%;
             margin-left:-1000px;
-            opacity:.5;
 
         }
     }

@@ -1,3 +1,10 @@
+var defaultConfig = {
+  presetPath : __dirname,
+  sessionPath: __dirname,
+  recentSessions: []
+}
+
+
 // dependencies
 var app = require('app')
   , BrowserWindow = require('browser-window')
@@ -6,7 +13,8 @@ var app = require('app')
   , osc = require("osc")
   , fs = require("fs")
   , ipc = require('ipc')
-  , renderProcess = []
+  , renderProcess = {}
+  , config = require(__dirname + '/lib-dev/config/config.json')
 
 
 // static files serving
@@ -37,14 +45,10 @@ app.on('ready', function() {
       width: 800,
       height: 600,
       'auto-hide-menu-bar':true,
-
   });
 
   // and load the index.html of the app.
   window.loadUrl('file://' + __dirname + '/lib-dev/index.html');
-
-  // Open the devtools.
-  //window.openDevTools();
 
   // Emitted when the window is closed.
   window.on('closed', function() {
@@ -85,14 +89,51 @@ renderProcess.send = function(name,data) {
 }
 
 
-ipc.on('init',function(event, data){
-  fs.readFile(__dirname + '/lib-dev/js/demo.js','utf-8', function read(err, data) {
-      if (err) {
-          throw err;
-      }
-    renderProcess.send('init',data);
-  })
+ipc.on('loadSession',function(event, data){
+    var sessionlist = readConfig('recentSessions')
+
+    if (data == 'browse') {
+
+        dialog.showOpenDialog(window,{title:'Load session file',defaultPath:readConfig('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
+            if (file==undefined) {return}
+            writeConfig({sessionPath:file[0].replace(file[0].split('/').pop(),'')})
+
+            renderProcess.send('openSession',file[0]);
+            sessionlist.unshift(file[0])
+
+            sessionlist = sessionlist.filter(function(elem, index, self) {
+                return index == self.indexOf(elem);
+            })
+
+            writeConfig({recentSessions:sessionlist})
+
+        })
+
+    } else {
+
+        renderProcess.send('openSession',sessionlist[data]);
+        sessionlist.unshift(sessionlist[data])
+        sessionlist = sessionlist.filter(function(elem, index, self) {
+            return index == self.indexOf(elem);
+        })
+        writeConfig({recentSessions:sessionlist})
+    }
+
+
 })
+
+ipc.on('removeSessionFromHistory',function(event, data){
+    var sessionlist = readConfig('recentSessions')
+    sessionlist.splice(data,1)
+    writeConfig({recentSessions:sessionlist})
+})
+ipc.on('ready',function(){
+    var recentSessions = readConfig('recentSessions')
+    renderProcess.send('listSessions',recentSessions)
+})
+
+
+
 
 
 ipc.on('sendOsc', function (event,data) {
@@ -110,30 +151,51 @@ ipc.on('sendOsc', function (event,data) {
 
 
 ipc.on('save', function(event, data){
-    dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:__dirname,filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:readConfig('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+
         if (file==undefined) {return}
+        writeConfig({presetPath:file[0].replace(file[0].split('/').pop(),'')})
+
         if (file.indexOf('.preset')==-1){file+='.preset'}
         fs.writeFile(file,data, function (err, data) {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
             console.log("The current state was saved in "+file);
         });
     })
 })
 
 ipc.on('load', function(event, data){
-    dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:__dirname,filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:readConfig('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+
         if (file==undefined) {return}
+        writeConfig({presetPath:file[0].replace(file[0].split('/').pop(),'')})
+
         fs.readFile(file[0],'utf-8', function read(err, data) {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
+
             renderProcess.send('load',data);
         });
     })
 })
 
-ipc.on('fullscreen', function(event, data){
-    window.setFullScreen(data)
+
+ipc.on('fullscreen', function(event){
+    window.setFullScreen(!window.isFullScreen())
+
 })
+
+
+
+writeConfig = function(newconfig) {
+    for (i in newconfig) {
+      config[i] = newconfig[i]
+    }
+    fs.writeFile(__dirname + '/lib-dev/config/config.json',JSON.stringify(config), function (err, data) {
+        if (err) throw err;
+    });
+
+}
+
+readConfig = function(key) {
+  return config[key] || defaultConfig[key]
+}

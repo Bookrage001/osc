@@ -4,14 +4,9 @@ defaultTarget = 'localhost:9999'
 
 
 
-// jQuery loaded
-$(document).ready(function(){
-
-
-
 init = function() {
 
-createWidget={}
+createWidget= {}
 __widgets__ = {}
 
 
@@ -58,7 +53,7 @@ function parsewidgets(widgets,parent) {
 
     $.each(widgets,function(widgetId,widgetData){// parse widgets
 
-        var color = widgetData.color?'style="background-color:'+widgetData.color+'"':'';
+        var color = widgetData.color?'style="background:'+widgetData.color+'"':'';
         var title = widgetData.title || widgetId;
         var type = widgetData.type || 'fader'
         widgetData.path = widgetData.path || '/' + widgetId
@@ -120,7 +115,7 @@ createWidget.button = function(widgetData) {
     $widget.getValue = function() {
         return $widget.button.hasClass('on')?widgetData.args.on||1:widgetData.args.off||0
     }
-    $widget.setValue = function(v,send) {
+    $widget.setValue = function(v,send,sync) {
         var on = widgetData.args.on||1,
             off= widgetData.args.off||0
         if (v==on) {
@@ -131,6 +126,7 @@ createWidget.button = function(widgetData) {
             if (send) $widget.sendValue(v)
         }
         $widget.input.val($widget.getValue())
+        if (send) $widget.trigger('sync')
 
     }
     $widget.sendValue = function(v) {
@@ -167,25 +163,29 @@ createWidget.xy = function(widgetData) {
 
     $widget.xy.on('drag',function(e, data){
         var v = $widget.getValue();
+
         $widget.sendValue(v);
         $widget.showValue(v)
+        $widget.trigger('sync')
     })
+
     widgetData.range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
 
     $widget.getValue = function() {
-        var x = parseFloat($widget.xy.handle.css('left'))/$widget.xy.innerWidth(),
-            x = widgetData.range.x.min + x *(widgetData.range.x.max -  widgetData.range.x.min),
-            y = 1 - (parseFloat($widget.xy.handle.css('top'))/$widget.xy.innerHeight()),
-            y = widgetData.range.y.min + y *(widgetData.range.y.max -  widgetData.range.y.min)
+        var x = mapToScale($widget.xy.handle.css('left'),[0,$widget.xy.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
+            y = mapToScale($widget.xy.handle.css('top'),[0,$widget.xy.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max],true)
+
         return [x,y]
     }
-    $widget.setValue = function(v,send) {
+    $widget.setValue = function(v,send,sync) {
         if (v[1]==undefined) var v = [v,v]
-        var x = (v[0]-widgetData.range.x.min)/(widgetData.range.x.max-widgetData.range.x.min)*$widget.xy.innerWidth(),
-            y = $widget.xy.innerHeight()-(v[1]-widgetData.range.y.min)/(widgetData.range.y.max-widgetData.range.y.min)*$widget.xy.innerHeight()
-        $widget.xy.handle.css({'top':y+'px','left':x+'px'})
+        var left = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,$widget.xy.innerWidth()])
+            ytop = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,$widget.xy.innerHeight()],true),
+
+        $widget.xy.handle.css({'top':ytop+'px','left':left+'px'})
 
         $widget.showValue(v)
+        if (sync) $widget.trigger('sync')
         if (send) $widget.sendValue(v);
     }
     $widget.sendValue = function(v) {
@@ -198,6 +198,18 @@ createWidget.xy = function(widgetData) {
         $widget.xy.value.x.val(v[0])
         $widget.xy.value.y.val(v[1])
     }
+
+    $widget.xy.value.x.change(function(){
+        var v = $widget.getValue();
+        v[0] = limit($(this).val(),[widgetData.range.x.min,widgetData.range.x.max])
+        $widget.setValue(v,true,true)
+    })
+    $widget.xy.value.y.change(function(){
+        var v = $widget.getValue();
+        v[1] = limit($(this).val(),[widgetData.range.y.min,widgetData.range.y.max])
+        $widget.setValue(v,true,true)
+    })
+
 
     return $widget;
 }
@@ -246,25 +258,31 @@ var rgbToHsb = function (rgb) {
 };
 
 
+var limit = function(value,range) {
+    var max = Math.max,
+        min = Math.min
+
+        return max(min(range[0],range[1]),min(parseFloat(value),max(range[0],range[1])))
+
+}
+
 // map a value from a scale to another input and output must be range arrays
-var mapToScale = function(value,rangeIn,rangeOut) {
+var mapToScale = function(value,rangeIn,rangeOut,reverse) {
 
-    var reverse = false;
-    if (rangeIn[0]>rangeIn[1]) {
-        reverse = true;
-        rangeIn = [rangeIn[1],rangeIn[0]]
-    }
+    var max = Math.max,
+        min = Math.min,
+      round = Math.round
 
-    var value = Math.max(rangeIn[0],Math.min(parseFloat(value),rangeIn[1]))
-
+    value = max(min(rangeIn[0],rangeIn[1]),min(parseFloat(value),max(rangeIn[0],rangeIn[1])))
 
     value = (value/rangeIn[1]-rangeIn[0]) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
 
-    if (reverse) value = Math.abs(rangeOut[1] - value)
+    if (reverse) value = max(rangeOut[0],rangeOut[1])+min(rangeOut[0],rangeOut[1])-value
 
-    value = Math.max(rangeOut[0],Math.min(value,rangeOut[1]))
+    value = max(min(rangeOut[0],rangeOut[1]),min(value,max(rangeOut[0],rangeOut[1])))
 
-    value = Math.round(value)
+    value = round(value*100)/100
+
     return value
 
 }
@@ -335,13 +353,13 @@ createWidget.rgb = function(widgetData) {
     })
 
 
-    widgetData.range = {x:{min:0,max:100},y:{min:0,max:100}}
+    widgetData.range = {r:{min:0,max:255},g:{min:0,max:255},b:{min:255}}
 
 
 
     $widget.getValue = function() {
         var s = mapToScale($widget.xy.saturation.css('left'),[0,$widget.xy.innerWidth()],[0,100]),
-            l = mapToScale($widget.xy.saturation.css('top'),[$widget.xy.innerHeight(),0],[0,100]),
+            l = mapToScale($widget.xy.saturation.css('top'),[0,$widget.xy.innerHeight()],[0,100],true),
             h = mapToScale($widget.xy.hue.css('left'),[0,$widget.xy.innerWidth()],[0,360]),
             rgb = hsbToRgb({h:h,s:s,b:l})
         return [rgb.r,rgb.g,rgb.b]
@@ -358,7 +376,7 @@ createWidget.rgb = function(widgetData) {
         var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
         var left = mapToScale(hsb.s,[0,100],[0,$widget.xy.innerWidth()]),
-            top = mapToScale(hsb.b,[100,0],[0,$widget.xy.innerHeight()]),
+            top = mapToScale(hsb.b,[0,100],[0,$widget.xy.innerHeight()],true),
             leftHue = mapToScale(hsb.h,[0,360],[0,$widget.xy.innerWidth()])
         $widget.xy.saturation.css({'top':top+'px','left':left+'px'})
         $widget.xy.hue.css({'left':leftHue+'px'})
@@ -512,7 +530,7 @@ createWidget.fader = function(widgetData,parent) {
 
 
 parsetabs(TABS,false,false)
-
+$('#lobby').hide()
 
 
 
@@ -561,13 +579,12 @@ $('.content .tab').niceScroll({
 });
 
 // Tabs...
-$('.tablist a').click(function(e){
+$('.tablist a').click(function(){
 
-    $('.tab').getNiceScroll().hide();
+    $('.tab.on').getNiceScroll().hide();
 
-    e.preventDefault();
     var id = $(this).attr('href');
-    $(id).siblings().removeClass('on');
+    $(id).siblings('.on').removeClass('on');
     $(id).addClass('on');
     $(this).parents('ul').find('.on').removeClass('on');
     $(this).addClass('on');$(this).parent().addClass('on');
@@ -583,15 +600,15 @@ $('.tablist a').click(function(e){
 
 function updateScrollbar(){
     // update scrollbar
-    $('.content .tab').each(function(){
-        $('.tab.on').getNiceScroll().resize();
-    })
+    $('.tab.on').getNiceScroll().resize();
 }
 
 // Activate first tabs
-setTimeout(function(){
-    $('.tablist li:first-child a').click();
-},1500)
+$('.tablist li:first-child a').click();
+
+
+
+
 
 
 
@@ -599,6 +616,25 @@ setTimeout(function(){
 
 
 // sidepanel
+
+
+$('#sidepanel').append('\
+    <div class="open-toggle">\
+        <span class="bars"></span>\
+    </div>\
+    <ul id="options">\
+        <li><div class="saveState">Save</div></li>\
+        <li><div href="#" class="loadState">Load</div></li>\
+        <li><div href="#" class="sendState">Send ALL</div></li>\
+        <li><div href="#" class="goFullscreen">Fullscreen</div></li>\
+        <li>\
+            <div class="inspector">\
+                    Inspector\
+                    <div class="result"><em>Click on a widges\'s title to inspect</em></div>\
+            </div>\
+        </li>\
+    </ul>\
+')
 
 $('#sidepanel .open-toggle').click(function(){
     $('#sidepanel .open-toggle, #sidepanel .open-toggle .bars, #sidepanel, #container').toggleClass('sidepanel-open');
@@ -615,12 +651,7 @@ $('.showOptions a').click(function(e){
 })
 $('.goFullscreen').click(function(e){
     e.preventDefault();
-    $(this).toggleClass('on');
-    if ($(this).hasClass('on')) {
-        ipc.send('fullscreen',true)
-    } else {
-        ipc.send('fullscreen',false)
-    }
+    ipc.send('fullscreen')
     updateScrollbar();
 
 })
@@ -723,5 +754,3 @@ ipc.on('load',function(preset){
 })
 
 }// END INIT
-
-});
