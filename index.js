@@ -1,8 +1,38 @@
+/* TODO
+
+- configuration panel
+    - defaultTarget
+    - syncTargets
+
+
+*/
+
+
+// config file handling
+
 var defaultConfig = {
   presetPath : __dirname,
   sessionPath: __dirname,
-  recentSessions: []
+  recentSessions: [],
+  syncTargets: [],
+  oscInPort:5555
 }
+
+writeConfig = function(newconfig) {
+    for (i in newconfig) {
+      config[i] = newconfig[i]
+    }
+    fs.writeFile(__dirname + '/lib-dev/config/config.json',JSON.stringify(config,null,4), function (err, data) {
+        if (err) throw err;
+    });
+
+}
+
+readConfig = function(key) {
+  return config[key] || defaultConfig[key]
+}
+
+
 
 
 // dependencies
@@ -13,8 +43,9 @@ var app = require('app')
   , osc = require("osc")
   , fs = require("fs")
   , ipc = require('ipc')
-  , renderProcess = {}
+
   , config = require(__dirname + '/lib-dev/config/config.json')
+  , args = process.argv.slice(2);
 
 
 // static files serving
@@ -44,7 +75,7 @@ app.on('ready', function() {
   window = new BrowserWindow({
       width: 800,
       height: 600,
-      'auto-hide-menu-bar':true,
+      'auto-hide-menu-bar':true
   });
 
   // and load the index.html of the app.
@@ -64,8 +95,8 @@ app.on('ready', function() {
 
 // osc event listener
 var udpPort = new osc.UDPPort({
-    localAddress: "0.0.0.0",
-    localPort: 5555
+    localAddress: "127.0.0.1",
+    localPort: readConfig('oscInPort')
 });
 
 
@@ -75,7 +106,7 @@ udpPort.open();
 
 udpPort.on("message", function (data) {
     renderProcess.send('receiveOsc',data);
-    console.log('Received OSC : ',data)
+    // console.log('Received OSC : ',data)
 });
 
 
@@ -83,11 +114,11 @@ udpPort.on("message", function (data) {
 
 // mainProcess & renderProcess async i/o
 
-
-renderProcess.send = function(name,data) {
-    window.webContents.send(name,data);
+renderProcess = {
+    send : function(name,data) {
+        window.webContents.send(name,data);
+    }
 }
-
 
 ipc.on('loadSession',function(event, data){
     var sessionlist = readConfig('recentSessions')
@@ -95,27 +126,38 @@ ipc.on('loadSession',function(event, data){
     if (data == 'browse') {
 
         dialog.showOpenDialog(window,{title:'Load session file',defaultPath:readConfig('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
+
             if (file==undefined) {return}
+
+            // save path to configfile
             writeConfig({sessionPath:file[0].replace(file[0].split('/').pop(),'')})
 
+            // open session
             renderProcess.send('openSession',file[0]);
+
+            // add session to history
             sessionlist.unshift(file[0])
 
+            // remove doubles from history
             sessionlist = sessionlist.filter(function(elem, index, self) {
                 return index == self.indexOf(elem);
             })
 
+            // save history
             writeConfig({recentSessions:sessionlist})
 
         })
 
     } else {
-
+        // open session
         renderProcess.send('openSession',sessionlist[data]);
+        // add session to history
         sessionlist.unshift(sessionlist[data])
+        // remove doubles from history
         sessionlist = sessionlist.filter(function(elem, index, self) {
             return index == self.indexOf(elem);
         })
+        // save history
         writeConfig({recentSessions:sessionlist})
     }
 
@@ -127,9 +169,16 @@ ipc.on('removeSessionFromHistory',function(event, data){
     sessionlist.splice(data,1)
     writeConfig({recentSessions:sessionlist})
 })
+
+
 ipc.on('ready',function(){
     var recentSessions = readConfig('recentSessions')
     renderProcess.send('listSessions',recentSessions)
+
+    if ('testing'==args[0]) {
+        var sessionlist = readConfig('recentSessions')
+        renderProcess.send('openSession',sessionlist[0]);
+    }
 })
 
 
@@ -183,19 +232,3 @@ ipc.on('fullscreen', function(event){
     window.setFullScreen(!window.isFullScreen())
 
 })
-
-
-
-writeConfig = function(newconfig) {
-    for (i in newconfig) {
-      config[i] = newconfig[i]
-    }
-    fs.writeFile(__dirname + '/lib-dev/config/config.json',JSON.stringify(config), function (err, data) {
-        if (err) throw err;
-    });
-
-}
-
-readConfig = function(key) {
-  return config[key] || defaultConfig[key]
-}

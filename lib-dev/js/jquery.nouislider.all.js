@@ -1,6 +1,6 @@
 /*! noUiSlider - 7.0.3 - 2014-09-11 16:30:11 */
 /* With rate mod @ 1561 (Jean-Emmanuel Doucet) */
-    
+
 (function(){
 
 	'use strict';
@@ -1558,7 +1558,7 @@ function closure ( target, options, originalOptions ){
 			callback ( e, data );
 		});
 	}
-	
+
     // BIG FAT & UGLY MOD
     // Limit move's rate for better performances
     // It skips events, but we don't need that much precision here
@@ -1572,10 +1572,10 @@ function closure ( target, options, originalOptions ){
            // first call
            window.last = window.now;
            moveP(event, data);
-        }  
+        }
     }
-    
-    
+
+
 	// Handle movement on document for handle and range drag.
 	function moveP ( event, data ) {
 
@@ -1596,7 +1596,7 @@ function closure ( target, options, originalOptions ){
 		if ( state ) {
 			fireEvents(['slide']);
 		}
-		
+
 	}
 
 	// Unbind move events on document, call callbacks.
@@ -2063,12 +2063,12 @@ function closure ( target, options, originalOptions ){
 
 // Extend jQuery/Zepto with the noUiSlider method.
 	$.fn.noUiSlider = function ( options, rebuildFlag ) {
-		
+
 		switch ( options ) {
 			case 'step': return this[0].getCurrentStep();
 			case 'options': return this[0].getOriginalOptions();
 		}
-	
+
 		return ( rebuildFlag ? rebuild : initialize ).call(this, options);
 	};
 

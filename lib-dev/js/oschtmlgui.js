@@ -1,17 +1,14 @@
-
 // defaultTarget
-defaultTarget = 'localhost:9999'
+defaultTarget = '127.0.0.1:9999'
 
 
 
-init = function() {
+
 
 createWidget= {}
 __widgets__ = {}
 
-
-
-function parsetabs(TABS,parent,sub){
+function parsetabs(tabs,parent,sub){
 
     if (!sub) {
         var $nav = $(document.createElement('div')).addClass('main navigation'),
@@ -29,7 +26,8 @@ function parsetabs(TABS,parent,sub){
 
     }
 
-    $.each(TABS,function(tabId,tabData){
+    for (tabId in tabs) {
+        var tabData = tabs[tabId]
 
         var title = tabData.title||tabId
 
@@ -45,20 +43,21 @@ function parsetabs(TABS,parent,sub){
         }
 
         $content.append($tabContent);
-    })
+    }
 
 }
 
 function parsewidgets(widgets,parent) {
 
-    $.each(widgets,function(widgetId,widgetData){// parse widgets
+    for (widgetId in widgets) {
+        var widgetData = widgets[widgetId]
 
         var color = widgetData.color?'style="background:'+widgetData.color+'"':'';
         var title = widgetData.title || widgetId;
         var type = widgetData.type || 'fader'
         widgetData.path = widgetData.path || '/' + widgetId
 
-        var $widget = $('\
+        var widget = $('\
             <div class="widget" widgetType="'+type+'" widgetId="'+widgetId+'" path="'+widgetData.path+'">\
                 <div class="title" '+color+'>'+title+'</div>\
             </div>\
@@ -68,79 +67,79 @@ function parsewidgets(widgets,parent) {
         var widgetInner = createWidget[type](widgetData,parent)
         widgetInner.type =  widgetData.type || 'fader'
 
-        $widget.append(widgetInner)
+        widget.append(widgetInner)
         if (__widgets__[widgetId]==undefined) {
             __widgets__[widgetId] = []
         }
         __widgets__[widgetId].push(widgetInner)
 
 
-        parent.append($widget);
-    });// widgets parsed
+        parent.append(widget);
+    }
 }
 
 
 
 
 createWidget.stack = function(widgetData) {
-    var $widget = $('\
+    var widget = $('\
             <div class="stack">\
             </div>\
     ');
-    parsewidgets(widgetData.widgets,$widget)
-    $widget.getValue = function(){return}
-    $widget.setValue = function(){return}
-    return $widget;
+    parsewidgets(widgetData.widgets,widget)
+    widget.getValue = function(){return}
+    widget.setValue = function(){return}
+    return widget;
 }
 
 createWidget.button = function(widgetData) {
-    var $widget = $('\
+    var widget = $('\
         <div class="button-wrapper">\
             <div class="button"></div>\
             <input disabled></input>\
         </div>\
     ');
 
-    $widget.input = $widget.find('input')
-    $widget.button =  $widget.find('.button')
+    widget.input = widget.find('input')
+    widget.button =  widget.find('.button')
 
     widgetData.args = widgetData.args || {off:0,on:1}
 
-    $widget.button.click(function(){
-        var newVal = $widget.button.hasClass('on')?widgetData.args.off||0:widgetData.args.on||1
-        $widget.setValue(newVal,true)
+    widget.button.click(function(){
+        var newVal = widget.button.hasClass('on')?widgetData.args.off||0:widgetData.args.on||1
+        widget.setValue(newVal,true)
     })
 
 
-    $widget.getValue = function() {
-        return $widget.button.hasClass('on')?widgetData.args.on||1:widgetData.args.off||0
+    widget.getValue = function() {
+        return widget.button.hasClass('on')?widgetData.args.on||1:widgetData.args.off||0
     }
-    $widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,send,sync) {
         var on = widgetData.args.on||1,
             off= widgetData.args.off||0
         if (v==on) {
-            $widget.button.addClass('on')
-            if (send) $widget.sendValue(v)
+            widget.button.addClass('on')
+            if (send) widget.sendValue(v)
         } else if (v==off) {
-            $widget.button.removeClass('on')
-            if (send) $widget.sendValue(v)
+            widget.button.removeClass('on')
+            if (send) widget.sendValue(v)
         }
-        $widget.input.val($widget.getValue())
-        if (send) $widget.trigger('sync')
+        widget.input.val(widget.getValue())
+        if (send) widget.trigger('sync')
 
     }
-    $widget.sendValue = function(v) {
-        var t = widgetData.target?widgetData.target:defaultTarget,
+    widget.sendValue = function(v) {
+        var t = widgetData.target,
             p = widgetData.path
         sendOsc([t,p,v]);
     }
-    $widget.setValue()
-    return $widget;
+    widget.setValue()
+    return widget;
 }
 
 
 createWidget.xy = function(widgetData) {
-    var $widget = $('\
+    var widget = $('\
         <div class="xy-wrapper">\
             <div class="xy">\
                 <div class="handle"><span></span></div>\
@@ -151,67 +150,95 @@ createWidget.xy = function(widgetData) {
             </div>\
         </div>\
     ');
-    $widget.xy = $widget.find('.xy')
-    $widget.xy.handle = $widget.find('.handle')
-    $widget.xy.handle.css({top:0,left:0}).draggable({
+    widget.xy = widget.find('.xy')
+    widget.xy.handle = widget.find('.handle')
+    widget.xy.handle.css({top:0,left:0}).draggable({
         addClasses: false,
+        scroll:false,
         containment:'parent'
     });
 
-    $widget.xy.value = {x:$widget.find('.x'),y:$widget.find('.y')}
+    widget.xy.value = {x:widget.find('.x'),y:widget.find('.y')}
 
 
-    $widget.xy.on('drag',function(e, data){
-        var v = $widget.getValue();
+    widget.xy.on('drag',function(e, data){
+        var v = widget.getValue();
 
-        $widget.sendValue(v);
-        $widget.showValue(v)
-        $widget.trigger('sync')
+        widget.sendValue(v);
+        widget.showValue(v)
+        widget.trigger('sync')
     })
 
     widgetData.range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
 
-    $widget.getValue = function() {
-        var x = mapToScale($widget.xy.handle.css('left'),[0,$widget.xy.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
-            y = mapToScale($widget.xy.handle.css('top'),[0,$widget.xy.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max],true)
+    widget.getValue = function() {
+        var x = mapToScale(widget.xy.handle.css('left'),[0,widget.xy.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
+            y = mapToScale(widget.xy.handle.css('top'),[0,widget.xy.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max],true)
 
         return [x,y]
     }
-    $widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,send,sync) {
         if (v[1]==undefined) var v = [v,v]
-        var left = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,$widget.xy.innerWidth()])
-            ytop = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,$widget.xy.innerHeight()],true),
+        var left = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,widget.xy.innerWidth()])
+            ytop = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,widget.xy.innerHeight()],true),
 
-        $widget.xy.handle.css({'top':ytop+'px','left':left+'px'})
+        widget.xy.handle.css({'top':ytop+'px','left':left+'px'})
 
-        $widget.showValue(v)
-        if (sync) $widget.trigger('sync')
-        if (send) $widget.sendValue(v);
+        widget.showValue(v)
+        if (sync) widget.trigger('sync')
+        if (send) widget.sendValue(v);
     }
-    $widget.sendValue = function(v) {
-        var t = widgetData.target?widgetData.target:defaultTarget,
-            p = widgetData.path || widgetData.path
+    widget.sendValue = function(v) {
+        var t = widgetData.target,
+            p = widgetData.path
         sendOsc([t,p,v]);
     }
 
-    $widget.showValue = function(v) {
-        $widget.xy.value.x.val(v[0])
-        $widget.xy.value.y.val(v[1])
+    widget.showValue = function(v) {
+        widget.xy.value.x.val(v[0])
+        widget.xy.value.y.val(v[1])
     }
 
-    $widget.xy.value.x.change(function(){
-        var v = $widget.getValue();
+    widget.xy.value.x.change(function(){
+        var v = widget.getValue();
         v[0] = limit($(this).val(),[widgetData.range.x.min,widgetData.range.x.max])
-        $widget.setValue(v,true,true)
+        widget.setValue(v,true,true)
     })
-    $widget.xy.value.y.change(function(){
-        var v = $widget.getValue();
+    widget.xy.value.y.change(function(){
+        var v = widget.getValue();
         v[1] = limit($(this).val(),[widgetData.range.y.min,widgetData.range.y.max])
-        $widget.setValue(v,true,true)
+        widget.setValue(v,true,true)
     })
 
 
-    return $widget;
+    return widget;
+
+
+    // alternate technique to jqueryui using css transform (hw accelerated)
+    // doesn't seem to increase performance (there's no transition to optimize)
+    // add require( __dirname + "/js/jquery.event.drag-2.2.js") to index.html to enable
+
+    // widget.xy.handle.drag(function( ev, dd ){
+    //         var x = limit(dd.offsetX,[0,widget.xy.innerWidth()]),
+    //             y = limit(dd.offsetY,[0,widget.xy.innerHeight()])
+    //         $( this ).css({
+    //             'transform': 'translate3d('+x+'px,'+y+'px,0px)'
+    //         });
+    //
+    //         var v = widget.getValue([0,0,0,x,y]);
+    //         widget.sendValue(v);
+    //         widget.showValue(v)
+    //         widget.trigger('sync')
+    //     },{ relative:true });
+    //
+    // widgetData.range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
+    //
+    // widget.getValue = function(css) {
+    //     var css = css || widget.xy.handle.css('transform').split('(')[1].split(',')
+    //         x = mapToScale(css[4],[0,widget.xy.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
+    //         y = mapToScale(css[5],[0,widget.xy.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max],true)
+    //     return [x,y]
+    // }
 }
 
 
@@ -294,7 +321,7 @@ var mapToScale = function(value,rangeIn,rangeOut,reverse) {
 
 
 createWidget.rgb = function(widgetData) {
-    var $widget = $('\
+    var widget = $('\
         <div class="xy-wrapper rgb-wrapper">\
             <div class="xy rgb">\
                 <div class="handle"><span></span></div>\
@@ -308,48 +335,50 @@ createWidget.rgb = function(widgetData) {
             </div>\
         </div>\
     ');
-    $widget.xy = $widget.find('.xy')
-    $widget.xy.saturation = $widget.find('.rgb .handle')
-    $widget.xy.hue = $widget.find('.hue .handle')
-    $widget.xy.saturation.css({top:0,left:0}).draggable({
+    widget.xy = widget.find('.xy')
+    widget.xy.saturation = widget.find('.rgb .handle')
+    widget.xy.hue = widget.find('.hue .handle')
+    widget.xy.saturation.css({top:0,left:0}).draggable({
         addClasses: false,
+        scroll:false,
         containment:'parent'
     });
-    $widget.xy.hue.css({left:0}).draggable({
+    widget.xy.hue.css({left:0}).draggable({
         addClasses: false,
+        scroll:false,
         containment:'parent'
     });
 
-    $widget.xy.value = {r:$widget.find('input.r'),g:$widget.find('input.g'),b:$widget.find('input.b')}
+    widget.xy.value = {r:widget.find('input.r'),g:widget.find('input.g'),b:widget.find('input.b')}
 
 
 
-    $widget.xy.hue.on('drag',function(e, data){
-        var h = parseFloat($widget.xy.hue.css('left'))/$widget.xy.innerWidth()*360,
+    widget.xy.hue.on('drag',function(e, data){
+        var h = parseFloat(widget.xy.hue.css('left'))/widget.xy.innerWidth()*360,
             rgb = hsbToRgb({h:h,s:100,b:100}),
-            v = $widget.getValue();
+            v = widget.getValue();
 
-        $widget.xy.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
-        $widget.sendValue(v);
-        $widget.showValue(v);
+        widget.xy.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        widget.sendValue(v);
+        widget.showValue(v);
 
-        $widget.trigger('sync')
+        widget.trigger('sync')
     })
 
-    $widget.xy.saturation.on('drag',function(e, data){
-        var v = $widget.getValue();
-        $widget.sendValue(v);
-        $widget.showValue(v);
+    widget.xy.saturation.on('drag',function(e, data){
+        var v = widget.getValue();
+        widget.sendValue(v);
+        widget.showValue(v);
 
-        $widget.trigger('sync')
+        widget.trigger('sync')
 
     })
-    $widget.xy.saturation.on('stop',function(e, data){
-        var v = $widget.getValue();
-        $widget.sendValue(v);
-        $widget.showValue(v);
+    widget.xy.saturation.on('stop',function(e, data){
+        var v = widget.getValue();
+        widget.sendValue(v);
+        widget.showValue(v);
 
-        //$widget.trigger('sync')
+        //widget.trigger('sync')
     })
 
 
@@ -357,14 +386,14 @@ createWidget.rgb = function(widgetData) {
 
 
 
-    $widget.getValue = function() {
-        var s = mapToScale($widget.xy.saturation.css('left'),[0,$widget.xy.innerWidth()],[0,100]),
-            l = mapToScale($widget.xy.saturation.css('top'),[0,$widget.xy.innerHeight()],[0,100],true),
-            h = mapToScale($widget.xy.hue.css('left'),[0,$widget.xy.innerWidth()],[0,360]),
+    widget.getValue = function() {
+        var s = mapToScale(widget.xy.saturation.css('left'),[0,widget.xy.innerWidth()],[0,100]),
+            l = mapToScale(widget.xy.saturation.css('top'),[0,widget.xy.innerHeight()],[0,100],true),
+            h = mapToScale(widget.xy.hue.css('left'),[0,widget.xy.innerWidth()],[0,360]),
             rgb = hsbToRgb({h:h,s:s,b:l})
         return [rgb.r,rgb.g,rgb.b]
     }
-    $widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,send,sync) {
         if (v[1]==undefined && v[2]==undefined) var v = [v,v,v]
         if (v[2]==undefined) var v = [v[0],v[1],v[1]]
 
@@ -375,54 +404,54 @@ createWidget.rgb = function(widgetData) {
 
         var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
-        var left = mapToScale(hsb.s,[0,100],[0,$widget.xy.innerWidth()]),
-            top = mapToScale(hsb.b,[0,100],[0,$widget.xy.innerHeight()],true),
-            leftHue = mapToScale(hsb.h,[0,360],[0,$widget.xy.innerWidth()])
-        $widget.xy.saturation.css({'top':top+'px','left':left+'px'})
-        $widget.xy.hue.css({'left':leftHue+'px'})
+        var left = mapToScale(hsb.s,[0,100],[0,widget.xy.innerWidth()]),
+            top = mapToScale(hsb.b,[0,100],[0,widget.xy.innerHeight()],true),
+            leftHue = mapToScale(hsb.h,[0,360],[0,widget.xy.innerWidth()])
+        widget.xy.saturation.css({'top':top+'px','left':left+'px'})
+        widget.xy.hue.css({'left':leftHue+'px'})
 
 
         var rgb = hsbToRgb({h:hsb.h,s:100,b:100})
-        $widget.xy.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        widget.xy.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
-        $widget.showValue(v);
+        widget.showValue(v);
 
 
 
-        if (sync) $widget.trigger('sync');
-        if (send) $widget.sendValue(v);
+        if (sync) widget.trigger('sync');
+        if (send) widget.sendValue(v);
     }
-    $widget.sendValue = function(v) {
-        var t = widgetData.target?widgetData.target:defaultTarget,
-            p = widgetData.path || widgetData.path
+    widget.sendValue = function(v) {
+        var t = widgetData.target,
+            p = widgetData.path
         sendOsc([t,p,v]);
     }
 
 
 
-    $widget.showValue = function(v) {
-        $widget.xy.value.r.val(v[0])
-        $widget.xy.value.g.val(v[1])
-        $widget.xy.value.b.val(v[2])
+    widget.showValue = function(v) {
+        widget.xy.value.r.val(v[0])
+        widget.xy.value.g.val(v[1])
+        widget.xy.value.b.val(v[2])
     }
-    $widget.xy.value.r.change(function(){
+    widget.xy.value.r.change(function(){
         if (!0<=$(this).val()<=255) {$(this).val(Math.min(255,Math.max(0,$(this).val())))}
-        var v = $widget.getValue()
-        $widget.setValue([$(this).val(),v[1],v[2]],true,true)
+        var v = widget.getValue()
+        widget.setValue([$(this).val(),v[1],v[2]],true,true)
     })
-    $widget.xy.value.g.change(function(){
+    widget.xy.value.g.change(function(){
         if (!0<=$(this).val()<=255) {$(this).val(Math.min(255,Math.max(0,$(this).val())))}
-        var v = $widget.getValue()
-        $widget.setValue([v[0],$(this).val(),v[2]],true,true)
+        var v = widget.getValue()
+        widget.setValue([v[0],$(this).val(),v[2]],true,true)
     })
-    $widget.xy.value.b.change(function(){
+    widget.xy.value.b.change(function(){
         if (!0<=$(this).val()<=255) {$(this).val(Math.min(255,Math.max(0,$(this).val())))}
-        var v = $widget.getValue()
-        $widget.setValue([v[0],v[1],$(this).val()],true,true)
+        var v = widget.getValue()
+        widget.setValue([v[0],v[1],$(this).val()],true,true)
     })
 
 
-    return $widget;
+    return widget;
 }
 
 
@@ -431,7 +460,7 @@ createWidget.rgb = function(widgetData) {
 
 
 createWidget.fader = function(widgetData,parent) {
-    var $widget = $('\
+    var widget = $('\
         <div class="fader-wrapper-outer">\
             <div class="fader-wrapper">\
                 <div class="fader locked"></div>\
@@ -440,8 +469,8 @@ createWidget.fader = function(widgetData,parent) {
         </div>\
     ');
 
-    $widget.fader = $widget.find('.fader')
-    $widget.lock = false
+    widget.fader = widget.find('.fader')
+    widget.lock = false
     var range = (widgetData.range=='db'||!widgetData.range)?{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 6}:widgetData.range;
 
 
@@ -470,7 +499,7 @@ createWidget.fader = function(widgetData,parent) {
         direction = parent.hasClass('stack')?'ltr':'rtl',
         density = parent.hasClass('stack')?'2':'1';
 
-    $widget.fader
+    widget.fader
         .noUiSlider({
             orientation:orientation,
             direction: direction,
@@ -487,187 +516,43 @@ createWidget.fader = function(widgetData,parent) {
             values: pips,
             format: wNumb({})
         })
-        .Link('lower').to($widget.find('input'))
+        .Link('lower').to(widget.find('input'))
         .on('slide',function(){
 
-            if (!$widget.lock) {
-                $widget.sendValue();
+            if (!widget.lock) {
+                widget.sendValue();
             }
         })
         .on('set',function(){
-            if (!$widget.lock) {
-                $widget.sendValue();
-                $widget.trigger('sync')
+            if (!widget.lock) {
+                widget.sendValue();
+                widget.trigger('sync')
             }
         });
 
-    $widget.getValue = function(v,send){
-        return $widget.fader.val();
+    widget.getValue = function(v,send){
+        return widget.fader.val();
     }
 
-    $widget.setValue = function(v,send,sync){
-        if (!send) {$widget.lock=true}
-        $widget.fader.val(v);
-        if (sync) $widget.trigger('sync')
-        $widget.lock=false;
+    widget.setValue = function(v,send,sync){
+        if (!send) {widget.lock=true}
+        widget.fader.val(v);
+        if (sync) widget.trigger('sync')
+        widget.lock=false;
 
     }
-    $widget.sendValue = function(){
-        var t = widgetData.target?widgetData.target:defaultTarget,
+    widget.sendValue = function(){
+        var t = widgetData.target,
             p = widgetData.path,
             v = widgetData.scale1?
-                Math.max(0,Math.round(10000*((Math.abs(range.min)/(range.max-range.min)) + $widget.fader.val()/(range.max-range.min)))/10000)
-                : $widget.fader.val();
+                Math.max(0,Math.round(10000*((Math.abs(range.min)/(range.max-range.min)) + widget.fader.val()/(range.max-range.min)))/10000)
+                : widget.fader.val();
         sendOsc([t,p,parseFloat(v)]);
     }
 
-    return $widget
+    return widget
 }
 
-
-
-
-
-
-parsetabs(TABS,false,false)
-$('#lobby').hide()
-
-
-
-// Widget Synchronization : widget that share the same id will update each other
-// without sending any extra osc message (they must be of the same type as well)
-
-$.each(__widgets__,function(i,widget) {
-    if (widget.length>1) {
-        var script ='';
-        for (j in widget) {
-
-            // Oh dear this looks hacky
-            // I didn't manage to cross-bind all widgets together the usual way
-            // ( getValue() always returns the last element's value, maybe a scope problem)
-
-            script += '                                     \n\
-            widget['+j+'].on(\'sync\',function(){           \n\
-                var v = widget['+j+'].getValue()            \n\
-                for (k=0;k<widget.length;k++) {             \n\
-                    if ('+j+'!=k) {                         \n\
-                        widget[k].setValue(v,false,false)   \n\
-                    }                                       \n\
-                }                                           \n\
-            })                                              \n\
-            ';
-        }
-        eval(script)
-    }
-})
-
-
-// Scrollbar
-$('.content .tab').niceScroll({
-    cursorcolor: "#444",
-    //touchbehavior:true,
-    //bouncescroll:true,
-    cursorborder:0,
-    cursorborderradius:0,
-    cursoropacitymin:1,
-    cursorwidth:'6px',
-    zindex:999999,
-    autohidemode:false,
-    cursorminheight:0,
-    background:'rgba(0,0,0,.2)',
-    railpadding: { top: 0, right: 0, left: 0, bottom: 1 },
-});
-
-// Tabs...
-$('.tablist a').click(function(){
-
-    $('.tab.on').getNiceScroll().hide();
-
-    var id = $(this).attr('href');
-    $(id).siblings('.on').removeClass('on');
-    $(id).addClass('on');
-    $(this).parents('ul').find('.on').removeClass('on');
-    $(this).addClass('on');$(this).parent().addClass('on');
-
-    $('.tab.on').getNiceScroll().show();
-
-    updateScrollbar();
-
-
-})
-
-
-
-function updateScrollbar(){
-    // update scrollbar
-    $('.tab.on').getNiceScroll().resize();
-}
-
-// Activate first tabs
-$('.tablist li:first-child a').click();
-
-
-
-
-
-
-
-
-
-
-// sidepanel
-
-
-$('#sidepanel').append('\
-    <div class="open-toggle">\
-        <span class="bars"></span>\
-    </div>\
-    <ul id="options">\
-        <li><div class="saveState">Save</div></li>\
-        <li><div href="#" class="loadState">Load</div></li>\
-        <li><div href="#" class="sendState">Send ALL</div></li>\
-        <li><div href="#" class="goFullscreen">Fullscreen</div></li>\
-        <li>\
-            <div class="inspector">\
-                    Inspector\
-                    <div class="result"><em>Click on a widges\'s title to inspect</em></div>\
-            </div>\
-        </li>\
-    </ul>\
-')
-
-$('#sidepanel .open-toggle').click(function(){
-    $('#sidepanel .open-toggle, #sidepanel .open-toggle .bars, #sidepanel, #container').toggleClass('sidepanel-open');
-    setTimeout(function(){
-        updateScrollbar();
-    },300)
-})
-
-
-// Options menu
-$('.showOptions a').click(function(e){
-    e.preventDefault();
-    $('#options').toggleClass('open');
-})
-$('.goFullscreen').click(function(e){
-    e.preventDefault();
-    ipc.send('fullscreen')
-    updateScrollbar();
-
-})
-
-$('.saveState').click(function(e){
-    e.preventDefault();
-    saveState();
-})
-$('.loadState').click(function(e){
-    e.preventDefault();
-    loadState();
-})
-$('.sendState').click(function(e){
-    e.preventDefault();
-    sendState();
-})
 
 
 
@@ -729,12 +614,6 @@ function findNode(searchID, searchObject) {
     })
     return result
 }
-$('.title').click(function(){
-    if (!$('#sidepanel').hasClass('sidepanel-open')){return}
-    var id = $(this).parents('.widget').attr('widgetid');
-    var data = id + ': <br/>' + String(JSON.stringify(findNode(id,TABS),null,2)).split('\n').join('<br/>&nbsp;&nbsp;')
-    $('.inspector .result').html(data);
-})
 
 
 // CALLBACKS
@@ -752,5 +631,147 @@ ipc.on('receiveOsc',function(data){
 ipc.on('load',function(preset){
     setState(preset)
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+init = function() {
+
+
+parsetabs(TABS,false,false)
+
+
+
+// Widget Synchronization : widget that share the same id will update each other
+// without sending any extra osc message (they must be of the same type as well)
+
+$.each(__widgets__,function(i,widget) {
+    if (widget.length>1) {
+        var script ='';
+        for (j in widget) {
+
+            // Oh dear this looks hacky
+            // I didn't manage to cross-bind all widgets together the usual way
+            // ( getValue() always returns the last element's value, maybe a scope problem)
+
+            script += '                                     \n\
+            widget['+j+'].on(\'sync\',function(){           \n\
+                var v = widget['+j+'].getValue()            \n\
+                for (k=0;k<widget.length;k++) {             \n\
+                    if ('+j+'!=k) {                         \n\
+                        widget[k].setValue(v,false,false)   \n\
+                    }                                       \n\
+                }                                           \n\
+            })                                              \n\
+            ';
+        }
+        eval(script)
+    }
+})
+
+
+
+// Tabs...
+$('.tablist a').click(function(){
+
+    var id = $(this).attr('href');
+    $(id).siblings('.on').removeClass('on');
+    $(id).addClass('on');
+    $(this).parents('ul').find('.on').removeClass('on');
+    $(this).addClass('on');$(this).parent().addClass('on');
+
+})
+
+
+
+
+// Activate first tabs
+$('.tablist li:first-child a').click();
+
+
+
+
+// horizontal scrolling with mousewheel
+// if shift is pressed or if mouse is on h-scrollbar
+$('.tab').on('mousewheel',function(e) {
+    // console.log(e)
+    var h = $('#container').innerHeight()-20-$(this).parents('.tab').length*5;
+    if (e.shiftKey) {
+        $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaX);
+        e.preventDefault();
+    } else if (e.pageY>=h) {
+        $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
+        e.preventDefault()
+    }
+});
+
+
+
+// sidepanel
+
+
+$('#sidepanel').append('\
+    <div class="open-toggle">\
+        <span class="bars"></span>\
+    </div>\
+    <ul id="options">\
+        <li><div class="saveState">Save</div></li>\
+        <li><div href="#" class="loadState">Load</div></li>\
+        <li><div href="#" class="sendState">Send ALL</div></li>\
+        <li><div href="#" class="goFullscreen">Fullscreen</div></li>\
+        <li>\
+            <div class="inspector">\
+                    Inspector\
+                    <div class="result"><em>Click on a widges\'s title to inspect</em></div>\
+            </div>\
+        </li>\
+    </ul>\
+')
+
+$('#sidepanel .open-toggle').click(function(){
+    $('#sidepanel .open-toggle, #sidepanel .open-toggle .bars, #sidepanel, #container').toggleClass('sidepanel-open');
+})
+
+$('.title').click(function(){
+    if (!$('#sidepanel').hasClass('sidepanel-open')){return}
+    var id = $(this).parents('.widget').attr('widgetid');
+    var data = id + ': <br/>' + String(JSON.stringify(findNode(id,TABS),null,2)).split('\n').join('<br/>&nbsp;&nbsp;')
+    $('.inspector .result').html(data);
+})
+
+
+// Options menu
+$('.showOptions a').click(function(e){
+    e.preventDefault();
+    $('#options').toggleClass('open');
+})
+$('.goFullscreen').click(function(e){
+    e.preventDefault();
+    ipc.send('fullscreen')
+})
+
+$('.saveState').click(function(e){
+    e.preventDefault();
+    saveState();
+})
+$('.loadState').click(function(e){
+    e.preventDefault();
+    loadState();
+})
+$('.sendState').click(function(e){
+    e.preventDefault();
+    sendState();
+})
+
+
 
 }// END INIT

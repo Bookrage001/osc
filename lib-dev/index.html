@@ -21,7 +21,7 @@ var ipc = require('ipc');
 var fs = require('fs');
 
 // jquery
-window.$ = window.jQuery  = require( __dirname + "/js/jquery.min.js")
+window.$ = window.jQuery = require( __dirname + "/js/jquery.min.js")
 
 
 
@@ -29,6 +29,12 @@ window.$ = window.jQuery  = require( __dirname + "/js/jquery.min.js")
 require( __dirname + "/js/jquery.nicescroll.min.js")
 require( __dirname + "/js/jquery.nouislider.all.js")
 require( __dirname + "/js/jquery-ui.draggable.min.js")
+require( __dirname + "/js/jquery.mousewheel.min.js")
+
+// mouse to touch emulation
+require( __dirname + "/js/jquery.ui.touch-punch.min.js")
+
+
 
 // main js
 require( __dirname + "/js/oschtmlgui.js")
@@ -85,7 +91,13 @@ ipc.on('openSession',function(data){
     TABS=false
     require(data)
     if (TABS!=false) {
-        init();
+        $('#lobby').hide()
+        $('#container').append('<div class="spinner"></div>')
+        setTimeout(function(){
+            init();
+            $('#container .spinner').hide()
+        },1)
+
     } else {
         console.log('ERROR: invalid session file (TABS must be defined)')
     }
