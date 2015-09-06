@@ -43,6 +43,7 @@ function parsetabs(tabs,parent,sub){
         }
 
         $content.append($tabContent);
+        // console.log('OK parsing tab ' + title )
     }
 
 }
@@ -644,7 +645,7 @@ ipc.on('load',function(preset){
 
 
 
-init = function() {
+init = function(callback) {
 
 
 parsetabs(TABS,false,false)
@@ -772,6 +773,6 @@ $('.sendState').click(function(e){
     sendState();
 })
 
-
+if (callback) callback()
 
 }// END INIT

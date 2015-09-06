@@ -94,8 +94,7 @@ ipc.on('openSession',function(data){
         $('#lobby').hide()
         $('#container').append('<div class="spinner"></div>')
         setTimeout(function(){
-            init();
-            $('#container .spinner').hide()
+            init(function(){$('#container .spinner').hide()});
         },1)
 
     } else {
