@@ -21,29 +21,28 @@ var ipc = require('ipc');
 var fs = require('fs');
 
 // jquery
-window.$ = window.jQuery = require( __dirname + "/js/jquery.min.js")
+window.$ = window.jQuery = require( __dirname + "/js/jquery/jquery.min.js")
 
 
 
 // third-party js libraries
-require( __dirname + "/js/jquery.nicescroll.min.js")
-require( __dirname + "/js/jquery.nouislider.all.js")
-require( __dirname + "/js/jquery-ui.draggable.min.js")
-require( __dirname + "/js/jquery.mousewheel.min.js")
+require( __dirname + "/js/jquery/jquery.nouislider.all.js")
+require( __dirname + "/js/jquery/jquery-ui.draggable.min.js")
+require( __dirname + "/js/jquery/jquery.mousewheel.min.js")
 
 // mouse to touch emulation
-require( __dirname + "/js/jquery.ui.touch-punch.min.js")
+require( __dirname + "/js/jquery/jquery.ui.touch-punch.min.js")
 
 
 
 // main js
-require( __dirname + "/js/oschtmlgui.js")
+require( __dirname + "/js/app/oschtmlgui.js")
 
 
 
 // Sass (add stylesheets to var styles)
-var Sass = require( __dirname + "/js/sass.js")
-    Sass.setWorkerUrl(__dirname +  "/js/sass.worker.js");
+var Sass = require( __dirname + "/js/sass/sass.js")
+    Sass.setWorkerUrl(__dirname +  "/js/sass/sass.worker.js");
     var sass = new Sass()
     sass.options({style: Sass.style.compact})
 
