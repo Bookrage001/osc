@@ -1,7 +1,8 @@
 {
     "presetPath": "/home/bordun/oscwork/oschtmlgui/",
-    "sessionPath": "/home/bordun/oscwork/oschtmlgui/",
+    "sessionPath": "/home/bordun/oscwork/oschtmlgui/sessions/",
     "recentSessions": [
-        "/home/bordun/oscwork/oschtmlgui/sebkhachott.js"
+        "/home/bordun/oscwork/oschtmlgui/sessions/demo-full.js",
+        "/home/bordun/oscwork/oschtmlgui/sessions/demo.js"
     ]
 }

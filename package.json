@@ -8,19 +8,16 @@
     "email": "jeannot@ammd.net"
   },
   "dependencies": {
-    "osc": "1.2.1",
+    "osc-electron": "1.3",
     "express": "4.x",
-    "socket.io": "1.x",
-    "electron-compile": "0.8.3"
+    "socket.io": "1.x"
 },
   "keywords": [
-    "osc"
+    "osc",
+    "gui"
   ],
   "repository": {
     "type": "git",
     "url": "git://github.com/jean-emmanuel/oschtmlgui.git"
-  },
-  "devDependencies": {
-    "electron-rebuild": "^0.2.5"
   }
 }
