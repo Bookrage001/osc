@@ -1,6 +1,6 @@
 /////////////
 
-$color-text:rgba(white,.9);
+$color-text:rgba(white,.8);
 $color-text-fade:transparentize($color-text,.4);
 
 
@@ -13,6 +13,7 @@ $nav-height:50px;
 
 $bg-title:rgba(white,.05);
 $bg-button:linear-gradient(#3a3f4b, #353b45);
+$bg-button-hover:linear-gradient(lighten(#3a3f4b,2), lighten(#353b45,2));
 
 $sidepanel-size:300px;
 
@@ -36,9 +37,11 @@ $sidepanel-size:300px;
     text-decoration:none;
     outline:0;
     font:inherit;
-    cursor: url('data:image/x-icon;base64,AAACAAEAICAQAAcACADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAuLW0AL+8uwAwMC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIiEDASIiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////////////////////////////////////////////////////////////////////////////////7////+/////v////7////+/////////4KD/////////v////7////+/////v////7//////////////w=='),auto!important;
+    cursor: inherit;
 }
-
+a {
+    cursor: pointer;
+}
 
 $scrollbar-margin:5px;
 ::-webkit-scrollbar {
@@ -103,15 +106,23 @@ html, body {
 body {
     font-size:14px;
     line-height:16px;
-    font-family:'Open Sans';
+    font-family:sans;
     color:$color-text;
     white-space:nowrap;
-    opacity:1
+    opacity:1;
+    cursor: default;
 }
 
 
 
-
+a.btn {
+    background: $bg-button;
+    display: block;
+    padding:10px;
+    &:hover {
+        background: $bg-button-hover;
+    }
+}
 
 #lobby {
     background: $color-bg;
@@ -131,23 +142,19 @@ body {
         box-shadow: 0 0 0 1px $color-border inset;
     }
     a {
-        display: block;
-        padding:10px;
         padding-right:25px;
         overflow: hidden;
-        background: $bg-button;
         margin-top:10px;
         box-shadow: 0 0 0 1px $color-border inset;
         position: relative;
-
+        white-space: nowrap;
+        text-overflow: ellipsis;
         span {
             position: absolute;
             right:1px;
             top:1px;
             bottom:1px;
-
             padding:9px;
-            background: $bg-button;
         }
     }
 }
@@ -240,17 +247,16 @@ body {
         padding:5px;
         list-style:none;
         background:$color-fg;
+
         li {
             display:block;
             margin-bottom:15px;
             background:$bg-button;
             border:1px solid $color-border;
-            > div {
-                padding:10px;
-            }
         }
 
         .inspector {
+            padding: 10px;
             .result {
                 background: $color-border;
                 border-radius: 3px;
@@ -544,6 +550,7 @@ $button-size:20px;
         outline-offset: -10px;
         background:$bg-button;
         box-shadow: 0 0 0 1px $color-bg inset;
+        cursor: pointer;
         &:after{
             content:"";
             position:absolute;
@@ -707,6 +714,10 @@ width:400px;
         height:0;
         width:0;
         z-index:2;
+        cursor: -webkit-grab;
+        &:active {
+            cursor: -webkit-grabbing;
+        }
         &:after {
             content:"";
             position:absolute;
@@ -721,15 +732,14 @@ width:400px;
             box-shadow: 0 0 0 1000px rgba(black,.5), 0 0 0 1px rgba(white,.2);
         }
 
-        span {
+        &::before {
+            content:"";
             position:absolute;
             top:-.5px;
             left:-1px;
             width:2000px;
             height:2000px;
             margin:-1000px 0 0 -1000px;
-            -webkit-mask: radial-gradient(circle,rgba(black,0) 0px , rgba(black,1) 1%);
-            opacity:.2;
         }
     }
 }

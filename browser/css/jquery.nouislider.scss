@@ -108,20 +108,18 @@
 
 }
 
-/* Handles and cursors;
+/* Handles;
  */
-.noUi-dragable {
-	cursor: w-resize;
-}
-.noUi-vertical .noUi-dragable {
-	cursor: n-resize;
-}
+
 .noUi-handle {
 	background: #FFF;
-	cursor: default;
 	box-shadow: inset 0 0 1px #FFF,
 				inset 0 1px 7px #EBEBEB,
 				0 3px 6px -3px #BBB;
+	cursor: -webkit-grab;
+	&:active {
+		cursor: -webkit-grabbing;
+	}
 }
 .noUi-active {
 	box-shadow: inset 0 0 1px #FFF,
@@ -264,18 +262,7 @@
 
     border-color:rgba(255,255,255,0.4);
 }
-.noUi-handle:after {
-    display:none;
-}
 
-
-.noUi-horizontal .noUi-dragable:after {
-    content:"";
-    position:absolute;
-    height:100%;
-    left:-5000px;
-    width:10000px;
-}
 
 .noUi-connect {
     background:$color-accent;
@@ -283,15 +270,8 @@
     border-radius:0;
 }
 
-.noUi-vertical .noUi-dragable:after {
-    content:"";
-    position:absolute;
-    height:10000px;
-    top:-5000px;
-    width:500px;
-    left:-250px;
-}
-.noUi-horizontal .noUi-handle:after {
+
+.noUi-handle:after {
     content:"";
     position:absolute;
     height:500px;
