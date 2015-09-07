@@ -1,123 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>OSCGUI</title>
-<style>
-/* Preloading style */
-html {
-    background:#21252b;
-    overflow: hidden;
-}
-body {
-    opacity:0;
-}
-</style>
-<script>
-
-// mainProcess & renderProcess communication engine
-var ipc = require('ipc');
-
-// filesystem
-var fs = require('fs');
-
-// jquery
-window.$ = window.jQuery = require( __dirname + "/js/jquery/jquery.min.js")
-
-
-
-// third-party js libraries
-require( __dirname + "/js/jquery/jquery.nouislider.all.js")
-require( __dirname + "/js/jquery/jquery-ui.draggable.min.js")
-require( __dirname + "/js/jquery/jquery.mousewheel.min.js")
-
-// mouse to touch emulation
-require( __dirname + "/js/jquery/jquery.ui.touch-punch.min.js")
-
-
-
-// main js
-require( __dirname + "/js/app/oschtmlgui.js")
-
-
-
-// Sass (add stylesheets to var styles)
-var Sass = require( __dirname + "/js/sass/sass.js")
-    Sass.setWorkerUrl(__dirname +  "/js/sass/sass.worker.js");
-    var sass = new Sass()
-    sass.options({style: Sass.style.compact})
-
-var styles = ["/css/style.scss","/css/jquery.nouislider.scss"]
-  , stylesdata = ''
-  , done = 0;
-
-for (i in styles) {
-
-    fs.readFile(__dirname + styles[i], 'utf8', function (err,data) {
-        if (err) {return console.log(err);}
-        stylesdata +=  "\n" + data;
-        done += 1;
-        if (done==styles.length) {
-            sass.compile(stylesdata,function(d){
-                $('body').append('<style>'+d.text+'<\/style>')
-                ipc.send('ready');
-            })
+    <title>OSCGUI</title>
+    <style>
+        /* Preloading style */
+        html {
+            background:#21252b;
+            overflow: hidden;
         }
-    });
-
-}
-
-
-
-ipc.on('listSessions',function(data){
-    for (i in data) {
-        $('#lobby .list').append('<li><a class="btn" data-session="'+i+'">'+data[i]+'<span>x</span></a></li>')
-    }
-    $('#lobby .list').append('<a class="btn" data-session="browse">...</a>')
-    $('#lobby a').click(function(){
-        ipc.send('loadSession',$(this).data('session'))
-    })
-    $('#lobby a span').click(function(e){
-        ipc.send('removeSessionFromHistory',$(this).parent().data('session'))
-        $(this).parents('li').hide()
-        e.stopPropagation()
-    })
-})
-
-
-
-
-ipc.on('openSession',function(data){
-    TABS=false
-    require(data)
-    if (TABS!=false) {
-        $('#lobby').hide()
-        $('#container').append('<div class="spinner"></div>')
-        setTimeout(function(){
-            init(function(){$('#container .spinner').hide()});
-        },1)
-
-    } else {
-        console.log('ERROR: invalid session file (TABS must be defined)')
-    }
-})
-
-
-
-
-</script>
-
+        body {
+            opacity:0;
+        }
+    </style>
+    <script>
+        require( __dirname + "/js/browser.js")
+    </script>
 </head>
+
 <body>
-<div id="lobby">
-    <div class="main">
-        <div class="header">
-            Session selection
-        </div>
-        <div class="list">
+    <div id="lobby">
+        <div class="main">
+            <div class="header">
+                Session selection
+            </div>
+            <div class="list">
+            </div>
         </div>
     </div>
-</div>
-<div id="container"></div>
-<div id="sidepanel"></div>
+    <div id="container"></div>
+    <div id="sidepanel"></div>
 </body>
+
 </html>
