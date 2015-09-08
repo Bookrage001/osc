@@ -453,7 +453,7 @@ createWidget.fader = function(widgetData,parent){
 
         },{ relative:true });
 
-    widgetData.range = widgetData.range || {'min':0,'100%':1}
+    widgetData.range = widgetData.range || {'min':0,'max':1}
     widgetData.range = (widgetData.range=='db')?{'min': -70,'20%': -40,'45%': -20,'60%': -10,'71%':-6,'78%':-3,'85%':0,'92%':3,'max': 6}:widgetData.range;
 
 
@@ -534,5 +534,87 @@ createWidget.fader = function(widgetData,parent){
 
     widget.setValue(rangeVals[0])
 
+    return widget
+}
+
+// get rotation plugin (@Ivo Renkema)
+
+$.fn.getRotation = function () {
+    var matrix = this.css("transform")
+    if(typeof matrix === 'string' && matrix !== 'none') {
+        var values = matrix.split('(')[1].split(')')[0].split(',');
+        var a = values[0];
+        var b = values[1];
+        var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+    } else { var angle = 0; }
+    if (angle<0) angle = 360+angle
+    return angle;
+};
+
+
+createWidget.knob = function(widgetData,parent) {
+    var widget = $('\
+        <div class="knob-wrapper-outer">\
+            <div class="knob-wrapper">\
+                <div class="knob">\
+                </div>\
+                <div class="pip min"></div>\
+                <div class="pip max"></div>\
+            </div>\
+            <input></input>\
+        </div>\
+        '),
+        knob = widget.find('.knob'),
+        input = widget.find('input'),
+        range = widgetData.range || {min:0,max:1}
+
+
+    widget.find('.pip.min').text(range.min)
+    widget.find('.pip.max').text(range.max)
+
+    knob.css('transform','rotate(45deg)').drag('init',function(){
+        offR = knob.getRotation()
+    })
+
+    knob.drag(function( ev, dd ){
+        var r = clip(-dd.deltaY+offR,[45,315])
+        knob.css('transform', 'rotateZ('+r+'deg)')
+
+        var v = widget.getValue()
+
+        widget.sendValue(v);
+        widget.trigger('sync')
+        widget.showValue(v)
+
+    },{ relative:true });
+
+
+    widget.getValue = function() {
+        return mapToScale(knob.getRotation(),[45,315],[range.min,range.max])
+    }
+    widget.showValue = function(v) {
+        input.val(v)
+    }
+    widget.sendValue = function(v) {
+        var t = widgetData.target,
+            p = widgetData.path
+        sendOsc([t,p,v]);
+    }
+    widget.setValue = function(v,send,sync) {
+        var r = mapToScale(v,[range.min,range.max],[45,315])
+
+        knob.css('transform', 'rotateZ('+r+'deg)')
+        var v = widget.getValue() || v
+
+        widget.showValue(v);
+
+        if (sync) widget.trigger('sync');
+        if (send) widget.sendValue(v);
+    }
+    input.change(function(){
+        widget.setValue(input.val(),true,true)
+    })
+
+    widget.setValue(range.min)
     return widget
 }

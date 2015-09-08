@@ -19,16 +19,16 @@ TABS = {
     testingshits: {
             widgets:{
                 BassesXXX: {
-                    type:'switch',
+                    type:'knob',
                     target:'localhost:6666',
                     path:'/osc/path/',
                     color:'#555522',
-                    values:[-70,-10,0]
+                    range:{min:-70,max:6}
                 },
                 stacktest: {
                     type:'stack',
                     widgets:{
-                        switchtest: {
+                        BassesXXX: {
                             type:'switch',
                             target:'localhost:6666',
                             path:'/osc/path/',

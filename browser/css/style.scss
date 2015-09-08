@@ -863,8 +863,7 @@ a {
 .fader-wrapper-outer {
     padding-bottom:30px;
     overflow:hidden;
-    height:100%;
-    width:100%;
+    // height:100%;
     position: relative;
     input {
         position:absolute;
@@ -986,4 +985,62 @@ a {
         }
     }
 
+}
+
+
+.knob-wrapper-outer {
+    padding-bottom:30px;
+    overflow:hidden;
+    width:100%;
+    position: relative;
+    input {
+        position:absolute;
+        bottom:0;
+        box-shadow: 0 0 1px 0 $color-border inset;
+    }
+}
+.knob-wrapper {
+    padding:20px 20px 20px 20px ;
+    overflow:hidden;
+    //height:100%;
+    width:120px;
+    position: relative;
+
+    .knob {
+        width:100%;
+        padding-bottom:100%;
+        border-radius:100%;
+        position: relative;
+        background: $color-bg;
+        box-shadow: 0 0 0 2px $color-border;
+        &:after {
+            content:"";
+            position:absolute;
+            width:4px;
+            height:4px;
+            border-radius:100%;
+            left:50%;
+            margin-left:-3px;
+            bottom:4px;
+            border:1px solid $color-border;
+            background:$color-accent
+        }
+    }
+    .pip {
+        position:absolute;
+        font-size:11px;
+        color:#ccc;
+        &.min {
+            bottom:10px;
+            right:50%;
+            margin-right:35px;
+            text-align:right;
+        }
+        &.max {
+            bottom:10px;
+            left:50%;
+            margin-left:35px;
+            text-align:left;
+        }
+    }
 }
