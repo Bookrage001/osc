@@ -1,7 +1,6 @@
 /* TODO
 - configuration panel
-    - defaultTarget
-    - syncTargets
+
 */
 
 var app = require('app')
@@ -183,15 +182,22 @@ ipc.on('ready',function(){
 
 ipc.on('sendOsc', function (event,data) {
 
-    for (i in data.target.split(' ')) {
+    var targets = []
+    Array.prototype.push.apply(targets, data.target.split(' '));
+    Array.prototype.push.apply(targets, readConfig('syncTargets'));
 
-        var host = data.target.split(' ')[i].split(':')[0],
-            port = data.target.split(' ')[i].split(':')[1];
+    for (i in targets) {
+
+        var host = targets[i].split(':')[0],
+            port = targets[i].split(':')[1];
+
         udpPort.send({
             address: data.path,
             args: data.args
         }, host, port);
     }
+
+
 });
 
 
