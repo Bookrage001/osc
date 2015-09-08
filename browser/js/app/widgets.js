@@ -88,7 +88,7 @@ createWidget.switch = function(widgetData) {
     widget.find('.value').click(function(){
         if ($(this).hasClass('on')) return;
         var newVal = $(this).data('value')
-        widget.setValue(newVal,true)
+        widget.setValue(newVal,true,true)
     })
 
 
@@ -101,7 +101,7 @@ createWidget.switch = function(widgetData) {
             widget.find('.on').removeClass('on')
             e.addClass('on')
             if (send) widget.sendValue(v)
-            if (send) widget.trigger('sync')
+            if (sync) widget.trigger('sync')
         }
 
     }
@@ -140,9 +140,9 @@ createWidget.xy = function(widgetData) {
         offX = handle.width()
     })
     handle.drag(function( ev, dd ){
-        var h = pad.height()-dd.offsetY,
-            w = dd.deltaX+offX
-        handle.css({'height':h+'px','width':w+'px'})
+        var h = (pad.innerHeight()-dd.offsetY)*100/pad.innerHeight(),
+            w = (dd.deltaX+offX)*100/pad.innerWidth()
+        handle.css({'height':h+'%','width':w+'%'})
 
         var v = widget.getValue()
         widget.sendValue(v);
@@ -162,10 +162,10 @@ createWidget.xy = function(widgetData) {
     }
     widget.setValue = function(v,send,sync) {
         if (v[1]==undefined) var v = [v,v]
-        var w = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,pad.innerWidth()])
-            h = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,pad.innerHeight()]),
+        var w = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,100])
+            h = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,100]),
 
-        handle.css({'height':h+'px','width':w+'px'})
+        handle.css({'height':h+'%','width':w+'%'})
 
         widget.showValue(v)
         if (sync) widget.trigger('sync')
@@ -193,7 +193,7 @@ createWidget.xy = function(widgetData) {
         widget.setValue(v,true,true)
     })
 
-
+    widget.setValue(widgetData.range.x.min,widgetData.range.y.min)
     return widget;
 }
 
@@ -299,9 +299,9 @@ createWidget.rgb = function(widgetData) {
         rgbOffX = rgbHandle.width()
     })
     rgbHandle.drag(function( ev, dd ){
-        var h = pad.height()-dd.offsetY,
-            w = dd.deltaX+rgbOffX
-        rgbHandle.css({'height':h+'px','width':w+'px'})
+        var h = (pad.height()-dd.offsetY)*100/pad.innerHeight(),
+            w = (dd.deltaX+rgbOffX)*100/pad.innerWidth()
+        rgbHandle.css({'height':h+'%','width':w+'%'})
 
         var v = widget.getValue()
         widget.sendValue(v);
@@ -315,8 +315,8 @@ createWidget.rgb = function(widgetData) {
         rgbOffX = hueHandle.width()
     })
     hueHandle.drag(function( ev, dd ){
-        var w = dd.deltaX+rgbOffX
-        hueHandle.css({'width':w+'px'})
+        var w = (dd.deltaX+rgbOffX)*100/pad.innerWidth()
+        hueHandle.css({'width':w+'%'})
 
         var h = parseFloat(hueHandle.width())/pad.innerWidth()*360,
             rgb = hsbToRgb({h:h,s:100,b:100}),
@@ -399,6 +399,7 @@ createWidget.rgb = function(widgetData) {
         widget.setValue([v[0],v[1],b],true,true)
     })
 
+    widget.setValue(0)
 
     return widget;
 }
@@ -407,18 +408,18 @@ createWidget.rgb = function(widgetData) {
 
 createWidget.fader = function(widgetData,parent){
     var widget = $('\
-        <div class="f-wrapper-outer">\
-            <div class="f-wrapper">\
-                <div class="f">\
+        <div class="fader-wrapper-outer">\
+            <div class="fader-wrapper">\
+                <div class="fader">\
                     <div class="handle"></div>\
                     <div class="pips"></div>\
                 </div>\
             </div>\
-            <input value="0"></input>\
+            <input></input>\
         </div>\
         '),
         handle = widget.find('.handle'),
-        fader = widget.find('.f'),
+        fader = widget.find('.fader'),
         pips = widget.find('.pips'),
         input = widget.find('input'),
 
@@ -441,7 +442,8 @@ createWidget.fader = function(widgetData,parent){
 
     handle.drag(function( ev, dd ){
             var d = (dimension=='height')?fader.size()-dd.offsetY:dd.deltaX+offX
-            handle.css(dimension, d+'px')
+            d = d*100/fader.size()
+            handle.css(dimension, d+'%')
 
             var v = widget.getValue()
             widget.sendValue(v);
@@ -529,5 +531,8 @@ createWidget.fader = function(widgetData,parent){
     input.change(function(){
         widget.setValue(input.val(),true,true)
     })
+
+    widget.setValue(rangeVals[0])
+
     return widget
 }

@@ -4,7 +4,11 @@ ipc.on('receiveOsc',function(data){
     var id = $('[path="'+path+'"]').attr('widgetId');
 
     // update
-    if (__widgets__[id]!=undefined) __widgets__[id][0].setValue(data.args,false,true)
+    if (__widgets__[id]!=undefined) {
+        for (i in __widgets__[id]){
+             __widgets__[id][i].setValue(data.args,false,false)
+        }
+    }
 
 })
 

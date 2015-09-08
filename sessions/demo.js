@@ -18,12 +18,12 @@ TABS = {
 
     testingshits: {
             widgets:{
-                switchtest: {
+                BassesXXX: {
                     type:'switch',
                     target:'localhost:6666',
                     path:'/osc/path/',
                     color:'#555522',
-                    values:[0,1,2]
+                    values:[-70,-10,0]
                 },
                 stacktest: {
                     type:'stack',
@@ -33,9 +33,9 @@ TABS = {
                             target:'localhost:6666',
                             path:'/osc/path/',
                             color:'#555522',
-                            values:[0,1,2]
+                            values:[1,2,3,4,5]
                         },
-                        Drums: {
+                        BassesXXX: {
 	                        title:'BassesXXX',
 	                        range:'db',
 	                        target:nmPorts['MainMix']+' 127.0.0.1:125',

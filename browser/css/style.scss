@@ -597,6 +597,12 @@ a {
         height:100%;
         width:100%;
         margin-bottom:2px;
+        span {
+            padding:10px;
+            white-space: normal;
+            word-break: break-all;
+            overflow: hidden;
+        }
         &:last-child {
             margin-bottom:0;
         }
@@ -625,7 +631,6 @@ a {
 
 
 
-
 /* STACK (contains any widgets) */
 
 .stack {
@@ -635,20 +640,7 @@ a {
     border-bottom: 0;
 }
 
-.stack-wrapper {
-
-    //height:100%;
-}
-
-.stack-wrapper .widget {
-    border-right:0;
-    border-left:0;
-}
-.stack-wrapper .widget:nth-child(2n+2) {
-
-}
 .stack .widget {
-    //height:70px;
     width:100%;
     display:block;
     padding:0;
@@ -662,17 +654,6 @@ a {
         clear:both;
     }
 }
-
-.stack .button-wrapper {
-    float:right;
-    width:70%;
-    height:70px;
-    padding: 0 0 0 10px;
-    position: static;
-    input {
-        bottom:0
-    }
-}
 .stack .widget .title {
     width:30%;
     height:35px;
@@ -680,17 +661,6 @@ a {
 
 
 
-
-
-
-
-.stack .xy-wrapper {
-    float:right;
-    width:70%;
-    height:300px;
-    padding-top:0;
-    padding-left:10px;
-}
 
 
 
@@ -766,6 +736,9 @@ a {
         cursor: -webkit-grab;
         &:active {
             cursor: -webkit-grabbing;
+            &:after {
+                transform: scale(1.5);
+            }
         }
         &:after {
             content:"";
@@ -791,6 +764,15 @@ a {
             margin:-1000px 0 0 -1000px;
         }
     }
+}
+
+
+.stack .xy-wrapper {
+    float:right;
+    width:70%;
+    height:300px;
+    padding-top:0;
+    padding-left:10px;
 }
 
 
@@ -843,6 +825,9 @@ a {
         cursor: -webkit-grab;
         &:active {
             cursor: -webkit-grabbing;
+            &:after {
+                transform: scale(1.5);
+            }
         }
         &:after {
             content:"";
@@ -871,7 +856,11 @@ a {
 
 
 
-.f-wrapper-outer {
+
+
+
+
+.fader-wrapper-outer {
     padding-bottom:30px;
     overflow:hidden;
     height:100%;
@@ -884,17 +873,17 @@ a {
     }
 }
 
-.f-wrapper {
+.fader-wrapper {
     padding:20px 15px 20px 20px ;
     overflow:hidden;
     height:100%;
     width:95px;
     position: relative;
 
-    .f {
+    .fader {
         height:100%;
         width:4px;
-        background:#222;
+        background:rgba(black,.4);
         position: relative;
         .handle {
             position: absolute;
@@ -946,7 +935,7 @@ a {
 }
 
 
-.stack .f-wrapper-outer {
+.stack .fader-wrapper-outer {
     padding-bottom: 0;
     input {
         width:30%;
@@ -956,7 +945,7 @@ a {
         border-top:0;
         top:35px;
     }
-    .f {
+    .fader {
         width:100%;
         height:4px;
         .handle {
@@ -964,10 +953,10 @@ a {
             width:0;
         }
     }
-    .f-wrapper-outer {
+    .fader-wrapper-outer {
         padding:0;
     }
-    .f-wrapper {
+    .fader-wrapper {
         padding:20px 20px;
         float:right;
         width:70%;
