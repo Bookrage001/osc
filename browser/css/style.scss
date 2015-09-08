@@ -444,18 +444,28 @@ a {
 
 
 
-
-.spinner {
+#loading {
     position: absolute;
     top:50%;
     left:50%;
-    margin:-15px 0 0 -15px;
-    height:30px;
-    width:30px;
-    border-radius: 50%;
-    border:2px solid rgba(0,0,0,.2);
-    border-top-color:$color-accent;
-    animation: spin .5s linear infinite;
+    margin-top:-15px;
+    text-align: center;
+    .spinner {
+        display: block;
+        margin: 0 auto;
+        height:30px;
+        width:30px;
+        border-radius: 50%;
+        border:2px solid rgba(0,0,0,.2);
+        border-top-color:$color-accent;
+        animation: spin .5s linear infinite;
+    }
+    #status {
+        margin-top: 10px;
+        display: inline-block;
+
+    }
+
 }
 
 @keyframes spin {
@@ -534,51 +544,92 @@ a {
     position:relative;vertical-align:top;
 }
 
-/* BUTTON */
-$button-size:20px;
-.button-wrapper {
-    height:100%;
+/* BUTTONS */
+
+
+.toggle {
     width:95px;
-    overflow:hidden;
-    padding: 10px 0 40px;
-    position: relative;
-    .button {
-        width:100%;
+    height:100%;
+    padding:10px 1px 0;
+    cursor: pointer;
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         height:100%;
-        position:relative;
-        outline:1px solid $color-bg;
-        outline-offset: -10px;
+        text-align: center;
+        span {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
         background:$bg-button;
-        box-shadow: 0 0 0 1px $color-bg inset;
-        cursor: pointer;
-        &:after{
-            content:"";
-            position:absolute;
-            height:$button-size;
-            width:$button-size;
-            top:50%;left:50%;
-            margin:(- $button-size/2) 0 0 (- $button-size/2);
-            border-radius:$button-size;
-            background:$color-bg;
-        }
-        &.on:after {
-            background:$color-accent;
-            box-shadow:0 0 0 4px rgba(255,255,255,0.1);
-        }
+        color:$color-text-fade;
     }
-    input {
-        position:absolute;
-        bottom:0;
-        box-shadow: 0 0 1px 0 $color-border inset;
+    &.on div {
+        background:transparentize($color-accent,.4);
+        color:$color-text;
+    }
+
+}
+
+.stack .toggle {
+    float:right;
+    width:70%;
+    height:70px;
+    padding: 0 0 0 10px;
+    position: static;
+}
+
+.switch {
+    width:95px;
+    height:100%;
+    padding:10px 1px 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction:column;
+    align-items: stretch;
+    .value {
+        background:$bg-button;
+        color:$color-text-fade;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height:100%;
+        width:100%;
+        margin-bottom:2px;
+        &:last-child {
+            margin-bottom:0;
+        }
+        &.on {
+            background:transparentize($color-accent,.4);
+            color:$color-text;
+
+        }
     }
 }
+.stack .switch {
+    float:right;
+    width:70%;
+    height:70px;
+    padding: 0 0 0 10px;
+    position: static;
+    flex-direction:row;
+    .value {
+        margin-bottom:0px;
+        margin-right:2px;
+        &:last-child {
+            margin-right:0;
+        }
+    }
+}
+
 
 
 
 /* STACK (contains any widgets) */
 
 .stack {
-width:400px;
+    width:400px;
     height:auto;
     padding-bottom:0;
     border-bottom: 0;
@@ -611,18 +662,7 @@ width:400px;
         clear:both;
     }
 }
-.stack .fader {
-    width:100%;
-}
-.stack .fader-wrapper-outer {
-    padding:0;
-}
-.stack .fader-wrapper {
-    padding:20px 20px;
-    float:right;
-    width:70%;
-    height:70px;
-}
+
 .stack .button-wrapper {
     float:right;
     width:70%;
@@ -636,16 +676,13 @@ width:400px;
 .stack .widget .title {
     width:30%;
     height:35px;
-    //border-right:1px solid $color-border;
 }
-.stack .fader-wrapper-outer input, .stack .button-wrapper input {
-    width:30%;
-    height:35px;
-    left:0;
-    right:auto;
-    border-top:0;
-    //border-right:1px solid $color-border;
-}
+
+
+
+
+
+
 
 .stack .xy-wrapper {
     float:right;
@@ -654,6 +691,14 @@ width:400px;
     padding-top:0;
     padding-left:10px;
 }
+
+
+
+
+
+
+
+
 
 /* STRIP (vertical fader) */
 
@@ -711,8 +756,12 @@ width:400px;
     overflow: hidden;
     .handle {
         position:absolute;
-        height:0;
-        width:0;
+        height:0px;
+        width:0px;
+        bottom:0;
+        left:0;
+        max-height:100%;
+        max-width:100%;
         z-index:2;
         cursor: -webkit-grab;
         &:active {
@@ -722,13 +771,13 @@ width:400px;
             content:"";
             position:absolute;
             top:-.5px;
-            left:-1px;
+            right:-1px;
             //box-shadow:0 0 10px 0px #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.2)!important;
             border-radius:100%!important;
             //background:$color-accent!important;
             width: 20px;
             height: 20px;
-            margin:-10px 0 0 -10px;
+            margin:-10px -10px 0 0;
             box-shadow: 0 0 0 1000px rgba(black,.5), 0 0 0 1px rgba(white,.2);
         }
 
@@ -782,23 +831,32 @@ width:400px;
     margin-top:10px;
     background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
     overflow: hidden;
+    position: relative;
     .handle {
         position:absolute;
         height:100%;
-        width:1px;
+        max-width: 100%;
+        width:0;
         z-index:2;
+        left:0;
+        bottom:0;
+        cursor: -webkit-grab;
+        &:active {
+            cursor: -webkit-grabbing;
+        }
         &:after {
             content:"";
             position:absolute;
             top:50%;
-            left:-1px;
+            right:-1px;
             box-shadow: 0 0 0 1000px rgba(black,.5), 0 0 0 1px rgba(white,.2);
             border-radius:100%!important;
             width: 11px;
             height: 11px;
-            margin:-5px 0 0 -4px;
+            margin:-5px -4px 0 0;
         }
-        span {
+        &:before {
+            content:"";
             position:absolute;
             top:0;
             left:0;
@@ -806,6 +864,135 @@ width:400px;
             height:100%;
             margin-left:-1000px;
 
+        }
+    }
+
+}
+
+
+
+.f-wrapper-outer {
+    padding-bottom:30px;
+    overflow:hidden;
+    height:100%;
+    width:100%;
+    position: relative;
+    input {
+        position:absolute;
+        bottom:0;
+        box-shadow: 0 0 1px 0 $color-border inset;
+    }
+}
+
+.f-wrapper {
+    padding:20px 15px 20px 20px ;
+    overflow:hidden;
+    height:100%;
+    width:95px;
+    position: relative;
+
+    .f {
+        height:100%;
+        width:4px;
+        background:#222;
+        position: relative;
+        .handle {
+            position: absolute;
+            bottom:0!important;
+            top:auto!important;
+            width:100%;
+            height:0px;
+            max-height:100%;
+            max-width:100%;
+            cursor: -webkit-grab;
+            background:$color-accent;
+            z-index: 1;
+            &:after { //.ui-resizable-handle {
+                content:"";
+                position: absolute;
+                height:2000px;
+                width:2000px;
+                margin:-1000px 0 0 -1000px;
+
+            }
+        }
+    }
+    .pips {
+        position: absolute;
+        top:-1%;
+        bottom:1%;
+        left:14px;
+    }
+    .pip {
+        height:1%;
+        width:4px;
+        border-bottom:1px solid $color-text;
+        &.val {
+            width:10px;
+            position: relative;
+            span {
+                position: relative;
+                width:30px;
+                display: block;
+                text-align: center;
+                font-size:11px;
+                line-height: 12px;
+                left:15px;
+                top:-2px;
+                color:#ccc;
+            }
+        }
+    }
+}
+
+
+.stack .f-wrapper-outer {
+    input {
+        width:30%;
+        height:35px;
+        left:0;
+        right:auto;
+        border-top:0;
+        top:35px;
+    }
+    .f {
+        width:100%;
+        height:4px;
+        .handle {
+            height:100%!important;
+            width:0;
+        }
+    }
+    .f-wrapper-outer {
+        padding:0;
+    }
+    .f-wrapper {
+        padding:20px 20px;
+        float:right;
+        width:70%;
+        height:70px;
+    }
+    .pips {
+        top:14px;left:0;
+        right:0;
+        display: flex;
+        flex-direction:row;
+        align-items: stretch;
+    }
+    .pip {
+        width:100%;
+        display: block;
+        height:4px;
+        border-bottom:0;
+        border-right:1px solid $color-text;
+        &.val {
+            width:1%;
+            float:left;
+            height:10px;
+            span {
+                top:15px;
+                left:-15px;
+            }
         }
     }
 

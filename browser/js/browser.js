@@ -11,13 +11,7 @@ window.$ = window.jQuery = require( __dirname + "/jquery/jquery.min.js")
 
 
 // third-party js libraries
-require( __dirname + "/jquery/jquery.nouislider.all.js")
-require( __dirname + "/jquery/jquery-ui.draggable.min.js")
-require( __dirname + "/jquery/jquery.mousewheel.min.js")
-
-// mouse to touch emulation
-require( __dirname + "/jquery/jquery.ui.touch-punch.min.js")
-
+require( __dirname + "/jquery/jquery.event.drag-2.2.js")
 
 
 // main js
@@ -31,7 +25,7 @@ var Sass = require( __dirname + "/sass/sass.js")
     var sass = new Sass()
     sass.options({style: Sass.style.compact})
 
-var styles = ["/../css/style.scss","/../css/jquery.nouislider.scss"]
+var styles = ["/../css/style.scss"]
   , stylesdata = ''
   , done = 0;
 

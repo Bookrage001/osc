@@ -20,39 +20,43 @@ createWidget.stack = function(widgetData) {
     return widget;
 }
 
-createWidget.button = function(widgetData) {
+
+createWidget.toggle = createWidget.button  = function(widgetData) {
+
+        widgetData.on = widgetData.on || 1
+        widgetData.off = widgetData.off || 0
+
     var widget = $('\
-        <div class="button-wrapper">\
-            <div class="button"></div>\
-            <input disabled></input>\
+        <div class="toggle">\
+            <div class="value"><span>'+widgetData.off+'</span></div>\
         </div>\
     ');
 
-    widget.input = widget.find('input')
-    widget.button =  widget.find('.button')
 
-    widgetData.args = widgetData.args || {off:0,on:1}
+    widget.value = widget.find('.value')
 
-    widget.button.click(function(){
-        var newVal = widget.button.hasClass('on')?widgetData.args.off||0:widgetData.args.on||1
+    widget.click(function(){
+        var newVal = widget.hasClass('on')?widgetData.off:widgetData.on
         widget.setValue(newVal,true)
     })
 
 
     widget.getValue = function() {
-        return widget.button.hasClass('on')?widgetData.args.on||1:widgetData.args.off||0
+        return widget.hasClass('on')?widgetData.on:widgetData.off
     }
     widget.setValue = function(v,send,sync) {
-        var on = widgetData.args.on||1,
-            off= widgetData.args.off||0
+        var on = widgetData.on,
+            off= widgetData.off
         if (v==on) {
-            widget.button.addClass('on')
+            widget.addClass('on')
+            widget.value.text(on)
             if (send) widget.sendValue(v)
         } else if (v==off) {
-            widget.button.removeClass('on')
+            widget.removeClass('on')
+            widget.value.text(off)
             if (send) widget.sendValue(v)
         }
-        widget.input.val(widget.getValue())
+
         if (send) widget.trigger('sync')
 
     }
@@ -66,6 +70,51 @@ createWidget.button = function(widgetData) {
 }
 
 
+
+createWidget.switch = function(widgetData) {
+    widgetData.on = widgetData.on || 1
+    widgetData.off = widgetData.off || 0
+
+    var widget = $('\
+        <div class="switch">\
+        </div>\
+    ');
+
+    for (v in widgetData.values) {
+        widget.append('<div class="value" data-value="'+widgetData.values[v]+'"><span>'+widgetData.values[v]+'</span></div>')
+    }
+
+
+    widget.find('.value').click(function(){
+        if ($(this).hasClass('on')) return;
+        var newVal = $(this).data('value')
+        widget.setValue(newVal,true)
+    })
+
+
+    widget.getValue = function() {
+        return widget.find('.on').data('value')
+    }
+    widget.setValue = function(v,send,sync) {
+        var e = widget.find('.value[data-value="'+v+'"]')
+        if (e.length) {
+            widget.find('.on').removeClass('on')
+            e.addClass('on')
+            if (send) widget.sendValue(v)
+            if (send) widget.trigger('sync')
+        }
+
+    }
+    widget.sendValue = function(v) {
+        var t = widgetData.target,
+            p = widgetData.path
+        sendOsc([t,p,v]);
+    }
+    return widget;
+}
+
+
+
 createWidget.xy = function(widgetData) {
     var widget = $('\
         <div class="xy-wrapper">\
@@ -77,40 +126,46 @@ createWidget.xy = function(widgetData) {
                 <input type="number" class="x"></input><input type="number" class="y"></input>\
             </div>\
         </div>\
-    ');
-    widget.xy = widget.find('.xy')
-    widget.xy.handle = widget.find('.handle')
-    widget.xy.handle.css({top:0,left:0}).draggable({
-        addClasses: false,
-        scroll:false,
-        containment:'parent'
-    });
+        '),
+        handle = widget.find('.handle'),
+        pad = widget.find('.xy'),
+        value = {x:widget.find('.x'),y:widget.find('.y')}
 
-    widget.xy.value = {x:widget.find('.x'),y:widget.find('.y')}
-
-
-    widget.xy.on('drag',function(e, data){
-        var v = widget.getValue();
-
-        widget.sendValue(v);
-        widget.showValue(v)
-        widget.trigger('sync')
-    })
 
     widgetData.range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
 
+
+
+    handle.drag('init',function(){
+        offX = handle.width()
+    })
+    handle.drag(function( ev, dd ){
+        var h = pad.height()-dd.offsetY,
+            w = dd.deltaX+offX
+        handle.css({'height':h+'px','width':w+'px'})
+
+        var v = widget.getValue()
+        widget.sendValue(v);
+        widget.showValue(v);
+
+        widget.trigger('sync')
+
+    },{ relative:true });
+
+
+
     widget.getValue = function() {
-        var x = mapToScale(widget.xy.handle.css('left'),[0,widget.xy.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
-            y = mapToScale(widget.xy.handle.css('top'),[0,widget.xy.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max],true)
+        var x = mapToScale(handle.width(),[0,pad.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
+            y = mapToScale(handle.height(),[0,pad.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max])
 
         return [x,y]
     }
     widget.setValue = function(v,send,sync) {
         if (v[1]==undefined) var v = [v,v]
-        var left = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,widget.xy.innerWidth()])
-            ytop = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,widget.xy.innerHeight()],true),
+        var w = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,pad.innerWidth()])
+            h = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,pad.innerHeight()]),
 
-        widget.xy.handle.css({'top':ytop+'px','left':left+'px'})
+        handle.css({'height':h+'px','width':w+'px'})
 
         widget.showValue(v)
         if (sync) widget.trigger('sync')
@@ -123,50 +178,23 @@ createWidget.xy = function(widgetData) {
     }
 
     widget.showValue = function(v) {
-        widget.xy.value.x.val(v[0])
-        widget.xy.value.y.val(v[1])
+        value.x.val(v[0])
+        value.y.val(v[1])
     }
 
-    widget.xy.value.x.change(function(){
+    value.x.change(function(){
         var v = widget.getValue();
-        v[0] = limit($(this).val(),[widgetData.range.x.min,widgetData.range.x.max])
+        v[0] = clip(value.x.val(),[widgetData.range.x.min,widgetData.range.x.max])
         widget.setValue(v,true,true)
     })
-    widget.xy.value.y.change(function(){
+    value.y.change(function(){
         var v = widget.getValue();
-        v[1] = limit($(this).val(),[widgetData.range.y.min,widgetData.range.y.max])
+        v[1] = clip(value.y.val(),[widgetData.range.y.min,widgetData.range.y.max])
         widget.setValue(v,true,true)
     })
 
 
     return widget;
-
-
-    // alternate technique to jqueryui using css transform (hw accelerated)
-    // doesn't seem to increase performance (there's no transition to optimize)
-    // add require( __dirname + "/js/jquery.event.drag-2.2.js") to index.html to enable
-
-    // widget.xy.handle.drag(function( ev, dd ){
-    //         var x = limit(dd.offsetX,[0,widget.xy.innerWidth()]),
-    //             y = limit(dd.offsetY,[0,widget.xy.innerHeight()])
-    //         $( this ).css({
-    //             'transform': 'translate3d('+x+'px,'+y+'px,0px)'
-    //         });
-    //
-    //         var v = widget.getValue([0,0,0,x,y]);
-    //         widget.sendValue(v);
-    //         widget.showValue(v)
-    //         widget.trigger('sync')
-    //     },{ relative:true });
-    //
-    // widgetData.range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
-    //
-    // widget.getValue = function(css) {
-    //     var css = css || widget.xy.handle.css('transform').split('(')[1].split(',')
-    //         x = mapToScale(css[4],[0,widget.xy.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
-    //         y = mapToScale(css[5],[0,widget.xy.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max],true)
-    //     return [x,y]
-    // }
 }
 
 
@@ -213,7 +241,7 @@ var rgbToHsb = function (rgb) {
 };
 
 
-var limit = function(value,range) {
+var clip = function(value,range) {
     var max = Math.max,
         min = Math.min
 
@@ -230,7 +258,7 @@ var mapToScale = function(value,rangeIn,rangeOut,reverse) {
 
     value = max(min(rangeIn[0],rangeIn[1]),min(parseFloat(value),max(rangeIn[0],rangeIn[1])))
 
-    value = (value/rangeIn[1]-rangeIn[0]) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+    value = ((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
 
     if (reverse) value = max(rangeOut[0],rangeOut[1])+min(rangeOut[0],rangeOut[1])-value
 
@@ -241,10 +269,6 @@ var mapToScale = function(value,rangeIn,rangeOut,reverse) {
     return value
 
 }
-
-
-
-
 
 
 
@@ -261,63 +285,59 @@ createWidget.rgb = function(widgetData) {
                 <input disabled value="R"></input><input disabled value="G"></input><input disabled value="B"></input>\
                 <input class="r" type="number"></input><input class="g" type="number"></input><input class="b" type="number"></input>\
             </div>\
-        </div>\
-    ');
-    widget.xy = widget.find('.xy')
-    widget.xy.saturation = widget.find('.rgb .handle')
-    widget.xy.hue = widget.find('.hue .handle')
-    widget.xy.saturation.css({top:0,left:0}).draggable({
-        addClasses: false,
-        scroll:false,
-        containment:'parent'
-    });
-    widget.xy.hue.css({left:0}).draggable({
-        addClasses: false,
-        scroll:false,
-        containment:'parent'
-    });
-
-    widget.xy.value = {r:widget.find('input.r'),g:widget.find('input.g'),b:widget.find('input.b')}
-
-
-
-    widget.xy.hue.on('drag',function(e, data){
-        var h = parseFloat(widget.xy.hue.css('left'))/widget.xy.innerWidth()*360,
-            rgb = hsbToRgb({h:h,s:100,b:100}),
-            v = widget.getValue();
-
-        widget.xy.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
-        widget.sendValue(v);
-        widget.showValue(v);
-
-        widget.trigger('sync')
-    })
-
-    widget.xy.saturation.on('drag',function(e, data){
-        var v = widget.getValue();
-        widget.sendValue(v);
-        widget.showValue(v);
-
-        widget.trigger('sync')
-
-    })
-    widget.xy.saturation.on('stop',function(e, data){
-        var v = widget.getValue();
-        widget.sendValue(v);
-        widget.showValue(v);
-
-        //widget.trigger('sync')
-    })
+        </div>'),
+        rgbHandle = widget.find('.rgb .handle'),
+        hueHandle = widget.find('.hue .handle'),
+        pad = widget.find('.xy'),
+        value = {r:widget.find('input.r'),g:widget.find('input.g'),b:widget.find('input.b')}
 
 
     widgetData.range = {r:{min:0,max:255},g:{min:0,max:255},b:{min:255}}
 
 
+    rgbHandle.drag('init',function(){
+        rgbOffX = rgbHandle.width()
+    })
+    rgbHandle.drag(function( ev, dd ){
+        var h = pad.height()-dd.offsetY,
+            w = dd.deltaX+rgbOffX
+        rgbHandle.css({'height':h+'px','width':w+'px'})
+
+        var v = widget.getValue()
+        widget.sendValue(v);
+        widget.showValue(v);
+
+        widget.trigger('sync')
+
+    },{ relative:true });
+
+    hueHandle.drag('init',function(){
+        rgbOffX = hueHandle.width()
+    })
+    hueHandle.drag(function( ev, dd ){
+        var w = dd.deltaX+rgbOffX
+        hueHandle.css({'width':w+'px'})
+
+        var h = parseFloat(hueHandle.width())/pad.innerWidth()*360,
+            rgb = hsbToRgb({h:h,s:100,b:100}),
+            v = widget.getValue();
+
+        pad.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        widget.sendValue(v);
+        widget.showValue(v);
+
+        widget.trigger('sync')
+
+    },{ relative:true });
+
+
+
+
 
     widget.getValue = function() {
-        var s = mapToScale(widget.xy.saturation.css('left'),[0,widget.xy.innerWidth()],[0,100]),
-            l = mapToScale(widget.xy.saturation.css('top'),[0,widget.xy.innerHeight()],[0,100],true),
-            h = mapToScale(widget.xy.hue.css('left'),[0,widget.xy.innerWidth()],[0,360]),
+        var s = mapToScale(rgbHandle.width(),[0,pad.innerWidth()],[0,100]),
+            l = mapToScale(rgbHandle.height(),[0,pad.innerHeight()],[0,100]),
+            h = mapToScale(hueHandle.width(),[0,pad.innerWidth()],[0,360]),
             rgb = hsbToRgb({h:h,s:s,b:l})
         return [rgb.r,rgb.g,rgb.b]
     }
@@ -332,15 +352,16 @@ createWidget.rgb = function(widgetData) {
 
         var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
-        var left = mapToScale(hsb.s,[0,100],[0,widget.xy.innerWidth()]),
-            top = mapToScale(hsb.b,[0,100],[0,widget.xy.innerHeight()],true),
-            leftHue = mapToScale(hsb.h,[0,360],[0,widget.xy.innerWidth()])
-        widget.xy.saturation.css({'top':top+'px','left':left+'px'})
-        widget.xy.hue.css({'left':leftHue+'px'})
+        var w = mapToScale(hsb.s,[0,100],[0,pad.innerWidth()]),
+            h = mapToScale(hsb.b,[0,100],[0,pad.innerHeight()]),
+            hueW = mapToScale(hsb.h,[0,360],[0,pad.innerWidth()])
+
+        rgbHandle.css({'height':h+'px','width':w+'px'})
+        hueHandle.css({'width':hueW+'px'})
 
 
         var rgb = hsbToRgb({h:hsb.h,s:100,b:100})
-        widget.xy.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        pad.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
         widget.showValue(v);
 
@@ -358,24 +379,24 @@ createWidget.rgb = function(widgetData) {
 
 
     widget.showValue = function(v) {
-        widget.xy.value.r.val(v[0])
-        widget.xy.value.g.val(v[1])
-        widget.xy.value.b.val(v[2])
+        value.r.val(v[0])
+        value.g.val(v[1])
+        value.b.val(v[2])
     }
-    widget.xy.value.r.change(function(){
-        if (!0<=$(this).val()<=255) {$(this).val(Math.min(255,Math.max(0,$(this).val())))}
+    value.r.change(function(){
+        var r = clip(value.r.val(),[0,255])
         var v = widget.getValue()
-        widget.setValue([$(this).val(),v[1],v[2]],true,true)
+        widget.setValue([r,v[1],v[2]],true,true)
     })
-    widget.xy.value.g.change(function(){
-        if (!0<=$(this).val()<=255) {$(this).val(Math.min(255,Math.max(0,$(this).val())))}
+    value.g.change(function(){
+        var g = clip(value.g.val(),[0,255])
         var v = widget.getValue()
-        widget.setValue([v[0],$(this).val(),v[2]],true,true)
+        widget.setValue([v[0],g,v[2]],true,true)
     })
-    widget.xy.value.b.change(function(){
-        if (!0<=$(this).val()<=255) {$(this).val(Math.min(255,Math.max(0,$(this).val())))}
+    value.b.change(function(){
+        var b = clip(value.b.val(),[0,255])
         var v = widget.getValue()
-        widget.setValue([v[0],v[1],$(this).val()],true,true)
+        widget.setValue([v[0],v[1],b],true,true)
     })
 
 
@@ -384,99 +405,129 @@ createWidget.rgb = function(widgetData) {
 
 
 
-
-
-
-createWidget.fader = function(widgetData,parent) {
+createWidget.fader = function(widgetData,parent){
     var widget = $('\
-        <div class="fader-wrapper-outer">\
-            <div class="fader-wrapper">\
-                <div class="fader locked"></div>\
+        <div class="f-wrapper-outer">\
+            <div class="f-wrapper">\
+                <div class="f">\
+                    <div class="handle"></div>\
+                    <div class="pips"></div>\
+                </div>\
             </div>\
             <input value="0"></input>\
         </div>\
-    ');
+        '),
+        handle = widget.find('.handle'),
+        fader = widget.find('.f'),
+        pips = widget.find('.pips'),
+        input = widget.find('input'),
 
-    widget.fader = widget.find('.fader')
-    widget.lock = false
-    var range = (widgetData.range=='db'||!widgetData.range)?{'min': -70,'20%': -40,'45%': -20,'60%': -10,'max': 6}:widgetData.range;
+        dimension = parent.hasClass('stack')?'width':'height';
+
+        handle.size = function() {
+            return (dimension=='height')?handle.height():handle.width()
+        }
+        fader.size = function() {
+            return (dimension=='height')?fader.height():fader.width()
+        }
 
 
-    var pips = function() {
-        if (widgetData.range=='db'||!widgetData.range) {
-            return [-70,-60,-50,-40,-30,-20,-10,-6,-3,0,3,6];
+    var offX=0
+    if (dimension=='width') {
+        handle.drag('init',function(){
+            offX = handle.size()
+        })
+    }
+
+    handle.drag(function( ev, dd ){
+            var d = (dimension=='height')?fader.size()-dd.offsetY:dd.deltaX+offX
+            handle.css(dimension, d+'px')
+
+            var v = widget.getValue()
+            widget.sendValue(v);
+            widget.showValue(v);
+
+            widget.trigger('sync')
+
+        },{ relative:true });
+
+    widgetData.range = widgetData.range || {'min':0,'100%':1}
+    widgetData.range = (widgetData.range=='db')?{'min': -70,'20%': -40,'45%': -20,'60%': -10,'71%':-6,'78%':-3,'85%':0,'92%':3,'max': 6}:widgetData.range;
+
+
+    var range = {}
+    for (k in widgetData.range) {
+        if (k=='min') {
+            range[0]=widgetData.range[k]
+        } else if (k=='max') {
+            range[100]=widgetData.range[k]
         } else {
-            var autopips = [];
-            var i=0;
-            for (key in range) {
-                autopips[i]=range[key];
-                i=i+1;
-            }
-            if (range.min<0 && 0<range.max){
-                autopips.push(0);
-            }
-            //autopips.push((range.max-range.min)/2);
-            //autopips.push((range.max-range.min)/4);
-            //autopips.push((range.max-range.min)*.75);
-            return autopips;
+            range[parseInt(k)]=widgetData.range[k]
         }
     }
-    var pips = pips();
 
-    var orientation = parent.hasClass('stack')?'horizontal':'vertical',
-        direction = parent.hasClass('stack')?'ltr':'rtl',
-        density = parent.hasClass('stack')?'2':'1';
-
-    widget.fader
-        .noUiSlider({
-            orientation:orientation,
-            direction: direction,
-            behaviour: "drag",
-            connect: "lower",
-            //animate:false,
-            start: 0,
-            range: range
-        })
-        .noUiSlider_pips({
-            mode: 'values',
-            density: density,
-            filter:function(v,t){return v==0?1:2;},
-            values: pips,
-            format: wNumb({})
-        })
-        .Link('lower').to(widget.find('input'))
-        .on('slide',function(){
-
-            if (!widget.lock) {
-                widget.sendValue();
-            }
-        })
-        .on('set',function(){
-            if (!widget.lock) {
-                widget.sendValue();
-                widget.trigger('sync')
-            }
-        });
-
-    widget.getValue = function(v,send){
-        return widget.fader.val();
+    var scale = []
+    for (var i=0;i<=100;i++) {scale.push(i)}
+    for (i in scale) {
+        var pip = $('<div class="pip"></div>')
+        if (range[i]!=undefined) {
+            pip.addClass('val').append('<span>'+range[i]+'</span>')
+        }
+        pips.append(pip)
+    }
+    if (dimension=='height') {
+        pips.append(pips.find('.pip').get().reverse())
     }
 
-    widget.setValue = function(v,send,sync){
-        if (!send) {widget.lock=true}
-        widget.fader.val(v);
-        if (sync) widget.trigger('sync')
-        widget.lock=false;
+
+
+
+    var rangeKeys = Object.keys(range).map(function (key) {return parseInt(key)}),
+        rangeVals = Object.keys(range).map(function (key) {return parseInt(range[key])})
+
+
+
+    widget.getValue = function(){
+        var v
+        var h = handle.size() * 100 / fader.size()
+        for (var i=0;i<rangeKeys.length-1;i++) {
+            if (h <= rangeKeys[i+1] && h >= rangeKeys[i]) {
+                return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]])
+            }
+        }
 
     }
-    widget.sendValue = function(){
+    widget.setValue = function(v,send,sync) {
+        var h,
+            v=clip(v,[rangeVals[0],rangeVals.slice(-1)[0]])
+        for (var i=0;i<rangeVals.length-1;i++) {
+            if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
+                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]])
+                break
+            }
+        }
+        handle.css(dimension,h+'%')
+
+
+        widget.showValue(v);
+
+
+        if (sync) widget.trigger('sync');
+        if (send) widget.sendValue(v);
+    }
+
+    widget.sendValue = function(v) {
         var t = widgetData.target,
-            p = widgetData.path,
-            v = widgetData.scale1?
-                Math.max(0,Math.round(10000*((Math.abs(range.min)/(range.max-range.min)) + widget.fader.val()/(range.max-range.min)))/10000)
-                : widget.fader.val();
-        sendOsc([t,p,parseFloat(v)]);
+            p = widgetData.path
+        sendOsc([t,p,v]);
     }
 
+    widget.showValue = function(v) {
+        input.val(v)
+    }
+
+    input.change(function(){
+        widget.setValue(input.val(),true,true)
+    })
     return widget
 }

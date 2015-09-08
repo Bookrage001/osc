@@ -18,10 +18,23 @@ TABS = {
 
     testingshits: {
             widgets:{
+                switchtest: {
+                    type:'switch',
+                    target:'localhost:6666',
+                    path:'/osc/path/',
+                    color:'#555522',
+                    values:[0,1,2]
+                },
                 stacktest: {
                     type:'stack',
                     widgets:{
-
+                        switchtest: {
+                            type:'switch',
+                            target:'localhost:6666',
+                            path:'/osc/path/',
+                            color:'#555522',
+                            values:[0,1,2]
+                        },
                         Drums: {
 	                        title:'BassesXXX',
 	                        range:'db',
@@ -41,7 +54,7 @@ TABS = {
 	                        path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
                         },
                         button1: {
-                            type:'button',
+                            type:'toggle',
                             target:'localhost:6666',
                             path:'/osc/path/',
                             color:'#555522'
@@ -57,7 +70,7 @@ TABS = {
 	                path:'/pad'
                 },
                 button1: {
-                    type:'button',
+                    type:'toggle',
                     target:'localhost:6666',
                     path:'/osc/path/',
                     color:'#555522'

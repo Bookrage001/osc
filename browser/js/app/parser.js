@@ -1,5 +1,4 @@
 parsetabs = function(tabs,parent,sub){
-
     if (!sub) {
         var $nav = $(document.createElement('div')).addClass('main navigation'),
             $navtabs = $(document.createElement('ul')).addClass('tablist'),
@@ -34,8 +33,8 @@ parsetabs = function(tabs,parent,sub){
 
         $content.append($tabContent);
         // console.log('OK parsing tab ' + title )
-    }
 
+    }
 }
 
 __widgets__ = {}

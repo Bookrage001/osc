@@ -34,9 +34,9 @@ ipc.on('openSession',function(data){
     require(data)
     if (TABS!=false) {
         $('#lobby').hide()
-        $('#container').append('<div class="spinner"></div>')
+        $('#container').append('<div id="loading"><div class="spinner"></div></div>')
         setTimeout(function(){
-            init(function(){$('#container .spinner').hide()});
+            init(function(){$('#loading').hide()});
         },1)
 
     } else {

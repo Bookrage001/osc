@@ -1,4 +1,5 @@
 
+
 init = function(callback) {
 
     parsetabs(TABS,false,false)
@@ -55,12 +56,13 @@ init = function(callback) {
 
 
     // horizontal scrolling with mousewheel
-    // if shift is pressed or if mouse is on h-scrollbar
+    // if shift is pressed (native), or if there is no vertical scrollbar,
+    //                               or if mouse is on h-scrollbar
     $('.tab').on('mousewheel',function(e) {
         // console.log(e)
         var h = $('#container').innerHeight()-20-$(this).parents('.tab').length*5;
-        if (e.shiftKey) {
-            $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaX);
+        if ($(this).get(0).scrollHeight+20 == $(this).height()) {
+            $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
             e.preventDefault();
         } else if (e.pageY>=h) {
             $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
@@ -74,9 +76,9 @@ init = function(callback) {
 
 
     $('#sidepanel').append('\
-        <div class="open-toggle">\
+        <a class="open-toggle">\
             <span class="bars"></span>\
-        </div>\
+        </a>\
         <ul id="options">\
             <li><a class="saveState btn">Save</a></li>\
             <li><a href="#" class="loadState btn">Load</a></li>\
