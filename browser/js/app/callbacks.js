@@ -1,7 +1,8 @@
+
 ipc.on('receiveOsc',function(data){
     // fetch id
     var path = data.address;
-    var id = $('[path="'+path+'"]').attr('widgetId');
+    var id = __widgetsIds__[path]
 
     // update
     if (__widgets__[id]!=undefined) {

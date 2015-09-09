@@ -38,6 +38,7 @@ parsetabs = function(tabs,parent,sub){
 }
 
 __widgets__ = {}
+__widgetsIds__ = {}
 
 parsewidgets = function(widgets,parent) {
 
@@ -55,16 +56,19 @@ parsewidgets = function(widgets,parent) {
             </div>\
         ');
 
-
+        // create widget
         var widgetInner = createWidget[type](widgetData,parent)
-        widgetInner.type =  widgetData.type || 'fader'
+        widgetInner.type =  type
 
+        // store widget reference for cross widget sync
         widget.append(widgetInner)
         if (__widgets__[widgetId]==undefined) {
             __widgets__[widgetId] = []
         }
         __widgets__[widgetId].push(widgetInner)
 
+        // store path vs widget id for faster cross-app sync
+        __widgetsIds__[widgetData.path ] = widgetId
 
         parent.append(widget);
     }
