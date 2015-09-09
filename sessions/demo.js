@@ -22,7 +22,7 @@ TABS = {
                     type:'knob',
                     target:'localhost:6666',
                     path:'/osc/path/',
-                    color:'#555522',
+                    color:'cyan',
                     range:{min:-70,max:6}
                 },
                 stacktest: {
@@ -233,7 +233,44 @@ TABS = {
 	                    target:nmPorts['Drums'],
 	                    path:'/strip/Toms/Gain/Gain%20(dB)/unscaled',
 	                    color:'#777'
-                    }
+                    },
+                    stacktest: {
+                        type:'stack',
+                        widgets:{
+                            BassesXXX: {
+                                type:'switch',
+                                target:'localhost:6666',
+                                path:'/osc/path/',
+                                color:'#555522',
+                                values:[1,2,3,4,5]
+                            },
+                            BassesXXX: {
+    	                        title:'BassesXXX',
+    	                        range:'db',
+    	                        target:nmPorts['MainMix']+' 127.0.0.1:125',
+    	                        path:'/test2',
+                            },
+                            xypad_test2: {
+            	                title:'XY Pad',
+            	                type:'xy',
+            	                target:nmPorts['MainMix'],
+            	                path:'/pad'
+                            },
+                            xGuitars: {
+    	                        title:'Guitars',
+    	                        range:'db',
+    	                        target:nmPorts['MainMix'],
+    	                        path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
+                            },
+                            button1: {
+                                type:'toggle',
+                                target:'localhost:6666',
+                                path:'/osc/path/',
+                                color:'#555522'
+                            }
+                        }
+
+                    },
                 }
             }
         }

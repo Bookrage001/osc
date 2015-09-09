@@ -12,7 +12,7 @@ var app = require('app')
   , ipc = require('ipc')
   , configPath = __dirname + '/config.json'
   , config = require(configPath)
-  , args = process.argv.slice(1);
+  , args = process.argv.slice(0);
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
@@ -27,9 +27,14 @@ var defaultConfig = {
     oscInPort:5555
 }
 var editableConfig = {
-    syncTargets: "List of target hosts (ip:port pairs), separeted by spaces. Every OSC message sent by the app will be sent to these hosts too.",
-    oscInPort: "Port on which the app listens to synchronise with other apps. You'll need to restart the app for this change to take effect."
-}
+    syncTargets: {
+        info:"List of target hosts (ip:port pairs), separated by spaces. Every OSC message sent by the app will be sent to these hosts too.",
+        match:'^([^:\s]*:[0-9]*[\s]*)*$'
+    },
+    oscInPort: {
+        info:"Port on which the app listens to synchronise with other apps. <i class='fa fa-warning fa-fw'></i>&nbsp;You'll need to restart the app for this change to take effect.",
+        match:'^([0-9]+){0,1}$'
+    }}
 
 
 
@@ -45,21 +50,25 @@ writeConfig = function(newconfig) {
 }
 
 readConfig = function(key) {
-    if (key!=undefined) {
-        return config[key] || defaultConfig[key]
-    } else {
-        var ret = {}
-        for (i in editableConfig) {
-            ret[i] = {
-                value:readConfig(i),
-                info:editableConfig[i]
-            }
+    return config[key] || defaultConfig[key]
+}
+readEditableConfig = function(){
+    var ret = {}
+    for (i in editableConfig) {
+        ret[i] = {
+            value:readConfig(i),
+            info:editableConfig[i].info,
+            match:editableConfig[i].match,
         }
-        return ret
     }
+    return ret
 }
 
-
+restartApp = function(){
+    var exec = require('child_process').exec;
+    exec(args.join(' '));
+    app.quit();
+}
 
 
 
@@ -127,6 +136,10 @@ app.on('ready', function() {
                     accelerator: 'F11',
                     click: function() { window.setFullScreen(!window.isFullScreen()); }
                 },
+                {
+                    label:'Restart App',
+                    click:restartApp
+                }
             ]
         },
     ]

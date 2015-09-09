@@ -117,13 +117,13 @@ body {
 
 
 
-a.btn {
+.btn {
     background: $bg-button;
     display: block;border:1px solid $color-border;
-    padding:10px;
-    &:hover {
-        background: $bg-button-hover;
-    }
+    padding:15px;
+}
+a.btn:hover {
+    background: $bg-button-hover;
 }
 
 #lobby {
@@ -134,14 +134,20 @@ a.btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
+    padding:20px;
     .main {
         width:600px;
+        max-height:100%;
+
     }
     .header {
         background: $bg-button;
         padding:20px;
         font-weight:bold;
         box-shadow: 0 0 0 1px $color-border inset;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     a {
         padding-right:35px;
@@ -152,10 +158,9 @@ a.btn {
         text-overflow: ellipsis;
         span {
             position: absolute;
-            right:1px;
-            top:1px;
-            bottom:1px;
-            padding:9px;
+            right:0px;
+            top:0px;
+            padding:15px;
             color:$color-text-fade;
             &:hover {
                 color:$color-text
@@ -223,7 +228,7 @@ a.btn {
 
         li {
             display:block;
-            margin-bottom:15px;
+            margin-bottom:5px;
             background:$bg-button;
         }
 
@@ -465,13 +470,13 @@ a {
     z-index:1000000;
     .popup-title {
         position: relative;
-        padding:10px;
+        padding:15px;
         background:$bg-button;
         .closer {
             position:absolute;
             right:0px;
             top:0;
-            padding:10px;
+            padding:15px;
             color:$color-text-fade;
             cursor: pointer;
             &:hover {
@@ -485,6 +490,7 @@ a {
         width:100%;
         position: relative;
         overflow: hidden;
+        border:1px solid $color-border;
         .popup-content {
             height:100%;
             width:100%;
@@ -514,6 +520,9 @@ form {
         border:1px solid $color-border;
         width:100%;
         padding:10px;
+        &.invalid {
+            box-shadow: 0 0 0 1px rgba(red,.3)!important;
+        }
         &:focus {
             box-shadow: 0 0 0 1px $color-accent;
         }

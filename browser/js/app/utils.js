@@ -125,21 +125,42 @@ createPopup = function(title,content) {
 
 
 
+
 var remote = require('remote');
 configPanel = function(){
-    var readConfig = remote.getGlobal('readConfig')
+    var readEditableConfig = remote.getGlobal('readEditableConfig')
     var writeConfig = remote.getGlobal('writeConfig')
-    var config = readConfig()
+    var config = readEditableConfig()
 
     var form = $('<form></form>')
 
-    for (i in config) {
-        var html = $('\
+
+    $.each(config,function(i) {
+        var item = $('<div>\
             <label for="'+i+'">'+i+'</label>\
             <p class="info">'+config[i].info+'</p>\
-            <input name="'+i+'" value="'+config[i].value+'"/>')
-        form.append(html)
-    }
+            </div>')
+
+
+        var input = $('<input name="'+i+'" value="'+config[i].value+'"/>')
+
+        input.change(function(){
+            var v = input.val().trim().replace(/[\s]+/,' ')
+            input.val(v)
+            console.log([v,v.match(config[i].match)])
+            if (v.match(config[i].match)==null) {
+                input.addClass('invalid')
+            } else {
+                input.removeClass('invalid')
+            };
+
+        })
+
+        item.append(input)
+
+        form.append(item)
+
+    })
 
     var submit = $('<a class="btn submit">'+icon('save')+'&nbsp;Save configuration</a>')
 
@@ -149,6 +170,11 @@ configPanel = function(){
 
     submit.click(function(e){
         e.preventDefault()
+
+        if ($('input.invalid').length>0) {
+            return
+        }
+
         var data = form.serializeArray(),
             newconfig = {}
 
