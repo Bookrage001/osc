@@ -19,7 +19,7 @@ ipc.on('load',function(preset){
 
 ipc.on('listSessions',function(data){
     for (i in data) {
-        $('#lobby .list').append('<li><a class="btn" data-session="'+i+'">'+data[i]+'<span>x</span></a></li>')
+        $('#lobby .list').append('<li><a class="btn" data-session="'+i+'">'+data[i]+'<span>'+icon('remove')+'</span></a></li>')
     }
     $('#lobby .list').append('<a class="btn" data-session="browse">...</a>')
     $('#lobby a').click(function(){

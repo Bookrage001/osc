@@ -72,7 +72,7 @@ createMenu = function(template) {
             html
 
         if (!item.html) {
-            html = $('<a href="" class="'+classname+' btn">'+label+'</a>')
+            html = $('<a class="'+classname+' btn">'+label+'</a>')
         } else {
             html = $(item.html)
         }
@@ -86,5 +86,82 @@ createMenu = function(template) {
     }
 
     return menu
+
+}
+
+
+
+createPopup = function(title,content) {
+    var popup = $('\
+        <div class="popup">\
+            <div class="popup-wrapper">\
+            <div class="popup-title">'+title+'<span class="closer">'+icon('remove')+'</span></div>\
+            <div class="popup-content"></div>\
+            </div>\
+        </div>'),
+        closer = popup.find('.popup-title .closer')
+
+    closer.click(function(){
+        popup.close()
+    })
+
+
+    popup.close = function(){
+        $(document).unbind('keydown.popup')
+        popup.remove()
+    }
+
+    popup.find('.popup-content').append(content)
+    $('body').append(popup)
+
+    $(document).on('keydown.popup', function(){
+        popup.close()
+    })
+
+
+    return popup
+}
+
+
+
+
+var remote = require('remote');
+configPanel = function(){
+    var readConfig = remote.getGlobal('readConfig')
+    var writeConfig = remote.getGlobal('writeConfig')
+    var config = readConfig()
+
+    var form = $('<form></form>')
+
+    for (i in config) {
+        var html = $('\
+            <label for="'+i+'">'+i+'</label>\
+            <p class="info">'+config[i].info+'</p>\
+            <input name="'+i+'" value="'+config[i].value+'"/>')
+        form.append(html)
+    }
+
+    var submit = $('<a class="btn submit">'+icon('save')+'&nbsp;Save configuration</a>')
+
+    form.append(submit)
+
+    popup = createPopup(icon('gear')+'&nbsp;Configuration panel',form)
+
+    submit.click(function(e){
+        e.preventDefault()
+        var data = form.serializeArray(),
+            newconfig = {}
+
+        for (i in data) {
+            newconfig[data[i].name] = data[i].value
+        }
+
+        writeConfig(newconfig)
+
+        popup.close();
+
+    })
+
+
 
 }

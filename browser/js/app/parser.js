@@ -21,7 +21,7 @@ parsetabs = function(tabs,parent,sub){
         var title = tabData.title||tabId
 
         var id = parent?parent.attr('id')+tabId:tabId
-        $navtabs.append('<li><a href="#'+id+'"><span>'+title+'</span></a></li>');
+        $navtabs.append('<li><a data-tab="#'+id+'"><span>'+title+'</span></a></li>');
 
         var $tabContent = $(document.createElement('div')).addClass('tab').attr('id',id);
 

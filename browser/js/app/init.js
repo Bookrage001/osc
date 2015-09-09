@@ -37,7 +37,7 @@ init = function(callback) {
     // Tabs...
     $('.tablist a').click(function(){
 
-        var id = $(this).attr('href');
+        var id = $(this).data('tab');
         $(id).siblings('.on').removeClass('on');
         $(id).addClass('on');
         $(this).parents('ul').find('.on').removeClass('on');
@@ -103,10 +103,11 @@ init = function(callback) {
         },
         {
             label:'Config',
-            icon:'gears'
+            icon:'gears',
+            click:configPanel
         },
         {
-            html:'<div class="inspector">\
+            html:'<div class="inspector btn">\
                     Inspector\
                     <div class="result"><em>Click on a widges\'s title to inspect</em></div>\
                   </div>',
@@ -117,7 +118,7 @@ init = function(callback) {
 
     $('#open-toggle').click(function(){
         $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open');
-    }).click()
+    })
 
     $('.title').click(function(){
         if (!$('#sidepanel').hasClass('sidepanel-open')){return}

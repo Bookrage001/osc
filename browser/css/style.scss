@@ -89,7 +89,9 @@ $scrollbar-margin:5px;
 input:focus::selection{
     background:$color-accent;
 }
-
+input {
+    cursor: text;
+}
 
 
 
@@ -118,7 +120,7 @@ body {
 
 a.btn {
     background: $bg-button;
-    display: block;
+    display: block;border:1px solid $color-border;
     padding:10px;
     &:hover {
         background: $bg-button-hover;
@@ -143,10 +145,9 @@ a.btn {
         box-shadow: 0 0 0 1px $color-border inset;
     }
     a {
-        padding-right:25px;
+        padding-right:35px;
         overflow: hidden;
         margin-top:10px;
-        box-shadow: 0 0 0 1px $color-border inset;
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -156,6 +157,10 @@ a.btn {
             top:1px;
             bottom:1px;
             padding:9px;
+            color:$color-text-fade;
+            &:hover {
+                color:$color-text
+            }
         }
     }
 }
@@ -220,7 +225,6 @@ a.btn {
             display:block;
             margin-bottom:15px;
             background:$bg-button;
-            border:1px solid $color-border;
         }
 
         .inspector {
@@ -448,6 +452,81 @@ a {
 
 
 
+.popup {
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:10%;
+    background:rgba(black,.5);
+    z-index:1000000;
+    .popup-title {
+        position: relative;
+        padding:10px;
+        background:$bg-button;
+        .closer {
+            position:absolute;
+            right:0px;
+            top:0;
+            padding:10px;
+            color:$color-text-fade;
+            cursor: pointer;
+            &:hover {
+                color:$color-text;
+            }
+        }
+    }
+    .popup-wrapper {
+        background:$color-fg;
+        height:100%;
+        width:100%;
+        position: relative;
+        overflow: hidden;
+        .popup-content {
+            height:100%;
+            width:100%;
+            padding:10px;
+            overflow-y:scroll;
+            white-space: normal;
+        }
+    }
+}
+
+form {
+    label {
+        display: block;
+        padding-top:10px;
+        margin-bottom:10px;
+    }
+    .info {
+        color:$color-text-fade;
+        margin-bottom:10px;
+    }
+    input {
+        display:block;
+        margin-bottom:10px;
+        background:$color-bg;
+        font:inherit;
+        color:$color-text;
+        border:1px solid $color-border;
+        width:100%;
+        padding:10px;
+        &:focus {
+            box-shadow: 0 0 0 1px $color-accent;
+        }
+    }
+    .submit {
+        margin-top:30px;
+    }
+}
+
+
+
+
+
+
+
 
 
 
@@ -639,33 +718,6 @@ a {
 
 
 
-
-/* STRIP (vertical fader) */
-
-.fader-wrapper-outer {
-    padding-bottom:30px;
-    overflow:hidden;
-    height:100%;
-    width:100%;
-    position: relative;
-    input {
-        position:absolute;
-        bottom:0;
-        box-shadow: 0 0 1px 0 $color-border inset;
-    }
-}
-.fader-wrapper {
-    padding:20px 15px 20px 20px ;
-    overflow:hidden;
-    height:100%;
-    width:95px;
-    position: relative;
-}
-.fader{
-    height:100%;
-}
-
-
 /* XY */
 
 .xy-wrapper {
@@ -825,15 +877,10 @@ a {
 }
 
 
-
-
-
-
-
 .fader-wrapper-outer {
     padding-bottom:30px;
     overflow:hidden;
-    // height:100%;
+    height:100%;
     position: relative;
     input {
         position:absolute;

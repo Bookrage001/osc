@@ -27,8 +27,8 @@ var defaultConfig = {
     oscInPort:5555
 }
 var editableConfig = {
-    syncTargets: "List of target host (ip:port pairs), separeted by spaces. Every OSC message sent by the app will be sent to these hosts too.",
-    oscInPort: "Port on which the app listens to synchronise with other apps."
+    syncTargets: "List of target hosts (ip:port pairs), separeted by spaces. Every OSC message sent by the app will be sent to these hosts too.",
+    oscInPort: "Port on which the app listens to synchronise with other apps. You'll need to restart the app for this change to take effect."
 }
 
 
@@ -45,7 +45,18 @@ writeConfig = function(newconfig) {
 }
 
 readConfig = function(key) {
-    return config[key] || defaultConfig[key]
+    if (key!=undefined) {
+        return config[key] || defaultConfig[key]
+    } else {
+        var ret = {}
+        for (i in editableConfig) {
+            ret[i] = {
+                value:readConfig(i),
+                info:editableConfig[i]
+            }
+        }
+        return ret
+    }
 }
 
 
@@ -96,8 +107,6 @@ app.on('ready', function() {
 
     var Menu = require('menu');
     var MenuItem = require('menu-item');
-
-    var menu = new Menu();
 
     var template = [
         {
