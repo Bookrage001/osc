@@ -45,7 +45,7 @@ parsewidgets = function(widgets,parent) {
     for (widgetId in widgets) {
         var widgetData = widgets[widgetId]
 
-        var color = widgetData.color?'style="background:'+widgetData.color+'"':'';
+        var color = widgetData.color?'style="color:'+widgetData.color+'"':'';
         var title = widgetData.title || widgetId;
         var type = widgetData.type || 'fader'
         widgetData.path = widgetData.path || '/' + widgetId

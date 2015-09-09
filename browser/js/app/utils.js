@@ -114,8 +114,8 @@ createPopup = function(title,content) {
     popup.find('.popup-content').append(content)
     $('body').append(popup)
 
-    $(document).on('keydown.popup', function(){
-        popup.close()
+    $(document).on('keydown.popup', function(e){
+        if (e.keyCode==27) popup.close()
     })
 
 

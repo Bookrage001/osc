@@ -60,8 +60,8 @@ init = function(callback) {
     //                               or if mouse is on h-scrollbar
     $('.tab').on('mousewheel',function(e) {
         // console.log(e)
-        var h = $('#container').innerHeight()-20-$(this).parents('.tab').length*5;
-        if ($(this).get(0).scrollHeight+20 == $(this).height()) {
+        var h = $('#container').innerHeight()-10-$(this).parents('.tab').length*5;
+        if ($(this).get(0).scrollHeight+10 == $(this).height()) {
             $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
             e.preventDefault();
         } else if (e.pageY>=h) {
@@ -69,8 +69,6 @@ init = function(callback) {
             e.preventDefault()
         }
     });
-
-
 
     // sidepanel
 

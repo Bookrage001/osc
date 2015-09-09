@@ -44,10 +44,10 @@ a {
     display: block;
 }
 
-$scrollbar-margin:5px;
+$scrollbar-margin:2px;
 ::-webkit-scrollbar {
-    width: 20px;
-    height:20px;opacity:1;
+    width: 10px;
+    height:10px;opacity:1;
 
 }
 
@@ -65,13 +65,12 @@ $scrollbar-margin:5px;
 }
 ::-webkit-scrollbar-thumb {
     background:$bg-button;
-    width:10px!important;
     opacity:1;
     &:vertical {
-        border-left:$scrollbar-margin solid  $color-fg;
+        border:$scrollbar-margin solid  $color-fg;
     }
     &:horizontal {
-        border-top:$scrollbar-margin solid  $color-fg;
+        border:$scrollbar-margin solid  $color-fg;
     }
 }
 
@@ -183,9 +182,10 @@ a.btn {
         top:7px;
         right:0;
         width:60px;
-        height:40px;
+        height:$nav-height - 10px;
         padding:0 10px;
-        line-height: 40px;
+        line-height: $nav-height - 10px;
+        font-size: 21px;
         text-align: center;
         color:$color-text-fade;
         &.sidepanel-open {
@@ -281,12 +281,15 @@ a {
         text-transform: uppercase;
     }
     &.sub {
-        padding-top:2px;
+        padding-top:7px;
         ul {
-            padding:0;
+            //padding:0;
         }
         li {
             border-image: linear-gradient($color-fg, $color-border 20px) 0 0 0 1 stretch;
+        }
+        a {
+            line-height: ($nav-height - 22px);
         }
     }
 
@@ -371,7 +374,6 @@ a {
     top:$nav-height - 4px;
     right:0;
     bottom:0;
-    padding:10px 5px 5px;
     border-top:1px solid $color-border;
     background:$color-fg;
 
@@ -382,8 +384,8 @@ a {
         overflow: auto;
     }
     .content {
-        border:1px solid $color-border;
-        top:$nav-height - 9px;
+        border-top:1px solid $color-border;
+        top:$nav-height - 4px;
 
     }
 }
@@ -547,10 +549,9 @@ form {
     //padding-bottom: 8px;
     vertical-align:top;
     // overflow: hidden;
-    margin-right: 10px;
-    &:last-child {
-        margin-right: 0
-    }
+    border: 10px solid $color-fg;
+    border-width:10px 5px 5px;
+
     .title {
         z-index: 1;
         padding:10px 10px;
@@ -584,14 +585,6 @@ form {
 
 
 
-/* SEPARATOR */
-
-.separator {
-    width:5px;
-    display:inline-block;
-    height:100%;
-    position:relative;vertical-align:top;
-}
 
 /* BUTTONS */
 
@@ -799,8 +792,8 @@ form {
 
 
 .rgb-wrapper {
-    height:510px;
-    padding-bottom: 120px;
+    height:530px;
+    padding-bottom: 130px;
     input {
         width:33.33%;
     }
