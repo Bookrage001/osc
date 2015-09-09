@@ -485,7 +485,7 @@ createWidget.fader = function(widgetData,parent){
 
 
     var rangeKeys = Object.keys(range).map(function (key) {return parseInt(key)}),
-        rangeVals = Object.keys(range).map(function (key) {return parseInt(range[key])})
+        rangeVals = Object.keys(range).map(function (key) {return parseFloat(range[key])})
 
 
 

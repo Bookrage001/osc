@@ -12,18 +12,27 @@ var app = require('app')
   , ipc = require('ipc')
   , configPath = __dirname + '/config.json'
   , config = require(configPath)
-  , args = process.argv.slice(2);
+  , args = process.argv.slice(1);
 
-
+dialog.showErrorBox = function(title,err) {
+    console.log(title + ': ' + err)
+}
 // config file handling
 
 var defaultConfig = {
     presetPath : __dirname,
     sessionPath: __dirname,
     recentSessions: [],
-    syncTargets: [],
+    syncTargets: "",
     oscInPort:5555
 }
+var editableConfig = {
+    syncTargets: "List of target host (ip:port pairs), separeted by spaces. Every OSC message sent by the app will be sent to these hosts too.",
+    oscInPort: "Port on which the app listens to synchronise with other apps."
+}
+
+
+
 
 writeConfig = function(newconfig) {
   for (i in newconfig) {
@@ -66,23 +75,54 @@ app.on('window-all-closed', function() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
-  // Create the browser window.
-  window = new BrowserWindow({
-      width: 800,
-      height: 600,
-      'auto-hide-menu-bar':true
-  });
+    // Create the browser window.
+    window = new BrowserWindow({
+        width: 800,
+        height: 600,
+        'auto-hide-menu-bar':true
+    });
 
-  // and load the index.html of the app.
-  window.loadUrl('file://' + __dirname + '/../browser/index.html');
+    // and load the index.html of the app.
+    window.loadUrl('file://' + __dirname + '/../browser/index.html');
 
-  // Emitted when the window is closed.
-  window.on('closed', function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    window = null;
-  });
+    // Emitted when the window is closed.
+    window.on('closed', function() {
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        window = null;
+    });
+
+
+    var Menu = require('menu');
+    var MenuItem = require('menu-item');
+
+    var menu = new Menu();
+
+    var template = [
+        {
+            label: 'View',
+            submenu: [
+                {
+                    label: 'Reload',
+                    accelerator: 'CmdOrCtrl+R',
+                    click: function() { window.reload(); }
+                },
+                {
+                    label: 'Toggle DevTools',
+                    accelerator: 'F12',
+                    click: function() { window.toggleDevTools(); }
+                },
+                {
+                    label: 'Toggle Fullscreen',
+                    accelerator: 'F11',
+                    click: function() { window.setFullScreen(!window.isFullScreen()); }
+                },
+            ]
+        },
+    ]
+    menu = Menu.buildFromTemplate(template);
+    Menu.setApplicationMenu(menu);
 });
 
 
@@ -170,7 +210,7 @@ ipc.on('ready',function(){
     var recentSessions = readConfig('recentSessions')
     renderProcess.send('listSessions',recentSessions)
 
-    if ('testing'==args[0]) {
+    if (args.indexOf('-l')!=-1) {
         var sessionlist = readConfig('recentSessions')
         renderProcess.send('openSession',sessionlist[0]);
     }
@@ -184,17 +224,21 @@ ipc.on('sendOsc', function (event,data) {
 
     var targets = []
     Array.prototype.push.apply(targets, data.target.split(' '));
-    Array.prototype.push.apply(targets, readConfig('syncTargets'));
+    Array.prototype.push.apply(targets, readConfig('syncTargets').split(' '));
 
     for (i in targets) {
 
         var host = targets[i].split(':')[0],
             port = targets[i].split(':')[1];
 
-        udpPort.send({
-            address: data.path,
-            args: data.args
-        }, host, port);
+        try {
+            udpPort.send({
+                address: data.path,
+                args: data.args
+            }, host, port);
+        } catch(err) {
+            console.log(err)
+        }
     }
 
 
@@ -205,7 +249,7 @@ ipc.on('save', function(event, data){
     dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:readConfig('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
-        writeConfig({presetPath:file[0].replace(file[0].split('/').pop(),'')})
+        writeConfig({presetPath:file.replace(file.split('/').pop(),'')})
 
         if (file.indexOf('.preset')==-1){file+='.preset'}
         fs.writeFile(file,data, function (err, data) {
@@ -223,7 +267,6 @@ ipc.on('load', function(event, data){
 
         fs.readFile(file[0],'utf-8', function read(err, data) {
             if (err) throw err;
-
             renderProcess.send('load',data);
         });
     })

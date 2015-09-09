@@ -12,24 +12,23 @@ init = function(callback) {
     $.each(__widgets__,function(i,widget) {
         if (widget.length>1) {
             var script ='';
-            for (j in widget) {
 
-                // Oh dear this looks hacky
-                // I didn't manage to cross-bind all widgets together the usual way
-                // ( getValue() always returns the last element's value, maybe a scope problem)
-
-                script += '                                     \n\
-                widget['+j+'].on(\'sync\',function(){           \n\
-                    var v = widget['+j+'].getValue()            \n\
-                    for (k=0;k<widget.length;k++) {             \n\
-                        if ('+j+'!=k) {                         \n\
-                            widget[k].setValue(v,false,false)   \n\
-                        }                                       \n\
-                    }                                           \n\
-                })                                              \n\
-                ';
+            var closureSync = function(x) {
+                return function() {
+                    var v = widget[x].getValue()
+                    for (k=0;k<widget.length;k++) {
+                        if (x!=k) {
+                            widget[k].setValue(v,false,false)
+                        }
+                    }
+                }
             }
-            eval(script)
+
+            for (j in widget) {
+                widget[j].on('sync',closureSync(j))
+            }
+
+
         }
     })
 
@@ -75,27 +74,50 @@ init = function(callback) {
     // sidepanel
 
 
-    $('#sidepanel').append('\
-        <a class="open-toggle">\
-            <span class="bars"></span>\
-        </a>\
-        <ul id="options">\
-            <li><a class="saveState btn">Save</a></li>\
-            <li><a href="#" class="loadState btn">Load</a></li>\
-            <li><a href="#" class="sendState btn">Send ALL</a></li>\
-            <li><a href="#" class="goFullscreen btn">Fullscreen</a></li>\
-            <li>\
-                <div class="inspector">\
-                        Inspector\
-                        <div class="result"><em>Click on a widges\'s title to inspect</em></div>\
-                </div>\
-            </li>\
-        </ul>\
+    $('#container').append('\
+        <a id="open-toggle">'+icon('navicon')+'</a>\
     ')
 
-    $('#sidepanel .open-toggle').click(function(){
-        $('#sidepanel .open-toggle, #sidepanel .open-toggle .bars, #sidepanel, #container').toggleClass('sidepanel-open');
-    })
+
+    $('#sidepanel').append(createMenu([
+        {
+            label:'Save',
+            click:saveState,
+            icon:'save'
+        },
+        {
+            label:'Load',
+            click:loadState,
+            icon:'folder-open'
+        },
+        {
+            label:'Send all',
+            click:sendState,
+            icon:'feed'
+
+        },
+        {
+            label:'Fullscreen',
+            click:function(){ipc.send('fullscreen')},
+            icon:'tv'
+        },
+        {
+            label:'Config',
+            icon:'gears'
+        },
+        {
+            html:'<div class="inspector">\
+                    Inspector\
+                    <div class="result"><em>Click on a widges\'s title to inspect</em></div>\
+                  </div>',
+            icon:'terminal'
+        }
+    ]))
+
+
+    $('#open-toggle').click(function(){
+        $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open');
+    }).click()
 
     $('.title').click(function(){
         if (!$('#sidepanel').hasClass('sidepanel-open')){return}
@@ -105,28 +127,6 @@ init = function(callback) {
     })
 
 
-    // Options menu
-    $('.showOptions a').click(function(e){
-        e.preventDefault();
-        $('#options').toggleClass('open');
-    })
-    $('.goFullscreen').click(function(e){
-        e.preventDefault();
-        ipc.send('fullscreen')
-    })
-
-    $('.saveState').click(function(e){
-        e.preventDefault();
-        saveState();
-    })
-    $('.loadState').click(function(e){
-        e.preventDefault();
-        loadState();
-    })
-    $('.sendState').click(function(e){
-        e.preventDefault();
-        sendState();
-    })
 
     if (callback) callback()
 

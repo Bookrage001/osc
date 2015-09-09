@@ -49,3 +49,42 @@ findNode = function(searchID, searchObject) {
     })
     return result
 }
+
+icon = function(i) {
+    return '<i class="fa fa-fw fa-'+i+'"></i>'
+}
+
+createMenu = function(template) {
+    var menu = $('<ul id="options"></ul>')
+
+    var closureClick = function(item) {
+        return function() {
+          item.click();
+          return false
+        };
+    }
+
+    for (i in template) {
+        var item = template[i],
+            label = item.label || 'undefined',
+            classname = item.class || '',
+            wrapper = $('<li></li>'),
+            html
+
+        if (!item.html) {
+            html = $('<a href="" class="'+classname+' btn">'+label+'</a>')
+        } else {
+            html = $(item.html)
+        }
+
+        if (item.icon) html.prepend(icon(item.icon)+'&nbsp;')
+
+        if (item.click) html.on('click',closureClick(item))
+
+        wrapper.append(html)
+        menu.append(wrapper)
+    }
+
+    return menu
+
+}
