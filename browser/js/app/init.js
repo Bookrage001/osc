@@ -101,7 +101,7 @@ init = function(callback) {
             icon:'tv'
         },
         {
-            label:'Config',
+            label:'Preferences',
             icon:'gears',
             click:configPanel
         },

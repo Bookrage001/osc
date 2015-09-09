@@ -162,11 +162,11 @@ configPanel = function(){
 
     })
 
-    var submit = $('<a class="btn submit">'+icon('save')+'&nbsp;Save configuration</a>')
+    var submit = $('<a class="btn submit">'+icon('save')+'&nbsp;Save</a>')
 
     form.append(submit)
 
-    popup = createPopup(icon('gear')+'&nbsp;Configuration panel',form)
+    popup = createPopup(icon('gear')+'&nbsp;Preferences',form)
 
     submit.click(function(e){
         e.preventDefault()

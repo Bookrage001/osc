@@ -1,19 +1,33 @@
 /////////////
 
-$color-text:rgba(white,.8);
+$theme: 'dark';
+
+@if $theme == 'dark' {
+  $color-text-base: white;
+}
+@if $theme == 'light'  {
+    $color-text-base: black;
+}
+
+
+$color-base: black;
+
+$color-text:rgba($color-text-base,.8);
 $color-text-fade:transparentize($color-text,.4);
 
 
 
 $color-fg:#282c34;
-$color-bg:mix($color-fg,black,85);
+$color-bg:mix($color-fg,$color-base,85);
 $color-accent:#528bff;
-$color-border:mix($color-fg,black,55);
+$color-border:mix($color-fg,$color-base,65);
 $nav-height:50px;
 
 $bg-title:rgba(white,.05);
-$bg-button:linear-gradient(#3a3f4b, #353b45);
-$bg-button-hover:linear-gradient(lighten(#3a3f4b,2), lighten(#353b45,2));
+$bg-button:linear-gradient(mix($color-text,$color-fg,8), mix($color-text,$color-fg,5));
+$bg-button-hover:linear-gradient(mix($color-text,$color-fg,10), mix($color-text,$color-fg,7));
+$bg-button-on:linear-gradient(mix($color-text,$color-bg,0), mix($color-text,$color-bg,5));
+
 
 $sidepanel-size:300px;
 
@@ -119,11 +133,14 @@ body {
 
 .btn {
     background: $bg-button;
-    display: block;border:1px solid $color-border;
+    display: block;
+    border:1px solid $color-border;
     padding:15px;
 }
-a.btn:hover {
-    background: $bg-button-hover;
+a.btn {
+    &:hover {
+        background: $bg-button-hover;
+    }
 }
 
 #lobby {
@@ -301,12 +318,12 @@ a {
 
 
     &.main {
-        right:60px;
+        right:55px;
     }
     ul {
         list-style:none;
         display: flex;
-        padding-left:5px;
+        padding:0 5px;
         li.on + li {border-image:none;border-left:1px solid transparent;}
         li {
             display:block;
@@ -339,7 +356,7 @@ a {
                 }
                 color:$color-text-fade;
                 &.on {
-                    background:#282c34;
+                    background:$color-fg;
                     border:1px solid $color-border;
                     border-bottom-color:$color-fg;
                     color:$color-text;
@@ -361,7 +378,7 @@ a {
                         left:0;
                         right:0;
                         height:4px;
-                        background:linear-gradient(rgba($color-accent,0.5),rgba($color-accent,0))
+                        // background:linear-gradient(rgba($color-accent,0.5),rgba($color-accent,0))
                     }
                 }
             }
@@ -466,7 +483,7 @@ a {
     right:0;
     bottom:0;
     padding:10%;
-    background:rgba(black,.5);
+    background:rgba($color-base,.5);
     z-index:1000000;
     .popup-title {
         position: relative;
@@ -488,6 +505,8 @@ a {
         background:$color-fg;
         height:100%;
         width:100%;
+        max-width:600px;
+        margin:0 auto;
         position: relative;
         overflow: hidden;
         border:1px solid $color-border;
@@ -614,11 +633,13 @@ form {
             text-overflow: ellipsis;
         }
         background:$bg-button;
+        box-shadow: 0 0 0 1px $color-bg inset;
         color:$color-text-fade;
     }
     &.on div {
-        background:transparentize($color-accent,.4);
-        color:$color-text;
+        background:$bg-button-on;
+        color:$color-accent;
+
     }
 
 }
@@ -648,6 +669,7 @@ form {
         height:100%;
         width:100%;
         margin-bottom:2px;
+        box-shadow: 0 0 0 1px $color-bg inset;
         span {
             padding:10px;
             white-space: normal;
@@ -658,8 +680,8 @@ form {
             margin-bottom:0;
         }
         &.on {
-            background:transparentize($color-accent,.4);
-            color:$color-text;
+            background:$bg-button-on;
+            color:$color-accent;
 
         }
     }
@@ -775,7 +797,7 @@ form {
             width: 20px;
             height: 20px;
             margin:-10px -10px 0 0;
-            box-shadow: 0 0 0 1000px rgba(black,.5), 0 0 0 1px rgba(white,.2);
+            box-shadow: 0 0 0 1000px rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
         }
 
         &::before {
@@ -826,7 +848,7 @@ form {
 	}
     .handle {
         span {
-            //background: rgba(black,.35)
+            //background: rgba($color-base,.35)
         }
     }
 }
@@ -858,7 +880,7 @@ form {
             position:absolute;
             top:50%;
             right:-1px;
-            box-shadow: 0 0 0 1000px rgba(black,.5), 0 0 0 1px rgba(white,.2);
+            box-shadow: 0 0 0 1000px rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
             border-radius:100%!important;
             width: 11px;
             height: 11px;
@@ -901,7 +923,7 @@ form {
     .fader {
         height:100%;
         width:4px;
-        background:rgba(black,.4);
+        background:rgba($color-base,.4);
         position: relative;
         .handle {
             position: absolute;
@@ -946,7 +968,7 @@ form {
                 line-height: 12px;
                 left:15px;
                 top:-2px;
-                color:#ccc;
+                color:$color-text;
             }
         }
     }
@@ -1052,7 +1074,7 @@ form {
     .pip {
         position:absolute;
         font-size:11px;
-        color:#ccc;
+        color:$color-text;
         &.min {
             bottom:10px;
             right:50%;
