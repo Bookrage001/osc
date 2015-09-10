@@ -108,7 +108,7 @@ init = function(callback) {
         {
             html:'<div class="inspector btn">\
                     Inspector\
-                    <div class="result"><em>Click on a widges\'s title to inspect</em></div>\
+                    <div class="result"><em>Click on a widges\'s label to inspect</em></div>\
                   </div>',
             icon:'terminal'
         }
@@ -119,10 +119,9 @@ init = function(callback) {
         $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open');
     })
 
-    $('.title').click(function(){
+    $('.widget .label').click(function(){
         if (!$('#sidepanel').hasClass('sidepanel-open')){return}
-        var id = $(this).parents('.widget').attr('widgetid');
-        var data = id + ': <br/>' + String(JSON.stringify(findNode(id,TABS),null,2)).split('\n').join('<br/>&nbsp;&nbsp;')
+        var data = String(JSON.stringify($(this).data('papers'),null,2)).split('\n').join('<br/>&nbsp;&nbsp;')
         $('.inspector .result').html(data);
     })
 

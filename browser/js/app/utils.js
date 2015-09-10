@@ -34,21 +34,26 @@ setState = function(preset){
 }
 
 
-// inspector
-findNode = function(searchID, searchObject) {
-    var result=false;
-    $.each(searchObject,function(id,object){
-
-        if (id==searchID) {
-            result = searchObject[id]
-            return false
-        } else if (typeof  searchObject[id] === 'object'){
-            result = findNode(searchID, searchObject[id])
-        }
-        if (result !== false) {return false}
-    })
-    return result
-}
+// // inspector
+// findNode = function(searchID, obj) {
+//     var result=false;
+//     for (i in obj) {
+//
+//         if
+//
+//
+//
+//
+//         // if (id==searchID) {
+//         //     result = searchObject[id]
+//         //     return false
+//         // } else if (typeof  searchObject[id] === 'object'){
+//         //     result = findNode(searchID, searchObject[id])
+//         // }
+//         // if (result !== false) {return false}
+//     }
+//     return result
+// }
 
 icon = function(i) {
     return '<i class="fa fa-fw fa-'+i+'"></i>'

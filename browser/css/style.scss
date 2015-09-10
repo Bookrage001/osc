@@ -580,7 +580,7 @@ form {
     border: 10px solid $color-fg;
     border-width:10px 5px 5px;
 
-    .title {
+    .label {
         z-index: 1;
         padding:10px 10px;
         position:absolute;
@@ -593,6 +593,9 @@ form {
         //border-radius:2px 2px 0 0 ;
         background:$bg-button;
         box-shadow: 0 0 0 1px $color-bg inset;
+        &.accent {
+            color:$color-accent;
+        }
     }
     input {
         width:100%;
@@ -727,7 +730,7 @@ form {
         clear:both;
     }
 }
-.stack .widget .title {
+.stack .widget .label {
     width:30%;
     height:35px;
 }
