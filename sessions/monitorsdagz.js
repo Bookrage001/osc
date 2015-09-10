@@ -5,90 +5,88 @@ nmPorts = {
     'Mains':'SCSon:6678',
 }
 
-TABS = {
-    MonitorsDag:{
-        title: 'Monitor Dag-Z',
-        
-        widgets: {
+TABS = [
+    {
+        id:'MonitorsDag',
+        widgets: [
 
-            mdDrums: {
-			    title:'Drums',
+            {
+			    id:'Drums',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/Drums/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdBasses: {
-			    title:'Basses',
+            {
+			    id:'Basses',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/Basses/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdGuitars: {
-			    title:'Guitars',
+            {
+			    id:'Guitars',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdMxDrums: {
-			    title:'MxDrums',
+            {
+			    id:'MxDrums',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/MxDrums/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdMxSynths: {
-			    title:'MxSynths',
+            {
+			    id:'MxSynths',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/MxSynths/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdVocals: {
-			    title:'Vocals',
+            {
+			    id:'Vocals',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/Vocals/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdBassDag: {
-			    title:'BassDag',
+            {
+			    id:'BassDag',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/BassDag/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdGuitarDag: {
-			    title:'GuitarDag',
+            {
+			    id:'GuitarDag',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/GuitarDag/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdVoixDag: {
-			    title:'VoixDag',
+            {
+			    id:'VoixDag',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/VoixDag/Gain/Gain%20(dB)/unscaled'
 		    },
 
-            mdMetronome: {
-			    title:'Metronome',
+            {
+			    id:'Metronome',
 			    range:'db',
 			    target:nmPorts['MonitorsDag'],
 			    path:'/strip/Metronome/Gain/Gain%20(dB)/unscaled'
             },
-            
-            MonitorsDag: {
-			    title:'MonitorsDag',
+
+            {
+			    id:'MonitorsDag',
 			    range:'db',
 			    target:nmPorts['Mains'],
 			    path:'/strip/MonitorsDag/Gain/Gain%20(dB)/unscaled',
-			    color:'#777'
-            }   
-        }
-    } 
-}
-
+			    color:'accent'
+            }
+        ]
+    }
+]

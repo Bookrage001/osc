@@ -1,623 +1,625 @@
-nmPorts = {
-    'MainMix':'localhost:6666',
-    'Drums':'localhost:6667',
-    'Basses':'localhost:6668',
-    'Guitars':'localhost:6669',
-    'MxSynths':'localhost:6670',
-    'MxDrums':'localhost:6671',
-    'Vocals':'localhost:6672',
-    'Toms':'localhost:6673',
-    'Acoustics':'localhost:6674',
-    'MonitorsDag':'localhost:6675',
-    'MonitorsJeannot':'localhost:6676',
-    'MonitorsORL':'localhost:6677',
-    'Mains':'localhost:6678',
-}
-
-TABS = {
-
-    testingshits: {
-            widgets:{
-                BassesXXX: {
-                    type:'knob',
-                    target:'localhost:6666',
-                    path:'/osc/path/',
-                    color:'cyan',
-                    range:{min:-70,max:6}
-                },
-                stacktest: {
-                    type:'stack',
-                    widgets:{
-                        BassesXXX: {
-                            type:'switch',
-                            target:'localhost:6666',
-                            path:'/osc/path/',
-                            color:'#555522',
-                            values:[1,2,3,4,5]
-                        },
-                        BassesXXX: {
-	                        title:'BassesXXX',
-	                        range:'db',
-	                        target:nmPorts['MainMix']+' 127.0.0.1:125',
-	                        path:'/test2',
-                        },
-                        xypad_test2: {
-        	                title:'XY Pad',
-        	                type:'xy',
-        	                target:nmPorts['MainMix'],
-        	                path:'/pad'
-                        },
-                        xGuitars: {
-	                        title:'Guitars',
-	                        range:'db',
-	                        target:nmPorts['MainMix'],
-	                        path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
-                        },
-                        button1: {
-                            type:'toggle',
-                            target:'localhost:6666',
-                            path:'/osc/path/',
-                            color:'#555522'
-                        }
-                    }
-
-                },
-
-                xypad_test: {
-	                title:'XY Pad',
-	                type:'rgb',
-	                target:nmPorts['MainMix'],
-	                path:'/pad'
-                },
-                button1: {
-                    type:'toggle',
-                    target:'localhost:6666',
-                    path:'/osc/path/',
-                    color:'#555522'
-                },
-                xypad_test2: {
-	                title:'XY Pad',
-	                type:'xy',
-	                target:nmPorts['MainMix'],
-	                path:'/SHIT',
-                },
-            }
-    },
-
-    MainMix: {
-
-        title:'MainMix',
-        widgets:{
-            xypad_test: {
-                title:'XY Pad',
-                type:'rgb',
-                target:nmPorts['MainMix'],
-                path:'/pad'
-            },
-            Drums: {
-	            title:'Drums',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Drums/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Basses: {
-	            title:'Basses',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Basses/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Guitars: {
-	            title:'Guitars',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
-            },
-
-            MxSynths: {
-	            title:'MxSynths',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/MxSynths/Gain/Gain%20(dB)/unscaled'
-            },
-
-            MxDrums: {
-	            title:'MxDrums',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/MxDrums/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Vocals: {
-	            title:'Vocals',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Vocals/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Acoustics: {
-	            title:'Acoustics',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Acoustics/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FOH: {
-	            title:'FOH',
-	            range:'db',
-	            target:nmPorts['Mains'],
-	            path:'/strip/FOH/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
-            }
-        }
-    },
-
-    Drums: {
-        title:'Drums',
-        tabs:{
-            Drumset: {
-                title:'Drumset',
-                widgets: {
-                    Kick: {
-	                    title:'Kick',
-	                    range:'db',
-	                    target:nmPorts['Drums'],
-	                    path:'/strip/Kick/Gain/Gain%20(dB)/unscaled'
-                    },
-
-                    Snare: {
-	                    title:'Snare',
-	                    range:'db',
-	                    target:nmPorts['Drums'],
-	                    path:'/strip/Snare/Gain/Gain%20(dB)/unscaled'
-                    },
-
-                    Toms: {
-	                    title:'Toms',
-	                    range:'db',
-	                    target:nmPorts['Drums'],
-	                    path:'/strip/Toms/Gain/Gain%20(dB)/unscaled'
-                    },
-
-                    OH_L: {
-	                    title:'OH-L',
-	                    range:'db',
-	                    target:nmPorts['Drums'],
-	                    path:'/strip/OH-L/Gain/Gain%20(dB)/unscaled'
-                    },
-
-                    OH_R: {
-	                    title:'OH-R',
-	                    range:'db',
-	                    target:nmPorts['Drums'],
-	                    path:'/strip/OH-R/Gain/Gain%20(dB)/unscaled'
-
-                    },
-                    Drums: {
-	                    title:'Drums',
-	                    range:'db',
-	                    target:nmPorts['MainMix'],
-	                    path:'/strip/Drums/Gain/Gain%20(dB)/unscaled',
-	                    color:'#777'
-                    }
-                },
-
-            },
-
-            Toms: {
-                widgets:{
-                    Tom1: {
-	                    title:'Tom1',
-	                    range:'db',
-	                    target:nmPorts['Toms'],
-	                    path:'/strip/Tom1/Gain/Gain%20(dB)/unscaled'
-                    },
-
-                    Tom2: {
-	                    title:'Tom2',
-	                    range:'db',
-	                    target:nmPorts['Toms'],
-	                    path:'/strip/Tom2/Gain/Gain%20(dB)/unscaled'
-                    },
-
-                    Tom3: {
-	                    title:'Tom3',
-	                    range:'db',
-	                    target:nmPorts['Toms'],
-	                    path:'/strip/Tom3/Gain/Gain%20(dB)/unscaled'
-                    },
-                    Toms: {
-	                    title:'Toms',
-	                    range:'db',
-	                    target:nmPorts['Drums'],
-	                    path:'/strip/Toms/Gain/Gain%20(dB)/unscaled',
-	                    color:'#777'
-                    },
-                    stacktest: {
-                        type:'stack',
-                        widgets:{
-                            BassesXXX: {
-                                type:'switch',
-                                target:'localhost:6666',
-                                path:'/osc/path/',
-                                color:'#555522',
-                                values:[1,2,3,4,5]
-                            },
-                            BassesXXX: {
-    	                        title:'BassesXXX',
-    	                        range:'db',
-    	                        target:nmPorts['MainMix']+' 127.0.0.1:125',
-    	                        path:'/test2',
-                            },
-                            xypad_test2: {
-            	                title:'XY Pad',
-            	                type:'xy',
-            	                target:nmPorts['MainMix'],
-            	                path:'/pad'
-                            },
-                            xGuitars: {
-    	                        title:'Guitars',
-    	                        range:'db',
-    	                        target:nmPorts['MainMix'],
-    	                        path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
-                            },
-                            button1: {
-                                type:'toggle',
-                                target:'localhost:6666',
-                                path:'/osc/path/',
-                                color:'#555522'
-                            }
-                        }
-
-                    },
+TABS =
+[
+    {
+        id: "testingshits",
+        widgets: [
+            {
+                id: "BassesXXX",
+                type: "knob",
+                target: "localhost:6666",
+                path: "/osc/path/",
+                color: "cyan",
+                range: {
+                    min: -70,
+                    max: 6
                 }
+            },
+            {
+                id: "stacktest",
+                type: "stack",
+                widgets: [
+                    {
+                        id: "BassesXXXa",
+                        type: "switch",
+                        target: "localhost:6666",
+                        path: "/osc/path/",
+                        color: "#555522",
+                        values: [0,1,2,3,4]
+                    },
+                    {
+                        id: "BassesXXX",
+                        label: "BassesXXX",
+                        range: "db",
+                        target: "localhost:6666 127.0.0.1:125",
+                        path: "/test2"
+                    },
+                    {
+                        id: "xypad_test2",
+                        label: "XY Pad",
+                        type: "xy",
+                        target: "localhost:6666",
+                        path: "/pad"
+                    },
+                    {
+                        id: "xGuitars",
+                        label: "Guitars",
+                        range: "db",
+                        target: "localhost:6666",
+                        path: "/strip/Guitars/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "button1",
+                        type: "toggle",
+                        target: "localhost:6666",
+                        path: "/osc/path/",
+                        color: "#555522"
+                    }
+                ]
+            },
+            {
+                id: "xypad_test",
+                label: "XY Pad",
+                type: "rgb",
+                target: "localhost:6666",
+                path: "/pad"
+            },
+            {
+                id: "button1",
+                type: "toggle",
+                target: "localhost:6666",
+                path: "/osc/path/",
+                color: "#555522"
+            },
+            {
+                id: "xypad_test2",
+                label: "XY Pad",
+                type: "xy",
+                target: "localhost:6666",
+                path: "/SHIT"
             }
-        }
+        ]
     },
-
-    Basses: {
-        title:'Basses',
-        widgets:{
-
-            Bass_ORL: {
-	            title:'Bass_ORL',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled'
+    {
+        id: "MainMix",
+        label: "MainMix",
+        widgets: [
+            {
+                id: "xypad_test",
+                label: "XY Pad",
+                type: "rgb",
+                target: "localhost:6666",
+                path: "/pad"
             },
-
-            Oct_Bass_ORL: {
-	            title:'Oct_Bass_ORL',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Oct_Bass_ORL/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Drums",
+                label: "Drums",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Drums/Gain/Gain%20(dB)/unscaled"
             },
-
-            FX_Bass_ORL: {
-	            title:'FX_Bass_ORL',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/FX_Bass_ORL/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Basses",
+                label: "Basses",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Basses/Gain/Gain%20(dB)/unscaled"
             },
-
-            Bass_Dag: {
-	            title:'Bass_Dag',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Guitars",
+                label: "Guitars",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Guitars/Gain/Gain%20(dB)/unscaled"
             },
-
-            Oct_Bass_Dag: {
-	            title:'Oct_Bass_Dag',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/Oct_Bass_Dag/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "MxSynths",
+                label: "MxSynths",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/MxSynths/Gain/Gain%20(dB)/unscaled"
             },
-
-            FX_Bass_Dag: {
-	            title:'FX_Bass_Dag',
-	            range:'db',
-	            target:nmPorts['Basses'],
-	            path:'/strip/FX_Bass_Dag/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "MxDrums",
+                label: "MxDrums",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/MxDrums/Gain/Gain%20(dB)/unscaled"
             },
-            Basses: {
-	            title:'Basses',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Basses/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
+            {
+                id: "Vocals",
+                label: "Vocals",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Vocals/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Acoustics",
+                label: "Acoustics",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Acoustics/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "FOH",
+                label: "FOH",
+                range: "db",
+                target: "localhost:6678",
+                path: "/strip/FOH/Gain/Gain%20(dB)/unscaled",
+                color: "#777"
             }
-
-        }
+        ]
     },
-
-    Guitars: {
-        title:'Guitars',
-        widgets:{
-
-            Guitar_ORL: {
-	            title:'Guitar_ORL',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/Guitar_ORL/Gain/Gain%20(dB)/unscaled'
+    {
+        id: "Drums",
+        label: "Drums",
+        tabs: [
+            {
+                id: "Drumset",
+                label: "Drumset",
+                widgets: [
+                    {
+                        id: "Kick",
+                        label: "Kick",
+                        range: "db",
+                        target: "localhost:6667",
+                        path: "/strip/Kick/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "Snare",
+                        label: "Snare",
+                        range: "db",
+                        target: "localhost:6667",
+                        path: "/strip/Snare/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "Toms",
+                        label: "Toms",
+                        range: "db",
+                        target: "localhost:6667",
+                        path: "/strip/Toms/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "OH_L",
+                        label: "OH-L",
+                        range: "db",
+                        target: "localhost:6667",
+                        path: "/strip/OH-L/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "OH_R",
+                        label: "OH-R",
+                        range: "db",
+                        target: "localhost:6667",
+                        path: "/strip/OH-R/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "Drums",
+                        label: "Drums",
+                        range: "db",
+                        target: "localhost:6666",
+                        path: "/strip/Drums/Gain/Gain%20(dB)/unscaled",
+                        color: "#777"
+                    }
+                ]
             },
-
-            FX_Gtr_ORL_1: {
-	            title:'FX_Gtr_ORL_1',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/FX_Gtr_ORL_1/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FX_Gtr_ORL_2: {
-	            title:'FX_Gtr_ORL_2',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/FX_Gtr_ORL_2/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FX_Gtr_ORL: {
-	            title:'FX_Gtr_ORL',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/FX_Gtr_ORL/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Guitar_Dag: {
-	            title:'Guitar_Dag',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/Guitar_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FX_Gtr_Dag_1: {
-	            title:'FX_Gtr_Dag_1',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/FX_Gtr_Dag_1/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FX_Gtr_Dag_2: {
-	            title:'FX_Gtr_Dag_2',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/FX_Gtr_Dag_2/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FX_Gtr_Dag: {
-	            title:'FX_Gtr_Dag',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/FX_Gtr_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Scape_Gtr_Dag: {
-	            title:'Scape_Gtr_Dag',
-	            range:'db',
-	            target:nmPorts['Guitars'],
-	            path:'/strip/Scape_Gtr_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-            Guitars: {
-	            title:'Guitars',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
+            {
+                id: "Toms",
+                widgets: [
+                    {
+                        id: "Tom1",
+                        label: "Tom1",
+                        range: "db",
+                        target: "localhost:6673",
+                        path: "/strip/Tom1/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "Tom2",
+                        label: "Tom2",
+                        range: "db",
+                        target: "localhost:6673",
+                        path: "/strip/Tom2/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "Tom3",
+                        label: "Tom3",
+                        range: "db",
+                        target: "localhost:6673",
+                        path: "/strip/Tom3/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
+                        id: "Toms",
+                        label: "Toms",
+                        range: "db",
+                        target: "localhost:6667",
+                        path: "/strip/Toms/Gain/Gain%20(dB)/unscaled",
+                        color: "#777"
+                    },
+                    {
+                        id: "stacktest",
+                        type: "stack",
+                        widgets: [
+                            {
+                                id: "BassesXXX",
+                                label: "BassesXXX",
+                                range: "db",
+                                target: "localhost:6666 127.0.0.1:125",
+                                path: "/test2"
+                            },
+                            {
+                                id: "xypad_test2",
+                                label: "XY Pad",
+                                type: "xy",
+                                target: "localhost:6666",
+                                path: "/pad"
+                            },
+                            {
+                                id: "xGuitars",
+                                label: "Guitars",
+                                range: "db",
+                                target: "localhost:6666",
+                                path: "/strip/Guitars/Gain/Gain%20(dB)/unscaled"
+                            },
+                            {
+                                id: "button1",
+                                type: "toggle",
+                                target: "localhost:6666",
+                                path: "/osc/path/",
+                                color: "#555522"
+                            }
+                        ]
+                    }
+                ]
             }
-        }
+        ]
     },
-
-    MxSynths: {
-        title:'MxSynths',
-        widgets:{
-
-            MxBass: {
-	            title:'MxBass',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxBass/Gain/Gain%20(dB)/unscaled'
+    {
+        id: "Basses",
+        label: "Basses",
+        widgets: [
+            {
+                id: "Bass_ORL",
+                label: "Bass_ORL",
+                range: "db",
+                target: "localhost:6668",
+                path: "/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxChords: {
-	            title:'MxChords',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxChords/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Oct_Bass_ORL",
+                label: "Oct_Bass_ORL",
+                range: "db",
+                target: "localhost:6668",
+                path: "/strip/Oct_Bass_ORL/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxLead: {
-	            title:'MxLead',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxLead/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "FX_Bass_ORL",
+                label: "FX_Bass_ORL",
+                range: "db",
+                target: "localhost:6668",
+                path: "/strip/FX_Bass_ORL/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxCtLead: {
-	            title:'MxCtLead',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxCtLead/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Bass_Dag",
+                label: "Bass_Dag",
+                range: "db",
+                target: "localhost:6668",
+                path: "/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxClassical: {
-	            title:'MxClassical',
-	            range:'db',
-	            target:nmPorts['MxSynths'],
-	            path:'/strip/MxClassical/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Oct_Bass_Dag",
+                label: "Oct_Bass_Dag",
+                range: "db",
+                target: "localhost:6668",
+                path: "/strip/Oct_Bass_Dag/Gain/Gain%20(dB)/unscaled"
             },
-            MxSynths: {
-	            title:'MxSynths',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/MxSynths/Gain/Gain%20(dB)/unscaled',
-                color:'#777'
+            {
+                id: "FX_Bass_Dag",
+                label: "FX_Bass_Dag",
+                range: "db",
+                target: "localhost:6668",
+                path: "/strip/FX_Bass_Dag/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Basses",
+                label: "Basses",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Basses/Gain/Gain%20(dB)/unscaled",
+                color: "#777"
             }
-        }
+        ]
     },
-
-    MxDrums: {
-        title:'MxDrums',
-        widgets:{
-
-            MxKicks: {
-	            title:'MxKicks',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxKicks/Gain/Gain%20(dB)/unscaled'
+    {
+        id: "Guitars",
+        label: "Guitars",
+        widgets: [
+            {
+                id: "Guitar_ORL",
+                label: "Guitar_ORL",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/Guitar_ORL/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxSnares: {
-	            title:'MxSnares',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxSnares/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "FX_Gtr_ORL_1",
+                label: "FX_Gtr_ORL_1",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/FX_Gtr_ORL_1/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxCymbs: {
-	            title:'MxCymbs',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxCymbs/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "FX_Gtr_ORL_2",
+                label: "FX_Gtr_ORL_2",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/FX_Gtr_ORL_2/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxCont: {
-	            title:'MxCont',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxCont/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "FX_Gtr_ORL",
+                label: "FX_Gtr_ORL",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/FX_Gtr_ORL/Gain/Gain%20(dB)/unscaled"
             },
-
-            MxSamples: {
-	            title:'MxSamples',
-	            range:'db',
-	            target:nmPorts['MxDrums'],
-	            path:'/strip/MxSamples/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Guitar_Dag",
+                label: "Guitar_Dag",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/Guitar_Dag/Gain/Gain%20(dB)/unscaled"
             },
-            MxDrums: {
-	            title:'MxDrums',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/MxDrums/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
+            {
+                id: "FX_Gtr_Dag_1",
+                label: "FX_Gtr_Dag_1",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/FX_Gtr_Dag_1/Gain/Gain%20(dB)/unscaled"
             },
-        }
-    },
-
-    Acoustics: {
-        title:'Acoustics',
-        widgets:{
-
-            PianoToy: {
-	            title:'PianoToy',
-	            range:'db',
-	            target:nmPorts['Acoustics'],
-	            path:'/strip/PianoToy/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "FX_Gtr_Dag_2",
+                label: "FX_Gtr_Dag_2",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/FX_Gtr_Dag_2/Gain/Gain%20(dB)/unscaled"
             },
-
-            Cymbalum: {
-	            title:'Cymbalum',
-	            range:'db',
-	            target:nmPorts['Acoustics'],
-	            path:'/strip/Cymbalum/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "FX_Gtr_Dag",
+                label: "FX_Gtr_Dag",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/FX_Gtr_Dag/Gain/Gain%20(dB)/unscaled"
             },
-
-            GuitarAc: {
-	            title:'GuitarAc',
-	            range:'db',
-	            target:nmPorts['Acoustics'],
-	            path:'/strip/GuitarAc/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "Scape_Gtr_Dag",
+                label: "Scape_Gtr_Dag",
+                range: "db",
+                target: "localhost:6669",
+                path: "/strip/Scape_Gtr_Dag/Gain/Gain%20(dB)/unscaled"
             },
-            Acoustics: {
-	            title:'Acoustics',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Acoustics/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
+            {
+                id: "Guitars",
+                label: "Guitars",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Guitars/Gain/Gain%20(dB)/unscaled",
+                color: "#777"
             }
-        }
+        ]
     },
-
-    Vocals: {
-        title:'Vocals',
-        widgets:{
-
-            Vx_ORL: {
-	            title:'Vx_ORL',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/Vx_ORL/Gain/Gain%20(dB)/unscaled'
+    {
+        id: "MxSynths",
+        label: "MxSynths",
+        widgets: [
+            {
+                id: "MxBass",
+                label: "MxBass",
+                range: "db",
+                target: "localhost:6670",
+                path: "/strip/MxBass/Gain/Gain%20(dB)/unscaled"
             },
-
-            FX_Vx_ORL_1: {
-	            title:'FX_Vx_ORL_1',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/FX_Vx_ORL_1/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "MxChords",
+                label: "MxChords",
+                range: "db",
+                target: "localhost:6670",
+                path: "/strip/MxChords/Gain/Gain%20(dB)/unscaled"
             },
-
-            FX_Vx_ORL_2: {
-	            title:'FX_Vx_ORL_2',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/FX_Vx_ORL_2/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "MxLead",
+                label: "MxLead",
+                range: "db",
+                target: "localhost:6670",
+                path: "/strip/MxLead/Gain/Gain%20(dB)/unscaled"
             },
-
-            FX_Vx_ORL: {
-	            title:'FX_Vx_ORL',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/FX_Vx_ORL/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "MxCtLead",
+                label: "MxCtLead",
+                range: "db",
+                target: "localhost:6670",
+                path: "/strip/MxCtLead/Gain/Gain%20(dB)/unscaled"
             },
-
-            Vx_Dag: {
-	            title:'Vx_Dag',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/Vx_Dag/Gain/Gain%20(dB)/unscaled'
+            {
+                id: "MxClassical",
+                label: "MxClassical",
+                range: "db",
+                target: "localhost:6670",
+                path: "/strip/MxClassical/Gain/Gain%20(dB)/unscaled"
             },
-
-            FX_Vx_Dag_1: {
-	            title:'FX_Vx_Dag_1',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/FX_Vx_Dag_1/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FX_Vx_Dag_2: {
-	            title:'FX_Vx_Dag_2',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/FX_Vx_Dag_2/Gain/Gain%20(dB)/unscaled'
-            },
-
-            FX_Vx_Dag: {
-	            title:'FX_Vx_Dag',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/FX_Vx_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Scape_Vx_Dag: {
-	            title:'Scape_Vx_Dag',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/Scape_Vx_Dag/Gain/Gain%20(dB)/unscaled'
-            },
-
-            Vx_Jeannot: {
-	            title:'Vx_Jeannot',
-	            range:'db',
-	            target:nmPorts['Vocals'],
-	            path:'/strip/Vx_Jeannot/Gain/Gain%20(dB)/unscaled'
-            },
-            Vocals: {
-	            title:'Vocals',
-	            range:'db',
-	            target:nmPorts['MainMix'],
-	            path:'/strip/Vocals/Gain/Gain%20(dB)/unscaled',
-	            color:'#777'
+            {
+                id: "MxSynths",
+                label: "MxSynths",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/MxSynths/Gain/Gain%20(dB)/unscaled",
+                color: "#777"
             }
-        }
+        ]
+    },
+    {
+        id: "MxDrums",
+        label: "MxDrums",
+        widgets: [
+            {
+                id: "MxKicks",
+                label: "MxKicks",
+                range: "db",
+                target: "localhost:6671",
+                path: "/strip/MxKicks/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "MxSnares",
+                label: "MxSnares",
+                range: "db",
+                target: "localhost:6671",
+                path: "/strip/MxSnares/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "MxCymbs",
+                label: "MxCymbs",
+                range: "db",
+                target: "localhost:6671",
+                path: "/strip/MxCymbs/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "MxCont",
+                label: "MxCont",
+                range: "db",
+                target: "localhost:6671",
+                path: "/strip/MxCont/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "MxSamples",
+                label: "MxSamples",
+                range: "db",
+                target: "localhost:6671",
+                path: "/strip/MxSamples/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "MxDrums",
+                label: "MxDrums",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/MxDrums/Gain/Gain%20(dB)/unscaled",
+                color: "#777"
+            }
+        ]
+    },
+    {
+        id: "Acoustics",
+        label: "Acoustics",
+        widgets: [
+            {
+                id: "PianoToy",
+                label: "PianoToy",
+                range: "db",
+                target: "localhost:6674",
+                path: "/strip/PianoToy/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Cymbalum",
+                label: "Cymbalum",
+                range: "db",
+                target: "localhost:6674",
+                path: "/strip/Cymbalum/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "GuitarAc",
+                label: "GuitarAc",
+                range: "db",
+                target: "localhost:6674",
+                path: "/strip/GuitarAc/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Acoustics",
+                label: "Acoustics",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Acoustics/Gain/Gain%20(dB)/unscaled",
+                color: "#777"
+            }
+        ]
+    },
+    {
+        id: "Vocals",
+        label: "Vocals",
+        widgets: [
+            {
+                id: "Vx_ORL",
+                label: "Vx_ORL",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/Vx_ORL/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "FX_Vx_ORL_1",
+                label: "FX_Vx_ORL_1",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/FX_Vx_ORL_1/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "FX_Vx_ORL_2",
+                label: "FX_Vx_ORL_2",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/FX_Vx_ORL_2/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "FX_Vx_ORL",
+                label: "FX_Vx_ORL",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/FX_Vx_ORL/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Vx_Dag",
+                label: "Vx_Dag",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/Vx_Dag/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "FX_Vx_Dag_1",
+                label: "FX_Vx_Dag_1",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/FX_Vx_Dag_1/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "FX_Vx_Dag_2",
+                label: "FX_Vx_Dag_2",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/FX_Vx_Dag_2/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "FX_Vx_Dag",
+                label: "FX_Vx_Dag",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/FX_Vx_Dag/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Scape_Vx_Dag",
+                label: "Scape_Vx_Dag",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/Scape_Vx_Dag/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Vx_Jeannot",
+                label: "Vx_Jeannot",
+                range: "db",
+                target: "localhost:6672",
+                path: "/strip/Vx_Jeannot/Gain/Gain%20(dB)/unscaled"
+            },
+            {
+                id: "Vocals",
+                label: "Vocals",
+                range: "db",
+                target: "localhost:6666",
+                path: "/strip/Vocals/Gain/Gain%20(dB)/unscaled",
+                color: "#777"
+            }
+        ]
     }
-}
+]
