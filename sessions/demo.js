@@ -15,6 +15,14 @@ TABS =
                 }
             },
             {
+                id: "BassesXXXa",
+                type: "switch",
+                target: "localhost:6666",
+                path: "/osc/path/",
+                color: "#555522",
+                values: [0,1,2,3,4,6,7]
+            },
+            {
                 id: "stacktest",
                 type: "stack",
                 widgets: [
@@ -28,13 +36,24 @@ TABS =
                     },
                     {
                         id: "BassesXXX",
+                        type: "knob",
+                        target: "localhost:6666",
+                        path: "/osc/path/",
+                        color: "cyan",
+                        range: {
+                            min: -70,
+                            max: 6
+                        }
+                    },
+                    {
+                        id: "BassesXXX",
                         label: "BassesXXX",
                         range: "db",
                         target: "localhost:6666 127.0.0.1:125",
                         path: "/test2"
                     },
                     {
-                        id: "xypad_test2",
+                        id: "xypad_test2a",
                         label: "XY Pad",
                         type: "xy",
                         target: "localhost:6666",
@@ -56,13 +75,7 @@ TABS =
                     }
                 ]
             },
-            {
-                id: "xypad_test",
-                label: "XY Pad",
-                type: "rgb",
-                target: "localhost:6666",
-                path: "/pad"
-            },
+
             {
                 id: "button1",
                 type: "toggle",
