@@ -28,12 +28,12 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
 
     var widget = $('\
         <div class="toggle">\
-            <div class="value"><span>'+widgetData.off+'</span></div>\
+            <div class="value"><p><span>'+widgetData.off+'</span></p></div>\
         </div>\
     ');
 
 
-    widget.value = widget.find('.value')
+    widget.value = widget.find('span')
 
     widget.click(function(){
         var newVal = widget.hasClass('on')?widgetData.off:widgetData.on
@@ -299,7 +299,7 @@ createWidget.rgb = function(widgetData) {
         rgbOffX = rgbHandle.width()
     })
     rgbHandle.drag(function( ev, dd ){
-        var h = (pad.height()-dd.offsetY)*100/pad.innerHeight(),
+        var h = (pad.innerHeight()-dd.offsetY)*100/pad.innerHeight(),
             w = (dd.deltaX+rgbOffX)*100/pad.innerWidth()
         rgbHandle.css({'height':h+'%','width':w+'%'})
 
@@ -422,7 +422,7 @@ createWidget.fader = function(widgetData,parent){
         fader = widget.find('.fader'),
         pips = widget.find('.pips'),
         input = widget.find('input'),
-
+        unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = parent.hasClass('stack')?'width':'height';
 
         handle.size = function() {
@@ -525,7 +525,7 @@ createWidget.fader = function(widgetData,parent){
     }
 
     widget.showValue = function(v) {
-        input.val(v)
+        input.val(v+unit)
     }
 
     input.change(function(){
@@ -556,7 +556,8 @@ createWidget.knob = function(widgetData,parent) {
     var widget = $('\
         <div class="knob-wrapper-outer">\
             <div class="knob-wrapper">\
-                <div class="knob">\
+                <div class="knob-mask">\
+                    <div class="knob"></div>\
                 </div>\
                 <div class="pip min"></div>\
                 <div class="pip max"></div>\
@@ -566,7 +567,8 @@ createWidget.knob = function(widgetData,parent) {
         '),
         knob = widget.find('.knob'),
         input = widget.find('input'),
-        range = widgetData.range || {min:0,max:1}
+        range = widgetData.range || {min:0,max:1},
+        unit = widgetData.unit?' '+widgetData.unit.trim(): '';
 
 
     widget.find('.pip.min').text(range.min)
@@ -577,8 +579,16 @@ createWidget.knob = function(widgetData,parent) {
     })
 
     knob.drag(function( ev, dd ){
-        var r = clip(-dd.deltaY+offR,[45,315])
+        var r = clip(-dd.deltaY+offR,[0,270])
         knob.css('transform', 'rotateZ('+r+'deg)')
+
+        if (r>180) {
+            knob.addClass('d3')
+        } else if (r>90) {
+            knob.removeClass('d3').addClass('d2')
+        } else {
+            knob.removeClass('d3 d2')
+        }
 
         var v = widget.getValue()
 
@@ -590,10 +600,10 @@ createWidget.knob = function(widgetData,parent) {
 
 
     widget.getValue = function() {
-        return mapToScale(knob.getRotation(),[45,315],[range.min,range.max])
+        return mapToScale(knob.getRotation(),[0,270],[range.min,range.max])
     }
     widget.showValue = function(v) {
-        input.val(v)
+        input.val(v+unit)
     }
     widget.sendValue = function(v) {
         var t = widgetData.target,
@@ -601,7 +611,16 @@ createWidget.knob = function(widgetData,parent) {
         sendOsc([t,p,v]);
     }
     widget.setValue = function(v,send,sync) {
-        var r = mapToScale(v,[range.min,range.max],[45,315])
+        var r = mapToScale(v,[range.min,range.max],[0,270])
+
+        if (r>180) {
+            knob.addClass('d3')
+        } else if (r>90) {
+            knob.removeClass('d3').addClass('d2')
+        } else {
+            knob.removeClass('d3 d2')
+        }
+
 
         knob.css('transform', 'rotateZ('+r+'deg)')
         var v = widget.getValue() || v

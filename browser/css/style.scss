@@ -23,7 +23,7 @@ $color-accent:#528bff;
 $color-border:mix($color-fg,$color-base,65);
 $nav-height:50px;
 
-$bg-title:rgba(white,.05);
+$bg-button-flat:rgba(white,.05);
 $bg-button:linear-gradient(mix($color-text,$color-fg,8), mix($color-text,$color-fg,5));
 $bg-button-hover:linear-gradient(mix($color-text,$color-fg,10), mix($color-text,$color-fg,7));
 $bg-button-on:linear-gradient(mix($color-text,$color-bg,0), mix($color-text,$color-bg,5));
@@ -622,27 +622,48 @@ form {
 
 .toggle {
     width:95px;
-    height:100%;
     padding:10px 1px 0;
     cursor: pointer;
     div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height:100%;
+
+        width:100%;
         text-align: center;
-        span {
+        padding-bottom: 100%;
+        position: relative;
+        p {
             white-space: nowrap;
             text-overflow: ellipsis;
+            z-index: 1;
+            position: absolute;
+            top:0;right:0;
+            bottom:0;left:0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+
+            }
         }
         background:$bg-button;
         box-shadow: 0 0 0 1px $color-bg inset;
         color:$color-text-fade;
     }
-    &.on div {
-        background:$bg-button-on;
-        color:$color-accent;
-
+    &.on {
+        p {
+            color:$color-border;
+        }
+        div:after {
+            content:"";
+            position: absolute;
+            top:10px;
+            left:10px;
+            right:10px;
+            bottom:10px;
+            background:$color-accent;
+            z-index:0;
+            border-radius: 3px;
+            opacity: .6;
+        }
     }
 
 }
@@ -650,9 +671,11 @@ form {
 .stack .toggle {
     float:right;
     width:70%;
-    height:70px;
     padding: 0 0 0 10px;
     position: static;
+    div {
+        padding-bottom: 50%;
+    }
 }
 
 .switch {
@@ -672,20 +695,35 @@ form {
         height:100%;
         width:100%;
         margin-bottom:2px;
+        position: relative;
         box-shadow: 0 0 0 1px $color-bg inset;
         span {
             padding:10px;
             white-space: normal;
             word-break: break-all;
             overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
         &:last-child {
             margin-bottom:0;
         }
         &.on {
-            background:$bg-button-on;
-            color:$color-accent;
-
+            span {
+                color:$color-border;
+            }
+            &:after {
+                content:"";
+                position: absolute;
+                top:10px;
+                left:10px;
+                right:10px;
+                bottom:10px;
+                background:$color-accent;
+                z-index:0;
+                border-radius: 3px;
+                opacity: .6;
+            }
         }
     }
 }
@@ -740,17 +778,11 @@ form {
 
 
 
-
-
-
-
-
 /* XY */
 
 .xy-wrapper {
-    width:400px;
-    padding: 10px 0px 90px;
-    height:490px;
+    width:300px;
+    padding: 10px 0px 5px;
     overflow: hidden;
     .value {
         margin-top:10px;
@@ -769,7 +801,7 @@ form {
 .xy {
     position:relative;
     width:100%;
-    height: 100%;
+    padding-bottom: 90%;
     border:1px solid $color-border;
     //background: $color-bg;
     overflow: hidden;
@@ -819,15 +851,12 @@ form {
 .stack .xy-wrapper {
     float:right;
     width:70%;
-    height:300px;
-    padding-top:0;
+    padding-bottom:0;
     padding-left:10px;
 }
 
 
 .rgb-wrapper {
-    height:530px;
-    padding-bottom: 130px;
     input {
         width:33.33%;
     }
@@ -1033,7 +1062,7 @@ form {
 
 
 .knob-wrapper-outer {
-    padding-bottom:30px;
+    padding-bottom:35px;
     overflow:hidden;
     width:100%;
     position: relative;
@@ -1049,29 +1078,73 @@ form {
     //height:100%;
     width:120px;
     position: relative;
-
-    .knob {
+    .knob-mask {
         width:100%;
         padding-bottom:100%;
         border-radius:100%;
         position: relative;
-        background: $color-bg;
-        box-shadow: 0 0 0 2px $color-border;
-        cursor: -webkit-grab;
-        &:active {
-            cursor: -webkit-grabbing;
+        &:before {
+            content:"";
+            position:absolute;
+            top:0;left:0;
+            right:0;
+            bottom:0;
+            border-radius:100%;
+            border:4px solid $color-border;
+            border-bottom-color: transparent;
+            pointer-events: none;z-index:0;
         }
         &:after {
             content:"";
             position:absolute;
-            width:4px;
-            height:4px;
+            top:0px;left:-3px;
+            right:-3px;
+            bottom:-2px;
             border-radius:100%;
-            left:50%;
-            margin-left:-3px;
-            bottom:4px;
-            border:1px solid $color-border;
-            background:$color-accent
+            border:12px solid transparent;
+            border-bottom-color: $color-fg;
+            pointer-events: none;
+        }
+    }
+    .knob {
+        position:absolute;
+        top:0;left:0;
+        right:0;
+        bottom:0;
+        // background: $color-bg;
+        // box-shadow: 0 0 0 2px $color-border;
+        cursor: -webkit-grab;
+        &:active {
+            cursor: -webkit-grabbing;
+        }
+        &:before {
+            content:"";
+            position:absolute;
+            top:15px;left:15px;
+            right:15px;
+            bottom:15px;
+            border-radius:100%;
+            background:$bg-button-flat;
+            z-index: 100;
+            //border:1px dashed $color-fg;
+        }
+        &:after {
+            content:"";
+            position:absolute;
+            top:0;left:0;
+            right:0;
+            bottom:0;
+            border-radius:100%;
+            border:4px solid transparent;
+            border-bottom-color: $color-accent;
+        }
+
+        &.d2:after {
+            border-right-color: $color-accent;
+        }
+        &.d3:after {
+            border-top-color: $color-accent;
+            border-right-color: $color-accent;
         }
     }
     .pip {
@@ -1090,5 +1163,21 @@ form {
             margin-left:35px;
             text-align:left;
         }
+    }
+}
+.stack .knob-wrapper-outer {
+    padding-bottom: 0;
+    input {
+        width:30%;
+        height:35px;
+        left:0;
+        right:auto;
+        border-top:0;
+        top:35px;
+    }
+    .knob-wrapper{
+        margin:0 auto;
+        right:-15%;
+
     }
 }
