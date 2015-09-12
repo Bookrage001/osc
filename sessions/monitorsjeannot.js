@@ -4,6 +4,7 @@ nmPorts = {
     'MonitorsORL':'SCSon:6677',
     'Mains':'SCSon:6678',
 }
+nmRange = {'min': -70,'20%': -40,'45%': -20,'60%': -10,'71%':-6,'78%':-3,'85%':0,'92%':3,'max': 6}
 
 TABS = [
     {
@@ -12,56 +13,56 @@ TABS = [
 
             {
 			    id:'Drums',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsJeannot'],
 			    path:'/strip/Drums/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Basses',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsJeannot'],
 			    path:'/strip/Basses/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Guitars',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsJeannot'],
 			    path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'MxDrums',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsJeannot'],
 			    path:'/strip/MxDrums/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'MxSynths',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsJeannot'],
 			    path:'/strip/MxSynths/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Vocals',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsJeannot'],
 			    path:'/strip/Vocals/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Metronome',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsJeannot'],
 			    path:'/strip/Metronome/Gain/Gain%20(dB)/unscaled'
             },
 
             {
 			    id:'MonitorsJeannot',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['Mains'],
 			    path:'/strip/MonitorsJeannot/Gain/Gain%20(dB)/unscaled',
 			    color:'accent'

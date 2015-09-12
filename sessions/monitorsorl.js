@@ -5,6 +5,9 @@ nmPorts = {
     'Mains':'SCSon:6678',
 }
 
+nmRange = {'min': -70,'20%': -40,'45%': -20,'60%': -10,'71%':-6,'78%':-3,'85%':0,'92%':3,'max': 6}
+
+
 TABS =  [
     {
         id: 'MonitorORL',
@@ -13,76 +16,76 @@ TABS =  [
             {
 			    id:'Drums',
                 type:'fader',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/Drums/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Basses',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/Basses/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Guitars',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/Guitars/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'MxDrums',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/MxDrums/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'MxSynths',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/MxSynths/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Vocals',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/Vocals/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'BassORL',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/BassORL/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'GuitarORL',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/GuitarORL/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'VxORL',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/VxORL/Gain/Gain%20(dB)/unscaled'
 		    },
 
             {
 			    id:'Metronome',
-			    range:'db',
+			    range:nmRange,
 			    target:nmPorts['MonitorsORL'],
 			    path:'/strip/Metronome/Gain/Gain%20(dB)/unscaled'
 		    },
             {
 		        id:'MonitorsORL',
-		        range:'db',
+		        range:nmRange,
 		        target:nmPorts['Mains'],
 		        path:'/strip/MonitorsORL/Gain/Gain%20(dB)/unscaled',
 		        color:'accent'

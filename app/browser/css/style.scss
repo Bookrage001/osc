@@ -24,6 +24,8 @@ $color-border:mix($color-fg,$color-base,65);
 $nav-height:50px;
 
 $bg-button-flat:rgba(white,.05);
+$bg-button-fade:linear-gradient(mix($color-text,$color-fg,5), mix($color-text,$color-fg,1));
+
 $bg-button:linear-gradient(mix($color-text,$color-fg,8), mix($color-text,$color-fg,5));
 $bg-button-hover:linear-gradient(mix($color-text,$color-fg,10), mix($color-text,$color-fg,7));
 $bg-button-on:linear-gradient(mix($color-text,$color-bg,0), mix($color-text,$color-bg,5));
@@ -426,22 +428,6 @@ a {
 }
 
 
-.test.tab.on {
-    display:flex;width:100%;
-    flex-wrap: wrap;
-    flex-direction:column;
-    //justify-content: stretch;
-    > .widget {
-        height:33.33%;
-        padding-bottom:10px;
-        //flex: 1
-
-    }
-}
-
-
-
-
 #loading {
     position: absolute;
     top:50%;
@@ -568,17 +554,20 @@ form {
 
 .widget {
     display:inline-block;
-    height:100%;
+    height:auto;
     overflow: visible;
     position:relative;
     font-size:13px;
-//    box-shadow: 0 0 0 1px $color-border;
     padding-top:35px;
-    //padding-bottom: 8px;
     vertical-align:top;
-    // overflow: hidden;
-    border: 10px solid $color-fg;
-    border-width:10px 5px 5px;
+    border: 6px solid $color-fg;
+     border-width:6px 3px;
+     &:first-child {
+         border-left-width:6px;
+     }
+     &:last-child {
+         border-right-width:6px;
+     }
 
     .label {
         z-index: 1;
@@ -590,9 +579,8 @@ form {
         text-overflow:ellipsis;
         overflow:hidden;
         height:35px;
-        //border-radius:2px 2px 0 0 ;
-        background:$bg-button;
-        box-shadow: 0 0 0 1px $color-bg inset;
+        background:$bg-button-flat;
+        // box-shadow: 0 0 0 1px $color-bg inset;
         &.accent {
             color:$color-accent;
         }
@@ -616,19 +604,66 @@ form {
 
 
 
+/* STRIP (contains any widgets) */
+
+
+
+.strip-container {
+    height:100%;
+
+    &.no-stretch {
+        height:auto;
+        min-height:100%;
+        .widget {
+            height: auto;
+        }
+    }
+    &.horizontal .strip {
+        flex-direction: row;
+    }
+
+    .strip {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .widget {
+
+            display: block;
+            border-left:0;
+            border-right:0;
+            border-bottom:0;
+            .label {
+                background:$bg-button-fade;
+                box-shadow:none
+            }
+        }
+    }
+}
+
+
+
 
 /* BUTTONS */
 
+.toggle-container {
+    width:100px;
+    flex-shrink: 0
+}
 
 .toggle {
-    width:95px;
+
     padding:10px 1px 0;
     cursor: pointer;
     div {
+        border:1px solid $color-border;
+        &:hover {
+            background: $bg-button-hover;
+        }
 
         width:100%;
         text-align: center;
-        padding-bottom: 100%;
+        padding-bottom: 50%;
         position: relative;
         p {
             white-space: nowrap;
@@ -645,7 +680,7 @@ form {
             }
         }
         background:$bg-button;
-        box-shadow: 0 0 0 1px $color-bg inset;
+        // box-shadow: 0 0 0 1px $color-bg inset;
         color:$color-text-fade;
     }
     &.on {
@@ -668,120 +703,71 @@ form {
 
 }
 
-.stack .toggle {
-    float:right;
-    width:70%;
-    padding: 0 0 0 10px;
-    position: static;
-    div {
-        padding-bottom: 50%;
-    }
-}
 
-.switch {
-    width:95px;
-    height:100%;
-    padding:10px 1px 0;
-    cursor: pointer;
-    display: flex;
-    flex-direction:column;
-    align-items: stretch;
-    .value {
-        background:$bg-button;
-        color:$color-text-fade;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.switch-container {
+    height: 100%;
+    width:100px;
+    .switch {
         height:100%;
         width:100%;
-        margin-bottom:2px;
-        position: relative;
-        box-shadow: 0 0 0 1px $color-bg inset;
-        span {
-            padding:10px;
-            white-space: normal;
-            word-break: break-all;
-            overflow: hidden;
+        padding:10px 1px 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction:column;
+        align-items: stretch;
+        .value {
+            background:$bg-button;
+            color:$color-text-fade;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height:100%;
+            width:100%;
+            margin-bottom:2px;
             position: relative;
-            z-index: 1;
-        }
-        &:last-child {
-            margin-bottom:0;
-        }
-        &.on {
+            box-shadow: 0 0 0 1px $color-bg inset;
             span {
-                color:$color-border;
+                padding:10px;
+                white-space: normal;
+                word-break: break-all;
+                overflow: hidden;
+                position: relative;
+                z-index: 1;
             }
-            &:after {
-                content:"";
-                position: absolute;
-                top:10px;
-                left:10px;
-                right:10px;
-                bottom:10px;
-                background:$color-accent;
-                z-index:0;
-                border-radius: 3px;
-                opacity: .6;
+            &:last-child {
+                margin-bottom:0;
+            }
+            &.on {
+                span {
+                    color:$color-border;
+                }
+                &:after {
+                    content:"";
+                    position: absolute;
+                    top:10px;
+                    left:10px;
+                    right:10px;
+                    bottom:10px;
+                    background:$color-accent;
+                    z-index:0;
+                    border-radius: 3px;
+                    opacity: .6;
+                }
             }
         }
     }
 }
-.stack .switch {
-    float:right;
-    width:70%;
-    height:70px;
-    padding: 0 0 0 10px;
-    position: static;
-    flex-direction:row;
-    .value {
-        margin-bottom:0px;
-        margin-right:2px;
-        &:last-child {
-            margin-right:0;
-        }
-    }
-}
-
-
-
-/* STACK (contains any widgets) */
-
-.stack {
-    width:400px;
-    height:auto;
-    padding-bottom:0;
-    border-bottom: 0;
-}
-
-.stack .widget {
-    width:100%;
-    display:block;
-    padding:0;
-    border-top:0;
-    border-right:0;
-    border-left:0;
-    margin-top: 10px;
-    &:after {
-        content:"";
-        display:block;
-        clear:both;
-    }
-}
-.stack .widget .label {
-    width:30%;
-    height:35px;
-}
-
-
 
 
 
 
 /* XY */
 
-.xy-wrapper {
+.xy-container, .rgb-container {
     width:300px;
+}
+.xy-wrapper {
+
     padding: 10px 0px 5px;
     overflow: hidden;
     .value {
@@ -847,13 +833,6 @@ form {
     }
 }
 
-
-.stack .xy-wrapper {
-    float:right;
-    width:70%;
-    padding-bottom:0;
-    padding-left:10px;
-}
 
 
 .rgb-wrapper {
@@ -933,251 +912,273 @@ form {
 }
 
 
-.fader-wrapper-outer {
-    padding-bottom:30px;
-    overflow:hidden;
+
+
+
+
+// FADER
+
+.fader-container {
+    width:100px;
     height:100%;
-    position: relative;
-    input {
-        position:absolute;
-        bottom:0;
-        box-shadow: 0 0 1px 0 $color-border inset;
-    }
-}
+    min-height: 300px;
 
-.fader-wrapper {
-    padding:20px 15px 20px 20px ;
-    overflow:hidden;
-    height:100%;
-    width:95px;
-    position: relative;
-
-    .fader {
-        height:100%;
-        width:4px;
-        background:rgba($color-base,.4);
-        position: relative;
-        .handle {
-            position: absolute;
-            bottom:0!important;
-            top:auto!important;
-            width:100%;
-            height:0px;
-            max-height:100%;
-            max-width:100%;
-            cursor: -webkit-grab;
-            background:$color-accent;
-            z-index: 1;
-            &:after { //.ui-resizable-handle {
-                content:"";
-                position: absolute;
-                height:2000px;
-                width:2000px;
-                margin:-1000px 0 0 -1000px;
-
-            }
-        }
-    }
-    .pips {
-        position: absolute;
-        top:-1%;
-        bottom:1%;
-        left:14px;
-    }
-    .pip {
-        height:1%;
-        width:4px;
-        border-bottom:1px solid $color-text;
-        &.val {
-            width:10px;
-            position: relative;
-            span {
-                position: relative;
-                width:30px;
-                display: block;
-                text-align: center;
-                font-size:11px;
-                line-height: 12px;
-                left:15px;
-                top:-2px;
-                color:$color-text;
-            }
-        }
-    }
-}
-
-
-.stack .fader-wrapper-outer {
-    padding-bottom: 0;
-    input {
-        width:30%;
-        height:35px;
-        left:0;
-        right:auto;
-        border-top:0;
-        top:35px;
-    }
-    .fader {
-        width:100%;
-        height:4px;
-        .handle {
-            height:100%!important;
-            width:0;
-        }
-    }
     .fader-wrapper-outer {
-        padding:0;
-    }
-    .fader-wrapper {
-        padding:20px 20px;
-        float:right;
-        width:70%;
-        height:70px;
-    }
-    .pips {
-        top:14px;left:0;
-        right:0;
-        display: flex;
-        flex-direction:row;
-        align-items: stretch;
-    }
-    .pip {
+        padding-bottom:30px;
         width:100%;
-        display: block;
-        height:4px;
-        border-bottom:0;
-        border-right:1px solid $color-text-fade;
-        &.val {
-            width:1%;
-            float:left;
-            height:10px;
-            span {
-                top:15px;
-                left:-15px;
+        position: absolute;
+        top:35px;
+        bottom:0;
+        input {
+            position:absolute;
+            bottom:0;
+            box-shadow: 0 0 1px 0 $color-border inset;
+        }
+    }
+
+    .fader-wrapper {
+        padding:20px;
+        overflow:hidden;
+        height:100%;
+        position: relative;
+
+        .fader {
+            height:100%;
+            width:4px;
+            background:rgba($color-base,.4);
+            position: relative;
+            .handle {
+                position: absolute;
+                bottom:0!important;
+                top:auto!important;
+                width:100%;
+                height:0px;
+                max-height:100%;
+                max-width:100%;
+                cursor: -webkit-grab;
+                background:$color-accent;
+                z-index: 1;
+                &:active {
+                    cursor: -webkit-grabbing;
+                }
+                &:after {
+                    content:"";
+                    position: absolute;
+                    height:2000px;
+                    width:2000px;
+                    margin:-1000px 0 0 -1000px;
+
+                }
+            }
+        }
+
+        .pips {
+            position: absolute;
+            top:-1%;
+            bottom:1%;
+            left:14px;
+            .pip {
+                height:1%;
+                width:4px;
+                border-bottom:1px solid $color-text;
+                &.val {
+                    width:10px;
+                    position: relative;
+                    span {
+                        position: relative;
+                        width:30px;
+                        display: block;
+                        text-align: center;
+                        font-size:11px;
+                        line-height: 12px;
+                        left:15px;
+                        top:-2px;
+                        color:$color-text;
+                    }
+                }
             }
         }
     }
-
 }
 
 
-.knob-wrapper-outer {
-    padding-bottom:35px;
-    overflow:hidden;
-    width:100%;
-    position: relative;
-    input {
-        position:absolute;
-        bottom:0;
-        box-shadow: 0 0 1px 0 $color-border inset;
-    }
-}
-.knob-wrapper {
-    padding:20px 20px 20px 20px ;
-    overflow:hidden;
-    //height:100%;
-    width:120px;
-    position: relative;
-    .knob-mask {
-        width:100%;
-        padding-bottom:100%;
-        border-radius:100%;
-        position: relative;
-        &:before {
-            content:"";
-            position:absolute;
-            top:0;left:0;
-            right:0;
+// Horizontal fader -> TODO
+// .stack .fader-container {
+//     min-height: 80px;
+//     .fader-wrapper-outer {
+//         padding-bottom: 0;
+//         input {
+//             width:30%;
+//             height:35px;
+//             left:0;
+//             right:auto;
+//             border-top:0;
+//             top:35px;
+//         }
+//         .fader {
+//             width:100%;
+//             height:4px;
+//             .handle {
+//                 height:100%!important;
+//                 width:0;
+//             }
+//         }
+//         .fader-wrapper {
+//             padding:20px 20px;
+//             float:right;
+//             width:70%;
+//             height:70px;
+//         }
+//         .pips {
+//             top:14px;left:0;
+//             right:0;
+//             display: flex;
+//             flex-direction:row;
+//             align-items: stretch;
+//         }
+//         .pip {
+//             width:100%;
+//             display: block;
+//             height:4px;
+//             border-bottom:0;
+//             border-right:1px solid $color-text-fade;
+//             &.val {
+//                 width:1%;
+//                 float:left;
+//                 height:10px;
+//                 span {
+//                     top:15px;
+//                     left:-15px;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+
+
+.knob-container {
+    width: 100px;
+    flex-shrink: 0;
+    .knob-wrapper-outer {
+        // padding-bottom: 35px;
+        width: 100%;
+        // position: absolute;
+        top: 0;
+        bottom: 0;
+        input {
+            // position:absolute;
             bottom:0;
-            border-radius:100%;
-            border:4px solid $color-border;
-            border-bottom-color: transparent;
-            pointer-events: none;z-index:0;
-        }
-        &:after {
-            content:"";
-            position:absolute;
-            top:0px;left:-3px;
-            right:-3px;
-            bottom:-2px;
-            border-radius:100%;
-            border:12px solid transparent;
-            border-bottom-color: $color-fg;
-            pointer-events: none;
-        }
-    }
-    .knob {
-        position:absolute;
-        top:0;left:0;
-        right:0;
-        bottom:0;
-        // background: $color-bg;
-        // box-shadow: 0 0 0 2px $color-border;
-        cursor: -webkit-grab;
-        &:active {
-            cursor: -webkit-grabbing;
-        }
-        &:before {
-            content:"";
-            position:absolute;
-            top:15px;left:15px;
-            right:15px;
-            bottom:15px;
-            border-radius:100%;
-            background:$bg-button-flat;
-            z-index: 100;
-            //border:1px dashed $color-fg;
-        }
-        &:after {
-            content:"";
-            position:absolute;
-            top:0;left:0;
-            right:0;
-            bottom:0;
-            border-radius:100%;
-            border:4px solid transparent;
-            border-bottom-color: $color-accent;
+            box-shadow: 0 0 1px 0 $color-border inset;
         }
 
-        &.d2:after {
-            border-right-color: $color-accent;
-        }
-        &.d3:after {
-            border-top-color: $color-accent;
-            border-right-color: $color-accent;
-        }
-    }
-    .pip {
-        position:absolute;
-        font-size:11px;
-        color:$color-text;
-        &.min {
-            bottom:10px;
-            right:50%;
-            margin-right:35px;
-            text-align:right;
-        }
-        &.max {
-            bottom:10px;
-            left:50%;
-            margin-left:35px;
-            text-align:left;
-        }
-    }
-}
-.stack .knob-wrapper-outer {
-    padding-bottom: 0;
-    input {
-        width:30%;
-        height:35px;
-        left:0;
-        right:auto;
-        border-top:0;
-        top:35px;
-    }
-    .knob-wrapper{
-        margin:0 auto;
-        right:-15%;
+        .knob-wrapper {
+            padding:20px 20px 20px 20px ;
+            overflow:hidden;
+            //height:100%;
+            width:95px;
+            position: relative;
+            .knob-mask {
+                width:100%;
+                padding-bottom:100%;
+                border-radius:100%;
+                position: relative;
+                &:before {
+                    content:"";
+                    position:absolute;
+                    top:0;left:0;
+                    right:0;
+                    bottom:0;
+                    border-radius:100%;
+                    border:4px solid $color-border;
+                    border-bottom-color: transparent;
+                    pointer-events: none;z-index:0;
+                }
+                &:after {
+                    content:"";
+                    position:absolute;
+                    top:0px;left:-3px;
+                    right:-3px;
+                    bottom:-2px;
+                    border-radius:100%;
+                    border:12px solid transparent;
+                    border-bottom-color: $color-fg;
+                    pointer-events: none;
+                }
+            }
+            .knob {
+                position:absolute;
+                top:0;left:0;
+                right:0;
+                bottom:0;
+                cursor: -webkit-grab;
+                &:active {
+                    cursor: -webkit-grabbing;
+                }
+                &:before {
+                    content:"";
+                    position:absolute;
+                    top:15px;left:15px;
+                    right:15px;
+                    bottom:15px;
+                    border-radius:100%;
+                    background:$bg-button-flat;
+                    z-index: 100;
+                    //border:1px dashed $color-fg;
+                }
+                &:after {
+                    content:"";
+                    position:absolute;
+                    top:0;left:0;
+                    right:0;
+                    bottom:0;
+                    border-radius:100%;
+                    border:4px solid transparent;
+                    border-bottom-color: $color-accent;
+                }
 
+                &.d2:after {
+                    border-right-color: $color-accent;
+                }
+                &.d3:after {
+                    border-top-color: $color-accent;
+                    border-right-color: $color-accent;
+                }
+
+                // no color gauge test
+                &.dot:after {
+                    content:"";
+                    position:absolute;
+                    bottom:11px;
+                    left:12px;
+                    height:4px;
+                    width:4px;
+                    transform: rotate(45deg);
+                    background:$color-accent;
+                    border:0!important;
+                }
+
+            }
+            .pip {
+                position:absolute;
+                font-size:11px;
+                color:$color-text;
+                &.min {
+                    bottom:10px;
+                    left:0;
+                    right:50%;
+                    width:50%;
+                    text-align:center;
+                }
+                &.max {
+                    bottom:10px;
+                    left:50%;
+                    width:50%;
+                    right:0;
+                    text-align:center;
+                }
+            }
+        }
     }
 }

@@ -49,6 +49,8 @@ parsewidgets = function(widgets,parent) {
             color = '',
             accentclass = '';
 
+        widgetData.path = path
+
         if (widgetData.color && widgetData.color=='accent') {
             accentclass = 'accent'
         } else if (widgetData.color) {
@@ -56,7 +58,7 @@ parsewidgets = function(widgets,parent) {
         }
 
         var widget = $('\
-            <div class="widget" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'">\
+            <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'">\
                 <div class="label '+accentclass+'" '+color+'>'+label+'</div>\
             </div>\
         ');

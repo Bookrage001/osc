@@ -20,6 +20,18 @@ createWidget.stack = function(widgetData) {
     return widget;
 }
 
+createWidget.strip = function(widgetData) {
+    var widget = $('\
+            <div class="strip">\
+            </div>\
+    ');
+    parsewidgets(widgetData.widgets,widget)
+    widget.getValue = function(){return}
+    widget.setValue = function(){return}
+    return widget;
+}
+
+
 
 createWidget.toggle = createWidget.button  = function(widgetData) {
 
@@ -454,8 +466,6 @@ createWidget.fader = function(widgetData,parent){
         },{ relative:true });
 
     widgetData.range = widgetData.range || {'min':0,'max':1}
-    widgetData.range = (widgetData.range=='db')?{'min': -70,'20%': -40,'45%': -20,'60%': -10,'71%':-6,'78%':-3,'85%':0,'92%':3,'max': 6}:widgetData.range;
-
 
     var range = {}
     for (k in widgetData.range) {
@@ -473,7 +483,8 @@ createWidget.fader = function(widgetData,parent){
     for (i in scale) {
         var pip = $('<div class="pip"></div>')
         if (range[i]!=undefined) {
-            pip.addClass('val').append('<span>'+range[i]+'</span>')
+            var piptext = Math.abs(range[i])>1000?range[i]/1000+'k':range[i]
+            pip.addClass('val').append('<span>'+piptext+'</span>')
         }
         pips.append(pip)
     }
@@ -571,8 +582,11 @@ createWidget.knob = function(widgetData,parent) {
         unit = widgetData.unit?' '+widgetData.unit.trim(): '';
 
 
-    widget.find('.pip.min').text(range.min)
-    widget.find('.pip.max').text(range.max)
+    var pipmin = Math.abs(range.min)>1000?range.min/1000+'k':range.min,
+        pipmax = Math.abs(range.max)>1000?range.max/1000+'k':range.max;
+
+    widget.find('.pip.min').text(pipmin)
+    widget.find('.pip.max').text(pipmax)
 
     knob.css('transform','rotate(45deg)').drag('init',function(){
         offR = knob.getRotation()
