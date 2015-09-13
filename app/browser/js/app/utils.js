@@ -1,4 +1,9 @@
-
+sendOsc = function(data){
+    // Unpack args for osc sending function
+    if (data[0]) {
+        ipc.send('sendOsc', {target:data[0],path:data[1],args:data[2]});
+    }
+}
 
 saveState = function () {
     var data = getState()
@@ -33,27 +38,6 @@ setState = function(preset){
     })
 }
 
-
-// // inspector
-// findNode = function(searchID, obj) {
-//     var result=false;
-//     for (i in obj) {
-//
-//         if
-//
-//
-//
-//
-//         // if (id==searchID) {
-//         //     result = searchObject[id]
-//         //     return false
-//         // } else if (typeof  searchObject[id] === 'object'){
-//         //     result = findNode(searchID, searchObject[id])
-//         // }
-//         // if (result !== false) {return false}
-//     }
-//     return result
-// }
 
 icon = function(i) {
     return '<i class="fa fa-fw fa-'+i+'"></i>'
@@ -192,7 +176,4 @@ configPanel = function(){
         popup.close();
 
     })
-
-
-
 }

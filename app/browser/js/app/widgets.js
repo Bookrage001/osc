@@ -1,10 +1,4 @@
 
-sendOsc = function(data){
-    // Unpack args for osc sending function
-    if (data[0]) {
-        ipc.send('sendOsc', {target:data[0],path:data[1],args:data[2]});
-    }
-}
 
 createWidget= {}
 
@@ -25,6 +19,7 @@ createWidget.strip = function(widgetData) {
             <div class="strip">\
             </div>\
     ');
+    if (widgetData.mode=='horizontal') widget.addClass('horizontal')
     parsewidgets(widgetData.widgets,widget)
     widget.getValue = function(){return}
     widget.setValue = function(){return}
@@ -418,7 +413,7 @@ createWidget.rgb = function(widgetData) {
 
 
 
-createWidget.fader = function(widgetData,parent){
+createWidget.fader = function(widgetData,container){
     var widget = $('\
         <div class="fader-wrapper-outer">\
             <div class="fader-wrapper">\
@@ -435,7 +430,9 @@ createWidget.fader = function(widgetData,parent){
         pips = widget.find('.pips'),
         input = widget.find('input'),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
-        dimension = parent.hasClass('stack')?'width':'height';
+        dimension = widgetData.mode=='horizontal'?'width':'height';
+
+        if (widgetData.mode=='horizontal') container.addClass('horizontal')
 
         handle.size = function() {
             return (dimension=='height')?handle.height():handle.width()
@@ -563,7 +560,7 @@ $.fn.getRotation = function () {
 };
 
 
-createWidget.knob = function(widgetData,parent) {
+createWidget.knob = function(widgetData) {
     var widget = $('\
         <div class="knob-wrapper-outer">\
             <div class="knob-wrapper">\

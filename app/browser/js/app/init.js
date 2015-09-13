@@ -53,15 +53,29 @@ init = function(callback) {
     $('.tablist li:first-child a').click();
 
 
+    // reset zoom
+    $(document).on('keydown.resetzoom', function(e){
+        if (e.keyCode==96) $('html').css('font-size',1)
+    })
 
 
-    // horizontal scrolling with mousewheel
+
+    // horizontal scrolling & zoom with mousewheel
     // if shift is pressed (native), or if there is no vertical scrollbar,
     //                               or if mouse is on h-scrollbar
     $('.tab').on('mousewheel',function(e) {
         // console.log(e)
-        var h = $('#container').innerHeight()-10-$(this).parents('.tab').length*5;
-        if ($(this).get(0).scrollHeight+10 == $(this).height()) {
+        if (e.ctrlKey) {
+            e.preventDefault()
+            var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
+                s = d+parseFloat($('html').css('font-size'))
+            $('html').css('font-size',s)
+        }
+
+
+        var scrollbar = Math.round(10*parseFloat($('html').css('font-size')))
+        var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5;
+        if ($(this).get(0).scrollHeight+scrollbar == $(this).height()) {
             $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
             e.preventDefault();
         } else if (e.pageY>=h) {

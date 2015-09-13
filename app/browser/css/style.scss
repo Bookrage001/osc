@@ -21,7 +21,7 @@ $color-fg:#282c34;
 $color-bg:mix($color-fg,$color-base,85);
 $color-accent:#528bff;
 $color-border:mix($color-fg,$color-base,65);
-$nav-height:50px;
+$nav-height:50rem;
 
 $bg-button-flat:rgba(white,.05);
 $bg-button-fade:linear-gradient(mix($color-text,$color-fg,5), mix($color-text,$color-fg,1));
@@ -31,7 +31,7 @@ $bg-button-hover:linear-gradient(mix($color-text,$color-fg,10), mix($color-text,
 $bg-button-on:linear-gradient(mix($color-text,$color-bg,0), mix($color-text,$color-bg,5));
 
 
-$sidepanel-size:300px;
+$sidepanel-size:300rem;
 
 
 @mixin layer {
@@ -60,10 +60,10 @@ a {
     display: block;
 }
 
-$scrollbar-margin:2px;
+$scrollbar-margin:2rem;
 ::-webkit-scrollbar {
-    width: 10px;
-    height:10px;opacity:1;
+    width: 10rem;
+    height:10rem;opacity:1;
 
 }
 
@@ -121,9 +121,14 @@ html, body {
     position:relative;
 
 }
+
+html{
+    font-size: 1px;
+}
+
 body {
-    font-size:14px;
-    line-height:16px;
+    font-size:14rem;
+    line-height:16rem;
     font-family:sans;
     color:$color-text;
     white-space:nowrap;
@@ -137,7 +142,7 @@ body {
     background: $bg-button;
     display: block;
     border:1px solid $color-border;
-    padding:15px;
+    padding:15rem;
 }
 a.btn {
     &:hover {
@@ -154,32 +159,32 @@ a.btn {
     align-items: center;
     justify-content: center;
     overflow-y: auto;
-    padding:20px;
+    padding:20rem;
     .main {
-        width:600px;
+        width:600rem;
         max-height:100%;
 
     }
     .header {
         background: $bg-button;
-        padding:20px;
+        padding:20rem;
         font-weight:bold;
         box-shadow: 0 0 0 1px $color-border inset;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
     a {
-        padding-right:35px;
+        padding-right:35rem;
         overflow: hidden;
-        margin-top:10px;
+        margin-top:10rem;
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
         span {
             position: absolute;
-            right:0px;
-            top:0px;
-            padding:15px;
+            right:0rem;
+            top:0rem;
+            padding:15rem;
             color:$color-text-fade;
             &:hover {
                 color:$color-text
@@ -203,13 +208,13 @@ a.btn {
     }
     #open-toggle {
         position:absolute;
-        top:7px;
+        top:7rem;
         right:0;
-        width:60px;
-        height:$nav-height - 10px;
-        padding:0 10px;
-        line-height: $nav-height - 10px;
-        font-size: 21px;
+        width:60rem;
+        height:$nav-height - 10rem;
+        padding:0 10rem;
+        line-height: $nav-height - 10rem;
+        font-size: 21rem;
         text-align: center;
         color:$color-text-fade;
         &.sidepanel-open {
@@ -228,7 +233,7 @@ a.btn {
     margin-right:-$sidepanel-size;
     background:$color-fg;
     border-left:1px solid $color-border;
-    //box-shadow: 0 0 10px 0 $color-border;
+    //box-shadow: 0 0 10rem 0 $color-border;
     transition:right .3s;
     overflow-y: auto;
     overflow-x: visible;
@@ -239,30 +244,30 @@ a.btn {
 
     #options {
         position:absolute;
-        left:0;top:2px;
+        left:0;top:2rem;
         right:0;bottom:0;
-        padding:5px;
+        padding:5rem;
         list-style:none;
         background:$color-fg;
 
         li {
             display:block;
-            margin-bottom:5px;
+            margin-bottom:5rem;
             background:$bg-button;
         }
 
         .inspector {
-            padding: 10px;
+            padding: 10rem;
             .result {
                 background: $color-border;
-                border-radius: 3px;
-                margin-top: 10px;
-                padding:10px;
+                border-radius: 3rem;
+                margin-top: 10rem;
+                padding:10rem;
                 color:$color-text-fade;
                 white-space: pre;
                 word-wrap: break-word;
                 width:100%;
-                max-height: 300px;
+                max-height: 300rem;
                 overflow-y: auto;
                 &::-webkit-scrollbar-track-piece, &::-webkit-scrollbar-thumb {
                     border-color:$color-border!important
@@ -281,7 +286,7 @@ a.btn {
 
 
 .nicescroll-rails-hr {
-    margin-top:3px;
+    margin-top:3rem;
 }
 .nicescroll-rails-vr {
     display:none!important;
@@ -298,42 +303,42 @@ a {
     left:0;
     right:0;
     z-index:20;
-    padding:7px 0px 0;
-    font-size:14px;
+    padding:7rem 0rem 0;
+    font-size:14rem;
     box-shadow:0;
     ::first-letter {
         text-transform: uppercase;
     }
     &.sub {
-        padding-top:7px;
+        padding-top:7rem;
         ul {
             //padding:0;
         }
         li {
-            border-image: linear-gradient($color-fg, $color-border 20px) 0 0 0 1 stretch;
+            border-image: linear-gradient($color-fg, $color-border 20rem) 0 0 0 1 stretch;
         }
         a {
-            line-height: ($nav-height - 22px);
+            line-height: ($nav-height - 22rem);
         }
     }
 
 
 
     &.main {
-        right:55px;
+        right:55rem;
     }
     ul {
         list-style:none;
         display: flex;
-        padding:0 5px;
+        padding:0 5rem;
         li.on + li {border-image:none;border-left:1px solid transparent;}
         li {
             display:block;
-            max-width:250px;
+            max-width:250rem;
             flex: 1;
 
             border-width:0 0 0 1px;
-            border-image: linear-gradient($color-bg, $color-border 20px) 0 0 0 1 stretch;
+            border-image: linear-gradient($color-bg, $color-border 20rem) 0 0 0 1 stretch;
             &:first-child, &.on {
                 border-image:none;
                 border-left:1px solid transparent;
@@ -344,9 +349,9 @@ a {
 
             a {
                 display:block;
-                padding: 5px 10px;
-                line-height: ($nav-height - 22px);
-                border-radius:3px 3px 0 0;
+                padding: 5rem 10rem;
+                line-height: ($nav-height - 22rem);
+                border-radius:3rem 3rem 0 0;
                 overflow:hidden;
                 text-align:center;
                 border:1px solid transparent;
@@ -354,7 +359,7 @@ a {
                 span {
                     display:block;
                     width:100%;
-                    -webkit-mask: linear-gradient(to left, rgba(0, 0, 0, 0), #000000 10px) no-repeat;
+                    -webkit-mask: linear-gradient(to left, rgba(0, 0, 0, 0), #000000 10rem) no-repeat;
                 }
                 color:$color-text-fade;
                 &.on {
@@ -379,7 +384,7 @@ a {
                         top:0;
                         left:0;
                         right:0;
-                        height:4px;
+                        height:4rem;
                         // background:linear-gradient(rgba($color-accent,0.5),rgba($color-accent,0))
                     }
                 }
@@ -395,7 +400,7 @@ a {
 .content {
     position:absolute;
     left:0;
-    top:$nav-height - 4px;
+    top:$nav-height - 4rem;
     right:0;
     bottom:0;
     border-top:1px solid $color-border;
@@ -409,7 +414,7 @@ a {
     }
     .content {
         border-top:1px solid $color-border;
-        top:$nav-height - 4px;
+        top:$nav-height - 4rem;
 
     }
 }
@@ -417,8 +422,8 @@ a {
 
 .tab {
     display:block;
-    height:0px;
-    width: 0px;
+    height:0rem;
+    width: 0rem;
     overflow: hidden;
     position: relative;
     &.on {
@@ -432,20 +437,20 @@ a {
     position: absolute;
     top:50%;
     left:50%;
-    margin-top:-15px;
+    margin-top:-15rem;
     text-align: center;
     .spinner {
         display: block;
         margin: 0 auto;
-        height:30px;
-        width:30px;
+        height:30rem;
+        width:30rem;
         border-radius: 50%;
-        border:2px solid rgba(0,0,0,.2);
+        border:2rem solid rgba(0,0,0,.2);
         border-top-color:$color-accent;
         animation: spin .5s linear infinite;
     }
     #status {
-        margin-top: 10px;
+        margin-top: 10rem;
         display: inline-block;
 
     }
@@ -473,13 +478,13 @@ a {
     z-index:1000000;
     .popup-title {
         position: relative;
-        padding:15px;
+        padding:15rem;
         background:$bg-button;
         .closer {
             position:absolute;
-            right:0px;
+            right:0rem;
             top:0;
-            padding:15px;
+            padding:15rem;
             color:$color-text-fade;
             cursor: pointer;
             &:hover {
@@ -491,7 +496,7 @@ a {
         background:$color-fg;
         height:100%;
         width:100%;
-        max-width:600px;
+        max-width:600rem;
         margin:0 auto;
         position: relative;
         overflow: hidden;
@@ -499,7 +504,7 @@ a {
         .popup-content {
             height:100%;
             width:100%;
-            padding:10px;
+            padding:10rem;
             overflow-y:scroll;
             white-space: normal;
         }
@@ -509,22 +514,22 @@ a {
 form {
     label {
         display: block;
-        padding-top:10px;
-        margin-bottom:10px;
+        padding-top:10rem;
+        margin-bottom:10rem;
     }
     .info {
         color:$color-text-fade;
-        margin-bottom:10px;
+        margin-bottom:10rem;
     }
     input {
         display:block;
-        margin-bottom:10px;
+        margin-bottom:10rem;
         background:$color-bg;
         font:inherit;
         color:$color-text;
         border:1px solid $color-border;
         width:100%;
-        padding:10px;
+        padding:10rem;
         &.invalid {
             box-shadow: 0 0 0 1px rgba(red,.3)!important;
         }
@@ -533,7 +538,7 @@ form {
         }
     }
     .submit {
-        margin-top:30px;
+        margin-top:30rem;
     }
 }
 
@@ -555,30 +560,31 @@ form {
 .widget {
     display:inline-block;
     height:auto;
-    overflow: visible;
+    // overflow: visible;
+    overflow: hidden;
     position:relative;
-    font-size:13px;
-    padding-top:35px;
+    font-size:13rem;
+    padding-top:35rem;
     vertical-align:top;
-    border: 6px solid $color-fg;
-     border-width:6px 3px;
+    border: 6rem solid $color-fg;
+     border-width:6rem 3rem;
      &:first-child {
-         border-left-width:6px;
+         border-left-width:6rem;
      }
      &:last-child {
-         border-right-width:6px;
+         border-right-width:6rem;
      }
 
     .label {
         z-index: 1;
-        padding:10px 10px;
+        padding:10rem 10rem;
         position:absolute;
-        top:0px;
+        top:0rem;
         left:0;
         right:0;
         text-overflow:ellipsis;
         overflow:hidden;
-        height:35px;
+        height:35rem;
         background:$bg-button-flat;
         // box-shadow: 0 0 0 1px $color-bg inset;
         &.accent {
@@ -587,12 +593,12 @@ form {
     }
     input {
         width:100%;
-        height:35px;
+        height:35rem;
         border:0;
         background:$color-bg;
         color:inherit;
         display:block;
-        padding:10px;
+        padding:10rem;
         &:focus {
             box-shadow:0 0 0 1px $color-accent inset!important;
         }
@@ -610,25 +616,26 @@ form {
 
 .strip-container {
     height:100%;
+    overflow: visible;
 
     &.no-stretch {
         height:auto;
         min-height:100%;
-        .widget {
+        .strip .widget {
             height: auto;
         }
     }
-    &.horizontal .strip {
-        flex-direction: row;
-    }
 
     .strip {
+        &.horizontal {
+            flex-direction: row;
+        }
         height: 100%;
+
         display: flex;
         flex-direction: column;
 
-        .widget {
-
+        > .widget {
             display: block;
             border-left:0;
             border-right:0;
@@ -647,13 +654,13 @@ form {
 /* BUTTONS */
 
 .toggle-container {
-    width:100px;
+    width:100rem;
     flex-shrink: 0
 }
 
 .toggle {
 
-    padding:10px 1px 0;
+    padding:10rem 1px 0;
     cursor: pointer;
     div {
         border:1px solid $color-border;
@@ -690,13 +697,13 @@ form {
         div:after {
             content:"";
             position: absolute;
-            top:10px;
-            left:10px;
-            right:10px;
-            bottom:10px;
+            top:10rem;
+            left:10rem;
+            right:10rem;
+            bottom:10rem;
             background:$color-accent;
             z-index:0;
-            border-radius: 3px;
+            border-radius: 3rem;
             opacity: .6;
         }
     }
@@ -705,12 +712,13 @@ form {
 
 
 .switch-container {
-    height: 100%;
-    width:100px;
+    // height: 100%;
+    width:100rem;
+    flex-shrink: 0;
     .switch {
         height:100%;
         width:100%;
-        padding:10px 1px 0;
+        padding:10rem 1px 0;
         cursor: pointer;
         display: flex;
         flex-direction:column;
@@ -721,13 +729,12 @@ form {
             display: flex;
             align-items: center;
             justify-content: center;
-            height:100%;
             width:100%;
-            margin-bottom:2px;
+            margin-bottom:2rem;
             position: relative;
             box-shadow: 0 0 0 1px $color-bg inset;
             span {
-                padding:10px;
+                padding:10rem;
                 white-space: normal;
                 word-break: break-all;
                 overflow: hidden;
@@ -744,13 +751,13 @@ form {
                 &:after {
                     content:"";
                     position: absolute;
-                    top:10px;
-                    left:10px;
-                    right:10px;
-                    bottom:10px;
+                    top:10rem;
+                    left:10rem;
+                    right:10rem;
+                    bottom:10rem;
                     background:$color-accent;
                     z-index:0;
-                    border-radius: 3px;
+                    border-radius: 3rem;
                     opacity: .6;
                 }
             }
@@ -764,23 +771,24 @@ form {
 /* XY */
 
 .xy-container, .rgb-container {
-    width:300px;
+    width:300rem;
+    flex-shrink: 0;
 }
 .xy-wrapper {
 
-    padding: 10px 0px 5px;
+    padding: 10rem 0rem 5rem;
     overflow: hidden;
     .value {
-        margin-top:10px;
+        margin-top:10rem;
         width:100%;
     }
     input {
         width:50%;
         float:left;
-        padding-left: 20px;
+        padding-left: 20rem;
         position: relative;
-        left:0px;
-        right:0px;
+        left:0rem;
+        right:0rem;
         box-shadow: 0 0 1px 0 $color-border inset;
     }
 }
@@ -793,8 +801,8 @@ form {
     overflow: hidden;
     .handle {
         position:absolute;
-        height:0px;
-        width:0px;
+        height:0rem;
+        width:0rem;
         bottom:0;
         left:0;
         max-height:100%;
@@ -810,25 +818,25 @@ form {
         &:after {
             content:"";
             position:absolute;
-            top:-.5px;
+            top:-.5rem;
             right:-1px;
-            //box-shadow:0 0 10px 0px #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.2)!important;
+            //box-shadow:0 0 10rem 0rem #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3rem rgba(255,255,255,.2)!important;
             border-radius:100%!important;
             //background:$color-accent!important;
-            width: 20px;
-            height: 20px;
-            margin:-10px -10px 0 0;
-            box-shadow: 0 0 0 1000px rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
+            width: 20rem;
+            height: 20rem;
+            margin:-10rem -10rem 0 0;
+            box-shadow: 0 0 0 1000rem rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
         }
 
         &::before {
             content:"";
             position:absolute;
-            top:-.5px;
+            top:-.5rem;
             left:-1px;
-            width:2000px;
-            height:2000px;
-            margin:-1000px 0 0 -1000px;
+            width:2000rem;
+            height:2000rem;
+            margin:-1000rem 0 0 -1000rem;
         }
     }
 }
@@ -865,9 +873,9 @@ form {
 }
 .hue {
     width:100%;
-    height:30px;
+    height:30rem;
     border:1px solid $color-border;
-    margin-top:10px;
+    margin-top:10rem;
     background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
     overflow: hidden;
     position: relative;
@@ -891,20 +899,20 @@ form {
             position:absolute;
             top:50%;
             right:-1px;
-            box-shadow: 0 0 0 1000px rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
+            box-shadow: 0 0 0 1000rem rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
             border-radius:100%!important;
-            width: 11px;
-            height: 11px;
-            margin:-5px -4px 0 0;
+            width: 11rem;
+            height: 11rem;
+            margin:-5rem -4rem 0 0;
         }
         &:before {
             content:"";
             position:absolute;
             top:0;
             left:0;
-            width:2000px;
+            width:2000rem;
             height:100%;
-            margin-left:-1000px;
+            margin-left:-1000rem;
 
         }
     }
@@ -919,15 +927,15 @@ form {
 // FADER
 
 .fader-container {
-    width:100px;
+    width:100rem;
     height:100%;
-    min-height: 300px;
+    min-height: 300rem;
 
     .fader-wrapper-outer {
-        padding-bottom:30px;
+        padding-bottom:30rem;
         width:100%;
         position: absolute;
-        top:35px;
+        top:35rem;
         bottom:0;
         input {
             position:absolute;
@@ -937,14 +945,14 @@ form {
     }
 
     .fader-wrapper {
-        padding:20px;
+        padding:20rem;
         overflow:hidden;
         height:100%;
         position: relative;
 
         .fader {
             height:100%;
-            width:4px;
+            width:4rem;
             background:rgba($color-base,.4);
             position: relative;
             .handle {
@@ -952,7 +960,7 @@ form {
                 bottom:0!important;
                 top:auto!important;
                 width:100%;
-                height:0px;
+                height:0rem;
                 max-height:100%;
                 max-width:100%;
                 cursor: -webkit-grab;
@@ -964,9 +972,9 @@ form {
                 &:after {
                     content:"";
                     position: absolute;
-                    height:2000px;
-                    width:2000px;
-                    margin:-1000px 0 0 -1000px;
+                    height:2000rem;
+                    width:2000rem;
+                    margin:-1000rem 0 0 -1000rem;
 
                 }
             }
@@ -976,23 +984,23 @@ form {
             position: absolute;
             top:-1%;
             bottom:1%;
-            left:14px;
+            left:14rem;
             .pip {
                 height:1%;
-                width:4px;
+                width:4rem;
                 border-bottom:1px solid $color-text;
                 &.val {
-                    width:10px;
+                    width:10rem;
                     position: relative;
                     span {
                         position: relative;
-                        width:30px;
+                        width:30rem;
                         display: block;
                         text-align: center;
-                        font-size:11px;
-                        line-height: 12px;
-                        left:15px;
-                        top:-2px;
+                        font-size:11rem;
+                        line-height: 12rem;
+                        left:15rem;
+                        top:-2rem;
                         color:$color-text;
                     }
                 }
@@ -1003,66 +1011,60 @@ form {
 
 
 // Horizontal fader -> TODO
-// .stack .fader-container {
-//     min-height: 80px;
-//     .fader-wrapper-outer {
-//         padding-bottom: 0;
-//         input {
-//             width:30%;
-//             height:35px;
-//             left:0;
-//             right:auto;
-//             border-top:0;
-//             top:35px;
-//         }
-//         .fader {
-//             width:100%;
-//             height:4px;
-//             .handle {
-//                 height:100%!important;
-//                 width:0;
-//             }
-//         }
-//         .fader-wrapper {
-//             padding:20px 20px;
-//             float:right;
-//             width:70%;
-//             height:70px;
-//         }
-//         .pips {
-//             top:14px;left:0;
-//             right:0;
-//             display: flex;
-//             flex-direction:row;
-//             align-items: stretch;
-//         }
-//         .pip {
-//             width:100%;
-//             display: block;
-//             height:4px;
-//             border-bottom:0;
-//             border-right:1px solid $color-text-fade;
-//             &.val {
-//                 width:1%;
-//                 float:left;
-//                 height:10px;
-//                 span {
-//                     top:15px;
-//                     left:-15px;
-//                 }
-//             }
-//         }
-//     }
-// }
+.fader-container.horizontal {
+    min-height: 80rem;
+    height: auto;
+    width:300rem;
+    flex-shrink: 0;
+    .fader-wrapper-outer {
+        position: relative;
+        top:auto;
+        padding-bottom: 35rem;
+        .fader-wrapper {
+            padding:20rem 20rem 50rem;
+        }
+        .fader {
+            width:100%;
+            height:4rem;
+            .handle {
+                height:100%!important;
+                width:0;
+            }
+        }
+        .pips {
+            top:14rem;left:0;
+            right:0;
+            display: flex;
+            flex-direction:row;
+            align-items: stretch;
+        }
+        .pip {
+            width:100%;
+            display: block;
+            height:4rem;
+            border-bottom:0;
+            border-right:1px solid $color-text-fade;
+            &.val {
+                width:1%;
+                float:left;
+                height:10rem;
+                span {
+                    top:15rem;
+                    left:-15rem;
+                }
+            }
+        }
+    }
+}
 
 
 
 
 .knob-container {
-    width: 100px;
+    width: 100rem;
     flex-shrink: 0;
     .knob-wrapper-outer {
-        // padding-bottom: 35px;
+        // padding-bottom: 35rem;
         width: 100%;
         // position: absolute;
         top: 0;
@@ -1074,10 +1076,10 @@ form {
         }
 
         .knob-wrapper {
-            padding:20px 20px 20px 20px ;
+            padding:20rem 20rem 20rem 20rem ;
             overflow:hidden;
             //height:100%;
-            width:95px;
+            width:95rem;
             position: relative;
             .knob-mask {
                 width:100%;
@@ -1091,18 +1093,18 @@ form {
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4px solid $color-border;
+                    border:4rem solid $color-border;
                     border-bottom-color: transparent;
                     pointer-events: none;z-index:0;
                 }
                 &:after {
                     content:"";
                     position:absolute;
-                    top:0px;left:-3px;
-                    right:-3px;
-                    bottom:-2px;
+                    top:0rem;left:-3rem;
+                    right:-3rem;
+                    bottom:-2rem;
                     border-radius:100%;
-                    border:12px solid transparent;
+                    border:12rem solid transparent;
                     border-bottom-color: $color-fg;
                     pointer-events: none;
                 }
@@ -1119,9 +1121,9 @@ form {
                 &:before {
                     content:"";
                     position:absolute;
-                    top:15px;left:15px;
-                    right:15px;
-                    bottom:15px;
+                    top:15rem;left:15rem;
+                    right:15rem;
+                    bottom:15rem;
                     border-radius:100%;
                     background:$bg-button-flat;
                     z-index: 100;
@@ -1134,7 +1136,7 @@ form {
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4px solid transparent;
+                    border:4rem solid transparent;
                     border-bottom-color: $color-accent;
                 }
 
@@ -1150,10 +1152,10 @@ form {
                 &.dot:after {
                     content:"";
                     position:absolute;
-                    bottom:11px;
-                    left:12px;
-                    height:4px;
-                    width:4px;
+                    bottom:11rem;
+                    left:12rem;
+                    height:4rem;
+                    width:4rem;
                     transform: rotate(45deg);
                     background:$color-accent;
                     border:0!important;
@@ -1162,17 +1164,17 @@ form {
             }
             .pip {
                 position:absolute;
-                font-size:11px;
+                font-size:11rem;
                 color:$color-text;
                 &.min {
-                    bottom:10px;
+                    bottom:10rem;
                     left:0;
                     right:50%;
                     width:50%;
                     text-align:center;
                 }
                 &.max {
-                    bottom:10px;
+                    bottom:10rem;
                     left:50%;
                     width:50%;
                     right:0;

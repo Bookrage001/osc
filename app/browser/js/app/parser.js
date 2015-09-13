@@ -57,19 +57,19 @@ parsewidgets = function(widgets,parent) {
             color = 'style="color:'+widgetData.color+'"'
         }
 
-        var widget = $('\
+        var widgetContainer = $('\
             <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'">\
                 <div class="label '+accentclass+'" '+color+'>'+label+'</div>\
             </div>\
         ');
 
         // create widget
-        var widgetInner = createWidget[type](widgetData,parent)
+        var widgetInner = createWidget[type](widgetData,widgetContainer)
         widgetInner.type =  type
-        widget.find('.label').data('papers',widgetData)
+        widgetContainer.find('.label').data('papers',widgetData)
 
         // store widget reference for cross widget sync
-        widget.append(widgetInner)
+        widgetContainer.append(widgetInner)
         if (__widgets__[id]==undefined) {
             __widgets__[id] = []
         }
@@ -78,6 +78,6 @@ parsewidgets = function(widgets,parent) {
         // store path vs widget id for faster cross-app sync
         __widgetsIds__[widgetData.path ] = id
 
-        parent.append(widget);
+        parent.append(widgetContainer);
     }
 }
