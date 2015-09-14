@@ -23,6 +23,8 @@ parsetabs = function(tabs,parent,sub){
 
         var tabContent = $(document.createElement('div')).addClass('tab').attr('id',id);
 
+        if (tabData.mode=='stack') tabContent.addClass('stack')
+
         if (tabData.tabs) {
             parsetabs(tabData.tabs,parent=tabContent,sub=true);
         } else {

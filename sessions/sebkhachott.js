@@ -1727,6 +1727,7 @@ TABS =
             },
             {
                 id: "Gates",
+                mode:"stack",
                 widgets: [
                     {
                         id: "Gate_Kick",
@@ -3904,6 +3905,7 @@ TABS =
             },
             {
                 id: "Gates",
+                mode:"stack",
                 widgets: [
                     {
                         id: "Gate_Vx_Dag",

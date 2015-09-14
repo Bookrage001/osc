@@ -609,6 +609,18 @@ form {
     }
 }
 
+.tab.stack {
+    display: flex;
+    flex-direction: column;
+
+     .widget {
+         height:auto;
+         flex-shrink: 0;
+         > .label {
+             background:linear-gradient(90deg,$bg-button-flat,transparentize($bg-button-flat,1));
+         }
+    }
+}
 
 
 /* STRIP (contains any widgets) */
@@ -1203,13 +1215,15 @@ form {
     flex-shrink: 0;
 
     .led {
-        padding:10rem 1px 0;
+        padding:10rem 1px 5rem;
         div {
-            border-radius: 3px;
+            border-radius: 100%;
+            width: 60%;
+            margin: 0 auto;
             overflow: hidden;
             background:$color-border;
             span {
-                padding-bottom:50%;
+                padding-bottom:100%;
                 display:block;
                 background-color:$color-accent;
             }

@@ -13,7 +13,7 @@ TABS =
                 widgets:[
                     {
                         id: "a",
-                        type:"knob"
+                        type:"led"
                     }
                     ,
                     {
