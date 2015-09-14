@@ -55,7 +55,7 @@ init = function(callback) {
 
     // reset zoom
     $(document).on('keydown.resetzoom', function(e){
-        if (e.keyCode==96) $('html').css('font-size',1)
+        if (e.keyCode==96||e.keyCode==48) $('html').css('font-size',1)
     })
 
 
@@ -70,18 +70,20 @@ init = function(callback) {
             var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
                 s = d+parseFloat($('html').css('font-size'))
             $('html').css('font-size',s)
+        } else {
+            var scrollbar = 10
+            var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5;
+            if ($(this).get(0).scrollHeight+scrollbar == $(this).height()) {
+                $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
+                e.preventDefault();
+            } else if (e.pageY>=h) {
+                $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
+                e.preventDefault()
+            }
         }
 
 
-        var scrollbar = Math.round(10*parseFloat($('html').css('font-size')))
-        var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5;
-        if ($(this).get(0).scrollHeight+scrollbar == $(this).height()) {
-            $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
-            e.preventDefault();
-        } else if (e.pageY>=h) {
-            $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
-            e.preventDefault()
-        }
+
     });
 
     // sidepanel

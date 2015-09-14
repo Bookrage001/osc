@@ -6,49 +6,7 @@ TABS =
     {
         id:"lines",
         widgets: [
-            {
-                id:"strip",
-                type:"strip",
-                widgets:[
-                    {
-                        id: "a",
-                        type:"knob",
-                        range:{min:4000,max:2000}
-                    }
-                    ,
-                    {
-                        id: "a",
-                        type:"fader",
-                        range:{min:0,10:50,100:50000},
-                        target:'127.0.0.1:6666'
-                    }
-                    ,
-                    {
-                        id: "a",
-                        type:"toggle"
-                    }
-                ]
-            },
-            {
-                id:"strip",
-                type:"strip",
-                widgets:[
-                    {
-                        id: "a",
-                        type:"knob"
-                    }
-                    ,
-                    {
-                        id: "a",
-                        type:"fader"
-                    }
-                    ,
-                    {
-                        id: "a",
-                        type:"toggle"
-                    }
-                ]
-            },
+
             {
                 id:"strip",
                 type:"strip",
@@ -310,20 +268,7 @@ TABS =
                         target: "localhost:6666 127.0.0.1:125",
                         path: "/test2"
                     },
-                    {
-                        id: "xypad_test2a",
-                        label: "XY Pad",
-                        type: "xy",
-                        target: "localhost:6666",
-                        path: "/pad"
-                    },
-                    {
-                        id: "xGuitars",
-                        label: "Guitars",
-                        range: nmRange,
-                        target: "localhost:6666",
-                        path: "/strip/Guitars/Gain/Gain%20(dB)/unscaled"
-                    },
+
                     {
                         id: "button1",
                         type: "toggle",

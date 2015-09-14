@@ -60,10 +60,11 @@ a {
     display: block;
 }
 
-$scrollbar-margin:2rem;
+$scrollbar-margin:2px;
 ::-webkit-scrollbar {
-    width: 10rem;
-    height:10rem;opacity:1;
+    width: 10px;
+    height:10px;
+    opacity:1;
 
 }
 
@@ -83,10 +84,10 @@ $scrollbar-margin:2rem;
     background:$bg-button;
     opacity:1;
     &:vertical {
-        border:$scrollbar-margin solid  $color-fg;
+        border-left:$scrollbar-margin solid  $color-fg;
     }
     &:horizontal {
-        border:$scrollbar-margin solid  $color-fg;
+        border-top:$scrollbar-margin solid  $color-fg;
     }
 }
 
@@ -202,7 +203,7 @@ a.btn {
     background: $color-bg;
     @include layer();
     overflow:hidden;
-    transition:right .3s;
+    transition:right .2s;
     &.sidepanel-open {
         right:$sidepanel-size;
     }
@@ -234,7 +235,7 @@ a.btn {
     background:$color-fg;
     border-left:1px solid $color-border;
     //box-shadow: 0 0 10rem 0 $color-border;
-    transition:right .3s;
+    transition:right .2s;
     overflow-y: auto;
     overflow-x: visible;
 
@@ -617,6 +618,7 @@ form {
 .strip-container {
     height:100%;
     overflow: visible;
+    border-bottom:0;
 
     &.no-stretch {
         height:auto;
@@ -631,7 +633,7 @@ form {
             flex-direction: row;
         }
         height: 100%;
-
+        padding-top:10rem;
         display: flex;
         flex-direction: column;
 
@@ -639,10 +641,17 @@ form {
             display: block;
             border-left:0;
             border-right:0;
-            border-bottom:0;
+            &:not(:last-child) {
+                border-bottom:0;
+            }
             .label {
                 background:$bg-button-fade;
                 box-shadow:none
+            }
+        }
+        &:not(.horizontal) > .widget {
+            &:first-child {
+                border-top:0;
             }
         }
     }
@@ -663,7 +672,7 @@ form {
     padding:10rem 1px 0;
     cursor: pointer;
     div {
-        border:1px solid $color-border;
+        box-shadow: 0 0 0 1px $color-bg inset;
         &:hover {
             background: $bg-button-hover;
         }
@@ -733,6 +742,9 @@ form {
             margin-bottom:2rem;
             position: relative;
             box-shadow: 0 0 0 1px $color-bg inset;
+            &:hover {
+                background: $bg-button-hover;
+            }
             span {
                 padding:10rem;
                 white-space: normal;
@@ -1180,6 +1192,26 @@ form {
                     right:0;
                     text-align:center;
                 }
+            }
+        }
+    }
+}
+
+
+.led-container {
+    width:100rem;
+    flex-shrink: 0;
+
+    .led {
+        padding:10rem 1px 0;
+        div {
+            border-radius: 3px;
+            overflow: hidden;
+            background:$color-border;
+            span {
+                padding-bottom:50%;
+                display:block;
+                background-color:$color-accent;
             }
         }
     }

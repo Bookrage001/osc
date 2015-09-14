@@ -2,7 +2,6 @@
 - configuration panel
 
 */
-
 var app = require('app')
   , BrowserWindow = require('browser-window')
   , dialog = require('dialog')

@@ -30,7 +30,6 @@ parsetabs = function(tabs,parent,sub){
         }
 
         content.append(tabContent);
-        // console.log('OK parsing tab ' + title )
 
     }
 }

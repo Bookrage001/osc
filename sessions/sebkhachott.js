@@ -1732,6 +1732,7 @@ TABS =
                         id: "Gate_Kick",
                         label: "Kick",
                         type: "strip",
+                        mode:"horizontal",
                         widgets: [
                             {
                                 id: "Gate_LF_Kick",
@@ -1808,6 +1809,7 @@ TABS =
                         id: "Gate_Snare",
                         label: "Snare",
                         type: "strip",
+                        mode:"horizontal",
                         widgets: [
                             {
                                 id: "Gate_LF_Snare",
@@ -1884,6 +1886,7 @@ TABS =
                         id: "Gate_Tom1",
                         label: "Tom1",
                         type: "strip",
+                        mode:"horizontal",
                         widgets: [
                             {
                                 id: "Gate_LF_Tom1",
@@ -1960,6 +1963,7 @@ TABS =
                         id: "Gate_Tom2",
                         label: "Tom2",
                         type: "strip",
+                        mode:"horizontal",
                         widgets: [
                             {
                                 id: "Gate_LF_Tom2",
@@ -2036,6 +2040,7 @@ TABS =
                         id: "Gate_Tom3",
                         label: "Tom3",
                         type: "strip",
+                        mode:"horizontal",
                         widgets: [
                             {
                                 id: "Gate_LF_Tom3",
@@ -3904,6 +3909,7 @@ TABS =
                         id: "Gate_Vx_Dag",
                         label: "Vx_Dag",
                         type: "strip",
+                        mode:"horizontal",
                         widgets: [
                             {
                                 id: "Gate_LF_Vx_Dag",
@@ -3980,6 +3986,7 @@ TABS =
                         id: "Gate_Vx_ORL",
                         label: "Vx_ORL",
                         type: "strip",
+                        mode:"horizontal",
                         widgets: [
                             {
                                 id: "Gate_LF_Vx_ORL",
