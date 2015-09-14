@@ -23,7 +23,7 @@ $color-accent:#528bff;
 $color-border:mix($color-fg,$color-base,65);
 $nav-height:50rem;
 
-$bg-button-flat:rgba(white,.05);
+$bg-button-flat:mix(white,$color-fg,5);
 $bg-button-fade:linear-gradient(mix($color-text,$color-fg,5), mix($color-text,$color-fg,1));
 
 $bg-button:linear-gradient(mix($color-text,$color-fg,8), mix($color-text,$color-fg,5));
@@ -422,7 +422,7 @@ a {
 
 
 .tab {
-    display:block;
+    display:block;text-align: justify;
     height:0rem;
     width: 0rem;
     overflow: hidden;
@@ -676,59 +676,44 @@ form {
 
 .toggle-container {
     width:100rem;
-    flex-shrink: 0
+    flex-shrink: 0;
+    padding:0!important;
+    .label {
+        position: relative;
+        padding:29rem 10rem 26rem;
+        line-height: 1rem;
+        background: none!important;
+        text-align: center;
+
+    }
+    box-shadow: 0 0 0 1px $color-bg inset;
+    &:hover {
+        background: $bg-button-hover;
+    }
+    background:$bg-button;
+    // box-shadow: 0 0 0 1px $color-bg inset;
+    cursor: pointer;
 }
 
 .toggle {
-
-    padding:10rem 1px 0;
-    cursor: pointer;
-    div {
-        box-shadow: 0 0 0 1px $color-bg inset;
-        &:hover {
-            background: $bg-button-hover;
-        }
-
-        width:100%;
-        text-align: center;
-        padding-bottom: 50%;
-        position: relative;
-        p {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            z-index: 1;
-            position: absolute;
-            top:0;right:0;
-            bottom:0;left:0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            span {
-
-            }
-        }
-        background:$bg-button;
-        // box-shadow: 0 0 0 1px $color-bg inset;
-        color:$color-text-fade;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 1;
+    .light {
+        position: absolute;
+        left:4rem;
+        right:4rem;
+        top:4rem;
+        height:4rem;
+        background: $color-border;
+        border-radius: 3rem;
     }
-    &.on {
-        p {
-            color:$color-border;
-        }
-        div:after {
-            content:"";
-            position: absolute;
-            top:10rem;
-            left:10rem;
-            right:10rem;
-            bottom:10rem;
-            background:$color-accent;
-            z-index:0;
-            border-radius: 3rem;
-            opacity: .6;
-        }
+    &.on .light {
+        background: $color-accent;
     }
-
 }
 
 
@@ -1100,7 +1085,7 @@ form {
         }
 
         .knob-wrapper {
-            padding:20rem 20rem 20rem 20rem ;
+            padding:10rem 20rem 20rem 20rem ;
             overflow:hidden;
             //height:100%;
             width:95rem;
@@ -1170,6 +1155,19 @@ form {
                 &.d3:after {
                     border-top-color: $color-accent;
                     border-right-color: $color-accent;
+                }
+
+
+                span {
+                    position: absolute;
+                    border-top:6rem solid $bg-button-flat;
+                    border-left:5rem solid transparent;
+                    border-right:5rem solid transparent;
+                    margin:9rem 0 0 -9rem;
+                    left:50%;
+                    top:50%;
+                    transform-origin: center -6rem;
+                    transform: rotate(45deg);
                 }
 
                 // no color gauge test

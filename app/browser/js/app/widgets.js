@@ -41,9 +41,10 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
 
     var widget = $('\
         <div class="toggle">\
-            <div class="value"><p><span>'+widgetData.off+'</span></p></div>\
+            <div class="light"></div>\
         </div>\
-    ');
+        '),
+        led = widget.find('.light')
 
 
     widget.value = widget.find('span')
@@ -62,11 +63,11 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
             off= widgetData.off
         if (v==on) {
             widget.addClass('on')
-            widget.value.text(on)
+            if (widgetData.color) led.attr('style','background:'+widgetData.color)
             if (send) widget.sendValue(v)
         } else if (v==off) {
             widget.removeClass('on')
-            widget.value.text(off)
+            if (widgetData.color) led.attr('style','')
             if (send) widget.sendValue(v)
         }
 
@@ -416,7 +417,7 @@ createWidget.fader = function(widgetData,container){
     for (i in scale) {
         var pip = $('<div class="pip"></div>')
         if (range[i]!=undefined) {
-            var piptext = Math.abs(range[i])>1000?range[i]/1000+'k':range[i]
+            var piptext = Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]
             pip.addClass('val').append('<span>'+piptext+'</span>')
         }
         pips.append(pip)
@@ -487,7 +488,7 @@ createWidget.knob = function(widgetData) {
         <div class="knob-wrapper-outer">\
             <div class="knob-wrapper">\
                 <div class="knob-mask">\
-                    <div class="knob"></div>\
+                    <div class="knob"><span></span></div>\
                 </div>\
                 <div class="pip min"></div>\
                 <div class="pip max"></div>\
@@ -501,8 +502,8 @@ createWidget.knob = function(widgetData) {
         unit = widgetData.unit?' '+widgetData.unit.trim(): '';
 
 
-    var pipmin = Math.abs(range.min)>1000?range.min/1000+'k':range.min,
-        pipmax = Math.abs(range.max)>1000?range.max/1000+'k':range.max;
+    var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
+        pipmax = Math.abs(range.max)>=1000?range.max/1000+'k':range.max;
 
     widget.find('.pip.min').text(pipmin)
     widget.find('.pip.max').text(pipmax)

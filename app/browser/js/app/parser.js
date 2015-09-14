@@ -15,8 +15,9 @@ parsetabs = function(tabs,parent,sub){
     }
 
     for (i in tabs) {
-        var tabData = tabs[i],
-            id = parent?parent.attr('id')+tabData.id:tabData.id
+        var tabData = tabs[i];
+        tabData.id = tabData.id.replace(' ','_')
+        var    id = parent?parent.attr('id')+tabData.id:tabData.id
             label= tabData.label||tabData.id
 
         navtabs.append('<li><a data-tab="#'+id+'"><span>'+label+'</span></a></li>');
@@ -60,7 +61,7 @@ parsewidgets = function(widgets,parent) {
 
         var widgetContainer = $('\
             <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'">\
-                <div class="label '+accentclass+'" '+color+'>'+label+'</div>\
+                <div class="label">'+label+'</div>\
             </div>\
         ');
 
