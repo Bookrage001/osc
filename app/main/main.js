@@ -5,7 +5,6 @@
 var app = require('app')
   , BrowserWindow = require('browser-window')
   , dialog = require('dialog')
-  , express = require('express')()
   , osc = require('node-osc')
   , fs = require("fs")
   , ipc = require('ipc')
