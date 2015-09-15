@@ -371,12 +371,12 @@ createWidget.fader = function(widgetData,container){
 
         if (widgetData.mode=='horizontal') container.addClass('horizontal')
 
-        handle.size = function() {
-            return (dimension=='height')?handle.height():handle.width()
-        }
-        fader.size = function() {
-            return (dimension=='height')?fader.height():fader.width()
-        }
+        handle.size = 0
+        fader.size = dimension=='height'?fader.height():fader.width()
+
+        fader.resize(function(){
+            fader.size=dimension=='height'?fader.height():fader.width()
+        })
 
 
     var offX=0
@@ -387,9 +387,10 @@ createWidget.fader = function(widgetData,container){
     }
 
     handle.drag(function( ev, dd ){
-            var d = (dimension=='height')?fader.size()-dd.offsetY:dd.deltaX+offX
-            d = d*100/fader.size()
-            handle.css(dimension, d+'%')
+            var d = (dimension=='height')?fader.size-dd.offsetY:dd.deltaX+offX
+            d = d*100/fader.size
+            handle.attr('style',dimension+':'+d+'%')
+            handle.size = d
 
             var v = widget.getValue()
             widget.sendValue(v);
@@ -435,8 +436,7 @@ createWidget.fader = function(widgetData,container){
 
 
     widget.getValue = function(){
-        var v
-        var h = handle.size() * 100 / fader.size()
+        var h = handle.size
         for (var i=0;i<rangeKeys.length-1;i++) {
             if (h <= rangeKeys[i+1] && h >= rangeKeys[i]) {
                 return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]])
@@ -453,8 +453,8 @@ createWidget.fader = function(widgetData,container){
                 break
             }
         }
-        handle.css(dimension,h+'%')
-
+        handle.attr('style',dimension+':'+h+'%')
+        handle.size = h
 
         widget.showValue(v);
 
