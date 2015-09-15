@@ -251,15 +251,10 @@ mapToScale = function(value,rangeIn,rangeOut,reverse) {
 
 
 
-// get rotation plugin (@Ivo Renkema)
-
 $.fn.getRotation = function () {
-    var matrix = this.css("transform")
-    if(typeof matrix === 'string' && matrix !== 'none') {
-        var values = matrix.split('(')[1].split(')')[0].split(',');
-        var a = values[0];
-        var b = values[1];
-        var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+    var style = this.attr("style")
+    if(typeof style === 'string' && style !== 'none') {
+        var angle =  parseInt(style.split('(')[1].split(')')[0])
     } else { var angle = 0; }
     if (angle<0) angle = 360+angle
     return angle;

@@ -398,7 +398,7 @@ createWidget.fader = function(widgetData,container){
 
             widget.trigger('sync')
 
-        },{ relative:true });
+    },{ relative:true });
 
     widgetData.range = widgetData.range || {'min':0,'max':1}
 
@@ -436,7 +436,7 @@ createWidget.fader = function(widgetData,container){
 
 
     widget.getValue = function(){
-        var h = handle.size
+        var h = clip(handle.size,[0,100])
         for (var i=0;i<rangeKeys.length-1;i++) {
             if (h <= rangeKeys[i+1] && h >= rangeKeys[i]) {
                 return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]])
@@ -508,13 +508,18 @@ createWidget.knob = function(widgetData) {
     widget.find('.pip.min').text(pipmin)
     widget.find('.pip.max').text(pipmax)
 
-    knob.css('transform','rotate(45deg)').drag('init',function(){
+
+    knob.rotation = 0
+
+    var offR = 0
+    knob.attr('style','transform:rotate(45deg)').drag('init',function(){
         offR = knob.getRotation()
     })
 
     knob.drag(function( ev, dd ){
         var r = clip(-dd.deltaY*2+offR,[0,270])
-        knob.css('transform', 'rotateZ('+r+'deg)')
+        knob.attr('style','transform:rotateZ('+r+'deg)')
+        knob.rotation = r
 
         if (r>180) {
             knob.addClass('d3')
@@ -524,7 +529,7 @@ createWidget.knob = function(widgetData) {
             knob.removeClass('d3 d2')
         }
 
-        var v = widget.getValue()
+        var v = mapToScale(r,[0,270],[range.min,range.max])
 
         widget.sendValue(v);
         widget.trigger('sync')
@@ -534,7 +539,7 @@ createWidget.knob = function(widgetData) {
 
 
     widget.getValue = function() {
-        return mapToScale(knob.getRotation(),[0,270],[range.min,range.max])
+        return mapToScale(knob.rotation,[0,270],[range.min,range.max])
     }
     widget.showValue = function(v) {
         input.val(v+unit)
@@ -546,6 +551,7 @@ createWidget.knob = function(widgetData) {
     }
     widget.setValue = function(v,send,sync) {
         var r = mapToScale(v,[range.min,range.max],[0,270])
+        knob.rotation = r
 
         if (r>180) {
             knob.addClass('d3')
@@ -556,7 +562,7 @@ createWidget.knob = function(widgetData) {
         }
 
 
-        knob.css('transform', 'rotateZ('+r+'deg)')
+        knob.attr('style','transform:rotateZ('+r+'deg)')
         var v = widget.getValue() || v
 
         widget.showValue(v);
