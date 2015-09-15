@@ -422,12 +422,9 @@ a {
 
 
 .tab {
-    display:block;text-align: justify;
-    height:0rem;
-    width: 0rem;
-    overflow: hidden;
-    position: relative;
+    display:none;
     &.on {
+        display: block;
         height:100%;
         width:auto;
     }
