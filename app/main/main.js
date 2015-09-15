@@ -6,12 +6,13 @@ var app = require('app')
   , BrowserWindow = require('browser-window')
   , dialog = require('dialog')
   , express = require('express')()
-  , osc = require("osc-electron")
+  , osc = require('node-osc')
   , fs = require("fs")
   , ipc = require('ipc')
   , configPath = __dirname + '/config.json'
   , config = require(configPath)
   , args = process.argv.slice(0);
+
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
@@ -71,16 +72,6 @@ restartApp = function(){
 
 
 
-// static files serving
-express.get('/', function (req, res) {
-  res.sendFile(__dirname + '/../browser/index.html');
-});
-
-express.get('/*', function (req, res) {
-  res.sendFile(__dirname + '/../browser/' + req.path);
-});
-
-
 var window = null;
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -96,7 +87,7 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
     // Create the browser window.
     window = new BrowserWindow({
-        width: 800,
+        width: 810,
         height: 600,
         'auto-hide-menu-bar':true
     });
@@ -148,24 +139,13 @@ app.on('ready', function() {
 
 
 
+var oscServer = new osc.Server(readConfig('oscInPort'), '127.0.0.1');
 
-// osc event listener
-var udpPort = new osc.UDPPort({
-    localAddress: "127.0.0.1",
-    localPort: readConfig('oscInPort')
-});
-
-
-// Forward OSC incomming messages to renderProcess via upd
-
-udpPort.open();
-
-udpPort.on("message", function (data) {
+oscServer.on("message", function (msg, rinfo) {
+    var data = {path:msg.shift(),args:msg}
+    if (data.args.length==1) data.args = data.args[0]
     renderProcess.send('receiveOsc',data);
-    // console.log('Received OSC : ',data)
 });
-
-
 
 
 // mainProcess & renderProcess async i/o
@@ -252,14 +232,22 @@ ipc.on('sendOsc', function (event,data) {
         var host = targets[i].split(':')[0],
             port = targets[i].split(':')[1];
 
-        try {
-            udpPort.send({
-                address: data.path,
-                args: data.args
-            }, host, port);
-        } catch(err) {
-            console.log(err)
+        if (port) {
+            var client = new osc.Client(host, port);
+            client.send(data.path, data.args, function () {
+              client.kill();
+            });
         }
+
+
+        // try {
+        //     udpPort.send({
+        //         address: data.path,
+        //         args: data.args
+        //     }, host, port);
+        // } catch(err) {
+        //     console.log(err)
+        // }
     }
 
 

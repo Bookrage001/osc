@@ -1,6 +1,6 @@
 {
-  "name": "pornosc",
-  "description": "OSC control GUI (node/electron)",
+  "name": "open-stage-control",
+  "description": "Osc control surface",
   "version": "0.0.1",
   "main": "index.js",
   "author": {
@@ -8,10 +8,8 @@
     "email": "jeannot@ammd.net"
   },
   "dependencies": {
-    "osc-electron": "1.3",
-    "express": "4.x",
-    "socket.io": "1.x"
-},
+    "node-osc": "1.1"
+  },
   "keywords": [
     "osc",
     "gui"

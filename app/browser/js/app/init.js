@@ -74,7 +74,8 @@ init = function(callback) {
             var scrollbar = 10
             var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5;
             if ($(this).get(0).scrollHeight+scrollbar == $(this).height()) {
-                $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
+                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
+                $(this).scrollLeft($(this).scrollLeft()+scroll);
                 e.preventDefault();
             } else if (e.pageY>=h) {
                 $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
