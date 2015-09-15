@@ -149,14 +149,26 @@ createWidget.xy = function(widgetData) {
     widgetData.range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
 
 
+    pad.width = pad.innerWidth()
+    pad.height = pad.innerHeight()
+    handle.height = 0
+    handle.width = 0
 
+    pad.resize(function(){
+        pad.width = pad.innerWidth()
+        pad.height = pad.innerHeight()
+    })
+
+    var offX = 0
     handle.drag('init',function(){
-        offX = handle.width()
+        offX = handle.width
     })
     handle.drag(function( ev, dd ){
-        var h = (pad.innerHeight()-dd.offsetY)*100/pad.innerHeight(),
-            w = (dd.deltaX+offX)*100/pad.innerWidth()
+        var h = clip((pad.height-dd.offsetY)*100/pad.height,[0,100]),
+            w = clip((dd.deltaX)*100/pad.width+offX,[0,100])
         handle.css({'height':h+'%','width':w+'%'})
+        handle.height = h
+        handle.width = w
 
         var v = widget.getValue()
         widget.sendValue(v);
@@ -169,8 +181,8 @@ createWidget.xy = function(widgetData) {
 
 
     widget.getValue = function() {
-        var x = mapToScale(handle.width(),[0,pad.innerWidth()],[widgetData.range.x.min,widgetData.range.x.max]),
-            y = mapToScale(handle.height(),[0,pad.innerHeight()],[widgetData.range.y.min,widgetData.range.y.max])
+        var x = mapToScale(handle.width,[0,100],[widgetData.range.x.min,widgetData.range.x.max]),
+            y = mapToScale(handle.height,[0,100],[widgetData.range.y.min,widgetData.range.y.max])
 
         return [x,y]
     }
@@ -180,6 +192,8 @@ createWidget.xy = function(widgetData) {
             h = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,100]),
 
         handle.css({'height':h+'%','width':w+'%'})
+        handle.height = h
+        handle.width = w
 
         widget.showValue(v)
         if (sync) widget.trigger('sync')
@@ -239,13 +253,29 @@ createWidget.rgb = function(widgetData) {
     widgetData.range = {r:{min:0,max:255},g:{min:0,max:255},b:{min:255}}
 
 
+
+    pad.width = pad.innerWidth()
+    pad.height = pad.innerHeight()
+    rgbHandle.height = 0
+    rgbHandle.width = 0
+    hueHandle.width = 0
+
+    pad.resize(function(){
+        pad.width = pad.innerWidth()
+        pad.height = pad.innerHeight()
+    })
+
+
+    var rgbOffX
     rgbHandle.drag('init',function(){
-        rgbOffX = rgbHandle.width()
+        rgbOffX = rgbHandle.width
     })
     rgbHandle.drag(function( ev, dd ){
-        var h = (pad.innerHeight()-dd.offsetY)*100/pad.innerHeight(),
-            w = (dd.deltaX+rgbOffX)*100/pad.innerWidth()
+        var h = clip((pad.height-dd.offsetY)*100/pad.height,[0,100]),
+            w = clip(dd.deltaX*100/pad.width+rgbOffX,[0,100])
         rgbHandle.css({'height':h+'%','width':w+'%'})
+        rgbHandle.height = h
+        rgbHandle.width = w
 
         var v = widget.getValue()
         widget.sendValue(v);
@@ -256,13 +286,14 @@ createWidget.rgb = function(widgetData) {
     },{ relative:true });
 
     hueHandle.drag('init',function(){
-        rgbOffX = hueHandle.width()
+        hueOffX = hueHandle.width
     })
     hueHandle.drag(function( ev, dd ){
-        var w = (dd.deltaX+rgbOffX)*100/pad.innerWidth()
+        var w = clip(dd.deltaX*100/pad.width+hueOffX,[0,100])
         hueHandle.css({'width':w+'%'})
+        hueHandle.width = w
 
-        var h = parseFloat(hueHandle.width())/pad.innerWidth()*360,
+        var h = clip(hueHandle.width*3.6,[0,360]),
             rgb = hsbToRgb({h:h,s:100,b:100}),
             v = widget.getValue();
 
@@ -279,9 +310,9 @@ createWidget.rgb = function(widgetData) {
 
 
     widget.getValue = function() {
-        var s = mapToScale(rgbHandle.width(),[0,pad.innerWidth()],[0,100]),
-            l = mapToScale(rgbHandle.height(),[0,pad.innerHeight()],[0,100]),
-            h = mapToScale(hueHandle.width(),[0,pad.innerWidth()],[0,360]),
+        var s = clip(rgbHandle.width,[0,100]),
+            l = clip(rgbHandle.height,[0,100]),
+            h = mapToScale(hueHandle.width,[0,100],[0,360]),
             rgb = hsbToRgb({h:h,s:s,b:l})
         return [rgb.r,rgb.g,rgb.b]
     }
@@ -296,12 +327,16 @@ createWidget.rgb = function(widgetData) {
 
         var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
-        var w = mapToScale(hsb.s,[0,100],[0,pad.innerWidth()]),
-            h = mapToScale(hsb.b,[0,100],[0,pad.innerHeight()]),
-            hueW = mapToScale(hsb.h,[0,360],[0,pad.innerWidth()])
+        var w = mapToScale(hsb.s,[0,100],[0,100]),
+            h = mapToScale(hsb.b,[0,100],[0,100]),
+            hueW = mapToScale(hsb.h,[0,360],[0,100])
 
-        rgbHandle.css({'height':h+'px','width':w+'px'})
-        hueHandle.css({'width':hueW+'px'})
+        rgbHandle.css({'height':h+'%','width':w+'%'})
+        hueHandle.css({'width':hueW+'%'})
+
+        rgbHandle.height = h
+        rgbHandle.width = w
+        hueHandle.width = hueW
 
 
         var rgb = hsbToRgb({h:hsb.h,s:100,b:100})
@@ -379,16 +414,16 @@ createWidget.fader = function(widgetData,container){
         })
 
 
-    var offX=0
+    var offX = 0
     if (dimension=='width') {
         handle.drag('init',function(){
-            offX = handle.size()
+            offX = handle.size
         })
     }
 
     handle.drag(function( ev, dd ){
-            var d = (dimension=='height')?fader.size-dd.offsetY:dd.deltaX+offX
-            d = d*100/fader.size
+            var d = (dimension=='height')?fader.size-dd.offsetY:dd.deltaX
+            d = clip(d*100/fader.size+offX,[0,100])
             handle.attr('style',dimension+':'+d+'%')
             handle.size = d
 

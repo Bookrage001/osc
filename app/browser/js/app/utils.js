@@ -211,7 +211,7 @@ rgbToHsb = function (rgb) {
         if (rgb.r == max) hsb.h = (rgb.g - rgb.b) / delta;
         else if (rgb.g == max) hsb.h = 2 + (rgb.b - rgb.r) / delta;
         else hsb.h = 4 + (rgb.r - rgb.g) / delta;
-    } else hsb.h = -1;
+    } else hsb.h = 0;
     hsb.h *= 60;
     if (hsb.h < 0) hsb.h += 360;
     hsb.s *= 100/255;

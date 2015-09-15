@@ -53,6 +53,7 @@ init = function(callback) {
     $('.tablist li:first-child a').click();
 
 
+
     // reset zoom
     $(document).on('keydown.resetzoom', function(e){
         if (e.keyCode==96||e.keyCode==48) $('html').css('font-size',1)
