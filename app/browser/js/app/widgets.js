@@ -297,7 +297,7 @@ createWidget.rgb = function(widgetData) {
             rgb = hsbToRgb({h:h,s:100,b:100}),
             v = widget.getValue();
 
-        pad.css('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
         widget.sendValue(v);
         widget.showValue(v);
 
