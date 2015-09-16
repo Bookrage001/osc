@@ -71,6 +71,8 @@ init = function(callback) {
             var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
                 s = d+parseFloat($('html').css('font-size'))
             $('html').css('font-size',s)
+            $('.tab.on .content').css('top',60+'rem')
+
         } else {
             var scrollbar = 10
             var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5;
