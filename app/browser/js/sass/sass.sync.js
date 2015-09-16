@@ -2,11 +2,74 @@
   providing libsass 3.2.5 (0e6b4a2)
   via emscripten 1.33.1 (ae2f801)
  */
-/*global Sass*/
+
+(function (root, factory) {
+  'use strict';
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.Sass = factory();
+  }
+}(this, function () {/*global document*/
+// identify the path sass.js is located at in case we're loaded by a simple
+// <script src="path/to/sass.js"></script>
+// this path can be used to identify the location of
+// * sass.worker.js from sass.js
+// * libsass.js.mem from sass.sync.js
+// see https://github.com/medialize/sass.js/pull/32#issuecomment-103142214
+// see https://github.com/medialize/sass.js/issues/33
+var SASSJS_RELATIVE_PATH = (function() {
+  'use strict';
+
+  // in Node things are rather simple
+  if (typeof __dirname !== 'undefined') {
+    return __dirname;
+  }
+
+  // we can only run this test in the browser,
+  // so make sure we actually have a DOM to work with.
+  if (typeof document === 'undefined' || !document.getElementsByTagName) {
+    return null;
+  }
+
+  // http://www.2ality.com/2014/05/current-script.html
+  var currentScript = document.currentScript || (function() {
+    var scripts = document.getElementsByTagName('script');
+    return scripts[scripts.length - 1];
+  })();
+
+  var path = currentScript && currentScript.src;
+  if (!path) {
+    return null;
+  }
+
+  // [worker] make sure we're not running in some concatenated thing
+  if (path.slice(-8) === '/sass.js') {
+    return path.slice(0, -8);
+  }
+
+  // [sync] make sure we're not running in some concatenated thing
+  if (path.slice(-13) === '/sass.sync.js') {
+    return path.slice(0, -13);
+  }
+
+  return null;
+})() || '.';
+
+/*global Sass, SASSJS_RELATIVE_PATH*/
+// NOTE: this will load "./libsass.js.mem" relative to CWD,
+// that's fine in Node, but catastrophic in the browser.
+// That's fine, since sass.sync.js is NOT recommended
+// to be used in the browser anyway.
 var Module = {
+  memoryInitializerPrefixURL: SASSJS_RELATIVE_PATH + '/',
   onRuntimeInitialized: function() {
     'use strict';
-    Sass._ready();
+    // NodeJS resolves immediately, but the browser does not
+    Module._sassFullyInitialized = true;
+    typeof Sass !== 'undefined' && Sass._ready();
   }
 };
 
@@ -742,74 +805,5 @@ if (Module._sassFullyInitialized) {
   // react to emscripten in sync loading mode (NodeJS)
   Sass._ready();
 }
-
-'use strict';
-/*global Sass, postMessage, onmessage:true, importScripts*/
-
-
-var _importerDone;
-var _importerInit = function(request, done) {
-  _importerDone = done;
-  postMessage({
-    command: '_importerInit',
-    args: [request]
-  });
-};
-
-var methods = {
-  _importerFinish: function(result) {
-    _importerDone && _importerDone(result);
-    _importerDone = null;
-  },
-
-  importer: function(callback) {
-    // an importer was un/set
-    // we need to register a callback that will pipe
-    // things through the worker
-    Sass.importer(callback ? _importerInit : null);
-  },
-};
-
-onmessage = function (event) {
-
-  function done(result) {
-    try {
-      // may throw DataCloneError: Failed to execute 'postMessage' on 'WorkerGlobalScope': An object could not be cloned.
-      // because of Error instances not being clonable (wtf?)
-      postMessage({
-        id: event.data.id,
-        result: result
-      });
-    } catch (e) {
-      if (!result.error) {
-        // unless we're dealing with a DataCloneError because of an Error instance,
-        // we have no idea what is going on, so give up.
-        throw e;
-      } else {
-        // for whatever reason Error instances may not always be serializable,
-        // in which case we simply return the error data as a plain object
-        result.error = {
-          code: result.error.code,
-          message: result.error.message,
-          stack: result.error.stack,
-        };
-      }
-
-      postMessage({
-        id: event.data.id,
-        result: result
-      });
-    }
-  }
-
-  var method = methods[event.data.command] || Sass[event.data.command];
-
-  if (!method) {
-    return done({
-      line: 0,
-      message: 'Unknown command ' + event.action
-    });
-  }
-
-  method.apply(Sass, (event.data.args || []).concat([done]));
-};
+return Sass;
+}));

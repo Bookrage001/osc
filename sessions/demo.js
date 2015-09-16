@@ -14,20 +14,25 @@ TABS = function(){
                     type:'strip',
                     widgets: [
                         {
-                            id:'knob_'+i,
+                            id:'w0'+i,
                             type:"knob",
                             target:target
                         },
                         {
-                            id:'fader_'+i,
-                            type:"fader",
-                            range:db,
+                            id:'w1'+i,
+                            type:"switch",
+                            values:['ozehfozeizadz',1,2],
                             target:target
                         },
                         {
-                            id:'toggle1_'+i,
-                            label:'Mute',
+                            id:'w2'+i,
+                            type:"fader",
+                            target:target
+                        },
+                        {
+                            id:'w3'+i,
                             type:"toggle",
+                            mode:"horizontal",
                             target:target
                             // color:'orange'
                         }
@@ -43,7 +48,7 @@ TABS = function(){
 
         return tab
     }())
-
+tabs.push({id:'test'})
 
     return tabs
 }()

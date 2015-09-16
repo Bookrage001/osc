@@ -10,8 +10,25 @@ var app = require('app')
   , ipc = require('ipc')
   , configPath = __dirname + '/config.json'
   , config = require(configPath)
-  , args = process.argv.slice(0);
+  , args = process.argv.slice(0)
 
+
+
+compileScss = function(){
+    var sass = require(__dirname + '/../browser/js/sass/sass.sync.js')
+    var filenames = fs.readdirSync(__dirname + '/../browser/scss/')
+    for (i in filenames) {
+        if (filenames[i].indexOf('.scss')!=-1)
+        var file = __dirname + '/../browser/scss/' + filenames[i]
+        var content = fs.readFileSync(file,'utf8')
+        sass.compile(content,{style: sass.style.compact,linefeed: ''}, function(result) {
+            fs.writeFileSync(__dirname + '/../browser/css/'+filenames[i].replace('.scss','.css'),result.text,'utf8')
+        });
+    }
+}
+if (args.indexOf('-c')!=-1) {
+    compileScss()
+}
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
