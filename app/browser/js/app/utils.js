@@ -249,14 +249,3 @@ mapToScale = function(value,rangeIn,rangeOut,reverse) {
     return value
 
 }
-
-
-
-$.fn.getRotation = function () {
-    var style = this.attr("style")
-    if(typeof style === 'string' && style !== 'none') {
-        var angle =  parseInt(style.split('(')[1].split(')')[0])
-    } else { var angle = 0; }
-    if (angle<0) angle = 360+angle
-    return angle;
-};

@@ -63,11 +63,11 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
             off= widgetData.off
         if (v==on) {
             widget.addClass('on')
-            if (widgetData.color) led.attr('style','background:'+widgetData.color)
+            if (widgetData.color) led[0].setAttribute('style','background:'+widgetData.color)
             if (send) widget.sendValue(v)
         } else if (v==off) {
             widget.removeClass('on')
-            if (widgetData.color) led.attr('style','')
+            if (widgetData.color) led[0].setAttribute('style','')
             if (send) widget.sendValue(v)
         }
 
@@ -166,7 +166,7 @@ createWidget.xy = function(widgetData) {
     handle.drag(function( ev, dd ){
         var h = clip((pad.height-dd.offsetY)*100/pad.height,[0,100]),
             w = clip((dd.deltaX)*100/pad.width+offX,[0,100])
-        handle.css({'height':h+'%','width':w+'%'})
+        handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         handle.height = h
         handle.width = w
 
@@ -191,7 +191,7 @@ createWidget.xy = function(widgetData) {
         var w = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,100])
             h = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,100]),
 
-        handle.css({'height':h+'%','width':w+'%'})
+        handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         handle.height = h
         handle.width = w
 
@@ -273,7 +273,7 @@ createWidget.rgb = function(widgetData) {
     rgbHandle.drag(function( ev, dd ){
         var h = clip((pad.height-dd.offsetY)*100/pad.height,[0,100]),
             w = clip(dd.deltaX*100/pad.width+rgbOffX,[0,100])
-        rgbHandle.css({'height':h+'%','width':w+'%'})
+        rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         rgbHandle.height = h
         rgbHandle.width = w
 
@@ -290,14 +290,14 @@ createWidget.rgb = function(widgetData) {
     })
     hueHandle.drag(function( ev, dd ){
         var w = clip(dd.deltaX*100/pad.width+hueOffX,[0,100])
-        hueHandle.css({'width':w+'%'})
+        hueHandle[0].setAttribute('style','width:'+w+'%')
         hueHandle.width = w
 
         var h = clip(hueHandle.width*3.6,[0,360]),
             rgb = hsbToRgb({h:h,s:100,b:100}),
             v = widget.getValue();
 
-        pad.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        pad.css('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
         widget.sendValue(v);
         widget.showValue(v);
 
@@ -331,8 +331,8 @@ createWidget.rgb = function(widgetData) {
             h = mapToScale(hsb.b,[0,100],[0,100]),
             hueW = mapToScale(hsb.h,[0,360],[0,100])
 
-        rgbHandle.css({'height':h+'%','width':w+'%'})
-        hueHandle.css({'width':hueW+'%'})
+        rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+        hueHandle[0].setAttribute('style','width:'+hueW+'%')
 
         rgbHandle.height = h
         rgbHandle.width = w
@@ -340,7 +340,7 @@ createWidget.rgb = function(widgetData) {
 
 
         var rgb = hsbToRgb({h:hsb.h,s:100,b:100})
-        pad.css('background-color','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
         widget.showValue(v);
 
@@ -424,7 +424,7 @@ createWidget.fader = function(widgetData,container){
     handle.drag(function( ev, dd ){
             var d = (dimension=='height')?fader.size-dd.offsetY:dd.deltaX
             d = clip(d*100/fader.size+offX,[0,100])
-            handle.attr('style',dimension+':'+d+'%')
+            handle[0].setAttribute('style',dimension+':'+d+'%')
             handle.size = d
 
             var v = widget.getValue()
@@ -488,7 +488,7 @@ createWidget.fader = function(widgetData,container){
                 break
             }
         }
-        handle.attr('style',dimension+':'+h+'%')
+        handle[0].setAttribute('style',dimension+':'+h+'%')
         handle.size = h
 
         widget.showValue(v);
@@ -547,13 +547,14 @@ createWidget.knob = function(widgetData) {
     knob.rotation = 0
 
     var offR = 0
-    knob.attr('style','transform:rotate(45deg)').drag('init',function(){
-        offR = knob.getRotation()
+    knob[0].setAttribute('style','transform:rotate(45deg)')
+    knob.drag('init',function(){
+        offR = knob.rotation
     })
 
     knob.drag(function( ev, dd ){
         var r = clip(-dd.deltaY*2+offR,[0,270])
-        knob.attr('style','transform:rotateZ('+r+'deg)')
+        knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         knob.rotation = r
 
         if (r>180) {
@@ -597,7 +598,7 @@ createWidget.knob = function(widgetData) {
         }
 
 
-        knob.attr('style','transform:rotateZ('+r+'deg)')
+        knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         var v = widget.getValue() || v
 
         widget.showValue(v);
