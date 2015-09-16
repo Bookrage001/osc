@@ -64,6 +64,7 @@ init = function(callback) {
     // horizontal scrolling & zoom with mousewheel
     // if shift is pressed (native), or if there is no vertical scrollbar,
     //                               or if mouse is on h-scrollbar
+    var contentPanels = $('.content')
     $('.tab').on('mousewheel',function(e) {
         // console.log(e)
         if (e.ctrlKey) {
@@ -71,7 +72,7 @@ init = function(callback) {
             var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
                 s = d+parseFloat($('html').css('font-size'))
             $('html').css('font-size',s)
-            $('.tab.on .content').css('top',60+'rem')
+            contentPanels.css('top',60+'rem')
 
         } else {
             var scrollbar = 10

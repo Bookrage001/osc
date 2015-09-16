@@ -95,7 +95,7 @@ createWidget.switch = function(widgetData) {
     ');
 
     for (v in widgetData.values) {
-        widget.append('<div class="value" data-value="'+widgetData.values[v]+'"><span>'+widgetData.values[v]+'</span></div>')
+        widget.append('<div class="value" data-value="'+widgetData.values[v]+'">'+widgetData.values[v]+'</div>')
     }
 
 

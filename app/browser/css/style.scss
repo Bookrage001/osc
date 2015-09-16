@@ -30,8 +30,8 @@ $color-border:mix($color-fg,$color-base,65);
 
 $nav-height:60rem;
 
-$bg-3d:linear-gradient(mix($color-text,$color-fg,8), mix($color-text,$color-fg,6) 15rem);
-$bg-3d-hover:linear-gradient(mix($color-text,$color-fg,10), mix($color-text,$color-fg,7));
+$bg-3d:linear-gradient(mix($color-text,$color-fg,3), mix($color-text,$color-fg,2) 15rem);
+$bg-3d-hover:linear-gradient(mix($color-text,$color-fg,6), mix($color-text,$color-fg,3));
 $bg-3d-on:linear-gradient(mix($color-text,$color-bg,0), mix($color-text,$color-bg,5));
 
 
@@ -86,7 +86,6 @@ $scrollbar-margin:2px;
 }
 ::-webkit-scrollbar-thumb {
     background:$bg-3d;
-    opacity:1;
     &:vertical {
         border-left:$scrollbar-margin solid  $color-fg;
     }
@@ -213,13 +212,13 @@ a.btn {
     }
     #open-toggle {
         position:absolute;
-        top:7rem;
         right:0;
+        top:2rem;
         width:60rem;
-        height:$nav-height - 10rem;
+        height:$nav-height;
         padding:0 10rem;
-        line-height: $nav-height - 13rem;
-        font-size: 21rem;
+        line-height: $nav-height;
+        font-size: 24rem;
         text-align: center;
         color:$color-text-fade;
         z-index:2;
@@ -312,6 +311,7 @@ a {
     font-size:14rem;
     background: $color-bg;
     border-bottom: 1px solid $color-border;
+    border-top: 1px solid $color-fg;
     height:$nav-height;
     ::first-letter {
         text-transform: uppercase;
@@ -606,10 +606,10 @@ form {
     display: flex;
     flex-direction: column;
 
-     .widget {
+     > .widget {
          height:auto;
          flex-shrink: 0;
-
+         border-left-width:6rem;
     }
 }
 
@@ -624,9 +624,9 @@ form {
     border-bottom:0;
     background: none;
     box-shadow:none;
-    padding-top:0;
+    padding-top:35rem;
     > .label {
-        position: relative;
+        // position: relative;
         background:$bg-3d;
         box-shadow: 0 0 0 1px $color-bg inset;
     }
@@ -716,50 +716,42 @@ form {
     .switch {
         height:100%;
         width:100%;
-        padding:10rem 1px 0;
         cursor: pointer;
         display: flex;
         flex-direction:column;
         align-items: stretch;
+        padding-bottom: 1px;
         .value {
             background:$bg-3d;
             color:$color-text-fade;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width:100%;
-            margin-bottom:2rem;
             position: relative;
-            box-shadow: 0 0 0 1px $color-bg inset;
+            border-top: 1px solid $color-fg;
+            padding:12rem 12rem 12rem 24rem ;
+            white-space: normal;
+            text-align: left;
+            word-break: break-all;
+            overflow: hidden;
             &:hover {
                 background: $bg-3d-hover;
-            }
-            span {
-                padding:10rem;
-                white-space: normal;
-                word-break: break-all;
-                overflow: hidden;
-                position: relative;
-                z-index: 1;
             }
             &:last-child {
                 margin-bottom:0;
             }
+            &:after {
+                content:"";
+                position: absolute;
+                left:8rem;
+                top:50%;
+                width:8rem;
+                height:8rem;
+                margin-top: -4rem;
+                background: $color-border;
+                border-radius: 8rem;
+            }
             &.on {
-                span {
-                    color:$color-border;
-                }
                 &:after {
-                    content:"";
-                    position: absolute;
-                    top:10rem;
-                    left:10rem;
-                    right:10rem;
-                    bottom:10rem;
-                    background:$color-accent;
-                    z-index:0;
-                    border-radius: 3rem;
-                    opacity: .6;
+                    background: $color-accent;
                 }
             }
         }
@@ -950,7 +942,7 @@ form {
         .fader {
             height:100%;
             width:4rem;
-            background:rgba($color-base,.4);
+            background:$color-border;
             position: relative;
             .handle {
                 position: absolute;
@@ -966,6 +958,16 @@ form {
                 &:active {
                     cursor: -webkit-grabbing;
                 }
+                // &:before {
+                //     content:"";
+                //     position: absolute;
+                //     top:-6rem;
+                //     left:-2rem;
+                //     width:8rem;
+                //     height:12rem;
+                //     border-radius: 2rem;
+                //     background:$color-text-fade;
+                // }
                 &:after {
                     content:"";
                     position: absolute;
@@ -1070,6 +1072,7 @@ form {
 
         .knob-wrapper {
             padding:10rem 20rem 20rem 20rem ;
+            margin:0 auto;
             overflow:hidden;
             width:95rem;
             position: relative;
@@ -1097,7 +1100,7 @@ form {
                     bottom:-2rem;
                     border-radius:100%;
                     border:12rem solid transparent;
-                    border-bottom-color: mix($color-text,$color-fg,6);
+                    border-bottom-color: mix($color-text,$color-fg,2);
                     pointer-events: none;
                 }
             }
@@ -1117,7 +1120,8 @@ form {
                     right:20rem;
                     bottom:20rem;
                     border-radius:100%;
-                    box-shadow: 0 0  0 8rem transparentize($color-border,.8);
+                    background:transparentize($color-text,.8);
+                    box-shadow: 0 0 0 4rem $color-bg;
                     z-index: 100;
                 }
                 &:after {
@@ -1142,9 +1146,9 @@ form {
 
                 span {
                     position: absolute;
-                    height:7rem;
-                    width:2rem;
-                    background:$color-border;
+                    height:3rem;
+                    width:3rem;
+                    background:transparentize($color-text,.8);
                     margin:7rem 0 0 -3rem;
                     left:50%;
                     top:50%;
