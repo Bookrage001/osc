@@ -166,6 +166,7 @@ ipc.on('browseSessions',function(event, data){
     var sessionlist = readConfig('recentSessions')
         dialog.showOpenDialog(window,{title:'Load session file',defaultPath:readConfig('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
             if (file==undefined) {return}
+            writeConfig({sessionPath:file[0].replace(file[0].split('/').pop(),'')})
             renderProcess.send('openSession',file[0])
         })
 })

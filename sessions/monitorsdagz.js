@@ -4,6 +4,10 @@ nmPorts = {
     'MonitorsJeannot':'SCSon:6676',
     'MonitorsORL':'SCSon:6677',
     'Mains':'SCSon:6678',
+}
+
+nmRange = {'min': -70,'20%': -40,'45%': -20,'60%': -10,'71%':-6,'78%':-3,'85%':0,'92%':3,'max': 6}
+
 return [
     {
         id:'MonitorsDag',
