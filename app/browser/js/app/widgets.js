@@ -6,7 +6,7 @@ createWidget.strip = function(widgetData) {
             <div class="strip">\
             </div>\
     ');
-    if (widgetData.mode=='horizontal') widget.addClass('horizontal')
+    if (widgetData.horizontal) widget.addClass('horizontal')
     parsewidgets(widgetData.widgets,widget)
     widget.getValue = function(){return}
     widget.setValue = function(){return}
@@ -86,8 +86,6 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
 
 
 createWidget.switch = function(widgetData) {
-    widgetData.on = widgetData.on || 1
-    widgetData.off = widgetData.off || 0
 
     var widget = $('\
         <div class="switch">\
@@ -402,9 +400,9 @@ createWidget.fader = function(widgetData,container){
         pips = widget.find('.pips'),
         input = widget.find('input'),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
-        dimension = widgetData.mode=='horizontal'?'width':'height';
+        dimension = widgetData.horizontal?'width':'height';
 
-        if (widgetData.mode=='horizontal') container.addClass('horizontal')
+        if (widgetData.horizontal) container.addClass('horizontal')
 
         handle.size = 0
         fader.size = dimension=='height'?fader.height():fader.width()

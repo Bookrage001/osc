@@ -26,9 +26,7 @@ compileScss = function(){
         });
     }
 }
-if (args.indexOf('-c')!=-1) {
-    compileScss()
-}
+
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
@@ -101,6 +99,11 @@ app.on('window-all-closed', function() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
+
+    if (args.indexOf('-c')!=-1) {
+        compileScss()
+    }
+
     // Create the browser window.
     window = new BrowserWindow({
         width: 810,
@@ -128,9 +131,9 @@ app.on('ready', function() {
             label: 'View',
             submenu: [
                 {
-                    label: 'Reload',
+                    label: 'Restart',
                     accelerator: 'CmdOrCtrl+R',
-                    click: function() { window.reload(); }
+                    click: function() { window.reload(); }//restartApp
                 },
                 {
                     label: 'Toggle DevTools',
@@ -141,10 +144,6 @@ app.on('ready', function() {
                     label: 'Toggle Fullscreen',
                     accelerator: 'F11',
                     click: function() { window.setFullScreen(!window.isFullScreen()); }
-                },
-                {
-                    label:'Restart App',
-                    click:restartApp
                 }
             ]
         },

@@ -321,7 +321,7 @@ a {
     &.main {
         padding-right:55rem;
         right:0;
-        background: linear-gradient($color-border,$color-bg);
+        // background: linear-gradient($color-border,$color-bg);
     }
     ul {
 
@@ -643,7 +643,8 @@ form {
         &.horizontal {
             flex-direction: row;
             > .widget {
-                border-bottom: 0;
+                border-bottom-width: 0;
+                border-right-width:6rem;
             }
         }
         height: 100%;
@@ -652,10 +653,10 @@ form {
 
         > .widget {
             display: block;
-            border-left:0;
-            border-right:0;
+            border-left-width:0;
+            border-right-width:0;
             &:not(:last-child) {
-                border-bottom:0;
+                border-bottom-width:0;
             }
         }
 

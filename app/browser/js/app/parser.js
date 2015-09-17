@@ -1,3 +1,16 @@
+__widgets__ = {}
+__widgetsIds__ = {}
+
+var iterator = {
+        tab: 0,
+        widget: 0
+    },
+    getIterator = function(type){
+        iterator[type] += 1
+        return iterator[type]
+    }
+
+
 parsetabs = function(tabs,parent,sub){
     if (!sub) {
         var nav = $(document.createElement('div')).addClass('main navigation'),
@@ -15,16 +28,18 @@ parsetabs = function(tabs,parent,sub){
     }
 
     for (i in tabs) {
-        var tabData = tabs[i];
-        tabData.id = tabData.id.replace(' ','_')
-        var    id = parent?parent.attr('id')+tabData.id:tabData.id
-            label= tabData.label||tabData.id
+        var tabData = tabs[i]
+
+        tabData.id = tabData.id?tabData.id.replace(' ','_'):'tab_'+getIterator('tab')
+
+        var id = tabData.id,
+            label= tabData.label||id
 
         navtabs.append('<li><a data-tab="#'+id+'"><span>'+label+'</span></a></li>');
 
-        var tabContent = $(document.createElement('div')).addClass('tab').attr('id',id);
+        var tabContent = $('<div></div>').addClass('tab').attr('id',id);
 
-        if (tabData.mode=='stack') tabContent.addClass('stack')
+        if (tabData.stack) tabContent.addClass('stack')
 
         if (tabData.tabs) {
             parsetabs(tabData.tabs,parent=tabContent,sub=true);
@@ -37,14 +52,16 @@ parsetabs = function(tabs,parent,sub){
     }
 }
 
-__widgets__ = {}
-__widgetsIds__ = {}
+
 
 parsewidgets = function(widgets,parent) {
 
     for (i in widgets) {
-        var widgetData = widgets[i],
-            id = widgetData.id,
+        var widgetData = widgets[i]
+
+        widgetData.id = widgetData.id?widgetData.id.replace(' ','_'):'widget_'+getIterator('widget')
+
+        var id = widgetData.id,
             label = widgetData.label || id,
             type = widgetData.type || 'fader',
             path = widgetData.path || '/' + id,
@@ -52,12 +69,6 @@ parsewidgets = function(widgets,parent) {
             accentclass = '';
 
         widgetData.path = path
-
-        if (widgetData.color && widgetData.color=='accent') {
-            accentclass = 'accent'
-        } else if (widgetData.color) {
-            color = 'style="color:'+widgetData.color+'"'
-        }
 
         var widgetContainer = $('\
             <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'">\
