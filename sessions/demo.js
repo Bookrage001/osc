@@ -1,7 +1,6 @@
-
-TABS = function(){
+(function(){
     var db = {'min': -70,'20%': -40,'45%': -20,'60%': -10,'71%':-6,'78%':-3,'85%':0,'92%':3,'max': 6}
-    var target = '127.0.0.1:6666'
+    var target = '127.0.0.1:5555'
     var tabs = new Array()
     tabs.push(function(){
         var tab = {}
@@ -12,7 +11,7 @@ TABS = function(){
                     type:'strip',
                     widgets: [
                         {
-                            type:"knob",
+                            "type":"knob",
                             target:target
                         },
                         {
@@ -22,7 +21,8 @@ TABS = function(){
                         },
                         {
                             type:"fader",
-                            target:target
+                            target:target,
+                            range:db
                         },
                         {
                             type:"toggle",
@@ -33,15 +33,12 @@ TABS = function(){
 
                 })
 
-
         }
-
-
 
 
         return tab
     }())
-tabs.push({id:'test'})
+    tabs.push({id:'test'})
 
     return tabs
-}()
+})()

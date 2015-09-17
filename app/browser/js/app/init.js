@@ -1,8 +1,8 @@
 
 
-init = function(callback) {
+init = function(session,callback) {
 
-    parsetabs(TABS,false,false)
+    parsetabs(session,false,false)
 
 
 

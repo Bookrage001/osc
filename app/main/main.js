@@ -14,19 +14,6 @@ var app = require('app')
 
 
 
-compileScss = function(){
-    var sass = require(__dirname + '/../browser/js/sass/sass.sync.js')
-    var filenames = fs.readdirSync(__dirname + '/../browser/scss/')
-    for (i in filenames) {
-        if (filenames[i].indexOf('.scss')!=-1)
-        var file = __dirname + '/../browser/scss/' + filenames[i]
-        var content = fs.readFileSync(file,'utf8')
-        sass.compile(content,{style: sass.style.compact,linefeed: ''}, function(result) {
-            fs.writeFileSync(__dirname + '/../browser/css/'+filenames[i].replace('.scss','.css'),result.text,'utf8')
-        });
-    }
-}
-
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
@@ -85,40 +72,44 @@ restartApp = function(){
 }
 
 
+compileScss = function(){
+    var sass = require(__dirname + '/../browser/js/sass/sass.sync.js')
+    var filenames = fs.readdirSync(__dirname + '/../browser/scss/')
+    for (i in filenames) {
+        if (filenames[i].indexOf('.scss')!=-1)
+        var file = __dirname + '/../browser/scss/' + filenames[i]
+        var content = fs.readFileSync(file,'utf8')
+        sass.compile(content,{style: sass.style.compact,linefeed: ''}, function(result) {
+            fs.writeFileSync(__dirname + '/../browser/css/'+filenames[i].replace('.scss','.css'),result.text,'utf8')
+        });
+    }
+}
+
+
 
 var window = null;
-// Quit when all windows are closed.
+
 app.on('window-all-closed', function() {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform != 'darwin') {
     app.quit();
   }
 });
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
 app.on('ready', function() {
 
     if (args.indexOf('-c')!=-1) {
         compileScss()
     }
 
-    // Create the browser window.
     window = new BrowserWindow({
-        width: 810,
+        width: 800,
         height: 600,
         'auto-hide-menu-bar':true
     });
 
-    // and load the index.html of the app.
     window.loadUrl('file://' + __dirname + '/../browser/index.html');
 
-    // Emitted when the window is closed.
     window.on('closed', function() {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
         window = null;
     });
 
@@ -171,48 +162,24 @@ renderProcess = {
     }
 }
 
-ipc.on('loadSession',function(event, data){
+ipc.on('browseSessions',function(event, data){
     var sessionlist = readConfig('recentSessions')
-
-    if (data == 'browse') {
-
         dialog.showOpenDialog(window,{title:'Load session file',defaultPath:readConfig('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
-
             if (file==undefined) {return}
-
-            // save path to configfile
-            writeConfig({sessionPath:file[0].replace(file[0].split('/').pop(),'')})
-
-            // open session
-            renderProcess.send('openSession',file[0]);
-
-            // add session to history
-            sessionlist.unshift(file[0])
-
-            // remove doubles from history
-            sessionlist = sessionlist.filter(function(elem, index, self) {
-                return index == self.indexOf(elem);
-            })
-
-            // save history
-            writeConfig({recentSessions:sessionlist})
-
+            renderProcess.send('openSession',file[0])
         })
+})
 
-    } else {
-        // open session
-        renderProcess.send('openSession',sessionlist[data]);
-        // add session to history
-        sessionlist.unshift(sessionlist[data])
-        // remove doubles from history
-        sessionlist = sessionlist.filter(function(elem, index, self) {
-            return index == self.indexOf(elem);
-        })
-        // save history
-        writeConfig({recentSessions:sessionlist})
-    }
-
-
+ipc.on('addSessionToHistory',function(event, data){
+    var sessionlist = readConfig('recentSessions')
+    // add session to history
+    sessionlist.unshift(data)
+    // remove doubles from history
+    sessionlist = sessionlist.filter(function(elem, index, self) {
+        return index == self.indexOf(elem);
+    })
+    // save history
+    writeConfig({recentSessions:sessionlist})
 })
 
 ipc.on('removeSessionFromHistory',function(event, data){
@@ -254,15 +221,6 @@ ipc.on('sendOsc', function (event,data) {
             });
         }
 
-
-        // try {
-        //     udpPort.send({
-        //         address: data.path,
-        //         args: data.args
-        //     }, host, port);
-        // } catch(err) {
-        //     console.log(err)
-        // }
     }
 
 
@@ -299,5 +257,4 @@ ipc.on('load', function(event, data){
 
 ipc.on('fullscreen', function(event){
     window.setFullScreen(!window.isFullScreen())
-
 })
