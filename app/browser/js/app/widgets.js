@@ -141,10 +141,11 @@ createWidget.xy = function(widgetData) {
         '),
         handle = widget.find('.handle'),
         pad = widget.find('.xy'),
-        value = {x:widget.find('.x'),y:widget.find('.y')}
+        value = {x:widget.find('.x'),y:widget.find('.y')},
+        range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
 
 
-    widgetData.range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
+    widgetData.range = range
 
 
     pad.width = pad.innerWidth()
@@ -179,15 +180,15 @@ createWidget.xy = function(widgetData) {
 
 
     widget.getValue = function() {
-        var x = mapToScale(handle.width,[0,100],[widgetData.range.x.min,widgetData.range.x.max]),
-            y = mapToScale(handle.height,[0,100],[widgetData.range.y.min,widgetData.range.y.max])
+        var x = mapToScale(handle.width,[0,100],[range.x.min,range.x.max]),
+            y = mapToScale(handle.height,[0,100],[range.y.min,range.y.max])
 
         return [x,y]
     }
     widget.setValue = function(v,send,sync) {
         if (v[1]==undefined) var v = [v,v]
-        var w = mapToScale(v[0],[widgetData.range.x.min,widgetData.range.x.max],[0,100])
-            h = mapToScale(v[1],[widgetData.range.y.min,widgetData.range.y.max],[0,100]),
+        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100])
+            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100]),
 
         handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         handle.height = h
@@ -210,16 +211,16 @@ createWidget.xy = function(widgetData) {
 
     value.x.change(function(){
         var v = widget.getValue();
-        v[0] = clip(value.x.val(),[widgetData.range.x.min,widgetData.range.x.max])
+        v[0] = clip(value.x.val(),[range.x.min,range.x.max])
         widget.setValue(v,true,true)
     })
     value.y.change(function(){
         var v = widget.getValue();
-        v[1] = clip(value.y.val(),[widgetData.range.y.min,widgetData.range.y.max])
+        v[1] = clip(value.y.val(),[range.y.min,range.y.max])
         widget.setValue(v,true,true)
     })
 
-    widget.setValue(widgetData.range.x.min,widgetData.range.y.min)
+    widget.setValue(range.x.min,range.y.min)
     return widget;
 }
 

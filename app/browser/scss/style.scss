@@ -559,16 +559,17 @@ form {
     padding:35rem 1px 0;
     vertical-align:top;
     border: 6rem solid $color-fg;
-    border-width:6rem 3rem;
+    border-width:6rem 0;
+    margin:0 3rem;
 
     box-shadow: 0 0 0 1px $color-bg inset;
     background:$bg-3d;
 
      &:first-child {
-         border-left-width:6rem;
+         margin-left:6rem;
      }
      &:last-child {
-         border-right-width:6rem;
+         margin-right:6rem;
      }
 
     .label {
@@ -653,8 +654,7 @@ form {
 
         > .widget {
             display: block;
-            border-left-width:0;
-            border-right-width:0;
+            margin: 0;
             &:not(:last-child) {
                 border-bottom-width:0;
             }

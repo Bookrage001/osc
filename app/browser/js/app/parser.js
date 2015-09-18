@@ -30,10 +30,12 @@ parsetabs = function(tabs,parent,sub){
     for (i in tabs) {
         var tabData = tabs[i]
 
+
         tabData.id = tabData.id?tabData.id.replace(' ','_'):'tab_'+getIterator('tab')
 
-        var id = tabData.id,
-            label= tabData.label||id
+        var id = 'tab_'+getIterator('tab')
+            label= tabData.label||tabData.id
+
 
         navtabs.append('<li><a data-tab="#'+id+'"><span>'+label+'</span></a></li>');
 
@@ -81,12 +83,14 @@ parsewidgets = function(widgets,parent) {
         widgetInner.type =  type
         widgetContainer.find('.label').data('papers',widgetData)
 
-        // store widget reference for cross widget sync
         widgetContainer.append(widgetInner)
+
+        // store widget reference for cross widget sync
         if (__widgets__[id]==undefined) {
             __widgets__[id] = []
         }
         __widgets__[id].push(widgetInner)
+
 
         // store path vs widget id for faster cross-app sync
         __widgetsIds__[widgetData.path ] = id

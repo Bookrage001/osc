@@ -11,7 +11,7 @@
                     type:'strip',
                     widgets: [
                         {
-                            "type":"knob",
+                            type:"knob",
                             target:target
                         },
                         {
@@ -21,8 +21,8 @@
                         },
                         {
                             type:"fader",
+                            range:db,
                             target:target,
-                            range:db
                         },
                         {
                             type:"toggle",
@@ -38,7 +38,6 @@
 
         return tab
     }())
-    tabs.push({id:'test'})
 
     return tabs
 })()

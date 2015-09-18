@@ -12,7 +12,8 @@ saveState = function () {
 getState = function (){
     var data = []
     $.each(__widgets__,function(i,widget) {
-        data.push(widget[0].type+':'+i+':'+widget[0].getValue())
+        var v = widget[0].getValue()
+        if (v!=undefined) data.push(i+' '+widget[0].getValue())
     })
     return data
 }
@@ -32,7 +33,8 @@ setState = function(preset){
 
         setTimeout(function(){
             if (__widgets__[data[1]]!=undefined) {
-                __widgets__[data[1]][0].setValue(data[2].split(','),true,true)
+                __widgets__[data[1]][0].setValue(data[
+                console.log(value)].split(','),true,true)
             }
         },i)
     })
@@ -43,11 +45,12 @@ setState = function(preset){
 openSession = function(path){
     var fs = require('fs'),
         data = fs.readFileSync(path,'utf8'),
+        vm = require('vm'),
         session,
         error
 
     try {
-        session = eval(data)
+        session = vm.runInNewContext(data)
     } catch(err) {
         error = err
     }

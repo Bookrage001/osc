@@ -7,7 +7,7 @@ A valid session file is a javascript file that returns, when eval'd, an array of
 ```
 [
     {
-        id:"my_tab_id",     // [string] optional, default unique tab id
+        id:"my_tab_id",     // [string] optional, default to unique 'tab_n'
         label:"My tab",     // [string] default to id
         stack:false,        // [bool] set to true to stack widgets vertically
         widgets: [],        // [array] of widget objects
