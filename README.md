@@ -66,59 +66,67 @@ It can also be a self invoking function that returns an array of objects :
 ```
 
 
-### Widget object
+### Widget generics
 ```
 {
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
     label:"My widget",      // [string] default to id
     target:false,           // [string] List of target hosts (ip:port pairs), separated by spaces
-    path:false,             // [string] osc path, default to '/widget_id'
-    type:'fader'            // [string]
+    path:false              // [string] osc path, default to '/widget_id'
 }
 ```
 
-### Widget types
+### Widget specifics
 
--   #### strip
+-   **strip**
     ```  
+    type:'strip',
     horizontal:false,           // [bool]  set to true to display widgets horizontally
     widgets: []                 // [array] of widget objects
     ```
 
--   #### fader
+-   **fader**
     ```  
+    type:'fader',
     horizontal:false,           // [bool]   set to true to display fader horizontally
     range: {min:0,max:1},       // [object] defining the breakpoints of the fader
                                 //          keys can be percentages or 'min' / 'max'
     unit: false,                // [string] value suffix
     ```
 
--   #### knob
+-   **knob**
     ```
+    type:'knob',
     range: {min:0,max:1},       // [object] minimum and maximum values
     unit: false,                // [string] value suffix
     ```
 
--   #### xy
+-   **xy**
     ```  
+    type:'xy',
     range:{                     // [object] minimum and maximum values for x and y axis
             x:{min:0,max:1},
             y:{min:0,max:1}
         }
     ```
 
--   #### rgb
+-   **rgb**
+    ```
+    type:'rgb'
+    ```
     Variant of xy pad, it outputs rgb values between 0 and 255.
 
 
--   #### toggle
+-   **toggle**
     ```  
+    type:'toggle',
     on: 1,                      // [string|number] value sent when toggle is on
     off:0,                      // [string|number] value sent when toggle is off
     color:false                 // [string] (css) color of the active state indicator
     ```
 
--   #### switch
+-   **switch**
     ```  
+    type:'switch',
     values:[]                   // [array] of values (string or number)
     ```
