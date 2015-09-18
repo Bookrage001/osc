@@ -33,8 +33,7 @@ setState = function(preset){
 
         setTimeout(function(){
             if (__widgets__[data[1]]!=undefined) {
-                __widgets__[data[1]][0].setValue(data[
-                console.log(value)].split(','),true,true)
+                __widgets__[data[1]][0].setValue(data[2].split(','),true,true)
             }
         },i)
     })
