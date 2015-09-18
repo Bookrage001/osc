@@ -1,4 +1,28 @@
-## Open Stage control Surface
+## Open Stage Control
+
+Open Stage Control (*temporary name*) is a desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
+
+It's under active development; hence, current features are subject to change without notice.
+
+### Run from sources
+
+**Requirements:**
+- [Node.js](https://nodejs.org/)
+- [Electron](http://electron.atom.io/)
+  - installed locally via `npm install electron-prebuilt`
+  - or installed system-wide via `npm install -g electron-prebuilt`
+
+**How to run:**
+ ```
+$ git clone https://github.com/jean-emmanuel/Open-Stage-Control
+$ cd Open-Stage-Control/app
+$ npm install
+$ /path/to/electron ./ [options]
+ ```
+
+**Command line switches:**
+- `-l` : open last session at startup
+- `-c` : recompile scss stylesheets at startup
 
 ### Session file structure
 
@@ -42,57 +66,59 @@ It can also be a self invoking function that returns an array of objects :
 ```
 
 
-### Widgets
+### Widget object
 ```
 {
-    id:"my_widget_id",      // [string] widgets with same id will be synchronized
+    id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
     label:"My widget",      // [string] default to id
     target:false,           // [string] List of target hosts (ip:port pairs), separated by spaces
     path:false,             // [string] osc path, default to '/widget_id'
-    widget_option:value     // each widget type has specific options
+    type:'fader'            // [string]
 }
 ```
 
-#### Strip
-```  
-horizontal:false,           // [bool]  set to true to display widgets horizontally
-widgets: []                 // [array] of widget objects
-```
+### Widget types
 
-#### Fader
-```  
-horizontal:false,           // [bool]   set to true to display fader horizontally
-range: {min:0,max:1},       // [object] defining the breakpoints of the fader
-                            //          keys can be percentages or 'min' / 'max'
-unit: false,                // [string] value suffix
-```
+-   #### strip
+    ```  
+    horizontal:false,           // [bool]  set to true to display widgets horizontally
+    widgets: []                 // [array] of widget objects
+    ```
 
-#### Knob
-```  
-range: {min:0,max:1},       // [object] minimum and maximum values
-unit: false,                // [string] value suffix
-```
+-   #### fader
+    ```  
+    horizontal:false,           // [bool]   set to true to display fader horizontally
+    range: {min:0,max:1},       // [object] defining the breakpoints of the fader
+                                //          keys can be percentages or 'min' / 'max'
+    unit: false,                // [string] value suffix
+    ```
 
-#### XY pad
-```  
-range:{                     // [object] minimum and maximum values for x and y axis
-        x:{min:0,max:1},
-        y:{min:0,max:1}
-    }
-```
+-   #### knob
+    ```
+    range: {min:0,max:1},       // [object] minimum and maximum values
+    unit: false,                // [string] value suffix
+    ```
 
-#### RGB pad
-```
-no option
-```
+-   #### xy
+    ```  
+    range:{                     // [object] minimum and maximum values for x and y axis
+            x:{min:0,max:1},
+            y:{min:0,max:1}
+        }
+    ```
 
-#### Toggle
-```  
-on: 1,                      // [string|number] value sent when toggle is on
-off:0                       // [string|number] value sent when toggle is off
-```
+-   #### rgb
+    Variant of xy pad, it outputs rgb values between 0 and 255.
 
-#### Switch
-```  
-values:[]                   // [array] of values (string or number)
-```
+
+-   #### toggle
+    ```  
+    on: 1,                      // [string|number] value sent when toggle is on
+    off:0,                      // [string|number] value sent when toggle is off
+    color:false                 // [string] (css) color of the active state indicator
+    ```
+
+-   #### switch
+    ```  
+    values:[]                   // [array] of values (string or number)
+    ```
