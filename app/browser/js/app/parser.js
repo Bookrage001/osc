@@ -78,6 +78,8 @@ parsewidgets = function(widgets,parent) {
             </div>\
         ');
 
+        if (widgetData.label===false) widgetContainer.addClass('nolabel')
+
         // create widget
         var widgetInner = createWidget[type](widgetData,widgetContainer)
         widgetInner.type =  type

@@ -572,6 +572,13 @@ form {
          margin-right:6rem;
      }
 
+     &.nolabel {
+         padding-top:0;
+         > .label {
+             display:none;
+         }
+     }
+
     .label {
         z-index: 1;
         padding:10rem 10rem;
@@ -610,7 +617,7 @@ form {
      > .widget {
          height:auto;
          flex-shrink: 0;
-         border-left-width:6rem;
+         margin-left:6rem;
     }
 }
 
@@ -625,7 +632,6 @@ form {
     border-bottom:0;
     background: none;
     box-shadow:none;
-    padding-top:35rem;
     > .label {
         // position: relative;
         background:$bg-3d;
@@ -639,10 +645,18 @@ form {
             height: auto;
         }
     }
+    &.nolabel .strip:not(.horizontal) > .widget:first-child {
+            border-top:0;
+    }
+    &.nolabel .strip.horizontal > .widget {
+            border-top:0;
+    }
 
     .strip {
         &.horizontal {
             flex-direction: row;
+            align-items: flex-start;
+
             > .widget {
                 border-bottom-width: 0;
                 border-right-width:6rem;
@@ -673,12 +687,16 @@ form {
     flex-shrink: 0;
     padding:0!important;
     .label {
-        position: relative;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
         padding:29rem 10rem 26rem;
         line-height: 1rem;
         background: none!important;
         text-align: center;
-
+        pointer-events:none;
     }
     &:hover {
         background: $bg-3d-hover;
@@ -689,12 +707,9 @@ form {
 }
 
 .toggle {
-    position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+
     z-index: 1;
+    padding:29rem 10rem 26rem;
     .light {
         position: absolute;
         left:4rem;
@@ -921,6 +936,10 @@ form {
     height:100%;
     min-height: 300rem;
 
+    &.nolabel .fader-wrapper-outer {
+        top:0;
+    }
+
     .fader-wrapper-outer {
         padding-bottom:30rem;
         position: absolute;
@@ -1063,6 +1082,9 @@ form {
 .knob-container {
     width: 100rem;
     flex-shrink: 0;
+    &.nolabel .knob-wrapper-outer{
+        padding-top:15rem;
+    }
     .knob-wrapper-outer {
         width: 100%;
         top: 0;
@@ -1072,7 +1094,7 @@ form {
         }
 
         .knob-wrapper {
-            padding:10rem 20rem 20rem 20rem ;
+            padding:5rem 20rem 20rem 20rem ;
             margin:0 auto;
             overflow:hidden;
             width:95rem;
