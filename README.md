@@ -1,4 +1,4 @@
-## Open Stage Control
+## Open Stage control Surface
 
 ### Session file structure
 
