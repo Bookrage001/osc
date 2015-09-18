@@ -1,6 +1,6 @@
 ## Open Stage Control
 
-Open Stage Control (*temporary name*) is a desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
+Open Stage Control (*temporary name*) is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
 
 It's under active development; hence, current features are subject to change without notice.
 
@@ -130,3 +130,20 @@ It can also be a self invoking function that returns an array of objects :
     type:'switch',
     values:[]                   // [array] of values (string or number)
     ```
+
+### License & credits
+
+Copyleft © Jean-Emmanuel @ AMMD
+This program is released under the GNU/GPLv3 license.
+
+It relies on the use of several libraries :
+- [Node.js](https://nodejs.org/)
+- [Electron](http://electron.atom.io/)
+- [node-osc](https://github.com/TheAlphaNerd/node-osc)
+- [Sass.js](https://github.com/medialize/sass.js/)
+- [jQuery](http://jquery.com/)
+  - [jQuery.resize.event](http://benalman.com/projects/jquery-resize-plugin/)
+  - [jQuery.event.drag](http://threedubmedia.com)
+- [Font Awesome](http://fontawesome.io/)
+
+Design was heavily inspired by [Atom](https://atom.io/)'s theme 'One Dark'
