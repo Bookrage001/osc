@@ -553,6 +553,7 @@ form {
 .widget {
     display:inline-block;
     height:auto;
+    min-width: 100rem;
     overflow: hidden;
     position:relative;
     font-size:13rem;
@@ -610,23 +611,32 @@ form {
     }
 }
 
-.tab.stack {
+.tab.on.stack {
     display: flex;
     flex-direction: column;
 
      > .widget {
+        width: auto;
          height:auto;
          flex-shrink: 0;
          margin-left:6rem;
     }
 }
 
+.tab.on.stretch {
+    display:flex;
+    justify-content: space-between;
+    > .widget {
+        width:100%;
+    }
+}
 
 /* STRIP (contains any widgets) */
 
 
 
 .strip-container {
+    width:100rem;
     height:100%;
     overflow: visible;
     border-bottom:0;
@@ -648,6 +658,9 @@ form {
     &.nolabel .strip:not(.horizontal) > .widget:first-child {
             border-top:0;
     }
+    .strip:not(.horizontal) > .widget {
+            width:auto;
+    }
     &.nolabel .strip.horizontal > .widget {
             border-top:0;
     }
@@ -660,6 +673,8 @@ form {
             > .widget {
                 border-bottom-width: 0;
                 border-right-width:6rem;
+                width:auto;
+                flex-shrink: initial;
             }
         }
         height: 100%;
@@ -669,6 +684,7 @@ form {
         > .widget {
             display: block;
             margin: 0;
+            // width:100%;
             &:not(:last-child) {
                 border-bottom-width:0;
             }
@@ -792,7 +808,8 @@ form {
     input {
         width:50%;
         float:left;
-        padding-left: 20rem;
+        padding: 2rem;
+        text-align: center;
         position: relative;
         left:0rem;
         right:0rem;
@@ -933,6 +950,7 @@ form {
 
 .fader-container {
     width:100rem;
+    min-width: 80rem;
     height:100%;
     min-height: 300rem;
 
@@ -964,6 +982,8 @@ form {
             width:4rem;
             background:$color-border;
             position: relative;
+            margin:0 auto;
+            left:-25rem;
             .handle {
                 position: absolute;
                 bottom:0!important;
@@ -1029,7 +1049,6 @@ form {
 }
 
 
-// Horizontal fader -> TODO
 .fader-container.horizontal {
     min-height: 80rem;
     height: auto;
@@ -1081,6 +1100,8 @@ form {
 
 .knob-container {
     width: 100rem;
+    // min-width: 100rem;
+    min-height: 135rem;
     flex-shrink: 0;
     &.nolabel .knob-wrapper-outer{
         padding-top:15rem;
@@ -1089,14 +1110,18 @@ form {
         width: 100%;
         top: 0;
         bottom: 0;
+        overflow: hidden;
+
         input {
             bottom:0;
+            position: relative;
+            z-index: 1;
         }
 
         .knob-wrapper {
             padding:5rem 20rem 20rem 20rem ;
             margin:0 auto;
-            overflow:hidden;
+
             width:95rem;
             position: relative;
             .knob-mask {
@@ -1178,6 +1203,14 @@ form {
                     transform-origin: center -6rem;
                     transform: rotate(45deg);
                     z-index: 100;
+                    &:after {
+                        content:"";
+                        position: absolute;
+                        height:2000rem;
+                        width:2000rem;
+                        margin:-1000rem 0 0 -1000rem;
+
+                    }
                 }
 
                 // no color gauge test
@@ -1198,6 +1231,7 @@ form {
                 position:absolute;
                 font-size:11rem;
                 color:$color-text;
+                pointer-events: none;
                 &.min {
                     bottom:10rem;
                     left:0;

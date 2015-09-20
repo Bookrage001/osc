@@ -135,7 +135,7 @@ createWidget.xy = function(widgetData) {
             </div>\
             <div class="value">\
                 <input disabled value="X"></input><input disabled value="Y"></input>\
-                <input type="number" class="x"></input><input type="number" class="y"></input>\
+                <input class="x"></input><input class="y"></input>\
             </div>\
         </div>\
         '),
@@ -257,7 +257,7 @@ createWidget.rgb = function(widgetData) {
             </div>\
             <div class="value">\
                 <input disabled value="R"></input><input disabled value="G"></input><input disabled value="B"></input>\
-                <input class="r" type="number"></input><input class="g" type="number"></input><input class="b" type="number"></input>\
+                <input class="r"></input><input class="g"></input><input class="b"></input>\
             </div>\
         </div>'),
         rgbHandle = widget.find('.rgb .handle'),

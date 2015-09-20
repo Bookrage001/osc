@@ -42,6 +42,7 @@ parsetabs = function(tabs,parent,sub){
         var tabContent = $('<div></div>').addClass('tab').attr('id',id);
 
         if (tabData.stack) tabContent.addClass('stack')
+        if (tabData.stretch) tabContent.addClass('stretch')
 
         if (tabData.tabs) {
             parsetabs(tabData.tabs,parent=tabContent,sub=true);
@@ -67,16 +68,16 @@ parsewidgets = function(widgets,parent) {
             label = widgetData.label || id,
             type = widgetData.type || 'fader',
             path = widgetData.path || '/' + id,
-            color = '',
-            accentclass = '';
+            style= widgetData.width?'width:'+widgetData.width*100+'rem':''
 
         widgetData.path = path
 
         var widgetContainer = $('\
-            <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'">\
+            <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'" style="'+style+'">\
                 <div class="label">'+label+'</div>\
             </div>\
         ');
+
 
         if (widgetData.label===false) widgetContainer.addClass('nolabel')
 
