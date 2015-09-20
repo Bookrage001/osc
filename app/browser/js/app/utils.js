@@ -29,11 +29,11 @@ sendState = function(){
 setState = function(preset){
 
     $.each(preset.split('\n'),function(i,d) {
-        var data = d.split(':')
+        var data = d.split(' ')
 
         setTimeout(function(){
-            if (__widgets__[data[1]]!=undefined) {
-                __widgets__[data[1]][0].setValue(data[2].split(','),true,true)
+            if (__widgets__[data[0]]!=undefined) {
+                __widgets__[data[0]][0].setValue(data[1].split(','),true,true)
             }
         },i)
     })
