@@ -116,7 +116,8 @@ It can also be a self invoking function that returns an array of objects :
     type:'knob',
     range: {min:0,max:1},       // [object] minimum and maximum values
     unit: false,                // [string] value suffix
-    absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
+    absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
+    gauge:true                  // [bool]   set to false to replace the gauge with a simple dot
     ```
 
 -   **xy**

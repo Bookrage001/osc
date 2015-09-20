@@ -1119,6 +1119,25 @@ form {
             z-index: 1;
         }
 
+        &.nogauge {
+            .knob-mask:after {
+                display: none;
+            }
+            .knob-wrapper .knob:after {
+                content:"";
+                position:absolute;
+                top:auto;
+                bottom:6rem;
+                left:6rem;
+                height:7rem;
+                width:7rem;
+                background:$color-accent;
+                border:none!important;
+                border-radius: 100%!important;
+                box-shadow: 0 0  0 2px  mix($color-text,$color-fg,2);
+            }
+        }
+
         .knob-wrapper {
             padding:5rem 20rem;
             margin:0 auto;
@@ -1212,19 +1231,6 @@ form {
                         margin:-1000rem 0 0 -1000rem;
 
                     }
-                }
-
-                // no color gauge test
-                &.dot:after {
-                    content:"";
-                    position:absolute;
-                    bottom:11rem;
-                    left:12rem;
-                    height:4rem;
-                    width:4rem;
-                    transform: rotate(45deg);
-                    background:$color-accent;
-                    border:0!important;
                 }
 
             }

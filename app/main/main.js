@@ -124,7 +124,7 @@ app.on('ready', function() {
                 {
                     label: 'Restart',
                     accelerator: 'CmdOrCtrl+R',
-                    click: function() { window.reload(); }//restartApp
+                    click: restartApp// function() { window.reload(); }//restartApp
                 },
                 {
                     label: 'Toggle DevTools',

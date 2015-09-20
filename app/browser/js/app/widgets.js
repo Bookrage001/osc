@@ -617,6 +617,8 @@ createWidget.knob = function(widgetData) {
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         absolute = widgetData.absolute
 
+    if (widgetData.gauge==false) widget.addClass('nogauge')
+
 
     var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
         pipmax = Math.abs(range.max)>=1000?range.max/1000+'k':range.max;
