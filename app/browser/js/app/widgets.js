@@ -614,7 +614,8 @@ createWidget.knob = function(widgetData) {
         knob = widget.find('.knob'),
         input = widget.find('input'),
         range = widgetData.range || {min:0,max:1},
-        unit = widgetData.unit?' '+widgetData.unit.trim(): '';
+        unit = widgetData.unit?' '+widgetData.unit.trim(): '',
+        absolute = widgetData.absolute
 
 
     var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
@@ -628,22 +629,66 @@ createWidget.knob = function(widgetData) {
 
     var offR = 0
     knob[0].setAttribute('style','transform:rotate(45deg)')
-    knob.drag('init',function(){
+    knob.drag('init',function(ev,dd){
+
+        if (absolute) {
+
+            var rect= knob[0].getBoundingClientRect(),
+                rad = knob.rotation*Math.PI/180,
+                w   = dd.target.clientWidth * Math.abs( Math.sin( rad) ) + dd.target.clientWidth * Math.abs( Math.cos( rad ) ),
+                h   = dd.target.clientHeight * Math.abs( Math.cos( rad ) ) + dd.target.clientHeight * Math.abs( Math.sin( rad ) );
+                x   = dd.startX-rect.left-w/2,
+                y   = dd.startY-rect.top-h/2
+                angle =  Math.atan2(-y, -x) * 180 / Math.PI +45
+                r = angle<-90?angle+360:angle
+                r = (angle>-90 && angle<-45)?270:r
+                r = clip(r,[0,270])
+
+            knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+            knob.rotation = r
+
+            if      (r>180) {knob.addClass('d3')}
+            else if (r>90)  {knob.removeClass('d3').addClass('d2')}
+            else            {knob.removeClass('d3 d2')}
+
+            var v = mapToScale(r,[0,270],[range.min,range.max])
+
+            widget.sendValue(v);
+            widget.trigger('sync')
+            widget.showValue(v)
+
+        }
+
         offR = knob.rotation
     })
 
     knob.drag(function( ev, dd ){
+
         var r = clip(-dd.deltaY*2+offR,[0,270])
+
+        if (absolute) {
+
+        var rect= knob[0].getBoundingClientRect(),
+            rad = knob.rotation*Math.PI/180,
+            w   = dd.target.clientWidth * Math.abs( Math.sin( rad) ) + dd.target.clientWidth * Math.abs( Math.cos( rad ) ),
+            h   = dd.target.clientHeight * Math.abs( Math.cos( rad ) ) + dd.target.clientHeight * Math.abs( Math.sin( rad ) );
+            x   = ev.pageX-rect.left-w/2,
+            y   = ev.pageY-rect.top-h/2
+            angle =  Math.atan2(-y, -x) * 180 / Math.PI +45
+            r = angle<-90?angle+360:angle
+            r = (angle>-90 && angle<-45)?270:r
+            r = clip(r,[0,270])
+
+        }
+
+
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         knob.rotation = r
 
-        if (r>180) {
-            knob.addClass('d3')
-        } else if (r>90) {
-            knob.removeClass('d3').addClass('d2')
-        } else {
-            knob.removeClass('d3 d2')
-        }
+
+        if      (r>180) {knob.addClass('d3')}
+        else if (r>90)  {knob.removeClass('d3').addClass('d2')}
+        else            {knob.removeClass('d3 d2')}
 
         var v = mapToScale(r,[0,270],[range.min,range.max])
 

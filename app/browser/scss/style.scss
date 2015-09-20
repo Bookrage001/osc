@@ -1110,16 +1110,17 @@ form {
         width: 100%;
         top: 0;
         bottom: 0;
+        padding-bottom:15rem;
         overflow: hidden;
 
         input {
-            bottom:0;
+            bottom:-15rem;
             position: relative;
             z-index: 1;
         }
 
         .knob-wrapper {
-            padding:5rem 20rem 20rem 20rem ;
+            padding:5rem 20rem;
             margin:0 auto;
 
             width:95rem;
@@ -1233,14 +1234,14 @@ form {
                 color:$color-text;
                 pointer-events: none;
                 &.min {
-                    bottom:10rem;
+                    bottom:-5rem;
                     left:0;
                     right:50%;
                     width:50%;
                     text-align:center;
                 }
                 &.max {
-                    bottom:10rem;
+                    bottom:-5rem;
                     left:50%;
                     width:50%;
                     right:0;
