@@ -24,6 +24,15 @@ $ /path/to/electron ./ [options]
 - `-l` : open last session at startup
 - `-c` : recompile scss stylesheets at startup
 
+
+### Features
+- modular, tab-based, layout
+- cross-widgets and cross-apps synchronization
+  - widgets that share the same id will update each other's values within the app
+  - widgets will update according to incoming osc message matching their own osc output pattern
+- app state saving & loading
+
+
 ### Session file structure
 
 A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a standard json file (except for double quotes around names which are not required) :
@@ -61,6 +70,7 @@ It can also be a self invoking function that returns an array of objects :
             ]
         })
     }
+    return tabs
 }()
 
 ```
@@ -92,6 +102,7 @@ It can also be a self invoking function that returns an array of objects :
     range: {min:0,max:1},       // [object] defining the breakpoints of the fader
                                 //          keys can be percentages or 'min' / 'max'
     unit: false,                // [string] value suffix
+    absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
     ```
 
 -   **knob**
