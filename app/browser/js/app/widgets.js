@@ -401,7 +401,8 @@ createWidget.fader = function(widgetData,container){
         pips = widget.find('.pips'),
         input = widget.find('input'),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
-        dimension = widgetData.horizontal?'width':'height';
+        dimension = widgetData.horizontal?'width':'height',
+        absolute = widgetData.absolute;
 
         if (widgetData.horizontal) container.addClass('horizontal')
 
@@ -413,16 +414,34 @@ createWidget.fader = function(widgetData,container){
         })
 
 
-    var offX = 0
-    if (dimension=='width') {
+    var off = 0
+    if (absolute) {
+        handle.drag('init',function(e){
+                var d = (dimension=='height')?
+                        handle.size + (-e.offsetY * 100 / fader.size):
+                        (e.offsetX * 100 / fader.size)
+                handle[0].setAttribute('style',dimension+':'+d+'%')
+                handle.size = d
+
+                var v = widget.getValue()
+                widget.sendValue(v);
+                widget.showValue(v);
+
+                widget.trigger('sync')
+
+            off = handle.size
+        })
+    } else {
         handle.drag('init',function(){
-            offX = handle.size
+            off = handle.size
         })
     }
 
+
     handle.drag(function( ev, dd ){
-            var d = (dimension=='height')?fader.size-dd.offsetY:dd.deltaX
-            d = clip(d*100/fader.size+offX,[0,100])
+            var d = (dimension=='height')?-dd.deltaY:dd.deltaX
+
+            d = clip(d*100/fader.size+off,[0,100])
             handle[0].setAttribute('style',dimension+':'+d+'%')
             handle.size = d
 
