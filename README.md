@@ -118,12 +118,14 @@ It can also be a self invoking function that returns an array of objects :
     range:{                     // [object] minimum and maximum values for x and y axis
             x:{min:0,max:1},
             y:{min:0,max:1}
-        }
+        },
+    absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
     ```
 
 -   **rgb**
     ```
-    type:'rgb'
+    type:'rgb',
+    absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
     ```
     Variant of xy pad, it outputs rgb values between 0 and 255.
 

@@ -142,7 +142,8 @@ createWidget.xy = function(widgetData) {
         handle = widget.find('.handle'),
         pad = widget.find('.xy'),
         value = {x:widget.find('.x'),y:widget.find('.y')},
-        range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}}
+        range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}},
+        absolute = widgetData.absolute
 
 
     widgetData.range = range
@@ -158,13 +159,30 @@ createWidget.xy = function(widgetData) {
         pad.height = pad.innerHeight()
     })
 
-    var offX = 0
-    handle.drag('init',function(){
-        offX = handle.width
-    })
+    var off = {x:0,y:0}
+    if (absolute) {
+        handle.drag('init',function(e){
+                var h = handle.height + (-e.offsetY * 100 / pad.height),
+                    w = (e.offsetX * 100 / pad.width)
+                handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+                handle.height = h
+                handle.width = w
+
+                var v = widget.getValue()
+                widget.sendValue(v);
+                widget.showValue(v);
+                widget.trigger('sync')
+
+            off = {x:handle.width,y:handle.height}
+        })
+    } else {
+        handle.drag('init',function(){
+            off = {x:handle.width,y:handle.height}
+        })
+    }
     handle.drag(function( ev, dd ){
-        var h = clip((pad.height-dd.offsetY)*100/pad.height,[0,100]),
-            w = clip((dd.deltaX)*100/pad.width+offX,[0,100])
+        var h = clip((-dd.deltaY)*100/pad.height+off.y,[0,100]),
+            w = clip((dd.deltaX)*100/pad.width+off.x,[0,100])
         handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         handle.height = h
         handle.width = w
@@ -172,7 +190,6 @@ createWidget.xy = function(widgetData) {
         var v = widget.getValue()
         widget.sendValue(v);
         widget.showValue(v);
-
         widget.trigger('sync')
 
     },{ relative:true });
@@ -247,6 +264,7 @@ createWidget.rgb = function(widgetData) {
         hueHandle = widget.find('.hue .handle'),
         pad = widget.find('.xy'),
         value = {r:widget.find('input.r'),g:widget.find('input.g'),b:widget.find('input.b')}
+        absolute = widgetData.absolute
 
 
     widgetData.range = {r:{min:0,max:255},g:{min:0,max:255},b:{min:255}}
@@ -265,13 +283,30 @@ createWidget.rgb = function(widgetData) {
     })
 
 
-    var rgbOffX
-    rgbHandle.drag('init',function(){
-        rgbOffX = rgbHandle.width
-    })
+    var rgbOff = {x:0,y:0}
+    if (absolute) {
+        rgbHandle.drag('init',function(e){
+                var h = rgbHandle.height + (-e.offsetY * 100 / pad.height),
+                    w = (e.offsetX * 100 / pad.width)
+                rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+                rgbHandle.height = h
+                rgbHandle.width = w
+
+                var v = widget.getValue()
+                widget.sendValue(v);
+                widget.showValue(v);
+                widget.trigger('sync')
+
+            rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
+        })
+    } else {
+        rgbHandle.drag('init',function(){
+            rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
+        })
+    }
     rgbHandle.drag(function( ev, dd ){
-        var h = clip((pad.height-dd.offsetY)*100/pad.height,[0,100]),
-            w = clip(dd.deltaX*100/pad.width+rgbOffX,[0,100])
+        var h = clip((-dd.deltaY)*100/pad.height+rgbOff.y,[0,100]),
+            w = clip(dd.deltaX*100/pad.width+rgbOff.x,[0,100])
         rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         rgbHandle.height = h
         rgbHandle.width = w
@@ -284,11 +319,38 @@ createWidget.rgb = function(widgetData) {
 
     },{ relative:true });
 
-    hueHandle.drag('init',function(){
-        hueOffX = hueHandle.width
-    })
+
+    var hueOff = 0
+    if (absolute) {
+        hueHandle.drag('init',function(e){
+            var d = (e.offsetX * 100 / pad.width)
+            hueHandle[0].setAttribute('style','width:'+d+'%')
+            hueHandle.width = d
+
+
+            var h = clip(hueHandle.width*3.6,[0,360]),
+                rgb = hsbToRgb({h:h,s:100,b:100}),
+                v = widget.getValue();
+
+            pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+
+
+
+            widget.sendValue(v);
+            widget.showValue(v);
+            widget.trigger('sync')
+
+            hueOff = hueHandle.width
+        })
+    } else {
+        hueHandle.drag('init',function(){
+            hueOff = hueHandle.width
+        })
+    }
+
+
     hueHandle.drag(function( ev, dd ){
-        var w = clip(dd.deltaX*100/pad.width+hueOffX,[0,100])
+        var w = clip(dd.deltaX*100/pad.width+hueOff,[0,100])
         hueHandle[0].setAttribute('style','width:'+w+'%')
         hueHandle.width = w
 
