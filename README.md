@@ -6,21 +6,25 @@ It's under active development; hence, current features are subject to change wit
 
 ### Run from sources
 
-**Requirements:**
+**Requirements**
 - [Node.js](https://nodejs.org/)
 - [Electron](http://electron.atom.io/)
   - installed locally via `npm install electron-prebuilt`
   - or installed system-wide via `npm install -g electron-prebuilt`
 
-**How to run:**
+**Build** *(Download the app and fetch its dependencies)*
  ```
 $ git clone https://github.com/jean-emmanuel/Open-Stage-Control
 $ cd Open-Stage-Control/app
 $ npm install
-$ /path/to/electron ./ [options]
  ```
 
-**Command line switches:**
+ **Run**
+  ```
+ $ /path/to/electron /path/to/Open-Stage-Control/app [options]
+  ```
+
+**Command line switches**
 - `-l` : open last session at startup
 - `-c` : recompile scss stylesheets at startup
 
@@ -146,8 +150,7 @@ It can also be a self invoking function that returns an array of objects :
 
 ### License & credits
 
-Copyleft © Jean-Emmanuel @ AMMD
-This program is released under the GNU/GPLv3 license.
+Copyleft © Jean-Emmanuel @ AMMD. This program is released under the GNU/GPL3 license.
 
 It relies on the use of several libraries :
 - [Node.js](https://nodejs.org/)
