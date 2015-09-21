@@ -1,19 +1,18 @@
 createWidget= {}
 
 
-createWidget.strip = function(widgetData) {
+createWidget.strip = function(widgetData,container) {
     var widget = $('\
             <div class="strip">\
             </div>\
-    ');
+    ')
     if (widgetData.horizontal) {
-        widget.addClass('horizontal')
-        widgetData.class = 'horizontal-container'
+        container.addClass('horizontal')
     }
     parsewidgets(widgetData.widgets,widget)
     widget.getValue = function(){return}
     widget.setValue = function(){return}
-    return widget;
+    return widget
 }
 
 
@@ -32,7 +31,7 @@ createWidget.led = function(widgetData) {
         led.css('opacity',mapToScale(v,[range.min,range.max],[0,1]))
     }
     widget.getValue = function(){return}
-    return widget;
+    return widget
 }
 
 
@@ -80,10 +79,10 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
     widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
-        sendOsc([t,p,v]);
+        sendOsc([t,p,v])
     }
     widget.setValue()
-    return widget;
+    return widget
 }
 
 
@@ -93,7 +92,7 @@ createWidget.switch = function(widgetData) {
     var widget = $('\
         <div class="switch">\
         </div>\
-    ');
+    ')
 
     for (v in widgetData.values) {
         widget.append('<div class="value" data-value="'+widgetData.values[v]+'">'+widgetData.values[v]+'</div>')
@@ -101,7 +100,7 @@ createWidget.switch = function(widgetData) {
 
 
     widget.find('.value').click(function(){
-        if ($(this).hasClass('on')) return;
+        if ($(this).hasClass('on')) return
         var newVal = $(this).data('value')
         widget.setValue(newVal,true,true)
     })
@@ -123,9 +122,9 @@ createWidget.switch = function(widgetData) {
     widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
-        sendOsc([t,p,v]);
+        sendOsc([t,p,v])
     }
-    return widget;
+    return widget
 }
 
 
@@ -172,8 +171,8 @@ createWidget.xy = function(widgetData) {
                 handle.width = w
 
                 var v = widget.getValue()
-                widget.sendValue(v);
-                widget.showValue(v);
+                widget.sendValue(v)
+                widget.showValue(v)
                 widget.trigger('sync')
 
             off = {x:handle.width,y:handle.height}
@@ -191,11 +190,11 @@ createWidget.xy = function(widgetData) {
         handle.width = w
 
         var v = widget.getValue()
-        widget.sendValue(v);
-        widget.showValue(v);
+        widget.sendValue(v)
+        widget.showValue(v)
         widget.trigger('sync')
 
-    },{ relative:true });
+    },{ relative:true })
 
 
 
@@ -216,12 +215,12 @@ createWidget.xy = function(widgetData) {
 
         widget.showValue(v)
         if (sync) widget.trigger('sync')
-        if (send) widget.sendValue(v);
+        if (send) widget.sendValue(v)
     }
     widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
-        sendOsc([t,p,v]);
+        sendOsc([t,p,v])
     }
 
     widget.showValue = function(v) {
@@ -230,18 +229,18 @@ createWidget.xy = function(widgetData) {
     }
 
     value.x.change(function(){
-        var v = widget.getValue();
+        var v = widget.getValue()
         v[0] = clip(value.x.val(),[range.x.min,range.x.max])
         widget.setValue(v,true,true)
     })
     value.y.change(function(){
-        var v = widget.getValue();
+        var v = widget.getValue()
         v[1] = clip(value.y.val(),[range.y.min,range.y.max])
         widget.setValue(v,true,true)
     })
 
     widget.setValue(range.x.min,range.y.min)
-    return widget;
+    return widget
 }
 
 
@@ -296,8 +295,8 @@ createWidget.rgb = function(widgetData) {
                 rgbHandle.width = w
 
                 var v = widget.getValue()
-                widget.sendValue(v);
-                widget.showValue(v);
+                widget.sendValue(v)
+                widget.showValue(v)
                 widget.trigger('sync')
 
             rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
@@ -315,12 +314,12 @@ createWidget.rgb = function(widgetData) {
         rgbHandle.width = w
 
         var v = widget.getValue()
-        widget.sendValue(v);
-        widget.showValue(v);
+        widget.sendValue(v)
+        widget.showValue(v)
 
         widget.trigger('sync')
 
-    },{ relative:true });
+    },{ relative:true })
 
 
     var hueOff = 0
@@ -333,14 +332,14 @@ createWidget.rgb = function(widgetData) {
 
             var h = clip(hueHandle.width*3.6,[0,360]),
                 rgb = hsbToRgb({h:h,s:100,b:100}),
-                v = widget.getValue();
+                v = widget.getValue()
 
             pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
 
 
-            widget.sendValue(v);
-            widget.showValue(v);
+            widget.sendValue(v)
+            widget.showValue(v)
             widget.trigger('sync')
 
             hueOff = hueHandle.width
@@ -359,15 +358,15 @@ createWidget.rgb = function(widgetData) {
 
         var h = clip(hueHandle.width*3.6,[0,360]),
             rgb = hsbToRgb({h:h,s:100,b:100}),
-            v = widget.getValue();
+            v = widget.getValue()
 
         pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
-        widget.sendValue(v);
-        widget.showValue(v);
+        widget.sendValue(v)
+        widget.showValue(v)
 
         widget.trigger('sync')
 
-    },{ relative:true });
+    },{ relative:true })
 
 
 
@@ -406,17 +405,17 @@ createWidget.rgb = function(widgetData) {
         var rgb = hsbToRgb({h:hsb.h,s:100,b:100})
         pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
-        widget.showValue(v);
+        widget.showValue(v)
 
 
 
-        if (sync) widget.trigger('sync');
-        if (send) widget.sendValue(v);
+        if (sync) widget.trigger('sync')
+        if (send) widget.sendValue(v)
     }
     widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
-        sendOsc([t,p,v]);
+        sendOsc([t,p,v])
     }
 
 
@@ -444,7 +443,7 @@ createWidget.rgb = function(widgetData) {
 
     widget.setValue(0)
 
-    return widget;
+    return widget
 }
 
 
@@ -467,8 +466,9 @@ createWidget.fader = function(widgetData,container){
         input = widget.find('input'),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = widgetData.horizontal?'width':'height',
-        absolute = widgetData.absolute;
+        absolute = widgetData.absolute
 
+        if (widgetData.gauge===false) fader.addClass('nogauge')
         if (widgetData.horizontal) container.addClass('horizontal')
 
         handle.size = 0
@@ -489,8 +489,8 @@ createWidget.fader = function(widgetData,container){
                 handle.size = d
 
                 var v = widget.getValue()
-                widget.sendValue(v);
-                widget.showValue(v);
+                widget.sendValue(v)
+                widget.showValue(v)
 
                 widget.trigger('sync')
 
@@ -511,12 +511,12 @@ createWidget.fader = function(widgetData,container){
             handle.size = d
 
             var v = widget.getValue()
-            widget.sendValue(v);
-            widget.showValue(v);
+            widget.sendValue(v)
+            widget.showValue(v)
 
             widget.trigger('sync')
 
-    },{ relative:true });
+    },{ relative:true })
 
     widgetData.range = widgetData.range || {'min':0,'max':1}
 
@@ -574,17 +574,17 @@ createWidget.fader = function(widgetData,container){
         handle[0].setAttribute('style',dimension+':'+h+'%')
         handle.size = h
 
-        widget.showValue(v);
+        widget.showValue(v)
 
 
-        if (sync) widget.trigger('sync');
-        if (send) widget.sendValue(v);
+        if (sync) widget.trigger('sync')
+        if (send) widget.sendValue(v)
     }
 
     widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
-        sendOsc([t,p,v]);
+        sendOsc([t,p,v])
     }
 
     widget.showValue = function(v) {
@@ -624,7 +624,7 @@ createWidget.knob = function(widgetData) {
 
 
     var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
-        pipmax = Math.abs(range.max)>=1000?range.max/1000+'k':range.max;
+        pipmax = Math.abs(range.max)>=1000?range.max/1000+'k':range.max
 
     widget.find('.pip.min').text(pipmin)
     widget.find('.pip.max').text(pipmax)
@@ -641,7 +641,7 @@ createWidget.knob = function(widgetData) {
             var rect= knob[0].getBoundingClientRect(),
                 rad = knob.rotation*Math.PI/180,
                 w   = dd.target.clientWidth * Math.abs( Math.sin( rad) ) + dd.target.clientWidth * Math.abs( Math.cos( rad ) ),
-                h   = dd.target.clientHeight * Math.abs( Math.cos( rad ) ) + dd.target.clientHeight * Math.abs( Math.sin( rad ) );
+                h   = dd.target.clientHeight * Math.abs( Math.cos( rad ) ) + dd.target.clientHeight * Math.abs( Math.sin( rad ) )
                 x   = dd.startX-rect.left-w/2,
                 y   = dd.startY-rect.top-h/2
                 angle =  Math.atan2(-y, -x) * 180 / Math.PI +45
@@ -658,7 +658,7 @@ createWidget.knob = function(widgetData) {
 
             var v = mapToScale(r,[0,270],[range.min,range.max])
 
-            widget.sendValue(v);
+            widget.sendValue(v)
             widget.trigger('sync')
             widget.showValue(v)
 
@@ -676,7 +676,7 @@ createWidget.knob = function(widgetData) {
         var rect= knob[0].getBoundingClientRect(),
             rad = knob.rotation*Math.PI/180,
             w   = dd.target.clientWidth * Math.abs( Math.sin( rad) ) + dd.target.clientWidth * Math.abs( Math.cos( rad ) ),
-            h   = dd.target.clientHeight * Math.abs( Math.cos( rad ) ) + dd.target.clientHeight * Math.abs( Math.sin( rad ) );
+            h   = dd.target.clientHeight * Math.abs( Math.cos( rad ) ) + dd.target.clientHeight * Math.abs( Math.sin( rad ) )
             x   = ev.pageX-rect.left-w/2,
             y   = ev.pageY-rect.top-h/2
             angle =  Math.atan2(-y, -x) * 180 / Math.PI +45
@@ -697,11 +697,11 @@ createWidget.knob = function(widgetData) {
 
         var v = mapToScale(r,[0,270],[range.min,range.max])
 
-        widget.sendValue(v);
+        widget.sendValue(v)
         widget.trigger('sync')
         widget.showValue(v)
 
-    },{ relative:true });
+    },{ relative:true })
 
 
     widget.getValue = function() {
@@ -713,7 +713,7 @@ createWidget.knob = function(widgetData) {
     widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
-        sendOsc([t,p,v]);
+        sendOsc([t,p,v])
     }
     widget.setValue = function(v,send,sync) {
         var r = mapToScale(v,[range.min,range.max],[0,270])
@@ -731,10 +731,10 @@ createWidget.knob = function(widgetData) {
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         var v = widget.getValue() || v
 
-        widget.showValue(v);
+        widget.showValue(v)
 
-        if (sync) widget.trigger('sync');
-        if (send) widget.sendValue(v);
+        if (sync) widget.trigger('sync')
+        if (send) widget.sendValue(v)
     }
     input.change(function(){
         widget.setValue(input.val(),true,true)

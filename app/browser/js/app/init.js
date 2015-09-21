@@ -11,7 +11,7 @@ init = function(session,callback) {
 
     $.each(__widgets__,function(i,widget) {
         if (widget.length>1) {
-            var script ='';
+            var script =''
 
             var closureSync = function(x) {
                 return function() {
@@ -38,11 +38,11 @@ init = function(session,callback) {
     // Tabs...
     $('.tablist a').click(function(){
 
-        var id = $(this).data('tab');
-        $(id).siblings('.on').removeClass('on');
-        $(id).addClass('on');
-        $(this).parents('ul').find('.on').removeClass('on');
-        $(this).addClass('on');$(this).parent().addClass('on');
+        var id = $(this).data('tab')
+        $(id).siblings('.on').removeClass('on')
+        $(id).addClass('on')
+        $(this).parents('ul').find('.on').removeClass('on')
+        $(this).addClass('on');$(this).parent().addClass('on')
 
     })
 
@@ -50,7 +50,7 @@ init = function(session,callback) {
 
 
     // Activate first tabs
-    $('.tablist li:first-child a').click();
+    $('.tablist li:first-child a').click()
 
 
 
@@ -76,20 +76,20 @@ init = function(session,callback) {
 
         } else {
             var scrollbar = 10
-            var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5;
+            var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5
             if ($(this).get(0).scrollHeight+scrollbar == $(this).height()) {
                 var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
-                $(this).scrollLeft($(this).scrollLeft()+scroll);
-                e.preventDefault();
+                $(this).scrollLeft($(this).scrollLeft()+scroll)
+                e.preventDefault()
             } else if (e.pageY>=h) {
-                $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY);
+                $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY)
                 e.preventDefault()
             }
         }
 
 
 
-    });
+    })
 
     // sidepanel
 
@@ -137,13 +137,13 @@ init = function(session,callback) {
 
 
     $('#open-toggle').click(function(){
-        $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open');
+        $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
     })
 
     $('.widget .label').click(function(){
         if (!$('#sidepanel').hasClass('sidepanel-open')){return}
         var data = String(JSON.stringify($(this).data('papers'),null,2)).split('\n').join('<br/>&nbsp;&nbsp;')
-        $('.inspector .result').html(data);
+        $('.inspector .result').html(data)
     })
 
 

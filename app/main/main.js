@@ -45,8 +45,8 @@ writeConfig = function(newconfig) {
     config[i] = newconfig[i]
   }
   fs.writeFile(configPath,JSON.stringify(config,null,4), function (err, data) {
-      if (err) throw err;
-  });
+      if (err) throw err
+  })
 
 }
 
@@ -66,9 +66,9 @@ readEditableConfig = function(){
 }
 
 restartApp = function(){
-    var exec = require('child_process').exec;
-    exec(args.join(' '));
-    app.quit();
+    var exec = require('child_process').exec
+    exec(args.join(' '))
+    app.quit()
 }
 
 
@@ -81,19 +81,19 @@ compileScss = function(){
         var content = fs.readFileSync(file,'utf8')
         sass.compile(content,{style: sass.style.compact,linefeed: ''}, function(result) {
             fs.writeFileSync(__dirname + '/../browser/css/'+filenames[i].replace('.scss','.css'),result.text,'utf8')
-        });
+        })
     }
 }
 
 
 
-var window = null;
+var window = null
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
-    app.quit();
+    app.quit()
   }
-});
+})
 
 app.on('ready', function() {
 
@@ -105,17 +105,17 @@ app.on('ready', function() {
         width: 800,
         height: 600,
         'auto-hide-menu-bar':true
-    });
+    })
 
-    window.loadUrl('file://' + __dirname + '/../browser/index.html');
+    window.loadUrl('file://' + __dirname + '/../browser/index.html')
 
     window.on('closed', function() {
-        window = null;
-    });
+        window = null
+    })
 
 
-    var Menu = require('menu');
-    var MenuItem = require('menu-item');
+    var Menu = require('menu')
+    var MenuItem = require('menu-item')
 
     var template = [
         {
@@ -139,26 +139,26 @@ app.on('ready', function() {
             ]
         },
     ]
-    menu = Menu.buildFromTemplate(template);
-    Menu.setApplicationMenu(menu);
-});
+    menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
+})
 
 
 
-var oscServer = new osc.Server(readConfig('oscInPort'), '127.0.0.1');
+var oscServer = new osc.Server(readConfig('oscInPort'), '127.0.0.1')
 
 oscServer.on("message", function (msg, rinfo) {
     var data = {path:msg.shift(),args:msg}
     if (data.args.length==1) data.args = data.args[0]
-    renderProcess.send('receiveOsc',data);
-});
+    renderProcess.send('receiveOsc',data)
+})
 
 
 // mainProcess & renderProcess async i/o
 
 renderProcess = {
     send : function(name,data) {
-        window.webContents.send(name,data);
+        window.webContents.send(name,data)
     }
 }
 
@@ -177,7 +177,7 @@ ipc.on('addSessionToHistory',function(event, data){
     sessionlist.unshift(data)
     // remove doubles from history
     sessionlist = sessionlist.filter(function(elem, index, self) {
-        return index == self.indexOf(elem);
+        return index == self.indexOf(elem)
     })
     // save history
     writeConfig({recentSessions:sessionlist})
@@ -196,7 +196,7 @@ ipc.on('ready',function(){
 
     if (args.indexOf('-l')!=-1) {
         var sessionlist = readConfig('recentSessions')
-        renderProcess.send('openSession',sessionlist[0]);
+        renderProcess.send('openSession',sessionlist[0])
     }
 })
 
@@ -207,25 +207,25 @@ ipc.on('ready',function(){
 ipc.on('sendOsc', function (event,data) {
 
     var targets = []
-    Array.prototype.push.apply(targets, data.target.split(' '));
-    Array.prototype.push.apply(targets, readConfig('syncTargets').split(' '));
+    Array.prototype.push.apply(targets, data.target.split(' '))
+    Array.prototype.push.apply(targets, readConfig('syncTargets').split(' '))
 
     for (i in targets) {
 
         var host = targets[i].split(':')[0],
-            port = targets[i].split(':')[1];
+            port = targets[i].split(':')[1]
 
         if (port) {
-            var client = new osc.Client(host, port);
+            var client = new osc.Client(host, port)
             client.send(data.path, data.args, function () {
-              client.kill();
-            });
+              client.kill()
+            })
         }
 
     }
 
 
-});
+})
 
 
 ipc.on('save', function(event, data){
@@ -236,9 +236,9 @@ ipc.on('save', function(event, data){
 
         if (file.indexOf('.preset')==-1){file+='.preset'}
         fs.writeFile(file,data, function (err, data) {
-            if (err) throw err;
-            console.log("The current state was saved in "+file);
-        });
+            if (err) throw err
+            console.log("The current state was saved in "+file)
+        })
     })
 })
 
@@ -249,9 +249,9 @@ ipc.on('load', function(event, data){
         writeConfig({presetPath:file[0].replace(file[0].split('/').pop(),'')})
 
         fs.readFile(file[0],'utf-8', function read(err, data) {
-            if (err) throw err;
-            renderProcess.send('load',data);
-        });
+            if (err) throw err
+            renderProcess.send('load',data)
+        })
     })
 })
 

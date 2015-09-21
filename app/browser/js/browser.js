@@ -1,9 +1,9 @@
 
 // mainProcess & renderProcess communication engine
-ipc = require('ipc');
+ipc = require('ipc')
 
 // filesystem
-fs = require('fs');
+fs = require('fs')
 
 // jquery
 window.$ = window.jQuery = require( __dirname + "/jquery/jquery.min.js")
@@ -17,4 +17,4 @@ require( __dirname + "/jquery/jquery.ba-resize.js")
 // main js
 require( __dirname + "/app/app.js")
 
-ipc.send('ready');
+ipc.send('ready')

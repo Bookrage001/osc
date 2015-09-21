@@ -15,15 +15,15 @@ parsetabs = function(tabs,parent,sub){
     if (!sub) {
         var nav = $(document.createElement('div')).addClass('main navigation'),
             navtabs = $(document.createElement('ul')).addClass('tablist'),
-            content = $(document.createElement('div')).addClass('content');
+            content = $(document.createElement('div')).addClass('content')
         nav.append(navtabs)
-        $('#container').append(nav).append(content);
+        $('#container').append(nav).append(content)
     } else {
         var nav = $(document.createElement('div')).addClass('sub navigation'),
             navtabs = $(document.createElement('ul')).addClass('tablist'),
-            content = $(document.createElement('div')).addClass('content hastabs');
-        nav.append(navtabs);
-        parent.append(nav).append(content);
+            content = $(document.createElement('div')).addClass('content hastabs')
+        nav.append(navtabs)
+        parent.append(nav).append(content)
 
     }
 
@@ -37,19 +37,19 @@ parsetabs = function(tabs,parent,sub){
             label= tabData.label||tabData.id
 
 
-        navtabs.append('<li><a data-tab="#'+id+'"><span>'+label+'</span></a></li>');
+        navtabs.append('<li><a data-tab="#'+id+'"><span>'+label+'</span></a></li>')
 
-        var tabContent = $('<div></div>').addClass('tab').attr('id',id);
+        var tabContent = $('<div></div>').addClass('tab').attr('id',id)
 
         if (tabData.stretch) tabContent.addClass('stretch')
 
         if (tabData.tabs) {
-            parsetabs(tabData.tabs,parent=tabContent,sub=true);
+            parsetabs(tabData.tabs,parent=tabContent,sub=true)
         } else {
             parsewidgets(tabData.widgets,tabContent)
         }
 
-        content.append(tabContent);
+        content.append(tabContent)
 
     }
 }
@@ -75,7 +75,7 @@ parsewidgets = function(widgets,parent) {
             <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'" style="'+style+'">\
                 <div class="label"><span>'+label+'</span></div>\
             </div>\
-        ');
+        ')
 
 
         if (widgetData.label===false) widgetContainer.addClass('nolabel')
@@ -84,8 +84,6 @@ parsewidgets = function(widgets,parent) {
         var widgetInner = createWidget[type](widgetData,widgetContainer)
         widgetInner.type =  type
         widgetContainer.find('.label').data('papers',widgetData)
-
-        if (widgetData.class) widgetContainer.addClass(widgetData.class)
 
         widgetContainer.append(widgetInner)
 
@@ -99,6 +97,6 @@ parsewidgets = function(widgets,parent) {
         // store path vs widget id for faster cross-app sync
         __widgetsIds__[widgetData.path ] = id
 
-        parent.append(widgetContainer);
+        parent.append(widgetContainer)
     }
 }
