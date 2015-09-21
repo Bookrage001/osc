@@ -64,7 +64,7 @@ a {
     display: block;
 }
 
-$scrollbar-margin:2px;
+$scrollbar-margin:1px;
 ::-webkit-scrollbar {
     width: 10px;
     height:10px;
@@ -73,24 +73,27 @@ $scrollbar-margin:2px;
 }
 
 ::-webkit-scrollbar-track-piece {
-    background: rgba(0,0,0,.2);
+    background: $color-border;
     &:vertical {
-        border-left:$scrollbar-margin solid $color-fg;
+        border-left:$scrollbar-margin solid $color-border;
     }
     &:horizontal {
-        border-top:$scrollbar-margin solid  $color-fg;
+        border-top:$scrollbar-margin solid  $color-border;
     }
 }
 ::-webkit-scrollbar-corner  {
-    background: none;
+    background: $color-border;
 }
 ::-webkit-scrollbar-thumb {
     background:$bg-3d;
     &:vertical {
-        border-left:$scrollbar-margin solid  $color-fg;
+        border:$scrollbar-margin solid  $color-border;
+        border-width: 0 $scrollbar-margin 0 $scrollbar-margin;
+
     }
     &:horizontal {
-        border-top:$scrollbar-margin solid  $color-fg;
+        border:$scrollbar-margin solid  $color-border;
+        border-width: $scrollbar-margin 0 $scrollbar-margin 0;
     }
 }
 
