@@ -6,7 +6,10 @@ createWidget.strip = function(widgetData) {
             <div class="strip">\
             </div>\
     ');
-    if (widgetData.horizontal) widget.addClass('horizontal')
+    if (widgetData.horizontal) {
+        widget.addClass('horizontal')
+        widgetData.class = 'horizontal-container'
+    }
     parsewidgets(widgetData.widgets,widget)
     widget.getValue = function(){return}
     widget.setValue = function(){return}

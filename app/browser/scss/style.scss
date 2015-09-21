@@ -402,28 +402,12 @@ a {
     bottom:0;
     background:$color-fg;
 
-    .tab {
-        //height:100%;
-        font-size:0;
-        //position:relative;
-        overflow: auto;
-    }
     .content {
-        // border-top:1px solid $color-border;
         top:$nav-height;
 
     }
 }
 
-
-.tab {
-    display:none;
-    &.on {
-        display: block;
-        height:100%;
-        width:auto;
-    }
-}
 
 
 #loading {
@@ -544,7 +528,26 @@ form {
 
 
 
+// TABS
 
+.tab.on.stretch {
+    display:flex;
+    justify-content: space-between;
+    > .widget {
+        width:100%;
+    }
+}
+
+
+.tab {
+    display:none;
+    overflow: auto;
+    &.on {
+        display: block;
+        height:100%;
+        width:auto;
+    }
+}
 
 
 
@@ -557,7 +560,7 @@ form {
     overflow: hidden;
     position:relative;
     font-size:13rem;
-    padding:35rem 1px 0;
+    padding:35rem  0 0;
     vertical-align:top;
     border: 6rem solid $color-fg;
     border-width:6rem 0;
@@ -611,25 +614,8 @@ form {
     }
 }
 
-.tab.on.stack {
-    display: flex;
-    flex-direction: column;
 
-     > .widget {
-        width: auto;
-         height:auto;
-         flex-shrink: 0;
-         margin-left:6rem;
-    }
-}
 
-.tab.on.stretch {
-    display:flex;
-    justify-content: space-between;
-    > .widget {
-        width:100%;
-    }
-}
 
 /* STRIP (contains any widgets) */
 
@@ -672,9 +658,13 @@ form {
 
             > .widget {
                 border-bottom-width: 0;
+                border-top-width: 0;
                 border-right-width:6rem;
                 width:auto;
                 flex-shrink: initial;
+                &:last-child {
+                    border-right-width: 6rem;
+                }
             }
         }
         height: 100%;
@@ -691,6 +681,40 @@ form {
         }
 
     }
+
+    &.horizontal-container {
+        padding-top:0;
+        padding-left: 40rem;
+        width:100%;
+        height:auto;
+        margin:0;
+        border-left-width: 6rem;
+
+        display: block;
+        &:last-child {
+            margin-bottom:6rem;
+        }
+        &.nolabel {
+            padding-left: 0;
+        }
+        > .label {
+            width:35rem;
+            height:100%;
+            left:0;
+            top:0;
+            span {
+                transform: rotate(180deg);
+                display: block;
+                position: relative;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-writing-mode:vertical-lr;
+                text-align: center;
+                height:100%;
+            }
+        }
+    }
+
 }
 
 

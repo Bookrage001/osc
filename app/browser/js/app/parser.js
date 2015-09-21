@@ -41,7 +41,6 @@ parsetabs = function(tabs,parent,sub){
 
         var tabContent = $('<div></div>').addClass('tab').attr('id',id);
 
-        if (tabData.stack) tabContent.addClass('stack')
         if (tabData.stretch) tabContent.addClass('stretch')
 
         if (tabData.tabs) {
@@ -74,7 +73,7 @@ parsewidgets = function(widgets,parent) {
 
         var widgetContainer = $('\
             <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'" style="'+style+'">\
-                <div class="label">'+label+'</div>\
+                <div class="label"><span>'+label+'</span></div>\
             </div>\
         ');
 
@@ -85,6 +84,8 @@ parsewidgets = function(widgets,parent) {
         var widgetInner = createWidget[type](widgetData,widgetContainer)
         widgetInner.type =  type
         widgetContainer.find('.label').data('papers',widgetData)
+
+        if (widgetData.class) widgetContainer.addClass(widgetData.class)
 
         widgetContainer.append(widgetInner)
 
