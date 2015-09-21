@@ -74,7 +74,7 @@ openSession = function(path){
 
 
 icon = function(i) {
-    return '<i class="fa fa-fw fa-'+i+'"></i>'
+    return `<i class="fa fa-fw fa-${i}"></i>`
 }
 
 createMenu = function(template) {
@@ -95,7 +95,7 @@ createMenu = function(template) {
             html
 
         if (!item.html) {
-            html = $('<a class="'+classname+' btn">'+label+'</a>')
+            html = $(`<a class="${classname} btn">${label}</a>`)
         } else {
             html = $(item.html)
         }
@@ -115,13 +115,13 @@ createMenu = function(template) {
 
 
 createPopup = function(title,content) {
-    var popup = $('\
-        <div class="popup">\
-            <div class="popup-wrapper">\
-            <div class="popup-title">'+title+'<span class="closer">'+icon('remove')+'</span></div>\
-            <div class="popup-content"></div>\
-            </div>\
-        </div>'),
+    var popup = $(`
+        <div class="popup">
+            <div class="popup-wrapper">
+            <div class="popup-title">${title}<span class="closer">${icon('remove')}</span></div>
+            <div class="popup-content"></div>
+            </div>
+        </div>`),
         closer = popup.find('.popup-title .closer')
 
     closer.click(function(){
@@ -159,13 +159,15 @@ configPanel = function(){
 
 
     $.each(config,function(i) {
-        var item = $('<div>\
-            <label for="'+i+'">'+i+'</label>\
-            <p class="info">'+config[i].info+'</p>\
-            </div>')
+        var item = $(`
+            <div>
+                <label for="${i}">${i}</label>
+                <p class="info">${config[i].info}</p>
+            </div>
+        `)
 
 
-        var input = $('<input name="'+i+'" value="'+config[i].value+'"/>')
+        var input = $(`<input name="${i}" value="${config[i].value}"/>`)
 
         input.change(function(){
             var v = input.val().trim().replace(/[\s]+/,' ')
@@ -185,7 +187,7 @@ configPanel = function(){
 
     })
 
-    var submit = $('<a class="btn submit">'+icon('save')+'&nbsp;Save</a>')
+    var submit = $(`<a class="btn submit">${icon('save')}&nbsp;Save</a>`)
 
     form.append(submit)
 

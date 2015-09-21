@@ -37,7 +37,7 @@ parsetabs = function(tabs,parent,sub){
             label= tabData.label||tabData.id
 
 
-        navtabs.append('<li><a data-tab="#'+id+'"><span>'+label+'</span></a></li>')
+        navtabs.append(`<li><a data-tab="#${id}"><span>${label}</span></a></li>`)
 
         var tabContent = $('<div></div>').addClass('tab').attr('id',id)
 
@@ -71,11 +71,11 @@ parsewidgets = function(widgets,parent) {
 
         widgetData.path = path
 
-        var widgetContainer = $('\
-            <div class="widget '+type+'-container" widgetType="'+type+'" widgetId="'+id+'" path="'+path+'" style="'+style+'">\
-                <div class="label"><span>'+label+'</span></div>\
-            </div>\
-        ')
+        var widgetContainer = $(`
+            <div class="widget ${type}-container" widgetType="${type}" widgetId="${id}" path="${path}" style="${style}">
+                <div class="label"><span>${label}</span></div>
+            </div>
+        `)
 
 
         if (widgetData.label===false) widgetContainer.addClass('nolabel')

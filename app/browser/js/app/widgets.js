@@ -2,10 +2,10 @@ createWidget= {}
 
 
 createWidget.strip = function(widgetData,container) {
-    var widget = $('\
-            <div class="strip">\
-            </div>\
-    ')
+    var widget = $(`
+            <div class="strip">
+            </div>
+    `)
     if (widgetData.horizontal) {
         container.addClass('horizontal')
     }
@@ -17,11 +17,11 @@ createWidget.strip = function(widgetData,container) {
 
 
 createWidget.led = function(widgetData) {
-    var widget = $('\
-            <div class="led">\
-                <div><span></span></div>\
-            </div>\
-            '),
+    var widget = $(`
+            <div class="led">
+                <div><span></span></div>
+            </div>
+            `),
         led = widget.find('span'),
         range = widgetData.range || {min:0,max:1}
 
@@ -41,11 +41,11 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
         widgetData.on = widgetData.on || 1
         widgetData.off = widgetData.off || 0
 
-    var widget = $('\
-        <div class="toggle">\
-            <div class="light"></div>\
+    var widget = $(`
+        <div class="toggle">
+            <div class="light"></div>
         </div>\
-        '),
+        `),
         led = widget.find('.light')
 
 
@@ -89,10 +89,10 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
 
 createWidget.switch = function(widgetData) {
 
-    var widget = $('\
-        <div class="switch">\
-        </div>\
-    ')
+    var widget = $(`
+        <div class="switch">
+        </div>
+    `)
 
     for (v in widgetData.values) {
         widget.append('<div class="value" data-value="'+widgetData.values[v]+'">'+widgetData.values[v]+'</div>')
@@ -130,17 +130,17 @@ createWidget.switch = function(widgetData) {
 
 
 createWidget.xy = function(widgetData) {
-    var widget = $('\
-        <div class="xy-wrapper">\
-            <div class="xy">\
-                <div class="handle"><span></span></div>\
-            </div>\
-            <div class="value">\
-                <input disabled value="X"></input><input disabled value="Y"></input>\
-                <input class="x"></input><input class="y"></input>\
-            </div>\
-        </div>\
-        '),
+    var widget = $(`
+        <div class="xy-wrapper">
+            <div class="xy">
+                <div class="handle"><span></span></div>
+            </div>
+            <div class="value">
+                <input disabled value="X"></input><input disabled value="Y"></input>
+                <input class="x"></input><input class="y"></input>
+            </div>
+        </div>
+        `),
         handle = widget.find('.handle'),
         pad = widget.find('.xy'),
         value = {x:widget.find('.x'),y:widget.find('.y')},
@@ -249,19 +249,19 @@ createWidget.xy = function(widgetData) {
 
 
 createWidget.rgb = function(widgetData) {
-    var widget = $('\
-        <div class="xy-wrapper rgb-wrapper">\
-            <div class="xy rgb">\
-                <div class="handle"><span></span></div>\
-            </div>\
-            <div class="hue">\
-                <div class="handle"><span></span></div>\
-            </div>\
-            <div class="value">\
-                <input disabled value="R"></input><input disabled value="G"></input><input disabled value="B"></input>\
-                <input class="r"></input><input class="g"></input><input class="b"></input>\
-            </div>\
-        </div>'),
+    var widget = $(`
+        <div class="xy-wrapper rgb-wrapper">
+            <div class="xy rgb">
+                <div class="handle"><span></span></div>
+            </div>
+            <div class="hue">
+                <div class="handle"><span></span></div>
+            </div>
+            <div class="value">
+                <input disabled value="R"></input><input disabled value="G"></input><input disabled value="B"></input>
+                <input class="r"></input><input class="g"></input><input class="b"></input>
+            </div>
+        </div>`),
         rgbHandle = widget.find('.rgb .handle'),
         hueHandle = widget.find('.hue .handle'),
         pad = widget.find('.xy'),
@@ -449,17 +449,17 @@ createWidget.rgb = function(widgetData) {
 
 
 createWidget.fader = function(widgetData,container){
-    var widget = $('\
-        <div class="fader-wrapper-outer">\
-            <div class="fader-wrapper">\
-                <div class="fader">\
-                    <div class="handle"></div>\
-                    <div class="pips"></div>\
-                </div>\
-            </div>\
-            <input></input>\
-        </div>\
-        '),
+    var widget = $(`
+        <div class="fader-wrapper-outer">
+            <div class="fader-wrapper">
+                <div class="fader">
+                    <div class="handle"></div>
+                    <div class="pips"></div>
+                </div>
+            </div>
+            <input></input>
+        </div>
+        `),
         handle = widget.find('.handle'),
         fader = widget.find('.fader'),
         pips = widget.find('.pips'),
@@ -602,18 +602,18 @@ createWidget.fader = function(widgetData,container){
 
 
 createWidget.knob = function(widgetData) {
-    var widget = $('\
-        <div class="knob-wrapper-outer">\
-            <div class="knob-wrapper">\
-                <div class="knob-mask">\
-                    <div class="knob"><span></span></div>\
-                </div>\
-                <div class="pip min"></div>\
-                <div class="pip max"></div>\
-            </div>\
-            <input></input>\
-        </div>\
-        '),
+    var widget = $(`
+        <div class="knob-wrapper-outer">
+            <div class="knob-wrapper">
+                <div class="knob-mask">
+                    <div class="knob"><span></span></div>
+                </div>
+                <div class="pip min"></div>
+                <div class="pip max"></div>
+            </div>
+            <input></input>
+        </div>
+        `),
         knob = widget.find('.knob'),
         input = widget.find('input'),
         range = widgetData.range || {min:0,max:1},
