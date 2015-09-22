@@ -67,7 +67,8 @@ parsewidgets = function(widgets,parent) {
             label = widgetData.label || id,
             type = widgetData.type || 'fader',
             path = widgetData.path || '/' + id,
-            style= widgetData.width?'width:'+widgetData.width*100+'rem':''
+            width = clip(parseInt(widgetData.width),[1,20]),
+            style= widgetData.width?`width:${width*100}rem;min-width:${width*100}rem`:''
 
         widgetData.path = path
 
