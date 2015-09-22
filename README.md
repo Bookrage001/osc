@@ -1,4 +1,4 @@
-## Open Stage Control
+## Open Stage Control
 
 Open Stage Control (*temporary name*) is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
 
