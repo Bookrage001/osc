@@ -37,8 +37,33 @@
                 })
 
         }
+        return tab
+    }())
 
+    tabs.push(function(){
+        var tab = {}
+        tab.widgets = new Array()
+        for (i in [0,1,2,3,4,5]) {
+                tab.widgets.push({
+                    type:'strip',
+                    width:2,
+                    widgets: [
+                        {
+                            label:'Absolute XY',
+                            type:"xy",
+                            absolute:true,
+                            target:target
+                        },
+                        {
+                            label:'Relative XY',
+                            type:"xy",
+                            target:target
+                        }
+                    ]
 
+                })
+
+        }
         return tab
     }())
 

@@ -1,14 +1,13 @@
 __widgets__ = {}
 __widgetsIds__ = {}
 
-var iterator = {
-        tab: 0,
-        widget: 0
-    },
-    getIterator = function(type){
-        iterator[type] += 1
-        return iterator[type]
-    }
+
+iterator = {}
+getIterator = function(type){
+    if (iterator[type]==undefined) iterator[type] = 0
+    iterator[type] += 1
+    return iterator[type]
+}
 
 
 parsetabs = function(tabs,parent,sub){
@@ -31,10 +30,8 @@ parsetabs = function(tabs,parent,sub){
         var tabData = tabs[i]
 
 
-        tabData.id = tabData.id?tabData.id.replace(' ','_'):'tab_'+getIterator('tab')
-
         var id = 'tab_'+getIterator('tab')
-            label= tabData.label||tabData.id
+            label= tabData.label||tabData.id||id
 
 
         navtabs.append(`<li><a data-tab="#${id}"><span>${label}</span></a></li>`)
@@ -61,11 +58,11 @@ parsewidgets = function(widgets,parent) {
     for (i in widgets) {
         var widgetData = widgets[i]
 
-        widgetData.id = widgetData.id?widgetData.id.replace(' ','_'):'widget_'+getIterator('widget')
+        var type = widgetData.type || 'fader'
+        widgetData.id = widgetData.id?widgetData.id.replace(' ','_'):type+'_'+getIterator(type)
 
         var id = widgetData.id,
             label = widgetData.label || id,
-            type = widgetData.type || 'fader',
             path = widgetData.path || '/' + id,
             width = clip(parseInt(widgetData.width),[1,20]),
             style= widgetData.width?`width:${width*100}rem;min-width:${width*100}rem`:''
