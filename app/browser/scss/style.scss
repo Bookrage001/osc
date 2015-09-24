@@ -1005,7 +1005,7 @@ form {
                         background:$color-accent;
                         border:none!important;
                         border-radius: 100%!important;
-                        box-shadow: 0 0  0 2px  mix($color-text,$color-fg,2);
+                        box-shadow: 0 0  0 5rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
                     }
                 }
             }
@@ -1136,10 +1136,10 @@ form {
         }
 
         &.nogauge {
-            .knob-mask:after {
+            .knob:after, .knob-mask:after {
                 display: none;
             }
-            .knob-wrapper .knob:after {
+            .knob-wrapper .knob:before {
                 content:"";
                 position:absolute;
                 top:auto;
@@ -1150,7 +1150,7 @@ form {
                 background:$color-accent;
                 border:none!important;
                 border-radius: 100%!important;
-                box-shadow: 0 0  0 2px  mix($color-text,$color-fg,2);
+                box-shadow: 0 0  0 3rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
             }
         }
 
@@ -1197,17 +1197,7 @@ form {
                 &:active {
                     cursor: -webkit-grabbing;
                 }
-                &:before {
-                    content:"";
-                    position:absolute;
-                    top:20rem;left:20rem;
-                    right:20rem;
-                    bottom:20rem;
-                    border-radius:100%;
-                    background:transparentize($color-text,.8);
-                    box-shadow: 0 0 0 4rem $color-bg;
-                    z-index: 100;
-                }
+
                 &:after {
                     content:"";
                     position:absolute;
@@ -1229,16 +1219,26 @@ form {
 
 
                 span {
-                    position: absolute;
-                    height:3rem;
-                    width:3rem;
-                    background:transparentize($color-text,.8);
-                    margin:7rem 0 0 -3rem;
-                    left:50%;
-                    top:50%;
-                    transform-origin: center -6rem;
+                    position:absolute;
+                    top:20rem;left:20rem;
+                    right:20rem;
+                    bottom:20rem;
+                    border-radius:100%;
+                    background:mix($color-text-fade,$color-bg,35);
+                    box-shadow: 0 0 0 4rem $color-bg;
+                    z-index: 100;
                     transform: rotate(45deg);
                     z-index: 100;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        height: 3rem;
+                        width: 3rem;
+                        background: mix($color-text-fade,$color-bg,35);
+                        margin-left: -1.5rem;
+                        left: 50%;
+                        bottom: -3rem;
+                    }
                     &:after {
                         content:"";
                         position: absolute;
