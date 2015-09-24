@@ -8,7 +8,8 @@
     "email": "jeannot@ammd.net"
   },
   "dependencies": {
-    "node-osc": "1.1"
+    "node-osc": "1.1",
+    "yargs":"3.25"
   },
   "keywords": [
     "osc",
