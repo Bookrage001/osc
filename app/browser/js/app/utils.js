@@ -1,8 +1,6 @@
 sendOsc = function(data){
     // Unpack args for osc sending function
-    if (data[0]) {
-        ipc.send('sendOsc', {target:data[0],path:data[1],args:data[2]})
-    }
+    ipc.send('sendOsc', {target:data[0],path:data[1],args:data[2]})
 }
 
 saveState = function () {
@@ -145,74 +143,6 @@ createPopup = function(title,content) {
     return popup
 }
 
-
-
-
-
-var remote = require('remote')
-configPanel = function(){
-    var readEditableConfig = remote.getGlobal('readEditableConfig')
-    var writeConfig = remote.getGlobal('writeConfig')
-    var config = readEditableConfig()
-
-    var form = $('<form></form>')
-
-
-    $.each(config,function(i) {
-        var item = $(`
-            <div>
-                <label for="${i}">${i}</label>
-                <p class="info">${config[i].info}</p>
-            </div>
-        `)
-
-
-        var input = $(`<input name="${i}" value="${config[i].value}"/>`)
-
-        input.change(function(){
-            var v = input.val().trim().replace(/[\s]+/,' ')
-            input.val(v)
-            console.log([v,v.match(config[i].match)])
-            if (v.match(config[i].match)==null) {
-                input.addClass('invalid')
-            } else {
-                input.removeClass('invalid')
-            }
-
-        })
-
-        item.append(input)
-
-        form.append(item)
-
-    })
-
-    var submit = $(`<a class="btn submit">${icon('save')}&nbsp;Save</a>`)
-
-    form.append(submit)
-
-    popup = createPopup(icon('gear')+'&nbsp;Preferences',form)
-
-    submit.click(function(e){
-        e.preventDefault()
-
-        if ($('input.invalid').length>0) {
-            return
-        }
-
-        var data = form.serializeArray(),
-            newconfig = {}
-
-        for (i in data) {
-            newconfig[data[i].name] = data[i].value
-        }
-
-        writeConfig(newconfig)
-
-        popup.close()
-
-    })
-}
 
 hsbToRgb = function (hsb) {
 	var rgb = {}

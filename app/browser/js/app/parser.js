@@ -71,6 +71,7 @@ parsewidgets = function(widgets,parent) {
             style= widgetData.width?`width:${width*100}rem;min-width:${width*100}rem`:''
 
         widgetData.path = path
+        widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false
 
         var widgetContainer = $(`
             <div class="widget ${type}-container" widgetType="${type}" widgetId="${id}" path="${path}" style="${style}">

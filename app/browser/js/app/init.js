@@ -122,11 +122,6 @@ init = function(session,callback) {
             icon:'tv'
         },
         {
-            label:'Preferences',
-            icon:'gears',
-            click:configPanel
-        },
-        {
             html:'<div class="inspector btn">\
                     Inspector\
                     <div class="result"><em>Click on a widges\'s label to inspect</em></div>\

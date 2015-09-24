@@ -1,73 +1,63 @@
-/* TODO
-- configuration panel
-
-*/
 var app = require('app')
   , BrowserWindow = require('browser-window')
   , dialog = require('dialog')
   , osc = require('node-osc')
-  , fs = require("fs")
+  , fs = require('fs')
   , ipc = require('ipc')
-  , configPath = __dirname + '/config.json'
-  , config = require(configPath)
-  , args = process.argv.slice(0)
+
+  , window = null
+
+  , argv = require('yargs')
+        .help('help').usage('\nUsage:\n  $0 [options]')
+        .options({
+            'h':{alias:'host',type:'array',describe:'synchronized hosts (ip:port pairs)'},
+            'c':{alias:'compile',type:'boolean',describe:'recompile stylesheets (increases startup time)'},
+            'l':{alias:'load',type:'string',describe:'session file to load'},
+            'p':{alias:'port',describe:'osc input port (for synchronization)'}
+         })
+        .check(function(a,x){if(a.p==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer above 1024'}})
+        .strict()
+        .argv
+
+  , settings = {
+      presetPath : __dirname,
+      sessionPath: __dirname,
+      recentSessions: [],
+
+      appName: argv.n || 'Controller',
+      syncTargets: argv.h || false,
+      oscInPort: argv.p || false,
+      compileScss: argv.c || false,
+      sessionFile:  argv.l || false,
 
 
+      persistent: require( __dirname + '/config.json'),
+
+      read:function(key){
+          var x = this.persistent[key] || this[key]
+          return x
+      },
+      write:function(key,value) {
+          this.persistent[key] = value
+          fs.writeFile(__dirname + '/config.json',JSON.stringify(this.persistent,null,4), function (err, data) {
+              if (err) throw err
+          })
+      }
+
+  }
 
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
 }
-// config file handling
-
-var defaultConfig = {
-    presetPath : __dirname,
-    sessionPath: __dirname,
-    recentSessions: [],
-    syncTargets: "",
-    oscInPort:5555
-}
-var editableConfig = {
-    syncTargets: {
-        info:"List of target hosts (ip:port pairs), separated by spaces. Every OSC message sent by the app will be sent to these hosts too.",
-        match:'^([^:\s]*:[0-9]*[\s]*)*$'
-    },
-    oscInPort: {
-        info:"Port on which the app listens to synchronise with other apps. <i class='fa fa-warning fa-fw'></i>&nbsp;You'll need to restart the app for this change to take effect.",
-        match:'^([0-9]+){0,1}$'
-    }}
 
 
 
 
-writeConfig = function(newconfig) {
-  for (i in newconfig) {
-    config[i] = newconfig[i]
-  }
-  fs.writeFile(configPath,JSON.stringify(config,null,4), function (err, data) {
-      if (err) throw err
-  })
-
-}
-
-readConfig = function(key) {
-    return config[key] || defaultConfig[key]
-}
-readEditableConfig = function(){
-    var ret = {}
-    for (i in editableConfig) {
-        ret[i] = {
-            value:readConfig(i),
-            info:editableConfig[i].info,
-            match:editableConfig[i].match,
-        }
-    }
-    return ret
-}
 
 restartApp = function(){
     var exec = require('child_process').exec
-    exec(args.join(' '))
+    exec(process.argv.join(' '))
     app.quit()
 }
 
@@ -87,7 +77,6 @@ compileScss = function(){
 
 
 
-var window = null
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
@@ -97,13 +86,12 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
 
-    if (args.indexOf('-c')!=-1) {
-        compileScss()
-    }
+    if (settings.compileScss) compileScss()
 
     window = new BrowserWindow({
         width: 800,
         height: 600,
+        title:settings.read('appName'),
         'auto-hide-menu-bar':true
     })
 
@@ -144,14 +132,23 @@ app.on('ready', function() {
 })
 
 
+if (settings.read('oscInPort')) {
+    var oscServer = new osc.Server(settings.read('oscInPort'), '127.0.0.1')
 
-var oscServer = new osc.Server(readConfig('oscInPort'), '127.0.0.1')
+    oscServer.on('message', function (msg, rinfo) {
+        var data = {path:msg.shift(),args:msg}
+        if (data.args.length==1) data.args = data.args[0]
+        renderProcess.send('receiveOsc',data)
+    })
+}
 
-oscServer.on("message", function (msg, rinfo) {
-    var data = {path:msg.shift(),args:msg}
-    if (data.args.length==1) data.args = data.args[0]
-    renderProcess.send('receiveOsc',data)
-})
+function sendOsc(host,port,path,args) {
+    var client = new osc.Client(host, port)
+    client.send(path, args, function () {
+      client.kill()
+    })
+}
+
 
 
 // mainProcess & renderProcess async i/o
@@ -163,16 +160,16 @@ renderProcess = {
 }
 
 ipc.on('browseSessions',function(event, data){
-    var sessionlist = readConfig('recentSessions')
-        dialog.showOpenDialog(window,{title:'Load session file',defaultPath:readConfig('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
+    var sessionlist = settings.read('recentSessions')
+        dialog.showOpenDialog(window,{title:'Load session file',defaultPath:settings.read('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
             if (file==undefined) {return}
-            writeConfig({sessionPath:file[0].replace(file[0].split('/').pop(),'')})
+            settings.write('sessionPath',file[0].replace(file[0].split('/').pop(),''))
             renderProcess.send('openSession',file[0])
         })
 })
 
 ipc.on('addSessionToHistory',function(event, data){
-    var sessionlist = readConfig('recentSessions')
+    var sessionlist = settings.read('recentSessions')
     // add session to history
     sessionlist.unshift(data)
     // remove doubles from history
@@ -180,26 +177,20 @@ ipc.on('addSessionToHistory',function(event, data){
         return index == self.indexOf(elem)
     })
     // save history
-    writeConfig({recentSessions:sessionlist})
+    settings.write('recentSessions',sessionlist)
 })
 
 ipc.on('removeSessionFromHistory',function(event, data){
-    var sessionlist = readConfig('recentSessions')
+    var sessionlist = settings.read('recentSessions')
     sessionlist.splice(data,1)
-    writeConfig({recentSessions:sessionlist})
+    settings.write('recentSessions',sessionlist)
 })
 
 
 ipc.on('ready',function(){
-    var recentSessions = readConfig('recentSessions')
+    var recentSessions = settings.read('recentSessions')
     renderProcess.send('listSessions',recentSessions)
-
-    if (args.indexOf('-l')!=-1) {
-        var sessionlist = readConfig('recentSessions')
-        renderProcess.send('openSession',sessionlist[0])
-    }
 })
-
 
 
 
@@ -207,20 +198,17 @@ ipc.on('ready',function(){
 ipc.on('sendOsc', function (event,data) {
 
     var targets = []
-    Array.prototype.push.apply(targets, data.target.split(' '))
-    Array.prototype.push.apply(targets, readConfig('syncTargets').split(' '))
+
+    if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
+    if (data.target) Array.prototype.push.apply(targets, data.target)
+
 
     for (i in targets) {
 
         var host = targets[i].split(':')[0],
             port = targets[i].split(':')[1]
 
-        if (port) {
-            var client = new osc.Client(host, port)
-            client.send(data.path, data.args, function () {
-              client.kill()
-            })
-        }
+        if (port) sendOsc(host,port,data.path,data.args)
 
     }
 
@@ -229,24 +217,24 @@ ipc.on('sendOsc', function (event,data) {
 
 
 ipc.on('save', function(event, data){
-    dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:readConfig('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:settings.read('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
-        writeConfig({presetPath:file.replace(file.split('/').pop(),'')})
+        settings.write('presetPath',file.replace(file.split('/').pop(),''))
 
         if (file.indexOf('.preset')==-1){file+='.preset'}
         fs.writeFile(file,data, function (err, data) {
             if (err) throw err
-            console.log("The current state was saved in "+file)
+            console.log('The current state was saved in '+file)
         })
     })
 })
 
 ipc.on('load', function(event, data){
-    dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:readConfig('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
-        writeConfig({presetPath:file[0].replace(file[0].split('/').pop(),'')})
+        settings.write('presetPath',file[0].replace(file[0].split('/').pop(),''))
 
         fs.readFile(file[0],'utf-8', function read(err, data) {
             if (err) throw err

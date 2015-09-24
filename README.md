@@ -25,12 +25,26 @@ $ npm install
   ```
 
 **Command line switches**
-- `-l` : open last session at startup
-- `-c` : recompile scss stylesheets at startup
+```
+Options:
+  --help         display help
+  -h, --host     synchronized hosts (ip:port pairs)
+  -c, --compile  recompile stylesheets (increases startup time)
+  -l, --load     session file to load
+  -p, --port     osc input port (for synchronization)
+
+Exemples :
+
+$ electron /path/to/app/ -h 127.0.0.1:5555 127.0.0.1:6666 -p 7777
+
+This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
+
+```
+
 
 
 ### Features
-- modular, tab-based, layout
+- modular, tab-based, responsive layout
 - cross-widgets and cross-apps synchronization
   - widgets that share the same id will update each other's values within the app
   - widgets will update according to incoming osc message matching their own osc output pattern
@@ -86,7 +100,7 @@ It can also be a self invoking function that returns an array of objects :
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
     label:"My widget",      // [string] default to id
     width:false,            // [integer] widget's width (1 = 100px)
-    target:false,           // [string] List of target hosts (ip:port pairs), separated by spaces
+    target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
     path:false              // [string] osc path, default to '/widget_id'
 }
 ```
