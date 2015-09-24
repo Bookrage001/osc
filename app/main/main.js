@@ -1,3 +1,6 @@
+// This prevents argv parsing to be breaked when the app is packaged (executed without 'electron' prefix)
+if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
+
 var app = require('app')
   , BrowserWindow = require('browser-window')
   , dialog = require('dialog')
@@ -8,14 +11,15 @@ var app = require('app')
   , window = null
 
   , argv = require('yargs')
-        .help('help').usage('\nUsage:\n  $0 [options]')
+        .help('help').usage(`\nUsage:\n  $0 [options]`)
         .options({
             'h':{alias:'host',type:'array',describe:'synchronized hosts (ip:port pairs)'},
             'c':{alias:'compile',type:'boolean',describe:'recompile stylesheets (increases startup time)'},
             'l':{alias:'load',type:'string',describe:'session file to load'},
             'p':{alias:'port',describe:'osc input port (for synchronization)'}
          })
-        .check(function(a,x){if(a.p==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer above 1024'}})
+        .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
+        .check(function(a,x){if(a.host==undefined || a.h.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Hosts must ne ip:port pairs & port must be >= 1024'}})
         .strict()
         .argv
 
@@ -45,7 +49,6 @@ var app = require('app')
       }
 
   }
-
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
@@ -188,6 +191,7 @@ ipc.on('removeSessionFromHistory',function(event, data){
 
 
 ipc.on('ready',function(){
+    if (settings.read('sessionFile')) renderProcess.send('openSession',settings.read('sessionFile'))
     var recentSessions = settings.read('recentSessions')
     renderProcess.send('listSessions',recentSessions)
 })
