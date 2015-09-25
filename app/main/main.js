@@ -35,7 +35,7 @@ var app = require('app')
       sessionFile:  argv.l || false,
 
 
-      persistent: require( __dirname + '/config.json'),
+      persistent: function(){var c = {};try {c=require( __dirname + '/config.json')} finally {return c}}(),
 
       read:function(key){
           var x = this.persistent[key] || this[key]

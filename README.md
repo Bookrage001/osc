@@ -121,6 +121,7 @@ It can also be a self invoking function that returns an array of objects :
     left:'auto',                // [integer] absolute position in px
     height:'auto',              // [integer] absolute position in px
     width:'auto',               // [integer] width in px
+    stretch:false,              // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
     widgets: []                 // [array] of widget objects
     ```
 
