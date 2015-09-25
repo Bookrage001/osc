@@ -16,6 +16,33 @@ createWidget.strip = function(widgetData,container) {
 }
 
 
+createWidget.panel = function(widgetData,container) {
+    var widget = $(`
+            <div class="panel">
+            </div>
+    `),
+        left = parseInt(widgetData.left) || 'auto',
+        top = parseInt(widgetData.top) || 'auto',
+        width = parseInt(widgetData.width) || 'auto',
+        height = parseInt(widgetData.height) || 'auto'
+
+
+
+    container.css({
+        left:parseInt(widgetData.left)+'rem',
+        top:parseInt(widgetData.top)+'rem',
+        width:parseInt(widgetData.width)+'rem',
+        height:parseInt(widgetData.height)+'rem',
+        'min-width':''
+    })
+    parsewidgets(widgetData.widgets,widget)
+    widget.getValue = function(){return}
+    widget.setValue = function(){return}
+    return widget
+}
+
+
+
 createWidget.led = function(widgetData) {
     var widget = $(`
             <div class="led">

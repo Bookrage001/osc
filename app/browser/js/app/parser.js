@@ -64,8 +64,8 @@ parsewidgets = function(widgets,parent) {
         var id = widgetData.id,
             label = widgetData.label || id,
             path = widgetData.path || '/' + id,
-            width = clip(parseInt(widgetData.width),[1,20]),
-            style= widgetData.width?`width:${width*100}rem;min-width:${width*100}rem`:''
+            width = clip(parseInt(widgetData.width),[100,2000]),
+            style= widgetData.width?`width:${width}rem;min-width:${width}rem`:''
 
         widgetData.path = path
         widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false

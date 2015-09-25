@@ -545,6 +545,7 @@ form {
 .tab {
     display:none;
     overflow: auto;
+    position: relative;
     &.on {
         display: block;
         height:100%;
@@ -565,12 +566,13 @@ form {
     font-size:13rem;
     padding:35rem  0 0;
     vertical-align:top;
-    border: 6rem solid $color-fg;
+    border: 6rem solid transparent;
     border-width:6rem 0;
     margin:0 3rem;
 
     box-shadow: 0 0 0 1px $color-bg inset;
     background:$bg-3d;
+    background-clip:padding-box;
 
      &:first-child {
          margin-left:6rem;
@@ -699,6 +701,22 @@ form {
         }
     }
 
+}
+
+
+
+.panel-container {
+    position: absolute;
+    margin:0!important;
+    border-top:0;
+    z-index: 2;
+    .panel {
+        height:100%;
+        padding:6rem 0;
+        > .widget {
+            border:0;
+        }
+    }
 }
 
 

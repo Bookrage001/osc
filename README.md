@@ -99,7 +99,7 @@ It can also be a self invoking function that returns an array of objects :
 {
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
     label:"My widget",      // [string] default to id
-    width:false,            // [integer] widget's width (1 = 100px)
+    width:false,            // [integer] widget's width in px
     target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
     path:false              // [string] osc path, default to '/widget_id'
 }
@@ -108,9 +108,21 @@ It can also be a self invoking function that returns an array of objects :
 ### Widget specifics
 
 -   **strip**
+    *Strips are simple widget containers*
     ```  
     type:'strip',
     horizontal:false,           // [bool]  set to true to display widgets horizontally
+    widgets: []                 // [array] of widget objects
+    ```
+
+-   **panel**
+    *Panel are widget containers with absolute position and arbitrary size*
+    ```  
+    type:'panel',
+    top:'auto',                 // [integer] absolute position in px
+    left:'auto',                // [integer] absolute position in px
+    height:'auto',              // [integer] absolute position in px
+    width:'auto',               // [integer] width in px
     widgets: []                 // [array] of widget objects
     ```
 

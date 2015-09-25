@@ -1,0 +1,41 @@
+[
+    {
+        widgets:[
+            {
+                type:'panel',
+                label:false,
+                top:40,
+                left:200,
+                height:400,
+                widgets:[
+                    // these are fader (all options to defaults)
+                    {
+                    },
+                    {
+                    },
+                    {
+                    },
+                    {
+                    }
+                ]
+            },
+            {
+                type:'panel',
+                top:450,
+                left:200,
+                height:400,
+                widgets:[
+                    // these are fader (all options to defaults)
+                    {
+                    },
+                    {
+                    },
+                    {
+                    },
+                    {
+                    }
+                ]
+            }
+        ]
+    }
+]
