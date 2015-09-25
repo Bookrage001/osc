@@ -564,7 +564,7 @@ form {
     overflow: hidden;
     position:relative;
     font-size:13rem;
-    padding:35rem  0 0;
+    padding:35rem  1px 0;
     vertical-align:top;
     border: 6rem solid transparent;
     border-width:6rem 0;
@@ -713,6 +713,7 @@ form {
     .panel {
         height:100%;
         padding:6rem 0;
+        overflow: auto;
         > .widget {
             border:0;
         }

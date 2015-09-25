@@ -64,6 +64,7 @@ init = function(session,callback) {
     // horizontal scrolling & zoom with mousewheel
     // if shift is pressed (native), or if there is no vertical scrollbar,
     //                               or if mouse is on h-scrollbar
+    var scrollbarHeight = 10
     var contentPanels = $('.content')
     $('.tab').on('mousewheel',function(e) {
         // console.log(e)
@@ -75,9 +76,8 @@ init = function(session,callback) {
             contentPanels.css('top',60+'rem')
 
         } else {
-            var scrollbar = 10
-            var h = $('#container').innerHeight()-scrollbar-$(this).parents('.tab').length*5
-            if ($(this).get(0).scrollHeight+scrollbar == $(this).height()) {
+            var h = $('#container').innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
+            if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).height()) {
                 var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
                 $(this).scrollLeft($(this).scrollLeft()+scroll)
                 e.preventDefault()
@@ -86,14 +86,22 @@ init = function(session,callback) {
                 e.preventDefault()
             }
         }
+    })
+    $('.panel').on('mousewheel',function(e) {
+        if (!e.ctrlKey) {
 
+            var h = $(this).parent().innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
+            if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).parent().height()) {
+                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
+                $(this).scrollLeft($(this).scrollLeft()+scroll)
+                e.preventDefault()
+            }
 
-
+        }
     })
 
+
     // sidepanel
-
-
     $('#container').append('\
         <a id="open-toggle">'+icon('navicon')+'</a>\
     ')

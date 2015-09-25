@@ -6,7 +6,7 @@
                 label:false,
                 top:40,
                 left:200,
-                height:400,
+                height:400,width:300,
                 widgets:[
                     // these are fader (all options to defaults)
                     {
