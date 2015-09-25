@@ -7,7 +7,7 @@ init = function(session,callback) {
 
 
     // Widget Synchronization : widget that share the same id will update each other
-    // without sending any extra osc message (they must be of the same type as well)
+    // without sending any extra osc message
 
     $.each(__widgets__,function(i,widget) {
         if (widget.length>1) {
