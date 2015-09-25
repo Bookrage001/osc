@@ -107,16 +107,14 @@ It can also be a self invoking function that returns an array of objects :
 
 ### Widget specifics
 
--   **strip**
-    *Strips are simple widget containers*
+-   **Strip** : *simple widget container*
     ```  
     type:'strip',
     horizontal:false,           // [bool]  set to true to display widgets horizontally
     widgets: []                 // [array] of widget objects
     ```
 
--   **panel**
-    *Panel are widget containers with absolute position and arbitrary size*
+-   **Panel** :  *widget containers with arbitrary position and size*
     ```  
     type:'panel',
     top:'auto',                 // [integer] absolute position in px
