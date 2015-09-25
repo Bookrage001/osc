@@ -46,7 +46,7 @@
         for (i in [0,1,2,3,4,5]) {
                 tab.widgets.push({
                     type:'strip',
-                    width:2,
+                    width:200,
                     widgets: [
                         {
                             label:'Absolute XY',
