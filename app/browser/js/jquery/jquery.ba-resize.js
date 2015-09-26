@@ -87,7 +87,7 @@
   // event throttling, please note that this property must be changed before any
   // window object resize event callbacks are bound.
 
-  jq_resize[ str_throttle ] = true;
+  jq_resize[ str_throttle ] = false;
 
   // Event: resize event
   //
