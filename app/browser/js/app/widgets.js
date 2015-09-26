@@ -21,8 +21,8 @@ createWidget.panel = function(widgetData,container) {
             <div class="panel">
             </div>
     `),
-        left = parseInt(widgetData.left) || 'auto',
-        top = parseInt(widgetData.top) || 'auto',
+        left = parseInt(widgetData.x) || 'auto',
+        top = parseInt(widgetData.y) || 'auto',
         width = parseInt(widgetData.width) || 'auto',
         height = parseInt(widgetData.height) || 'auto'
 
