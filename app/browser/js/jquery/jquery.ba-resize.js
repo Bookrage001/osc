@@ -51,7 +51,7 @@
 
   // A jQuery object containing all non-window elements to which the resize
   // event is bound.
-  var elems = $([]),
+  var elems = [],
 
     // Extend $.resize if it already exists, otherwise create it.
     jq_resize = $.resize = $.extend( $.resize, {} ),
@@ -61,7 +61,8 @@
     // Reused strings.
     str_setTimeout = 'setTimeout',
     str_resize = 'resize',
-    str_data = str_resize + '-special-event',
+    str_data_w = str_resize + '-special-event-w',
+    str_data_h = str_resize + '-special-event-h',
     str_delay = 'delay',
     str_throttle = 'throttleWindow';
 
@@ -123,7 +124,7 @@
   // > // In jQuery 1.3.2, you need to do this:
   // > var elem = $(elem);
   // > elem.css({ width: new_w, height: new_h });
-  // > elem.data( 'resize-special-event', { width: elem.width(), height: elem.height() } );
+  // > elem.data( 'resize-special-event', { width: elem.offsetWidth, height: elem.offsetHeight } );
   // > elem.resize();
 
   $.event.special[ str_resize ] = {
@@ -136,13 +137,14 @@
       // Unless, of course, we're throttling the 'resize' event for window.
       if ( !jq_resize[ str_throttle ] && this[ str_setTimeout ] ) { return false; }
 
-      var elem = $(this);
+      var elem = this;
 
       // Add this element to the list of internal elements to monitor.
-      elems = elems.add( elem );
+      elems.push( elem );
 
       // Initialize data store on the element.
-      $.data( this, str_data, { w: elem.width(), h: elem.height() } );
+      elem.setAttribute(str_data_w,elem.offsetWidth)
+      elem.setAttribute(str_data_h,elem.offsetHeight)
 
       // If this is the first element added, start the polling loop.
       if ( elems.length === 1 ) {
@@ -158,10 +160,15 @@
       // Unless, of course, we're throttling the 'resize' event for window.
       if ( !jq_resize[ str_throttle ] && this[ str_setTimeout ] ) { return false; }
 
-      var elem = $(this);
+      var elem = this;
 
       // Remove this element from the list of internal elements to monitor.
-      elems = elems.not( elem );
+      for (var i = elems.length - 1; i >= 0; i--) {
+          if(elems[i] == this){
+            elems.splice(i, 1);
+            break;
+          }
+      };
 
       // Remove any data stored on the element.
       elem.removeData( str_data );
@@ -189,14 +196,14 @@
       // comments above for more information.
 
       function new_handler( e, w, h ) {
-        var elem = $(this),
-          data = $.data( this, str_data );
+        var elem = this,
+            data = {w:elem.getAttribute(str_data_w),h:elem.getAttribute(str_data_h)}
 
         // If called from the polling loop, w and h will be passed in as
         // arguments. If called manually, via .trigger( 'resize' ) or .resize(),
         // those values will need to be computed.
-        data.w = w !== undefined ? w : elem.width();
-        data.h = h !== undefined ? h : elem.height();
+        data.w = w !== undefined ? w : elem.offsetWidth;
+        data.h = h !== undefined ? h : elem.offsetHeight;
 
         old_handler.apply( this, arguments );
       };
@@ -220,21 +227,20 @@
 
     // Start the polling loop, asynchronously.
     timeout_id = window[ str_setTimeout ](function(){
-
       // Iterate over all elements to which the 'resize' event is bound.
-      elems.each(function(){
-        var elem = $(this),
-          width = elem.width(),
-          height = elem.height(),
-          data = $.data( this, str_data );
+      for (var i = elems.length - 1; i >= 0; i--) {
+        var elem = elems[i],
+          width = elem.offsetWidth,
+          height = elem.offsetHeight,
+          data = {w:elem.getAttribute(str_data_w),h:elem.getAttribute(str_data_h)};
 
         // If element size has changed since the last time, update the element
         // data store and trigger the 'resize' event.
         if ( width !== data.w || height !== data.h ) {
-          elem.trigger( str_resize, [ data.w = width, data.h = height ] );
+          $(elem).trigger( str_resize, [ data.w = width, data.h = height ] );
         }
 
-      });
+      };
 
       // Loop.
       loopy();
