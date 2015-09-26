@@ -78,7 +78,7 @@ init = function(session,callback) {
         } else {
             var h = $('#container').innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
             if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).height()) {
-                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
+                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
                 $(this).scrollLeft($(this).scrollLeft()+scroll)
                 e.preventDefault()
             } else if (e.pageY>=h) {
@@ -92,7 +92,7 @@ init = function(session,callback) {
 
             var h = $(this).parent().innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
             if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).parent().height()) {
-                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
+                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
                 $(this).scrollLeft($(this).scrollLeft()+scroll)
                 e.preventDefault()
             }

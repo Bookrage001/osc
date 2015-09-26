@@ -18,8 +18,8 @@ var app = require('app')
             'l':{alias:'load',type:'string',describe:'session file to load'},
             'p':{alias:'port',describe:'osc input port (for synchronization)'}
          })
-        .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-        .check(function(a,x){if(a.host==undefined || a.h.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Hosts must ne ip:port pairs & port must be >= 1024'}})
+        .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
+        .check(function(a,x){if(a.host==undefined || a.h.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Hosts must ne ip:port pairs & port must be >= 1024'}})
         .strict()
         .argv
 
@@ -29,16 +29,16 @@ var app = require('app')
       recentSessions: [],
 
       appName: argv.n || 'Controller',
-      syncTargets: argv.h || false,
+      syncTargets: argv.h || false,
       oscInPort: argv.p || false,
       compileScss: argv.c || false,
       sessionFile:  argv.l || false,
 
 
-      persistent: function(){var c = {};try {c=require( __dirname + '/config.json')} finally {return c}}(),
+      persistent: function(){var c = {};try {c=require( __dirname + '/config.json')} finally {return c}}(),
 
       read:function(key){
-          var x = this.persistent[key] || this[key]
+          var x = this.persistent[key] || this[key]
           return x
       },
       write:function(key,value) {

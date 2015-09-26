@@ -50,7 +50,7 @@ createWidget.led = function(widgetData) {
             </div>
             `),
         led = widget.find('span'),
-        range = widgetData.range || {min:0,max:1}
+        range = widgetData.range || {min:0,max:1}
 
     if (widgetData.color) led.css('background-color',widgetData.color)
 
@@ -84,7 +84,7 @@ createWidget.toggle = createWidget.button  = function(widgetData) {
     })
 
 
-    widget.getValue = function() {
+    widget.getValue = function() {
         return widget.hasClass('on')?widgetData.on:widgetData.off
     }
     widget.setValue = function(v,send,sync) {
@@ -133,7 +133,7 @@ createWidget.switch = function(widgetData) {
     })
 
 
-    widget.getValue = function() {
+    widget.getValue = function() {
         return widget.find('.on').data('value')
     }
     widget.setValue = function(v,send,sync) {
@@ -225,13 +225,13 @@ createWidget.xy = function(widgetData) {
 
 
 
-    widget.getValue = function() {
+    widget.getValue = function() {
         var x = mapToScale(handle.width,[0,100],[range.x.min,range.x.max]),
             y = mapToScale(handle.height,[0,100],[range.y.min,range.y.max])
 
         return [x,y]
     }
-    widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,send,sync) {
         if (v[1]==undefined) var v = [v,v]
         var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100])
             h = mapToScale(v[1],[range.y.min,range.y.max],[0,100]),
@@ -244,7 +244,7 @@ createWidget.xy = function(widgetData) {
         if (sync) widget.trigger('sync')
         if (send) widget.sendValue(v)
     }
-    widget.sendValue = function(v) {
+    widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
         sendOsc([t,p,v])
@@ -399,14 +399,14 @@ createWidget.rgb = function(widgetData) {
 
 
 
-    widget.getValue = function() {
+    widget.getValue = function() {
         var s = clip(rgbHandle.width,[0,100]),
             l = clip(rgbHandle.height,[0,100]),
             h = mapToScale(hueHandle.width,[0,100],[0,360]),
             rgb = hsbToRgb({h:h,s:s,b:l})
         return [rgb.r,rgb.g,rgb.b]
     }
-    widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,send,sync) {
         if (v[1]==undefined && v[2]==undefined) var v = [v,v,v]
         if (v[2]==undefined) var v = [v[0],v[1],v[1]]
 
@@ -439,7 +439,7 @@ createWidget.rgb = function(widgetData) {
         if (sync) widget.trigger('sync')
         if (send) widget.sendValue(v)
     }
-    widget.sendValue = function(v) {
+    widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
         sendOsc([t,p,v])
@@ -447,7 +447,7 @@ createWidget.rgb = function(widgetData) {
 
 
 
-    widget.showValue = function(v) {
+    widget.showValue = function(v) {
         value.r.val(v[0])
         value.g.val(v[1])
         value.b.val(v[2])
@@ -589,7 +589,7 @@ createWidget.fader = function(widgetData,container){
         }
 
     }
-    widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,send,sync) {
         var h,
             v=clip(v,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
@@ -608,7 +608,7 @@ createWidget.fader = function(widgetData,container){
         if (send) widget.sendValue(v)
     }
 
-    widget.sendValue = function(v) {
+    widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
         sendOsc([t,p,v])
@@ -679,7 +679,7 @@ createWidget.knob = function(widgetData) {
             knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
             knob.rotation = r
 
-            if      (r>180) {knob.addClass('d3')}
+            if      (r>180) {knob.addClass('d3')}
             else if (r>90)  {knob.removeClass('d3').addClass('d2')}
             else            {knob.removeClass('d3 d2')}
 
@@ -718,7 +718,7 @@ createWidget.knob = function(widgetData) {
         knob.rotation = r
 
 
-        if      (r>180) {knob.addClass('d3')}
+        if      (r>180) {knob.addClass('d3')}
         else if (r>90)  {knob.removeClass('d3').addClass('d2')}
         else            {knob.removeClass('d3 d2')}
 
@@ -737,16 +737,16 @@ createWidget.knob = function(widgetData) {
     widget.showValue = function(v) {
         input.val(v+unit)
     }
-    widget.sendValue = function(v) {
+    widget.sendValue = function(v) {
         var t = widgetData.target,
             p = widgetData.path
         sendOsc([t,p,v])
     }
-    widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,send,sync) {
         var r = mapToScale(v,[range.min,range.max],[0,270])
         knob.rotation = r
 
-        if (r>180) {
+        if (r>180) {
             knob.addClass('d3')
         } else if (r>90) {
             knob.removeClass('d3').addClass('d2')

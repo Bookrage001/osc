@@ -6,15 +6,15 @@ ipc = require('ipc')
 fs = require('fs')
 
 // jquery
-window.$ = window.jQuery = require( __dirname + "/jquery/jquery.min.js")
+window.$ = window.jQuery = require('./jquery/jquery.min.js')
 
 
 
 // third-party js libraries
-require( __dirname + "/jquery/jquery.event.drag-2.2.js")
-require( __dirname + "/jquery/jquery.ba-resize.js")
+require('./jquery/jquery.event.drag-2.2.js')
+require('./jquery/jquery.ba-resize.js')
 
 // main js
-require( __dirname + "/app/app.js")
+require('./app/app.js')
 
 ipc.send('ready')
