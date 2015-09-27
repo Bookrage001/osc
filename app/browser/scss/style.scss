@@ -153,7 +153,7 @@ body {
 }
 a.btn {
     &:hover {
-        background: $bg-3d-hover;
+        background-image: $bg-3d-hover;
     }
 }
 
@@ -749,7 +749,7 @@ form {
         pointer-events:none;
     }
     &:hover {
-        background: $bg-3d-hover;
+        background-image: $bg-3d-hover;
     }
 
     // box-shadow: 0 0 0 1px $color-bg inset;
@@ -1142,6 +1142,7 @@ form {
 
 .knob-container {
     width: 100rem;
+
     // min-width: 100rem;
     min-height: 135rem;
     flex-shrink: 0;
