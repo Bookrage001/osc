@@ -18,6 +18,9 @@ getState = function (){
 loadState = function() {
     ipc.send('load')
 }
+loadLastState = function() {
+    ipc.send('loadlast')
+}
 
 sendState = function(){
     var data = getState().join('\n')

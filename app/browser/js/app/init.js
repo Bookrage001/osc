@@ -119,6 +119,11 @@ init = function(session,callback) {
             icon:'folder-open'
         },
         {
+            label:'Load last state',
+            click:loadLastState,
+            icon:'history'
+        },
+        {
             label:'Send all',
             click:sendState,
             icon:'feed'

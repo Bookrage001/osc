@@ -573,6 +573,7 @@ form {
     box-shadow: 0 0 0 1px $color-bg inset;
     background:$bg-3d;
     background-clip:padding-box;
+    -webkit-tap-highlight-color:transparent;
 
      &:first-child {
          margin-left:6rem;
@@ -1021,18 +1022,6 @@ form {
             &.nogauge {
                 .handle {
                     background:none;
-                    &:before {
-                        content:"";
-                        position: absolute;
-                        top:-6rem;
-                        left:-2rem;
-                        height:8rem;
-                        width:8rem;
-                        background:$color-accent;
-                        border:none!important;
-                        border-radius: 100%!important;
-                        box-shadow: 0 0  0 5rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
-                    }
                 }
             }
             .handle {
@@ -1048,6 +1037,18 @@ form {
                 z-index: 1;
                 &:active {
                     cursor: -webkit-grabbing;
+                }
+                &:before {
+                    content:"";
+                    position: absolute;
+                    top:-6rem;
+                    left:-2rem;
+                    height:8rem;
+                    width:8rem;
+                    background:$color-accent;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 5rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
                 }
                 &:after {
                     content:"";

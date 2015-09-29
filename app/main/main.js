@@ -221,10 +221,10 @@ ipc.on('sendOsc', function (event,data) {
 
 
 ipc.on('save', function(event, data){
-    dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:settings.read('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
-        settings.write('presetPath',file.replace(file.split('/').pop(),''))
+        settings.write('presetPath',file)
 
         if (file.indexOf('.preset')==-1){file+='.preset'}
         fs.writeFile(file,data, function (err, data) {
@@ -235,10 +235,10 @@ ipc.on('save', function(event, data){
 })
 
 ipc.on('load', function(event, data){
-    dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath'),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
-        settings.write('presetPath',file[0].replace(file[0].split('/').pop(),''))
+        settings.write('presetPath',file[0])
 
         fs.readFile(file[0],'utf-8', function read(err, data) {
             if (err) throw err
@@ -246,6 +246,15 @@ ipc.on('load', function(event, data){
         })
     })
 })
+
+ipc.on('loadlast', function(event, data){
+    if (!settings.read('presetPath')) {return}
+    fs.readFile(settings.read('presetPath'),'utf-8', function read(err, data) {
+        if (err) throw err
+        renderProcess.send('load',data)
+    })
+})
+
 
 
 ipc.on('fullscreen', function(event){

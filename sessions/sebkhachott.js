@@ -2116,6 +2116,84 @@ return [
                         ]
                     }
                 ]
+            },
+            {
+                id:"Comp_Drum",
+                label:"Comp",
+                widgets:function(){
+                	var w = []
+                	var s = ['Kick','Snare','Toms','OH-L','OH-R']
+                	for (i in s) {
+                		w.push({
+                			id: "Comp_"+s[i],
+                			label: s[i],
+                			type: "strip",
+                			horizontal:true,
+                			widgets: [
+                				{
+                					id: "Comp_Attack_"+s[i],
+                					label: "Attack",
+                					type:"knob",
+                					range: {
+                						min: 1.5,
+                						max: 400
+                					},
+                					unit:"ms",
+                					target: nmPorts['Drums'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Attack%20time%20(ms)/unscaled"
+                				},
+                				{
+                					id: "Comp_Release_"+s[i],
+                					label: "Release",
+                					type:"knob",
+                					range: {
+                						min: 2,
+                						max: 800
+                					},
+                					unit:"ms",
+                					target: nmPorts['Drums'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Release%20time%20(ms)/unscaled"
+                				},
+                				{
+                					id: "Comp_Thresh_"+s[i],
+                					label: "Threshold",
+                					type:"knob",
+                					range: {
+                						min: -30,
+                						max: 0
+                					},
+                					unit:"dB",
+                					target: nmPorts['Drums'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Threshold%20level%20(dB)/unscaled"
+                				},
+                				{
+                					id: "Comp_Ratio_"+s[i],
+                					label: "Ratio",
+                					type:"knob",
+                					range: {
+                						min: 1,
+                						max: 20
+                					},
+                					target: nmPorts['Drums'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Ratio%20(1:n)/unscaled"
+                				},
+                				{
+                					id: "Comp_Makeup_"+s[i],
+                					label: "Makeup",
+                					type:"knob",
+                					range: {
+                						min: 0,
+                						max: 24
+                					},
+                					unit:"dB",
+                					target: nmPorts['Drums'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Makeup%20gain%20(dB)/unscaled"
+                				}
+                			]
+                		})
+                	}
+                	return w
+                }()
             }
         ]
     },
@@ -4063,6 +4141,84 @@ return [
                         ]
                     }
                 ]
+            },
+            {
+                id:"Comp_Vocals",
+                label:"Comp",
+                widgets:function(){
+                	var w = []
+                	var s = ['Vx_Dag','Vx_ORL']
+                	for (i in s) {
+                		w.push({
+                			id: "Comp_"+s[i],
+                			label: s[i],
+                			type: "strip",
+                			horizontal:true,
+                			widgets: [
+                				{
+                					id: "Comp_Attack_"+s[i],
+                					label: "Attack",
+                					type:"knob",
+                					range: {
+                						min: 1.5,
+                						max: 400
+                					},
+                					unit:"ms",
+                					target: nmPorts['Vocals'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Attack%20time%20(ms)/unscaled"
+                				},
+                				{
+                					id: "Comp_Release_"+s[i],
+                					label: "Release",
+                					type:"knob",
+                					range: {
+                						min: 2,
+                						max: 800
+                					},
+                					unit:"ms",
+                					target: nmPorts['Vocals'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Release%20time%20(ms)/unscaled"
+                				},
+                				{
+                					id: "Comp_Thresh_"+s[i],
+                					label: "Threshold",
+                					type:"knob",
+                					range: {
+                						min: -30,
+                						max: 0
+                					},
+                					unit:"dB",
+                					target: nmPorts['Vocals'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Threshold%20level%20(dB)/unscaled"
+                				},
+                				{
+                					id: "Comp_Ratio_"+s[i],
+                					label: "Ratio",
+                					type:"knob",
+                					range: {
+                						min: 1,
+                						max: 20
+                					},
+                					target: nmPorts['Vocals'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Ratio%20(1:n)/unscaled"
+                				},
+                				{
+                					id: "Comp_Makeup_"+s[i],
+                					label: "Makeup",
+                					type:"knob",
+                					range: {
+                						min: 0,
+                						max: 24
+                					},
+                					unit:"dB",
+                					target: nmPorts['Vocals'],
+                					path: "/strip/"+s[i]+"/SC4%20mono/Makeup%20gain%20(dB)/unscaled"
+                				}
+                			]
+                		})
+                	}
+                	return w
+                }()
             }
         ]
     }

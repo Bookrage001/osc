@@ -50,7 +50,7 @@
                     widgets: [
                         {
                             label:'Absolute XY',
-                            type:"xy",
+                            type:"rgb",
                             absolute:true,
                             target:target
                         },
