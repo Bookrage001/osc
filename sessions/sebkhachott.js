@@ -1727,402 +1727,11 @@ return [
                 ]
             },
             {
-                id: "Gates",
-                stack:true,
-                widgets: [
-                    {
-                        id: "Gate_Kick",
-                        label: "Kick",
-                        type: "strip",
-                        horizontal:true,
-                        widgets: [
-                            {
-                                id: "Gate_LF_Kick",
-                                label: "LF filter",
-                                type:"knob",
-                                range: {
-                                    min: 33.6,
-                                    max: 4800
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Kick/Gate/LF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_HF_Kick",
-                                label: "HF filter",
-                                type:"knob",
-                                range: {
-                                    min: 240,
-                                    max: 23520
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Kick/Gate/HF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_Thresh_Kick",
-                                label: "Threshold",
-                                type:"knob",
-                                range: {
-                                    min: -70,
-                                    "20%": -40,
-                                    "45%": -20,
-                                    "60%": -10,
-                                    max: 20
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Kick/Gate/Threshold%20(dB)/unscaled"
-                            },
-                            {
-                                id: "Gate_Attack_Kick",
-                                label: "Attack (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 0,
-                                    max: 1000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Kick/Gate/Attack%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Hold_Kick",
-                                label: "Hold (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 2000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Kick/Gate/Hold%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Decay_Kick",
-                                label: "Decay (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 4000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Kick/Gate/Decay%20(ms)/unscaled"
-                            }
-                        ]
-                    },
-                    {
-                        id: "Gate_Snare",
-                        label: "Snare",
-                        type: "strip",
-                        horizontal:true,
-                        widgets: [
-                            {
-                                id: "Gate_LF_Snare",
-                                label: "LF filter",
-                                type:"knob",
-                                range: {
-                                    min: 33.6,
-                                    max: 4800
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Snare/Gate/LF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_HF_Snare",
-                                label: "HF filter",
-                                type:"knob",
-                                range: {
-                                    min: 240,
-                                    max: 23520
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Snare/Gate/HF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_Thresh_Snare",
-                                label: "Threshold",
-                                type:"knob",
-                                range: {
-                                    min: -70,
-                                    "20%": -40,
-                                    "45%": -20,
-                                    "60%": -10,
-                                    max: 20
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Snare/Gate/Threshold%20(dB)/unscaled"
-                            },
-                            {
-                                id: "Gate_Attack_Snare",
-                                label: "Attack (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 0,
-                                    max: 1000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Snare/Gate/Attack%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Hold_Snare",
-                                label: "Hold (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 2000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Snare/Gate/Hold%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Decay_Snare",
-                                label: "Decay (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 4000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Snare/Gate/Decay%20(ms)/unscaled"
-                            }
-                        ]
-                    },
-                    {
-                        id: "Gate_Tom1",
-                        label: "Tom1",
-                        type: "strip",
-                        horizontal:true,
-                        widgets: [
-                            {
-                                id: "Gate_LF_Tom1",
-                                label: "LF filter",
-                                type:"knob",
-                                range: {
-                                    min: 33.6,
-                                    max: 4800
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom1/Gate/LF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_HF_Tom1",
-                                label: "HF filter",
-                                type:"knob",
-                                range: {
-                                    min: 240,
-                                    max: 23520
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom1/Gate/HF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_Thresh_Tom1",
-                                label: "Threshold",
-                                type:"knob",
-                                range: {
-                                    min: -70,
-                                    "20%": -40,
-                                    "45%": -20,
-                                    "60%": -10,
-                                    max: 20
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom1/Gate/Threshold%20(dB)/unscaled"
-                            },
-                            {
-                                id: "Gate_Attack_Tom1",
-                                label: "Attack (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 0,
-                                    max: 1000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom1/Gate/Attack%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Hold_Tom1",
-                                label: "Hold (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 2000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom1/Gate/Hold%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Decay_Tom1",
-                                label: "Decay (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 4000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom1/Gate/Decay%20(ms)/unscaled"
-                            }
-                        ]
-                    },
-                    {
-                        id: "Gate_Tom2",
-                        label: "Tom2",
-                        type: "strip",
-                        horizontal:true,
-                        widgets: [
-                            {
-                                id: "Gate_LF_Tom2",
-                                label: "LF filter",
-                                type:"knob",
-                                range: {
-                                    min: 33.6,
-                                    max: 4800
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom2/Gate/LF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_HF_Tom2",
-                                label: "HF filter",
-                                type:"knob",
-                                range: {
-                                    min: 240,
-                                    max: 23520
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom2/Gate/HF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_Thresh_Tom2",
-                                label: "Threshold",
-                                type:"knob",
-                                range: {
-                                    min: -70,
-                                    "20%": -40,
-                                    "45%": -20,
-                                    "60%": -10,
-                                    max: 20
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom2/Gate/Threshold%20(dB)/unscaled"
-                            },
-                            {
-                                id: "Gate_Attack_Tom2",
-                                label: "Attack (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 0,
-                                    max: 1000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom2/Gate/Attack%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Hold_Tom2",
-                                label: "Hold (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 2000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom2/Gate/Hold%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Decay_Tom2",
-                                label: "Decay (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 4000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom2/Gate/Decay%20(ms)/unscaled"
-                            }
-                        ]
-                    },
-                    {
-                        id: "Gate_Tom3",
-                        label: "Tom3",
-                        type: "strip",
-                        horizontal:true,
-                        widgets: [
-                            {
-                                id: "Gate_LF_Tom3",
-                                label: "LF filter",
-                                type:"knob",
-                                range: {
-                                    min: 33.6,
-                                    max: 4800
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom3/Gate/LF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_HF_Tom3",
-                                label: "HF filter",
-                                type:"knob",
-                                range: {
-                                    min: 240,
-                                    max: 23520
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom3/Gate/HF%20key%20filter%20(Hz)/unscaled"
-                            },
-                            {
-                                id: "Gate_Thresh_Tom3",
-                                label: "Threshold",
-                                type:"knob",
-                                range: {
-                                    min: -70,
-                                    "20%": -40,
-                                    "45%": -20,
-                                    "60%": -10,
-                                    max: 20
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom3/Gate/Threshold%20(dB)/unscaled"
-                            },
-                            {
-                                id: "Gate_Attack_Tom3",
-                                label: "Attack (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 0,
-                                    max: 1000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom3/Gate/Attack%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Hold_Tom3",
-                                label: "Hold (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 2000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom3/Gate/Hold%20(ms)/unscaled"
-                            },
-                            {
-                                id: "Gate_Decay_Tom3",
-                                label: "Decay (ms)",
-                                type:"knob",
-                                range: {
-                                    min: 2,
-                                    max: 4000
-                                },
-                                target: nmPorts['Drums'],
-                                path: "/strip/Tom3/Gate/Decay%20(ms)/unscaled"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
                 id:"Comp_Drum",
                 label:"Comp",
                 widgets:function(){
                 	var w = []
-                	var s = ['Kick','Snare','Toms','OH-L','OH-R']
+                	var s = ['Drums','Kick','Snare','Toms']
                 	for (i in s) {
                 		w.push({
                 			id: "Comp_"+s[i],
@@ -2139,7 +1748,7 @@ return [
                 						max: 400
                 					},
                 					unit:"ms",
-                					target: nmPorts['Drums'],
+                					target: i==0?nmPorts['MainMix']:nmPorts['Drums'],
                 					path: "/strip/"+s[i]+"/SC4%20mono/Attack%20time%20(ms)/unscaled"
                 				},
                 				{
@@ -2151,7 +1760,7 @@ return [
                 						max: 800
                 					},
                 					unit:"ms",
-                					target: nmPorts['Drums'],
+                					target: i==0?nmPorts['MainMix']:nmPorts['Drums'],
                 					path: "/strip/"+s[i]+"/SC4%20mono/Release%20time%20(ms)/unscaled"
                 				},
                 				{
@@ -2163,7 +1772,7 @@ return [
                 						max: 0
                 					},
                 					unit:"dB",
-                					target: nmPorts['Drums'],
+                					target: i==0?nmPorts['MainMix']:nmPorts['Drums'],
                 					path: "/strip/"+s[i]+"/SC4%20mono/Threshold%20level%20(dB)/unscaled"
                 				},
                 				{
@@ -2174,7 +1783,7 @@ return [
                 						min: 1,
                 						max: 20
                 					},
-                					target: nmPorts['Drums'],
+                					target: i==0?nmPorts['MainMix']:nmPorts['Drums'],
                 					path: "/strip/"+s[i]+"/SC4%20mono/Ratio%20(1:n)/unscaled"
                 				},
                 				{
@@ -2186,7 +1795,7 @@ return [
                 						max: 24
                 					},
                 					unit:"dB",
-                					target: nmPorts['Drums'],
+                					target: i==0?nmPorts['MainMix']:nmPorts['Drums'],
                 					path: "/strip/"+s[i]+"/SC4%20mono/Makeup%20gain%20(dB)/unscaled"
                 				}
                 			]
@@ -4147,7 +3756,7 @@ return [
                 label:"Comp",
                 widgets:function(){
                 	var w = []
-                	var s = ['Vx_Dag','Vx_ORL']
+                	var s = ['Vx_Dag','Vx_ORL','Vx_Jeannot']
                 	for (i in s) {
                 		w.push({
                 			id: "Comp_"+s[i],
