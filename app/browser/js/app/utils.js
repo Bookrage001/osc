@@ -218,3 +218,11 @@ mapToScale = function(value,rangeIn,rangeOut,reverse) {
     return value
 
 }
+
+function isSame(a1, a2){
+    if (a1.sort && a2.sort) {
+        return !(a1.sort() > a2.sort() || a1.sort() < a2.sort());
+    } else {
+        return a1==a2
+    }
+}
