@@ -2925,6 +2925,13 @@ return [
                 id: "Main",
                 widgets: [
                     {
+                        id: "Vx_Discours",
+                        label: "Vx_Discours",
+                        range: nmRange,
+                        target: nmPorts['Vocals'],
+                        path: "/strip/Vx_Discours/Gain/Gain%20(dB)/unscaled"
+                    },
+                    {
                         id: "Vx_ORL",
                         label: "Vx_ORL",
                         range: nmRange,
