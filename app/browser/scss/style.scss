@@ -1039,7 +1039,18 @@ form {
                     background:$color-accent;
                     border:none!important;
                     border-radius: 100%!important;
-                    box-shadow: 0 0  0 5rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
+                    box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
+                }
+                &:after {
+                    content:"";
+                    position: absolute;
+                    top:-12rem;
+                    left:-8rem;
+                    height:20rem;
+                    width:20rem;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
                 }
             }
         }
@@ -1097,6 +1108,11 @@ form {
                     top:-2rem;
                     right:-6rem;
                     left:auto;
+                }
+                &:after {
+                    top:-8rem;
+                    right:-12rem;
+                    left:auto
                 }
             }
         }
