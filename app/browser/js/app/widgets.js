@@ -197,26 +197,24 @@ createWidget.xy = function(widgetData) {
     })
 
     var off = {x:0,y:0}
-    if (absolute) {
-        pad.drag('init',function(ev,dd){
-                var h = ((pad.height-dd.offsetY) * 100 / pad.height),
-                    w = (dd.offsetX * 100 / pad.width)
-                handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
-                handle.height = h
-                handle.width = w
+    pad.drag('init',function(ev,dd){
+        if (absolute || dd.absolute) {
+            var h = ((pad.height-dd.offsetY) * 100 / pad.height),
+                w = (dd.offsetX * 100 / pad.width)
+            handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+            handle.height = h
+            handle.width = w
 
-                var v = widget.getValue()
-                widget.sendValue(v)
-                widget.showValue(v)
-                widget.trigger('sync')
+            var v = widget.getValue()
+            widget.sendValue(v)
+            widget.showValue(v)
+            widget.trigger('sync')
 
+        off = {x:handle.width,y:handle.height}
+        } else {
             off = {x:handle.width,y:handle.height}
-        })
-    } else {
-        pad.drag('init',function(){
-            off = {x:handle.width,y:handle.height}
-        })
-    }
+        }
+    })
     pad.drag(function( ev, dd ){
         var h = clip((-dd.deltaY)*100/pad.height+off.y,[0,100]),
             w = clip((dd.deltaX)*100/pad.width+off.x,[0,100])
@@ -342,26 +340,24 @@ createWidget.rgb = function(widgetData) {
 
 
     var rgbOff = {x:0,y:0}
-    if (absolute) {
-        pad.drag('init',function(ev,dd){
-                var h = ((pad.height-dd.offsetY) * 100 / pad.height),
-                    w = (dd.offsetX * 100 / pad.width)
-                rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
-                rgbHandle.height = h
-                rgbHandle.width = w
+    pad.drag('init',function(ev,dd){
+        if (absolute || dd.absolute) {
+            var h = ((pad.height-dd.offsetY) * 100 / pad.height),
+                w = (dd.offsetX * 100 / pad.width)
+            rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+            rgbHandle.height = h
+            rgbHandle.width = w
 
-                var v = widget.getValue()
-                widget.sendValue(v)
-                widget.showValue(v)
-                widget.trigger('sync')
+            var v = widget.getValue()
+            widget.sendValue(v)
+            widget.showValue(v)
+            widget.trigger('sync')
 
+        rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
+        } else {
             rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
-        })
-    } else {
-        pad.drag('init',function(){
-            rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
-        })
-    }
+        }
+    })
     pad.drag(function( ev, dd ){
         var h = clip((-dd.deltaY)*100/pad.height+rgbOff.y,[0,100]),
             w = clip(dd.deltaX*100/pad.width+rgbOff.x,[0,100])
@@ -379,8 +375,8 @@ createWidget.rgb = function(widgetData) {
 
 
     var hueOff = 0
-    if (absolute) {
-        huePad.drag('init',function(ev,dd){
+    huePad.drag('init',function(ev,dd){
+        if (absolute || dd.absolute) {
             var d = (dd.offsetX * 100 / pad.width)
             hueHandle[0].setAttribute('style','width:'+d+'%')
             hueHandle.width = d
@@ -399,12 +395,10 @@ createWidget.rgb = function(widgetData) {
             widget.trigger('sync')
 
             hueOff = hueHandle.width
-        })
-    } else {
-        huePad.drag('init',function(){
+        } else {
             hueOff = hueHandle.width
-        })
-    }
+        }
+    })
 
 
     huePad.drag(function( ev, dd ){
@@ -561,27 +555,25 @@ createWidget.fader = function(widgetData,container){
 
 
     var off = 0
-    if (absolute) {
-        wrapper.drag('init',function(ev,dd){
-                var d = (dimension=='height')?
-                        ((fader.size-dd.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
-                        (dd.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
-                handle[0].setAttribute('style',dimension+':'+d+'%')
-                handle.size = d
+    wrapper.drag('init',function(ev,dd){
+        if (absolute || dd.absolute) {
+            var d = (dimension=='height')?
+                    ((fader.size-dd.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
+                    (dd.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
+            handle[0].setAttribute('style',dimension+':'+d+'%')
+            handle.size = d
 
-                var v = widget.getValue()
-                widget.sendValue(v)
-                widget.showValue(v)
+            var v = widget.getValue()
+            widget.sendValue(v)
+            widget.showValue(v)
 
-                widget.trigger('sync')
+            widget.trigger('sync')
 
+        off = handle.size
+        } else {
             off = handle.size
-        })
-    } else {
-        wrapper.drag('init',function(){
-            off = handle.size
-        })
-    }
+        }
+    })
 
 
     wrapper.drag(function( ev, dd ){
@@ -722,7 +714,7 @@ createWidget.knob = function(widgetData) {
     knob[0].setAttribute('style','transform:rotate(45deg)')
     wrapper.drag('init',function(ev,dd){
 
-        if (absolute) {
+        if (absolute || dd.absolute) {
 
             var w   = dd.target.clientWidth,
                 h   = dd.target.clientHeight,
@@ -758,7 +750,7 @@ createWidget.knob = function(widgetData) {
 
         var r = clip(-dd.deltaY*2+offR,[0,270])
 
-        if (absolute) {
+        if (absolute || dd.absolute) {
 
         var w   = dd.target.clientWidth,
             h   = dd.target.clientHeight,

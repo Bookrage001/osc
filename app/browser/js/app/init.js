@@ -165,6 +165,7 @@ init = function(session,callback) {
             })
 
             $('body').on('drag',function(ev,dd){
+                ev.absolute=true
                 $(ev.target).trigger('draginit',[ev])
                 if (target!=ev.target) $(ev.target).click()
                 target = ev.target
