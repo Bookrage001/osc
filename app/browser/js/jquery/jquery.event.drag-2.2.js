@@ -313,9 +313,14 @@ drag = $special.drag = {
 		// original element position
 		obj.originalX = ia.offset.left;
 		obj.originalY = ia.offset.top;
-		// adjusted element position
-		obj.offsetX = obj.originalX + obj.deltaX;
-		obj.offsetY = obj.originalY + obj.deltaY;
+
+		// NOT adjusted element position
+		obj.offsetX = event.offsetX;
+		obj.offsetY = event.offsetY;
+			// adjusted element position
+			// obj.offsetX = obj.originalX + obj.deltaX;
+			// obj.offsetY = obj.originalY + obj.deltaY;
+
 		// assign the drop targets information
 		obj.drop = drag.flatten( ( ia.drop || [] ).slice() );
 		obj.available = drag.flatten( ( ia.droppable || [] ).slice() );

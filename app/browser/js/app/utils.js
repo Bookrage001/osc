@@ -1,6 +1,5 @@
 sendOsc = function(data){
-    // Unpack args for osc sending function
-    ipc.send('sendOsc', {target:data[0],path:data[1],args:data[2]})
+    ipc.send('sendOsc', data)
 }
 
 saveState = function () {

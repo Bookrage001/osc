@@ -16,7 +16,8 @@ var app = require('app')
             'h':{alias:'host',type:'array',describe:'synchronized hosts (ip:port pairs)'},
             'c':{alias:'compile',type:'boolean',describe:'recompile stylesheets (increases startup time)'},
             'l':{alias:'load',type:'string',describe:'session file to load'},
-            'p':{alias:'port',describe:'osc input port (for synchronization)'}
+            'p':{alias:'port',describe:'osc input port (for synchronization)'},
+            'f':{alias:'floats',type:'boolean',describe:'force numbers to be sent as floats only'}
          })
         .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
         .check(function(a,x){if(a.host==undefined || a.h.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Hosts must ne ip:port pairs & port must be >= 1024'}})
@@ -24,8 +25,8 @@ var app = require('app')
         .argv
 
   , settings = {
-      presetPath : __dirname,
-      sessionPath: __dirname,
+      presetPath : process.cwd(),
+      sessionPath: process.cwd(),
       recentSessions: [],
 
       appName: argv.n || 'Controller',
@@ -33,6 +34,7 @@ var app = require('app')
       oscInPort: argv.p || false,
       compileScss: argv.c || false,
       sessionFile:  argv.l || false,
+      floatsOnly: argv.f || false,
 
 
       persistent: function(){var c = {};try {c=require( __dirname + '/config.json')} finally {return c}}(),
@@ -95,7 +97,8 @@ app.on('ready', function() {
         width: 800,
         height: 600,
         title:settings.read('appName'),
-        'auto-hide-menu-bar':true
+        'auto-hide-menu-bar':true,
+        'background-color':'#1a1d22'
     })
 
     window.loadUrl('file://' + __dirname + '/../browser/index.html')
@@ -145,11 +148,40 @@ if (settings.read('oscInPort')) {
     })
 }
 
-function sendOsc(host,port,path,args) {
+sendOsc = function(host,port,path,args) {
     var client = new osc.Client(host, port)
     client.send(path, args, function () {
       client.kill()
     })
+}
+
+if (settings.read('floatsOnly')) {
+    sendOsc = function(host,port,path,args) {
+        var client = new osc.Client(host, port)
+
+        var message = new osc.Message(path)
+
+        if (typeof args=='object') {
+            for (i in args) {
+                var arg = args[i]
+                if (typeof arg == 'number') {
+                    message.append({type:'float',value:arg})
+                } else {
+                    message.append({type:'string',value:arg})
+                }
+            }
+        } else {
+            if (typeof args == 'number') {
+                message.append({type:'float',value:args})
+            } else {
+                message.append({type:'string',value:args})
+            }
+        }
+
+        client.send(message, function () {
+          client.kill()
+        })
+    }
 }
 
 
@@ -203,7 +235,7 @@ ipc.on('sendOsc', function (event,data) {
 
     var targets = []
 
-    if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
+    if (settings.read('syncTargets') && data.sync!==false) Array.prototype.push.apply(targets, settings.read('syncTargets'))
     if (data.target) Array.prototype.push.apply(targets, data.target)
 
 

@@ -154,8 +154,12 @@ init = function(session,callback) {
         $('.inspector .result').html(data)
     })
 
+    // MASTER DRAGGING (wip)
+    // $('body').drag(function(ev,dd){
+    //     $(ev.target).trigger('draginit',[ev])
+    // })
 
 
-    if (callback) callback()
+        if (callback) callback()
 
 }

@@ -855,9 +855,14 @@ form {
     position:relative;
     width:100%;
     padding-bottom: 90%;
-    // border:1px solid $color-border;
-    //background: $color-bg;
     overflow: hidden;
+    cursor: -webkit-grab;
+    &:active {
+        cursor: -webkit-grabbing;
+        .handle:after {
+            transform: scale(1.5);
+        }
+    }
     .handle {
         position:absolute;
         height:0rem;
@@ -867,13 +872,7 @@ form {
         max-height:100%;
         max-width:100%;
         z-index:2;
-        cursor: -webkit-grab;
-        &:active {
-            cursor: -webkit-grabbing;
-            &:after {
-                transform: scale(1.5);
-            }
-        }
+        pointer-events: none;
         &:after {
             content:"";
             position:absolute;
@@ -888,15 +887,6 @@ form {
             box-shadow: 0 0 0 1000rem rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
         }
 
-        &::before {
-            content:"";
-            position:absolute;
-            top:-.5rem;
-            left:-1px;
-            width:2000rem;
-            height:2000rem;
-            margin:-1000rem 0 0 -1000rem;
-        }
     }
 }
 
@@ -936,6 +926,13 @@ form {
     background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
     overflow: hidden;
     position: relative;
+    cursor: -webkit-grab;
+    &:active {
+        cursor: -webkit-grabbing;
+        .handle:after {
+            transform: scale(1.5);
+        }
+    }
     .handle {
         position:absolute;
         height:100%;
@@ -944,13 +941,7 @@ form {
         z-index:2;
         left:0;
         bottom:0;
-        cursor: -webkit-grab;
-        &:active {
-            cursor: -webkit-grabbing;
-            &:after {
-                transform: scale(1.5);
-            }
-        }
+        pointer-events: none;
         &:after {
             content:"";
             position:absolute;
@@ -961,16 +952,6 @@ form {
             width: 11rem;
             height: 11rem;
             margin:-5rem -4rem 0 0;
-        }
-        &:before {
-            content:"";
-            position:absolute;
-            top:0;
-            left:0;
-            width:2000rem;
-            height:100%;
-            margin-left:-1000rem;
-
         }
     }
 
@@ -1011,7 +992,10 @@ form {
         overflow:hidden;
         height:100%;
         position: relative;
-
+        cursor: -webkit-grab;
+        &:active {
+            cursor: -webkit-grabbing;
+        }
         .fader {
             height:100%;
             width:4rem;
@@ -1019,6 +1003,7 @@ form {
             position: relative;
             margin:0 auto;
             left:-25rem;
+            pointer-events: none;
             &.nogauge {
                 .handle {
                     background:none;
@@ -1032,12 +1017,9 @@ form {
                 height:0rem;
                 max-height:100%;
                 max-width:100%;
-                cursor: -webkit-grab;
                 background:$color-accent;
                 z-index: 1;
-                &:active {
-                    cursor: -webkit-grabbing;
-                }
+
                 &:before {
                     content:"";
                     position: absolute;
@@ -1049,14 +1031,6 @@ form {
                     border:none!important;
                     border-radius: 100%!important;
                     box-shadow: 0 0  0 5rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
-                }
-                &:after {
-                    content:"";
-                    position: absolute;
-                    height:2000rem;
-                    width:2000rem;
-                    margin:-1000rem 0 0 -1000rem;
-
                 }
             }
         }
@@ -1110,6 +1084,11 @@ form {
             .handle {
                 height:100%!important;
                 width:0;
+                &:before {
+                    top:-2rem;
+                    right:-6rem;
+                    left:auto;
+                }
             }
         }
         .pips {
@@ -1147,19 +1126,21 @@ form {
     // min-width: 100rem;
     min-height: 135rem;
     flex-shrink: 0;
+    padding-top:15rem;
     &.nolabel .knob-wrapper-outer{
-        padding-top:15rem;
+        top:0;
     }
     .knob-wrapper-outer {
         width: 100%;
-        top: 0;
+        top: 30rem;
         bottom: 0;
-        padding-bottom:15rem;
+        padding-bottom:30rem;
         overflow: hidden;
+        // position: absolute;
 
         input {
-            bottom:-15rem;
-            position: relative;
+            bottom:0;
+            position: absolute;
             z-index: 1;
         }
 
@@ -1183,15 +1164,22 @@ form {
         }
 
         .knob-wrapper {
-            padding:5rem 20rem;
+            padding:20rem;
             margin:0 auto;
-
             width:95rem;
+
             position: relative;
+
+            cursor: -webkit-grab;
+            &:active {
+                cursor: -webkit-grabbing;
+            }
+
             .knob-mask {
                 width:100%;
                 padding-bottom:100%;
                 border-radius:100%;
+                pointer-events: none;
                 position: relative;
                 &:before {
                     content:"";
@@ -1221,10 +1209,8 @@ form {
                 top:0;left:0;
                 right:0;
                 bottom:0;
-                cursor: -webkit-grab;
-                &:active {
-                    cursor: -webkit-grabbing;
-                }
+                pointer-events: none;
+
 
                 &:after {
                     content:"";
@@ -1267,14 +1253,7 @@ form {
                         left: 50%;
                         bottom: -3rem;
                     }
-                    &:after {
-                        content:"";
-                        position: absolute;
-                        height:2000rem;
-                        width:2000rem;
-                        margin:-1000rem 0 0 -1000rem;
 
-                    }
                 }
 
             }
@@ -1284,14 +1263,14 @@ form {
                 color:$color-text;
                 pointer-events: none;
                 &.min {
-                    bottom:-5rem;
+                    bottom:7.5rem;
                     left:0;
                     right:50%;
                     width:50%;
                     text-align:center;
                 }
                 &.max {
-                    bottom:-5rem;
+                    bottom:7.5rem;
                     left:50%;
                     width:50%;
                     right:0;
