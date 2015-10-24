@@ -12,7 +12,7 @@
                         {
                             label:false,
                             type:"knob",
-                            target:target
+                            target:target,absolute:true
                         },
                         {
                             label:false,
@@ -24,7 +24,7 @@
                             label:false,
                             type:"fader",
                             range:db,
-                            target:target,
+                            target:target,absolute:true
                         },
                         {
                             label:'Mute',

@@ -213,6 +213,7 @@ a.btn {
     &.sidepanel-open {
         right:$sidepanel-size;
     }
+
     #open-toggle {
         position:absolute;
         right:0;
@@ -620,7 +621,15 @@ form {
     }
 }
 
-
+.master-dragging .widget:after {
+    content:"";
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 999999;
+}
 
 
 /* STRIP (contains any widgets) */

@@ -154,12 +154,36 @@ init = function(session,callback) {
         $('.inspector .result').html(data)
     })
 
-    // MASTER DRAGGING (wip)
-    // $('body').drag(function(ev,dd){
-    //     $(ev.target).trigger('draginit',[ev])
-    // })
+    // MASTER DRAGGING (while shift key pressed)
+    var target
 
+    $(document).keydown(function (e) {
+        if (e.keyCode == 16) {
+            $('body').addClass('master-dragging')
+            $('body').on('draginit',function(ev,dd){
+                $('body').removeClass('master-dragging')
+            })
 
-        if (callback) callback()
+            $('body').on('drag',function(ev,dd){
+                $(ev.target).trigger('draginit',[ev])
+                if (target!=ev.target) $(ev.target).click()
+                target = ev.target
+
+            })
+            $('body').on('dragend',function(ev,dd){
+                $('body').addClass('master-dragging')
+            })
+        }
+    });
+    $(document).keyup(function (e) {
+        if (e.keyCode == 16) {
+            $('body').removeClass('master-dragging')
+            $('body').off('draginit')
+            $('body').off('drag')
+            $('body').off('dragend')
+        }
+    });
+
+    if (callback) callback()
 
 }
