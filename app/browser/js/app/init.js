@@ -53,10 +53,12 @@ init = function(session,callback) {
     $('.tablist li:first-child a').click()
 
 
+    // get current webFrame
+    var webFrame = require('web-frame');
 
     // reset zoom
     $(document).on('keydown.resetzoom', function(e){
-        if (e.keyCode==96||e.keyCode==48) $('html').css('font-size',1)
+        if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
     })
 
 
@@ -71,9 +73,8 @@ init = function(session,callback) {
         if (e.ctrlKey) {
             e.preventDefault()
             var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
-                s = d+parseFloat($('html').css('font-size'))
-            $('html').css('font-size',s)
-            contentPanels.css('top',60+'rem')
+                s = d+webFrame.getZoomFactor()
+            webFrame.setZoomFactor(s);
 
         } else {
             var h = $('#container').innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
