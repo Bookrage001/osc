@@ -4,8 +4,8 @@ Open Stage Control (*temporary name*) is a libre desktop OSC bi-directionnal con
 
 It's under active development; hence, current features are subject to change without notice.
 
-<img src="https://cloud.githubusercontent.com/assets/5261671/10710767/1a37ac4c-7a68-11e5-9435-0f5499771125.png" width="49%" style="display:inline-block;margin-right:1%"/>
-<img src="https://cloud.githubusercontent.com/assets/5261671/10710766/1a366846-7a68-11e5-9afd-2b700ff1ebbb.png" width="49%" style="display:inline-block"/>
+<img src="https://cloud.githubusercontent.com/assets/5261671/10734122/03073fe2-7c02-11e5-9f6d-4ff0887ebfe6.png" width="49%" style="display:inline-block;margin-right:1%"/>
+<img src="https://cloud.githubusercontent.com/assets/5261671/10734121/0303f1de-7c02-11e5-94a1-28cd3b7eb27d.png" width="49%" style="display:inline-block"/>
 
 ### Run from sources
 
