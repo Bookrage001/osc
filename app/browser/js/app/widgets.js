@@ -198,7 +198,7 @@ createWidget.xy = function(widgetData) {
 
     var off = {x:0,y:0}
     pad.on('draginit',function(e,data){
-        if (absolute || data.absolute) {
+        if (absolute || data.absolute || data.ctrlKey) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
             handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
@@ -341,7 +341,7 @@ createWidget.rgb = function(widgetData) {
 
     var rgbOff = {x:0,y:0}
     pad.on('draginit',function(e,data){
-        if (absolute || data.absolute) {
+        if (absolute || data.absolute || data.ctrlKey) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
             rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
@@ -376,7 +376,7 @@ createWidget.rgb = function(widgetData) {
 
     var hueOff = 0
     huePad.on('draginit',function(e,data){
-        if (absolute || data.absolute) {
+        if (absolute || data.absolute || data.ctrlKey) {
             var d = (data.offsetX * 100 / pad.width)
             hueHandle[0].setAttribute('style','width:'+d+'%')
             hueHandle.width = d
@@ -557,7 +557,7 @@ createWidget.fader = function(widgetData,container){
     var off = 0
 
     wrapper.on('draginit',function(e,data){
-        if (absolute || data.absolute) {
+        if (absolute || data.absolute || data.ctrlKey) {
             var d = (dimension=='height')?
                     ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
                     (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
@@ -718,7 +718,7 @@ createWidget.knob = function(widgetData) {
     handle[0].setAttribute('style','transform:rotateZ(45deg)')
     wrapper.on('draginit',function(e,data){
 
-        if (absolute || data.absolute) {
+        if (absolute || data.absolute || data.ctrlKey) {
             var w = data.target.clientWidth,
                 h = data.target.clientHeight,
                 x = data.offsetX-w/2,
@@ -754,7 +754,7 @@ createWidget.knob = function(widgetData) {
 
         var r = clip(-data.deltaY*2+offR,[0,270])
 
-        if (absolute || data.absolute) {
+        if (absolute || data.absolute || data.ctrlKey) {
             var w   =  data.target.clientWidth,
                 h   =  data.target.clientHeight,
                 x   =  data.deltaX + offX,
