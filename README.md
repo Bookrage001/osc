@@ -196,8 +196,6 @@ It relies on the use of several libraries :
 - [node-osc](https://github.com/TheAlphaNerd/node-osc)
 - [Sass.js](https://github.com/medialize/sass.js/)
 - [jQuery](http://jquery.com/)
-  - [jQuery.resize.event](http://benalman.com/projects/jquery-resize-plugin/)
-  - [jQuery.event.drag](http://threedubmedia.com)
 - [Font Awesome](http://fontawesome.io/)
 
 Design was heavily inspired by [Atom](https://atom.io/)'s theme 'One Dark'

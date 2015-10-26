@@ -166,10 +166,10 @@ init = function(session,callback) {
             })
 
             $('body').on('drag',function(ev,dd){
-                ev.absolute=true
-                $(ev.target).trigger('draginit',[ev])
-                if (target!=ev.target) $(ev.target).click()
-                target = ev.target
+                dd.absolute=true
+                $(dd.target).trigger('draginit',[dd])
+                if (target!=dd.target) $(dd.target).click()
+                target = dd.target
 
             })
             $('body').on('dragend',function(ev,dd){
@@ -185,6 +185,8 @@ init = function(session,callback) {
             $('body').off('dragend')
         }
     });
+
+
 
     if (callback) callback()
 

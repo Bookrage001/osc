@@ -9,9 +9,8 @@ fs = require('fs')
 window.$ = window.jQuery = require('./jquery/jquery.min.js')
 
 
-
 // third-party js libraries
-require('./jquery/jquery.event.drag-2.2.js')
+require('./jquery/jquery.drag.js')
 require('./jquery/jquery.resize.js')
 
 // main js
