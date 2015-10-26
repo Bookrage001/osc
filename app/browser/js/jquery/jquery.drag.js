@@ -77,8 +77,8 @@
                 e.deltaX = 0
                 e.deltaY = 0
 
-                previousEvent = e
                 element.trigger("draginit", e)
+                previousEvent = e
             })
             element.on("touchmove.drag", function(e) {
                 e.preventDefault()
