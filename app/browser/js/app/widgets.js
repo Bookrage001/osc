@@ -301,10 +301,10 @@ createWidget.rgb = function(widgetData) {
     var widget = $(`
         <div class="xy-wrapper rgb-wrapper">
             <div class="xy rgb">
-                <div class="handle"><span></span></div>
+                <div class="handle"></div>
             </div>
             <div class="hue">
-                <div class="handle"><span></span></div>
+                <div class="handle"></div>
             </div>
             <div class="value">
                 <input disabled value="R"></input><input disabled value="G"></input><input disabled value="B"></input>
@@ -682,6 +682,8 @@ createWidget.knob = function(widgetData) {
             <div class="knob-wrapper">
                 <div class="knob-mask">
                     <div class="knob"><span></span></div>
+                    <div class="handle"></div>
+                    <div class="round"></div>
                 </div>
                 <div class="pip min"></div>
                 <div class="pip max"></div>
@@ -691,6 +693,7 @@ createWidget.knob = function(widgetData) {
         `),
         wrapper = widget.find('.knob-wrapper'),
         knob = widget.find('.knob'),
+        handle = widget.find('.handle'),
         input = widget.find('input'),
         range = widgetData.range || {min:0,max:1},
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
@@ -712,6 +715,7 @@ createWidget.knob = function(widgetData) {
         offX = 0,
         offY = 0
     knob[0].setAttribute('style','transform:rotate(45deg)')
+    handle[0].setAttribute('style','transform:rotateZ(45deg)')
     wrapper.on('draginit',function(e,data){
 
         if (absolute || data.absolute) {
@@ -728,6 +732,7 @@ createWidget.knob = function(widgetData) {
             offY = y
 
             knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+            handle[0].setAttribute('style','transform:rotateZ('+r+'deg)')
             knob.rotation = r
 
             if      (r>180) {knob.addClass('d3')}
@@ -761,6 +766,7 @@ createWidget.knob = function(widgetData) {
         }
 
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+        handle[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         knob.rotation = r
 
 
@@ -804,6 +810,7 @@ createWidget.knob = function(widgetData) {
 
 
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+        handle[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         var v = widget.getValue() || v
 
         widget.showValue(v)

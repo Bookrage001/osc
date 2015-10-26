@@ -621,7 +621,7 @@ form {
     }
 }
 
-.master-dragging .widget:after {
+.master-dragging:after {
     content:"";
     position: absolute;
     top:0;
@@ -868,10 +868,11 @@ form {
     width:100%;
     padding-bottom: 90%;
     overflow: hidden;
+    background:  rgba($color-base,.5);
     cursor: -webkit-grab;
     &:active {
         cursor: -webkit-grabbing;
-        .handle:after {
+        .handle:after,.handle:before {
             transform: scale(1.5);
         }
     }
@@ -884,19 +885,30 @@ form {
         max-height:100%;
         max-width:100%;
         z-index:2;
+
         pointer-events: none;
+        &:before {
+            content:"";
+            position: absolute;
+            top:-4rem;
+            right:-4rem;
+            height:8rem;
+            width:8rem;
+            background:$color-accent;
+            border:none!important;
+            border-radius: 100%!important;
+            box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
+        }
         &:after {
             content:"";
-            position:absolute;
-            top:-.5rem;
-            right:-1px;
-            //box-shadow:0 0 10rem 0rem #aaa inset,0 0 1px 1px rgba(0,0,0,.5),0 0 0 3rem rgba(255,255,255,.2)!important;
-            border-radius:100%!important;
-            //background:$color-accent!important;
-            width: 20rem;
-            height: 20rem;
-            margin:-10rem -10rem 0 0;
-            box-shadow: 0 0 0 1000rem rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
+            position: absolute;
+            top:-10rem;
+            right:-10rem;
+            height:20rem;
+            width:20rem;
+            border:none!important;
+            border-radius: 100%!important;
+            box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
         }
 
     }
@@ -924,11 +936,15 @@ form {
 		background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
 	}
 	&:after {
-		background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* W3C */
+		background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
 	}
     .handle {
-        span {
-            //background: rgba($color-base,.35)
+        &:before {
+            box-shadow: none;
+            background:$color-text;
+        }
+        &:after {
+            box-shadow: 0 0 0 1000rem rgba($color-base,.5);
         }
     }
 }
@@ -954,16 +970,28 @@ form {
         left:0;
         bottom:0;
         pointer-events: none;
+        &:before {
+            content:"";
+            position: absolute;
+            top:50%;margin-top:-4rem;
+            right:-4rem;
+            height:8rem;
+            width:8rem;
+            border:none!important;
+            border-radius: 100%!important;
+            box-shadow: none;
+            background:$color-text;
+        }
         &:after {
             content:"";
-            position:absolute;
-            top:50%;
-            right:-1px;
-            box-shadow: 0 0 0 1000rem rgba($color-base,.5), 0 0 0 1px rgba(white,.2);
-            border-radius:100%!important;
-            width: 11rem;
-            height: 11rem;
-            margin:-5rem -4rem 0 0;
+            position: absolute;
+            top:50%;margin-top:-10rem;
+            right:-10rem;
+            height:20rem;
+            width:20rem;
+            border:none!important;
+            border-radius: 100%!important;
+            box-shadow: 0 0 0 1000rem rgba($color-base,.5);
         }
     }
 
@@ -1218,7 +1246,7 @@ form {
                     border-radius:100%;
                     border:4rem solid $color-border;
                     border-bottom-color: transparent;
-                    pointer-events: none;z-index:0;
+                    z-index:0;
                 }
                 &:after {
                     content:"";
@@ -1229,8 +1257,19 @@ form {
                     border-radius:100%;
                     border:12rem solid transparent;
                     border-bottom-color: mix($color-text,$color-fg,2);
-                    pointer-events: none;
                 }
+            }
+            .round {
+                content:"";
+                position:absolute;
+                top:18rem;
+                left:18rem;
+                right:18rem;
+                bottom:18rem;
+                border-radius:100%;
+                background:$bg-3d-hover;
+                box-shadow: 0 0 0 1px $color-bg;
+
             }
             .knob {
                 position:absolute;
@@ -1260,30 +1299,38 @@ form {
                 }
 
 
-                span {
-                    position:absolute;
-                    top:20rem;left:20rem;
-                    right:20rem;
-                    bottom:20rem;
-                    border-radius:100%;
-                    background:mix($color-text-fade,$color-bg,35);
-                    box-shadow: 0 0 0 4rem $color-bg;
-                    z-index: 100;
-                    transform: rotate(45deg);
-                    z-index: 100;
-                    &:before {
-                        content: "";
-                        position: absolute;
-                        height: 3rem;
-                        width: 3rem;
-                        background: mix($color-text-fade,$color-bg,35);
-                        margin-left: -1.5rem;
-                        left: 50%;
-                        bottom: -3rem;
-                    }
 
+            }
+            .handle {
+                position:absolute;
+                top:0;left:0;
+                right:0;
+                bottom:0;
+                pointer-events: none;
+                z-index: 1;
+                &:before {
+                    content:"";
+                    position: absolute;
+                    bottom:6rem;
+                    left:5rem;
+                    height:8rem;
+                    width:8rem;
+                    background:$color-accent;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2px 0  mix($color-text,$color-fg,2);
                 }
-
+                &:after {
+                    content:"";
+                    position: absolute;
+                    bottom:0rem;
+                    left:-1rem;
+                    height:20rem;
+                    width:20rem;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
+                }
             }
             .pip {
                 position:absolute;
@@ -1291,14 +1338,14 @@ form {
                 color:$color-text;
                 pointer-events: none;
                 &.min {
-                    bottom:7.5rem;
+                    bottom:6rem;
                     left:0;
                     right:50%;
                     width:50%;
                     text-align:center;
                 }
                 &.max {
-                    bottom:7.5rem;
+                    bottom:6rem;
                     left:50%;
                     width:50%;
                     right:0;
