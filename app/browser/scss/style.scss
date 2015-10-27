@@ -66,8 +66,8 @@ a {
 
 $scrollbar-margin:1rem;
 ::-webkit-scrollbar {
-    width: 10rem;
-    height:10rem;
+    width: 20rem;
+    height:20rem;
     opacity:1;
 
 }
@@ -87,13 +87,10 @@ $scrollbar-margin:1rem;
 ::-webkit-scrollbar-thumb {
     background:$bg-3d;
     &:vertical {
-        border:$scrollbar-margin solid  $color-border;
-        border-width: 0 $scrollbar-margin 0 $scrollbar-margin;
-
+        border-left:$scrollbar-margin solid  $color-border;
     }
     &:horizontal {
-        border:$scrollbar-margin solid  $color-border;
-        border-width: $scrollbar-margin 0 $scrollbar-margin 0;
+        border-top:$scrollbar-margin solid  $color-border;
     }
 }
 
@@ -733,6 +730,9 @@ form {
             > .widget {
                 width:100%;
             }
+        }
+        &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track-piece {
+            border: 1rem solid $color-bg;
         }
     }
 }

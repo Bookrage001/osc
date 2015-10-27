@@ -56,17 +56,10 @@ init = function(session,callback) {
     // get current webFrame
     var webFrame = require('web-frame');
 
-    // reset zoom
-    $(document).on('keydown.resetzoom', function(e){
-        if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
-    })
-
-
-
     // horizontal scrolling & zoom with mousewheel
     // if shift is pressed (native), or if there is no vertical scrollbar,
     //                               or if mouse is on h-scrollbar
-    var scrollbarHeight = 10
+    var scrollbarHeight = 20
     var contentPanels = $('.content')
     $('.tab').on('mousewheel',function(e) {
         // console.log(e)
@@ -75,6 +68,7 @@ init = function(session,callback) {
             var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
                 s = d+webFrame.getZoomFactor()
             webFrame.setZoomFactor(s);
+            scrollbarHeight = (s*20)
 
         } else {
             var h = $('#container').innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
@@ -99,6 +93,12 @@ init = function(session,callback) {
             }
 
         }
+    })
+
+    // reset zoom
+    $(document).on('keydown.resetzoom', function(e){
+        if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
+        scrollbarHeight = 20
     })
 
 
