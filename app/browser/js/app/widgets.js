@@ -692,14 +692,15 @@ createWidget.knob = function(widgetData) {
         </div>
         `),
         wrapper = widget.find('.knob-wrapper'),
+        mask = widget.find('.knob-mask'),
         knob = widget.find('.knob'),
         handle = widget.find('.handle'),
         input = widget.find('input'),
         range = widgetData.range || {min:0,max:1},
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
-        absolute = widgetData.absolute
+        absolute = widgetData.absolute,
+        pan = widgetData.pan
 
-    if (widgetData.gauge==false) widget.addClass('nogauge')
 
 
     var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
@@ -714,8 +715,6 @@ createWidget.knob = function(widgetData) {
     var offR = 0,
         offX = 0,
         offY = 0
-    knob[0].setAttribute('style','transform:rotate(45deg)')
-    handle[0].setAttribute('style','transform:rotateZ(45deg)')
     wrapper.on('draginit',function(e,data){
 
         if (absolute || data.absolute || data.ctrlKey) {
@@ -732,8 +731,12 @@ createWidget.knob = function(widgetData) {
             offY = y
 
             knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-            handle[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+            handle[0].setAttribute('style','transform:rotateZ('+(r-2)+'deg)')
             knob.rotation = r
+
+
+            if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
+            else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
 
             if      (r>180) {knob.addClass('d3')}
             else if (r>90)  {knob.removeClass('d3').addClass('d2')}
@@ -766,9 +769,11 @@ createWidget.knob = function(widgetData) {
         }
 
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-        handle[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+        handle[0].setAttribute('style','transform:rotateZ('+(r-2)+'deg)')
         knob.rotation = r
 
+        if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
+        else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
 
         if      (r>180) {knob.addClass('d3')}
         else if (r>90)  {knob.removeClass('d3').addClass('d2')}
@@ -800,17 +805,18 @@ createWidget.knob = function(widgetData) {
         var r = mapToScale(v,[range.min,range.max],[0,270])
         knob.rotation = r
 
-        if (r>180) {
-            knob.addClass('d3')
-        } else if (r>90) {
-            knob.removeClass('d3').addClass('d2')
-        } else {
-            knob.removeClass('d3 d2')
-        }
+
+
+        if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
+        else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
+
+        if      (r>180) {knob.addClass('d3')}
+        else if (r>90)  {knob.removeClass('d3').addClass('d2')}
+        else            {knob.removeClass('d3 d2')}
 
 
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-        handle[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+        handle[0].setAttribute('style','transform:rotateZ('+(r-2)+'deg)')
         var v = widget.getValue() || v
 
         widget.showValue(v)

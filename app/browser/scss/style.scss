@@ -1241,17 +1241,43 @@ form {
                 border-radius:100%;
                 pointer-events: none;
                 position: relative;
+                box-shadow: 0 0 0 4rem $color-border inset;
                 &:before {
-                    content:"";
                     position:absolute;
                     top:0;left:0;
                     right:0;
                     bottom:0;
                     border-radius:100%;
                     border:4rem solid $color-border;
-                    border-bottom-color: transparent;
-                    z-index:0;
+                    box-shadow: 0 0 0 1rem  mix($color-text,$color-fg,2),0 0 0 1rem  mix($color-text,$color-fg,2) inset,0 0 1rem  1rem  mix($color-text,$color-fg,2),0 0 1rem 1rem  mix($color-text,$color-fg,2) inset;
+                    transform: rotate(45deg);
+                    z-index:1;
                 }
+                &.pan-left {
+                    &:before {
+                        content:"";
+                        border-left-color: transparent;
+                        border-bottom-color: transparent;
+                    }
+                    .knob:after {
+                        border-color: transparent;
+                        border-left-color: $color-accent;
+                        border-top-color: $color-accent;
+                    }
+                }
+                &.pan-right {
+                    &:before {
+                        content:"";
+                        border-right-color: transparent;
+                        border-top-color: transparent;
+                    }
+                    .knob:after {
+                        border-color: transparent;
+                        border-right-color: $color-accent;
+                        border-bottom-color: $color-accent;
+                    }
+                }
+
                 &:after {
                     content:"";
                     position:absolute;
@@ -1261,6 +1287,7 @@ form {
                     border-radius:100%;
                     border:12rem solid transparent;
                     border-bottom-color: mix($color-text,$color-fg,2);
+                    z-index:1;
                 }
             }
             .round {
@@ -1311,7 +1338,7 @@ form {
                 right:0;
                 bottom:0;
                 pointer-events: none;
-                z-index: 1;
+                z-index: 2;
                 &:before {
                     content:"";
                     position: absolute;
