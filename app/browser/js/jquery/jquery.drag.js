@@ -43,18 +43,18 @@
             }
 
             function getOffset(obj) {
-                var offsetLeft = 0;
-                var offsetTop = 0;
+                var offsetLeft = 0
+                var offsetTop = 0
                 do {
                     if (!isNaN(obj.offsetLeft)) {
-                        offsetLeft += obj.offsetLeft;
+                        offsetLeft += obj.offsetLeft - obj.scrollLeft
                     }
                     if (!isNaN(obj.offsetTop)) {
-                        offsetTop += obj.offsetTop;
+                        offsetTop += obj.offsetTop - obj.scrollTop
                     }
-                } while(obj = obj.offsetParent );
+                } while(obj = obj.offsetParent )
 
-                return {left: offsetLeft, top: offsetTop};
+                return {left: offsetLeft, top: offsetTop}
             }
 
             element.on("touchstart.drag mousedown.drag", function(e) {

@@ -80,7 +80,7 @@ compileScss = function(){
     }
 }
 
-// app.commandLine.appendSwitch('--touch-events')
+app.commandLine.appendSwitch('--touch-events')
 
 
 app.on('window-all-closed', function() {
