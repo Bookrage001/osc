@@ -68,15 +68,13 @@ init = function(session,callback) {
             var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
                 s = d+webFrame.getZoomFactor()
             webFrame.setZoomFactor(s);
-            scrollbarHeight = (s*20)
 
         } else {
-            var h = $('#container').innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
-            if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).height()) {
+            if ($(this).height()>$(this).get(0).scrollHeight) {
                 var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
                 $(this).scrollLeft($(this).scrollLeft()+scroll)
                 e.preventDefault()
-            } else if (e.pageY>=h) {
+            } else if (e.pageY>window.innerHeight-scrollbarHeight) {
                 $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY)
                 e.preventDefault()
             }
@@ -98,7 +96,6 @@ init = function(session,callback) {
     // reset zoom
     $(document).on('keydown.resetzoom', function(e){
         if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
-        scrollbarHeight = 20
     })
 
 
