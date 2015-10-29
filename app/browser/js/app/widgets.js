@@ -198,7 +198,7 @@ createWidget.xy = function(widgetData) {
 
     var off = {x:0,y:0}
     pad.on('draginit',function(e,data){
-        if (absolute || data.absolute || data.ctrlKey) {
+        if (absolute || data.absolute || data.ctrlKey || data.shiftKey) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
             handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
@@ -216,6 +216,8 @@ createWidget.xy = function(widgetData) {
 
     })
     pad.on('drag',function(e,data){
+        if (data.shiftKey) return
+
         var h = clip((-data.deltaY)*100/pad.height+off.y,[0,100]),
             w = clip((data.deltaX)*100/pad.width+off.x,[0,100])
         handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
@@ -341,7 +343,7 @@ createWidget.rgb = function(widgetData) {
 
     var rgbOff = {x:0,y:0}
     pad.on('draginit',function(e,data){
-        if (absolute || data.absolute || data.ctrlKey) {
+        if (absolute || data.absolute || data.ctrlKey || data.shiftKey) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
             rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
@@ -359,6 +361,8 @@ createWidget.rgb = function(widgetData) {
 
     })
     pad.on('drag',function(e,data){
+        if (data.shiftKey) return
+
         var h = clip((-data.deltaY)*100/pad.height+rgbOff.y,[0,100]),
             w = clip(data.deltaX*100/pad.width+rgbOff.x,[0,100])
         rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
@@ -376,7 +380,7 @@ createWidget.rgb = function(widgetData) {
 
     var hueOff = 0
     huePad.on('draginit',function(e,data){
-        if (absolute || data.absolute || data.ctrlKey) {
+        if (absolute || data.absolute || data.ctrlKey || data.shiftKey) {
             var d = (data.offsetX * 100 / pad.width)
             hueHandle[0].setAttribute('style','width:'+d+'%')
             hueHandle.width = d
@@ -402,6 +406,9 @@ createWidget.rgb = function(widgetData) {
 
 
     huePad.on('drag',function(e,data){
+
+        if (data.shiftKey) return
+
         var w = clip(data.deltaX*100/pad.width+hueOff,[0,100])
         hueHandle[0].setAttribute('style','width:'+w+'%')
         hueHandle.width = w
@@ -557,7 +564,7 @@ createWidget.fader = function(widgetData,container){
     var off = 0
 
     wrapper.on('draginit',function(e,data){
-        if (absolute || data.absolute || data.ctrlKey) {
+        if (absolute || data.absolute || data.ctrlKey || data.shiftKey) {
             var d = (dimension=='height')?
                     ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
                     (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
@@ -578,16 +585,19 @@ createWidget.fader = function(widgetData,container){
 
 
     wrapper.on('drag',function(e,data){
-            var d = (dimension=='height')?-data.deltaY:data.deltaX
-            d = clip(d*100/fader.size+off,[0,100])
-            handle[0].setAttribute('style',dimension+':'+d+'%')
-            handle.size = d
 
-            var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
+        if (data.shiftKey) return
 
-            widget.trigger('sync')
+        var d = (dimension=='height')?-data.deltaY:data.deltaX
+        d = clip(d*100/fader.size+off,[0,100])
+        handle[0].setAttribute('style',dimension+':'+d+'%')
+        handle.size = d
+
+        var v = widget.getValue()
+        widget.sendValue(v)
+        widget.showValue(v)
+
+        widget.trigger('sync')
 
     })
 
@@ -717,7 +727,7 @@ createWidget.knob = function(widgetData) {
         offY = 0
     wrapper.on('draginit',function(e,data){
 
-        if (absolute || data.absolute || data.ctrlKey) {
+        if (absolute || data.absolute || data.ctrlKey || data.shiftKey) {
             var w = data.target.clientWidth,
                 h = data.target.clientHeight,
                 x = data.offsetX-w/2,
@@ -755,9 +765,11 @@ createWidget.knob = function(widgetData) {
 
     wrapper.on('drag',function(e,data){
 
+        if (data.shiftKey) return
+
         var r = clip(-data.deltaY*2+offR,[0,270])
 
-        if (absolute || data.absolute || data.ctrlKey) {
+        if (absolute || data.absolute || data.ctrlKey || data.shiftKey) {
             var w   =  data.target.clientWidth,
                 h   =  data.target.clientHeight,
                 x   =  data.deltaX + offX,

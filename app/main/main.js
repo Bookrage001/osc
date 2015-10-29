@@ -57,7 +57,28 @@ dialog.showErrorBox = function(title,err) {
 }
 
 
+var x = require('express')(),
+    path = require('path')
 
+x.get('/', function(req, res){
+  res.sendfile(path.resolve(__dirname + '/../browser/index.html'));
+});
+
+x.get('*', function(req, res){
+  res.sendfile(path.resolve(__dirname + '/../browser'+req.path));
+});
+
+x.listen(3000);
+
+
+var jsdom = require("jsdom");
+var w = jsdom.jsdom().defaultView;
+
+jsdom.jQueryify(w, "http://code.jquery.com/jquery-2.1.1.js", function () {
+  w.$("body").append('<div class="testing">Hello World, It works</div>');
+
+  console.log(w.$(".testing").text());
+});
 
 
 restartApp = function(){

@@ -157,20 +157,18 @@ init = function(session,callback) {
 
     $(document).keydown(function (e) {
         if (e.keyCode == 16) {
-            $('body').addClass('master-dragging')
-            $('body').on('draginit',function(ev,dd){
-                $('body').removeClass('master-dragging')
-            })
+            // $('body').addClass('master-dragging')
 
             $('body').on('drag',function(ev,dd){
                 dd.absolute=true
+                dd.shiftKey=false
                 $(dd.target).trigger('draginit',[dd])
                 if (target!=dd.target) $(dd.target).click()
                 target = dd.target
 
             })
             $('body').on('dragend',function(ev,dd){
-                $('body').addClass('master-dragging')
+                // $('body').addClass('master-dragging')
             })
         }
     });
