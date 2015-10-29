@@ -9,7 +9,12 @@
   },
   "dependencies": {
     "node-osc": "1.1",
-    "yargs":"3.25"
+    "yargs":"3.25",
+    "socket.io":"1.3.7",
+    "socket.io-client":"1.3.7",
+    "socketio-wildcard":"0.1.1",
+    "browserify":"12.0.1",
+    "express":"4.13.3"
   },
   "keywords": [
     "osc",

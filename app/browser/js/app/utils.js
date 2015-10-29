@@ -41,37 +41,6 @@ setState = function(preset){
 
 
 
-openSession = function(path){
-    var fs = require('fs'),
-        data = fs.readFileSync(path,'utf8'),
-        vm = require('vm'),
-        session,
-        error
-
-    try {
-        session = vm.runInNewContext(data)
-    } catch(err) {
-        error = err
-    }
-
-    if (!error) {
-        ipc.send('addSessionToHistory',path)
-
-        $('#lobby').hide()
-        $('#container').append('<div id="loading"><div class="spinner"></div></div>')
-        setTimeout(function(){
-            init(session,function(){$('#loading').hide()})
-        },1)
-
-    } else {
-        createPopup(icon('warning')+'&nbsp;Error: invalid session file',error)
-    }
-
-}
-
-
-
-
 
 icon = function(i) {
     return `<i class="fa fa-fw fa-${i}"></i>`

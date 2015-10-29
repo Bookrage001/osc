@@ -33,7 +33,7 @@ ipc.on('listSessions',function(data){
     $('#lobby .list').append('<a class="btn browse">...</a>')
     $('#lobby .load').click(function(e){
         e.stopPropagation()
-        openSession($(this).data('session'))
+        ipc.send('openSession',$(this).data('session'))
     })
     $('#lobby a span').click(function(e){
         e.stopPropagation()
@@ -44,7 +44,23 @@ ipc.on('listSessions',function(data){
         e.stopPropagation()
         ipc.send('browseSessions')
     })
+    ipc.off('listSession')
 })
+
 ipc.on('openSession',function(data){
-    openSession(data)
+    var error = data.error,
+        path = data.path,
+        session = JSON.parse(data.session)
+
+    if (!error) {
+        ipc.send('addSessionToHistory',path)
+        $('#lobby').hide()
+        $('#container').append('<div id="loading"><div class="spinner"></div></div>')
+        setTimeout(function(){
+            init(session,function(){$('#loading').hide()})
+        },1)
+        ipc.off('openSession')
+    } else {
+        createPopup(icon('warning')+'&nbsp;Error: invalid session file',error)
+    }
 })

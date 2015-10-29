@@ -1,8 +1,14 @@
 
 // mainProcess & renderProcess communication engine
-ipc = require('ipc')
+// electron's ipc module is not available here, we use socket.io as a replacement
+socket = require('socket.io-client')
+
+ipc=socket.connect();
+ipc.send = ipc.emit
+
 
 // jquery
+
 window.$ = window.jQuery = require('./jquery/jquery.min.js')
 
 

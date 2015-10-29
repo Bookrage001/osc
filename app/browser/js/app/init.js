@@ -53,9 +53,6 @@ init = function(session,callback) {
     $('.tablist li:first-child a').click()
 
 
-    // get current webFrame
-    var webFrame = require('web-frame');
-
     // horizontal scrolling & zoom with mousewheel
     // if shift is pressed (native), or if there is no vertical scrollbar,
     //                               or if mouse is on h-scrollbar
@@ -67,7 +64,7 @@ init = function(session,callback) {
             e.preventDefault()
             var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
                 s = d+webFrame.getZoomFactor()
-            webFrame.setZoomFactor(s);
+            ipc.send('setZoomFactor',s)
 
         } else {
             if ($(this).height()>$(this).get(0).scrollHeight) {
@@ -95,7 +92,7 @@ init = function(session,callback) {
 
     // reset zoom
     $(document).on('keydown.resetzoom', function(e){
-        if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
+        if (e.keyCode==96||e.keyCode==48) ipc.send('setZoomFactor',1)
     })
 
 
