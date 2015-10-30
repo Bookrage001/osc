@@ -2,7 +2,7 @@
 if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 
 var app = require('app')
-  , BrowserWindow = require('browser-window')
+  , browserWindow = require('browser-window')
   , dialog = require('dialog')
   , osc = require('node-osc')
   , fs = require('fs')
@@ -94,7 +94,7 @@ if (!settings.noGui) {
 
     app.on('ready', function() {
 
-        window = new BrowserWindow({
+        window = new browserWindow({
             width: 800,
             height: 600,
             title:settings.read('appName'),

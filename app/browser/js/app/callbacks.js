@@ -17,9 +17,7 @@ ipc.on('load',function(preset){
     setState(preset)
 })
 
-var listSessions = false
 ipc.on('listSessions',function(data){
-    if (listSessions) return false
     $('#lobby').append('\
         <div class="main">\
             <div class="header">\
@@ -45,18 +43,14 @@ ipc.on('listSessions',function(data){
         e.stopPropagation()
         ipc.send('browseSessions')
     })
-    listSessions = true
 })
 
-var openSession = false
 ipc.on('openSession',function(data){
-    if (openSession) return  false
     var error = data.error,
         path = data.path,
         session = JSON.parse(data.session)
 
     if (!error) {
-        openSession = true
         ipc.send('addSessionToHistory',path)
         $('#lobby').hide()
         $('#container').append('<div id="loading"><div class="spinner"></div></div>')
