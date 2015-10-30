@@ -12,9 +12,9 @@ var app = require('app')
   , window = null
 
   , argv = require('yargs')
-        .help('help').usage(`\nUsage:\n  $0 [options]`)
+        .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
         .options({
-            'h':{alias:'host',type:'array',describe:'synchronized hosts (ip:port pairs)'},
+            's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
             'c':{alias:'compile',type:'boolean',describe:'recompile stylesheets (increases startup time)'},
             'l':{alias:'load',type:'string',describe:'session file to load'},
             'p':{alias:'port',describe:'osc input port (for synchronization)'},
@@ -23,7 +23,7 @@ var app = require('app')
          })
         .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
         .check(function(a,x){if(a.n==undefined || !isNaN(a.n)&&a.n>1023&&parseInt(a.n)===a.n){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-        .check(function(a,x){if(a.host==undefined || a.h.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Hosts must ne ip:port pairs & port must be >= 1024'}})
+        .check(function(a,x){if(a.sync==undefined || a.s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Sync hosts must be ip:port pairs & port must be >= 1024'}})
         .strict()
         .argv
 
@@ -32,8 +32,8 @@ var app = require('app')
       sessionPath: process.cwd(),
       recentSessions: [],
 
-      appName: argv.n || 'Controller',
-      syncTargets: argv.h || false,
+      appName: 'OSC Controller',
+      syncTargets: argv.s || false,
       oscInPort: argv.p || false,
       compileScss: argv.c || false,
       sessionFile:  argv.l || false,

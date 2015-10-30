@@ -30,17 +30,23 @@ $ npm install
 **Command line switches**
 ```
 Options:
-  --help         display help
-  -h, --host     synchronized hosts (ip:port pairs)
+  -h, --help     display help
+  -s, --sync     synchronized hosts (ip:port pairs)
   -c, --compile  recompile stylesheets (increases startup time)
   -l, --load     session file to load
   -p, --port     osc input port (for synchronization)
+  -n, --nogui    disable default gui and makes the app availabe through http on specified port
 
 Exemples :
 
 $ electron /path/to/app/ -h 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
+
+$ electron /path/to/app/ -n 8080 -l path/to/session.js
+
+This will create a headless app available through http on port 8080. Multiple clients can use the app (with chrome only) simultaneously, their widgets will be synchronized.
+
 
 ```
 
