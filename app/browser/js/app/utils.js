@@ -2,9 +2,20 @@ sendOsc = function(data){
     ipc.send('sendOsc', data)
 }
 
+var laststate
+
 saveState = function () {
-    var data = getState()
-    ipc.send('save',data.join('\n'))
+    var data = getState().join('\n')
+    if (webFrame) {
+        ipc.send('save',data)
+    } else {
+        var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
+        var blob = new Blob([data],{type : 'text/plain'});
+        down.attr('href', window.URL.createObjectURL(blob))
+        down[0].click()
+        laststate = data
+    }
+
 }
 getState = function (){
     var data = []
@@ -25,13 +36,18 @@ loadState = function() {
             reader.onloadend = function(e) {
                 var preset = e.target.result
                 setState(preset)
+                laststate = preset
             }
             reader.readAsText(e.target.files[0],'utf-8');
         })
     }
 }
 loadLastState = function() {
-    ipc.send('loadlast')
+    if (webFrame) {
+        ipc.send('loadlast')
+    } else if (laststate) {
+        setState(laststate)
+    }
 }
 
 sendState = function(){
