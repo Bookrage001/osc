@@ -15,7 +15,20 @@ getState = function (){
     return data
 }
 loadState = function() {
-    ipc.send('load')
+    if (webFrame) {
+        ipc.send('load')
+    } else {
+        var prompt = $('<input type="file" accept=".preset"/>')
+        prompt.click()
+        prompt.on('change',function(e){
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                var preset = e.target.result
+                setState(preset)
+            }
+            reader.readAsText(e.target.files[0],'utf-8');
+        })
+    }
 }
 loadLastState = function() {
     ipc.send('loadlast')
@@ -38,7 +51,20 @@ setState = function(preset){
         },i)
     })
 }
+toggleFullscreen = function(){
 
+    if (webFrame) {
+        ipc.send('fullscreen')
+    } else {
+        var isInFullScreen = document.webkitIsFullScreen
+
+        if (isInFullScreen) {
+            document.webkitExitFullscreen()
+        } else {
+            document.documentElement.webkitRequestFullScreen()
+        }
+    }
+}
 
 
 
