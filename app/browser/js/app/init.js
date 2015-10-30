@@ -138,7 +138,19 @@ init = function(session,callback) {
         },
         {
             label:'Fullscreen',
-            click:function(){ipc.send('fullscreen')},
+            click:function(){
+                if (webFrame) {
+                    ipc.send('fullscreen')
+                } else {
+                    var isInFullScreen = document.webkitIsFullScreen
+
+                    if (isInFullScreen) {
+                        document.webkitExitFullscreen()
+                    } else {
+                        document.documentElement.webkitRequestFullScreen()
+                    }
+                }
+            },
             icon:'tv'
         },
         {
