@@ -242,7 +242,7 @@ ipc.on('fullscreen', function(event){
 
 var callbacks = {}
 callbacks.ready = function(data,clientId) {
-    if (settings.read('sessionFile')) callbacks.openSession(settings.read('sessionFile'),clientId)
+    if (settings.read('sessionFile')) callbacks.openSession({path:settings.read('sessionFile')},clientId)
     var recentSessions = settings.read('recentSessions')
     ipc.send('listSessions',recentSessions,clientId)
 }
