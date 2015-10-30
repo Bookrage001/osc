@@ -1,3 +1,4 @@
+webFrame = require('web-frame')
 
 // mainProcess & renderProcess communication engine
 ipc = require('ipc')

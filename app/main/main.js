@@ -241,10 +241,10 @@ ipc.on('fullscreen', function(event){
 // callbacks !
 
 var callbacks = {}
-callbacks.ready = function() {
+callbacks.ready = function(data,clientId) {
     if (settings.read('sessionFile')) callbacks.openSession(settings.read('sessionFile'))
     var recentSessions = settings.read('recentSessions')
-    ipc.send('listSessions',recentSessions)
+    ipc.send('listSessions',recentSessions,clientId)
 }
 
 callbacks.browseSessions = function(data) {
@@ -274,18 +274,18 @@ callbacks.removeSessionFromHistory = function(data) {
     settings.write('recentSessions',sessionlist)
 }
 
-callbacks.openSession = function(path) {
-    var data = fs.readFileSync(path,'utf8'),
+callbacks.openSession = function(data,clientId) {
+    var file = fs.readFileSync(data,'utf8'),
         session,
         error
 
     try {
-        session = vm.runInNewContext(data)
+        session = vm.runInNewContext(file)
     } catch(err) {
         error = err
     }
 
-    ipc.send('openSession',{error:error,path:path,session:JSON.stringify(session)})
+    ipc.send('openSession',{error:error,path:data,session:JSON.stringify(session)},clientId)
 }
 
 callbacks.sendOsc = function(data) {
@@ -320,7 +320,7 @@ callbacks.save = function(data) {
     })
 }
 
-callbacks.load = function(data) {
+callbacks.load = function(data,clientId) {
     dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
@@ -328,16 +328,16 @@ callbacks.load = function(data) {
 
         fs.readFile(file[0],'utf-8', function read(err, data) {
             if (err) throw err
-            ipc.send('load',data)
+            ipc.send('load',data,clientId)
         })
     })
 }
 
-callbacks.loadlast = function(data) {
+callbacks.loadlast = function(data,clientId) {
     if (!settings.read('presetPath')) {return}
     fs.readFile(settings.read('presetPath'),'utf-8', function read(err, data) {
         if (err) throw err
-        ipc.send('load',data)
+        ipc.send('load',data,clientId)
     })
 }
 
@@ -377,7 +377,11 @@ if (settings.noGui) {
         socket.on('*', function(e){
             var name = e.data[0],
                 data = e.data[1]
-            if (callbacks[name]) callbacks[name](data)
+            if (callbacks[name]) callbacks[name](data,socket.id)
+            if (name=='sendOsc' && data.sync!==false) {
+                // synchronize all other connected clients
+                socket.broadcast.emit('receiveOsc',data)
+            }
         });
     });
 
@@ -385,7 +389,11 @@ if (settings.noGui) {
 
     server.listen(settings.noGui)
 
-    ipc.send = function(name,data) {
-        io.emit(name,data)
+    ipc.send = function(name,data,clientId) {
+        if (clientId) {
+            io.to(clientId).emit(name,data)
+        } else {
+            io.emit(name,data)
+        }
     }
 }

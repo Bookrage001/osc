@@ -58,15 +58,29 @@ init = function(session,callback) {
     //                               or if mouse is on h-scrollbar
     var scrollbarHeight = 20
     var contentPanels = $('.content')
-    $('.tab').on('mousewheel',function(e) {
-        // console.log(e)
-        if (e.ctrlKey) {
-            e.preventDefault()
-            var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
-                s = d+webFrame.getZoomFactor()
-            ipc.send('setZoomFactor',s)
 
-        } else {
+
+
+    if (webFrame) {
+        $('.tab').on('mousewheel.zoom',function(e) {
+            // console.log(e)
+            if (e.ctrlKey) {
+                e.preventDefault()
+                var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
+                    s = d+webFrame.getZoomFactor()
+                webFrame.setZoomFactor(s)
+
+            }
+        })
+        $(document).on('keydown.resetzoom', function(e){
+            if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
+        })
+
+    }
+
+
+    $('.tab').on('mousewheel.scroll',function(e) {
+        if (!e.ctrlKey) {
             if ($(this).height()>$(this).get(0).scrollHeight) {
                 var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
                 $(this).scrollLeft($(this).scrollLeft()+scroll)
@@ -77,7 +91,8 @@ init = function(session,callback) {
             }
         }
     })
-    $('.panel').on('mousewheel',function(e) {
+
+    $('.panel').on('mousewheel.scroll',function(e) {
         if (!e.ctrlKey) {
 
             var h = $(this).parent().innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
@@ -90,10 +105,7 @@ init = function(session,callback) {
         }
     })
 
-    // reset zoom
-    $(document).on('keydown.resetzoom', function(e){
-        if (e.keyCode==96||e.keyCode==48) ipc.send('setZoomFactor',1)
-    })
+
 
 
     // sidepanel
