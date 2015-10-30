@@ -82,6 +82,23 @@ toggleFullscreen = function(){
     }
 }
 
+browseSessions = function(){
+
+    if (webFrame) {
+        ipc.send('browseSessions')
+    } else {
+        var prompt = $('<input type="file" accept=".js"/>')
+        prompt.click()
+        prompt.on('change',function(e){
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                var session = e.target.result
+                ipc.send('openSession',{file:session})
+            }
+            reader.readAsText(e.target.files[0],'utf-8');
+        })
+    }
+}
 
 
 icon = function(i) {

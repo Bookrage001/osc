@@ -252,7 +252,7 @@ callbacks.browseSessions = function(data) {
         dialog.showOpenDialog(window,{title:'Load session file',defaultPath:settings.read('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
             if (file==undefined) {return}
             settings.write('sessionPath',file[0].replace(file[0].split('/').pop(),''))
-            callbacks.openSession(file[0])
+            callbacks.openSession({path:file[0]})
         })
 }
 
@@ -275,7 +275,7 @@ callbacks.removeSessionFromHistory = function(data) {
 }
 
 callbacks.openSession = function(data,clientId) {
-    var file = fs.readFileSync(data,'utf8'),
+    var file = data.file || fs.readFileSync(data.path,'utf8'),
         session,
         error
 
@@ -285,7 +285,12 @@ callbacks.openSession = function(data,clientId) {
         error = err
     }
 
-    ipc.send('openSession',{error:error,path:data,session:JSON.stringify(session)},clientId)
+    if (!error) {
+        if (data.path) callbacks.addSessionToHistory(data.path)
+        ipc.send('openSession',JSON.stringify(session),clientId)
+    } else {
+        ipc.send('error',{title:'Error: invalid session file',text:error})
+    }
 }
 
 callbacks.sendOsc = function(data) {

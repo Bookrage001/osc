@@ -32,7 +32,7 @@ ipc.on('listSessions',function(data){
     $('#lobby .list').append('<a class="btn browse">...</a>')
     $('#lobby .load').click(function(e){
         e.stopPropagation()
-        ipc.send('openSession',$(this).data('session'))
+        ipc.send('openSession',{path:$(this).data('session')})
     })
     $('#lobby a span').click(function(e){
         e.stopPropagation()
@@ -41,23 +41,21 @@ ipc.on('listSessions',function(data){
     })
     $('#lobby .browse').click(function(e){
         e.stopPropagation()
-        ipc.send('browseSessions')
+        browseSessions()
     })
 })
 
 ipc.on('openSession',function(data){
-    var error = data.error,
-        path = data.path,
-        session = JSON.parse(data.session)
+    var session = JSON.parse(data)
 
-    if (!error) {
-        ipc.send('addSessionToHistory',path)
-        $('#lobby').hide()
-        $('#container').append('<div id="loading"><div class="spinner"></div></div>')
-        setTimeout(function(){
-            init(session,function(){$('#loading').hide()})
-        },1)
-    } else {
-        createPopup(icon('warning')+'&nbsp;Error: invalid session file',error)
-    }
+    $('#lobby').hide()
+    $('#container').append('<div id="loading"><div class="spinner"></div></div>')
+    setTimeout(function(){
+        init(session,function(){$('#loading').hide()})
+    },1)
+
+})
+
+ipc.on('error',function(data){
+    createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
 })
