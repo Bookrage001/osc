@@ -60,52 +60,54 @@ init = function(session,callback) {
     var contentPanels = $('.content')
 
 
+    function scrollBindings(){
 
-    if (webFrame) {
-        $('.tab').on('mousewheel.zoom',function(e) {
-            // console.log(e)
-            if (e.ctrlKey) {
-                e.preventDefault()
-                var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
-                    s = d+webFrame.getZoomFactor()
-                webFrame.setZoomFactor(s)
+        if (webFrame) {
+            $('.tab').on('mousewheel.zoom',function(e) {
+                // console.log(e)
+                if (e.ctrlKey) {
+                    e.preventDefault()
+                    var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
+                        s = d+webFrame.getZoomFactor()
+                    webFrame.setZoomFactor(s)
 
+                }
+            })
+            $(document).on('keydown.resetzoom', function(e){
+                if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
+            })
+
+        }
+
+
+        $('.tab').on('mousewheel.scroll',function(e) {
+            if (!e.ctrlKey) {
+                if ($(this).height()>$(this).get(0).scrollHeight) {
+                    var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
+                    $(this).scrollLeft($(this).scrollLeft()+scroll)
+                    e.preventDefault()
+                } else if (e.pageY>window.innerHeight-scrollbarHeight) {
+                    $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY)
+                    e.preventDefault()
+                }
             }
         })
-        $(document).on('keydown.resetzoom', function(e){
-            if (e.keyCode==96||e.keyCode==48) webFrame.setZoomFactor(1)
+
+        $('.panel').on('mousewheel.scroll',function(e) {
+            if (!e.ctrlKey) {
+
+                var h = $(this).parent().innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
+                if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).parent().height()) {
+                    var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
+                    $(this).scrollLeft($(this).scrollLeft()+scroll)
+                    e.preventDefault()
+                }
+
+            }
         })
 
     }
-
-
-    $('.tab').on('mousewheel.scroll',function(e) {
-        if (!e.ctrlKey) {
-            if ($(this).height()>$(this).get(0).scrollHeight) {
-                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
-                $(this).scrollLeft($(this).scrollLeft()+scroll)
-                e.preventDefault()
-            } else if (e.pageY>window.innerHeight-scrollbarHeight) {
-                $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY)
-                e.preventDefault()
-            }
-        }
-    })
-
-    $('.panel').on('mousewheel.scroll',function(e) {
-        if (!e.ctrlKey) {
-
-            var h = $(this).parent().innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
-            if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).parent().height()) {
-                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
-                $(this).scrollLeft($(this).scrollLeft()+scroll)
-                e.preventDefault()
-            }
-
-        }
-    })
-
-
+    scrollBindings()
 
 
     // sidepanel
@@ -142,6 +144,10 @@ init = function(session,callback) {
             icon:'tv'
         },
         {
+            html:'<div class="editor btn">\
+                  </div>',
+        },
+        {
             html:'<div class="inspector btn">\
                     Inspector\
                     <div class="result"><em>Click on a widges\'s label to inspect</em></div>\
@@ -155,9 +161,9 @@ init = function(session,callback) {
         $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
     })
 
-    $('.widget .label').click(function(){
+    $('.widget').click(function(e){
         if (!$('#sidepanel').hasClass('sidepanel-open')){return}
-        var data = String(JSON.stringify($(this).data('papers'),null,2)).split('\n').join('<br/>&nbsp;&nbsp;')
+        var data = String(JSON.stringify($(e.target).parents('.widget').first().data('widgetData'),null,2)).split('\n').join('<br/>&nbsp;&nbsp;')
         $('.inspector .result').html(data)
     })
 
@@ -189,6 +195,96 @@ init = function(session,callback) {
             $('body').off('dragend')
         }
     });
+
+
+
+    function editor(){
+    $('.widget').click(function(e){
+        e.preventDefault()
+        var widget = $(e.target).parents('.widget').first()
+        var parent = widget.parent()
+        var index = widget.index()
+        var data = widget.data('widgetData')
+        var form = $('<form></form>')
+
+        for (i in data) {
+            if (i!='widgets') {
+
+                var d = JSON.stringify(data[i])
+                var input = $(`
+                    <input value='${d}' title="${i}"/>
+                `)
+                input.appendTo(form)
+                input.on('change',function(){
+                    data[$(this).attr('title')]=$(this).val().match(/[false|true]/)==null?eval($(this).val()):JSON.parse($(this).val())
+                    parsewidgets([data],widget.parent())
+                    widget.remove()
+
+                    var newWidget = $('[widgetId="'+data.id+'"]')
+                    if (index == parent.children().length-1) {
+                        newWidget.detach().appendTo(parent)
+                    } else {
+                        newWidget.detach().insertBefore(parent.children().eq(index))
+                    }
+                    editor()
+                    newWidget.children().first().click()
+                })
+
+            }
+        }
+        if (data.widgets) {
+
+            var list = $('<ul></ul>')
+
+            for (i in data.widgets) {
+                var item = $(`<li class="sortables" data-id="${data.widgets[i].id}">${data.widgets[i].id}</li>`).appendTo(list)
+            }
+
+            list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+                var prevIndex = $('[widgetId="'+$(ui.item).text()+'"]').index()
+                var newIndex  = $(ui.item).index()
+
+                data.widgets.splice(newIndex, 0, data.widgets.splice(prevIndex, 1)[0])
+                parsewidgets([data],widget.parent())
+                widget.remove()
+
+                var newWidget = $('[widgetId="'+data.id+'"]')
+                if (index == parent.children().length-1) {
+                    newWidget.detach().appendTo(parent)
+                } else {
+                    newWidget.detach().insertBefore(parent.children().eq(index))
+                }
+                editor()
+                newWidget.children().first().click()
+            })
+
+            var add = $(`<li>+</li>`).appendTo(list).click(function(){
+                data.widgets.push({})
+
+                parsewidgets([data],widget.parent())
+                widget.remove()
+
+                var newWidget = $('[widgetId="'+data.id+'"]')
+                if (index == parent.children().length-1) {
+                    newWidget.detach().appendTo(parent)
+                } else {
+                    newWidget.detach().insertBefore(parent.children().eq(index))
+                }
+                editor()
+                newWidget.children().first().click()
+            })
+            list.appendTo(form)
+
+        }
+
+        $('.editor').html(form)
+        scrollBindings()
+    })
+}
+editor()
+$('#open-toggle').click()
+
+
 
 
 

@@ -1,5 +1,89 @@
-createWidget= {}
+createWidget = {}
+widgetOptions = {
+    strip: {
+        id:'auto',
+        label:'auto',
+        horizontal:false,
+        width:'auto',
+        widgets:[]
+    },
+    panel: {
+        id:'auto',
+        label:'auto',
+        left:'auto',
+        top:'auto',
+        width:'auto',
+        height:'auto',
+        widgets:[]
+    },
+    led: {
+        id:'auto',
+        label:'auto',
+        color:'green',
+        width:'auto',
+        range:{min:0,max:1},
+        path:'auto'
+    },
+    toggle: {
+        id:'auto',
+        label:'auto',
+        width:'auto',
+        on:0,
+        off:1,
+        path:'auto',
+        target:false
+    },
+    switch: {
+        id:'auto',
+        label:'auto',
+        width:'auto',
+        values:[],
+        path:'auto',
+        target:false
+    },
+    xy: {
+        id:'auto',
+        label:'auto',
+        width:'auto',
+        split:false,
+        range:{x:{min:0,max:1},y:{min:0,max:1}},
+        absolute:false,
+        path:'auto',
+        target:false
+    },
+    rgb: {
+        id:'auto',
+        label:'auto',
+        width:'auto',
+        split:false,
+        // range:{r:{min:0,max:255},g:{min:0,max:255},b:{min:255}},
+        absolute:false,
+        path:'auto',
+        target:false
+    },
+    fader: {
+        id:'auto',
+        label:'auto',
+        width:'auto',
+        horizontal:false,
+        range:{min:0,max:1},
+        absolute:false,
+        path:'auto',
+        target:false
+    },
+    knob: {
+        id:'auto',
+        label:'auto',
+        width:'auto',
+        horizontal:false,
+        range:{min:0,max:1},
+        absolute:false,
+        pan:false,
+        path:'auto',
+        target:false
+    }
 
+}
 
 createWidget.strip = function(widgetData,container) {
     var widget = $(`
@@ -20,20 +104,26 @@ createWidget.panel = function(widgetData,container) {
     var widget = $(`
             <div class="panel">
             </div>
-    `),
-        left = parseInt(widgetData.x) || 'auto',
-        top = parseInt(widgetData.y) || 'auto',
-        width = parseInt(widgetData.width) || 'auto',
-        height = parseInt(widgetData.height) || 'auto'
-
+            `),
+        left = parseInt(widgetData.left)==widgetData.left?parseInt(widgetData.left)+'rem' : widgetData.left,
+        top = parseInt(widgetData.top)==widgetData.top?parseInt(widgetData.top)+'rem' : widgetData.top,
+        width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
+        height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height
 
 
     container.css({
-        left:parseInt(widgetData.left)+'rem',
-        top:parseInt(widgetData.top)+'rem',
-        width:parseInt(widgetData.width)+'rem',
-        height:parseInt(widgetData.height)+'rem',
-        'min-width':''
+        left:'auto',
+        top:'auto',
+        width:'auto',
+        height:'auto'
+    })
+
+
+    container.css({
+        left:left,
+        top:top,
+        width:width,
+        height:height
     })
     parsewidgets(widgetData.widgets,widget)
     widget.getValue = function(){return}
@@ -63,7 +153,7 @@ createWidget.led = function(widgetData) {
 
 
 
-createWidget.toggle = createWidget.button  = function(widgetData) {
+createWidget.toggle  = function(widgetData) {
 
         widgetData.on = widgetData.on || 1
         widgetData.off = widgetData.off || 0
@@ -175,15 +265,12 @@ createWidget.xy = function(widgetData) {
         handle = widget.find('.handle'),
         pad = widget.find('.xy'),
         value = {x:widget.find('.x'),y:widget.find('.y')},
-        range = widgetData.range || {x:{min:0,max:1},y:{min:0,max:1}},
+        range = widgetData.range,
         absolute = widgetData.absolute,
         split = widgetData.split?
                     typeof widgetData.split == 'object'?
                         widgetData.split:{x:widgetData.path+'/x',y:widgetData.path+'/y'}
                         :false
-
-
-    widgetData.range = range
 
 
     pad.width = pad.innerWidth()
@@ -300,6 +387,7 @@ createWidget.xy = function(widgetData) {
 
 
 createWidget.rgb = function(widgetData) {
+
     var widget = $(`
         <div class="xy-wrapper rgb-wrapper">
             <div class="xy rgb">

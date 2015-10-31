@@ -9,9 +9,12 @@ getIterator = function(type){
     return iterator[type]
 }
 
+session = []
 
 parsetabs = function(tabs,parent,sub){
     if (!sub) {
+        session = tabs
+
         var nav = $(document.createElement('div')).addClass('main navigation'),
             navtabs = $(document.createElement('ul')).addClass('tablist'),
             content = $(document.createElement('div')).addClass('content')
@@ -37,6 +40,7 @@ parsetabs = function(tabs,parent,sub){
         navtabs.append(`<li><a data-tab="#${id}"><span>${label}</span></a></li>`)
 
         var tabContent = $('<div></div>').addClass('tab').attr('id',id)
+        tabContent.data('tabData',tabData)
 
         if (tabData.stretch) tabContent.addClass('stretch')
 
@@ -58,21 +62,31 @@ parsewidgets = function(widgets,parent) {
     for (i in widgets) {
         var widgetData = widgets[i]
 
-        var type = widgetData.type || 'fader'
-        widgetData.id = widgetData.id?widgetData.id.replace(' ','_'):type+'_'+getIterator(type)
+        widgetData.type =  widgetData.type || 'fader'
 
-        var id = widgetData.id,
-            label = widgetData.label || id,
-            path = widgetData.path || '/' + id,
-            width = clip(parseInt(widgetData.width),[100,2000]),
-            style= widgetData.width?`width:${width}rem;min-width:${width}rem`:''
+        for (i in widgetOptions[widgetData.type]) {
+            if (widgetData[i]===undefined) widgetData[i] = widgetOptions[widgetData.type][i]
+        }
 
-        widgetData.path = path
+        for (i in widgetData) {
+            if (widgetOptions[widgetData.type][i]===undefined && i!='type') {delete widgetData[i]}
+        }
+
+        widgetData.id = widgetData.id=='auto'?widgetData.type+'_'+getIterator(widgetData.type):widgetData.id.replace(' ','_')
+        widgetData.label = widgetData.label=='auto'?widgetData.id:widgetData.label
+        widgetData.path = widgetData.path=='auto'?'/' + widgetData.id:widgetData.path
         widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false
 
+        var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
+            style = widgetData.width!='auto'?`width:${width};min-width:${width}`:''
+
+
+
+
+
         var widgetContainer = $(`
-            <div class="widget ${type}-container" widgetType="${type}" widgetId="${id}" path="${path}" style="${style}">
-                <div class="label"><span>${label}</span></div>
+            <div class="widget ${widgetData.type}-container" widgetType="${widgetData.type}" widgetId="${widgetData.id}" path="${widgetData.path}" style="${style}">
+                <div class="label"><span>${widgetData.label}</span></div>
             </div>
         `)
 
@@ -80,21 +94,22 @@ parsewidgets = function(widgets,parent) {
         if (widgetData.label===false) widgetContainer.addClass('nolabel')
 
         // create widget
-        var widgetInner = createWidget[type](widgetData,widgetContainer)
-        widgetInner.type =  type
-        widgetContainer.find('.label').data('papers',widgetData)
+        var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
+        widgetInner.type =  widgetData.type
+
+        widgetContainer.data('widgetData',widgetData)
 
         widgetContainer.append(widgetInner)
 
         // store widget reference for cross widget sync
-        if (__widgets__[id]==undefined) {
-            __widgets__[id] = []
+        if (__widgets__[widgetData.id]==undefined) {
+            __widgets__[widgetData.id] = []
         }
-        __widgets__[id].push(widgetInner)
+        __widgets__[widgetData.id].push(widgetInner)
 
 
         // store path vs widget id for faster cross-app sync
-        __widgetsIds__[widgetData.path ] = id
+        __widgetsIds__[widgetData.path ] = widgetData.id
 
         parent.append(widgetContainer)
     }

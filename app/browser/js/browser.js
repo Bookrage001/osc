@@ -8,6 +8,7 @@ window.$ = window.jQuery = require('./jquery/jquery.min.js')
 
 
 // third-party js libraries
+require('./jquery/jquery.sortable.js')
 require('./jquery/jquery.drag.js')
 require('./jquery/jquery.resize.js')
 
