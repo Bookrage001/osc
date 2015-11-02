@@ -14,6 +14,7 @@ widgetOptions = {
         top:'auto',
         width:'auto',
         height:'auto',
+        stretch:false,
         widgets:[]
     },
     led: {
@@ -56,7 +57,6 @@ widgetOptions = {
         label:'auto',
         width:'auto',
         split:false,
-        // range:{r:{min:0,max:255},g:{min:0,max:255},b:{min:255}},
         absolute:false,
         path:'auto',
         target:false
@@ -109,6 +109,7 @@ createWidget.panel = function(widgetData,container) {
         width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
         height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height
 
+    if (widgetData.stretch) widget.addClass('stretch')
 
     container.css({
         left:'auto',

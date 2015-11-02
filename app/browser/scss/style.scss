@@ -144,13 +144,20 @@ body {
     border:1rem solid $color-border;
     padding:15rem;
     position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     &.small {
-        padding:5rem
+        padding:5rem;
+        padding-right: 15rem;
     }
     &.disabled {
         pointer-events: none;
         color:$color-text-fade;
         background: $bg-3d-off;
+    }
+    &.align-center {
+        text-align: center
     }
 }
 a.btn {
