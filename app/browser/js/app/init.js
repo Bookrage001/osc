@@ -2,7 +2,7 @@
 
 init = function(session,callback) {
 
-    parsetabs(session,false,false)
+    parsetabs(session,$('#container'))
 
 
 
@@ -197,19 +197,45 @@ init = function(session,callback) {
     });
 
 
+function getdata(obj){
+    var path = []
+
+    do {
+        if (obj.hasClass('widget')) {
+            path.unshift(obj.index())
+            path.unshift('widgets')
+        } else if (obj.hasClass('tab')){
+            path.unshift(obj.index())
+            path.unshift('tabs')
+        } else if (obj.attr('id')=='container') {
+            break
+        }
+
+    } while(obj = obj.parent() )
+
+    path.splice(0,1)
+
+    for (var i=0,obj=session, path=path, len=path.length; i<len; i++){
+        obj = obj[path[i]];
+    };
+    return obj;
+
+}
 
     function editor(){
-    $('.widget').click(function(e){
+    $('.widget ').click(function(e){
         e.preventDefault()
-        var widget = $(e.target).parents('.widget').first()
-        var parent = widget.parent()
-        var index = widget.index()
-        var data = widget.data('widgetData')
-        var form = $('<form></form>')
+        e.stopPropagation()
+
+        var container = $(this),
+            parent = container.parent(),
+            parentContainer = parent.parent().hasClass('content')?parent:parent.parent(),
+            index = container.index(),
+            data = getdata(container),
+            form = $('<form></form>')
 
         for (i in data) {
-            if (i!='widgets') {
-
+            if (i!='widgets' && i!='tabs') {
                 var d = JSON.stringify(data[i])
                 var input = $(`
                     <input value='${d}' title="${i}"/>
@@ -217,61 +243,64 @@ init = function(session,callback) {
                 input.appendTo(form)
                 input.on('change',function(){
                     data[$(this).attr('title')]=$(this).val().match(/[false|true]/)==null?eval($(this).val()):JSON.parse($(this).val())
-                    parsewidgets([data],widget.parent())
-                    widget.remove()
 
-                    var newWidget = $('[widgetId="'+data.id+'"]')
+                    var newContainer = parsewidgets([data],parent)
+
+                    container.remove()
+
                     if (index == parent.children().length-1) {
-                        newWidget.detach().appendTo(parent)
+                        newContainer.detach().appendTo(parent)
                     } else {
-                        newWidget.detach().insertBefore(parent.children().eq(index))
+                        newContainer.detach().insertBefore(parent.children().eq(index))
                     }
                     editor()
-                    newWidget.children().first().click()
+                    newContainer.children().first().click()
                 })
 
             }
         }
         if (data.widgets) {
 
-            var list = $('<ul></ul>')
+            var list = $('<ul class="input"></ul>')
 
             for (i in data.widgets) {
-                var item = $(`<li class="sortables" data-id="${data.widgets[i].id}">${data.widgets[i].id}</li>`).appendTo(list)
+                var label = data.widgets[i].label!='auto'&&data.widgets[i].label!=false?data.widgets[i].label:data.widgets[i].id
+                var item = $(`<li data-index="${i}" class="sortables" data-id="${data.widgets[i].id}">${label}</li>`).appendTo(list)
             }
 
             list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
-                var prevIndex = $('[widgetId="'+$(ui.item).text()+'"]').index()
+                var prevIndex = $(ui.item).attr('data-index')
                 var newIndex  = $(ui.item).index()
 
                 data.widgets.splice(newIndex, 0, data.widgets.splice(prevIndex, 1)[0])
-                parsewidgets([data],widget.parent())
-                widget.remove()
 
-                var newWidget = $('[widgetId="'+data.id+'"]')
+                var newContainer = parsewidgets([data],parent)
+
+                container.remove()
+
                 if (index == parent.children().length-1) {
-                    newWidget.detach().appendTo(parent)
+                    newContainer.detach().appendTo(parent)
                 } else {
-                    newWidget.detach().insertBefore(parent.children().eq(index))
+                    newContainer.detach().insertBefore(parent.children().eq(index))
                 }
                 editor()
-                newWidget.children().first().click()
+                // newContainer.children().first().click()
             })
 
             var add = $(`<li>+</li>`).appendTo(list).click(function(){
                 data.widgets.push({})
 
-                parsewidgets([data],widget.parent())
-                widget.remove()
+                var newContainer = parsewidgets([data],parent)
 
-                var newWidget = $('[widgetId="'+data.id+'"]')
+                container.remove()
+
                 if (index == parent.children().length-1) {
-                    newWidget.detach().appendTo(parent)
+                    newContainer.detach().appendTo(parent)
                 } else {
-                    newWidget.detach().insertBefore(parent.children().eq(index))
+                    newContainer.detach().insertBefore(parent.children().eq(index))
                 }
                 editor()
-                newWidget.children().first().click()
+                newContainer.children().first().click()
             })
             list.appendTo(form)
 
@@ -280,10 +309,100 @@ init = function(session,callback) {
         $('.editor').html(form)
         scrollBindings()
     })
+
+
+    $('a[data-tab]').click(function(e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        var link = $(this),
+            container = $($(this).attr('data-tab')),
+            parent = container.parent(),
+            parentContainer = container.parent().parent(),
+            index = container.index(),
+            data = getdata(container),
+            form = $('<form></form>')
+
+        for (i in data) {
+            if (i!='widgets' && i!='tabs') {
+                var d = JSON.stringify(data[i])
+                var input = $(`
+                    <input value='${d}' title="${i}"/>
+                `)
+                input.appendTo(form)
+                input.on('change',function(){
+                    data[$(this).attr('title')]=$(this).val().match(/[false|true]/)==null?eval($(this).val()):JSON.parse($(this).val())
+
+                    var newContainer = parsewidgets([data],parent)
+
+                    container.remove()
+
+                    if (index == parent.children().length-1) {
+                        newContainer.detach().appendTo(parent)
+                    } else {
+                        newContainer.detach().insertBefore(parent.children().eq(index))
+                    }
+
+                    editor()
+
+                    link.click()
+                })
+
+            }
+        }
+        if (data.widgets) {
+
+            var list = $('<ul class="input"></ul>')
+
+            for (i in data.widgets) {
+                var label = data.widgets[i].label!='auto'&&data.widgets[i].label!=false?data.widgets[i].label:data.widgets[i].id
+                var item = $(`<li data-index="${i}" class="sortables" data-id="${data.widgets[i].id}">${label}</li>`).appendTo(list)
+            }
+
+            list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+                var prevIndex = $(ui.item).attr('data-index')
+                var newIndex  = $(ui.item).index()
+
+                data.widgets.splice(newIndex, 0, data.widgets.splice(prevIndex, 1)[0])
+
+                container.empty()
+                parsewidgets(data.widgets,container)
+
+                editor()
+
+                link.click()
+            })
+
+            var add = $(`<li>+</li>`).appendTo(list).click(function(){
+                data.widgets.push({})
+
+                container.empty()
+                parsewidgets(data.widgets,container)
+
+                editor()
+
+                link.click()
+            })
+            list.appendTo(form)
+
+        }
+
+        $('.editor').html(form)
+        scrollBindings()
+    })
+
+
+
+
+
+
+
+
+
+
 }
 editor()
 $('#open-toggle').click()
-
 
 
 

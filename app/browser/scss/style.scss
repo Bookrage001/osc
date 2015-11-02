@@ -499,7 +499,7 @@ form {
         color:$color-text-fade;
         margin-bottom:10rem;
     }
-    input {
+    input, .input {
         display:block;
         margin-bottom:10rem;
         background:$color-bg;
@@ -507,7 +507,7 @@ form {
         color:$color-text;
         border:1rem solid $color-border;
         width:100%;
-        padding:10rem;
+        padding:5rem;
         &.invalid {
             box-shadow: 0 0 0 1rem rgba(red,.3)!important;
         }

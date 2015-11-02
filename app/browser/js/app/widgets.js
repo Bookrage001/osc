@@ -75,7 +75,6 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
-        horizontal:false,
         range:{min:0,max:1},
         absolute:false,
         pan:false,
