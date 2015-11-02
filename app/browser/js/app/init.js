@@ -37,7 +37,7 @@ init = function(session,callback) {
                     <div class="actions">
                         <a class="enable-editor btn">Enabled</a>
                         <a class="disable-editor btn on">Disabled</a>
-                        <a class="editor-root btn">Root</a>
+                        <a class="editor-root btn disabled">Root</a>
                     </div>
                     <div class="editor-container"></div>
                   </div>`,
@@ -449,7 +449,7 @@ init = function(session,callback) {
             $('.editor-container').html(form)
             scrolls()
         })
-        $('.editor-root').on('click.editor',function(e){
+        $('.editor-root').removeClass('disabled').on('click.editor',function(e){
             e.preventDefault()
             e.stopPropagation()
 
@@ -529,7 +529,7 @@ init = function(session,callback) {
     function disableEditor(){
         $('.widget').off('click.editor')
         $('a[data-tab]').off('click.editor')
-        $('.editor-root').off('click.editor')
+        $('.editor-root').off('click.editor').addClass('disabled')
         $('.enable-editor').removeClass('on')
         $('.disable-editor').addClass('on')
         $('.editing').removeClass('editing')

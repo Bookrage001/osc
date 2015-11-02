@@ -143,6 +143,7 @@ body {
     display: block;
     border:1rem solid $color-border;
     padding:15rem;
+    position: relative;
     &.small {
         padding:5rem
     }
