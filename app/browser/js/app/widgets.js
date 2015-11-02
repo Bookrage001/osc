@@ -28,8 +28,8 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
-        on:0,
-        off:1,
+        off:0,
+        on:1,
         path:'auto',
         target:false
     },
@@ -37,7 +37,7 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
-        values:[],
+        values:[0,1],
         path:'auto',
         target:false
     },
@@ -153,9 +153,6 @@ createWidget.led = function(widgetData) {
 
 
 createWidget.toggle  = function(widgetData) {
-
-        widgetData.on = widgetData.on || 1
-        widgetData.off = widgetData.off || 0
 
     var widget = $(`
         <div class="toggle">
@@ -410,9 +407,6 @@ createWidget.rgb = function(widgetData) {
                     typeof widgetData.split == 'object'?
                         widgetData.split:{r:widgetData.path+'/r',g:widgetData.path+'/g',b:widgetData.path+'/b'}
                         :false
-
-
-    widgetData.range = {r:{min:0,max:255},g:{min:0,max:255},b:{min:255}}
 
 
 

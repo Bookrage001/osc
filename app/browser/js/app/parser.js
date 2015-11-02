@@ -9,12 +9,23 @@ getIterator = function(type){
     return iterator[type]
 }
 
+hashCode = function(s){
+  return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+}
+
+// Global session variable
 session = []
+
 
 parsetabs = function(tabs,parent){
 
-    var main = parent.hasClass('tab')
-    if (main) session = tabs
+    var main = !parent.hasClass('tab')
+    if (main) {
+        __widgets__ = {}
+        __widgetsIds__ = {}
+        iterator = {}
+        session = tabs
+    }
 
     var main = main?'main ':'',
         nav = $(document.createElement('div')).addClass(main + 'navigation'),
@@ -29,20 +40,25 @@ parsetabs = function(tabs,parent){
         var tabData = tabs[i]
 
 
-        var id = 'tab_'+getIterator('tab')
-            label= tabData.label||tabData.id||id
+        var label = tabData.label||tabData.id||'Unnamed',
+            hash = hashCode(label),
+            id = 'tab_'+hash+'_'+getIterator('tab'+hash),
+            on = i==0?'on':''
 
+        tabData.label = label
+        tabData.stretch = tabData.stretch || false
+        delete tabData.id
 
-        navtabs.append(`<li><a data-tab="#${id}"><span>${label}</span></a></li>`)
+        navtabs.append(`<li><a class="${on}" data-tab="#${id}"><span>${label}</span></a></li>`)
 
-        var tabContent = $('<div></div>').addClass('tab').attr('id',id)
+        var tabContent = $(`<div class="tab ${on}" id="${id}"></div>`)
         tabContent.data(tabData)
 
         if (tabData.stretch) tabContent.addClass('stretch')
 
         if (tabData.tabs) {
             parsetabs(tabData.tabs,parent=tabContent)
-        } else {
+        } else if (tabData.widgets) {
             parsewidgets(tabData.widgets,tabContent)
         }
 
@@ -64,7 +80,6 @@ parsewidgets = function(widgets,parent) {
             if (widgetData[i]===undefined) widgetData[i] = widgetOptions[widgetData.type][i]
         }
 
-
         widgetData.id = widgetData.id=='auto'?widgetData.type+'_'+getIterator(widgetData.type):widgetData.id.replace(' ','_')
         widgetData.label = widgetData.label=='auto'?widgetData.id:widgetData.label
         widgetData.path = widgetData.path=='auto'?'/' + widgetData.id:widgetData.path
@@ -73,6 +88,7 @@ parsewidgets = function(widgets,parent) {
         for (i in widgetData) {
             if (widgetOptions[widgetData.type][i]===undefined && i!='type') {delete widgetData[i]}
         }
+
 
         var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
             style = widgetData.width!='auto'?`width:${width};min-width:${width}`:''
@@ -111,6 +127,6 @@ parsewidgets = function(widgets,parent) {
         parent.append(widgetContainer)
     }
 
-    if (widgets.length==1) return widgetContainer
+    if (widgets && widgets.length==1) return widgetContainer
 
 }

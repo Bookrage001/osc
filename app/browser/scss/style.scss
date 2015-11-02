@@ -31,6 +31,7 @@ $color-border:mix($color-fg,$color-base,65);
 $nav-height:60rem;
 
 $bg-3d:linear-gradient(mix($color-text,$color-fg,3), mix($color-text,$color-fg,2) 15rem);
+$bg-3d-off:linear-gradient(mix($color-text,$color-bg,3), mix($color-text,$color-bg,2) 15rem);
 $bg-3d-hover:linear-gradient(mix($color-text,$color-fg,6), mix($color-text,$color-fg,3));
 $bg-3d-on:linear-gradient(mix($color-text,$color-bg,0), mix($color-text,$color-bg,5));
 
@@ -99,12 +100,7 @@ $scrollbar-margin:1rem;
 * {
     -webkit-user-select: none;
 }
-.inspector *{
-    -webkit-user-select: initial;
-}
-.inspector *::selection{
-    background:$color-accent!important;
-}
+
 input:focus::selection{
     background:$color-accent;
 }
@@ -147,12 +143,57 @@ body {
     display: block;
     border:1rem solid $color-border;
     padding:15rem;
+    &.small {
+        padding:5rem
+    }
+    &.disabled {
+        pointer-events: none;
+        color:$color-text-fade;
+        background: $bg-3d-off;
+    }
 }
 a.btn {
     &:hover {
         background-image: $bg-3d-hover;
     }
 }
+
+
+
+.editor {
+    .actions {
+        margin-top:10rem;
+        display: flex;
+        align-items: stretch;
+        a {
+            display: block;
+            width:100%;
+            padding:10rem;
+            &.on {
+                pointer-events: none;
+                border-top:2rem solid $color-accent;
+            }
+        }
+    }
+}
+.editing:before {
+    content:"";
+    z-index: 999;
+    position: absolute;
+    top:0;left:0;
+    right:0;
+    bottom:0;
+    border:1px dashed $color-accent;
+    pointer-events: none;
+}
+
+
+
+
+
+
+
+
 
 #lobby {
     background: $color-bg;
@@ -260,29 +301,24 @@ a.btn {
             display:block;
             margin-bottom:5rem;
             background:$bg-3d;
-        }
-
-        .inspector {
-            padding: 10rem;
-            .result {
-                background: $color-border;
-                border-radius: 3rem;
-                margin-top: 10rem;
-                padding:10rem;
+            position: relative;
+            &:last-child {
+                margin-bottom: 0
+            }
+            span {
+                position: absolute;
+                right:0rem;
+                top:0rem;
+                padding:5rem;
                 color:$color-text-fade;
-                white-space: pre;
-                word-wrap: break-word;
-                width:100%;
-                max-height: 300rem;
-                overflow-y: auto;
-                &::-webkit-scrollbar-track-piece, &::-webkit-scrollbar-thumb {
-                    border-color:$color-border!important
-                }
-                &::-webkit-scrollbar-thumb{
-                    background:$color-bg!important;
-                    opacity:0.6!important;
+                &:hover {
+                    color:$color-text
                 }
             }
+        }
+
+        .editor .form {
+            margin-top: 10rem;
         }
     }
 }
@@ -489,11 +525,11 @@ a {
     }
 }
 
-form {
+.form {
     label {
         display: block;
-        padding-top:10rem;
-        margin-bottom:10rem;
+        line-height:15rem;
+        font-size: 10rem;
     }
     .info {
         color:$color-text-fade;
@@ -501,13 +537,13 @@ form {
     }
     input, .input {
         display:block;
-        margin-bottom:10rem;
         background:$color-bg;
         font:inherit;
         color:$color-text;
         border:1rem solid $color-border;
         width:100%;
-        padding:5rem;
+        padding:10rem;
+        margin-bottom:10rem;
         &.invalid {
             box-shadow: 0 0 0 1rem rgba(red,.3)!important;
         }
@@ -661,7 +697,9 @@ form {
             }
         }
     }
-
+    &.nolabel:not(.horizontal) .strip > .widget:first-child {
+        border-top: 0;
+    }
     &.horizontal {
         padding-top:0;
         padding-left: 40rem;

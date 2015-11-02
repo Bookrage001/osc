@@ -5,7 +5,7 @@ sendOsc = function(data){
 var laststate
 
 saveState = function () {
-    var data = getState().join('\n')
+    var data = getState()
     if (webFrame) {
         ipc.send('save',data)
     } else {
@@ -23,7 +23,7 @@ getState = function (){
         var v = widget[0].getValue()
         if (v!=undefined) data.push(i+' '+widget[0].getValue())
     })
-    return data
+    return data.join('\n')
 }
 loadState = function() {
     if (webFrame) {
@@ -35,7 +35,7 @@ loadState = function() {
             var reader = new FileReader();
             reader.onloadend = function(e) {
                 var preset = e.target.result
-                setState(preset)
+                setState(preset,true)
                 laststate = preset
             }
             reader.readAsText(e.target.files[0],'utf-8');
@@ -46,23 +46,23 @@ loadLastState = function() {
     if (webFrame) {
         ipc.send('loadlast')
     } else if (laststate) {
-        setState(laststate)
+        setState(laststate,true)
     }
 }
 
 sendState = function(){
-    var data = getState().join('\n')
-    setState(data)
+    var data = getState()
+    setState(data,true)
 
 }
-setState = function(preset){
+setState = function(preset,send){
 
     $.each(preset.split('\n'),function(i,d) {
         var data = d.split(' ')
 
         setTimeout(function(){
             if (__widgets__[data[0]]!=undefined) {
-                __widgets__[data[0]][0].setValue(data[1].split(','),true,true)
+                __widgets__[data[0]][0].setValue(data[1].split(','),send,true)
             }
         },i)
     })
