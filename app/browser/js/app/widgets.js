@@ -35,7 +35,7 @@ widgetOptions = {
         off:0,
         on:1,
         path:'auto',
-        target:false
+        target:[]
     },
     switch: {
         id:'auto',
@@ -45,7 +45,7 @@ widgetOptions = {
         horizontal:false,
         values:[0,1],
         path:'auto',
-        target:false
+        target:[]
     },
     xy: {
         id:'auto',
@@ -53,10 +53,11 @@ widgetOptions = {
         width:'auto',
         height:'auto',
         split:false,
-        range:{x:{min:0,max:1},y:{min:0,max:1}},
+        rangeX:{min:0,max:1},
+        rangeY:{min:0,max:1},
         absolute:false,
         path:'auto',
-        target:false
+        target:[]
     },
     rgb: {
         id:'auto',
@@ -66,7 +67,7 @@ widgetOptions = {
         split:false,
         absolute:false,
         path:'auto',
-        target:false
+        target:[]
     },
     fader: {
         id:'auto',
@@ -77,7 +78,7 @@ widgetOptions = {
         range:{min:0,max:1},
         absolute:false,
         path:'auto',
-        target:false
+        target:[]
     },
     knob: {
         id:'auto',
@@ -88,7 +89,7 @@ widgetOptions = {
         absolute:false,
         pan:false,
         path:'auto',
-        target:false
+        target:[]
     }
 
 }
@@ -275,7 +276,7 @@ createWidget.xy = function(widgetData) {
         handle = widget.find('.handle'),
         pad = widget.find('.xy'),
         value = {x:widget.find('.x'),y:widget.find('.y')},
-        range = widgetData.range,
+        range = {x:widgetData.rangeX,y:widgetData.rangeY},
         absolute = widgetData.absolute,
         split = widgetData.split?
                     typeof widgetData.split == 'object'?
