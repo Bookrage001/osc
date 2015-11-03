@@ -61,6 +61,10 @@ init = function(session,callback) {
         if (e.keyCode == 16) {
 
             $('body').on('drag',function(ev,dd){
+                dd.target = dd.originalEvent.changedTouches?
+                        document.elementFromPoint(dd.originalEvent.changedTouches[0].clientX, dd.originalEvent.changedTouches[0].clientY)
+                        :dd.target
+
                 if ($('#sidepanel').has(dd.target)[0]) return
                 dd.absolute=true
                 dd.shiftKey=false
