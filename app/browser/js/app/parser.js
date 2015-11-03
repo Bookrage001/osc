@@ -91,8 +91,8 @@ parsewidgets = function(widgets,parent) {
 
         var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
             height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height,
-            styleW = widgetData.width!='auto'?`width:${width};min-width:${width}`:'',
-            styleH = widgetData.height!='auto'?`height:${height};min-height:${height}`:'',
+            styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};min-width:${width}`:'',
+            styleH = widgetData.height&&widgetData.height!='auto'?`height:${height};min-height:${height}`:'',
             style = styleW + ';' + styleH
 
 
@@ -101,7 +101,7 @@ parsewidgets = function(widgets,parent) {
 
 
         var widgetContainer = $(`
-            <div class="widget ${widgetData.type}-container" widgetType="${widgetData.type}" widgetId="${widgetData.id}" path="${widgetData.path}" style="${style}">
+            <div class="widget ${widgetData.type}-container" style="${style}">
                 <div class="label"><span>${widgetData.label}</span></div>
             </div>
         `)

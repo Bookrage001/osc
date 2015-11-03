@@ -25,7 +25,7 @@ $color-accent:#528bff;
 $color-border:mix($color-fg,$color-base,65);
 
 
-
+$gutter:6rem;
 
 
 $nav-height:60rem;
@@ -343,16 +343,6 @@ a.btn {
 
 
 
-
-
-
-.nicescroll-rails-hr {
-    margin-top:3rem;
-}
-.nicescroll-rails-vr {
-    display:none!important;
-}
-
 a {
     color:inherit;
 }
@@ -581,9 +571,6 @@ a {
 
 
 
-
-
-
 // TABS
 
 .tab.on.stretch {
@@ -599,10 +586,15 @@ a {
     display:none;
     overflow: auto;
     position: relative;
+    padding:$gutter;
+    padding-right:0;
     &.on {
         display: block;
         height:100%;
         width:auto;
+    }
+    > .widget {
+        margin-right:$gutter;
     }
 }
 
@@ -619,21 +611,10 @@ a {
     font-size:13rem;
     padding:35rem  0 0;
     vertical-align:top;
-    border: 6rem solid transparent;
-    border-width:6rem 0;
-    margin:0 3rem;
-
-    box-shadow: 0 0 0 1rem $color-bg inset;
+    box-shadow: 0 0 0 1rem $color-bg;
     background:$bg-3d;
     background-clip:padding-box;
     -webkit-tap-highlight-color:transparent;
-
-     &:first-child {
-         margin-left:6rem;
-     }
-     &:last-child {
-         margin-right:6rem;
-     }
 
      &.nolabel {
          padding-top:0;
@@ -692,12 +673,16 @@ a {
     width:100rem;
     height:100%;
     overflow: visible;
-    border-bottom:0;
     background: none;
     box-shadow:none;
     > .label {
         background:$bg-3d;
-        box-shadow: 0 0 0 1rem $color-bg inset;
+        box-shadow: 0 0 0 1rem $color-bg;
+    }
+    &.nolabel {
+        .strip > .widget:first-child {
+            margin-top:0;
+        }
     }
 
     .strip {
@@ -706,45 +691,40 @@ a {
         flex-direction: column;
         > .widget {
             display: block;
-            margin: 0;
             width:auto;
-            &:not(:last-child) {
-                border-bottom-width:0;
-            }
-            &:first-child {
-                border-top-width:0;
-            }
+            margin-top:6rem
         }
-    }
-    &.nolabel:not(.horizontal) .strip > .widget:first-child {
-        border-top: 0;
+        &:after {
+            content:"";
+            display:block;
+            height:$gutter;
+            width:100%;
+            clear:both;
+            flex-shrink:0;
+        }
     }
     &.horizontal {
         padding-top:0;
-        padding-left: 40rem;
+        padding-left: 35rem;
         width:100%;
         height:auto;
-        margin:0;
-        border-left-width: 6rem;
         display: block;
-        &:last-child {
-            margin-bottom:6rem;
-        }
+        margin-bottom:$gutter;
         &.nolabel {
             padding-left: 0;
         }
         .strip {
             flex-direction: row;
-            align-items: flex-start;
+            align-items: stretch;
+            &:after {
+                width:$gutter;
+            }
 
             > .widget {
-                border-bottom-width: 0;
-                border-top-width: 0;
-                border-right-width:6rem;
                 flex-shrink: initial;
-                &:last-child {
-                    border-right-width: 6rem;
-                }
+                width:100%;
+                margin-top:0;
+                margin-left: $gutter;
             }
         }
         > .label {
@@ -771,16 +751,16 @@ a {
 
 .panel-container {
     position: absolute;
-    margin:0!important;
-    border-top:0;
+    margin-bottom:$gutter;
     z-index: 2;
     .panel {
         height:100%;
-        padding:6rem 0;
         overflow: auto;
         position: relative;
+        padding:6rem;
+        padding-right:0;
         > .widget {
-            border:0;
+            margin-right:$gutter;
         }
         &.stretch {
             display:flex;
@@ -825,7 +805,7 @@ a {
 }
 
 .toggle {
-
+    height: 100%;
     z-index: 1;
     padding:29rem 10rem 26rem;
     .light {
@@ -854,11 +834,26 @@ a {
         display: flex;
         flex-direction:column;
         align-items: stretch;
-        padding: 1rem;
+        &.horizontal {
+            flex-direction:row;
+            .value {
+                padding:28rem 12rem 12rem 12rem;
+                text-align: center;
+                &:after {
+                    left:50%;
+                    top:8rem;
+                    width:8rem;
+                    height:8rem;
+                    margin-left: -4rem;
+                    margin-top:0;
+                }
+            }
+        }
         .value {
             background:$bg-3d;
             color:$color-text-fade;
             width:100%;
+            height:100%;
             position: relative;
             border-top: 1rem solid $color-fg;
             padding:12rem 12rem 12rem 24rem ;
@@ -1251,8 +1246,8 @@ a {
 
 .knob-container {
     width: 100rem;
-
-    // min-width: 100rem;
+    display: flex!important;
+    align-items: center;
     min-height: 135rem;
     flex-shrink: 0;
     padding-top:15rem;
@@ -1265,12 +1260,15 @@ a {
         bottom: 0;
         padding-bottom:30rem;
         overflow: hidden;
-        // position: absolute;
+        height: 100%;
+        display: flex;
+        align-items: center;
 
         input {
             bottom:0;
             position: absolute;
             z-index: 1;
+            left:0;
         }
 
         &.nogauge {
@@ -1462,10 +1460,14 @@ a {
     flex-shrink: 0;
 
     .led {
-        padding:10rem 1rem 5rem;
+        padding:10rem;
+        display: flex;
+        align-items: center;
+        height: 100%;
         div {
             border-radius: 100%;
-            width: 60%;
+            width:40rem;
+            height:40rem;
             margin: 0 auto;
             overflow: hidden;
             background:$color-border;

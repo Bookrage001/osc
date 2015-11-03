@@ -5,6 +5,7 @@ widgetOptions = {
         label:'auto',
         horizontal:false,
         width:'auto',
+        height:'auto',
         widgets:[]
     },
     panel: {
@@ -22,6 +23,7 @@ widgetOptions = {
         label:'auto',
         color:'green',
         width:'auto',
+        height:'auto',
         range:{min:0,max:1},
         path:'auto'
     },
@@ -29,6 +31,7 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
+        height:'auto',
         off:0,
         on:1,
         path:'auto',
@@ -38,6 +41,8 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
+        height:'auto',
+        horizontal:false,
         values:[0,1],
         path:'auto',
         target:false
@@ -67,6 +72,7 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
+        height:'auto',
         horizontal:false,
         range:{min:0,max:1},
         absolute:false,
@@ -77,6 +83,7 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
+        height:'auto',
         range:{min:0,max:1},
         absolute:false,
         pan:false,
@@ -211,6 +218,10 @@ createWidget.switch = function(widgetData) {
         <div class="switch">
         </div>
     `)
+
+    if (widgetData.horizontal) {
+        widget.addClass('horizontal')
+    }
 
     for (v in widgetData.values) {
         widget.append('<div class="value" data-value="'+widgetData.values[v]+'">'+widgetData.values[v]+'</div>')

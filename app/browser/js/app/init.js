@@ -8,6 +8,11 @@ init = function(session,callback) {
 
     $('#sidepanel').append(createMenu([
         {
+            label:'Fullscreen (F11)',
+            click:toggleFullscreen,
+            icon:'tv'
+        },
+        {
             html: `
             <div class="btn">
                 <div class="title"><i class="fa fa-sliders"></i>&nbsp;Snapshot</div>
@@ -25,11 +30,6 @@ init = function(session,callback) {
             `
         },
         {
-            label:'Fullscreen (F11)',
-            click:toggleFullscreen,
-            icon:'tv'
-        },
-        {
             html:`<div class="editor btn">
                     <div class="title"><i class="fa fa-edit"></i>&nbsp;Session editor</div>
                     <div class="actions">
@@ -38,7 +38,7 @@ init = function(session,callback) {
                         <a class="editor-root btn disabled">Root</a>
                     </div>
                     <div class="actions">
-                        <a class="editor-import btn" data-action="sessionBrowse">Open</a>
+                        <a class="editor-import btn" data-action="sessionBrowse">Load</a>
                         <a class="editor-export btn" data-action="sessionSave">Save</a>
                     </div>
                     <div class="editor-container"></div>
