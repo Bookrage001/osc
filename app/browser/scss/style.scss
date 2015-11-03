@@ -920,9 +920,11 @@ a {
         padding: 2rem;
         text-align: center;
         position: relative;
-        left:0rem;
-        right:0rem;
-        box-shadow: 0 0 1rem 0 $color-border inset;
+        box-shadow: 0 0 0 1rem $color-border;
+        &:focus {
+            box-shadow:0 0 0 1rem $color-border, 0 0 0 1rem $color-accent inset!important;
+            z-index: 1
+        }
     }
 }
 .xy {
@@ -1018,8 +1020,8 @@ a {
     overflow: hidden;
     position: absolute;
     bottom:70rem;
-    left:1rem;
-    right:1rem;
+    left:0;
+    right:0;
     cursor: -webkit-grab;
     &:active {
         cursor: -webkit-grabbing;
