@@ -1,52 +1,56 @@
 init = function(session,callback) {
 
+    $('#container').empty()
+
     parsetabs(session,$('#container'))
 
     // create sidepanel
 
     $('#sidepanel').append(createMenu([
         {
-            label:'Save',
-            click:saveState,
-            icon:'save'
-        },
-        {
-            label:'Load',
-            click:loadState,
-            icon:'folder-open'
-        },
-        {
-            label:'Load last state',
-            click:loadLastState,
-            icon:'history'
-        },
-        {
-            label:'Send all',
-            click:sendState,
-            icon:'feed'
+            html: `
+            <div class="btn">
+                <div class="title"><i class="fa fa-sliders"></i>&nbsp;Snapshot</div>
+                <div class="actions">
+                    <a class="btn" data-action="stateQuickSave">Store</a>
+                    <a class="btn disabled" data-action="stateQuickLoad">Recall</a>
+                    <a class="btn" data-action="stateSend">Send</a>
+                </div>
+                <div class="actions">
+                    <a class="btn" data-action="stateLoad">Import</a>
+                    <a class="btn" data-action="stateSave">Export</a>
+                </div>
+            </div>
 
+            `
         },
         {
-            label:'Fullscreen',
+            label:'Fullscreen (F11)',
             click:toggleFullscreen,
             icon:'tv'
         },
         {
             html:`<div class="editor btn">
-                    <div class="title"><i class="fa fa-edit"></i>&nbsp;Editor</div>
+                    <div class="title"><i class="fa fa-edit"></i>&nbsp;Session editor</div>
                     <div class="actions">
-                        <a class="enable-editor btn align-center">On</a>
-                        <a class="disable-editor btn on align-center">Off</a>
-                        <a class="editor-root btn disabled align-center">Root</a>
-                        <a class="editor-export btn align-center"><i class="fa fa-save"></i></a>
+                        <a class="enable-editor btn" data-action="enableEditor">On</a>
+                        <a class="disable-editor btn on" data-action="disableEditor">Off</a>
+                        <a class="editor-root btn disabled">Root</a>
+                    </div>
+                    <div class="actions">
+                        <a class="editor-import btn" data-action="sessionBrowse">Open</a>
+                        <a class="editor-export btn" data-action="sessionSave">Save</a>
                     </div>
                     <div class="editor-container"></div>
                   </div>`,
         }
     ]))
 
-    $('.enable-editor').click(enableEditor)
-    $('.disable-editor').click(disableEditor)
+    $('[data-action]').each(function(){
+        $(this).click(function(){
+            eval($(this).attr('data-action')+'()')
+        })
+    })
 
 
 

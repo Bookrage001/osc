@@ -2,22 +2,32 @@ sendOsc = function(data){
     ipc.send('sendOsc', data)
 }
 
-var laststate
+var state
 
-saveState = function () {
-    var data = getState()
+stateQuickSave = function(preset){
+    if (preset) {
+        state = preset
+    } else {
+        state = stateGet()
+    }
+    $('[data-action="stateQuickLoad"]').removeClass('disabled')
+}
+stateQuickLoad = function(){
+    stateSet(state)
+}
+stateSave = function() {
+    state = stateGet()
     if (webFrame) {
-        ipc.send('save',data)
+        ipc.send('stateSave',state)
     } else {
         var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
-        var blob = new Blob([data],{type : 'text/plain'});
+        var blob = new Blob([state],{type : 'text/plain'});
         down.attr('href', window.URL.createObjectURL(blob))
         down[0].click()
-        laststate = data
     }
 
 }
-getState = function (){
+stateGet = function (){
     var data = []
     $.each(__widgets__,function(i,widget) {
         var v = widget[0].getValue()
@@ -25,9 +35,9 @@ getState = function (){
     })
     return data.join('\n')
 }
-loadState = function() {
+stateLoad = function() {
     if (webFrame) {
-        ipc.send('load')
+        ipc.send('stateLoad')
     } else {
         var prompt = $('<input type="file" accept=".preset"/>')
         prompt.click()
@@ -35,34 +45,27 @@ loadState = function() {
             var reader = new FileReader();
             reader.onloadend = function(e) {
                 var preset = e.target.result
-                setState(preset,true)
+                stateSet(preset)
                 laststate = preset
             }
             reader.readAsText(e.target.files[0],'utf-8');
         })
     }
 }
-loadLastState = function() {
-    if (webFrame) {
-        ipc.send('loadlast')
-    } else if (laststate) {
-        setState(laststate,true)
-    }
-}
 
-sendState = function(){
-    var data = getState()
-    setState(data,true)
+stateSend = function(){
+    var data = stateGet()
+    stateSet(data)
 
 }
-setState = function(preset,send){
+stateSet = function(preset){
 
     $.each(preset.split('\n'),function(i,d) {
         var data = d.split(' ')
 
         setTimeout(function(){
             if (__widgets__[data[0]]!=undefined) {
-                __widgets__[data[0]][0].setValue(data[1].split(','),send,true)
+                __widgets__[data[0]][0].setValue(data[1].split(','),true,true)
             }
         },i)
     })
@@ -82,10 +85,10 @@ toggleFullscreen = function(){
     }
 }
 
-browseSessions = function(){
+sessionBrowse = function(){
 
     if (webFrame) {
-        ipc.send('browseSessions')
+        ipc.send('sessionBrowse')
     } else {
         var prompt = $('<input type="file" accept=".js"/>')
         prompt.click()
@@ -98,6 +101,19 @@ browseSessions = function(){
             reader.readAsText(e.target.files[0],'utf-8');
         })
     }
+}
+
+sessionSave = function() {
+    var sessionfile = JSON.stringify(session)
+    if (webFrame) {
+        ipc.send('sessionSave',sessionfile)
+    } else {
+        var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
+        var blob = new Blob([sessionfile],{type : 'text/plain'});
+        down.attr('href', window.URL.createObjectURL(blob))
+        down[0].click()
+    }
+
 }
 
 

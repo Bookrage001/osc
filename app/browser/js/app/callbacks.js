@@ -13,11 +13,12 @@ ipc.on('receiveOsc',function(data){
 
 })
 
-ipc.on('load',function(preset){
-    setState(preset)
+ipc.on('stateLoad',function(preset){
+    stateSet(preset)
+    stateQuickSave(preset)
 })
 
-ipc.on('listSessions',function(data){
+ipc.on('sessionList',function(data){
     $('#lobby').append('\
         <div class="main">\
             <div class="header">\
@@ -32,7 +33,7 @@ ipc.on('listSessions',function(data){
     $('#lobby .list').append('<a class="btn browse">...</a>')
     $('#lobby .load').click(function(e){
         e.stopPropagation()
-        ipc.send('openSession',{path:$(this).data('session')})
+        ipc.send('sessionOpen',{path:$(this).data('session')})
     })
     $('#lobby a span').click(function(e){
         e.stopPropagation()
@@ -41,11 +42,11 @@ ipc.on('listSessions',function(data){
     })
     $('#lobby .browse').click(function(e){
         e.stopPropagation()
-        browseSessions()
+        sessionBrowse()
     })
 })
 
-ipc.on('openSession',function(data){
+ipc.on('sessionOpen',function(data){
     var session = JSON.parse(data)
 
     $('#lobby').remove()

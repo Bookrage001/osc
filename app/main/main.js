@@ -209,29 +209,29 @@ ipc.send = function(name,data) {
 ipc.on('ready',function(){
     callbacks.ready()
 })
-ipc.on('browseSessions',function(event, data){
-    callbacks.browseSessions(data)
+ipc.on('sessionBrowse',function(event, data){
+    callbacks.sessionBrowse(data)
 })
-ipc.on('addSessionToHistory',function(event, data){
-    callbacks.addSessionToHistory(data)
+ipc.on('sessionSave',function(event, data){
+    callbacks.sessionSave(data)
 })
-ipc.on('removeSessionFromHistory',function(event, data){
-    callbacks.removeSessionFromHistory(data)
+ipc.on('sessionAddToHistory',function(event, data){
+    callbacks.sessionAddToHistory(data)
 })
-ipc.on('openSession',function(event, data){
-    callbacks.openSession(data)
+ipc.on('sessionRemoveFromHistory',function(event, data){
+    callbacks.sessionRemoveFromHistory(data)
+})
+ipc.on('sessionOpen',function(event, data){
+    callbacks.sessionOpen(data)
 })
 ipc.on('sendOsc', function (event,data) {
     callbacks.sendOsc(data)
 })
-ipc.on('save', function(event, data){
-    callbacks.save(data)
+ipc.on('stateSave', function(event, data){
+    callbacks.stateSave(data)
 })
-ipc.on('load', function(event, data){
-    callbacks.load(data)
-})
-ipc.on('loadlast', function(event, data){
-    callbacks.loadlast(data)
+ipc.on('stateLoad', function(event, data){
+    callbacks.stateLoad(data)
 })
 ipc.on('fullscreen', function(event){
     callbacks.fullscreen()
@@ -242,21 +242,35 @@ ipc.on('fullscreen', function(event){
 
 var callbacks = {}
 callbacks.ready = function(data,clientId) {
-    if (settings.read('sessionFile')) callbacks.openSession({path:settings.read('sessionFile')},clientId)
+    if (settings.read('sessionFile')) callbacks.sessionOpen({path:settings.read('sessionFile')},clientId)
     var recentSessions = settings.read('recentSessions')
-    ipc.send('listSessions',recentSessions,clientId)
+    ipc.send('sessionList',recentSessions,clientId)
 }
 
-callbacks.browseSessions = function(data) {
+callbacks.sessionBrowse = function(data) {
     var sessionlist = settings.read('recentSessions')
         dialog.showOpenDialog(window,{title:'Load session file',defaultPath:settings.read('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
             if (file==undefined) {return}
             settings.write('sessionPath',file[0].replace(file[0].split('/').pop(),''))
-            callbacks.openSession({path:file[0]})
+            callbacks.sessionOpen({path:file[0]})
         })
 }
+callbacks.sessionSave = function(data) {
+    dialog.showSaveDialog(window,{title:'Save current session',defaultPath:settings.read('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
 
-callbacks.addSessionToHistory = function(data) {
+        if (file==undefined) {return}
+        settings.write('sessionPath',file.replace(file.split('/').pop(),''))
+
+        if (file.indexOf('.js')==-1){file+='.js'}
+        fs.writeFile(file,data, function (err, data) {
+            if (err) throw err
+            console.log('The session was saved in '+file)
+        })
+    })
+}
+
+
+callbacks.sessionAddToHistory = function(data) {
     var sessionlist = settings.read('recentSessions')
     // add session to history
     sessionlist.unshift(data)
@@ -268,13 +282,13 @@ callbacks.addSessionToHistory = function(data) {
     settings.write('recentSessions',sessionlist)
 }
 
-callbacks.removeSessionFromHistory = function(data) {
+callbacks.sessionRemoveFromHistory = function(data) {
     var sessionlist = settings.read('recentSessions')
     sessionlist.splice(data,1)
     settings.write('recentSessions',sessionlist)
 }
 
-callbacks.openSession = function(data,clientId) {
+callbacks.sessionOpen = function(data,clientId) {
     var file = data.file || fs.readFileSync(data.path,'utf8'),
         session,
         error
@@ -286,8 +300,8 @@ callbacks.openSession = function(data,clientId) {
     }
 
     if (!error) {
-        if (data.path) callbacks.addSessionToHistory(data.path)
-        ipc.send('openSession',JSON.stringify(session),clientId)
+        if (data.path) callbacks.sessionAddToHistory(data.path)
+        ipc.send('sessionOpen',JSON.stringify(session),clientId)
     } else {
         ipc.send('error',{title:'Error: invalid session file',text:error})
     }
@@ -311,7 +325,7 @@ callbacks.sendOsc = function(data) {
         }
 }
 
-callbacks.save = function(data) {
+callbacks.stateSave = function(data) {
     dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
@@ -325,7 +339,7 @@ callbacks.save = function(data) {
     })
 }
 
-callbacks.load = function(data,clientId) {
+callbacks.stateLoad = function(data,clientId) {
     dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
         if (file==undefined) {return}
@@ -333,16 +347,8 @@ callbacks.load = function(data,clientId) {
 
         fs.readFile(file[0],'utf-8', function read(err, data) {
             if (err) throw err
-            ipc.send('load',data,clientId)
+            ipc.send('stateLoad',data,clientId)
         })
-    })
-}
-
-callbacks.loadlast = function(data,clientId) {
-    if (!settings.read('presetPath')) {return}
-    fs.readFile(settings.read('presetPath'),'utf-8', function read(err, data) {
-        if (err) throw err
-        ipc.send('load',data,clientId)
     })
 }
 

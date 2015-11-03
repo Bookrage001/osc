@@ -141,7 +141,7 @@ body {
 .btn {
     background: $bg-3d;
     display: block;
-    border:1rem solid $color-border;
+    box-shadow: 0 0 0 1rem $color-border;
     padding:15rem;
     position: relative;
     white-space: nowrap;
@@ -168,32 +168,6 @@ a.btn {
 
 
 
-.editor {
-    .actions {
-        margin-top:10rem;
-        display: flex;
-        align-items: stretch;
-        a {
-            display: block;
-            width:100%;
-            padding:10rem;
-            &.on {
-                pointer-events: none;
-                border-top:2rem solid $color-accent;
-            }
-        }
-    }
-}
-.editing:before {
-    content:"";
-    z-index: 999;
-    position: absolute;
-    top:0;left:0;
-    right:0;
-    bottom:0;
-    border:1px dashed $color-accent;
-    pointer-events: none;
-}
 
 
 
@@ -313,6 +287,31 @@ a.btn {
             &:last-child {
                 margin-bottom: 0
             }
+            .title {
+                padding-bottom:15rem;
+            }
+            .actions {
+                display: flex;
+                align-items: stretch;
+                a {
+                    padding:10rem;
+                    display: block;
+                    width:100%;
+                    text-align: center;
+                    &.on {
+                        pointer-events: none;
+
+                        &:after {
+                            content:"";
+                            position: absolute;
+                            top:0;
+                            left:0;
+                            right:0;
+                            border-top:2rem solid $color-accent;
+                        }
+                    }
+                }
+            }
             span {
                 position: absolute;
                 right:0rem;
@@ -330,6 +329,18 @@ a.btn {
         }
     }
 }
+
+.editing:before {
+    content:"";
+    z-index: 999;
+    position: absolute;
+    top:0;left:0;
+    right:0;
+    bottom:0;
+    border:1px dashed $color-accent;
+    pointer-events: none;
+}
+
 
 
 

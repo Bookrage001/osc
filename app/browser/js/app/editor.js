@@ -153,8 +153,6 @@ enableEditor = function(){
 
         var updateSession = function(){
 
-            $('#container').empty()
-
             init(session,function(){
                 enableEditor()
                 for (i in ontab) {
@@ -283,8 +281,6 @@ enableEditor = function(){
 
 
         var updateSession = function(){
-
-            $('#container').empty()
 
             init(session,function(){
                 enableEditor()
