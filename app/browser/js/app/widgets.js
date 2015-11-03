@@ -821,7 +821,7 @@ createWidget.knob = function(widgetData) {
                 y = data.offsetY-h/2,
                 angle =  Math.atan2(-y, -x) * 180 / Math.PI +45,
                 r = angle<-90?angle+360:angle
-                r = (angle>-90 && angle<-45)?270:r
+                r = (angle>=-90 && angle<-45)?270:r
                 r = clip(r,[0,270])
 
             offX = x
@@ -863,7 +863,7 @@ createWidget.knob = function(widgetData) {
                 y   =  data.deltaY + offY,
                 angle =  Math.atan2(-y, -x) * 180 / Math.PI +45,
                 r = angle<-90?angle+360:angle
-                r = (angle>-90 && angle<-45)?270:r
+                r = (angle>=-90 && angle<-45)?270:r
                 r = clip(r,[0,270])
         }
 
