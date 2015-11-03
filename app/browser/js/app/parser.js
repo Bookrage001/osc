@@ -91,7 +91,11 @@ parsewidgets = function(widgets,parent) {
 
 
         var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
-            style = widgetData.width!='auto'?`width:${width};min-width:${width}`:''
+            height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height,
+            styleW = widgetData.width!='auto'?`width:${width};min-width:${width}`:'',
+            styleH = widgetData.height!='auto'?`height:${height};min-height:${height}`:'',
+            style = styleW + ';' + styleH
+
 
 
 

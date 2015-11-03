@@ -104,7 +104,7 @@ init = function(session,callback) {
                     return function() {
                         var v = widget[x].getValue()
                         for (k=0;k<widget.length;k++) {
-                            if (x!=k) {
+                            if (x!=k && v!==undefined) {
                                 widget[k].setValue(v,false,false)
                             }
                         }

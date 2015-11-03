@@ -46,6 +46,7 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
+        height:'auto',
         split:false,
         range:{x:{min:0,max:1},y:{min:0,max:1}},
         absolute:false,
@@ -56,6 +57,7 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         width:'auto',
+        height:'auto',
         split:false,
         absolute:false,
         path:'auto',
@@ -270,6 +272,8 @@ createWidget.xy = function(widgetData) {
                         :false
 
 
+    if (widgetData.height!='auto') widget.addClass('manual-height')
+
     pad.width = pad.innerWidth()
     pad.height = pad.innerHeight()
     handle.height = 0
@@ -409,6 +413,7 @@ createWidget.rgb = function(widgetData) {
                         widgetData.split:{r:widgetData.path+'/r',g:widgetData.path+'/g',b:widgetData.path+'/b'}
                         :false
 
+    if (widgetData.height!='auto') widget.addClass('manual-height')
 
 
     pad.width = pad.innerWidth()

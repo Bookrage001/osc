@@ -905,10 +905,19 @@ a {
     flex-shrink: 0;
 }
 .xy-wrapper {
-
+    &.manual-height {
+        height:100%;
+        .xy {
+            padding-top:0;
+            height:100%;
+        }
+    }
     overflow: hidden;
+    padding-bottom: 70rem;
     .value {
         width:100%;
+        position: absolute;
+        bottom:0;
     }
     input {
         width:50%;
@@ -926,7 +935,7 @@ a {
     width:auto;
     margin-left: 1rem;
     margin-right:1rem;
-    padding-bottom: 90%;
+    padding-top:90%;
     overflow: hidden;
     background:  rgba($color-base,.5);
     cursor: -webkit-grab;
@@ -977,6 +986,7 @@ a {
 
 
 .rgb-wrapper {
+    padding-bottom: 100rem;
     input {
         width:33.33%;
     }
@@ -1004,18 +1014,19 @@ a {
             background:$color-text;
         }
         &:after {
-            box-shadow: 0 0 0 1000rem rgba($color-base,.5);
+            box-shadow: 0 0 0 2000rem rgba($color-base,.5);
         }
     }
 }
 .hue {
     width:auto;
-    margin-left: 1rem;
-    margin-right:1rem;
     height:30rem;
     background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
     overflow: hidden;
-    position: relative;
+    position: absolute;
+    bottom:70rem;
+    left:1rem;
+    right:1rem;
     cursor: -webkit-grab;
     &:active {
         cursor: -webkit-grabbing;
@@ -1053,7 +1064,7 @@ a {
             width:20rem;
             border:none!important;
             border-radius: 100%!important;
-            box-shadow: 0 0 0 1000rem rgba($color-base,.5);
+            box-shadow: 0 0 0 2000rem rgba($color-base,.5);
         }
     }
 
