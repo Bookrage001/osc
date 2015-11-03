@@ -104,7 +104,7 @@ init = function(session,callback) {
                     return function() {
                         var v = widget[x].getValue()
                         for (k=0;k<widget.length;k++) {
-                            if (x!=k && v!==undefined) {
+                            if (x!=k) {
                                 widget[k].setValue(v,false,false)
                             }
                         }
@@ -112,7 +112,7 @@ init = function(session,callback) {
                 }
 
                 for (j in widget) {
-                    widget[j].on('sync',closureSync(j))
+                    widget[j].off('ssync').on('sync',closureSync(j))
                 }
 
 

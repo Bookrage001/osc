@@ -23,7 +23,6 @@ parsetabs = function(tabs,parent){
     if (main) {
         __widgets__ = {}
         __widgetsIds__ = {}
-        iterator = {}
         session = tabs
     }
 
