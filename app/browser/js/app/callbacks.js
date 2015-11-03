@@ -14,7 +14,7 @@ ipc.on('receiveOsc',function(data){
 })
 
 ipc.on('stateLoad',function(preset){
-    stateSet(preset)
+    stateSet(preset,true)
     stateQuickSave(preset)
 })
 

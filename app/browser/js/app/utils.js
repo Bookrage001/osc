@@ -13,7 +13,7 @@ stateQuickSave = function(preset){
     $('[data-action="stateQuickLoad"]').removeClass('disabled')
 }
 stateQuickLoad = function(){
-    stateSet(state)
+    stateSet(state,true)
 }
 stateSave = function() {
     state = stateGet()
@@ -45,7 +45,7 @@ stateLoad = function() {
             var reader = new FileReader();
             reader.onloadend = function(e) {
                 var preset = e.target.result
-                stateSet(preset)
+                stateSet(preset,true)
                 laststate = preset
             }
             reader.readAsText(e.target.files[0],'utf-8');
@@ -55,17 +55,17 @@ stateLoad = function() {
 
 stateSend = function(){
     var data = stateGet()
-    stateSet(data)
+    stateSet(data,true)
 
 }
-stateSet = function(preset){
+stateSet = function(preset,send){
 
     $.each(preset.split('\n'),function(i,d) {
         var data = d.split(' ')
 
         setTimeout(function(){
             if (__widgets__[data[0]]!=undefined) {
-                __widgets__[data[0]][0].setValue(data[1].split(','),true,true)
+                __widgets__[data[0]][0].setValue(data[1].split(','),send,true)
             }
         },i)
     })

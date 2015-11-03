@@ -40,7 +40,12 @@ enableEditor = function(){
         container.addClass('editing')
 
         var updateWidget = function(){
+
+            var state = stateGet()
+
             var newContainer = parsewidgets([data],parent)
+
+            stateSet(state,false)
 
             container.remove()
 
@@ -53,6 +58,7 @@ enableEditor = function(){
             sync()
 
             newContainer.children().first().click()
+
 
         }
 
@@ -142,18 +148,25 @@ enableEditor = function(){
 
         var updateTab = function() {
 
+            var state = stateGet()
+
             container.empty()
             parsewidgets(data.widgets,container)
+
+            stateSet(state,false)
 
             enableEditor()
             sync()
 
             link.click()
+
         }
 
         var updateSession = function(){
+            var state = stateGet()
 
             init(session,function(){
+                stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {
                     $(`a[data-tab="#${ontab[i]}"]`).click()
@@ -185,7 +198,7 @@ enableEditor = function(){
 
             for (i in data.widgets) {
                 var label = data.widgets[i].label!='auto'&&data.widgets[i].label!=false?data.widgets[i].label:data.widgets[i].id
-                var item = $(`<li data-index="${i}" class="sortables" data-id="${data.widgets[i].id}"><a class="btn small">${label}</a></li>`)
+                var item = $(`<li data-index="${i}" class="sortables"><a class="btn small">${label}</a></li>`)
                             .appendTo(list)
                             .click(function(){
                                 container.find('.widget').first().parent().children('.widget').eq($(this).attr('data-index')).click()
@@ -281,8 +294,10 @@ enableEditor = function(){
 
 
         var updateSession = function(){
+            var state = stateGet()
 
             init(session,function(){
+                stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {
                     $(`a[data-tab="#${ontab[i]}"]`).click()
