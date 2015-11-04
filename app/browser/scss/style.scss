@@ -831,6 +831,9 @@ a {
             .value {
                 padding:28rem 12rem 12rem 12rem;
                 text-align: center;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
                 &:after {
                     left:50%;
                     top:8rem;
@@ -838,6 +841,9 @@ a {
                     height:8rem;
                     margin-left: -4rem;
                     margin-top:0;
+                }
+                &:first-child {
+                    border-top: 1rem solid $color-fg;
                 }
             }
         }
