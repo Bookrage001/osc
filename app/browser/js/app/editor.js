@@ -72,8 +72,9 @@ enableEditor = function(){
                 `)
                 input.appendTo(form)
                 input.on('change',function(){
-                    var v = $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
+                    var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
                     data[$(this).attr('title')]= v=='true'||v=='false'?eval(v):v
+                    if (v=='') delete data[$(this).attr('title')]
                     updateWidget()
                 })
 
@@ -185,8 +186,9 @@ enableEditor = function(){
                 `)
                 input.appendTo(form)
                 input.on('change',function(){
-                    var v = $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
+                    var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
                     data[$(this).attr('title')]= v=='true'||v=='false'?eval(v):v
+                    if (v=='') delete data[$(this).attr('title')]
                     updateSession()
                 })
 

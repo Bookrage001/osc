@@ -96,7 +96,11 @@ parsewidgets = function(widgets,parent) {
             style = styleW + ';' + styleH
 
 
-
+        for (k in widgetOptions[widgetData.type]) {
+            var tmp = widgetData[k]
+            delete widgetData[k]
+            widgetData[k] = tmp
+        }
 
 
 
