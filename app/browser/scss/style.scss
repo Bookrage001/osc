@@ -692,14 +692,6 @@ a {
             display: block;
             width:auto;
         }
-        &:after {
-            content:"";
-            display:block;
-            height:$gutter;
-            width:100%;
-            clear:both;
-            flex-shrink:0;
-        }
     }
     &.horizontal {
         padding-top:0;
@@ -712,11 +704,11 @@ a {
         }
         .strip {
             flex-direction: row;
-            align-items: stretch;
 
             > .widget {
                 flex-shrink: initial;
                 width:100%;
+                border-bottom:0;
             }
         }
         > .label {
@@ -772,6 +764,7 @@ a {
 
 .toggle-container {
     width:100rem;
+    min-height: 65rem;
     flex-shrink: 0;
     padding:0!important;
     .label {
@@ -780,11 +773,15 @@ a {
         left:0;
         right:0;
         bottom:0;
+        height:auto;
         padding:29rem 10rem 26rem;
         line-height: 1rem;
         background: none!important;
         text-align: center;
         pointer-events:none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     &:hover {
         background-image: $bg-3d-hover;
@@ -795,9 +792,13 @@ a {
 }
 
 .toggle {
-    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     z-index: 1;
-    padding:29rem 10rem 26rem;
+
     .light {
         position: absolute;
         left:4rem;
@@ -824,6 +825,7 @@ a {
         display: flex;
         flex-direction:column;
         align-items: stretch;
+        border:1rem solid transparent;
         &.horizontal {
             flex-direction:row;
             .value {
@@ -921,6 +923,7 @@ a {
     position:relative;
     width:auto;
     padding-top:90%;
+    margin:0 1rem;
     overflow: hidden;
     background:  rgba($color-base,.5);
     cursor: -webkit-grab;
@@ -1005,13 +1008,13 @@ a {
 }
 .hue {
     width:auto;
-    height:30rem;
+    height:29rem;
     background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
     overflow: hidden;
     position: absolute;
-    bottom:70rem;
-    left:0;
-    right:0;
+    bottom:71rem;
+    left:1rem;
+    right:1rem;
     cursor: -webkit-grab;
     &:active {
         cursor: -webkit-grabbing;
@@ -1064,7 +1067,6 @@ a {
 
 .fader-container {
     width:100rem;
-    min-width: 80rem;
     height:100%;
     min-height: 300rem;
 
