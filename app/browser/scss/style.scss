@@ -588,13 +588,11 @@ a {
     position: relative;
     padding:$gutter;
     padding-right:0;
+    padding-bottom: 0;
     &.on {
         display: block;
         height:100%;
         width:auto;
-    }
-    > .widget {
-        margin-right:$gutter;
     }
 }
 
@@ -604,6 +602,8 @@ a {
 
 .widget {
     display:inline-block;
+    border-right:$gutter solid transparent;
+    border-bottom:$gutter solid transparent;
     height:auto;
     min-width: 100rem;
     overflow: hidden;
@@ -611,7 +611,7 @@ a {
     font-size:13rem;
     padding:35rem  0 0;
     vertical-align:top;
-    box-shadow: 0 0 0 1rem $color-bg;
+    box-shadow: 0 0 0 1rem $color-bg inset;
     background:$bg-3d;
     background-clip:padding-box;
     -webkit-tap-highlight-color:transparent;
@@ -670,6 +670,7 @@ a {
 
 
 .strip-container {
+    padding-top: 35rem+$gutter;
     width:100rem;
     height:100%;
     overflow: visible;
@@ -677,12 +678,10 @@ a {
     box-shadow:none;
     > .label {
         background:$bg-3d;
-        box-shadow: 0 0 0 1rem $color-bg;
+        box-shadow: 0 0 0 1rem $color-bg inset;
     }
     &.nolabel {
-        .strip > .widget:first-child {
-            margin-top:0;
-        }
+        padding-top: 0;
     }
 
     .strip {
@@ -692,7 +691,6 @@ a {
         > .widget {
             display: block;
             width:auto;
-            margin-top:6rem
         }
         &:after {
             content:"";
@@ -705,26 +703,20 @@ a {
     }
     &.horizontal {
         padding-top:0;
-        padding-left: 35rem;
+        padding-left: 35rem+$gutter;
         width:100%;
         height:auto;
         display: block;
-        margin-bottom:$gutter;
         &.nolabel {
             padding-left: 0;
         }
         .strip {
             flex-direction: row;
             align-items: stretch;
-            &:after {
-                width:$gutter;
-            }
 
             > .widget {
                 flex-shrink: initial;
                 width:100%;
-                margin-top:0;
-                margin-left: $gutter;
             }
         }
         > .label {
@@ -751,17 +743,15 @@ a {
 
 .panel-container {
     position: absolute;
-    margin-bottom:$gutter;
+    border:$gutter solid transparent;
     z-index: 2;
     .panel {
         height:100%;
         overflow: auto;
         position: relative;
-        padding:6rem;
+        padding:$gutter;
         padding-right:0;
-        > .widget {
-            margin-right:$gutter;
-        }
+        padding-bottom: 0;
         &.stretch {
             display:flex;
             justify-content: space-between;

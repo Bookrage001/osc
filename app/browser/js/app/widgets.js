@@ -11,8 +11,8 @@ widgetOptions = {
     panel: {
         id:'auto',
         label:'auto',
-        left:'auto',
-        top:'auto',
+        left:'0',
+        top:'0',
         width:'auto',
         height:'auto',
         stretch:false,
