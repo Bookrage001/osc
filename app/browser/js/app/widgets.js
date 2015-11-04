@@ -196,7 +196,7 @@ createWidget.toggle  = function(widgetData) {
         var on = widgetData.on,
             off= widgetData.off
         if (v==on) {
-            widget.addClass('on')
+            widget.addClass('on').ripple()
             if (send) widget.sendValue(v)
         } else if (v==off) {
             widget.removeClass('on')
@@ -245,11 +245,7 @@ createWidget.push  = function(widgetData) {
         var on = widgetData.on,
             off= widgetData.off
         if (v==on) {
-            widget.addClass('on')
-            widget.removeClass('ripple')
-            setTimeout(function(){
-                widget.addClass('ripple')
-            },1)
+            widget.addClass('on').ripple()
             if (send) widget.sendValue(v)
         } else if (v==off) {
             widget.removeClass('on')
@@ -303,7 +299,7 @@ createWidget.switch = function(widgetData) {
         var e = widget.find('.value[data-value="'+v+'"]')
         if (e.length) {
             widget.find('.on').removeClass('on')
-            e.addClass('on')
+            e.addClass('on').ripple()
             if (send) widget.sendValue(v)
             if (sync) widget.trigger('sync')
         }

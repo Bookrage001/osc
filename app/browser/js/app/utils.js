@@ -269,3 +269,11 @@ function isSame(a1, a2){
         return a1==a2
     }
 }
+
+
+$.fn.ripple = function() {
+    $(this).removeClass('ripple').addClass('ripple').delay(250).queue(function(next){
+        $(this).removeClass('ripple');
+        next();
+    });
+}

@@ -810,8 +810,9 @@ a {
     }
     &.on .light {
         background: $color-accent;
+    }
+    &.ripple .light {
         animation: ripple .25s linear;
-        animation-fill-mode:backwards;
     }
 }
 
@@ -895,11 +896,11 @@ a {
                 background: $color-border;
                 border-radius: 8rem;
             }
-            &.on {
-                &:after {
+            &.on:after {
                     background: $color-accent;
+            }
+            &.ripple:after {
                     animation:ripple 0.25s linear;
-                }
             }
         }
     }
