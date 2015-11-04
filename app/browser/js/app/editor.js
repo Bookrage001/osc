@@ -64,13 +64,40 @@ enableEditor = function(){
 
         for (i in data) {
             if (i!='widgets' && i!='tabs') {
-                var type = typeof data[i]
-                var d = type == 'object'?JSON.stringify(data[i]):data[i]
-                var input = $(`
-                    <label>${i}</label>
-                    <input data-type="${type}" value='${d}' title="${i}"/>
-                `)
-                input.appendTo(form)
+                var type = typeof data[i],
+                    d = type == 'object'?JSON.stringify(data[i]):data[i],
+                    label = $(`<label>${i}</label>`).appendTo(form),
+                    input
+
+                if (i=='type') {
+                    input = $(`
+                                <select class="input" data-type="${type}" title="${i}"/>
+                            `)
+                    for (t in widgetOptions) {
+                        var selected = t==d?'selected=':''
+                        input.append(`
+                                        <option ${selected} value="${t}">${t}</option>
+                                    `)
+                    }
+                    select = $('<div class="select-wrapper"></div>').append(input)
+                    select.appendTo(form)
+                // } else if (typeof widgetOptions[data.type][i]=='boolean') {
+                //     input = $(`
+                //                 <input class="checkbox" data-type="${type}" value='${d}' title="${i}"/>
+                //             `)
+                //     input.click(function(){
+                //         $(this).val(!eval($(this).val())).trigger('change')
+                //     })
+                //     input.appendTo(form)
+
+                } else {
+                    input = $(`
+                                <input data-type="${type}" value='${d}' title="${i}"/>
+                            `)
+                    input.appendTo(form)
+                }
+
+
                 input.on('change',function(){
                     var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
                     data[$(this).attr('title')]= v=='true'||v=='false'?eval(v):v

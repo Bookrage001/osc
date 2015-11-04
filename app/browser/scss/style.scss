@@ -560,6 +560,28 @@ a {
             box-shadow: 0 0 0 1rem $color-accent;
         }
     }
+    .checkbox {
+        background:$bg-3d;
+        cursor: pointer;
+        &:hover {
+            background:$bg-3d-hover;
+        }
+    }
+    .select-wrapper {
+        position: relative;
+        &:after{
+            content:"\f107";
+            font-family: FontAwesome;
+            position: absolute;
+            padding:10rem;
+            right:0;
+            top:0;
+            font-size: 20rem;
+        }
+    }
+    select {
+        -webkit-appearance:none;
+    }
     .submit {
         margin-top:30rem;
     }
@@ -811,9 +833,6 @@ a {
     &.on .light {
         background: $color-accent;
     }
-    &.ripple .light {
-        animation: ripple .25s linear;
-    }
 }
 
 
@@ -823,9 +842,6 @@ a {
     }
     &:active .light {
         background: $color-accent;
-    }
-    &.ripple .light {
-        animation:ripple 0.25s linear;
     }
 }
 
@@ -885,7 +901,7 @@ a {
             &:first-child {
                 border-top:0;
             }
-            &:after {
+            &:before {
                 content:"";
                 position: absolute;
                 left:8rem;
@@ -896,21 +912,29 @@ a {
                 background: $color-border;
                 border-radius: 8rem;
             }
-            &.on:after {
+            &.on:before {
                     background: $color-accent;
             }
-            &.ripple:after {
-                    animation:ripple 0.25s linear;
-            }
+
         }
     }
 }
 
+.ripple:after {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:$color-accent;
+    animation:ripple 0.25s linear;
+    animation-fill-mode: forwards;
+    opacity:.4
+}
 
 @keyframes ripple {
-	/*scale the element to 250% to safely cover the entire link and fade it out*/
-    0% {box-shadow: 0 0 0 0 rgba($color-accent,.5)}
-	100% {box-shadow: 0 0 0 100rem transparent;}
+	100% {opacity:0}
 }
 
 
