@@ -37,6 +37,16 @@ widgetOptions = {
         path:'auto',
         target:[]
     },
+    push: {
+        id:'auto',
+        label:'auto',
+        width:'auto',
+        height:'auto',
+        off:0,
+        on:1,
+        path:'auto',
+        target:[]
+    },
     switch: {
         id:'auto',
         label:'auto',
@@ -169,9 +179,7 @@ createWidget.toggle  = function(widgetData) {
         <div class="toggle">
             <div class="light"></div>
         </div>\
-        `),
-        led = widget.find('.light')
-
+        `)
 
     widget.value = widget.find('span')
 
@@ -189,11 +197,9 @@ createWidget.toggle  = function(widgetData) {
             off= widgetData.off
         if (v==on) {
             widget.addClass('on')
-            if (widgetData.color) led[0].setAttribute('style','background:'+widgetData.color)
             if (send) widget.sendValue(v)
         } else if (v==off) {
             widget.removeClass('on')
-            if (widgetData.color) led[0].setAttribute('style','')
             if (send) widget.sendValue(v)
         }
 
@@ -201,6 +207,60 @@ createWidget.toggle  = function(widgetData) {
 
     }
     widget.sendValue = function(v) {
+        if (v===false) return
+        sendOsc({
+            target:widgetData.target,
+            path:widgetData.path,
+            args:v
+        })
+    }
+    widget.setValue()
+    return widget
+}
+
+createWidget.push  = function(widgetData) {
+
+    var widget = $(`
+        <div class="push toggle">
+            <div class="light"></div>
+        </div>\
+        `)
+
+    widget.value = widget.find('span')
+
+    widget.on('drag',function(){})
+    widget.on('draginit',function(){
+        widget.setValue(widgetData.on,true)
+        widget.on('dragend',function(){
+            widget.setValue(widgetData.off,true)
+            widget.off('dragend')
+        })
+    })
+
+
+    widget.getValue = function() {
+        return widget.hasClass('on')?widgetData.on:widgetData.off
+    }
+    widget.setValue = function(v,send,sync) {
+        var on = widgetData.on,
+            off= widgetData.off
+        if (v==on) {
+            widget.addClass('on')
+            widget.removeClass('ripple')
+            setTimeout(function(){
+                widget.addClass('ripple')
+            },1)
+            if (send) widget.sendValue(v)
+        } else if (v==off) {
+            widget.removeClass('on')
+            if (send) widget.sendValue(v)
+        }
+
+        if (send) widget.trigger('sync')
+
+    }
+    widget.sendValue = function(v) {
+        if (v===false) return
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,

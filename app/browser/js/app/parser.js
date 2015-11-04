@@ -96,8 +96,11 @@ parsewidgets = function(widgets,parent) {
             style = styleW + ';' + styleH
 
 
+        // Sort widgets' properties and turn string-numbers to numbers
         for (k in widgetOptions[widgetData.type]) {
             var tmp = widgetData[k]
+            if (parseFloat(tmp)==tmp) tmp=parseFloat(tmp)
+            if (parseInt(tmp)==tmp) tmp=parseInt(tmp)
             delete widgetData[k]
             widgetData[k] = tmp
         }
