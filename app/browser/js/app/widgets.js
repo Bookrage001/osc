@@ -181,14 +181,28 @@ createWidget.toggle  = function(widgetData) {
         <div class="toggle">
             <div class="light"></div>
         </div>\
-        `)
+        `),
+        $document = $(document)
 
     widget.value = widget.find('span')
 
-    widget.click(function(){
+    widget.on('drag',function(e){e.stopPropagation()})
+    widget.on('draginit.toggle',function(){
+        widget.off('draginit.toggle')
+        widget.fakeclick()
+    })
+
+    widget.fakeclick = function(){
         var newVal = widget.hasClass('on')?widgetData.off:widgetData.on
         widget.setValue(newVal,true)
-    })
+        $document.on('dragend.toggle',function(){
+            $document.off('dragend.toggle')
+            widget.on('draginit.toggle',function(){
+                widget.off('draginit.toggle')
+                widget.fakeclick()
+            })
+        })
+    }
 
 
     widget.getValue = function() {
@@ -232,8 +246,8 @@ createWidget.push  = function(widgetData) {
     widget.value = widget.find('span')
 
     widget.on('drag',function(e){e.stopPropagation()})
-    widget.on('draginit',function(){
-        widget.off('draginit')
+    widget.on('draginit.push',function(){
+        widget.off('draginit.push')
         widget.fakeclick()
     })
 
@@ -285,7 +299,8 @@ createWidget.switch = function(widgetData) {
     var widget = $(`
         <div class="switch">
         </div>
-    `)
+        `),
+        $document = $(document)
 
     if (widgetData.horizontal) {
         widget.addClass('horizontal')
@@ -295,12 +310,15 @@ createWidget.switch = function(widgetData) {
         widget.append('<div class="value" data-value="'+widgetData.values[v]+'">'+widgetData.values[v]+'</div>')
     }
 
+    widget.value = false
 
-    widget.find('.value').click(function(){
-        if ($(this).hasClass('on')) return
-        var newVal = $(this).data('value')
-        widget.setValue(newVal,true,true)
+    widget.on('drag',function(e){e.stopPropagation()})
+
+    widget.on('draginit',function(e,dd){
+        var val = dd.target.getAttribute('data-value')
+        if (val!==widget.value) widget.setValue(val,true,true)
     })
+
 
 
     widget.getValue = function() {
@@ -309,6 +327,7 @@ createWidget.switch = function(widgetData) {
     widget.setValue = function(v,send,sync) {
         var e = widget.find('.value[data-value="'+v+'"]')
         if (e.length) {
+            widget.value = v
             widget.find('.on').removeClass('on')
             e.addClass('on').ripple()
             if (send) widget.sendValue(v)
