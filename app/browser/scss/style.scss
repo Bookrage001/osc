@@ -768,9 +768,11 @@ a {
         height:100%;
         overflow: auto;
         position: relative;
-        padding:$gutter;
-        padding-right:0;
-        padding-bottom: 0;
+        padding-top:$gutter;
+        padding-left:$gutter;
+        > .widget {
+            margin-right:$gutter;
+        }
         &.stretch {
             display:flex;
             justify-content: space-between;
