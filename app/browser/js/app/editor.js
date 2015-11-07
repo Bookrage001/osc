@@ -40,6 +40,7 @@ enableEditor = function(){
         container.addClass('editing')
 
         var updateWidget = function(){
+            var scroll = $('#sidepanel').scrollTop()
 
             var state = stateGet()
 
@@ -56,8 +57,8 @@ enableEditor = function(){
             }
             enableEditor()
             sync()
-
             newContainer.children().first().click()
+            $('#sidepanel').scrollTop(scroll)
 
 
         }
@@ -81,14 +82,14 @@ enableEditor = function(){
                     }
                     select = $('<div class="select-wrapper"></div>').append(input)
                     select.appendTo(form)
-                // } else if (typeof widgetOptions[data.type][i]=='boolean') {
-                //     input = $(`
-                //                 <input class="checkbox" data-type="${type}" value='${d}' title="${i}"/>
-                //             `)
-                //     input.click(function(){
-                //         $(this).val(!eval($(this).val())).trigger('change')
-                //     })
-                //     input.appendTo(form)
+                } else if (typeof widgetOptions[data.type][i]=='boolean') {
+                    input = $(`
+                                <input class="checkbox" data-type="${type}" value='${d}' title="${i}"/>
+                            `)
+                    input.click(function(){
+                        $(this).val(!eval($(this).val())).trigger('change')
+                    })
+                    input.appendTo(form)
 
                 } else {
                     input = $(`
@@ -175,6 +176,7 @@ enableEditor = function(){
         ontab.push(container.attr('id'))
 
         var updateTab = function() {
+            var scroll = $('#sidepanel').scrollTop()
 
             var state = stateGet()
 
@@ -188,9 +190,12 @@ enableEditor = function(){
 
             link.click()
 
+            $('#sidepanel').scrollTop(scroll)
         }
 
         var updateSession = function(){
+            var scroll = $('#sidepanel').scrollTop()
+
             var state = stateGet()
 
             init(session,function(){
@@ -199,6 +204,7 @@ enableEditor = function(){
                 for (i in ontab) {
                     $(`a[data-tab="#${ontab[i]}"]`).click()
                 }
+                $('#sidepanel').scrollTop(scroll)
             })
 
         }
@@ -323,6 +329,8 @@ enableEditor = function(){
 
 
         var updateSession = function(){
+            var scroll = $('#sidepanel').scrollTop()
+
             var state = stateGet()
 
             init(session,function(){
@@ -332,6 +340,7 @@ enableEditor = function(){
                     $(`a[data-tab="#${ontab[i]}"]`).click()
                 }
                 $('.editor-root').click()
+                $('#sidepanel').scrollTop(scroll)
             })
 
         }
