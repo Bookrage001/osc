@@ -111,6 +111,8 @@ createWidget.strip = function(widgetData,container) {
     `)
     if (widgetData.horizontal) {
         container.addClass('horizontal')
+    } else {
+        container.addClass('vertical')
     }
     parsewidgets(widgetData.widgets,widget)
     widget.getValue = function(){return}
@@ -224,19 +226,28 @@ createWidget.push  = function(widgetData) {
         <div class="push toggle">
             <div class="light"></div>
         </div>\
-        `)
+        `),
+        $document = $(document)
 
     widget.value = widget.find('span')
 
-    widget.on('drag',function(){})
+    widget.on('drag',function(e){e.stopPropagation()})
     widget.on('draginit',function(){
-        widget.setValue(widgetData.on,true)
-        widget.on('dragend',function(){
-            widget.setValue(widgetData.off,true)
-            widget.off('dragend')
-        })
+        widget.off('draginit')
+        widget.fakeclick()
     })
 
+    widget.fakeclick = function(){
+        widget.setValue(widgetData.on,true)
+        $document.on('dragend.push',function(){
+            widget.setValue(widgetData.off,true)
+            $document.off('dragend.push')
+            widget.on('draginit.push',function(){
+                widget.off('draginit.push')
+                widget.fakeclick()
+            })
+        })
+    }
 
     widget.getValue = function() {
         return widget.hasClass('on')?widgetData.on:widgetData.off
@@ -372,6 +383,8 @@ createWidget.xy = function(widgetData) {
 
     })
     pad.on('drag',function(e,data){
+        e.stopPropagation()
+
         if (data.shiftKey) return
 
         var h = clip((-data.deltaY)*100/pad.height+off.y,[0,100]),
@@ -516,6 +529,8 @@ createWidget.rgb = function(widgetData) {
 
     })
     pad.on('drag',function(e,data){
+        e.stopPropagation()
+
         if (data.shiftKey) return
 
         var h = clip((-data.deltaY)*100/pad.height+rgbOff.y,[0,100]),
@@ -561,6 +576,7 @@ createWidget.rgb = function(widgetData) {
 
 
     huePad.on('drag',function(e,data){
+        e.stopPropagation()
 
         if (data.shiftKey) return
 
@@ -703,7 +719,6 @@ createWidget.fader = function(widgetData,container){
         dimension = widgetData.horizontal?'width':'height',
         absolute = widgetData.absolute
 
-        if (widgetData.gauge===false) fader.addClass('nogauge')
         if (widgetData.horizontal) container.addClass('horizontal')
 
         handle.size = 0
@@ -740,6 +755,7 @@ createWidget.fader = function(widgetData,container){
 
 
     wrapper.on('drag',function(e,data){
+        e.stopPropagation()
 
         if (data.shiftKey) return
 
@@ -919,6 +935,7 @@ createWidget.knob = function(widgetData) {
     })
 
     wrapper.on('drag',function(e,data){
+        e.stopPropagation()
 
         if (data.shiftKey) return
 

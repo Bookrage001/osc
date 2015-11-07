@@ -67,7 +67,6 @@ init = function(session,callback) {
 
                 if ($('#sidepanel').has(dd.target)[0]) return
                 dd.absolute=true
-                dd.shiftKey=false
                 $(dd.target).trigger('draginit',[dd])
                 if (target!=dd.target) $(dd.target).click()
                 target = dd.target

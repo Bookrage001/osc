@@ -608,9 +608,11 @@ a {
     display:none;
     overflow: auto;
     position: relative;
-    padding:$gutter;
-    padding-right:0;
-    padding-bottom: 0;
+    padding-top:$gutter;
+    padding-left:$gutter;
+    > .widget {
+        margin-right:$gutter;
+    }
     &.on {
         display: block;
         height:100%;
@@ -623,9 +625,8 @@ a {
 // WIDGETS
 
 .widget {
-    display:inline-block;
-    border-right:$gutter solid transparent;
     border-bottom:$gutter solid transparent;
+    display:inline-block;
     height:auto;
     min-width: 100rem;
     overflow: hidden;
@@ -649,7 +650,7 @@ a {
         z-index: 1;
         padding:10rem 10rem;
         position:absolute;
-        top:0rem;
+        top:0;
         left:0;
         right:0;
         text-overflow:ellipsis;
@@ -676,15 +677,6 @@ a {
     }
 }
 
-.master-dragging:after {
-    content:"";
-    position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index: 999999;
-}
 
 
 /* STRIP (contains any widgets) */
@@ -692,7 +684,7 @@ a {
 
 
 .strip-container {
-    padding-top: 35rem+$gutter;
+    padding-top: 35rem;
     width:100rem;
     height:100%;
     overflow: visible;
@@ -715,22 +707,34 @@ a {
             width:auto;
         }
     }
+    &.vertical {
+        padding-top: 35rem + $gutter;
+        .strip {
+            > .widget {
+                border-bottom:$gutter solid transparent;
+                &.last-child {
+                    border-bottom:0
+                }
+            }
+        }
+
+    }
     &.horizontal {
         padding-top:0;
-        padding-left: 35rem+$gutter;
+        padding-left: 35rem + $gutter;
         width:100%;
         height:auto;
         display: block;
-        &.nolabel {
-            padding-left: 0;
-        }
         .strip {
             flex-direction: row;
-
             > .widget {
                 flex-shrink: initial;
-                width:100%;
+                width: 100%;
                 border-bottom:0;
+                border-right:$gutter solid transparent;
+                &.last-child {
+                    border-right:0
+                }
             }
         }
         > .label {
@@ -749,6 +753,7 @@ a {
                 height:100%;
             }
         }
+
     }
 
 }
@@ -839,6 +844,7 @@ a {
 .push {
     &.on .light {
         animation:none;
+        background: $color-accent;
     }
     &:active .light {
         background: $color-accent;
@@ -867,7 +873,7 @@ a {
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
-                &:after {
+                &:before {
                     left:50%;
                     top:8rem;
                     width:8rem;
