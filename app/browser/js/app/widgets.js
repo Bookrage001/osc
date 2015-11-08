@@ -209,14 +209,12 @@ createWidget.toggle  = function(widgetData) {
         return widget.hasClass('on')?widgetData.on:widgetData.off
     }
     widget.setValue = function(v,send,sync) {
-        var on = widgetData.on,
-            off= widgetData.off
-        if (v==on) {
+        if (v==widgetData.on) {
             widget.addClass('on').ripple()
-            if (send) widget.sendValue(v)
-        } else if (v==off) {
+            if (send) widget.sendValue(widgetData.on)
+        } else if (v==widgetData.off) {
             widget.removeClass('on')
-            if (send) widget.sendValue(v)
+            if (send) widget.sendValue(widgetData.off)
         }
 
         if (send) widget.trigger('sync')
@@ -322,7 +320,7 @@ createWidget.switch = function(widgetData) {
 
 
     widget.getValue = function() {
-        return widget.find('.on').data('value')
+        return widget.value
     }
     widget.setValue = function(v,send,sync) {
         var e = widget.find('.value[data-value="'+v+'"]')
@@ -429,6 +427,11 @@ createWidget.xy = function(widgetData) {
     }
     widget.setValue = function(v,send,sync) {
         if (v[1]==undefined) var v = [v,v]
+
+        for (i in [0,1]) {
+            v[i] = clip(v[i],[range[['x','y'][i]].min,range[['x','y'][i]].max])
+        }
+
         var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100])
             h = mapToScale(v[1],[range.y.min,range.y.max],[0,100]),
 
@@ -631,7 +634,7 @@ createWidget.rgb = function(widgetData) {
         if (v[2]==undefined) var v = [v[0],v[1],v[1]]
 
         for (i in [0,1,2]) {
-            if (!0<=v[i]<=255) {v[i]=Math.min(255,Math.max(0,v[i]))}
+            v[i] = clip(v[i],[0,255])
         }
 
 
@@ -1020,7 +1023,7 @@ createWidget.knob = function(widgetData) {
 
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         handle[0].setAttribute('style','transform:rotateZ('+(r-2)+'deg)')
-        var v = widget.getValue() || v
+        var v = widget.getValue()
 
         widget.showValue(v)
 

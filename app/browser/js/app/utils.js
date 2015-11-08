@@ -30,8 +30,8 @@ stateSave = function() {
 stateGet = function (){
     var data = []
     $.each(__widgets__,function(i,widget) {
-        var v = widget[0].getValue()
-        if (v!=undefined) data.push(i+' '+widget[0].getValue())
+        var v = widget[widget.length-1].getValue()
+        if (v!=undefined) data.push(i+' '+v)
     })
     return data.join('\n')
 }
@@ -65,7 +65,7 @@ stateSet = function(preset,send){
 
         setTimeout(function(){
             if (__widgets__[data[0]]!=undefined) {
-                __widgets__[data[0]][0].setValue(data[1].split(','),send,true)
+                __widgets__[data[0]][__widgets__[data[0]].length-1].setValue(data[1].split(','),send,true)
             }
         },i)
     })

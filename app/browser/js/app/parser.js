@@ -128,9 +128,7 @@ parsewidgets = function(widgets,parent) {
         if (__widgets__[widgetData.id]==undefined) {
             __widgets__[widgetData.id] = []
         }
-
-        if (__widgets__[widgetData.id].indexOf(widgetInner)!=-1) delete __widgets__[widgetData.id][__widgets__[widgetData.id].indexOf(widgetInner)]
-
+        
         __widgets__[widgetData.id].push(widgetInner)
 
 
