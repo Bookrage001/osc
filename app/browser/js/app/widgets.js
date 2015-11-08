@@ -323,12 +323,13 @@ createWidget.switch = function(widgetData) {
         return widget.value
     }
     widget.setValue = function(v,send,sync) {
-        var e = widget.find('.value[data-value="'+v+'"]')
+        var e = widget.find('.value[data-value="'+v+'"]'),
+            i = e.index()
         if (e.length) {
-            widget.value = v
+            widget.value = widgetData.values[i]
             widget.find('.on').removeClass('on')
             e.addClass('on').ripple()
-            if (send) widget.sendValue(v)
+            if (send) widget.sendValue(widget.value)
             if (sync) widget.trigger('sync')
         }
 
