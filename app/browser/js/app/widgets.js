@@ -308,13 +308,13 @@ createWidget.switch = function(widgetData) {
         widget.append('<div class="value" data-value="'+widgetData.values[v]+'">'+widgetData.values[v]+'</div>')
     }
 
-    widget.value = false
+    widget.value = undefined
 
     widget.on('drag',function(e){e.stopPropagation()})
 
     widget.on('draginit',function(e,dd){
         var val = dd.target.getAttribute('data-value')
-        if (val!==widget.value) widget.setValue(val,true,true)
+        if (val!=widget.value || widget.value===undefined) widget.setValue(val,true,true)
     })
 
 
