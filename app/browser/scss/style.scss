@@ -1129,7 +1129,6 @@ a {
 .fader-container {
     width:100rem;
     height:100%;
-    min-height: 300rem;
 
     &.nolabel .fader-wrapper-outer {
         top:0;
@@ -1184,7 +1183,7 @@ a {
                 &:before {
                     content:"";
                     position: absolute;
-                    top:-6rem;
+                    top:-4rem;
                     left:-2rem;
                     height:8rem;
                     width:8rem;
@@ -1196,7 +1195,7 @@ a {
                 &:after {
                     content:"";
                     position: absolute;
-                    top:-12rem;
+                    top:-10rem;
                     left:-8rem;
                     height:20rem;
                     width:20rem;
@@ -1209,13 +1208,14 @@ a {
 
         .pips {
             position: absolute;
-            top:-1%;
-            bottom:1%;
+            top:0;
+            bottom:0;
             left:14rem;
             .pip {
                 height:1%;
                 width:4rem;
-                border-bottom:1px solid $color-text;
+                background: linear-gradient(white,transparent 1px);
+
                 &.val {
                     width:10rem;
                     position: relative;
@@ -1227,7 +1227,7 @@ a {
                         font-size:11rem;
                         line-height: 12rem;
                         left:15rem;
-                        top:-2rem;
+                        top:-5.5rem;
                         color:$color-text;
                     }
                 }
@@ -1258,12 +1258,12 @@ a {
                 width:0;
                 &:before {
                     top:-2rem;
-                    right:-6rem;
+                    right:-4rem;
                     left:auto;
                 }
                 &:after {
                     top:-8rem;
-                    right:-12rem;
+                    right:-10rem;
                     left:auto
                 }
             }
@@ -1271,19 +1271,16 @@ a {
         .pips {
             top:14rem;left:0;
             right:0;
-            display: flex;
-            flex-direction:row;
-            align-items: stretch;
+            font-size: 0;
         }
         .pip {
-            width:100%;
-            display: block;
+            width:1%;
+            display: inline-block;
             height:4rem;
-            border-bottom:0;
-            border-right:1rem solid $color-text-fade;
+            margin-bottom:5rem;
+            background: linear-gradient(90deg,$color-text,transparent 1px );
             &.val {
                 width:1%;
-                float:left;
                 height:10rem;
                 span {
                     top:15rem;
@@ -1324,24 +1321,6 @@ a {
             left:0;
         }
 
-        &.nogauge {
-            .knob:after, .knob-mask:after {
-                display: none;
-            }
-            .knob-wrapper .knob:before {
-                content:"";
-                position:absolute;
-                top:auto;
-                bottom:6rem;
-                left:6rem;
-                height:7rem;
-                width:7rem;
-                background:$color-accent;
-                border:none!important;
-                border-radius: 100%!important;
-                box-shadow: 0 0  0 3rem transparentize($color-accent,.8),0 0  2rem 0  mix($color-text,$color-fg,2);
-            }
-        }
 
         .knob-wrapper {
             padding:20rem;
