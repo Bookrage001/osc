@@ -712,7 +712,7 @@ a {
         .strip {
             > .widget {
                 border-bottom:$gutter solid transparent;
-                &.last-child {
+                &:last-child {
                     border-bottom:0
                 }
             }
