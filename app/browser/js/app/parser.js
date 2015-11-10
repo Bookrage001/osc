@@ -2,8 +2,10 @@ __widgets__ = {}
 __widgetsIds__ = {}
 
 
-iterator = {}
-getIterator = function(type){
+widgetIterator = {}
+tabIterator = {}
+getIterator = function(type,tab){
+    var iterator = tab?tabIterator:widgetIterator
     if (iterator[type]==undefined) iterator[type] = 0
     iterator[type] += 1
     return iterator[type]
@@ -23,6 +25,8 @@ parsetabs = function(tabs,parent){
     if (main) {
         __widgets__ = {}
         __widgetsIds__ = {}
+
+        tabIterator = {}
         session = tabs
     }
 
@@ -41,7 +45,7 @@ parsetabs = function(tabs,parent){
 
         var label = tabData.label||tabData.id||'Unnamed',
             hash = hashCode(label),
-            id = 'tab_'+hash+'_'+getIterator('tab'+hash),
+            id = 'tab_'+hash+'_'+getIterator('tab'+hash,true),
             on = i==0?'on':''
 
         tabData.label = label
@@ -128,7 +132,7 @@ parsewidgets = function(widgets,parent) {
         if (__widgets__[widgetData.id]==undefined) {
             __widgets__[widgetData.id] = []
         }
-        
+
         __widgets__[widgetData.id].push(widgetInner)
 
 
