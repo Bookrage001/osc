@@ -709,12 +709,10 @@ a {
     }
     &.vertical {
         padding-top: 35rem + $gutter;
+        border-bottom:0;
         .strip {
             > .widget {
                 border-bottom:$gutter solid transparent;
-                &:last-child {
-                    border-bottom:0
-                }
             }
         }
 
@@ -725,6 +723,7 @@ a {
         width:100%;
         height:auto;
         display: block;
+        border-right:0;
         .strip {
             flex-direction: row;
             > .widget {
@@ -732,9 +731,6 @@ a {
                 width: 100%;
                 border-bottom:0;
                 border-right:$gutter solid transparent;
-                &.last-child {
-                    border-right:0
-                }
             }
         }
         > .label {
