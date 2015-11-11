@@ -39,7 +39,7 @@ Options:
 
 Exemples :
 
-$ electron /path/to/app/ -h 127.0.0.1:5555 127.0.0.1:6666 -p 7777
+$ electron /path/to/app/ -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
 
