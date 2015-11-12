@@ -1,6 +1,7 @@
 createWidget = {}
 widgetOptions = {
     strip: {
+        type:'strip',
         id:'auto',
         label:'auto',
         horizontal:false,
@@ -9,6 +10,7 @@ widgetOptions = {
         widgets:[]
     },
     panel: {
+        type:'panel',
         id:'auto',
         label:'auto',
         left:'0',
@@ -19,6 +21,7 @@ widgetOptions = {
         widgets:[]
     },
     led: {
+        type:'led',
         id:'auto',
         label:'auto',
         color:'green',
@@ -28,6 +31,7 @@ widgetOptions = {
         path:'auto'
     },
     toggle: {
+        type:'toggle',
         id:'auto',
         label:'auto',
         width:'auto',
@@ -38,6 +42,7 @@ widgetOptions = {
         target:[]
     },
     push: {
+        type:'push',
         id:'auto',
         label:'auto',
         width:'auto',
@@ -48,6 +53,7 @@ widgetOptions = {
         target:[]
     },
     switch: {
+        type:'switch',
         id:'auto',
         label:'auto',
         width:'auto',
@@ -58,6 +64,7 @@ widgetOptions = {
         target:[]
     },
     xy: {
+        type:'xy',
         id:'auto',
         label:'auto',
         width:'auto',
@@ -70,6 +77,7 @@ widgetOptions = {
         target:[]
     },
     rgb: {
+        type:'rgb',
         id:'auto',
         label:'auto',
         width:'auto',
@@ -80,6 +88,7 @@ widgetOptions = {
         target:[]
     },
     fader: {
+        type:'fader',
         id:'auto',
         label:'auto',
         width:'auto',
@@ -91,6 +100,7 @@ widgetOptions = {
         target:[]
     },
     knob: {
+        type:'knob',
         id:'auto',
         label:'auto',
         width:'auto',

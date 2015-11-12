@@ -1,11 +1,19 @@
 ## Open Stage Control
 
-Open Stage Control (*temporary name*) is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
+Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
 
-It's under active development; hence, current features are subject to change without notice.
+The project is under active development; hence, current features are subject to change without notice.
 
 <img src="https://cloud.githubusercontent.com/assets/5261671/10734122/03073fe2-7c02-11e5-9f6d-4ff0887ebfe6.png" width="49%" style="display:inline-block;margin-right:1%"/>
 <img src="https://cloud.githubusercontent.com/assets/5261671/10734121/0303f1de-7c02-11e5-94a1-28cd3b7eb27d.png" width="49%" style="display:inline-block"/>
+
+### Features
+- mouse & multi-touch sensitive widgets
+- modular & responsive layout
+- built-in live editor
+- bi-directionnal osc bindings
+- headless server mode with any number of clients using chromium
+- app state store / recall & import / export
 
 ### Run from sources
 
@@ -52,17 +60,9 @@ This will create a headless app available through http on port 8080. Multiple cl
 
 
 
-### Features
-- modular, tab-based, responsive layout
-- cross-widgets and cross-apps synchronization
-  - widgets that share the same id will update each other's values within the app
-  - widgets will update according to incoming osc message matching their own osc output pattern
-- app state saving & loading
-
-
 ### Session file structure
 
-A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a standard json file (except for double quotes around names which are not required) :
+A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a standard json file :
 
 ```
 [
@@ -200,6 +200,9 @@ It relies on the use of several libraries :
 - [Node.js](https://nodejs.org/)
 - [Electron](http://electron.atom.io/)
 - [node-osc](https://github.com/TheAlphaNerd/node-osc)
+- [socket.io]()
+- [browserify]()
+- [express]()
 - [Sass.js](https://github.com/medialize/sass.js/)
 - [jQuery](http://jquery.com/)
 - [Font Awesome](http://fontawesome.io/)

@@ -53,7 +53,7 @@ ipc.on('sessionOpen',function(data){
     $('#container').append('<div id="loading"><div class="spinner"></div></div>')
     setTimeout(function(){
         init(session,function(){$('#loading').hide()})
-    },1)
+    },25)
 
 })
 

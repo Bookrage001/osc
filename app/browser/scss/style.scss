@@ -468,7 +468,7 @@ a {
         height:30rem;
         width:30rem;
         border-radius: 50%;
-        border:2rem solid rgba(0,0,0,.2);
+        border:2rem solid $color-border;
         border-top-color:$color-accent;
         animation: spin .5s linear infinite;
     }
