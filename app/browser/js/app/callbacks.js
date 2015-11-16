@@ -31,6 +31,7 @@ ipc.on('sessionList',function(data){
         $('#lobby .list').append('<li><a class="btn load" data-session="'+data[i]+'">'+data[i]+'<span>'+icon('remove')+'</span></a></li>')
     }
     $('#lobby .list').append('<a class="btn browse">...</a>')
+    $('#lobby .list').append('<a class="btn new">New</a>')
     $('#lobby .load').click(function(e){
         e.stopPropagation()
         ipc.send('sessionOpen',{path:$(this).data('session')})
@@ -43,6 +44,13 @@ ipc.on('sessionList',function(data){
     $('#lobby .browse').click(function(e){
         e.stopPropagation()
         sessionBrowse()
+    })
+    $('#lobby .new').click(function(e){
+        e.stopPropagation()
+        $('#lobby').remove()
+        setTimeout(function(){
+            init([{}],function(){$('#open-toggle').click()})
+        },25)
     })
 })
 
