@@ -59,6 +59,7 @@ $sidepanel-size:300rem;
     outline:0;
     font:inherit;
     cursor: inherit;
+     -webkit-tap-highlight-color:transparent
 }
 a {
     cursor: pointer;
@@ -83,7 +84,7 @@ $scrollbar-margin:1rem;
     }
 }
 ::-webkit-scrollbar-corner  {
-    background: $color-border;
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
     background:$bg-3d;
