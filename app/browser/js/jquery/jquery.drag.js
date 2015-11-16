@@ -45,14 +45,16 @@
             function getOffset(obj) {
                 var offsetLeft = 0
                 var offsetTop = 0
-                do {
-                    if (!isNaN(obj.offsetLeft)) {
-                        offsetLeft += obj.offsetLeft - obj.scrollLeft
-                    }
-                    if (!isNaN(obj.offsetTop)) {
-                        offsetTop += obj.offsetTop - obj.scrollTop
-                    }
-                } while(obj = obj.offsetParent )
+                if (obj) {
+                    do {
+                        if (!isNaN(obj.offsetLeft)) {
+                            offsetLeft += obj.offsetLeft - obj.scrollLeft
+                        }
+                        if (!isNaN(obj.offsetTop)) {
+                            offsetTop += obj.offsetTop - obj.scrollTop
+                        }
+                    } while(obj = obj.offsetParent )
+                }
 
                 return {left: offsetLeft, top: offsetTop}
             }
