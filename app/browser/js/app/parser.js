@@ -79,8 +79,10 @@ parsewidgets = function(widgets,parent) {
 
         widgetData.type =  widgetData.type || 'fader'
 
-        for (i in widgetOptions[widgetData.type]) {
-            if (widgetData[i]===undefined) widgetData[i] = widgetOptions[widgetData.type][i]
+        var tmpWidgetOptions = JSON.parse(JSON.stringify(widgetOptions))
+
+        for (i in tmpWidgetOptions[widgetData.type]) {
+            if (widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
         }
 
         widgetData.id = widgetData.id=='auto'?widgetData.type+'_'+getIterator(widgetData.type):widgetData.id.replace(' ','_')
@@ -122,9 +124,6 @@ parsewidgets = function(widgets,parent) {
 
         // create widget
         var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
-        widgetInner.type =  widgetData.type
-
-        widgetContainer.data(widgetData)
 
         widgetContainer.append(widgetInner)
 
