@@ -31,7 +31,6 @@ enableEditor = function(){
 
         var container = $(this),
             parent = container.parent(),
-            parentContainer = parent.parent().hasClass('content')?parent:parent.parent(),
             index = container.index(),
             data = getdata(container),
             form = $('<div class="form"></div>')
@@ -48,13 +47,8 @@ enableEditor = function(){
 
             stateSet(state,false)
 
-            container.remove()
+            container.replaceWith(newContainer)
 
-            if (index == parent.children().length-1) {
-                newContainer.detach().appendTo(parent)
-            } else {
-                newContainer.detach().insertBefore(parent.children().eq(index))
-            }
             enableEditor()
             sync()
             newContainer.children().first().click()
@@ -160,7 +154,6 @@ enableEditor = function(){
         var link = $(this),
             container = $(link.attr('data-tab')),
             parent = container.parent(),
-            parentContainer = container.parent().parent(),
             index = container.index(),
             data = getdata(container),
             form = $('<div class="form"></div>')
