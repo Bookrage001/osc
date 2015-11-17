@@ -7,7 +7,7 @@ var app = require('app')
   , osc = require('node-osc')
   , fs = require('fs')
   , vm = require('vm')
-  , ipc = require('ipc')
+  , ipc = require('ipc-main')
 
   , window = null
 
@@ -102,7 +102,7 @@ if (!settings.noGui) {
             'background-color':'#1a1d22'
         })
 
-        window.loadUrl('file://' + __dirname + '/../browser/index.html')
+        window.loadURL('file://' + __dirname + '/../browser/index.html')
 
         window.on('closed', function() {
             window = null

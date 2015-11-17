@@ -1,7 +1,7 @@
 webFrame = require('web-frame')
 
 // mainProcess & renderProcess communication engine
-ipc = require('ipc')
+ipc = require('ipc-renderer')
 
 // jquery
 window.$ = window.jQuery = require('./jquery/jquery.min.js')
