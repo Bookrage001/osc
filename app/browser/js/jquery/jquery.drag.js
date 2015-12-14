@@ -88,8 +88,8 @@
                 // get element under pointer: usefull only for master dragging (when target changes during drag)
                 e.target = document.elementFromPoint(e.originalEvent.changedTouches[0].clientX, e.originalEvent.changedTouches[0].clientY)
 
-                e.pageX = e.originalEvent.changedTouches[0].pageX
-                e.pageY = e.originalEvent.changedTouches[0].pageY
+                e.pageX = e.originalEvent.targetTouches[0].pageX
+                e.pageY = e.originalEvent.targetTouches[0].pageY
                 e.offsetX = e.pageX-getOffset(e.target).left
                 e.offsetY = e.pageY-getOffset(e.target).top
                 e.speedX = previousEvent?e.pageX - previousEvent.pageX:0
