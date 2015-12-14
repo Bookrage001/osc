@@ -372,13 +372,13 @@ if (settings.noGui) {
        ,browserify  = require('browserify')
        ,jsadded     = 0
     express.get('/', function(req, res){
-        res.sendfile(path.resolve(__dirname + '/../browser/index-headless.html'))
+        res.sendFile(path.resolve(__dirname + '/../browser/index-headless.html'))
     })
     express.get('*browser-headless.js', function(req, res){
         browserify().add(path.resolve(__dirname + '/../browser' + req.path)).bundle().pipe(res);
     })
     express.get('*', function(req, res){
-        res.sendfile(path.resolve(__dirname + '/../browser' + req.path))
+        res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
     })
 
 
