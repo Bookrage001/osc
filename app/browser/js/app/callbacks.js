@@ -1,5 +1,7 @@
 
 ipc.on('receiveOsc',function(event,data){
+    var data = data || event
+
     // fetch id
     var path = data.path
     var id = __widgetsIds__[path]
@@ -13,12 +15,14 @@ ipc.on('receiveOsc',function(event,data){
 
 })
 
-ipc.on('stateLoad',function(event,preset){
-    stateSet(preset,true)
-    stateQuickSave(preset)
+ipc.on('stateLoad',function(event,data){
+    var data = data || event
+    stateSet(data,true)
+    stateQuickSave(data)
 })
 
 ipc.on('sessionList',function(event,data){
+    var data = data || event
     $('#lobby').append('\
         <div class="main">\
             <div class="header">\
@@ -55,6 +59,7 @@ ipc.on('sessionList',function(event,data){
 })
 
 ipc.on('sessionOpen',function(event,data){
+    var data = data || event
     var session = JSON.parse(data)
 
     $('#lobby').remove()
@@ -66,5 +71,7 @@ ipc.on('sessionOpen',function(event,data){
 })
 
 ipc.on('error',function(event,data){
+    var data = data || event
+    
     createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
 })
