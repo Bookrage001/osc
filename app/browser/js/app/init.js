@@ -92,21 +92,21 @@ init = function(session,callback) {
     sync = function() {
         $.each(__widgets__,function(i,widget) {
             if (widget.length>1) {
-                var script =''
 
                 var closureSync = function(x) {
                     return function() {
                         var v = widget[x].getValue()
                         for (k=0;k<widget.length;k++) {
                             if (x!=k) {
-                                widget[k].setValue(v,false,false)
+                                if (document.body.contains(widget[k][0].parentNode))
+                                    widget[k].setValue(v,false,false)
                             }
                         }
                     }
                 }
 
                 for (j in widget) {
-                    widget[j].off('ssync').on('sync',closureSync(j))
+                    widget[j].off('sync').on('sync',closureSync(j))
                 }
 
 
