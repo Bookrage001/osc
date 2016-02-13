@@ -29,11 +29,13 @@ enableEditor = function(){
         e.preventDefault()
         e.stopPropagation()
 
+
         var container = $(this),
             parent = container.parent(),
             index = container.index(),
             data = getdata(container),
             form = $('<div class="form"></div>')
+
 
         $('.editing').removeClass('editing')
         container.addClass('editing')
@@ -54,8 +56,18 @@ enableEditor = function(){
             newContainer.children().first().click()
             $('#sidepanel').scrollTop(scroll)
 
-
         }
+
+        $('.widget.ui-resizable').resizable('destroy')
+        $(this).resizable({
+            handles:'se',
+            helper: "resizable-helper",
+            stop: function( event, ui ) {
+                data.height = ui.size.height
+                data.width = ui.size.width
+                updateWidget()
+            }
+        })
 
         for (i in data) {
             if (i!='widgets' && i!='tabs') {

@@ -678,6 +678,21 @@ a {
     }
 }
 
+.ui-resizable-handle {
+    position: absolute;
+    bottom: 5rem;
+    right: 5rem;
+    width:15rem;
+    height:15rem;
+    border-right: 2rem solid $color-accent;
+    border-bottom: 2rem solid $color-accent;
+    z-index: 100000;
+    cursor: se-resize;
+}
+.resizable-helper {
+    border: 1rem dashed $color-accent;
+
+}
 
 
 /* STRIP (contains any widgets) */
@@ -1243,12 +1258,14 @@ a {
         position: relative;
         top:auto;
         padding-bottom: 35rem;
+        height: 100%;
         .fader-wrapper {
             padding:20rem 20rem 50rem;
         }
         .fader {
             width:100%;
             left:auto;
+            top:50%;
             height:4rem;
             .handle {
                 height:100%!important;
