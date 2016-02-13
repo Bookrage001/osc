@@ -59,15 +59,29 @@ enableEditor = function(){
         }
 
         $('.widget.ui-resizable').resizable('destroy')
+        $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+
         $(this).resizable({
             handles:'se',
-            helper: "resizable-helper",
+            helper: "ui-helper",
             stop: function( event, ui ) {
                 data.height = ui.size.height
                 data.width = ui.size.width
                 updateWidget()
             }
         })
+
+        if (!$(this).parents('.strip, .panel').length) {
+            $(this).draggable({
+                helper: "ui-helper",
+                stop: function( event, ui ) {
+                    data.top = ui.position.top
+                    data.left = ui.offset.left
+                    updateWidget()
+                },
+                handle:'.ui-draggable-handle'
+            }).append('<div class="ui-draggable-handle"></div>')
+        }
 
         for (i in data) {
             if (i!='widgets' && i!='tabs') {
@@ -396,6 +410,8 @@ enableEditor = function(){
 }
 
 disableEditor = function(){
+    $('.widget.ui-resizable').resizable('destroy')
+    $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
     $('.widget').off('click.editor')
     $('a[data-tab]').off('click.editor')
     $('.editor-root').off('click.editor').addClass('disabled')

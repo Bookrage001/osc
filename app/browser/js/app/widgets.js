@@ -5,6 +5,8 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         horizontal:false,
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         widgets:[]
@@ -25,6 +27,8 @@ widgetOptions = {
         id:'auto',
         label:'auto',
         color:'green',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         range:{min:0,max:1},
@@ -34,6 +38,8 @@ widgetOptions = {
         type:'toggle',
         id:'auto',
         label:'auto',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         off:0,
@@ -45,6 +51,8 @@ widgetOptions = {
         type:'push',
         id:'auto',
         label:'auto',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         off:0,
@@ -56,6 +64,8 @@ widgetOptions = {
         type:'switch',
         id:'auto',
         label:'auto',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         horizontal:false,
@@ -67,6 +77,8 @@ widgetOptions = {
         type:'xy',
         id:'auto',
         label:'auto',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         split:false,
@@ -80,6 +92,8 @@ widgetOptions = {
         type:'rgb',
         id:'auto',
         label:'auto',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         split:false,
@@ -91,6 +105,8 @@ widgetOptions = {
         type:'fader',
         id:'auto',
         label:'auto',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         horizontal:false,
@@ -103,6 +119,8 @@ widgetOptions = {
         type:'knob',
         id:'auto',
         label:'auto',
+        left:'auto',
+        top:'auto',
         width:'auto',
         height:'auto',
         range:{min:0,max:1},
@@ -135,28 +153,11 @@ createWidget.panel = function(widgetData,container) {
     var widget = $(`
             <div class="panel">
             </div>
-            `),
-        left = parseInt(widgetData.left)==widgetData.left?parseInt(widgetData.left)+'rem' : widgetData.left,
-        top = parseInt(widgetData.top)==widgetData.top?parseInt(widgetData.top)+'rem' : widgetData.top,
-        width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
-        height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height
+            `)
 
     if (widgetData.stretch) widget.addClass('stretch')
 
-    container.css({
-        left:'auto',
-        top:'auto',
-        width:'auto',
-        height:'auto'
-    })
 
-
-    container.css({
-        left:left,
-        top:top,
-        width:width,
-        height:height
-    })
     parsewidgets(widgetData.widgets,widget)
     widget.getValue = function(){return}
     widget.setValue = function(){return}

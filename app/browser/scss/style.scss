@@ -640,6 +640,11 @@ a {
     background-clip:padding-box;
     -webkit-tap-highlight-color:transparent;
 
+    &.absolute-position {
+        position: absolute;
+        z-index: 10
+    }
+
      &.nolabel {
          padding-top:0;
          > .label {
@@ -689,8 +694,23 @@ a {
     z-index: 100000;
     cursor: se-resize;
 }
-.resizable-helper {
+.ui-helper {
     border: 1rem dashed $color-accent;
+}
+.ui-draggable-handle {
+    position: absolute;
+    position: absolute;
+    top: 5rem;
+    left: 5rem;
+    z-index: 100000;
+    cursor: -webkit-grab;
+    width:15rem;
+    height:15rem;
+    border-radius: 15rem;
+    background: rgba($color-accent,.5);
+    &:active {
+        cursor:-webkit-grabbing
+    }
 
 }
 

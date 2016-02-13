@@ -53,7 +53,7 @@ ipc.on('sessionList',function(event,data){
         e.stopPropagation()
         $('#lobby').remove()
         setTimeout(function(){
-            init([{}],function(){$('#open-toggle').click()})
+            init([{}],function(){$('#open-toggle, .enable-editor, .editor-root').click()})
         },25)
     })
 })
@@ -72,6 +72,6 @@ ipc.on('sessionOpen',function(event,data){
 
 ipc.on('error',function(event,data){
     var data = data || event
-    
+
     createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
 })
