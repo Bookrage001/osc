@@ -69,7 +69,7 @@ A valid session file is a javascript file that returns, when eval'd, an array of
     {
         id:"my_tab_id",     // [string] optional, default to unique 'tab_n'
         label:"My tab",     // [string] default to id
-        stretch:false,       // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
+        stretch:false,      // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
         widgets: [],        // [array] of widget objects
         tabs: []            // [array] of tab objects
                             // A tab cannot contain widgets and tabs simultaneously
@@ -108,7 +108,10 @@ It can also be a self invoking function that returns an array of objects :
 {
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
     label:"My widget",      // [string] default to id
-    width:false,            // [integer] widget's width in px
+    top:"auto",             // [string|integer] if set, the widget will have an absolute position (percentages allowed)
+    left:"auto",            // [string|integer] if set, the widget will have an absolute position (percentages allowed)
+    width:"auto",           // [string|integer] widget's width in px (percentages allowed)
+    height:"auto",          // [string|integer] widget's height in px (percentages allowed)
     target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
     path:false              // [string] osc path, default to '/widget_id'
 }
@@ -126,10 +129,6 @@ It can also be a self invoking function that returns an array of objects :
 -   **Panel** :  *widget containers with arbitrary position and size*
     ```  
     type:'panel',
-    x:'auto',                   // [integer] absolute position in px
-    y:'auto',                   // [integer] absolute position in px
-    height:'auto',              // [integer] absolute position in px
-    width:'auto',               // [integer] width in px
     stretch:false,              // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
     widgets: []                 // [array] of widget objects
     ```
@@ -138,7 +137,7 @@ It can also be a self invoking function that returns an array of objects :
     ```  
     type:'fader',
     horizontal:false,           // [bool]   set to true to display fader horizontally
-    range: {min:0,max:1},       // [object] defining the breakpoints of the fader
+    range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
                                 //          keys can be percentages or 'min' / 'max'
     unit: false,                // [string] value suffix
     absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
@@ -147,7 +146,7 @@ It can also be a self invoking function that returns an array of objects :
 -   **knob**
     ```
     type:'knob',
-    range: {min:0,max:1},       // [object] minimum and maximum values
+    range: {"min":0,"max":1},       // [object] minimum and maximum values
     unit: false,                // [string] value suffix
     absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
     gauge:true                  // [bool]   set to false to replace the gauge with a simple dot
@@ -157,8 +156,8 @@ It can also be a self invoking function that returns an array of objects :
     ```  
     type:'xy',
     range:{                     // [object] minimum and maximum values for x and y axis
-            x:{min:0,max:1},
-            y:{min:0,max:1}
+            x:{"min":0,"max":1},
+            y:{"min":0,"max":1}
         },
     absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
     split:false                 // [bool|object] sends separate osc messages for x and y axes
