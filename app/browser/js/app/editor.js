@@ -67,8 +67,8 @@ enableEditor = function(){
             handles:'se',
             helper: "ui-helper",
             stop: function( event, ui ) {
-                data.height = ui.size.height
-                data.width = ui.size.width
+                data.height = Math.max(ui.size.height,30)
+                data.width = Math.max(ui.size.width,30)
                 updateWidget()
             }
         })

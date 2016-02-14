@@ -699,6 +699,8 @@ a {
 }
 .ui-helper {
     border: 1rem dashed $color-accent;
+    min-width:30rem!important;
+    min-height:30rem!important;
 }
 .ui-draggable-handle {
     position: absolute;

@@ -51,7 +51,7 @@ parsetabs = function(tabs,parent,main){
         tabData.stretch = tabData.stretch || false
         delete tabData.id
 
-        navtabs.append(`<li><a class="${on}" data-tab="#${id}"><span>${label}</span></a></li>`)
+        navtabs.append(`<li class="${on}"><a class="${on}" data-tab="#${id}"><span>${label}</span></a></li>`)
 
         var tabContent = $(`<div class="tab ${on}" id="${id}"></div>`)
         tabContent.data(tabData)
