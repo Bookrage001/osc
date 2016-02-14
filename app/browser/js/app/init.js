@@ -2,7 +2,7 @@ init = function(session,callback) {
 
     $('#container').empty()
 
-    parsetabs(session,$('#container'))
+    parsetabs(session,$('#container'),true)
 
     // create sidepanel
 

@@ -7,16 +7,9 @@
                 top:40,
                 left:200,
                 height:400,width:300,
-                widgets:[
-                    // these are fader (all options to defaults)
-                    {
-                    },
-                    {
-                    },
-                    {
-                    },
-                    {
-                    }
+                tabs: [
+                    {widgets:[{},{},{}]}
+                    ,{widgets:[{},{},{},{}]}
                 ]
             },
             {

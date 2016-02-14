@@ -126,11 +126,12 @@ It can also be a self invoking function that returns an array of objects :
     widgets: []                 // [array] of widget objects
     ```
 
--   **Panel** :  *widget containers with arbitrary position and size*
+-   **Panel** :  *widget/tabs containers*
     ```  
     type:'panel',
     stretch:false,              // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
-    widgets: []                 // [array] of widget objects
+    widgets: [],                // [array] of widget objects
+    tabs: []                    // [array] of tab objects
     ```
 
 -   **fader**

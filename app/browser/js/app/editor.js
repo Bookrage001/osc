@@ -56,6 +56,8 @@ enableEditor = function(){
             newContainer.children().first().click()
             $('#sidepanel').scrollTop(scroll)
 
+            if (data.tabs && data.tabs.length) tabs()
+
         }
 
         $('.widget.ui-resizable').resizable('destroy')
@@ -71,17 +73,15 @@ enableEditor = function(){
             }
         })
 
-        if (!$(this).parents('.strip, .panel').length) {
-            $(this).draggable({
-                helper: "ui-helper",
+        $(this).draggable({
                 stop: function( event, ui ) {
-                    data.top = ui.position.top
-                    data.left = ui.offset.left
+                    data.top = ui.position.top// - $(this).parent().position().top
+                    data.left = ui.position.left - $(this).parent().position().left
                     updateWidget()
                 },
-                handle:'.ui-draggable-handle'
-            }).append('<div class="ui-draggable-handle"></div>')
-        }
+                handle:'.ui-draggable-handle',
+                containment:'parent'
+        }).append('<div class="ui-draggable-handle"></div>')
 
         for (i in data) {
             if (i!='widgets' && i!='tabs') {
@@ -128,7 +128,7 @@ enableEditor = function(){
 
             }
         }
-        if (data.widgets) {
+        if (data.widgets && (!data.tabs || data.tabs.length==0)) {
 
             var list = $('<ul class="input"></ul>')
 
@@ -168,6 +168,45 @@ enableEditor = function(){
 
         }
 
+        if (!data.widgets || data.widgets.length==0) {
+            //tabs
+            var list = $('<ul class="input"></ul>')
+
+            for (i in data.tabs) {
+                var label = data.tabs[i].label
+                var item = $(`<li data-index="${i}" class="sortables"><a class="btn small">${label}</a></li>`)
+                            .appendTo(list)
+                            .click(function(){
+                                var id = container.find('.tab').first().parent().children('.tab').eq($(this).attr('data-index')).attr('id')
+                                $(`a[data-tab="#${id}"]`).click()
+                            })
+                var remove = $('<span><i class="fa fa-remove"></i></span>')
+                              .appendTo(item)
+                              .click(function(){
+                                  data.tabs.splice($(this).parent().attr('data-index'),1)
+                                  updateWidget()
+                              })
+            }
+
+            list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+                var prevIndex = $(ui.item).attr('data-index')
+                var newIndex  = $(ui.item).index()
+
+                data.tabs.splice(newIndex, 0, data.tabs.splice(prevIndex, 1)[0])
+
+                updateWidget()
+            })
+
+            var add = $(`<li><a class="btn small">+</a></li>`).appendTo(list).click(function(){
+                data.tabs = data.tabs || []
+                data.tabs.push({})
+
+                updateWidget()
+            })
+            $('<label>tabs</label>').appendTo(form)
+            list.appendTo(form)
+        }
+
         $('.editor-container').html(form)
         scrolls()
     })
@@ -186,6 +225,9 @@ enableEditor = function(){
 
         $('.editing').removeClass('editing')
         link.addClass('editing')
+
+        $('.widget.ui-resizable').resizable('destroy')
+        $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
 
         var ontab = []
         $('.tab.on').each(function(i){

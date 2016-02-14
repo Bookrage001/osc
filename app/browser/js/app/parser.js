@@ -19,9 +19,8 @@ hashCode = function(s){
 session = []
 
 
-parsetabs = function(tabs,parent){
+parsetabs = function(tabs,parent,main){
 
-    var main = !parent.hasClass('tab')
     if (main) {
         __widgets__ = {}
         __widgetsIds__ = {}
@@ -104,10 +103,10 @@ parsewidgets = function(widgets,parent) {
             widgetData[k] = tmp
         }
 
-        if (parent[0].className.match(/strip|panel/)) {
-            delete widgetData.top
-            delete widgetData.left
-        }
+        // if (parent[0].className.match(/strip|panel/)) {
+        //     delete widgetData.top
+        //     delete widgetData.left
+        // }
 
         var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
             height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height,

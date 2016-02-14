@@ -331,6 +331,9 @@ a.btn {
     }
 }
 
+.editing {
+    z-index: 99999999!important;
+}
 .editing:before {
     content:"";
     z-index: 999;

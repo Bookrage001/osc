@@ -20,7 +20,8 @@ widgetOptions = {
         width:'auto',
         height:'auto',
         stretch:false,
-        widgets:[]
+        widgets:[],
+        tabs:[]
     },
     led: {
         type:'led',
@@ -157,8 +158,11 @@ createWidget.panel = function(widgetData,container) {
 
     if (widgetData.stretch) widget.addClass('stretch')
 
-
-    parsewidgets(widgetData.widgets,widget)
+    if (widgetData.tabs.length) {
+        parsetabs(widgetData.tabs,widget)
+    } else {
+        parsewidgets(widgetData.widgets,widget)
+    }
     widget.getValue = function(){return}
     widget.setValue = function(){return}
     return widget
