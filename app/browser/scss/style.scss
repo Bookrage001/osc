@@ -819,6 +819,14 @@ a {
             border: 1rem solid $color-bg;
         }
     }
+    .navigation {
+        border-top: 0;
+        background: transparent;
+        border-bottom: 1rem solid $color-bg;
+    }
+    .content {
+        background: transparent;
+    }
 }
 
 
