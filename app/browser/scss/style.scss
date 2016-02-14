@@ -709,8 +709,7 @@ a {
     cursor: -webkit-grab;
     width:15rem;
     height:15rem;
-    border-radius: 15rem;
-    background: rgba($color-accent,.5);
+    border:2rem solid $color-accent;
     &:active {
         cursor:-webkit-grabbing
     }
@@ -799,6 +798,10 @@ a {
     position: absolute;
     border:$gutter solid transparent;
     z-index: 2;
+
+    ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
+        border: 1rem solid $color-bg;
+    }
     .panel {
         height:100%;
         overflow: auto;
@@ -814,9 +817,6 @@ a {
             > .widget {
                 width:100%;
             }
-        }
-        &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track-piece {
-            border: 1rem solid $color-bg;
         }
     }
     .navigation {

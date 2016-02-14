@@ -103,16 +103,18 @@ parsewidgets = function(widgets,parent) {
             widgetData[k] = tmp
         }
 
-        // if (parent[0].className.match(/strip|panel/)) {
-        //     delete widgetData.top
-        //     delete widgetData.left
-        // }
+
+        for (t in {width:'',height:'',top:'',left:''}) {
+            widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
+        }
 
         var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
             height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height,
             left = parseInt(widgetData.left)==widgetData.left?parseInt(widgetData.left)+'rem' : widgetData.left,
-            top = parseInt(widgetData.top)==widgetData.top?parseInt(widgetData.top)+'rem' : widgetData.top,
-            styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};min-width:${width};`:'',
+            top = parseInt(widgetData.top)==widgetData.top?parseInt(widgetData.top)+'rem' : widgetData.top
+
+
+        var styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};min-width:${width};`:'',
             styleH = widgetData.height&&widgetData.height!='auto'?`height:${height};min-height:${height};`:'',
             styleL = widgetData.left&&widgetData.left!='auto'||widgetData.left==0?`left:${left};`:'',
             styleT = widgetData.top&&widgetData.top!='auto'||widgetData.top==0?`top:${top};`:''
