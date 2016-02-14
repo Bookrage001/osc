@@ -9,6 +9,10 @@
             var mousemove = function(e) {
                 e.speedX = e.pageX - previousEvent.pageX
                 e.speedY = e.pageY - previousEvent.pageY
+                if (e.button==2) {
+                    e.speedX = e.speedX/10
+                    e.speedY = e.speedY/10
+                }
                 e.deltaX = e.speedX + previousEvent.deltaX
                 e.deltaY = e.speedY + previousEvent.deltaY
 

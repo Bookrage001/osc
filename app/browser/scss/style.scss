@@ -701,6 +701,7 @@ a {
     border: 1rem dashed $color-accent;
     min-width:30rem!important;
     min-height:30rem!important;
+    z-index: 99999999999!important;
 }
 .ui-draggable-handle {
     position: absolute;

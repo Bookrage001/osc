@@ -75,8 +75,8 @@ enableEditor = function(){
 
         $(this).draggable({
                 stop: function( event, ui ) {
-                    data.top = ui.position.top// - $(this).parent().position().top
-                    data.left = ui.position.left - $(this).parent().position().left
+                    data.top = ui.helper.position().top// - $(this).parent().position().top
+                    data.left = ui.helper.position().left// - $(this).parent().position().left
                     updateWidget()
                 },
                 handle:'.ui-draggable-handle',
