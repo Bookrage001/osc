@@ -71,8 +71,8 @@ widgetOptions = {
 
         separator2:'osc',
 
-        off:0,
         on:1,
+        off:0,
         path:'auto',
         target:[]
     },
@@ -91,8 +91,8 @@ widgetOptions = {
 
         separator2:'osc',
 
-        off:0,
         on:1,
+        off:0,
         path:'auto',
         target:[]
     },
