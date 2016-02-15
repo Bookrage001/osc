@@ -194,6 +194,7 @@ It can also be a self invoking function that returns an array of objects :
     on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
     off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
     ```
+
 -   **switch**
     ```  
     type:'switch',
