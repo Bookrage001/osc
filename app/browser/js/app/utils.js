@@ -104,7 +104,7 @@ sessionBrowse = function(){
 }
 
 sessionSave = function() {
-    var sessionfile = JSON.stringify(session)
+    var sessionfile = JSON.stringify(session,null,'    ')
     if (webFrame) {
         ipc.send('sessionSave',sessionfile)
     } else {

@@ -81,7 +81,7 @@ parsewidgets = function(widgets,parent) {
         var tmpWidgetOptions = JSON.parse(JSON.stringify(widgetOptions))
 
         for (i in tmpWidgetOptions[widgetData.type]) {
-            if (widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
+            if (i.indexOf('separator')==-1 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
         }
 
         widgetData.id = widgetData.id=='auto'?widgetData.type+'_'+getIterator(widgetData.type):widgetData.id.replace(' ','_')
@@ -96,11 +96,8 @@ parsewidgets = function(widgets,parent) {
 
         // Sort widgets' properties and turn string-numbers to numbers
         for (k in widgetOptions[widgetData.type]) {
-            var tmp = widgetData[k]
-            if (parseFloat(tmp)==tmp) tmp=parseFloat(tmp)
-            if (parseInt(tmp)==tmp) tmp=parseInt(tmp)
-            delete widgetData[k]
-            widgetData[k] = tmp
+            if (parseFloat(widgetOptions[widgetData.type])==widgetOptions[widgetData.type]) widgetOptions[widgetData.type]=parseFloat(widgetOptions[widgetData.type])
+            if (parseInt(widgetOptions[widgetData.type])==widgetOptions[widgetData.type]) widgetOptions[widgetData.type]=parseInt(widgetOptions[widgetData.type])
         }
 
 
@@ -121,7 +118,7 @@ parsewidgets = function(widgets,parent) {
 
 
         var widgetContainer = $(`
-            <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT}">
+            <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
                 <div class="label"><span>${widgetData.label}</span></div>
             </div>
         `)

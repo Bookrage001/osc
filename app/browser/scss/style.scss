@@ -313,7 +313,7 @@ a.btn {
                     }
                 }
             }
-            span {
+            > .btn + span {
                 position: absolute;
                 right:0rem;
                 top:0rem;
@@ -589,6 +589,28 @@ a {
     .submit {
         margin-top:30rem;
     }
+    .separator {
+        line-height: 30rem;
+        height: 30rem;
+        margin-bottom: 5rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        &:before, &:after {
+            content:"";
+            top:14rem;
+            width: 100%;
+            height: 1rem;
+            background: $color-text-fade;
+        }
+        span {
+            font-variant: small-caps;
+            position: relative;
+            display: block;
+            width:100%;
+            text-align:center;
+        }
+    }
 }
 
 
@@ -612,10 +634,10 @@ a {
     display:none;
     overflow: auto;
     position: relative;
-    padding-top:$gutter;
-    padding-left:$gutter;
+    // padding-top:$gutter;
+    // padding-left:$gutter;
     > .widget {
-        margin-right:$gutter;
+        // margin-right:$gutter;
     }
     &.on {
         display: block;
@@ -629,7 +651,10 @@ a {
 // WIDGETS
 
 .widget {
-    border-bottom:$gutter solid transparent;
+    // border:$gutter solid transparent;
+    // &:not(:first-child) {
+    //     margin-left:-$gutter;
+    // }
     display:inline-block;
     height:auto;
     min-width: 100rem;
@@ -692,6 +717,7 @@ a {
     right: 5rem;
     width:15rem;
     height:15rem;
+    border:2rem solid transparent;
     border-right: 2rem solid $color-accent;
     border-bottom: 2rem solid $color-accent;
     z-index: 100000;
@@ -699,6 +725,7 @@ a {
 }
 .ui-helper {
     border: 1rem dashed $color-accent;
+    background: rgba($color-accent,.25);
     min-width:30rem!important;
     min-height:30rem!important;
     z-index: 99999999999!important;
@@ -749,29 +776,29 @@ a {
         }
     }
     &.vertical {
-        padding-top: 35rem + $gutter;
-        border-bottom:0;
+        padding-top: 35rem;// + $gutter;
+        // border-bottom:0;
         .strip {
             > .widget {
-                border-bottom:$gutter solid transparent;
+                // border-bottom:$gutter solid transparent;
             }
         }
 
     }
     &.horizontal {
         padding-top:0;
-        padding-left: 35rem + $gutter;
+        padding-left: 35rem;// + $gutter;
         width:100%;
         height:auto;
         display: block;
-        border-right:0;
+        // border-right:0;
         .strip {
             flex-direction: row;
             > .widget {
                 flex-shrink: initial;
                 width: 100%;
-                border-bottom:0;
-                border-right:$gutter solid transparent;
+                // border-bottom:0;
+                // border-right:$gutter solid transparent;
             }
         }
         > .label {
@@ -799,7 +826,7 @@ a {
 
 .panel-container {
     position: absolute;
-    border:$gutter solid transparent;
+    // border:$gutter solid transparent;
     z-index: 2;
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
@@ -809,10 +836,10 @@ a {
         height:100%;
         overflow: auto;
         position: relative;
-        padding-top:$gutter;
-        padding-left:$gutter;
+        // padding-top:$gutter;
+        // padding-left:$gutter;
         > .widget {
-            margin-right:$gutter;
+            // margin-right:$gutter;
         }
         &.stretch {
             display:flex;

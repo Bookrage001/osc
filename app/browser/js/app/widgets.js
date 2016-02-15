@@ -3,46 +3,74 @@ widgetOptions = {
     strip: {
         type:'strip',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
-        horizontal:false,
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
+        horizontal:false,
+        css:'',
+
+        separator2:'children',
+
         widgets:[]
     },
     panel: {
         type:'panel',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
         left:'0',
         top:'0',
         width:'auto',
         height:'auto',
         stretch:false,
+        css:'',
+
+        separator2:'chilren',
+
         widgets:[],
         tabs:[]
     },
     led: {
         type:'led',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
-        color:'green',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
+        color:'green',
+        css:'',
+
+        separator2:'osc',
+
         range:{min:0,max:1},
         path:'auto'
     },
     toggle: {
         type:'toggle',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
+        css:'',
+
+        separator2:'osc',
+
         off:0,
         on:1,
         path:'auto',
@@ -51,11 +79,18 @@ widgetOptions = {
     push: {
         type:'push',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
+        css:'',
+
+        separator2:'osc',
+
         off:0,
         on:1,
         path:'auto',
@@ -64,12 +99,19 @@ widgetOptions = {
     switch: {
         type:'switch',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
         horizontal:false,
+        css:'',
+
+        separator2:'osc',
+
         values:[0,1],
         path:'auto',
         target:[]
@@ -77,56 +119,99 @@ widgetOptions = {
     xy: {
         type:'xy',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
+        css:'',
+
+        separator2:'behaviour',
+
+        absolute:false,
+
+        separator3:'osc',
+
         split:false,
         rangeX:{min:0,max:1},
         rangeY:{min:0,max:1},
-        absolute:false,
         path:'auto',
         target:[]
     },
     rgb: {
         type:'rgb',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
-        split:false,
+        css:'',
+
+        separator2:'behaviour',
+
         absolute:false,
+
+        separator3:'osc',
+
+        split:false,
         path:'auto',
         target:[]
     },
     fader: {
         type:'fader',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
+        unit:'',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
         horizontal:false,
-        range:{min:0,max:1},
+        css:'',
+
+        separator2:'behaviour',
+
         absolute:false,
+
+        separator3:'osc',
+
+        range:{min:0,max:1},
         path:'auto',
         target:[]
     },
     knob: {
         type:'knob',
         id:'auto',
+
+        separator1:'style',
+
         label:'auto',
+        unit:'',
         left:'auto',
         top:'auto',
         width:'auto',
         height:'auto',
-        range:{min:0,max:1},
+        css:'',
+
+        separator2:'behaviour',
+
         absolute:false,
         pan:false,
+
+
+        separator3:'osc',
+
+        range:{min:0,max:1},
         path:'auto',
         target:[]
     }

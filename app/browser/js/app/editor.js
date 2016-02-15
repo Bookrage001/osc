@@ -75,15 +75,24 @@ enableEditor = function(){
 
         $(this).draggable({
                 stop: function( event, ui ) {
-                    data.top = ui.helper.position().top// - $(this).parent().position().top
-                    data.left = ui.helper.position().left// - $(this).parent().position().left
+                    event.preventDefault()
+                    data.top = ui.helper.position().top + $(this).parent().scrollTop()
+                    data.left = ui.helper.position().left + $(this).parent().scrollLeft()
+                    ui.helper.remove()
                     updateWidget()
                 },
                 handle:'.ui-draggable-handle',
-                containment:'parent'
+                snap:'.widget, .tab',
+                snapTolerance:5,
+                helper:function(){return $('<div class="ui-helper"></div>').css({height:$(this).outerHeight(),width:$(this).outerWidth()})}
+                // containment:'parent'
         }).append('<div class="ui-draggable-handle"></div>')
 
-        for (i in data) {
+        for (i in widgetOptions[data.type]) {
+            if (i.indexOf('separator')!=-1) {
+                $(`<div class="separator"><span>${widgetOptions[data.type][i]}</span></div>`).appendTo(form)
+                continue
+            }
             if (i!='widgets' && i!='tabs') {
                 var type = typeof data[i],
                     d = type == 'object'?JSON.stringify(data[i]):data[i],
@@ -168,7 +177,7 @@ enableEditor = function(){
 
         }
 
-        if (!data.widgets || data.widgets.length==0) {
+        if (data.tabs && (!data.widgets || data.widgets.length==0)) {
             //tabs
             var list = $('<ul class="input"></ul>')
 
