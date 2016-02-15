@@ -596,9 +596,11 @@ createWidget.rgb = function(widgetData) {
     var widget = $(`
         <div class="xy-wrapper rgb-wrapper">
             <div class="xy rgb">
+                <div class="bg"></div>
                 <div class="handle"></div>
             </div>
             <div class="hue">
+                <div class="bg"></div>
                 <div class="handle"></div>
             </div>
             <div class="value">
@@ -610,6 +612,7 @@ createWidget.rgb = function(widgetData) {
         hueHandle = widget.find('.hue .handle'),
         pad = widget.find('.xy'),
         huePad = widget.find('.hue'),
+        rgbBg = pad.find('.bg')[0],
         value = {r:widget.find('input.r'),g:widget.find('input.g'),b:widget.find('input.b')},
         absolute = widgetData.absolute,
         split = widgetData.split?
@@ -683,7 +686,7 @@ createWidget.rgb = function(widgetData) {
                 rgb = hsbToRgb({h:h,s:100,b:100}),
                 v = widget.getValue()
 
-            pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+            rgbBg.setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
 
 
@@ -711,7 +714,7 @@ createWidget.rgb = function(widgetData) {
             rgb = hsbToRgb({h:h,s:100,b:100}),
             v = widget.getValue()
 
-        pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        rgbBg.setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
         widget.sendValue(v)
         widget.showValue(v)
 
@@ -754,7 +757,7 @@ createWidget.rgb = function(widgetData) {
 
 
         var rgb = hsbToRgb({h:hsb.h,s:100,b:100})
-        pad[0].setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+        rgbBg.setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
         widget.showValue(v)
 

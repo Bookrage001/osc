@@ -3,37 +3,39 @@
 $theme: 'dark';
 
 @if $theme == 'dark' {
-  $color-text-base: white;
+    $color-text:#fff;
+    $color-text-fade:#aaa;
+
+    $color-fg:#282c34; // primary
+    $color-bg:#22252c; // secondary
+    $color-raised:lighten(#2b2f37,2%); // raised
+    $color-raised-top:lighten(#2b2f37,5%); // raised
+    $color-border:darken($color-bg,5%);
+    $color-track: lighten(#1a1d22,1%); // widgets unfilled value
+
+    $color-accent:#528bff;
 }
+
 @if $theme == 'light'  {
-    $color-text-base: black;
+    $color-text:#222;
+    $color-text-fade:#888;
+
+    $color-fg:#eee; // primary
+    $color-bg:#ddd; // secondary
+    $color-raised:#fafafa; // raised
+    $color-raised-top:#fcfcfc; // raised
+    $color-border:#aaa;
+    $color-track: #bbb; // widgets unfilled value
+
+    $color-accent:#528bff;
 }
-
-
-$color-base: black;
-
-$color-text:mix($color-text-base,$color-base,80);
-$color-text-fade:mix($color-text-base,$color-base,60);
-
-
-
-$color-fg:#282c34;
-$color-bg:mix($color-fg,$color-base,85);
-$color-widget:mix($color-fg,$color-text-base,96);
-
-$color-accent:#528bff;
-$color-border:mix($color-fg,$color-base,65);
-
-
-$gutter:6rem;
 
 
 $nav-height:60rem;
 
-$bg-3d:linear-gradient(mix($color-text,$color-fg,3), mix($color-text,$color-fg,2) 15rem);
-$bg-3d-off:linear-gradient(mix($color-text,$color-bg,3), mix($color-text,$color-bg,2) 15rem);
-$bg-3d-hover:linear-gradient(mix($color-text,$color-fg,6), mix($color-text,$color-fg,3));
-$bg-3d-on:linear-gradient(mix($color-text,$color-bg,0), mix($color-text,$color-bg,5));
+
+
+
 
 
 $sidepanel-size:300rem;
@@ -75,7 +77,7 @@ $scrollbar-margin:1rem;
 }
 
 ::-webkit-scrollbar-track-piece {
-    background: $color-border;
+    background: $color-bg;
     &:vertical {
         border-left:$scrollbar-margin solid $color-border;
     }
@@ -87,7 +89,7 @@ $scrollbar-margin:1rem;
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background:$bg-3d;
+    background:$color-raised;
     &:vertical {
         border-left:$scrollbar-margin solid  $color-border;
     }
@@ -104,6 +106,7 @@ $scrollbar-margin:1rem;
 
 input:focus::selection{
     background:$color-accent;
+    color:$color-text;
 }
 input {
     cursor: text;
@@ -140,7 +143,7 @@ body {
 
 
 .btn {
-    background: $bg-3d;
+    background: $color-raised;
     display: block;
     box-shadow: 0 0 0 1rem $color-border;
     padding:15rem;
@@ -155,17 +158,12 @@ body {
     &.disabled {
         pointer-events: none;
         color:$color-text-fade;
-        background: $bg-3d-off;
     }
     &.align-center {
         text-align: center
     }
 }
-a.btn {
-    &:hover {
-        background-image: $bg-3d-hover;
-    }
-}
+
 
 
 
@@ -194,7 +192,7 @@ a.btn {
 
     }
     .header {
-        background: $bg-3d;
+        background: $color-raised;
         padding:20rem;
         font-weight:bold;
         box-shadow: 0 0 0 1rem $color-border inset;
@@ -214,9 +212,6 @@ a.btn {
             top:0rem;
             padding:15rem;
             color:$color-text-fade;
-            &:hover {
-                color:$color-text
-            }
         }
     }
 }
@@ -261,7 +256,7 @@ a.btn {
     right:0;
     bottom:0;
     margin-right:-$sidepanel-size;
-    background:$color-fg;
+    background:$color-bg;
     border-left:1rem solid $color-border;
     //box-shadow: 0 0 10rem 0 $color-border;
     transition:right .2s;
@@ -278,13 +273,12 @@ a.btn {
         right:0;bottom:0;
         padding:5rem;
         list-style:none;
-        background:$color-fg;
 
         li {
             display:block;
             margin-bottom:5rem;
-            background:$bg-3d;
             position: relative;
+            background:$color-fg;
             &:last-child {
                 margin-bottom: 0
             }
@@ -313,15 +307,16 @@ a.btn {
                     }
                 }
             }
-            > .btn + span {
+            .btn + span {
                 position: absolute;
                 right:0rem;
                 top:0rem;
                 padding:5rem;
                 color:$color-text-fade;
-                &:hover {
-                    color:$color-text
-                }
+            }
+            > div {
+                box-shadow: 0 0 0 1rem $color-border;
+                padding:15rem;
             }
         }
 
@@ -334,11 +329,11 @@ a.btn {
 .editing {
     z-index: 99999999!important;
 }
-.editing:before {
+.widget.editing:after, a.editing:before {
     content:"";
     z-index: 999;
     position: absolute;
-    top:0;left:0;
+    top:1rem;left:0;
     right:0;
     bottom:0;
     border:1px dashed $color-accent;
@@ -357,21 +352,37 @@ a {
     top:0;
     left:0;
     right:0;
-    z-index:1;
     font-size:14rem;
     background: $color-bg;
-    border-bottom: 1rem solid $color-border;
-    border-top: 1rem solid $color-fg;
     height:$nav-height;
+
     ::first-letter {
         text-transform: uppercase;
     }
-
+    &:before {
+        content:"";
+        position: absolute;
+        top:1px;
+        left:0;
+        width:100%;
+        height: 1px;
+        background: $color-fg;
+        z-index: 3;
+    }
+    &:after {
+        content:"";
+        position: absolute;
+        bottom:-1px;
+        left:0;
+        width:100%;
+        height: 1px;
+        background: $color-border;
+        z-index: 3;
+    }
 
     &.main {
         padding-right:55rem;
         right:0;
-        // background: linear-gradient($color-border,$color-bg);
     }
     ul {
 
@@ -411,7 +422,7 @@ a {
                 }
                 color:$color-text-fade;
                 &.on {
-                    background:$color-fg;
+                    background:$color-raised;
                     border:1rem solid $color-border;
                     color:$color-text;
 
@@ -451,6 +462,7 @@ a {
     right:0;
     bottom:0;
     background:$color-fg;
+    z-index: 1;
 
     .content {
         top:$nav-height;
@@ -501,12 +513,12 @@ a {
     right:0;
     bottom:0;
     padding:10%;
-    background:rgba($color-base,.5);
+    background:rgba($color-text,.5);
     z-index:1000000;
     .popup-title {
         position: relative;
         padding:15rem;
-        background:$bg-3d;
+        background:$color-raised;
         .closer {
             position:absolute;
             right:0rem;
@@ -514,9 +526,6 @@ a {
             padding:15rem;
             color:$color-text-fade;
             cursor: pointer;
-            &:hover {
-                color:$color-text;
-            }
         }
     }
     .popup-wrapper {
@@ -550,7 +559,7 @@ a {
     }
     input, .input {
         display:block;
-        background:$color-bg;
+        background:$color-raised;
         font:inherit;
         color:$color-text;
         border:1rem solid $color-border;
@@ -561,15 +570,16 @@ a {
             box-shadow: 0 0 0 1rem rgba(red,.3)!important;
         }
         &:focus {
-            box-shadow: 0 0 0 1rem $color-accent;
+            border-color:$color-accent;
+        }
+        .btn {
+            background:$color-raised-top;
+            box-shadow: 0 0 0 1rem $color-bg;
         }
     }
     .checkbox {
-        background:$bg-3d;
+        background:$color-raised;
         cursor: pointer;
-        &:hover {
-            background:$bg-3d-hover;
-        }
     }
     .select-wrapper {
         position: relative;
@@ -634,11 +644,6 @@ a {
     display:none;
     overflow: auto;
     position: relative;
-    // padding-top:$gutter;
-    // padding-left:$gutter;
-    > .widget {
-        // margin-right:$gutter;
-    }
     &.on {
         display: block;
         height:100%;
@@ -651,10 +656,6 @@ a {
 // WIDGETS
 
 .widget {
-    // border:$gutter solid transparent;
-    // &:not(:first-child) {
-    //     margin-left:-$gutter;
-    // }
     display:inline-block;
     height:auto;
     min-width: 100rem;
@@ -664,13 +665,34 @@ a {
     padding:35rem  0 0;
     vertical-align:top;
     box-shadow: 0 0 0 1rem $color-bg inset;
-    background:$bg-3d;
+    background:$color-raised;
     background-clip:padding-box;
     -webkit-tap-highlight-color:transparent;
+    margin-left:-1rem;
+
+    &:first-child {
+        margin-left:0;
+    }
+
+
+    &:before {
+        content:"";
+        position: absolute;
+        top:1rem;
+        left:0;
+        right:0;
+        // bottom:0;
+        height:4rem;
+        box-shadow: inset 0 1rem 1rem rgba(255, 255, 255, 0.06);
+        z-index: 3;
+        pointer-events: none;
+    }
 
     &.absolute-position {
         position: absolute;
-        z-index: 10
+        z-index: 10;
+        margin-left:0!important;
+        margin-top:0!important;
     }
 
      &.nolabel {
@@ -696,14 +718,17 @@ a {
     }
     input {
         width:100%;
-        height:35rem;
+        height:30rem;
         border:0;
-        background:$color-bg;
-        color:inherit;
+        background:transparent;
+        color:$color-text-fade;
+        // color:inherit;
         display:block;
+        // text-align: center;
         padding:10rem;
         &:focus {
-            box-shadow:0 0 0 1rem $color-accent inset!important;
+            color:$color-accent;
+
         }
         &[disabled] {
             color:$color-text-fade;
@@ -759,7 +784,7 @@ a {
     background: none;
     box-shadow:none;
     > .label {
-        background:$bg-3d;
+        background:$color-raised;
         box-shadow: 0 0 0 1rem $color-bg inset;
     }
     &.nolabel {
@@ -776,29 +801,35 @@ a {
         }
     }
     &.vertical {
-        padding-top: 35rem;// + $gutter;
-        // border-bottom:0;
-        .strip {
-            > .widget {
-                // border-bottom:$gutter solid transparent;
-            }
+        padding-top: 35rem;
+        .strip > .widget {
+            margin-left: 0;
+            margin-top:-1rem;
+            // &:first-child {
+            //     margin-top:0;
+            // }
         }
-
     }
     &.horizontal {
         padding-top:0;
-        padding-left: 35rem;// + $gutter;
+        padding-left: 35rem;
         width:100%;
         height:auto;
         display: block;
-        // border-right:0;
+        margin-left:0;
+        margin-top:-1rem;
+        &:first-child {
+            margin-top:0;
+        }
         .strip {
             flex-direction: row;
             > .widget {
                 flex-shrink: initial;
                 width: 100%;
-                // border-bottom:0;
-                // border-right:$gutter solid transparent;
+                height:100%;
+                &:first-child {
+                    margin-left:-1rem;
+                }
             }
         }
         > .label {
@@ -826,7 +857,6 @@ a {
 
 .panel-container {
     position: absolute;
-    // border:$gutter solid transparent;
     z-index: 2;
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
@@ -836,11 +866,6 @@ a {
         height:100%;
         overflow: auto;
         position: relative;
-        // padding-top:$gutter;
-        // padding-left:$gutter;
-        > .widget {
-            // margin-right:$gutter;
-        }
         &.stretch {
             display:flex;
             justify-content: space-between;
@@ -848,12 +873,21 @@ a {
                 width:100%;
             }
         }
+        > .navigation:before {
+            display:none;
+        }
     }
     .navigation {
         border-top: 0;
         background: transparent;
-        border-bottom: 1rem solid $color-bg;
+        &:after {
+            background: $color-bg;
+        }
+        a.on {
+            border-color: $color-bg;
+        }
     }
+
     .content {
         background: transparent;
     }
@@ -885,11 +919,7 @@ a {
         justify-content: center;
         align-items: center;
     }
-    &:hover {
-        background-image: $bg-3d-hover;
-    }
 
-    // box-shadow: 0 0 0 1rem $color-bg inset;
     cursor: pointer;
 }
 
@@ -907,7 +937,7 @@ a {
         right:4rem;
         top:4rem;
         height:4rem;
-        background: $color-border;
+        background: $color-track;
         border-radius: 3rem;
     }
     &.on .light {
@@ -932,6 +962,9 @@ a {
     // height: 100%;
     width:100rem;
     flex-shrink: 0;
+    &.nolabel .value:first-child {
+        border-top:0!important;
+    }
     .switch {
         height:100%;
         width:100%;
@@ -962,8 +995,8 @@ a {
             }
         }
         .value {
-            background:$bg-3d;
-            color:$color-text-fade;
+            background:$color-raised;
+            color:$color-text;
             width:100%;
             height:100%;
             position: relative;
@@ -973,15 +1006,11 @@ a {
             text-align: left;
             word-break: break-all;
             overflow: hidden;
-            &:hover {
-                background: $bg-3d-hover;
-            }
+
             &:last-child {
                 margin-bottom:0;
             }
-            &:first-child {
-                border-top:0;
-            }
+
             &:before {
                 content:"";
                 position: absolute;
@@ -990,7 +1019,7 @@ a {
                 width:8rem;
                 height:8rem;
                 margin-top: -4rem;
-                background: $color-border;
+                background: $color-track;
                 border-radius: 8rem;
             }
             &.on:before {
@@ -1034,11 +1063,12 @@ a {
         }
     }
     overflow: hidden;
-    padding-bottom: 70rem;
+    padding-bottom: 60rem;
     .value {
         width:100%;
         position: absolute;
         bottom:0;
+        border-top: 1rem solid $color-bg;
     }
     input {
         width:50%;
@@ -1046,11 +1076,6 @@ a {
         padding: 2rem;
         text-align: center;
         position: relative;
-        box-shadow: 0 0 0 1rem $color-border;
-        &:focus {
-            box-shadow:0 0 0 1rem $color-border, 0 0 0 1rem $color-accent inset!important;
-            z-index: 1
-        }
     }
 }
 .xy {
@@ -1059,8 +1084,9 @@ a {
     padding-top:90%;
     margin:0 1rem;
     overflow: hidden;
-    background:  rgba($color-base,.5);
     cursor: -webkit-grab;
+    border-top: 1rem solid $color-bg;
+    background:rgba($color-bg,.5);
     &:active {
         cursor: -webkit-grabbing;
         .handle:after,.handle:before {
@@ -1108,48 +1134,80 @@ a {
 
 
 .rgb-wrapper {
-    padding-bottom: 100rem;
+    padding-bottom: 90rem;
     input {
         width:33.33%;
     }
 }
 
 .rgb {
-	background-color: red;
-	&:before, &:after {
-		content:"";
-		position: absolute;
-		left:0;
-		top:0;
-		width: 100%;
-		height: 100%;
-	}
-	&:before {
-		background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-	}
-	&:after {
-		background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
-	}
+    .bg {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+    	background-color: red;
+        opacity: .75;
+    	&:before, &:after {
+    		content:"";
+    		position: absolute;
+    		left:0;
+    		top:0;
+    		width: 100%;
+    		height: 100%;
+    	}
+    	&:before {
+    		background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    	}
+    	&:after {
+    		background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+    	}
+    }
     .handle {
         &:before {
-            box-shadow: none;
+            content:"";
+            position: absolute;
+            top:-4rem;
+            right:-4rem;
+            height:8rem;
+            width:8rem;
             background:$color-text;
+            border:none!important;
+            border-radius: 100%!important;
+            box-shadow: 0 0  0 6rem transparentize($color-text,.8)
         }
         &:after {
-            box-shadow: 0 0 0 2000rem rgba($color-base,.5);
+            content:"";
+            position: absolute;
+            top:-10rem;
+            right:-10rem;
+            height:20rem;
+            width:20rem;
+            border:none!important;
+            border-radius: 100%!important;
+            box-shadow: 0 0  0 1rem transparentize($color-text,.8) inset;
         }
     }
 }
 .hue {
     width:auto;
     height:29rem;
-    background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
     overflow: hidden;
     position: absolute;
-    bottom:71rem;
+    bottom:61rem;
     left:1rem;
     right:1rem;
     cursor: -webkit-grab;
+    .bg {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        opacity: 0.5;
+        background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
+    }
     &:active {
         cursor: -webkit-grabbing;
         .handle:after {
@@ -1176,17 +1234,6 @@ a {
             border-radius: 100%!important;
             box-shadow: none;
             background:$color-text;
-        }
-        &:after {
-            content:"";
-            position: absolute;
-            top:50%;margin-top:-10rem;
-            right:-10rem;
-            height:20rem;
-            width:20rem;
-            border:none!important;
-            border-radius: 100%!important;
-            box-shadow: 0 0 0 2000rem rgba($color-base,.5);
         }
     }
 
@@ -1232,7 +1279,7 @@ a {
         .fader {
             height:100%;
             width:4rem;
-            background:$color-border;
+            background:$color-track;
             position: relative;
             margin:0 auto;
             left:-25rem;
@@ -1287,7 +1334,7 @@ a {
             .pip {
                 height:1%;
                 width:4rem;
-                background: linear-gradient(white,transparent 1px);
+                background: linear-gradient($color-text,transparent 1px);
 
                 &.val {
                     width:10rem;
@@ -1415,14 +1462,14 @@ a {
                 border-radius:100%;
                 pointer-events: none;
                 position: relative;
-                box-shadow: 0 0 0 4rem $color-border inset;
+                box-shadow: 0 0 0 4rem $color-track inset;
                 &:before {
                     position:absolute;
                     top:0;left:0;
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4rem solid $color-border;
+                    border:4rem solid $color-track;
                     box-shadow: 0 0 0 1rem  mix($color-text,$color-fg,2),0 0 0 1rem  mix($color-text,$color-fg,2) inset,0 0 1rem  1rem  mix($color-text,$color-fg,2),0 0 1rem 1rem  mix($color-text,$color-fg,2) inset;
                     transform: rotate(45deg);
                     z-index:1;
@@ -1460,7 +1507,7 @@ a {
                     bottom:-2rem;
                     border-radius:100%;
                     border:12rem solid transparent;
-                    border-bottom-color: mix($color-text,$color-fg,2);
+                    border-bottom-color: $color-raised;
                     z-index:1;
                 }
             }
@@ -1472,7 +1519,7 @@ a {
                 right:18rem;
                 bottom:18rem;
                 border-radius:100%;
-                background:$bg-3d-hover;
+                background:$color-raised-top;
                 box-shadow: 0 0 0 1rem $color-bg;
 
             }

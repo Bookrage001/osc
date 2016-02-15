@@ -14,7 +14,7 @@ init = function(session,callback) {
         },
         {
             html: `
-            <div class="btn">
+            <div>
                 <div class="title"><i class="fa fa-sliders"></i>&nbsp;Snapshot</div>
                 <div class="actions">
                     <a class="btn" data-action="stateQuickSave">Store</a>
@@ -30,7 +30,7 @@ init = function(session,callback) {
             `
         },
         {
-            html:`<div class="editor btn">
+            html:`<div class="editor">
                     <div class="title"><i class="fa fa-edit"></i>&nbsp;Session editor</div>
                     <div class="actions">
                         <a class="enable-editor btn" data-action="enableEditor">On</a>
