@@ -112,6 +112,7 @@ It can also be a self invoking function that returns an array of objects :
     left:"auto",            // [string|integer] if set, the widget will have an absolute position (percentages allowed)
     width:"auto",           // [string|integer] widget's width in px (percentages allowed)
     height:"auto",          // [string|integer] widget's height in px (percentages allowed)
+    css:"",                 // [string] css styles, yeah
     target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
     path:false              // [string] osc path, default to '/widget_id'
 }

@@ -70,7 +70,9 @@ enableEditor = function(){
                 data.height = Math.max(ui.size.height,30)
                 data.width = Math.max(ui.size.width,30)
                 updateWidget()
-            }
+            },
+            snap:'.tab.on .widget, .tab.on',
+            snapTolerance:5
         })
 
         $(this).draggable({
@@ -82,7 +84,7 @@ enableEditor = function(){
                     updateWidget()
                 },
                 handle:'.ui-draggable-handle',
-                snap:'.widget, .tab',
+                snap:'.tab.on .widget, .tab.on',
                 snapTolerance:5,
                 helper:function(){return $('<div class="ui-helper"></div>').css({height:$(this).outerHeight(),width:$(this).outerWidth()})}
                 // containment:'parent'
