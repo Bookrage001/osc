@@ -23,7 +23,7 @@ The project is under active development; hence, current features are subject to 
   - installed locally via `npm install electron-prebuilt`
   - or installed system-wide via `npm install -g electron-prebuilt`
 
-**Build** *(Download the app and fetch its dependencies)*
+**Download**
  ```
 $ git clone https://github.com/jean-emmanuel/Open-Stage-Control
 $ cd Open-Stage-Control/app
@@ -107,12 +107,14 @@ It can also be a self invoking function that returns an array of objects :
 ```
 {
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
+
     label:"My widget",      // [string] default to id
     top:"auto",             // [string|integer] if set, the widget will have an absolute position (percentages allowed)
     left:"auto",            // [string|integer] if set, the widget will have an absolute position (percentages allowed)
     width:"auto",           // [string|integer] widget's width in px (percentages allowed)
     height:"auto",          // [string|integer] widget's height in px (percentages allowed)
     css:"",                 // [string] css styles, yeah
+
     target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
     path:false              // [string] osc path, default to '/widget_id'
 }
@@ -148,10 +150,10 @@ It can also be a self invoking function that returns an array of objects :
 -   **knob**
     ```
     type:'knob',
-    range: {"min":0,"max":1},       // [object] minimum and maximum values
+    range: {"min":0,"max":1},   // [object] minimum and maximum values
     unit: false,                // [string] value suffix
     absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    gauge:true                  // [bool]   set to false to replace the gauge with a simple dot
+    pan:false                   // [bool] true for panning knob
     ```
 
 -   **xy**
@@ -182,11 +184,16 @@ It can also be a self invoking function that returns an array of objects :
 -   **toggle**
     ```  
     type:'toggle',
-    on: 1,                      // [string|number] value sent when toggle is on
-    off:0,                      // [string|number] value sent when toggle is off
-    color:false                 // [string] (css) color of the active state indicator
+    on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
+    off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
     ```
 
+-   **push**
+    ```  
+    type:'pus',
+    on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
+    off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
+    ```
 -   **switch**
     ```  
     type:'switch',
@@ -195,7 +202,7 @@ It can also be a self invoking function that returns an array of objects :
 
 ### License & credits
 
-Copyleft © Jean-Emmanuel @ AMMD. This program is released under the GNU/GPL3 license.
+Copyleft © Jean-Emmanuel @ [AMMD](http://ammd.net). This program is released under the GNU/GPL3 license.
 
 It relies on the use of several libraries :
 - [Node.js](https://nodejs.org/)
@@ -206,6 +213,7 @@ It relies on the use of several libraries :
 - [express]()
 - [Sass.js](https://github.com/medialize/sass.js/)
 - [jQuery](http://jquery.com/)
+- [jQuery-UI](http://jqueryui.com/) (draggable, resizable & [resizable snap ext](https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension))
 - [Font Awesome](http://fontawesome.io/)
 
 Design was heavily inspired by [Atom](https://atom.io/)'s theme 'One Dark'
