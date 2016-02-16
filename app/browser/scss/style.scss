@@ -18,14 +18,14 @@ $theme: 'dark';
 
 @if $theme == 'light'  {
     $color-text:#333;
-    $color-text-fade:#aaa;
+    $color-text-fade:#666;
 
-    $color-fg:#eee; // primary
-    $color-bg:#ddd; // secondary
-    $color-raised:#fafafa; // raised
-    $color-raised-top:#eee; // raised
-    $color-border:#aaa;
-    $color-track: #bbb; // widgets unfilled value
+    $color-fg:#ddd; // primary
+    $color-bg:#bbb; // secondary
+    $color-raised:#eaeaea; // raised
+    $color-raised-top:#ddd; // raised
+    $color-border:#999;
+    $color-track: #999; // widgets unfilled value
 
     $color-accent:darken(desaturate(#528bff,25%),10%);
 }
@@ -811,14 +811,15 @@ a {
         padding-top:0;
         padding-left: 35rem;
         width:100%;
-        height:auto;
+        height:130rem;
+        min-height:100rem;
         display: block;
         .strip {
             flex-direction: row;
             > .widget {
                 flex-shrink: initial;
                 width: 100%;
-                height:100%;
+                min-height: 100%;
                 border-right:0!important;
                 border-bottom:0!important;
                 margin-left:-1rem;
@@ -859,7 +860,7 @@ a {
     > .label {
         box-shadow: 0 0 0 1rem $color-bg inset;
     }
-    
+
     .panel {
         height:100%;
         overflow: auto;
@@ -1052,17 +1053,20 @@ a {
 /* XY */
 
 .xy-container, .rgb-container {
-    width:300rem;
+    width:200rem;
+    height:250rem;
     flex-shrink: 0;
+    &.nolabel .xy-wrapper {
+        top:0;
+    }
 }
 .xy-wrapper {
-    &.manual-height {
-        height:100%;
-        .xy {
-            padding-top:0;
-            height:100%;
-        }
-    }
+    position: absolute;
+    top:35rem;
+    left:0;
+    right:0;
+    bottom:0;
+
     overflow: hidden;
     padding-bottom: 60rem;
     .value {
@@ -1082,7 +1086,7 @@ a {
 .xy {
     position:relative;
     width:auto;
-    padding-top:90%;
+    height:100%;
     margin:0 1rem;
     overflow: hidden;
     cursor: -webkit-grab;
