@@ -804,6 +804,7 @@ a {
             border:0!important;
             min-width:auto!important;
             max-width: 100%;
+            margin-top:-1rem;
         }
     }
     &.horizontal {
@@ -820,9 +821,7 @@ a {
                 height:100%;
                 border-right:0!important;
                 border-bottom:0!important;
-                &:first-child {
-                    margin-left:-1rem;
-                }
+                margin-left:-1rem;
             }
         }
         > .label {
