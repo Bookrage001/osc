@@ -105,6 +105,11 @@ parsewidgets = function(widgets,parent) {
             widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
         }
 
+        if (parent.hasClass('strip')) {
+            delete widgetData.top
+            delete widgetData.left
+        }
+
         var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
             height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height,
             left = parseInt(widgetData.left)==widgetData.left?parseInt(widgetData.left)+'rem' : widgetData.left,

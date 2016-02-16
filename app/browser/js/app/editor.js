@@ -60,9 +60,8 @@ enableEditor = function(){
 
         }
 
-        $('.widget.ui-resizable').resizable('destroy')
-        $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
 
+        $('.widget.ui-resizable').resizable('destroy')
         $(this).resizable({
             handles:'se',
             helper: "ui-helper",
@@ -75,24 +74,29 @@ enableEditor = function(){
             snapTolerance:5
         })
 
-        $(this).draggable({
-                stop: function( event, ui ) {
-                    event.preventDefault()
-                    data.top = ui.helper.position().top + $(this).parent().scrollTop()
-                    data.left = ui.helper.position().left + $(this).parent().scrollLeft()
-                    ui.helper.remove()
-                    updateWidget()
-                },
-                handle:'.ui-draggable-handle',
-                snap:'.tab.on .widget, .tab.on',
-                snapTolerance:5,
-                helper:function(){return $('<div class="ui-helper"></div>').css({height:$(this).outerHeight(),width:$(this).outerWidth()})}
-                // containment:'parent'
-        }).append('<div class="ui-draggable-handle"></div>')
+        if (data.hasOwnProperty('top')) {
+            $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+            $(this).draggable({
+                    stop: function( event, ui ) {
+                        event.preventDefault()
+                        data.top = ui.helper.position().top + $(this).parent().scrollTop()
+                        data.left = ui.helper.position().left + $(this).parent().scrollLeft()
+                        ui.helper.remove()
+                        updateWidget()
+                    },
+                    handle:'.ui-draggable-handle',
+                    snap:'.tab.on .widget, .tab.on',
+                    snapTolerance:5,
+                    helper:function(){return $('<div class="ui-helper"></div>').css({height:$(this).outerHeight(),width:$(this).outerWidth()})}
+                    // containment:'parent'
+            }).append('<div class="ui-draggable-handle"></div>')
+        }
 
         for (i in widgetOptions[data.type]) {
             if (i.indexOf('separator')!=-1) {
                 $(`<div class="separator"><span>${widgetOptions[data.type][i]}</span></div>`).appendTo(form)
+                continue
+            } else if (data[i]===undefined) {
                 continue
             }
             if (i!='widgets' && i!='tabs') {
