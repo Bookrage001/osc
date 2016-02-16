@@ -15,7 +15,7 @@ var app = require('app')
         .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
         .options({
             's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
-            'c':{alias:'compile',type:'boolean',describe:'recompile stylesheets (increases startup time)'},
+            'c':{alias:'compile',type:'string',describe:'recompile stylesheets (increases startup time)'},
             'l':{alias:'load',type:'string',describe:'session file to load'},
             'p':{alias:'port',describe:'osc input port (for synchronization)'},
             'f':{alias:'floats',type:'boolean',describe:'force numbers to be sent as floats only'},
@@ -35,7 +35,8 @@ var app = require('app')
       appName: 'OSC Controller',
       syncTargets: argv.s || false,
       oscInPort: argv.p || false,
-      compileScss: argv.c || false,
+      compileScss: argv.c!==false || false,
+      lightTheme: argv.c && argv.c.match(/light/),
       sessionFile:  argv.l || false,
       floatsOnly: argv.f || false,
       noGui: argv.n || false,
@@ -70,8 +71,9 @@ compileScss = function(){
     for (i in filenames) {
         if (filenames[i].indexOf('.scss')!=-1)
         var file = __dirname + '/../browser/scss/' + filenames[i]
+        var light = settings.lightTheme?'$theme:\'light\';':'$theme:\'dark\';'
         var content = fs.readFileSync(file,'utf8')
-        sass.compile(content,{style: sass.style.compact,linefeed: ''}, function(result) {
+        sass.compile(light+content,{style: sass.style.compact,linefeed: ''}, function(result) {
             fs.writeFileSync(__dirname + '/../browser/css/'+filenames[i].replace('.scss','.css'),result.text,'utf8')
         })
     }
