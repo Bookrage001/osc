@@ -854,8 +854,12 @@ a {
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
         border-top: 1rem solid $color-bg;
         border-bottom: 1rem solid $color-bg;
-
     }
+
+    > .label {
+        box-shadow: 0 0 0 1rem $color-bg inset;
+    }
+    
     .panel {
         height:100%;
         overflow: auto;
