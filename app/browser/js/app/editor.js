@@ -60,14 +60,17 @@ enableEditor = function(){
 
         }
 
-
+        var handleTarget
         $('.widget.ui-resizable').resizable('destroy')
         $(this).resizable({
-            handles:'se',
+            handles:'s, e, se',
             helper: "ui-helper",
+            start: function(event, ui){
+                handleTarget = $(event.originalEvent.target);
+            },
             stop: function( event, ui ) {
-                data.height = Math.max(ui.size.height,30)
-                data.width = Math.max(ui.size.width,30)
+                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.max(ui.size.height,30)
+                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width = Math.max(ui.size.width,30)
                 updateWidget()
             },
             snap:'.tab.on .widget, .tab.on',
