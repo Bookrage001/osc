@@ -96,7 +96,7 @@ sessionBrowse = function(){
             var reader = new FileReader();
             reader.onloadend = function(e) {
                 var session = e.target.result
-                ipc.send('openSession',{file:session})
+                ipc.send('sessionOpen',{file:session})
             }
             reader.readAsText(e.target.files[0],'utf-8');
         })
