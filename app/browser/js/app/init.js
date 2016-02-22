@@ -45,7 +45,7 @@ init = function(session,callback) {
                   </div>`,
         }
     ]))
-
+    disableEditor()
     $('[data-action]').each(function(){
         $(this).click(function(){
             eval($(this).attr('data-action')+'()')
