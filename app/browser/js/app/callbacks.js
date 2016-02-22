@@ -63,7 +63,7 @@ ipc.on('sessionOpen',function(event,data){
     var session = JSON.parse(data)
 
     $('#lobby').remove()
-    $('#container').append('<div id="loading"><div class="spinner"></div></div>')
+    $('#container').empty().append('<div id="loading"><div class="spinner"></div></div>')
     setTimeout(function(){
         init(session,function(){$('#loading').hide()})
     },25)
