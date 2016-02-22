@@ -515,7 +515,6 @@ createWidget.xy = function(widgetData) {
 
         handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
 
-        // handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         handle.height = h
         handle.width = w
 
@@ -544,7 +543,7 @@ createWidget.xy = function(widgetData) {
         var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100])
             h = mapToScale(v[1],[range.y.min,range.y.max],[0,100]),
 
-        handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+        handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
         handle.height = h
         handle.width = w
 
@@ -970,7 +969,12 @@ createWidget.fader = function(widgetData,container){
                 break
             }
         }
-        handle[0].setAttribute('style',dimension+':'+h+'%')
+
+        var r = sizeToAngle(r)
+
+        handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
+        knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
+
         handle.size = h
 
         widget.showValue(v)
