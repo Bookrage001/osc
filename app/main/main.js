@@ -1,31 +1,28 @@
 // This prevents argv parsing to be breaked when the app is packaged (executed without 'electron' prefix)
 if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 
-var app = require('app')
-  , browserWindow = require('browser-window')
-  , dialog = require('dialog')
+var argv = require('yargs')
+      .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
+      .options({
+          's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
+          'c':{alias:'compile',type:'string',describe:'recompile stylesheets (increases startup time)'},
+          'l':{alias:'load',type:'string',describe:'session file to load'},
+          'p':{alias:'port',describe:'osc input port (for synchronization)'},
+          'f':{alias:'floats',type:'boolean',describe:'force numbers to be sent as floats only'},
+          'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},
+       })
+      .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
+      .check(function(a,x){if(a.n==undefined || !isNaN(a.n)&&a.n>1023&&parseInt(a.n)===a.n){return true}else{throw 'Error: Port must be an integer >= 1024'}})
+      .check(function(a,x){if(a.sync==undefined || a.s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Sync hosts must be ip:port pairs & port must be >= 1024'}})
+      .strict()
+      .argv
+
   , osc = require('node-osc')
   , fs = require('fs')
   , vm = require('vm')
-  , ipc = require('ipc-main')
+  , ipc = {}
 
   , window = null
-
-  , argv = require('yargs')
-        .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
-        .options({
-            's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
-            'c':{alias:'compile',type:'string',describe:'recompile stylesheets (increases startup time)'},
-            'l':{alias:'load',type:'string',describe:'session file to load'},
-            'p':{alias:'port',describe:'osc input port (for synchronization)'},
-            'f':{alias:'floats',type:'boolean',describe:'force numbers to be sent as floats only'},
-            'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},
-         })
-        .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-        .check(function(a,x){if(a.n==undefined || !isNaN(a.n)&&a.n>1023&&parseInt(a.n)===a.n){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-        .check(function(a,x){if(a.sync==undefined || a.s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Sync hosts must be ip:port pairs & port must be >= 1024'}})
-        .strict()
-        .argv
 
   , settings = {
       presetPath : process.cwd(),
@@ -56,11 +53,6 @@ var app = require('app')
       }
 }
 
-// prevent annoying error popups
-
-dialog.showErrorBox = function(title,err) {
-    console.log(title + ': ' + err)
-}
 
 
 // Sass
@@ -84,6 +76,11 @@ if (settings.compileScss) compileScss()
 // App
 
 if (!settings.noGui) {
+
+    var app = require('app')
+      , browserWindow = require('browser-window')
+      , dialog = require('dialog')
+      , ipc = require('ipc-main')
 
     app.commandLine.appendSwitch('--touch-events')
 
@@ -146,6 +143,53 @@ if (!settings.noGui) {
         app.quit()
     }
 
+    // mainProcess > renderProcess ipc shorthand
+
+    ipc.send = function(name,data) {
+        window.webContents.send(name,data)
+    }
+
+
+    // ipc bindings
+
+    ipc.on('ready',function(){
+        callbacks.ready()
+    })
+    ipc.on('sessionBrowse',function(event, data){
+        callbacks.sessionBrowse(data)
+    })
+    ipc.on('sessionSave',function(event, data){
+        callbacks.sessionSave(data)
+    })
+    ipc.on('sessionAddToHistory',function(event, data){
+        callbacks.sessionAddToHistory(data)
+    })
+    ipc.on('sessionRemoveFromHistory',function(event, data){
+        callbacks.sessionRemoveFromHistory(data)
+    })
+    ipc.on('sessionOpen',function(event, data){
+        callbacks.sessionOpen(data)
+    })
+    ipc.on('sendOsc', function (event,data) {
+        callbacks.sendOsc(data)
+    })
+    ipc.on('stateSave', function(event, data){
+        callbacks.stateSave(data)
+    })
+    ipc.on('stateLoad', function(event, data){
+        callbacks.stateLoad(data)
+    })
+    ipc.on('fullscreen', function(event){
+        callbacks.fullscreen()
+    })
+
+    // prevent annoying error popups
+
+    dialog.showErrorBox = function(title,err) {
+        console.log(title + ': ' + err)
+    }
+
+
 }
 
 
@@ -197,47 +241,6 @@ if (settings.read('floatsOnly')) {
     }
 }
 
-
-
-// mainProcess > renderProcess ipc shorthand
-
-ipc.send = function(name,data) {
-    window.webContents.send(name,data)
-}
-
-
-// ipc bindings
-
-ipc.on('ready',function(){
-    callbacks.ready()
-})
-ipc.on('sessionBrowse',function(event, data){
-    callbacks.sessionBrowse(data)
-})
-ipc.on('sessionSave',function(event, data){
-    callbacks.sessionSave(data)
-})
-ipc.on('sessionAddToHistory',function(event, data){
-    callbacks.sessionAddToHistory(data)
-})
-ipc.on('sessionRemoveFromHistory',function(event, data){
-    callbacks.sessionRemoveFromHistory(data)
-})
-ipc.on('sessionOpen',function(event, data){
-    callbacks.sessionOpen(data)
-})
-ipc.on('sendOsc', function (event,data) {
-    callbacks.sendOsc(data)
-})
-ipc.on('stateSave', function(event, data){
-    callbacks.stateSave(data)
-})
-ipc.on('stateLoad', function(event, data){
-    callbacks.stateLoad(data)
-})
-ipc.on('fullscreen', function(event){
-    callbacks.fullscreen()
-})
 
 
 // callbacks !
