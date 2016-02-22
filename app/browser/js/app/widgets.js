@@ -970,7 +970,7 @@ createWidget.fader = function(widgetData,container){
             }
         }
 
-        var r = sizeToAngle(r)
+        var r = sizeToAngle(h)
 
         handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
         knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
