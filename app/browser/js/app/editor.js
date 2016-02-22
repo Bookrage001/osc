@@ -467,7 +467,7 @@ enableEditor = function(){
 
     $('.editor-container').html(`
         <p class="help">
-        Click to a widget or on a tab title to edit.
+        Click on a widget or on a tab's title to edit
         </p>
     `)
     $('.enable-editor').addClass('on')
