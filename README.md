@@ -7,9 +7,10 @@ The project is under active development; hence, current features are subject to 
 ### Demo
 
 You can try the app here http://openstagecontrol.herokuapp.com/
+
 Please note that :
 - Chrome 47 at least is required
-- Since there is only one instance running, all connected guests are synchronized (widgets sharing same IDs update each other's states) : you might experience some unwanted synchronization unless you specify custom ID's for your widgets.
+- Since there is only one instance running, all connected guests are synchronized (widgets using the same osc paths update each other's states) : you might experience some unwanted synchronization with other users unless you specify custom parameters for your widgets.
 - You might want to download the examples sessions files under *sessions/* and load them from the app to get started.
 
 
