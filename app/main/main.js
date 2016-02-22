@@ -32,7 +32,7 @@ var argv = require('yargs')
       appName: 'OSC Controller',
       syncTargets: argv.s || false,
       oscInPort: argv.p || false,
-      compileScss: argv.c!==false || false,
+      compileScss: argv.c!==undefined || false,
       lightTheme: argv.c && argv.c.match(/light/),
       sessionFile:  argv.l || false,
       floatsOnly: argv.f || false,
