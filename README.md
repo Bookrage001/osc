@@ -14,6 +14,7 @@ The project is under active development; hence, current features are subject to 
 - bi-directionnal osc bindings
 - headless server mode with any number of clients using chromium
 - app state store / recall & import / export
+- light & dark themes !
 
 ### Run from sources
 
@@ -40,7 +41,7 @@ $ npm install
 Options:
   -h, --help     display help
   -s, --sync     synchronized hosts (ip:port pairs)
-  -c, --compile  recompile stylesheets (increases startup time)
+  -c, --compile  recompile stylesheets (increases startup time), if 'light' is specified, the light theme will be compiled, otherwise, the default dark theme will be compiled.
   -l, --load     session file to load
   -p, --port     osc input port (for synchronization)
   -n, --nogui    disable default gui and makes the app availabe through http on specified port
