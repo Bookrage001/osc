@@ -146,11 +146,12 @@ init = function(session,callback) {
     var scrollbarHeight = 20
     scrolls = function(){
         if (webFrame) {
-            $('.tab').on('mousewheel.zoom',function(e) {
+            $('html').on('mousewheel.zoom',function(e) {
                 // console.log(e)
                 if (e.ctrlKey) {
                     e.preventDefault()
-                    var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/10,
+                    if (e.originalEvent.deltaY==0) return
+                    var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/20,
                         s = d+webFrame.getZoomFactor()
                     webFrame.setZoomFactor(s)
 
