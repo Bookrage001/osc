@@ -231,7 +231,9 @@ rgbToHsb = function (rgb) {
     return hsb
 }
 
-
+sizeToAngle = function(size) {
+    return clip(Math.acos((size/100))*180/Math.PI,[0,90])
+}
 clip = function(value,range) {
     var max = Math.max,
         min = Math.min,

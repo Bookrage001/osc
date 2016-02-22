@@ -452,7 +452,7 @@ createWidget.xy = function(widgetData) {
     var widget = $(`
         <div class="xy-wrapper">
             <div class="xy">
-                <div class="handle"><span></span></div>
+                <div class="handle"></div>
             </div>
             <div class="value">
                 <input disabled value="X"></input><input disabled value="Y"></input>
@@ -481,6 +481,7 @@ createWidget.xy = function(widgetData) {
     pad.resize(function(){
         pad.width = pad.innerWidth()
         pad.height = pad.innerHeight()
+        handle[0].setAttribute('style',`transform:translate3d(${pad.width*handle.width/100}px, -${pad.height*handle.height/100}px,0)`)
     })
 
     var off = {x:0,y:0}
@@ -488,7 +489,9 @@ createWidget.xy = function(widgetData) {
         if (absolute || data.ctrlKey || data.shiftKey) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
-            handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+
+            handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
+
             handle.height = h
             handle.width = w
 
@@ -509,7 +512,10 @@ createWidget.xy = function(widgetData) {
 
         var h = clip((-data.deltaY)*100/pad.height+off.y,[0,100]),
             w = clip((data.deltaX)*100/pad.width+off.x,[0,100])
-        handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+
+        handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
+
+        // handle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
         handle.height = h
         handle.width = w
 
@@ -634,6 +640,8 @@ createWidget.rgb = function(widgetData) {
     pad.resize(function(){
         pad.width = pad.innerWidth()
         pad.height = pad.innerHeight()
+        rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*rgbHandle.width/100}px, -${pad.height*rgbHandle.height/100}px,0)`)
+
     })
 
 
@@ -642,7 +650,8 @@ createWidget.rgb = function(widgetData) {
         if (absolute || data.ctrlKey || data.shiftKey) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
-            rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+
+            rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
             rgbHandle.height = h
             rgbHandle.width = w
 
@@ -663,7 +672,8 @@ createWidget.rgb = function(widgetData) {
 
         var h = clip((-data.deltaY)*100/pad.height+rgbOff.y,[0,100]),
             w = clip(data.deltaX*100/pad.width+rgbOff.x,[0,100])
-        rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
+
+        rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
         rgbHandle.height = h
         rgbHandle.width = w
 
@@ -680,7 +690,7 @@ createWidget.rgb = function(widgetData) {
     huePad.on('draginit',function(e,data){
         if (absolute || data.ctrlKey || data.shiftKey) {
             var d = (data.offsetX * 100 / pad.width)
-            hueHandle[0].setAttribute('style','width:'+d+'%')
+            hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*d/100}px,0,0)`)
             hueHandle.width = d
 
 
@@ -709,7 +719,7 @@ createWidget.rgb = function(widgetData) {
         if (data.shiftKey) return
 
         var w = clip(data.deltaX*100/pad.width+hueOff,[0,100])
-        hueHandle[0].setAttribute('style','width:'+w+'%')
+        hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px,0,0)`)
         hueHandle.width = w
 
         var h = clip(hueHandle.width*3.6,[0,360]),
@@ -750,8 +760,8 @@ createWidget.rgb = function(widgetData) {
             h = mapToScale(hsb.b,[0,100],[0,100]),
             hueW = mapToScale(hsb.h,[0,360],[0,100])
 
-        rgbHandle[0].setAttribute('style','height:'+h+'%;width:'+w+'%')
-        hueHandle[0].setAttribute('style','width:'+hueW+'%')
+        rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
+        hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*hueW/100}px,0,0)`)
 
         rgbHandle.height = h
         rgbHandle.width = w
@@ -831,7 +841,7 @@ createWidget.fader = function(widgetData,container){
         <div class="fader-wrapper-outer">
             <div class="fader-wrapper">
                 <div class="fader">
-                    <div class="handle"></div>
+                    <div class="handle"><span></span></div>
                     <div class="pips"></div>
                 </div>
             </div>
@@ -839,12 +849,14 @@ createWidget.fader = function(widgetData,container){
         </div>
         `),
         handle = widget.find('.handle'),
+        knob = widget.find('span')[0],
         wrapper = widget.find('.fader-wrapper'),
         fader = widget.find('.fader'),
         pips = widget.find('.pips'),
         input = widget.find('input'),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = widgetData.horizontal?'width':'height',
+        axe = dimension=='height'?'X':'Y',
         absolute = widgetData.absolute
 
         if (widgetData.horizontal) container.addClass('horizontal')
@@ -866,7 +878,9 @@ createWidget.fader = function(widgetData,container){
             var d = (dimension=='height')?
                     ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
                     (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
-            handle[0].setAttribute('style',dimension+':'+d+'%')
+            var r = sizeToAngle(d)
+            handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
+            knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
             handle.size = d
 
             var v = widget.getValue()
@@ -888,8 +902,11 @@ createWidget.fader = function(widgetData,container){
         if (data.shiftKey) return
 
         var d = (dimension=='height')?-data.deltaY:data.deltaX
-        d = clip(d*100/fader.size+off,[0,100])
-        handle[0].setAttribute('style',dimension+':'+d+'%')
+            d = clip(d*100/fader.size+off,[0,100])
+        var r = sizeToAngle(d)
+
+        handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
+        knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
         handle.size = d
 
         var v = widget.getValue()

@@ -699,7 +699,6 @@ a {
      }
 
     .label {
-        z-index: 1;
         padding:10rem 10rem;
         position:absolute;
         top:0;
@@ -951,7 +950,6 @@ a {
     left:0;
     right:0;
     bottom:0;
-    z-index: 1;
 
     .light {
         position: absolute;
@@ -1120,15 +1118,14 @@ a {
     }
     .handle {
         position:absolute;
-        height:0rem;
-        width:0rem;
         bottom:0;
         left:0;
-        max-height:100%;
-        max-width:100%;
         z-index:2;
-
         pointer-events: none;
+        backface-visibility: hidden;
+        transform-origin: center;
+        transform:translate3d(0,0,0);
+
         &:before {
             content:"";
             position: absolute;
@@ -1241,17 +1238,15 @@ a {
     }
     .handle {
         position:absolute;
-        height:100%;
-        max-width: 100%;
-        width:0;
         z-index:2;
         left:0;
-        bottom:0;
+        top:50%;
         pointer-events: none;
+        transform: translate3d(0,0,0);
         &:before {
             content:"";
             position: absolute;
-            top:50%;margin-top:-4rem;
+            top:-4rem;
             right:-4rem;
             height:8rem;
             width:8rem;
@@ -1273,6 +1268,7 @@ a {
 
 .fader-container {
     width:100rem;
+    min-height: 200rem;
     height:100%;
 
     &.nolabel .fader-wrapper-outer {
@@ -1319,13 +1315,24 @@ a {
                 bottom:0!important;
                 top:auto!important;
                 width:100%;
-                height:0rem;
+                height:100%;
+                transform-origin: bottom;
                 max-height:100%;
                 max-width:100%;
                 background:$color-accent;
                 z-index: 1;
-
-                &:before {
+                transform-style: preserve-3d;
+                backface-visibility: hidden;
+                span {
+                    position: absolute;
+                    bottom:0;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    transform-origin: top;
+                    backface-visibility: hidden;
+                }
+                span:before {
                     content:"";
                     position: absolute;
                     top:-4rem;
@@ -1337,7 +1344,7 @@ a {
                     border-radius: 100%!important;
                     box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2rem 0  mix($color-text,$color-fg,2);
                 }
-                &:after {
+                span:after {
                     content:"";
                     position: absolute;
                     top:-10rem;
@@ -1401,14 +1408,18 @@ a {
             top:50%;
             height:4rem;
             .handle {
-                height:100%!important;
-                width:0;
-                &:before {
+                height:100%important;
+                width:100%;
+                transform-origin: left;
+                span {
+                    transform-origin: right;
+                }
+                span:before {
                     top:-2rem;
                     right:-4rem;
                     left:auto;
                 }
-                &:after {
+                span:after {
                     top:-8rem;
                     right:-10rem;
                     left:auto
@@ -1464,7 +1475,6 @@ a {
         input {
             bottom:0;
             position: absolute;
-            z-index: 1;
             left:0;
         }
 
@@ -1533,7 +1543,7 @@ a {
                     border-radius:100%;
                     border:12rem solid transparent;
                     border-bottom-color: $color-raised;
-                    z-index:1;
+                    z-index:2;
                 }
             }
             .round {
@@ -1554,6 +1564,9 @@ a {
                 right:0;
                 bottom:0;
                 pointer-events: none;
+                transform:rotateZ(0deg);
+                backface-visibility: hidden;
+                z-index: 2;
 
 
                 &:after {
@@ -1584,7 +1597,9 @@ a {
                 right:0;
                 bottom:0;
                 pointer-events: none;
-                z-index: 2;
+                transform:rotateZ(0deg);
+                backface-visibility: hidden;
+                z-index: 3;
                 &:before {
                     content:"";
                     position: absolute;
