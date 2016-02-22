@@ -4,8 +4,14 @@ Open Stage Control is a libre desktop OSC bi-directionnal control surface applic
 
 The project is under active development; hence, current features are subject to change without notice.
 
-<img src="https://cloud.githubusercontent.com/assets/5261671/10734122/03073fe2-7c02-11e5-9f6d-4ff0887ebfe6.png" width="49%" style="display:inline-block;margin-right:1%"/>
-<img src="https://cloud.githubusercontent.com/assets/5261671/10734121/0303f1de-7c02-11e5-94a1-28cd3b7eb27d.png" width="49%" style="display:inline-block"/>
+### Demo
+
+You can try the app here http://openstagecontrol.herokuapp.com/
+Please note that :
+- Chrome 47 at least is required
+- Since there is only one instance running, all connected guests are synchronized (widgets sharing same IDs update each other's states) : you might experience some unwanted synchronization unless you specify custom ID's for your widgets.
+- You might want to download the examples sessions files under *sessions/* and load them from the app to get started.
+
 
 ### Features
 - mouse & multi-touch sensitive widgets
