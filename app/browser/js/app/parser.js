@@ -110,10 +110,10 @@ parsewidgets = function(widgets,parent) {
             delete widgetData.left
         }
 
-        var width = parseInt(widgetData.width)==widgetData.width?parseInt(widgetData.width)+'rem' : widgetData.width,
-            height = parseInt(widgetData.height)==widgetData.height?parseInt(widgetData.height)+'rem' : widgetData.height,
-            left = parseInt(widgetData.left)==widgetData.left?parseInt(widgetData.left)+'rem' : widgetData.left,
-            top = parseInt(widgetData.top)==widgetData.top?parseInt(widgetData.top)+'rem' : widgetData.top
+        var width = parseFloat(widgetData.width)==widgetData.width?parseFloat(widgetData.width)+'rem' : widgetData.width,
+            height = parseFloat(widgetData.height)==widgetData.height?parseFloat(widgetData.height)+'rem' : widgetData.height,
+            left = parseFloat(widgetData.left)==widgetData.left?parseFloat(widgetData.left)+'rem' : widgetData.left,
+            top = parseFloat(widgetData.top)==widgetData.top?parseFloat(widgetData.top)+'rem' : widgetData.top
 
 
         var styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};min-width:${width};`:'',
