@@ -235,29 +235,24 @@ sizeToAngle = function(size) {
     return clip(Math.acos((size/100))*180/Math.PI,[0,90])
 }
 clip = function(value,range) {
-    var max = Math.max,
-        min = Math.min,
-        value = parseFloat(value)
-        if (isNaN(value)) value = range[0]
+    var value = parseFloat(value)
 
-        return max(min(range[0],range[1]),min(parseFloat(value),max(range[0],range[1])))
+    if (isNaN(value)) value = range[0]
+    return Math.max(Math.min(range[0],range[1]),Math.min(value,Math.max(range[0],range[1])))
 
 }
 
 // map a value from a scale to another input and output must be range arrays
 mapToScale = function(value,rangeIn,rangeOut,precision) {
 
-    var max = Math.max,
-        min = Math.min,
-      round = Math.round,
-      value = clip(value,[rangeIn[0],rangeIn[1]]),
-      roundFactor = precision!=undefined?Math.pow(10,precision):100
+    var value = clip(value,[rangeIn[0],rangeIn[1]]),
+        roundFactor = precision!=undefined?Math.pow(10,precision):100
 
     value = ((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
 
-    value = max(min(rangeOut[0],rangeOut[1]),min(value,max(rangeOut[0],rangeOut[1])))
+    value = Math.max(Math.min(rangeOut[0],rangeOut[1]),Math.min(value,Math.max(rangeOut[0],rangeOut[1])))
 
-    value = round(value*roundFactor)/roundFactor
+    value = Math.round(value*roundFactor)/roundFactor
 
     return value
 
