@@ -1087,7 +1087,7 @@ createWidget.knob = function(widgetData) {
             offY = y
 
             knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-            handle[0].setAttribute('style','transform:rotateZ('+(r-2)+'deg)')
+            handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
             knob.rotation = r
 
 
@@ -1128,7 +1128,7 @@ createWidget.knob = function(widgetData) {
         }
 
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-        handle[0].setAttribute('style','transform:rotateZ('+(r-2)+'deg)')
+        handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
         knob.rotation = r
 
         if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
@@ -1176,7 +1176,7 @@ createWidget.knob = function(widgetData) {
 
 
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-        handle[0].setAttribute('style','transform:rotateZ('+(r-2)+'deg)')
+        handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
         var v = widget.getValue()
 
         widget.showValue(v)

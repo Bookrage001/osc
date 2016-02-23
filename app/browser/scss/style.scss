@@ -1473,7 +1473,6 @@ a {
         top: 30rem;
         bottom: 0;
         padding-bottom:30rem;
-        overflow: hidden;
         height: 100%;
         display: flex;
         align-items: center;
@@ -1486,9 +1485,12 @@ a {
 
 
         .knob-wrapper {
-            padding:20rem;
             margin:0 auto;
-            width:95rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             position: relative;
 
@@ -1498,8 +1500,9 @@ a {
             }
 
             .knob-mask {
-                width:100%;
-                padding-bottom:100%;
+                width:58%;
+                padding-bottom:58%;
+                flex-shrink: 0;
                 border-radius:100%;
                 pointer-events: none;
                 position: relative;
@@ -1513,7 +1516,7 @@ a {
                     border:4rem solid $color-track;
                     box-shadow: 0 0 0 1rem  mix($color-text,$color-fg,2),0 0 0 1rem  mix($color-text,$color-fg,2) inset,0 0 1rem  1rem  mix($color-text,$color-fg,2),0 0 1rem 1rem  mix($color-text,$color-fg,2) inset;
                     transform: rotate(45deg);
-                    z-index:1;
+                    z-index:4;
                 }
                 &.pan-left {
                     &:before {
@@ -1549,7 +1552,7 @@ a {
                     border-radius:100%;
                     border:12rem solid transparent;
                     border-bottom-color: $color-raised;
-                    z-index:2;
+                    z-index:4;
                 }
             }
             .round {
@@ -1603,14 +1606,15 @@ a {
                 right:0;
                 bottom:0;
                 pointer-events: none;
-                transform:rotateZ(0deg);
+                transform:rotateZ(-45deg);
                 backface-visibility: hidden;
-                z-index: 3;
+                z-index: 5;
                 &:before {
                     content:"";
                     position: absolute;
-                    bottom:6rem;
-                    left:5rem;
+                    top:50%;
+                    left:-2rem;
+                    margin-top:-4rem;
                     height:8rem;
                     width:8rem;
                     background:$color-accent;
@@ -1621,8 +1625,9 @@ a {
                 &:after {
                     content:"";
                     position: absolute;
-                    bottom:0rem;
-                    left:-1rem;
+                    top:50%;
+                    margin-top:-10rem;
+                    left:-8rem;
                     height:20rem;
                     width:20rem;
                     border:none!important;
@@ -1635,15 +1640,15 @@ a {
                 font-size:11rem;
                 color:$color-text;
                 pointer-events: none;
+                top:50%;
+                margin-top:30%;
                 &.min {
-                    bottom:6rem;
                     left:0;
                     right:50%;
                     width:50%;
                     text-align:center;
                 }
                 &.max {
-                    bottom:6rem;
                     left:50%;
                     width:50%;
                     right:0;
