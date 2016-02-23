@@ -245,20 +245,19 @@ clip = function(value,range) {
 }
 
 // map a value from a scale to another input and output must be range arrays
-mapToScale = function(value,rangeIn,rangeOut,reverse) {
+mapToScale = function(value,rangeIn,rangeOut,precision) {
 
     var max = Math.max,
         min = Math.min,
       round = Math.round,
-      value = clip(value,[rangeIn[0],rangeIn[1]])
+      value = clip(value,[rangeIn[0],rangeIn[1]]),
+      roundFactor = precision!=undefined?Math.pow(10,precision):100
 
     value = ((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
 
-    if (reverse) value = max(rangeOut[0],rangeOut[1])+min(rangeOut[0],rangeOut[1])-value
-
     value = max(min(rangeOut[0],rangeOut[1]),min(value,max(rangeOut[0],rangeOut[1])))
 
-    value = round(value*100)/100
+    value = round(value*roundFactor)/roundFactor
 
     return value
 

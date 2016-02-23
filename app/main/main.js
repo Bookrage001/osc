@@ -8,7 +8,6 @@ var argv = require('yargs')
           'c':{alias:'compile',type:'string',describe:'recompile stylesheets (increases startup time)'},
           'l':{alias:'load',type:'string',describe:'session file to load'},
           'p':{alias:'port',describe:'osc input port (for synchronization)'},
-          'f':{alias:'floats',type:'boolean',describe:'force numbers to be sent as floats only'},
           'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},
        })
       .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
@@ -35,7 +34,6 @@ var argv = require('yargs')
       compileScss: argv.c!==undefined || false,
       lightTheme: argv.c && argv.c.match(/light/),
       sessionFile:  argv.l || false,
-      floatsOnly: argv.f || false,
       noGui: argv.n || false,
 
 
@@ -205,40 +203,33 @@ if (settings.read('oscInPort')) {
     })
 }
 
-sendOsc = function(host,port,path,args) {
+sendOsc = function(host,port,path,args,precision) {
     var client = new osc.Client(host, port)
-    client.send(path, args, function () {
-      client.kill()
-    })
-}
 
-if (settings.read('floatsOnly')) {
-    sendOsc = function(host,port,path,args) {
-        var client = new osc.Client(host, port)
+    var message = new osc.Message(path)
 
-        var message = new osc.Message(path)
+    var numberType = precision==0?'integer':'float'
 
-        if (typeof args=='object') {
-            for (i in args) {
-                var arg = args[i]
-                if (typeof arg == 'number') {
-                    message.append({type:'float',value:arg})
-                } else {
-                    message.append({type:'string',value:arg})
-                }
-            }
-        } else {
-            if (typeof args == 'number') {
-                message.append({type:'float',value:args})
+    if (typeof args=='object') {
+        for (i in args) {
+            var arg = args[i]
+            if (typeof arg == 'number') {
+                message.append({type:numberType,value:arg})
             } else {
-                message.append({type:'string',value:args})
+                message.append({type:'string',value:arg})
             }
         }
-
-        client.send(message, function () {
-          client.kill()
-        })
+    } else {
+        if (typeof args == 'number') {
+            message.append({type:numberType,value:args})
+        } else {
+            message.append({type:'string',value:args})
+        }
     }
+
+    client.send(message, function () {
+      client.kill()
+    })
 }
 
 
@@ -325,7 +316,7 @@ callbacks.sendOsc = function(data) {
             var host = targets[i].split(':')[0],
                 port = targets[i].split(':')[1]
 
-            if (port) sendOsc(host,port,data.path,data.args)
+            if (port) sendOsc(host,port,data.path,data.args,data.precision)
 
         }
 }

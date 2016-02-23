@@ -75,6 +75,7 @@ widgetOptions = {
 
         on:1,
         off:0,
+        precision:2,
         path:'auto',
         target:[]
     },
@@ -96,6 +97,7 @@ widgetOptions = {
 
         on:1,
         off:0,
+        precision:2,
         path:'auto',
         target:[]
     },
@@ -117,6 +119,7 @@ widgetOptions = {
         separator2:'osc',
 
         values:{"Value 1":1,"Value 2":2},
+        precision:2,
         path:'auto',
         target:[]
     },
@@ -140,10 +143,11 @@ widgetOptions = {
 
         separator3:'osc',
 
-        split:false,
         rangeX:{min:0,max:1},
         rangeY:{min:0,max:1},
+        precision:2,
         path:'auto',
+        split:false,
         target:[]
     },
     rgb: {
@@ -166,8 +170,9 @@ widgetOptions = {
 
         separator3:'osc',
 
-        split:false,
+        precision:0,
         path:'auto',
+        split:false,
         target:[]
     },
     fader: {
@@ -193,6 +198,7 @@ widgetOptions = {
         separator3:'osc',
 
         range:{min:0,max:1},
+        precision:2,
         path:'auto',
         target:[]
     },
@@ -220,6 +226,7 @@ widgetOptions = {
         separator3:'osc',
 
         range:{min:0,max:1},
+        precision:2,
         path:'auto',
         target:[]
     }
@@ -275,7 +282,7 @@ createWidget.led = function(widgetData) {
     if (widgetData.color) led.css('background-color',widgetData.color)
 
     widget.setValue = function(v){
-        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1]))
+        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision))
     }
     widget.getValue = function(){return}
     return widget
@@ -333,6 +340,7 @@ createWidget.toggle  = function(widgetData) {
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
+            precision:widgetData.precision,
             args:v
         })
     }
@@ -391,6 +399,7 @@ createWidget.push  = function(widgetData) {
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
+            precision:widgetData.precision,
             args:v
         })
     }
@@ -448,6 +457,7 @@ createWidget.switch = function(widgetData) {
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
+            precision:widgetData.precision,
             args:v
         })
     }
@@ -536,8 +546,8 @@ createWidget.xy = function(widgetData) {
 
 
     widget.getValue = function() {
-        var x = mapToScale(handle.width,[0,100],[range.x.min,range.x.max]),
-            y = mapToScale(handle.height,[0,100],[range.y.min,range.y.max])
+        var x = mapToScale(handle.width,[0,100],[range.x.min,range.x.max],widgetData.precision),
+            y = mapToScale(handle.height,[0,100],[range.y.min,range.y.max],widgetData.precision)
 
         return [x,y]
     }
@@ -548,8 +558,8 @@ createWidget.xy = function(widgetData) {
             v[i] = clip(v[i],[range[['x','y'][i]].min,range[['x','y'][i]].max])
         }
 
-        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100])
-            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100]),
+        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision)
+            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision),
 
         handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
         handle.height = h
@@ -563,19 +573,22 @@ createWidget.xy = function(widgetData) {
         sendOsc({
             target:split?false:widgetData.target,
             path:widgetData.path,
-            args:v
+            args:v,
+            precision:widgetData.precision,
         })
         if (split) {
             sendOsc({
                 target:widgetData.target,
                 path:split.x,
                 args:v[0],
+                precision:widgetData.precision,
                 sync:false
             })
             sendOsc({
                 target:widgetData.target,
                 path:split.y,
                 args:v[1],
+                precision:widgetData.precision,
                 sync:false
             })
         }
@@ -748,7 +761,7 @@ createWidget.rgb = function(widgetData) {
     widget.getValue = function() {
         var s = clip(rgbHandle.width,[0,100]),
             l = clip(rgbHandle.height,[0,100]),
-            h = mapToScale(hueHandle.width,[0,100],[0,360]),
+            h = mapToScale(hueHandle.width,[0,100],[0,360],widgetData.precision),
             rgb = hsbToRgb({h:h,s:s,b:l})
         return [rgb.r,rgb.g,rgb.b]
     }
@@ -763,9 +776,9 @@ createWidget.rgb = function(widgetData) {
 
         var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
-        var w = mapToScale(hsb.s,[0,100],[0,100]),
-            h = mapToScale(hsb.b,[0,100],[0,100]),
-            hueW = mapToScale(hsb.h,[0,360],[0,100])
+        var w = mapToScale(hsb.s,[0,100],[0,100],widgetData.precision),
+            h = mapToScale(hsb.b,[0,100],[0,100],widgetData.precision),
+            hueW = mapToScale(hsb.h,[0,360],[0,100],widgetData.precision)
 
         rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
         hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*hueW/100}px,0,0)`)
@@ -789,25 +802,29 @@ createWidget.rgb = function(widgetData) {
         sendOsc({
             target:split?false:widgetData.target,
             path:widgetData.path,
-            args:v
+            args:v,
+            precision:widgetData.precision,
         })
         if (split) {
             sendOsc({
                 target:widgetData.target,
                 path:split.r,
                 args:v[0],
+                precision:widgetData.precision,
                 sync:false
             })
             sendOsc({
                 target:widgetData.target,
                 path:split.g,
                 args:v[1],
+                precision:widgetData.precision,
                 sync:false
             })
             sendOsc({
                 target:widgetData.target,
                 path:split.b,
                 args:v[2],
+                precision:widgetData.precision,
                 sync:false
             })
         }
@@ -963,7 +980,7 @@ createWidget.fader = function(widgetData,container){
         var h = clip(handle.size,[0,100])
         for (var i=0;i<rangeKeys.length-1;i++) {
             if (h <= rangeKeys[i+1] && h >= rangeKeys[i]) {
-                return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]])
+                return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]],widgetData.precision)
             }
         }
 
@@ -973,7 +990,7 @@ createWidget.fader = function(widgetData,container){
             v=clip(v,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
             if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
-                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]])
+                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision)
                 break
             }
         }
@@ -996,6 +1013,7 @@ createWidget.fader = function(widgetData,container){
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
+            precision:widgetData.precision,
             args:v
         })
     }
@@ -1080,7 +1098,7 @@ createWidget.knob = function(widgetData) {
             else if (r>90)  {knob.removeClass('d3').addClass('d2')}
             else            {knob.removeClass('d3 d2')}
 
-            var v = mapToScale(r,[0,270],[range.min,range.max])
+            var v = mapToScale(r,[0,270],[range.min,range.max],widgetData.precision)
 
             widget.sendValue(v)
             widget.trigger('sync')
@@ -1120,7 +1138,7 @@ createWidget.knob = function(widgetData) {
         else if (r>90)  {knob.removeClass('d3').addClass('d2')}
         else            {knob.removeClass('d3 d2')}
 
-        var v = mapToScale(r,[0,270],[range.min,range.max])
+        var v = mapToScale(r,[0,270],[range.min,range.max],widgetData.precision)
 
         widget.sendValue(v)
         widget.trigger('sync')
@@ -1130,7 +1148,7 @@ createWidget.knob = function(widgetData) {
 
 
     widget.getValue = function() {
-        return mapToScale(knob.rotation,[0,270],[range.min,range.max])
+        return mapToScale(knob.rotation,[0,270],[range.min,range.max],widgetData.precision)
     }
     widget.showValue = function(v) {
         input.val(v+unit)
@@ -1139,11 +1157,12 @@ createWidget.knob = function(widgetData) {
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
+            precision:widgetData.precision,
             args:v
         })
     }
     widget.setValue = function(v,send,sync) {
-        var r = mapToScale(v,[range.min,range.max],[0,270])
+        var r = mapToScale(v,[range.min,range.max],[0,270],widgetData.precision)
         knob.rotation = r
 
 
