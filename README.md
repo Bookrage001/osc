@@ -66,6 +66,13 @@ This will create a headless app available through http on port 8080. Multiple cl
 
 ```
 
+**Run without electron**
+
+Running the app with the `-n / --nogui` switch can also be done without electron since it works like any node web app :
+
+```
+node /path/to/app/ -n 8000
+```
 
 
 ### Session file structure
@@ -123,6 +130,7 @@ It can also be a self invoking function that returns an array of objects :
     height:"auto",          // [string|integer] widget's height in px (percentages allowed)
     css:"",                 // [string] css styles, yeah
 
+    precision:2,            // [integer] number of decimals : 0 to send integers
     target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
     path:false              // [string] osc path, default to '/widget_id'
 }
