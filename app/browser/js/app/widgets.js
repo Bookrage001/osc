@@ -1,4 +1,5 @@
 createWidget = {}
+
 widgetOptions = {
     strip: {
         type:'strip',
@@ -59,6 +60,7 @@ widgetOptions = {
     toggle: {
         type:'toggle',
         id:'auto',
+        linkId:'',
 
         separator1:'style',
 
@@ -79,6 +81,7 @@ widgetOptions = {
     push: {
         type:'push',
         id:'auto',
+        linkId:'',
 
         separator1:'style',
 
@@ -99,6 +102,7 @@ widgetOptions = {
     switch: {
         type:'switch',
         id:'auto',
+        linkId:'',
 
         separator1:'style',
 
@@ -119,6 +123,7 @@ widgetOptions = {
     xy: {
         type:'xy',
         id:'auto',
+        linkId:'',
 
         separator1:'style',
 
@@ -144,6 +149,7 @@ widgetOptions = {
     rgb: {
         type:'rgb',
         id:'auto',
+        linkId:'',
 
         separator1:'style',
 
@@ -167,6 +173,7 @@ widgetOptions = {
     fader: {
         type:'fader',
         id:'auto',
+        linkId:'',
 
         separator1:'style',
 
@@ -192,6 +199,7 @@ widgetOptions = {
     knob: {
         type:'knob',
         id:'auto',
+        linkId:'',
 
         separator1:'style',
 
@@ -294,7 +302,7 @@ createWidget.toggle  = function(widgetData) {
 
     widget.fakeclick = function(){
         var newVal = widget.hasClass('on')?widgetData.off:widgetData.on
-        widget.setValue(newVal,true)
+        widget.setValue(newVal,true,true)
         $document.on('dragend.toggle',function(){
             $document.off('dragend.toggle')
             widget.on('draginit.toggle',function(){
@@ -317,7 +325,7 @@ createWidget.toggle  = function(widgetData) {
             if (send) widget.sendValue(widgetData.off)
         }
 
-        if (send) widget.trigger('sync')
+        if (sync) widget.trigger('sync')
 
     }
     widget.sendValue = function(v) {
@@ -350,9 +358,9 @@ createWidget.push  = function(widgetData) {
     })
 
     widget.fakeclick = function(){
-        widget.setValue(widgetData.on,true)
+        widget.setValue(widgetData.on,true,true)
         $document.on('dragend.push',function(){
-            widget.setValue(widgetData.off,true)
+            widget.setValue(widgetData.off,true,true)
             $document.off('dragend.push')
             widget.on('draginit.push',function(){
                 widget.off('draginit.push')
@@ -375,7 +383,7 @@ createWidget.push  = function(widgetData) {
             if (send) widget.sendValue(v)
         }
 
-        if (send) widget.trigger('sync')
+        if (sync) widget.trigger('sync')
 
     }
     widget.sendValue = function(v) {

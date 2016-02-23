@@ -1,4 +1,5 @@
 __widgets__ = {}
+__widgetsLinks__ = {}
 __widgetsIds__ = {}
 
 
@@ -23,6 +24,7 @@ parsetabs = function(tabs,parent,main){
 
     if (main) {
         __widgets__ = {}
+        __widgetsLinks__ = {}
         __widgetsIds__ = {}
 
         tabIterator = {}
@@ -137,15 +139,18 @@ parsewidgets = function(widgets,parent) {
         widgetContainer.append(widgetInner)
 
         // store widget reference for cross widget sync
-        if (__widgets__[widgetData.id]==undefined) {
-            __widgets__[widgetData.id] = []
-        }
-
+        if (__widgets__[widgetData.id]==undefined) __widgets__[widgetData.id] = []
         __widgets__[widgetData.id].push(widgetInner)
+
+        // store widget with linkId for widgte linking
+        if (widgetData.linkId && widgetData.linkId.length) {
+            if (__widgetsLinks__[widgetData.linkId]==undefined) __widgetsLinks__[widgetData.linkId] = []
+            __widgetsLinks__[widgetData.linkId].push(widgetInner)
+        }
 
 
         // store path vs widget id for faster cross-app sync
-        __widgetsIds__[widgetData.path ] = widgetData.id
+        __widgetsIds__[widgetData.path] = widgetData.id
 
         parent.append(widgetContainer)
     }

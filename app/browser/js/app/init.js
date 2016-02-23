@@ -92,12 +92,12 @@ init = function(session,callback) {
     }
     sidepanel()
 
-    // Widget Synchronization : widget that share the same id will update each other
-    // without sending any extra osc message
+    // Widget Synchronization
     sync = function() {
+        // Widget that share the same id will update each other
+        // without sending any extra osc message
         $.each(__widgets__,function(i,widget) {
             if (widget.length>1) {
-
                 var closureSync = function(x) {
                     return function() {
                         var v = widget[x].getValue()
@@ -109,12 +109,29 @@ init = function(session,callback) {
                         }
                     }
                 }
-
                 for (j in widget) {
-                    widget[j].off('sync').on('sync',closureSync(j))
+                    widget[j].off('sync.id').on('sync.id',closureSync(j))
                 }
-
-
+            }
+        })
+        // widgets that share the same linkId will update each other.
+        // Updated widgets will send osc messages normally
+        $.each(__widgetsLinks__,function(i,widget) {
+            if (widget.length>1) {
+                var closureSync = function(x) {
+                    return function() {
+                        var v = widget[x].getValue()
+                        for (k=0;k<widget.length;k++) {
+                            if (x!=k) {
+                                if (document.body.contains(widget[k][0].parentNode))
+                                    widget[k].setValue(v,true,false)
+                            }
+                        }
+                    }
+                }
+                for (j in widget) {
+                    widget[j].off('sync.link').on('sync.link',closureSync(j))
+                }
             }
         })
     }
