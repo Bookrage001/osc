@@ -473,14 +473,14 @@ createWidget.xy = function(widgetData) {
                 <div class="handle"></div>
             </div>
             <div class="value">
-                <input disabled value="X"></input><input disabled value="Y"></input>
-                <input class="x"></input><input class="y"></input>
+            <div class="input disabled">X</div><div class="input disabled">Y</div>
+                <div class="input x"></div><div class="input y"></div>
             </div>
         </div>
         `),
         handle = widget.find('.handle'),
         pad = widget.find('.xy'),
-        value = {x:widget.find('.x'),y:widget.find('.y')},
+        value = {x:widget.find('.x').fakeInput({align:'center'}),y:widget.find('.y').fakeInput({align:'center'})},
         range = {x:widgetData.rangeX,y:widgetData.rangeY},
         absolute = widgetData.absolute,
         split = widgetData.split?
@@ -497,8 +497,11 @@ createWidget.xy = function(widgetData) {
     handle.width = 0
 
     pad.resize(function(){
-        pad.width = pad.innerWidth()
-        pad.height = pad.innerHeight()
+        var width = pad.innerWidth(),
+            height = pad.innerHeight()
+        if (!width || (pad.height==height && pad.width==width)) return
+        pad.width = width
+        pad.height = height
         handle[0].setAttribute('style',`transform:translate3d(${pad.width*handle.width/100}px, -${pad.height*handle.height/100}px,0)`)
     })
 
@@ -632,8 +635,8 @@ createWidget.rgb = function(widgetData) {
                 <div class="handle"></div>
             </div>
             <div class="value">
-                <input disabled value="R"></input><input disabled value="G"></input><input disabled value="B"></input>
-                <input class="r"></input><input class="g"></input><input class="b"></input>
+                <div class="input disabled">R</div><div class="input disabled">G</div><div class="input disabled">B</div>
+                <div class="input r"></div><div class="input g"></div><div class="input b"></div>
             </div>
         </div>`),
         rgbHandle = widget.find('.rgb .handle'),
@@ -641,7 +644,7 @@ createWidget.rgb = function(widgetData) {
         pad = widget.find('.xy'),
         huePad = widget.find('.hue'),
         rgbBg = pad.find('.bg')[0],
-        value = {r:widget.find('input.r'),g:widget.find('input.g'),b:widget.find('input.b')},
+        value = {r:widget.find('.r').fakeInput({align:'center'}),g:widget.find('.g').fakeInput({align:'center'}),b:widget.find('.b').fakeInput({align:'center'})},
         absolute = widgetData.absolute,
         split = widgetData.split?
                     typeof widgetData.split == 'object'?
@@ -658,8 +661,11 @@ createWidget.rgb = function(widgetData) {
     hueHandle.width = 0
 
     pad.resize(function(){
-        pad.width = pad.innerWidth()
-        pad.height = pad.innerHeight()
+        var width = pad.innerWidth(),
+            height = pad.innerHeight()
+        if (!width || (pad.height==height && pad.width==width)) return
+        pad.width = width
+        pad.height = height
         rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*rgbHandle.width/100}px, -${pad.height*rgbHandle.height/100}px,0)`)
 
     })
@@ -869,7 +875,7 @@ createWidget.fader = function(widgetData,container){
                     <div class="pips"></div>
                 </div>
             </div>
-            <input></input>
+            <div class="input"></div>
         </div>
         `),
         handle = widget.find('.handle'),
@@ -877,12 +883,11 @@ createWidget.fader = function(widgetData,container){
         wrapper = widget.find('.fader-wrapper'),
         fader = widget.find('.fader'),
         pips = widget.find('.pips'),
-        input = widget.find('input'),
+        input = widget.find('.input').fakeInput(),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = widgetData.horizontal?'width':'height',
         axe = dimension=='height'?'X':'Y',
         absolute = widgetData.absolute
-
         if (widgetData.horizontal) container.addClass('horizontal')
 
         handle.size = 0
@@ -1044,14 +1049,14 @@ createWidget.knob = function(widgetData) {
                 <div class="pip min"></div>
                 <div class="pip max"></div>
             </div>
-            <input></input>
+            <div class="input"></div>
         </div>
         `),
         wrapper = widget.find('.knob-wrapper'),
         mask = widget.find('.knob-mask'),
         knob = widget.find('.knob'),
         handle = widget.find('.handle'),
-        input = widget.find('input'),
+        input = widget.find('.input').fakeInput(),
         range = widgetData.range || {min:0,max:1},
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         absolute = widgetData.absolute,

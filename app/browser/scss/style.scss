@@ -717,16 +717,40 @@ a {
             color:$color-accent;
         }
     }
-    input {
+    .input {
         width:100%;
         height:30rem;
         border:0;
         background:transparent;
         color:$color-text-fade;
-        // color:inherit;
         display:block;
-        // text-align: center;
-        padding:10rem;
+        padding:7rem 10rem;
+        position: relative;
+
+        input {
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            padding:7rem 10rem;
+            width: 100%;
+            font-family: 'sans-serif';
+            font-size: 13rem;
+            border:0;
+            background: transparent;
+            font: inherit;
+            color:$color-accent;
+        }
+        canvas {
+            width:100%;
+            height:100%;
+            opacity: .8;
+        }
+        input + canvas {
+            opacity: 0;
+        }
+
         &:focus {
             color:$color-accent;
 
@@ -1099,10 +1123,10 @@ a {
         bottom:0;
         border-top: 1rem solid $color-bg;
     }
-    input {
+    .input, input {
         width:50%;
         float:left;
-        padding: 2rem;
+        height: 30rem;
         text-align: center;
         position: relative;
     }
@@ -1163,7 +1187,7 @@ a {
 
 .rgb-wrapper {
     padding-bottom: 90rem;
-    input {
+    .input, input {
         width:33.33%;
     }
 }
@@ -1288,7 +1312,7 @@ a {
         bottom:0;
         left:0;
         right:0;
-        input {
+        .input {
             position:absolute;
             bottom:0;
         }
@@ -1477,7 +1501,7 @@ a {
         display: flex;
         align-items: center;
 
-        input {
+        .input {
             bottom:0;
             position: absolute;
             left:0;
