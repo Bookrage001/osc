@@ -71,124 +71,6 @@ compileScss = function(){
 if (settings.compileScss) compileScss()
 
 
-// App
-
-if (!settings.noGui) {
-
-    var app = require('app')
-      , browserWindow = require('browser-window')
-      , dialog = require('dialog')
-      , ipc = require('ipc-main')
-
-    app.commandLine.appendSwitch('--touch-events')
-
-
-    app.on('window-all-closed', function() {
-      if (process.platform != 'darwin') {
-        app.quit()
-      }
-    })
-
-    app.on('ready', function() {
-
-        window = new browserWindow({
-            width: 800,
-            height: 600,
-            title:settings.read('appName'),
-            'auto-hide-menu-bar':true,
-            'background-color':'#1a1d22'
-        })
-
-        window.loadURL('file://' + __dirname + '/../browser/index.html')
-
-        window.on('closed', function() {
-            window = null
-        })
-
-
-        var Menu = require('menu')
-        var MenuItem = require('menu-item')
-
-        var template = [
-            {
-                label: 'View',
-                submenu: [
-                    {
-                        label: 'Restart',
-                        accelerator: 'CmdOrCtrl+R',
-                        click: restartApp// function() { window.reload(); }//restartApp
-                    },
-                    {
-                        label: 'Toggle DevTools',
-                        accelerator: 'F12',
-                        click: function() { window.toggleDevTools(); }
-                    },
-                    {
-                        label: 'Toggle Fullscreen',
-                        accelerator: 'F11',
-                        click: function() { window.setFullScreen(!window.isFullScreen()); }
-                    }
-                ]
-            },
-        ]
-        menu = Menu.buildFromTemplate(template)
-        Menu.setApplicationMenu(menu)
-    })
-
-    var restartApp = function(){
-        var exec = require('child_process').exec
-        exec(process.argv.join(' '))
-        app.quit()
-    }
-
-    // mainProcess > renderProcess ipc shorthand
-
-    ipc.send = function(name,data) {
-        window.webContents.send(name,data)
-    }
-
-
-    // ipc bindings
-
-    ipc.on('ready',function(){
-        callbacks.ready()
-    })
-    ipc.on('sessionBrowse',function(event, data){
-        callbacks.sessionBrowse(data)
-    })
-    ipc.on('sessionSave',function(event, data){
-        callbacks.sessionSave(data)
-    })
-    ipc.on('sessionAddToHistory',function(event, data){
-        callbacks.sessionAddToHistory(data)
-    })
-    ipc.on('sessionRemoveFromHistory',function(event, data){
-        callbacks.sessionRemoveFromHistory(data)
-    })
-    ipc.on('sessionOpen',function(event, data){
-        callbacks.sessionOpen(data)
-    })
-    ipc.on('sendOsc', function (event,data) {
-        callbacks.sendOsc(data)
-    })
-    ipc.on('stateSave', function(event, data){
-        callbacks.stateSave(data)
-    })
-    ipc.on('stateLoad', function(event, data){
-        callbacks.stateLoad(data)
-    })
-    ipc.on('fullscreen', function(event){
-        callbacks.fullscreen()
-    })
-
-    // prevent annoying error popups
-
-    dialog.showErrorBox = function(title,err) {
-        console.log(title + ': ' + err)
-    }
-
-
-}
 
 
 // OSC
@@ -285,9 +167,9 @@ callbacks.sessionRemoveFromHistory = function(data) {
 }
 
 callbacks.sessionOpen = function(data,clientId) {
-    var file = data.file || fs.readFileSync(data.path,'utf8'),
-        session,
-        error
+    var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
+        error = file===false&&data.path?'Session file "' + data.path + '" not found.':false,
+        session
 
     try {
         session = vm.runInNewContext(file)
@@ -351,6 +233,108 @@ callbacks.stateLoad = function(data,clientId) {
 callbacks.fullscreen = function(data) {
     window.setFullScreen(!window.isFullScreen())
 }
+
+
+
+// GUI mode (electron)
+
+if (!settings.noGui) {
+
+    var app = require('app')
+      , browserWindow = require('browser-window')
+      , dialog = require('dialog')
+      , ipc = require('ipc-main')
+
+    app.commandLine.appendSwitch('--touch-events')
+
+
+    app.on('window-all-closed', function() {
+      if (process.platform != 'darwin') {
+        app.quit()
+      }
+    })
+
+    app.on('ready', function() {
+
+        window = new browserWindow({
+            width: 800,
+            height: 600,
+            title:settings.read('appName'),
+            'auto-hide-menu-bar':true,
+            'background-color':'#1a1d22'
+        })
+
+        window.loadURL('file://' + __dirname + '/../browser/index.html')
+
+        window.on('closed', function() {
+            window = null
+        })
+
+
+        var Menu = require('menu')
+        var MenuItem = require('menu-item')
+
+        var template = [
+            {
+                label: 'View',
+                submenu: [
+                    {
+                        label: 'Restart',
+                        accelerator: 'CmdOrCtrl+R',
+                        click: restartApp// function() { window.reload(); }//restartApp
+                    },
+                    {
+                        label: 'Toggle DevTools',
+                        accelerator: 'F12',
+                        click: function() { window.toggleDevTools(); }
+                    },
+                    {
+                        label: 'Toggle Fullscreen',
+                        accelerator: 'F11',
+                        click: function() { window.setFullScreen(!window.isFullScreen()); }
+                    }
+                ]
+            },
+        ]
+        menu = Menu.buildFromTemplate(template)
+        Menu.setApplicationMenu(menu)
+    })
+
+    var restartApp = function(){
+        var exec = require('child_process').exec
+        exec(process.argv.join(' '))
+        app.quit()
+    }
+
+    // mainProcess > renderProcess ipc shorthand
+
+    ipc.send = function(name,data) {
+        window.webContents.send(name,data)
+    }
+
+
+    // ipc bindings
+
+    var bindCallback = function(i) {
+        ipc.on(i,function(event,data){
+            callbacks[i](data)
+        })
+    }
+    for (i in callbacks) {
+        bindCallback(i)
+    }
+
+    // prevent annoying error popups
+
+    dialog.showErrorBox = function(title,err) {
+        console.log(title + ': ' + err)
+    }
+
+
+}
+
+
+
 
 
 

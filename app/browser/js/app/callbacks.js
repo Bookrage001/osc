@@ -42,7 +42,7 @@ ipc.on('sessionList',function(event,data){
     })
     $('#lobby a span').click(function(e){
         e.stopPropagation()
-        ipc.send('removeSessionFromHistory',$(this).parent().data('session'))
+        ipc.send('sessionRemoveFromHistory',$(this).parent().data('session'))
         $(this).parents('li').hide()
     })
     $('#lobby .browse').click(function(e){
