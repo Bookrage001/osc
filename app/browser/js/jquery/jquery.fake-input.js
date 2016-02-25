@@ -68,6 +68,7 @@
 			i.blur(function(){
 					self.attr('tabindex','0')
 					i.remove()
+                    $(document).off('mousedown.fakeInput touchstart.fakeInput')
 			})
 			$(document).on('mousedown.fakeInput touchstart.fakeInput',function(){
 				i.blur()
