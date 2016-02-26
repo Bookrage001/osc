@@ -45,7 +45,7 @@ module.exports = {
                 var reader = new FileReader();
                 reader.onloadend = function(e) {
                     var preset = e.target.result
-                    stateSet(preset,true)
+                    module.exports.stateSet(preset,true)
                     laststate = preset
                 }
                 reader.readAsText(e.target.files[0],'utf-8');
