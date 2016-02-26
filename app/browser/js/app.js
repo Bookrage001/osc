@@ -1,9 +1,9 @@
-// Global defs
+///////////////////////
 
-WIDGETS = {} //__widgets__
-WIDGETS_LINKED = {} //__widgetdId__
-WIDGETS_ID_BY_PATH = {} // __widgetsLinks__
-SESSION = [] // session
+WIDGETS = {}
+WIDGETS_LINKED = {}
+WIDGETS_ID_BY_PATH = {}
+SESSION = []
 
 MISC = {
     iterators: {
@@ -12,22 +12,16 @@ MISC = {
     }
 }
 
-// jquery
+///////////////////////
 
-window.$ = window.jQuery = require('./jquery/jquery.min')
-
-
-// third-party js libraries
+$ = jQuery = require('./jquery/jquery.min')
 require('./jquery/jquery.resizable-draggable')
 require('./jquery/jquery.sortable')
 require('./jquery/jquery.drag')
 require('./jquery/jquery.resize')
 require('./jquery/jquery.fake-input')
 
-
-require('./app/utils')
-
-
+///////////////////////
 
 var callbacks = require('./app/callbacks')
 
