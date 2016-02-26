@@ -149,6 +149,9 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    &:hover {
+        box-shadow:  0 0 0 1rem $color-border, 0 0 0 100rem rgba($color-text,.05) inset;
+    }
     &.small {
         padding:5rem;
         padding-right: 15rem;
@@ -311,6 +314,7 @@ body {
                 top:0rem;
                 padding:5rem;
                 color:$color-text-fade;
+                cursor: pointer;
             }
             > div {
                 box-shadow: 0 0 0 1rem $color-border;
