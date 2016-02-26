@@ -286,7 +286,7 @@ module.exports.enable = function(){
 
             var state = stateGet()
 
-            init(SESSION,function(){
+            require('./init')(SESSION,function(){
                 stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {
@@ -421,7 +421,7 @@ module.exports.enable = function(){
 
             var state = stateGet()
 
-            init(SESSION,function(){
+            require('./init')(SESSION,function(){
                 stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {

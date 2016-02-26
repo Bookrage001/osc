@@ -859,7 +859,7 @@ a {
         padding-top:0;
         padding-left: 35rem;
         width:100%;
-        height:130rem;
+        height:auto;
         min-height:100rem;
         display: block;
         .strip {
@@ -1488,15 +1488,15 @@ a {
     align-items: center;
     min-height: 135rem;
     flex-shrink: 0;
-    padding-top:15rem;
     &.nolabel .knob-wrapper-outer{
         top:0;
+        padding-bottom:30rem;
     }
     .knob-wrapper-outer {
         width: 100%;
         top: 30rem;
         bottom: 0;
-        padding-bottom:30rem;
+        padding-bottom:50rem;
         height: 100%;
         display: flex;
         align-items: center;
