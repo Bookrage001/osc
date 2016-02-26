@@ -9,7 +9,7 @@ var strip = require('./widgets/strip'),
     swiitch = require('./widgets/switch'),
     push = require('./widgets/push')
 
-widgetOptions = {
+module.exports.widgetOptions = {
     strip: strip.options,
     panel: panel.options,
     led: led.options,
@@ -22,7 +22,7 @@ widgetOptions = {
     push: push.options
 }
 
-createWidget = {
+module.exports.createWidget = {
     strip: strip.create,
     panel: panel.create,
     led: led.create,
@@ -33,4 +33,47 @@ createWidget = {
     toggle: toggle.create,
     switch: swiitch.create,
     push: push.create
+}
+
+module.exports.sync = function() {
+    // Widget that share the same id will update each other
+    // without sending any extra osc message
+    $.each(WIDGETS,function(i,widget) {
+        if (widget.length>1) {
+            var closureSync = function(x) {
+                return function() {
+                    var v = widget[x].getValue()
+                    for (k=0;k<widget.length;k++) {
+                        if (x!=k) {
+                            if (document.body.contains(widget[k][0].parentNode))
+                                widget[k].setValue(v,false,false)
+                        }
+                    }
+                }
+            }
+            for (j in widget) {
+                widget[j].off('sync.id').on('sync.id',closureSync(j))
+            }
+        }
+    })
+    // widgets that share the same linkId will update each other.
+    // Updated widgets will send osc messages normally
+    $.each(WIDGETS_LINKED,function(i,widget) {
+        if (widget.length>1) {
+            var closureSync = function(x) {
+                return function() {
+                    var v = widget[x].getValue()
+                    for (k=0;k<widget.length;k++) {
+                        if (x!=k) {
+                            if (document.body.contains(widget[k][0].parentNode))
+                                widget[k].setValue(v,true,false)
+                        }
+                    }
+                }
+            }
+            for (j in widget) {
+                widget[j].off('sync.link').on('sync.link',closureSync(j))
+            }
+        }
+    })
 }

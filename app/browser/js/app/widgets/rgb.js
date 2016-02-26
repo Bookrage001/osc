@@ -2,7 +2,8 @@ var utils = require('./utils'),
     clip = utils.clip,
     mapToScale = utils.mapToScale,
     hsbToRgb = utils.hsbToRgb,
-    rgbToHsb = utils.rgbToHsb
+    rgbToHsb = utils.rgbToHsb,
+    sendOsc = utils.sendOsc
 
 module.exports.options = {
     type:'rgb',

@@ -1,4 +1,9 @@
 module.exports = {
+
+    sendOsc: function(data){
+        IPC.send('sendOsc', data)
+    },
+	
 	clip: function(value,range) {
 	    var value = parseFloat(value)
 

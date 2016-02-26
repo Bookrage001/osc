@@ -1,34 +1,28 @@
-__widgets__ = {}
-__widgetsLinks__ = {}
-__widgetsIds__ = {}
+var widgets = require('./widgets'),
+    widgetOptions = widgets.widgetOptions,
+    createWidget = widgets.createWidget
 
-
-widgetIterator = {}
-tabIterator = {}
-getIterator = function(type,tab){
-    var iterator = tab?tabIterator:widgetIterator
-    if (iterator[type]==undefined) iterator[type] = 0
-    iterator[type] += 1
-    return iterator[type]
+var getIterator = function(id,type){
+    var iterator = MISC.iterators[type]
+    if (iterator[id]==undefined) iterator[id] = 0
+    iterator[id] += 1
+    return iterator[id]
 }
 
-hashCode = function(s){
+var hashCode = function(s){
   return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
 }
 
-// Global session variable
-session = []
-
-
-parsetabs = function(tabs,parent,main){
+module.exports.tabs = function(data,parent,main){
 
     if (main) {
-        __widgets__ = {}
-        __widgetsLinks__ = {}
-        __widgetsIds__ = {}
+        // Reset Globals
+        WIDGETS = {}
+        WIDGETS_LINKED = {}
+        WIDGETS_ID_BY_PATH = {}
+        SESSION = data
 
-        tabIterator = {}
-        session = tabs
+        MISC.iterators.tab = {}
     }
 
     var main = main?'main ':'',
@@ -40,13 +34,13 @@ parsetabs = function(tabs,parent,main){
     parent.append(nav).append(content)
 
 
-    for (i in tabs) {
-        var tabData = tabs[i]
+    for (i in data) {
+        var tabData = data[i]
 
 
         var label = tabData.label||tabData.id||'Unnamed',
             hash = hashCode(label),
-            id = 'tab_'+hash+'_'+getIterator('tab'+hash,true),
+            id = 'tab_'+hash+'_'+getIterator('tab'+hash,'tab'),
             on = i==0?'on':''
 
         tabData.label = label
@@ -61,9 +55,9 @@ parsetabs = function(tabs,parent,main){
         if (tabData.stretch) tabContent.addClass('stretch')
 
         if (tabData.tabs) {
-            parsetabs(tabData.tabs,parent=tabContent)
+            module.exports.tabs(tabData.tabs,parent=tabContent)
         } else if (tabData.widgets) {
-            parsewidgets(tabData.widgets,tabContent)
+            module.exports.widgets(tabData.widgets,tabContent)
         }
 
         content.append(tabContent)
@@ -73,10 +67,10 @@ parsetabs = function(tabs,parent,main){
 
 
 
-parsewidgets = function(widgets,parent) {
+module.exports.widgets = function(data,parent) {
 
-    for (i in widgets) {
-        var widgetData = widgets[i]
+    for (i in data) {
+        var widgetData = data[i]
 
         widgetData.type =  widgetData.type || 'fader'
 
@@ -86,7 +80,7 @@ parsewidgets = function(widgets,parent) {
             if (i.indexOf('separator')==-1 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
         }
 
-        widgetData.id = widgetData.id=='auto'?widgetData.type+'_'+getIterator(widgetData.type):widgetData.id.replace(' ','_')
+        widgetData.id = widgetData.id=='auto'?widgetData.type+'_'+getIterator(widgetData.type,'widget'):widgetData.id.replace(' ','_')
         widgetData.label = widgetData.label=='auto'?widgetData.id:widgetData.label
         widgetData.path = widgetData.path=='auto'?'/' + widgetData.id:widgetData.path
         widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false
@@ -139,22 +133,23 @@ parsewidgets = function(widgets,parent) {
         widgetContainer.append(widgetInner)
 
         // store widget reference for cross widget sync
-        if (__widgets__[widgetData.id]==undefined) __widgets__[widgetData.id] = []
-        __widgets__[widgetData.id].push(widgetInner)
+        if (WIDGETS[widgetData.id]==undefined) WIDGETS[widgetData.id] = []
+        WIDGETS[widgetData.id].push(widgetInner)
 
         // store widget with linkId for widgte linking
         if (widgetData.linkId && widgetData.linkId.length) {
-            if (__widgetsLinks__[widgetData.linkId]==undefined) __widgetsLinks__[widgetData.linkId] = []
-            __widgetsLinks__[widgetData.linkId].push(widgetInner)
+            if (WIDGETS_LINKED[widgetData.linkId]==undefined) WIDGETS_LINKED[widgetData.linkId] = []
+            WIDGETS_LINKED[widgetData.linkId].push(widgetInner)
         }
 
 
         // store path vs widget id for faster cross-app sync
-        __widgetsIds__[widgetData.path] = widgetData.id
+        WIDGETS_ID_BY_PATH[widgetData.path] = widgetData.id
 
         parent.append(widgetContainer)
     }
 
-    if (widgets && widgets.length==1) return widgetContainer
+    // Editor needs to get the container object
+    if (data && data.length==1) return widgetContainer
 
 }

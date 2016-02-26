@@ -1,3 +1,5 @@
+var sendOsc = require('./utils').sendOsc
+
 module.exports.options = {
     type:'push',
     id:'auto',

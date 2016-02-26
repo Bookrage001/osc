@@ -1,27 +1,11 @@
-webFrame = false
+WEBFRAME = false
 
 // mainProcess & renderProcess communication engine
 // electron's ipc module is not available here, we use socket.io as a replacement
-socket = require('socket.io-client')
+var socket = require('socket.io-client')
 
-ipc=socket.connect();
-ipc.send = ipc.emit
-
-
-// jquery
-
-window.$ = window.jQuery = require('./jquery/jquery.min.js')
+IPC = socket.connect()
+IPC.send = IPC.emit
 
 
-// third-party js libraries
-require('./jquery/jquery.resizable-draggable.js')
-require('./jquery/jquery.sortable.js')
-require('./jquery/jquery.drag.js')
-require('./jquery/jquery.resize.js')
-require('./jquery/jquery.fake-input.js')
-
-
-// main js
-require('./app/app.js')
-
-ipc.send('ready')
+require('./app')

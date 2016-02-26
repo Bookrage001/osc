@@ -124,6 +124,26 @@
         }
     }
 
+    // MASTER DRAGGING (while shift key pressed)
+    var target
+    $(document).keydown(function (e) {
+        if (e.keyCode == 16) {
 
+            $('body').on('drag',function(ev,dd){
+                dd.target = dd.originalEvent.changedTouches?
+                        document.elementFromPoint(dd.originalEvent.changedTouches[0].clientX, dd.originalEvent.changedTouches[0].clientY)
+                        :dd.target
+
+                $(dd.target).trigger('draginit',[dd])
+                target = dd.target
+
+            })
+        }
+    });
+    $(document).keyup(function (e) {
+        if (e.keyCode == 16) {
+            $('body').off('drag')
+        }
+    });
 
 })(jQuery)

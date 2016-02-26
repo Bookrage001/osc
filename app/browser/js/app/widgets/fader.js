@@ -1,7 +1,8 @@
 var utils = require('./utils'),
     sizeToAngle = utils.sizeToAngle,
     clip = utils.clip,
-    mapToScale = utils.mapToScale
+    mapToScale = utils.mapToScale,
+    sendOsc = utils.sendOsc
 
 module.exports.options = {
     type:'fader',

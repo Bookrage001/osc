@@ -18,6 +18,11 @@ module.exports.options = {
 	tabs:[]
 }
 module.exports.create = function(widgetData,container) {
+
+	var parser = require('../parser'),
+		parsewidgets = parser.widgets,
+		parsetabs = parser.tabs
+
 	var widget = $(`
             <div class="panel">
             </div>

@@ -1,6 +1,7 @@
 var utils = require('./utils'),
     clip = utils.clip,
-    mapToScale = utils.mapToScale
+    mapToScale = utils.mapToScale,
+    sendOsc = utils.sendOsc
 
 module.exports.options = {
     type:'xy',

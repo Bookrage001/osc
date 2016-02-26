@@ -1,3 +1,7 @@
+var widgets = require('./widgets'),
+    widgetOptions = widgets.widgetOptions,
+    parsewidgets = require('./parser').widgets
+
 function getdata(obj){
     var path = []
 
@@ -16,7 +20,7 @@ function getdata(obj){
 
     path.splice(0,1)
 
-    for (var i=0,obj=session, path=path, len=path.length; i<len; i++){
+    for (var i=0,obj=SESSION, path=path, len=path.length; i<len; i++){
         obj = obj[path[i]];
     };
     return obj;
@@ -227,7 +231,6 @@ module.exports.enable = function(){
         }
 
         $('.editor-container').html(form)
-        scrolls()
     })
 
 
@@ -278,7 +281,7 @@ module.exports.enable = function(){
 
             var state = stateGet()
 
-            init(session,function(){
+            init(SESSION,function(){
                 stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {
@@ -387,13 +390,13 @@ module.exports.enable = function(){
         }
 
         $('.editor-container').html(form)
-        scrolls()
     })
+
     $('.editor-root').removeClass('disabled').on('click.editor',function(e){
         e.preventDefault()
         e.stopPropagation()
 
-        var data = session,
+        var data = SESSION,
             form = $('<div class="form"></div>'),
             container = $('#container')
 
@@ -413,7 +416,7 @@ module.exports.enable = function(){
 
             var state = stateGet()
 
-            init(session,function(){
+            init(SESSION,function(){
                 stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {

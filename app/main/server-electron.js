@@ -6,7 +6,7 @@ module.exports = function(settings,app,ipc,browserWindow) {
         title:settings.read('appName'),
         autoHideMenuBar:true,
         backgroundColor:'#1a1d22',
-        show:false
+        // show:false
     })
 
     window.loadURL('file://' + __dirname + '/../browser/index.html')

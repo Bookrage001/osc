@@ -1,3 +1,4 @@
+
 module.exports.options = {
     type:'strip',
     id:'auto',
@@ -17,6 +18,9 @@ module.exports.options = {
     widgets:[]
 }
 module.exports.create = function(widgetData,container) {
+
+    var parsewidgets = require('../parser').widgets
+
     var widget = $(`
             <div class="strip">
             </div>
