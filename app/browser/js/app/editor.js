@@ -1,6 +1,11 @@
 var widgets = require('./widgets'),
     widgetOptions = widgets.widgetOptions,
-    parsewidgets = require('./parser').widgets
+    sync = widgets.sync,
+    parsewidgets = require('./parser').widgets,
+    utils = require('./utils'),
+    stateGet = utils.stateGet,
+    stateSet = utils.stateSet
+
 
 function getdata(obj){
     var path = []
