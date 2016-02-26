@@ -23,8 +23,9 @@ function getdata(obj){
 
 }
 
-enableEditor = function(){
-    disableEditor()
+module.exports.enable = function(){
+    module.exports.disable()
+    var enableEditor = module.exports.enable
     $('.widget').on('click.editor',function(e){
         e.preventDefault()
         e.stopPropagation()
@@ -474,7 +475,7 @@ enableEditor = function(){
     $('.disable-editor').removeClass('on')
 }
 
-disableEditor = function(){
+module.exports.disable = function(){
     $('.widget.ui-resizable').resizable('destroy')
     $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
     $('.widget').off('click.editor')

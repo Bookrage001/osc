@@ -1,3 +1,7 @@
+var editor = require('./editor'),
+    enableEditor = editor.enable,
+    disableEditor = editor.disable
+
 init = function(session,callback) {
 
     $('#container').empty()
