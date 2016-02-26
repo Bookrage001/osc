@@ -31,8 +31,8 @@ var sidepanel = function() {
             html:`<div class="editor">
                     <div class="title"><i class="fa fa-edit"></i>&nbsp;Session editor</div>
                     <div class="actions">
-                        <a class="enable-editor btn" data-action="utils.enableEditor">On</a>
-                        <a class="disable-editor btn on" data-action="utils.disableEditor">Off</a>
+                        <a class="enable-editor btn" data-action="enableEditor">On</a>
+                        <a class="disable-editor btn on" data-action="disableEditor">Off</a>
                         <a class="editor-root btn disabled">Root</a>
                     </div>
                     <div class="actions">
