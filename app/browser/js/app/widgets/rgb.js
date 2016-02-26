@@ -180,8 +180,7 @@ module.exports.create = function(widgetData,container) {
             return [rgb.r,rgb.g,rgb.b]
         }
         widget.setValue = function(v,send,sync) {
-            if (v[1]==undefined && v[2]==undefined) var v = [v,v,v]
-            if (v[2]==undefined) var v = [v[0],v[1],v[1]]
+            if (!v || v.length!=3) return
 
             for (i in [0,1,2]) {
                 v[i] = clip(v[i],[0,255])
@@ -267,7 +266,7 @@ module.exports.create = function(widgetData,container) {
             widget.setValue([v[0],v[1],b],true,true)
         })
 
-        widget.setValue(0)
+        widget.setValue([0,0,0])
 
         return widget
 }

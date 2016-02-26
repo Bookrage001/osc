@@ -112,8 +112,8 @@ module.exports.widgets = function(data,parent) {
             top = parseFloat(widgetData.top)==widgetData.top?parseFloat(widgetData.top)+'rem' : widgetData.top
 
 
-        var styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};min-width:${width};`:'',
-            styleH = widgetData.height&&widgetData.height!='auto'?`height:${height};min-height:${height};`:'',
+        var styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};amin-width:${width};`:'',
+            styleH = widgetData.height&&widgetData.height!='auto'?`height:${height};amin-height:${height};`:'',
             styleL = widgetData.left&&widgetData.left!='auto'||widgetData.left==0?`left:${left};`:'',
             styleT = widgetData.top&&widgetData.top!='auto'||widgetData.top==0?`top:${top};`:''
 

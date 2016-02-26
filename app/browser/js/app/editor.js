@@ -66,7 +66,7 @@ module.exports.enable = function(){
             newContainer.children().first().click()
             $('#sidepanel').scrollTop(scroll)
 
-            if (data.tabs && data.tabs.length) tabs()
+            if (data.tabs && data.tabs.length) require('./ui')
 
         }
 

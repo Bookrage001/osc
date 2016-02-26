@@ -1,3 +1,6 @@
+var utils = require('./utils'),
+    mapToScale = utils.mapToScale
+
 module.exports.options = {
     type:'led',
     id:'auto',

@@ -664,7 +664,6 @@ a {
 .widget {
     display:inline-block;
     height:auto;
-    min-width: 100rem;
     overflow: hidden;
     position:relative;
     font-size:13rem;
@@ -676,6 +675,8 @@ a {
     -webkit-tap-highlight-color:transparent;
     border-right:6rem solid transparent;
     border-bottom:6rem solid transparent;
+    min-height:30rem;
+    min-width:30rem;
 
 
     &:before {
@@ -850,7 +851,6 @@ a {
         padding-top: 35rem;
         .strip > .widget {
             border:0!important;
-            min-width:auto!important;
             max-width: 100%;
             margin-top:-1rem;
         }
@@ -860,7 +860,6 @@ a {
         padding-left: 35rem;
         width:100%;
         height:auto;
-        min-height:100rem;
         display: block;
         .strip {
             flex-direction: row;

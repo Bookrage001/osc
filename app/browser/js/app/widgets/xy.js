@@ -119,7 +119,7 @@ module.exports.create = function(widgetData,container) {
         return [x,y]
     }
     widget.setValue = function(v,send,sync) {
-        if (v[1]==undefined) var v = [v,v]
+        if (!v || v.length!=2) return
 
         for (i in [0,1]) {
             v[i] = clip(v[i],[range[['x','y'][i]].min,range[['x','y'][i]].max])
@@ -177,6 +177,6 @@ module.exports.create = function(widgetData,container) {
         widget.setValue(v,true,true)
     })
 
-    widget.setValue(range.x.min,range.y.min)
+    widget.setValue([range.x.min,range.y.min])
     return widget
 }
