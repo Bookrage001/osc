@@ -759,7 +759,7 @@ a {
             }
         }
         input + canvas {
-            opacity: 0;
+            visibility: hidden;
         }
 
         &:focus {
