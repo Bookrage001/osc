@@ -289,10 +289,12 @@ body {
             .actions {
                 display: flex;
                 align-items: stretch;
+                flex-wrap:wrap;
                 a {
+                    min-width:33.33%;
+                    flex-grow:3;
                     padding:10rem;
                     display: block;
-                    width:100%;
                     text-align: center;
                     &.on {
                         pointer-events: none;
@@ -750,7 +752,11 @@ a {
         canvas {
             width:100%;
             height:100%;
-            opacity: .8;
+            opacity: 0;
+            transition: opacity .2s;
+            &.visible {
+                opacity:.8;
+            }
         }
         input + canvas {
             opacity: 0;

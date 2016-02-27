@@ -1,10 +1,7 @@
 var widgets = require('./widgets'),
     widgetOptions = widgets.widgetOptions,
     sync = widgets.sync,
-    parsewidgets = require('./parser').widgets,
-    utils = require('./utils'),
-    stateGet = utils.stateGet,
-    stateSet = utils.stateSet
+    parsewidgets = require('./parser').widgets
 
 
 function getdata(obj){
@@ -33,7 +30,15 @@ function getdata(obj){
 }
 
 module.exports.enable = function(){
+
+    var actions = require('./actions'),
+        stateGet = actions.stateGet,
+        stateSet = actions.stateSet,
+        init = require('./init'),
+        ui = require('./ui')
+
     module.exports.disable()
+    $('.editor').append('<div class="editor-container"></div>')
     var enableEditor = module.exports.enable
     $('.widget').on('click.editor',function(e){
         e.preventDefault()
@@ -66,7 +71,7 @@ module.exports.enable = function(){
             newContainer.children().first().click()
             $('#sidepanel').scrollTop(scroll)
 
-            if (data.tabs && data.tabs.length) require('./ui')
+            if (data.tabs && data.tabs.length) ui()
 
         }
 
@@ -286,7 +291,7 @@ module.exports.enable = function(){
 
             var state = stateGet()
 
-            require('./init')(SESSION,function(){
+            init(SESSION,function(){
                 stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {
@@ -401,6 +406,9 @@ module.exports.enable = function(){
         e.preventDefault()
         e.stopPropagation()
 
+        $('.widget.ui-resizable').resizable('destroy')
+        $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+
         var data = SESSION,
             form = $('<div class="form"></div>'),
             container = $('#container')
@@ -421,7 +429,7 @@ module.exports.enable = function(){
 
             var state = stateGet()
 
-            require('./init')(SESSION,function(){
+            init(SESSION,function(){
                 stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {
@@ -492,5 +500,5 @@ module.exports.disable = function(){
     $('.enable-editor').removeClass('on')
     $('.disable-editor').addClass('on')
     $('.editing').removeClass('editing')
-    $('.editor-container').empty()
+    $('.editor .editor-container').remove()
 }

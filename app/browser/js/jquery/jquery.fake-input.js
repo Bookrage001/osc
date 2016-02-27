@@ -15,6 +15,7 @@
 		self.width = undefined
 		self.color = $('body').css('color')
         self.center = settings.align == 'center'
+        self.visible = false
 
 
 		self.attr('tabindex',"0")
@@ -24,6 +25,12 @@
 				height = canvas.height()
 
 			if (height==100 && width==100) return
+
+            if (!self.visible) {
+                self.visible = true
+                canvas.addClass('visible')
+            }
+
 			self.height=height
 			self.width=width
 

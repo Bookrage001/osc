@@ -8,7 +8,7 @@ module.exports = function(session,callback) {
 
     parsetabs(session,$('#container'),true)
 
-    ui()
+    ui.init()
 
     sync()
 

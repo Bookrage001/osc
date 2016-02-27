@@ -1,67 +1,7 @@
-var editor = require('./editor'),
-    enableEditor = editor.enable,
-    disableEditor = editor.disable,
-    utils = require('./utils')
+var actions = require('./actions'),
+    icon = require('./utils').icon
 
-var sidepanel = function() {
-    $('#sidepanel').append(utils.createMenu([
-        {
-            label:'Fullscreen (F11)',
-            click:utils.toggleFullscreen,
-            icon:'tv'
-        },
-        {
-            html: `
-            <div>
-                <div class="title"><i class="fa fa-sliders"></i>&nbsp;Snapshot</div>
-                <div class="actions">
-                    <a class="btn" data-action="utils.stateQuickSave">Store</a>
-                    <a class="btn disabled quickload" data-action="utils.stateQuickLoad">Recall</a>
-                    <a class="btn" data-action="utils.stateSend">Send</a>
-                </div>
-                <div class="actions">
-                    <a class="btn" data-action="utils.stateLoad">Import</a>
-                    <a class="btn" data-action="utils.stateSave">Export</a>
-                </div>
-            </div>
-
-            `
-        },
-        {
-            html:`<div class="editor">
-                    <div class="title"><i class="fa fa-edit"></i>&nbsp;Session editor</div>
-                    <div class="actions">
-                        <a class="enable-editor btn" data-action="enableEditor">On</a>
-                        <a class="disable-editor btn on" data-action="disableEditor">Off</a>
-                        <a class="editor-root btn disabled">Root</a>
-                    </div>
-                    <div class="actions">
-                        <a class="editor-import btn" data-action="utils.sessionBrowse">Load</a>
-                        <a class="editor-export btn" data-action="utils.sessionSave">Save</a>
-                    </div>
-                    <div class="editor-container"></div>
-                  </div>`,
-        }
-    ]))
-    disableEditor()
-
-
-    $('[data-action]').each(function(){
-        $(this).click(function(){
-            eval($(this).attr('data-action')+'()')
-        })
-    })
-
-    $(`<a id="open-toggle">${utils.icon('navicon')}</a>`).appendTo('#container').click(function(){
-        $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
-    })
-
-    // in case where are hot loading a session
-    if ($('#sidepanel').hasClass('sidepanel-open')) {
-        $('#open-toggle, #container').addClass('sidepanel-open')
-    }
-
-}
+var sidepanel = require('./sidepanel')
 
 // Tabs...
 var tabs = function() {
@@ -128,8 +68,10 @@ var scrolls = function(){
 }
 
 
-module.exports = function(){
-    sidepanel()
-    tabs()
-    scrolls()
+module.exports = {
+    init: function(){
+        sidepanel()
+        tabs()
+        scrolls()
+    }
 }
