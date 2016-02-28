@@ -12,25 +12,6 @@ var data = [
         ]
     },
 	{
-		actions: [
-			{
-				title:icon('minus'),
-				action:actions.brightnessReduce,
-				class:'brightness-reduce'
-			},
-			{
-				title:icon('adjust'),
-				action:actions.brightnessReset,
-				class:'disabled brightness-reset'
-			},
-			{
-				title:icon('plus'),
-				action:actions.brightnessIncrease,
-				class:'brightness-increase'
-			}
-		]
-	},
-	{
 		title: icon('sliders') + '&nbsp; State',
 		actions: [
 			{

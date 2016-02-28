@@ -1,5 +1,6 @@
 var init = require('./init'),
-    utils = require('./utils')
+    actions = require('./actions'),
+    icon = require('./utils').icon
 
 module.exports = {
 
@@ -21,8 +22,8 @@ module.exports = {
 
     stateLoad: function(event,data){
         var data = data || event
-        utils.stateSet(data,true)
-        utils.stateQuickSave(data)
+        actions.stateSet(data,true)
+        actions.stateQuickSave(data)
     },
 
     sessionList: function(event,data){
@@ -36,7 +37,7 @@ module.exports = {
             </div>')
 
         for (i in data) {
-            $('#lobby .list').append('<li><a class="btn load" data-session="'+data[i]+'">'+data[i]+'<span>'+utils.icon('remove')+'</span></a></li>')
+            $('#lobby .list').append('<li><a class="btn load" data-session="'+data[i]+'">'+data[i]+'<span>'+icon('remove')+'</span></a></li>')
         }
         $('#lobby .list').append('<a class="btn browse">...</a>')
         $('#lobby .list').append('<a class="btn new">New</a>')
@@ -51,7 +52,7 @@ module.exports = {
         })
         $('#lobby .browse').click(function(e){
             e.stopPropagation()
-            utils.sessionBrowse()
+            actions.sessionBrowse()
         })
         $('#lobby .new').click(function(e){
             e.stopPropagation()
@@ -77,7 +78,7 @@ module.exports = {
     error: function(event,data){
         var data = data || event
 
-        createPopup(utils.icon('warning')+'&nbsp;'+data.title,data.text)
+        createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
     }
 
 }
