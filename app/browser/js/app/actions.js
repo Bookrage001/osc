@@ -153,14 +153,26 @@ module.exports = {
         return popup
     },
 
-    luminosityReset: function(){
-
+    brightnessReduce: function(){
+        $('.brightness-reset.disabled, .brightness-increase.disabled').removeClass('disabled')
+        var b = parseFloat($('#brightness').data('brightness')) - 0.1,
+            v = parseInt(255*b)
+        $('#brightness').data('brightness',b).css({background:`rgb(${v},${v},${v})`})
+        if (b<=0) $('.brightness-reduce').addClass('disabled')
     },
-    luminosityIncrease: function(){
-
+    brightnessIncrease: function(){
+        $('.brightness-reset.disabled, .brightness-reduce.disabled').removeClass('disabled')
+        var b = parseFloat($('#brightness').data('brightness')) + 0.1,
+            v = parseInt(255*b)
+        $('#brightness').data({brightness:b}).css({background:`rgb(${v},${v},${v})`})
+        if (b>=1) $('.brightness-increase').addClass('disabled')
     },
-    luminosityReduce: function(){
-
+    brightnessReset: function(){
+        $('.brightness-increase.disabled, .brightness-reduce.disabled').removeClass('disabled')
+        $('.brightness-reset').addClass('disabled')
+        var b = .5,
+            v =  127
+        $('#brightness').data('brightness',b).css({background:`rgb(${v},${v},${v})`})
     },
 
 	editorEnable: editor.enable,

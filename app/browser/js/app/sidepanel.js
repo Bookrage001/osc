@@ -15,16 +15,18 @@ var data = [
 		actions: [
 			{
 				title:icon('minus'),
-				action:actions.luminosityReduce
+				action:actions.brightnessReduce,
+				class:'brightness-reduce'
 			},
 			{
 				title:icon('adjust'),
-				action:actions.luminosityReset,
-				class:'disabled'
+				action:actions.brightnessReset,
+				class:'disabled brightness-reset'
 			},
 			{
 				title:icon('plus'),
-				action:actions.luminosityIncrease
+				action:actions.brightnessIncrease,
+				class:'brightness-increase'
 			}
 		]
 	},
