@@ -1,6 +1,7 @@
 var parsetabs = require('./parser').tabs,
     ui = require('./ui'),
-    sync = require('./widgets').sync
+    sync = require('./widgets').sync,
+    disableEditor = require('./editor').disable
 
 module.exports = function(session,callback) {
 
@@ -9,6 +10,8 @@ module.exports = function(session,callback) {
     parsetabs(session,$('#container'),true)
 
     ui.init()
+
+    disableEditor()
 
     sync()
 

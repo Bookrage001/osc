@@ -124,8 +124,6 @@ module.exports = function() {
 
 	$('#sidepanel').append(sidepanel)
 
-	actions.editorDisable()
-
 	$(`<a id="open-toggle">${icon('navicon')}</a>`).appendTo('#container').click(function(){
         $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
     })

@@ -245,7 +245,8 @@ body {
         right:0;
         top:2rem;
         width:60rem;
-        height:$nav-height;
+        background: $color-bg;
+        height:$nav-height - 2;
         padding:0 10rem;
         line-height: $nav-height;
         font-size: 24rem;
@@ -346,7 +347,7 @@ body {
 }
 
 .editing {
-    z-index: 99999999!important;
+    z-index: 10!important;
 }
 .widget.editing:after, a.editing:before {
     content:"";
@@ -819,7 +820,8 @@ a {
     background: rgba($color-accent,.25);
     min-width:30rem!important;
     min-height:30rem!important;
-    z-index: 99999999999!important;
+    z-index: 10!important;
+    opacity: 1!important;
 }
 .ui-draggable-handle {
     position: absolute;
@@ -836,7 +838,6 @@ a {
     }
 
 }
-
 
 /* STRIP (contains any widgets) */
 

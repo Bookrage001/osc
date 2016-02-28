@@ -40,8 +40,7 @@ module.exports.enable = function(){
     module.exports.disable()
     $('.editor').append('<div class="editor-container"></div>')
     var enableEditor = module.exports.enable
-    $('.widget').on('click.editor',function(e){
-        e.preventDefault()
+    $('.widget').on('mousedown.editor touchstart.editor',function(e){
         e.stopPropagation()
 
 
@@ -51,6 +50,7 @@ module.exports.enable = function(){
             data = getdata(container),
             form = $('<div class="form"></div>')
 
+        if (container.hasClass('editing')) return
 
         $('.editing').removeClass('editing')
         container.addClass('editing')
@@ -68,10 +68,10 @@ module.exports.enable = function(){
 
             enableEditor()
             sync()
-            newContainer.children().first().click()
+            newContainer.children().first().trigger('mousedown.editor')
             $('#sidepanel').scrollTop(scroll)
 
-            if (data.tabs && data.tabs.length) ui()
+            if (data.tabs && data.tabs.length) ui.init()
 
         }
 
@@ -92,8 +92,8 @@ module.exports.enable = function(){
             snapTolerance:5
         })
 
+        $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
         if (data.hasOwnProperty('top')) {
-            $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
             $(this).draggable({
                     stop: function( event, ui ) {
                         event.preventDefault()
@@ -170,7 +170,7 @@ module.exports.enable = function(){
                 var item = $(`<li data-index="${i}" class="sortables" data-id="${data.widgets[i].id}"><a class="btn small">${label}</a></li>`)
                             .appendTo(list)
                             .click(function(){
-                                container.find('.widget').first().parent().children('.widget').eq($(this).attr('data-index')).click()
+                                container.find('.widget').first().parent().children('.widget').eq($(this).attr('data-index')).trigger('mousedown.editor')
                             })
                 var remove = $('<span><i class="fa fa-remove"></i></span>')
                               .appendTo(item)
@@ -211,7 +211,7 @@ module.exports.enable = function(){
                             .appendTo(list)
                             .click(function(){
                                 var id = container.find('.tab').first().parent().children('.tab').eq($(this).attr('data-index')).attr('id')
-                                $(`a[data-tab="#${id}"]`).click()
+                                $(`a[data-tab="#${id}"]`).trigger('mousedown.editor')
                             })
                 var remove = $('<span><i class="fa fa-remove"></i></span>')
                               .appendTo(item)
@@ -244,8 +244,7 @@ module.exports.enable = function(){
     })
 
 
-    $('a[data-tab]').on('click.editor',function(e){
-        e.preventDefault()
+    $('a[data-tab]').on('mousedown.editor touchstart.editor',function(e){
         e.stopPropagation()
 
         var link = $(this),
@@ -281,7 +280,7 @@ module.exports.enable = function(){
             enableEditor()
             sync()
 
-            link.click()
+            link.trigger('mousedown.editor')
 
             $('#sidepanel').scrollTop(scroll)
         }
@@ -329,7 +328,7 @@ module.exports.enable = function(){
                 var item = $(`<li data-index="${i}" class="sortables"><a class="btn small">${label}</a></li>`)
                             .appendTo(list)
                             .click(function(){
-                                container.find('.widget').first().parent().children('.widget').eq($(this).attr('data-index')).click()
+                                container.find('.widget').first().parent().children('.widget').eq($(this).attr('data-index')).trigger('mousedown.editor')
                             })
                 var remove = $('<span><i class="fa fa-remove"></i></span>')
                               .appendTo(item)
@@ -370,7 +369,7 @@ module.exports.enable = function(){
                             .appendTo(list)
                             .click(function(){
                                 var id = container.find('.tab').first().parent().children('.tab').eq($(this).attr('data-index')).attr('id')
-                                $(`a[data-tab="#${id}"]`).click()
+                                $(`a[data-tab="#${id}"]`).trigger('mousedown.editor')
                             })
                 var remove = $('<span><i class="fa fa-remove"></i></span>')
                               .appendTo(item)
@@ -433,7 +432,7 @@ module.exports.enable = function(){
                 stateSet(state,false)
                 enableEditor()
                 for (i in ontab) {
-                    $(`a[data-tab="#${ontab[i]}"]`).click()
+                    $(`a[data-tab="#${ontab[i]}"]`).trigger('mousedown.editor')
                 }
                 $('.editor-root').click()
                 $('#sidepanel').scrollTop(scroll)
@@ -494,11 +493,13 @@ module.exports.enable = function(){
 module.exports.disable = function(){
     $('.widget.ui-resizable').resizable('destroy')
     $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
-    $('.widget').off('click.editor')
-    $('a[data-tab]').off('click.editor')
-    $('.editor-root').off('click.editor').addClass('disabled')
+
+    $('a[data-tab], .widget, .editor-root').off('.editor')
+
+    $('.editor-root').addClass('disabled')
     $('.enable-editor').removeClass('on')
     $('.disable-editor').addClass('on')
     $('.editing').removeClass('editing')
+
     $('.editor .editor-container').remove()
 }

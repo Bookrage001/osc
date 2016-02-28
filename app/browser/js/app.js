@@ -15,8 +15,7 @@ MISC = {
 ///////////////////////
 
 $ = jQuery = require('./jquery/jquery.min')
-require('./jquery/jquery.resizable-draggable')
-require('./jquery/jquery.sortable')
+require('./jquery/jquery.ui')
 require('./jquery/jquery.drag')
 require('./jquery/jquery.resize')
 require('./jquery/jquery.fake-input')
