@@ -61,7 +61,7 @@ module.exports.create = function(widgetData,container) {
                 widget.value = widget.values[i]
                 widget.find('.on').removeClass('on')
                 widget.find('.value').eq(i).addClass('on').removeClass('ripple').addClass('ripple').delay(250).queue(function(next){
-        			widget.removeClass('ripple')
+        			$(this).removeClass('ripple')
         			next()
         		})
                 if (send) widget.sendValue(widget.value)
