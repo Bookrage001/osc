@@ -64,13 +64,13 @@ module.exports.create = function(widgetData,container) {
     widget.find('.pip.min').text(pipmin)
     widget.find('.pip.max').text(pipmax)
 
-    mask.size = mask[0].offsetWidth
+    mask.size = Math.floor(wrapper[0].offsetWidth*.58)
 
-    mask.resize(function(){
-        var w = mask[0].offsetWidth
+    wrapper.resize(function(){
+        var w = Math.floor(wrapper[0].offsetWidth*.58)
         if (!w || mask.size==w) return
         mask.size=w
-        mask[0].setAttribute('style',`height:${w}px;padding-bottom:0`)
+        mask[0].setAttribute('style',`height:${w}px;width:${w}px;padding-bottom:0`)
     })
 
 
