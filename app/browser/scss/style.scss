@@ -153,7 +153,7 @@ body {
         box-shadow:  0 0 0 1rem $color-border, 0 0 0 100rem rgba($color-text,.05) inset;
     }
     &.small {
-        padding:5rem;
+        padding:8rem;
         padding-right: 15rem;
     }
     &.disabled {
@@ -312,9 +312,12 @@ body {
                 position: absolute;
                 right:0rem;
                 top:0rem;
-                padding:5rem;
+                padding:8rem;
                 color:$color-text-fade;
                 cursor: pointer;
+                &:hover {
+                    color:$color-text;
+                }
             }
             > div {
                 box-shadow: 0 0 0 1rem $color-border;

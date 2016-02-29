@@ -180,7 +180,7 @@ module.exports.enable = function(){
                               })
             }
 
-            list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+            list.sortable({start:function(){$(this).sortable( "refreshPositions" )},forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
                 var prevIndex = $(ui.item).attr('data-index')
                 var newIndex  = $(ui.item).index()
 
@@ -221,7 +221,7 @@ module.exports.enable = function(){
                               })
             }
 
-            list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+            list.sortable({start:function(){$(this).sortable( "refreshPositions" )},forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
                 var prevIndex = $(ui.item).attr('data-index')
                 var newIndex  = $(ui.item).index()
 
@@ -338,7 +338,7 @@ module.exports.enable = function(){
                               })
             }
 
-            list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+            list.sortable({start:function(){$(this).sortable( "refreshPositions" )},forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
                 var prevIndex = $(ui.item).attr('data-index')
                 var newIndex  = $(ui.item).index()
 
@@ -379,7 +379,7 @@ module.exports.enable = function(){
                               })
             }
 
-            list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+            list.sortable({start:function(){$(this).sortable( "refreshPositions" )},forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
                 var prevIndex = $(ui.item).attr('data-index')
                 var newIndex  = $(ui.item).index()
 
@@ -459,7 +459,7 @@ module.exports.enable = function(){
                           })
         }
 
-        list.sortable({forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
+        list.sortable({start:function(){$(this).sortable( "refreshPositions" )},forcePlaceholderSize: true, items: '.sortables'}).on('sortupdate',function(e,ui){
             var prevIndex = $(ui.item).attr('data-index')
             var newIndex  = $(ui.item).index()
 
