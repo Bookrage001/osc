@@ -89,8 +89,10 @@
             element.on("touchmove.drag", function(e) {
                 e.preventDefault()
 
-                // get element under pointer: usefull only for master dragging (when target changes during drag)
-                e.target = document.elementFromPoint(e.originalEvent.changedTouches[0].clientX, e.originalEvent.changedTouches[0].clientY)
+                if (e.shiftKey) {
+                    // get element under pointer: usefull only for master dragging (when target changes during drag)
+                    e.target = document.elementFromPoint(e.originalEvent.changedTouches[0].clientX, e.originalEvent.changedTouches[0].clientY)                    
+                }
 
                 e.pageX = e.originalEvent.targetTouches[0].pageX
                 e.pageY = e.originalEvent.targetTouches[0].pageY
