@@ -983,8 +983,7 @@
             }
         ],
         "label": "Strips",
-        "stretch": false
-    },
+        },
     {
         "widgets": [
             {
@@ -1307,15 +1306,12 @@
             }
         ],
         "label": "Pads",
-        "stretch": false
-    },
+        },
     {
         "label": "Multiple tabs",
-        "stretch": false,
         "tabs": [
             {
                 "label": "Panels",
-                "stretch": false,
                 "widgets": [
                     {
                         "type": "panel",
@@ -1324,7 +1320,6 @@
                         "width": "50%",
                         "height": "100%",
                         "css": "",
-                        "stretch": false,
                         "widgets": [
                             {
                                 "type": "fader",
@@ -1422,12 +1417,10 @@
                         "width": "50%",
                         "height": "100%",
                         "css": "",
-                        "stretch": false,
                         "widgets": [],
                         "tabs": [
                             {
                                 "label": "Push Buttons",
-                                "stretch": false,
                                 "widgets": [
                                     {
                                         "type": "push",
@@ -1497,7 +1490,6 @@
                             },
                             {
                                 "label": "Tab 2",
-                                "stretch": false,
                                 "widgets": [
                                     {
                                         "type": "knob",
