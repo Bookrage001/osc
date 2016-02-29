@@ -27,21 +27,21 @@ Please note that :
 
 **Requirements**
 - [Node.js](https://nodejs.org/)
-- [Electron](http://electron.atom.io/)
-  - installed locally via `npm install electron-prebuilt`
-  - or installed system-wide via `npm install -g electron-prebuilt`
+- [npm](https://www.npmjs.com/)
 
 **Download**
  ```
 $ git clone https://github.com/jean-emmanuel/Open-Stage-Control
-$ cd Open-Stage-Control/app
-$ npm install
+$ cd Open-Stage-Control/
+$ npm install --save-dev
  ```
 
- **Run**
+**Run**
   ```
- $ /path/to/electron /path/to/Open-Stage-Control/app [options]
-  ```
+$ npm start [ -- options]
+
+# A double hypen ("--") is used here to tell npm that the following options are to be given to the app.
+```
 
 **Command line switches**
 ```
@@ -55,11 +55,11 @@ Options:
 
 Exemples :
 
-$ electron /path/to/app/ -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
+$ npm start -- -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
 
-$ electron /path/to/app/ -n 8080 -l path/to/session.js
+$ npm start -- -n 8080 -l path/to/session.js
 
 This will create a headless app available through http on port 8080. Multiple clients can use the app (with chrome only) simultaneously, their widgets will be synchronized.
 
@@ -71,7 +71,7 @@ This will create a headless app available through http on port 8080. Multiple cl
 Running the app with the `-n / --nogui` switch can also be done without electron since it works like any node web app :
 
 ```
-node /path/to/app/ -n 8000
+npm start -- / -n 8000
 ```
 
 
