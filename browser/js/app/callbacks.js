@@ -1,6 +1,7 @@
 var init = require('./init'),
     actions = require('./actions'),
-    icon = require('./utils').icon
+    utils = require('./utils'),
+    icon = utils.icon
 
 module.exports = {
 
@@ -78,7 +79,7 @@ module.exports = {
     error: function(event,data){
         var data = data || event
 
-        createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
+        utils.createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
     }
 
 }
