@@ -642,15 +642,6 @@ a {
 
 // TABS
 
-.tab.on.stretch {
-    display:flex;
-    justify-content: space-between;
-    > .widget {
-        width:100%;
-    }
-}
-
-
 .tab {
     display:none;
     overflow: auto;

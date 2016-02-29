@@ -44,7 +44,6 @@ module.exports.tabs = function(data,parent,main){
             on = i==0?'on':''
 
         tabData.label = label
-        tabData.stretch = tabData.stretch || false
         delete tabData.id
 
         navtabs.append(`<li class="${on}"><a class="${on}" data-tab="#${id}"><span>${label}</span></a></li>`)
@@ -52,7 +51,6 @@ module.exports.tabs = function(data,parent,main){
         var tabContent = $(`<div class="tab ${on}" id="${id}"></div>`)
         tabContent.data(tabData)
 
-        if (tabData.stretch) tabContent.addClass('stretch')
 
         if (tabData.tabs) {
             module.exports.tabs(tabData.tabs,parent=tabContent)

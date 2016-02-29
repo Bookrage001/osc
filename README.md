@@ -11,7 +11,7 @@ You can try the app here http://openstagecontrol.herokuapp.com/
 Please note that :
 - Chrome 47 at least is required
 - Since there is only one instance running, all connected guests are synchronized (widgets using the same osc paths update each other's states) : you might experience some unwanted synchronization with other users unless you specify custom parameters for your widgets.
-- You might want to download the examples sessions files under *sessions/* and load them from the app to get started.
+- You might want to download the examples sessions files under *examples/* and load them from the app to get started.
 
 
 ### Features
@@ -84,7 +84,6 @@ A valid session file is a javascript file that returns, when eval'd, an array of
     {
         id:"my_tab_id",     // [string] optional, default to unique 'tab_n'
         label:"My tab",     // [string] default to id
-        stretch:false,      // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
         widgets: [],        // [array] of widget objects
         tabs: []            // [array] of tab objects
                             // A tab cannot contain widgets and tabs simultaneously
