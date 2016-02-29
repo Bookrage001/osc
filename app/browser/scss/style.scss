@@ -772,15 +772,14 @@ a {
 
 .ui-resizable-handle {
     position: absolute;
-    border:2rem solid transparent;
-    z-index: 100000;
+    z-index: 1000000;
     &.ui-resizable-se {
         bottom: 5rem;
         right: 5rem;
         width:15rem;
         height:15rem;
-        border-right: 2rem solid $color-accent;
-        border-bottom: 2rem solid $color-accent;
+        border-right: 1rem solid $color-accent;
+        border-bottom: 1rem solid $color-accent;
         cursor: se-resize;
     }
     &.ui-resizable-e {
@@ -789,7 +788,7 @@ a {
         right: 5rem;
         width:15rem;
         height:15rem;
-        border-right: 2rem solid $color-accent;
+        border-right: 1rem solid $color-accent;
         cursor: e-resize;
     }
     &.ui-resizable-s {
@@ -798,7 +797,7 @@ a {
         margin-left:-7.5rem;
         width:15rem;
         height:15rem;
-        border-bottom: 2rem solid $color-accent;
+        border-bottom: 1rem solid $color-accent;
         cursor: s-resize;
     }
 }
@@ -816,11 +815,11 @@ a {
     position: absolute;
     top: 5rem;
     left: 5rem;
+    right:5rem;
     z-index: 100000;
     cursor: -webkit-grab;
-    width:15rem;
-    height:15rem;
-    border:2rem solid $color-accent;
+    height:25rem;
+    border:1rem solid $color-accent;
     &:active {
         cursor:-webkit-grabbing
     }
@@ -857,10 +856,14 @@ a {
     }
     &.vertical {
         padding-top: 35rem;
+        border-bottom:0;
         .strip > .widget {
-            border:0!important;
+            border:0;
             max-width: 100%;
             margin-top:-1rem;
+            &:last-child {
+                border-bottom:6rem solid transparent;
+            }
         }
     }
     &.horizontal {
@@ -869,6 +872,7 @@ a {
         width:100%;
         height:auto;
         display: block;
+        border-right:0;
         .strip {
             flex-direction: row;
             > .widget {
@@ -876,9 +880,12 @@ a {
                 width: 100%;
                 min-height: 100%;
                 max-height: 100%;
-                border-right:0!important;
-                border-bottom:0!important;
+                border:0;
                 margin-left:-1rem;
+                &:last-child {
+                    border-right:6rem solid transparent;
+                }
+
             }
         }
         > .label {
@@ -905,7 +912,6 @@ a {
 
 
 .panel-container {
-    position: absolute;
     z-index: 2;
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
