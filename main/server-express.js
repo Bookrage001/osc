@@ -27,7 +27,7 @@ module.exports = function(settings) {
 
 	    io.listen(server);
 
-	    server.listen(settings.noGui)
+	    server.listen(settings.read('noGui'))
 
 	    ipc.send = function(name,data,clientId) {
 	        if (clientId) {
@@ -52,7 +52,7 @@ module.exports = function(settings) {
 		}
 
 
-		console.log('Headless mode: app available at http://127.0.0.1:'+settings.noGui)
+		console.log('Headless mode: app available at http://127.0.0.1:'+settings.read('noGui'))
 
 		return {
 			ipc:ipc,

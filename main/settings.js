@@ -20,29 +20,29 @@ var argv = require('yargs')
       .argv
 
 module.exports = function(fs) {
+    var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8'))} catch(err) {return {}}}(),
+        defaultConfig = {
+            presetPath : process.cwd(),
+            sessionPath: process.cwd(),
+            recentSessions: [],
+
+            appName: 'Open Stage Control',
+            syncTargets: argv.s || false,
+            oscInPort: argv.p || false,
+            compileScss: argv.c!==undefined || false,
+            lightTheme: argv.c && argv.c.match(/light/),
+            sessionFile:  argv.l || false,
+            noGui: argv.n || false,
+        }
 	return {
-	    presetPath : process.cwd(),
-	    sessionPath: process.cwd(),
-	    recentSessions: [],
-
-	    appName: 'OSC Controller',
-	    syncTargets: argv.s || false,
-	    oscInPort: argv.p || false,
-	    compileScss: argv.c!==undefined || false,
-	    lightTheme: argv.c && argv.c.match(/light/),
-	    sessionFile:  argv.l || false,
-	    noGui: argv.n || false,
-
-
-	    persistent: function(){var c = {};try {c=require(configFile)} finally {return c}}(),
 
 	    read:function(key){
-	        var x = this.persistent[key] || this[key]
+	        var x = config[key] || defaultConfig[key]
 	        return x
 	    },
 	    write:function(key,value) {
-	        this.persistent[key] = value
-	        fs.writeFile(configFile,JSON.stringify(this.persistent,null,4), function (err, data) {
+	        config[key] = value
+	        fs.writeFile(configFile,JSON.stringify(config,null,4), function (err, data) {
 	            if (err) throw err
 	        })
 	    }

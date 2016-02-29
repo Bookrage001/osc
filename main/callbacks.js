@@ -68,7 +68,7 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 		        if (data.path) this.sessionAddToHistory(data.path)
 		        ipc.send('sessionOpen',JSON.stringify(session),clientId)
 		    } else {
-		        ipc.send('error',{title:'Error: invalid session file',text:error})
+		        ipc.send('error',{title:'Error: invalid session file',text:'<p>'+error+'</p>'})
 		    }
 		},
 

@@ -524,6 +524,8 @@ a {
     right:0;
     bottom:0;
     padding:10%;
+    display: flex;
+    align-items: center;
     background:rgba($color-text,.5);
     z-index:1000000;
     .popup-title {
@@ -540,8 +542,10 @@ a {
         }
     }
     .popup-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
         background:$color-fg;
-        height:100%;
         width:100%;
         max-width:600rem;
         margin:0 auto;
