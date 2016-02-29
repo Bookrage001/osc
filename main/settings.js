@@ -1,6 +1,9 @@
 // This prevents argv parsing to be breaked when the app is packaged (executed without 'electron' prefix)
 if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 
+var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
+    configFile = require('path').join(baseDir, '.open-stage-control')
+
 var argv = require('yargs')
       .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
       .options({
@@ -31,7 +34,7 @@ module.exports = function(fs) {
 	    noGui: argv.n || false,
 
 
-	    persistent: function(){var c = {};try {c=require( __dirname + '/config.json')} finally {return c}}(),
+	    persistent: function(){var c = {};try {c=require(configFile)} finally {return c}}(),
 
 	    read:function(key){
 	        var x = this.persistent[key] || this[key]
@@ -39,7 +42,7 @@ module.exports = function(fs) {
 	    },
 	    write:function(key,value) {
 	        this.persistent[key] = value
-	        fs.writeFile(__dirname + '/config.json',JSON.stringify(this.persistent,null,4), function (err, data) {
+	        fs.writeFile(configFile,JSON.stringify(this.persistent,null,4), function (err, data) {
 	            if (err) throw err
 	        })
 	    }
