@@ -18,10 +18,10 @@ module.exports = {
     stateSave: function() {
         state = module.exports.stateGet()
         if (WEBFRAME) {
-            IPC.send('stateSave',STATE)
+            IPC.send('stateSave',state)
         } else {
             var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
-            var blob = new Blob([STATE],{type : 'text/plain'});
+            var blob = new Blob([state],{type : 'text/plain'});
             down.attr('href', window.URL.createObjectURL(blob))
             down[0].click()
         }

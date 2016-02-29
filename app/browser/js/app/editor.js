@@ -449,7 +449,7 @@ module.exports.enable = function(){
                         .appendTo(list)
                         .click(function(){
                             var id = $('#container > .content > .tab').eq($(this).attr('data-index')).attr('id')
-                            $(`a[data-tab="#${id}"]`).click()
+                            $(`a[data-tab="#${id}"]`).trigger('mousedown.editor')
                         })
             var remove = $('<span><i class="fa fa-remove"></i></span>')
                           .appendTo(item)
