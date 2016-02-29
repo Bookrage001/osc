@@ -977,8 +977,6 @@ a {
         right:0;
         bottom:0;
         height:auto;
-        padding:29rem 10rem 26rem;
-        line-height: 1rem;
         background: none!important;
         text-align: center;
         pointer-events:none;
@@ -1012,10 +1010,22 @@ a {
 }
 
 
+.push-container {
+    .label {
+        z-index: 1;
+    }
+}
 .push {
     &.on .light {
         animation:none;
         background: $color-accent;
+    }
+    .light {
+        top:6rem;
+        left:6rem;
+        right:6rem;
+        bottom:6rem;
+        height:auto;
     }
     &:active .light {
         background: $color-accent;
@@ -1546,7 +1556,6 @@ a {
                 border-radius:100%;
                 pointer-events: none;
                 position: relative;
-                box-shadow: 0 0 0 4rem $color-track inset;
                 &:before {
                     position:absolute;
                     top:0;left:0;
@@ -1565,7 +1574,7 @@ a {
                         border-bottom-color: transparent;
                     }
                     .knob:after {
-                        border-color: transparent;
+                        border-color: $color-track;
                         border-left-color: $color-accent;
                         border-top-color: $color-accent;
                     }
@@ -1577,7 +1586,7 @@ a {
                         border-top-color: transparent;
                     }
                     .knob:after {
-                        border-color: transparent;
+                        border-color: $color-track;
                         border-right-color: $color-accent;
                         border-bottom-color: $color-accent;
                     }
@@ -1625,7 +1634,7 @@ a {
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4rem solid transparent;
+                    border:4rem solid $color-track;
                     border-bottom-color: $color-accent;
                 }
 

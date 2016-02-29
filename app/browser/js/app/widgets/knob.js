@@ -64,6 +64,15 @@ module.exports.create = function(widgetData,container) {
     widget.find('.pip.min').text(pipmin)
     widget.find('.pip.max').text(pipmax)
 
+    mask.size = mask[0].offsetWidth
+
+    mask.resize(function(){
+        var w = mask[0].offsetWidth
+        if (!w || mask.size==w) return
+        mask.size=w
+        mask[0].setAttribute('style',`height:${w}px;padding-bottom:0`)
+    })
+
 
     knob.rotation = 0
 
