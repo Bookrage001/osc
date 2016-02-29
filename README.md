@@ -40,7 +40,7 @@ $ npm install --save-dev
   ```
 $ npm start [ -- options]
 
-# A double hypen ("--") is used here to tell npm that the following options are to be given to the app.
+# A double hyphen ("--") is used here to tell npm that the following options are to be given to the app.
 ```
 
 **Command line switches**
