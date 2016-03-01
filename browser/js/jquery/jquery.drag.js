@@ -91,17 +91,17 @@
 
                 if (e.shiftKey) {
                     // get element under pointer: usefull only for master dragging (when target changes during drag)
-                    e.target = document.elementFromPoint(e.originalEvent.changedTouches[0].clientX, e.originalEvent.changedTouches[0].clientY)                    
+                    e.target = document.elementFromPoint(e.originalEvent.changedTouches[0].clientX, e.originalEvent.changedTouches[0].clientY)
                 }
 
                 e.pageX = e.originalEvent.targetTouches[0].pageX
                 e.pageY = e.originalEvent.targetTouches[0].pageY
-                e.offsetX = e.pageX-getOffset(e.target).left
-                e.offsetY = e.pageY-getOffset(e.target).top
                 e.speedX = previousEvent?e.pageX - previousEvent.pageX:0
                 e.speedY = previousEvent?e.pageY - previousEvent.pageY:0
                 e.deltaX = previousEvent?e.speedX + previousEvent.deltaX:0
                 e.deltaY = previousEvent?e.speedY + previousEvent.deltaY:0
+                e.offsetX = previousEvent&&!e.shiftKey?previousEvent.offsetX+e.speedX:e.pageX-getOffset(e.target).left
+                e.offsetY = previousEvent&&!e.shiftKey?previousEvent.offsetY+e.speedY:e.pageY-getOffset(e.target).top
 
                 // do now allow two touch points to drag the same element
                 if (e.originalEvent.targetTouches.length > 1) return
