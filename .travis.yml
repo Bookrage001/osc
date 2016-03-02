@@ -8,7 +8,7 @@ addons:
 deploy:
   provider: releases
   api-key:
-    secure: Bf6051oLwqpqN2IyB+/rc4wv16X4PTEW/UoRzNg/fTya6LpNx5vZ8aMVt7OFQTm57TR9ZEu+l7wkjo+WM/D6oBwzi0seWmE3c3x2DF4Pw9xBhqPywosBPWcgrnwo6D2BtojlKphGqnGoGqTOC2qKYkVEMX3ZKH2UIT0MOgc+MxO83V4mRFeml3hsIcNQSZI4BvvPdCOjOxiz+2eJhOX0aKhg9iMdPZyoAZarVMJ/h1Ko5o/Iy6S7VojA6FQaHtpYrQ3nEZhrriAeGS1RWMEK+DrmUPOAhlM0uYFzxGP4q6nA25jEvYWDcDTaiYM0staQktUNPLYhnD4XBQ+7pmIPFbNyoB4+GgEQjD2z5N8vVRcwHWK840+XVyA4JLVg7+r8O1cbOvvhZkfzc44bgzw/TpRCi3ras4Dft5Nf9t9fi4w5Ootri1iau5q+sngjL4uwPBDRjGm7CW7CR4WRdopzAThiEm6bM+dhejpbm0o25QcTaev2Od66X5k6RqFX1yPzSGdYRQML4/xICfqvZxcmWUEBIc63mDl+gWLnPLYWuNIPm4anv8aZJfp4D1w1vcw/yRinotlx7Ke2vOG0d7rdyLjQez09aAO8AmYm58EXDJyySRq8L8mo354sdUjwzNH9qt1t7oH7PuLRfWgeCf8xlcEWCxJvlGs6sk3oefIloB4=
+    secure: Nb4qJlmLEE2/ETHEYe8V8eGI08d4GuE5kdQef5ZnB4PrstppLlAjShv5E4DNTsyalMOMDjpw9v+9aQNzxGiGv+lCVVL5oFvqvDpcYusRuF9Qua7oJtFh+5FvjgC1DDjauk5Z7WQWMvzWwfNmqbY/lxPbA4zVy4kdYkGV/8WnzA9AL5fU0ZU8gDsFjcr9Pz81XDsDXtPH/+iMuclMsEl8V/ZuswWlZaFn1Jnb1tcGC5WUCsuNQo/+gGfSK6Qcf9AKsIrOjdzi55s4jqH1N7P/kKi4a2tWUTwmSLrOxdUmSYjXVOxMu0cAEnHSeYREv/5o6J0MbfQrDoxh2y5roPZzqE+FAuFLl+b/+bYlW0mrfYfSuP/VX9LYh5JSvrhN7rZuUfMqS1iM7c9Dx8sZadMnvYEAAJhH8IV/9SkuRa/8QoIpXf7YB9v1jERxs4gk5CPT5Aml6nY/CvMWiEQ/wJhC7iZd/QRHshgfNLfAGlbbNU2KP6ZsVAGD601fyST/8neoQqLqS9mteOr1QME3c5EFw+XaauIQNYZSl+wJr8Y1YMcKY+fbJqqR0TXkbsoxFgV9PRf/4ZCjIJYtmelQVlM7j20XavOHM/Ko6/y7a3pohFz+ql3YR9jGF5XW2foXb4+e6DwTGL91/f75hYcsvXxoKbeaBjWpaSK8532UTeVkhPM=
   file:
     - "./dist/open-stage-control-i386.deb"
     - "./dist/open-stage-control-amd64.deb"
@@ -24,7 +24,7 @@ before_deploy:
   - mv dist/open-stage-control-linux-ia32/*.deb dist/open-stage-control-i386.deb
   - mv dist/open-stage-control-linux-x64/*.deb dist/open-stage-control-amd64.deb
   - cd dist
-  - zip -r --symlinks open-stage-control-mac open-stage-control-darwin-x64/open-stage-control.app
-  - zip -r open-stage-control-win32 open-stage-control-win32-ia32
-  - zip -r open-stage-control-win64 open-stage-control-win32-x64
+  - zip -q -r --symlinks open-stage-control-mac open-stage-control-darwin-x64/open-stage-control.app
+  - zip -q -r open-stage-control-win32 open-stage-control-win32-ia32
+  - zip -q -r open-stage-control-win64 open-stage-control-win32-x64
   - cd ..
