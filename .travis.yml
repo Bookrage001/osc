@@ -7,10 +7,10 @@ deploy:
     secure: Bf6051oLwqpqN2IyB+/rc4wv16X4PTEW/UoRzNg/fTya6LpNx5vZ8aMVt7OFQTm57TR9ZEu+l7wkjo+WM/D6oBwzi0seWmE3c3x2DF4Pw9xBhqPywosBPWcgrnwo6D2BtojlKphGqnGoGqTOC2qKYkVEMX3ZKH2UIT0MOgc+MxO83V4mRFeml3hsIcNQSZI4BvvPdCOjOxiz+2eJhOX0aKhg9iMdPZyoAZarVMJ/h1Ko5o/Iy6S7VojA6FQaHtpYrQ3nEZhrriAeGS1RWMEK+DrmUPOAhlM0uYFzxGP4q6nA25jEvYWDcDTaiYM0staQktUNPLYhnD4XBQ+7pmIPFbNyoB4+GgEQjD2z5N8vVRcwHWK840+XVyA4JLVg7+r8O1cbOvvhZkfzc44bgzw/TpRCi3ras4Dft5Nf9t9fi4w5Ootri1iau5q+sngjL4uwPBDRjGm7CW7CR4WRdopzAThiEm6bM+dhejpbm0o25QcTaev2Od66X5k6RqFX1yPzSGdYRQML4/xICfqvZxcmWUEBIc63mDl+gWLnPLYWuNIPm4anv8aZJfp4D1w1vcw/yRinotlx7Ke2vOG0d7rdyLjQez09aAO8AmYm58EXDJyySRq8L8mo354sdUjwzNH9qt1t7oH7PuLRfWgeCf8xlcEWCxJvlGs6sk3oefIloB4=
   file:
     - "./dist/open-stage-control-i386.deb"
-	- "./dist/open-stage-control-amd64.deb"
-	- "./dist/open-stage-control-mac.zip"
-	- "./dist/open-stage-control-win32.zip"
-	- "./dist/open-stage-control-win64.zip"
+    - "./dist/open-stage-control-amd64.deb"
+    - "./dist/open-stage-control-mac.zip"
+    - "./dist/open-stage-control-win32.zip"
+    - "./dist/open-stage-control-win64.zip"
   skip_cleanup: true
   on:
     tags: true
