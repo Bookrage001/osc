@@ -25,7 +25,8 @@
         "start": "electron .",
         "build": "electron-packager . open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --overwrite --ignore \"(dist|node_modules/electron.*)\"",
         "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/deb/",
-        "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/deb/"
+        "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/deb/",
+        "test": "npm build"
 
     },
     "keywords": [
