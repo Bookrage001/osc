@@ -1,9 +1,10 @@
 language: node_js
 node_js:
   - "4.1"
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y wine
+addons:
+  apt:
+    packages:
+    - wine
 deploy:
   provider: releases
   api-key:
