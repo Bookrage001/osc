@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jean-emmanuel/Open-Stage-Control.svg?branch=master)](https://travis-ci.org/jean-emmanuel/Open-Stage-Control)
+
 ## Open Stage Control
 
 Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
