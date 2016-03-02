@@ -4,8 +4,6 @@
 
 Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
 
-The project is under active development; hence, current features are subject to change without notice.
-
 ### Demo
 
 You can try the app here http://openstagecontrol.herokuapp.com/
@@ -25,31 +23,17 @@ Please note that :
 - app state store / recall & import / export
 - light & dark themes !
 
-### Run from sources
+### Getting started
 
-**Requirements**
-- [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/)
-
-**Download**
- ```
-$ git clone https://github.com/jean-emmanuel/Open-Stage-Control
-$ cd Open-Stage-Control/
-$ npm install --save-dev
- ```
-
-**Run**
-  ```
-$ npm start [ -- options]
-
-# A double hyphen ("--") is used here to tell npm that the following options are to be given to the app.
-```
+Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page. If you want to build or run the app from sources, here's how to:
+- [Build from sources](resources/docs/build-from-sources.md)
+- [Run from sources](resources/docs/run-from-sources.md)
 
 **Command line switches**
 ```
 Options:
   -h, --help     display help
-  -s, --sync     synchronized hosts (ip:port pairs)
+  -s, --sync     synchronized hosts (ip:port pairs) (all osc messages will also be sent to these)
   -c, --compile  recompile stylesheets (increases startup time), if 'light' is specified, the light theme will be compiled, otherwise, the default dark theme will be compiled.
   -l, --load     session file to load
   -p, --port     osc input port (for synchronization)
@@ -57,166 +41,21 @@ Options:
 
 Exemples :
 
-$ npm start -- -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
+$ open-stage-control -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
 
-$ npm start -- -n 8080 -l path/to/session.js
+$ open-stage-control -n 8080 -l path/to/session.js
 
 This will create a headless app available through http on port 8080. Multiple clients can use the app (with chrome only) simultaneously, their widgets will be synchronized.
 
-
 ```
 
-**Run without electron**
+### Advanced usage
 
-Running the app with the `-n / --nogui` switch can also be done without electron since it works like any node web app :
-
-```
-npm start -- / -n 8000
-```
-
-
-### Session file structure
-
-A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a standard json file :
-
-```
-[
-    {
-        id:"my_tab_id",     // [string] optional, default to unique 'tab_n'
-        label:"My tab",     // [string] default to id
-        widgets: [],        // [array] of widget objects
-        tabs: []            // [array] of tab objects
-                            // A tab cannot contain widgets and tabs simultaneously
-    },
-    {
-        // etc
-    }
-]
-```
-
-It can also be a self invoking function that returns an array of objects :
-
-```
-(function(){
-    var tabs = []
-    for (for i in [0,1,2,3]) {
-        tabs.push({
-            id:'tab'+i,
-            widgets: [
-                {
-                    id:'tab'+i+'fader',
-                    type:'fader'
-                }
-                // etc
-            ]
-        })
-    }
-    return tabs
-}()
-
-```
-
-
-### Widget generics
-```
-{
-    id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
-
-    label:"My widget",      // [string] default to id
-    top:"auto",             // [string|integer] if set, the widget will have an absolute position (percentages allowed)
-    left:"auto",            // [string|integer] if set, the widget will have an absolute position (percentages allowed)
-    width:"auto",           // [string|integer] widget's width in px (percentages allowed)
-    height:"auto",          // [string|integer] widget's height in px (percentages allowed)
-    css:"",                 // [string] css styles, yeah
-
-    precision:2,            // [integer] number of decimals : 0 to send integers
-    target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
-    path:false              // [string] osc path, default to '/widget_id'
-}
-```
-
-### Widget specifics
-
--   **Strip** : *simple widget container*
-    ```  
-    type:'strip',
-    horizontal:false,           // [bool]  set to true to display widgets horizontally
-    widgets: []                 // [array] of widget objects
-    ```
-
--   **Panel** :  *widget/tabs containers*
-    ```  
-    type:'panel',
-    stretch:false,              // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
-    widgets: [],                // [array] of widget objects
-    tabs: []                    // [array] of tab objects
-    ```
-
--   **fader**
-    ```  
-    type:'fader',
-    horizontal:false,           // [bool]   set to true to display fader horizontally
-    range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
-                                //          keys can be percentages or 'min' / 'max'
-    unit: false,                // [string] value suffix
-    absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    ```
-
--   **knob**
-    ```
-    type:'knob',
-    range: {"min":0,"max":1},   // [object] minimum and maximum values
-    unit: false,                // [string] value suffix
-    absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    pan:false                   // [bool] true for panning knob
-    ```
-
--   **xy**
-    ```  
-    type:'xy',
-    range:{                     // [object] minimum and maximum values for x and y axis
-            x:{"min":0,"max":1},
-            y:{"min":0,"max":1}
-        },
-    absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    split:false                 // [bool|object] sends separate osc messages for x and y axes
-                                // if true : '/x' & '/y' will be appended to the widget's path
-                                // or object : {x:'/osc_path_x', y:'/osc_path_y'}
-
-    ```
-
--   **rgb**
-    ```
-    type:'rgb',
-    absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    split:false                 // [bool|object] sends separate osc messages for x and y axes
-                                // if true : '/r', '/g' & '/b' will be appended to the widget's path
-                                // or object : {r:'/osc_path_r', g:'/osc_path_g',b:'/osc_path_b'}
-    ```
-    Variant of xy pad, it outputs rgb values between 0 and 255.
-
-
--   **toggle**
-    ```  
-    type:'toggle',
-    on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
-    off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
-    ```
-
--   **push**
-    ```  
-    type:'pus',
-    on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
-    off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
-    ```
-
--   **switch**
-    ```  
-    type:'switch',
-    values:[]                   // [array] of values (string or number)
-    ```
+Although the built-in editor might suits most of your needs while creating small control interfaces, you may need to write the session file yourself to create large and maintainable interfaces. The followings docs will help:
+- [Session reference](resources/docs/session-reference.md)
+- [Widgets reference](resources/docs/widgets-reference.md)
 
 ### License & credits
 
@@ -231,7 +70,7 @@ It relies on the use of several libraries :
 - [express]()
 - [Sass.js](https://github.com/medialize/sass.js/)
 - [jQuery](http://jquery.com/)
-- [jQuery-UI](http://jqueryui.com/) (draggable, resizable & [resizable snap ext](https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension))
+- [jQuery-UI](http://jqueryui.com/) (draggable, resizable & sortable)
 - [Font Awesome](http://fontawesome.io/)
 
 Design was heavily inspired by [Atom](https://atom.io/)'s theme 'One Dark'
