@@ -30,22 +30,7 @@
 
 
 $nav-height:60rem;
-
-
-
-
-
-
 $sidepanel-size:300rem;
-
-
-@mixin layer {
-    position: absolute;
-    top:0;
-    left:0;
-    right: 0;
-    bottom:0;
-}
 
 
 /////////////
@@ -66,7 +51,6 @@ a {
     display: block;
 }
 
-$scrollbar-margin:1rem;
 ::-webkit-scrollbar {
     width: 20rem;
     height:20rem;
@@ -77,10 +61,10 @@ $scrollbar-margin:1rem;
 ::-webkit-scrollbar-track-piece {
     background: $color-bg;
     &:vertical {
-        border-left:$scrollbar-margin solid $color-border;
+        border-left:1rem solid $color-border;
     }
     &:horizontal {
-        border-top:$scrollbar-margin solid  $color-border;
+        border-top:1rem solid  $color-border;
     }
 }
 ::-webkit-scrollbar-corner  {
@@ -89,10 +73,10 @@ $scrollbar-margin:1rem;
 ::-webkit-scrollbar-thumb {
     background:$color-raised;
     &:vertical {
-        border-left:$scrollbar-margin solid  $color-border;
+        border-left:1rem solid  $color-border;
     }
     &:horizontal {
-        border-top:$scrollbar-margin solid  $color-border;
+        border-top:1rem solid  $color-border;
     }
 }
 
@@ -176,7 +160,11 @@ body {
 
 #lobby {
     background: $color-bg;
-    @include layer();
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom:0;
     z-index: 2;
     border:1rem solid $color-border;
     display: flex;
@@ -221,7 +209,11 @@ body {
 
 #container {
     background: $color-bg;
-    @include layer();
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom:0;
     overflow:hidden;
     transition:right .2s;
     &.sidepanel-open {
