@@ -1,7 +1,7 @@
 {
     "name": "open-stage-control",
     "description": "A libre desktop OSC bi-directionnal control surface application.",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "main": "index.js",
     "author": {
         "name": "Jean-Emmanuel Doucet / AMMD",
@@ -23,11 +23,10 @@
     },
     "scripts": {
         "start": "electron .",
-        "build": "electron-packager . open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --overwrite --ignore \"(dist|node_modules/electron.*)\"",
-        "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/deb/",
-        "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/deb/",
+        "build": "electron-packager . open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/logo --overwrite --ignore \"(dist|node_modules/electron.*)\"",
+        "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/",
+        "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/",
         "test": "npm run build"
-
     },
     "keywords": [
         "osc",
