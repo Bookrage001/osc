@@ -4,7 +4,7 @@ module.exports = function(settings,app,ipc,browserWindow) {
     window = new browserWindow({
         width: 800,
         height: 600,
-        icon: path.resolve(__dirname + '/../resources/logo.png'),
+        icon: path.resolve(__dirname + '/../resources/images/logo.png'),
         title:settings.read('appName'),
         autoHideMenuBar:true,
         backgroundColor:'#1a1d22',
