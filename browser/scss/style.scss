@@ -400,6 +400,14 @@ body {
 .ui-resizable-handle {
     position: absolute;
     z-index: 1000000;
+    &:after {
+        content:"";
+        position: absolute;
+        top:-5rem;
+        right:-5rem;
+        left:-5rem;
+        bottom:-5rem;
+    }
     &.ui-resizable-se {
         bottom: 5rem;
         right: 5rem;
@@ -959,6 +967,8 @@ a {
 
 .panel-container {
     z-index: 2;
+    min-width: 100rem;
+    min-height: 100rem;
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
         border-top: 1rem solid $color-bg;
