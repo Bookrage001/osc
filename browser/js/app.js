@@ -4,6 +4,8 @@ WIDGETS = {}
 WIDGETS_LINKED = {}
 WIDGETS_ID_BY_PATH = {}
 SESSION = []
+CLIPBOARD = null
+EDITING = false
 
 MISC = {
     iterators: {

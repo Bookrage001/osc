@@ -101,17 +101,21 @@ var sidepanel = function(data){
 
 }(data)
 
-module.exports = function() {
-
-	$('#sidepanel').append(sidepanel)
-
+var toggle = function(){
 	$(`<a id="open-toggle">${icon('navicon')}</a>`).appendTo('#container').click(function(){
-        $('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
-    })
+		$('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
+	})
 
-    // in case where are hot loading a session
-    if ($('#sidepanel').hasClass('sidepanel-open')) {
-        $('#open-toggle, #container').addClass('sidepanel-open')
-    }
+	// in case where are hot loading a session
+	if ($('#sidepanel').hasClass('sidepanel-open')) {
+		$('#open-toggle, #container').addClass('sidepanel-open')
+	}
+}
 
+module.exports = {
+	init:function(){
+		$('#sidepanel').append(sidepanel)
+		toggle()
+	},
+	createToggle:toggle
 }

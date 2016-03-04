@@ -1,7 +1,7 @@
 var actions = require('./actions'),
     icon = require('./utils').icon
 
-var sidepanel = require('./sidepanel')
+var sidepanel = require('./sidepanel').init
 
 // Tabs...
 var tabs = function() {
@@ -73,5 +73,7 @@ module.exports = {
         sidepanel()
         tabs()
         scrolls()
-    }
+    },
+    tabs:tabs,
+    scrolls:scrolls
 }

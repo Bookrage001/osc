@@ -17,7 +17,7 @@ module.exports = {
 
 
         popup.close = function(){
-            $(document).unbind('keydown.popup')
+            $(document).unbind('.popup')
             popup.remove()
         }
 
@@ -27,6 +27,7 @@ module.exports = {
         $(document).on('keydown.popup', function(e){
             if (e.keyCode==27) popup.close()
         })
+
 
 
         return popup

@@ -982,8 +982,8 @@
                 "css": ""
             }
         ],
-        "label": "Strips",
-        },
+        "label": "Strips"
+    },
     {
         "widgets": [
             {
@@ -1305,8 +1305,8 @@
                 "css": ""
             }
         ],
-        "label": "Pads",
-        },
+        "label": "Pads"
+    },
     {
         "label": "Multiple tabs",
         "tabs": [
@@ -1408,7 +1408,8 @@
                         ],
                         "tabs": [],
                         "id": "panel_1",
-                        "label": "panel_1"
+                        "label": "panel_1",
+                        "stretch": false
                     },
                     {
                         "type": "panel",
@@ -1576,10 +1577,14 @@
                                         "pan": false
                                     }
                                 ]
+                            },
+                            {
+                                "label": "Unnamed"
                             }
                         ],
                         "id": "panel_2",
-                        "label": "panel_2"
+                        "label": "panel_2",
+                        "stretch": false
                     }
                 ]
             }

@@ -52,9 +52,9 @@ module.exports.tabs = function(data,parent,main){
         tabContent.data(tabData)
 
 
-        if (tabData.tabs) {
+        if (tabData.tabs && tabData.tabs.length) {
             module.exports.tabs(tabData.tabs,parent=tabContent)
-        } else if (tabData.widgets) {
+        } else if (tabData.widgets && tabData.widgets.length) {
             module.exports.widgets(tabData.widgets,tabContent)
         }
 

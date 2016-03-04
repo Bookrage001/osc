@@ -1,5 +1,3 @@
-var editor =  require('./editor')
-
 module.exports = {
 
     stateQuickSave: function(preset){
@@ -153,7 +151,23 @@ module.exports = {
         return popup
     },
 
-	editorEnable: editor.enable,
-	editorDisable: editor.disable
+	editorEnable: function(){
+        $('.editor-root').attr('data-tab','#container').removeClass('disabled')
+        $('.enable-editor').addClass('on')
+        $('.disable-editor').removeClass('on')
+
+        EDITING = true
+    },
+	editorDisable: function(){
+        $('.widget.ui-resizable').resizable('destroy')
+        $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+        $('.editing').removeClass('editing')
+        $('.editor-root').addClass('disabled')
+        $('.editor-container').remove()
+        $('.disable-editor').addClass('on')
+        $('.enable-editor').removeClass('on')
+
+        EDITING = false
+    }
 
 }
