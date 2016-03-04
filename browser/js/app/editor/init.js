@@ -12,6 +12,9 @@ var data = require('./data-workers'),
 
 var init = function(){
 
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault()
+    }, false);
 
     $('body').off('.editor').on('mousedown.editor touchstart.editor',function(e){
 
