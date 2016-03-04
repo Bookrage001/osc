@@ -336,7 +336,7 @@ body {
 .widget.editing {
     z-index: 11!important;
 }
-.widget.editing:after, a.editing:before {
+.widget.editing:after, a.editing:before, .content.editing:before, #container.editing:before{
     content:"";
     z-index: 999;
     position: absolute;

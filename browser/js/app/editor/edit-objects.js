@@ -5,15 +5,23 @@ var editObject = function(container, data, refresh){
 
     if (!refresh && (container.hasClass('editing') || $(`a[data-tab="#${container.attr('id')}"]`).hasClass('editing'))) return
 
+    var isWidget = container.hasClass('widget')
+
     $('.editing').removeClass('editing')
-    $(`a[data-tab="#${container.attr('id')}"]`).addClass('editing').click()
-    $(container).addClass('editing')
+
+    if (isWidget) {
+        $(container).addClass('editing')
+    } else {
+        $(`a[data-tab="#${container.attr('id')}"]`).addClass('editing').click()
+        $(container).parent().addClass('editing')
+    }
+
+
 
     $('.editor-container').remove()
     $('.editor').append('<div class="editor-container"></div>')
     var form = $('<div class="form"></div>').appendTo('.editor-container')
 
-    var isWidget = container.hasClass('widget')
 
     var params = isWidget?widgetOptions[data.type]:{label:''}
 
@@ -217,7 +225,7 @@ var editSession = function(container,data,refresh){
     if (!refresh && $('.editor-root').hasClass('editing')) return
 
     $('.editing').removeClass('editing')
-    $('.editor-root').addClass('editing')
+    $('.editor-root, #container').addClass('editing')
 
     $('.editor-container').remove()
     $('.editor').append('<div class="editor-container"></div>')

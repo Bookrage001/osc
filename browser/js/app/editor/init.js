@@ -22,9 +22,9 @@ var init = function(){
 
         $('.context-menu').remove()
 
-        var target = $(e.target).is('.widget, .tab, [data-tab]')?
+        var target = $(e.target).is('.widget, .tab, [data-tab], #container')?
                         $(e.target):
-                        $(e.target).closest('.widget, .tab, a[data-tab]')
+                        $(e.target).closest('.widget, .tab, a[data-tab], #container')
 
         if (!target.length) return
 
@@ -36,12 +36,25 @@ var init = function(){
 
         if (container.attr('id')=='container') {
             editSession(container,SESSION)
+        } else {
+            editObject(container,data)
+        }
+
+
+        if (e.button!=2) return
+
+
+        if (container.attr('id')=='container') {
+            menu(e,{
+                '<i class="fa fa-plus"></i> Add tab': function(){
+                    data.push({})
+                    updateDom(container,data)
+                }
+            },'body')
+
             return
         }
 
-        editObject(container,data)
-
-        if (e.button!=2) return
 
         var actions = {}
 
