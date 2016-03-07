@@ -59,7 +59,7 @@ module.exports = {
             e.stopPropagation()
             $('#lobby').remove()
             setTimeout(function(){
-                init([{}],function(){$('#open-toggle, .enable-editor, .editor-root').click()})
+                init([{}],function(){$('#open-toggle, .enable-editor').click();$('.editor-root').trigger('mousedown.editor')})
             },25)
         })
     },
