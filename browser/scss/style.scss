@@ -447,15 +447,15 @@ body {
 }
 .ui-draggable-handle {
     position: absolute;
-    position: absolute;
     top: 5rem;
     left: 5rem;
     right: 5rem;
     z-index: 100000;
     cursor: -webkit-grab;
     height:25rem;
-    border:1rem solid $color-accent;
     border-radius: 3rem;
+    background: $color-accent;
+    opacity: .7;
     &:active {
         cursor:-webkit-grabbing
     }
