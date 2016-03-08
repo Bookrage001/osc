@@ -51,9 +51,9 @@ This will create a headless app available through http on port 8080. Multiple cl
 
 ```
 
-### Advanced usage
+### Documentation
 
-Although the built-in editor might suits most of your needs while creating small control interfaces, you may need to write the session file yourself to create large and maintainable interfaces. The followings docs will help:
+- [Editor reference](resources/docs/editor-reference.md)
 - [Session reference](resources/docs/session-reference.md)
 - [Widgets reference](resources/docs/widgets-reference.md)
 

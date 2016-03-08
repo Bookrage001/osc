@@ -1,10 +1,10 @@
 ## Widgets reference
 
-### Widget generics
+## Widget generics
 
 Every widget has the following characteristics:
 
-```
+```js
 {
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
 
@@ -21,88 +21,90 @@ Every widget has the following characteristics:
 }
 ```
 
-### Widget specifics
+**Important note about position (`left` & `top`)** : by default, the widget will be positioned according to the normal flow of the page (from left to right, by order of creation).
+
+## Widget specifics
 
 Each widget type comes with a set of specific characteristics which are described below.
 
--   **Strip** : *simple widget container*
-    ```  
-    type:'strip',
-    horizontal:false,           // [bool]  set to true to display widgets horizontally
-    widgets: []                 // [array] of widget objects
-    ```
+### strip : *simple widget container*
+```js
+type:'strip',
+horizontal:false,           // [bool]  set to true to display widgets horizontally
+widgets: []                 // [array] of widget objects
+```
 
--   **Panel** :  *widget/tabs containers*
-    ```  
-    type:'panel',
-    stretch:false,              // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
-    widgets: [],                // [array] of widget objects
-    tabs: []                    // [array] of tab objects
-    ```
+### panel :  *widget/tabs containers*
+```js
+type:'panel',
+stretch:false,              // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
+widgets: [],                // [array] of widget objects
+tabs: []                    // [array] of tab objects
+```
 
--   **fader**
-    ```  
-    type:'fader',
-    horizontal:false,           // [bool]   set to true to display fader horizontally
-    range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
-                                //          keys can be percentages or 'min' / 'max'
-    unit: false,                // [string] value suffix
-    absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    ```
+### fader
+```js
+type:'fader',
+horizontal:false,           // [bool]   set to true to display fader horizontally
+range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
+                            //          keys can be percentages or 'min' / 'max'
+unit: false,                // [string] value suffix
+absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
+```
 
--   **knob**
-    ```
-    type:'knob',
-    range: {"min":0,"max":1},   // [object] minimum and maximum values
-    unit: false,                // [string] value suffix
-    absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    pan:false                   // [bool] true for panning knob
-    ```
+### knob
+```js
+type:'knob',
+range: {"min":0,"max":1},   // [object] minimum and maximum values
+unit: false,                // [string] value suffix
+absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
+pan:false                   // [bool] true for panning knob
+```
 
--   **xy**
-    ```  
-    type:'xy',
-    range:{                     // [object] minimum and maximum values for x and y axis
-            x:{"min":0,"max":1},
-            y:{"min":0,"max":1}
-        },
-    absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    split:false                 // [bool|object] sends separate osc messages for x and y axes
-                                // if true : '/x' & '/y' will be appended to the widget's path
-                                // or object : {x:'/osc_path_x', y:'/osc_path_y'}
+### xy
+```js
+type:'xy',
+range:{                     // [object] minimum and maximum values for x and y axis
+        x:{"min":0,"max":1},
+        y:{"min":0,"max":1}
+    },
+absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
+split:false                 // [bool|object] sends separate osc messages for x and y axes
+                            // if true : '/x' & '/y' will be appended to the widget's path
+                            // or object : {x:'/osc_path_x', y:'/osc_path_y'}
 
-    ```
+```
 
--   **rgb**
-    ```
-    type:'rgb',
-    absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
-    split:false                 // [bool|object] sends separate osc messages for x and y axes
-                                // if true : '/r', '/g' & '/b' will be appended to the widget's path
-                                // or object : {r:'/osc_path_r', g:'/osc_path_g',b:'/osc_path_b'}
-    ```
-    Variant of xy pad, it outputs rgb values between 0 and 255.
+### rgb
+```js
+type:'rgb',
+absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
+split:false                 // [bool|object] sends separate osc messages for x and y axes
+                            // if true : '/r', '/g' & '/b' will be appended to the widget's path
+                            // or object : {r:'/osc_path_r', g:'/osc_path_g',b:'/osc_path_b'}
+```
+Variant of xy pad, it outputs rgb values between 0 and 255.
 
 
--   **toggle**
-    ```  
-    type:'toggle',
-    on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
-    off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
-    ```
+### toggle
+```js
+type:'toggle',
+on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
+off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
+```
 
--   **push**
-    ```  
-    type:'push',
-    on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
-    off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
-    ```
+### push
+```js
+type:'push',
+on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
+off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
+```
 
--   **switch**
-    ```  
-    type:'switch',
-    values: {                   // [object] of ("label":value) pairs
-        "Value 1":1,
-        "Value 2":2
-    }
-    ```
+### $1
+```js
+type:'switch',
+values: {                   // [object] of ("label":value) pairs
+    "Value 1":1,
+    "Value 2":2
+}
+```

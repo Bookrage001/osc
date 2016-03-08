@@ -4,13 +4,13 @@
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
-```
+```bash
 $ sudo apt-get install npm  # install nodejs & npm
 $ sudo npm install -g npm   # update npm
 ```
 
 **Build**
- ```
+ ```bash
 $ git clone https://github.com/jean-emmanuel/open-stage-control
 $ cd open-stage-control
 $ npm install --save-dev

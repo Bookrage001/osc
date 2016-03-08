@@ -1,8 +1,8 @@
 ## Session file reference
 
-A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a standard json file :
+A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a javascript object :
 
-```
+```js
 [
     {
         id:"my_tab_id",     // [string] optional, default to unique 'tab_n'
@@ -19,7 +19,7 @@ A valid session file is a javascript file that returns, when eval'd, an array of
 
 It can also be a self invoking function that returns an array of objects :
 
-```
+```js
 (function(){
     var tabs = []
     for (for i in [0,1,2,3]) {
