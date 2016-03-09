@@ -1,8 +1,8 @@
-## Widgets reference
+# Widgets reference
 
 ## Widget generics
 
-Every widget has the following characteristics:
+Every widget has the following properties:
 
 ```js
 {
@@ -25,7 +25,7 @@ Every widget has the following characteristics:
 
 ## Widget specifics
 
-Each widget type comes with a set of specific characteristics which are described below.
+Each widget type comes with a set of specific properties which are described below.
 
 ### strip : *simple widget container*
 ```js
@@ -100,7 +100,7 @@ on: 1,                      // [string|number|false] value sent when toggle is o
 off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
 ```
 
-### $1
+### switch
 ```js
 type:'switch',
 values: {                   // [object] of ("label":value) pairs

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jean-emmanuel/open-stage-control.svg?branch=master)](https://travis-ci.org/jean-emmanuel/Open-Stage-Control)
+[![Build Status](https://travis-ci.org/jean-emmanuel/open-stage-control.svg?branch=master)](https://travis-ci.org/jean-emmanuel/open-stage-control)
 
 ## Open Stage Control
 
