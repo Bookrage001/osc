@@ -224,6 +224,10 @@ var editSession = function(container,data,refresh){
 
     if (!refresh && $('.editor-root').hasClass('editing')) return
 
+    $('.widget.ui-resizable').resizable('destroy')
+    $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+
+
     $('.editing').removeClass('editing')
     $('.editor-root, #container').addClass('editing')
 

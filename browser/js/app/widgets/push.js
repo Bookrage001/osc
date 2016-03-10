@@ -27,7 +27,6 @@ module.exports.create = function(widgetData,container) {
 
     var widget = $(`
         <div class="push toggle">
-            <div class="light"></div>
         </div>\
         `),
         $document = $(document)
@@ -59,10 +58,7 @@ module.exports.create = function(widgetData,container) {
         var on = widgetData.on,
             off= widgetData.off
         if (v==on) {
-            widget.addClass('on').removeClass('ripple').addClass('ripple').delay(250).queue(function(next){
-    			widget.removeClass('ripple')
-    			next()
-    		})
+            widget.addClass('on')
             if (send) widget.sendValue(v)
         } else if (v==off) {
             widget.removeClass('on')

@@ -102,9 +102,9 @@ var sidepanel = function(data){
 }(data)
 
 var toggle = function(){
-	$(`<a id="open-toggle">${icon('navicon')}</a>`).appendTo('#container').click(function(){
+	$(`<a id="open-toggle">${icon('navicon')}</a>`).appendTo('#container').click(function(e){
 		$('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
-	})
+	}).on('mousedown touchstart',function(e){e.stopPropagation()})
 
 	// in case where are hot loading a session
 	if ($('#sidepanel').hasClass('sidepanel-open')) {

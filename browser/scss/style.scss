@@ -1055,7 +1055,6 @@ a {
         top:4rem;
         height:4rem;
         background: $color-track;
-        border-radius: 3rem;
     }
     &.on .light {
         background: $color-accent;
@@ -1078,10 +1077,9 @@ a {
         left:6rem;
         right:6rem;
         bottom:6rem;
+        border-radius:0;
         height:auto;
-    }
-    &:active .light {
-        background: $color-accent;
+        opacity:.5;
     }
 }
 
