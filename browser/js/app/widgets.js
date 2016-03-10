@@ -7,7 +7,10 @@ var strip = require('./widgets/strip'),
     rgb = require('./widgets/rgb'),
     toggle = require('./widgets/toggle'),
     swiitch = require('./widgets/switch'),
-    push = require('./widgets/push')
+    push = require('./widgets/push'),
+    multitoggle = require('./widgets/multitoggle'),
+    multipush = require('./widgets/multipush'),
+    multifader = require('./widgets/multifader')
 
 module.exports.widgetOptions = {
     strip: strip.options,
@@ -19,7 +22,10 @@ module.exports.widgetOptions = {
     rgb: rgb.options,
     toggle: toggle.options,
     switch: swiitch.options,
-    push: push.options
+    push: push.options,
+    multitoggle: multitoggle.options,
+    multipush: multipush.options,
+    multifader: multifader.options
 }
 
 module.exports.createWidget = {
@@ -32,7 +38,10 @@ module.exports.createWidget = {
     rgb: rgb.create,
     toggle: toggle.create,
     switch: swiitch.create,
-    push: push.create
+    push: push.create,
+    multitoggle: multitoggle.create,
+    multipush: multipush.create,
+    multifader: multifader.create
 }
 
 module.exports.sync = function() {

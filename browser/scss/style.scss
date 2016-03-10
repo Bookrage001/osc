@@ -967,8 +967,8 @@ a {
 
 .panel-container {
     z-index: 2;
-    min-width: 100rem;
-    min-height: 100rem;
+    min-width: 200rem;
+    min-height: 200rem;
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
         border-top: 1rem solid $color-bg;
@@ -1055,6 +1055,7 @@ a {
         top:4rem;
         height:4rem;
         background: $color-track;
+        pointer-events: none;
     }
     &.on .light {
         background: $color-accent;
@@ -1173,6 +1174,31 @@ a {
 @keyframes ripple {
 	100% {opacity:0}
 }
+
+
+/* Multiple buttons matrix */
+.multitoggle-container, .multipush-container, .multifader-container {
+    height:200rem;
+    width:200rem;
+}
+.matrix {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-top:6rem;
+    padding-left:6rem;
+    height:100%;
+    > .widget {
+        min-height: 0;
+        .fader {
+            left:-2rem!important;
+        }
+        .pip {
+            display:none;
+        }
+    }
+}
+
 
 
 /* XY */

@@ -22,9 +22,9 @@ var init = function(){
 
         $('.context-menu').remove()
 
-        var target = $(e.target).is('.widget, .tab, [data-tab], #container')?
+        var target = $(e.target).is('.widget:not(.not-editable), .tab, [data-tab], #container')?
                         $(e.target):
-                        $(e.target).closest('.widget, .tab, a[data-tab], #container')
+                        $(e.target).closest('.widget:not(.not-editable), .tab, a[data-tab], #container')
 
         if (!target.length) return
 

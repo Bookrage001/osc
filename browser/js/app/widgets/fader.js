@@ -124,20 +124,21 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
-    var scale = []
-    for (var i=0;i<=100;i++) {scale.push(i)}
-    for (i in scale) {
-        var pip = $('<div class="pip"></div>')
-        if (range[i]!=undefined) {
-            var piptext = Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]
-            pip.addClass('val').append('<span>'+piptext+'</span>')
+    if (!widgetData.noPip) {
+        var scale = []
+        for (var i=0;i<=100;i++) {scale.push(i)}
+        for (i in scale) {
+            var pip = $('<div class="pip"></div>')
+            if (range[i]!=undefined) {
+                var piptext = Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]
+                pip.addClass('val').append('<span>'+piptext+'</span>')
+            }
+            pips.append(pip)
         }
-        pips.append(pip)
+        if (dimension=='height') {
+            pips.append(pips.find('.pip').get().reverse())
+        }
     }
-    if (dimension=='height') {
-        pips.append(pips.find('.pip').get().reverse())
-    }
-
 
 
 
