@@ -125,26 +125,41 @@
             element.off("mouseup.drag")
         }
     }
-
-    // MASTER DRAGGING (while shift key pressed)
-    var target
-    $(document).keydown(function (e) {
-        if (e.keyCode == 16) {
-
-            $('body').on('drag',function(ev,dd){
+    $.fn.delegateDrag = function(action) {
+        if (action=='disable') {
+            this.off('.delegateDrag')
+        } else {
+            var target = null
+            this.on('drag.delegateDrag',function(ev,dd){
                 dd.target = dd.originalEvent.changedTouches?
                         document.elementFromPoint(dd.originalEvent.changedTouches[0].clientX, dd.originalEvent.changedTouches[0].clientY)
                         :dd.target
 
-                $(dd.target).trigger('draginit',[dd])
+                if (target!=dd.target) {
+                    $(target).trigger('dragend',[dd])
+                    $(dd.target).trigger('draginit',[dd])
+                } else {
+                    $(dd.target).trigger('draginit',[dd])
+                }
                 target = dd.target
 
             })
+            this.on('dragend.delegateDrag',function(){
+                target = null
+            })
+        }
+        return this
+    }
+    // MASTER DRAGGING (while shift key pressed)
+    var target
+    $(document).keydown(function (e) {
+        if (e.keyCode == 16) {
+            $('body').delegateDrag()
         }
     });
     $(document).keyup(function (e) {
         if (e.keyCode == 16) {
-            $('body').off('drag')
+            $('body').delegateDrag('disable')
         }
     });
 
