@@ -808,7 +808,7 @@ a {
     &.absolute-position {
         position: absolute;
         z-index: 10;
-        border:0!important;
+        border:0;
     }
 
      &.nolabel {
@@ -919,6 +919,9 @@ a {
                 border-bottom:6rem solid transparent;
             }
         }
+        &.absolute-position .strip > .widget:last-child {
+            border-bottom:0
+        }
     }
     &.horizontal {
         padding-top:0;
@@ -941,6 +944,9 @@ a {
                 }
 
             }
+        }
+        &.absolute-position .strip > .widget:last-child {
+            border-right:0
         }
         > .label {
             width:35rem;
