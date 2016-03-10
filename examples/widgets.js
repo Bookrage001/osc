@@ -1591,7 +1591,7 @@
         ]
     },
     {
-        "label": "Unnamed",
+        "label": "Multiwidgets",
         "widgets": [
             {
                 "type": "multifader",
@@ -1600,7 +1600,7 @@
                 "label": "multifader_1",
                 "unit": "",
                 "left": "0",
-                "top": "auto",
+                "top": "0",
                 "width": "100%",
                 "height": "50%",
                 "css": "",
@@ -1638,7 +1638,7 @@
                     6,
                     6
                 ],
-                "label": "multipush_1",
+                "label": "multitoggle_1",
                 "left": "50%",
                 "top": "50%",
                 "width": "50%",

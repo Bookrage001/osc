@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+- editor paste menu lets you choose between `Same ID` (cloned widgets) or `New ID`
+- example update
+- minor style updates
+
 ## 0.3.0
 
 - 3 new widgets

@@ -1190,11 +1190,14 @@ a {
     height:100%;
     > .widget {
         min-height: 0;
-        .fader {
-            left:-2rem!important;
-        }
-        .pip {
-            display:none;
+        .fader-wrapper {
+            padding:20rem 0!important;
+            .fader {
+                left:0!important;
+                .pips {
+                    display:none;
+                }
+            }
         }
     }
 }

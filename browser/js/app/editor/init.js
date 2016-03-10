@@ -73,10 +73,22 @@ var init = function(){
 
         if (((type=='widget'&&widgetOptions[data.type].widgets) || (type=='tab')) && (!data.tabs||!data.tabs.length)) {
 
-            if (CLIPBOARD!=null) actions['<i class="fa fa-paste"></i> Paste'] = function(){
-                data.widgets = data.widgets || []
-                data.widgets.push(JSON.parse(JSON.stringify(CLIPBOARD)))
-                updateDom(container,data)
+            if (CLIPBOARD!=null) {
+                actions['<i class="fa fa-paste"></i> Paste'] = {
+                    '<i class="fa fa-object-ungroup"></i> New ID':function(){
+                        data.widgets = data.widgets || []
+                        var newData = JSON.parse(JSON.stringify(CLIPBOARD))
+                        delete newData.id
+                        delete newData.label
+                        data.widgets.push(newData)
+                        updateDom(container,data)
+                    },
+                    '<i class="fa fa-object-group"></i> Same ID':function(){
+                        data.widgets = data.widgets || []
+                        data.widgets.push(JSON.parse(JSON.stringify(CLIPBOARD)))
+                        updateDom(container,data)
+                    }
+                }
             }
 
             actions['<i class="fa fa-plus"></i> Add widget'] = {}
