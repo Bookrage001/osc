@@ -1589,5 +1589,67 @@
                 ]
             }
         ]
+    },
+    {
+        "label": "Unnamed",
+        "widgets": [
+            {
+                "type": "multifader",
+                "id": "multifader_1",
+                "strips": "12",
+                "label": "multifader_1",
+                "unit": "",
+                "left": "0",
+                "top": "auto",
+                "width": "100%",
+                "height": "50%",
+                "css": "",
+                "range": {
+                    "min": 0,
+                    "max": 1
+                },
+                "precision": 2,
+                "path": "/multifader_1",
+                "target": []
+            },
+            {
+                "type": "multipush",
+                "id": "multipush_1",
+                "matrix": [
+                    6,
+                    6
+                ],
+                "label": "multipush_1",
+                "left": "0",
+                "top": "50%",
+                "width": "50%",
+                "height": "50%",
+                "css": "",
+                "on": 1,
+                "off": 0,
+                "precision": 2,
+                "path": "/multipush_1",
+                "target": []
+            },
+            {
+                "type": "multitoggle",
+                "id": "multitoggle_1",
+                "matrix": [
+                    6,
+                    6
+                ],
+                "label": "multipush_1",
+                "left": "50%",
+                "top": "50%",
+                "width": "50%",
+                "height": "50%",
+                "css": "",
+                "on": 1,
+                "off": 0,
+                "precision": 2,
+                "path": "/multipush_1",
+                "target": []
+            }
+        ]
     }
 ]
