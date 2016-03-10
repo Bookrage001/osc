@@ -27,6 +27,7 @@ module.exports.create = function(widgetData,container) {
 
     var widget = $(`
         <div class="push toggle">
+            <div class="light"></div>
         </div>\
         `),
         $document = $(document)
