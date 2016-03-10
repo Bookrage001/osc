@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0
+
+- 3 new widgets
+	- multifader
+	- multitoggle
+	- multipush
+
+
 ## 0.2.1
 
 - style update (push/toggle widgets, widgets' dragging handle)
