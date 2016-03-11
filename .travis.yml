@@ -12,8 +12,8 @@ deploy:
   file:
     - "./dist/open-stage-control-i386.deb"
     - "./dist/open-stage-control-amd64.deb"
-    - "./dist/open-stage-control-linux-ia32"
-    - "./dist/open-stage-control-linux-x64"
+    - "./dist/open-stage-control-linux-ia32.zip"
+    - "./dist/open-stage-control-linux-x64.zip"
     - "./dist/open-stage-control-osx.zip"
     - "./dist/open-stage-control-win32.zip"
     - "./dist/open-stage-control-win64.zip"
