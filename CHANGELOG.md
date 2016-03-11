@@ -2,7 +2,7 @@
 
 ## 0.3.1
 
-- editor paste menu lets you choose between `Same ID` (cloned widgets) or `New ID`
+- editor paste menu lets you choose between `Same ID` (cloned widgets) or `New ID` (resets id, label, linkId, and path)
 - example update
 - minor style updates
 
