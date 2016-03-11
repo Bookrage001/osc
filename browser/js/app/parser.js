@@ -78,7 +78,18 @@ module.exports.widgets = function(data,parent) {
             if (i.indexOf('separator')==-1 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
         }
 
-        widgetData.id = widgetData.id=='auto'?widgetData.type+'_'+getIterator(widgetData.type,'widget'):widgetData.id.replace(' ','_')
+        if (widgetData.id=='auto') {
+            var id
+            while (id=widgetData.type+'_'+getIterator(widgetData.type,'widget')) {
+                if (!WIDGETS.hasOwnProperty(id)) {
+                    widgetData.id = id
+                    break
+                }
+            }
+        } else {
+            widgetData.id = widgetData.id.replace(' ','_')
+        }
+
         widgetData.label = widgetData.label=='auto'?widgetData.id:widgetData.label
         widgetData.path = widgetData.path=='auto'?'/' + widgetData.id:widgetData.path
         widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false

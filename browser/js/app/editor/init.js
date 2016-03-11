@@ -77,9 +77,7 @@ var init = function(){
                 actions['<i class="fa fa-paste"></i> Paste'] = {
                     '<i class="fa fa-object-ungroup"></i> New ID':function(){
                         data.widgets = data.widgets || []
-                        var newData = JSON.parse(JSON.stringify(CLIPBOARD))
-                        delete newData.id
-                        delete newData.label
+                        var newData = JSON.parse(JSON.stringify(CLIPBOARD).replace(/\"(id|label|linkId)\"\:\"([^\"]*)\"\,?/g,''))
                         data.widgets.push(newData)
                         updateDom(container,data)
                     },
