@@ -95,8 +95,10 @@ module.exports.create = function(widgetData,container) {
             offY = y
 
             widget.updateUi(r)
-            
+
             knob.rotation = r
+
+            var v = widget.getValue(r)
 
             widget.sendValue(v)
             widget.trigger('sync')
@@ -129,7 +131,7 @@ module.exports.create = function(widgetData,container) {
 
         knob.rotation = r
 
-        var v = mapToScale(r,[0,270],[range.min,range.max],widgetData.precision)
+        var v = widget.getValue(r)
 
         widget.sendValue(v)
         widget.trigger('sync')
