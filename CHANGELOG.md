@@ -2,8 +2,8 @@
 
 ## 0.3.1
 
+- electron updated to 0.36.11
 - editor paste menu lets you choose between `Same ID` (cloned widgets) or `New ID` (resets id, label, linkId, and path)
-- example update
 - minor style updates
 
 ## 0.3.0
