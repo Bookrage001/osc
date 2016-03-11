@@ -5,8 +5,8 @@ module.exports.options = {
 	separator1:'style',
 
 	label:'auto',
-	left:'0',
-	top:'0',
+	left:'auto',
+	top:'auto',
 	width:'auto',
 	height:'auto',
 	stretch:false,
