@@ -66,7 +66,8 @@ module.exports.create = function(widgetData,container) {
         if (!width || (pad.height==height && pad.width==width)) return
         pad.width = width
         pad.height = height
-        handle[0].setAttribute('style',`transform:translate3d(${pad.width*handle.width/100}px, -${pad.height*handle.height/100}px,0)`)
+
+        widget.updateUi(handle.width,handle.height)
     })
 
     var off = {x:0,y:0}
@@ -75,7 +76,7 @@ module.exports.create = function(widgetData,container) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
 
-            handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
+            widget.updateUi(w,h)
 
             handle.height = h
             handle.width = w
@@ -98,7 +99,7 @@ module.exports.create = function(widgetData,container) {
         var h = clip((-data.deltaY)*100/pad.height+off.y,[0,100]),
             w = clip((data.deltaX)*100/pad.width+off.x,[0,100])
 
-        handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
+        widget.updateUi(w,h)
 
         handle.height = h
         handle.width = w
@@ -111,6 +112,9 @@ module.exports.create = function(widgetData,container) {
     })
 
 
+    widget.updateUi = function(w,h) {
+        handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
+    }
 
     widget.getValue = function() {
         var x = mapToScale(handle.width,[0,100],[range.x.min,range.x.max],widgetData.precision),
@@ -128,7 +132,9 @@ module.exports.create = function(widgetData,container) {
         var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision)
             h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision),
 
-        handle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
+
+        widget.updateUi(w,h)
+
         handle.height = h
         handle.width = w
 

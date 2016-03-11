@@ -94,19 +94,9 @@ module.exports.create = function(widgetData,container) {
             offX = x
             offY = y
 
-            knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-            handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
+            widget.updateUi(r)
+            
             knob.rotation = r
-
-
-            if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
-            else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
-
-            if      (r>180) {knob.addClass('d3')}
-            else if (r>90)  {knob.removeClass('d3').addClass('d2')}
-            else            {knob.removeClass('d3 d2')}
-
-            var v = mapToScale(r,[0,270],[range.min,range.max],widgetData.precision)
 
             widget.sendValue(v)
             widget.trigger('sync')
@@ -135,16 +125,9 @@ module.exports.create = function(widgetData,container) {
                 r = clip(r,[0,270])
         }
 
-        knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-        handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
+        widget.updateUi(r)
+
         knob.rotation = r
-
-        if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
-        else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
-
-        if      (r>180) {knob.addClass('d3')}
-        else if (r>90)  {knob.removeClass('d3').addClass('d2')}
-        else            {knob.removeClass('d3 d2')}
 
         var v = mapToScale(r,[0,270],[range.min,range.max],widgetData.precision)
 
@@ -154,6 +137,17 @@ module.exports.create = function(widgetData,container) {
 
     })
 
+    widget.updateUi = function(r) {
+        knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
+        handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
+
+        if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
+        else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
+
+        if      (r>180) {knob.addClass('d3')}
+        else if (r>90)  {knob.removeClass('d3').addClass('d2')}
+        else            {knob.removeClass('d3 d2')}
+    }
 
     widget.getValue = function() {
         return mapToScale(knob.rotation,[0,270],[range.min,range.max],widgetData.precision)

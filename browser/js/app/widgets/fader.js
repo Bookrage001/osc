@@ -55,61 +55,10 @@ module.exports.create = function(widgetData,container) {
         absolute = widgetData.absolute
         if (widgetData.horizontal) container.addClass('horizontal')
 
-        handle.size = 0
-        fader.size = dimension=='height'?fader.outerHeight():fader.outerWidth()
-        wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
+    handle.size = 0
+    fader.size = dimension=='height'?fader.outerHeight():fader.outerWidth()
+    wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
 
-        fader.resize(function(){
-            fader.size= dimension=='height'?fader.outerHeight():fader.outerWidth()
-            wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
-        })
-
-
-    var off = 0
-
-    wrapper.on('draginit',function(e,data){
-        if (absolute || data.ctrlKey || data.shiftKey) {
-            var d = (dimension=='height')?
-                    ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
-                    (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
-            var r = sizeToAngle(d)
-            handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
-            knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
-            handle.size = d
-
-            var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
-
-            widget.trigger('sync')
-
-        }
-
-        off = handle.size
-
-    })
-
-
-    wrapper.on('drag',function(e,data){
-        e.stopPropagation()
-
-        if (data.shiftKey) return
-
-        var d = (dimension=='height')?-data.deltaY:data.deltaX
-            d = clip(d*100/fader.size+off,[0,100])
-        var r = sizeToAngle(d)
-
-        handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
-        knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
-        handle.size = d
-
-        var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
-
-        widget.trigger('sync')
-
-    })
 
     widgetData.range = widgetData.range || {'min':0,'max':1}
 
@@ -146,6 +95,61 @@ module.exports.create = function(widgetData,container) {
         rangeVals = Object.keys(range).map(function (key) {return parseFloat(range[key])})
 
 
+    fader.resize(function(){
+        fader.size= dimension=='height'?fader.outerHeight():fader.outerWidth()
+        wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
+    })
+
+
+    var off = 0
+    wrapper.on('draginit',function(e,data){
+        if (absolute || data.ctrlKey || data.shiftKey) {
+            var d = (dimension=='height')?
+                    ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
+                    (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
+            d = clip(d,[0,100])
+
+            widget.updateUi(d)
+            handle.size = d
+
+            var v = widget.getValue()
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync')
+
+        }
+
+        off = handle.size
+
+    })
+
+
+    wrapper.on('drag',function(e,data){
+        e.stopPropagation()
+
+        if (data.shiftKey) return
+
+        var d = (dimension=='height')?-data.deltaY:data.deltaX
+            d = clip(d*100/fader.size+off,[0,100])
+
+        widget.updateUi(d)
+
+        handle.size = d
+
+        var v = widget.getValue()
+        widget.sendValue(v)
+        widget.showValue(v)
+
+        widget.trigger('sync')
+
+    })
+
+    widget.updateUi = function(v){
+        var r = sizeToAngle(v)
+        handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
+        knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
+    }
 
     widget.getValue = function(){
         var h = clip(handle.size,[0,100])
@@ -166,10 +170,7 @@ module.exports.create = function(widgetData,container) {
             }
         }
 
-        var r = sizeToAngle(h)
-
-        handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
-        knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
+        widget.updateUi(h)
 
         handle.size = h
 
