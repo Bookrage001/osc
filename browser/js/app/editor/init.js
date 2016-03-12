@@ -6,6 +6,7 @@ var data = require('./data-workers'),
     editSession = edit.editSession,
     createPopup = require('../utils').createPopup,
     widgetOptions = require('../widgets').widgetOptions,
+    widgetCategories = require('../widgets').categories,
     menu = require('./context-menu')
 
 
@@ -97,8 +98,13 @@ var init = function(){
                     updateDom(container,data)
                 }
             }
-            for (widgetType in widgetOptions) {
-                actions['<i class="fa fa-plus"></i> Add widget'][widgetType] = createFunction(widgetType,container,data)
+            for (category in widgetCategories) {
+                actions['<i class="fa fa-plus"></i> Add widget'][category] = {}
+                for (t in widgetCategories[category]) {
+                    var type = widgetCategories[category][t]
+                    actions['<i class="fa fa-plus"></i> Add widget'][category][type] = createFunction(type,container,data)
+
+                }
             }
 
         }

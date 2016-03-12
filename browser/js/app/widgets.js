@@ -44,6 +44,15 @@ module.exports.createWidget = {
     multifader: multifader.create
 }
 
+module.exports.categories = {
+    'Sliders':['fader','knob'],
+    'Buttons':['toggle','push','switch'],
+    'Pads':['xy','rgb'],
+    'Matrix':['multifader','multitoggle','multipush'],
+    'Plots':['led'],
+    'Containers':['panel','strip']
+}
+
 module.exports.sync = function() {
     // Widget that share the same id will update each other
     // without sending any extra osc message
