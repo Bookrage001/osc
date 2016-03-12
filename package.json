@@ -18,7 +18,7 @@
         "express":"4.13.3"
     },
     "devDependencies": {
-        "electron-prebuilt": "0.36.11",
+        "electron-prebuilt": "0.37.0",
         "electron-packager": "5.2.1",
         "electron-installer-debian":"*"
     },
