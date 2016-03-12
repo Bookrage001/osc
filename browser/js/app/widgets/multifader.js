@@ -20,6 +20,7 @@ module.exports.options = {
     separator2:'osc',
 
     range:{min:0,max:1},
+    logScale:false,
     precision:2,
     path:'auto',
     target:[]
@@ -43,6 +44,7 @@ module.exports.create = function(widgetData,container) {
             horizontal:false,
             absolute:true,
 			range:widgetData.range,
+            logScale:widgetData.logScale,
 			precision:widgetData.precision,
 			path:widgetData.path + '/' + i,
             target:widgetData.target
