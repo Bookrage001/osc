@@ -99,7 +99,7 @@ module.exports.create = function(widgetData,container) {
         offY = 0
     wrapper.on('draginit',function(e,data){
 
-        if (absolute || data.ctrlKey || data.shiftKey) {
+        if (absolute || TRAVERSING) {
             var w = data.target.clientWidth,
                 h = data.target.clientHeight,
                 x = data.offsetX-w/2,
@@ -130,7 +130,7 @@ module.exports.create = function(widgetData,container) {
     wrapper.on('drag',function(e,data){
         e.stopPropagation()
 
-        if (data.shiftKey) return
+        if (TRAVERSING) return
 
         var r = clip(-data.deltaY*2+offR,[0,270])
 

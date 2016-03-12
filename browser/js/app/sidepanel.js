@@ -38,6 +38,21 @@ var data = [
 		]
 	},
 	{
+		title: icon('magic') + '&nbsp; Traversing gestures',
+		actions: [
+			{
+				title:'On',
+				action:actions.traversingEnable,
+				class:'traversingEnable'
+			},
+			{
+				title:'Off',
+				action:actions.traversingDisable,
+				class:'traversingDisable on'
+			}
+		]
+	},
+	{
 		title: icon('edit') + '&nbsp; Editor',
 		class:'editor',
 		actions: [

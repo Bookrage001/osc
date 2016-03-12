@@ -9,10 +9,6 @@
             var mousemove = function(e) {
                 e.speedX = e.pageX - previousEvent.pageX
                 e.speedY = e.pageY - previousEvent.pageY
-                if (e.button==2) {
-                    e.speedX = e.speedX/10
-                    e.speedY = e.speedY/10
-                }
                 e.deltaX = e.speedX + previousEvent.deltaX
                 e.deltaY = e.speedY + previousEvent.deltaY
 
@@ -117,12 +113,7 @@
         },
         teardown: function() {
             var element = $(this)
-            element.off("touchstart.drag")
-            element.off("touchmove.drag")
-            element.off("touchend.drag")
-            element.off("touchcancel.drag")
-            element.off("mousedown.drag")
-            element.off("mouseup.drag")
+            element.off(".drag")
         }
     }
     $.fn.delegateDrag = function(action) {
@@ -150,17 +141,5 @@
         }
         return this
     }
-    // MASTER DRAGGING (while shift key pressed)
-    var target
-    $(document).keydown(function (e) {
-        if (e.keyCode == 16) {
-            $('body').delegateDrag()
-        }
-    });
-    $(document).keyup(function (e) {
-        if (e.keyCode == 16) {
-            $('body').delegateDrag('disable')
-        }
-    });
 
 })(jQuery)

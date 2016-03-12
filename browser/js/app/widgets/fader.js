@@ -118,7 +118,7 @@ module.exports.create = function(widgetData,container) {
 
     var off = 0
     wrapper.on('draginit',function(e,data){
-        if (absolute || data.ctrlKey || data.shiftKey) {
+        if (absolute || TRAVERSING) {
             var d = (dimension=='height')?
                     ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
                     (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
@@ -143,7 +143,7 @@ module.exports.create = function(widgetData,container) {
     wrapper.on('drag',function(e,data){
         e.stopPropagation()
 
-        if (data.shiftKey) return
+        if (TRAVERSING) return
 
         var d = (dimension=='height')?-data.deltaY:data.deltaX
             d = clip(d*100/fader.size+off,[0,100])

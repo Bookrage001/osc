@@ -74,7 +74,7 @@ module.exports.create = function(widgetData,container) {
 
     var off = {x:0,y:0}
     pad.on('draginit',function(e,data){
-        if (absolute || data.ctrlKey || data.shiftKey) {
+        if (absolute || TRAVERSING) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
 
@@ -96,7 +96,7 @@ module.exports.create = function(widgetData,container) {
     pad.on('drag',function(e,data){
         e.stopPropagation()
 
-        if (data.shiftKey) return
+        if (TRAVERSING) return
 
         var h = clip((-data.deltaY)*100/pad.height+off.y,[0,100]),
             w = clip((data.deltaX)*100/pad.width+off.x,[0,100])

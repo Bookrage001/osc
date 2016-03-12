@@ -168,6 +168,17 @@ module.exports = {
         $('.enable-editor').removeClass('on')
 
         EDITING = false
+    },
+
+    traversingDisable: function(){
+        $('body').delegateDrag('disable')
+        $('.traversingEnable, .traversingDisable').toggleClass('on')
+        TRAVERSING = false
+    },
+    traversingEnable: function(){
+        $('body').delegateDrag()
+        $('.traversingEnable, .traversingDisable').toggleClass('on')
+        TRAVERSING = true
     }
 
 }
