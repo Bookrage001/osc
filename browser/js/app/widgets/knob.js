@@ -27,6 +27,7 @@ module.exports.options = {
     separator3:'osc',
 
     range:{min:0,max:1},
+    logScale:false,
     precision:2,
     path:'auto',
     target:[]
@@ -51,11 +52,10 @@ module.exports.create = function(widgetData,container) {
         knob = widget.find('.knob'),
         handle = widget.find('.handle'),
         input = widget.find('.input').fakeInput(),
-        range = widgetData.range || {min:0,max:1},
+        range = widgetData.range,
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         absolute = widgetData.absolute,
         pan = widgetData.pan
-
 
 
     var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
@@ -71,6 +71,24 @@ module.exports.create = function(widgetData,container) {
         if (!w || mask.size==w) return
         mask.size=w
         mask[0].setAttribute('style',`height:${w}px;width:${w}px;padding-bottom:0`)
+    })
+
+    wrapper.on('mousewheel',function(e){
+        if (e.originalEvent.wheelDeltaX) return
+
+        e.preventDefault()
+        e.stopPropagation()
+
+        var divider = e.ctrlKey?48:8
+        knob.rotation = clip(knob.rotation+e.originalEvent.wheelDeltaY/divider,[0,270])
+
+        widget.updateUi(knob.rotation)
+
+        var v = widget.getValue()
+        widget.sendValue(v)
+        widget.showValue(v)
+
+        widget.trigger('sync')
     })
 
 
@@ -152,7 +170,7 @@ module.exports.create = function(widgetData,container) {
     }
 
     widget.getValue = function() {
-        return mapToScale(knob.rotation,[0,270],[range.min,range.max],widgetData.precision)
+        return mapToScale(knob.rotation,[0,270],[range.min,range.max],widgetData.precision,widgetData.logScale)
     }
     widget.showValue = function(v) {
         input.val(v+unit)
@@ -166,7 +184,7 @@ module.exports.create = function(widgetData,container) {
         })
     }
     widget.setValue = function(v,send,sync) {
-        var r = mapToScale(v,[range.min,range.max],[0,270],widgetData.precision)
+        var r = mapToScale(v,[range.min,range.max],[0,270],widgetData.precision,widgetData.logScale,true)
         knob.rotation = r
 
 

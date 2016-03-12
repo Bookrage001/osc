@@ -12,12 +12,13 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
-    color:'green',
+    color:'auto',
     css:'',
 
     separator2:'osc',
 
     range:{min:0,max:1},
+    logScale:false,
     path:'auto'
 }
 module.exports.create = function(widgetData,container) {
@@ -27,12 +28,12 @@ module.exports.create = function(widgetData,container) {
             </div>
             `),
         led = widget.find('span'),
-        range = widgetData.range || {min:0,max:1}
+        range = widgetData.range
 
-    if (widgetData.color) led.css('background-color',widgetData.color)
+    if (widgetData.color!='auto') led.css('background-color',widgetData.color)
 
     widget.setValue = function(v){
-        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision))
+        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision,widgetData.logScale))
     }
     widget.getValue = function(){return}
     return widget

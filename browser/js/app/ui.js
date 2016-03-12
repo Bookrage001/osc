@@ -38,33 +38,6 @@ var scrolls = function(){
         })
 
     }
-
-
-    $('.tab').on('mousewheel.scroll',function(e) {
-        if (!e.ctrlKey) {
-            if ($(this).height()>$(this).get(0).scrollHeight) {
-                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
-                $(this).scrollLeft($(this).scrollLeft()+scroll)
-                e.preventDefault()
-            } else if (e.pageY>window.innerHeight-scrollbarHeight) {
-                $(this).scrollLeft($(this).scrollLeft()+e.originalEvent.deltaY)
-                e.preventDefault()
-            }
-        }
-    })
-
-    $('.panel').on('mousewheel.scroll',function(e) {
-        if (!e.ctrlKey) {
-
-            var h = $(this).parent().innerHeight()-scrollbarHeight-$(this).parents('.tab').length*5
-            if ($(this).get(0).scrollHeight+scrollbarHeight == $(this).parent().height()) {
-                var scroll = e.originalEvent.deltaY || e.originalEvent.deltaX
-                $(this).scrollLeft($(this).scrollLeft()+scroll)
-                e.preventDefault()
-            }
-
-        }
-    })
 }
 
 

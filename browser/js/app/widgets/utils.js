@@ -3,7 +3,7 @@ module.exports = {
     sendOsc: function(data){
         IPC.send('sendOsc', data)
     },
-	
+
 	clip: function(value,range) {
 	    var value = parseFloat(value)
 
@@ -13,16 +13,22 @@ module.exports = {
 	},
 
 	// map a value from a scale to another input and output must be range arrays
-	mapToScale: function(value,rangeIn,rangeOut,precision) {
+	mapToScale: function(value,rangeIn,rangeOut,precision,log,revertlog) {
 
 	    var value = module.exports.clip(value,[rangeIn[0],rangeIn[1]]),
-	        roundFactor = precision!=undefined?Math.pow(10,precision):100
+	        roundFactor = precision!=undefined?Math.pow(10,precision):100,
 
-	    value = ((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+
+	    value =  log?
+                    revertlog?
+                        (Math.pow(10,((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])))/9-1/9) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+                        :Math.log10(((value-rangeIn[0])/(rangeIn[1]-rangeIn[0]))*9+1) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+                    :((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
 
 	    value = Math.max(Math.min(rangeOut[0],rangeOut[1]),Math.min(value,Math.max(rangeOut[0],rangeOut[1])))
 
 	    value = Math.round(value*roundFactor)/roundFactor
+
 
 	    return value
 

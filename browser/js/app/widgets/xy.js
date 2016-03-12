@@ -25,6 +25,8 @@ module.exports.options = {
 
     rangeX:{min:0,max:1},
     rangeY:{min:0,max:1},
+    logScaleX:false,
+    logScaleY:false,
     precision:2,
     path:'auto',
     split:false,
@@ -117,8 +119,8 @@ module.exports.create = function(widgetData,container) {
     }
 
     widget.getValue = function() {
-        var x = mapToScale(handle.width,[0,100],[range.x.min,range.x.max],widgetData.precision),
-            y = mapToScale(handle.height,[0,100],[range.y.min,range.y.max],widgetData.precision)
+        var x = mapToScale(handle.width,[0,100],[range.x.min,range.x.max],widgetData.precision,widgetData.logScaleX),
+            y = mapToScale(handle.height,[0,100],[range.y.min,range.y.max],widgetData.precision,widgetData.logScaleY)
 
         return [x,y]
     }
@@ -129,8 +131,8 @@ module.exports.create = function(widgetData,container) {
             v[i] = clip(v[i],[range[['x','y'][i]].min,range[['x','y'][i]].max])
         }
 
-        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision)
-            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision),
+        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision,widgetData.logScaleX,true)
+            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision,widgetData.logScaleX,false),
 
 
         widget.updateUi(w,h)

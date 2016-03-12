@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- logarithmic scaling (log10) support added to knob, fader & xy
+- mousewheel support added to knob and fader (shiftKey for fine control)
+
 ## 0.3.1
 
 - electron updated to 0.36.11

@@ -27,6 +27,7 @@ module.exports.options = {
     separator3:'osc',
 
     range:{min:0,max:1},
+    logScale:false,
     precision:2,
     path:'auto',
     target:[]
@@ -60,8 +61,6 @@ module.exports.create = function(widgetData,container) {
     wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
 
 
-    widgetData.range = widgetData.range || {'min':0,'max':1}
-
     var range = {}
     for (k in widgetData.range) {
         if (k=='min') {
@@ -73,20 +72,18 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
-    if (!widgetData.noPip) {
-        var scale = []
-        for (var i=0;i<=100;i++) {scale.push(i)}
-        for (i in scale) {
-            var pip = $('<div class="pip"></div>')
-            if (range[i]!=undefined) {
-                var piptext = Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]
-                pip.addClass('val').append('<span>'+piptext+'</span>')
-            }
-            pips.append(pip)
+    var scale = []
+    for (var i=0;i<=100;i++) {scale.push(i)}
+    for (i in scale) {
+        var pip = $('<div class="pip"></div>')
+        if (range[i]!=undefined) {
+            var piptext = Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]
+            pip.addClass('val').append('<span>'+piptext+'</span>')
         }
-        if (dimension=='height') {
-            pips.append(pips.find('.pip').get().reverse())
-        }
+        pips.append(pip)
+    }
+    if (dimension=='height') {
+        pips.append(pips.find('.pip').get().reverse())
     }
 
 
@@ -95,11 +92,29 @@ module.exports.create = function(widgetData,container) {
         rangeVals = Object.keys(range).map(function (key) {return parseFloat(range[key])})
 
 
+
     fader.resize(function(){
         fader.size= dimension=='height'?fader.outerHeight():fader.outerWidth()
         wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
     })
 
+    wrapper.on('mousewheel',function(e){
+        if (e.originalEvent.wheelDeltaX) return
+
+        e.preventDefault()
+        e.stopPropagation()
+
+        var divider = e.ctrlKey?4:.25
+        handle.size = clip(handle.size+e.originalEvent.wheelDelta/(fader.size*divider),[0,100])
+
+        widget.updateUi(handle.size)
+
+        var v = widget.getValue()
+        widget.sendValue(v)
+        widget.showValue(v)
+
+        widget.trigger('sync')
+    })
 
     var off = 0
     wrapper.on('draginit',function(e,data){
@@ -155,7 +170,7 @@ module.exports.create = function(widgetData,container) {
         var h = clip(handle.size,[0,100])
         for (var i=0;i<rangeKeys.length-1;i++) {
             if (h <= rangeKeys[i+1] && h >= rangeKeys[i]) {
-                return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]],widgetData.precision)
+                return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]],widgetData.precision,widgetData.logScale)
             }
         }
 
@@ -165,7 +180,7 @@ module.exports.create = function(widgetData,container) {
             v=clip(v,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
             if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
-                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision)
+                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision,widgetData.logScale,true)
                 break
             }
         }
