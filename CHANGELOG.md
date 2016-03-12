@@ -2,8 +2,9 @@
 
 ## next
 
+- electron 0.37.0 (chrome 49)
 - logarithmic scaling (log10) support added to knob, fader & xy
-- mousewheel support added to knob and fader (shiftKey for fine control)
+- mousewheel support added to knob and fader (ctrlKey for fine control)
 
 ## 0.3.1
 
