@@ -132,7 +132,7 @@ module.exports.create = function(widgetData,container) {
         }
 
         var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision,widgetData.logScaleX,true)
-            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision,widgetData.logScaleX,false),
+            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision,widgetData.logScaleY,true),
 
 
         widget.updateUi(w,h)
