@@ -1,6 +1,7 @@
 var strip = require('./widgets/strip'),
     panel = require('./widgets/panel'),
     led = require('./widgets/led'),
+    plot = require('./widgets/plot'),
     fader = require('./widgets/fader'),
     knob = require('./widgets/knob'),
     xy = require('./widgets/xy'),
@@ -16,6 +17,7 @@ module.exports.widgetOptions = {
     strip: strip.options,
     panel: panel.options,
     led: led.options,
+    plot: plot.options,
     fader: fader.options,
     knob: knob.options,
     xy: xy.options,
@@ -32,6 +34,7 @@ module.exports.createWidget = {
     strip: strip.create,
     panel: panel.create,
     led: led.create,
+    plot: plot.create,
     fader: fader.create,
     knob: knob.create,
     xy: xy.create,
@@ -49,48 +52,30 @@ module.exports.categories = {
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb'],
     'Matrix':['multifader','multitoggle','multipush'],
-    'Plots':['led'],
+    'Plots':['plot','led'],
     'Containers':['panel','strip']
 }
 
 module.exports.sync = function() {
-    // Widget that share the same id will update each other
-    // without sending any extra osc message
-    $.each(WIDGETS,function(i,widget) {
-        if (widget.length>1) {
-            var closureSync = function(x) {
-                return function() {
-                    var v = widget[x].getValue()
-                    for (k=0;k<widget.length;k++) {
-                        if (x!=k) {
-                            if (document.body.contains(widget[k][0].parentNode))
-                                widget[k].setValue(v,false,false)
-                        }
-                    }
+    $('body').off('sync.global').on('sync.global',function(e,id,widget){
+        // Widget that share the same id will update each other
+        // without sending any extra osc message
+        if (WIDGETS[id] && WIDGETS[id].length>1) {
+            var v = widget.getValue()
+            for (i in WIDGETS[id]) {
+                if (WIDGETS[id]!=widget) {
+                    WIDGETS[id][i].setValue(v,false,false)
                 }
-            }
-            for (j in widget) {
-                widget[j].off('sync.id').on('sync.id',closureSync(j))
             }
         }
-    })
-    // widgets that share the same linkId will update each other.
-    // Updated widgets will send osc messages normally
-    $.each(WIDGETS_LINKED,function(i,widget) {
-        if (widget.length>1) {
-            var closureSync = function(x) {
-                return function() {
-                    var v = widget[x].getValue()
-                    for (k=0;k<widget.length;k++) {
-                        if (x!=k) {
-                            if (document.body.contains(widget[k][0].parentNode))
-                                widget[k].setValue(v,true,false)
-                        }
-                    }
+        // widgets that share the same linkId will update each other.
+        // Updated widgets will send osc messages normally
+        if (WIDGETS_LINKED[id] && WIDGETS_LINKED[id].length>1) {
+            var v = widget.getValue()
+            for (i in WIDGETS_LINKED[id]) {
+                if (WIDGETS_LINKED[id]!=widget) {
+                    WIDGETS_LINKED[id][i].setValue(v,true,false)
                 }
-            }
-            for (j in widget) {
-                widget[j].off('sync.link').on('sync.link',closureSync(j))
             }
         }
     })
