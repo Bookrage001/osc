@@ -122,7 +122,7 @@
         } else {
             var target = null
             this.on('drag.delegateDrag',function(ev,dd){
-                dd.target = dd.originalEvent.changedTouches?
+                dd.target = dd.originalEvent&&dd.originalEvent.changedTouches?
                         document.elementFromPoint(dd.originalEvent.changedTouches[0].clientX, dd.originalEvent.changedTouches[0].clientY)
                         :dd.target
 
