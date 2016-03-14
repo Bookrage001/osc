@@ -11,7 +11,7 @@
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
-                "height": "auto",
+                "height": 254,
                 "horizontal": false,
                 "css": "",
                 "absolute": false,
@@ -33,7 +33,7 @@
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
-                "height": "auto",
+                "height": 253,
                 "horizontal": false,
                 "css": "",
                 "absolute": false,
@@ -55,7 +55,7 @@
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
-                "height": "auto",
+                "height": 253,
                 "horizontal": false,
                 "css": "",
                 "absolute": false,
@@ -77,7 +77,7 @@
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
-                "height": "auto",
+                "height": 256,
                 "horizontal": false,
                 "css": "",
                 "absolute": false,
@@ -93,11 +93,11 @@
             {
                 "type": "plot",
                 "id": "plot_1",
-                "label": "plot_1",
+                "label": "plot (faders)",
                 "left": 406,
-                "top": 215,
+                "top": 129,
                 "width": "auto",
-                "height": "auto",
+                "height": 124,
                 "css": "",
                 "points": [
                     [
@@ -133,7 +133,7 @@
                 "left": 406,
                 "top": 7,
                 "width": "auto",
-                "height": "auto",
+                "height": 122,
                 "css": "",
                 "id": "visualizer_(fader_1)",
                 "curve": "fader_1",
@@ -144,6 +144,43 @@
                 },
                 "logScale": false,
                 "label": "visualizer (fader1)"
+            },
+            {
+                "type": "rgb",
+                "id": "rgb_1",
+                "linkId": "",
+                "label": "rgb_1",
+                "left": 6,
+                "top": 261,
+                "width": "auto",
+                "height": "auto",
+                "css": "",
+                "absolute": false,
+                "precision": 0,
+                "path": "/rgb_1",
+                "split": false,
+                "target": []
+            },
+            {
+                "type": "plot",
+                "left": 213,
+                "top": 263,
+                "width": 191,
+                "height": 248,
+                "css": "",
+                "points": "rgb_1",
+                "rangeX": {
+                    "min": 0,
+                    "max": 1
+                },
+                "rangeY": {
+                    "min": 0,
+                    "max": 255
+                },
+                "logScaleX": false,
+                "logScaleY": false,
+                "id": "plot_2",
+                "label": "plot_2 (rgb)"
             }
         ]
     }

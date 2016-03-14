@@ -51,10 +51,18 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
-    for (i in widgetData.points) {
-        for (j in widgetData.points[i]) {
-            if (typeof widgetData.points[i][j] == 'string') {
-                widget.linkedWidgets.push(widgetData.points[i][j])
+
+    if (typeof widgetData.points=='string') {
+
+        widget.linkedWidgets.push(widgetData.points)
+
+    } else if (typeof widgetData.points=='object') {
+
+        for (i in widgetData.points) {
+            for (j in widgetData.points[i]) {
+                if (typeof widgetData.points[i][j] == 'string') {
+                    widget.linkedWidgets.push(widgetData.points[i][j])
+                }
             }
         }
     }
@@ -99,10 +107,19 @@ module.exports.create = function(widgetData,container) {
         var point = []
 
 		for (i in widget.data) {
-			var newpoint = [
-				mapToScale(widget.data[i][0],[widgetData.rangeX.min,widgetData.rangeX.max],[15,widget.width-15],0,widgetData.logScaleX,true),
-				mapToScale(widget.data[i][1],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15,15],0,widgetData.logScaleY,true),
-			]
+			var newpoint = widget.data[i].length?
+                    [
+        				mapToScale(widget.data[i][0],[widgetData.rangeX.min,widgetData.rangeX.max],[15,widget.width-15],0,widgetData.logScaleX,true),
+        				mapToScale(widget.data[i][1],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15,15],0,widgetData.logScaleY,true),
+        			]
+                    :
+                    [
+                        mapToScale(i,[0,widget.data.length-1],[15,widget.width-15],0,widgetData.logScaleX,true),
+                        mapToScale(widget.data[i],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15,15],0,widgetData.logScaleY,true),
+                    ]
+
+
+
 			if (first) {
 				ctx.moveTo(newpoint[0],newpoint[1])
 				first = false
@@ -152,34 +169,31 @@ module.exports.create = function(widgetData,container) {
 
 
 	widget.fetchValues = function(){
-		var data = []
-		for (i in widgetData.points) {
-			data[i] = []
-			var point = widgetData.points[i]
-			if (point.length==2) {
-				for (k in [0,1]) {
-					if (typeof point[k] == 'string') {
-						if (WIDGETS[point[k]] && WIDGETS[point[k]].length)
-							data[i][k] = WIDGETS[point[k]][WIDGETS[point[k]].length-1].getValue()
-					} else {
-						data[i][k] = point[k]
-					}
-				}
-			} else if (point.length==1){
-				if (typeof point[0] == 'string') {
-					if (WIDGETS[point[0]] && WIDGETS[point[0]].length) {
-						var v = WIDGETS[point[0]][WIDGETS[point[0]].length-1].getValue()
-						data[i][0] = v[0]
-						data[i][1] = v[1]
-					}
-				} else {
-					data[i][0] = point[0]
-					data[i][1] = point[0]
-				}
-			}
-		}
+		var data = [],
+            points = widgetData.points
 
-        if (!data<widget.data && !data>widget.data) return
+        if (typeof points=='string' && WIDGETS[points]) {
+
+            data = WIDGETS[points][WIDGETS[points].length-1].getValue()
+
+        } else if (typeof points=='object') {
+
+            for (i in points) {
+
+                data[i] = []
+                for (k in [0,1]) {
+                    if (typeof points[i][k] == 'string' && WIDGETS[points[i][k]]) {
+                        data[i][k] = WIDGETS[points[i][k]][WIDGETS[points[i][k]].length-1].getValue()
+                    } else {
+                        data[i][k] = points[i][k]
+                    }
+                }
+
+            }
+
+        }
+
+
         widget.data = data
 	}
 

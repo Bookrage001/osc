@@ -69,8 +69,16 @@ var editObject = function(container, data, refresh){
 
 
             input.on('change',function(){
-                var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
-                data[$(this).attr('title')]= v=='true'||v=='false'?eval(v):v
+                // var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
+                var v
+                try {
+                    eval(`v=${$(this).val()}`)
+                } catch(err) {
+                    v = $(this).val()
+                }
+                console.log(v)
+
+                data[$(this).attr('title')] = v
                 if (v=='') delete data[$(this).attr('title')]
                 updateDom(container,data)
             })

@@ -181,12 +181,12 @@ module.exports = {
     },
 
     traversingDisable: function(){
-        $('body').delegateDrag('disable')
+        $('#container').delegateDrag('disable')
         $('.traversingEnable, .traversingDisable').toggleClass('on')
         TRAVERSING = false
     },
     traversingEnable: function(){
-        $('body').delegateDrag()
+        $('#container').delegateDrag()
         $('.traversingEnable, .traversingDisable').toggleClass('on')
         TRAVERSING = true
     }
