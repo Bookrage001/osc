@@ -144,7 +144,8 @@
                     "max": 1
                 },
                 "logScale": false,
-                "label": "visualizer (fader1)"
+                "label": "visualizer (fader1)",
+                "path": "/visualizer_(fader_1)"
             },
             {
                 "type": "rgb",
@@ -197,9 +198,8 @@
                 "unit": "",
                 "left": 0,
                 "top": 0,
-                "width": 552,
+                "width": 557,
                 "height": 228,
-                "css": "",
                 "range": {
                     "min": 0,
                     "max": 1
@@ -207,7 +207,8 @@
                 "precision": 2,
                 "path": "/multifader_1",
                 "target": [],
-                "logScale": false
+                "logScale": false,
+                "css": ""
             },
             {
                 "type": "plot",
@@ -215,9 +216,8 @@
                 "label": "plot (multifader)",
                 "left": 0,
                 "top": 228,
-                "width": 552,
+                "width": 553,
                 "height": 220,
-                "css": "",
                 "points": "multifader_1",
                 "rangeX": {
                     "min": 0,
@@ -229,7 +229,8 @@
                 },
                 "logScaleX": false,
                 "logScaleY": false,
-                "path": "/plot_3"
+                "path": "/plot_3",
+                "css": "z-index:1"
             },
             {
                 "type": "multitoggle",
@@ -314,7 +315,55 @@
                     "min": 0,
                     "max": 1
                 },
-                "logScale": false
+                "logScale": false,
+                "path": "/visualizer_1"
+            }
+        ]
+    },
+    {
+        "label": "Hacking",
+        "widgets": [
+            {
+                "type": "multifader",
+                "strips": 10,
+                "unit": "",
+                "left": 0,
+                "top": 0,
+                "width": 569,
+                "height": 300,
+                "css": "z-index:8;opacity:0",
+                "range": {
+                    "min": 0,
+                    "max": 1
+                },
+                "precision": 2,
+                "target": [],
+                "logScale": false,
+                "id": "multifader_2",
+                "label": "multifader_2",
+                "path": "/multifader_2"
+            },
+            {
+                "type": "plot",
+                "left": 16,
+                "top": 41,
+                "width": 541,
+                "height": 220,
+                "points": "multifader_2",
+                "rangeX": {
+                    "min": 0,
+                    "max": 1
+                },
+                "rangeY": {
+                    "min": 0,
+                    "max": 1
+                },
+                "logScaleX": false,
+                "logScaleY": false,
+                "css": "z-index:1",
+                "label": "There is a transparent multifader above this plot, just touch it... incredible, isn't it ?",
+                "path": "/plot_6",
+                "id": "plot_7"
             }
         ]
     }
