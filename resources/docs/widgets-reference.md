@@ -48,6 +48,7 @@ type:'fader',
 horizontal:false,           // [bool]   set to true to display fader horizontally
 range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
                             //          keys can be percentages or 'min' / 'max'
+logScale: false,            // [bool] use logarithmic scale (log10)
 unit: false,                // [string] value suffix
 absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
 ```
@@ -58,6 +59,7 @@ type:'multifader',
 strips:2,                   // [integer] number of faders
 range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
                             //          keys can be percentages or 'min' / 'max'
+logScale: false,            // [bool] use logarithmic scale (log10)
 unit: false,                // [string] value suffix
 absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
 ```
@@ -73,6 +75,7 @@ path: PARENT_PATH/X
 ```js
 type:'knob',
 range: {"min":0,"max":1},   // [object] minimum and maximum values
+logScale: false,            // [bool] use logarithmic scale (log10)
 unit: false,                // [string] value suffix
 absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
 pan:false                   // [bool] true for panning knob
@@ -85,6 +88,8 @@ range:{                     // [object] minimum and maximum values for x and y a
         x:{"min":0,"max":1},
         y:{"min":0,"max":1}
     },
+logScaleX: false,           // [bool] use logarithmic scale for X axis (log10)
+logScaleY: false,           // [bool] use logarithmic scale for y axis (log10)
 absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
 split:false                 // [bool|object] sends separate osc messages for x and y axes
                             // if true : '/x' & '/y' will be appended to the widget's path
@@ -153,3 +158,16 @@ values: {                   // [object] of ("label":value) pairs
     "Value 2":2
 }
 ```
+
+### plot
+```js
+type:'plot',
+value:[],                   // [array] of [x,y] coordinate arrays. x and y
+                            // can be numbers or strings (id of widget whose value is to be displayed)
+                            // [[0,0],[0.5,"some_widget_id"],["some_other_id","another_id"]]
+range:{                     // [object] minimum and maximum values for x and y axis
+        x:{"min":0,"max":1},
+        y:{"min":0,"max":1}
+    },
+logScaleX: false,           // [bool] use logarithmic scale for X axis (log10)
+logScaleY: false            // [bool] use logarithmic scale for y axis (log10)
