@@ -227,6 +227,46 @@
                 },
                 "logScaleX": false,
                 "logScaleY": false
+            },
+            {
+                "type": "multitoggle",
+                "id": "multitoggle_1",
+                "label": "mutlitoggle_1",
+                "left": 552,
+                "top": 0,
+                "width": 209,
+                "height": 228,
+                "css": "",
+                "precision": 2,
+                "path": "/multifader_2",
+                "target": [],
+                "matrix": [
+                    2,
+                    2
+                ],
+                "on": 1,
+                "off": 0
+            },
+            {
+                "type": "plot",
+                "left": 552,
+                "top": 228,
+                "width": 209,
+                "height": 220,
+                "css": "",
+                "label": "plot (toggles)",
+                "points": "multitoggle_1",
+                "rangeX": {
+                    "min": 0,
+                    "max": 1
+                },
+                "rangeY": {
+                    "min": 0,
+                    "max": 1
+                },
+                "logScaleX": false,
+                "logScaleY": false,
+                "id": "plot_4"
             }
         ]
     }

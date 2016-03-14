@@ -33,6 +33,8 @@ module.exports.create = function(widgetData,container) {
         `),
         $document = $(document)
 
+    widget.value = []
+
 	for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 		var data = {
 			type:'toggle',
@@ -48,7 +50,22 @@ module.exports.create = function(widgetData,container) {
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)
 		element[0].classList.add('not-editable')
 
+        widget.value[i] = widgetData.off
+
 	}
+
+
+
+    widget.on('sync',function(e,id,w){
+        if (id==widgetData.id) return
+        widget.value[w.parent().index()] = w.getValue()
+        widget.trigger('sync',[widgetData.id,widget])
+    })
+
+
+    widget.getValue = function(){
+        return widget.value
+    }
 
 	widget.delegateDrag()
 
