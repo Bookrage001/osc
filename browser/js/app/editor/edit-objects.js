@@ -76,7 +76,6 @@ var editObject = function(container, data, refresh){
                 } catch(err) {
                     v = $(this).val()
                 }
-                console.log(v)
 
                 data[$(this).attr('title')] = v
                 if (v=='') delete data[$(this).attr('title')]

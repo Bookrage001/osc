@@ -1,6 +1,6 @@
 [
     {
-        "label": "Unnamed",
+        "label": "Plots and ploplots",
         "widgets": [
             {
                 "type": "fader",
@@ -181,6 +181,52 @@
                 "logScaleY": false,
                 "id": "plot_2",
                 "label": "plot_2 (rgb)"
+            }
+        ]
+    },
+    {
+        "label": "Multifader plot !",
+        "widgets": [
+            {
+                "type": "multifader",
+                "id": "multifader_1",
+                "strips": 10,
+                "label": "multifader_1",
+                "unit": "",
+                "left": 0,
+                "top": 0,
+                "width": 552,
+                "height": 228,
+                "css": "",
+                "range": {
+                    "min": 0,
+                    "max": 1
+                },
+                "precision": 2,
+                "path": "/multifader_1",
+                "target": [],
+                "logScale": false
+            },
+            {
+                "type": "plot",
+                "id": "plot_3",
+                "label": "plot (multifader)",
+                "left": 0,
+                "top": 228,
+                "width": 552,
+                "height": 220,
+                "css": "",
+                "points": "multifader_1",
+                "rangeX": {
+                    "min": 0,
+                    "max": 1
+                },
+                "rangeY": {
+                    "min": 0,
+                    "max": 1
+                },
+                "logScaleX": false,
+                "logScaleY": false
             }
         ]
     }

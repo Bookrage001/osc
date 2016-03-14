@@ -36,6 +36,8 @@ module.exports.create = function(widgetData,container) {
         `),
         $document = $(document)
 
+    widget.value = []
+
 	for (var i=0;i<widgetData.strips;i++) {
 		var data = {
 			type:'fader',
@@ -54,8 +56,22 @@ module.exports.create = function(widgetData,container) {
 		element[0].classList.add('not-editable')
         element.find('.fader-wrapper').off('drag')
 
+        widget.value[i] = widgetData.range.min
 
 	}
+
+
+
+    widget.on('sync',function(e,id,w){
+        if (id==widgetData.id) return
+        widget.value[w.parent().index()] = w.getValue()
+        widget.trigger('sync',[widgetData.id,widget])
+    })
+
+
+    widget.getValue = function(){
+        return widget.value
+    }
 
 	widget.delegateDrag()
 
