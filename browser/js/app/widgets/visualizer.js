@@ -1,5 +1,6 @@
 var utils = require('./utils'),
-    mapToScale = utils.mapToScale
+    mapToScale = utils.mapToScale,
+    clip = utils.clip
 
 module.exports.options = {
 	type:'visualizer',
@@ -44,7 +45,7 @@ module.exports.create = function(widgetData,container) {
         min: Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min,
         max: Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
     }
-    widget.length = 60*widgetData.duration
+    widget.length = Math.round(clip(60*widgetData.duration,[8,4096]))
 	widget.data = new Array(widget.length)
 
 	canvas.resize(function(){
