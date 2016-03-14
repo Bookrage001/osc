@@ -29,8 +29,13 @@ module.exports = {
     stateGet: function (){
         var data = []
         $.each(WIDGETS,function(i,widget) {
-            var v = widget[widget.length-1].getValue()
-            if (v!=undefined) data.push(i+' '+v)
+            for (var j=widget.length-1;j>=0;j--) {
+                if (widget[j].getValue) {
+                    var v = widget[j].getValue()
+                    if (v!=undefined) data.push(i+' '+v)
+                    break
+                }
+            }
         })
         return data.join('\n')
     },
@@ -66,7 +71,12 @@ module.exports = {
 
             setTimeout(function(){
                 if (WIDGETS[data[0]]!=undefined) {
-                    WIDGETS[data[0]][WIDGETS[data[0]].length-1].setValue(data[1].split(','),send,true)
+                    for (var i=WIDGETS[data[0]].length-1;i>=0;i--) {
+                        if (WIDGETS[data[0]][i].setValue) {
+                            WIDGETS[data[0]][i].setValue(data[1].split(','),send,true)
+                            break
+                        }
+                    }
                 }
             },i)
         })

@@ -59,9 +59,5 @@ module.exports.create = function(widgetData,container) {
 
 	widget.delegateDrag()
 
-
-    widget.getValue = function() {}
-    widget.setValue = function() {}
-
     return widget
 }

@@ -516,11 +516,13 @@ a {
         list-style:none;
         display: flex;
         padding:7rem  6rem;
+        overflow: hidden;
 
         li.on + li {border-image:none;border-left:1rem solid transparent;}
         li {
             display:block;
             max-width:250rem;
+            min-width:0;
             flex: 1;
 
             border-width:0 0 0 1rem;
@@ -1825,7 +1827,7 @@ a {
     }
 }
 
-.plot-container {
+.plot-container, .visualizer-container {
     min-height: 200rem;
     min-width: 200rem;
     .plot {

@@ -35,7 +35,5 @@ module.exports.create = function(widgetData,container) {
     } else {
         parsewidgets(widgetData.widgets,widget)
     }
-    widget.getValue = function(){return}
-    widget.setValue = function(){return}
     return widget
 }

@@ -94,8 +94,8 @@
                 "type": "plot",
                 "id": "plot_1",
                 "label": "plot_1",
-                "left": "auto",
-                "top": "auto",
+                "left": 406,
+                "top": 215,
                 "width": "auto",
                 "height": "auto",
                 "css": "",
@@ -127,6 +127,23 @@
                 },
                 "logScaleX": false,
                 "logScaleY": false
+            },
+            {
+                "type": "visualizer",
+                "left": 406,
+                "top": 7,
+                "width": "auto",
+                "height": "auto",
+                "css": "",
+                "id": "visualizer_(fader_1)",
+                "curve": "fader_1",
+                "duration": 1,
+                "range": {
+                    "min": 0,
+                    "max": 1
+                },
+                "logScale": false,
+                "label": "visualizer (fader1)"
             }
         ]
     }

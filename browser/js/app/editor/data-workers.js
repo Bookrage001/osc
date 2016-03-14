@@ -76,12 +76,20 @@ var updateDom = function(container,data) {
 
 
     // restore state
+    for (i in WIDGETS) {
+        for (j in WIDGETS[i]) {
+            if (!document.contains(WIDGETS[i][j][0])) {
+                WIDGETS[i].splice(j,1)
+            }
+        }
+    }
 
     actions.stateSet(state,false)
     sync()
     ui.tabs()
     ui.scrolls()
     $('#sidepanel').scrollTop(scroll)
+
 
     // return updated node
     return newContainer

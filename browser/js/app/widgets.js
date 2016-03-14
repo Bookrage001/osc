@@ -2,6 +2,7 @@ var strip = require('./widgets/strip'),
     panel = require('./widgets/panel'),
     led = require('./widgets/led'),
     plot = require('./widgets/plot'),
+    visualizer = require('./widgets/visualizer'),
     fader = require('./widgets/fader'),
     knob = require('./widgets/knob'),
     xy = require('./widgets/xy'),
@@ -18,6 +19,7 @@ module.exports.widgetOptions = {
     panel: panel.options,
     led: led.options,
     plot: plot.options,
+    visualizer: visualizer.options,
     fader: fader.options,
     knob: knob.options,
     xy: xy.options,
@@ -35,6 +37,7 @@ module.exports.createWidget = {
     panel: panel.create,
     led: led.create,
     plot: plot.create,
+    visualizer: visualizer.create,
     fader: fader.create,
     knob: knob.create,
     xy: xy.create,
@@ -52,7 +55,7 @@ module.exports.categories = {
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb'],
     'Matrix':['multifader','multitoggle','multipush'],
-    'Plots':['plot','led'],
+    'Plots':['plot','visualizer','led'],
     'Containers':['panel','strip']
 }
 

@@ -183,7 +183,5 @@ module.exports.create = function(widgetData,container) {
         widget.data = data
 	}
 
-    widget.getValue = function(){return}
-    widget.setValue = function(){return}
     return widget
 }

@@ -32,8 +32,9 @@ module.exports.create = function(widgetData,container) {
 
     if (widgetData.color!='auto') led.css('background-color',widgetData.color)
 
-    widget.setValue = function(v){
-        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision,widgetData.logScale))
+    widget.setValue = function(v,send,sync){
+        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision,widgetData.logScale,true))
+        if (sync) widget.trigger('sync',[widgetData.id,widget])
     }
     widget.getValue = function(){return}
     return widget
