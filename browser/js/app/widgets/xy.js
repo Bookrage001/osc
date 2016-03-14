@@ -86,7 +86,7 @@ module.exports.create = function(widgetData,container) {
             var v = widget.getValue()
             widget.sendValue(v)
             widget.showValue(v)
-            widget.trigger('sync',[widgetData.id,widget])
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
 
         }
 
@@ -109,7 +109,7 @@ module.exports.create = function(widgetData,container) {
         var v = widget.getValue()
         widget.sendValue(v)
         widget.showValue(v)
-        widget.trigger('sync',[widgetData.id,widget])
+        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
 
     })
 
@@ -141,7 +141,7 @@ module.exports.create = function(widgetData,container) {
         handle.width = w
 
         widget.showValue(v)
-        if (sync) widget.trigger('sync',[widgetData.id,widget])
+        if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
         if (send) widget.sendValue(v)
     }
     widget.sendValue = function(v) {

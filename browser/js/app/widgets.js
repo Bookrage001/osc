@@ -60,7 +60,7 @@ module.exports.categories = {
 }
 
 module.exports.sync = function() {
-    $('body').off('sync.global').on('sync.global',function(e,id,widget){
+    $('body').off('sync.global').on('sync.global',function(e,id,widget,linkId){
         // Widget that share the same id will update each other
         // without sending any extra osc message
         if (WIDGETS[id] && WIDGETS[id].length>1) {
@@ -73,11 +73,11 @@ module.exports.sync = function() {
         }
         // widgets that share the same linkId will update each other.
         // Updated widgets will send osc messages normally
-        if (WIDGETS_LINKED[id] && WIDGETS_LINKED[id].length>1) {
+        if (WIDGETS_LINKED[linkId] && WIDGETS_LINKED[linkId].length>1) {
             var v = widget.getValue()
-            for (i in WIDGETS_LINKED[id]) {
-                if (WIDGETS_LINKED[id][i]!=widget) {
-                    WIDGETS_LINKED[id][i].setValue(v,true,false)
+            for (i in WIDGETS_LINKED[linkId]) {
+                if (WIDGETS_LINKED[linkId][i]!=widget) {
+                    WIDGETS_LINKED[linkId][i].setValue(v,true,false)
                 }
             }
         }

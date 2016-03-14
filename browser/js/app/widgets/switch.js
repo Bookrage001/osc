@@ -65,7 +65,7 @@ module.exports.create = function(widgetData,container) {
         			next()
         		})
                 if (send) widget.sendValue(widget.value)
-                if (sync) widget.trigger('sync',[widgetData.id,widget])
+                if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
             }
 
         }

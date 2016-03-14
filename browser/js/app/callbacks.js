@@ -15,7 +15,7 @@ module.exports = {
         // update
         if (WIDGETS[id]!=undefined) {
             for (i in WIDGETS[id]){
-                 WIDGETS[id][i].setValue(data.args,false,false)
+                 WIDGETS[id][i].setValue(data.args,false,true)
             }
         }
 
