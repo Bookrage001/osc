@@ -16,7 +16,7 @@ module.exports.options = {
 
 	separator2:'plot',
 
-	values:[],
+	points:[],
 	rangeX: {min:-1,max:1},
 	rangeY: {min:-1,max:1},
     logScaleX: false,
@@ -51,10 +51,10 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
-    for (i in widgetData.values) {
-        for (j in widgetData.values[i]) {
-            if (typeof widgetData.values[i][j] == 'string') {
-                widget.linkedWidgets.push(widgetData.values[i][j])
+    for (i in widgetData.points) {
+        for (j in widgetData.points[i]) {
+            if (typeof widgetData.points[i][j] == 'string') {
+                widget.linkedWidgets.push(widgetData.points[i][j])
             }
         }
     }
@@ -153,9 +153,9 @@ module.exports.create = function(widgetData,container) {
 
 	widget.fetchValues = function(){
 		var data = []
-		for (i in widgetData.values) {
+		for (i in widgetData.points) {
 			data[i] = []
-			var point = widgetData.values[i]
+			var point = widgetData.points[i]
 			if (point.length==2) {
 				for (k in [0,1]) {
 					if (typeof point[k] == 'string') {
