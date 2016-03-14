@@ -83,11 +83,8 @@ module.exports.create = function(widgetData,container) {
 	})
 
     $('body').on('sync',function(e,id,w){
-        widget.trigger('draw',[id,w])
+        if (widget.linkedWidgets.indexOf(id)==-1 || !document.contains(widget[0])) return
 
-    })
-    widget.on('draw',function(e,id,w){
-        if (widget.linkedWidgets.indexOf(id)==-1) return
         widget.fetchValues()
         requestAnimationFrame(widget.draw)
     })
