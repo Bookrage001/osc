@@ -30,7 +30,7 @@ module.exports = {
         var data = []
         $.each(WIDGETS,function(i,widget) {
             for (var j=widget.length-1;j>=0;j--) {
-                if (widget[j].getValue) {
+                if (widget[j].setValue && widget[j].getValue) {
                     var v = widget[j].getValue()
                     if (v!=undefined) data.push(i+' '+v)
                     break
@@ -72,7 +72,7 @@ module.exports = {
             setTimeout(function(){
                 if (WIDGETS[data[0]]!=undefined) {
                     for (var i=WIDGETS[data[0]].length-1;i>=0;i--) {
-                        if (WIDGETS[data[0]][i].setValue) {
+                        if (WIDGETS[data[0]][i].setValue && WIDGETS[data[0]][i].getValue) {
                             WIDGETS[data[0]][i].setValue(data[1].split(','),send,true)
                             break
                         }
