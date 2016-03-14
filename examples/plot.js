@@ -137,7 +137,7 @@
                 "height": 122,
                 "css": "",
                 "id": "visualizer_(fader_1)",
-                "curve": "fader_1",
+                "widgetId": "fader_1",
                 "duration": 1,
                 "range": {
                     "min": 0,
@@ -309,7 +309,7 @@
                 "width": "auto",
                 "height": "auto",
                 "css": "",
-                "curve": "",
+                "widgetId": "",
                 "duration": 1,
                 "range": {
                     "min": 0,

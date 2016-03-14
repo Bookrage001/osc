@@ -17,7 +17,7 @@ module.exports.options = {
 
 	separator2:'plot',
 
-	curve:'',
+	widgetId:'',
     duration:1,
 	range: {min:0,max:1},
     logScale: false,
@@ -70,7 +70,7 @@ module.exports.create = function(widgetData,container) {
 	})
 
     $('body').on('sync',function(e,id,w){
-        if (widgetData.curve!=id || !document.contains(widget[0])) return
+        if (widgetData.widgetId!=id || !document.contains(widget[0])) return
         widget.startLoop()
     })
 
@@ -148,7 +148,7 @@ module.exports.create = function(widgetData,container) {
 
 
 	widget.fetchValue = function(){
-        var id = widgetData.curve
+        var id = widgetData.widgetId
 
         if (typeof id == 'string' && WIDGETS[id]) {
             widget.data.push(WIDGETS[id][WIDGETS[id].length-1].getValue())
