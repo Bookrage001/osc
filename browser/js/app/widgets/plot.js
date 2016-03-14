@@ -17,8 +17,8 @@ module.exports.options = {
 	separator2:'plot',
 
 	points:[],
-	rangeX: {min:-1,max:1},
-	rangeY: {min:-1,max:1},
+	rangeX: {min:0,max:1},
+	rangeY: {min:0,max:1},
     logScaleX: false,
     logScaleY: false
 
