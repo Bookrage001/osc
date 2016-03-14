@@ -35,6 +35,11 @@ $sidepanel-size:300rem;
 
 /////////////
 
+:root {
+    --color-accent:$color-accent;
+    --color-text:$color-text;
+    --color-text-fade:$color-text-fade;
+}
 
 * {
     margin:0;
@@ -1816,6 +1821,33 @@ a {
                 display:block;
                 background-color:$color-accent;
             }
+        }
+    }
+}
+
+.plot-container {
+    min-height: 200rem;
+    min-width: 200rem;
+    .plot {
+        position: absolute;
+        top: 35rem;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // padding:2rem;
+        border: 1rem solid $color-bg;
+        background:rgba($color-bg,.5);
+    }
+    &.nolabel .plot {
+        top:0;
+    }
+    canvas {
+        width:100%;
+        height:100%;
+        // opacity: 0;
+        transition: opacity .2s;
+        &.visible {
+            opacity:1;
         }
     }
 }
