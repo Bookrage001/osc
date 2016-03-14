@@ -162,7 +162,7 @@ values: {                   // [object] of ("label":value) pairs
 ### plot
 ```js
 type:'plot',
-value:[],                   // [array] of [x,y] coordinate arrays. x and y
+points:[],                  // [array] of [x,y] coordinate arrays. x and y
                             // can be numbers or strings (id of widget whose value is to be displayed)
                             // [[0,0],[0.5,"some_widget_id"],["some_other_id","another_id"]]
 range:{                     // [object] minimum and maximum values for x and y axis
