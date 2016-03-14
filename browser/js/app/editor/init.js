@@ -79,16 +79,20 @@ var init = function(){
                     '<i class="fa fa-object-ungroup"></i> New ID':function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD).replace(/\"(id|label|linkId|path)\"\:\"([^\"]*)\"\,?/g,'').replace(/\,\}/g,'\}'))
-                        newData.top = e.offsetY
-                        newData.left= e.offsetX
+                        if (!target.attr('data-tab')) {
+                            newData.top = e.offsetY
+                            newData.left= e.offsetX
+                        }
                         data.widgets.push(newData)
                         updateDom(container,data)
                     },
                     '<i class="fa fa-object-group"></i> Same ID':function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD))
-                        newData.top = e.offsetY
-                        newData.left= e.offsetX
+                        if (!target.attr('data-tab')) {
+                            newData.top = e.offsetY
+                            newData.left= e.offsetX
+                        }
                         data.widgets.push(newData)
                         updateDom(container,data)
                     }
@@ -99,16 +103,20 @@ var init = function(){
             var createFunction = function(widgetType,container,data){
                 return function() {
                     data.widgets = data.widgets || []
-                    console.log(e)
-                    data.widgets.push({type:widgetType,top:e.offsetY,left:e.offsetX})
+                    var newData = {type:widgetType}
+                    if (!target.attr('data-tab')) {
+                        newData.top = e.offsetY
+                        newData.left= e.offsetX
+                    }
+                    data.widgets.push(newData)
                     updateDom(container,data)
                 }
             }
             for (category in widgetCategories) {
                 actions['<i class="fa fa-plus"></i> Add widget'][category] = {}
                 for (t in widgetCategories[category]) {
-                    var type = widgetCategories[category][t]
-                    actions['<i class="fa fa-plus"></i> Add widget'][category][type] = createFunction(type,container,data)
+                    var wtype = widgetCategories[category][t]
+                    actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] = createFunction(wtype,container,data)
 
                 }
             }
@@ -135,6 +143,7 @@ var init = function(){
                 popup.close()
                 var parentContainer = container.parents('.widget, .tab, #container').first()
                     parentData = getObjectData(parentContainer)
+
 
                 if (type=='widget') {
                     parentData.widgets.splice(container.index(),1)
