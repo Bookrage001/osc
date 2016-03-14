@@ -79,12 +79,17 @@ var init = function(){
                     '<i class="fa fa-object-ungroup"></i> New ID':function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD).replace(/\"(id|label|linkId|path)\"\:\"([^\"]*)\"\,?/g,'').replace(/\,\}/g,'\}'))
+                        newData.top = e.offsetY
+                        newData.left= e.offsetX
                         data.widgets.push(newData)
                         updateDom(container,data)
                     },
                     '<i class="fa fa-object-group"></i> Same ID':function(){
                         data.widgets = data.widgets || []
-                        data.widgets.push(JSON.parse(JSON.stringify(CLIPBOARD)))
+                        var newData = JSON.parse(JSON.stringify(CLIPBOARD))
+                        newData.top = e.offsetY
+                        newData.left= e.offsetX
+                        data.widgets.push(newData)
                         updateDom(container,data)
                     }
                 }
@@ -94,7 +99,8 @@ var init = function(){
             var createFunction = function(widgetType,container,data){
                 return function() {
                     data.widgets = data.widgets || []
-                    data.widgets.push({type:widgetType})
+                    console.log(e)
+                    data.widgets.push({type:widgetType,top:e.offsetY,left:e.offsetX})
                     updateDom(container,data)
                 }
             }
