@@ -20,7 +20,11 @@ module.exports.options = {
 	rangeX: {min:0,max:1},
 	rangeY: {min:0,max:1},
     logScaleX: false,
-    logScaleY: false
+    logScaleY: false,
+
+    separator3:'osc',
+
+    path:'auto'
 
 }
 module.exports.create = function(widgetData,container) {
@@ -193,9 +197,13 @@ module.exports.create = function(widgetData,container) {
 
         }
 
-
-        widget.data = data
+        if (data.length) widget.data = data
 	}
+
+    widget.setValue = function(v) {
+        widget.data = v
+        requestAnimationFrame(widget.draw)
+    }
 
     return widget
 }

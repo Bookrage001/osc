@@ -21,6 +21,9 @@ module.exports.options = {
 	range: {min:0,max:1},
     logScale: false,
 
+    separator3:'osc',
+
+    path:'auto'
 }
 module.exports.create = function(widgetData,container) {
 
@@ -67,24 +70,28 @@ module.exports.create = function(widgetData,container) {
 
     $('body').on('sync',function(e,id,w){
         if (widgetData.curve!=id || !document.contains(widget[0])) return
-
-        if (widget.cancel) clearTimeout(widget.cancel)
-        widget.cancel = setTimeout(function(){
-            clearInterval(widget.loop)
-            widget.loop = false
-        },1000*widgetData.duration)
-
-        if (widget.loop) return
-        widget.loop = widget.createLoop()
+        widget.handleSync()
     })
 
 
     widget.cancel = false
     widget.loop = false
-    widget.createLoop = function(){
-        return setInterval(function(){
-                widget.fetchValue()
-                widget.draw()
+
+    widget.startLoop = function(){
+
+        if (widget.cancel) clearTimeout(widget.cancel)
+        
+        widget.cancel = setTimeout(function(){
+            clearInterval(widget.loop)
+            widget.loop = false
+            widget.cancel = false
+        },1000*widgetData.duration)
+
+        if (widget.loop) return
+
+        widget.loop = setInterval(function(){
+            widget.fetchValue()
+            widget.draw()
         },1000*widgetData.duration/widget.length)
     }
 
@@ -141,12 +148,22 @@ module.exports.create = function(widgetData,container) {
 
 	widget.fetchValue = function(){
         var id = widgetData.curve
-        if (!typeof id == 'string' || !WIDGETS[id] || !WIDGETS[id].length ) return
 
-        widget.data.push(WIDGETS[id][WIDGETS[id].length-1].getValue())
+        if (typeof id == 'string' && WIDGETS[id]) {
+            widget.data.push(WIDGETS[id][WIDGETS[id].length-1].getValue())
+        } else {
+            widget.data.push(widget.data[widget.data.length-1])
+        }
+
         widget.data.splice(0,1)
 
 	}
+
+    widget.setValue = function(v) {
+        widget.data.push(v)
+        widget.data.splice(0,1)
+        widget.handleSync()
+    }
 
     return widget
 }

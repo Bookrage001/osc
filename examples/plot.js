@@ -126,7 +126,8 @@
                     "max": 1
                 },
                 "logScaleX": false,
-                "logScaleY": false
+                "logScaleY": false,
+                "path": "/plot_1"
             },
             {
                 "type": "visualizer",
@@ -180,7 +181,8 @@
                 "logScaleX": false,
                 "logScaleY": false,
                 "id": "plot_2",
-                "label": "plot_2 (rgb)"
+                "label": "plot_2 (rgb)",
+                "path": "/plot_2"
             }
         ]
     },
@@ -226,7 +228,8 @@
                     "max": 1
                 },
                 "logScaleX": false,
-                "logScaleY": false
+                "logScaleY": false,
+                "path": "/plot_3"
             },
             {
                 "type": "multitoggle",
@@ -266,7 +269,52 @@
                 },
                 "logScaleX": false,
                 "logScaleY": false,
-                "id": "plot_4"
+                "id": "plot_4",
+                "path": "/plot_4"
+            }
+        ]
+    },
+    {
+        "label": "Another plot",
+        "widgets": [
+            {
+                "type": "plot",
+                "id": "plot_5",
+                "left": "auto",
+                "top": "auto",
+                "width": 612,
+                "height": 309,
+                "css": "",
+                "rangeX": {
+                    "min": 0,
+                    "max": 5
+                },
+                "rangeY": {
+                    "min": 0,
+                    "max": 5
+                },
+                "logScaleX": false,
+                "logScaleY": false,
+                "path": "/plot_5",
+                "label": "plot_5",
+                "points": []
+            },
+            {
+                "type": "visualizer",
+                "id": "visualizer_1",
+                "label": "visualizer_1",
+                "left": "auto",
+                "top": "auto",
+                "width": "auto",
+                "height": "auto",
+                "css": "",
+                "curve": "",
+                "duration": 1,
+                "range": {
+                    "min": 0,
+                    "max": 1
+                },
+                "logScale": false
             }
         ]
     }
