@@ -66,7 +66,7 @@ module.exports.sync = function() {
         if (WIDGETS[id] && WIDGETS[id].length>1) {
             var v = widget.getValue()
             for (i in WIDGETS[id]) {
-                if (WIDGETS[id][i]!=widget) {
+                if (WIDGETS[id][i]!=widget && WIDGETS[id][i].setValue) {
                     WIDGETS[id][i].setValue(v,false,false)
                 }
             }
@@ -76,7 +76,7 @@ module.exports.sync = function() {
         if (WIDGETS_LINKED[linkId] && WIDGETS_LINKED[linkId].length>1) {
             var v = widget.getValue()
             for (i in WIDGETS_LINKED[linkId]) {
-                if (WIDGETS_LINKED[linkId][i]!=widget) {
+                if (WIDGETS_LINKED[linkId][i]!=widget && WIDGETS_LINKED[linkId][i].setValue) {
                     WIDGETS_LINKED[linkId][i].setValue(v,true,false)
                 }
             }
