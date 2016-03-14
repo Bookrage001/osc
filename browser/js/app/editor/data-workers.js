@@ -75,15 +75,30 @@ var updateDom = function(container,data) {
     }
 
 
-    // restore state
+    // prune widget stores
     for (i in WIDGETS) {
-        for (j in WIDGETS[i]) {
+        for (var j=WIDGETS[i].length-1;j>=0;j--) {
             if (!document.contains(WIDGETS[i][j][0])) {
                 WIDGETS[i].splice(j,1)
             }
         }
+        if (!WIDGETS[i].length) {
+            delete WIDGETS[i]
+        }
+    }
+    for (i in WIDGETS_LINKED) {
+        for (var j=WIDGETS_LINKED[i].length-1;j>=0;j--) {
+            if (!document.contains(WIDGETS_LINKED[i][j][0])) {
+                WIDGETS_LINKED[i].splice(j,1)
+            }
+        }
+        if (!WIDGETS_LINKED[i].length) {
+            delete WIDGETS_LINKED[i]
+        }
     }
 
+
+    // restore state
     actions.stateSet(state,false)
     sync()
     ui.tabs()
