@@ -70,7 +70,7 @@ module.exports.create = function(widgetData,container) {
 
     $('body').on('sync',function(e,id,w){
         if (widgetData.curve!=id || !document.contains(widget[0])) return
-        widget.handleSync()
+        widget.startLoop()
     })
 
 
@@ -80,7 +80,7 @@ module.exports.create = function(widgetData,container) {
     widget.startLoop = function(){
 
         if (widget.cancel) clearTimeout(widget.cancel)
-        
+
         widget.cancel = setTimeout(function(){
             clearInterval(widget.loop)
             widget.loop = false
@@ -162,7 +162,7 @@ module.exports.create = function(widgetData,container) {
     widget.setValue = function(v) {
         widget.data.push(v)
         widget.data.splice(0,1)
-        widget.handleSync()
+        widget.startLoop()
     }
 
     return widget
