@@ -78,7 +78,7 @@ var editObject = function(container, data, refresh){
                 }
 
                 data[$(this).attr('title')] = v
-                if (v=='') delete data[$(this).attr('title')]
+                if (v==='') delete data[$(this).attr('title')]
                 updateDom(container,data)
             })
 
