@@ -150,7 +150,7 @@ module.exports.create = function(widgetData,container) {
         huePad.on('drag',function(e,data){
             e.stopPropagation()
 
-            if (data.shiftKey) return
+            if (TRAVERSING) return
 
             var w = clip(data.deltaX*100/pad.width+hueOff,[0,100])
             hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px,0,0)`)
