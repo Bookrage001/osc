@@ -64,6 +64,8 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 		        error = err
 		    }
 
+			if (!session) error= 'No session object returned'
+
 		    if (!error) {
 		        if (data.path) this.sessionAddToHistory(data.path)
 		        ipc.send('sessionOpen',JSON.stringify(session),clientId)
