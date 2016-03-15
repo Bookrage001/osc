@@ -59,8 +59,6 @@ module.exports.create = function(widgetData,container) {
                             widgetData.split:{r:widgetData.path+'/r',g:widgetData.path+'/g',b:widgetData.path+'/b'}
                             :false
 
-        if (widgetData.height!='auto') widget.addClass('manual-height')
-
 
         pad.width = 0
         pad.height = 0

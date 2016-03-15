@@ -53,8 +53,10 @@ module.exports.create = function(widgetData,container) {
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = widgetData.horizontal?'width':'height',
         axe = dimension=='height'?'X':'Y',
-        absolute = widgetData.absolute
-        if (widgetData.horizontal) container.addClass('horizontal')
+        absolute = widgetData.absolute,
+        logScale = widgetData.logScale
+
+    if (widgetData.horizontal) container.addClass('horizontal')
 
     handle.size = 0
     fader.size = 0
@@ -170,7 +172,7 @@ module.exports.create = function(widgetData,container) {
         var h = clip(handle.size,[0,100])
         for (var i=0;i<rangeKeys.length-1;i++) {
             if (h <= rangeKeys[i+1] && h >= rangeKeys[i]) {
-                return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]],widgetData.precision,widgetData.logScale)
+                return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]],widgetData.precision,logScale)
             }
         }
 
@@ -180,7 +182,7 @@ module.exports.create = function(widgetData,container) {
             v=clip(v,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
             if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
-                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision,widgetData.logScale,true)
+                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision,logScale,true)
                 break
             }
         }

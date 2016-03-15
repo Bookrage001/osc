@@ -55,7 +55,8 @@ module.exports.create = function(widgetData,container) {
         range = widgetData.range,
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         absolute = widgetData.absolute,
-        pan = widgetData.pan
+        pan = widgetData.pan,
+        logScale = widgetData.logScale
 
 
     var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
@@ -170,7 +171,7 @@ module.exports.create = function(widgetData,container) {
     }
 
     widget.getValue = function() {
-        return mapToScale(knob.rotation,[0,270],[range.min,range.max],widgetData.precision,widgetData.logScale)
+        return mapToScale(knob.rotation,[0,270],[range.min,range.max],widgetData.precision,logScale)
     }
     widget.showValue = function(v) {
         input.val(v+unit)
@@ -184,7 +185,7 @@ module.exports.create = function(widgetData,container) {
         })
     }
     widget.setValue = function(v,send,sync) {
-        var r = mapToScale(v,[range.min,range.max],[0,270],widgetData.precision,widgetData.logScale,true)
+        var r = mapToScale(v,[range.min,range.max],[0,270],widgetData.precision,logScale,true)
         knob.rotation = r
 
         widget.updateUi(r)
