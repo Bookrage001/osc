@@ -54,7 +54,7 @@ module.exports.categories = {
     'Sliders':['fader','knob'],
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb'],
-    'Matrix':['multifader','multitoggle','multipush'],
+    'Matrices':['multifader','multitoggle','multipush'],
     'Plots':['plot','visualizer','led'],
     'Containers':['panel','strip']
 }
