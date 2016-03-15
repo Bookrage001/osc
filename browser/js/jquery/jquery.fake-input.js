@@ -1,5 +1,5 @@
 (function ($) {
-
+    var color = String(getComputedStyle(document.documentElement).getPropertyValue("--color-text")).trim()
     $.fn.fakeInput = function(options) {
 
         var settings = $.extend({
@@ -13,14 +13,16 @@
 		self.value = undefined
 		self.height = undefined
 		self.width = undefined
-		self.color = $('body').css('color')
+		self.color = color
         self.center = settings.align == 'center'
         self.visible = false
 
 
 		self.attr('tabindex',"0")
 
-		canvas.resize(function(){
+		canvas.resize(function(e){
+            e.stopPropagation()
+            
 			var width = canvas.width(),
 				height = canvas.height()
 
