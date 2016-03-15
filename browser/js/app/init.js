@@ -8,7 +8,7 @@ module.exports = function(session,callback) {
 
         $('#lobby').remove()
         $('#container').empty()
-        var spinner = $('<div id="loading"><div class="spinner"></div></div>').appendTo('body')
+        var spinner = $('<div id="loading"><div class="spinner"></div></div>').appendTo('#container')
 
         setTimeout(function(){
             parsetabs(session,$('#container'),true)
