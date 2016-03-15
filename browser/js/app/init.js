@@ -20,8 +20,8 @@ module.exports = function(session,callback) {
                 if (!callback) return
                 setTimeout(function(){
                     callback()
-                },1)
-            },1)
-        },1)
+                },25)
+            },25)
+        },25)
 
 }
