@@ -15,7 +15,7 @@ $ sudo npm install -g npm   # update npm
 **Download**
  ```bash
 $ git clone https://github.com/jean-emmanuel/open-stage-control
-$ cd Open-Stage-Control/
+$ cd open-stage-control/
 $ npm install --save-dev
  ```
 

@@ -25,3 +25,5 @@ $ npm run deb64
 ```
 
 This will build the app in `dist/open-stage-control-PLATFORM-ARCH`.
+
+*Please note that building the app for windows from a linux system requires wine to be installed.*

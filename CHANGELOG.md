@@ -2,9 +2,14 @@
 
 ## next
 
-- electron 0.37.0 (chrome 49)
+- electron 0.37 (chrome 49)
 - logarithmic scaling (log10) support added to knob, fader & xy
 - mousewheel support added to knob and fader (ctrlKey for fine control)
+- new widgets : plot & visualizer
+- traversing gestures switch in sidepanel
+- widget categories in editor's context menu
+- sync/link event handling improved
+- many small optimizations...
 
 ## 0.3.1
 
