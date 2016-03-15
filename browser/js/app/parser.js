@@ -30,8 +30,6 @@ module.exports.tabs = function(data,parent,main){
         navtabs = $(document.createElement('ul')).addClass('tablist'),
         content = $(document.createElement('div')).addClass('content')
 
-    nav.append(navtabs)
-    parent.append(nav).append(content)
 
 
     for (i in data) {
@@ -53,7 +51,7 @@ module.exports.tabs = function(data,parent,main){
 
 
         if (tabData.tabs && tabData.tabs.length) {
-            module.exports.tabs(tabData.tabs,parent=tabContent)
+            module.exports.tabs(tabData.tabs,tabContent)
         } else if (tabData.widgets && tabData.widgets.length) {
             module.exports.widgets(tabData.widgets,tabContent)
         }
@@ -61,6 +59,9 @@ module.exports.tabs = function(data,parent,main){
         content.append(tabContent)
 
     }
+
+    nav.append(navtabs)
+    parent.append(nav).append(content)
 }
 
 
