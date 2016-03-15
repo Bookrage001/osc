@@ -57,8 +57,8 @@ module.exports.create = function(widgetData,container) {
         if (widgetData.horizontal) container.addClass('horizontal')
 
     handle.size = 0
-    fader.size = dimension=='height'?fader.outerHeight():fader.outerWidth()
-    wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
+    fader.size = 0
+    wrapper.size = 0
 
 
     var range = {}
@@ -72,16 +72,16 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
-    var scale = []
-    for (var i=0;i<=100;i++) {scale.push(i)}
-    for (i in scale) {
-        var pip = $('<div class="pip"></div>')
-        if (range[i]!=undefined) {
-            var piptext = Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]
-            pip.addClass('val').append('<span>'+piptext+'</span>')
-        }
-        pips.append(pip)
+    var pipsInner = ''
+    for (var i=0;i<=100;i++) {
+
+        var piptext = range[i]!=undefined?`<span>${Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]}</span>`:''
+        pipsInner += `
+            <div class="pip ${range[i]!=undefined?'val':''}">${piptext}</div>
+        `
     }
+    pips.append(pipsInner)
+
     if (dimension=='height') {
         pips.append(pips.find('.pip').get().reverse())
     }

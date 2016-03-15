@@ -64,7 +64,7 @@ module.exports.create = function(widgetData,container) {
     widget.find('.pip.min').text(pipmin)
     widget.find('.pip.max').text(pipmax)
 
-    mask.size = Math.floor(wrapper[0].offsetWidth*.58)
+    mask.size = 0
 
     wrapper.resize(function(){
         var w = Math.floor(wrapper[0].offsetWidth*.58)

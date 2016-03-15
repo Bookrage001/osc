@@ -57,8 +57,8 @@ module.exports.create = function(widgetData,container) {
 
     if (widgetData.height!='auto') widget.addClass('manual-height')
 
-    pad.width = pad.innerWidth()
-    pad.height = pad.innerHeight()
+    pad.width = 0
+    pad.height = 0
     handle.height = 0
     handle.width = 0
 

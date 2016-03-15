@@ -36,8 +36,8 @@ module.exports.create = function(widgetData,container) {
 		canvas = widget.find('canvas'),
 		ctx = canvas[0].getContext('2d')
 
-	widget.height = undefined
-	widget.width = undefined
+	widget.height = 0
+	widget.width = 0
 	widget.visible = false
     widget.lineColor = String(getComputedStyle(document.documentElement).getPropertyValue("--color-accent")).trim()
     widget.textColor = String(getComputedStyle(document.documentElement).getPropertyValue("--color-text-fade")).trim()
