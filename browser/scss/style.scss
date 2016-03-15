@@ -341,7 +341,7 @@ body {
 .widget.editing {
     z-index: 11!important;
 }
-.widget.editing:after, a.editing:before, .content.editing:before, #container.editing:before{
+.widget.editing:after, li.editing a:before, a.editing:before, .content.editing:before, #container.editing:before{
     content:"";
     z-index: 999;
     position: absolute;
@@ -524,6 +524,7 @@ a {
             max-width:250rem;
             min-width:0;
             flex: 1;
+            cursor:pointer;
 
             border-width:0 0 0 1rem;
             border-image: linear-gradient(transparentize($color-border,1), $color-border,transparentize($color-border,1)) 0 0 0 1 stretch;
@@ -536,6 +537,7 @@ a {
             }
 
             a {
+                pointer-events: none;
                 display:block;
                 padding: 5rem 10rem;
                 line-height: ($nav-height - 26rem);
@@ -549,31 +551,31 @@ a {
                     width:100%;
                     -webkit-mask: linear-gradient(to left, rgba(0, 0, 0, 0), #000000 10rem) no-repeat;
                 }
-                color:$color-text-fade;
-                &.on {
-                    background:$color-raised;
-                    border:1rem solid $color-border;
-                    color:$color-text;
+                color:$color-text-fade
+            }
+            &.on a {
+                background:$color-raised;
+                border:1rem solid $color-border;
+                color:$color-text;
 
-                    &:before {
-                        content:"";
-                        position: absolute;
-                        top:0;
-                        left:0;
-                        right:0;
-                        bottom:0;
-                        box-shadow: inset 0 1rem 1rem rgba(255, 255, 255, 0.06);
-                        background:linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0))
-                    }
-                    &:after {
-                        content:"";
-                        position:absolute;
-                        top:0;
-                        left:0;
-                        right:0;
-                        height:4rem;
-                        // background:linear-gradient(rgba($color-accent,0.5),rgba($color-accent,0))
-                    }
+                &:before {
+                    content:"";
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    right:0;
+                    bottom:0;
+                    box-shadow: inset 0 1rem 1rem rgba(255, 255, 255, 0.06);
+                    background:linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0))
+                }
+                &:after {
+                    content:"";
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    right:0;
+                    height:4rem;
+                    // background:linear-gradient(rgba($color-accent,0.5),rgba($color-accent,0))
                 }
             }
         }
@@ -765,15 +767,15 @@ a {
 // TABS
 
 .tab {
-    display:none;
+    // display:none;
     overflow: auto;
     position: relative;
     padding-top:7rem;
     padding-left:6rem;
-    &.on {
         display: block;
         height:100%;
         width:auto;
+    &.on {
     }
 }
 

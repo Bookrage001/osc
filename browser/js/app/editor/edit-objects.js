@@ -12,7 +12,7 @@ var editObject = function(container, data, refresh){
     if (isWidget) {
         $(container).addClass('editing')
     } else {
-        $(`a[data-tab="#${container.attr('id')}"]`).addClass('editing').click()
+        $(`[data-tab="#${container.attr('id')}"]`).addClass('editing').click()
         $(container).parent().addClass('editing')
     }
 

@@ -14,26 +14,35 @@ var widgets = require('../widgets'),
 var getObjectData = function(obj){
     var path = []
 
-    do {
-        if (obj[0].classList.contains('widget')) {
-            path.unshift(obj.index())
+    if (obj.hasClass('tab')) {
+        return TABS['#'+obj.attr('id')].data
+    }
+
+    if (obj.is('#container')) {
+        return SESSION
+    }
+
+    while(true) {
+        if (obj.hasClass('widget')) {
+            path.unshift(obj.data('index'))
             path.unshift('widgets')
-        } else if (obj[0].classList.contains('tab')){
-            path.unshift(obj.index())
+        } else if (obj.hasClass('tab')){
+            path.unshift(obj.data('index'))
             path.unshift('tabs')
-        } else if (obj[0].getAttribute('id')=='container') {
+        } else if (obj.is('#container')) {
             break
         }
 
-    } while(obj = obj.parent() )
+        obj = obj.parent()
+    }
 
     path.splice(0,1)
 
-    for (var i=0,obj=SESSION, path=path, len=path.length; i<len; i++){
-        obj = obj[path[i]]
+    for (var i=0,data=SESSION, path=path, len=path.length; i<len; i++){
+        data = data[path[i]]
     }
 
-    return obj
+    return data
 
 }
 
@@ -101,7 +110,6 @@ var updateDom = function(container,data) {
     // restore state
     actions.stateSet(state,false)
     sync()
-    ui.tabs()
     ui.scrolls()
     $('#sidepanel').scrollTop(scroll)
 

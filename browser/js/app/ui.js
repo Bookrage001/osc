@@ -5,15 +5,28 @@ var sidepanel = require('./sidepanel').init
 
 // Tabs...
 var tabs = function() {
-    $('.tablist a').click(function(){
+    $('#container').click(function(e){
+        var link = $(e.target)
 
-        var id = $(this).data('tab')
-        $(id).siblings('.on').removeClass('on')
-        $(id).addClass('on')
-        $(this).parents('ul').find('.on').removeClass('on')
-        $(this).addClass('on');$(this).parent().addClass('on')
+        if (!link.is('li[data-tab]') || link.hasClass('on')) return
+
+        var id = link.data('tab')
+
+        link.addClass('on')
+
+        var previous = link.siblings('.on').removeClass('on').data('tab')
+
+        TABS[id].tab.appendTo(TABS[id].parent)
+        $(previous).detach()
+        
+
+        $(id).find('li[data-tab]:first-child:not(.on)').each(function(){
+            if (!$(this).siblings('.on').length) $(this).click()
+        })
+
 
     })
+    $('li[data-tab]').first().click()
 }
 
 // horizontal scrolling & zoom with mousewheel

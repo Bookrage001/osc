@@ -10,6 +10,9 @@ EDITING = false
 
 TRAVERSING = false
 
+TABS = {}
+
+
 MISC = {
     iterators: {
         widget:{},

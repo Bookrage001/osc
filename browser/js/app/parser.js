@@ -21,6 +21,9 @@ module.exports.tabs = function(data,parent,main){
         WIDGETS_LINKED = {}
         WIDGETS_ID_BY_PATH = {}
         SESSION = data
+        TABS['#container'] = {
+            tab:$('#container')
+        }
 
         MISC.iterators.tab = {}
     }
@@ -38,15 +41,14 @@ module.exports.tabs = function(data,parent,main){
 
         var label = tabData.label||tabData.id||'Unnamed',
             hash = hashCode(label),
-            id = 'tab_'+hash+'_'+getIterator('tab'+hash,'tab'),
-            on = i==0?'on':''
+            id = 'tab_'+hash+'_'+getIterator('tab'+hash,'tab')
 
         tabData.label = label
         delete tabData.id
 
-        navtabs.append(`<li class="${on}"><a class="${on}" data-tab="#${id}"><span>${label}</span></a></li>`)
+        navtabs.append(`<li data-tab="#${id}"><a><span>${label}</span></a></li>`)
 
-        var tabContent = $(`<div class="tab ${on}" id="${id}"></div>`)
+        var tabContent = $(`<div class="tab" id="${id}" data-index="${i}"></div>`)
         tabContent.data(tabData)
 
 
@@ -56,7 +58,12 @@ module.exports.tabs = function(data,parent,main){
             module.exports.widgets(tabData.widgets,tabContent)
         }
 
-        content.append(tabContent)
+        // content.append(tabContent)
+        TABS['#'+id]= {
+            parent:content,
+            tab:tabContent,
+            data:tabData
+        }
 
     }
 
@@ -69,7 +76,8 @@ module.exports.tabs = function(data,parent,main){
 module.exports.widgets = function(data,parent) {
 
     for (i in data) {
-        var widgetData = data[i]
+        var widgetData = data[i],
+            index = i
 
         widgetData.type =  widgetData.type || 'fader'
 
@@ -129,7 +137,7 @@ module.exports.widgets = function(data,parent) {
 
 
         var widgetContainer = $(`
-            <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
+            <div data-index="${index}" class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
                 <div class="label"><span>${widgetData.label}</span></div>
             </div>
         `)

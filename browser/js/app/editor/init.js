@@ -25,11 +25,11 @@ var init = function(){
 
         var target = $(e.target).is('.widget:not(.not-editable), .tab, [data-tab], #container')?
                         $(e.target):
-                        $(e.target).closest('.widget:not(.not-editable), .tab, a[data-tab], #container')
+                        $(e.target).closest('.widget:not(.not-editable), .tab, [data-tab], #container')
 
         if (!target.length) return
 
-        var container = target.attr('data-tab')?$(target.attr('data-tab')):target,
+        var container = target.attr('data-tab')?TABS[target.attr('data-tab')].tab:target,
             type = target.hasClass('widget')?'widget':'tab',
             parent = container.parent(),
             index = container.index(),
