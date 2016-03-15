@@ -3,6 +3,7 @@
 ## next
 
 - electron 0.37 (chrome 49)
+- tab system rewritten : inactive tabs are detached from the DOM tree, thus improving performances.
 - logarithmic scaling (log10) support added to knob, fader & xy
 - mousewheel support added to knob and fader (ctrlKey for fine control)
 - new widgets : plot & visualizer

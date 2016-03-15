@@ -76,9 +76,8 @@ module.exports.tabs = function(data,parent,main){
 module.exports.widgets = function(data,parent) {
 
     for (i in data) {
-        var widgetData = data[i],
-            index = i
-
+        var widgetData = data[i]
+        
         widgetData.type =  widgetData.type || 'fader'
 
         var tmpWidgetOptions = JSON.parse(JSON.stringify(widgetOptions))
@@ -137,7 +136,7 @@ module.exports.widgets = function(data,parent) {
 
 
         var widgetContainer = $(`
-            <div data-index="${index}" class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
+            <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
                 <div class="label"><span>${widgetData.label}</span></div>
             </div>
         `)

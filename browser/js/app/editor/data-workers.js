@@ -24,7 +24,7 @@ var getObjectData = function(obj){
 
     while(true) {
         if (obj.hasClass('widget')) {
-            path.unshift(obj.data('index'))
+            path.unshift(obj.index())
             path.unshift('widgets')
         } else if (obj.hasClass('tab')){
             path.unshift(obj.data('index'))
@@ -66,9 +66,11 @@ var updateDom = function(container,data) {
         var newContainer = container.empty()
 
         if (data.widgets && data.widgets.length) parsewidgets(data.widgets,container)
-        if (data.tabs && data.tabs.length)    parsetabs(data.tabs,container)
+        if (data.tabs && data.tabs.length) {
+            parsetabs(data.tabs,container)
+        }
 
-        $(`a[data-tab="#${container.attr('id')}"]`).html(`<span>${data.label}</span></a>`)
+        $(`[data-tab="#${container.attr('id')}"]`).html(`<a><span>${data.label}</span></a>`)
 
         editObject(newContainer,data)
 
@@ -82,6 +84,8 @@ var updateDom = function(container,data) {
         sidepanelCreateToggle()
 
     }
+
+    newContainer.find('[data-tab]:first-child').click()
 
 
     // prune widget stores

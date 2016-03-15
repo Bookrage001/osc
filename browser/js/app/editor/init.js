@@ -148,9 +148,9 @@ var init = function(){
                 if (type=='widget') {
                     parentData.widgets.splice(container.index(),1)
                 } else if (type=='tab' && parentContainer.attr('id')!='container') {
-                    parentData.tabs.splice(container.index(),1)
+                    parentData.tabs.splice(container.data('index'),1)
                 } else {
-                    parentData.splice(container.index(),1)
+                    parentData.splice(container.data('index'),1)
                 }
 
                 updateDom(parentContainer,parentData)
