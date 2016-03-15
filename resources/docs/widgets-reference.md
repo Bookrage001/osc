@@ -25,7 +25,7 @@ Every widget has the following properties:
 
 ## Widget specifics
 
-Each widget type comes with an additional set of specific properties which are described in the page listed below.
+Each widget type comes with an additional set of specific properties which are described in the pages listed below.
 
 - [Sliders](widgets/sliders.md)
 - [Buttons](widgets/buttons.md)
