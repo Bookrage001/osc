@@ -57,22 +57,14 @@ module.exports = {
         })
         $('#lobby .new').click(function(e){
             e.stopPropagation()
-            $('#lobby').remove()
-            setTimeout(function(){
-                init([{}],function(){$('#open-toggle, .enable-editor').click();$('.editor-root').trigger('mousedown.editor')})
-            },25)
+            init([{}],function(){$('#open-toggle, .enable-editor').click();$('.editor-root').trigger('mousedown.editor')})
         })
     },
 
     sessionOpen: function(event,data){
         var data = data || event
         var session = JSON.parse(data)
-
-        $('#lobby').remove()
-        $('#container').empty().append('<div id="loading"><div class="spinner"></div></div>')
-        setTimeout(function(){
-            init(session,function(){$('#loading').hide()})
-        },25)
+        init(session)
 
     },
 

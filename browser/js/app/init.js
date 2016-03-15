@@ -1,21 +1,27 @@
 var parsetabs = require('./parser').tabs,
     ui = require('./ui'),
     sync = require('./widgets').sync,
-    editorDisable = require('./actions').editorDisable
+    editorDisable = require('./actions').editorDisable,
+    editorInit = require('./editor/init')
 
 module.exports = function(session,callback) {
 
-    $('#container').empty()
+        $('#lobby').remove()
+        $('#container').empty().append('<div id="loading"><div class="spinner"></div></div>')
 
-    parsetabs(session,$('#container'),true)
-
-    ui.init()
-
-    editorDisable()
-    require('./editor/init')()
-
-    sync()
-
-    if (callback) callback()
+        setTimeout(function(){
+            parsetabs(session,$('#container'),true)
+            setTimeout(function(){
+                $('#open-toggle, .enable-editor').click();$('.editor-root').trigger('mousedown.editor')
+                ui.init()
+                editorDisable()
+                editorInit()
+                sync()
+                if (!callback) return
+                setTimeout(function(){
+                    callback()
+                },1)
+            },1)
+        },1)
 
 }
