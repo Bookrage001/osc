@@ -80,7 +80,7 @@ module.exports.create = function(widgetData,container) {
             <div class="pip ${range[i]!=undefined?'val':''}">${piptext}</div>
         `
     }
-    pips.append(pipsInner)
+    pips[0].innerHTML = pipsInner
 
     if (dimension=='height') {
         pips.append(pips.find('.pip').get().reverse())
