@@ -14,7 +14,7 @@ module.exports = {
     },
 
     stateSave: function() {
-        state = module.exports.stateGet()
+        state = JSON.stringify(module.exports.stateGet(),null,'    ')
         if (WEBFRAME) {
             IPC.send('stateSave',state)
         } else {
@@ -32,12 +32,12 @@ module.exports = {
             for (var j=widget.length-1;j>=0;j--) {
                 if (widget[j].setValue && widget[j].getValue) {
                     var v = widget[j].getValue()
-                    if (v!=undefined) data.push(i+' '+v)
+                    if (v!=undefined) data.push([i,v])
                     break
                 }
             }
         })
-        return data.join('\n')
+        return data
     },
 
     stateLoad: function() {
@@ -50,7 +50,7 @@ module.exports = {
                 var reader = new FileReader();
                 reader.onloadend = function(e) {
                     var preset = e.target.result
-                    module.exports.stateSet(preset,true)
+                    module.exports.stateSet(JSON.parse(preset),true)
                     STATE = preset
                 }
                 reader.readAsText(e.target.files[0],'utf-8');
@@ -66,14 +66,13 @@ module.exports = {
 
     stateSet: function(preset,send){
 
-        $.each(preset.split('\n'),function(i,d) {
-            var data = d.split(' ')
+        $.each(preset,function(i,data) {
 
             setTimeout(function(){
                 if (WIDGETS[data[0]]!=undefined) {
                     for (var i=WIDGETS[data[0]].length-1;i>=0;i--) {
                         if (WIDGETS[data[0]][i].setValue && WIDGETS[data[0]][i].getValue) {
-                            WIDGETS[data[0]][i].setValue(data[1].split(','),send,true)
+                            WIDGETS[data[0]][i].setValue(data[1],send,true)
                             break
                         }
                     }

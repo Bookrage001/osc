@@ -23,6 +23,7 @@ module.exports = {
 
     stateLoad: function(event,data){
         var data = data || event
+        data = JSON.parse(data)
         actions.stateSet(data,true)
         actions.stateQuickSave(data)
     },
