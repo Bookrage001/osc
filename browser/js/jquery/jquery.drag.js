@@ -1,12 +1,14 @@
 // jQuery drag event handler
 ;(function($){
+    var $document = $(document)
     $.event.special.drag = {
         setup: function() {
             var element = $(this),
-                previousEvent = null,
-                $document = $(document)
+                previousEvent = null
 
             var mousemove = function(e) {
+                e.preventDefault()
+
                 e.speedX = e.pageX - previousEvent.pageX
                 e.speedY = e.pageY - previousEvent.pageY
                 e.deltaX = e.speedX + previousEvent.deltaX
@@ -28,7 +30,6 @@
                 element.trigger("dragend", e)
             }
             var touchend = function(e) {
-                e.preventDefault()
 
                 e.pageX = e.originalEvent.changedTouches[0].pageX
                 e.pageY = e.originalEvent.changedTouches[0].pageY
@@ -60,7 +61,6 @@
             }
 
             element.on("touchstart.drag mousedown.drag", function(e) {
-                e.preventDefault()
                 previousEvent = e
 
                 if (!e.originalEvent.changedTouches) {
@@ -84,11 +84,6 @@
             })
             element.on("touchmove.drag", function(e) {
                 e.preventDefault()
-
-                if (e.shiftKey) {
-                    // get element under pointer: usefull only for master dragging (when target changes during drag)
-                    e.target = document.elementFromPoint(e.originalEvent.changedTouches[0].clientX, e.originalEvent.changedTouches[0].clientY)
-                }
 
                 e.pageX = e.originalEvent.targetTouches[0].pageX
                 e.pageY = e.originalEvent.targetTouches[0].pageY
