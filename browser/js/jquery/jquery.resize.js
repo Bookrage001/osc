@@ -18,10 +18,6 @@
           // Add this element to the list of internal elements to monitor.
           elems.push( elem )
 
-          // Initialize data store on the element.
-          elem.setAttribute('resize-data-w',elem.offsetWidth)
-          elem.setAttribute('resize-data-h',elem.offsetHeight)
-
           // If this is the first element added, start the polling loop.
           if ( elems.length === 1 ) {
             resizePollingLoop()
@@ -70,15 +66,15 @@
                     width = elem.offsetWidth,
                     height = elem.offsetHeight,
                     data = {
-                        w:elem.getAttribute('resize-data-w'),
-                        h:elem.getAttribute('resize-data-h')
+                        w:elem.resizedataw,
+                        h:elem.resizedatah
                     }
 
                 // If element size has changed since the last time, update the element
                 // data store and trigger the 'resize' event.
                 if ( width != data.w || height != data.h ) {
-                    elem.setAttribute('resize-data-w',width)
-                    elem.setAttribute('resize-data-h',height)
+                    elem.resizedataw = width
+                    elem.resizedatah = height
                     $(elem).trigger('resize',[width,height])
                 }
 
