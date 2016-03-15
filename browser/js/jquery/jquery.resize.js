@@ -1,4 +1,4 @@
-/* jquery.reize
+/* jquery.resize
  * based on jQuery resize event (@ "Cowboy" Ben Alman  http://benalman.com/projects/jquery-resize-plugin/)
  * just lighter and faster
 */
@@ -64,8 +64,11 @@
             for (var i = elems.length - 1; i >= 0; i--) {
                 var elem = elems[i],
                     width = elem.offsetWidth,
-                    height = elem.offsetHeight,
-                    data = {
+                    height = elem.offsetHeight
+
+                if (!width) continue
+
+                var data = {
                         w:elem.resizedataw,
                         h:elem.resizedatah
                     }
