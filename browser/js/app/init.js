@@ -7,16 +7,17 @@ var parsetabs = require('./parser').tabs,
 module.exports = function(session,callback) {
 
         $('#lobby').remove()
-        $('#container').empty().append('<div id="loading"><div class="spinner"></div></div>')
+        $('#container').empty()
+        var spinner = $('<div id="loading"><div class="spinner"></div></div>').appendTo('body')
 
         setTimeout(function(){
             parsetabs(session,$('#container'),true)
+            ui.init()
+            editorDisable()
+            editorInit()
+            sync()
             setTimeout(function(){
-                $('#open-toggle, .enable-editor').click();$('.editor-root').trigger('mousedown.editor')
-                ui.init()
-                editorDisable()
-                editorInit()
-                sync()
+                spinner.remove()
                 if (!callback) return
                 setTimeout(function(){
                     callback()
