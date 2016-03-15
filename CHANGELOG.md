@@ -1,16 +1,20 @@
 # Changelog
 
-## next
+## 0.4.0
 
-- electron 0.37 (chrome 49)
-- tab system rewritten : inactive tabs are detached from the DOM tree, thus improving performances.
-- logarithmic scaling (log10) support added to knob, fader & xy
-- mousewheel support added to knob and fader (ctrlKey for fine control)
-- new widgets : plot & visualizer
-- traversing gestures switch in sidepanel
-- widget categories in editor's context menu
-- sync/link event handling improved
-- many small optimizations...
+- engine
+  - electron 0.37.2 (chrome 49)
+- ui
+  - tab system rewritten : inactive tabs are detached from the DOM tree, thus improving performances.
+  - widget categories in editor's context menu
+- features
+  - logarithmic scaling (log10) support added to knob, fader & xy
+  - mousewheel support added to knob and fader (ctrlKey for fine control)
+  - new widgets : plot & visualizer
+  - traversing gestures switch in sidepanel
+- misc
+  - sync/link event handling improved
+  - **new state save file format, no backward compatibility**
 
 ## 0.3.1
 

@@ -187,18 +187,8 @@ module.exports.create = function(widgetData,container) {
         var r = mapToScale(v,[range.min,range.max],[0,270],widgetData.precision,widgetData.logScale,true)
         knob.rotation = r
 
+        widget.updateUi(r)
 
-
-        if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
-        else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
-
-        if      (r>180) {knob.addClass('d3')}
-        else if (r>90)  {knob.removeClass('d3').addClass('d2')}
-        else            {knob.removeClass('d3 d2')}
-
-
-        knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
-        handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
         var v = widget.getValue()
 
         widget.showValue(v)
