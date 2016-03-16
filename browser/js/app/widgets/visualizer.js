@@ -69,10 +69,13 @@ module.exports.create = function(widgetData,container) {
 
 	})
 
-    $('body').on('sync',function(e,id,w){
-        if (widgetData.widgetId!=id || !document.contains(widget[0])) return
+
+    widget.handleSync = function(e,id,w) {
+        if (widgetData.widgetId!=id || !WIDGETS[id]) return
         widget.startLoop()
-    })
+    }
+
+    $('body').on('sync',widget.handleSync)
 
 
     widget.cancel = false

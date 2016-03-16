@@ -57,10 +57,7 @@ module.exports.create = function(widgetData,container) {
     }
     widget.setValue = function(v,send,sync) {
         if (v==widgetData.on) {
-            widget.addClass('on').removeClass('ripple').addClass('ripple').delay(250).queue(function(next){
-    			widget.removeClass('ripple')
-    			next()
-    		})
+            widget.addClass('on')
             if (send) widget.sendValue(widgetData.on)
         } else if (v==widgetData.off) {
             widget.removeClass('on')

@@ -1173,24 +1173,6 @@ a {
     }
 }
 
-.ripple:after {
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background:$color-accent;
-    animation:ripple 0.25s linear;
-    animation-fill-mode: forwards;
-    opacity:.4
-}
-
-@keyframes ripple {
-	100% {opacity:0}
-}
-
-
 /* Multiple widgets (push|toggle|fader) matrix */
 .multitoggle-container, .multipush-container, .multifader-container {
     height:200rem;

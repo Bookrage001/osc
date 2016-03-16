@@ -94,12 +94,14 @@ module.exports.create = function(widgetData,container) {
 
 	})
 
-    $('body').on('sync',function(e,id,w){
-        if (widget.linkedWidgets.indexOf(id)==-1 || !document.contains(widget[0])) return
 
+    widget.handleSync = function(e,id,w) {
+        if (widget.linkedWidgets.indexOf(id)==-1 || !WIDGETS[id]) return
         widget.fetchValues()
         requestAnimationFrame(widget.draw)
-    })
+    }
+
+    $('body').on('sync',widget.handleSync)
 
 	widget.draw = function(){
 
