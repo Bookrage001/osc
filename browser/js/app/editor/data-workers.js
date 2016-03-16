@@ -52,7 +52,7 @@ var updateDom = function(container,data) {
     // save state
     var scroll = $('#sidepanel').scrollTop(),
         state = actions.stateGet(),
-        hadChildren = data.widgets||data.tabs
+        hadChildren = data.widgets||data.tabs||data.matrix||data.strips
 
 
 
