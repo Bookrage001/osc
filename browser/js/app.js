@@ -4,6 +4,7 @@ WIDGETS = {}
 WIDGETS_LINKED = {}
 WIDGETS_ID_BY_PATH = {}
 SESSION = []
+STATE = []
 
 CLIPBOARD = null
 EDITING = false

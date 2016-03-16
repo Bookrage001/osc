@@ -8,7 +8,8 @@ var widgets = require('../widgets'),
     actions = require('../actions'),
     sidepanelCreateToggle = require('../sidepanel').createToggle,
     editObject = function(a,b){require('./edit-objects').editObject(a,b,true)},
-    editSession =  function(a,b){require('./edit-objects').editSession(a,b,true)}
+    editSession =  function(a,b){require('./edit-objects').editSession(a,b,true)},
+    purgeStores = require('./purge')
 
 
 var getObjectData = function(obj){
@@ -50,7 +51,8 @@ var updateDom = function(container,data) {
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
-        state = actions.stateGet()
+        state = actions.stateGet(),
+        hadChildren = data.widgets||data.tabs
 
 
 
@@ -88,28 +90,7 @@ var updateDom = function(container,data) {
     newContainer.find('[data-tab]:first-child').click()
 
 
-    // prune widget stores
-    for (i in WIDGETS) {
-        for (var j=WIDGETS[i].length-1;j>=0;j--) {
-            if (!document.contains(WIDGETS[i][j][0])) {
-                WIDGETS[i].splice(j,1)
-            }
-        }
-        if (!WIDGETS[i].length) {
-            delete WIDGETS[i]
-        }
-    }
-    for (i in WIDGETS_LINKED) {
-        for (var j=WIDGETS_LINKED[i].length-1;j>=0;j--) {
-            if (!document.contains(WIDGETS_LINKED[i][j][0])) {
-                WIDGETS_LINKED[i].splice(j,1)
-            }
-        }
-        if (!WIDGETS_LINKED[i].length) {
-            delete WIDGETS_LINKED[i]
-        }
-    }
-
+    if (container.attr('id')=='container' || container.hasClass('tab') || hadChildren) purgeStores()
 
     // restore state
     actions.stateSet(state,false)
