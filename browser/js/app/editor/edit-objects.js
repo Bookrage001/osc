@@ -219,7 +219,7 @@ var editObject = function(container, data, refresh){
                     updateDom(container,data)
                 },
                 handle:'.ui-draggable-handle',
-                snap:'.tab.on .widget, .tab.on',
+                snap:'.widget',
                 snapTolerance:5,
                 helper:function(){return $('<div class="ui-helper"></div>').css({height:container.outerHeight(),width:container.outerWidth()})}
         }).append('<div class="ui-draggable-handle"></div>')
