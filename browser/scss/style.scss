@@ -1206,18 +1206,31 @@ a {
     > .widget {
         min-height: 0;
         min-width: 0;
-        .fader-wrapper {
-            padding:20rem 0!important;
-            .fader {
-                left:0!important;
-                .pips {
-                    display:none;
-                }
+
+    }
+}
+
+.multifader-container {
+    .matrix {
+        padding:0!important
+    }
+    .widget {
+        border: 0!important;
+        box-shadow: none!important;
+        .label {
+            text-align: center;
+        }
+    }
+    .fader-wrapper {
+        padding:10rem 0!important;
+        .fader {
+            left:0!important;
+            .pips {
+                display:none;
             }
         }
     }
 }
-
 
 
 /* XY */
