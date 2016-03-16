@@ -77,7 +77,7 @@
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
-                "height": 256,
+                "height": 253,
                 "horizontal": false,
                 "css": "",
                 "absolute": false,
@@ -276,61 +276,16 @@
         ]
     },
     {
-        "label": "Another plot",
-        "widgets": [
-            {
-                "type": "plot",
-                "id": "plot_5",
-                "left": "auto",
-                "top": "auto",
-                "width": 612,
-                "height": 309,
-                "css": "",
-                "rangeX": {
-                    "min": 0,
-                    "max": 5
-                },
-                "rangeY": {
-                    "min": 0,
-                    "max": 5
-                },
-                "logScaleX": false,
-                "logScaleY": false,
-                "path": "/plot_5",
-                "label": "plot_5",
-                "points": []
-            },
-            {
-                "type": "visualizer",
-                "id": "visualizer_1",
-                "label": "visualizer_1",
-                "left": "auto",
-                "top": "auto",
-                "width": "auto",
-                "height": "auto",
-                "css": "",
-                "widgetId": "",
-                "duration": 1,
-                "range": {
-                    "min": 0,
-                    "max": 1
-                },
-                "logScale": false,
-                "path": "/visualizer_1"
-            }
-        ]
-    },
-    {
         "label": "Hacking",
         "widgets": [
             {
                 "type": "multifader",
                 "strips": 10,
                 "unit": "",
-                "left": 0,
-                "top": 0,
-                "width": 569,
-                "height": 300,
+                "left": 6,
+                "top": 17,
+                "width": 564,
+                "height": 267,
                 "css": "z-index:8;opacity:0",
                 "range": {
                     "min": 0,
