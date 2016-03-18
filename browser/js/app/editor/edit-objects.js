@@ -205,8 +205,8 @@ var editObject = function(container, data, refresh){
                 handleTarget = $(event.originalEvent.target)
             },
             stop: function( event, ui ) {
-                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.max(ui.size.height,30)
-                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width = Math.max(ui.size.width,30)
+                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.max(ui.size.height,30)/PXSCALE
+                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width = Math.max(ui.size.width,30)/PXSCALE
                 updateDom(container,data)
             },
             snap:'.tab.on .widget, .tab.on',
@@ -218,8 +218,8 @@ var editObject = function(container, data, refresh){
         container.draggable({
                 stop: function( event, ui ) {
                     event.preventDefault()
-                    data.top = ui.helper.position().top + container.parent().scrollTop()
-                    data.left = ui.helper.position().left + container.parent().scrollLeft()
+                    data.top = (ui.helper.position().top + container.parent().scrollTop())/PXSCALE
+                    data.left = (ui.helper.position().left + container.parent().scrollLeft())/PXSCALE
                     ui.helper.remove()
                     updateDom(container,data)
                 },

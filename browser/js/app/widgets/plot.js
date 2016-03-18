@@ -56,6 +56,7 @@ module.exports.create = function(widgetData,container) {
     }
 
 
+
     if (typeof widgetData.points=='string') {
 
         widget.linkedWidgets.push(widgetData.points)
@@ -115,13 +116,13 @@ module.exports.create = function(widgetData,container) {
 		for (i in widget.data) {
 			var newpoint = widget.data[i].length?
                     [
-        				mapToScale(widget.data[i][0],[widgetData.rangeX.min,widgetData.rangeX.max],[15,widget.width-15],0,widgetData.logScaleX,true),
-        				mapToScale(widget.data[i][1],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15,15],0,widgetData.logScaleY,true),
+        				mapToScale(widget.data[i][0],[widgetData.rangeX.min,widgetData.rangeX.max],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
+        				mapToScale(widget.data[i][1],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
         			]
                     :
                     [
-                        mapToScale(i,[0,widget.data.length-1],[15,widget.width-15],0,widgetData.logScaleX,true),
-                        mapToScale(widget.data[i],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15,15],0,widgetData.logScaleY,true),
+                        mapToScale(i,[0,widget.data.length-1],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
+                        mapToScale(widget.data[i],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
                     ]
 
 
@@ -144,17 +145,17 @@ module.exports.create = function(widgetData,container) {
             point = newpoint
 		}
 
-        ctx.lineWidth = 1.5
+        ctx.lineWidth = 1.5*PXSCALE
 		ctx.strokeStyle= widget.lineColor
 		ctx.stroke()
 
-        ctx.font = '10px sans-serif'
+        ctx.font = PXSCALE * 10 + 'px sans-serif'
         ctx.fillStyle = widget.textColor
 
 
         ctx.textBaseline = "bottom"
         ctx.textAlign = 'left'
-        ctx.fillText(widget.pips.x.min,12,widget.height)
+        ctx.fillText(widget.pips.x.min,12*PXSCALE,widget.height)
         ctx.textAlign = 'right'
         ctx.fillText(widget.pips.x.max,widget.width-10,widget.height)
 
@@ -164,9 +165,9 @@ module.exports.create = function(widgetData,container) {
 
         ctx.textBaseline = "top"
         ctx.textAlign = 'left'
-        ctx.fillText(widget.pips.y.min,12,2)
+        ctx.fillText(widget.pips.y.min,12*PXSCALE,2*PXSCALE)
         ctx.textAlign = 'right'
-        ctx.fillText(widget.pips.y.max,widget.height-10,2)
+        ctx.fillText(widget.pips.y.max,widget.height-10*PXSCALE,2*PXSCALE)
         ctx.rotate(Math.PI/2)
         ctx.restore()
 

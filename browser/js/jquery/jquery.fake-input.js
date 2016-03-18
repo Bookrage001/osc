@@ -50,7 +50,7 @@
 			if (!self.height || !self.width || (self.height==100 && self.width==100)) return
 
 			ctx.clearRect(0,0,self.width,self.height)
-			ctx.font = '13px Droid Sans'
+			ctx.font =  PXSCALE * 13 + 'px Droid Sans'
 			ctx.textBaseline = "top"
 			ctx.fillStyle = self.color
 

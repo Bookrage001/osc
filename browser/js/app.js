@@ -24,6 +24,14 @@ MISC = {
 ///////////////////////
 
 $ = jQuery = require('./jquery/jquery.min')
+
+///////////////////////
+
+PXSCALE =  1
+$('html').css('font-size',PXSCALE+'px')
+
+///////////////////////
+
 require('./jquery/jquery.ui')
 require('./jquery/jquery.drag')
 require('./jquery/jquery.resize')
@@ -42,6 +50,9 @@ var bindCallback = function(i) {
 for (i in callbacks) {
     bindCallback(i)
 }
+
+
+///////////////////////
 
 
 IPC.send('ready')

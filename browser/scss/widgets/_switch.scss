@@ -19,11 +19,16 @@
         &.horizontal {
             flex-direction:row;
             .value {
-                padding:28rem 12rem 12rem 12rem;
+                padding:28rem 6rem 6rem 6rem;
                 text-align: center;
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
+                border-top:0;
+                border-right:1rem solid $color-bg;
+                &:last-child {
+                    border-right:0;
+                }
                 &:before {
                     left:50%;
                     top:8rem;
@@ -32,9 +37,7 @@
                     margin-left: -4rem;
                     margin-top:0;
                 }
-                &:first-child {
-                    border-top: 1rem solid $color-fg;
-                }
+
             }
         }
         .value {
@@ -43,12 +46,14 @@
             width:100%;
             height:100%;
             position: relative;
-            border-top: 1rem solid $color-fg;
+            border-top: 1rem solid $color-bg;
             padding:12rem 12rem 12rem 24rem ;
             white-space: normal;
             text-align: left;
             word-break: break-all;
             overflow: hidden;
+            border-bottom:2rem solid $color-faded;
+
 
             &:last-child {
                 margin-bottom:0;

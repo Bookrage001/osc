@@ -97,14 +97,14 @@
                 }
             }
             .round {
-                content:"";
                 position:absolute;
-                top:15rem;
-                left:15rem;
-                right:15rem;
-                bottom:15rem;
+                top:16rem;
+                left:16rem;
+                right:16rem;
+                bottom:16rem;
                 border-radius:100%;
                 background:$color-raised;
+                box-shadow: 0 2rem 0 0 $color-faded;
             }
             .knob {
                 position:absolute;

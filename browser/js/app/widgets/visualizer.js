@@ -109,8 +109,8 @@ module.exports.create = function(widgetData,container) {
 
 		for (var i=widget.length-1;i>=0;i=i-1) {
 			var newpoint = [
-                mapToScale(i,[0,widget.length-1],[15,widget.width-15],1),
-				mapToScale(widget.data[i],[widgetData.range.min,widgetData.range.max],[widget.height-15,15],1,widgetData.logScale,true),
+                mapToScale(i,[0,widget.length-1],[15*PXSCALE,widget.width-15*PXSCALE],1),
+				mapToScale(widget.data[i],[widgetData.range.min,widgetData.range.max],[widget.height-15*PXSCALE,15*PXSCALE],1,widgetData.logScale,true),
 			]
 			if (first) {
 				ctx.moveTo(newpoint[0],newpoint[1])
@@ -126,11 +126,11 @@ module.exports.create = function(widgetData,container) {
             point = newpoint
 		}
 
-        ctx.lineWidth = 1.5
+        ctx.lineWidth = 1.5*PXSCALE
 		ctx.strokeStyle= widget.lineColor
 		ctx.stroke()
 
-        ctx.font = '10px sans-serif'
+        ctx.font = PXSCALE * 10 + 'px sans-serif'
         ctx.fillStyle = widget.textColor
 
 
@@ -140,9 +140,9 @@ module.exports.create = function(widgetData,container) {
 
         ctx.textBaseline = "top"
         ctx.textAlign = 'left'
-        ctx.fillText(widget.pips.min,12,2)
+        ctx.fillText(widget.pips.min,12*PXSCALE,2*PXSCALE)
         ctx.textAlign = 'right'
-        ctx.fillText(widget.pips.max,widget.height-10,2)
+        ctx.fillText(widget.pips.max,widget.height-10*PXSCALE,2*PXSCALE)
         ctx.rotate(Math.PI/2)
         ctx.restore()
 
