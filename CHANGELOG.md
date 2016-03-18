@@ -11,7 +11,7 @@
 - features
   - logarithmic scaling (log10) support added to knob, fader & xy
   - mousewheel support added to knob and fader (ctrlKey for fine control)
-  - new widgets : plot & visualizer
+  - new widgets : plot, visualizer & meter. Fader built-in feedback meter option 
   - traversing gestures switch in sidepanel
 - misc
   - sync/link event handling improved

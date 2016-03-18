@@ -29,6 +29,7 @@ module.exports.options = {
     range:{min:0,max:1},
     logScale:false,
     precision:2,
+    meter:false,
     path:'auto',
     target:[]
 }
@@ -61,6 +62,21 @@ module.exports.create = function(widgetData,container) {
     handle.size = 0
     fader.size = 0
     wrapper.size = 0
+
+    if (widgetData.meter) {
+        var parsewidgets = require('../parser').widgets
+        var data = {
+            type:'meter',
+            id: widgetData.id + '#meter',
+            label:false,
+            horizontal:widgetData.horizontal,
+            range:widgetData.range,
+            logScale:widgetData.logScale,
+            path:widgetData.path + '/meter'
+        }
+        var element = parsewidgets([data],fader)
+		element[0].classList.add('not-editable')
+    }
 
 
     var range = {}
