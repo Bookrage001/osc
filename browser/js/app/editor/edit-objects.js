@@ -223,7 +223,7 @@ var editObject = function(container, data, refresh){
                     ui.helper.remove()
                     updateDom(container,data)
                 },
-                handle:'.ui-draggable-handle',
+                handle:'.ui-draggable-handle, > .label',
                 snap:'.widget',
                 snapTolerance:5,
                 helper:function(){return $('<div class="ui-helper"></div>').css({height:container.outerHeight(),width:container.outerWidth()})}
