@@ -107,7 +107,7 @@
                 height:1%;
                 width:38rem;
                 margin-left:-19rem;
-                background: linear-gradient($color-text,transparent 1px);
+                background: linear-gradient($color-text,transparent 1rem);
 
                 &.val {
                     position: relative;
@@ -153,6 +153,9 @@
             left:auto;
             top:50%;
             height:4rem;
+            &:before {
+                box-shadow:none;
+            }
             .handle {
                 height:100%important;
                 width:100%;
@@ -183,11 +186,12 @@
             height:4rem;
             margin-bottom:5rem;
             margin-left:0;
-            background: linear-gradient(90deg,$color-text,transparent 1px );
+            background: linear-gradient(90deg,$color-text,transparent 1rem );
             &.val {
                 width:1%;
                 height:10rem;
                 margin-left:0;
+                margin-bottom:0;
 
                 span {
                     top:15rem;
