@@ -8,7 +8,7 @@ Every widget has the following properties:
 {
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
 
-    label:"My widget",      // [string] default to id
+    label:"My widget",      // [string|false] default to id, false to hide completely
     top:"auto",             // [string|integer] if set, the widget will have an absolute position (percentages allowed)
     left:"auto",            // [string|integer] if set, the widget will have an absolute position (percentages allowed)
     width:"auto",           // [string|integer] widget's width in px (percentages allowed)
