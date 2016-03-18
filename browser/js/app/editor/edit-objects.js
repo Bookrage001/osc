@@ -216,6 +216,7 @@ var editObject = function(container, data, refresh){
 
     if (data.hasOwnProperty('top')) {
         container.draggable({
+                cursor:'-webkit-grabbing',
                 stop: function( event, ui ) {
                     event.preventDefault()
                     data.top = (ui.helper.position().top + container.parent().scrollTop())/PXSCALE

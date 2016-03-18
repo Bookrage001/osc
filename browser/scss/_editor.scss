@@ -231,7 +231,6 @@
     top: 5rem;
     left: 5rem;
     z-index: 100000;
-    cursor: -webkit-grab;
     height:20rem;
     width: 20rem;
     display: flex;
@@ -241,13 +240,17 @@
     background: $color-accent;
     box-shadow: 0 0 4rem 0 $color-bg;
 
-    &:active {
-        cursor:-webkit-grabbing
-    }
     &:before {
         content:"\f0b2";
         font-family: FontAwesome;
         transform: rotate(45deg);
     }
 
+}
+
+.ui-draggable-handle {
+    cursor: -webkit-grab;
+    &:active {
+        cursor:-webkit-grabbing;
+    }
 }
