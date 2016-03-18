@@ -225,10 +225,7 @@
     z-index: 12!important;
     opacity: 1!important;
 }
-:not(.absolute-position) .ui-helper:not(.ui-draggable-dragging) {
-    margin-top:-$gutter*2;
-    margin-left:-$gutter*2;
-}
+
 .ui-draggable-handle {
     position: absolute;
     top: 5rem;
