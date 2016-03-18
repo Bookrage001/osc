@@ -16,7 +16,7 @@
     "socketio-wildcard": "0.1.1",
     "browserify": "13.0.0",
     "express": "4.13.3",
-    "electron-prebuilt": "0.37.2",
+    "electron-prebuilt": "0.37.2"
   },
   "devDependencies": {
     "node-sass": "^3.4.2",
