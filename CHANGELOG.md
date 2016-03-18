@@ -5,6 +5,7 @@
 - engine
   - electron 0.37.2 (chrome 49)
 - ui
+  - new style !
   - tab system rewritten : inactive tabs are detached from the DOM tree, thus improving performances.
   - widget categories in editor's context menu
 - features
@@ -14,6 +15,7 @@
   - traversing gestures switch in sidepanel
 - misc
   - sync/link event handling improved
+  - stylesheets cannot be recompiled on the fly anymore (`--c` switch removed)
   - **new state save file format, no backward compatibility**
 
 ## 0.3.1
