@@ -160,9 +160,9 @@ module.exports.widgets = function(data,parent) {
             WIDGETS_LINKED[widgetData.linkId].push(widgetInner)
         }
 
-
         // store path vs widget id for faster cross-app sync
-        WIDGETS_ID_BY_PATH[widgetData.path] = widgetData.id
+        if (WIDGETS_ID_BY_PATH[widgetData.path]==undefined) WIDGETS_ID_BY_PATH[widgetData.path] = []
+        WIDGETS_ID_BY_PATH[widgetData.path].push(widgetData.id)
 
         parent.append(widgetContainer)
     }

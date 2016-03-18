@@ -8,16 +8,20 @@ module.exports = {
     receiveOsc: function(event,data){
         var data = data || event
 
-        // fetch id
+        // fetch ids corresponding to the osc path
         var path = data.path
-        var id = WIDGETS_ID_BY_PATH[path]
-
-        // update
-        if (WIDGETS[id]!=undefined) {
-            for (i in WIDGETS[id]){
-                 WIDGETS[id][i].setValue(data.args,false,true)
+        var ids = WIDGETS_ID_BY_PATH[path]
+        
+        for (i in ids) {
+            var id = ids[i]
+            // update
+            if (WIDGETS[id]) {
+                for (j in WIDGETS[id]){
+                     WIDGETS[id][j].setValue(data.args,false,true)
+                }
             }
         }
+
 
     },
 
