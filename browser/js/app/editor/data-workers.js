@@ -69,7 +69,10 @@ var updateDom = function(container,data) {
 
         if (data.widgets && data.widgets.length) parsewidgets(data.widgets,container)
         if (data.tabs && data.tabs.length) {
-            parsetabs(data.tabs,container)
+            parsetabs(data.tabs,container,false,data.label)
+            container.addClass('has-tabs')
+        } else {
+            container.removeClass('has-tabs')
         }
 
         $(`[data-tab="#${container.attr('id')}"]`).html(`<a><span>${data.label}</span></a>`)

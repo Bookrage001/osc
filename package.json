@@ -1,42 +1,46 @@
 {
-    "name": "open-stage-control",
-    "productName": "Open Stage Control",
-    "description": "A libre desktop OSC bi-directionnal control surface application.",
-    "version": "0.3.1",
-    "main": "index.js",
-    "author": {
-        "name": "Jean-Emmanuel Doucet / AMMD",
-        "email": "jeannot@ammd.net"
-    },
-    "dependencies": {
-        "node-osc": "1.2",
-        "yargs":"4.2.0",
-        "socket.io":"1.4.5",
-        "socket.io-client":"1.4.5",
-        "socketio-wildcard":"0.1.1",
-        "browserify":"13.0.0",
-        "express":"4.13.3"
-    },
-    "devDependencies": {
-        "electron-prebuilt": "0.37.2",
-        "electron-packager": "5.2.1",
-        "electron-installer-debian":"*"
-    },
-    "scripts": {
-        "start": "electron .",
-        "build": "electron-packager . open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/images/logo --overwrite --ignore \"(dist|node_modules/electron.*)\"",
-        "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/ --icon resources/images/logo.png",
-        "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/ --icon resources/images/logo.png",
-        "test": "npm run build"
-    },
-    "keywords": [
-        "osc",
-        "interface",
-        "multi-touch"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jean-emmanuel/Open-Stage-Control"
-    },
-    "licence": "GPL-3.0"
+  "name": "open-stage-control",
+  "productName": "Open Stage Control",
+  "description": "A libre desktop OSC bi-directionnal control surface application.",
+  "version": "0.3.1",
+  "main": "index.js",
+  "author": {
+    "name": "Jean-Emmanuel Doucet / AMMD",
+    "email": "jeannot@ammd.net"
+  },
+  "dependencies": {
+    "node-osc": "1.2",
+    "yargs": "4.2.0",
+    "socket.io": "1.4.5",
+    "socket.io-client": "1.4.5",
+    "socketio-wildcard": "0.1.1",
+    "browserify": "13.0.0",
+    "express": "4.13.3"
+  },
+  "devDependencies": {
+    "electron-installer-debian": "*",
+    "electron-packager": "5.2.1",
+    "electron-prebuilt": "0.37.2",
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.9.1"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/images/logo --overwrite --ignore \"(dist|node_modules/electron.*)\"",
+    "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/ --icon resources/images/logo.png",
+    "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/ --icon resources/images/logo.png",
+    "test": "npm run build",
+    "build-css": "node-sass --include-path browser/scss browser/scss/style.scss   browser/css/style.css",
+    "watch-css": "nodemon --watch browser/scss -e scss -x \"npm run build-css\""
+  },
+  "keywords": [
+    "osc",
+    "interface",
+    "multi-touch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jean-emmanuel/Open-Stage-Control"
+  },
+  "licence": "GPL-3.0"
 }

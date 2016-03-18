@@ -18,9 +18,9 @@ var tabs = function() {
 
         TABS[id].tab.appendTo(TABS[id].parent)
         $(previous).detach()
-        
 
-        $(id).find('li[data-tab]:first-child:not(.on)').each(function(){
+
+        $(id).find('li[data-tab]:first-child, li.parent + li[data-tab]').each(function(){
             if (!$(this).siblings('.on').length) $(this).click()
         })
 

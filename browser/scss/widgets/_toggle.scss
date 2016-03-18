@@ -1,0 +1,45 @@
+.toggle-container {
+    width:100rem;
+    min-height: 65rem;
+    flex-shrink: 0;
+    padding:0!important;
+    background: $color-raised;
+    
+    .label {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        height:auto;
+        background: none!important;
+        text-align: center;
+        pointer-events:none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    cursor: pointer;
+}
+
+.toggle {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    .light {
+        position: absolute;
+        left:4rem;
+        right:4rem;
+        top:4rem;
+        height:4rem;
+        background: $color-track;
+        pointer-events: none;
+    }
+    &.on .light {
+        background: $color-accent;
+    }
+}

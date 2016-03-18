@@ -1,0 +1,45 @@
+
+
+.push-container {
+    width:100rem;
+    min-height: 65rem;
+    flex-shrink: 0;
+    padding:0!important;
+
+    background: $color-raised;
+
+    .label {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        height:auto;
+        background: none!important;
+        text-align: center;
+        pointer-events:none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+    }
+
+    cursor: pointer;
+    .label {
+    }
+}
+.push {
+    &.on {
+        animation:none;
+        background: $color-accent;
+    }
+    // .light {
+    //     top:6rem;
+    //     left:6rem;
+    //     right:6rem;
+    //     bottom:6rem;
+    //     border-radius:0;
+    //     height:auto;
+    //     opacity:.5;
+    // }
+}

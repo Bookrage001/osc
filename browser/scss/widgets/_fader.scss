@@ -1,0 +1,202 @@
+.fader-container {
+    width:100rem;
+    min-height: 200rem;
+    height:100%;
+    &.nolabel .fader-wrapper-outer {
+        top:0;
+    }
+
+    .fader-wrapper-outer {
+        padding-bottom:30rem;
+        position: absolute;
+        top:30rem;
+        bottom:0;
+        left:0;
+        right:0;
+        .input {
+            position:absolute;
+            bottom:0;
+        }
+    }
+
+    .fader-wrapper {
+        padding:20rem 20rem 10rem;
+        overflow:hidden;
+        height:100%;
+        position: relative;
+        cursor: -webkit-grab;
+        &:active {
+            cursor: -webkit-grabbing;
+        }
+        .fader {
+            height:100%;
+            width:4rem;
+            position: relative;
+            margin:0 auto;
+            pointer-events: none;
+            &:before {
+                content:"";
+                width:100%;
+                height:100%;
+                background:$color-track;
+                z-index: 1;
+                position: relative;
+                display:block;
+                box-shadow: 0 0 0 15rem $color-fg;
+            }
+            &.nogauge {
+                .handle {
+                    background:none;
+                }
+            }
+            .handle {
+                position: absolute;
+                bottom:0!important;
+                top:auto!important;
+                width:100%;
+                height:100%;
+                transform-origin: bottom;
+                max-height:100%;
+                max-width:100%;
+                background:$color-accent;
+                z-index: 1;
+                transform-style: preserve-3d;
+                backface-visibility: hidden;
+                span {
+                    position: absolute;
+                    bottom:0;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    transform-origin: top;
+                    backface-visibility: hidden;
+                }
+                span:before {
+                    content:"";
+                    position: absolute;
+                    top:-4rem;
+                    left:-2rem;
+                    height:8rem;
+                    width:8rem;
+                    background:$color-accent;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2rem 0  mix($color-text,$color-fg,2);
+                }
+                span:after {
+                    content:"";
+                    position: absolute;
+                    top:-10rem;
+                    left:-8rem;
+                    height:20rem;
+                    width:20rem;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
+                }
+            }
+        }
+
+        .pips {
+            position: absolute;
+            top:0;
+            bottom:0;
+            left:50%;
+            z-index: 0;
+            .pip {
+                height:1%;
+                width:38rem;
+                margin-left:-19rem;
+                background: linear-gradient($color-text,transparent 1px);
+
+                &.val {
+                    position: relative;
+                    width:44rem;
+                    margin-left:-22rem;
+                    span {
+                        position: absolute;
+                        width:30rem;
+                        display: block;
+                        text-align: center;
+                        font-size:11rem;
+                        line-height: 12rem;
+                        left:44rem;
+                        top:-5.5rem;
+                        color:$color-text-fade;
+                        &:last-child {
+                            left:auto;
+                            right:44rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.fader-container.horizontal {
+    min-height: 80rem;
+    height: auto;
+    width:300rem;
+    flex-shrink: 0;
+    .fader-wrapper-outer {
+        position: relative;
+        top:auto;
+        padding-bottom: 30rem;
+        height: 100%;
+        .fader-wrapper {
+            padding:20rem 20rem 35rem;
+        }
+        .fader {
+            width:100%;
+            left:auto;
+            top:50%;
+            height:4rem;
+            .handle {
+                height:100%important;
+                width:100%;
+                transform-origin: left;
+                span {
+                    transform-origin: right;
+                }
+                span:before {
+                    top:-2rem;
+                    right:-4rem;
+                    left:auto;
+                }
+                span:after {
+                    top:-8rem;
+                    right:-10rem;
+                    left:auto
+                }
+            }
+        }
+        .pips {
+            top:14rem;left:0;
+            right:0;
+            font-size: 0;
+        }
+        .pip {
+            width:1%;
+            display: inline-block;
+            height:4rem;
+            margin-bottom:5rem;
+            margin-left:0;
+            background: linear-gradient(90deg,$color-text,transparent 1px );
+            &.val {
+                width:1%;
+                height:10rem;
+                margin-left:0;
+
+                span {
+                    top:15rem;
+                    left:-15rem;
+                    &:last-child {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+
+
+/* Multiple widgets (push|toggle|fader) matrix */
+.multitoggle-container, .multipush-container, .multifader-container {
+    height:200rem;
+    width:200rem;
+    &.nolabel .matrix {
+        top:0;
+    }
+}
+.matrix {
+
+    overflow: auto;
+    position: absolute;
+    top:35rem;
+    left:0;
+    right:0;
+    bottom:0;
+    background: $color-bg;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    > .widget {
+        min-height: 0;
+        min-width: 0;
+        margin:0!important;
+
+    }
+}
+
+.multifader-container {
+    .matrix {
+        padding:0!important
+    }
+    .widget {
+        border: 0!important;
+        // box-shadow: none!important;
+        .label {
+            background:none;
+            border:0;
+        }
+    }
+    .fader-wrapper {
+        padding:10rem 0!important;
+        .fader {
+            left:0!important;
+            .pips {
+                display:none;
+            }
+        }
+    }
+}

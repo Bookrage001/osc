@@ -97,7 +97,7 @@ var sidepanel = function(data){
 			inner = $('<div></div>').appendTo(item)
 			wrapper = $('<div class="actions"></div>').appendTo(inner)
 
-		if (itemData.title) $('<div class="title">'+itemData.title+'</div>').prependTo(inner)
+		if (itemData.title) $('<div class="title">'+itemData.title+'</div>').prependTo(wrapper)
 		if (itemData.class) inner.attr('class',itemData.class)
 
 		for (j in itemData.actions) {
@@ -117,7 +117,7 @@ var sidepanel = function(data){
 }(data)
 
 var toggle = function(){
-	$(`<a id="open-toggle">${icon('navicon')}</a>`).appendTo('#container').click(function(e){
+	$(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
 		$('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
 	}).on('mousedown touchstart',function(e){e.stopPropagation()})
 

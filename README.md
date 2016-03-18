@@ -34,7 +34,6 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 Options:
   -h, --help     display help
   -s, --sync     synchronized hosts (ip:port pairs) (all osc messages will also be sent to these)
-  -c, --compile  recompile stylesheets (increases startup time), if 'light' is specified, the light theme will be compiled, otherwise, the default dark theme will be compiled.
   -l, --load     session file to load
   -p, --port     osc input port (for synchronization)
   -n, --nogui    disable default gui and makes the app availabe through http on specified port

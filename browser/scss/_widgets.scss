@@ -1,0 +1,112 @@
+
+.widget {
+    display:inline-block;
+    height:auto;
+    overflow: hidden;
+    position:relative;
+    padding:35rem  0 0;
+    vertical-align:top;
+    box-shadow: 0 0 0 1rem $color-bg;
+    background:$color-fg;
+    background-clip:padding-box;
+    -webkit-tap-highlight-color:transparent;
+    min-height:30rem;
+    min-width:30rem;
+
+    &:not(:last-child):not(.absolute-position) {
+        margin-right:1rem//$gutter;
+    }
+
+
+    &.absolute-position {
+        position: absolute;
+        z-index: 10;
+        border:0;
+    }
+
+     &.nolabel {
+         padding-top:0;
+         > .label {
+             display:none;
+         }
+     }
+
+    .label {
+        padding:10rem 10rem;
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        text-align:center;
+        height:35rem;
+        background: $color-faded;
+        border-bottom:1rem solid $color-bg;
+        &.accent {
+            color:$color-accent;
+        }
+    }
+    .input {
+        width:100%;
+        height:30rem;
+        border:0;
+        background:transparent;
+        color:$color-text-fade;
+        display:block;
+        padding:7rem 5rem;
+        position: relative;
+
+        input {
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            padding:7rem 5rem;
+            width: 100%;
+            font: inherit;
+            text-align:center;
+            border:0;
+            background: transparent;
+            color:$color-accent;
+        }
+        canvas {
+            width:100%;
+            height:100%;
+            opacity: 0;
+            transition: opacity .2s;
+            &.visible {
+                opacity:.8;
+            }
+        }
+        input + canvas {
+            visibility: hidden;
+        }
+
+        &:focus {
+            color:$color-accent;
+
+        }
+        &[disabled] {
+            color:$color-text-fade;
+        }
+    }
+}
+
+
+@import 'widgets/fader';
+@import 'widgets/knob';
+
+@import 'widgets/matrices';
+@import 'widgets/pads';
+
+@import 'widgets/plots';
+
+
+@import 'widgets/toggle';
+@import 'widgets/push';
+@import 'widgets/switch';
+
+@import 'widgets/strip';
+@import 'widgets/panel';

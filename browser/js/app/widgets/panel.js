@@ -32,6 +32,7 @@ module.exports.create = function(widgetData,container) {
 
     if (widgetData.tabs.length) {
         parsetabs(widgetData.tabs,widget)
+		widget.addClass('has-tabs')
     } else {
         parsewidgets(widgetData.widgets,widget)
     }

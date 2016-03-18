@@ -1,0 +1,199 @@
+
+
+.knob-container {
+    width: 100rem;
+    display: inline-flex!important;
+    align-items: center;
+    min-height: 135rem;
+    flex-shrink: 0;
+    &.nolabel .knob-wrapper-outer{
+        top:0;
+        padding-bottom:30rem;
+    }
+    .knob-wrapper-outer {
+        width: 100%;
+        top: 30rem;
+        bottom: 0;
+        padding:10rem 0 50rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        .input {
+            bottom:0;
+            position: absolute;
+            left:0;
+        }
+
+
+        .knob-wrapper {
+            margin:0 auto;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            cursor: -webkit-grab;
+            &:active {
+                cursor: -webkit-grabbing;
+            }
+
+            .knob-mask {
+                width:58%;
+                padding-bottom:58%;
+                flex-shrink: 0;
+                border-radius:100%;
+                pointer-events: none;
+                position: relative;
+                &:before {
+                    position:absolute;
+                    top:0;left:0;
+                    right:0;
+                    bottom:0;
+                    border-radius:100%;
+                    border:4rem solid $color-track;
+                    box-shadow: 0 0 0 1rem  mix($color-text,$color-fg,2),0 0 0 1rem  mix($color-text,$color-fg,2) inset,0 0 1rem  1rem  mix($color-text,$color-fg,2),0 0 1rem 1rem  mix($color-text,$color-fg,2) inset;
+                    transform: rotate(45deg);
+                    z-index:4;
+                }
+                &.pan-left {
+                    &:before {
+                        content:"";
+                        border-left-color: transparent;
+                        border-bottom-color: transparent;
+                    }
+                    .knob:after {
+                        border-color: $color-track;
+                        border-left-color: $color-accent;
+                        border-top-color: $color-accent;
+                    }
+                }
+                &.pan-right {
+                    &:before {
+                        content:"";
+                        border-right-color: transparent;
+                        border-top-color: transparent;
+                    }
+                    .knob:after {
+                        border-color: $color-track;
+                        border-right-color: $color-accent;
+                        border-bottom-color: $color-accent;
+                    }
+                }
+
+                &:after {
+                    content:"";
+                    position:absolute;
+                    top:0rem;left:-3rem;
+                    right:-3rem;
+                    bottom:-2rem;
+                    border-radius:100%;
+                    border:12rem solid transparent;
+                    border-bottom-color: $color-fg;
+                    z-index:4;
+                }
+            }
+            .round {
+                content:"";
+                position:absolute;
+                top:15rem;
+                left:15rem;
+                right:15rem;
+                bottom:15rem;
+                border-radius:100%;
+                background:$color-raised;
+            }
+            .knob {
+                position:absolute;
+                top:0;left:0;
+                right:0;
+                bottom:0;
+                pointer-events: none;
+                transform:rotateZ(0deg);
+                backface-visibility: hidden;
+                z-index: 2;
+
+
+                &:after {
+                    content:"";
+                    position:absolute;
+                    top:0;left:0;
+                    right:0;
+                    bottom:0;
+                    border-radius:100%;
+                    border:4rem solid $color-track;
+                    border-bottom-color: $color-accent;
+                }
+
+                &.d2:after {
+                    border-right-color: $color-accent;
+                }
+                &.d3:after {
+                    border-top-color: $color-accent;
+                    border-right-color: $color-accent;
+                }
+
+
+
+            }
+            .handle {
+                position:absolute;
+                top:0;left:0;
+                right:0;
+                bottom:0;
+                pointer-events: none;
+                transform:rotateZ(-45deg);
+                backface-visibility: hidden;
+                z-index: 5;
+                &:before {
+                    content:"";
+                    position: absolute;
+                    top:50%;
+                    left:-2rem;
+                    margin-top:-4rem;
+                    height:8rem;
+                    width:8rem;
+                    background:$color-accent;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2rem 0  mix($color-text,$color-fg,2);
+                }
+                &:after {
+                    content:"";
+                    position: absolute;
+                    top:50%;
+                    margin-top:-10rem;
+                    left:-8rem;
+                    height:20rem;
+                    width:20rem;
+                    border:none!important;
+                    border-radius: 100%!important;
+                    box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
+                }
+            }
+            .pip {
+                position:absolute;
+                font-size:11rem;
+                color:$color-text;
+                pointer-events: none;
+                top:50%;
+                margin-top:30%;
+                &.min {
+                    left:0;
+                    right:50%;
+                    width:50%;
+                    text-align:center;
+                }
+                &.max {
+                    left:50%;
+                    width:50%;
+                    right:0;
+                    text-align:center;
+                }
+            }
+        }
+    }
+}

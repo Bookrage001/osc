@@ -29,10 +29,8 @@ module.exports = function(settings,app,ipc,browserWindow) {
                         label: 'Restart',
                         accelerator: 'CmdOrCtrl+R',
                         click: function(){
-                            var exec = require('child_process').exec
-                            exec(process.argv.join(' '))
-                            app.quit()
-                        }// function() { window.reload(); }//restartApp
+                            window.reload()
+                        }
                     },
                     {
                         label: 'Toggle DevTools',

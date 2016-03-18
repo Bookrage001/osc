@@ -1,0 +1,57 @@
+
+
+
+.panel-container {
+    z-index: 2;
+    min-width: 200rem;
+    min-height: 200rem;
+
+    ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
+        border-top: 1rem solid $color-bg;
+    }
+
+    &.nolabel .panel {
+        top:1rem;
+    }
+
+    .panel {
+        overflow: auto;
+        position: absolute;
+        top:35rem;
+        left:1rem;
+        right:1rem;
+        bottom:1rem;
+        background: $color-bg;
+        z-index: 1;
+
+        &.has-tabs {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &.stretch {
+            display:flex;
+            justify-content: space-between;
+            > .widget {
+                width:100%;
+            }
+        }
+        > .navigation:before {
+            display:none;
+        }
+    }
+    .navigation {
+        border-top: 0;
+        background: transparent;
+        &:after {
+            background: $color-bg;
+        }
+        a.on {
+            border-color: $color-bg;
+        }
+    }
+
+    .content {
+        background: transparent;
+    }
+}

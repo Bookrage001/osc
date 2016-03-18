@@ -1,0 +1,29 @@
+
+::-webkit-scrollbar {
+    width: 20rem;
+    height:20rem;
+    opacity:1;
+
+}
+
+::-webkit-scrollbar-track-piece {
+    background: $color-bg;
+    &:vertical {
+        border-left:$gutter solid $color-bg;
+    }
+    &:horizontal {
+        border-top:$gutter solid $color-bg;
+    }
+}
+::-webkit-scrollbar-corner  {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background:$color-raised;
+    &:vertical {
+        border-left:$gutter solid $color-bg;
+    }
+    &:horizontal {
+        border-top:$gutter solid $color-bg;
+    }
+}

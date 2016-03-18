@@ -8,7 +8,6 @@ var argv = require('yargs')
       .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
       .options({
           's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
-          'c':{alias:'compile',type:'string',describe:'recompile stylesheets (increases startup time)'},
           'l':{alias:'load',type:'string',describe:'session file to load'},
           'p':{alias:'port',describe:'osc input port (for synchronization)'},
           'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},

@@ -13,7 +13,7 @@ var hashCode = function(s){
   return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
 }
 
-module.exports.tabs = function(data,parent,main){
+module.exports.tabs = function(data,parent,main,parentLabel){
 
     if (main) {
         // Reset Globals
@@ -34,6 +34,7 @@ module.exports.tabs = function(data,parent,main){
         content = $(document.createElement('div')).addClass('content')
 
 
+    if (parentLabel) navtabs.append(`<li class="parent"><a><span>${parentLabel}</span></a></li>`)
 
     for (i in data) {
         var tabData = data[i]
@@ -48,12 +49,12 @@ module.exports.tabs = function(data,parent,main){
 
         navtabs.append(`<li data-tab="#${id}"><a><span>${label}</span></a></li>`)
 
-        var tabContent = $(`<div class="tab" id="${id}" data-index="${i}"></div>`)
+        var tabContent = $(`<div class="tab ${tabData.tabs&&tabData.tabs.length?'has-tabs':''}" id="${id}" data-index="${i}"></div>`)
         tabContent.data(tabData)
 
 
         if (tabData.tabs && tabData.tabs.length) {
-            module.exports.tabs(tabData.tabs,tabContent)
+            module.exports.tabs(tabData.tabs,tabContent,false,label)
         } else if (tabData.widgets && tabData.widgets.length) {
             module.exports.widgets(tabData.widgets,tabContent)
         }
@@ -77,7 +78,7 @@ module.exports.widgets = function(data,parent) {
 
     for (i in data) {
         var widgetData = data[i]
-        
+
         widgetData.type =  widgetData.type || 'fader'
 
         var tmpWidgetOptions = JSON.parse(JSON.stringify(widgetOptions))

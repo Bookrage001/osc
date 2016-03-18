@@ -49,7 +49,7 @@ module.exports.create = function(widgetData,container) {
         wrapper = widget.find('.fader-wrapper'),
         fader = widget.find('.fader'),
         pips = widget.find('.pips'),
-        input = widget.find('.input').fakeInput(),
+        input = widget.find('.input').fakeInput({align:'center'}),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = widgetData.horizontal?'width':'height',
         axe = dimension=='height'?'X':'Y',
@@ -79,7 +79,7 @@ module.exports.create = function(widgetData,container) {
 
         var piptext = range[i]!=undefined?`<span>${Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]}</span>`:''
         pipsInner += `
-            <div class="pip ${range[i]!=undefined?'val':''}">${piptext}</div>
+            <div class="pip ${range[i]!=undefined?'val':''}">${piptext}${piptext}</div>
         `
     }
     pips[0].innerHTML = pipsInner

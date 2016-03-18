@@ -1,0 +1,119 @@
+
+#sidepanel {
+    position:absolute;
+    z-index: 999999;
+    width:$sidepanel-size;
+    border: $gutter*2 solid $color-fg;
+    top:0;
+    right:0;
+    bottom:0;
+    margin-right:-$sidepanel-size;
+    background:$color-fg;
+    transition:right .2s;
+    overflow-y: auto;
+    overflow-x: visible;
+
+    &.sidepanel-open {
+        right:$sidepanel-size;
+    }
+
+    #options {
+        position:absolute;
+        left:0;top:0;
+        right:0;bottom:0;
+        list-style:none;
+
+        li {
+            display:block;
+            margin-bottom:$gutter*2;
+            position: relative;
+
+            &:last-child {
+                margin: 0;
+            }
+            .btn + span {
+                position: absolute;
+                right:0rem;
+                top:0rem;
+                padding:8rem;
+                color:$color-text-fade;
+                &:hover {
+                    color:$color-text;
+                }
+            }
+
+            ul {
+                padding: $gutter;
+                li {
+                    margin-bottom: $gutter;
+                }
+            }
+
+        }
+
+        .editor .form {
+            margin-top: 10rem;
+        }
+        .help {
+            margin-top:10rem;
+            font-size: .75em;
+            text-align: center;
+            font-style: italic;
+        }
+    }
+    &::-webkit-scrollbar-track-piece {
+        background: $color-bg;
+        &:vertical {
+            border-left:$gutter*2 solid $color-fg;
+        }
+    }
+    &::-webkit-scrollbar-thumb {
+        background:$color-raised;
+        &:vertical {
+            border-left:$gutter*2 solid $color-fg;
+        }
+    }
+}
+.actions {
+    padding:1rem;
+    background:$color-bg;
+    display: flex;
+    align-items: stretch;
+    flex-wrap:wrap;
+    .title {
+        background: $color-faded;
+        min-width: 100%;
+        flex-grow: 2;
+        padding: 10rem;
+        box-shadow: 0 0 0 1rem $color-bg;
+
+    }
+    a {
+        min-width:33%;
+        flex-grow:4;
+        padding:10rem;
+        display: block;
+        text-align: center;
+        box-shadow: 0 0 0 1rem $color-bg;
+        position: relative;
+        &.on {
+            pointer-events: none;
+            &:after {
+                opacity:1;
+                transform: scale(1);
+            }
+        }
+        &:after {
+            content:"";
+            background:$color-accent;
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            height:2rem;
+            opacity: 0;
+            transition: all .2s;
+            transform: scale(0);
+        }
+    }
+}

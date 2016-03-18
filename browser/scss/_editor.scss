@@ -1,0 +1,256 @@
+
+.form {
+    .input-wrapper {
+        display: flex;
+        margin-bottom:$gutter;
+        background:$color-bg;
+        align-items: center;
+        &:last-child {
+            margin-bottom:0;
+        }
+        label {
+            background: $color-fg;
+            flex-shrink: 0;
+            padding: 5rem;
+            border:1rem solid $color-bg;
+        }
+        .input, input {
+            background: $color-bg;
+            width:100%;
+            padding:5rem;
+        }
+        &.column {
+            flex-direction: column;
+            label {
+                width:100%;
+                padding:7rem;
+                margin-bottom: 0;
+            }
+        }
+    }
+    label {
+        display: block;
+        font-size: 10rem;
+        background: $color-faded;
+    }
+    .info {
+        color:$color-text-fade;
+        margin-bottom:10rem;
+    }
+    input, .input {
+        display:block;
+        border:0;
+        font:inherit;
+        color:$color-text;
+        width:100%;
+        &:focus {
+            border-color:$color-accent;
+        }
+        .btn {
+            background:$color-raised-top;
+            box-shadow: 0 0 0 1rem $color-bg;
+        }
+    }
+    .checkbox {
+        background:$color-raised;
+        cursor: pointer;
+    }
+    .select-wrapper {
+        position: relative;
+        width:100%;
+        &:after{
+            content:"\f107";
+            font-family: FontAwesome;
+            position: absolute;
+            padding:5rem;
+            right:0;
+            top:0;
+            font-size: 20rem;
+        }
+    }
+    select {
+        -webkit-appearance:none;
+    }
+    .submit {
+        margin-top:30rem;
+    }
+    .separator {
+        line-height: 30rem;
+        height: 30rem;
+        margin-bottom: 5rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        &:before, &:after {
+            content:"";
+            top:14rem;
+            width: 100%;
+            height: 1rem;
+            background: $color-text-fade;
+        }
+        span {
+            font-variant: small-caps;
+            position: relative;
+            display: block;
+            width:100%;
+            text-align:center;
+        }
+    }
+}
+
+
+
+.widget.editing {
+    z-index: 11!important;
+}
+.widget.editing:after, li.editing a:before, a.editing:before, .content.editing:before, #container.editing:before{
+    content:"";
+    z-index: 999;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    border:1px dashed $color-accent;
+    pointer-events: none;
+}
+
+.context-menu {
+    position:fixed;
+    z-index: 999999999;
+    background: $color-raised-top;
+    box-shadow: 0 0 4rem 0 $color-border;
+    .context-menu {
+        position: absolute;
+        left:100%;
+        top:0;
+        opacity:0;
+        pointer-events: none;
+        margin-left: 2rem;
+        &:before {
+            content:"";
+            position: absolute;
+            top:0;
+            bottom:0;
+            left:-2rem;
+            width:2rem;
+        }
+    }
+    > .item {
+        padding: 10rem 15rem 10rem 10rem;
+        position:relative;
+        cursor: pointer;
+        i {
+            margin-right:5rem;
+            width: 15rem;
+            text-align: center;
+        }
+        &:hover, &:focus {
+            > .context-menu {
+                pointer-events: auto;
+                opacity: 1;
+            }
+            background:$color-accent;
+        }
+        &.has-sub:before {
+            content:"\f105";
+            display: block;
+            font-family: FontAwesome;
+            float:right;
+            margin-right:-10rem;
+            padding-left: 10rem;
+        }
+    }
+}
+
+.ui-resizable-handle {
+    position: absolute;
+    z-index: 1000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $color-accent;
+    width:20rem;
+    height:20rem;
+    border-radius:100%;
+    box-shadow: 0 0 4rem 0 $color-bg;
+
+    &:after {
+        content:"";
+        position: absolute;
+        top:-5rem;
+        right:-5rem;
+        left:-5rem;
+        bottom:-5rem;
+    }
+    &.ui-resizable-se {
+        content:"";
+        bottom: 5rem;
+        right: 5rem;
+        cursor: se-resize;
+        &:before {
+            content:"\f065";
+            font-family: FontAwesome;
+            transform:rotate(90deg)
+        }
+    }
+    &.ui-resizable-e {
+        top: 50%;
+        margin-top:-10rem;
+        right: 5rem;
+        cursor: e-resize;
+        &:before {
+            content:"\f051";
+            font-family: FontAwesome;
+        }
+    }
+    &.ui-resizable-s {
+        bottom: 5rem;
+        left: 50%;
+        margin-left:-10rem;
+        cursor: s-resize;
+        &:before {
+            content:"\f051";
+            font-family: FontAwesome;
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.ui-helper {
+    border: 1rem dashed $color-accent;
+    background: rgba($color-accent,.25);
+    min-width:30rem!important;
+    min-height:30rem!important;
+    z-index: 12!important;
+    opacity: 1!important;
+}
+:not(.absolute-position) .ui-helper:not(.ui-draggable-dragging) {
+    margin-top:-$gutter*2;
+    margin-left:-$gutter*2;
+}
+.ui-draggable-handle {
+    position: absolute;
+    top: 5rem;
+    left: 5rem;
+    z-index: 100000;
+    cursor: -webkit-grab;
+    height:20rem;
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:100%;
+    background: $color-accent;
+    box-shadow: 0 0 4rem 0 $color-bg;
+
+    &:active {
+        cursor:-webkit-grabbing
+    }
+    &:before {
+        content:"\f0b2";
+        font-family: FontAwesome;
+        transform: rotate(45deg);
+    }
+
+}

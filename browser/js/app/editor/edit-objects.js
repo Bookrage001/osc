@@ -8,6 +8,9 @@ var editObject = function(container, data, refresh){
     var isWidget = container.hasClass('widget')
 
     $('.editing').removeClass('editing')
+    $('.widget.ui-resizable').resizable('destroy')
+    $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+
 
     if (isWidget) {
         $(container).addClass('editing')
@@ -39,7 +42,8 @@ var editObject = function(container, data, refresh){
 
             var type = typeof data[i],
                 value = type == 'object'?JSON.stringify(data[i]):data[i],
-                label = $(`<label>${i}</label>`).appendTo(form),
+                wrapper = $('<div class="input-wrapper"></div>').appendTo(form),
+                label = $(`<label>${i}</label>`).appendTo(wrapper),
                 input
 
             if (i=='type') {
@@ -50,7 +54,7 @@ var editObject = function(container, data, refresh){
                     input.append(`<option ${t==value?'selected=':''} value="${t}">${t}</option>`)
                 }
                 select = $('<div class="select-wrapper"></div>').append(input)
-                select.appendTo(form)
+                select.appendTo(wrapper)
 
             } else if (typeof params[i]=='boolean') {
 
@@ -58,12 +62,12 @@ var editObject = function(container, data, refresh){
                 input.click(function(){
                     $(this).val(!eval($(this).val())).trigger('change')
                 })
-                input.appendTo(form)
+                input.appendTo(wrapper)
 
             } else {
 
                 input = $(`<input data-type="${type}" value='${value}' title="${i}"/>`)
-                input.appendTo(form)
+                input.appendTo(wrapper)
 
             }
 
@@ -89,7 +93,8 @@ var editObject = function(container, data, refresh){
     // widget list edit
     if (((isWidget&&widgetOptions[data.type].widgets) || (container.hasClass('tab'))) && (!data.tabs||!data.tabs.length)) {
 
-        var list = $('<ul class="input"></ul>')
+        var list = $('<ul class="input"></ul>'),
+            wrapper = $('<div class="input-wrapper column"></div>').appendTo(form)
 
         var editItem = function(i) {
             return function(){
@@ -134,15 +139,17 @@ var editObject = function(container, data, refresh){
             updateDom(container,data)
         })
 
-        $('<label>widgets</label>').appendTo(form)
-        list.appendTo(form)
+        $('<label>widgets</label>').appendTo(wrapper)
+        list.appendTo(wrapper)
 
     }
 
     // tab list edit
     if (((isWidget&&widgetOptions[data.type].tabs) || (container.hasClass('tab'))) && (!data.widgets||!data.widgets.length)) {
         //tabs
-        var list = $('<ul class="input"></ul>')
+        var list = $('<ul class="input"></ul>'),
+            wrapper = $('<div class="input-wrapper column"></div>').appendTo(form)
+
 
         var editItem = function(i) {
             return function(){
@@ -184,12 +191,11 @@ var editObject = function(container, data, refresh){
 
             updateDom(container,data)
         })
-        $('<label>tabs</label>').appendTo(form)
-        list.appendTo(form)
+
+        $('<label>tabs</label>').appendTo(wrapper)
+        list.appendTo(wrapper)
     }
 
-
-    $('.widget.ui-resizable').resizable('destroy')
     if (data.hasOwnProperty('width')) {
         var handleTarget
         container.resizable({
@@ -208,7 +214,6 @@ var editObject = function(container, data, refresh){
         })
     }
 
-    $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
     if (data.hasOwnProperty('top')) {
         container.draggable({
                 stop: function( event, ui ) {
@@ -243,7 +248,9 @@ var editSession = function(container,data,refresh){
 
 
     var form = $('<div class="form"></div>').appendTo('.editor-container'),
-        list = $('<ul class="input"></ul>')
+        list = $('<ul class="input"></ul>'),
+        wrapper = $('<div class="input-wrapper column"></div>').appendTo(form)
+
 
     var editItem = function(i) {
         return function(){
@@ -287,8 +294,8 @@ var editSession = function(container,data,refresh){
         updateDom(container,data)
     })
 
-    $('<label>tabs</label>').appendTo(form)
-    list.appendTo(form)
+    $('<label>tabs</label>').appendTo(wrapper)
+    list.appendTo(wrapper)
 
 
     $('.editor-container').append(form)
