@@ -1264,8 +1264,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    border-right: 0;
-    margin-bottom: 4rem; }
+    border-right: 0; }
     .strip-container.horizontal .strip {
       flex-direction: row; }
       .strip-container.horizontal .strip > .widget {
