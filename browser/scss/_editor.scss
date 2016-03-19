@@ -102,6 +102,7 @@
 
 .widget.editing {
     z-index: 11!important;
+    overflow: visible;
 }
 .widget.editing:after, li.editing a:before, a.editing:before, .content.editing:before, #container.editing:before{
     content:"";
@@ -113,6 +114,10 @@
     bottom:0;
     border:1rem dashed $color-accent;
     pointer-events: none;
+}
+.widget.editing:after {
+    right:-1rem;
+    bottom:-1rem;
 }
 
 .context-menu {
