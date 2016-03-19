@@ -6,22 +6,19 @@
     position:relative;
     padding:35rem  0 0;
     vertical-align:top;
-    box-shadow: 0 0 0 1rem $color-bg;
+    box-shadow: -0.5rem -0.5rem 0 0.5rem $color-bg;
+    border-right:1rem solid $color-bg;
+    border-bottom:1rem solid $color-bg;
     background:$color-fg;
     background-clip:padding-box;
     -webkit-tap-highlight-color:transparent;
     min-height:30rem;
     min-width:30rem;
 
-    &:not(:last-child):not(.absolute-position) {
-        margin-right:1rem//$gutter;
-    }
-
 
     &.absolute-position {
         position: absolute;
         z-index: 10;
-        border:0;
     }
 
      &.nolabel {

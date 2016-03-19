@@ -22,7 +22,8 @@
                 "logScale": false,
                 "precision": 2,
                 "path": "/fader_1",
-                "target": []
+                "target": [],
+                "meter": false
             },
             {
                 "type": "fader",
@@ -44,7 +45,8 @@
                 "logScale": false,
                 "precision": 2,
                 "path": "/fader_2",
-                "target": []
+                "target": [],
+                "meter": false
             },
             {
                 "type": "fader",
@@ -66,7 +68,8 @@
                 "logScale": false,
                 "precision": 2,
                 "path": "/fader_3",
-                "target": []
+                "target": [],
+                "meter": false
             },
             {
                 "type": "fader",
@@ -88,16 +91,17 @@
                 "logScale": false,
                 "precision": 2,
                 "path": "/fader_4",
-                "target": []
+                "target": [],
+                "meter": false
             },
             {
                 "type": "plot",
                 "id": "plot_1",
                 "label": "plot (faders)",
-                "left": 406,
-                "top": 129,
-                "width": "auto",
-                "height": 124,
+                "left": 400,
+                "top": 122,
+                "width": 200,
+                "height": 131,
                 "css": "",
                 "points": [
                     [
@@ -131,8 +135,8 @@
             },
             {
                 "type": "visualizer",
-                "left": 406,
-                "top": 7,
+                "left": 400,
+                "top": 0,
                 "width": "auto",
                 "height": 122,
                 "css": "",
@@ -152,8 +156,8 @@
                 "id": "rgb_1",
                 "linkId": "",
                 "label": "rgb_1",
-                "left": 6,
-                "top": 261,
+                "left": 0,
+                "top": 254,
                 "width": "auto",
                 "height": "auto",
                 "css": "",
@@ -165,10 +169,10 @@
             },
             {
                 "type": "plot",
-                "left": 213,
-                "top": 263,
-                "width": 191,
-                "height": 248,
+                "left": 200,
+                "top": 253,
+                "width": 400,
+                "height": 251,
                 "css": "",
                 "points": "rgb_1",
                 "rangeX": {
@@ -216,7 +220,7 @@
                 "label": "plot (multifader)",
                 "left": 0,
                 "top": 228,
-                "width": 553,
+                "width": 557,
                 "height": 220,
                 "points": "multifader_1",
                 "rangeX": {
@@ -236,10 +240,10 @@
                 "type": "multitoggle",
                 "id": "multitoggle_1",
                 "label": "mutlitoggle_1",
-                "left": 552,
+                "left": 557,
                 "top": 0,
                 "width": 209,
-                "height": 228,
+                "height": 229,
                 "css": "",
                 "precision": 2,
                 "path": "/multifader_2",
@@ -253,7 +257,7 @@
             },
             {
                 "type": "plot",
-                "left": 552,
+                "left": 557,
                 "top": 228,
                 "width": 209,
                 "height": 220,
