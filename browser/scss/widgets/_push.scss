@@ -25,13 +25,23 @@
     }
 
     cursor: pointer;
-    .label {
+
+    .push {
+        &.on {
+            animation:none;
+            background: $color-accent;
+        }
+        border-bottom:4rem solid $color-fg;
+        .light {
+            position: absolute;
+            left:auto;
+            background: transparent;
+            height:4rem;
+            width:4rem;
+            border-radius: 4rem;
+            &:after {
+                content: none;
+            }
+        }
     }
-}
-.push {
-    &.on {
-        animation:none;
-        background: $color-accent;
-    }
-    border-bottom:4rem solid $color-fg;
 }

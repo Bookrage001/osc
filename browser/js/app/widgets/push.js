@@ -12,6 +12,7 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
+    color:'auto',
     css:'',
 
     separator2:'osc',
@@ -27,11 +28,15 @@ module.exports.create = function(widgetData,container) {
 
     var widget = $(`
         <div class="push toggle">
+            <div class="light"</div>
         </div>\
         `),
-        $document = $(document)
+        $document = $(document),
+        light = widget.find('.light')[0]
 
     widget.value = widget.find('span')
+
+    if (widgetData.color!='auto')  light.setAttribute('style',`background:${widgetData.color}`)
 
     widget.on('drag',function(e){e.stopPropagation()})
     widget.on('draginit.push',function(){

@@ -37,10 +37,17 @@
         right:4rem;
         top:4rem;
         height:4rem;
-        background: $color-track;
         pointer-events: none;
-    }
-    &.on .light {
         background: $color-accent;
+        &:after {
+            content:"";
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: $color-track;
+        }
+    }
+    &.on .light:after {
+        display: none;
     }
 }
