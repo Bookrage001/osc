@@ -68,7 +68,7 @@
                     .knob:after {
                         border-color: $color-track;
                         border-left-color: $color-accent;
-                        border-top-color: $color-accent;
+                        border-top-color: var(--color-accent);
                     }
                 }
                 &.pan-right {
@@ -79,8 +79,8 @@
                     }
                     .knob:after {
                         border-color: $color-track;
-                        border-right-color: $color-accent;
-                        border-bottom-color: $color-accent;
+                        border-right-color: var(--color-accent);
+                        border-bottom-color: var(--color-accent);
                     }
                 }
 
@@ -125,15 +125,15 @@
                     bottom:0;
                     border-radius:100%;
                     border:4rem solid $color-track;
-                    border-bottom-color: $color-accent;
+                    border-bottom-color: var(--color-accent);
                 }
 
                 &.d2:after {
-                    border-right-color: $color-accent;
+                    border-right-color: var(--color-accent);
                 }
                 &.d3:after {
-                    border-top-color: $color-accent;
-                    border-right-color: $color-accent;
+                    border-top-color: var(--color-accent);
+                    border-right-color: var(--color-accent);
                 }
 
 
@@ -156,10 +156,9 @@
                     margin-top:-4rem;
                     height:8rem;
                     width:8rem;
-                    background:$color-accent;
+                    background:var(--color-accent);
                     border:none!important;
                     border-radius: 100%!important;
-                    box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2rem 0  mix($color-text,$color-fg,2);
                 }
                 &:after {
                     content:"";
@@ -171,7 +170,8 @@
                     width:20rem;
                     border:none!important;
                     border-radius: 100%!important;
-                    box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
+                    background:var(--color-accent);
+                    opacity: .2;
                 }
             }
             .pip {

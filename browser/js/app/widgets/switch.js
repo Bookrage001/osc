@@ -13,6 +13,7 @@ module.exports.options = {
     width:'auto',
     height:'auto',
     horizontal:false,
+    color:'auto',
     css:'',
 
     separator2:'osc',

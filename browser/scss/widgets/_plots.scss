@@ -19,7 +19,7 @@
             span {
                 height:100%;
                 display:block;
-                background-color:$color-accent;
+                background-color:var(--color-accent);
             }
         }
     }
@@ -73,7 +73,7 @@
 			transform-origin: bottom;
 			max-height:100%;
 			max-width:100%;
-			background:$color-accent;
+			background:var(--color-accent);
             &.horizontal {
                 transform-origin: left;
             }

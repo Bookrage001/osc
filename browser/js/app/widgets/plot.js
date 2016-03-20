@@ -12,6 +12,7 @@ module.exports.options = {
 	top:'auto',
 	width:'auto',
 	height:'auto',
+    color:'auto',
 	css:'',
 
 	separator2:'plot',
@@ -42,7 +43,6 @@ module.exports.create = function(widgetData,container) {
 	widget.width = undefined
     widget.linkedWidgets = []
 	widget.visible = false
-    widget.lineColor = String(getComputedStyle(document.documentElement).getPropertyValue("--color-accent")).trim()
     widget.textColor = String(getComputedStyle(document.documentElement).getPropertyValue("--color-text-fade")).trim()
     widget.pips = {
         x : {
@@ -82,7 +82,9 @@ module.exports.create = function(widgetData,container) {
 		if (!self.visible) {
 			widget.visible = true
 			canvas.addClass('visible')
+            widget.lineColor = String(getComputedStyle(widget[0]).getPropertyValue("--color-accent")).trim()
 		}
+
 
 		widget.height=height
 		widget.width=width

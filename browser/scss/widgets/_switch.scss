@@ -71,7 +71,7 @@
                 border-radius: 8rem;
             }
             &.on:before {
-                    background: $color-accent;
+                    background: var(--color-accent);
             }
 
         }

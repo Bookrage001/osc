@@ -36,8 +36,6 @@ module.exports.create = function(widgetData,container) {
 
     widget.value = widget.find('span')
 
-    if (widgetData.color!='auto')  light.setAttribute('style',`background:${widgetData.color}`)
-
     widget.on('drag',function(e){e.stopPropagation()})
     widget.on('draginit.push',function(){
         widget.off('draginit.push')

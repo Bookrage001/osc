@@ -148,6 +148,8 @@ module.exports.widgets = function(data,parent) {
         // create widget
         var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
 
+        if (widgetData.color && widgetData.color!='auto') widgetInner[0].style.setProperty('--color-accent',widgetData.color)
+
         widgetContainer.append(widgetInner)
 
         // store widget reference for cross widget sync

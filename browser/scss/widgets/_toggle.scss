@@ -38,7 +38,7 @@
         top:4rem;
         height:4rem;
         pointer-events: none;
-        background: $color-accent;
+        background: var(--color-accent);
         &:after {
             content:"";
             width: 100%;

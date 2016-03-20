@@ -2,6 +2,7 @@
     width:100rem;
     min-height: 200rem;
     height:100%;
+
     &.nolabel .fader-wrapper-outer {
         top:0;
     }
@@ -53,7 +54,7 @@
                 transform-origin: bottom;
                 max-height:100%;
                 max-width:100%;
-                background:$color-accent;
+                background:var(--color-accent);
                 z-index: 3;
                 transform-style: preserve-3d;
                 backface-visibility: hidden;
@@ -73,10 +74,9 @@
                     left:-2rem;
                     height:8rem;
                     width:8rem;
-                    background:$color-accent;
+                    background:var(--color-accent);
                     border:none!important;
                     border-radius: 100%!important;
-                    box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2rem 0  mix($color-text,$color-fg,2);
                 }
                 span:after {
                     content:"";
@@ -87,7 +87,8 @@
                     width:20rem;
                     border:none!important;
                     border-radius: 100%!important;
-                    box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
+                    background:var(--color-accent);
+                    opacity: .2;
                 }
             }
             .meter-container {

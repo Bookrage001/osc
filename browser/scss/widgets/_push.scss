@@ -28,20 +28,17 @@
 
     .push {
         &.on {
-            animation:none;
-            background: $color-accent;
+            background: $color-fg;
         }
         border-bottom:4rem solid $color-fg;
         .light {
             position: absolute;
             left:auto;
-            background: transparent;
+            background: var(--color-accent);
             height:4rem;
             width:4rem;
             border-radius: 4rem;
-            &:after {
-                content: none;
-            }
+            overflow: hidden;
         }
     }
 }

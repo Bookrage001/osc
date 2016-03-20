@@ -16,6 +16,7 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
+    color:'auto',
     css:'',
 
     separator2:'behaviour',

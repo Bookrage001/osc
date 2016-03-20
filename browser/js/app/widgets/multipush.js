@@ -13,6 +13,7 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
+    color:'auto',
     css:'',
 
     separator2:'osc',
@@ -34,12 +35,13 @@ module.exports.create = function(widgetData,container) {
         $document = $(document)
 
     widget.value = []
-    
+
 	for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 		var data = {
 			type:'push',
 			id: widgetData.id + '_' + i,
 			label:i,
+            color:widgetData.color,
 			on:widgetData.on,
 			off:widgetData.off,
 			precision:widgetData.precision,

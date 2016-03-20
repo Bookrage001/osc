@@ -14,6 +14,7 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
+    color:'auto',
     css:'',
 
 
@@ -44,6 +45,7 @@ module.exports.create = function(widgetData,container) {
 			id: widgetData.id + '_' + i,
 			label:i,
             horizontal:false,
+            color:widgetData.color,
             absolute:true,
 			range:widgetData.range,
             logScale:widgetData.logScale,

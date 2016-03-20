@@ -60,10 +60,9 @@
             right:-4rem;
             height:8rem;
             width:8rem;
-            background:$color-accent;
+            background:var(--color-accent);
             border:none!important;
             border-radius: 100%!important;
-            box-shadow: 0 0  0 6rem transparentize($color-accent,.8),0 0  2rem 0  mix($color-text,$color-fg,2);
         }
         &:after {
             content:"";
@@ -74,8 +73,8 @@
             width:20rem;
             border:none!important;
             border-radius: 100%!important;
-            box-shadow: 0 0  0 1rem transparentize($color-accent,.8) inset;
-        }
+            background:var(--color-accent);
+            opacity: .2;        }
 
     }
 }
@@ -123,7 +122,6 @@
             background:$color-text;
             border:none!important;
             border-radius: 100%!important;
-            box-shadow: 0 0  0 6rem transparentize($color-text,.8)
         }
         &:after {
             content:"";
@@ -134,7 +132,7 @@
             width:20rem;
             border:none!important;
             border-radius: 100%!important;
-            box-shadow: 0 0  0 1rem transparentize($color-text,.8) inset;
+            background:$color-text;
         }
     }
 }
