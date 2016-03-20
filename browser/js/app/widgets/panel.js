@@ -10,6 +10,7 @@ module.exports.options = {
 	width:'auto',
 	height:'auto',
 	stretch:false,
+	color:'auto',
 	css:'',
 
 	separator2:'chilren',
