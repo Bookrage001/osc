@@ -16,7 +16,8 @@ var tabs = function() {
 
         var previous = link.siblings('.on').removeClass('on').data('tab')
 
-        TABS[id].tab.appendTo(TABS[id].parent)
+        // TABS[id].tab.appendTo(TABS[id].parent)
+        TABS[id].parent[0].appendChild(TABS[id].tab[0])
         $(previous).detach()
 
 

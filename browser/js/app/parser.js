@@ -68,8 +68,9 @@ module.exports.tabs = function(data,parent,main,parentLabel){
 
     }
 
-    nav.append(navtabs)
-    parent.append(nav).append(content)
+    nav[0].appendChild(navtabs[0])
+    parent[0].appendChild(nav[0])
+    parent[0].appendChild(content[0])
 }
 
 
@@ -150,7 +151,7 @@ module.exports.widgets = function(data,parent) {
 
         if (widgetData.color && widgetData.color!='auto') widgetInner[0].style.setProperty('--color-accent',widgetData.color)
 
-        widgetContainer.append(widgetInner)
+        widgetContainer[0].appendChild(widgetInner[0])
 
         // store widget reference for cross widget sync
         if (WIDGETS[widgetData.id]==undefined) WIDGETS[widgetData.id] = []
@@ -166,7 +167,7 @@ module.exports.widgets = function(data,parent) {
         if (WIDGETS_ID_BY_PATH[widgetData.path]==undefined) WIDGETS_ID_BY_PATH[widgetData.path] = []
         WIDGETS_ID_BY_PATH[widgetData.path].push(widgetData.id)
 
-        parent.append(widgetContainer)
+        parent[0].appendChild(widgetContainer[0])
     }
 
     // Editor needs to get the container object

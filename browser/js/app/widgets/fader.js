@@ -94,16 +94,16 @@ module.exports.create = function(widgetData,container) {
     var pipsInner = ''
     for (var i=0;i<=100;i++) {
 
-        var piptext = range[i]!=undefined?`<span>${Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]}</span>`:''
-        pipsInner += `
-            <div class="pip ${range[i]!=undefined?'val':''}">${piptext}${piptext}</div>
-        `
+        var piptext = range[i]!=undefined?`<span>${Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]}</span>`:'',
+            add = `
+                <div class="pip ${range[i]!=undefined?'val':''}">${piptext}${piptext}</div>
+            `
+        pipsInner = dimension=='height'?
+            add + pipsInner:
+            pipsInner + add
     }
     pips[0].innerHTML = pipsInner
 
-    if (dimension=='height') {
-        pips.append(pips.find('.pip').get().reverse())
-    }
 
 
 
