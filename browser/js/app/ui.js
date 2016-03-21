@@ -34,24 +34,29 @@ var tabs = function() {
 // if shift is pressed (native), or if there is no vertical scrollbar,
 //                               or if mouse is on h-scrollbar
 var scrollbarHeight = 20
+var initialZoom = PXSCALE
 var scrolls = function(){
-    if (WEBFRAME) {
-        $('html').on('mousewheel.zoom',function(e) {
-            // console.log(e)
-            if (e.ctrlKey) {
-                e.preventDefault()
-                if (e.originalEvent.deltaY==0) return
-                var d = -e.originalEvent.deltaY/Math.abs(e.originalEvent.deltaY)/20,
-                    s = d+WEBFRAME.getZoomFactor()
-                WEBFRAME.setZoomFactor(s)
+    $('html').on('mousewheel.zoom',function(e) {
+        // console.log(e)
+        if (e.ctrlKey) {
+            e.preventDefault()
+            if (e.originalEvent.deltaY==0) return
+            var d = -e.originalEvent.deltaY/(10*Math.abs(e.originalEvent.deltaY))
 
-            }
-        })
-        $(document).on('keydown.resetzoom', function(e){
-            if (e.keyCode==96||e.keyCode==48) WEBFRAME.setZoomFactor(1)
-        })
+            PXSCALE = parseFloat(d)+parseFloat(PXSCALE)
+            document.documentElement.style.setProperty("--pixel-scale",'')
+            document.documentElement.style.setProperty("--pixel-scale",PXSCALE)
 
-    }
+        }
+    })
+    $(document).on('keydown.resetzoom', function(e){
+        if (e.keyCode==96||e.keyCode==48) {
+            PXSCALE = 1
+            document.documentElement.style.setProperty("--pixel-scale",'')
+            document.documentElement.style.setProperty("--pixel-scale",initialZoom)
+        }
+    })
+
 }
 
 
