@@ -10,22 +10,29 @@
         height: 100%;
         padding:10rem 0;
         overflow: hidden;
-        
+
         div {
             border-radius: 100%;
             width:calc(100% - 20rem);
             padding-bottom:calc(100% - 20rem);
             margin: 0 auto;
-            background:$color-border;
+            background:var(--color-track);
             position: relative;
             span {
                 position: absolute;
-                top:-1rem;left:-1rem;right:-1rem;bottom:-1rem;
+                top:0;left:0;right:0;bottom:0;
                 border-radius: 100%;
-
                 display:block;
                 background-color:var(--color-accent);
-                border: 5rem solid rgba($color-fg,.8);
+                &:after {
+                    content:"";
+                    border-radius:100%;
+                    position: absolute;
+                    top:-1rem;left:-1rem;right:-1rem;bottom:-1rem;
+                    display:block;
+                    border: 6rem solid var(--color-fg);
+                    opacity: 0.8;
+                }
             }
         }
     }
@@ -68,7 +75,7 @@
         left:1rem;
         right:1rem;
         bottom:1rem;
-        background: $color-bg;
+        background: var(--color-bg);
 
 		.level {
 			position: absolute;

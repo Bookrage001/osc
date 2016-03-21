@@ -6,7 +6,7 @@
     flex-shrink: 0;
     padding:0!important;
 
-    background: $color-raised;
+    background: var(--color-raised);
 
     .label {
         position: absolute;
@@ -28,9 +28,9 @@
 
     .push {
         &.on {
-            background: $color-fg;
+            background: var(--color-fg);
         }
-        border-bottom:4rem solid $color-fg;
+        border-bottom:4rem solid var(--color-fg);
         .light {
             position: absolute;
             left:auto;

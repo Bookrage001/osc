@@ -20,7 +20,7 @@
         width:100%;
         position: absolute;
         bottom:0;
-        border-top: 1rem solid $color-bg;
+        border-top: 1rem solid var(--color-bg);
     }
     .input, input {
         width:50%;
@@ -36,7 +36,7 @@
     height:100%;
     overflow: hidden;
     cursor: -webkit-grab;
-    background:rgba($color-bg,.5);
+    background:var(--color-faded);
     &:active {
         cursor: -webkit-grabbing;
         .handle:after,.handle:before {
@@ -119,7 +119,7 @@
             right:-4rem;
             height:8rem;
             width:8rem;
-            background:$color-text;
+            background:var(--color-text);
             border:none!important;
             border-radius: 100%!important;
         }
@@ -132,7 +132,7 @@
             width:20rem;
             border:none!important;
             border-radius: 100%!important;
-            background:$color-text;
+            background:var(--color-text);
         }
     }
 }
@@ -177,7 +177,7 @@
             border:none!important;
             border-radius: 100%!important;
             box-shadow: none;
-            background:$color-text;
+            background:var(--color-text);
         }
     }
 

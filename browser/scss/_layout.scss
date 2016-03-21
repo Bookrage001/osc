@@ -1,7 +1,5 @@
 body {
-    background:$color-bg;
-    // border:$gutter*2 solid $color-fg;
-    border-radius: $border-radius
+    background:var(--color-bg);
 }
 
 #container {
@@ -12,39 +10,37 @@ body {
     right:0;
     display:flex;
     flex-direction: column;
-    background:$color-bg;
-    padding:$gutter;
+    background:var(--color-bg);
+    padding:var(--gutter);
     // transition:right .2s;
     &.sidepanel-open {
-        right:$sidepanel-size;
+        right:var(--sidepanel-size);
     }
 }
 
 .content {
-    border-radius: $border-radius;
     height:100%;
     overflow: hidden;
     position: relative;
-    background:$color-fg;
-    padding:$gutter;
+    background:var(--color-fg);
+    padding:var(--gutter);
 }
 
 .tab {
     position: absolute;
-    border-radius: $border-radius;
     overflow: auto;
     left:0;
     right:0;
     top:0;
     bottom:0;
-    background:$color-bg;
+    background:var(--color-bg);
     &.has-tabs {
         // border:$gutter*2 solid $color-fg;
         // padding: $gutter;
         display: flex;
         flex-direction: column;
         > .navigation {
-            background:$color-bg;
+            background:var(--color-bg);
             // padding: $gutter;
             // margin-bottom: 0;
         }
@@ -55,18 +51,17 @@ body {
 }
 
 .navigation {
-    height:$nav-height;
-    border-radius:$border-radius;
-    margin-bottom: $gutter;
+    height:var(--nav-height);
+    margin-bottom: var(--gutter);
     flex-shrink:0;
     font-weight:bold;
     text-transform: uppercase;
 
     &.main {
         li:last-child {
-            width:$nav-height;
-            max-width:$nav-height;
-            min-width:$nav-height;
+            width:var(--nav-height);
+            max-width:var(--nav-height);
+            min-width:var(--nav-height);
             i {
                 margin:0 auto;
             }
@@ -77,7 +72,6 @@ body {
         display: flex;
         overflow: hidden;
         height:100%;
-        border-radius:$border-radius;
 
         li {
             display:block;
@@ -94,28 +88,28 @@ body {
                 position: relative;
                 padding-right: 1rem;
                 a {
-                    background: $color-raised;
+                    background: var(--color-raised);
                 }
                 &:before {
                     content:"";
                     display: block;
                     position: absolute;
-                    border-left:$nav-height/2 solid $color-bg;
-                    border-bottom: $nav-height/2 solid transparent;
-                    border-top: $nav-height/2 solid transparent;
+                    border-left:calc(var(--nav-height)/2) solid var(--color-bg);
+                    border-bottom: calc(var(--nav-height)/2) solid transparent;
+                    border-top: calc(var(--nav-height)/2) solid transparent;
                     top:0;
-                    right:- ($nav-height/2 +1);
+                    right:calc(1 - var(--nav-height)/2);
                     z-index: 1;
                 }
                 &:after {
                     content:"";
                     display: block;
                     position: absolute;
-                    border-left:$nav-height/2 solid $color-raised;
-                    border-bottom: $nav-height/2 solid transparent;
-                    border-top: $nav-height/2 solid transparent;
+                    border-left:calc(var(--nav-height)/2) solid var(--color-raised);
+                    border-bottom: calc(var(--nav-height)/2) solid transparent;
+                    border-top: calc(var(--nav-height)/2) solid transparent;
                     top:0;
-                    right:- ($nav-height/2 - 1);
+                    right:calc(-1 - var(--nav-height)/2);
                     z-index: 2;
                 }
             }
@@ -125,10 +119,9 @@ body {
                 margin-right:0;
             }
             a {
-                background: $color-fg;
+                background: var(--color-fg);
                 pointer-events: none;
                 padding: 5rem;
-                border-radius:$border-radius;
                 height:100%;
                 display: flex;
                 align-items: center;
@@ -143,7 +136,7 @@ body {
             }
 			a:after {
 				content:"";
-				background:$color-accent;
+				background:var(--color-accent);
 				position: absolute;
 				bottom:0;
 				left:0;
@@ -155,7 +148,7 @@ body {
 			}
             &.on a, .sidepanel-open {
 				position: relative;
-                background: $color-raised;
+                background: var(--color-raised);
 				&:after {
 					opacity:1;
 					transform: scale(1);
@@ -163,7 +156,7 @@ body {
             }
         }
         .parent + li a {
-            padding-left: $nav-height/2 + 5;
+            padding-left: calc(5 + var(--nav-height)/2);
         }
     }
 }

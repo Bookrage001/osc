@@ -7,7 +7,7 @@
     min-height: 200rem;
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
-        border-top: 1rem solid $color-bg;
+        border-top: 1rem solid var(--color-bg);
     }
 
     &.nolabel .panel {
@@ -21,7 +21,7 @@
         left:1rem;
         right:1rem;
         bottom:1rem;
-        background: $color-bg;
+        background: var(--color-bg);
         z-index: 1;
 
         &.has-tabs {
@@ -44,10 +44,10 @@
         border-top: 0;
         background: transparent;
         &:after {
-            background: $color-bg;
+            background: var(--color-bg);
         }
         a.on {
-            border-color: $color-bg;
+            border-color: var(--color-bg);
         }
     }
 

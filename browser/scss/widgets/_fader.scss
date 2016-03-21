@@ -39,11 +39,12 @@
                 content:"";
                 width:100%;
                 height:100%;
-                background:$color-track;
+                background:var(--color-track);
                 z-index: 1;
                 position: relative;
                 display:block;
-                box-shadow: 0 0 0 15rem $color-fg;
+                box-shadow: 0 0 0 15rem;
+                color: var(--color-fg);
             }
             .handle {
                 position: absolute;
@@ -123,7 +124,7 @@
                 height:1%;
                 width:38rem;
                 margin-left:-19rem;
-                background: linear-gradient($color-text,transparent 1rem);
+                background: linear-gradient(var(--color-text),transparent 1rem);
 
                 &.val {
                     position: relative;
@@ -138,7 +139,7 @@
                         line-height: 12rem;
                         left:44rem;
                         top:-5.5rem;
-                        color:$color-text-fade;
+                        color:var(--color-text-fade);
                         &:last-child {
                             left:auto;
                             right:44rem;
@@ -213,7 +214,7 @@
             height:4rem;
             margin-bottom:5rem;
             margin-left:0;
-            background: linear-gradient(90deg,$color-text,transparent 1rem );
+            background: linear-gradient(90deg,var(--color-text),transparent 1rem );
             &.val {
                 width:1%;
                 height:10rem;

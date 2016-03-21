@@ -14,8 +14,8 @@
 
 
 input:focus::selection{
-    background:$color-accent;
-    color:$color-text;
+    background:var(--color-accent);
+    color:var(--color-text);
 }
 input {
     cursor: text;
@@ -41,7 +41,7 @@ body {
     font-size:13rem;
     line-height:16rem;
     font-family:Droid Sans;
-    color:$color-text;
+    color:var(--color-text);
     white-space:nowrap;
     opacity:1;
     cursor: default;
@@ -52,7 +52,7 @@ i {
 
 
 .btn {
-    background: $color-raised;
+    background: var(--color-raised);
     display: block;
     padding:15rem;
     position: relative;
@@ -69,7 +69,7 @@ i {
     }
     &.disabled {
         pointer-events: none;
-        color:$color-text-fade;
+        color:var(--color-text-fade);
     }
     &.align-center {
         text-align: center
@@ -86,14 +86,14 @@ i {
 
 
 #lobby {
-    background: $color-bg;
+    background: var(--color-bg);
     position: absolute;
     top:0;
     left:0;
     right: 0;
     bottom:0;
     z-index: 2;
-    border:1rem solid $color-border;
+    border:1rem solid var(--color-track);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,10 +105,10 @@ i {
 
     }
     .header {
-        background: $color-raised;
+        background: var(--color-raised);
         padding:20rem;
         font-weight:bold;
-        box-shadow: 0 0 0 1rem $color-border inset;
+        box-shadow: 0 0 0 1rem var(--color-track) inset;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
@@ -124,7 +124,7 @@ i {
             right:0rem;
             top:0rem;
             padding:15rem;
-            color:$color-text-fade;
+            color:var(--color-text-fade);
         }
     }
 }
@@ -151,8 +151,8 @@ i {
         height:30rem;
         width:30rem;
         border-radius: 50%;
-        border:2rem solid $color-border;
-        border-top-color:$color-accent;
+        border:2rem solid var(--color-track);
+        border-top-color:var(--color-accent);
         animation: spin .5s linear infinite;
     }
     #status {
@@ -182,18 +182,27 @@ i {
     padding:10%;
     display: flex;
     align-items: center;
-    background:rgba($color-bg,.5);
     z-index:1000000;
+    &:before {
+        content: "";
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background:var(--color-bg);
+        opacity: .5;
+    }
     .popup-title {
         position: relative;
         padding:15rem;
-        background:$color-raised;
+        background:var(--color-raised);
         .closer {
             position:absolute;
             right:0rem;
             top:0;
             padding:15rem;
-            color:$color-text-fade;
+            color:var(--color-text-fade);
             cursor: pointer;
         }
     }
@@ -201,13 +210,13 @@ i {
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        background:$color-fg;
+        background:var(--color-fg);
         width:auto;
         max-width:600rem;
         margin:0 auto;
         position: relative;
         overflow: hidden;
-        border:1rem solid $color-border;
+        border:1rem solid var(--color-track);
         .popup-content {
             height:100%;
             width:100%;

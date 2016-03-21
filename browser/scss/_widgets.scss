@@ -6,10 +6,10 @@
     position:relative;
     padding:35rem  0 0;
     vertical-align:top;
-    box-shadow: -0.5rem -0.5rem 0 0.5rem $color-bg;
-    border-right:1rem solid $color-bg;
-    border-bottom:1rem solid $color-bg;
-    background:$color-fg;
+    box-shadow: -0.5rem -0.5rem 0 0.5rem var(--color-bg);
+    border-right:1rem solid var(--color-bg);
+    border-bottom:1rem solid var(--color-bg);
+    background:var(--color-fg);
     background-clip:padding-box;
     -webkit-tap-highlight-color:transparent;
     min-height:30rem;
@@ -38,10 +38,10 @@
         overflow:hidden;
         text-align:center;
         height:35rem;
-        background: $color-faded;
-        border-bottom:1rem solid $color-bg;
+        background: var(--color-faded);
+        border-bottom:1rem solid var(--color-bg);
         &.accent {
-            color:$color-accent;
+            color:var(--color-accent);
         }
     }
     .input {
@@ -49,7 +49,7 @@
         height:30rem;
         border:0;
         background:transparent;
-        color:$color-text-fade;
+        color:var(--color-text-fade);
         display:block;
         padding:7rem 5rem;
         position: relative;
@@ -66,7 +66,7 @@
             text-align:center;
             border:0;
             background: transparent;
-            color:$color-accent;
+            color:var(--color-accent);
         }
         canvas {
             width:100%;
@@ -82,11 +82,11 @@
         }
 
         &:focus {
-            color:$color-accent;
+            color:var(--color-accent);
 
         }
         &[disabled] {
-            color:$color-text-fade;
+            color:var(--color-text-fade);
         }
     }
 }

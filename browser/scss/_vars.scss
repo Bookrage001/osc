@@ -1,47 +1,19 @@
-$theme:'dark';
-
-/////////////
-
-@if $theme == 'dark' {
-    $color-text:rgba(white,.8);
-    $color-text-fade:rgba(white,0.5);
-
-    $color-bg:darken(#2b2f37,5%); // secondary
-    $color-fg:lighten(#2b2f37,1%); // primary
-    $color-raised:lighten(#2b2f37,5%); // raised
-    $color-faded: darken(#2b2f37,1%); // raised
-
-    $color-raised-top:lighten(#2b2f37,5%); // raised
-    $color-border:darken($color-bg,5%);
-    $color-track: lighten(#1a1d22,1%); // widgets unfilled value
-
-    $color-accent:#528bff;
-}
-
-@if $theme == 'light'  {
-    $color-text:#333;
-    $color-text-fade:#666;
-
-    $color-fg:#ddd; // primary
-    $color-bg:#bbb; // secondary
-    $color-raised:#eaeaea; // raised
-    $color-raised-top:#ddd; // raised
-    $color-border:#999;
-    $color-track: #999; // widgets unfilled value
-
-    $color-accent:darken(desaturate(#528bff,25%),10%);
-}
-
-$border-radius:0;//3rem;
-$gutter:4rem;
-$nav-height:40rem;
-$sidepanel-size:300rem;
-
-
-/////////////
-
 :root {
-    --color-accent:$color-accent;
-    --color-text:$color-text;
-    --color-text-fade:$color-text-fade;
+
+    --color-text:rgba(white,.8);
+    --color-text-fade:rgba(white,0.5);
+
+    --color-bg:darken(#2b2f37,5%); // secondary
+    --color-fg:lighten(#2b2f37,1%); // primary
+    --color-raised:lighten(#2b2f37,5%); // raised
+    --color-faded: darken(#2b2f37,1%); // raised
+
+    --color-track: lighten(#1a1d22,1%); // widgets unfilled value
+
+    --color-accent:#528bff;
+
+
+    --gutter:4rem;
+    --nav-height:40rem;
+    --sidepanel-size:300rem;
 }

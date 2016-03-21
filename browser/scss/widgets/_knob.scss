@@ -55,8 +55,7 @@
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4rem solid $color-track;
-                    box-shadow: 0 0 0 1rem  mix($color-text,$color-fg,2),0 0 0 1rem  mix($color-text,$color-fg,2) inset,0 0 1rem  1rem  mix($color-text,$color-fg,2),0 0 1rem 1rem  mix($color-text,$color-fg,2) inset;
+                    border:4rem solid var(--color-track);
                     transform: rotate(45deg);
                     z-index:4;
                 }
@@ -67,8 +66,8 @@
                         border-bottom-color: transparent;
                     }
                     .knob:after {
-                        border-color: $color-track;
-                        border-left-color: $color-accent;
+                        border-color: var(--color-track);
+                        border-left-color: var(--color-accent);
                         border-top-color: var(--color-accent);
                     }
                 }
@@ -79,7 +78,7 @@
                         border-top-color: transparent;
                     }
                     .knob:after {
-                        border-color: $color-track;
+                        border-color: var(--color-track);
                         border-right-color: var(--color-accent);
                         border-bottom-color: var(--color-accent);
                     }
@@ -93,7 +92,7 @@
                     bottom:-2rem;
                     border-radius:100%;
                     border:12rem solid transparent;
-                    border-bottom-color: $color-fg;
+                    border-bottom-color: var(--color-fg);
                     z-index:4;
                 }
             }
@@ -104,8 +103,9 @@
                 right:16rem;
                 bottom:16rem;
                 border-radius:100%;
-                background:$color-raised;
-                box-shadow: 0 2rem 0 0 $color-faded;
+                background:var(--color-raised);
+                box-shadow: 0 2rem 0 0;
+                color:var(--color-faded);
             }
             .knob {
                 position:absolute;
@@ -125,7 +125,7 @@
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4rem solid $color-track;
+                    border:4rem solid var(--color-track);
                     border-bottom-color: var(--color-accent);
                 }
 
@@ -178,7 +178,7 @@
             .pip {
                 position:absolute;
                 font-size:11rem;
-                color:$color-text;
+                color:var(--color-text);
                 pointer-events: none;
                 top:50%;
                 margin-top:30%;

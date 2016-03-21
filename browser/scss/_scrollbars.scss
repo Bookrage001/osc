@@ -7,23 +7,23 @@
 }
 
 ::-webkit-scrollbar-track-piece {
-    background: $color-bg;
+    background: var(--color-bg);
     &:vertical {
-        border-left:$gutter solid $color-bg;
+        border-left:var(--gutter) solid var(--color-bg);
     }
     &:horizontal {
-        border-top:$gutter solid $color-bg;
+        border-top:var(--gutter) solid var(--color-bg);
     }
 }
 ::-webkit-scrollbar-corner  {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background:$color-raised;
+    background:var(--color-raised);
     &:vertical {
-        border-left:$gutter solid $color-bg;
+        border-left:var(--gutter) solid var(--color-bg);
     }
     &:horizontal {
-        border-top:$gutter solid $color-bg;
+        border-top:var(--gutter) solid var(--color-bg);
     }
 }

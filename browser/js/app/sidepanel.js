@@ -118,7 +118,13 @@ var sidepanel = function(data){
 
 var toggle = function(){
 	$(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
-		$('#open-toggle, #sidepanel, #container').toggleClass('sidepanel-open')
+		var t = 0
+		if (!$('#sidepanel').hasClass('sidepanel-open')) t = 250
+
+		$('#open-toggle, #sidepanel').toggleClass('sidepanel-open')
+		setTimeout(function(){
+			$('#container').toggleClass('sidepanel-open')
+		},t)
 	}).on('mousedown touchstart',function(e){e.stopPropagation()})
 
 	// in case where are hot loading a session

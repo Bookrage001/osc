@@ -39,7 +39,6 @@
         height:auto;
         display: block;
         border-right:0;
-        // margin-bottom: $gutter;
         .strip {
             flex-direction: row;
             > .widget {
@@ -59,7 +58,7 @@
             left:0;
             top:0;
             border-bottom:0;
-            border-right:1rem solid $color-bg;
+            border-right:1rem solid var(--color-bg);
             span {
                 transform: rotate(180deg);
                 display: block;
