@@ -9,12 +9,14 @@
     bottom:0;
     margin-right:-$sidepanel-size;
     background:$color-fg;
-    transition:right .2s;
+    transition:transform .2s;
+    transform: translate3d(0,0,0);
+
     overflow-y: auto;
     overflow-x: visible;
 
     &.sidepanel-open {
-        right:$sidepanel-size;
+        transform: translate3d(- $sidepanel-size,0,0);
     }
 
     #options {

@@ -1,5 +1,5 @@
 body {
-    background:$color-fg;
+    background:$color-bg;
     // border:$gutter*2 solid $color-fg;
     border-radius: $border-radius
 }
@@ -14,7 +14,7 @@ body {
     flex-direction: column;
     background:$color-bg;
     padding:$gutter;
-    transition:right .2s;
+    // transition:right .2s;
     &.sidepanel-open {
         right:$sidepanel-size;
     }
