@@ -90,14 +90,10 @@ module.exports.widgets = function(data,parent) {
 
         if (widgetData.id=='auto') {
             var id
-            while (id=widgetData.type+'_'+getIterator(widgetData.type,'widget')) {
-                if (!WIDGETS.hasOwnProperty(id)) {
-                    widgetData.id = id
-                    break
-                }
+            while (!id || WIDGETS[id]) {
+                id=widgetData.type+'_'+getIterator(widgetData.type,'widget')
             }
-        } else {
-            widgetData.id = widgetData.id.replace(' ','_')
+            widgetData.id = id
         }
 
         widgetData.path = widgetData.path=='auto'?'/' + widgetData.id:widgetData.path
