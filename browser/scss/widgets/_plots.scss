@@ -5,21 +5,27 @@
     flex-shrink: 0;
 
     .led {
-        padding:10rem;
         display: flex;
         align-items: center;
         height: 100%;
+        padding:10rem 0;
+        overflow: hidden;
+        
         div {
             border-radius: 100%;
-            width:40rem;
-            height:40rem;
+            width:calc(100% - 20rem);
+            padding-bottom:calc(100% - 20rem);
             margin: 0 auto;
-            overflow: hidden;
             background:$color-border;
+            position: relative;
             span {
-                height:100%;
+                position: absolute;
+                top:-1rem;left:-1rem;right:-1rem;bottom:-1rem;
+                border-radius: 100%;
+
                 display:block;
                 background-color:var(--color-accent);
+                border: 5rem solid rgba($color-fg,.8);
             }
         }
     }
