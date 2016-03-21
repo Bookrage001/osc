@@ -100,7 +100,6 @@ module.exports.widgets = function(data,parent) {
             widgetData.id = widgetData.id.replace(' ','_')
         }
 
-        widgetData.label = widgetData.label=='auto'?widgetData.id:widgetData.label
         widgetData.path = widgetData.path=='auto'?'/' + widgetData.id:widgetData.path
         widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false
 
@@ -136,10 +135,11 @@ module.exports.widgets = function(data,parent) {
             styleL = widgetData.left&&widgetData.left!='auto'||widgetData.left==0?`left:${left};`:'',
             styleT = widgetData.top&&widgetData.top!='auto'||widgetData.top==0?`top:${top};`:''
 
+        var label = widgetData.label == 'auto'?widgetData.id:widgetData.label
 
         var widgetContainer = $(`
             <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
-                <div class="label"><span>${widgetData.label}</span></div>
+                <div class="label"><span>${label}</span></div>
             </div>
         `)
 
