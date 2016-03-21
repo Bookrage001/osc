@@ -6,9 +6,6 @@
     // height: 100%;
     width:100rem;
     flex-shrink: 0;
-    &.nolabel .value:first-child {
-        border-top:0!important;
-    }
     .switch {
         height:100%;
         width:100%;
@@ -54,7 +51,9 @@
             overflow: hidden;
             border-bottom:2rem solid $color-faded;
 
-
+            &:first-child {
+                border-top:0;
+            }
             &:last-child {
                 margin-bottom:0;
             }
