@@ -1,6 +1,6 @@
 # Theming
 
-Theming is as simple as writing a tiny css file that will override the default style variables defined in [_vars.scss](../../browser/scss/_vars/scss) :
+Theming is as simple as writing a tiny css file that will override the default style variables defined in [_vars.scss](../../browser/scss/_vars.scss) :
 
 ```css
 :root {
