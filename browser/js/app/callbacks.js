@@ -84,7 +84,7 @@ module.exports = {
         var style = document.createElement('style');
         style.innerHTML = data;
         document.body.appendChild(style);
-        if (data.indexOf('--pixel-scale')) {
+        if (data.indexOf('--pixel-scale')!=-1) {
             PXSCALE = data.match(/--pixel-scale\s*:\s*([^;]*)/)[1]
             INITIALZOOM = PXSCALE
         }
