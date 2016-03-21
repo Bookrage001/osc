@@ -9,13 +9,8 @@
     }
 }
 .matrix {
-
+    flex:1;
     overflow: auto;
-    position: absolute;
-    top:35rem;
-    left:0;
-    right:0;
-    bottom:0;
     background: var(--color-bg);
     display: flex;
     flex-wrap: wrap;
@@ -25,24 +20,23 @@
         min-height: 0;
         min-width: 0;
         margin:0!important;
-
-    }
-}
-
-.multifader-container {
-    .matrix {
-        padding:0!important
-    }
-    .widget {
-        border: 0!important;
-        // box-shadow: none!important;
         .label {
             background:none;
             border:0;
         }
     }
+}
+
+.multifader-container {
+    .matrix {
+        padding:0!important;
+        align-items:stretch;
+    }
+    .widget {
+        height: auto;
+    }
     .fader-wrapper {
-        padding:10rem 0!important;
+        padding:10rem 0 20rem!important;
         .fader {
             left:0!important;
             .pips {

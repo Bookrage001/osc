@@ -3,23 +3,16 @@
     width:200rem;
     height:250rem;
     flex-shrink: 0;
-    &.nolabel .xy-wrapper {
-        top:0;
-    }
+    display: flex;
 }
 .xy-wrapper {
-    position: absolute;
-    top:35rem;
-    left:0;
-    right:0;
-    bottom:0;
-
+    height: 100%;
     overflow: hidden;
-    padding-bottom: 60rem;
+    display: flex;
+    flex-direction: column;
+
     .value {
         width:100%;
-        position: absolute;
-        bottom:0;
         border-top: 1rem solid var(--color-bg);
     }
     .input, input {
@@ -81,7 +74,6 @@
 
 
 .rgb-wrapper {
-    padding-bottom: 90rem;
     .input, input {
         width:33.33%;
     }
@@ -138,13 +130,11 @@
 }
 .hue {
     width:auto;
-    height:29rem;
+    min-height:30rem;
     overflow: hidden;
-    position: absolute;
-    bottom:61rem;
-    left:0;
-    right:0;
     cursor: -webkit-grab;
+    position: relative;
+    flex-shrink: 0;
     .bg {
         position: absolute;
         top:0;

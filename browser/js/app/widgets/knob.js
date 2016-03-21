@@ -42,8 +42,10 @@ module.exports.create = function(widgetData,container) {
                     <div class="handle"></div>
                     <div class="round"></div>
                 </div>
-                <div class="pip min"></div>
-                <div class="pip max"></div>
+                <div class="pips">
+                    <div class="pip min"></div>
+                    <div class="pip max"></div>
+                </div>
             </div>
             <div class="input"></div>
         </div>

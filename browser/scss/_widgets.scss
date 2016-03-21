@@ -4,17 +4,21 @@
     height:auto;
     overflow: hidden;
     position:relative;
-    padding:35rem  0 0;
     vertical-align:top;
-    box-shadow: -0.5rem -0.5rem 0 0.5rem var(--color-bg);
+    box-shadow: -0.5rem -0.5rem 0 0.5rem;
+    color:var(--color-bg);
     border-right:1rem solid var(--color-bg);
     border-bottom:1rem solid var(--color-bg);
     background:var(--color-fg);
-    background-clip:padding-box;
     -webkit-tap-highlight-color:transparent;
     min-height:30rem;
     min-width:30rem;
+    display: inline-flex;
+    flex-direction: column;
 
+    > * {
+        color:var(--color-text)
+    }
 
     &.absolute-position {
         position: absolute;
@@ -22,7 +26,6 @@
     }
 
      &.nolabel {
-         padding-top:0;
          > .label {
              display:none;
          }
@@ -30,14 +33,12 @@
 
     .label {
         padding:10rem 10rem;
-        position:absolute;
-        top:0;
-        left:0;
-        right:0;
         text-overflow:ellipsis;
         overflow:hidden;
         text-align:center;
         height:35rem;
+        max-height:35rem;
+        width: 100%;
         background: var(--color-faded);
         border-bottom:1rem solid var(--color-bg);
         &.accent {

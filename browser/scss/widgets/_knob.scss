@@ -2,36 +2,28 @@
 
 .knob-container {
     width: 100rem;
-    display: inline-flex!important;
     align-items: center;
-    min-height: 135rem;
     flex-shrink: 0;
-    &.nolabel .knob-wrapper-outer{
-        top:0;
-        padding-bottom:30rem;
+
+    .input {
+        margin-top:-5rem;
     }
+
     .knob-wrapper-outer {
         width: 100%;
-        top: 30rem;
-        bottom: 0;
-        padding:10rem 0 50rem;
-        height: 100%;
         display: flex;
+        flex:1;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         overflow: hidden;
 
-        .input {
-            bottom:0;
-            position: absolute;
-            left:0;
-        }
-
-
         .knob-wrapper {
-            margin:0 auto;
+            margin:15rem auto 5rem;
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
 
@@ -175,23 +167,20 @@
                     opacity: .2;
                 }
             }
+            .pips {
+                width:100%;
+            }
             .pip {
-                position:absolute;
                 font-size:11rem;
                 color:var(--color-text);
                 pointer-events: none;
-                top:50%;
-                margin-top:30%;
+                display:inline-block;
                 &.min {
-                    left:0;
-                    right:50%;
                     width:50%;
                     text-align:center;
                 }
                 &.max {
-                    left:50%;
                     width:50%;
-                    right:0;
                     text-align:center;
                 }
             }

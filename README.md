@@ -56,6 +56,7 @@ This will create a headless app available through http on port 8080. Multiple cl
 - [Editor reference](resources/docs/editor-reference.md)
 - [Session reference](resources/docs/session-reference.md)
 - [Widgets reference](resources/docs/widgets-reference.md)
+- [Theming](resources/docs/theming.md)
 
 ### License & credits
 
