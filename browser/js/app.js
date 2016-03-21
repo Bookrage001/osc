@@ -23,7 +23,7 @@ MISC = {
 
 
 PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
-
+INITIALZOOM = PXSCALE
 
 
 ///////////////////////

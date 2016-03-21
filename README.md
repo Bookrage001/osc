@@ -21,7 +21,7 @@ Please note that :
 - bi-directionnal osc bindings
 - headless server mode with any number of clients using chromium
 - app state store / recall & import / export
-- light & dark themes !
+- themes !
 
 ### Getting started
 
@@ -37,6 +37,7 @@ Options:
   -l, --load     session file to load
   -p, --port     osc input port (for synchronization)
   -n, --nogui    disable default gui and makes the app availabe through http on specified port
+  -t, --theme    theme name (light) or path to theme file
 
 Exemples :
 

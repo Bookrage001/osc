@@ -5,6 +5,7 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 	return {
 
 		ready: function(data,clientId) {
+			if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
 		    if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
 		    var recentSessions = settings.read('recentSessions')
 		    ipc.send('sessionList',recentSessions,clientId)

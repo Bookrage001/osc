@@ -1,5 +1,4 @@
 (function ($) {
-    var color = String(getComputedStyle(document.documentElement).getPropertyValue("--color-text")).trim()
     $.fn.fakeInput = function(options) {
 
         var settings = $.extend({
@@ -13,7 +12,7 @@
 		self.value = undefined
 		self.height = undefined
 		self.width = undefined
-		self.color = color
+		self.color = undefined
         self.center = settings.align == 'center'
         self.visible = false
 
@@ -33,6 +32,7 @@
                 canvas.addClass('visible')
             }
 
+            self.color = getComputedStyle(document.documentElement).getPropertyValue("--color-text")
 			self.height=height
 			self.width=width
 

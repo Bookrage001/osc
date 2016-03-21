@@ -11,7 +11,7 @@ module.exports = {
         // fetch ids corresponding to the osc path
         var path = data.path
         var ids = WIDGETS_ID_BY_PATH[path]
-        
+
         for (i in ids) {
             var id = ids[i]
             // update
@@ -77,6 +77,17 @@ module.exports = {
         var data = data || event
 
         utils.createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
+    },
+
+    applyStyle: function(event,data){
+        var data = data || event
+        var style = document.createElement('style');
+        style.innerHTML = data;
+        document.body.appendChild(style);
+        if (data.indexOf('--pixel-scale')) {
+            PXSCALE = data.match(/--pixel-scale\s*:\s*([^;]*)/)[1]
+            INITIALZOOM = PXSCALE
+        }
     }
 
 }

@@ -34,7 +34,6 @@ var tabs = function() {
 // if shift is pressed (native), or if there is no vertical scrollbar,
 //                               or if mouse is on h-scrollbar
 var scrollbarHeight = 20
-var initialZoom = PXSCALE
 var scrolls = function(){
     $('html').on('mousewheel.zoom',function(e) {
         // console.log(e)
@@ -51,9 +50,9 @@ var scrolls = function(){
     })
     $(document).on('keydown.resetzoom', function(e){
         if (e.keyCode==96||e.keyCode==48) {
-            PXSCALE = 1
+            PXSCALE = INITIALZOOM
             document.documentElement.style.setProperty("--pixel-scale",'')
-            document.documentElement.style.setProperty("--pixel-scale",initialZoom)
+            document.documentElement.style.setProperty("--pixel-scale",PXSCALE)
         }
     })
 
