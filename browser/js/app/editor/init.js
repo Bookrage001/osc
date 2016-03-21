@@ -1,6 +1,7 @@
 var data = require('./data-workers'),
     getObjectData = data.getObjectData,
     updateDom = data.updateDom,
+    incrementWidget = data.incrementWidget,
     edit = require('./edit-objects'),
     editObject = edit.editObject,
     editSession = edit.editSession,
@@ -76,22 +77,31 @@ var init = function(){
 
             if (CLIPBOARD!=null) {
                 actions['<i class="fa fa-paste"></i> Paste'] = {
-                    '<i class="fa fa-object-ungroup"></i> New ID':function(){
+                    '<i class="fa fa-plus-circle"></i> ID + 1':function(){
                         data.widgets = data.widgets || []
-                        var newData = JSON.parse(JSON.stringify(CLIPBOARD).replace(/\"(id|label|linkId|path)\"\:\"([^\"]*)\"\,?/g,'').replace(/\,\}/g,'\}'))
+                        var newData = incrementWidget(JSON.parse(JSON.stringify(CLIPBOARD)))
+
+
                         if (!target.attr('data-tab')) {
                             newData.top = e.offsetY
                             newData.left= e.offsetX
+                        } else {
+                            delete newData.top
+                            delete newData.left
                         }
+
                         data.widgets.push(newData)
                         updateDom(container,data)
                     },
-                    '<i class="fa fa-object-group"></i> Same ID':function(){
+                    '<i class="fa fa-clone"></i> Clone':function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD))
                         if (!target.attr('data-tab')) {
                             newData.top = e.offsetY
                             newData.left= e.offsetX
+                        } else {
+                            delete newData.top
+                            delete newData.left
                         }
                         data.widgets.push(newData)
                         updateDom(container,data)

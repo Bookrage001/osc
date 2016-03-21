@@ -107,7 +107,58 @@ var updateDom = function(container,data) {
 
 }
 
+
+var incrementWidget = function(data){
+
+    delete data.linkId
+
+    var id = data.id,
+        label = data.label,
+        path = data.path
+
+    if (id && id==label) {
+        data.label = 'auto'
+    }
+    if (id && path == '/'+id) {
+
+        data.path = 'auto'
+
+    } else if (path){
+
+        while (WIDGETS_ID_BY_PATH[path]) {
+            path = path.replace(/([0-9]*)$/,function(m){
+                var n = parseInt(m)+1
+                n = isNaN(n)?1:n
+                return n
+            })
+        }
+        data.path = path
+
+    }
+
+    if (id) {
+        while (WIDGETS[id]) {
+            id = id.replace(/([0-9]*)$/,function(m){
+                var n = parseInt(m)+1
+                n = isNaN(n)?1:n
+                return n
+            })
+        }
+        data.id = id
+
+    }
+
+
+    for (i in data) {
+        if (typeof data[i] == 'object') data[i] = incrementWidget(data[i])
+    }
+
+    return data
+
+}
+
 module.exports = {
     updateDom:updateDom,
-    getObjectData:getObjectData
+    getObjectData:getObjectData,
+    incrementWidget:incrementWidget
 }

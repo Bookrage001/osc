@@ -208,9 +208,7 @@ var editObject = function(container, data, refresh){
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.max(ui.size.height,30)/PXSCALE
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width = Math.max(ui.size.width,30)/PXSCALE
                 updateDom(container,data)
-            },
-            snap:'.tab.on .widget, .tab.on',
-            snapTolerance:5
+            }
         })
     }
 
