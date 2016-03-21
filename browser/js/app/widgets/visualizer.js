@@ -40,7 +40,7 @@ module.exports.create = function(widgetData,container) {
 	widget.height = 0
 	widget.width = 0
 	widget.visible = false
-    widget.textColor = String(getComputedStyle(document.documentElement).getPropertyValue("--color-text-fade")).trim()
+    widget.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
     widget.pips = {
         min: Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min,
         max: Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
@@ -57,7 +57,7 @@ module.exports.create = function(widgetData,container) {
 		if (!self.visible) {
 			widget.visible = true
 			canvas.addClass('visible')
-            widget.lineColor = String(getComputedStyle(widget[0]).getPropertyValue("--color-accent")).trim()
+            widget.lineColor = getComputedStyle(widget[0]).getPropertyValue('--color-accent')
 		}
 
 		widget.height=height

@@ -21,7 +21,10 @@ MISC = {
     }
 }
 
-PXSCALE =  String(getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")).trim()
+
+PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
+
+
 
 ///////////////////////
 
@@ -44,7 +47,6 @@ var bindCallback = function(i) {
 for (i in callbacks) {
     bindCallback(i)
 }
-
 
 ///////////////////////
 

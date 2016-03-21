@@ -43,7 +43,7 @@ module.exports.create = function(widgetData,container) {
 	widget.width = undefined
     widget.linkedWidgets = []
 	widget.visible = false
-    widget.textColor = String(getComputedStyle(document.documentElement).getPropertyValue("--color-text-fade")).trim()
+    widget.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
     widget.pips = {
         x : {
             min: Math.abs(widgetData.rangeX.min)>=1000?widgetData.rangeX.min/1000+'k':widgetData.rangeX.min,
@@ -82,7 +82,7 @@ module.exports.create = function(widgetData,container) {
 		if (!self.visible) {
 			widget.visible = true
 			canvas.addClass('visible')
-            widget.lineColor = String(getComputedStyle(widget[0]).getPropertyValue("--color-accent")).trim()
+            widget.lineColor = getComputedStyle(widget[0]).getPropertyValue('--color-accent')
 		}
 
 
