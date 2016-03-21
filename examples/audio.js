@@ -78,7 +78,7 @@ return [
                 range: nmRange,
                 target: "SCSon:6678",
                 path: "/strip/FOH/Gain/Gain%20(dB)/unscaled",
-                color: "accent"
+                color: "turquoise"
             }
         ]
     },
@@ -131,7 +131,7 @@ return [
                         range: nmRange,
                         target: nmPorts['MainMix'],
                         path: "/strip/Drums/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
@@ -165,7 +165,7 @@ return [
                         range: nmRange,
                         target: nmPorts['Drums'],
                         path: "/strip/Toms/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
@@ -1833,7 +1833,7 @@ return [
                         range: nmRange,
                         target: nmPorts['MainMix'],
                         path: "/strip/Basses/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
@@ -1867,7 +1867,7 @@ return [
                         range: nmRange,
                         target: nmPorts['Basses'],
                         path: "/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
@@ -1901,7 +1901,7 @@ return [
                         range: nmRange,
                         target: nmPorts['Basses'],
                         path: "/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
@@ -2178,7 +2178,7 @@ return [
                 range: nmRange,
                 target: nmPorts['MainMix'],
                 path: "/strip/Guitars/Gain/Gain%20(dB)/unscaled",
-                color: "accent"
+                color: "turquoise"
             }
         ]
     },
@@ -2230,7 +2230,7 @@ return [
                         range: nmRange,
                         target: nmPorts['MainMix'],
                         path: "/strip/MxSynths/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
@@ -2483,7 +2483,7 @@ return [
                         range: nmRange,
                         target: nmPorts['MainMix'],
                         path: "/strip/MxDrums/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
@@ -2913,7 +2913,7 @@ return [
                 range: nmRange,
                 target: nmPorts['MainMix'],
                 path: "/strip/Acoustics/Gain/Gain%20(dB)/unscaled",
-                color: "accent"
+                color: "turquoise"
             }
         ]
     },
@@ -3007,7 +3007,7 @@ return [
                         range: nmRange,
                         target: nmPorts['MainMix'],
                         path: "/strip/Vocals/Gain/Gain%20(dB)/unscaled",
-                        color: "accent"
+                        color: "turquoise"
                     }
                 ]
             },
