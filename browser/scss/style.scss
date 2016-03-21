@@ -34,7 +34,7 @@ html, body {
 }
 
 html{
-    font-size: 2px;
+    font-size: calc(var(--pixel-scale) * 1px);
 }
 
 body {

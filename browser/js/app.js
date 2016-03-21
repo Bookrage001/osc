@@ -21,17 +21,11 @@ MISC = {
     }
 }
 
+PXSCALE =  String(getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")).trim()
+
 ///////////////////////
 
 $ = jQuery = require('./jquery/jquery.min')
-
-///////////////////////
-
-PXSCALE =  1
-$('html').css('font-size',PXSCALE+'px')
-
-///////////////////////
-
 require('./jquery/jquery.ui')
 require('./jquery/jquery.drag')
 require('./jquery/jquery.resize')
