@@ -30,6 +30,7 @@ module.exports.options = {
     logScaleY:false,
     precision:2,
     path:'auto',
+    preArgs:[],
     split:false,
     target:[]
 }
@@ -55,7 +56,8 @@ module.exports.create = function(widgetData,container) {
                         widgetData.split:{x:widgetData.path+'/x',y:widgetData.path+'/y'}
                         :false;
         logScaleX = widgetData.logScaleX,
-        logScaleY = widgetData.logScaleY
+        logScaleY = widgetData.logScaleY,
+        roundFactor = Math.pow(10,widgetData.precision)
 
 
     if (widgetData.height!='auto') widget.addClass('manual-height')
@@ -131,7 +133,7 @@ module.exports.create = function(widgetData,container) {
         if (!v || v.length!=2) return
 
         for (i in [0,1]) {
-            v[i] = clip(v[i],[range[['x','y'][i]].min,range[['x','y'][i]].max])
+            v[i] = clip(Math.round(v[i]*roundFactor)/roundFactor,[range[['x','y'][i]].min,range[['x','y'][i]].max])
         }
 
         var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision,logScaleX,true)
@@ -148,24 +150,26 @@ module.exports.create = function(widgetData,container) {
         if (send) widget.sendValue(v)
     }
     widget.sendValue = function(v) {
+        var args = widgetData.preArgs.concat(v)
+
         sendOsc({
             target:split?false:widgetData.target,
             path:widgetData.path,
-            args:v,
+            args:args,
             precision:widgetData.precision,
         })
         if (split) {
             sendOsc({
                 target:widgetData.target,
                 path:split.x,
-                args:v[0],
+                args:widgetData.preArgs.concat(v[0]),
                 precision:widgetData.precision,
                 sync:false
             })
             sendOsc({
                 target:widgetData.target,
                 path:split.y,
-                args:v[1],
+                args:widgetData.preArgs.concat(v[1]),
                 precision:widgetData.precision,
                 sync:false
             })

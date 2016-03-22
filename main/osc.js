@@ -27,14 +27,14 @@ module.exports = function(ipc, settings) {
 		            if (typeof arg == 'number') {
 		                message.append({type:numberType,value:arg})
 		            } else {
-		                message.append({type:'string',value:arg})
+		                message.append({type:'string',value:String(arg)})
 		            }
 		        }
 		    } else {
 		        if (typeof args == 'number') {
 		            message.append({type:numberType,value:args})
 		        } else {
-		            message.append({type:'string',value:args})
+		            message.append({type:'string',value:String(args)})
 		        }
 		    }
 

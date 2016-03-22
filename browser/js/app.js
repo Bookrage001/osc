@@ -2,7 +2,7 @@
 
 WIDGETS = {}
 WIDGETS_LINKED = {}
-WIDGETS_ID_BY_PATH = {}
+WIDGETS_BY_PATH = {}
 SESSION = []
 STATE = []
 

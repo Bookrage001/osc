@@ -55,4 +55,14 @@ module.exports = function() {
             delete WIDGETS_LINKED[i]
         }
     }
+    for (i in WIDGETS_BY_PATH) {
+        for (var j=WIDGETS_BY_PATH[i].length-1;j>=0;j--) {
+            if (!$b.find(WIDGETS_BY_PATH[i][j]).length) {
+                WIDGETS_BY_PATH[i].splice(j,1)
+            }
+        }
+        if (!WIDGETS_BY_PATH[i].length) {
+            delete WIDGETS_BY_PATH[i]
+        }
+    }
 }

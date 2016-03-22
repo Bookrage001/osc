@@ -31,6 +31,7 @@ module.exports.options = {
     logScale:false,
     precision:2,
     path:'auto',
+    preArgs:[],
     target:[]
 }
 module.exports.create = function(widgetData,container) {
@@ -59,7 +60,8 @@ module.exports.create = function(widgetData,container) {
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         absolute = widgetData.absolute,
         pan = widgetData.pan,
-        logScale = widgetData.logScale
+        logScale = widgetData.logScale,
+        roundFactor = Math.pow(10,widgetData.precision)
 
 
     var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
@@ -180,15 +182,17 @@ module.exports.create = function(widgetData,container) {
         input.val(v+unit)
     }
     widget.sendValue = function(v) {
+        var args = widgetData.preArgs.concat(v)
+
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
             precision:widgetData.precision,
-            args:v
+            args:args
         })
     }
     widget.setValue = function(v,send,sync) {
-        var r = mapToScale(v,[range.min,range.max],[0,270],widgetData.precision,logScale,true)
+        var r = mapToScale(Math.round(v*roundFactor)/roundFactor,[range.min,range.max],[0,270],widgetData.precision,logScale,true)
         knob.rotation = r
 
         widget.updateUi(r)

@@ -17,7 +17,8 @@ Every widget has the following properties:
 
     precision:2,            // [integer] number of decimals : 0 to send integers
     target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
-    path:false              // [string] osc path, default to '/widget_id'
+    path:false,             // [string] osc path, default to '/widget_id'
+    preArgs:[]              // [array] list of constant values to prepend to the sent value(s)
 }
 ```
 

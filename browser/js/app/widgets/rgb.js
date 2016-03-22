@@ -27,6 +27,7 @@ module.exports.options = {
 
     precision:0,
     path:'auto',
+    preArgs:[],
     split:false,
     target:[]
 }
@@ -210,31 +211,33 @@ module.exports.create = function(widgetData,container) {
             if (send) widget.sendValue(v)
         }
         widget.sendValue = function(v) {
+            var args = widgetData.preArgs.concat(v)
+
             sendOsc({
                 target:split?false:widgetData.target,
                 path:widgetData.path,
-                args:v,
+                args:args,
                 precision:widgetData.precision,
             })
             if (split) {
                 sendOsc({
                     target:widgetData.target,
                     path:split.r,
-                    args:v[0],
+                    args:widgetData.preArgs.concat(v[0]),
                     precision:widgetData.precision,
                     sync:false
                 })
                 sendOsc({
                     target:widgetData.target,
                     path:split.g,
-                    args:v[1],
+                    args:widgetData.preArgs.concat(v[1]),
                     precision:widgetData.precision,
                     sync:false
                 })
                 sendOsc({
                     target:widgetData.target,
                     path:split.b,
-                    args:v[2],
+                    args:widgetData.preArgs.concat(v[2]),
                     precision:widgetData.precision,
                     sync:false
                 })

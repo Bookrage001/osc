@@ -24,6 +24,7 @@ module.exports.options = {
     logScale:false,
     precision:2,
     path:'auto',
+    preArgs:[],
     target:[]
 }
 
@@ -50,6 +51,7 @@ module.exports.create = function(widgetData,container) {
             logScale:widgetData.logScale,
 			precision:widgetData.precision,
 			path:widgetData.path + '/' + i,
+            preArgs:widgetData.preArgs,
             target:widgetData.target
 		}
 		var element = parsewidgets([data],widget)

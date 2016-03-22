@@ -22,6 +22,7 @@ module.exports.options = {
     off:0,
     precision:2,
     path:'auto',
+    preArgs:[],
     target:[]
 }
 module.exports.create = function(widgetData,container) {
@@ -45,6 +46,7 @@ module.exports.create = function(widgetData,container) {
 			off:widgetData.off,
 			precision:widgetData.precision,
 			path:widgetData.path + '/' + i,
+            preArgs:widgetData.preArgs,
             target:widgetData.target
 		}
 		var element = parsewidgets([data],widget)

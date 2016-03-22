@@ -32,6 +32,7 @@ module.exports.options = {
     precision:2,
     meter:false,
     path:'auto',
+    preArgs:[],
     target:[]
 }
 module.exports.create = function(widgetData,container) {
@@ -56,7 +57,9 @@ module.exports.create = function(widgetData,container) {
         dimension = widgetData.horizontal?'width':'height',
         axe = dimension=='height'?'X':'Y',
         absolute = widgetData.absolute,
-        logScale = widgetData.logScale
+        logScale = widgetData.logScale,
+        roundFactor = Math.pow(10,widgetData.precision)
+
 
     if (widgetData.horizontal) container.addClass('horizontal')
 
@@ -73,7 +76,8 @@ module.exports.create = function(widgetData,container) {
             horizontal:widgetData.horizontal,
             range:widgetData.range,
             logScale:widgetData.logScale,
-            path:widgetData.path + '/meter'
+            path:widgetData.path + '/meter',
+            preArgs:widgetData.preArgs
         }
         var element = parsewidgets([data],fader)
 		element[0].classList.add('not-editable')
@@ -196,7 +200,7 @@ module.exports.create = function(widgetData,container) {
     }
     widget.setValue = function(v,send,sync) {
         var h,
-            v=clip(v,[rangeVals[0],rangeVals.slice(-1)[0]])
+            v=clip(Math.round(v*roundFactor)/roundFactor,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
             if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
                 h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision,logScale,true)
@@ -216,11 +220,13 @@ module.exports.create = function(widgetData,container) {
     }
 
     widget.sendValue = function(v) {
+        var args = widgetData.preArgs.concat(v)
+
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
             precision:widgetData.precision,
-            args:v
+            args:args
         })
     }
 

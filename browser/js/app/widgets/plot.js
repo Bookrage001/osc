@@ -25,7 +25,8 @@ module.exports.options = {
 
     separator3:'osc',
 
-    path:'auto'
+    path:'auto',
+    preArgs:[],
 
 }
 module.exports.create = function(widgetData,container) {

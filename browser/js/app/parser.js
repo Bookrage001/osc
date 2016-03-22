@@ -19,7 +19,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         // Reset Globals
         WIDGETS = {}
         WIDGETS_LINKED = {}
-        WIDGETS_ID_BY_PATH = {}
+        WIDGETS_BY_PATH = {}
         SESSION = data
         TABS['#container'] = {
             tab:$('#container')
@@ -120,6 +120,10 @@ module.exports.widgets = function(data,parent) {
             delete widgetData.left
         }
 
+    if (widgetData.preArgs!=undefined) {
+            widgetData.preArgs = Array.isArray(widgetData.preArgs)?widgetData.preArgs:[widgetData.preArgs]
+        }
+
         var width = parseFloat(widgetData.width)==widgetData.width?parseFloat(widgetData.width)+'rem' : widgetData.width,
             height = parseFloat(widgetData.height)==widgetData.height?parseFloat(widgetData.height)+'rem' : widgetData.height,
             left = parseFloat(widgetData.left)==widgetData.left?parseFloat(widgetData.left)+'rem' : widgetData.left,
@@ -160,8 +164,11 @@ module.exports.widgets = function(data,parent) {
         }
 
         // store path vs widget id for faster cross-app sync
-        if (WIDGETS_ID_BY_PATH[widgetData.path]==undefined) WIDGETS_ID_BY_PATH[widgetData.path] = []
-        WIDGETS_ID_BY_PATH[widgetData.path].push(widgetData.id)
+        if (widgetData.path)  {
+            var pathref = widgetData.preArgs&&widgetData.preArgs.length?widgetData.path+'|--|--|'+widgetData.preArgs.join('|--|--|'):widgetData.path
+            if (WIDGETS_BY_PATH[pathref]==undefined) WIDGETS_BY_PATH[pathref] = []
+            WIDGETS_BY_PATH[pathref].push(widgetInner)
+        }
 
         parent[0].appendChild(widgetContainer[0])
     }

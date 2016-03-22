@@ -9,17 +9,25 @@ module.exports = {
         var data = data || event
 
         // fetch ids corresponding to the osc path
-        var path = data.path
-        var ids = WIDGETS_ID_BY_PATH[path]
+        var path = data.path,
+            pathref = path,
+            args = data.args
 
-        for (i in ids) {
-            var id = ids[i]
-            // update
-            if (WIDGETS[id]) {
-                for (j in WIDGETS[id]){
-                     WIDGETS[id][j].setValue(data.args,false,true)
+        if (typeof data.args == 'object') {
+            for (var i=data.args.length-1;i>=0;i--) {
+                var ref = path+'|--|--|'+data.args.slice(0,i).join('|--|--|')
+                if (WIDGETS_BY_PATH[ref]) {
+                    pathref = ref
+                    args = data.args.slice(i,data.args.length)
+                    args = args.length==1?args[0]:args
+                    continue
                 }
             }
+        } else {
+            args = data.args
+        }
+        for (i in WIDGETS_BY_PATH[pathref]) {
+            if (WIDGETS_BY_PATH[pathref][i]) WIDGETS_BY_PATH[pathref][i].setValue(args,false,true)
         }
 
 

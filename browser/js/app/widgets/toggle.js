@@ -21,6 +21,7 @@ module.exports.options = {
     off:0,
     precision:2,
     path:'auto',
+    preArgs:[],
     target:[]
 }
 module.exports.create = function(widgetData,container) {
@@ -71,11 +72,13 @@ module.exports.create = function(widgetData,container) {
     }
     widget.sendValue = function(v) {
         if (v===false) return
+        var args = widgetData.preArgs.concat(v)
+
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
             precision:widgetData.precision,
-            args:v
+            args:args
         })
     }
     widget.setValue()

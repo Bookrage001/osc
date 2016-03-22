@@ -23,7 +23,8 @@ module.exports.options = {
 
     range:{min:0,max:1},
     logScale:false,
-    path:'auto'
+    path:'auto',
+    preArgs:[]
 }
 
 module.exports.create = function(widgetData,container) {
