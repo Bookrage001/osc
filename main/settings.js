@@ -39,7 +39,7 @@ module.exports = function(fs) {
                     catch(err) {
                         try {style.push(fs.readFileSync(argv.t[i],'utf-8'))}
                         catch(err) {
-                            continue
+                            console.log('Theme "' + argv.t[i] + '" not found.')
                         }
                     }
                 }
