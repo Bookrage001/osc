@@ -48,6 +48,7 @@ module.exports.create = function(widgetData,container) {
     }
     widget.length = Math.round(clip(60*widgetData.duration,[8,4096]))
 	widget.data = new Array(widget.length)
+    widget.value = widgetData.range.min
 
 	canvas.resize(function(){
 		var width = canvas.width(),
@@ -156,9 +157,11 @@ module.exports.create = function(widgetData,container) {
         var id = widgetData.widgetId
 
         if (typeof id == 'string' && WIDGETS[id]) {
-            widget.data.push(WIDGETS[id][WIDGETS[id].length-1].getValue())
+            var v = WIDGETS[id][WIDGETS[id].length-1].getValue()
+            widget.data.push(v)
+            widget.value = v
         } else {
-            widget.data.push(widget.data[widget.data.length-1])
+            widget.data.push(widget.value)
         }
 
         widget.data.splice(0,1)
@@ -166,8 +169,7 @@ module.exports.create = function(widgetData,container) {
 	}
 
     widget.setValue = function(v) {
-        widget.data.push(v)
-        widget.data.splice(0,1)
+        widget.value = v
         widget.startLoop()
     }
 
