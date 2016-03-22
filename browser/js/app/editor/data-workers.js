@@ -52,7 +52,7 @@ var updateDom = function(container,data) {
     // save state
     var scroll = $('#sidepanel').scrollTop(),
         state = actions.stateGet(),
-        hadChildren = data.widgets||data.tabs||data.matrix||data.strips
+        purgetabs = data.tabs?true:false
 
 
 
@@ -93,7 +93,7 @@ var updateDom = function(container,data) {
     newContainer.find('[data-tab]:first-child').click()
 
 
-    if (container.attr('id')=='container' || container.hasClass('tab') || hadChildren) purgeStores()
+    purgeStores(purgetabs)
 
     // restore state
     actions.stateSet(state,false)

@@ -1,29 +1,31 @@
-module.exports = function() {
+module.exports = function(purgetabs) {
 
     // prune tabs store
     var count, newcount, formerBuffuredTabs, bufferedTabs
 
-    while (true) {
-        // we need to do that several times since tabs are referenced in each of their parents
+    if (purgetabs) {
+        while (true) {
+            // we need to do that several times since tabs are referenced in each of their parents
 
-        // get all buffered tabs
-        formerBuffuredTabs = []
-        for (i in TABS) {
-            formerBuffuredTabs.push(TABS[i].tab[0])
-        }
-
-        // remove deleted tabs that are not referenced (have no navigation link pointing to them)
-		var $f = $(formerBuffuredTabs)
-        for (i in TABS) {
-            if (!($f.find(`[data-tab="${i}"]`).length || i== '#container')) {
-                delete TABS[i]
+            // get all buffered tabs
+            formerBuffuredTabs = []
+            for (i in TABS) {
+                formerBuffuredTabs.push(TABS[i].tab[0])
             }
+
+            // remove deleted tabs that are not referenced (have no navigation link pointing to them)
+    		var $f = $(formerBuffuredTabs)
+            for (i in TABS) {
+                if (!($f.find(`[data-tab="${i}"]`).length || i== '#container')) {
+                    delete TABS[i]
+                }
+            }
+
+            newcount = Object.keys(TABS).length
+            if (count == newcount) break
+            count = newcount
+
         }
-
-        newcount = Object.keys(TABS).length
-        if (count == newcount) break
-        count = newcount
-
     }
 
 
