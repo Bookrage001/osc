@@ -124,13 +124,14 @@ var incrementWidget = function(data){
         data.path = 'auto'
 
     } else if (path){
-
-        while (WIDGETS_ID_BY_PATH[path]) {
+        var pathref
+        while (WIDGETS_BY_PATH[pathref]) {
             path = path.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
                 return n
             })
+            pathref = data.preArgs&&data.preArgs.length?data.path+'||||'+data.preArgs.join('||||'):data.path
         }
         data.path = path
 
