@@ -3,6 +3,33 @@
     min-height: 200rem;
     height:100%;
 
+    &.align-right .fader-wrapper {
+        .fader {
+            margin-left:calc(50% + 15rem);
+            &:before {
+                box-shadow: 20rem 0 0 35rem;
+            }
+        }
+        .meter-container {
+            -webkit-mask:none;
+            right:auto!important;
+            width:1rem;
+        }
+    }
+    &.align-left .fader-wrapper {
+        .fader {
+            margin-right:calc(50% + 15rem);
+            &:before {
+                box-shadow: -20rem 0 0 35rem;
+            }
+        }
+        .meter-container {
+            -webkit-mask:none;
+            left:auto!important;
+            width:1rem;
+        }
+    }
+
     .input {
         margin-top:-5rem;
     }

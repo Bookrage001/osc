@@ -6,6 +6,7 @@ Sliders are unidimensional widgets that output one value at a time.
 ```js
 type:'fader',
 horizontal:false,           // [bool]   set to true to display fader horizontally
+align:'center',             // [left|right] only display one scale and one meter
 range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
                             //          keys can be percentages or 'min' / 'max'
 logScale: false,            // [bool] use logarithmic scale (log10)

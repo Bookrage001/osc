@@ -17,6 +17,7 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
+    align:'center',
     horizontal:false,
     color:'auto',
     css:'',
@@ -61,7 +62,12 @@ module.exports.create = function(widgetData,container) {
         roundFactor = Math.pow(10,widgetData.precision)
 
 
-    if (widgetData.horizontal) container.addClass('horizontal')
+    if (widgetData.horizontal) {
+        container.addClass('horizontal')
+        delete widgetData.align
+    } else {
+        container.addClass('align-'+widgetData.align)
+    }
 
     handle.size = 0
     fader.size = 0
