@@ -28,7 +28,8 @@ module.exports = {
 
     stateGet: function (){
         var data = []
-        $.each(WIDGETS,function(i,widget) {
+        for (i in WIDGETS) {
+            var widget = WIDGETS[i]
             for (var j=widget.length-1;j>=0;j--) {
                 if (widget[j].setValue && widget[j].getValue) {
                     var v = widget[j].getValue()
@@ -36,7 +37,7 @@ module.exports = {
                     break
                 }
             }
-        })
+        }
         return data
     },
 
@@ -66,18 +67,16 @@ module.exports = {
 
     stateSet: function(preset,send){
 
-        $.each(preset,function(i,data) {
-
-            setTimeout(function(){
-                if (WIDGETS[data[0]]!=undefined) {
-                    for (var i=WIDGETS[data[0]].length-1;i>=0;i--) {
-                        if (WIDGETS[data[0]][i].setValue) {
-                            WIDGETS[data[0]][i].setValue(data[1],send,false)
-                        }
+        for (i in preset) {
+            var data = preset[i]
+            if (WIDGETS[data[0]]!=undefined) {
+                for (var i=WIDGETS[data[0]].length-1;i>=0;i--) {
+                    if (WIDGETS[data[0]][i].setValue) {
+                        WIDGETS[data[0]][i].setValue(data[1],send,false)
                     }
                 }
-            },i)
-        })
+            }
+        }
     },
 
     toggleFullscreen: function(){

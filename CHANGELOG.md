@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.2
+
+- bug fixes
+  - widget linking doesn't cause multiple unwanted osc sends anymore
+
 ## 0.4.1
 
 - features
