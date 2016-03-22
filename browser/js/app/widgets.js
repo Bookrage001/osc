@@ -69,7 +69,7 @@ module.exports.sync = function() {
         if (WIDGETS[id] && WIDGETS[id].length>1) {
             var v = widget.getValue()
             for (i in WIDGETS[id]) {
-                if (WIDGETS[id][i]!=widget && WIDGETS[id][i].setValue) {
+                if (!WIDGETS[id][i].is(widget) && WIDGETS[id][i].setValue) {
                     WIDGETS[id][i].setValue(v,false,false)
                 }
             }
