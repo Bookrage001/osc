@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.4.1
 
 - features
   - `preArgs` option for widgets (prepends constants to osc messages args)
