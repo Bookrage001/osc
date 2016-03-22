@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- features
+  - `preArgs` option for widgets (prepends constants to osc messages args)
+
 ## 0.4.0
 
 - engine
