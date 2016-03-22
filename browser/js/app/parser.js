@@ -165,7 +165,7 @@ module.exports.widgets = function(data,parent) {
 
         // store path vs widget id for faster cross-app sync
         if (widgetData.path)  {
-            var pathref = widgetData.preArgs&&widgetData.preArgs.length?widgetData.path+'|--|--|'+widgetData.preArgs.join('|--|--|'):widgetData.path
+            var pathref = widgetData.preArgs&&widgetData.preArgs.length?widgetData.path+'||||'+widgetData.preArgs.join('||||'):widgetData.path
             if (WIDGETS_BY_PATH[pathref]==undefined) WIDGETS_BY_PATH[pathref] = []
             WIDGETS_BY_PATH[pathref].push(widgetInner)
         }

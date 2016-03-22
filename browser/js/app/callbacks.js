@@ -15,7 +15,7 @@ module.exports = {
 
         if (typeof data.args == 'object') {
             for (var i=data.args.length-1;i>=0;i--) {
-                var ref = path+'|--|--|'+data.args.slice(0,i).join('|--|--|')
+                var ref = path+'||||'+data.args.slice(0,i).join('||||')
                 if (WIDGETS_BY_PATH[ref]) {
                     pathref = ref
                     args = data.args.slice(i,data.args.length)
