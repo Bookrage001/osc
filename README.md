@@ -37,9 +37,9 @@ Options:
   -l, --load     session file to load
   -p, --port     osc input port (for synchronization)
   -n, --nogui    disable default gui and makes the app availabe through http on specified port
-  -t, --theme    theme name (light) or path to theme file
+  -t, --theme    theme name or path (mutliple values allowed)
 
-Exemples :
+Exemples:
 
 $ open-stage-control -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
@@ -49,6 +49,15 @@ $ open-stage-control -n 8080 -l path/to/session.js
 
 This will create a headless app available through http on port 8080. Multiple clients can use the app (with chrome only) simultaneously, their widgets will be synchronized.
 
+
+$ open-stage-control -t light noinput /path/to/custom_theme.css
+
+This will apply three themes (light ui, remove all inputs, and a custom theme file)
+
+
+Available themes:
+- light
+- noinput
 ```
 
 ### Documentation

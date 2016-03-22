@@ -11,7 +11,7 @@ var argv = require('yargs')
           'l':{alias:'load',type:'string',describe:'session file to load'},
           'p':{alias:'port',describe:'osc input port (for synchronization)'},
           'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},
-          't':{alias:'theme',type:'string',describe:'theme name or file'}
+          't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'}
        })
       .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
       .check(function(a,x){if(a.n==undefined || !isNaN(a.n)&&a.n>1023&&parseInt(a.n)===a.n){return true}else{throw 'Error: Port must be an integer >= 1024'}})
@@ -33,13 +33,17 @@ module.exports = function(fs) {
             noGui: argv.n || false,
             theme: function(){
                 if (!argv.t) return
-                try {return fs.readFileSync(__dirname + '/themes/' + argv.t + '.css','utf-8')}
-                catch(err) {
-                    try {return fs.readFileSync(argv.t,'utf-8')}
+                var style = []
+                for (i in argv.t) {
+                    try {style.push(fs.readFileSync(__dirname + '/themes/' + argv.t[i] + '.css','utf-8'))}
                     catch(err) {
-                        return
+                        try {style.push(fs.readFileSync(argv.t[i],'utf-8'))}
+                        catch(err) {
+                            continue
+                        }
                     }
                 }
+                return style
             }()
         }
 	return {

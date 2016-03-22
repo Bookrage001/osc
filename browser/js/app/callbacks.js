@@ -81,8 +81,9 @@ module.exports = {
 
     applyStyle: function(event,data){
         var data = data || event
+        console.log(data)
         var style = document.createElement('style');
-        style.innerHTML = data;
+        style.innerHTML = data.join('');
         document.body.appendChild(style);
         if (data.indexOf('--pixel-scale')!=-1) {
             PXSCALE = data.match(/--pixel-scale\s*:\s*([^;]*)/)[1]
