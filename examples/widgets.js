@@ -91,7 +91,7 @@
                     }
                 ],
                 "id": "strip_1",
-                "label": "strip_1",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -189,7 +189,7 @@
                     }
                 ],
                 "id": "strip_2",
-                "label": "strip_2",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -287,7 +287,7 @@
                     }
                 ],
                 "id": "strip_3",
-                "label": "strip_3",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -385,7 +385,7 @@
                     }
                 ],
                 "id": "strip_4",
-                "label": "strip_4",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -483,7 +483,7 @@
                     }
                 ],
                 "id": "strip_5",
-                "label": "strip_5",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -581,7 +581,7 @@
                     }
                 ],
                 "id": "strip_6",
-                "label": "strip_6",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -679,7 +679,7 @@
                     }
                 ],
                 "id": "strip_7",
-                "label": "strip_7",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -777,7 +777,7 @@
                     }
                 ],
                 "id": "strip_8",
-                "label": "strip_8",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -875,7 +875,7 @@
                     }
                 ],
                 "id": "strip_9",
-                "label": "strip_9",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -973,7 +973,7 @@
                     }
                 ],
                 "id": "strip_10",
-                "label": "strip_10",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "width": "auto",
@@ -1032,7 +1032,7 @@
                     }
                 ],
                 "id": "strip_11",
-                "label": "strip_11",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "height": "auto",
@@ -1085,7 +1085,7 @@
                     }
                 ],
                 "id": "strip_12",
-                "label": "strip_12",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "height": "auto",
@@ -1138,7 +1138,7 @@
                     }
                 ],
                 "id": "strip_13",
-                "label": "strip_13",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "height": "auto",
@@ -1191,7 +1191,7 @@
                     }
                 ],
                 "id": "strip_14",
-                "label": "strip_14",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "height": "auto",
@@ -1244,7 +1244,7 @@
                     }
                 ],
                 "id": "strip_15",
-                "label": "strip_15",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "height": "auto",
@@ -1297,7 +1297,7 @@
                     }
                 ],
                 "id": "strip_16",
-                "label": "strip_16",
+                "label": "auto",
                 "left": "auto",
                 "top": "auto",
                 "height": "auto",
@@ -1325,7 +1325,7 @@
                                 "type": "fader",
                                 "id": "fader_12",
                                 "linkId": "",
-                                "label": "fader_12",
+                                "label": "auto",
                                 "unit": "",
                                 "left": "auto",
                                 "top": "auto",
@@ -1346,7 +1346,7 @@
                                 "type": "fader",
                                 "id": "fader_13",
                                 "linkId": "",
-                                "label": "fader_13",
+                                "label": "auto",
                                 "unit": "",
                                 "left": "auto",
                                 "top": "auto",
@@ -1367,7 +1367,7 @@
                                 "type": "fader",
                                 "id": "fader_14",
                                 "linkId": "",
-                                "label": "fader_14",
+                                "label": "auto",
                                 "unit": "",
                                 "left": "auto",
                                 "top": "auto",
@@ -1388,7 +1388,7 @@
                                 "type": "fader",
                                 "id": "fader_25",
                                 "linkId": "",
-                                "label": "fader_25",
+                                "label": "auto",
                                 "unit": "",
                                 "left": "auto",
                                 "top": "auto",
@@ -1408,7 +1408,7 @@
                         ],
                         "tabs": [],
                         "id": "panel_1",
-                        "label": "panel_1",
+                        "label": "auto",
                         "stretch": false
                     },
                     {
@@ -1437,7 +1437,7 @@
                                         "on": 1,
                                         "off": 0,
                                         "id": "push_5",
-                                        "label": "push_5"
+                                        "label": "auto"
                                     },
                                     {
                                         "type": "push",
@@ -1453,7 +1453,7 @@
                                         "on": 1,
                                         "off": 0,
                                         "id": "push_3",
-                                        "label": "push_3"
+                                        "label": "auto"
                                     },
                                     {
                                         "type": "push",
@@ -1469,7 +1469,7 @@
                                         "on": 1,
                                         "off": 0,
                                         "id": "push_1",
-                                        "label": "push_1"
+                                        "label": "auto"
                                     },
                                     {
                                         "type": "push",
@@ -1485,7 +1485,7 @@
                                         "on": 1,
                                         "off": 0,
                                         "id": "push_2",
-                                        "label": "push_2"
+                                        "label": "auto"
                                     }
                                 ]
                             },
@@ -1496,7 +1496,7 @@
                                         "type": "knob",
                                         "id": "fader_21",
                                         "linkId": "",
-                                        "label": "fader_21",
+                                        "label": "auto",
                                         "unit": "",
                                         "width": "auto",
                                         "height": 231,
@@ -1517,7 +1517,7 @@
                                         "type": "knob",
                                         "id": "fader_22",
                                         "linkId": "",
-                                        "label": "fader_22",
+                                        "label": "auto",
                                         "unit": "",
                                         "left": "auto",
                                         "top": "auto",
@@ -1538,7 +1538,7 @@
                                         "type": "knob",
                                         "id": "fader_23",
                                         "linkId": "",
-                                        "label": "fader_23",
+                                        "label": "auto",
                                         "unit": "",
                                         "left": "auto",
                                         "top": "auto",
@@ -1559,7 +1559,7 @@
                                         "type": "knob",
                                         "id": "fader_24",
                                         "linkId": "",
-                                        "label": "fader_24",
+                                        "label": "auto",
                                         "unit": "",
                                         "left": "auto",
                                         "top": "auto",
@@ -1583,7 +1583,7 @@
                             }
                         ],
                         "id": "panel_2",
-                        "label": "panel_2",
+                        "label": "auto",
                         "stretch": false
                     }
                 ]
@@ -1597,7 +1597,7 @@
                 "type": "multifader",
                 "id": "multifader_1",
                 "strips": "12",
-                "label": "multifader_1",
+                "label": "auto",
                 "unit": "",
                 "left": "0",
                 "top": "0",
@@ -1619,7 +1619,7 @@
                     6,
                     6
                 ],
-                "label": "multipush_1",
+                "label": "auto",
                 "left": "0",
                 "top": "50%",
                 "width": "50%",
@@ -1638,7 +1638,7 @@
                     6,
                     6
                 ],
-                "label": "multitoggle_1",
+                "label": "auto",
                 "left": "50%",
                 "top": "50%",
                 "width": "50%",
