@@ -30,7 +30,6 @@ module.exports.create = function(widgetData,container) {
 
     widget.setValue = function(v,send,sync){
 		widget.text(v)
-        if (sync) widget.trigger('sync',[widgetData.id,widget])
     }
 
     widget.setValue(label)

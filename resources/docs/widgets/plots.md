@@ -41,3 +41,8 @@ duration:1,                 // [number] window size in seconds
 range:{"min":0,"max":1},    // [object] minimum and maximum values the Y axis
 logScale: false,            // [bool] use logarithmic scale for Y axis (log10)
 ```
+
+## text
+```js
+type:'text',
+```
