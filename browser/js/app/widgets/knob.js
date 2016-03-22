@@ -192,6 +192,8 @@ module.exports.create = function(widgetData,container) {
         })
     }
     widget.setValue = function(v,send,sync) {
+        if (typeof v != 'number') return
+
         var r = mapToScale(Math.round(v*roundFactor)/roundFactor,[range.min,range.max],[0,270],widgetData.precision,logScale,true)
         knob.rotation = r
 
@@ -205,7 +207,7 @@ module.exports.create = function(widgetData,container) {
         if (send) widget.sendValue(v)
     }
     input.change(function(){
-        widget.setValue(input.val(),true,true)
+        widget.setValue(parseFloat(input.val()),true,true)
     })
 
     widget.setValue(range.min)

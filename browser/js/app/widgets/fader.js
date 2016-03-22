@@ -199,6 +199,8 @@ module.exports.create = function(widgetData,container) {
 
     }
     widget.setValue = function(v,send,sync) {
+        if (typeof v != 'number') return
+
         var h,
             v=clip(Math.round(v*roundFactor)/roundFactor,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
@@ -235,7 +237,7 @@ module.exports.create = function(widgetData,container) {
     }
 
     input.change(function(){
-        widget.setValue(input.val(),true,true)
+        widget.setValue(parseFloat(input.val()),true,true)
     })
 
     widget.setValue(rangeVals[0])

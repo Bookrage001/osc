@@ -67,6 +67,8 @@ module.exports.create = function(widgetData,container) {
 
 
     widget.setValue = function(v) {
+        if (typeof v != 'number') return
+
         var h,
             v=clip(v,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
