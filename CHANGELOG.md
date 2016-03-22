@@ -2,6 +2,8 @@
 
 ## 0.4.2
 
+- features
+  - new widget : text (just displays received values)
 - bug fixes
   - widget linking doesn't cause multiple unwanted osc sends anymore
 
