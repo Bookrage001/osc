@@ -82,3 +82,16 @@
 		}
 	}
 }
+
+.text-container {
+    .text {
+        flex: 1;
+        height:35rem;
+        padding: 10rem;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        background: var(--color-faded);
+        color:var(--color-accent);
+    }
+}

@@ -2,7 +2,7 @@ var utils = require('./utils'),
     mapToScale = utils.mapToScale
 
 module.exports.options = {
-    type:'led',
+    type:'text',
     id:'auto',
 
     separator1:'style',
@@ -17,28 +17,23 @@ module.exports.options = {
 
     separator2:'osc',
 
-    range:{min:0,max:1},
-    logScale:false,
     preArgs:[],
     path:'auto'
 }
 module.exports.create = function(widgetData,container) {
     var widget = $(`
-            <div class="led">
-                <div><span></span></div>
+            <div class="text">
             </div>
             `),
-        led = widget.find('span'),
-        range = widgetData.range
+		label = widgetData.label===false?widgetData.id:widgetData.label=='auto'?widgetData.id:widgetData.label=='auto'
+
 
     widget.setValue = function(v,send,sync){
-        if (typeof v != 'number') return
-
-        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision,widgetData.logScale,true))
+		widget.text(v)
         if (sync) widget.trigger('sync',[widgetData.id,widget])
     }
 
-    widget.setValue(range.min)
+    widget.setValue(label)
 
     return widget
 }

@@ -1,56 +1,32 @@
-var strip = require('./widgets/strip'),
-    panel = require('./widgets/panel'),
-    led = require('./widgets/led'),
-    plot = require('./widgets/plot'),
-    visualizer = require('./widgets/visualizer'),
-    meter = require('./widgets/meter'),
-    fader = require('./widgets/fader'),
-    knob = require('./widgets/knob'),
-    xy = require('./widgets/xy'),
-    rgb = require('./widgets/rgb'),
-    toggle = require('./widgets/toggle'),
-    swiitch = require('./widgets/switch'),
-    push = require('./widgets/push'),
-    multitoggle = require('./widgets/multitoggle'),
-    multipush = require('./widgets/multipush'),
-    multifader = require('./widgets/multifader')
+var widgets = {
+    // sliders
+    fader: require('./widgets/fader'),
+    knob: require('./widgets/knob'),
 
-module.exports.widgetOptions = {
-    strip: strip.options,
-    panel: panel.options,
-    led: led.options,
-    plot: plot.options,
-    visualizer: visualizer.options,
-    meter: meter.options,
-    fader: fader.options,
-    knob: knob.options,
-    xy: xy.options,
-    rgb: rgb.options,
-    toggle: toggle.options,
-    switch: swiitch.options,
-    push: push.options,
-    multitoggle: multitoggle.options,
-    multipush: multipush.options,
-    multifader: multifader.options
-}
+    // buttons
+    toggle: require('./widgets/toggle'),
+    switch: require('./widgets/switch'),
+    push: require('./widgets/push'),
 
-module.exports.createWidget = {
-    strip: strip.create,
-    panel: panel.create,
-    led: led.create,
-    plot: plot.create,
-    visualizer: visualizer.create,
-    meter: meter.create,
-    fader: fader.create,
-    knob: knob.create,
-    xy: xy.create,
-    rgb: rgb.create,
-    toggle: toggle.create,
-    switch: swiitch.create,
-    push: push.create,
-    multitoggle: multitoggle.create,
-    multipush: multipush.create,
-    multifader: multifader.create
+    // pads
+    xy: require('./widgets/xy'),
+    rgb: require('./widgets/rgb'),
+
+    // matrices
+    multitoggle: require('./widgets/multitoggle'),
+    multipush: require('./widgets/multipush'),
+    multifader: require('./widgets/multifader'),
+
+    // plots
+    led: require('./widgets/led'),
+    plot: require('./widgets/plot'),
+    visualizer: require('./widgets/visualizer'),
+    meter: require('./widgets/meter'),
+    text: require('./widgets/text'),
+
+    // containers
+    strip: require('./widgets/strip'),
+    panel: require('./widgets/panel'),
 }
 
 module.exports.categories = {
@@ -58,9 +34,25 @@ module.exports.categories = {
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb'],
     'Matrices':['multifader','multitoggle','multipush'],
-    'Plots':['plot','visualizer','led','meter'],
+    'Plots':['plot','visualizer','led','meter','text'],
     'Containers':['panel','strip']
 }
+
+module.exports.widgetOptions = function(){
+    var r = {}
+    for (i in widgets) {
+        r[i] = widgets[i].options
+    }
+    return r
+}()
+
+module.exports.createWidget =  function(){
+    var r = {}
+    for (i in widgets) {
+        r[i] = widgets[i].create
+    }
+    return r
+}()
 
 module.exports.sync = function() {
     $('body').off('sync.global').on('sync.global',function(e,id,widget,linkId){
