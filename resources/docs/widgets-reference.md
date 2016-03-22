@@ -9,10 +9,10 @@ Every widget has the following properties:
     id:"my_widget_id",      // [string] optional, default to unique 'widget_n'
 
     label:"My widget",      // [string|false] default to id, false to hide completely
-    top:"auto",             // [string|integer] if set, the widget will have an absolute position (percentages allowed)
-    left:"auto",            // [string|integer] if set, the widget will have an absolute position (percentages allowed)
-    width:"auto",           // [string|integer] widget's width in px (percentages allowed)
-    height:"auto",          // [string|integer] widget's height in px (percentages allowed)
+    top:"auto",             // [number|percentage%] if set, the widget will have an absolute position
+    left:"auto",            // [string|percentage%] if set, the widget will have an absolute position
+    width:"auto",           // [string|percentage%] widget's width
+    height:"auto",          // [string|percentage%] widget's height
     color:'auto',           // [string] css color code replacing the default accent color
     css:"",                 // [string] css styles, yeah
 
