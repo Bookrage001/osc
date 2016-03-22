@@ -6,7 +6,7 @@
   - electron 0.37.2 (chrome 49)
 - ui
   - new flat ui
-  - tab system rewritten : inactive tabs are detached from the DOM tree, thus improving performances.
+  - tab system rewritten : inactive tabs are detached from the DOM tree, thus improving performances while slowing down tab switching.
   - widget categories in editor's context menu
 - features
   - logarithmic scaling (log10) support added to knob, fader & xy
@@ -14,7 +14,8 @@
   - new widgets : plot, visualizer & meter. Fader built-in feedback meter option
   - traversing gestures switch in sidepanel
   - custom color property for all widgets with inheritance (containers)
-  - editor pasting function now smartly increments widget's id and path while keeping label if different from default 
+  - editor pasting function now smartly increments widget's id and path while keeping label if different from default
+  - true theming support
 - misc
   - sync/link event handling improved
   - stylesheets cannot be recompiled on the fly anymore (`--c` switch removed)
