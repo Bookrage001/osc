@@ -13,6 +13,7 @@ Every widget has the following properties:
     left:"auto",            // [string|integer] if set, the widget will have an absolute position (percentages allowed)
     width:"auto",           // [string|integer] widget's width in px (percentages allowed)
     height:"auto",          // [string|integer] widget's height in px (percentages allowed)
+    color:'auto',           // [string] css color code replacing the default accent color
     css:"",                 // [string] css styles, yeah
 
     precision:2,            // [integer] number of decimals : 0 to send integers
