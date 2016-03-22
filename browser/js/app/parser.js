@@ -104,13 +104,6 @@ module.exports.widgets = function(data,parent) {
         }
 
 
-        // Sort widgets' properties and turn string-numbers to numbers
-        for (k in widgetOptions[widgetData.type]) {
-            if (parseFloat(widgetOptions[widgetData.type])==widgetOptions[widgetData.type]) widgetOptions[widgetData.type]=parseFloat(widgetOptions[widgetData.type])
-            if (parseInt(widgetOptions[widgetData.type])==widgetOptions[widgetData.type]) widgetOptions[widgetData.type]=parseInt(widgetOptions[widgetData.type])
-        }
-
-
         for (t in {width:'',height:'',top:'',left:''}) {
             widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
         }
@@ -120,8 +113,11 @@ module.exports.widgets = function(data,parent) {
             delete widgetData.left
         }
 
-    if (widgetData.preArgs!=undefined) {
+        if (widgetData.preArgs!=undefined) {
             widgetData.preArgs = Array.isArray(widgetData.preArgs)?widgetData.preArgs:[widgetData.preArgs]
+        }
+        if (widgetData.target!=undefined) {
+            widgetData.target = Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]
         }
 
         var width = parseFloat(widgetData.width)==widgetData.width?parseFloat(widgetData.width)+'rem' : widgetData.width,
@@ -163,7 +159,7 @@ module.exports.widgets = function(data,parent) {
             WIDGETS_LINKED[widgetData.linkId].push(widgetInner)
         }
 
-        // store path vs widget id for faster cross-app sync
+        // store widget by path and encode preArgs for perfect cross-app sync
         if (widgetData.path)  {
             var pathref = widgetData.preArgs&&widgetData.preArgs.length?widgetData.path+'||||'+widgetData.preArgs.join('||||'):widgetData.path
             if (WIDGETS_BY_PATH[pathref]==undefined) WIDGETS_BY_PATH[pathref] = []
