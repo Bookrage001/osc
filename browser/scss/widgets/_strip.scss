@@ -6,7 +6,7 @@
     overflow: visible;
     background: none;
 
-    .strip {
+    > .strip {
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -18,7 +18,7 @@
     }
     &.vertical {
         border-bottom:0;
-        .strip > .widget {
+        > .strip > .widget {
             max-width: 100%;
             border-right:0;
             &:last-child {
@@ -33,7 +33,7 @@
         border-right:0;
         flex-direction: row;
 
-        .strip {
+        > .strip {
             flex-direction: row;
             flex:1;
             > .widget {
