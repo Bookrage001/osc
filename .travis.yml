@@ -1,11 +1,13 @@
 language: node_js
 node_js:
   - "4.1"
+npm:
+  - "3.7.5"
 addons:
   apt:
     packages:
     - wine
-install: npm install --save-optional --only prod
+install: npm install --save-optional -production
 deploy:
   provider: releases
   api-key:
