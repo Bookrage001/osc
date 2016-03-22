@@ -5,7 +5,7 @@ addons:
   apt:
     packages:
     - wine
-install: npm install --save-optional
+install: npm install --save-optional --only prod
 deploy:
   provider: releases
   api-key:
