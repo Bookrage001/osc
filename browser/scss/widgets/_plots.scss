@@ -39,8 +39,8 @@
 }
 
 .plot-container, .visualizer-container {
-    min-height: 200rem;
-    min-width: 200rem;
+    height: 200rem;
+    width: 200rem;
     .plot {
         display: flex;
         flex-direction: row;
@@ -62,7 +62,7 @@
 
 
 .meter-container {
-
+    height: 100rem;
 	.meter {
         display: flex;
         flex-direction: row;
