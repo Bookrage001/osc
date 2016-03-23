@@ -133,6 +133,7 @@ var incrementWidget = function(data){
             })
             pathref = data.preArgs&&data.preArgs.length?data.path+'||||'+data.preArgs.join('||||'):data.path
         }
+        WIDGETS_BY_PATH[pathref] = []
         data.path = path
 
     }
@@ -145,6 +146,7 @@ var incrementWidget = function(data){
                 return n
             })
         }
+        WIDGETS[id] = []
         data.id = id
 
     }
