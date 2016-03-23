@@ -12,6 +12,7 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
+    vertical:false,
     color:'auto',
     css:'',
 
@@ -27,6 +28,8 @@ module.exports.create = function(widgetData,container) {
             `),
 		label = widgetData.label===false?widgetData.id:widgetData.label=='auto'?widgetData.id:widgetData.label=='auto'
 
+
+    if (widgetData.vertical) widget.addClass('vertical')
 
     widget.setValue = function(v,send,sync){
 		widget.text(v)

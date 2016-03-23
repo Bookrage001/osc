@@ -18,7 +18,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 
 ```js
 type:'panel',
-stretch:false,              // [bool] set to true to stretch widgets width (don't put horizontal strips in it)
+scroll:true,				// [bool] set to false to disable scrollbars
 widgets: [],                // [array] of widget objects
 tabs: []                    // [array] of tab objects
 ```

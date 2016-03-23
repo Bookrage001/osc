@@ -9,7 +9,7 @@ module.exports.options = {
 	top:'auto',
 	width:'auto',
 	height:'auto',
-	stretch:false,
+	scroll:true,
 	color:'auto',
 	css:'',
 
@@ -29,7 +29,7 @@ module.exports.create = function(widgetData,container) {
             </div>
             `)
 
-    if (widgetData.stretch) widget.addClass('stretch')
+    if (!widgetData.scroll) widget.addClass('noscroll')
 
     if (widgetData.tabs.length) {
         parsetabs(widgetData.tabs,widget)

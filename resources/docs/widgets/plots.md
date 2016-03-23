@@ -45,4 +45,5 @@ logScale: false,            // [bool] use logarithmic scale for Y axis (log10)
 ## text
 ```js
 type:'text',
+vertical:false,             // [bool]
 ```

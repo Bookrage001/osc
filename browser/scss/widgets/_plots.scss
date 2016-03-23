@@ -93,5 +93,11 @@
         align-items: center;
         background: var(--color-faded);
         color:var(--color-accent);
+        &.vertical {
+            transform: rotate(180deg);
+            text-overflow: ellipsis;
+            overflow: hidden;
+            -webkit-writing-mode:vertical-lr;
+        }
     }
 }

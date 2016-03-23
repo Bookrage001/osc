@@ -5,15 +5,22 @@
     z-index: 2;
     width: 200rem;
     height: 200rem;
+    border:0;
 
     background: var(--color-faded);
 
-    &.label {
+    &:before {
+        content:"";
         position: absolute;
         top:0;
-        left:0;
-        right:0;
-        width:auto;
+        bottom:0;
+        right: 0;
+        left: 0;
+        border-bottom: 1rem solid  var(--color-bg);
+        border-right: 1rem solid  var(--color-bg);
+        pointer-events: none;
+        z-index: 2;
+
     }
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track-piece {
@@ -21,34 +28,32 @@
     }
 
     &.nolabel .panel {
-        top:1rem;
+        top:0;
     }
 
     .panel {
         overflow: auto;
         position: absolute;
         top:35rem;
-        left:1rem;
-        right:1rem;
-        bottom:1rem;
-        background: var(--color-bg);
+        left:0;
+        right:0;
+        bottom:0;
         z-index: 1;
 
         &.has-tabs {
             display: flex;
             flex-direction: column;
+            background: var(--color-bg);
         }
 
-        &.stretch {
-            display:flex;
-            justify-content: space-between;
+        &.noscroll {
+            overflow: hidden;
             > .widget {
-                width:100%;
+                max-width: 100%;
+                max-height: 100%;
             }
         }
-        > .navigation:before {
-            display:none;
-        }
+
     }
     .navigation {
         border-top: 0;
