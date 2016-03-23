@@ -6,15 +6,15 @@ var sidepanel = require('./sidepanel').init
 // Tabs...
 var tabs = function() {
     $('#container').click(function(e){
-        var link = $(e.target)
+        var link = e.target
 
-        if (!link.is('li[data-tab]') || link.hasClass('on')) return
+        if (!link.hasAttribute('data-tab') || link.classList.contains('on')) return
 
-        var id = link.data('tab')
+        var id = link.getAttribute('data-tab')
 
-        link.addClass('on')
+        link.classList.add('on')
 
-        var previous = link.siblings('.on').removeClass('on').data('tab')
+        var previous = $(link).siblings('.on').removeClass('on').data('tab')
 
         // TABS[id].tab.appendTo(TABS[id].parent)
         TABS[id].parent[0].appendChild(TABS[id].tab[0])
