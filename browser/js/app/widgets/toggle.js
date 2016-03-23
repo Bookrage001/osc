@@ -35,6 +35,7 @@ module.exports.create = function(widgetData,container) {
         light = widget.find('.light')[0]
 
     widget.value = widget.find('span')
+    widget.state = 0
 
     widget.on('drag',function(e){e.stopPropagation()})
     widget.on('draginit.toggle',function(){
@@ -43,7 +44,7 @@ module.exports.create = function(widgetData,container) {
     })
 
     widget.fakeclick = function(){
-        var newVal = widget.hasClass('on')?widgetData.off:widgetData.on
+        var newVal = widget.state?widgetData.off:widgetData.on
         widget.setValue(newVal,true,true)
         $document.on('dragend.toggle',function(){
             $document.off('dragend.toggle')
@@ -56,14 +57,16 @@ module.exports.create = function(widgetData,container) {
 
 
     widget.getValue = function() {
-        return widget.hasClass('on')?widgetData.on:widgetData.off
+        return widget.state?widgetData.on:widgetData.off
     }
     widget.setValue = function(v,send,sync) {
-        if (v==widgetData.on) {
+        if (v===widgetData.on || (v=='false'&&widgetData.on===false)) {
             widget.addClass('on')
+            widget.state = 1
             if (send) widget.sendValue(widgetData.on)
-        } else if (v==widgetData.off) {
+        } else if (v===widgetData.off || (v=='false'&&widgetData.off===false)) {
             widget.removeClass('on')
+            widget.state = 0
             if (send) widget.sendValue(widgetData.off)
         }
 
