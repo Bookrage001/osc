@@ -2,7 +2,6 @@
 
 
 .panel-container {
-    z-index: 2;
     width: 200rem;
     height: 200rem;
     border:0;
@@ -38,7 +37,6 @@
         left:0;
         right:0;
         bottom:0;
-        z-index: 1;
 
         &.has-tabs {
             display: flex;
