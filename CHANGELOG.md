@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.4.3
+
+-features
+  - text widget can be `vertical`
+  - panel widget `scroll` option
+- bug fixes
+  - smart pasting now works when the clipboard contains several widgets whose unsuffixed ids are the identical
+  - osc received array that contain only one item are correctly unpacked (fixes cross-app sync for widgets that don't accept array, broken since the introduction of `preArgs`)
+- misc
+  - push widget doesn't fire its 'on' value if pressed while stuck in 'on' position
+  - panel widgets don't have inner margins anymore
+
 ## 0.4.2
 
 - features
