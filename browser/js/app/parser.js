@@ -21,6 +21,12 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         WIDGETS_LINKED = {}
         WIDGETS_BY_PATH = {}
         SESSION = data
+        for (i in TABS) {
+            if (i!='#container') {
+                TABS[i].parent.remove()
+                TABS[i].tab.remove()
+            }
+        }
         TABS['#container'] = {
             tab:$('#container')
         }
