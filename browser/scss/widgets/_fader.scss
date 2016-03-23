@@ -1,5 +1,5 @@
-@mixin pips($direction: "to bottom") {
-    $color: var(--color-text-fade);
+@mixin pips($color,$direction: "to bottom") {
+
     $gradient: $color, $color 1rem, transparent 1rem,transparent 1%;
     @for $i from 1 through 100 {
         $dump: ();
@@ -17,6 +17,8 @@
     width:100rem;
     min-height: 200rem;
     height:100%;
+
+    --color-pips:var(--color-text-fade);
 
     &.align-right .fader-wrapper {
         .fader {
@@ -157,11 +159,11 @@
             z-index: 0;
             width: 38rem;
             margin-left: -19rem;
-            @include pips;
+            @include pips(var(--color-pips));
 
             .pip {
                 height:1%;
-                background: linear-gradient(var(--color-text-fade), var(--color-text-fade) 1rem,transparent 1rem);
+                background: linear-gradient(var(--color-pips), var(--color-pips) 1rem,transparent 1rem);
                 position: absolute;
                 width:44rem;
                 margin-left:-3rem;
@@ -174,7 +176,7 @@
                     line-height: 12rem;
                     left:44rem;
                     top:-5.5rem;
-                    color:var(--color-text-fade);
+                    color:var(--color-pips);
                     &:last-child {
                         left:auto;
                         right:44rem;
@@ -248,11 +250,11 @@
             height:4rem;
             width:100%;
             margin:0;
-            @include pips('to right');
+            @include pips(var(--color-pips),'to right');
         }
         .pip {
             width:1%;
-            background: linear-gradient(90deg,var(--color-text-fade),var(--color-text-fade) 1rem,transparent 1rem );
+            background: linear-gradient(90deg,var(--color-pips),var(--color-pips) 1rem,transparent 1rem );
             height:6rem;
             margin: 0;
 
