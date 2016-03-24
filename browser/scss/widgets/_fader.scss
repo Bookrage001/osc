@@ -1,10 +1,10 @@
 @mixin pips($color,$direction: "to bottom") {
 
-    $gradient: $color, $color 1rem, transparent 1rem,transparent 1%;
+    $gradient: $color, $color 1px, transparent 1px,transparent 1%;
     @for $i from 1 through 100 {
         $dump: ();
 
-        $dump:  $color + ' '+ $i+'%, ' + $color +' calc('+$i+'% + 1rem),transparent calc('+$i+'% + 1rem),transparent '+($i+1)+'%';
+        $dump:  $color + ' '+ $i+'%, ' + $color +' calc('+$i+'% + 1px),transparent calc('+$i+'% + 1px),transparent '+($i+1)+'%';
 
 
         $gradient: join($gradient, unquote($dump), comma);
@@ -162,8 +162,10 @@
             @include pips(var(--color-pips));
 
             .pip {
-                height:1%;
-                background: linear-gradient(var(--color-pips), var(--color-pips) 1rem,transparent 1rem);
+                height:1px;
+                background: var(--color-pips);
+                color:var(--color-fg);
+                box-shadow: 0 0 0 1px;
                 position: absolute;
                 width:44rem;
                 margin-left:-3rem;
@@ -250,20 +252,17 @@
             height:4rem;
             width:100%;
             margin:0;
-            @include pips(var(--color-pips),'to right');
+            @include pips(var(--color-pips),'to left');
         }
         .pip {
-            width:1%;
-            background: linear-gradient(90deg,var(--color-pips),var(--color-pips) 1rem,transparent 1rem );
+            width:1px;
             height:6rem;
             margin: 0;
 
             span {
                 top:15rem;
                 left:-15rem!important;
-                &:last-child {
-                    right:auto;
-                }
+                right:auto;
             }
         }
     }
