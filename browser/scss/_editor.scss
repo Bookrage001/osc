@@ -124,7 +124,11 @@
     position:fixed;
     z-index: 999999999;
     background: var(--color-raised);
-    box-shadow: 0 0 4rem 0 var(--color-track);
+    box-shadow: 0 0 4rem 0;
+    color:var(--color-track);
+    .item {
+        color:var(--color-text)
+    }
     .context-menu {
         position: absolute;
         left:100%;
