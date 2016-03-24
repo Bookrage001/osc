@@ -8,9 +8,11 @@
 - bug fixes
   - smart pasting now works when the clipboard contains several widgets whose unsuffixed ids are the identical
   - osc received array that contain only one item are correctly unpacked (fixes cross-app sync for widgets that don't accept array, broken since the introduction of `preArgs`)
+  - memory leak when loading a new session (cached tabs were not properly purged)
 - misc
   - push widget doesn't fire its 'on' value if pressed while stuck in 'on' position
   - panel widgets don't have inner margins anymore
+  - fader widget optimization : the pip scale is generated from a single gradient plus some elements for each breakpoint (instead of one element per percent), thus reducing the number of elements to draw.
 
 ## 0.4.2
 
