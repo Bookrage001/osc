@@ -1,4 +1,5 @@
 // jQuery drag event handler
+var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 ;(function($){
     var $document = $(document)
     $.event.special.drag = {
@@ -60,7 +61,7 @@
                 return {left: offsetLeft, top: offsetTop}
             }
 
-            element.on("touchstart.drag mousedown.drag", function(e) {
+            element.on(startEvent+".drag", function(e) {
                 previousEvent = e
 
                 if (!e.originalEvent.changedTouches) {

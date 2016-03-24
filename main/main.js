@@ -12,7 +12,6 @@ if (!settings.read('noGui')) {
         console.log(title + ': ' + err)
     }
 
-    app.commandLine.appendSwitch('--touch-events')
 
     app.on('window-all-closed', function() {
         if (process.platform != 'darwin') {
