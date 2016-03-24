@@ -2,7 +2,7 @@
 
 ## 0.4.3
 
--features
+- features
   - text widget can be `vertical`
   - panel widget `scroll` option
 - bug fixes
