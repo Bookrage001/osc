@@ -145,13 +145,13 @@ module.exports.widgets = function(data,parent) {
             </div>
         `)
 
+        if (widgetData.color && widgetData.color!='auto') widgetContainer[0].style.setProperty('--color-accent',widgetData.color)
 
         if (widgetData.label===false) widgetContainer.addClass('nolabel')
 
         // create widget
         var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
 
-        if (widgetData.color && widgetData.color!='auto') widgetInner[0].style.setProperty('--color-accent',widgetData.color)
 
         widgetContainer[0].appendChild(widgetInner[0])
 
