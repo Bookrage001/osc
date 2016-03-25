@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.4
+
+- misc
+  - refining the fader's pip scale that looked choppy on mobile devices. All pips are now evenly spaced, not relatively to the fader's height.
+
 ## 0.4.3
 
 - features

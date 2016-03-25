@@ -1,9 +1,14 @@
 .fader-container {
+    --color-pips: var(--color-text-fade);
+    --color-gauge: var(--color-accent);
+    --color-knob: var(--color-accent);
+
+
+
     width:100rem;
     min-height: 200rem;
     height:100%;
 
-    --color-pips:var(--color-text-fade);
 
     &.align-right .fader-wrapper {
         .fader {
@@ -54,7 +59,7 @@
             cursor: -webkit-grabbing;
         }
         .fader {
-            width:4rem;
+            width:2rem;
             position: relative;
             margin:0 auto;
             pointer-events: none;
@@ -79,7 +84,7 @@
                 transform-origin: bottom;
                 max-height:100%;
                 max-width:100%;
-                background:var(--color-accent);
+                background:var(--color-gauge);
                 z-index: 3;
                 transform-style: preserve-3d;
                 backface-visibility: hidden;
@@ -96,10 +101,10 @@
                     content:"";
                     position: absolute;
                     top:-4rem;
-                    left:-2rem;
+                    left:-3rem;
                     height:8rem;
                     width:8rem;
-                    background:var(--color-accent);
+                    background:var(--color-knob);
                     border:none!important;
                     border-radius: 100%!important;
                 }
@@ -107,12 +112,12 @@
                     content:"";
                     position: absolute;
                     top:-10rem;
-                    left:-8rem;
+                    left:-9rem;
                     height:20rem;
                     width:20rem;
                     border:none!important;
                     border-radius: 100%!important;
-                    background:var(--color-accent);
+                    background:var(--color-knob);
                     opacity: .2;
                 }
             }
@@ -127,7 +132,7 @@
                 min-height: 0;
                 border:0;
                 box-shadow: none;
-                -webkit-mask:linear-gradient(to right,#000 1rem, rgba(0,0,0,0) 1rem, rgba(0,0,0,0) 27rem, #000 27rem);
+                -webkit-mask:linear-gradient(to right,#000 1rem, rgba(0,0,0,0) 1rem, rgba(0,0,0,0) 25rem, #000 25rem);
                 opacity:0.75;
                 height:auto;
                 .meter {
@@ -196,7 +201,7 @@
         overflow: hidden;
 
         .fader-wrapper {
-            padding:20rem 20rem 35rem;
+            padding:20rem 20rem 40rem;
             display: block;
             flex:0;
             flex-shrink: 0;
@@ -205,7 +210,7 @@
             width:100%;
             left:auto;
             top:50%;
-            height:4rem;
+            height:2rem;
             &:before {
                 box-shadow:none;
             }
@@ -217,12 +222,12 @@
                     transform-origin: right;
                 }
                 span:before {
-                    top:-2rem;
+                    top:-3rem;
                     right:-4rem;
                     left:auto;
                 }
                 span:after {
-                    top:-8rem;
+                    top:-9rem;
                     right:-10rem;
                     left:auto
                 }

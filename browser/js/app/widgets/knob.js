@@ -22,8 +22,6 @@ module.exports.options = {
     separator2:'behaviour',
 
     absolute:false,
-    pan:false,
-
 
     separator3:'osc',
 
@@ -59,7 +57,6 @@ module.exports.create = function(widgetData,container) {
         range = widgetData.range,
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         absolute = widgetData.absolute,
-        pan = widgetData.pan,
         logScale = widgetData.logScale,
         roundFactor = Math.pow(10,widgetData.precision)
 
@@ -166,9 +163,6 @@ module.exports.create = function(widgetData,container) {
     widget.updateUi = function(r) {
         knob[0].setAttribute('style','transform:rotateZ('+r+'deg)')
         handle[0].setAttribute('style','transform:rotateZ('+(r-45)+'deg)')
-
-        if (pan && r<135) {mask.removeClass('pan-right').addClass('pan-left')}
-        else if (pan)     {mask.removeClass('pan-left').addClass('pan-right')}
 
         if      (r>180) {knob.addClass('d3')}
         else if (r>90)  {knob.removeClass('d3').addClass('d2')}

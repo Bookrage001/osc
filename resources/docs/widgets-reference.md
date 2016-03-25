@@ -25,6 +25,10 @@ Every widget has the following properties:
 
 **Important note about position (`left` & `top`)** : by default, the widget will be positioned according to the normal flow of the page (from left to right, by order of creation).
 
+## CSS
+
+The css property can be used to override theming variables (see [theming](theming.md) for a widget. Also, some widgets expose specific theming variables that allow a finer customization. 
+
 ## Widget specifics
 
 Each widget type comes with an additional set of specific properties which are described in the pages listed below.

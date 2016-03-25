@@ -31,14 +31,14 @@
     left:0;
     right:0;
     bottom:0;
-    border-bottom:4rem solid var(--color-fg);
+    border-bottom:2rem solid var(--color-fg);
 
     .light {
         position: absolute;
-        left:4rem;
-        right:4rem;
-        top:4rem;
-        height:4rem;
+        left:2rem;
+        right:2rem;
+        top:2rem;
+        height:2rem;
         pointer-events: none;
         background: var(--color-accent);
         &:after {

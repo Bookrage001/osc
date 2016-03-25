@@ -1,6 +1,8 @@
-
-
 .knob-container {
+    --color-pips: var(--color-text-fade);
+    --color-gauge: var(--color-accent);
+    --color-knob: var(--color-accent);
+
     width: 100rem;
     align-items: center;
     flex-shrink: 0;
@@ -47,33 +49,9 @@
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4rem solid var(--color-track);
+                    border:2rem solid var(--color-track);
                     transform: rotate(45deg);
                     z-index:4;
-                }
-                &.pan-left {
-                    &:before {
-                        content:"";
-                        border-left-color: transparent;
-                        border-bottom-color: transparent;
-                    }
-                    .knob:after {
-                        border-color: var(--color-track);
-                        border-left-color: var(--color-accent);
-                        border-top-color: var(--color-accent);
-                    }
-                }
-                &.pan-right {
-                    &:before {
-                        content:"";
-                        border-right-color: transparent;
-                        border-top-color: transparent;
-                    }
-                    .knob:after {
-                        border-color: var(--color-track);
-                        border-right-color: var(--color-accent);
-                        border-bottom-color: var(--color-accent);
-                    }
                 }
 
                 &:after {
@@ -117,16 +95,16 @@
                     right:0;
                     bottom:0;
                     border-radius:100%;
-                    border:4rem solid var(--color-track);
-                    border-bottom-color: var(--color-accent);
+                    border:2rem solid var(--color-track);
+                    border-bottom-color: var(--color-gauge);
                 }
 
                 &.d2:after {
-                    border-right-color: var(--color-accent);
+                    border-right-color: var(--color-gauge);
                 }
                 &.d3:after {
-                    border-top-color: var(--color-accent);
-                    border-right-color: var(--color-accent);
+                    border-top-color: var(--color-gauge);
+                    border-right-color: var(--color-gauge);
                 }
 
 
@@ -145,11 +123,11 @@
                     content:"";
                     position: absolute;
                     top:50%;
-                    left:-2rem;
-                    margin-top:-4rem;
+                    left:-3rem;
+                    margin-top:-5rem;
                     height:8rem;
                     width:8rem;
-                    background:var(--color-accent);
+                    background:var(--color-knob);
                     border:none!important;
                     border-radius: 100%!important;
                 }
@@ -157,13 +135,13 @@
                     content:"";
                     position: absolute;
                     top:50%;
-                    margin-top:-10rem;
-                    left:-8rem;
+                    margin-top:-11rem;
+                    left:-9rem;
                     height:20rem;
                     width:20rem;
                     border:none!important;
                     border-radius: 100%!important;
-                    background:var(--color-accent);
+                    background:var(--color-knob);
                     opacity: .2;
                 }
             }
@@ -172,7 +150,7 @@
             }
             .pip {
                 font-size:11rem;
-                color:var(--color-text);
+                color:var(--color-pips);
                 pointer-events: none;
                 display:inline-block;
                 &.min {
