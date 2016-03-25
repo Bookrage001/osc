@@ -11,7 +11,7 @@ body {
     display:flex;
     flex-direction: column;
     background:var(--color-bg);
-    padding:var(--gutter);
+    padding:2rem;
     // transition:right .2s;
     &.sidepanel-open {
         right:var(--sidepanel-size);
@@ -23,7 +23,7 @@ body {
     overflow: hidden;
     position: relative;
     background:var(--color-fg);
-    padding:var(--gutter);
+    padding:2rem;
 }
 
 .tab {

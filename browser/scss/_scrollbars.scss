@@ -9,10 +9,10 @@
 ::-webkit-scrollbar-track-piece {
     background: var(--color-bg);
     &:vertical {
-        border-left:var(--gutter) solid var(--color-bg);
+        border-left:2rem solid var(--color-bg);
     }
     &:horizontal {
-        border-top:var(--gutter) solid var(--color-bg);
+        border-top:2rem solid var(--color-bg);
     }
 }
 ::-webkit-scrollbar-corner  {
@@ -21,9 +21,9 @@
 ::-webkit-scrollbar-thumb {
     background:var(--color-raised);
     &:vertical {
-        border-left:var(--gutter) solid var(--color-bg);
+        border-left:2rem solid var(--color-bg);
     }
     &:horizontal {
-        border-top:var(--gutter) solid var(--color-bg);
+        border-top:2rem solid var(--color-bg);
     }
 }

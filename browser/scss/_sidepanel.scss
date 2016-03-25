@@ -3,7 +3,7 @@
     position:absolute;
     z-index: 999999;
     width:var(--sidepanel-size);
-    border: calc(var(--gutter)*2) solid var(--color-fg);
+    border: 8rem solid var(--color-fg);
     top:0;
     right:0;
     bottom:0;
@@ -28,7 +28,7 @@
 
         li {
             display:block;
-            margin-bottom:calc(var(--gutter)*2);
+            margin-bottom:8rem;
             position: relative;
 
             &:last-child {
@@ -46,9 +46,9 @@
             }
 
             ul {
-                padding: var(--gutter);
+                padding: 4rem;
                 li {
-                    margin-bottom: var(--gutter);
+                    margin-bottom: 4rem;
                 }
             }
 
@@ -67,13 +67,13 @@
     &::-webkit-scrollbar-track-piece {
         background: var(--color-bg);
         &:vertical {
-            border-left:calc(var(--gutter)*2) solid var(--color-fg);
+            border-left:8rem solid var(--color-fg);
         }
     }
     &::-webkit-scrollbar-thumb {
         background:var(--color-raised);
         &:vertical {
-            border-left:calc(var(--gutter)*2) solid var(--color-fg);
+            border-left:8rem solid var(--color-fg);
         }
     }
 }
