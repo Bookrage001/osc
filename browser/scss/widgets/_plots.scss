@@ -1,6 +1,6 @@
-
-
 .led-container {
+    --color-custom:var(--color-accent);
+
     width:100rem;
     flex-shrink: 0;
 
@@ -23,7 +23,7 @@
                 top:0;left:0;right:0;bottom:0;
                 border-radius: 100%;
                 display:block;
-                background-color:var(--color-accent);
+                background-color:var(--color-custom);
                 &:after {
                     content:"";
                     border-radius:100%;
@@ -39,6 +39,8 @@
 }
 
 .plot-container, .visualizer-container {
+    --color-custom:var(--color-accent);
+
     height: 200rem;
     width: 200rem;
     .plot {
@@ -75,7 +77,7 @@
 			width:100%;
             flex:1;
 			transform-origin: bottom;
-			background:var(--color-accent);
+			background:var(--color-custom);
             &.horizontal {
                 transform-origin: left;
             }
@@ -92,7 +94,7 @@
         display: flex;
         align-items: center;
         background: var(--color-faded);
-        color:var(--color-accent);
+        color:var(--color-custom);
         &.vertical {
             transform: rotate(180deg);
             text-overflow: ellipsis;

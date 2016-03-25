@@ -41,22 +41,22 @@ module.exports.create = function(widgetData,container) {
         <div class="fader-wrapper-outer">
             <div class="fader-wrapper">
                 <div class="fader">
-                    <div class="handle"><span></span></div>
+                    <div class="gauge"></div>
+                    <div class="knob"></div>
                     <div class="pips"></div>
                 </div>
             </div>
             <div class="input"></div>
         </div>
         `),
-        handle = widget.find('.handle'),
-        knob = widget.find('span')[0],
+        gauge = widget.find('.gauge'),
+        knob = widget.find('.knob'),
         wrapper = widget.find('.fader-wrapper'),
         fader = widget.find('.fader'),
         pips = widget.find('.pips'),
         input = widget.find('.input').fakeInput({align:'center'}),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = widgetData.horizontal?'width':'height',
-        axe = dimension=='height'?'X':'Y',
         absolute = widgetData.absolute,
         logScale = widgetData.logScale,
         roundFactor = Math.pow(10,widgetData.precision)
@@ -69,7 +69,7 @@ module.exports.create = function(widgetData,container) {
         container.addClass('align-'+widgetData.align)
     }
 
-    handle.size = 0
+    gauge.size = 0
     fader.size = 0
     wrapper.size = 0
 
@@ -129,6 +129,7 @@ module.exports.create = function(widgetData,container) {
     fader.resize(function(){
         fader.size= dimension=='height'?fader.outerHeight():fader.outerWidth()
         wrapper.size = dimension=='height'?wrapper.outerHeight():wrapper.outerWidth()
+        widget.updateUi(gauge.size)
     })
 
     wrapper.on('mousewheel',function(e){
@@ -138,9 +139,9 @@ module.exports.create = function(widgetData,container) {
         e.stopPropagation()
 
         var divider = e.ctrlKey?4:.25
-        handle.size = clip(handle.size+e.originalEvent.wheelDelta/(fader.size*divider),[0,100])
+        gauge.size = clip(gauge.size+e.originalEvent.wheelDelta/(fader.size*divider),[0,100])
 
-        widget.updateUi(handle.size)
+        widget.updateUi(gauge.size)
 
         var v = widget.getValue()
         widget.sendValue(v)
@@ -158,7 +159,7 @@ module.exports.create = function(widgetData,container) {
             d = clip(d,[0,100])
 
             widget.updateUi(d)
-            handle.size = d
+            gauge.size = d
 
             var v = widget.getValue()
             widget.sendValue(v)
@@ -168,7 +169,7 @@ module.exports.create = function(widgetData,container) {
 
         }
 
-        off = handle.size
+        off = gauge.size
 
     })
 
@@ -183,7 +184,7 @@ module.exports.create = function(widgetData,container) {
 
         widget.updateUi(d)
 
-        handle.size = d
+        gauge.size = d
 
         var v = widget.getValue()
         widget.sendValue(v)
@@ -194,13 +195,16 @@ module.exports.create = function(widgetData,container) {
     })
 
     widget.updateUi = function(v){
-        var r = sizeToAngle(v)
-        handle[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
-        knob.setAttribute('style','transform:rotate'+axe+'('+ (-r) +'deg)')
+        var s = v/100,
+            t = dimension=='height'?
+                ['1,'+s+',1','0,'+-s*fader.size+'px,0']
+                :[s+',1,1',s*fader.size+'px,0,0']
+        gauge[0].setAttribute('style','transform:scale3d('+t[0]+')')
+        knob[0].setAttribute('style','transform:translate3d('+t[1]+')')
     }
 
     widget.getValue = function(){
-        var h = clip(handle.size,[0,100])
+        var h = clip(gauge.size,[0,100])
         for (var i=0;i<rangeKeys.length-1;i++) {
             if (h <= rangeKeys[i+1] && h >= rangeKeys[i]) {
                 return mapToScale(h,[rangeKeys[i],rangeKeys[i+1]],[rangeVals[i],rangeVals[i+1]],widgetData.precision,logScale)
@@ -222,7 +226,7 @@ module.exports.create = function(widgetData,container) {
 
         widget.updateUi(h)
 
-        handle.size = h
+        gauge.size = h
 
         widget.showValue(v)
 

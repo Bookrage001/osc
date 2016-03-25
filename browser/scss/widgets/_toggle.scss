@@ -1,4 +1,6 @@
 .toggle-container {
+    --color-custom:var(--color-accent);
+    
     width:100rem;
     min-height: 65rem;
     flex-shrink: 0;
@@ -40,7 +42,7 @@
         top:2rem;
         height:2rem;
         pointer-events: none;
-        background: var(--color-accent);
+        background: var(--color-custom);
         &:after {
             content:"";
             width: 100%;

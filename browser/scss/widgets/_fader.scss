@@ -1,7 +1,8 @@
 .fader-container {
+    --color-custom:var(--color-accent);
     --color-pips: var(--color-text-fade);
-    --color-gauge: var(--color-accent);
-    --color-knob: var(--color-accent);
+    --color-gauge: var(--color-custom);
+    --color-knob: var(--color-custom);
 
 
 
@@ -75,29 +76,26 @@
                 color: var(--color-fg);
                 position: absolute;
             }
-            .handle {
+            .gauge {
                 position: absolute;
                 bottom:0!important;
-                top:auto!important;
+                top:0!important;
                 width:100%;
                 height:100%;
                 transform-origin: bottom;
                 max-height:100%;
                 max-width:100%;
                 background:var(--color-gauge);
-                z-index: 3;
-                transform-style: preserve-3d;
-                backface-visibility: hidden;
-                span {
-                    position: absolute;
-                    bottom:0;
-                    top:0;
-                    width:100%;
-                    height:100%;
-                    transform-origin: top;
-                    backface-visibility: hidden;
-                }
-                span:before {
+                z-index: 1;
+
+            }
+            .knob {
+                position: absolute;
+                bottom:0;
+                width:0;
+                height:0;
+                z-index: 2;
+                &:before {
                     content:"";
                     position: absolute;
                     top:-4rem;
@@ -108,7 +106,7 @@
                     border:none!important;
                     border-radius: 100%!important;
                 }
-                span:after {
+                &:after {
                     content:"";
                     position: absolute;
                     top:-10rem;
@@ -214,23 +212,8 @@
             &:before {
                 box-shadow:none;
             }
-            .handle {
-                height:100%important;
-                width:100%;
+            .gauge {
                 transform-origin: left;
-                span {
-                    transform-origin: right;
-                }
-                span:before {
-                    top:-3rem;
-                    right:-4rem;
-                    left:auto;
-                }
-                span:after {
-                    top:-9rem;
-                    right:-10rem;
-                    left:auto
-                }
             }
             .meter-container {
                 top:-12rem;

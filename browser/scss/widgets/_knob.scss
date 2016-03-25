@@ -1,7 +1,8 @@
 .knob-container {
+    --color-custom:var(--color-accent);
     --color-pips: var(--color-text-fade);
-    --color-gauge: var(--color-accent);
-    --color-knob: var(--color-accent);
+    --color-gauge: var(--color-custom);
+    --color-knob: var(--color-custom);
 
     width: 100rem;
     align-items: center;

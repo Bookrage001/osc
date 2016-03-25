@@ -1,5 +1,7 @@
 
 .xy-container, .rgb-container {
+    --color-custom:var(--color-accent);
+    
     width:200rem;
     height:250rem;
     flex-shrink: 0;
@@ -53,7 +55,7 @@
             right:-4rem;
             height:8rem;
             width:8rem;
-            background:var(--color-accent);
+            background:var(--color-custom);
             border:none!important;
             border-radius: 100%!important;
         }
@@ -66,7 +68,7 @@
             width:20rem;
             border:none!important;
             border-radius: 100%!important;
-            background:var(--color-accent);
+            background:var(--color-custom);
             opacity: .2;        }
 
     }

@@ -1,4 +1,6 @@
 .push-container {
+    --color-custom:var(--color-accent);
+    
     width:100rem;
     min-height: 65rem;
     flex-shrink: 0;
@@ -34,7 +36,7 @@
         .light {
             position: absolute;
             left:auto;
-            background: var(--color-accent);
+            background: var(--color-custom);
             height:4rem;
             width:4rem;
             border-radius: 4rem;
