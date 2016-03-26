@@ -1,5 +1,4 @@
 var utils = require('./utils'),
-    sizeToAngle = utils.sizeToAngle,
     clip = utils.clip,
     mapToScale = utils.mapToScale,
     sendOsc = utils.sendOsc

@@ -34,10 +34,6 @@ module.exports = {
 
 	},
 
-	sizeToAngle: function(size) {
-	    return module.exports.clip(Math.acos((size/100))*180/Math.PI,[0,90])
-	},
-
 	hsbToRgb: function (hsb) {
 		var rgb = {}
 		var h = hsb.h
