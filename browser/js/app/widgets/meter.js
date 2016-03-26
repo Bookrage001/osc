@@ -1,5 +1,4 @@
 var utils = require('./utils'),
-    sizeToAngle = utils.sizeToAngle,
     clip = utils.clip,
     mapToScale = utils.mapToScale
 
@@ -61,8 +60,11 @@ module.exports.create = function(widgetData,container) {
 
 
     widget.updateUi = function(v){
-        var r = sizeToAngle(v)
-        level[0].setAttribute('style','transform:rotate'+axe+'('+ r +'deg)')
+        var s = v/100,
+            t = dimension=='height'?
+                '1,'+s+',1'
+                :s+',1,1'
+        level[0].setAttribute('style','transform:scale3d('+t+')')
     }
 
 
