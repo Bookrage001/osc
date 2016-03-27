@@ -8,14 +8,10 @@ module.exports = function(settings) {
 	        server      = http.createServer(express),
 	        io          = require('socket.io')(),
 	        ioWildcard  = require('socketio-wildcard')(),
-	        browserify  = require('browserify'),
-			ipc 		= {}
+	        ipc 		= {}
 
 	    express.get('/', function(req, res){
 	        res.sendFile(path.resolve(__dirname + '/../browser/index-headless.html'))
-	    })
-	    express.get('*browser-headless.js', function(req, res){
-	        browserify().add(path.resolve(__dirname + '/../browser' + req.path)).bundle().pipe(res);
 	    })
 	    express.get('*', function(req, res){
 	        res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
