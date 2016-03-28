@@ -9,6 +9,11 @@ horizontal:false,           // [bool]   set to true to display fader horizontall
 align:'center',             // [left|right] only display one scale and one meter
 range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
                             //          keys can be percentages or 'min' / 'max'
+                            //          custom label can be set by writing the value as an object:
+                            //          range: {
+                            //              min:{'-inf':0}
+                            //              max:1
+                            //          }
 logScale: false,            // [bool] use logarithmic scale (log10)
 unit: false,                // [string] value suffix
 absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging

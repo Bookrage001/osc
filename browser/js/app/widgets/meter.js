@@ -41,21 +41,18 @@ module.exports.create = function(widgetData,container) {
     if (widgetData.horizontal) level.addClass('horizontal')
 
 
+    var rangeKeys = [],
+        rangeVals = []
 
-	var range = {}
     for (k in widgetData.range) {
-        if (k=='min') {
-            range[0]=widgetData.range[k]
-        } else if (k=='max') {
-            range[100]=widgetData.range[k]
-        } else {
-            range[parseInt(k)]=widgetData.range[k]
-        }
+        var key = k=='min'?0:k=='max'?100:parseInt(k),
+            val = typeof widgetData.range[k] == 'object'?
+                        widgetData.range[k][Object.keys(widgetData.range[k])[0]]:
+                        widgetData.range[k]
+
+        rangeKeys.push(key)
+        rangeVals.push(val)
     }
-
-    var rangeKeys = Object.keys(range).map(function (key) {return parseInt(key)}),
-        rangeVals = Object.keys(range).map(function (key) {return parseFloat(range[key])})
-
 
 
 

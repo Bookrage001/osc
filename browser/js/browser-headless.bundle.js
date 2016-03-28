@@ -1788,24 +1788,36 @@ module.exports.create = function(widgetData,container) {
     }
 
 
-    var range = {}
+    var rangeKeys = [],
+        rangeVals = [],
+        rangeLabels = []
+
     for (k in widgetData.range) {
-        if (k=='min') {
-            range[0]=widgetData.range[k]
-        } else if (k=='max') {
-            range[100]=widgetData.range[k]
-        } else {
-            range[parseInt(k)]=widgetData.range[k]
-        }
+        var key = k=='min'?0:k=='max'?100:parseInt(k),
+            val = typeof widgetData.range[k] == 'object'?
+                        widgetData.range[k][Object.keys(widgetData.range[k])[0]]:
+                        widgetData.range[k],
+            label = typeof widgetData.range[k] == 'object'?
+                        Object.keys(widgetData.range[k])[0]:
+                        val
+
+        rangeKeys.push(key)
+        rangeVals.push(val)
+        rangeLabels.push(label)
+    }
+
+    var pipTexts = {}
+    for (k in rangeKeys) {
+        pipTexts[rangeKeys[k]]=rangeLabels[k]
     }
 
     var pipsInner = ''
     for (var i=0;i<=100;i++) {
-        if (range[i]==undefined) continue
+        if (pipTexts[i]==undefined) continue
 
         var pos = dimension=='height'?'bottom':'left';
 
-        var piptext = `<span>${Math.abs(range[i])>=1000?range[i]/1000+'k':range[i]}</span>`
+        var piptext = `<span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>`
 
         if (dimension=='height') piptext = piptext+ piptext
 
@@ -1817,10 +1829,6 @@ module.exports.create = function(widgetData,container) {
     pips[0].innerHTML = pipsInner
 
 
-
-
-    var rangeKeys = Object.keys(range).map(function (key) {return parseInt(key)}),
-        rangeVals = Object.keys(range).map(function (key) {return parseFloat(range[key])})
 
 
 
@@ -2256,21 +2264,18 @@ module.exports.create = function(widgetData,container) {
     if (widgetData.horizontal) level.addClass('horizontal')
 
 
+    var rangeKeys = [],
+        rangeVals = []
 
-	var range = {}
     for (k in widgetData.range) {
-        if (k=='min') {
-            range[0]=widgetData.range[k]
-        } else if (k=='max') {
-            range[100]=widgetData.range[k]
-        } else {
-            range[parseInt(k)]=widgetData.range[k]
-        }
+        var key = k=='min'?0:k=='max'?100:parseInt(k),
+            val = typeof widgetData.range[k] == 'object'?
+                        widgetData.range[k][Object.keys(widgetData.range[k])[0]]:
+                        widgetData.range[k]
+
+        rangeKeys.push(key)
+        rangeVals.push(val)
     }
-
-    var rangeKeys = Object.keys(range).map(function (key) {return parseInt(key)}),
-        rangeVals = Object.keys(range).map(function (key) {return parseFloat(range[key])})
-
 
 
 
