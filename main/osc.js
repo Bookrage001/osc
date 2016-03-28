@@ -21,16 +21,16 @@ module.exports = function(ipc, settings) {
 
 		    var numberType = precision==0?'integer':'float'
 
-		    if (typeof args=='object') {
+		    if (typeof args=='object' && args!==null) {
 		        for (i in args) {
 		            var arg = args[i]
-		            if (typeof arg == 'number') {
+		            if (typeof arg == 'number' && arg!==null) {
 		                message.append({type:numberType,value:arg})
-		            } else {
+		            } else if (arg!==null){
 		                message.append({type:'string',value:String(arg)})
 		            }
 		        }
-		    } else {
+		    } else if (args!==null){
 		        if (typeof args == 'number') {
 		            message.append({type:numberType,value:args})
 		        } else {
