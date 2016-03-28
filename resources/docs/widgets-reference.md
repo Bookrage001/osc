@@ -20,6 +20,8 @@ Every widget has the following properties:
     target:false,           // [array/string] List of target hosts ("ip:port" pairs), separated by spaces
     path:false,             // [string] osc path, default to '/widget_id'
     preArgs:[]              // [array] list of constant values to prepend to the sent value(s)
+                            // a value's type can be specified by writing it as an object:
+                            // preArgs: [{type:"integer",value:1}]
 }
 ```
 
@@ -27,7 +29,7 @@ Every widget has the following properties:
 
 ## CSS
 
-The css property can be used to override theming variables (see [theming](theming.md) for a widget. Also, some widgets expose specific theming variables that allow a finer customization. 
+The css property can be used to override theming variables (see [theming](theming.md) for a widget. Also, some widgets expose specific theming variables that allow a finer customization.
 
 ## Widget specifics
 
