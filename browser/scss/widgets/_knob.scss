@@ -148,11 +148,11 @@
             }
             .pips {
                 width:100%;
+                pointer-events: none;
             }
             .pip {
                 font-size:11rem;
                 color:var(--color-pips);
-                pointer-events: none;
                 display:inline-block;
                 &.min {
                     width:50%;
