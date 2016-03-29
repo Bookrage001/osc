@@ -52,7 +52,8 @@ module.exports.create = function(widgetData,container) {
 			precision:widgetData.precision,
 			path:widgetData.path + '/' + i,
             preArgs:widgetData.preArgs,
-            target:widgetData.target
+            target:widgetData.target,
+            noPip:true
 		}
 		var element = parsewidgets([data],widget)
 		element[0].setAttribute('style',`width:${100/widgetData.strips}%`)

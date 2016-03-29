@@ -111,27 +111,29 @@ module.exports.create = function(widgetData,container) {
         rangeLabels.push(label)
     }
 
-    var pipTexts = {}
-    for (k in rangeKeys) {
-        pipTexts[rangeKeys[k]]=rangeLabels[k]
+    if (!widget.noPip) {        
+        var pipTexts = {}
+        for (k in rangeKeys) {
+            pipTexts[rangeKeys[k]]=rangeLabels[k]
+        }
+
+        var pipsInner = ''
+        for (var i=0;i<=100;i++) {
+            if (pipTexts[i]==undefined) continue
+
+            var pos = dimension=='height'?'bottom':'left';
+
+            var piptext = `<span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>`
+
+            if (dimension=='height') piptext = piptext+ piptext
+
+            var add = `
+                    <div class="pip val" style="${pos}:${i}%">${piptext}</div>
+                `
+            pipsInner = pipsInner + add
+        }
+        pips[0].innerHTML = pipsInner
     }
-
-    var pipsInner = ''
-    for (var i=0;i<=100;i++) {
-        if (pipTexts[i]==undefined) continue
-
-        var pos = dimension=='height'?'bottom':'left';
-
-        var piptext = `<span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>`
-
-        if (dimension=='height') piptext = piptext+ piptext
-
-        var add = `
-                <div class="pip val" style="${pos}:${i}%">${piptext}</div>
-            `
-        pipsInner = pipsInner + add
-    }
-    pips[0].innerHTML = pipsInner
 
 
 
