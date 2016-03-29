@@ -258,6 +258,6 @@ module.exports.create = function(widgetData,container) {
         widget.setValue(parseFloat(input.val()),true,true)
     })
 
-    widget.setValue(range.min)
+    widget.setValue(rangeVals[0])
     return widget
 }
