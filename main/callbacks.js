@@ -22,6 +22,7 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 		},
 
 		sessionSave: function(data) {
+			var self = this
 		    dialog.showSaveDialog(window,{title:'Save current session',defaultPath:settings.read('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
 
 		        if (file==undefined) {return}
@@ -30,6 +31,7 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 		        if (file.indexOf('.js')==-1){file+='.js'}
 		        fs.writeFile(file,data, function (err, data) {
 		            if (err) throw err
+					self.sessionAddToHistory(file)
 		            console.log('The session was saved in '+file)
 		        })
 		    })
