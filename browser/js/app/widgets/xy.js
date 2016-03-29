@@ -66,6 +66,7 @@ module.exports.create = function(widgetData,container) {
     pad.height = 0
     handle.height = 0
     handle.width = 0
+    widget.value = undefined
 
     pad.resize(function(){
         var width = pad.innerWidth(),
@@ -89,9 +90,15 @@ module.exports.create = function(widgetData,container) {
             handle.width = w
 
             var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+
+            if (v<widget.value||v>widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         }
 
@@ -112,9 +119,15 @@ module.exports.create = function(widgetData,container) {
         handle.width = w
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+
+        if (v<widget.value||v>widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
 
     })
 
@@ -144,6 +157,7 @@ module.exports.create = function(widgetData,container) {
 
         handle.height = h
         handle.width = w
+        widget.value = v
 
         widget.showValue(v)
         if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])

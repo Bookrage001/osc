@@ -68,6 +68,7 @@ module.exports.create = function(widgetData,container) {
     widget.find('.pip.max').text(pipmax)
 
     mask.size = 0
+    widget.value = undefined
 
     wrapper.resize(function(){
         var w = Math.floor(wrapper[0].offsetWidth*.58)
@@ -88,10 +89,15 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(knob.rotation)
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
 
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (v!=widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
     })
 
 
@@ -119,11 +125,16 @@ module.exports.create = function(widgetData,container) {
 
             knob.rotation = r
 
-            var v = widget.getValue(r)
+            var v = widget.getValue()
 
-            widget.sendValue(v)
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
-            widget.showValue(v)
+            if (v!=widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         }
 
@@ -152,12 +163,16 @@ module.exports.create = function(widgetData,container) {
 
         knob.rotation = r
 
-        var v = widget.getValue(r)
+        var v = widget.getValue()
 
-        widget.sendValue(v)
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
-        widget.showValue(v)
+        if (v!=widget.value) {
+            widget.value = v
 
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
     })
 
     widget.updateUi = function(r) {
@@ -194,6 +209,7 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(r)
 
         var v = widget.getValue()
+        widget.value = v
 
         widget.showValue(v)
 

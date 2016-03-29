@@ -66,6 +66,7 @@ module.exports.create = function(widgetData,container) {
         rgbHandle.height = 0
         rgbHandle.width = 0
         hueHandle.width = 0
+        widget.value = undefined
 
         pad.resize(function(){
             var width = pad.innerWidth(),
@@ -89,9 +90,15 @@ module.exports.create = function(widgetData,container) {
                 rgbHandle.width = w
 
                 var v = widget.getValue()
-                widget.sendValue(v)
-                widget.showValue(v)
-                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+
+                if (v<widget.value||v>widget.value) {
+                    widget.value = v
+
+                    widget.sendValue(v)
+                    widget.showValue(v)
+
+                    widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+                }
 
             }
 
@@ -111,10 +118,15 @@ module.exports.create = function(widgetData,container) {
             rgbHandle.width = w
 
             var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
 
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (v<widget.value||v>widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         })
 
@@ -128,16 +140,20 @@ module.exports.create = function(widgetData,container) {
 
 
                 var h = clip(hueHandle.width*3.6,[0,360]),
-                    rgb = hsbToRgb({h:h,s:100,b:100}),
-                    v = widget.getValue()
+                    rgb = hsbToRgb({h:h,s:100,b:100})
 
                 rgbBg.setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
+                var v = widget.getValue()
 
+                if (v<widget.value||v>widget.value) {
+                    widget.value = v
 
-                widget.sendValue(v)
-                widget.showValue(v)
-                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+                    widget.sendValue(v)
+                    widget.showValue(v)
+
+                    widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+                }
 
             }
 
@@ -156,14 +172,20 @@ module.exports.create = function(widgetData,container) {
             hueHandle.width = w
 
             var h = clip(hueHandle.width*3.6,[0,360]),
-                rgb = hsbToRgb({h:h,s:100,b:100}),
-                v = widget.getValue()
+                rgb = hsbToRgb({h:h,s:100,b:100})
 
             rgbBg.setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
-            widget.sendValue(v)
-            widget.showValue(v)
 
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            var v = widget.getValue()
+
+            if (v<widget.value||v>widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         })
 
@@ -198,6 +220,7 @@ module.exports.create = function(widgetData,container) {
             rgbHandle.height = h
             rgbHandle.width = w
             hueHandle.width = hueW
+            widget.value = v
 
 
             var rgb = hsbToRgb({h:hsb.h,s:100,b:100})

@@ -71,6 +71,7 @@ module.exports.create = function(widgetData,container) {
     gauge.size = 0
     fader.size = 0
     wrapper.size = 0
+    widget.value = undefined
 
     if (widgetData.meter) {
         var parsewidgets = require('../parser').widgets
@@ -151,10 +152,15 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(gauge.size)
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
 
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (v!=widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
     })
 
     var off = 0
@@ -169,10 +175,15 @@ module.exports.create = function(widgetData,container) {
             gauge.size = d
 
             var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
 
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (v!=widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         }
 
@@ -194,10 +205,15 @@ module.exports.create = function(widgetData,container) {
         gauge.size = d
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
 
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (v!=widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
 
     })
 
@@ -235,6 +251,7 @@ module.exports.create = function(widgetData,container) {
 
         gauge.size = h
 
+        widget.value = v
         widget.showValue(v)
 
 
