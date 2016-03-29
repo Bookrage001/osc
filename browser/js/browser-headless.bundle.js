@@ -1770,6 +1770,7 @@ module.exports.create = function(widgetData,container) {
     gauge.size = 0
     fader.size = 0
     wrapper.size = 0
+    widget.value = undefined
 
     if (widgetData.meter) {
         var parsewidgets = require('../parser').widgets
@@ -1850,10 +1851,15 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(gauge.size)
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
 
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (v!=widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
     })
 
     var off = 0
@@ -1868,10 +1874,15 @@ module.exports.create = function(widgetData,container) {
             gauge.size = d
 
             var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
 
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (v!=widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         }
 
@@ -1893,10 +1904,15 @@ module.exports.create = function(widgetData,container) {
         gauge.size = d
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
 
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (v!=widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
 
     })
 
@@ -1934,6 +1950,7 @@ module.exports.create = function(widgetData,container) {
 
         gauge.size = h
 
+        widget.value = v
         widget.showValue(v)
 
 
@@ -2036,6 +2053,7 @@ module.exports.create = function(widgetData,container) {
     widget.find('.pip.max').text(pipmax)
 
     mask.size = 0
+    widget.value = undefined
 
     wrapper.resize(function(){
         var w = Math.floor(wrapper[0].offsetWidth*.58)
@@ -2056,10 +2074,15 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(knob.rotation)
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
 
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (v!=widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
     })
 
 
@@ -2087,11 +2110,16 @@ module.exports.create = function(widgetData,container) {
 
             knob.rotation = r
 
-            var v = widget.getValue(r)
+            var v = widget.getValue()
 
-            widget.sendValue(v)
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
-            widget.showValue(v)
+            if (v!=widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         }
 
@@ -2120,12 +2148,16 @@ module.exports.create = function(widgetData,container) {
 
         knob.rotation = r
 
-        var v = widget.getValue(r)
+        var v = widget.getValue()
 
-        widget.sendValue(v)
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
-        widget.showValue(v)
+        if (v!=widget.value) {
+            widget.value = v
 
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
     })
 
     widget.updateUi = function(r) {
@@ -2162,6 +2194,7 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(r)
 
         var v = widget.getValue()
+        widget.value = v
 
         widget.showValue(v)
 
@@ -2968,6 +3001,7 @@ module.exports.create = function(widgetData,container) {
         rgbHandle.height = 0
         rgbHandle.width = 0
         hueHandle.width = 0
+        widget.value = undefined
 
         pad.resize(function(){
             var width = pad.innerWidth(),
@@ -2991,9 +3025,15 @@ module.exports.create = function(widgetData,container) {
                 rgbHandle.width = w
 
                 var v = widget.getValue()
-                widget.sendValue(v)
-                widget.showValue(v)
-                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+
+                if (v<widget.value||v>widget.value) {
+                    widget.value = v
+
+                    widget.sendValue(v)
+                    widget.showValue(v)
+
+                    widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+                }
 
             }
 
@@ -3013,10 +3053,15 @@ module.exports.create = function(widgetData,container) {
             rgbHandle.width = w
 
             var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
 
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (v<widget.value||v>widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         })
 
@@ -3030,16 +3075,20 @@ module.exports.create = function(widgetData,container) {
 
 
                 var h = clip(hueHandle.width*3.6,[0,360]),
-                    rgb = hsbToRgb({h:h,s:100,b:100}),
-                    v = widget.getValue()
+                    rgb = hsbToRgb({h:h,s:100,b:100})
 
                 rgbBg.setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
 
+                var v = widget.getValue()
 
+                if (v<widget.value||v>widget.value) {
+                    widget.value = v
 
-                widget.sendValue(v)
-                widget.showValue(v)
-                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+                    widget.sendValue(v)
+                    widget.showValue(v)
+
+                    widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+                }
 
             }
 
@@ -3058,14 +3107,20 @@ module.exports.create = function(widgetData,container) {
             hueHandle.width = w
 
             var h = clip(hueHandle.width*3.6,[0,360]),
-                rgb = hsbToRgb({h:h,s:100,b:100}),
-                v = widget.getValue()
+                rgb = hsbToRgb({h:h,s:100,b:100})
 
             rgbBg.setAttribute('style','background-color:rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
-            widget.sendValue(v)
-            widget.showValue(v)
 
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            var v = widget.getValue()
+
+            if (v<widget.value||v>widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         })
 
@@ -3100,6 +3155,7 @@ module.exports.create = function(widgetData,container) {
             rgbHandle.height = h
             rgbHandle.width = w
             hueHandle.width = hueW
+            widget.value = v
 
 
             var rgb = hsbToRgb({h:hsb.h,s:100,b:100})
@@ -3763,6 +3819,7 @@ module.exports.create = function(widgetData,container) {
     pad.height = 0
     handle.height = 0
     handle.width = 0
+    widget.value = undefined
 
     pad.resize(function(){
         var width = pad.innerWidth(),
@@ -3786,9 +3843,15 @@ module.exports.create = function(widgetData,container) {
             handle.width = w
 
             var v = widget.getValue()
-            widget.sendValue(v)
-            widget.showValue(v)
-            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+
+            if (v<widget.value||v>widget.value) {
+                widget.value = v
+
+                widget.sendValue(v)
+                widget.showValue(v)
+
+                widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            }
 
         }
 
@@ -3809,9 +3872,15 @@ module.exports.create = function(widgetData,container) {
         handle.width = w
 
         var v = widget.getValue()
-        widget.sendValue(v)
-        widget.showValue(v)
-        widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+
+        if (v<widget.value||v>widget.value) {
+            widget.value = v
+
+            widget.sendValue(v)
+            widget.showValue(v)
+
+            widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        }
 
     })
 
@@ -3841,6 +3910,7 @@ module.exports.create = function(widgetData,container) {
 
         handle.height = h
         handle.width = w
+        widget.value = v
 
         widget.showValue(v)
         if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
