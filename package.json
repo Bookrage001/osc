@@ -15,7 +15,7 @@
     "socket.io-client": "1.4.5",
     "socketio-wildcard": "0.1.1",
     "express": "4.13.3",
-    "electron-prebuilt": "0.37.3"
+    "electron-prebuilt": "0.37.2"
   },
   "devDependencies": {
     "browserify": "13.0.0",

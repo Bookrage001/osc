@@ -2,8 +2,6 @@
 
 ## 0.4.4
 
-- engine
-  - [electron v0.37.3](https://github.com/atom/electron/releases/tag/v0.37.3)
 - bug fixes
   - [headless] scripts are no longer bundled on the fly, it didn't work on some systems
   - touching widgets without changing their value doesn't make them send the same value again anymore
