@@ -15,6 +15,7 @@
   -  push buttons do not update their own leds and return their value (for state save and widget sync based on their last changed property (led state or touch on/off)
 - misc
   - refining the fader's pip scale that looked choppy on mobile devices. All pips are now evenly spaced, not relatively to the fader's height.
+  - [deskop mode] saved sessions are added to history
 
 ## 0.4.3
 
