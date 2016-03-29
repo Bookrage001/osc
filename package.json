@@ -2,7 +2,7 @@
   "name": "open-stage-control",
   "productName": "Open Stage Control",
   "description": "A libre desktop OSC bi-directionnal control surface application.",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "main": "index.js",
   "author": {
     "name": "Jean-Emmanuel Doucet / AMMD",
@@ -15,7 +15,7 @@
     "socket.io-client": "1.4.5",
     "socketio-wildcard": "0.1.1",
     "express": "4.13.3",
-    "electron-prebuilt": "0.37.2"
+    "electron-prebuilt": "0.37.3"
   },
   "devDependencies": {
     "browserify": "13.0.0",
@@ -24,7 +24,7 @@
   },
   "optionalDependencies": {
     "electron-installer-debian": "*",
-    "electron-packager": "5.2.1"
+    "electron-packager": "6.0.0"
   },
   "scripts": {
     "start": "electron .",

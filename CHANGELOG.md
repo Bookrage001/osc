@@ -2,8 +2,11 @@
 
 ## 0.4.4
 
+- engine
+  - [electron v0.37.3](https://github.com/atom/electron/releases/tag/v0.37.3)
 - bug fixes
-  - [headless] scripts are no longer bundled live, it didn't work on some systems
+  - [headless] scripts are no longer bundled on the fly, it didn't work on some systems
+  - touching widgets without changing their value doesn't make them send the same value again anymore
 - ui
   - slightly tightened layout
 - features
@@ -12,7 +15,7 @@
   - knob supports breakpoints scale, same as fader's
   - fader and knob pip scales now support custom label
   - a push/toggle's value can be set to `null` if only the path needs to be sent in the osc messages
-  -  push buttons do not update their own leds and return their value (for state save and widget sync based on their last changed property (led state or touch on/off)
+  -  push buttons do not update their own leds and return their value (for state save and widgets sync) based on their last changed property (led state or touch on/off)
 - misc
   - refining the fader's pip scale that looked choppy on mobile devices. All pips are now evenly spaced, not relatively to the fader's height.
   - [deskop mode] saved sessions are added to history
