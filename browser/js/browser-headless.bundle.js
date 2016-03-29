@@ -2046,8 +2046,29 @@ module.exports.create = function(widgetData,container) {
         roundFactor = Math.pow(10,widgetData.precision)
 
 
-    var pipmin = Math.abs(range.min)>=1000?range.min/1000+'k':range.min,
-        pipmax = Math.abs(range.max)>=1000?range.max/1000+'k':range.max
+    var rangeKeys = [],
+        rangeVals = [],
+        rangeLabels = []
+
+    for (k in widgetData.range) {
+        var key = k=='min'?0:k=='max'?100:parseInt(k),
+            val = typeof widgetData.range[k] == 'object'?
+                        widgetData.range[k][Object.keys(widgetData.range[k])[0]]:
+                        widgetData.range[k],
+            label = typeof widgetData.range[k] == 'object'?
+                        Object.keys(widgetData.range[k])[0]:
+                        val
+
+        rangeKeys.push(key)
+        rangeVals.push(val)
+        rangeLabels.push(label)
+    }
+
+
+    var pipmin = Math.abs(rangeLabels[0])>=1000?rangeLabels[0]/1000+'k':rangeLabels[0],
+        pipmax = Math.abs(rangeLabels[rangeLabels.length-1])>=1000?rangeLabels[rangeLabels.length-1]/1000+'k':rangeLabels[rangeLabels.length-1]
+
+
 
     widget.find('.pip.min').text(pipmin)
     widget.find('.pip.max').text(pipmax)
@@ -2170,7 +2191,12 @@ module.exports.create = function(widgetData,container) {
     }
 
     widget.getValue = function() {
-        return mapToScale(knob.rotation,[0,270],[range.min,range.max],widgetData.precision,logScale)
+        var h = knob.rotation
+        for (var i=0;i<rangeKeys.length-1;i++) {
+            if (h <= rangeKeys[i+1]*2.7 && h >= rangeKeys[i]*2.7) {
+                return mapToScale(h,[rangeKeys[i]*2.7,rangeKeys[i+1]*2.7],[rangeVals[i],rangeVals[i+1]],widgetData.precision,logScale)
+            }
+        }
     }
     widget.showValue = function(v) {
         input.val(v+unit)
@@ -2188,7 +2214,16 @@ module.exports.create = function(widgetData,container) {
     widget.setValue = function(v,send,sync) {
         if (typeof v != 'number') return
 
-        var r = mapToScale(Math.round(v*roundFactor)/roundFactor,[range.min,range.max],[0,270],widgetData.precision,logScale,true)
+        var v = Math.round(v*roundFactor)/roundFactor,
+            r
+
+        for (var i=0;i<rangeVals.length-1;i++) {
+            if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
+                r = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i]*2.7,rangeKeys[i+1]*2.7],widgetData.precision,logScale,true)
+                break
+            }
+        }
+
         knob.rotation = r
 
         widget.updateUi(r)

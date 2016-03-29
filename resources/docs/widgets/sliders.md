@@ -7,7 +7,7 @@ Sliders are unidimensional widgets that output one value at a time.
 type:'fader',
 horizontal:false,           // [bool]   set to true to display fader horizontally
 align:'center',             // [left|right] only display one scale and one meter
-range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
+range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader's scale
                             //          keys can be percentages or 'min' / 'max'
                             //          custom label can be set by writing the value as an object:
                             //          range: {
@@ -31,7 +31,7 @@ meter:false,                // [bool] set to true to display a vumeter which wil
 ## knob
 ```js
 type:'knob',
-range: {"min":0,"max":1},   // [object] minimum and maximum values
+range: {"min":0,"max":1},   // [object] defining the breakpoints of the knob's scale (same as fader)
 logScale: false,            // [bool] use logarithmic scale (log10)
 unit: false,                // [string] value suffix
 absolute:false,             // [bool]   set to true for absolute value on touch/click instead of relative dragging
