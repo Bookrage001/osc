@@ -2,6 +2,17 @@
 
 ## 0.4.4
 
+- bug fixes
+  - [headless] scripts are no longer bundled live, it didn't work on some systems
+- ui
+  - slightly tightened layout
+- features
+  - `noPip` option added to knob and fader
+  - `preArgs` accepts object if the arg's type needs to be specified
+  - knob supports breakpoints scale, same as fader's
+  - fader and knob pip scales now support custom label
+  - a push/toggle's value can be set to `null` if only the path needs to be sent in the osc messages
+  -  push buttons do not update their own leds and return their value (for state save and widget sync based on their last changed property (led state or touch on/off)
 - misc
   - refining the fader's pip scale that looked choppy on mobile devices. All pips are now evenly spaced, not relatively to the fader's height.
 
