@@ -183,6 +183,15 @@
                 }
             }
         }
+
+        &.no-pip {
+            .pips {
+                display: none!important;
+            }
+            .fader {
+                margin:0 auto;
+            }
+        }
     }
 }
 
@@ -203,6 +212,9 @@
             display: block;
             flex:0;
             flex-shrink: 0;
+            &.no-pip {
+                padding: 20rem;
+            }
         }
         .fader {
             width:100%;

@@ -18,6 +18,7 @@ module.exports.options = {
     height:'auto',
     align:'center',
     horizontal:false,
+    noPip:false,
     color:'auto',
     css:'',
 
@@ -67,6 +68,8 @@ module.exports.create = function(widgetData,container) {
     } else {
         container.addClass('align-'+widgetData.align)
     }
+
+    if (widgetData.noPip) wrapper.addClass('no-pip')
 
     gauge.size = 0
     fader.size = 0

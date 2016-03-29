@@ -1717,6 +1717,7 @@ module.exports.options = {
     height:'auto',
     align:'center',
     horizontal:false,
+    noPip:false,
     color:'auto',
     css:'',
 
@@ -1766,6 +1767,8 @@ module.exports.create = function(widgetData,container) {
     } else {
         container.addClass('align-'+widgetData.align)
     }
+
+    if (widgetData.noPip) wrapper.addClass('no-pip')
 
     gauge.size = 0
     fader.size = 0
@@ -2002,6 +2005,7 @@ module.exports.options = {
     width:'auto',
     height:'auto',
     color:'auto',
+    noPip:false,
     css:'',
 
     separator2:'behaviour',
@@ -2044,6 +2048,8 @@ module.exports.create = function(widgetData,container) {
         absolute = widgetData.absolute,
         logScale = widgetData.logScale,
         roundFactor = Math.pow(10,widgetData.precision)
+
+    if (widgetData.noPip) wrapper.addClass('no-pip')
 
 
     var rangeKeys = [],

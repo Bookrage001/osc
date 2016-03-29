@@ -37,6 +37,13 @@
                 cursor: -webkit-grabbing;
             }
 
+            &.no-pip {
+                margin-bottom: 0;
+                .pips {
+                    display: none;
+                }
+            }
+
             .knob-mask {
                 width:58%;
                 padding-bottom:58%;
