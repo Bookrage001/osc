@@ -21,7 +21,7 @@ module.exports.options = {
 
     separator2:'behaviour',
 
-    absolute:false,
+    snap:false,
 
     separator3:'osc',
 
@@ -54,7 +54,7 @@ module.exports.create = function(widgetData,container) {
             huePad = widget.find('.hue'),
             rgbBg = pad.find('.bg')[0],
             value = {r:widget.find('.r').fakeInput({align:'center'}),g:widget.find('.g').fakeInput({align:'center'}),b:widget.find('.b').fakeInput({align:'center'})},
-            absolute = widgetData.absolute,
+            snap = widgetData.snap,
             split = widgetData.split?
                         typeof widgetData.split == 'object'?
                             widgetData.split:{r:widgetData.path+'/r',g:widgetData.path+'/g',b:widgetData.path+'/b'}
@@ -81,7 +81,7 @@ module.exports.create = function(widgetData,container) {
 
         var rgbOff = {x:0,y:0}
         pad.on('draginit',function(e,data){
-            if (absolute || TRAVERSING) {
+            if (snap || TRAVERSING) {
                 var h = ((pad.height-data.offsetY) * 100 / pad.height),
                     w = (data.offsetX * 100 / pad.width)
 
@@ -133,7 +133,7 @@ module.exports.create = function(widgetData,container) {
 
         var hueOff = 0
         huePad.on('draginit',function(e,data){
-            if (absolute || data.ctrlKey || data.shiftKey) {
+            if (snap || data.ctrlKey || data.shiftKey) {
                 var d = (data.offsetX * 100 / pad.width)
                 hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*d/100}px,0,0)`)
                 hueHandle.width = d

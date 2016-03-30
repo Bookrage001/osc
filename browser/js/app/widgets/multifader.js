@@ -46,7 +46,7 @@ module.exports.create = function(widgetData,container) {
 			id: widgetData.id + '#' + i,
 			label:i,
             horizontal:false,
-            absolute:true,
+            snap:true,
 			range:widgetData.range,
             logScale:widgetData.logScale,
 			precision:widgetData.precision,

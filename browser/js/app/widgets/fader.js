@@ -24,7 +24,7 @@ module.exports.options = {
 
     separator2:'behaviour',
 
-    absolute:false,
+    snap:false,
 
     separator3:'osc',
 
@@ -57,7 +57,7 @@ module.exports.create = function(widgetData,container) {
         input = widget.find('.input').fakeInput({align:'center'}),
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
         dimension = widgetData.horizontal?'width':'height',
-        absolute = widgetData.absolute,
+        snap = widgetData.snap,
         logScale = widgetData.logScale,
         roundFactor = Math.pow(10,widgetData.precision)
 
@@ -111,7 +111,7 @@ module.exports.create = function(widgetData,container) {
         rangeLabels.push(label)
     }
 
-    if (!widget.noPip) {        
+    if (!widget.noPip) {
         var pipTexts = {}
         for (k in rangeKeys) {
             pipTexts[rangeKeys[k]]=rangeLabels[k]
@@ -170,7 +170,7 @@ module.exports.create = function(widgetData,container) {
 
     var off = 0
     wrapper.on('draginit',function(e,data){
-        if (absolute || TRAVERSING) {
+        if (snap || TRAVERSING) {
             var d = (dimension=='height')?
                     ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
                     (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size

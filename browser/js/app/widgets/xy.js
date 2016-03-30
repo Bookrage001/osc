@@ -20,7 +20,7 @@ module.exports.options = {
 
     separator2:'behaviour',
 
-    absolute:false,
+    snap:false,
 
     separator3:'osc',
 
@@ -50,7 +50,7 @@ module.exports.create = function(widgetData,container) {
         pad = widget.find('.xy'),
         value = {x:widget.find('.x').fakeInput({align:'center'}),y:widget.find('.y').fakeInput({align:'center'})},
         range = {x:widgetData.rangeX,y:widgetData.rangeY},
-        absolute = widgetData.absolute,
+        snap = widgetData.snap,
         split = widgetData.split?
                     typeof widgetData.split == 'object'?
                         widgetData.split:{x:widgetData.path+'/x',y:widgetData.path+'/y'}
@@ -80,7 +80,7 @@ module.exports.create = function(widgetData,container) {
 
     var off = {x:0,y:0}
     pad.on('draginit',function(e,data){
-        if (absolute || TRAVERSING) {
+        if (snap || TRAVERSING) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
 

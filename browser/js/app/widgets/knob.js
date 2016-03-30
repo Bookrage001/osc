@@ -22,7 +22,7 @@ module.exports.options = {
 
     separator2:'behaviour',
 
-    absolute:false,
+    snap:false,
 
     separator3:'osc',
 
@@ -57,7 +57,7 @@ module.exports.create = function(widgetData,container) {
         input = widget.find('.input').fakeInput({align:'center'}),
         range = widgetData.range,
         unit = widgetData.unit?' '+widgetData.unit.trim(): '',
-        absolute = widgetData.absolute,
+        snap = widgetData.snap,
         logScale = widgetData.logScale,
         roundFactor = Math.pow(10,widgetData.precision)
 
@@ -132,7 +132,7 @@ module.exports.create = function(widgetData,container) {
         offY = 0
     wrapper.on('draginit',function(e,data){
 
-        if (absolute || TRAVERSING) {
+        if (snap || TRAVERSING) {
             var w = data.target.clientWidth,
                 h = data.target.clientHeight,
                 x = data.offsetX-w/2,
@@ -172,7 +172,7 @@ module.exports.create = function(widgetData,container) {
 
         var r = clip(-data.deltaY*2+offR,[0,270])
 
-        if (absolute || data.ctrlKey || data.shiftKey) {
+        if (snap || data.ctrlKey || data.shiftKey) {
             var w   =  data.target.clientWidth,
                 h   =  data.target.clientHeight,
                 x   =  data.deltaX + offX,
