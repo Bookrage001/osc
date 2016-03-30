@@ -69,7 +69,7 @@ range: {
 - type: `boolean`
 - default: `false`
 - usage: set to true to display a vu-meter next in the fader
-    - the meter's `id` will be the same as the fader's with `#meter` appended to it
+    - the meter's `id` will be the same as the fader's with `/meter` appended to it
     - the meter's `path `will be the same as the fader's with `/meter` appended to it
 
 

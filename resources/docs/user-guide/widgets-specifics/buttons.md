@@ -12,7 +12,7 @@ Buttons are exactly what you think they are.
 }
 ```
 
-### `on`
+#### `on`
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent on `on` position
@@ -20,7 +20,7 @@ Buttons are exactly what you think they are.
     - set to `false` to prevent sending any osc message
     - can be an object if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
 
-### `off`
+#### `off`
 - type: `string|number|object`
 - default: `0`
 - usage: defines which value is sent on `off` position
@@ -39,7 +39,7 @@ Buttons are exactly what you think they are.
 }
 ```
 
-### `on`
+#### `on`
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent when pushing the button
@@ -47,7 +47,7 @@ Buttons are exactly what you think they are.
     - set to `false` to prevent sending any osc message
     - can be an object if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
 
-### `off`
+#### `off`
 - type: `string|number|object`
 - default: `0`
 - usage: defines which value is sent when releasing the button
@@ -69,7 +69,7 @@ Setting the `push`'s value externally (via osc or widget linking/cloning) will t
 }
 ```
 
-### `values`
+#### `values`
 - type: `array|object`
 - default: `{"Value 1":1,"Value 2":2}`
 - usage:

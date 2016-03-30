@@ -1,50 +1,82 @@
-# Matrices
+## Matrices
 
 Matrices are special containers that only contain one type of widget. All contained widgets will be traversed by single dragging gestures.
 
-## multifader
+## Multifader
+
+Multifader creates a row of vertical faders that respond to the same gestures.
+
 ```js
-type:'multifader',
-strips:2,                   // [integer] number of faders
-range: {"min":0,"max":1},   // [object] defining the breakpoints of the fader
-                            //          keys can be percentages or 'min' / 'max'
-logScale: false,            // [bool] use logarithmic scale (log10)
-unit: false,                // [string] value suffix
-absolute:false              // [bool]   set to true for absolute value on touch/click instead of relative dragging
-```
-*This creates a row of vertical faders that respond to the same gesture. Each of these faders will receive its parent's properties and the following (where X is the fader's index in the row) :*
-```js
-id:PARENT_ID_X,
-label: X,
-path: PARENT_PATH/X
+{
+    type:'multifader',
+    // etc
+}
 ```
 
-
-## multitoggle
-```js
-type:'multitoggle',
-matrix:[2,2],               // [array] [number of columns, number of rows]
-on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
-off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
-```
-*This creates a matrix of toggles that respond to the same gesture. Each of these toggles will receive its parent's properties and the following (where X is the toggle's index in the row) :*
-```js
-id:PARENT_ID_X,
-label: X,
-path: PARENT_PATH/X
-```
+#### `strips`
+- type: `integer`
+- default: `2`
+- usage: number of faders in the row, each fader will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
+    - `id`: same as the widget's with `/i` appended to it
+    - `label`: `i`
+    - `path`: same as the widget's with `/i` appended to it
 
 
-## multipush
+#### `range`
+- see fader's [`range`](sliders/#fader)
+
+#### `logScale`
+- see fader's [`logScale`](sliders/#fader)
+
+#### `unit`
+- see fader's [`unit`](sliders/#fader)
+
+----
+
+## Multitoggle
 ```js
-type:'multipush',
-matrix:[2,2],               // [array] [number of columns, number of rows]
-on: 1,                      // [string|number|false] value sent when toggle is on (false to prevent sending )
-off:0,                      // [string|number|false] value sent when toggle is off (false to prevent sending )
+{
+    type:'multitoggle',
+    // etc
+}
 ```
-*This creates a matrix of push buttons that respond to the same gesture. Each of these buttons will receive its parent's properties and the following (where X is the button's index in the row) :*
+
+#### `matrix`
+- type: `array`
+- default: `[2,2]`
+- usage: defines the number of columns and and rows. Each cell will contain a toggle button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
+    - `id`: same as the widget's with `/i` appended to it
+    - `label`: `i`
+    - `path`: same as the widget's with `/i` appended to it
+
+
+#### `on`
+- see toggle's [`on`](buttons/#toggle)
+
+#### `off`
+- see toggle's [`off`](buttons/#toggle)
+
+
+----
+## Multipush
 ```js
-id:PARENT_ID_X,
-label: X,
-path: PARENT_PATH/X
+{
+    type:'multipush',
+    // etc
+}
 ```
+
+#### `matrix`
+- type: `array`
+- default: `[2,2]`
+- usage: defines the number of columns and and rows. Each cell will contain a push button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
+    - `id`: same as the widget's with `/i` appended to it
+    - `label`: `i`
+    - `path`: same as the widget's with `/i` appended to it
+
+
+#### `on`
+- see push's [`on`](buttons/#push)
+
+#### `off`
+- see push's [`off`](buttons/#push)
