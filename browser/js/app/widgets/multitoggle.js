@@ -40,7 +40,7 @@ module.exports.create = function(widgetData,container) {
 	for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 		var data = {
 			type:'toggle',
-			id: widgetData.id + '#' + i,
+			id: widgetData.id + '/' + i,
 			label:i,
 			on:widgetData.on,
 			off:widgetData.off,

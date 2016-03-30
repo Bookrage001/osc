@@ -1779,7 +1779,7 @@ module.exports.create = function(widgetData,container) {
         var parsewidgets = require('../parser').widgets
         var data = {
             type:'meter',
-            id: widgetData.id + '#meter',
+            id: widgetData.id + '/meter',
             label:false,
             horizontal:widgetData.horizontal,
             range:widgetData.range,
@@ -2431,7 +2431,7 @@ module.exports.create = function(widgetData,container) {
 	for (var i=0;i<widgetData.strips;i++) {
 		var data = {
 			type:'fader',
-			id: widgetData.id + '#' + i,
+			id: widgetData.id + '/' + i,
 			label:i,
             horizontal:false,
             snap:true,
@@ -2513,7 +2513,7 @@ module.exports.create = function(widgetData,container) {
 	for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 		var data = {
 			type:'push',
-			id: widgetData.id + '#' + i,
+			id: widgetData.id + '/' + i,
 			label:i,
 			on:widgetData.on,
 			off:widgetData.off,
@@ -2591,7 +2591,7 @@ module.exports.create = function(widgetData,container) {
 	for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 		var data = {
 			type:'toggle',
-			id: widgetData.id + '#' + i,
+			id: widgetData.id + '/' + i,
 			label:i,
 			on:widgetData.on,
 			off:widgetData.off,

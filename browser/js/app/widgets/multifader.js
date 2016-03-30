@@ -43,7 +43,7 @@ module.exports.create = function(widgetData,container) {
 	for (var i=0;i<widgetData.strips;i++) {
 		var data = {
 			type:'fader',
-			id: widgetData.id + '#' + i,
+			id: widgetData.id + '/' + i,
 			label:i,
             horizontal:false,
             snap:true,

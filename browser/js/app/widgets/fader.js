@@ -80,7 +80,7 @@ module.exports.create = function(widgetData,container) {
         var parsewidgets = require('../parser').widgets
         var data = {
             type:'meter',
-            id: widgetData.id + '#meter',
+            id: widgetData.id + '/meter',
             label:false,
             horizontal:widgetData.horizontal,
             range:widgetData.range,
