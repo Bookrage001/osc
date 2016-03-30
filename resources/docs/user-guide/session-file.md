@@ -59,16 +59,16 @@ It can also be a self invoking function that returns an array of tab objects :
 ## Tab object
 
 
-### `label`
+#### `label`
 - type: `string`
 - default: `Unnamed`
 
-### `widgets`
+#### `widgets`
 - type: `array`
 - default: `[]`
 - usage: each element of the `array` must be a `widget` object. A tab cannot contain widgets and tabs simultaneously.
 
-### `tabs`
+#### `tabs`
 - type: `array`
 - default: `[]`
 - usage: each element of the `array` must be a `tab` object. A tab cannot contain widgets and tabs simultaneously.
