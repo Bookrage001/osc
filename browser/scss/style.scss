@@ -93,7 +93,6 @@ i {
     right: 0;
     bottom:0;
     z-index: 2;
-    border:1rem solid var(--color-track);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,13 +109,14 @@ i {
         flex:1;
         overflow: auto;
         background: var(--color-fg);
+        border-top:2rem solid var(--color-bg);
+
     }
     .header {
         padding:20rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         flex-grow: 0;
-        border-bottom:2rem solid var(--color-bg);
         background-color: var(--color-faded);
         color:var(--color-accent);
         font-size:16rem;
@@ -124,7 +124,6 @@ i {
     }
     .footer {
         background: var(--color-raised);
-        box-shadow: 0 0 0 1rem var(--color-track) inset;
         white-space: nowrap;
         text-overflow: ellipsis;
         flex-grow: 0;
