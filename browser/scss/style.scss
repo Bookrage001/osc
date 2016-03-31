@@ -101,24 +101,52 @@ i {
     padding:20rem;
     .main {
         width:600rem;
+        max-width: 100%;
         max-height:100%;
-
+        display: flex;
+        flex-direction: column;
+    }
+    .list {
+        flex:1;
+        overflow: auto;
+        background: var(--color-fg);
     }
     .header {
-        background: var(--color-raised);
         padding:20rem;
-        font-weight:bold;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        flex-grow: 0;
+        border-bottom:2rem solid var(--color-bg);
+        background-color: var(--color-faded);
+        color:var(--color-accent);
+        font-size:16rem;
+        line-height: 24rem;
+    }
+    .footer {
+        background: var(--color-raised);
         box-shadow: 0 0 0 1rem var(--color-track) inset;
         white-space: nowrap;
         text-overflow: ellipsis;
+        flex-grow: 0;
+        background: var(--color-faded);
+        border-top:2rem solid var(--color-bg);
     }
     a {
+        display: block;
         padding-right:35rem;
         overflow: hidden;
-        margin-top:10rem;
+        padding-top:15rem;
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
+        background: none;
+        border-bottom:1rem solid var(--color-bg);
+        &:hover {
+            background:var(--color-raised)
+        }
+        &:last-child {
+            border-bottom:0;
+        }
         span {
             position: absolute;
             right:0rem;
