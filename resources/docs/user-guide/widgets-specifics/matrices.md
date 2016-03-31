@@ -1,4 +1,4 @@
-## Matrices
+# Matrices
 
 Matrices are special containers that only contain one type of widget. All contained widgets will be traversed by single dragging gestures.
 

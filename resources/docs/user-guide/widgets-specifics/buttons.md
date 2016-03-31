@@ -1,4 +1,4 @@
-## Buttons
+# Buttons
 
 Buttons are exactly what you think they are.
 

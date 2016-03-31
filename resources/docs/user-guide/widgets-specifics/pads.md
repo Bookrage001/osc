@@ -1,4 +1,4 @@
-## Pads
+# Pads
 
 Pads are multidimensional widgets that output multiple values.
 
@@ -21,7 +21,7 @@ Pads are multidimensional widgets that output multiple values.
         x:{"min":0,"max":1},
         y:{"min":0,"max":1}
     }`
-- usage: defines the `x` and `y` axis (no breakpoints, only `min` and `max`)
+- usage: defines the `min` and `max` values for `x` and `y` axis
 
 #### `logScaleX`
 - type: `boolean`

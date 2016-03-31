@@ -1,4 +1,4 @@
-## Sliders
+# Sliders
 
 Sliders are unidimensional widgets that output one value at a time.
 
@@ -29,8 +29,8 @@ Sliders are unidimensional widgets that output one value at a time.
 - usage: set to true to hide the scale
 
 #### `range`
-- type: `boolean`
-- default: `object`
+- type: `object`
+- default: `{"min":0,"max":1}`
 - usage: `range` defines the breakpoints of the fader's scale
     - keys can be percentages and/or `min` / `max`
     - values can be numbers or object if a custom label is needed
@@ -98,8 +98,8 @@ range: {
 - usage: set to true to hide the scale
 
 #### `range`
-- type: `boolean`
-- default: `object`
+- type: `object`
+- default: `{"min":0,"max":1}`
 - usage: `range` defines the breakpoints of the fader's scale
     - keys can be percentages and/or `min` / `max`
     - values can be numbers or object if a custom label is needed

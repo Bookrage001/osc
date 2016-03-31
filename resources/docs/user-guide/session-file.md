@@ -1,4 +1,4 @@
-## Session file
+# Session file
 
 A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a javascript object :
 

@@ -10,7 +10,7 @@ Widget objects share a set of generic properties described below. Each widget ty
 - [Containers](widgets-specifics/containers.md)
 
 ----
-## Basics
+### Basics
 
 #### `type`
 - type: `string`
@@ -24,7 +24,7 @@ Widget objects share a set of generic properties described below. Each widget ty
 
 
 ----
-## Style
+### Style
 
 #### `label`
 - type: `string|false`
@@ -55,16 +55,16 @@ Widget objects share a set of generic properties described below. Each widget ty
 - usage: the `css` property can be used to override inherited [theming](theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element though this property.
 
 ----
-## OSC
+### OSC
 
 
-#### `precision`
+##### `precision`
 - type: `integer`
 - default: `2`
 - usage: the `precision` property defines the number of decimals to display and to send. Set to `0` to send `integers` only.
 
 
-#### `target`
+##### `target`
 - type: `array`
 - default: `[]`
 - usage:
@@ -72,12 +72,12 @@ Widget objects share a set of generic properties described below. Each widget ty
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
 
-#### `path`
+##### `path`
 - type: `string`
 - default: `/widgets_id`
 - usage: this is the `path` of the osc messages sent by the widget
 
-#### `preArgs`
+##### `preArgs`
 - type: `array`
 - default: `[]`
 - usage:

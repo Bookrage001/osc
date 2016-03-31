@@ -1,3 +1,3 @@
-site_name: OSC
+site_name: Open Stage Control
 repo_url: https://github.com/jean-emmanuel/open-stage-control
-theme: yeti
+theme: cinder

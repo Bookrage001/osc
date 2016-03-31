@@ -1,6 +1,6 @@
 # Getting started
 
-
+----
 ## Run from binaries
 
 
@@ -36,6 +36,7 @@ Available themes:
 - noinput
 ```
 
+----
 ## Run from sources
 
 Running the app from the sources slightly differs from using built binaries : instead of running a binary, we'll launch the app with npm.
@@ -67,6 +68,7 @@ $ npm start [ -- options]
 # A double hyphen ("--") is used here to tell npm that the following options are to be given to the app.
 ```
 
+----
 ## Build from sources
 
 **Requirements**
