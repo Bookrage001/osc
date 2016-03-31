@@ -49,7 +49,7 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
         x:{"min":0,"max":1},
         y:{"min":0,"max":1}
     }`
-- usage: defines the `min` and `max` values for `x` and `y` axis
+- usage: defines the `min` and `max` values for the `x` and `y` axis
 
 #### `logScaleX`
 - type: `boolean`
@@ -90,7 +90,7 @@ The visualizer displays the evolution in time of a received value (through osc) 
 #### `logScale`
 - type: `boolean`
 - default: `false`
-- usage: set to true use logarithmic scaling
+- usage: set to `true` use logarithmic scaling (log10)
 
 
 ## Text
@@ -107,7 +107,7 @@ Text displays incoming values (via osc) as text
 #### `vertical`
 - type: `boolean`
 - default: `false`
-- usage: set to true display vertically
+- usage: set to `true` display vertically
 
 
 ## Meter
@@ -124,7 +124,7 @@ Meter displays incoming numerical values (via osc) as a gauge level
 #### `horizontal`
 - type: `boolean`
 - default: `false`
-- usage: set to true to display the meter horizontally
+- usage: set to `true` to display the meter horizontally
 
 #### `range`
 - see fader's [`range`](sliders/#fader)

@@ -21,7 +21,7 @@ Pads are multidimensional widgets that output multiple values.
         x:{"min":0,"max":1},
         y:{"min":0,"max":1}
     }`
-- usage: defines the `min` and `max` values for `x` and `y` axis
+- usage: defines the `min` and `max` values for the `x` and `y` axis
 
 #### `logScaleX`
 - type: `boolean`
@@ -36,7 +36,7 @@ Pads are multidimensional widgets that output multiple values.
 #### `snap`
 - type: `boolean`
 - default: `false`
-- usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to true will make it snap directly to the mouse/touch position.
+- usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
 #### `split`
 - type: `boolean|object`

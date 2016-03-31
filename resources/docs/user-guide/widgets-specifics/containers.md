@@ -23,7 +23,7 @@ Strips can contain any number of widgets, which can't be absolutely positioned a
 #### `widgets`
 - type: `array`
 - default: `[]`
-- usage: each element of the `array` must be a widget object
+- usage: each element of the `array` must be a widget `object`
 
 ----
 
@@ -47,9 +47,9 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 #### `widgets`
 - type: `array`
 - default: `[]`
-- usage: each element of the `array` must be a widget object.A panel cannot contain widgets and tabs simultaneously.
+- usage: each element of the `array` must be a widget `object`. A panel cannot contain widgets and tabs simultaneously.
 
 #### `tabs`
 - type: `array`
 - default: `[]`
-- usage: each element of the `array` must be a tab object. A panel cannot contain widgets and tabs simultaneously.
+- usage: each element of the `array` must be a tab `object`. A panel cannot contain widgets and tabs simultaneously.

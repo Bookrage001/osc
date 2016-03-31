@@ -16,7 +16,7 @@ Sliders are unidimensional widgets that output one value at a time.
 #### `horizontal`
 - type: `boolean`
 - default: `false`
-- usage: set to true to display the fader horizontally
+- usage: set to `true` to display the fader horizontally
 
 #### `align`
 - type: `string`
@@ -26,14 +26,14 @@ Sliders are unidimensional widgets that output one value at a time.
 #### `noPip`
 - type: `boolean`
 - default: `false`
-- usage: set to true to hide the scale
+- usage: set to `true` to hide the scale
 
 #### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: `range` defines the breakpoints of the fader's scale
     - keys can be percentages and/or `min` / `max`
-    - values can be numbers or object if a custom label is needed
+    - values can be `number` or `object` if a custom label is needed
 - example:
 ```js
 range: {
@@ -45,12 +45,12 @@ range: {
 #### `horizontal`
 - type: `boolean`
 - default: `false`
-- usage: set to true to display the fader horizontally
+- usage: set to `true` to display the fader horizontally
 
 #### `logScale`
 - type: `boolean`
 - default: `false`
-- usage: set to true use logarithmic scaling between breakpoints
+- usage: set to `true` use logarithmic scaling between breakpoints (log10)
 
 
 #### `unit`
@@ -62,15 +62,15 @@ range: {
 #### `snap`
 - type: `boolean`
 - default: `false`
-- usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to true will make it snap directly to the mouse/touch position.
+- usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
 
 #### `meter`
 - type: `boolean`
 - default: `false`
 - usage: set to true to display a vu-meter next in the fader
-    - the meter's `id` will be the same as the fader's with `/meter` appended to it
-    - the meter's `path `will be the same as the fader's with `/meter` appended to it
+    - the meter's `id` will be the same as the widget's with `/meter` appended to it
+    - the meter's `path `will be the same as the widget's with `/meter` appended to it
 
 
 #### `css`
@@ -95,14 +95,14 @@ range: {
 #### `noPip`
 - type: `boolean`
 - default: `false`
-- usage: set to true to hide the scale
+- usage: set to `true` to hide the scale
 
 #### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: `range` defines the breakpoints of the fader's scale
     - keys can be percentages and/or `min` / `max`
-    - values can be numbers or object if a custom label is needed
+    - values can be `number` or `object` if a custom label is needed
 - example:
 ```js
 range: {
@@ -115,7 +115,7 @@ range: {
 #### `logScale`
 - type: `boolean`
 - default: `false`
-- usage: set to true use logarithmic scaling between breakpoints
+- usage: set to `true` use logarithmic scaling between breakpoints
 
 
 #### `unit`
@@ -127,7 +127,7 @@ range: {
 #### `snap`
 - type: `boolean`
 - default: `false`
-- usage: by default, dragging the widget *vertically* will modify it's value starting from its last value. Setting this to true will make it snap directly to the mouse/touch position.
+- usage: by default, dragging the widget *vertically* will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
 #### `css`
 ```

@@ -18,7 +18,7 @@ Buttons are exactly what you think they are.
 - usage: defines which value is sent on `on` position
     - set to `null` to send send no argument in the osc message
     - set to `false` to prevent sending any osc message
-    - can be an object if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
 
 #### `off`
 - type: `string|number|object`
@@ -26,7 +26,7 @@ Buttons are exactly what you think they are.
 - usage: defines which value is sent on `off` position
     - set to `null` to send send no argument in the osc message
     - set to `false` to prevent sending any osc message
-    - can be an object if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
 
 
 ----
@@ -45,7 +45,7 @@ Buttons are exactly what you think they are.
 - usage: defines which value is sent when pushing the button
     - set to `null` to send send no argument in the osc message
     - set to `false` to prevent sending any osc message
-    - can be an object if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
 
 #### `off`
 - type: `string|number|object`
@@ -53,7 +53,7 @@ Buttons are exactly what you think they are.
 - usage: defines which value is sent when releasing the button
     - set to `null` to send send no argument in the osc message
     - set to `false` to prevent sending any osc message
-    - can be an object if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
 
 
 Setting the `push`'s value externally (via osc or widget linking/cloning) will toggle it's inner light.
