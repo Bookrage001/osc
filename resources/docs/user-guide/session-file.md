@@ -1,13 +1,13 @@
 # Session file
 
-A valid session file is a javascript file that returns, when eval'd, an array of tab objects. It can be written as a javascript object :
+A valid session file is a javascript file that returns an array of [tab objects](#tab-object). It can be written as a javascript `array` :
 
 ```js
-[
-    {
+[// array
+    {// tab object
         label:"A tab containing widgets",
-        widgets: [
-            {
+        widgets: [// array
+            {// widget object
                 // widget properties
             },
             {
@@ -18,7 +18,7 @@ A valid session file is a javascript file that returns, when eval'd, an array of
     {
         label:"A tab containing tabs",
         tabs: [
-            {
+            {// tab object
                 // tab properties
             },
             {
@@ -32,7 +32,7 @@ A valid session file is a javascript file that returns, when eval'd, an array of
 ]
 ```
 
-It can also be a self invoking function that returns an array of tab objects :
+It can also be a javascript self invoking function that returns an array of [tab objects](#tab-object) :
 
 ```js
 (function(){
@@ -58,6 +58,13 @@ It can also be a self invoking function that returns an array of tab objects :
 
 ## Tab object
 
+A tab object is a javascript object which properties are described below.
+
+```js
+{
+    // tab properties
+}
+```
 
 #### `label`
 - type: `string`

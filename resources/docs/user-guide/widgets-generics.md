@@ -1,6 +1,6 @@
 ## Widgets generics
 
-Widget objects share a set of generic properties described below. Each widget type comes with an additional set of specific properties which are documented in these pages:
+A widget object is a javascript object. All widgets share a set of generic properties described below. Each widget type comes with an additional set of specific properties which are documented in these pages:
 
 - [Sliders](widgets-specifics/sliders.md)
 - [Buttons](widgets-specifics/buttons.md)
@@ -8,6 +8,12 @@ Widget objects share a set of generic properties described below. Each widget ty
 - [Matrices](widgets-specifics/matrices.md)
 - [Plots](widgets-specifics/plots.md)
 - [Containers](widgets-specifics/containers.md)
+
+```js
+{
+    // widget properties
+}
+```
 
 ----
 ### Basics
@@ -85,7 +91,7 @@ Widget objects share a set of generic properties described below. Each widget ty
     - values can be defined as objects if the type needs to be specified (ie different from the default implied by the `precision`)
 - example:
 ```js
-[
+preArgs: [
     "1",        // this will always be sent as a string
     0.5,        // this will be sent as an integer if precision equals 0
     1,          // this will be sent as float if precision is different from 0
