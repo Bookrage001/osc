@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.5
+
+- engine
+  - electron 0.37.3
+- ui
+  - new logo
+  - better lobby design
+- misc
+  - renamed sliders/pads' `absolute` property to `snap` 
+
 ## 0.4.4
 
 - bug fixes
