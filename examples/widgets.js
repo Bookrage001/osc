@@ -10,7 +10,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_1",
                         "linkId": "",
                         "unit": "",
@@ -67,7 +67,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_1",
                         "linkId": "",
                         "unit": "",
@@ -120,7 +120,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_2",
                         "linkId": "",
                         "unit": "",
@@ -177,7 +177,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_2",
                         "linkId": "",
                         "unit": "",
@@ -230,7 +230,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_3",
                         "linkId": "",
                         "unit": "",
@@ -287,7 +287,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_3",
                         "linkId": "",
                         "unit": "",
@@ -340,7 +340,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_4",
                         "linkId": "",
                         "unit": "",
@@ -397,7 +397,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_4",
                         "linkId": "",
                         "unit": "",
@@ -450,7 +450,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_5",
                         "linkId": "",
                         "unit": "",
@@ -507,7 +507,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_5",
                         "linkId": "",
                         "unit": "",
@@ -560,7 +560,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_6",
                         "linkId": "",
                         "unit": "",
@@ -617,7 +617,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_6",
                         "linkId": "",
                         "unit": "",
@@ -670,7 +670,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_7",
                         "linkId": "",
                         "unit": "",
@@ -727,7 +727,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_7",
                         "linkId": "",
                         "unit": "",
@@ -780,7 +780,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_8",
                         "linkId": "",
                         "unit": "",
@@ -837,7 +837,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_8",
                         "linkId": "",
                         "unit": "",
@@ -890,7 +890,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_9",
                         "linkId": "",
                         "unit": "",
@@ -947,7 +947,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_9",
                         "linkId": "",
                         "unit": "",
@@ -1000,7 +1000,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "knob_10",
                         "linkId": "",
                         "unit": "",
@@ -1057,7 +1057,7 @@
                         "target": [
                             "127.0.0.1:6666"
                         ],
-                        "absolute": true,
+                        "snap": true,
                         "id": "fader_10",
                         "linkId": "",
                         "unit": "",
@@ -1111,9 +1111,9 @@
                 "width": 200,
                 "widgets": [
                     {
-                        "label": "Absolute XY",
+                        "label": "snap XY",
                         "type": "rgb",
-                        "absolute": true,
+                        "snap": true,
                         "target": [
                             "127.0.0.1:6666"
                         ],
@@ -1138,7 +1138,7 @@
                         "width": "auto",
                         "height": "auto",
                         "css": "",
-                        "absolute": false,
+                        "snap": false,
                         "rangeX": {
                             "min": 0,
                             "max": 1
@@ -1170,9 +1170,9 @@
                 "width": 200,
                 "widgets": [
                     {
-                        "label": "Absolute XY",
+                        "label": "snap XY",
                         "type": "rgb",
-                        "absolute": true,
+                        "snap": true,
                         "target": [
                             "127.0.0.1:6666"
                         ],
@@ -1197,7 +1197,7 @@
                         "width": "auto",
                         "height": "auto",
                         "css": "",
-                        "absolute": false,
+                        "snap": false,
                         "rangeX": {
                             "min": 0,
                             "max": 1
@@ -1229,9 +1229,9 @@
                 "width": 200,
                 "widgets": [
                     {
-                        "label": "Absolute XY",
+                        "label": "snap XY",
                         "type": "rgb",
-                        "absolute": true,
+                        "snap": true,
                         "target": [
                             "127.0.0.1:6666"
                         ],
@@ -1256,7 +1256,7 @@
                         "width": "auto",
                         "height": "auto",
                         "css": "",
-                        "absolute": false,
+                        "snap": false,
                         "rangeX": {
                             "min": 0,
                             "max": 1
@@ -1288,9 +1288,9 @@
                 "width": 200,
                 "widgets": [
                     {
-                        "label": "Absolute XY",
+                        "label": "snap XY",
                         "type": "rgb",
-                        "absolute": true,
+                        "snap": true,
                         "target": [
                             "127.0.0.1:6666"
                         ],
@@ -1315,7 +1315,7 @@
                         "width": "auto",
                         "height": "auto",
                         "css": "",
-                        "absolute": false,
+                        "snap": false,
                         "rangeX": {
                             "min": 0,
                             "max": 1
@@ -1347,9 +1347,9 @@
                 "width": 200,
                 "widgets": [
                     {
-                        "label": "Absolute XY",
+                        "label": "snap XY",
                         "type": "rgb",
-                        "absolute": true,
+                        "snap": true,
                         "target": [
                             "127.0.0.1:6666"
                         ],
@@ -1374,7 +1374,7 @@
                         "width": "auto",
                         "height": "auto",
                         "css": "",
-                        "absolute": false,
+                        "snap": false,
                         "rangeX": {
                             "min": 0,
                             "max": 1
@@ -1406,9 +1406,9 @@
                 "width": 200,
                 "widgets": [
                     {
-                        "label": "Absolute XY",
+                        "label": "snap XY",
                         "type": "rgb",
-                        "absolute": true,
+                        "snap": true,
                         "target": [
                             "127.0.0.1:6666"
                         ],
@@ -1433,7 +1433,7 @@
                         "width": "auto",
                         "height": "auto",
                         "css": "",
-                        "absolute": false,
+                        "snap": false,
                         "rangeX": {
                             "min": 0,
                             "max": 1
@@ -1489,7 +1489,7 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "css": "",
-                                "absolute": false,
+                                "snap": false,
                                 "range": {
                                     "min": 0,
                                     "max": 1
@@ -1514,7 +1514,7 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "css": "",
-                                "absolute": false,
+                                "snap": false,
                                 "range": {
                                     "min": 0,
                                     "max": 1
@@ -1539,7 +1539,7 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "css": "",
-                                "absolute": false,
+                                "snap": false,
                                 "range": {
                                     "min": 0,
                                     "max": 1
@@ -1564,7 +1564,7 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "css": "",
-                                "absolute": false,
+                                "snap": false,
                                 "range": {
                                     "min": 0,
                                     "max": 1
@@ -1682,7 +1682,7 @@
                                         "width": "auto",
                                         "height": 231,
                                         "css": "",
-                                        "absolute": false,
+                                        "snap": false,
                                         "range": {
                                             "min": 0,
                                             "max": 1
@@ -1708,7 +1708,7 @@
                                         "width": "auto",
                                         "height": 231,
                                         "css": "",
-                                        "absolute": false,
+                                        "snap": false,
                                         "range": {
                                             "min": 0,
                                             "max": 1
@@ -1732,7 +1732,7 @@
                                         "width": "auto",
                                         "height": 230,
                                         "css": "",
-                                        "absolute": false,
+                                        "snap": false,
                                         "range": {
                                             "min": 0,
                                             "max": 1
@@ -1756,7 +1756,7 @@
                                         "width": "auto",
                                         "height": 229,
                                         "css": "",
-                                        "absolute": false,
+                                        "snap": false,
                                         "range": {
                                             "min": 0,
                                             "max": 1
