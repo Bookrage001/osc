@@ -64,13 +64,13 @@ A widget object is a javascript object. All widgets share a set of generic prope
 ### OSC
 
 
-##### `precision`
+#### `precision`
 - type: `integer`
 - default: `2`
 - usage: the `precision` property defines the number of decimals to display and to send. Set to `0` to send `integers` only.
 
 
-##### `target`
+#### `target`
 - type: `array`
 - default: `[]`
 - usage:
@@ -78,12 +78,12 @@ A widget object is a javascript object. All widgets share a set of generic prope
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
 
-##### `path`
+#### `path`
 - type: `string`
 - default: `/widgets_id`
 - usage: this is the `path` of the osc messages sent by the widget
 
-##### `preArgs`
+#### `preArgs`
 - type: `array`
 - default: `[]`
 - usage:
