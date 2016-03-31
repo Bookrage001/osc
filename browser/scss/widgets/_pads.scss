@@ -1,7 +1,7 @@
 
 .xy-container, .rgb-container {
     --color-custom:var(--color-accent);
-    
+
     width:200rem;
     height:250rem;
     flex-shrink: 0;
@@ -34,9 +34,6 @@
     background:var(--color-faded);
     &:active {
         cursor: -webkit-grabbing;
-        .handle:after,.handle:before {
-            transform: scale(1.5);
-        }
     }
     .handle {
         position:absolute;
@@ -148,9 +145,6 @@
     }
     &:active {
         cursor: -webkit-grabbing;
-        .handle:after {
-            transform: scale(1.5);
-        }
     }
     .handle {
         position:absolute;
