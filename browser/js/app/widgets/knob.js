@@ -40,7 +40,6 @@ module.exports.create = function(widgetData,container) {
                 <div class="knob-mask">
                     <div class="knob"><span></span></div>
                     <div class="handle"></div>
-                    <div class="round"></div>
                 </div>
                 <div class="pips">
                     <div class="pip min"></div>

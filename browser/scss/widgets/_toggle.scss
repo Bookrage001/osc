@@ -1,6 +1,6 @@
 .toggle-container {
     --color-custom:var(--color-accent);
-    
+
     width:100rem;
     min-height: 65rem;
     flex-shrink: 0;
@@ -33,7 +33,6 @@
     left:0;
     right:0;
     bottom:0;
-    border-bottom:2rem solid var(--color-fg);
 
     .light {
         position: absolute;
