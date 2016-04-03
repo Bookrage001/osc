@@ -65,21 +65,22 @@
 
 .meter-container {
     --color-custom:var(--color-accent);
+    --color-gauge: var(--color-custom);
 
     height: 100rem;
 	.meter {
         display: flex;
         flex-direction: row;
         flex:1;
-        margin: 0 1rem 1rem;
 
-        background: var(--color-bg);
+        background: var(--color-track);
 
 		.level {
 			width:100%;
             flex:1;
 			transform-origin: bottom;
 			background:var(--color-custom);
+            opacity: .5;
             &.horizontal {
                 transform-origin: left;
             }
