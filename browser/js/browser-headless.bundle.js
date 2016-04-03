@@ -1719,6 +1719,7 @@ module.exports.options = {
     align:'center',
     horizontal:false,
     noPip:false,
+    compact:false,
     color:'auto',
     css:'',
 
@@ -1770,6 +1771,7 @@ module.exports.create = function(widgetData,container) {
     }
 
     if (widgetData.noPip) wrapper.addClass('no-pip')
+    if (widgetData.compact) container.addClass('compact')
 
     gauge.size = 0
     fader.size = 0
