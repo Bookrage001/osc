@@ -1788,7 +1788,8 @@ module.exports.create = function(widgetData,container) {
             range:widgetData.range,
             logScale:widgetData.logScale,
             path:widgetData.path + '/meter',
-            preArgs:widgetData.preArgs
+            preArgs:widgetData.preArgs,
+            color:widgetData.color
         }
         var element = parsewidgets([data],fader)
 		element[0].classList.add('not-editable')
