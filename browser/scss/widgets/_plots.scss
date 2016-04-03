@@ -64,6 +64,8 @@
 
 
 .meter-container {
+    --color-custom:var(--color-accent);
+
     height: 100rem;
 	.meter {
         display: flex;
@@ -86,6 +88,8 @@
 }
 
 .text-container {
+    --color-custom:var(--color-accent);
+
     .text {
         flex: 1;
         height:35rem;
