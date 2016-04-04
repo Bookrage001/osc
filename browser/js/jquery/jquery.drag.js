@@ -92,7 +92,7 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
                 e.speedX = previousEvent?e.pageX - previousEvent.pageX:0
                 e.speedY = previousEvent?e.pageY - previousEvent.pageY:0
 
-                if (e.originalEvent.targetTouches.length == 2)
+                if (e.originalEvent.targetTouches.length == 2) {
                     e.speedX = e.speedX / 4
                     e.speedY = e.speedY / 4
                 }
