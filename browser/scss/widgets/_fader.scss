@@ -72,10 +72,12 @@
                 }
                 .meter-container {
                     -webkit-mask:none!important;
-                    width:2rem;
-                    left:0%;
-                    right:auto;
-                    background: none;
+                    width:4rem;
+                    border-left:2rem solid var(--color-bg);
+                    background: var(--color-track);
+                    left:auto;
+                    right:0;
+                    top:-1rem;
                     .meter {
                         background: none;
                     }
@@ -269,6 +271,16 @@
                 width:1rem;
                 height:100%;
                 margin-bottom:0;
+            }
+            .meter-container {
+                left:0;
+                right:-1rem;
+                top:auto;
+                bottom:0;
+                border-left:0;
+                border-top:2rem solid var(--color-bg);
+                height:4rem;
+                width:auto;
             }
         }
     }

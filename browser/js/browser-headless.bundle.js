@@ -1770,8 +1770,8 @@ module.exports.create = function(widgetData,container) {
         container.addClass('align-'+widgetData.align)
     }
 
-    if (widgetData.noPip) wrapper.addClass('no-pip')
     if (widgetData.compact) container.addClass('compact')
+    if (widgetData.noPip) wrapper.addClass('no-pip')
 
     gauge.size = 0
     fader.size = 0
@@ -1814,7 +1814,7 @@ module.exports.create = function(widgetData,container) {
         rangeLabels.push(label)
     }
 
-    if (!widget.noPip) {
+    if (!widgetData.noPip&&!widgetData.compact) {
         var pipTexts = {}
         for (k in rangeKeys) {
             pipTexts[rangeKeys[k]]=rangeLabels[k]
