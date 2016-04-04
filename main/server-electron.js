@@ -6,10 +6,10 @@ module.exports = function(settings,app,ipc,browserWindow) {
         height: 600,
         icon: path.resolve(__dirname + '/../resources/images/logo.png'),
         title:settings.read('appName'),
-        autoHideMenuBar:true,
         backgroundColor:'#1a1d22',
         // show:false
     })
+    window.setMenuBarVisibility(false)
 
     window.loadURL('file://' + __dirname + '/../browser/index.html')
 
