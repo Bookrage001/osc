@@ -110,6 +110,8 @@ var updateDom = function(container,data) {
 
 var incrementWidget = function(data){
 
+    if (!data) return
+
     delete data.linkId
 
     var id = data.id,
