@@ -148,6 +148,14 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(gauge.size)
     })
 
+    wrapper.on('mousedown',function(e){
+        if (e.button==2 && !EDITING) {
+            e.stopPropagation()
+            e.preventDefault()
+            input.focus()
+        }
+    })
+
     wrapper.on('mousewheel',function(e){
         if (e.originalEvent.wheelDeltaX) return
 

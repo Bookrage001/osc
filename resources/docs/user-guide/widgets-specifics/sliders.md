@@ -31,7 +31,7 @@ Sliders are unidimensional widgets that output one value at a time.
 #### `compact`
 - type: `boolean`
 - default: `false`
-- usage: set to `true` to display a compact alternative for the widget. Enables `noPips` and disables mouse/touch focusing on the value display.
+- usage: set to `true` to display a compact alternative for the widget. Enables `noPips` and disables default mouse/touch focusing on the value display (right-click/long-touch still triggers it).
 
 
 #### `range`

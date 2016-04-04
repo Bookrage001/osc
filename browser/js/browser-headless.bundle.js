@@ -1849,6 +1849,14 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(gauge.size)
     })
 
+    wrapper.on('mousedown',function(e){
+        if (e.button==2 && !EDITING) {
+            e.stopPropagation()
+            e.preventDefault()
+            input.focus()
+        }
+    })
+
     wrapper.on('mousewheel',function(e){
         if (e.originalEvent.wheelDeltaX) return
 
@@ -2095,6 +2103,14 @@ module.exports.create = function(widgetData,container) {
         if (!w || mask.size==w) return
         mask.size=w
         mask[0].setAttribute('style',`height:${w}px;width:${w}px;padding-bottom:0`)
+    })
+
+    wrapper.on('mousedown',function(e){
+        if (e.button==2 && !EDITING) {
+            e.stopPropagation()
+            e.preventDefault()
+            input.focus()
+        }
     })
 
     wrapper.on('mousewheel',function(e){
