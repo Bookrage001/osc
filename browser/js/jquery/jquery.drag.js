@@ -70,6 +70,7 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
                     $document.on("mouseup", mouseup)
                 } else {
                     // touch
+                    if (e.originalEvent.targetTouches.length == 2) return
                     e.pageX = e.originalEvent.changedTouches[0].pageX
                     e.pageY = e.originalEvent.changedTouches[0].pageY
                     e.offsetX = e.pageX-getOffset(e.target).left
@@ -90,13 +91,17 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
                 e.pageY = e.originalEvent.targetTouches[0].pageY
                 e.speedX = previousEvent?e.pageX - previousEvent.pageX:0
                 e.speedY = previousEvent?e.pageY - previousEvent.pageY:0
+
+                if (e.originalEvent.targetTouches.length == 2)
+                    e.speedX = e.speedX / 4
+                    e.speedY = e.speedY / 4
+                }
+
                 e.deltaX = previousEvent?e.speedX + previousEvent.deltaX:0
                 e.deltaY = previousEvent?e.speedY + previousEvent.deltaY:0
                 e.offsetX = previousEvent&&!e.shiftKey?previousEvent.offsetX+e.speedX:e.pageX-getOffset(e.target).left
                 e.offsetY = previousEvent&&!e.shiftKey?previousEvent.offsetY+e.speedY:e.pageY-getOffset(e.target).top
 
-                // do now allow two touch points to drag the same element
-                if (e.originalEvent.targetTouches.length > 1) return
 
                 element.trigger("drag",e)
                 previousEvent = e
