@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.6
+
+- engine
+  - electron 0.37.4
+- features
+  - `compact` option added to knob and fader
+
 ## 0.4.5
 
 - engine
@@ -8,7 +15,7 @@
   - new logo
   - better lobby design
 - misc
-  - renamed sliders/pads' `absolute` property to `snap` 
+  - renamed sliders/pads' `absolute` property to `snap`
 
 ## 0.4.4
 
