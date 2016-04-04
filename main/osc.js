@@ -12,7 +12,7 @@ module.exports = function(ipc, settings) {
 	        var data = {path:msg.shift(),args:msg}
 	        if (data.args.length==1) data.args = data.args[0]
 	        ipc.send('receiveOsc',data)
-			if (debug) console.log('OSC received: ',data,rinfo)
+			if (debug) console.log('OSC received: ',data, 'From : ' + rinfo.address + ':' + rinfo.port)
 	    })
 	}
 

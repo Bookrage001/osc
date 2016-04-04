@@ -7,6 +7,7 @@
   - node-osc 2.0.3
 - features
   - `compact` option added to knob and fader
+  - if an osc input port is specified, osc messages will be sent from it. This enhances compatibility with apps that send their feedback messages directly to the sender.
 
 ## 0.4.5
 
