@@ -11,7 +11,8 @@ Options:
   -h, --help     display help
   -s, --sync     synchronized hosts (ip:port pairs) (all osc messages will also be sent to these)
   -l, --load     session file to load
-  -p, --port     osc input port (for synchronization)
+  -p, --port     osc input port (for synchronization / feedback)
+  -d, --debug    log received osc in the console
   -n, --nogui    disable default gui and makes the app availabe through http on specified port
   -t, --theme    theme name or path (mutliple values allowed)
 

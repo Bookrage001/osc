@@ -5,19 +5,20 @@ var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'
     configFile = require('path').join(baseDir, '.open-stage-control')
 
 var argv = require('yargs')
-      .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
-      .options({
-          's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
-          'l':{alias:'load',type:'string',describe:'session file to load'},
-          'p':{alias:'port',describe:'osc input port (for synchronization)'},
-          'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},
-          't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'}
-       })
-      .check(function(a,x){if(a.port==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-      .check(function(a,x){if(a.n==undefined || !isNaN(a.n)&&a.n>1023&&parseInt(a.n)===a.n){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-      .check(function(a,x){if(a.sync==undefined || a.s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Sync hosts must be ip:port pairs & port must be >= 1024'}})
-      .strict()
-      .argv
+        .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
+        .options({
+            's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
+            'l':{alias:'load',type:'string',describe:'session file to load'},
+            'p':{alias:'port',describe:'osc input port (for synchronization)'},
+            'd':{alias:'debug',describe:'log received osc messages in the console'},
+            'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},
+            't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'}
+        })
+        .check(function(a,x){if(a.p==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
+        .check(function(a,x){if(a.n==undefined || !isNaN(a.n)&&a.n>1023&&parseInt(a.n)===a.n){return true}else{throw 'Error: Port must be an integer >= 1024'}})
+        .check(function(a,x){if(a.s==undefined || a.s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Sync hosts must be ip:port pairs & port must be >= 1024'}})
+        .strict()
+        .argv
 
 module.exports = function(fs) {
     var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8'))} catch(err) {return {}}}(),
@@ -28,7 +29,8 @@ module.exports = function(fs) {
 
             appName: 'Open Stage Control',
             syncTargets: argv.s || false,
-            oscInPort: argv.p || false,
+            oscInPort: argv.p || 0,
+            debug: argv.d || false,
             sessionFile:  argv.l || false,
             noGui: argv.n || false,
             theme: function(){
