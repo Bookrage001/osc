@@ -18,6 +18,7 @@ module.exports.options = {
     height:'auto',
     color:'auto',
     noPip:false,
+    compact:true,
     css:'',
 
     separator2:'behaviour',
@@ -60,7 +61,8 @@ module.exports.create = function(widgetData,container) {
         logScale = widgetData.logScale,
         roundFactor = Math.pow(10,widgetData.precision)
 
-    if (widgetData.noPip) wrapper.addClass('no-pip')
+        if (widgetData.noPip) wrapper.addClass('no-pip')
+        if (widgetData.compact) container.addClass('compact')
 
 
     var rangeKeys = [],

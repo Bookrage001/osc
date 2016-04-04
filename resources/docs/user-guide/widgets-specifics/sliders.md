@@ -28,6 +28,12 @@ Sliders are unidimensional widgets that output one value at a time.
 - default: `false`
 - usage: set to `true` to hide the scale
 
+#### `compact`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to display a compact alternative for the widget. Enables `noPips` and disables mouse/touch focusing on the value display.
+
+
 #### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
@@ -42,10 +48,6 @@ range: {
     "max": {"inf":10} // "inf" will be used as a custom label on the scale
 }
 ```
-#### `horizontal`
-- type: `boolean`
-- default: `false`
-- usage: set to `true` to display the fader horizontally
 
 #### `logScale`
 - type: `boolean`
@@ -96,6 +98,11 @@ range: {
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to hide the scale
+
+#### `compact`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to display a compact alternative for the widget. Enables `noPips` and disables mouse/touch focusing on the value display.
 
 #### `range`
 - type: `object`

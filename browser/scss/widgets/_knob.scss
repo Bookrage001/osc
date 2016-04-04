@@ -12,6 +12,30 @@
         margin-top:-5rem;
     }
 
+    &.compact {
+        .pips {
+            display: none;
+        }
+        .input {
+            position: absolute;
+            top:50%;
+            margin-top: -15rem;
+            left:22%;
+            right:22%;
+            width:auto;
+            pointer-events: none;
+        }
+        .knob-wrapper-outer {
+            position: relative;
+        }
+        .knob-wrapper {
+            padding:10% 0!important;
+        }
+        .knob:before {
+            display: none;
+        }
+    }
+
     .knob-wrapper-outer {
         width: 100%;
         display: flex;
