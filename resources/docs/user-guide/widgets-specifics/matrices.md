@@ -31,6 +31,10 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 #### `unit`
 - see fader's [`unit`](sliders/#fader)
 
+#### `compact`
+- see fader's [`compact`](sliders/#fader)
+
+
 ----
 
 ## Multitoggle

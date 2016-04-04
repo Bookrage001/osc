@@ -15,6 +15,7 @@ module.exports.options = {
     width:'auto',
     height:'auto',
     color:'auto',
+    compact:false,
     css:'',
 
 
@@ -53,7 +54,8 @@ module.exports.create = function(widgetData,container) {
 			path:widgetData.path + '/' + i,
             preArgs:widgetData.preArgs,
             target:widgetData.target,
-            noPip:true
+            noPip:true,
+            compact:widgetData.compact
 		}
 		var element = parsewidgets([data],widget)
 		element[0].setAttribute('style',`width:${100/widgetData.strips}%`)

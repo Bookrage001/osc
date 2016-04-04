@@ -18,7 +18,7 @@ module.exports.options = {
     height:'auto',
     color:'auto',
     noPip:false,
-    compact:true,
+    compact:false,
     css:'',
 
     separator2:'behaviour',
