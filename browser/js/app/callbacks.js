@@ -22,7 +22,6 @@ module.exports = {
                     continue
                 }
             }
-            args = args.length==1?args[0]:args
         } else {
             args = data.args
         }
