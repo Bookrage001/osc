@@ -72,8 +72,8 @@
                 }
                 .meter-container {
                     -webkit-mask:none!important;
-                    width:4rem;
-                    border-left:2rem solid var(--color-bg);
+                    width:3rem;
+                    border-left:1rem solid var(--color-bg);
                     background: var(--color-track);
                     left:auto;
                     right:0;
@@ -278,8 +278,8 @@
                 top:auto;
                 bottom:0;
                 border-left:0;
-                border-top:2rem solid var(--color-bg);
-                height:4rem;
+                border-top:1rem solid var(--color-bg);
+                height:1rem;
                 width:auto;
             }
         }
