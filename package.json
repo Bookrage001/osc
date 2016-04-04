@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "node-osc": "2.0.3",
-    "yargs": "4.2.0",
+    "yargs": "4.3.2",
     "socket.io": "1.4.5",
     "socket.io-client": "1.4.5",
-    "socketio-wildcard": "0.1.1",
-    "express": "4.13.3",
+    "socketio-wildcard": "0.3.0",
+    "express": "4.13.4",
     "electron-prebuilt": "0.37.4"
   },
   "devDependencies": {
