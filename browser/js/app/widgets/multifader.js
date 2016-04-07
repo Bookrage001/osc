@@ -79,7 +79,7 @@ module.exports.create = function(widgetData,container) {
         return widget.value
     }
 
-	widget.delegateDrag()
+	widget.handleDragging(true)
 
     return widget
 }

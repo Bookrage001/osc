@@ -13,6 +13,8 @@ var correctPosition = function (m, parent){
         m.css({'margin-top':totalHeight-(height + pos.top)})
     }
 }
+var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+
 
 var menu = function(e,actions,parent){
 
@@ -25,13 +27,13 @@ var menu = function(e,actions,parent){
 
         if (typeof actions[label] == 'object') {
 
-            var item = $(`<div class="item has-sub" tabIndex="1">${label}</div>`).appendTo(m).on('touchstart mousedown',function(e){e.stopPropagation()})
+            var item = $(`<div class="item has-sub" tabIndex="1">${label}</div>`).appendTo(m).on(ev,function(e){e.stopPropagation()})
             menu(e,actions[label],item)
 
 
         } else {
 
-            $(`<div class="item">${label}</div>`).on('mousedown.editor touchstart.editor',function(){
+            $(`<div class="item">${label}</div>`).on(ev + '.editor',function(){
                 var callback = actions[label]
                 return function(e){
                     callback()

@@ -1,14 +1,63 @@
 // jQuery drag event handler
-var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
+// note: triggerHandler() is used instead of trigger() when event bubblig is not
+// necessary, this increases performances a lot.
 ;(function($){
-    var $document = $(document)
-    $.event.special.drag = {
-        setup: function() {
-            var element = $(this),
-                previousEvent = null
+    var events = 'ontouchstart' in window ?
+            {start:'touchstart.drag',stop:'touchend.drag touchcancel.drag',move:'touchmove.drag',touch:true}:
+            {start:'mousedown.drag',stop:'mouseup.drag',move:'mousemove.drag',touch:false}
+        $document = $(document),
+        getOffset = function(obj) {
+            var offsetLeft = 0
+            var offsetTop = 0
+            if (obj) {
+                do {
+                    if (!isNaN(obj.offsetLeft)) {
+                        offsetLeft += obj.offsetLeft - obj.scrollLeft
+                    }
+                    if (!isNaN(obj.offsetTop)) {
+                        offsetTop += obj.offsetTop - obj.scrollTop
+                    }
+                } while(obj = obj.offsetParent )
+            }
 
-            var mousemove = function(e) {
-                e.preventDefault()
+            return {left: offsetLeft, top: offsetTop}
+        }
+
+    $.fn.handleDragging = function(traversing) {
+
+        // mouse single touch handler
+        if (!events.touch) {
+
+            var previousEvent = null,
+                target = null,
+                isPointerDown = false
+
+            this.on(events.start,function(e){
+                e.stopPropagation()
+
+                isPointerDown = true
+                target = $(e.target)
+                previousEvent = e
+
+                e.speedX = 0
+                e.speedY = 0
+                e.deltaX = 0
+                e.deltaY = 0
+
+
+                if (e.button==2)  {
+                    e.preventDefault()
+                    $(e.target).triggerHandler('fake-right-click',e)
+                    return
+                }
+
+                target.triggerHandler('draginit',e)
+            })
+
+            this.on(events.move,function(e){
+                e.stopPropagation()
+
+                if (!isPointerDown) return
 
                 e.speedX = e.pageX - previousEvent.pageX
                 e.speedY = e.pageY - previousEvent.pageY
@@ -16,131 +65,168 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
                 e.deltaY = e.speedY + previousEvent.deltaY
 
 
-                element.trigger("drag",e)
+                if (traversing || TRAVERSING) {
+                    target = $(e.target)
+                    if (target[0]!=previousEvent.target) {
+                        $(previousEvent.target).trigger('dragend',e)
+                    }
+                    e.preventDefault()
+                    target.triggerHandler('draginit',e)
+                } else {
+                    target.triggerHandler('drag',e)
+                }
+
                 previousEvent = e
-            }
-            var mouseup = function(e) {
-                $document.off("mouseup")
-                $document.off("mousemove")
+            })
+
+            $document.on(events.stop,function(e){
+                e.stopPropagation()
+
+                if (!isPointerDown) return
 
                 e.speedX = e.pageX - previousEvent.pageX
                 e.speedY = e.pageY - previousEvent.pageY
                 e.deltaX = e.deltaX + previousEvent.deltaX
                 e.deltaY = e.deltaY + previousEvent.deltaY
 
-                element.trigger("dragend", e)
-            }
-            var touchend = function(e) {
 
-                e.pageX = e.originalEvent.changedTouches[0].pageX
-                e.pageY = e.originalEvent.changedTouches[0].pageY
-                e.offsetX = e.pageX-getOffset(e.target).left
-                e.offsetY = e.pageY-getOffset(e.target).top
-                e.speedX = e.pageX - previousEvent.pageX
-                e.speedY = e.pageY - previousEvent.pageY
-                e.deltaX = e.deltaX + previousEvent.deltaX
-                e.deltaY = e.deltaY + previousEvent.deltaY
-
-                element.trigger("dragend", e)
-            }
-
-            function getOffset(obj) {
-                var offsetLeft = 0
-                var offsetTop = 0
-                if (obj) {
-                    do {
-                        if (!isNaN(obj.offsetLeft)) {
-                            offsetLeft += obj.offsetLeft - obj.scrollLeft
-                        }
-                        if (!isNaN(obj.offsetTop)) {
-                            offsetTop += obj.offsetTop - obj.scrollTop
-                        }
-                    } while(obj = obj.offsetParent )
-                }
-
-                return {left: offsetLeft, top: offsetTop}
-            }
-
-            element.on(startEvent+".drag", function(e) {
-                previousEvent = e
-
-                if (!e.originalEvent.changedTouches) {
-                    // mouse
-                    $document.on("mousemove", mousemove)
-                    $document.on("mouseup", mouseup)
-                } else {
-                    // touch
-                    if (e.originalEvent.targetTouches.length == 2) return
-                    e.pageX = e.originalEvent.changedTouches[0].pageX
-                    e.pageY = e.originalEvent.changedTouches[0].pageY
-                    e.offsetX = e.pageX-getOffset(e.target).left
-                    e.offsetY = e.pageY-getOffset(e.target).top
-                }
-
-                e.speedX = 0
-                e.speedY = 0
-                e.deltaX = 0
-                e.deltaY = 0
-
-                element.trigger("draginit", e)
+                target.trigger('dragend',e)
+                isPointerDown = false
             })
-            element.on("touchmove.drag", function(e) {
-                e.preventDefault()
 
-                e.pageX = e.originalEvent.targetTouches[0].pageX
-                e.pageY = e.originalEvent.targetTouches[0].pageY
-                e.speedX = previousEvent?e.pageX - previousEvent.pageX:0
-                e.speedY = previousEvent?e.pageY - previousEvent.pageY:0
-
-                if (e.originalEvent.targetTouches.length == 2) {
-                    e.speedX = e.speedX / 4
-                    e.speedY = e.speedY / 4
-                }
-
-                e.deltaX = previousEvent?e.speedX + previousEvent.deltaX:0
-                e.deltaY = previousEvent?e.speedY + previousEvent.deltaY:0
-                e.offsetX = previousEvent&&!e.shiftKey?previousEvent.offsetX+e.speedX:e.pageX-getOffset(e.target).left
-                e.offsetY = previousEvent&&!e.shiftKey?previousEvent.offsetY+e.speedY:e.pageY-getOffset(e.target).top
-
-
-                element.trigger("drag",e)
-                previousEvent = e
-
-            })
-            element.on("touchend.drag", touchend)
-            element.on("touchcancel.drag", touchend)
-
-
-        },
-        teardown: function() {
-            var element = $(this)
-            element.off(".drag")
         }
-    }
-    $.fn.delegateDrag = function(action) {
-        if (action=='disable') {
-            this.off('.delegateDrag')
-        } else {
-            var target = null
-            this.on('drag.delegateDrag',function(ev,dd){
-                dd.target = dd.originalEvent&&dd.originalEvent.changedTouches?
-                        document.elementFromPoint(dd.originalEvent.changedTouches[0].clientX, dd.originalEvent.changedTouches[0].clientY)
-                        :dd.target
 
-                if (target!=dd.target) {
-                    $(target).trigger('dragend',[dd])
-                    $(dd.target).trigger('draginit',[dd])
-                } else {
-                    $(dd.target).trigger('draginit',[dd])
+
+        // multi touch hanlder
+        if (events.touch) {
+
+            var targets = {},
+                previousTouches = {},
+                touchTapTimer = false
+
+            this.on(events.start,function(e){
+                // e.stopPropagation()
+                var oE = e.originalEvent
+
+                for (i in oE.changedTouches) {
+                    if (isNaN(i)) continue
+
+                    var touch = oE.changedTouches[i]
+
+                    targets[i] = $(touch.target)
+                    previousTouches[i] = touch
+
+                    touch.speedX = 0
+                    touch.speedY = 0
+
+                    touch.deltaX = 0
+                    touch.deltaY = 0
+
+                    var off = getOffset(touch.target)
+                    touch.offsetX = touch.pageX-off.left
+                    touch.offsetY = touch.pageY-off.top
+
+                    targets[i].triggerHandler('draginit',[touch,e])
+
                 }
-                target = dd.target
+
+                if (!touchTapTimer&&oE.touches.length==1) {
+                    touchTapTimer = setTimeout(function(){
+                        $(oE.changedTouches[0].target).triggerHandler('fake-right-click',oE.changedTouches[0])
+                    },600)
+                } else {
+                    clearTimeout(touchTapTimer)
+                    touchTapTimer = false
+                }
 
             })
-            this.on('dragend.delegateDrag',function(){
-                target = null
+
+            this.on(events.move,function(e){
+                // e.stopPropagation()
+                var oE = e.originalEvent
+
+
+                if (touchTapTimer) {
+                    clearTimeout(touchTapTimer)
+                    touchTapTimer = false
+                }
+
+                for (i in oE.changedTouches) {
+                    if (isNaN(i)) continue
+
+                    var touch = oE.changedTouches[i]
+
+                    touch.speedX = touch.pageX - previousTouches[i].pageX
+                    touch.speedY = touch.pageY - previousTouches[i].pageY
+
+                    touch.deltaX = touch.speedX + previousTouches[i].deltaX
+                    touch.deltaY = touch.speedY + previousTouches[i].deltaY
+
+                    touch.offsetX = previousTouches[i].offsetX+touch.speedX
+                    touch.offsetY = previousTouches[i].offsetY+touch.speedY
+
+                    if (traversing || TRAVERSING) {
+
+                        targets[i] = $(document.elementFromPoint(touch.clientX, touch.clientY))
+                        var previousTarget = document.elementFromPoint(previousTouches[i].clientX, previousTouches[i].clientY)
+                        if (targets[i][0]!=previousTarget) {
+                            var off = getOffset(targets[i][0])
+                            touch.offsetX = touch.pageX-off.left
+                            touch.offsetY = touch.pageY-off.top
+                            $(previousTarget).trigger('dragend',[touch,e])
+                        }
+                        e.preventDefault()
+                        if (this.contains(targets[i][0])) targets[i].triggerHandler('draginit',[touch,e])
+
+                    } else {
+
+                        targets[i].triggerHandler('drag',[touch,e])
+
+                    }
+
+                    previousTouches[i] = touch
+
+                }
+
+            })
+
+            $document.on(events.stop,function(e){
+                e.stopPropagation()
+
+                var oE = e.originalEvent
+
+                for (i in oE.changedTouches) {
+
+                    if (isNaN(i)) continue
+
+                    var touch = oE.changedTouches[i]
+
+                    $(oE.changedTouches[i].target).trigger('dragend',[touch,e])
+
+                    previousTouches[i] = touch
+
+                }
+
+                if (touchTapTimer) {
+                    clearTimeout(touchTapTimer)
+                    touchTapTimer = false
+                }
+
             })
         }
+
+
+
         return this
+
+    }
+
+    $document.handleDragging()
+
+    if (events.touch) {
+        $document.on('mousedown',function(e){
+            if (e.toElement.tagName!='INPUT') return false
+        })
     }
 
 })(jQuery)

@@ -45,10 +45,8 @@ module.exports.create = function(widgetData,container) {
 
         widget.value = undefined
 
-        widget.on('drag',function(e){e.stopPropagation()})
-
-        widget.on('draginit',function(e,dd){
-            var data = $(dd.target).data()
+        widget.find('.value').on('draginit',function(e,dd){
+            var data = $(this).data()
             if (data.value!=widget.value || widget.value===undefined) widget.setValue(data.value,true,true)
         })
 

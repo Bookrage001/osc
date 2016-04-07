@@ -3,11 +3,13 @@
 ## 0.4.6
 
 - engine
-  - electron 0.37.4
+  - electron 0.37.5
   - node-osc 2.0.3
 - features
   - `compact` option added to knob and fader
   - if an osc input port is specified, osc messages will be sent from it. This enhances compatibility with apps that send their feedback messages directly to the sender.
+- misc
+  - mouse/touch dragging handler rewritten, now using event delegation and direct handler calls instead of DOM event bubbling whenever it's possible
 
 ## 0.4.5
 

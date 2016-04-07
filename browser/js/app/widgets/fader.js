@@ -148,8 +148,8 @@ module.exports.create = function(widgetData,container) {
         widget.updateUi(gauge.size)
     })
 
-    wrapper.on('mousedown',function(e){
-        if (e.button==2 && !EDITING) {
+    wrapper.on('fake-right-click',function(e){
+        if (!EDITING) {
             e.stopPropagation()
             e.preventDefault()
             input.focus()
@@ -208,8 +208,9 @@ module.exports.create = function(widgetData,container) {
     })
 
 
-    wrapper.on('drag',function(e,data){
-        e.stopPropagation()
+    wrapper.on('drag',function(e,data,originalEvent){
+
+        if (originalEvent) originalEvent.preventDefault()
 
         if (TRAVERSING) return
 

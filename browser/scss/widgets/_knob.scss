@@ -8,10 +8,6 @@
     align-items: center;
     flex-shrink: 0;
 
-    .input {
-        margin-top:-5rem;
-    }
-
     &.compact {
         .pips {
             display: none;
@@ -46,7 +42,7 @@
         overflow: hidden;
 
         .knob-wrapper {
-            padding:15rem 0 20rem;
+            padding:15rem 0 15rem;
             margin: 0 auto;
             width: 100%;
             height: 100%;

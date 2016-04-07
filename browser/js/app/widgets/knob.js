@@ -100,10 +100,11 @@ module.exports.create = function(widgetData,container) {
         if (!w || mask.size==w) return
         mask.size=w
         mask[0].setAttribute('style',`height:${w}px;width:${w}px;padding-bottom:0`)
+        wrapper.size = {width:wrapper[0].clientWidth,height:wrapper[0].clientHeight}
     })
 
-    wrapper.on('mousedown',function(e){
-        if (e.button==2 && !EDITING) {
+    wrapper.on('fake-right-click',function(e){
+        if (!EDITING) {
             e.stopPropagation()
             e.preventDefault()
             input.focus()
@@ -142,8 +143,8 @@ module.exports.create = function(widgetData,container) {
     wrapper.on('draginit',function(e,data){
 
         if (snap || TRAVERSING) {
-            var w = data.target.clientWidth,
-                h = data.target.clientHeight,
+            var w = wrapper.size.width,
+                h = wrapper.size.height,
                 x = data.offsetX-w/2,
                 y = data.offsetY-h/2,
                 angle =  Math.atan2(-y, -x) * 180 / Math.PI +45,
@@ -174,8 +175,9 @@ module.exports.create = function(widgetData,container) {
         offR = knob.rotation
     })
 
-    wrapper.on('drag',function(e,data){
-        e.stopPropagation()
+    wrapper.on('drag',function(e,data,originalEvent){
+
+        if (originalEvent) originalEvent.preventDefault()
 
         if (TRAVERSING) return
 

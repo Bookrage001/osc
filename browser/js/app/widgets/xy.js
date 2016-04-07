@@ -105,8 +105,9 @@ module.exports.create = function(widgetData,container) {
         off = {x:handle.width,y:handle.height}
 
     })
-    pad.on('drag',function(e,data){
-        e.stopPropagation()
+    pad.on('drag',function(e,data,originalEvent){
+
+        if (originalEvent) originalEvent.preventDefault()
 
         if (TRAVERSING) return
 

@@ -105,8 +105,9 @@ module.exports.create = function(widgetData,container) {
             rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
 
         })
-        pad.on('drag',function(e,data){
-            e.stopPropagation()
+        pad.on('drag',function(e,data,originalEvent){
+
+            if (originalEvent) originalEvent.preventDefault()
 
             if (TRAVERSING) return
 
@@ -162,8 +163,9 @@ module.exports.create = function(widgetData,container) {
         })
 
 
-        huePad.on('drag',function(e,data){
-            e.stopPropagation()
+        huePad.on('drag',function(e,data,originalEvent){
+
+            if (originalEvent) originalEvent.preventDefault()
 
             if (TRAVERSING) return
 

@@ -178,12 +178,10 @@ module.exports = {
     },
 
     traversingDisable: function(){
-        $('#container').delegateDrag('disable')
         $('.traversingEnable, .traversingDisable').toggleClass('on')
         TRAVERSING = false
     },
     traversingEnable: function(){
-        $('#container').delegateDrag()
         $('.traversingEnable, .traversingDisable').toggleClass('on')
         TRAVERSING = true
     }

@@ -1,4 +1,5 @@
-(function ($) {
+var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
+;(function ($) {
     $.fn.fakeInput = function(options) {
 
         var settings = $.extend({
@@ -77,9 +78,9 @@
 			i.blur(function(){
 					self.attr('tabindex','0')
 					i.remove()
-                    $(document).off('mousedown.fakeInput touchstart.fakeInput')
+                    $(document).off('.fakeInput')
 			})
-			$(document).on('mousedown.fakeInput touchstart.fakeInput',function(){
+			$(document).on(startEvent+'.fakeInput',function(){
 				i.blur()
 			})
 

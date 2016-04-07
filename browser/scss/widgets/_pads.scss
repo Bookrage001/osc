@@ -87,6 +87,7 @@
         bottom:0;
     	background-color: red;
         opacity: .75;
+        pointer-events: none;
     	&:before, &:after {
     		content:"";
     		position: absolute;
@@ -142,6 +143,7 @@
         bottom:0;
         opacity: 0.5;
         background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
+        pointer-events: none;
     }
     &:active {
         cursor: -webkit-grabbing;

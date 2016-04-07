@@ -14,11 +14,8 @@ var data = require('./data-workers'),
 
 var init = function(){
 
-    document.addEventListener("contextmenu", function(e){
-        e.preventDefault()
-    }, false);
-
-    $('body').off('.editor').on('mousedown.editor touchstart.editor',function(e){
+    var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+    $('body').off('.editor').on(ev+'.editor fake-right-click',function(e,d){
 
         if (!EDITING) return
 
@@ -43,11 +40,10 @@ var init = function(){
         }
 
 
-        if (e.button!=2) return
-
+        if (e.type!='fake-right-click') return
 
         if (container.attr('id')=='container') {
-            menu(e,{
+            menu(d,{
                 '<i class="fa fa-plus"></i> Add tab': function(){
                     data.push({})
                     updateDom(container,data)
@@ -175,7 +171,7 @@ var init = function(){
 
         }
 
-        menu(e,actions,'body')
+        menu(d,actions,'body')
 
     })
 

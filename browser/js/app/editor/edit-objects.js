@@ -1,6 +1,9 @@
 var updateDom = require('./data-workers').updateDom,
     widgetOptions = require('../widgets').widgetOptions
 
+var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+
+
 var editObject = function(container, data, refresh){
 
     if (!refresh && (container.hasClass('editing') || $(`a[data-tab="#${container.attr('id')}"]`).hasClass('editing'))) return
@@ -98,7 +101,7 @@ var editObject = function(container, data, refresh){
 
         var editItem = function(i) {
             return function(){
-                container.find('.widget').first().siblings().addBack().eq(i).trigger('mousedown.editor')
+                container.find('.widget').first().siblings().addBack().eq(i).trigger(ev+'.editor')
             }
         }
 
@@ -153,7 +156,7 @@ var editObject = function(container, data, refresh){
 
         var editItem = function(i) {
             return function(){
-                container.find('.tab').first().siblings().addBack().eq(i).trigger('mousedown.editor')
+                container.find('.tab').first().siblings().addBack().eq(i).trigger(ev+'.editor')
             }
         }
 
@@ -253,7 +256,7 @@ var editSession = function(container,data,refresh){
 
     var editItem = function(i) {
         return function(){
-            container.find('.tab').first().siblings().addBack().eq(i).trigger('mousedown.editor')
+            container.find('.tab').first().siblings().addBack().eq(i).trigger(ev+'.editor')
         }
     }
 
