@@ -4106,6 +4106,12 @@ require('./app')
             this.on(events.start,function(e){
                 e.stopPropagation()
 
+                if (e.button==2)  {
+                    e.preventDefault()
+                    $(e.target).trigger('fake-right-click',e)
+                    return
+                }
+
                 isPointerDown = true
                 target = $(e.target)
                 previousEvent = e
@@ -4114,13 +4120,6 @@ require('./app')
                 e.speedY = 0
                 e.deltaX = 0
                 e.deltaY = 0
-
-
-                if (e.button==2)  {
-                    e.preventDefault()
-                    $(e.target).trigger('fake-right-click',e)
-                    return
-                }
 
                 target.triggerHandler('draginit',e)
             })
@@ -4382,7 +4381,8 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 					.focus()
 					.change(function(){
 						self.val($(this).val())
-						// $(this).remove()
+                        i.blur()
+                        setTimeout(function(){self.focus()},1)
 					})
 			i.blur(function(){
 					self.attr('tabindex','0')

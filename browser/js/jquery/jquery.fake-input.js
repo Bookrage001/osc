@@ -73,7 +73,8 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 					.focus()
 					.change(function(){
 						self.val($(this).val())
-						// $(this).remove()
+                        i.blur()
+                        setTimeout(function(){self.focus()},1)
 					})
 			i.blur(function(){
 					self.attr('tabindex','0')
