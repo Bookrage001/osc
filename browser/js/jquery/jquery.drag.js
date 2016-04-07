@@ -47,7 +47,7 @@
 
                 if (e.button==2)  {
                     e.preventDefault()
-                    $(e.target).triggerHandler('fake-right-click',e)
+                    $(e.target).trigger('fake-right-click',e)
                     return
                 }
 
@@ -133,7 +133,7 @@
 
                 if (!touchTapTimer&&oE.touches.length==1) {
                     touchTapTimer = setTimeout(function(){
-                        $(oE.changedTouches[0].target).triggerHandler('fake-right-click',oE.changedTouches[0])
+                        $(oE.changedTouches[0].target).trigger('fake-right-click',oE.changedTouches[0])
                     },600)
                 } else {
                     clearTimeout(touchTapTimer)
