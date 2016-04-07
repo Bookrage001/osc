@@ -4182,10 +4182,11 @@ require('./app')
                 for (i in oE.changedTouches) {
                     if (isNaN(i)) continue
 
-                    var touch = oE.changedTouches[i]
+                    var touch = oE.changedTouches[i],
+                        id = touch.identifier
 
-                    targets[i] = $(touch.target)
-                    previousTouches[i] = touch
+                    targets[id] = $(touch.target)
+                    previousTouches[id] = touch
 
                     touch.speedX = 0
                     touch.speedY = 0
@@ -4197,7 +4198,7 @@ require('./app')
                     touch.offsetX = touch.pageX-off.left
                     touch.offsetY = touch.pageY-off.top
 
-                    targets[i].triggerHandler('draginit',[touch,e])
+                    targets[id].triggerHandler('draginit',[touch,e])
 
                 }
 
@@ -4225,37 +4226,38 @@ require('./app')
                 for (i in oE.changedTouches) {
                     if (isNaN(i)) continue
 
-                    var touch = oE.changedTouches[i]
+                    var touch = oE.changedTouches[i],
+                        id = touch.identifier
 
-                    touch.speedX = touch.pageX - previousTouches[i].pageX
-                    touch.speedY = touch.pageY - previousTouches[i].pageY
+                    touch.speedX = touch.pageX - previousTouches[id].pageX
+                    touch.speedY = touch.pageY - previousTouches[id].pageY
 
-                    touch.deltaX = touch.speedX + previousTouches[i].deltaX
-                    touch.deltaY = touch.speedY + previousTouches[i].deltaY
+                    touch.deltaX = touch.speedX + previousTouches[id].deltaX
+                    touch.deltaY = touch.speedY + previousTouches[id].deltaY
 
-                    touch.offsetX = previousTouches[i].offsetX+touch.speedX
-                    touch.offsetY = previousTouches[i].offsetY+touch.speedY
+                    touch.offsetX = previousTouches[id].offsetX+touch.speedX
+                    touch.offsetY = previousTouches[id].offsetY+touch.speedY
 
                     if (traversing || TRAVERSING) {
 
-                        targets[i] = $(document.elementFromPoint(touch.clientX, touch.clientY))
-                        var previousTarget = document.elementFromPoint(previousTouches[i].clientX, previousTouches[i].clientY)
-                        if (targets[i][0]!=previousTarget) {
-                            var off = getOffset(targets[i][0])
+                        targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
+                        var previousTarget = document.elementFromPoint(previousTouches[id].clientX, previousTouches[id].clientY)
+                        if (targets[id][0]!=previousTarget) {
+                            var off = getOffset(targets[id][0])
                             touch.offsetX = touch.pageX-off.left
                             touch.offsetY = touch.pageY-off.top
                             $(previousTarget).trigger('dragend',[touch,e])
                         }
                         e.preventDefault()
-                        if (this.contains(targets[i][0])) targets[i].triggerHandler('draginit',[touch,e])
+                        if (this.contains(targets[id][0])) targets[id].triggerHandler('draginit',[touch,e])
 
                     } else {
 
-                        targets[i].triggerHandler('drag',[touch,e])
+                        targets[id].triggerHandler('drag',[touch,e])
 
                     }
 
-                    previousTouches[i] = touch
+                    previousTouches[id] = touch
 
                 }
 
@@ -4270,11 +4272,13 @@ require('./app')
 
                     if (isNaN(i)) continue
 
-                    var touch = oE.changedTouches[i]
+                    var touch = oE.changedTouches[i],
+                        id = touch.identifier
 
                     $(oE.changedTouches[i].target).trigger('dragend',[touch,e])
 
-                    previousTouches[i] = touch
+                    delete previousTouches[id]
+                    delete targets[id]
 
                 }
 
