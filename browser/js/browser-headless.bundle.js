@@ -4303,6 +4303,8 @@ require('./app')
         })
     }
 
+    $document.on('contextmenu',function(){return false})
+
 })(jQuery)
 
 },{}],35:[function(require,module,exports){
