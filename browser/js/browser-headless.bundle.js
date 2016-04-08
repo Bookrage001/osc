@@ -4137,9 +4137,6 @@ require('./app')
 
                 if (traversing || TRAVERSING) {
                     target = $(e.target)
-                    if (target[0]!=previousEvent.target) {
-                        $(previousEvent.target).trigger('dragend',e)
-                    }
                     e.preventDefault()
                     target.triggerHandler('draginit',e)
                 } else {
@@ -4163,6 +4160,27 @@ require('./app')
                 target.trigger('dragend',e)
                 isPointerDown = false
             })
+
+
+
+            this.on('mouseout',function(e){
+                if (traversing || TRAVERSING) {
+                    e.stopPropagation()
+
+                    if (!isPointerDown) return
+
+                    e.speedX = e.pageX - previousEvent.pageX
+                    e.speedY = e.pageY - previousEvent.pageY
+                    e.deltaX = e.deltaX + previousEvent.deltaX
+                    e.deltaY = e.deltaY + previousEvent.deltaY
+
+                    target.trigger('dragend',e)
+
+                    previousEvent = e
+
+                }
+            })
+
 
         }
 
@@ -4215,6 +4233,7 @@ require('./app')
             this.on(events.move,function(e){
                 // e.stopPropagation()
                 var oE = e.originalEvent
+                //    ,touched = []
 
 
                 if (touchTapTimer) {
@@ -4225,8 +4244,15 @@ require('./app')
                 for (i in oE.changedTouches) {
                     if (isNaN(i)) continue
 
+
                     var touch = oE.changedTouches[i],
                         id = touch.identifier
+
+                    if (traversing || TRAVERSING) {
+                        targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
+                    }
+
+                    // touched[targets[id]] = touched[targets[id]]?touched[targets[id]]+1:1
 
                     touch.speedX = touch.pageX - previousTouches[id].pageX
                     touch.speedY = touch.pageY - previousTouches[id].pageY
@@ -4239,7 +4265,6 @@ require('./app')
 
                     if (traversing || TRAVERSING) {
 
-                        targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
                         var previousTarget = document.elementFromPoint(previousTouches[id].clientX, previousTouches[id].clientY)
                         if (targets[id][0]!=previousTarget) {
                             var off = getOffset(targets[id][0])
