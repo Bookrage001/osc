@@ -53,6 +53,9 @@ module.exports = function(ipc, settings) {
 			    client.send(message, function () {
 			      client.kill()
 			    })
+
+				if (debug) console.log('OSC sent: ',{path:path,args:message.args}, 'To : ' + host + ':' + port)
+
 			})
 
 		}
