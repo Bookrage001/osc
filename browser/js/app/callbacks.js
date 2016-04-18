@@ -19,6 +19,7 @@ module.exports = {
                 if (WIDGETS_BY_PATH[ref]) {
                     pathref = ref
                     args = data.args.slice(i,data.args.length)
+                    args = args.length==1?args[0]:args
                     continue
                 }
             }
