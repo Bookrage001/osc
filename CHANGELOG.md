@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.7
+
+- bug fixes
+  - regression causing widgets with `preArgs` to not receive osc correctly 
+
 ## 0.4.6
 
 - engine
