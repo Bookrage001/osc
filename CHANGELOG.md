@@ -3,7 +3,7 @@
 ## 0.4.6
 
 - engine
-  - electron 0.37.5
+  - electron 0.37.6
   - node-osc 2.0.3
 - features
   - `compact` option added to knob and fader
