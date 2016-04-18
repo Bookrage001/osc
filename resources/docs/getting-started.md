@@ -44,11 +44,11 @@ Running the app from the sources slightly differs from using built binaries : in
 
 **Requirements**
 
-- [Node.js](https://nodejs.org/)
+- [Node.js >= 4.0](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
 ```bash
-$ sudo apt-get install npm  # install nodejs & npm
+$ sudo apt-get install nodejs npm  # install nodejs & npm
 $ sudo npm install -g npm   # update npm
 ```
 
