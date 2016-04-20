@@ -111,8 +111,8 @@ var init = function(){
                     data.widgets = data.widgets || []
                     var newData = {type:widgetType}
                     if (!target.attr('data-tab')) {
-                        newData.top = e.offsetY
-                        newData.left= e.offsetX
+                        newData.top = d.offsetY
+                        newData.left= d.offsetX
                     }
                     data.widgets.push(newData)
                     updateDom(container,data)

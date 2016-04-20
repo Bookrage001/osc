@@ -1,9 +1,15 @@
 # Changelog
 
+## 0.4.8
+
+- bug fixes
+  - regression preventing newly created widgets from using the pointer's coordinates as position
+  - add 0.4.7's fix to headless mode
+
 ## 0.4.7
 
 - bug fixes
-  - regression causing widgets with `preArgs` to not receive osc correctly 
+  - regression causing widgets with `preArgs` to not receive osc correctly
 
 ## 0.4.6
 
