@@ -3,10 +3,11 @@ var fs = require('fs'),
 
 if (!settings.read('noGui')) {
 
-    var app = require('app'),
-        browserWindow = require('browser-window'),
-        dialog = require('dialog'),
-        ipc = require('ipc-main')
+    var electron = require('electron'),
+        app = electron.app,
+        browserWindow = electron.BrowserWindow,
+        dialog = electron.dialog,
+        ipc = electron.ipcMain
 
     dialog.showErrorBox = function(title,err) {
         console.log(title + ': ' + err)

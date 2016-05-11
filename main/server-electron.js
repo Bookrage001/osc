@@ -18,7 +18,7 @@ module.exports = function(settings,app,ipc,browserWindow) {
     })
 
 
-    var Menu = require('menu')
+    var Menu = require('electron').Menu
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(
         [

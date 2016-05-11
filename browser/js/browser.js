@@ -1,6 +1,7 @@
-WEBFRAME = require('web-frame')
+var electron = require('electron')
+WEBFRAME = electron.webFrame
 
 // mainProcess & renderProcess communication engine
-IPC = require('ipc-renderer')
+IPC = electron.ipcRenderer
 
 require('./app')
