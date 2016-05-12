@@ -13,7 +13,8 @@ var correctPosition = function (m, parent){
         m.css({'margin-top':totalHeight-(height + pos.top)})
     }
 }
-var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+
+var ev = 'touchstart mousedown'
 
 
 var menu = function(e,actions,parent){

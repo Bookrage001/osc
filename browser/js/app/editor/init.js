@@ -14,7 +14,8 @@ var data = require('./data-workers'),
 
 var init = function(){
 
-    var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+    var ev = 'touchstart mousedown'
+
     $('body').off('.editor').on(ev+'.editor fake-right-click',function(e,d){
 
         if (!EDITING) return

@@ -365,7 +365,8 @@ var correctPosition = function (m, parent){
         m.css({'margin-top':totalHeight-(height + pos.top)})
     }
 }
-var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+
+var ev = 'touchstart mousedown'
 
 
 var menu = function(e,actions,parent){
@@ -584,7 +585,7 @@ module.exports = {
 var updateDom = require('./data-workers').updateDom,
     widgetOptions = require('../widgets').widgetOptions
 
-var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+var ev = 'touchstart mousedown'
 
 
 var editObject = function(container, data, refresh){
@@ -909,7 +910,8 @@ var data = require('./data-workers'),
 
 var init = function(){
 
-    var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+    var ev = 'touchstart mousedown'
+
     $('body').off('.editor').on(ev+'.editor fake-right-click',function(e,d){
 
         if (!EDITING) return
@@ -4074,9 +4076,12 @@ require('./app')
 // note: triggerHandler() is used instead of trigger() when event bubblig is not
 // necessary, this increases performances a lot.
 ;(function($){
-    var events = 'ontouchstart' in window ?
-            {start:'touchstart.drag',stop:'touchend.drag touchcancel.drag',move:'touchmove.drag',touch:true}:
-            {start:'mousedown.drag',stop:'mouseup.drag',move:'mousemove.drag',touch:false}
+    var events = {
+            touch:{start:'touchstart.drag',stop:'touchend.drag touchcancel.drag',move:'touchmove.drag',touch:true},
+            mouse:{start:'mousedown.drag',stop:'mouseup.drag',move:'mousemove.drag',touch:false}
+        },
+
+
         $document = $(document),
         getOffset = function(obj) {
             var offsetLeft = 0
@@ -4098,56 +4103,72 @@ require('./app')
     $.fn.handleDragging = function(traversing) {
 
         // mouse single touch handler
-        if (!events.touch) {
+        var previousEvent = null,
+            target = null,
+            isPointerDown = false
 
-            var previousEvent = null,
-                target = null,
-                isPointerDown = false
+        this.on(events.mouse.start,function(e){
+            e.stopPropagation()
 
-            this.on(events.start,function(e){
-                e.stopPropagation()
+            if (e.button==2)  {
+                e.preventDefault()
+                $(e.target).trigger('fake-right-click',e)
+                return
+            }
 
-                if (e.button==2)  {
-                    e.preventDefault()
-                    $(e.target).trigger('fake-right-click',e)
-                    return
-                }
+            isPointerDown = true
+            target = $(e.target)
+            previousEvent = e
 
-                isPointerDown = true
+            e.speedX = 0
+            e.speedY = 0
+            e.deltaX = 0
+            e.deltaY = 0
+
+            target.triggerHandler('draginit',e)
+        })
+
+        this.on(events.mouse.move,function(e){
+            e.stopPropagation()
+
+            if (!isPointerDown) return
+
+            e.speedX = e.pageX - previousEvent.pageX
+            e.speedY = e.pageY - previousEvent.pageY
+            e.deltaX = e.speedX + previousEvent.deltaX
+            e.deltaY = e.speedY + previousEvent.deltaY
+
+
+            if (traversing || TRAVERSING) {
                 target = $(e.target)
-                previousEvent = e
-
-                e.speedX = 0
-                e.speedY = 0
-                e.deltaX = 0
-                e.deltaY = 0
-
+                e.preventDefault()
                 target.triggerHandler('draginit',e)
-            })
+            } else {
+                target.triggerHandler('drag',e)
+            }
 
-            this.on(events.move,function(e){
-                e.stopPropagation()
+            previousEvent = e
+        })
 
-                if (!isPointerDown) return
+        $document.on(events.mouse.stop,function(e){
+            e.stopPropagation()
 
-                e.speedX = e.pageX - previousEvent.pageX
-                e.speedY = e.pageY - previousEvent.pageY
-                e.deltaX = e.speedX + previousEvent.deltaX
-                e.deltaY = e.speedY + previousEvent.deltaY
+            if (!isPointerDown) return
+
+            e.speedX = e.pageX - previousEvent.pageX
+            e.speedY = e.pageY - previousEvent.pageY
+            e.deltaX = e.deltaX + previousEvent.deltaX
+            e.deltaY = e.deltaY + previousEvent.deltaY
 
 
-                if (traversing || TRAVERSING) {
-                    target = $(e.target)
-                    e.preventDefault()
-                    target.triggerHandler('draginit',e)
-                } else {
-                    target.triggerHandler('drag',e)
-                }
+            target.trigger('dragend',e)
+            isPointerDown = false
+        })
 
-                previousEvent = e
-            })
 
-            $document.on(events.stop,function(e){
+
+        this.on('mouseout',function(e){
+            if (traversing || TRAVERSING) {
                 e.stopPropagation()
 
                 if (!isPointerDown) return
@@ -4157,163 +4178,140 @@ require('./app')
                 e.deltaX = e.deltaX + previousEvent.deltaX
                 e.deltaY = e.deltaY + previousEvent.deltaY
 
-
                 target.trigger('dragend',e)
-                isPointerDown = false
-            })
 
+                previousEvent = e
 
-
-            this.on('mouseout',function(e){
-                if (traversing || TRAVERSING) {
-                    e.stopPropagation()
-
-                    if (!isPointerDown) return
-
-                    e.speedX = e.pageX - previousEvent.pageX
-                    e.speedY = e.pageY - previousEvent.pageY
-                    e.deltaX = e.deltaX + previousEvent.deltaX
-                    e.deltaY = e.deltaY + previousEvent.deltaY
-
-                    target.trigger('dragend',e)
-
-                    previousEvent = e
-
-                }
-            })
-
-
-        }
+            }
+        })
 
 
         // multi touch hanlder
-        if (events.touch) {
 
-            var targets = {},
-                previousTouches = {},
+        var targets = {},
+            previousTouches = {},
+            touchTapTimer = false
+
+        this.on(events.touch.start,function(e){
+            // e.stopPropagation()
+            var oE = e.originalEvent
+
+            for (i in oE.changedTouches) {
+                if (isNaN(i)) continue
+
+                var touch = oE.changedTouches[i],
+                    id = touch.identifier
+
+                targets[id] = $(touch.target)
+                previousTouches[id] = touch
+
+                touch.speedX = 0
+                touch.speedY = 0
+
+                touch.deltaX = 0
+                touch.deltaY = 0
+
+                var off = getOffset(touch.target)
+                touch.offsetX = touch.pageX-off.left
+                touch.offsetY = touch.pageY-off.top
+
+                targets[id].triggerHandler('draginit',[touch,e])
+
+            }
+
+            if (!touchTapTimer&&oE.touches.length==1) {
+                touchTapTimer = setTimeout(function(){
+                    $(oE.changedTouches[0].target).trigger('fake-right-click',oE.changedTouches[0])
+                },600)
+            } else {
+                clearTimeout(touchTapTimer)
                 touchTapTimer = false
+            }
 
-            this.on(events.start,function(e){
-                // e.stopPropagation()
-                var oE = e.originalEvent
+        })
 
-                for (i in oE.changedTouches) {
-                    if (isNaN(i)) continue
+        this.on(events.touch.move,function(e){
+            // e.stopPropagation()
+            var oE = e.originalEvent
+            //    ,touched = []
 
-                    var touch = oE.changedTouches[i],
-                        id = touch.identifier
 
-                    targets[id] = $(touch.target)
-                    previousTouches[id] = touch
+            if (touchTapTimer) {
+                clearTimeout(touchTapTimer)
+                touchTapTimer = false
+            }
 
-                    touch.speedX = 0
-                    touch.speedY = 0
+            for (i in oE.changedTouches) {
+                if (isNaN(i)) continue
 
-                    touch.deltaX = 0
-                    touch.deltaY = 0
 
-                    var off = getOffset(touch.target)
-                    touch.offsetX = touch.pageX-off.left
-                    touch.offsetY = touch.pageY-off.top
+                var touch = oE.changedTouches[i],
+                    id = touch.identifier
 
-                    targets[id].triggerHandler('draginit',[touch,e])
-
+                if (traversing || TRAVERSING) {
+                    targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
                 }
 
-                if (!touchTapTimer&&oE.touches.length==1) {
-                    touchTapTimer = setTimeout(function(){
-                        $(oE.changedTouches[0].target).trigger('fake-right-click',oE.changedTouches[0])
-                    },600)
+                // touched[targets[id]] = touched[targets[id]]?touched[targets[id]]+1:1
+
+                touch.speedX = touch.pageX - previousTouches[id].pageX
+                touch.speedY = touch.pageY - previousTouches[id].pageY
+
+                touch.deltaX = touch.speedX + previousTouches[id].deltaX
+                touch.deltaY = touch.speedY + previousTouches[id].deltaY
+
+                touch.offsetX = previousTouches[id].offsetX+touch.speedX
+                touch.offsetY = previousTouches[id].offsetY+touch.speedY
+
+                if (traversing || TRAVERSING) {
+
+                    var previousTarget = document.elementFromPoint(previousTouches[id].clientX, previousTouches[id].clientY)
+                    if (targets[id][0]!=previousTarget) {
+                        var off = getOffset(targets[id][0])
+                        touch.offsetX = touch.pageX-off.left
+                        touch.offsetY = touch.pageY-off.top
+                        $(previousTarget).trigger('dragend',[touch,e])
+                    }
+                    e.preventDefault()
+                    if (this.contains(targets[id][0])) targets[id].triggerHandler('draginit',[touch,e])
+
                 } else {
-                    clearTimeout(touchTapTimer)
-                    touchTapTimer = false
-                }
 
-            })
-
-            this.on(events.move,function(e){
-                // e.stopPropagation()
-                var oE = e.originalEvent
-                //    ,touched = []
-
-
-                if (touchTapTimer) {
-                    clearTimeout(touchTapTimer)
-                    touchTapTimer = false
-                }
-
-                for (i in oE.changedTouches) {
-                    if (isNaN(i)) continue
-
-
-                    var touch = oE.changedTouches[i],
-                        id = touch.identifier
-
-                    if (traversing || TRAVERSING) {
-                        targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
-                    }
-
-                    // touched[targets[id]] = touched[targets[id]]?touched[targets[id]]+1:1
-
-                    touch.speedX = touch.pageX - previousTouches[id].pageX
-                    touch.speedY = touch.pageY - previousTouches[id].pageY
-
-                    touch.deltaX = touch.speedX + previousTouches[id].deltaX
-                    touch.deltaY = touch.speedY + previousTouches[id].deltaY
-
-                    touch.offsetX = previousTouches[id].offsetX+touch.speedX
-                    touch.offsetY = previousTouches[id].offsetY+touch.speedY
-
-                    if (traversing || TRAVERSING) {
-
-                        var previousTarget = document.elementFromPoint(previousTouches[id].clientX, previousTouches[id].clientY)
-                        if (targets[id][0]!=previousTarget) {
-                            var off = getOffset(targets[id][0])
-                            touch.offsetX = touch.pageX-off.left
-                            touch.offsetY = touch.pageY-off.top
-                            $(previousTarget).trigger('dragend',[touch,e])
-                        }
-                        e.preventDefault()
-                        if (this.contains(targets[id][0])) targets[id].triggerHandler('draginit',[touch,e])
-
-                    } else {
-
-                        targets[id].triggerHandler('drag',[touch,e])
-
-                    }
-
-                    previousTouches[id] = touch
+                    targets[id].triggerHandler('drag',[touch,e])
 
                 }
 
-            })
+                previousTouches[id] = touch
 
-            $document.on(events.stop,function(e){
-                e.stopPropagation()
+            }
 
-                var oE = e.originalEvent
+        })
 
-                for (i in oE.changedTouches) {
+        $document.on(events.touch.stop,function(e){
+            e.stopPropagation()
 
-                    if (isNaN(i)) continue
+            var oE = e.originalEvent
 
-                    var touch = oE.changedTouches[i],
-                        id = touch.identifier
+            for (i in oE.changedTouches) {
 
-                    $(oE.changedTouches[i].target).trigger('dragend',[touch,e])
+                if (isNaN(i)) continue
 
-                    delete previousTouches[id]
-                    delete targets[id]
+                var touch = oE.changedTouches[i],
+                    id = touch.identifier
 
-                }
+                $(oE.changedTouches[i].target).trigger('dragend',[touch,e])
 
-                if (touchTapTimer) {
-                    clearTimeout(touchTapTimer)
-                    touchTapTimer = false
-                }
+                delete previousTouches[id]
+                delete targets[id]
 
-            })
-        }
+            }
+
+            if (touchTapTimer) {
+                clearTimeout(touchTapTimer)
+                touchTapTimer = false
+            }
+
+        })
 
 
 
@@ -4323,11 +4321,12 @@ require('./app')
 
     $document.handleDragging()
 
-    if (events.touch) {
-        $document.on('mousedown',function(e){
-            if (e.toElement.tagName!='INPUT') return false
-        })
-    }
+    // if (events.touch) {
+    //     $document.on('mousedown',function(e){
+    //         console.log('ef')
+    //         if (e.toElement.tagName!='INPUT') return false
+    //     })
+    // }
 
     $document.on('contextmenu',function(){return false})
 

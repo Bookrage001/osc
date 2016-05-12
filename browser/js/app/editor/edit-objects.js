@@ -1,7 +1,7 @@
 var updateDom = require('./data-workers').updateDom,
     widgetOptions = require('../widgets').widgetOptions
 
-var ev = 'ontouchstart' in window ?'touchstart':'mousedown'
+var ev = 'touchstart mousedown'
 
 
 var editObject = function(container, data, refresh){
