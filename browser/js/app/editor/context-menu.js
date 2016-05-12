@@ -37,6 +37,9 @@ var menu = function(e,actions,parent){
             $(`<div class="item">${label}</div>`).on(ev + '.editor',function(){
                 var callback = actions[label]
                 return function(e){
+                    // ignore mouse event when fired by a simulated touch event
+                    if (e.originalEvent.sourceCapabilities.firesTouchEvents) return
+                    
                     callback()
                     $('.context-menu').remove()
                 }

@@ -36,6 +36,9 @@
         this.on(events.mouse.start,function(e){
             e.stopPropagation()
 
+            // ignore mouse event when fired by a simulated touch event
+            if (e.originalEvent.sourceCapabilities.firesTouchEvents) return
+
             if (e.button==2)  {
                 e.preventDefault()
                 $(e.target).trigger('fake-right-click',e)
@@ -78,6 +81,9 @@
 
         $document.on(events.mouse.stop,function(e){
             e.stopPropagation()
+
+            // ignore mouse event when fired by a simulated touch event
+            if (e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
             if (!isPointerDown) return
 
@@ -247,12 +253,13 @@
 
     $document.handleDragging()
 
-    // if (events.touch) {
-    //     $document.on('mousedown',function(e){
-    //         console.log('ef')
-    //         if (e.toElement.tagName!='INPUT') return false
-    //     })
-    // }
+    // prevent mouse events to be fired when emulating touch with chrome
+    $document.on('mousedown mouseup',function(e){
+        if (e.originalEvent.sourceCapabilities.firesTouchEvents) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+    })
 
     $document.on('contextmenu',function(){return false})
 

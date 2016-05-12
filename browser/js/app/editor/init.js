@@ -20,6 +20,9 @@ var init = function(){
 
         if (!EDITING) return
 
+        // ignore mouse event when fired by a simulated touch event
+        if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
+
         $('.context-menu').remove()
 
         var target = $(e.target).is('.widget:not(.not-editable), .tab, [data-tab], #container')?

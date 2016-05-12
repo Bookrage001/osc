@@ -389,6 +389,9 @@ var menu = function(e,actions,parent){
             $(`<div class="item">${label}</div>`).on(ev + '.editor',function(){
                 var callback = actions[label]
                 return function(e){
+                    // ignore mouse event when fired by a simulated touch event
+                    if (e.originalEvent.sourceCapabilities.firesTouchEvents) return
+                    
                     callback()
                     $('.context-menu').remove()
                 }
@@ -915,6 +918,9 @@ var init = function(){
     $('body').off('.editor').on(ev+'.editor fake-right-click',function(e,d){
 
         if (!EDITING) return
+
+        // ignore mouse event when fired by a simulated touch event
+        if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
         $('.context-menu').remove()
 
@@ -4110,6 +4116,9 @@ require('./app')
         this.on(events.mouse.start,function(e){
             e.stopPropagation()
 
+            // ignore mouse event when fired by a simulated touch event
+            if (e.originalEvent.sourceCapabilities.firesTouchEvents) return
+
             if (e.button==2)  {
                 e.preventDefault()
                 $(e.target).trigger('fake-right-click',e)
@@ -4152,6 +4161,9 @@ require('./app')
 
         $document.on(events.mouse.stop,function(e){
             e.stopPropagation()
+
+            // ignore mouse event when fired by a simulated touch event
+            if (e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
             if (!isPointerDown) return
 
@@ -4321,12 +4333,13 @@ require('./app')
 
     $document.handleDragging()
 
-    // if (events.touch) {
-    //     $document.on('mousedown',function(e){
-    //         console.log('ef')
-    //         if (e.toElement.tagName!='INPUT') return false
-    //     })
-    // }
+    // prevent mouse events to be fired when emulating touch with chrome
+    $document.on('mousedown mouseup',function(e){
+        if (e.originalEvent.sourceCapabilities.firesTouchEvents) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+    })
 
     $document.on('contextmenu',function(){return false})
 
