@@ -140,9 +140,10 @@ module.exports.create = function(widgetData,container) {
     var offR = 0,
         offX = 0,
         offY = 0
-    wrapper.on('draginit',function(e,data){
+    wrapper.on('draginit',function(e,data,traversing){
 
-        if (snap || TRAVERSING) {
+        if (snap || traversing) {
+
             var w = wrapper.size.width,
                 h = wrapper.size.height,
                 x = data.offsetX-w/2,
@@ -175,11 +176,7 @@ module.exports.create = function(widgetData,container) {
         offR = knob.rotation
     })
 
-    wrapper.on('drag',function(e,data,originalEvent){
-
-        if (originalEvent) originalEvent.preventDefault()
-
-        if (TRAVERSING) return
+    wrapper.on('drag',function(e,data){
 
         var r = clip(-data.deltaY*2+offR,[0,270])
 

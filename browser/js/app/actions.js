@@ -179,11 +179,11 @@ module.exports = {
 
     traversingDisable: function(){
         $('.traversingEnable, .traversingDisable').toggleClass('on')
-        TRAVERSING = false
+        $(document).trigger('disableTraversingGestures')
     },
     traversingEnable: function(){
         $('.traversingEnable, .traversingDisable').toggleClass('on')
-        TRAVERSING = true
+        $(document).enableTraversingGestures()
     }
 
 }

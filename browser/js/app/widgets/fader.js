@@ -180,8 +180,9 @@ module.exports.create = function(widgetData,container) {
     })
 
     var off = 0
-    wrapper.on('draginit',function(e,data){
-        if (snap || TRAVERSING) {
+    wrapper.on('draginit',function(e,data,traversing){
+        if (snap || traversing) {
+
             var d = (dimension=='height')?
                     ((fader.size-data.offsetY+(wrapper.size-fader.size)/2) * 100 / fader.size):
                     (data.offsetX - (wrapper.size-fader.size)/2) * 100 / fader.size
@@ -208,11 +209,7 @@ module.exports.create = function(widgetData,container) {
     })
 
 
-    wrapper.on('drag',function(e,data,originalEvent){
-
-        if (originalEvent) originalEvent.preventDefault()
-
-        if (TRAVERSING) return
+    wrapper.on('drag',function(e,data){
 
         var d = (dimension=='height')?-data.deltaY:data.deltaX
             d = clip(d*100/fader.size+off,[0,100])

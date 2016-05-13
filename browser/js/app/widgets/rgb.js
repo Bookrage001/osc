@@ -80,8 +80,9 @@ module.exports.create = function(widgetData,container) {
 
 
         var rgbOff = {x:0,y:0}
-        pad.on('draginit',function(e,data){
-            if (snap || TRAVERSING) {
+        pad.on('draginit',function(e,data,traversing){
+            if (snap || traversing) {
+
                 var h = ((pad.height-data.offsetY) * 100 / pad.height),
                     w = (data.offsetX * 100 / pad.width)
 
@@ -105,11 +106,7 @@ module.exports.create = function(widgetData,container) {
             rgbOff = {x:rgbHandle.width,y:rgbHandle.height}
 
         })
-        pad.on('drag',function(e,data,originalEvent){
-
-            if (originalEvent) originalEvent.preventDefault()
-
-            if (TRAVERSING) return
+        pad.on('drag',function(e,data){
 
             var h = clip((-data.deltaY)*100/pad.height+rgbOff.y,[0,100]),
                 w = clip(data.deltaX*100/pad.width+rgbOff.x,[0,100])
@@ -133,8 +130,9 @@ module.exports.create = function(widgetData,container) {
 
 
         var hueOff = 0
-        huePad.on('draginit',function(e,data){
-            if (snap || data.ctrlKey || data.shiftKey) {
+        huePad.on('draginit',function(e,data,traversing){
+            if (snap || traversing) {
+
                 var d = (data.offsetX * 100 / pad.width)
                 hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*d/100}px,0,0)`)
                 hueHandle.width = d
@@ -163,11 +161,7 @@ module.exports.create = function(widgetData,container) {
         })
 
 
-        huePad.on('drag',function(e,data,originalEvent){
-
-            if (originalEvent) originalEvent.preventDefault()
-
-            if (TRAVERSING) return
+        huePad.on('drag',function(e,data){
 
             var w = clip(data.deltaX*100/pad.width+hueOff,[0,100])
             hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px,0,0)`)

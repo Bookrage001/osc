@@ -79,8 +79,9 @@ module.exports.create = function(widgetData,container) {
     })
 
     var off = {x:0,y:0}
-    pad.on('draginit',function(e,data){
-        if (snap || TRAVERSING) {
+    pad.on('draginit',function(e,data,traversing){
+
+        if (snap || traversing) {
             var h = ((pad.height-data.offsetY) * 100 / pad.height),
                 w = (data.offsetX * 100 / pad.width)
 
@@ -105,11 +106,7 @@ module.exports.create = function(widgetData,container) {
         off = {x:handle.width,y:handle.height}
 
     })
-    pad.on('drag',function(e,data,originalEvent){
-
-        if (originalEvent) originalEvent.preventDefault()
-
-        if (TRAVERSING) return
+    pad.on('drag',function(e,data){
 
         var h = clip((-data.deltaY)*100/pad.height+off.y,[0,100]),
             w = clip((data.deltaX)*100/pad.width+off.x,[0,100])

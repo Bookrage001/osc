@@ -79,7 +79,7 @@ module.exports.create = function(widgetData,container) {
         return widget.value
     }
 
-	widget.handleDragging(true)
+	widget.enableTraversingGestures()
 
     return widget
 }

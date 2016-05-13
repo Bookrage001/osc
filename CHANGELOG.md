@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0
+
+- bug fixes
+  - touch/mouse events are both handled simultaneously, module rewritten for better performances (see issue #18)
+- engine
+  - electron 1.0.0
+
+
 ## 0.4.8
 
 - bug fixes

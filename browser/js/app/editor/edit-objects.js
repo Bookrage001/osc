@@ -1,7 +1,7 @@
 var updateDom = require('./data-workers').updateDom,
     widgetOptions = require('../widgets').widgetOptions
 
-var ev = 'touchstart mousedown'
+var ev = 'fake-click'
 
 
 var editObject = function(container, data, refresh){
