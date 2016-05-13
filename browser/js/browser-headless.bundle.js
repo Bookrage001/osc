@@ -4367,6 +4367,7 @@ require('./app')
         $(e.target).trigger('fake-click')
 
         if (e.button==2)  {
+            e.preventDefault()
             $(e.target).trigger('fake-right-click',e)
         }
 
@@ -6680,7 +6681,7 @@ function Socket(uri, opts){
   this.cert = opts.cert || null;
   this.ca = opts.ca || null;
   this.ciphers = opts.ciphers || null;
-  this.rejectUnauthorized = opts.rejectUnauthorized === undefined ? null : opts.rejectUnauthorized;
+  this.rejectUnauthorized = opts.rejectUnauthorized === undefined ? true : opts.rejectUnauthorized;
 
   // other options for Node.js client
   var freeGlobal = typeof global == 'object' && global;

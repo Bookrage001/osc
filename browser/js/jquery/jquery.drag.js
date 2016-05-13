@@ -307,6 +307,7 @@
         $(e.target).trigger('fake-click')
 
         if (e.button==2)  {
+            e.preventDefault()
             $(e.target).trigger('fake-right-click',e)
         }
 
