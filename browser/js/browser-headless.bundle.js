@@ -4392,6 +4392,10 @@ require('./app')
         }
     })
 
+    $document.on(events.touch.stop,function(e){
+        clearTouchTapTimer()
+    })
+
     document.addEventListener(events.touch.move,clearTouchTapTimer)
     document.addEventListener(events.touch.stop,clearTouchTapTimer)
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.1
+
+- bug fixes
+  - touch fake-right-click only fires on long touch, not after every tap
+
 ## 0.5.0
 
 - bug fixes
