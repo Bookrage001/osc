@@ -27,7 +27,7 @@ module.exports = {
 
 	    value = Math.max(Math.min(rangeOut[0],rangeOut[1]),Math.min(value,Math.max(rangeOut[0],rangeOut[1])))
 
-	    value = Math.round(value*roundFactor)/roundFactor
+	    if (precision!==false) value = Math.round(value*roundFactor)/roundFactor
 
 
 	    return value

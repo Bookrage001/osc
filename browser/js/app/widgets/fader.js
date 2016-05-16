@@ -256,7 +256,7 @@ module.exports.create = function(widgetData,container) {
             v=clip(Math.round(v*roundFactor)/roundFactor,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
             if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
-                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision,logScale,true)
+                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],false,logScale,true)
                 break
             }
         }

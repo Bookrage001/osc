@@ -206,9 +206,9 @@ module.exports.create = function(widgetData,container) {
 
             var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
-            var w = mapToScale(hsb.s,[0,100],[0,100],widgetData.precision),
-                h = mapToScale(hsb.b,[0,100],[0,100],widgetData.precision),
-                hueW = mapToScale(hsb.h,[0,360],[0,100],widgetData.precision)
+            var w = mapToScale(hsb.s,[0,100],[0,100],false),
+                h = mapToScale(hsb.b,[0,100],[0,100],false),
+                hueW = mapToScale(hsb.h,[0,360],[0,100],false)
 
             rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
             hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*hueW/100}px,0,0)`)

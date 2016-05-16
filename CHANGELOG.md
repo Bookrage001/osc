@@ -1,9 +1,16 @@
 # Changelog
 
-## 0.5.1
+## 0.5.2
 
 - bug fixes
   - touch fake-right-click only fires on long touch, not after every tap
+  
+## 0.5.1
+
+- bug fixes
+  - feedback is now handled precisely by widets (ie not rounded according to the `precision` option, see issue #21)
+- engine
+  - electron 1.1.0
 
 ## 0.5.0
 

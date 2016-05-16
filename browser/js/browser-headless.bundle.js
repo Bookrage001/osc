@@ -1960,7 +1960,7 @@ module.exports.create = function(widgetData,container) {
             v=clip(Math.round(v*roundFactor)/roundFactor,[rangeVals[0],rangeVals.slice(-1)[0]])
         for (var i=0;i<rangeVals.length-1;i++) {
             if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
-                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],widgetData.precision,logScale,true)
+                h = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i],rangeKeys[i+1]],false,logScale,true)
                 break
             }
         }
@@ -2249,7 +2249,7 @@ module.exports.create = function(widgetData,container) {
 
         for (var i=0;i<rangeVals.length-1;i++) {
             if (v <= rangeVals[i+1] && v >= rangeVals[i]) {
-                r = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i]*2.7,rangeKeys[i+1]*2.7],widgetData.precision,logScale,true)
+                r = mapToScale(v,[rangeVals[i],rangeVals[i+1]],[rangeKeys[i]*2.7,rangeKeys[i+1]*2.7],false,logScale,true)
                 break
             }
         }
@@ -3230,9 +3230,9 @@ module.exports.create = function(widgetData,container) {
 
             var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
-            var w = mapToScale(hsb.s,[0,100],[0,100],widgetData.precision),
-                h = mapToScale(hsb.b,[0,100],[0,100],widgetData.precision),
-                hueW = mapToScale(hsb.h,[0,360],[0,100],widgetData.precision)
+            var w = mapToScale(hsb.s,[0,100],[0,100],false),
+                h = mapToScale(hsb.b,[0,100],[0,100],false),
+                hueW = mapToScale(hsb.h,[0,360],[0,100],false)
 
             rgbHandle[0].setAttribute('style',`transform:translate3d(${pad.width*w/100}px, -${pad.height*h/100}px,0)`)
             hueHandle[0].setAttribute('style',`transform:translate3d(${pad.width*hueW/100}px,0,0)`)
@@ -3604,7 +3604,7 @@ module.exports = {
 
 	    value = Math.max(Math.min(rangeOut[0],rangeOut[1]),Math.min(value,Math.max(rangeOut[0],rangeOut[1])))
 
-	    value = Math.round(value*roundFactor)/roundFactor
+	    if (precision!==false) value = Math.round(value*roundFactor)/roundFactor
 
 
 	    return value
@@ -3983,8 +3983,8 @@ module.exports.create = function(widgetData,container) {
             v[i] = clip(Math.round(v[i]*roundFactor)/roundFactor,[range[['x','y'][i]].min,range[['x','y'][i]].max])
         }
 
-        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision,logScaleX,true)
-            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision,logScaleY,true),
+        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],false,logScaleX,true)
+            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],false,logScaleY,true),
 
 
         widget.updateUi(w,h)
