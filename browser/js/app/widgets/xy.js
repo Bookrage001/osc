@@ -147,8 +147,8 @@ module.exports.create = function(widgetData,container) {
             v[i] = clip(Math.round(v[i]*roundFactor)/roundFactor,[range[['x','y'][i]].min,range[['x','y'][i]].max])
         }
 
-        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],widgetData.precision,logScaleX,true)
-            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],widgetData.precision,logScaleY,true),
+        var w = mapToScale(v[0],[range.x.min,range.x.max],[0,100],false,logScaleX,true)
+            h = mapToScale(v[1],[range.y.min,range.y.max],[0,100],false,logScaleY,true),
 
 
         widget.updateUi(w,h)
