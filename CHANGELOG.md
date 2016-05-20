@@ -1,10 +1,20 @@
 # Changelog
 
+## 0.5.3
+
+- bug fixes
+  - [again] touch fake-right-click only fires on long touch, not after every tap
+  - traversing gestures bug with touch
+- misc
+  - better mouse/touch drag events handlers
+- engine
+  - electron 1.1.2
+
 ## 0.5.2
 
 - bug fixes
   - touch fake-right-click only fires on long touch, not after every tap
-  
+
 ## 0.5.1
 
 - bug fixes
