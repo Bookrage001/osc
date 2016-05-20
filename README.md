@@ -1,8 +1,8 @@
-# <img src="resources/images/logo.png" height="80px"/> <small>Open Stage Control</small>
+# <img src="resources/images/logo.png" height="80px"/> <small style="opacity.75;line-height:80px;">Open Stage Control</small>
 
 Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS on top of [Electron](http://electron.atom.io/) framework.
 
-## Documentation
+## Documentation
 
 [Read the documentation](http://jean-emmanuel.github.io/open-stage-control/)
 
