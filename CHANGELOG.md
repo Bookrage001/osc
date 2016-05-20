@@ -8,7 +8,7 @@
 - misc
   - better mouse/touch drag events handlers
 - engine
-  - electron 1.1.2
+  - electron 1.1.1
 
 ## 0.5.2
 
