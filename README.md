@@ -8,6 +8,9 @@ Open Stage Control is a libre desktop OSC bi-directionnal control surface applic
 
 *The docs' sources are located in [resources/](resources/)*
 
+## Download
+
+Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
 
 ## Demo
 
