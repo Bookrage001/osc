@@ -1222,8 +1222,6 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         content = $(document.createElement('div')).addClass('content')
 
 
-    if (parentLabel) navtabs.append(`<li class="parent"><a><span>${parentLabel}</span></a></li>`)
-
     for (i in data) {
         var tabData = data[i]
 

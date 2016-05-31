@@ -78,38 +78,6 @@ body {
             height:100%;
             margin-right: 1rem;
 
-            &.parent {
-                max-width: 150rem;
-                width:auto;
-                position: relative;
-                padding-right: 1rem;
-                a {
-                    background: var(--color-raised);
-                }
-                &:before {
-                    content:"";
-                    display: block;
-                    position: absolute;
-                    border-left:calc(0.5 * var(--nav-height)) solid var(--color-bg);
-                    border-bottom: calc(0.5 * var(--nav-height)) solid transparent;
-                    border-top: calc(0.5 * var(--nav-height)) solid transparent;
-                    top:0;
-                    right:calc(-0.5 * var(--nav-height) - 1rem);
-                    z-index: 1;
-                }
-                &:after {
-                    content:"";
-                    display: block;
-                    position: absolute;
-                    border-left:calc(0.5 * var(--nav-height)) solid var(--color-raised);
-                    border-bottom: calc(0.5 * var(--nav-height)) solid transparent;
-                    border-top: calc(0.5 * var(--nav-height)) solid transparent;
-                    top:0;
-                    right:calc(1rem - 0.5 * var(--nav-height));
-                    z-index: 2;
-                }
-            }
-
 
             &:last-child {
                 margin-right:0;
