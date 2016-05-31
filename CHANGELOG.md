@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.4
+
+- bug fixes
+  - menu bar auto-hide
+- engine
+  - electron 1.2.0 (chrome 51)
+
+
 ## 0.5.3
 
 - bug fixes
