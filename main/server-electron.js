@@ -7,9 +7,9 @@ module.exports = function(settings,app,ipc,browserWindow) {
         icon: path.resolve(__dirname + '/../resources/images/logo.png'),
         title:settings.read('appName'),
         backgroundColor:'#1a1d22',
+        autoHideMenuBar:true,
         // show:false
     })
-    window.setMenuBarVisibility(false)
 
     window.loadURL('file://' + __dirname + '/../browser/index.html')
 
@@ -17,6 +17,7 @@ module.exports = function(settings,app,ipc,browserWindow) {
         window = null
     })
 
+    window.setMenuBarVisibility(false)
 
     var Menu = require('electron').Menu
 
