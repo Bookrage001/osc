@@ -23,8 +23,8 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 		canvas.resize(function(e){
             e.stopPropagation()
 
-			var width = canvas.width(),
-				height = canvas.height()
+			var width = canvas.width()*2,
+				height = canvas.height()*2
 
 			if (height==100 && width==100) return
 
@@ -51,7 +51,7 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 			if (!self.height || !self.width || (self.height==100 && self.width==100)) return
 
 			ctx.clearRect(0,0,self.width,self.height)
-			ctx.font =  PXSCALE * 13 + 'px Droid Sans'
+			ctx.font =  PXSCALE * 2 * 13 + 'px Droid Sans'
 			ctx.textBaseline = "top"
 			ctx.fillStyle = self.color
 
