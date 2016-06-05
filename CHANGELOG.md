@@ -3,10 +3,14 @@
 ## 0.5.4
 
 - bug fixes
-  - menu bar auto-hide
+  - [desktop] menu bar auto-hide
+  - [headless] multitouch support
+- ui
+  - [mobile] better faders pips rendering
+  - fixed horizontal fader knob centering
+  - [mobile] better numeric inputs rendering (not blurred anymore)
 - engine
-  - electron 1.2.0 (chrome 51)
-
+  - [desktop] electron 1.2.0 (chrome 51)
 
 ## 0.5.3
 
