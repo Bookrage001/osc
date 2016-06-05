@@ -198,7 +198,9 @@
             z-index: 0;
             width: 38rem;
             margin-left: -19rem;
-            background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
+            background: linear-gradient(to bottom, transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
+            background-size: 100% 5px;
+            background-repeat: repeat-y;
 
             .pip {
                 height:1px;
@@ -332,7 +334,9 @@
             height:4rem;
             width:100%;
             margin:0;
-            background: repeating-linear-gradient(to right,  transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
+            background: linear-gradient(to right,  transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
+            background-size: 5px 100%;
+            background-repeat: repeat-x;
         }
         .pip {
             width:1px;
