@@ -124,6 +124,10 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 
 		fullscreen: function(data) {
 		    window.setFullScreen(!window.isFullScreen())
+		},
+
+		log: function(data) {
+			console.log(data)
 		}
 	}
 
