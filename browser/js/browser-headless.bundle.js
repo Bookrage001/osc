@@ -4177,10 +4177,11 @@ require('./app')
 
 
             // multi touch hanlder
+            window.targets = window.targets || {}
+            window.previousTouches = window.previousTouches || {}
+            window.touchActive = window.touchActive || false
 
-            var targets = {},
-                previousTouches = {},
-                self = this,
+            var self = this,
                 touchStartHandler = function(e){
                     e.preventDefault()
 
@@ -4209,8 +4210,11 @@ require('./app')
 
                     }
 
-                    $document.on(events.touch.move,touchMoveHandler)
-                    $document.on(events.touch.stop,touchStopHandler)
+                    if (!touchActive) {
+                        $document.on(events.touch.move,touchMoveHandler)
+                        $document.on(events.touch.stop,touchStopHandler)
+                        touchActive = true
+                    }
 
                 },
                 touchMoveHandler = function(e){
@@ -4283,6 +4287,7 @@ require('./app')
                     if (oE.touches.length==0) {
                         $document.off(events.touch.move,touchMoveHandler)
                         $document.off(events.touch.stop,touchStopHandler)
+                        touchActive = false
                     }
 
                 }
