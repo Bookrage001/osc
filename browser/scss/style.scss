@@ -11,10 +11,6 @@
 @import 'widgets';
 
 
-* {
-    touch-action: manipulation
-}
-
 input:focus::selection{
     background:var(--color-accent);
     color:var(--color-text);
