@@ -258,7 +258,8 @@
 
         var self = this[0]
 
-        var down = function(){
+        var down = function(e){
+                makeEventTraversing(e)
                 self.addEventListener("mousemove", makeEventTraversing, true)
                 self.addEventListener("touchmove", makeEventTraversing, true)
                 self.addEventListener("mouseout", makeEventTraversing, true)
