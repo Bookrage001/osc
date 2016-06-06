@@ -1,5 +1,15 @@
 # Changelog
 
+## next
+
+- bug fixes
+  - pasted widget properly use the pointer's position
+  - [mobile] traversing gestures are effective from the first touch, not after the first move
+- ui
+  - Faders & Meters design improved
+- misc
+  - Fader's `align` option replaced with boolean option `alignRight`
+
 ## 0.5.4
 
 - bug fixes
