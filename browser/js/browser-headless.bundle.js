@@ -4369,7 +4369,14 @@ require('./app')
 
         if (!touchTapTimer&&e.originalEvent.touches.length==1) {
             touchTapTimer = setTimeout(function(){
-                if (touchTapTimer) $(e.originalEvent.changedTouches[0].target).trigger('fake-right-click',e.originalEvent.changedTouches[0])
+                if (touchTapTimer) {
+                    var touch = e.originalEvent.changedTouches[0],
+                        off = getOffset(touch.target)
+
+                    touch.offsetX = touch.pageX-off.left
+                    touch.offsetY = touch.pageY-off.top
+                    $(e.originalEvent.changedTouches[0].target).trigger('fake-right-click',touch)
+                }
                 touchTapTimer = false
             },600)
         } else {
