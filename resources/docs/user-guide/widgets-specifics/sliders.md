@@ -18,10 +18,10 @@ Sliders are unidimensional widgets that output one value at a time.
 - default: `false`
 - usage: set to `true` to display the fader horizontally
 
-#### `align`
-- type: `string`
-- default: `center`
-- usage: set to `left` or `right` to display one scale instead of two
+#### `alignRight`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to invert the pip's and fader's position
 
 #### `noPip`
 - type: `boolean`

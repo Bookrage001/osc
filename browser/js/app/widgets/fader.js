@@ -16,7 +16,7 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
-    align:'center',
+    alignRight:false,
     horizontal:false,
     noPip:false,
     compact:false,
@@ -65,9 +65,8 @@ module.exports.create = function(widgetData,container) {
 
     if (widgetData.horizontal) {
         container.addClass('horizontal')
-        delete widgetData.align
     } else {
-        container.addClass('align-'+widgetData.align)
+        if (widgetData.alignRight) container.addClass('align-right')
     }
 
     if (widgetData.compact) container.addClass('compact')
@@ -127,8 +126,6 @@ module.exports.create = function(widgetData,container) {
             var pos = dimension=='height'?'bottom':'left';
 
             var piptext = `<span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>`
-
-            if (dimension=='height') piptext = piptext+ piptext
 
             var add = `
                     <div class="pip val" style="${pos}:${i}%">${piptext}</div>

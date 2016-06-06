@@ -38,7 +38,7 @@ module.exports.create = function(widgetData,container) {
     	axe = dimension=='height'?'X':'Y'
 
 
-    if (widgetData.horizontal) level.addClass('horizontal')
+    if (widgetData.horizontal) widget.addClass('horizontal')
 
 
     var rangeKeys = [],
