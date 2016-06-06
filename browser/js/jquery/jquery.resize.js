@@ -56,38 +56,40 @@
       }
     }
 
-    function resizePollingLoop() {
+    function checkResizes(){
+        // Iterate over all elements to which the 'resize' event is bound.
+        for (var i = elems.length - 1; i >= 0; i--) {
+            var elem = elems[i],
+                width = elem.offsetWidth,
+                height = elem.offsetHeight
 
-        // yep, setTimeout, 'cuz requestAnimation doesn't seem to perform that well
-        resizeTimeout = window.setTimeout(function(){
-            // Iterate over all elements to which the 'resize' event is bound.
-            for (var i = elems.length - 1; i >= 0; i--) {
-                var elem = elems[i],
-                    width = elem.offsetWidth,
-                    height = elem.offsetHeight
+            if (!width) continue
 
-                if (!width) continue
-
-                var data = {
-                        w:elem.resizedataw,
-                        h:elem.resizedatah
-                    }
-
-                // If element size has changed since the last time, update the element
-                // data store and trigger the 'resize' event.
-                if ( width != data.w || height != data.h ) {
-                    elem.resizedataw = width
-                    elem.resizedatah = height
-                    $(elem).trigger('resize',[width,height])
+            var data = {
+                    w:elem.resizedataw,
+                    h:elem.resizedatah
                 }
 
+            // If element size has changed since the last time, update the element
+            // data store and trigger the 'resize' event.
+            if ( width != data.w || height != data.h ) {
+                elem.resizedataw = width
+                elem.resizedatah = height
+                $(elem).triggerHandler('resize',[width,height])
             }
 
-            // Loop.
-            resizePollingLoop()
+        }
 
-        }, pollInterval )
+        // Loop.
+        resizePollingLoop()
+    }
+
+    function resizePollingLoop() {
+        // yep, setTimeout, 'cuz requestAnimation doesn't seem to perform that well
+        resizeTimeout = window.setTimeout(checkResizes, pollInterval)
 
     }
+
+    $(window).resize(checkResizes)
 
 })(jQuery)
