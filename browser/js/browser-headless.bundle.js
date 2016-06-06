@@ -977,8 +977,8 @@ var init = function(){
 
 
                         if (!target.attr('data-tab')) {
-                            newData.top = e.offsetY
-                            newData.left= e.offsetX
+                            newData.top = d.offsetY
+                            newData.left= d.offsetX
                         } else {
                             delete newData.top
                             delete newData.left
@@ -991,8 +991,8 @@ var init = function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD))
                         if (!target.attr('data-tab')) {
-                            newData.top = e.offsetY
-                            newData.left= e.offsetX
+                            newData.top = d.offsetY
+                            newData.left= d.offsetX
                         } else {
                             delete newData.top
                             delete newData.left
@@ -1794,6 +1794,7 @@ module.exports.create = function(widgetData,container) {
         }
         var element = parsewidgets([data],fader)
 		element[0].classList.add('not-editable')
+        widget[0].classList.add('has-meter')
     }
 
 
@@ -1933,8 +1934,8 @@ module.exports.create = function(widgetData,container) {
     widget.updateUi = function(v){
         var s = v/100,
             t = dimension=='height'?
-                ['1,'+s+',1','0,'+-s*fader.size+'px,0']
-                :[s+',1,1',s*fader.size+'px,0,0']
+                ['1,'+s+',1','0,'+ Math.round(-s*fader.size) +'px,0']
+                :[s+',1,1',Math.round(s*fader.size) +'px,0,0']
         gauge[0].setAttribute('style','transform:scale3d('+t[0]+')')
         knob[0].setAttribute('style','transform:translate3d('+t[1]+')')
     }

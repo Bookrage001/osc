@@ -81,8 +81,8 @@ var init = function(){
 
 
                         if (!target.attr('data-tab')) {
-                            newData.top = e.offsetY
-                            newData.left= e.offsetX
+                            newData.top = d.offsetY
+                            newData.left= d.offsetX
                         } else {
                             delete newData.top
                             delete newData.left
@@ -95,8 +95,8 @@ var init = function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD))
                         if (!target.attr('data-tab')) {
-                            newData.top = e.offsetY
-                            newData.left= e.offsetX
+                            newData.top = d.offsetY
+                            newData.left= d.offsetX
                         } else {
                             delete newData.top
                             delete newData.left
