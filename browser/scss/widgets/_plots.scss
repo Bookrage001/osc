@@ -91,7 +91,7 @@
         }
         &.horizontal {
             &::after {
-                background-image: linear-gradient(to right, transparent 1px, var(--color-fg) 1px, var(--color-fg) 2px );
+                background-image: linear-gradient(to left, transparent 1px, var(--color-fg) 1px, var(--color-fg) 2px );
                 background-size: 2px 100% ;
             }
             .level {
