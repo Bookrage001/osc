@@ -11,6 +11,7 @@
 - misc
   - Fader's `align` option replaced with boolean option `alignRight`
   - Widget's `label` now accepts special directive `icon: fontawesome-class` to display icons from [FontAwesome](http://fontawesome.io/icons/)
+  - Text widget `defaultText` option added
 
 ## 0.5.4
 
