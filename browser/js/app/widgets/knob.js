@@ -98,8 +98,10 @@ module.exports.create = function(widgetData,container) {
     mask.size = 0
     widget.value = undefined
 
-    wrapper.resize(function(){
-        var w = Math.floor(wrapper[0].offsetWidth*.58)
+    wrapper.resize(function(e,width,height){
+
+        var w = Math.floor(Math.min(height,width)*.58)
+
         if (!w || mask.size==w) return
         mask.size=w
         mask[0].setAttribute('style',`height:${w}px;width:${w}px;padding-bottom:0`)

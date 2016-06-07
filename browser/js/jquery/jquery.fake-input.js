@@ -15,23 +15,16 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 		self.width = undefined
 		self.color = undefined
         self.center = settings.align == 'center'
-        self.visible = false
-
 
 		self.attr('tabindex',"0")
 
-		canvas.resize(function(e){
+		canvas.resize(function(e,width,height){
             e.stopPropagation()
 
-			var width = canvas.width()*2,
-				height = canvas.height()*2
+			var width = width*2,
+				height = height*2
 
 			if (height==100 && width==100) return
-
-            if (!self.visible) {
-                self.visible = true
-                canvas.addClass('visible')
-            }
 
             self.color = getComputedStyle(document.documentElement).getPropertyValue("--color-text")
 			self.height=height

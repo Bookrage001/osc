@@ -58,7 +58,6 @@ module.exports.create = function(widgetData,container) {
 
 		if (!self.visible) {
 			widget.visible = true
-			canvas.addClass('visible')
             widget.lineColor = getComputedStyle(widget[0]).getPropertyValue('--color-accent')
 		}
 

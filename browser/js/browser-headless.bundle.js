@@ -505,6 +505,7 @@ var updateDom = function(container,data) {
 
     newContainer.find('[data-tab]:first-child').click()
 
+    $(window).resize()
 
     purgeStores(purgetabs)
 
@@ -1164,10 +1165,24 @@ module.exports = function(session,callback) {
 
         setTimeout(function(){
             parsetabs(session,$('#container'),true)
+
+            // var t = $('<div></div>').appendTo('body')
+            // for (id in TABS) {
+            //     if (id!='#container') {
+            //         t[0].appendChild(TABS[id].tab[0])
+            //     }
+            // }
+            // setTimeout(function(){
+            //     t.detach()
+            // },250)
+
+
             ui.init()
             editorDisable()
             editorInit()
             sync()
+
+
             setTimeout(function(){
                 spinner.remove()
                 if (!callback) return
@@ -1537,6 +1552,7 @@ var tabs = function() {
             if (!$(this).siblings('.on').length) $(this).click()
         })
 
+        $(window).resize()
 
     })
     $('li[data-tab]').first().click()
@@ -2106,8 +2122,10 @@ module.exports.create = function(widgetData,container) {
     mask.size = 0
     widget.value = undefined
 
-    wrapper.resize(function(){
-        var w = Math.floor(wrapper[0].offsetWidth*.58)
+    wrapper.resize(function(e,width,height){
+
+        var w = Math.floor(Math.min(height,width)*.58)
+
         if (!w || mask.size==w) return
         mask.size=w
         mask[0].setAttribute('style',`height:${w}px;width:${w}px;padding-bottom:0`)
@@ -2785,7 +2803,6 @@ module.exports.create = function(widgetData,container) {
 
 		if (!self.visible) {
 			widget.visible = true
-			canvas.addClass('visible')
             widget.lineColor = getComputedStyle(widget[0]).getPropertyValue('--color-accent')
 		}
 
@@ -3722,7 +3739,6 @@ module.exports.create = function(widgetData,container) {
 
 		if (!self.visible) {
 			widget.visible = true
-			canvas.addClass('visible')
             widget.lineColor = getComputedStyle(widget[0]).getPropertyValue('--color-accent')
 		}
 
@@ -4421,23 +4437,16 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 		self.width = undefined
 		self.color = undefined
         self.center = settings.align == 'center'
-        self.visible = false
-
 
 		self.attr('tabindex',"0")
 
-		canvas.resize(function(e){
+		canvas.resize(function(e,width,height){
             e.stopPropagation()
 
-			var width = canvas.width()*2,
-				height = canvas.height()*2
+			var width = width*2,
+				height = height*2
 
 			if (height==100 && width==100) return
-
-            if (!self.visible) {
-                self.visible = true
-                canvas.addClass('visible')
-            }
 
             self.color = getComputedStyle(document.documentElement).getPropertyValue("--color-text")
 			self.height=height

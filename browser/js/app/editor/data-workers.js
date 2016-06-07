@@ -92,6 +92,7 @@ var updateDom = function(container,data) {
 
     newContainer.find('[data-tab]:first-child').click()
 
+    $(window).resize()
 
     purgeStores(purgetabs)
 

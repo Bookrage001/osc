@@ -25,6 +25,7 @@ var tabs = function() {
             if (!$(this).siblings('.on').length) $(this).click()
         })
 
+        $(window).resize()
 
     })
     $('li[data-tab]').first().click()
