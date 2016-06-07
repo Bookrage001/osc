@@ -95,7 +95,7 @@ The visualizer displays the evolution in time of a received value (through osc) 
 
 ## Text
 
-Text displays incoming values (via osc) as text
+Text displays incoming values (via osc) as text. Setting its value to `default` will display the default text.
 
 ```js
 {
@@ -108,6 +108,11 @@ Text displays incoming values (via osc) as text
 - type: `boolean`
 - default: `false`
 - usage: set to `true` display vertically
+
+#### `defaultText`
+- type: `string`
+- default: `empty`
+- usage: default text to be displayed. If not set, `label` or `id` is used
 
 
 ## Meter

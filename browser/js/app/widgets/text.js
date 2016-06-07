@@ -19,20 +19,27 @@ module.exports.options = {
     separator2:'osc',
 
     preArgs:[],
-    path:'auto'
+    path:'auto',
+    defaultText:''
 }
 module.exports.create = function(widgetData,container) {
     var widget = $(`
             <div class="text">
             </div>
             `),
-		label = widgetData.label===false?widgetData.id:widgetData.label=='auto'?widgetData.id:widgetData.label=='auto'
+		label = widgetData.defaultText!==''?
+                    widgetData.defaultText:
+                    widgetData.label===false?
+                        widgetData.id:
+                        widgetData.label=='auto'?
+                            widgetData.id:
+                            widgetData.label
 
 
     if (widgetData.vertical) widget.addClass('vertical')
 
     widget.setValue = function(v,send,sync){
-		widget.text(v)
+		widget.text(v==='default'?label:v)
     }
 
     widget.setValue(label)
