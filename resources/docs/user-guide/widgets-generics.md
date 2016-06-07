@@ -35,8 +35,10 @@ A widget object is a javascript object. All widgets share a set of generic prope
 #### `label`
 - type: `string|false`
 - default: `auto`, which displays `id`
-- usage: set to `false` to hide completely
-
+- usage:
+    - set to `false` to hide completely
+    - set to `icon: fontawesome-class` to display an icon from [FontAwesome](http://fontawesome.io/icons/) (replace `fontawesome-class` with the icon's name)
+    
 #### `top` / `left`
 - type: `number|percentage`
 - default: `auto`
