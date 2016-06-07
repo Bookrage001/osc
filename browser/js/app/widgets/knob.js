@@ -83,6 +83,9 @@ module.exports.create = function(widgetData,container) {
         rangeLabels.push(label)
     }
 
+    var rangeValsMax = Math.max.apply(Math, rangeVals),
+        rangeValsMin = Math.min.apply(Math, rangeVals)
+
 
     var pipmin = Math.abs(rangeLabels[0])>=1000?rangeLabels[0]/1000+'k':rangeLabels[0],
         pipmax = Math.abs(rangeLabels[rangeLabels.length-1])>=1000?rangeLabels[rangeLabels.length-1]/1000+'k':rangeLabels[rangeLabels.length-1]
@@ -240,7 +243,7 @@ module.exports.create = function(widgetData,container) {
     widget.setValue = function(v,send,sync) {
         if (typeof v != 'number') return
 
-        var v = Math.round(v*roundFactor)/roundFactor,
+        var v = clip(Math.round(v*roundFactor)/roundFactor,[rangeValsMin,rangeValsMax]),
             r
 
         for (var i=0;i<rangeVals.length-1;i++) {
