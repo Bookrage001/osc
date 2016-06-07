@@ -5,6 +5,7 @@
 - bug fixes
   - pasted widget properly use the pointer's position
   - [mobile] traversing gestures are effective from the first touch, not after the first move
+  - out-of-range values are properly clipped by faders/knob
 - ui
   - Faders & Meters design improved
 - misc
