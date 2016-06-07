@@ -41,6 +41,10 @@
         justify-content: center;
         overflow: hidden;
 
+        .input {
+            flex-shrink: 0;
+        }
+
         .knob-wrapper {
             padding:15rem 0 15rem;
             margin: 0 auto;
