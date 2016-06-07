@@ -139,7 +139,7 @@ module.exports.widgets = function(data,parent) {
         var label = widgetData.label == 'auto'?
                         widgetData.id:
                         typeof widgetData.label == 'string' && widgetData.label.indexOf('icon:')!=-1?
-                            icon(widgetData.label.split(':')[1].trim()):
+                            icon(widgetData.label.split(':')[1].trim().replace('fa-','')):
                             widgetData.label
 
         var widgetContainer = $(`
