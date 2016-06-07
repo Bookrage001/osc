@@ -10,6 +10,7 @@
   - Faders & Meters design improved
 - misc
   - Fader's `align` option replaced with boolean option `alignRight`
+  - Widget's `label` now accepts special directive `icon: fontawesome-class` to display icons from [FontAwesome](http://fontawesome.io/icons/)
 
 ## 0.5.4
 

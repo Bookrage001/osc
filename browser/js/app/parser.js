@@ -1,6 +1,7 @@
 var widgets = require('./widgets'),
     widgetOptions = widgets.widgetOptions,
-    createWidget = widgets.createWidget
+    createWidget = widgets.createWidget,
+    icon = require('./utils').icon
 
 var getIterator = function(id,type){
     var iterator = MISC.iterators[type]
@@ -135,7 +136,11 @@ module.exports.widgets = function(data,parent) {
             styleL = widgetData.left&&widgetData.left!='auto'||widgetData.left==0?`left:${left};`:'',
             styleT = widgetData.top&&widgetData.top!='auto'||widgetData.top==0?`top:${top};`:''
 
-        var label = widgetData.label == 'auto'?widgetData.id:widgetData.label
+        var label = widgetData.label == 'auto'?
+                        widgetData.id:
+                        typeof widgetData.label == 'string' && widgetData.label.indexOf('icon:')!=-1?
+                            icon(widgetData.label.split(':')[1].trim()):
+                            widgetData.label
 
         var widgetContainer = $(`
             <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
