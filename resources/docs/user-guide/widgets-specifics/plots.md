@@ -95,7 +95,7 @@ The visualizer displays the evolution in time of a received value (through osc) 
 
 ## Text
 
-Text displays incoming values (via osc) as text. Setting its value to `default` will display the default text.
+Text displays incoming values (via osc) as text. Sending a message with no argument to the widget will reset it to its default text.
 
 ```js
 {

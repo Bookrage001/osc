@@ -3500,13 +3500,19 @@ module.exports.create = function(widgetData,container) {
                         widgetData.id:
                         widgetData.label=='auto'?
                             widgetData.id:
-                            widgetData.label
+                            widgetData.label,
+        text = label
 
 
     if (widgetData.vertical) widget.addClass('vertical')
 
     widget.setValue = function(v,send,sync){
-		widget.text(v==='default'?label:v)
+        text = typeof v=='object' && !v.length?label:v
+		widget.text(text)
+    }
+
+    widget.getValue = function(){
+        return text
     }
 
     widget.setValue(label)
