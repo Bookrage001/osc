@@ -4,11 +4,13 @@
 
 - bug fixes
   - pasted widget properly use the pointer's position
-  - [mobile] traversing gestures are effective from the first touch, not after the first move
+  - traversing gestures are effective from the first touch, not after the first move
   - out-of-range values are properly clipped by faders/knob
 - ui
   - Faders & Meters design improved
   - The main font (droid sans) is now loaded...
+  - Knob's sizing got smarter
+  - Widgets don't blink not jump when they appear for the first time or when they resize
 - misc
   - Fader's `align` option replaced with boolean option `alignRight`
   - Widget's `label` now accepts special directive `icon: fontawesome-class` to display icons from [FontAwesome](http://fontawesome.io/icons/)
