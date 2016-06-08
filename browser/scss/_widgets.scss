@@ -54,6 +54,7 @@
         display:block;
         padding:7rem 5rem;
         position: relative;
+        display: var(--display-input);
 
         input {
             position: absolute;
