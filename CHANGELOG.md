@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.6.0
 
 - bug fixes
   - pasted widget properly use the pointer's position
@@ -15,6 +15,8 @@
   - Fader's `align` option replaced with boolean option `alignRight`
   - Widget's `label` now accepts special directive `icon: fontawesome-class` to display icons from [FontAwesome](http://fontawesome.io/icons/)
   - Text widget `defaultText` option added
+- engine
+  - electron 1.2.2
 
 ## 0.5.4
 
