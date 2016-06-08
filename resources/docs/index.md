@@ -23,7 +23,7 @@ Please note that :
 - app state store / recall & import / export
 - themes !
 
-## Supported platform
+## Supported platforms
 
 Same as [Electron's supported platforms](https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md)
 
