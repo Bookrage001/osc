@@ -1507,6 +1507,7 @@ var toggle = function(){
 		$('#open-toggle, #sidepanel').toggleClass('sidepanel-open')
 		setTimeout(function(){
 			$('#container').toggleClass('sidepanel-open')
+			$(window).resize()
 		},t)
 	}).on('mousedown touchstart',function(e){e.stopPropagation()})
 
