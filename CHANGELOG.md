@@ -8,6 +8,7 @@
   - out-of-range values are properly clipped by faders/knob
 - ui
   - Faders & Meters design improved
+  - The main font (droid sans) is now loaded...
 - misc
   - Fader's `align` option replaced with boolean option `alignRight`
   - Widget's `label` now accepts special directive `icon: fontawesome-class` to display icons from [FontAwesome](http://fontawesome.io/icons/)
