@@ -17,7 +17,7 @@ module.exports = {
 
 
         popup.close = function(){
-            $(document).unbind('.popup')
+            $(document).off('.popup')
             popup.remove()
         }
 
