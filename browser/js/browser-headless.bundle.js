@@ -4401,7 +4401,6 @@ require('./app')
 })(jQuery)
 
 },{}],35:[function(require,module,exports){
-var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 ;(function ($) {
     $.fn.fakeInput = function(options) {
 
@@ -4461,7 +4460,7 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 
 		}
 
-		self.on('click focus',function(){
+		self.on('focus',function(){
 			self.attr('tabindex','-1')
 			var i = $('<input></input>')
 					.prependTo(self)
@@ -4477,8 +4476,10 @@ var startEvent = 'ontouchstart' in window ?'touchstart':'mousedown'
 					i.remove()
                     $(document).off('.fakeInput')
 			})
-			$(document).on(startEvent+'.fakeInput',function(){
-				i.blur()
+			$(document).on('touchstart.fakeInput mousedown.fakeInput',function(e){
+                if (e.originalEvent.target!=i[0]) {
+                    i.blur()
+                }
 			})
 
 		})
