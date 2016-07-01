@@ -16,7 +16,7 @@ Options:
   -n, --nogui    disable default gui and makes the app availabe through http on specified port
   -t, --theme    theme name or path (mutliple values allowed)
 
-Exemples:
+Examples:
 
 $ open-stage-control -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
