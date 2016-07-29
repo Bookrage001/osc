@@ -182,7 +182,7 @@
             .pips {
                 width:100%;
                 pointer-events: none;
-                position: absolute;
+                height: 0;
             }
             .pip {
                 font-size:11rem;
