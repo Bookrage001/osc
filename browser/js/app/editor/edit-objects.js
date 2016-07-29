@@ -101,7 +101,7 @@ var editObject = function(container, data, refresh){
 
         var editItem = function(i) {
             return function(){
-                container.find('.widget').first().siblings().addBack().eq(i).trigger(ev+'.editor')
+                container.find('.widget').first().siblings().addBack().eq(i).trigger(ev)
             }
         }
 
@@ -156,7 +156,7 @@ var editObject = function(container, data, refresh){
 
         var editItem = function(i) {
             return function(){
-                container.find('.tab').first().siblings().addBack().eq(i).trigger(ev+'.editor')
+                container.find('.tab').first().siblings().addBack().eq(i).trigger(ev)
             }
         }
 
@@ -256,7 +256,7 @@ var editSession = function(container,data,refresh){
 
     var editItem = function(i) {
         return function(){
-            container.find('.tab').first().siblings().addBack().eq(i).trigger(ev+'.editor')
+            container.find('.tab').first().siblings().addBack().eq(i).trigger(ev)
         }
     }
 
