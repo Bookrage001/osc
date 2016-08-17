@@ -4,6 +4,7 @@ language: node_js
 node_js:
   - "4.1"
 before_install:
+  - sudo dpkg --add-architecture i386
   - sudo apt-get update -qq
   - sudo apt-get install -qq wine
 install: npm install --save-optional --production
