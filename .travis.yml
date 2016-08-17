@@ -6,7 +6,7 @@ node_js:
 addons:
   apt:
     packages:
-    - wine
+    - wine1.6
 install: npm install --save-optional --production
 deploy:
   provider: releases
