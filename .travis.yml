@@ -3,10 +3,9 @@ dist: trusty
 language: node_js
 node_js:
   - "4.1"
-addons:
-  apt:
-    packages:
-    - wine1.6
+before_install:
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq wine
 install: npm install --save-optional --production
 deploy:
   provider: releases
