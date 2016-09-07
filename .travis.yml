@@ -36,7 +36,7 @@ before_deploy:
   - cd ..
   - npm run deb32
   - npm run deb64
-  - npm run armv7l
+  - npm run debarm
   - mv dist/open-stage-control-linux-ia32/*.deb dist/open-stage-control-i386.deb
   - mv dist/open-stage-control-linux-x64/*.deb dist/open-stage-control-amd64.deb
   - mv dist/open-stage-control-linux-armv7l/*.deb dist/open-stage-control-armv7l.deb
