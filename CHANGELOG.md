@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.2
+
+- cool stuff
+  - armv7l prebuilt binaries ! (raspberry 2, etc)
+- engine
+  - electron 1.3.5
+
 ## 0.6.1
 
 - bug fixes
