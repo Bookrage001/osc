@@ -31,6 +31,7 @@
     "build": "electron-packager . open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/images/logo --overwrite --ignore \"(dist|node_modules/electron.*)\"",
     "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/ --icon resources/images/logo.png",
     "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/ --icon resources/images/logo.png",
+    "debarm": "electron-installer-debian --src dist/open-stage-control-linux-armv7l/ --arch armv7l --dest dist/open-stage-control-linux-armv7l/ --icon resources/images/logo.png",
     "test": "npm run build",
     "build-css": "node-sass --include-path browser/scss browser/scss/style.scss   browser/css/style.css --output-style compressed",
     "watch-css": "nodemon --watch browser/scss -e scss -x \"npm run build-css\"",

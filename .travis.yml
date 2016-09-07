@@ -15,8 +15,10 @@ deploy:
   file:
     - "./dist/open-stage-control-i386.deb"
     - "./dist/open-stage-control-amd64.deb"
+    - "./dist/open-stage-control-armv7l.deb"
     - "./dist/open-stage-control-linux-ia32.zip"
     - "./dist/open-stage-control-linux-x64.zip"
+    - "./dist/open-stage-control-linux-armv7l.zip"
     - "./dist/open-stage-control-osx.zip"
     - "./dist/open-stage-control-win32.zip"
     - "./dist/open-stage-control-win64.zip"
@@ -30,8 +32,11 @@ before_deploy:
   - zip -q -r open-stage-control-win64 open-stage-control-win32-x64
   - zip -q -r open-stage-control-linux-ia32 open-stage-control-linux-ia32
   - zip -q -r open-stage-control-linux-x64 open-stage-control-linux-x64
+  - zip -q -r open-stage-control-linux-x64 open-stage-control-linux-armv7l
   - cd ..
   - npm run deb32
   - npm run deb64
+  - npm run armv7l
   - mv dist/open-stage-control-linux-ia32/*.deb dist/open-stage-control-i386.deb
   - mv dist/open-stage-control-linux-x64/*.deb dist/open-stage-control-amd64.deb
+  - mv dist/open-stage-control-linux-armv7l/*.deb dist/open-stage-control-armv7l.deb
