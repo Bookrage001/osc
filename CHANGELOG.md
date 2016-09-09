@@ -1,5 +1,11 @@
 # Changelog
 
+
+## 0.6.3
+
+- bug fixes
+  - regression (since 498ba4a06adf63d76fe7181691299c1cc55e8240) breaking the editor on touch devices
+
 ## 0.6.2
 
 - cool stuff
