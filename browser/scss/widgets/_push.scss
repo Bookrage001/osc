@@ -24,22 +24,25 @@
         justify-content: center;
         align-items: center;
         z-index: 1;
+        &:after {
+            content:"";
+            position: absolute;
+            top:0;
+            right:0;
+            border:5rem solid transparent;
+            border-top:5rem solid var(--color-text-fade);
+            border-right:5rem solid var(--color-text-fade);
+            opacity: 0.2;
+            background-blend-mode: luminosity;
+        }
     }
 
     cursor: pointer;
 
     .push {
+        box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
         &.active {
             background: var(--color-fg);
-        }
-        .light {
-            position: absolute;
-            left:auto;
-            background: var(--color-custom);
-            height:4rem;
-            width:4rem;
-            border-radius: 4rem;
-            overflow: hidden;
         }
     }
 }

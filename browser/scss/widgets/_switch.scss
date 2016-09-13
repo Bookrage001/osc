@@ -12,6 +12,7 @@
         flex-direction:column;
         align-items: stretch;
         flex:1;
+
         &.horizontal {
             flex-direction:row;
             .value {
@@ -27,14 +28,6 @@
                 &:last-child {
                     border-right:0;
                 }
-                &:before {
-                    left:50%;
-                    top:8rem;
-                    width:8rem;
-                    height:8rem;
-                    margin-left: -4rem;
-                    margin-top:0;
-                }
 
             }
         }
@@ -45,14 +38,15 @@
             height:100%;
             position: relative;
             border-top: 1rem solid var(--color-bg);
-            padding:12rem 12rem 12rem 24rem ;
             white-space: normal;
-            text-align: left;
+            padding:12rem;
+            text-align: center;
             word-break: break-all;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
 
             &:first-child {
                 border-top:0;
@@ -64,16 +58,18 @@
             &:before {
                 content:"";
                 position: absolute;
-                left:8rem;
-                top:50%;
-                width:8rem;
-                height:8rem;
-                margin-top: -4rem;
-                background: var(--color-track);
-                border-radius: 8rem;
+                left:0;
+                top:0;
+                right:0;
+                bottom:0;
+                background: var(--color-custom);
+                opacity: 0;
+                z-index: 2;
             }
             &.on:before {
-                    background: var(--color-custom);
+                opacity: .2;
+                box-shadow: 0 0 1rem 0 var(--color-custom) inset;
+
             }
 
         }

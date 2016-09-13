@@ -39,8 +39,10 @@
         height:35rem;
         max-height:35rem;
         width: 100%;
-        background: var(--color-faded);
+        background-image: linear-gradient(var(--color-raised),var(--color-fg));
         border-bottom:1rem solid var(--color-bg);
+        // box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
+
         &.accent {
             color:var(--color-accent);
         }

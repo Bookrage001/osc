@@ -26,6 +26,9 @@
             width:auto;
             margin:0;
             box-shadow: none;
+            .label {
+              background-image: none;
+            }
         }
     }
     &.vertical {

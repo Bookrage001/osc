@@ -6,6 +6,9 @@
     height:250rem;
     flex-shrink: 0;
     display: flex;
+    .label {
+        flex-shrink: 0;
+    }
 }
 .xy-wrapper {
     height: 100%;
