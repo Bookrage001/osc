@@ -65,7 +65,7 @@
                             }
                         ],
                         "rangeY": {
-                            "min": -90,
+                            "min": -20,
                             "max": 20
                         },
                         "logScaleX": true,
