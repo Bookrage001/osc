@@ -75,7 +75,7 @@
                         "logScaleX": true,
                         "path": "/eq_1",
                         "preArgs": [],
-                        "resolution": 128
+                        "resolution": 512
                     },
                     {
                         "id": "Band 1",
