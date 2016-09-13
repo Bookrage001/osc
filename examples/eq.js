@@ -64,10 +64,6 @@
                                 "on": "eq_on_6"
                             }
                         ],
-                        "rangeX": {
-                            "min": 0,
-                            "max": 22050
-                        },
                         "rangeY": {
                             "min": -90,
                             "max": 20
@@ -305,25 +301,6 @@
                                 "linkId": ""
                             },
                             {
-                                "type": "switch",
-                                "id": "eq_type_3",
-                                "label": "Mode",
-                                "width": "auto",
-                                "height": 79,
-                                "horizontal": true,
-                                "color": "auto",
-                                "css": "",
-                                "precision": 2,
-                                "path": "/fader_3",
-                                "preArgs": [],
-                                "target": [],
-                                "values": {
-                                    "notch": "notch",
-                                    "peak": "peak"
-                                },
-                                "linkId": ""
-                            },
-                            {
                                 "id": "eq_freq_3",
                                 "label": "Frequency",
                                 "type": "fader",
@@ -406,6 +383,25 @@
                                 "horizontal": true,
                                 "meter": false,
                                 "linkId": ""
+                            },
+                            {
+                                "type": "switch",
+                                "id": "eq_type_3",
+                                "label": "Mode",
+                                "width": "auto",
+                                "height": 79,
+                                "horizontal": true,
+                                "color": "auto",
+                                "css": "",
+                                "precision": 2,
+                                "path": "/fader_3",
+                                "preArgs": [],
+                                "target": [],
+                                "values": {
+                                    "notch": "notch",
+                                    "peak": "peak"
+                                },
+                                "linkId": ""
                             }
                         ],
                         "left": 200,
@@ -437,25 +433,6 @@
                                 "preArgs": [],
                                 "on": 1,
                                 "off": 0,
-                                "linkId": ""
-                            },
-                            {
-                                "type": "switch",
-                                "id": "eq_type_4",
-                                "label": "Mode",
-                                "width": "auto",
-                                "height": 79,
-                                "horizontal": true,
-                                "color": "auto",
-                                "css": "",
-                                "precision": 2,
-                                "path": "/fader_4",
-                                "preArgs": [],
-                                "target": [],
-                                "values": {
-                                    "notch": "notch",
-                                    "peak": "peak"
-                                },
                                 "linkId": ""
                             },
                             {
@@ -540,6 +517,25 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
+                                "linkId": ""
+                            },
+                            {
+                                "type": "switch",
+                                "id": "eq_type_4",
+                                "label": "Mode",
+                                "width": "auto",
+                                "height": 79,
+                                "horizontal": true,
+                                "color": "auto",
+                                "css": "",
+                                "precision": 2,
+                                "path": "/fader_4",
+                                "preArgs": [],
+                                "target": [],
+                                "values": {
+                                    "notch": "notch",
+                                    "peak": "peak"
+                                },
                                 "linkId": ""
                             }
                         ],
