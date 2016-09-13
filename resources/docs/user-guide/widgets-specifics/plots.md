@@ -78,14 +78,15 @@ The Eq receives an array of filter objects and draws their frequency response be
 - default: `[]`
 - usage:
     - each item must be an object of the following form:
-    ```{
-        type:[string],          // "highpass", "highshelf", "lowpass", "lowshelf", "peak", "notch"
-        freq:[number],   //
-        q:[number],      //
-        gain:[number],   //
-        on:[bool]        // 1 or true = active, 0 or false = bypassed
-    }
-    ```
+```
+{
+    type:[string],          // "highpass", "highshelf", "lowpass", "lowshelf", "peak", "notch"
+    freq:[number],   //
+    q:[number],      //
+    gain:[number],   //
+    on:[bool]        // 1 or true = active, 0 or false = bypassed
+}
+```
     - all filters parameters can be filled with widget ids, whose value will be used
 
 #### `resolution`
