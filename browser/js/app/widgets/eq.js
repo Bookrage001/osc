@@ -21,10 +21,8 @@ module.exports.options = {
 
 	filters:[],
     resolution:128,
-	rangeX: {min:20,max:22050},
 	rangeY: {min:-20,max:20},
     logScaleX: false,
-    // logScaleY: false,
 
     separator3:'osc',
 
@@ -48,14 +46,16 @@ module.exports.create = function(widgetData,container) {
     widget.linkedWidgets = []
 	widget.visible = false
     widget.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
+    widget.rangeY = widgetData.rangeY
+    widget.rangeX = {min:20,max:22050}
     widget.pips = {
         x : {
             min: '20',
             max: '22k'
         },
         y : {
-            min: Math.abs(widgetData.rangeY.min)>=1000?widgetData.rangeY.min/1000+'k':widgetData.rangeY.min,
-            max: Math.abs(widgetData.rangeY.max)>=1000?widgetData.rangeY.max/1000+'k':widgetData.rangeY.max
+            min: Math.abs(widget.rangeY.min)>=1000?widget.rangeY.min/1000+'k':widget.rangeY.min,
+            max: Math.abs(widget.rangeY.max)>=1000?widget.rangeY.max/1000+'k':widget.rangeY.max
         }
     }
 
@@ -113,17 +113,18 @@ module.exports.create = function(widgetData,container) {
 
 		for (i in widget.data) {
 
-            if (widget.data[i][1]>widgetData.rangeY.max || widget.data[i][1]<widgetData.rangeY.min) continue
+            if (widget.data[i][1]>widget.rangeY.max || widget.data[i][1]<widget.rangeY.min ||
+                widget.data[i][0]>widget.rangeX.max || widget.data[i][0]<widget.rangeX.min) continue
 
 			var newpoint = widget.data[i].length?
                     [
-        				mapToScale(widget.data[i][0],[widgetData.rangeX.min,widgetData.rangeX.max],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
-        				mapToScale(widget.data[i][1],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
+        				mapToScale(widget.data[i][0],[widget.rangeX.min,widget.rangeX.max],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
+        				mapToScale(widget.data[i][1],[widget.rangeY.min,widget.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
         			]
                     :
                     [
                         mapToScale(i,[0,widget.data.length-1],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
-                        mapToScale(widget.data[i],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
+                        mapToScale(widget.data[i],[widget.rangeY.min,widget.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
                     ]
 
 
@@ -198,7 +199,7 @@ module.exports.create = function(widgetData,container) {
         for (i in filterparams) {
 
             if (!filterparams[i].type) filterparams[i].type = "peak"
-            
+
             if (!filterparams[i].on) {
                 filterPoints = calcBiquad({type:"peak",freq:1,gain:0,q:1},!widgetData.logScaleX,widgetData.resolution)
             } else {

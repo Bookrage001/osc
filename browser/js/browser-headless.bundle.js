@@ -1713,10 +1713,8 @@ module.exports.options = {
 
 	filters:[],
     resolution:128,
-	rangeX: {min:20,max:22050},
 	rangeY: {min:-20,max:20},
     logScaleX: false,
-    // logScaleY: false,
 
     separator3:'osc',
 
@@ -1740,14 +1738,16 @@ module.exports.create = function(widgetData,container) {
     widget.linkedWidgets = []
 	widget.visible = false
     widget.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
+    widget.rangeY = widgetData.rangeY
+    widget.rangeX = {min:20,max:22050}
     widget.pips = {
         x : {
             min: '20',
             max: '22k'
         },
         y : {
-            min: Math.abs(widgetData.rangeY.min)>=1000?widgetData.rangeY.min/1000+'k':widgetData.rangeY.min,
-            max: Math.abs(widgetData.rangeY.max)>=1000?widgetData.rangeY.max/1000+'k':widgetData.rangeY.max
+            min: Math.abs(widget.rangeY.min)>=1000?widget.rangeY.min/1000+'k':widget.rangeY.min,
+            max: Math.abs(widget.rangeY.max)>=1000?widget.rangeY.max/1000+'k':widget.rangeY.max
         }
     }
 
@@ -1805,17 +1805,18 @@ module.exports.create = function(widgetData,container) {
 
 		for (i in widget.data) {
 
-            if (widget.data[i][1]>widgetData.rangeY.max || widget.data[i][1]<widgetData.rangeY.min) continue
+            if (widget.data[i][1]>widget.rangeY.max || widget.data[i][1]<widget.rangeY.min ||
+                widget.data[i][0]>widget.rangeX.max || widget.data[i][0]<widget.rangeX.min) continue
 
 			var newpoint = widget.data[i].length?
                     [
-        				mapToScale(widget.data[i][0],[widgetData.rangeX.min,widgetData.rangeX.max],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
-        				mapToScale(widget.data[i][1],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
+        				mapToScale(widget.data[i][0],[widget.rangeX.min,widget.rangeX.max],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
+        				mapToScale(widget.data[i][1],[widget.rangeY.min,widget.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
         			]
                     :
                     [
                         mapToScale(i,[0,widget.data.length-1],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
-                        mapToScale(widget.data[i],[widgetData.rangeY.min,widgetData.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
+                        mapToScale(widget.data[i],[widget.rangeY.min,widget.rangeY.max],[widget.height-15*PXSCALE,15*PXSCALE],0,widgetData.logScaleY,true),
                     ]
 
 
@@ -1890,7 +1891,7 @@ module.exports.create = function(widgetData,container) {
         for (i in filterparams) {
 
             if (!filterparams[i].type) filterparams[i].type = "peak"
-            
+
             if (!filterparams[i].on) {
                 filterPoints = calcBiquad({type:"peak",freq:1,gain:0,q:1},!widgetData.logScaleX,widgetData.resolution)
             } else {
@@ -2218,37 +2219,12 @@ module.exports.create = function(widgetData,container) {
 }
 
 },{"../parser":10,"./utils":32}],17:[function(require,module,exports){
-/*
-    Biquad coefficient calculator
-
-    copyright 2010 Nigel Redmon
-*/
-
-/*
-switch (type) {
-	case "lowpass":
-	case "highpass":
-	case "bandpass":
-	case "notch":
-	qField.disabled = false;
-	gainField.disabled = true;
-	break;
-	case "peak":
-	qField.disabled = false;
-	gainField.disabled = false;
-	break
-	default:
-	qField.disabled = true;
-	gainField.disabled = false;
-}
-*/
-
-
 //
 // calcBiquad
 //
 // Dec 14, 2010 njr
-//
+// original @ Nigel Redmon
+
 module.exports = function(options,linear,resolution) {
 	var {type, freq, q, gain} = options,
 		Fs = 44100,
@@ -2256,126 +2232,126 @@ module.exports = function(options,linear,resolution) {
 		ymin, ymax, minVal, maxVal,
 		len = resolution
 
-	var V = Math.pow(10, Math.abs(gain) / 20);
-	var K = Math.tan(Math.PI * freq / Fs);
+	var V = Math.pow(10, Math.abs(gain) / 20)
+	var K = Math.tan(Math.PI * freq / Fs)
 	switch (type) {
 		case "lowpass":
-			norm = 1 / (1 + K / q + K * K);
-			a0 = K * K * norm;
-			a1 = 2 * a0;
-			a2 = a0;
-			b1 = 2 * (K * K - 1) * norm;
-			b2 = (1 - K / q + K * K) * norm;
-			break;
+			norm = 1 / (1 + K / q + K * K)
+			a0 = K * K * norm
+			a1 = 2 * a0
+			a2 = a0
+			b1 = 2 * (K * K - 1) * norm
+			b2 = (1 - K / q + K * K) * norm
+			break
 
 		case "highpass":
-			norm = 1 / (1 + K / q + K * K);
-			a0 = 1 * norm;
-			a1 = -2 * a0;
-			a2 = a0;
-			b1 = 2 * (K * K - 1) * norm;
-			b2 = (1 - K / q + K * K) * norm;
-			break;
+			norm = 1 / (1 + K / q + K * K)
+			a0 = 1 * norm
+			a1 = -2 * a0
+			a2 = a0
+			b1 = 2 * (K * K - 1) * norm
+			b2 = (1 - K / q + K * K) * norm
+			break
 
 		case "bandpass":
-			norm = 1 / (1 + K / q + K * K);
-			a0 = K / q * norm;
-			a1 = 0;
-			a2 = -a0;
-			b1 = 2 * (K * K - 1) * norm;
-			b2 = (1 - K / q + K * K) * norm;
-			break;
+			norm = 1 / (1 + K / q + K * K)
+			a0 = K / q * norm
+			a1 = 0
+			a2 = -a0
+			b1 = 2 * (K * K - 1) * norm
+			b2 = (1 - K / q + K * K) * norm
+			break
 
 		case "notch":
-			norm = 1 / (1 + K / q + K * K);
-			a0 = (1 + K * K) * norm;
-			a1 = 2 * (K * K - 1) * norm;
-			a2 = a0;
-			b1 = a1;
-			b2 = (1 - K / q + K * K) * norm;
-			break;
+			norm = 1 / (1 + K / q + K * K)
+			a0 = (1 + K * K) * norm
+			a1 = 2 * (K * K - 1) * norm
+			a2 = a0
+			b1 = a1
+			b2 = (1 - K / q + K * K) * norm
+			break
 
 		case "peak":
 			if (gain >= 0) {
-				norm = 1 / (1 + 1/q * K + K * K);
-				a0 = (1 + V/q * K + K * K) * norm;
-				a1 = 2 * (K * K - 1) * norm;
-				a2 = (1 - V/q * K + K * K) * norm;
-				b1 = a1;
-				b2 = (1 - 1/q * K + K * K) * norm;
+				norm = 1 / (1 + 1/q * K + K * K)
+				a0 = (1 + V/q * K + K * K) * norm
+				a1 = 2 * (K * K - 1) * norm
+				a2 = (1 - V/q * K + K * K) * norm
+				b1 = a1
+				b2 = (1 - 1/q * K + K * K) * norm
 			}
 			else {
-				norm = 1 / (1 + V/q * K + K * K);
-				a0 = (1 + 1/q * K + K * K) * norm;
-				a1 = 2 * (K * K - 1) * norm;
-				a2 = (1 - 1/q * K + K * K) * norm;
-				b1 = a1;
-				b2 = (1 - V/q * K + K * K) * norm;
+				norm = 1 / (1 + V/q * K + K * K)
+				a0 = (1 + 1/q * K + K * K) * norm
+				a1 = 2 * (K * K - 1) * norm
+				a2 = (1 - 1/q * K + K * K) * norm
+				b1 = a1
+				b2 = (1 - V/q * K + K * K) * norm
 			}
-			break;
+			break
 		case "lowshelf":
 			if (gain >= 0) {
-				norm = 1 / (1 + Math.SQRT2 * K + K * K);
-				a0 = (1 + Math.sqrt(2*V) * K + V * K * K) * norm;
-				a1 = 2 * (V * K * K - 1) * norm;
-				a2 = (1 - Math.sqrt(2*V) * K + V * K * K) * norm;
-				b1 = 2 * (K * K - 1) * norm;
-				b2 = (1 - Math.SQRT2 * K + K * K) * norm;
+				norm = 1 / (1 + Math.SQRT2 * K + K * K)
+				a0 = (1 + Math.sqrt(2*V) * K + V * K * K) * norm
+				a1 = 2 * (V * K * K - 1) * norm
+				a2 = (1 - Math.sqrt(2*V) * K + V * K * K) * norm
+				b1 = 2 * (K * K - 1) * norm
+				b2 = (1 - Math.SQRT2 * K + K * K) * norm
 			}
 			else {
-				norm = 1 / (1 + Math.sqrt(2*V) * K + V * K * K);
-				a0 = (1 + Math.SQRT2 * K + K * K) * norm;
-				a1 = 2 * (K * K - 1) * norm;
-				a2 = (1 - Math.SQRT2 * K + K * K) * norm;
-				b1 = 2 * (V * K * K - 1) * norm;
-				b2 = (1 - Math.sqrt(2*V) * K + V * K * K) * norm;
+				norm = 1 / (1 + Math.sqrt(2*V) * K + V * K * K)
+				a0 = (1 + Math.SQRT2 * K + K * K) * norm
+				a1 = 2 * (K * K - 1) * norm
+				a2 = (1 - Math.SQRT2 * K + K * K) * norm
+				b1 = 2 * (V * K * K - 1) * norm
+				b2 = (1 - Math.sqrt(2*V) * K + V * K * K) * norm
 			}
-			break;
+			break
 		case "highshelf":
 			if (gain >= 0) {
-				norm = 1 / (1 + Math.SQRT2 * K + K * K);
-				a0 = (V + Math.sqrt(2*V) * K + K * K) * norm;
-				a1 = 2 * (K * K - V) * norm;
-				a2 = (V - Math.sqrt(2*V) * K + K * K) * norm;
-				b1 = 2 * (K * K - 1) * norm;
-				b2 = (1 - Math.SQRT2 * K + K * K) * norm;
+				norm = 1 / (1 + Math.SQRT2 * K + K * K)
+				a0 = (V + Math.sqrt(2*V) * K + K * K) * norm
+				a1 = 2 * (K * K - V) * norm
+				a2 = (V - Math.sqrt(2*V) * K + K * K) * norm
+				b1 = 2 * (K * K - 1) * norm
+				b2 = (1 - Math.SQRT2 * K + K * K) * norm
 			}
 			else {
-				norm = 1 / (V + Math.sqrt(2*V) * K + K * K);
-				a0 = (1 + Math.SQRT2 * K + K * K) * norm;
-				a1 = 2 * (K * K - 1) * norm;
-				a2 = (1 - Math.SQRT2 * K + K * K) * norm;
-				b1 = 2 * (K * K - V) * norm;
-				b2 = (V - Math.sqrt(2*V) * K + K * K) * norm;
+				norm = 1 / (V + Math.sqrt(2*V) * K + K * K)
+				a0 = (1 + Math.SQRT2 * K + K * K) * norm
+				a1 = 2 * (K * K - 1) * norm
+				a2 = (1 - Math.SQRT2 * K + K * K) * norm
+				b1 = 2 * (K * K - V) * norm
+				b2 = (V - Math.sqrt(2*V) * K + K * K) * norm
 			}
-			break;
+			break
 	}
 
-	var magPlot = [];
+	var magPlot = []
 	for (var idx = 0; idx < len; idx++) {
-		var w;
+		var w
 		if (linear)
 			w = idx / (len - 1) * Math.PI;	// 0 to pi, linear scale
 		else
 			w = Math.exp(Math.log(1 / 0.001) * idx / (len - 1)) * 0.001 * Math.PI;	// 0.001 to 1, times pi, log scale
 
-		var phi = Math.pow(Math.sin(w/2), 2);
-		var y = Math.log(Math.pow(a0+a1+a2, 2) - 4*(a0*a1 + 4*a0*a2 + a1*a2)*phi + 16*a0*a2*phi*phi) - Math.log(Math.pow(1+b1+b2, 2) - 4*(b1 + 4*b2 + b1*b2)*phi + 16*b2*phi*phi);
+		var phi = Math.pow(Math.sin(w/2), 2)
+		var y = Math.log(Math.pow(a0+a1+a2, 2) - 4*(a0*a1 + 4*a0*a2 + a1*a2)*phi + 16*a0*a2*phi*phi) - Math.log(Math.pow(1+b1+b2, 2) - 4*(b1 + 4*b2 + b1*b2)*phi + 16*b2*phi*phi)
 		y = y * 10 / Math.LN10
 		if (y == -Infinity)
-			y = -200;
+			y = -200
 
 		if (linear)
-			magPlot.push([idx / (len - 1) * Fs / 2, y]);
+			magPlot.push([idx / (len - 1) * Fs / 2, y])
 		else
-			magPlot.push([idx / (len - 1) * Fs / 2, y]);
+			magPlot.push([idx / (len - 1) * Fs / 2, y])
 
 		if (idx == 0)
-			minVal = maxVal = y;
+			minVal = maxVal = y
 		else if (y < minVal)
-			minVal = y;
+			minVal = y
 		else if (y > maxVal)
-			maxVal = y;
+			maxVal = y
 	}
 
 	return magPlot
