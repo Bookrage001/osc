@@ -64,7 +64,7 @@ module.exports.create = function(widgetData,container) {
     for (i in widgetData.filters) {
 
             for (j in widgetData.filters[i]) {
-                if (typeof widgetData.filters[i][j]=='string') {
+                if (typeof widgetData.filters[i][j]=='string' && !(j=='type' && widgetData.filters[i][j].match(/peak|notch|highpass|highshelf|lowpass|lowshelf/))) {
                     widget.linkedWidgets.push(widgetData.filters[i][j])
                 }
             }
