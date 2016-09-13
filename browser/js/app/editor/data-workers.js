@@ -134,7 +134,7 @@ var incrementWidget = function(data){
                 n = isNaN(n)?1:n
                 return n
             })
-            pathref = data.preArgs&&data.preArgs.length?data.path+'||||'+data.preArgs.join('||||'):data.path
+            pathref = data.preArgs&&data.preArgs.length?path+'||||'+data.preArgs.join('||||'):path
         }
         WIDGETS_BY_PATH[pathref] = []
         data.path = path
