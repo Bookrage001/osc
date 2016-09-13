@@ -61,6 +61,51 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `y` axis (log10)
 
+
+## Eq
+
+The Eq receives an array of filter objects and draws their frequency response between 20Hz and 22050Hz.
+
+```js
+{
+    type:'eq',
+    // etc
+}
+```
+
+#### `filters`
+- type: `array`
+- default: `[]`
+- usage:
+    - each item must be an object of the following form:
+    ```{
+        type:[string],          // "highpass", "highshelf", "lowpass", "lowshelf", "peak", "notch"
+        freq:[number],   //
+        q:[number],      //
+        gain:[number],   //
+        on:[bool]        // 1 or true = active, 0 or false = bypassed
+    }
+    ```
+    - all filters parameters can be filled with widget ids, whose value will be used
+
+#### `resolution`
+- type: `number`
+- default: `128`
+- usage: defines the number of points used to compute the frequency response
+
+#### `rangeY`
+- type: `object`
+- default:
+    `{"min":-20,"max":20}`
+- usage: defines the `min` and `max` values for the `y` axis (dB level)
+
+#### `logScaleX`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to use logarithmic scale for the `x` axis (log10)
+
+
+
 ## Visualizer
 
 The visualizer displays the evolution in time of a received value (through osc) *or* another widget's value.
