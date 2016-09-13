@@ -24,7 +24,46 @@
                         "height": 210,
                         "color": "auto",
                         "css": "",
-                        "filters": "[ {\"type\":\"highpass\",\"freq\":\"eq_freq_1\",\"q\":\"eq_q_1\",,\"on\":\"eq_on_1\"}, {\"type\":\"lowshelf\",\"freq\":\"eq_freq_2\",\"gain\":\"eq_gain_2\",\"on\":\"eq_on_2\"}, {\"type\":\"eq_type_3\",\"freq\":\"eq_freq_3\",\"q\":\"eq_q_3\",\"gain\":\"eq_gain_3\",\"on\":\"eq_on_3\"}, {\"type\":\"eq_type_4\",\"freq\":\"eq_freq_4\",\"q\":\"eq_q_4\",\"gain\":\"eq_gain_4\",\"on\":\"eq_on_4\"}, {\"type\":\"highshelf\",\"freq\":\"eq_freq_5\",\"gain\":\"eq_gain_5\",\"on\":\"eq_on_5\"}, {\"type\":\"lowpass\",\"freq\":\"eq_freq_6\",\"q\":\"eq_q_6\",\"on\":\"eq_on_6\"}]",
+                        "filters": [
+                            {
+                                "type": "highpass",
+                                "freq": "eq_freq_1",
+                                "q": "eq_q_1",
+                                "on": "eq_on_1"
+                            },
+                            {
+                                "type": "lowshelf",
+                                "freq": "eq_freq_2",
+                                "gain": "eq_gain_2",
+                                "on": "eq_on_2"
+                            },
+                            {
+                                "type": "eq_type_3",
+                                "freq": "eq_freq_3",
+                                "q": "eq_q_3",
+                                "gain": "eq_gain_3",
+                                "on": "eq_on_3"
+                            },
+                            {
+                                "type": "eq_type_4",
+                                "freq": "eq_freq_4",
+                                "q": "eq_q_4",
+                                "gain": "eq_gain_4",
+                                "on": "eq_on_4"
+                            },
+                            {
+                                "type": "highshelf",
+                                "freq": "eq_freq_5",
+                                "gain": "eq_gain_5",
+                                "on": "eq_on_5"
+                            },
+                            {
+                                "type": "lowpass",
+                                "freq": "eq_freq_6",
+                                "q": "eq_q_6",
+                                "on": "eq_on_6"
+                            }
+                        ],
                         "rangeX": {
                             "min": 0,
                             "max": 22050
