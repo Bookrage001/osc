@@ -27,11 +27,11 @@
         &:after {
             content:"";
             position: absolute;
-            top:0;
-            right:0;
-            border:5rem solid transparent;
-            border-top:5rem solid var(--color-text-fade);
-            border-right:5rem solid var(--color-text-fade);
+            top:1rem;
+            right:1rem;
+            border:4rem solid transparent;
+            border-top:4rem solid var(--color-text-fade);
+            border-right:4rem solid var(--color-text-fade);
             opacity: 0.2;
             background-blend-mode: luminosity;
         }
