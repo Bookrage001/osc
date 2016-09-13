@@ -82,7 +82,7 @@ module.exports.create = function(widgetData,container) {
 
 		if (!self.visible) {
 			widget.visible = true
-            widget.lineColor = getComputedStyle(widget[0]).getPropertyValue('--color-accent')
+            widget.lineColor = getComputedStyle(widget[0]).getPropertyValue('--color-custom')
 		}
 
 
