@@ -20,6 +20,7 @@ var widgets = {
     // plots
     led: require('./widgets/led'),
     plot: require('./widgets/plot'),
+    eq: require('./widgets/eq'),
     visualizer: require('./widgets/visualizer'),
     meter: require('./widgets/meter'),
     text: require('./widgets/text'),
@@ -34,7 +35,7 @@ module.exports.categories = {
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb'],
     'Matrices':['multifader','multitoggle','multipush'],
-    'Plots':['plot','visualizer','led','meter','text'],
+    'Plots':['plot','eq','visualizer','led','meter','text'],
     'Containers':['panel','strip']
 }
 
