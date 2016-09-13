@@ -10,15 +10,15 @@ switch (type) {
 	case "highpass":
 	case "bandpass":
 	case "notch":
-	QField.disabled = false;
+	qField.disabled = false;
 	gainField.disabled = true;
 	break;
 	case "peak":
-	QField.disabled = false;
+	qField.disabled = false;
 	gainField.disabled = false;
 	break
 	default:
-	QField.disabled = true;
+	qField.disabled = true;
 	gainField.disabled = false;
 }
 */
@@ -29,70 +29,72 @@ switch (type) {
 //
 // Dec 14, 2010 njr
 //
-module.exports = function(options) {
-	var {type, Fc, Fs, Q, peakGain, linear} = options
-	var a0,a1,a2,b1,b2,norm;
-	var ymin, ymax, minVal, maxVal;
+module.exports = function(options,linear,resolution) {
+	var {type, freq, q, gain} = options,
+		Fs = 44100,
+		a0,a1,a2,b1,b2,norm,
+		ymin, ymax, minVal, maxVal,
+		len = resolution
 
-	var V = Math.pow(10, Math.abs(peakGain) / 20);
-	var K = Math.tan(Math.PI * Fc / Fs);
+	var V = Math.pow(10, Math.abs(gain) / 20);
+	var K = Math.tan(Math.PI * freq / Fs);
 	switch (type) {
 		case "lowpass":
-			norm = 1 / (1 + K / Q + K * K);
+			norm = 1 / (1 + K / q + K * K);
 			a0 = K * K * norm;
 			a1 = 2 * a0;
 			a2 = a0;
 			b1 = 2 * (K * K - 1) * norm;
-			b2 = (1 - K / Q + K * K) * norm;
+			b2 = (1 - K / q + K * K) * norm;
 			break;
 
 		case "highpass":
-			norm = 1 / (1 + K / Q + K * K);
+			norm = 1 / (1 + K / q + K * K);
 			a0 = 1 * norm;
 			a1 = -2 * a0;
 			a2 = a0;
 			b1 = 2 * (K * K - 1) * norm;
-			b2 = (1 - K / Q + K * K) * norm;
+			b2 = (1 - K / q + K * K) * norm;
 			break;
 
 		case "bandpass":
-			norm = 1 / (1 + K / Q + K * K);
-			a0 = K / Q * norm;
+			norm = 1 / (1 + K / q + K * K);
+			a0 = K / q * norm;
 			a1 = 0;
 			a2 = -a0;
 			b1 = 2 * (K * K - 1) * norm;
-			b2 = (1 - K / Q + K * K) * norm;
+			b2 = (1 - K / q + K * K) * norm;
 			break;
 
 		case "notch":
-			norm = 1 / (1 + K / Q + K * K);
+			norm = 1 / (1 + K / q + K * K);
 			a0 = (1 + K * K) * norm;
 			a1 = 2 * (K * K - 1) * norm;
 			a2 = a0;
 			b1 = a1;
-			b2 = (1 - K / Q + K * K) * norm;
+			b2 = (1 - K / q + K * K) * norm;
 			break;
 
 		case "peak":
-			if (peakGain >= 0) {
-				norm = 1 / (1 + 1/Q * K + K * K);
-				a0 = (1 + V/Q * K + K * K) * norm;
+			if (gain >= 0) {
+				norm = 1 / (1 + 1/q * K + K * K);
+				a0 = (1 + V/q * K + K * K) * norm;
 				a1 = 2 * (K * K - 1) * norm;
-				a2 = (1 - V/Q * K + K * K) * norm;
+				a2 = (1 - V/q * K + K * K) * norm;
 				b1 = a1;
-				b2 = (1 - 1/Q * K + K * K) * norm;
+				b2 = (1 - 1/q * K + K * K) * norm;
 			}
 			else {
-				norm = 1 / (1 + V/Q * K + K * K);
-				a0 = (1 + 1/Q * K + K * K) * norm;
+				norm = 1 / (1 + V/q * K + K * K);
+				a0 = (1 + 1/q * K + K * K) * norm;
 				a1 = 2 * (K * K - 1) * norm;
-				a2 = (1 - 1/Q * K + K * K) * norm;
+				a2 = (1 - 1/q * K + K * K) * norm;
 				b1 = a1;
-				b2 = (1 - V/Q * K + K * K) * norm;
+				b2 = (1 - V/q * K + K * K) * norm;
 			}
 			break;
-		case "lowShelf":
-			if (peakGain >= 0) {
+		case "lowshelf":
+			if (gain >= 0) {
 				norm = 1 / (1 + Math.SQRT2 * K + K * K);
 				a0 = (1 + Math.sqrt(2*V) * K + V * K * K) * norm;
 				a1 = 2 * (V * K * K - 1) * norm;
@@ -109,8 +111,8 @@ module.exports = function(options) {
 				b2 = (1 - Math.sqrt(2*V) * K + V * K * K) * norm;
 			}
 			break;
-		case "highShelf":
-			if (peakGain >= 0) {
+		case "highshelf":
+			if (gain >= 0) {
 				norm = 1 / (1 + Math.SQRT2 * K + K * K);
 				a0 = (V + Math.sqrt(2*V) * K + K * K) * norm;
 				a1 = 2 * (K * K - V) * norm;
@@ -129,7 +131,6 @@ module.exports = function(options) {
 			break;
 	}
 
-	var len = 512;
 	var magPlot = [];
 	for (var idx = 0; idx < len; idx++) {
 		var w;
@@ -157,31 +158,6 @@ module.exports = function(options) {
 			maxVal = y;
 	}
 
-	// configure y-axis
-	switch (type) {
-		default:
-		case "lowpass":
-		case "highpass":
-		case "bandpass":
-		case "notch":
-			ymin = -100;
-			ymax = 0;
-			if (maxVal > ymax)
-				ymax = maxVal;
-			break;
-		case "peak":
-		case "lowShelf":
-		case "highShelf":
-			ymin = -10;
-			ymax = 10;
-			if (maxVal > ymax)
-				ymax = maxVal;
-			else if (minVal < ymin)
-				ymin = minVal;
-			break;
-	}
-
-		return magPlot
-		// magPlot = [[freq,magnitude],etc]
-		// ymax / ymin = max/min magnitude
+	return magPlot
+	// magPlot = [[freq,magnitude],etc]
 }

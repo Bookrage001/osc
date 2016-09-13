@@ -1,5 +1,6 @@
 var utils = require('./utils'),
     mapToScale = utils.mapToScale,
+    clip = utils.clip,
     calcBiquad = require('./filter')
 
 module.exports.options = {
@@ -19,7 +20,8 @@ module.exports.options = {
 	separator2:'plot',
 
 	filters:[],
-	rangeX: {min:0,max:22050},
+    resolution:128,
+	rangeX: {min:20,max:22050},
 	rangeY: {min:-20,max:20},
     logScaleX: false,
     // logScaleY: false,
@@ -57,6 +59,7 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
+    widgetData.resolution = clip(widgetData.resolution,[64,1024])
 
     for (i in widgetData.filters) {
 
@@ -109,6 +112,9 @@ module.exports.create = function(widgetData,container) {
         var point = []
 
 		for (i in widget.data) {
+
+            if (widget.data[i][1]>widgetData.rangeY.max || widget.data[i][1]<widgetData.rangeY.min) continue
+
 			var newpoint = widget.data[i].length?
                     [
         				mapToScale(widget.data[i][0],[widgetData.rangeX.min,widgetData.rangeX.max],[15*PXSCALE,widget.width-15*PXSCALE],0,widgetData.logScaleX,true),
@@ -190,22 +196,30 @@ module.exports.create = function(widgetData,container) {
         }
 
         for (i in filterparams) {
-            filterPoints = calcBiquad(filterparams[i])
+
+            if (!filterparams[i].type) filterparams[i].type = "peak"
+            
+            if (!filterparams[i].on) {
+                filterPoints = calcBiquad({type:"peak",freq:1,gain:0,q:1},!widgetData.logScaleX,widgetData.resolution)
+            } else {
+                filterPoints = calcBiquad(filterparams[i],!widgetData.logScaleX,widgetData.resolution)
+            }
             for (k in filterPoints) {
                 if (data[k]===undefined) {
                     data[k]=[0,0]
                 }
-                data[k] = [filterPoints[k][0],data[k][1] + filterPoints[k][1]]
+
+                data[k] = [filterPoints[k][0], data[k][1]+filterPoints[k][1]]
             }
         }
         if (data.length) widget.data = data
 
 	}
 
-    widget.setValue = function(v) {
-        widget.data = v
-        requestAnimationFrame(widget.draw)
-    }
+    // widget.setValue = function(v) {
+    //     widget.data = v
+    //     requestAnimationFrame(widget.draw)
+    // }
 
     return widget
 }
