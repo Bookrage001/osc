@@ -128,7 +128,7 @@ module.exports.create = function(widgetData,container) {
             point = newpoint
 		}
 
-        ctx.lineWidth = 1.5*PXSCALE
+        ctx.lineWidth = 1*PXSCALE
 		ctx.strokeStyle= widget.lineColor
 		ctx.stroke()
 

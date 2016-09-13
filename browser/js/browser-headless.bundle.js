@@ -1831,7 +1831,7 @@ module.exports.create = function(widgetData,container) {
             point = newpoint
 		}
 
-        ctx.lineWidth = 1.5*PXSCALE
+        ctx.lineWidth = 1*PXSCALE
 		ctx.strokeStyle= widget.lineColor
 		ctx.stroke()
 
@@ -3201,11 +3201,11 @@ module.exports.create = function(widgetData,container) {
                 }
 
 			}
-            ctx.arc(newpoint[0],newpoint[1],1,0,2*Math.PI)
+            ctx.rect(newpoint[0]-1*PXSCALE,newpoint[1]-1*PXSCALE,2,2)
             point = newpoint
 		}
 
-        ctx.lineWidth = 1.5*PXSCALE
+        ctx.lineWidth = 1*PXSCALE
 		ctx.strokeStyle= widget.lineColor
 		ctx.stroke()
 
@@ -4159,7 +4159,7 @@ module.exports.create = function(widgetData,container) {
             point = newpoint
 		}
 
-        ctx.lineWidth = 1.5*PXSCALE
+        ctx.lineWidth = 1*PXSCALE
 		ctx.strokeStyle= widget.lineColor
 		ctx.stroke()
 
