@@ -32,8 +32,10 @@ module.exports.create = function(widgetData,container) {
 
     var visualizer = new _plots_base(widgetData)
 
-    visualizer.pips.x.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
-    visualizer.pips.x.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
+    visualizer.pips.y.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
+    visualizer.pips.y.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
+    visualizer.pips.x.min = ''
+    visualizer.pips.x.max = ''
     visualizer.length = Math.round(clip(60*widgetData.duration,[8,4096]))
 	visualizer.data = new Array(visualizer.length)
     visualizer.value = widgetData.range.min
