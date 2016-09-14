@@ -6,11 +6,13 @@
     --color-bg:darken(#2b2f37,5%); // secondary
     --color-fg:lighten(#2b2f37,1%); // primary
     --color-raised:lighten(#2b2f37,5%); // raised
-    --color-faded: darken(#2b2f37,1%); // raised
+    --color-faded: darken(#2b2f37,1%); // faded
 
     --color-track: lighten(#1a1d22,1%); // widgets unfilled value
 
     --color-accent:#528bff;
+    --color-custom:var(--color-accent);
+
 
 
     --nav-height:40rem;
