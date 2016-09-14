@@ -1,4 +1,4 @@
-var {mapToScale} = require('../utils')
+var {mapToScale, clip} = require('../utils')
 
 module.exports.options = {
     type:'fader',

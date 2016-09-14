@@ -2989,7 +2989,7 @@ module.exports.create = function(widgetData,container) {
 }
 
 },{"../utils":34}],25:[function(require,module,exports){
-var {mapToScale} = require('../utils')
+var {mapToScale, clip} = require('../utils')
 
 module.exports.options = {
     type:'fader',
