@@ -27,3 +27,38 @@
         border-top:2rem solid var(--color-bg);
     }
 }
+
+::-webkit-scrollbar-button:decrement:start, ::-webkit-scrollbar-button:increment:end {
+
+    background:var(--color-fg);
+    height:20rem;
+    width: 20rem;
+
+    display: block;
+
+    &:vertical {
+        &:decrement:start {
+            border-left:2rem solid var(--color-bg);
+            border-bottom:2rem solid var(--color-bg);
+        }
+
+        &:increment:end {
+            border-left:2rem solid var(--color-bg);
+            border-top:2rem solid var(--color-bg);
+
+        }
+    }
+    &:horizontal {
+        &:decrement:start {
+            border-right:2rem solid var(--color-bg);
+            border-top:2rem solid var(--color-bg);
+        }
+
+        &:increment:end {
+            border-left:2rem solid var(--color-bg);
+            border-top:2rem solid var(--color-bg);
+
+        }
+    }
+
+}
