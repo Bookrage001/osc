@@ -1,5 +1,4 @@
-var utils = require('./utils'),
-    mapToScale = utils.mapToScale
+var {mapToScale} = require('../utils')
 
 module.exports.options = {
     type:'led',

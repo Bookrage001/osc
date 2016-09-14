@@ -107,25 +107,25 @@ module.exports = function(options,linear,resolution) {
 	}
 
 	var magPlot = []
-	for (var idx = 0; idx < len; idx++) {
-		var w
+	for (var i = 0; i < len; i++) {
+		var w, phi, y
 		if (linear)
-			w = idx / (len - 1) * Math.PI;	// 0 to pi, linear scale
+			w = i / (len - 1) * Math.PI;	// 0 to pi, linear scale
 		else
-			w = Math.exp(Math.log(1 / 0.001) * idx / (len - 1)) * 0.001 * Math.PI;	// 0.001 to 1, times pi, log scale
+			w = Math.exp(Math.log(1 / 0.001) * i / (len - 1)) * 0.001 * Math.PI;	// 0.001 to 1, times pi, log scale
 
-		var phi = Math.pow(Math.sin(w/2), 2)
-		var y = Math.log(Math.pow(a0+a1+a2, 2) - 4*(a0*a1 + 4*a0*a2 + a1*a2)*phi + 16*a0*a2*phi*phi) - Math.log(Math.pow(1+b1+b2, 2) - 4*(b1 + 4*b2 + b1*b2)*phi + 16*b2*phi*phi)
+		phi = Math.pow(Math.sin(w/2), 2)
+
+		y = Math.log(Math.pow(a0+a1+a2, 2) - 4*(a0*a1 + 4*a0*a2 + a1*a2)*phi + 16*a0*a2*phi*phi) - Math.log(Math.pow(1+b1+b2, 2) - 4*(b1 + 4*b2 + b1*b2)*phi + 16*b2*phi*phi)
 		y = y * 10 / Math.LN10
-		if (y == -Infinity)
-			y = -200
+		if (y == -Infinity) y = -200
 
 		if (linear)
-			magPlot.push([idx / (len - 1) * Fs / 2, y])
+			magPlot.push([i / (len - 1) * Fs / 2, y])
 		else
-			magPlot.push([idx / (len - 1) * Fs / 2, y])
+			magPlot.push([i / (len - 1) * Fs / 2, y])
 
-		if (idx == 0)
+		if (i == 0)
 			minVal = maxVal = y
 		else if (y < minVal)
 			minVal = y
@@ -134,5 +134,4 @@ module.exports = function(options,linear,resolution) {
 	}
 
 	return magPlot
-	// magPlot = [[freq,magnitude],etc]
 }

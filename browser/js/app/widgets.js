@@ -18,12 +18,12 @@ var widgets = {
     multifader: require('./widgets/multifader'),
 
     // plots
-    led: require('./widgets/led'),
-    plot: require('./widgets/plot'),
-    eq: require('./widgets/eq'),
-    visualizer: require('./widgets/visualizer'),
-    meter: require('./widgets/meter'),
-    text: require('./widgets/text'),
+    led: require('./widgets/plots/led'),
+    plot: require('./widgets/plots/plot'),
+    eq: require('./widgets/plots/eq'),
+    visualizer: require('./widgets/plots/visualizer'),
+    meter: require('./widgets/plots/meter'),
+    text: require('./widgets/plots/text'),
 
     // containers
     strip: require('./widgets/strip'),
