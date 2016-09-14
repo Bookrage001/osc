@@ -16,7 +16,9 @@
     }
 }
 ::-webkit-scrollbar-corner  {
-    background: transparent;
+    background: var(--color-fg);
+    border-left:2rem solid var(--color-bg);
+    border-top:2rem solid var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
     background:var(--color-raised);
