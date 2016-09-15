@@ -44,7 +44,7 @@ module.exports.create = function(widgetData,container) {
 
 
 
-    visualizer.handleSync = function(e,id,w) {
+    visualizer.syncHandle = function(e,id,w) {
         if (widgetData.widgetId!=id || !WIDGETS[id]) return
         visualizer.startLoop()
     }
