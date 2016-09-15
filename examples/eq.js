@@ -253,7 +253,6 @@
                                 ],
                                 "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled2",
                                 "unit": "dB",
-                                "width": 99,
                                 "height": 70,
                                 "color": "auto",
                                 "noPip": false,
@@ -266,7 +265,8 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             }
                         ],
                         "left": 100,
@@ -369,7 +369,6 @@
                                 ],
                                 "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled3",
                                 "unit": "dB",
-                                "width": 99,
                                 "height": 70,
                                 "color": "auto",
                                 "noPip": false,
@@ -382,7 +381,8 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "switch",
@@ -504,7 +504,6 @@
                                 ],
                                 "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled4",
                                 "unit": "dB",
-                                "width": 99,
                                 "height": 70,
                                 "color": "auto",
                                 "noPip": false,
@@ -517,7 +516,8 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "switch",
@@ -639,7 +639,6 @@
                                 ],
                                 "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled5",
                                 "unit": "dB",
-                                "width": 99,
                                 "height": 70,
                                 "color": "auto",
                                 "noPip": false,
@@ -652,7 +651,8 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             }
                         ],
                         "left": 400,
