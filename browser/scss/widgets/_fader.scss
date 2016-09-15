@@ -62,7 +62,7 @@
             }
             .fader-wrapper {
                 padding:1rem 0 0!important;
-                background:var(--color-track);
+                background:var(--color-faded);
                 .fader {
                     width:100%;
                     margin: 0;
@@ -70,7 +70,7 @@
                         content:none;
                     }
                     .gauge {
-                        opacity: .25;
+                        opacity: .3;
                     }
                     .knob {
                         &:before, &:after {
