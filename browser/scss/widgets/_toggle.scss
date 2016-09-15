@@ -23,31 +23,26 @@
     }
 
     cursor: pointer;
-}
-
-.toggle {
-    position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
 
     .light {
-        position: absolute;
-        left:0;
-        right:0;
-        top:0;
-        bottom:0;
-        pointer-events: none;
-        background: var(--color-custom);
-        opacity: 0;
-        z-index: 1;
-    }
-    &.on {
-        .light{
-            opacity:0.2;
+        box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
+        flex:1;
+
+        &:before {
+            content:"";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: var(--color-custom);
+            opacity: 0;
         }
-        box-shadow: 0 0 1rem 0 var(--color-custom) inset;
+        &.on {
+
+            box-shadow: 0 0 1rem 0 var(--color-custom) inset;
+            &:before {
+                opacity: .3;
+            }
+
+        }
     }
 }

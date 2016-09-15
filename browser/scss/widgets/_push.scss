@@ -1,46 +1,15 @@
 .push-container {
-    width:100rem;
-    min-height: 65rem;
-    flex-shrink: 0;
-    padding:0!important;
-
-    background: var(--color-raised);
-
-    .label {
-        position: absolute;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        height:auto;
-        max-height: initial;
-        border:0;
-        background: none!important;
-        text-align: center;
-        pointer-events:none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        &:after {
-            content:"";
-            position: absolute;
-            top:1rem;
-            right:1rem;
-            border:4rem solid transparent;
-            border-top:4rem solid var(--color-text-fade);
-            border-right:4rem solid var(--color-text-fade);
-            opacity: 0.2;
-            background-blend-mode: luminosity;
-        }
+    @extend .toggle-container;
+    .active {
+        background: var(--color-fg);
     }
+    .light:after {
+        content:"";
+        position: absolute;
+        width:100%;
+        height:100%;
+        box-shadow: 0 0 0 4rem var(--color-text-fade) inset;
+        opacity: .1;
 
-    cursor: pointer;
-
-    .push {
-        box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
-        &.active {
-            background: var(--color-fg);
-        }
     }
 }

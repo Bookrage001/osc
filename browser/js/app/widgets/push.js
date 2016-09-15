@@ -28,12 +28,10 @@ module.exports.create = function(widgetData,container) {
 
 
     var widget = $(`
-        <div class="push toggle">
-            <div class="light"</div>
+        <div class="light">
         </div>\
         `),
-        $document = $(document),
-        light = widget.find('.light')[0]
+        $document = $(document)
 
     widget.value = widget.find('span')
     widget.state = 0
