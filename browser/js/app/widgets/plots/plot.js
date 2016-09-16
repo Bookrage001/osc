@@ -29,28 +29,28 @@ module.exports.options = {
     preArgs:[],
 
 }
-module.exports.create = function(widgetData) {
 
+var Plot = function(widgetData) {
 
-    var plot = new _plots_base(widgetData)
+    _plots_base.call(this,widgetData)
 
     if (typeof widgetData.points=='string') {
 
-        plot.linkedWidgets.push(widgetData.points)
+        this.linkedWidgets.push(widgetData.points)
 
     } else if (typeof widgetData.points=='object') {
 
         for (i in widgetData.points) {
             for (j in widgetData.points[i]) {
                 if (typeof widgetData.points[i][j] == 'string') {
-                    plot.linkedWidgets.push(widgetData.points[i][j])
+                    this.linkedWidgets.push(widgetData.points[i][j])
                 }
             }
         }
     }
 
-	plot.updateData = function(){
-		var data = [],
+    this.updateData = function(){
+        var data = [],
             points = widgetData.points
 
         if (typeof points=='string' && WIDGETS[points]) {
@@ -74,8 +74,15 @@ module.exports.create = function(widgetData) {
 
         }
 
-        if (data.length) plot.data = data
-	}
+        if (data.length) this.data = data
+    }
+}
 
+Plot.prototype = Object.create(_plots_base.prototype)
+
+Plot.prototype.constructor = Plot
+
+module.exports.create = function(widgetData) {
+    var plot = new Plot(widgetData)
     return plot.widget
 }

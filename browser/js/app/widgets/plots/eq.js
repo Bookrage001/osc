@@ -30,14 +30,13 @@ module.exports.options = {
 
 }
 
+var Eq = function(widgetData) {
 
-module.exports.create = function(widgetData) {
+    _plots_base.call(this,widgetData)
 
-    var eq = new _plots_base(widgetData)
-
-    eq.rangeX = {min:20,max:22050}
-    eq.pips.x.min = '20'
-    eq.pips.x.max = '22k'
+    this.rangeX = {min:20,max:22050}
+    this.pips.x.min = '20'
+    this.pips.x.max = '22k'
 
     widgetData.resolution = clip(widgetData.resolution,[64,1024])
 
@@ -45,61 +44,69 @@ module.exports.create = function(widgetData) {
 
             for (j in widgetData.filters[i]) {
                 if (typeof widgetData.filters[i][j]=='string' && !(j=='type' && widgetData.filters[i][j].match(/peak|notch|highpass|highshelf|lowpass|lowshelf/))) {
-                    eq.linkedWidgets.push(widgetData.filters[i][j])
+                    this.linkedWidgets.push(widgetData.filters[i][j])
                 }
             }
 
     }
 
+}
 
-	eq.updateData = function(){
-        var filters = [],
-            eqResponse = []
+Eq.prototype = Object.create(_plots_base.prototype)
+
+Eq.prototype.constructor = Eq
 
 
-        for (i in widgetData.filters) {
-            var filter = widgetData.filters[i]
+Eq.prototype.updateData = function(){
+    var filters = [],
+        eqResponse = []
 
-            filters[i] = {}
 
-            for (j in filter) {
+    for (i in this.widgetData.filters) {
+        var filter = this.widgetData.filters[i]
 
-                if (typeof filter[j]=='string' && WIDGETS[filter[j]]) {
+        filters[i] = {}
 
-                    filters[i][j] = WIDGETS[filter[j]][WIDGETS[filter[j]].length-1].getValue()
+        for (j in filter) {
 
-                } else {
+            if (typeof filter[j]=='string' && WIDGETS[filter[j]]) {
 
-                    filters[i][j] = filter[j]
+                filters[i][j] = WIDGETS[filter[j]][WIDGETS[filter[j]].length-1].getValue()
 
-                }
-
-            }
-
-        }
-
-        for (i in filters) {
-
-            var filterResponse
-
-            if (!filters[i].type) filters[i].type = "peak"
-
-            if (!filters[i].on) {
-                filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!widgetData.logScaleX,widgetData.resolution)
             } else {
-                filterResponse = _biquad_response(filters[i],!widgetData.logScaleX,widgetData.resolution)
-            }
-            for (k in filterResponse) {
-                if (eqResponse[k]===undefined) {
-                    eqResponse[k]=[0,0]
-                }
 
-                eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
+                filters[i][j] = filter[j]
+
             }
+
         }
-        if (eqResponse.length) eq.data = eqResponse
 
-	}
+    }
 
+    for (i in filters) {
+
+        var filterResponse
+
+        if (!filters[i].type) filters[i].type = "peak"
+
+        if (!filters[i].on) {
+            filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!this.widgetData.logScaleX,this.widgetData.resolution)
+        } else {
+            filterResponse = _biquad_response(filters[i],!this.widgetData.logScaleX,this.widgetData.resolution)
+        }
+        for (k in filterResponse) {
+            if (eqResponse[k]===undefined) {
+                eqResponse[k]=[0,0]
+            }
+
+            eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
+        }
+    }
+    if (eqResponse.length) this.data = eqResponse
+
+}
+
+module.exports.create = function(widgetData) {
+    var eq = new Eq(widgetData)
     return eq.widget
 }

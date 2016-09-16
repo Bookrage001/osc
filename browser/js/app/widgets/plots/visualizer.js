@@ -28,92 +28,99 @@ module.exports.options = {
     preArgs:[],
 }
 
-module.exports.create = function(widgetData,container) {
+var Visualizer = function(widgetData) {
 
-    var visualizer = new _plots_base(widgetData)
+    _plots_base.call(this,widgetData)
 
-    visualizer.pips.y.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
-    visualizer.pips.y.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
-    visualizer.pips.x.min = ''
-    visualizer.pips.x.max = ''
-    visualizer.length = Math.round(clip(60*widgetData.duration,[8,4096]))
-	visualizer.data = new Array(visualizer.length)
-    visualizer.value = widgetData.range.min
-    visualizer.cancel = false
-    visualizer.loop = false
+    this.pips.y.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
+    this.pips.y.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
+    this.pips.x.min = ''
+    this.pips.x.max = ''
+    this.length = Math.round(clip(60*widgetData.duration,[8,4096]))
+    this.data = new Array(this.length)
+    this.value = widgetData.range.min
+    this.cancel = false
+    this.loop = false
 
+}
 
+Visualizer.prototype = Object.create(_plots_base.prototype)
 
-    visualizer.syncHandle = function(e,id,w) {
-        if (widgetData.widgetId!=id || !WIDGETS[id]) return
-        visualizer.startLoop()
-    }
+Visualizer.prototype.constructor = Visualizer
 
-    visualizer.startLoop = function(){
+Visualizer.prototype.syncHandle = function(e,id,w) {
+    if (this.widgetData.widgetId!=id || !WIDGETS[id]) return
+    this.startLoop()
+}
 
-        if (visualizer.cancel) clearTimeout(visualizer.cancel)
+Visualizer.prototype.startLoop = function(){
 
-        visualizer.cancel = setTimeout(function(){
-            clearInterval(visualizer.loop)
-            visualizer.loop = false
-            visualizer.cancel = false
-        },1000*widgetData.duration)
+    if (this.cancel) clearTimeout(this.cancel)
 
-        if (visualizer.loop) return
+    this.cancel = setTimeout(function(){
+        clearInterval(this.loop)
+        this.loop = false
+        this.cancel = false
+    },1000*this.widgetData.duration)
 
-        visualizer.loop = setInterval(function(){
-            visualizer.updateData()
-            visualizer._draw()
-        },1000*widgetData.duration/visualizer.length)
-    }
+    if (this.loop) return
 
-
-	visualizer.draw = function(){
-
-		var first = true
-        var point = []
-
-		for (var i=visualizer.length-1;i>=0;i=i-1) {
-			var newpoint = [
-                mapToScale(i,[0,visualizer.length-1],[15*PXSCALE,visualizer.width-15*PXSCALE],1),
-				mapToScale(visualizer.data[i],[widgetData.range.min,widgetData.range.max],[visualizer.height-15*PXSCALE,15*PXSCALE],1,widgetData.logScale,true),
-			]
-			if (first) {
-				visualizer.ctx.moveTo(newpoint[0],newpoint[1])
-				first = false
-			} else {
-                if (widgetData.logScale) {
-                    visualizer.ctx.quadraticCurveTo(newpoint[0], point[1], newpoint[0], newpoint[1])
-                } else {
-                    visualizer.ctx.lineTo(newpoint[0],newpoint[1])
-                }
-
-			}
-            point = newpoint
-		}
-
-	}
+    this.loop = setInterval(function(){
+        this.updateData()
+        this._draw()
+    }.bind(this),1000*this.widgetData.duration/this.length)
+}
 
 
-	visualizer.updateData = function(){
-        var id = widgetData.widgetId
+Visualizer.prototype.draw = function(){
 
-        if (typeof id == 'string' && WIDGETS[id]) {
-            var v = WIDGETS[id][WIDGETS[id].length-1].getValue()
-            visualizer.data.push(v)
-            visualizer.value = v
+    var first = true
+    var point = []
+
+    for (var i=this.length-1;i>=0;i=i-1) {
+        var newpoint = [
+            mapToScale(i,[0,this.length-1],[15*PXSCALE,this.width-15*PXSCALE],1),
+            mapToScale(this.data[i],[this.widgetData.range.min,this.widgetData.range.max],[this.height-15*PXSCALE,15*PXSCALE],1,this.widgetData.logScale,true),
+        ]
+        if (first) {
+            this.ctx.moveTo(newpoint[0],newpoint[1])
+            first = false
         } else {
-            visualizer.data.push(visualizer.value)
+            if (this.widgetData.logScale) {
+                this.ctx.quadraticCurveTo(newpoint[0], point[1], newpoint[0], newpoint[1])
+            } else {
+                this.ctx.lineTo(newpoint[0],newpoint[1])
+            }
+
         }
-
-        visualizer.data.splice(0,1)
-
-	}
-
-    visualizer.setValue = function(v) {
-        visualizer.value = v
-        visualizer.startLoop()
+        point = newpoint
     }
 
+}
+
+
+Visualizer.prototype.updateData = function(){
+    var id = this.widgetData.widgetId
+
+    if (typeof id == 'string' && WIDGETS[id]) {
+        var v = WIDGETS[id][WIDGETS[id].length-1].getValue()
+        this.data.push(v)
+        this.value = v
+    } else {
+        this.data.push(this.value)
+    }
+
+    this.data.splice(0,1)
+
+}
+
+Visualizer.prototype.setValue = function(v) {
+    this.value = v
+    this.startLoop()
+}
+
+
+module.exports.create = function(widgetData,container) {
+    var visualizer = new Visualizer(widgetData)
     return visualizer.widget
 }

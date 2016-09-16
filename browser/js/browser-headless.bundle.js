@@ -2881,14 +2881,13 @@ module.exports.options = {
 
 }
 
+var Eq = function(widgetData) {
 
-module.exports.create = function(widgetData) {
+    _plots_base.call(this,widgetData)
 
-    var eq = new _plots_base(widgetData)
-
-    eq.rangeX = {min:20,max:22050}
-    eq.pips.x.min = '20'
-    eq.pips.x.max = '22k'
+    this.rangeX = {min:20,max:22050}
+    this.pips.x.min = '20'
+    this.pips.x.max = '22k'
 
     widgetData.resolution = clip(widgetData.resolution,[64,1024])
 
@@ -2896,62 +2895,70 @@ module.exports.create = function(widgetData) {
 
             for (j in widgetData.filters[i]) {
                 if (typeof widgetData.filters[i][j]=='string' && !(j=='type' && widgetData.filters[i][j].match(/peak|notch|highpass|highshelf|lowpass|lowshelf/))) {
-                    eq.linkedWidgets.push(widgetData.filters[i][j])
+                    this.linkedWidgets.push(widgetData.filters[i][j])
                 }
             }
 
     }
 
+}
 
-	eq.updateData = function(){
-        var filters = [],
-            eqResponse = []
+Eq.prototype = Object.create(_plots_base.prototype)
+
+Eq.prototype.constructor = Eq
 
 
-        for (i in widgetData.filters) {
-            var filter = widgetData.filters[i]
+Eq.prototype.updateData = function(){
+    var filters = [],
+        eqResponse = []
 
-            filters[i] = {}
 
-            for (j in filter) {
+    for (i in this.widgetData.filters) {
+        var filter = this.widgetData.filters[i]
 
-                if (typeof filter[j]=='string' && WIDGETS[filter[j]]) {
+        filters[i] = {}
 
-                    filters[i][j] = WIDGETS[filter[j]][WIDGETS[filter[j]].length-1].getValue()
+        for (j in filter) {
 
-                } else {
+            if (typeof filter[j]=='string' && WIDGETS[filter[j]]) {
 
-                    filters[i][j] = filter[j]
+                filters[i][j] = WIDGETS[filter[j]][WIDGETS[filter[j]].length-1].getValue()
 
-                }
-
-            }
-
-        }
-
-        for (i in filters) {
-
-            var filterResponse
-
-            if (!filters[i].type) filters[i].type = "peak"
-
-            if (!filters[i].on) {
-                filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!widgetData.logScaleX,widgetData.resolution)
             } else {
-                filterResponse = _biquad_response(filters[i],!widgetData.logScaleX,widgetData.resolution)
-            }
-            for (k in filterResponse) {
-                if (eqResponse[k]===undefined) {
-                    eqResponse[k]=[0,0]
-                }
 
-                eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
+                filters[i][j] = filter[j]
+
             }
+
         }
-        if (eqResponse.length) eq.data = eqResponse
 
-	}
+    }
 
+    for (i in filters) {
+
+        var filterResponse
+
+        if (!filters[i].type) filters[i].type = "peak"
+
+        if (!filters[i].on) {
+            filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!this.widgetData.logScaleX,this.widgetData.resolution)
+        } else {
+            filterResponse = _biquad_response(filters[i],!this.widgetData.logScaleX,this.widgetData.resolution)
+        }
+        for (k in filterResponse) {
+            if (eqResponse[k]===undefined) {
+                eqResponse[k]=[0,0]
+            }
+
+            eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
+        }
+    }
+    if (eqResponse.length) this.data = eqResponse
+
+}
+
+module.exports.create = function(widgetData) {
+    var eq = new Eq(widgetData)
     return eq.widget
 }
 
@@ -3117,28 +3124,28 @@ module.exports.options = {
     preArgs:[],
 
 }
-module.exports.create = function(widgetData) {
 
+var Plot = function(widgetData) {
 
-    var plot = new _plots_base(widgetData)
+    _plots_base.call(this,widgetData)
 
     if (typeof widgetData.points=='string') {
 
-        plot.linkedWidgets.push(widgetData.points)
+        this.linkedWidgets.push(widgetData.points)
 
     } else if (typeof widgetData.points=='object') {
 
         for (i in widgetData.points) {
             for (j in widgetData.points[i]) {
                 if (typeof widgetData.points[i][j] == 'string') {
-                    plot.linkedWidgets.push(widgetData.points[i][j])
+                    this.linkedWidgets.push(widgetData.points[i][j])
                 }
             }
         }
     }
 
-	plot.updateData = function(){
-		var data = [],
+    this.updateData = function(){
+        var data = [],
             points = widgetData.points
 
         if (typeof points=='string' && WIDGETS[points]) {
@@ -3162,9 +3169,16 @@ module.exports.create = function(widgetData) {
 
         }
 
-        if (data.length) plot.data = data
-	}
+        if (data.length) this.data = data
+    }
+}
 
+Plot.prototype = Object.create(_plots_base.prototype)
+
+Plot.prototype.constructor = Plot
+
+module.exports.create = function(widgetData) {
+    var plot = new Plot(widgetData)
     return plot.widget
 }
 
@@ -3252,93 +3266,100 @@ module.exports.options = {
     preArgs:[],
 }
 
-module.exports.create = function(widgetData,container) {
+var Visualizer = function(widgetData) {
 
-    var visualizer = new _plots_base(widgetData)
+    _plots_base.call(this,widgetData)
 
-    visualizer.pips.y.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
-    visualizer.pips.y.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
-    visualizer.pips.x.min = ''
-    visualizer.pips.x.max = ''
-    visualizer.length = Math.round(clip(60*widgetData.duration,[8,4096]))
-	visualizer.data = new Array(visualizer.length)
-    visualizer.value = widgetData.range.min
-    visualizer.cancel = false
-    visualizer.loop = false
+    this.pips.y.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
+    this.pips.y.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
+    this.pips.x.min = ''
+    this.pips.x.max = ''
+    this.length = Math.round(clip(60*widgetData.duration,[8,4096]))
+    this.data = new Array(this.length)
+    this.value = widgetData.range.min
+    this.cancel = false
+    this.loop = false
 
+}
 
+Visualizer.prototype = Object.create(_plots_base.prototype)
 
-    visualizer.syncHandle = function(e,id,w) {
-        if (widgetData.widgetId!=id || !WIDGETS[id]) return
-        visualizer.startLoop()
-    }
+Visualizer.prototype.constructor = Visualizer
 
-    visualizer.startLoop = function(){
+Visualizer.prototype.syncHandle = function(e,id,w) {
+    if (this.widgetData.widgetId!=id || !WIDGETS[id]) return
+    this.startLoop()
+}
 
-        if (visualizer.cancel) clearTimeout(visualizer.cancel)
+Visualizer.prototype.startLoop = function(){
 
-        visualizer.cancel = setTimeout(function(){
-            clearInterval(visualizer.loop)
-            visualizer.loop = false
-            visualizer.cancel = false
-        },1000*widgetData.duration)
+    if (this.cancel) clearTimeout(this.cancel)
 
-        if (visualizer.loop) return
+    this.cancel = setTimeout(function(){
+        clearInterval(this.loop)
+        this.loop = false
+        this.cancel = false
+    },1000*this.widgetData.duration)
 
-        visualizer.loop = setInterval(function(){
-            visualizer.updateData()
-            visualizer._draw()
-        },1000*widgetData.duration/visualizer.length)
-    }
+    if (this.loop) return
 
-
-	visualizer.draw = function(){
-
-		var first = true
-        var point = []
-
-		for (var i=visualizer.length-1;i>=0;i=i-1) {
-			var newpoint = [
-                mapToScale(i,[0,visualizer.length-1],[15*PXSCALE,visualizer.width-15*PXSCALE],1),
-				mapToScale(visualizer.data[i],[widgetData.range.min,widgetData.range.max],[visualizer.height-15*PXSCALE,15*PXSCALE],1,widgetData.logScale,true),
-			]
-			if (first) {
-				visualizer.ctx.moveTo(newpoint[0],newpoint[1])
-				first = false
-			} else {
-                if (widgetData.logScale) {
-                    visualizer.ctx.quadraticCurveTo(newpoint[0], point[1], newpoint[0], newpoint[1])
-                } else {
-                    visualizer.ctx.lineTo(newpoint[0],newpoint[1])
-                }
-
-			}
-            point = newpoint
-		}
-
-	}
+    this.loop = setInterval(function(){
+        this.updateData()
+        this._draw()
+    }.bind(this),1000*this.widgetData.duration/this.length)
+}
 
 
-	visualizer.updateData = function(){
-        var id = widgetData.widgetId
+Visualizer.prototype.draw = function(){
 
-        if (typeof id == 'string' && WIDGETS[id]) {
-            var v = WIDGETS[id][WIDGETS[id].length-1].getValue()
-            visualizer.data.push(v)
-            visualizer.value = v
+    var first = true
+    var point = []
+
+    for (var i=this.length-1;i>=0;i=i-1) {
+        var newpoint = [
+            mapToScale(i,[0,this.length-1],[15*PXSCALE,this.width-15*PXSCALE],1),
+            mapToScale(this.data[i],[this.widgetData.range.min,this.widgetData.range.max],[this.height-15*PXSCALE,15*PXSCALE],1,this.widgetData.logScale,true),
+        ]
+        if (first) {
+            this.ctx.moveTo(newpoint[0],newpoint[1])
+            first = false
         } else {
-            visualizer.data.push(visualizer.value)
+            if (this.widgetData.logScale) {
+                this.ctx.quadraticCurveTo(newpoint[0], point[1], newpoint[0], newpoint[1])
+            } else {
+                this.ctx.lineTo(newpoint[0],newpoint[1])
+            }
+
         }
-
-        visualizer.data.splice(0,1)
-
-	}
-
-    visualizer.setValue = function(v) {
-        visualizer.value = v
-        visualizer.startLoop()
+        point = newpoint
     }
 
+}
+
+
+Visualizer.prototype.updateData = function(){
+    var id = this.widgetData.widgetId
+
+    if (typeof id == 'string' && WIDGETS[id]) {
+        var v = WIDGETS[id][WIDGETS[id].length-1].getValue()
+        this.data.push(v)
+        this.value = v
+    } else {
+        this.data.push(this.value)
+    }
+
+    this.data.splice(0,1)
+
+}
+
+Visualizer.prototype.setValue = function(v) {
+    this.value = v
+    this.startLoop()
+}
+
+
+module.exports.create = function(widgetData,container) {
+    var visualizer = new Visualizer(widgetData)
     return visualizer.widget
 }
 
