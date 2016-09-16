@@ -129,7 +129,7 @@ module.exports = {
             if (WIDGETS[data[0]]!=undefined) {
                 for (var i=WIDGETS[data[0]].length-1;i>=0;i--) {
                     if (WIDGETS[data[0]][i].setValue) {
-                        WIDGETS[data[0]][i].setValue(data[1],send,false)
+                        WIDGETS[data[0]][i].setValue(data[1],send,true)
                     }
                 }
             }
