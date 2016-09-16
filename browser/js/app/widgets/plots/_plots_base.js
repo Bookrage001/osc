@@ -1,22 +1,18 @@
-var {mapToScale} = require('../utils')
+var {mapToScale} = require('../utils'),
+    _canvas_base = require('../common/_canvas_base')
 
-var _plots_base = module.exports = function(widgetData){
-
-    this.widgetData = widgetData
+var _plots_base = module.exports = function(){
 
     this.widget = $(`
-            <div class="plot">
-                 <canvas></canvas>
-            </div>
-            `)
-    this.canvas = this.widget.find('canvas')
-    this.ctx = this.canvas[0].getContext('2d')
+        <div class="plot">
+            <canvas></canvas>
+        </div>
+    `)
+
+    _canvas_base.apply(this,arguments)
+
     this.data = []
-    this.height = undefined
-    this.width = undefined
     this.linkedWidgets = []
-    this.visible = false
-    this.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
     this.rangeX = this.widgetData.rangeX || {min:0,max:1}
     this.rangeY = this.widgetData.rangeY || {min:0,max:1}
     this.pips = {
@@ -31,19 +27,17 @@ var _plots_base = module.exports = function(widgetData){
     }
 
 
-    this.canvas.resize(this.resizeHandleProxy.bind(this))
     $('body').on('sync',this.syncHandleProxy.bind(this))
 
 }
 
+_plots_base.prototype = Object.create(_canvas_base.prototype)
+
+_plots_base.prototype.constructor = _plots_base
+
 _plots_base.prototype.syncHandleProxy = function() {
     this.syncHandle.apply(this,arguments)
 }
-
-_plots_base.prototype.resizeHandleProxy = function() {
-    this.resizeHandle.apply(this,arguments)
-}
-
 
 _plots_base.prototype.syncHandle = function(e,id,w) {
     if (this.linkedWidgets.indexOf(id)==-1 || !WIDGETS[id]) return
@@ -51,30 +45,10 @@ _plots_base.prototype.syncHandle = function(e,id,w) {
     requestAnimationFrame(this._draw.bind(this))
 }
 
-
 _plots_base.prototype.resizeHandle = function(){
-
-    var width = this.canvas.width(),
-        height = this.canvas.height()
-
-    if (height==100 && width==100) return
-
-    if (!self.visible) {
-        this.visible = true
-        this.lineColor = getComputedStyle(this.widget[0]).getPropertyValue('--color-custom')
-    }
-
-    this.height=height
-    this.width=width
-
-    this.canvas[0].setAttribute('width',width)
-    this.canvas[0].setAttribute('height',height)
-
     this.updateData()
-    requestAnimationFrame(this._draw.bind(this))
-
+    _canvas_base.prototype.resizeHandle.call(this)
 }
-
 
 _plots_base.prototype._draw = function() {
 
@@ -146,7 +120,6 @@ _plots_base.prototype.setValue = function(v) {
     this.data = v
     requestAnimationFrame(this._draw.bind(this))
 }
-
 
 _plots_base.prototype.updateData = function(){
     // update the coordinates to draw
