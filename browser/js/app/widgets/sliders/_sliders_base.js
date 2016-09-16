@@ -1,4 +1,4 @@
-var {clip, mapToScale, sendOsc} = require('../utils')
+var {clip, roundTo, mapToScale, sendOsc} = require('../utils')
 var _canvas_base = require('../common/_canvas_base')
 
 var _sliders_base = module.exports = function(){
@@ -99,7 +99,7 @@ _sliders_base.prototype.mousewheelHandle = function(e, data, traversing) {
     var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta),
         increment = e.ctrlKey?0.25:1
 
-    this.percent = clip(this.percent + Math.max(increment,100/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
+    this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
 
     this.setValue(this.percentToValue(this.percent), true, true)
 
@@ -129,7 +129,7 @@ _sliders_base.prototype.percentToValue = function(percent) {
     var h = clip(percent,[0,100])
     for (var i=0;i<this.rangeKeys.length-1;i++) {
         if (h <= this.rangeKeys[i+1] && h >= this.rangeKeys[i]) {
-            return mapToScale(h,[this.rangeKeys[i],this.rangeKeys[i+1]],[this.rangeVals[i],this.rangeVals[i+1]],this.widgetData.precision,this.widgetData.logScale)
+            return mapToScale(h,[this.rangeKeys[i],this.rangeKeys[i+1]],[this.rangeVals[i],this.rangeVals[i+1]],false,this.widgetData.logScale)
         }
     }
 }
@@ -144,7 +144,7 @@ _sliders_base.prototype.valueToPercent = function(value) {
 _sliders_base.prototype.setValue = function(v,send,sync, dragged) {
     if (typeof v != 'number') return
 
-    this.value = clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax])
+    this.value = roundTo(clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax]),this.widgetData.precision)
 
     if (!dragged) this.percent = this.valueToPercent(this.value)
 
