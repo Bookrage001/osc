@@ -2749,7 +2749,7 @@ _plots_base.prototype.syncHandle = function(e,id,w) {
 
 
 _plots_base.prototype.resizeHandle = function(){
-    console.log('rg')
+
     var width = this.canvas.width(),
         height = this.canvas.height()
 
