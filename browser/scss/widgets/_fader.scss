@@ -1,4 +1,11 @@
-.fader-v2 {
+.fader-container {
+    --color-pips: var(--color-text-fade);
+    --color-gauge: var(--color-custom);
+    --color-knob: var(--color-custom);
+}
+
+.fader {
+
     height:100%;
     display: flex;
     flex-direction: column;

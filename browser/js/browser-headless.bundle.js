@@ -1738,7 +1738,7 @@ _canvas_base.prototype.resizeHandle = function(){
 
     if (!self.visible) {
         this.visible = true
-        this.colors.accent = getComputedStyle(this.widget[0]).getPropertyValue('--color-custom')
+        this.colors.custom = getComputedStyle(this.widget[0]).getPropertyValue('--color-custom')
         this.colors.text = getComputedStyle(this.widget[0]).getPropertyValue('--color-text')
         this.colors.raised = getComputedStyle(this.widget[0]).getPropertyValue('--color-raised')
         this.colors.bg = getComputedStyle(this.widget[0]).getPropertyValue('--color-bg')
@@ -2523,7 +2523,7 @@ _plots_base.prototype.draw = function() {
     this.draw_data()
 
     this.ctx.lineWidth = 1*PXSCALE
-    this.ctx.strokeStyle = this.colors.accent
+    this.ctx.strokeStyle = this.colors.custom
     this.ctx.stroke()
 
     this.ctx.font = PXSCALE * 10 + 'px sans-serif'
@@ -3528,7 +3528,7 @@ var _sliders_base = module.exports = function(){
     this.input = this.widget.find('.input').fakeInput({align:'center'})
     this.roundFactor = Math.pow(10,this.widgetData.precision)
     this.value = undefined
-    this.gaugeSize = 0
+    this.percent = 0
 
 
     this.rangeKeys = []
@@ -3550,6 +3550,10 @@ var _sliders_base = module.exports = function(){
     }
     this.rangeValsMax = Math.max.apply(Math, this.rangeVals),
     this.rangeValsMin = Math.min.apply(Math, this.rangeVals)
+
+    this.originValue = this.widgetData.origin=='auto'?
+                            this.rangeValsMin:
+                            clip(this.widgetData.origin,[this.rangeValsMin,this.rangeValsMax])
 
 
 
@@ -3574,6 +3578,8 @@ var _sliders_base = module.exports = function(){
     }.bind(this)
 
     this.widget.setValue = this.setValue.bind(this)
+
+    this.setValue(this.originValue)
 
 }
 
@@ -3602,12 +3608,11 @@ _sliders_base.prototype.mousewheelHandle = function(e, data, traversing) {
     e.stopPropagation()
 
     var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta),
-        increment = e.ctrlKey?0.005:0.01
-        console.log(this.gaugeSize, increment, direction)
+        increment = e.ctrlKey?0.25:1
 
-    this.gaugeSize = clip(this.gaugeSize + increment * direction  ,[0,1])
+    this.percent = clip(this.percent + Math.max(increment,100/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
 
-    this.setValue(this.mapGaugeSizeToRange(this.gaugeSize), true, true)
+    this.setValue(this.percentToValue(this.percent), true, true)
 
 
 }
@@ -3631,20 +3636,18 @@ _sliders_base.prototype.resizeHandle = function() {
 }
 
 
-_sliders_base.prototype.mapGaugeSizeToRange = function() {
-    var h = clip(this.gaugeSize*100,[0,100])
+_sliders_base.prototype.percentToValue = function(percent) {
+    var h = clip(percent,[0,100])
     for (var i=0;i<this.rangeKeys.length-1;i++) {
         if (h <= this.rangeKeys[i+1] && h >= this.rangeKeys[i]) {
             return mapToScale(h,[this.rangeKeys[i],this.rangeKeys[i+1]],[this.rangeVals[i],this.rangeVals[i+1]],this.widgetData.precision,this.widgetData.logScale)
         }
     }
 }
-_sliders_base.prototype.mapValueToGaugeSize = function() {
-    var v = this.value
-
+_sliders_base.prototype.valueToPercent = function(value) {
     for (var i=0;i<this.rangeVals.length-1;i++) {
-        if (v <= this.rangeVals[i+1] && v >= this.rangeVals[i]) {
-            return mapToScale(v,[this.rangeVals[i],this.rangeVals[i+1]],[this.rangeKeys[i],this.rangeKeys[i+1]],false,this.widgetData.logScale,true) / 100
+        if (value <= this.rangeVals[i+1] && value >= this.rangeVals[i]) {
+            return mapToScale(value,[this.rangeVals[i],this.rangeVals[i+1]],[this.rangeKeys[i],this.rangeKeys[i+1]],false,this.widgetData.logScale,true)
         }
     }
 }
@@ -3654,7 +3657,7 @@ _sliders_base.prototype.setValue = function(v,send,sync, dragged) {
 
     this.value = clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax])
 
-    if (!dragged) this.gaugeSize = this.mapValueToGaugeSize()
+    if (!dragged) this.percent = this.valueToPercent(this.value)
 
     this.draw()
 
@@ -3687,7 +3690,7 @@ var {clip, mapToScale, sendOsc} = require('../utils'),
 var Fader = function(widgetData){
 
     _sliders_base.apply(this,arguments)
-    this.widget.addClass('fader-v2')
+    this.widget.addClass('fader')
     this.margin = 20
 
 
@@ -3700,7 +3703,7 @@ var Fader = function(widgetData){
         this.margin = 0
     }
 
-    if (widgetData.alignRight) {
+    if (widgetData.alignRight && !widgetData.horizontal) {
         this.widget.addClass('align-right')
     }
 
@@ -3730,7 +3733,25 @@ var Fader = function(widgetData){
         pips[0].innerHTML = pipsInner
     }
 
-    this.setValue(this.rangeVals[0])
+
+    if (widgetData.meter) {
+        var parsewidgets = require('../../parser').widgets
+        var data = {
+            type:'meter',
+            id: widgetData.id + '/meter',
+            label:false,
+            horizontal:widgetData.horizontal,
+            range:widgetData.range,
+            logScale:widgetData.logScale,
+            path:widgetData.path + '/meter',
+            preArgs:widgetData.preArgs,
+            color:widgetData.color
+        }
+        var element = parsewidgets([data],this.widget.find('.wrapper'))
+		element[0].classList.add('not-editable')
+        this.widget[0].classList.add('has-meter')
+    }
+
 
 
 }
@@ -3741,54 +3762,66 @@ Fader.prototype.constructor = Fader
 
 Fader.prototype.draginitHandle = function(e, data, traversing){
 
+    this.percent = clip(this.percent,[0,100])
+
     if (!(traversing || this.widgetData.snap)) return
 
-    this.gaugeSize = this.widgetData.horizontal?
-        (data.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)):
-        (this.height - data.offsetY - this.margin * PXSCALE) / (this.height - (this.margin * PXSCALE * 2))
+    this.percent = this.widgetData.horizontal?
+        (data.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)) * 100:
+        (this.height - data.offsetY - this.margin * PXSCALE) / (this.height - (this.margin * PXSCALE * 2)) * 100
 
-    this.gaugeSize = clip(this.gaugeSize,[0,1])
+        // this.percent = clip(this.percent,[0,100])
 
-    this.setValue(this.mapGaugeSizeToRange(this.gaugeSize), true, true, true)
+    this.setValue(this.percentToValue(this.percent), true, true, true)
 
 }
 
 Fader.prototype.dragHandle = function(e, data) {
 
-    this.gaugeSize = this.widgetData.horizontal?
-        this.gaugeSize + ( data.speedX/(this.width - this.margin * PXSCALE * 2)):
-        this.gaugeSize + (-data.speedY/(this.height - this.margin * PXSCALE * 2))
+    this.percent = this.widgetData.horizontal?
+        this.percent + ( data.speedX/(this.width - this.margin * PXSCALE * 2)) * 100:
+        this.percent + (-data.speedY/(this.height - this.margin * PXSCALE * 2)) * 100
 
-    this.gaugeSize = this.gaugeSize,[0,1]
+    this.percent = this.percent,[0,100]
 
-    this.setValue(this.mapGaugeSizeToRange(this.gaugeSize), true, true, true)
+    this.setValue(this.percentToValue(this.percent), true, true, true)
 
+}
+
+Fader.prototype.percentToCoord = function(percent) {
+    if (this.widgetData.horizontal) {
+        return clip(percent / 100,[0,1]) * (this.width - 2 * PXSCALE * this.margin)
+    } else {
+        return (this.height - this.margin * PXSCALE) - clip(percent / 100, [0,1]) * (this.height - 2 * PXSCALE * this.margin)
+
+    }
 }
 
 
 Fader.prototype.draw = function(){
 
-    var px = PXSCALE
-        d = this.widgetData.horizontal?
-                clip(this.gaugeSize,[0,1]) * (this.width - 2 * px * this.margin):
-                (this.height - this.margin * px) - clip(this.gaugeSize, [0,1]) * (this.height - 2 * px * this.margin)
+    var d = this.percentToCoord(this.percent),
+        o = this.percentToCoord(this.valueToPercent(this.originValue))
 
     this.ctx.clearRect(0,0,this.width,this.height)
 
     if (this.widgetData.horizontal) {
         if (this.widgetData.compact) {
 
-            this.ctx.fillStyle = this.colors.accent
 
             this.ctx.save()
             this.ctx.globalAlpha = 0.3
+            this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
-            this.ctx.rect(0, 0, d, this.height)
-            this.ctx.fill()
+            this.ctx.moveTo(d, this.height / 2)
+            this.ctx.lineTo(o, this.height / 2)
+            this.ctx.lineWidth = this.height
+            this.ctx.stroke()
             this.ctx.restore()
 
             this.ctx.beginPath()
-            this.ctx.rect(Math.min(d,this.width-px), 0, px, this.height)
+            this.ctx.fillStyle = this.colors.knob
+            this.ctx.rect(Math.min(d,this.width-PXSCALE), 0, PXSCALE, this.height)
             this.ctx.fill()
 
 
@@ -3796,22 +3829,26 @@ Fader.prototype.draw = function(){
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.track
-            this.ctx.rect(this.margin * px, this.height / 2 - 1 * px, this.width - this.margin  * 2 * px, 2 * px)
+            this.ctx.rect(this.margin * PXSCALE, this.height / 2 - 1 * PXSCALE, this.width - this.margin  * 2 * PXSCALE, 2 * PXSCALE)
             this.ctx.fill()
 
-            this.ctx.fillStyle = this.colors.accent
             this.ctx.beginPath()
-            this.ctx.rect(this.margin * px, this.height / 2 - 1 * px, d, 2 * px)
-            this.ctx.fill()
+            this.ctx.strokeStyle = this.colors.gauge
+            this.ctx.moveTo(d + this.margin * PXSCALE, this.height / 2)
+            this.ctx.lineTo(o + this.margin * PXSCALE, this.height / 2)
+            this.ctx.lineWidth = 2 * PXSCALE
+            this.ctx.stroke()
+
+            this.ctx.fillStyle = this.colors.knob
 
             this.ctx.save()
             this.ctx.globalAlpha = 0.3
-            this.ctx.arc(d + this.margin * px, this.height / 2, 10 *px, Math.PI * 2,false)
+            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 10 *PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
             this.ctx.restore()
 
             this.ctx.beginPath()
-            this.ctx.arc(d + this.margin * px, this.height / 2, 4 * px, Math.PI * 2,false)
+            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 4 * PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
         }
 
@@ -3820,17 +3857,20 @@ Fader.prototype.draw = function(){
 
         if (this.widgetData.compact) {
 
-            this.ctx.fillStyle = this.colors.accent
 
             this.ctx.save()
             this.ctx.globalAlpha = 0.3
+            this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
-            this.ctx.rect(0, d, this.width, (this.height - this.margin * px) - d)
-            this.ctx.fill()
+            this.ctx.moveTo(this.width / 2, d)
+            this.ctx.lineTo(this.width / 2, o)
+            this.ctx.lineWidth = this.width
+            this.ctx.stroke()
             this.ctx.restore()
 
             this.ctx.beginPath()
-            this.ctx.rect(0, Math.min(d,this.height-px), this.width, px)
+            this.ctx.fillStyle = this.colors.knob
+            this.ctx.rect(0, Math.min(d,this.height-PXSCALE), this.width, PXSCALE)
             this.ctx.fill()
 
 
@@ -3838,32 +3878,30 @@ Fader.prototype.draw = function(){
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.track
-            this.ctx.rect(this.width / 2 - 1 * px, this.margin * px, 2 * px, this.height - this.margin *2 * px)
+            this.ctx.rect(this.width / 2 - 1 * PXSCALE, this.margin * PXSCALE, 2 * PXSCALE, this.height - this.margin *2 * PXSCALE)
             this.ctx.fill()
 
-            this.ctx.fillStyle = this.colors.accent
             this.ctx.beginPath()
-            this.ctx.rect(this.width / 2 - 1 * px, d, 2 * px, (this.height - this.margin * px) - d)
-            this.ctx.fill()
+            this.ctx.strokeStyle = this.colors.gauge
+            this.ctx.moveTo(this.width / 2, d)
+            this.ctx.lineTo(this.width / 2, o)
+            this.ctx.lineWidth = 2 * PXSCALE
+            this.ctx.stroke()
 
+
+            this.ctx.beginPath()
+            this.ctx.fillStyle = this.colors.knob
             this.ctx.save()
             this.ctx.globalAlpha = 0.3
-            this.ctx.arc(this.width / 2, d, 10 *px, Math.PI * 2,false)
+            this.ctx.arc(this.width / 2, d, 10 *PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
             this.ctx.restore()
 
             this.ctx.beginPath()
-            this.ctx.arc(this.width / 2, d, 4 *px, Math.PI * 2,false)
+            this.ctx.arc(this.width / 2, d, 4 *PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
         }
-
-
-
     }
-
-
-
-
 }
 
 
@@ -3894,6 +3932,7 @@ module.exports.options = {
     separator3:'osc',
 
     range:{min:0,max:1},
+    origin: 'auto',
     logScale:false,
     precision:2,
     meter:false,
@@ -3901,13 +3940,14 @@ module.exports.options = {
     preArgs:[],
     target:[]
 }
+
 module.exports.create = function(widgetData,container) {
 
     var fader = new Fader(widgetData, container)
     return fader.widget
 }
 
-},{"../utils":37,"./_sliders_base":32}],34:[function(require,module,exports){
+},{"../../parser":10,"../utils":37,"./_sliders_base":32}],34:[function(require,module,exports){
 
 module.exports.options = {
     type:'strip',

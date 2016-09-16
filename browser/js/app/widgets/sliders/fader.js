@@ -4,7 +4,7 @@ var {clip, mapToScale, sendOsc} = require('../utils'),
 var Fader = function(widgetData){
 
     _sliders_base.apply(this,arguments)
-    this.widget.addClass('fader-v2')
+    this.widget.addClass('fader')
     this.margin = 20
 
 
