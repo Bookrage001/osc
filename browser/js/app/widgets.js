@@ -1,6 +1,6 @@
 var widgets = {
     // sliders
-    fader: require('./widgets/fader'),
+    fader: require('./widgets/sliders/fader'),
     knob: require('./widgets/knob'),
 
     // buttons

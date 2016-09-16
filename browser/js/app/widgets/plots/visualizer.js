@@ -67,12 +67,12 @@ Visualizer.prototype.startLoop = function(){
 
     this.loop = setInterval(function(){
         this.updateData()
-        this._draw()
+        this.draw()
     }.bind(this),1000*this.widgetData.duration/this.length)
 }
 
 
-Visualizer.prototype.draw = function(){
+Visualizer.prototype.draw_data = function(){
 
     var first = true
     var point = []

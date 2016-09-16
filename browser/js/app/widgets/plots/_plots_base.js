@@ -42,7 +42,7 @@ _plots_base.prototype.syncHandleProxy = function() {
 _plots_base.prototype.syncHandle = function(e,id,w) {
     if (this.linkedWidgets.indexOf(id)==-1 || !WIDGETS[id]) return
     this.updateData()
-    requestAnimationFrame(this._draw.bind(this))
+    requestAnimationFrame(this.draw.bind(this))
 }
 
 _plots_base.prototype.resizeHandle = function(){
@@ -50,19 +50,19 @@ _plots_base.prototype.resizeHandle = function(){
     _canvas_base.prototype.resizeHandle.call(this)
 }
 
-_plots_base.prototype._draw = function() {
+_plots_base.prototype.draw = function() {
 
     this.ctx.clearRect(0,0,this.width,this.height)
     this.ctx.beginPath()
 
-    this.draw()
+    this.draw_data()
 
     this.ctx.lineWidth = 1*PXSCALE
-    this.ctx.strokeStyle = this.lineColor
+    this.ctx.strokeStyle = this.colors.custom
     this.ctx.stroke()
 
     this.ctx.font = PXSCALE * 10 + 'px sans-serif'
-    this.ctx.fillStyle = this.textColor
+    this.ctx.fillStyle = this.colors.text
 
 
     this.ctx.textBaseline = "bottom"
@@ -85,7 +85,7 @@ _plots_base.prototype._draw = function() {
 
 }
 
-_plots_base.prototype.draw = function() {
+_plots_base.prototype.draw_data = function() {
     var first = true
     var point = []
     for (i in this.data) {
@@ -118,7 +118,7 @@ _plots_base.prototype.draw = function() {
 
 _plots_base.prototype.setValue = function(v) {
     this.data = v
-    requestAnimationFrame(this._draw.bind(this))
+    requestAnimationFrame(this.draw.bind(this))
 }
 
 _plots_base.prototype.updateData = function(){

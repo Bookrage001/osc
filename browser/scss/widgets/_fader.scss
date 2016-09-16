@@ -1,211 +1,53 @@
-.fader-container {
-    --color-pips: var(--color-text-fade);
-    --color-gauge: var(--color-custom);
-    --color-knob: var(--color-custom);
-
-
-
-    width:100rem;
-    min-height: 200rem;
+.fader-v2 {
     height:100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 
-    &.align-right {
-
-        .fader-wrapper {
-            .fader {
-                margin-left:calc(50% + 10rem);
-            }
-            .meter-container {
-                right:auto;
-                left:-13rem!important;
-            }
-            .pips {
-                margin-left: -20rem;
-                .pip {
-                    right:0;
-                    left:auto;
-                    span {
-                        right:3rem;
-                        left:auto;
-                    }
-                }
-            }
-        }
-
-        &.compact  {
-            .fader-wrapper-outer .fader-wrapper .fader{
-                .meter-container {
-                    left:0!important;
-                    right: auto!important;
-                }
-            }
-            .has-meter {
-                .input {
-                    left:calc(50% + 2rem)
-                }
-            }
-        }
-    }
-
-
-    &.compact {
-        .fader-wrapper-outer {
-            .input {
-                position: absolute;
-                top:50%;
-                transform: rotate(-90deg);
-                pointer-events: none;
-                width: 100rem;
-                margin-left: -50rem;
-                left:50%;
-                z-index: 3;
-            }
-            .fader-wrapper {
-                padding:1rem 0 0!important;
-                background:var(--color-faded);
-                .fader {
-                    width:100%;
-                    margin: 0;
-                    &:before {
-                        content:none;
-                    }
-                    .gauge {
-                        opacity: .3;
-                    }
-                    .knob {
-                        &:before, &:after {
-                            display:none;
-                        }
-                        width:100%;
-                        height:1rem;
-                        background:var(--color-knob);
-                    }
-                    .pips {
-                        display: none;
-                    }
-                    .meter-container {
-                        right:-1rem!important;
-                        left: auto!important;
-                        width: 4rem;
-                        top:-2rem;
-                    }
-                }
-            }
-        }
-        .has-meter {
-            .input {
-                left:calc(50% - 2rem)
-            }
-        }
-    }
-
-    .input {
-        margin-top:-5rem;
-    }
-
-    .fader-wrapper-outer {
+    .wrapper {
+        overflow: hidden;
+        flex:1;
         display: flex;
-        flex-direction: column;
-        flex:1;
-    }
-
-    .fader-wrapper {
-        padding:20rem;
-        flex:1;
-        overflow:hidden;
+        max-height: 100%;
+        width: 100%;
         position: relative;
-        display: flex;
-        flex-direction: column;
-        cursor: -webkit-grab;
-        &:active {
-            cursor: -webkit-grabbing;
-        }
-        .fader {
-            width:2rem;
-            position: relative;
-            margin:0 auto;
-            margin-right:calc(50% + 15rem);
 
-            pointer-events: none;
+        canvas {
             flex:1;
-            &:before {
-                content:"";
-                width:100%;
-                height:100%;
-                background:var(--color-track);
-                // z-index: 1;
-                display:block;
-                position: absolute;
-            }
-            .gauge {
-                position: absolute;
-                bottom:0!important;
-                top:0!important;
-                width:100%;
-                height:100%;
-                transform-origin: bottom;
-                max-height:100%;
-                max-width:100%;
-                background:var(--color-gauge);
-                z-index: 1;
+            max-height: 100%;
+            width: 100%;
+        }
 
-            }
-            .knob {
-                position: absolute;
-                bottom:0;
-                width:0;
-                height:0;
-                z-index: 2;
-                &:before {
-                    content:"";
-                    position: absolute;
-                    top:-4rem;
-                    left:-3rem;
-                    height:8rem;
-                    width:8rem;
-                    background:var(--color-knob);
-                    border:none!important;
-                    border-radius: 100%!important;
-                }
-                &:after {
-                    content:"";
-                    position: absolute;
-                    top:-10rem;
-                    left:-9rem;
-                    height:20rem;
-                    width:20rem;
-                    border:none!important;
-                    border-radius: 100%!important;
-                    background:var(--color-knob);
-                    opacity: .2;
-                }
-            }
-            .meter-container {
-                position: absolute;
-                z-index: 2;
-                left:auto;
-                right:-15rem;
-                bottom:0;
-                top:0;
-                min-width: 0;
-                min-height: 0;
-                width: 4rem;
-                background: var(--color-bg);
-                height:auto;
-                .meter {
-                    margin:0;
-                }
-            }
+        .meter-container {
+            pointer-events: none;
+
+            position: absolute;
+            top:20rem;
+            bottom:19rem;
+            left:50%;
+            height: auto;
+            width:3rem;
+            min-width: 3rem;
+        }
+
+    }
+
+    &.has-pips {
+
+        .wrapper canvas {
+            padding-right: 28rem;
         }
 
         .pips {
+            pointer-events: none;
+
             position: absolute;
-            top:0;
-            bottom:0;
+            top:20rem;
+            bottom:20rem;
             left:50%;
             z-index: 0;
             width: 4rem;
-            margin-left: 17rem;
+            margin-left: 7rem;
             background: linear-gradient(to bottom, transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
             background-size: 100% 5px;
             background-repeat: repeat-y;
@@ -240,131 +82,111 @@
                 }
             }
         }
-
-        &.no-pip {
-            .pips {
-                display: none!important;
+        &.horizontal {
+            .wrapper canvas {
+                padding-right:0;
+                padding-bottom: 20rem;
             }
-            .fader {
-                margin:0 auto;
-            }
-        }
-    }
-}
-
-
-.fader-container.horizontal {
-    min-height: 80rem;
-    height: auto;
-    width:300rem;
-    flex-shrink: 0;
-
-    &.compact .fader-wrapper-outer {
-
-        .input {
-            transform: none;
-            top:50%;
-            margin-top:-15rem;
-        }
-        .fader-wrapper {
-            display:flex;
-            flex:1;
-            padding:0 1rem 0 0!important;
-        }
-        .fader {
-            height:100%;
-            top:0;
-            .knob {
-                width:1rem;
-                height:100%;
-                margin-bottom:0;
-                bottom:0;
-            }
-            .meter-container {
-                top:0;
-                left:0!important;
-                right:-1px!important;
+            .wrapper .meter-container {
+                left:20rem;
+                right:20rem;
+                height: 3rem;
+                min-height: 3rem;
                 width: auto;
-                height: 4rem;
+                top:50%;
+                margin-top: 3rem;
             }
-        }
-    }
 
-
-    .fader-wrapper-outer {
-        position: relative;
-        top:auto;
-        justify-content: center;
-        overflow: hidden;
-
-        .fader-wrapper {
-            padding:20rem 20rem 40rem;
-            display: block;
-            flex:0;
-            flex-shrink: 0;
-            &.no-pip {
-                padding: 20rem;
-            }
-        }
-        .fader {
-            width:100%;
-            left:auto;
-            top:50%;
-            height:2rem;
-            &:before {
-                box-shadow:none;
-            }
-            .gauge {
-                transform-origin: left;
-            }
-            .meter-container {
-                top:-15rem;
-                left:0;
-                right:0;
-                bottom:auto;
-                height:1rem;
-                min-width: 0;
-                min-height: 0;
+            .pips {
+                top:50%;
+                left:20rem;
+                right:20rem;
+                font-size: 0;
+                height:4rem;
                 width:auto;
-                height: 4rem;
-            }
-            .knob {
-                bottom:1px;
+                margin:0;
+                margin-top: 10rem;
+                background: linear-gradient(to right,  transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
+                background-size: 5px 100%;
+                background-repeat: repeat-x;
+                .pip {
+                    width:1px;
+                    height:6rem;
+                    margin: 0;
+                    &:before {
+                        top:0;
+                        bottom:0;
+                        left:-4px;
+                        right:-4px;
+                    }
+                    span {
+                        top:15rem;
+                        left:-15rem!important;
+                        right:auto;
+                    }
+                }
             }
         }
-        .pips {
-            top:15rem;left:0;
-            right:0;
-            font-size: 0;
-            height:4rem;
-            width:100%;
-            margin:0;
-            background: linear-gradient(to right,  transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
-            background-size: 5px 100%;
-            background-repeat: repeat-x;
-        }
-        .pip {
-            width:1px;
-            height:6rem;
-            margin: 0;
-            &:before {
-                top:0;
-                bottom:0;
-                left:-4px;
-                right:-4px;
+
+        &.align-right {
+            .wrapper canvas {
+                padding-right: 0;
+                padding-left: 28rem;
             }
-            span {
-                top:15rem;
-                left:-15rem!important;
-                right:auto;
+            .wrapper .meter-container {
+                left: auto;
+                right:50%;
+                margin-left: 0;
+            }
+            .pips {
+                margin-left: 0;
+                margin-right: 7rem;
+                left:auto;
+                right:50%;
+                .pip {
+                    right:0;
+                    left:auto;
+                    span {
+                        right:3rem;
+                        left:auto;
+                    }
+                }
             }
         }
     }
-
-
-    &.compact .has-meter {
+    &.compact {
         .input {
-            top:calc(50% + 2rem)
+            overflow: hidden;
+            position: absolute;
+            top:50%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+            width: 100rem;
+            margin-left: -50rem;
+            left:50%;
+            z-index: 3;
+            margin-top: -15rem;
+        }
+        .meter-container {
+            top: 0;
+            bottom: 0;
+            left: auto;
+            right:0;
+        }
+        &.horizontal {
+            .meter-container {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right:0;
+                height: 3rem;
+                min-height: 3rem;
+                width: auto;
+            }
+            .input {
+                transform: none;
+                top:50%;
+            }
         }
     }
 }

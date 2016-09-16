@@ -6,13 +6,13 @@ var _canvas_base = module.exports = function() {
 
     this.canvas = this.widget.find('canvas')
     this.ctx = this.canvas[0].getContext('2d')
-    
+
     this.height = undefined
     this.width = undefined
 
     this.visible = false
 
-    this.linecolor = undefined
+    this.colors = {}
     this.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
 
 
@@ -46,9 +46,18 @@ _canvas_base.prototype.resizeHandle = function(){
 
     if (!self.visible) {
         this.visible = true
-        this.lineColor = getComputedStyle(this.widget[0]).getPropertyValue('--color-custom')
+        this.colors.custom = getComputedStyle(this.widget[0]).getPropertyValue('--color-custom')
+        this.colors.text = getComputedStyle(this.widget[0]).getPropertyValue('--color-text')
+        this.colors.raised = getComputedStyle(this.widget[0]).getPropertyValue('--color-raised')
+        this.colors.bg = getComputedStyle(this.widget[0]).getPropertyValue('--color-bg')
+        this.colors.fg = getComputedStyle(this.widget[0]).getPropertyValue('--color-fg')
+        this.colors.faded = getComputedStyle(this.widget[0]).getPropertyValue('--color-faded')
     }
 
-    requestAnimationFrame(this._draw.bind(this))
+    requestAnimationFrame(this.draw.bind(this))
 
+}
+
+_canvas_base.prototype.draw = function(){
+    //
 }
