@@ -2,11 +2,12 @@
     --color-pips: var(--color-text-fade);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
+    height:100%;
 }
 
 .fader {
-    overflow: hidden;
     height:100%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     position: relative;
