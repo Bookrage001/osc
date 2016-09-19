@@ -182,7 +182,7 @@ Knob.prototype.draw = function(){
 
         this.ctx.beginPath()
         this.ctx.fillStyle = this.colors.raised
-        this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - (30 + this.margin), 0, Math.PI * 2)
+        this.ctx.arc(this.width / 2, this.height / 2,  Math.max(this.minDimension / 2 - (30 + this.margin) * PXSCALE, 2 * PXSCALE), 0, Math.PI * 2)
         this.ctx.fill()
 
         this.ctx.lineWidth = 2 * PXSCALE
