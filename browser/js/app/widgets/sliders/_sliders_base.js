@@ -20,6 +20,8 @@ var _sliders_base = module.exports = function(){
     this.value = undefined
     this.percent = 0
 
+    this.unit = this.widgetData.unit ? ' ' + this.widgetData.unit : ''
+
 
     this.rangeKeys = []
     this.rangeVals = []
@@ -170,5 +172,5 @@ _sliders_base.prototype.sendValue = function(value) {
 }
 
 _sliders_base.prototype.showValue = function() {
-    this.input.val(this.value + ' ' + this.widgetData.unit)
+    this.input.val(this.value + this.unit)
 }

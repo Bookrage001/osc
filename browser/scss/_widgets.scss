@@ -49,12 +49,12 @@
     }
     .input {
         width:100%;
-        height:30rem;
+        height:24rem;
         border:0;
         background:transparent;
         color:var(--color-text-fade);
         display:block;
-        padding:7rem 5rem;
+        padding:4rem 5rem;
         position: relative;
         display: var(--display-input);
 
@@ -64,7 +64,7 @@
             left:0;
             right:0;
             bottom:0;
-            padding:7rem 5rem;
+            padding:4rem 5rem;
             width: 100%;
             font: inherit;
             text-align:center;

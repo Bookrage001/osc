@@ -163,6 +163,9 @@
         }
     }
     &.compact {
+        .wrapper canvas {
+            background: var(--color-faded)
+        }
         .input {
             overflow: hidden;
             position: absolute;
@@ -173,7 +176,7 @@
             margin-left: -50rem;
             left:50%;
             z-index: 3;
-            margin-top: -15rem;
+            margin-top: -12rem;
         }
         .meter-container {
             top: 0;

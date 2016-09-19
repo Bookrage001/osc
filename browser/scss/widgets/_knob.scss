@@ -20,6 +20,13 @@
             position: relative;
         }
     }
+    &.compact {
+        .input {
+            position: absolute;
+            top:calc(50% - 12rem);
+            pointer-events: none;
+        }
+    }
 }
 
 .knob-container {
@@ -28,7 +35,7 @@
     --color-knob: var(--color-custom);
 
     width: 100rem;
-    height: 150rem;
+    height: 120rem;
     align-items: center;
     flex-shrink: 0;
 
