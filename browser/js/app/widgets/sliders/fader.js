@@ -1,6 +1,43 @@
 var {clip, mapToScale, sendOsc} = require('../utils'),
     _sliders_base = require('./_sliders_base')
 
+
+module.exports.options = {
+    type:'fader',
+    id:'auto',
+    linkId:'',
+
+    separator1:'style',
+
+    label:'auto',
+    unit:'',
+    left:'auto',
+    top:'auto',
+    width:'auto',
+    height:'auto',
+    alignRight:false,
+    horizontal:false,
+    noPip:false,
+    compact:false,
+    color:'auto',
+    css:'',
+
+    separator2:'behaviour',
+
+    snap:false,
+
+    separator3:'osc',
+
+    range:{min:0,max:1},
+    origin: 'auto',
+    logScale:false,
+    precision:2,
+    meter:false,
+    path:'auto',
+    preArgs:[],
+    target:[]
+}
+
 var Fader = function(widgetData){
 
     _sliders_base.apply(this,arguments)
@@ -157,12 +194,12 @@ Fader.prototype.draw = function(){
 
             this.ctx.save()
             this.ctx.globalAlpha = 0.3
-            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 10 *PXSCALE, Math.PI * 2,false)
+            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 10 * PXSCALE, Math.PI * 2)
             this.ctx.fill()
             this.ctx.restore()
 
             this.ctx.beginPath()
-            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 4 * PXSCALE, Math.PI * 2,false)
+            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 4 * PXSCALE, Math.PI * 2)
             this.ctx.fill()
         }
 
@@ -184,7 +221,7 @@ Fader.prototype.draw = function(){
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.knob
-            this.ctx.rect(0, Math.min(d,this.height-PXSCALE), this.width, PXSCALE)
+            this.ctx.rect(0, Math.min(d, this.height - PXSCALE), this.width, PXSCALE)
             this.ctx.fill()
 
 
@@ -207,52 +244,15 @@ Fader.prototype.draw = function(){
             this.ctx.fillStyle = this.colors.knob
             this.ctx.save()
             this.ctx.globalAlpha = 0.3
-            this.ctx.arc(this.width / 2, d, 10 *PXSCALE, Math.PI * 2,false)
+            this.ctx.arc(this.width / 2, d, 10 * PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
             this.ctx.restore()
 
             this.ctx.beginPath()
-            this.ctx.arc(this.width / 2, d, 4 *PXSCALE, Math.PI * 2,false)
+            this.ctx.arc(this.width / 2, d, 4 * PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
         }
     }
-}
-
-
-module.exports.options = {
-    type:'fader',
-    id:'auto',
-    linkId:'',
-
-    separator1:'style',
-
-    label:'auto',
-    unit:'',
-    left:'auto',
-    top:'auto',
-    width:'auto',
-    height:'auto',
-    alignRight:false,
-    horizontal:false,
-    noPip:false,
-    compact:false,
-    color:'auto',
-    css:'',
-
-    separator2:'behaviour',
-
-    snap:false,
-
-    separator3:'osc',
-
-    range:{min:0,max:1},
-    origin: 'auto',
-    logScale:false,
-    precision:2,
-    meter:false,
-    path:'auto',
-    preArgs:[],
-    target:[]
 }
 
 module.exports.create = function(widgetData,container) {

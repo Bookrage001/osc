@@ -1,7 +1,6 @@
-var utils = require('./utils'),
-    clip = utils.clip,
-    mapToScale = utils.mapToScale,
-    sendOsc = utils.sendOsc
+var {clip, mapToScale, sendOsc} = require('../utils'),
+    _sliders_base = require('./_sliders_base')
+
 
 module.exports.options = {
     type:'knob',
@@ -19,6 +18,7 @@ module.exports.options = {
     color:'auto',
     noPip:false,
     compact:false,
+    angle:270,
     css:'',
 
     separator2:'behaviour',
@@ -28,13 +28,153 @@ module.exports.options = {
     separator3:'osc',
 
     range:{min:0,max:1},
+    origin: 'auto',
     logScale:false,
     precision:2,
     path:'auto',
     preArgs:[],
     target:[]
 }
-module.exports.create = function(widgetData,container) {
+
+
+
+Knob = function(widgetData) {
+
+    _sliders_base.apply(this,arguments)
+
+    this.widget.addClass('knob')
+
+    this.lastOffsetX = 0
+    this.lastOffsetY = 0
+    this.minDimension = 0
+
+    this.maxAngle = widgetData.angle
+
+    // calculate lost height factor
+    var a = Math.sin((360 - this.maxAngle)),
+        h = a < 0 ? 1 - a : a
+
+    this.lostHeightFactor = h / 4
+
+}
+
+
+Knob.prototype = Object.create(_sliders_base.prototype)
+
+Knob.prototype.constructor = Knob
+
+Knob.prototype.draginitHandle = function(e, data, traversing){
+
+    this.percent = clip(this.percent,[0,100])
+
+    this.lastOffsetX = data.offsetX
+    this.lastOffsetY = data.offsetY
+
+    if (!(traversing || this.widgetData.snap)) return
+
+    this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
+
+    this.setValue(this.percentToValue(this.percent), true, true, true)
+
+}
+
+Knob.prototype.dragHandle = function(e, data, traversing) {
+
+
+    if (!(traversing || this.widgetData.snap)) {
+
+        this.percent = -data.speedY + this.percent
+
+    } else {
+
+        this.lastOffsetX = this.lastOffsetX + data.speedX
+        this.lastOffsetY = this.lastOffsetY + data.speedY
+        this.percent = this.angleToPercent(this.coordsToAngle(this.lastOffsetX, this.lastOffsetY))
+    }
+
+    this.percent = this.percent,[0,100]
+
+    this.setValue(this.percentToValue(this.percent), true, true, true)
+
+}
+
+Knob.prototype.coordsToAngle = function(x,y) {
+    var xToCenter = x - this.width /2,
+        yToCenter = y - this.height / 2,
+        angle =  Math.atan2(-yToCenter, -xToCenter) * 180 / Math.PI + 90
+
+    return angle<0?360+angle:angle
+}
+
+Knob.prototype.angleToPercent = function(angle) {
+    return clip(angle - (360 - this.maxAngle) / 2, [0, this.maxAngle]) / this.maxAngle * 100
+}
+
+Knob.prototype.percentToAngle = function(percent) {
+    var percent = clip(percent, [0, 100])
+    return  2 * Math.PI * percent / 100 * (this.maxAngle / 360) // angle relative to maxAngle
+            + Math.PI / 2                                       // quarter circle offset
+            + Math.PI * (1 - this.maxAngle / 360)               // centering offset depending on maxAngle
+}
+
+Knob.prototype.resizeHandle = function() {
+    _sliders_base.prototype.resizeHandle.call(this)
+    this.minDimension = Math.min(this.width, this.height)
+    this.canvas[0].style.top = (this.minDimension / 2 - 15) * this.lostHeightFactor + 'px'
+}
+
+
+Knob.prototype.draw = function(){
+
+    var o = this.percentToAngle(this.valueToPercent(this.originValue)),
+        d = this.percentToAngle(this.percent),
+        min = this.percentToAngle(0),
+        max = this.percentToAngle(100)
+
+    this.ctx.clearRect(0,0,this.width,this.height)
+
+    this.ctx.lineWidth = 2 * PXSCALE
+    this.ctx.beginPath()
+    this.ctx.strokeStyle = this.colors.track
+    this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - 15 * PXSCALE, min, max)
+    this.ctx.stroke()
+
+
+    this.ctx.beginPath()
+    this.ctx.strokeStyle = this.colors.custom
+    this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - 15 * PXSCALE, Math.min(o,d), Math.max(o,d))
+    this.ctx.stroke()
+
+
+    this.ctx.save()
+
+    this.ctx.translate(this.width / 2, this.height / 2)
+    this.ctx.rotate(d)
+    this.ctx.translate(-this.width / 2, -this.height / 2)
+
+    this.ctx.beginPath()
+
+    this.ctx.fillStyle = this.colors.gauge
+    this.ctx.arc(this.width / 2 + this.minDimension / 2 - 15 * PXSCALE, this.height / 2, 4 * PXSCALE, 0, Math.PI * 2)
+    this.ctx.fill()
+
+    this.ctx.globalAlpha = 0.3
+    this.ctx.fillStyle = this.colors.knob
+    this.ctx.arc(this.width / 2 + this.minDimension / 2 - 15 * PXSCALE, this.height / 2, 10 * PXSCALE, 0, Math.PI * 2)
+    this.ctx.fill()
+
+    this.ctx.restore()
+}
+
+
+module.exports.create = function(widgetData) {
+    var knob = new Knob(widgetData)
+    return knob.widget
+}
+
+
+
+var oldstuf = function(widgetData,container) {
     var widget = $(`
         <div class="knob-wrapper-outer">
             <div class="knob-wrapper">

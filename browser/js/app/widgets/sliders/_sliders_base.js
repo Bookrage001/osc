@@ -14,6 +14,7 @@ var _sliders_base = module.exports = function(){
 
     _canvas_base.apply(this, arguments)
 
+    this.wrapper = this.widget.find('.wrapper')
     this.input = this.widget.find('.input').fakeInput({align:'center'})
     this.roundFactor = Math.pow(10,this.widgetData.precision)
     this.value = undefined
