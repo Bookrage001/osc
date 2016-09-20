@@ -82,10 +82,6 @@
                                 "id": "eq_on_1",
                                 "type": "toggle",
                                 "label": "ON",
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Section%201/unscaled1",
                                 "width": "auto",
                                 "height": 50,
                                 "color": "auto",
@@ -94,7 +90,9 @@
                                 "preArgs": [],
                                 "linkId": "",
                                 "on": 1,
-                                "off": 0
+                                "off": 0,
+                                "path": "/eq_on_1",
+                                "target": []
                             },
                             {
                                 "id": "eq_freq_1",
@@ -104,10 +102,7 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%201/unscaled",
+                                "path": "/eq_freq_1",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -122,7 +117,9 @@
                                 "linkId": "",
                                 "alignRight": false,
                                 "horizontal": true,
-                                "meter": false
+                                "meter": false,
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_q_1",
@@ -132,10 +129,7 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201/unscaled1",
+                                "path": "/eq_q_1",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -150,7 +144,9 @@
                                 "linkId": "",
                                 "alignRight": false,
                                 "horizontal": true,
-                                "meter": false
+                                "meter": false,
+                                "origin": "auto",
+                                "target": []
                             }
                         ],
                         "left": 0,
@@ -170,10 +166,6 @@
                                 "id": "eq_on_2",
                                 "type": "toggle",
                                 "label": "ON",
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Section%201/unscaled1",
                                 "width": "auto",
                                 "height": 50,
                                 "color": "auto",
@@ -182,7 +174,9 @@
                                 "preArgs": [],
                                 "on": 1,
                                 "off": 0,
-                                "linkId": ""
+                                "linkId": "",
+                                "target": [],
+                                "path": "/eq_on_2"
                             },
                             {
                                 "id": "eq_freq_2",
@@ -192,10 +186,7 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%201/unscaled1",
+                                "path": "/eq_freq_2",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -210,7 +201,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_q_2",
@@ -220,10 +213,7 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201/unscaled2",
+                                "path": "/eq_q_2",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -238,7 +228,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_gain_2",
@@ -248,10 +240,7 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled2",
+                                "path": "/eq_gain_2",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -266,7 +255,9 @@
                                 "horizontal": true,
                                 "meter": false,
                                 "linkId": "",
-                                "width": "auto"
+                                "width": "auto",
+                                "origin": "auto",
+                                "target": []
                             }
                         ],
                         "left": 100,
@@ -286,10 +277,6 @@
                                 "id": "eq_on_3",
                                 "type": "toggle",
                                 "label": "ON",
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Section%201/unscaled1",
                                 "width": "auto",
                                 "height": 50,
                                 "color": "auto",
@@ -298,7 +285,9 @@
                                 "preArgs": [],
                                 "on": 1,
                                 "off": 0,
-                                "linkId": ""
+                                "linkId": "",
+                                "path": "/eq_on_3",
+                                "target": []
                             },
                             {
                                 "id": "eq_freq_3",
@@ -308,10 +297,7 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%201/unscaled2",
+                                "path": "/eq_freq_3",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -326,7 +312,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_q_3",
@@ -336,10 +324,7 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201/unscaled3",
+                                "path": "/eq_q_3",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -354,7 +339,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_gain_3",
@@ -364,10 +351,7 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled3",
+                                "path": "/eq_gain_3",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -382,7 +366,9 @@
                                 "horizontal": true,
                                 "meter": false,
                                 "linkId": "",
-                                "width": "auto"
+                                "width": "auto",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "type": "switch",
@@ -394,7 +380,7 @@
                                 "color": "auto",
                                 "css": "",
                                 "precision": 2,
-                                "path": "/fader_3",
+                                "path": "/eq_type_3",
                                 "preArgs": [],
                                 "target": [],
                                 "values": {
@@ -421,10 +407,6 @@
                                 "id": "eq_on_4",
                                 "type": "toggle",
                                 "label": "ON",
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Section%201/unscaled1",
                                 "width": "auto",
                                 "height": 50,
                                 "color": "auto",
@@ -433,7 +415,9 @@
                                 "preArgs": [],
                                 "on": 1,
                                 "off": 0,
-                                "linkId": ""
+                                "linkId": "",
+                                "path": "/eq_on_4",
+                                "target": []
                             },
                             {
                                 "id": "eq_freq_4",
@@ -443,10 +427,7 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%201/unscaled3",
+                                "path": "/eq_freq_4",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -461,7 +442,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_q_4",
@@ -471,10 +454,7 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201/unscaled4",
+                                "path": "/eq_q_4",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -489,7 +469,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_gain_4",
@@ -499,10 +481,7 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled4",
+                                "path": "/eq_gain_4",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -517,7 +496,9 @@
                                 "horizontal": true,
                                 "meter": false,
                                 "linkId": "",
-                                "width": "auto"
+                                "width": "auto",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "type": "switch",
@@ -529,7 +510,7 @@
                                 "color": "auto",
                                 "css": "",
                                 "precision": 2,
-                                "path": "/fader_4",
+                                "path": "/eq_type_4",
                                 "preArgs": [],
                                 "target": [],
                                 "values": {
@@ -556,10 +537,6 @@
                                 "id": "eq_on_5",
                                 "type": "toggle",
                                 "label": "ON",
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Section%201/unscaled1",
                                 "width": "auto",
                                 "height": 50,
                                 "color": "auto",
@@ -568,7 +545,9 @@
                                 "preArgs": [],
                                 "on": 1,
                                 "off": 0,
-                                "linkId": ""
+                                "linkId": "",
+                                "path": "/eq_on_5",
+                                "target": []
                             },
                             {
                                 "id": "eq_freq_5",
@@ -578,10 +557,7 @@
                                     "min": 10000,
                                     "max": 22050
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%201/unscaled4",
+                                "path": "/eq_freq_5",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -596,7 +572,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_q_5",
@@ -606,10 +584,7 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201/unscaled5",
+                                "path": "/eq_q_5",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -624,7 +599,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_gain_5",
@@ -634,10 +611,7 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled5",
+                                "path": "/eq_gain_5",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -652,7 +626,9 @@
                                 "horizontal": true,
                                 "meter": false,
                                 "linkId": "",
-                                "width": "auto"
+                                "width": "auto",
+                                "origin": "auto",
+                                "target": []
                             }
                         ],
                         "left": 400,
@@ -672,10 +648,6 @@
                                 "id": "eq_on_6",
                                 "type": "toggle",
                                 "label": "ON",
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Section%201/unscaled1",
                                 "width": "auto",
                                 "height": 50,
                                 "color": "auto",
@@ -684,7 +656,9 @@
                                 "preArgs": [],
                                 "on": 1,
                                 "off": 0,
-                                "linkId": ""
+                                "linkId": "",
+                                "path": "/eq_on_6",
+                                "target": []
                             },
                             {
                                 "id": "eq_freq_6",
@@ -694,10 +668,7 @@
                                     "min": 10000,
                                     "max": 22050
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%201/unscaled5",
+                                "path": "/eq_freq_6",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -712,7 +683,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             },
                             {
                                 "id": "eq_q_6",
@@ -722,10 +695,7 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "target": [
-                                    "SCSon:6671"
-                                ],
-                                "path": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201/unscaled6",
+                                "path": "/eq_q_6",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -740,7 +710,9 @@
                                 "alignRight": false,
                                 "horizontal": true,
                                 "meter": false,
-                                "linkId": ""
+                                "linkId": "",
+                                "origin": "auto",
+                                "target": []
                             }
                         ],
                         "left": 500,
