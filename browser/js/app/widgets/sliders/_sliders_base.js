@@ -147,7 +147,11 @@ _sliders_base.prototype.valueToPercent = function(value) {
 _sliders_base.prototype.setValue = function(v,send,sync, dragged) {
     if (typeof v != 'number') return
 
-    this.value = roundTo(clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax]),this.widgetData.precision)
+    var value = roundTo(clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax]),this.widgetData.precision)
+
+    if (dragged && this.value == value) send = false
+
+    this.value = value
 
     if (!dragged) this.percent = this.valueToPercent(this.value)
 

@@ -133,8 +133,6 @@ Fader.prototype.dragHandle = function(e, data) {
         this.percent + ( data.speedX/(this.width - this.margin * PXSCALE * 2)) * 100:
         this.percent + (-data.speedY/(this.height - this.margin * PXSCALE * 2)) * 100
 
-    this.percent = this.percent,[0,100]
-
     this.setValue(this.percentToValue(this.percent), true, true, true)
 
 }
