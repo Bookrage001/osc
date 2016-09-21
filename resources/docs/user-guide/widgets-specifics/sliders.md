@@ -49,6 +49,11 @@ range: {
 }
 ```
 
+### `òrigin`
+- type: `number`
+- default: `auto`
+- usage: `origin` defines the starting point's value of the fader's gauge
+
 #### `logScale`
 - type: `boolean`
 - default: `false`
@@ -104,6 +109,11 @@ range: {
 - default: `false`
 - usage: set to `true` to display a compact alternative for the widget. Enables `noPips` and disables mouse/touch focusing on the value display.
 
+#### `angle`
+- type: `number`
+- default: `270`
+- usage: `angle` defines the angle's width of the knob, in degrees
+
 #### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
@@ -118,6 +128,11 @@ range: {
     "max": {"inf":10} // "inf" will be used as a custom label on the scale
 }
 ```
+
+### `òrigin`
+- type: `number`
+- default: `auto`
+- usage: `origin` defines the starting point's value of the knob's gauge
 
 #### `logScale`
 - type: `boolean`
