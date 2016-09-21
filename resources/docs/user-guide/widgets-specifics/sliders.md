@@ -49,7 +49,7 @@ range: {
 }
 ```
 
-### `origin`
+#### `origin`
 - type: `number`
 - default: `auto`
 - usage: `origin` defines the starting point's value of the fader's gauge
