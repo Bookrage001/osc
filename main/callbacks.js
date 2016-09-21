@@ -8,6 +8,12 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 			if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
 		    if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
 		    var recentSessions = settings.read('recentSessions')
+
+			if (settings.read('examples')) {
+				recentSessions = fs.readdirSync('examples')
+				recentSessions = recentSessions.map(function(file){return 'examples/' + file})
+			}
+
 		    ipc.send('sessionList',recentSessions,clientId)
 		},
 

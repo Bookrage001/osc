@@ -12,7 +12,8 @@ var argv = require('yargs')
             'p':{alias:'port',describe:'osc input port (for synchronization)'},
             'd':{alias:'debug',describe:'log received osc messages in the console'},
             'n':{alias:'nogui',describe:'disable default gui and makes the app availabe through http on specified port'},
-            't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'}
+            't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
+            'examples':{describe:'list examples instead of recent sessions'}
         })
         .check(function(a,x){if(a.p==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
         .check(function(a,x){if(a.n==undefined || !isNaN(a.n)&&a.n>1023&&parseInt(a.n)===a.n){return true}else{throw 'Error: Port must be an integer >= 1024'}})
@@ -33,6 +34,7 @@ module.exports = function(fs) {
             debug: argv.d || false,
             sessionFile:  argv.l || false,
             noGui: argv.n || false,
+            examples: argv.examples,
             theme: function(){
                 if (!argv.t) return
                 var style = []
