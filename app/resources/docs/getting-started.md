@@ -58,12 +58,13 @@ $ sudo npm install -g npm   # update npm
 ```bash
 $ git clone https://github.com/jean-emmanuel/open-stage-control
 $ cd open-stage-control/
-$ npm install --save-optional
+$ npm install
  ```
 
 **Run**
 
 ```bash
+$ npm build-js && npm build-css
 $ npm start [ -- options]
 
 # A double hyphen ("--") is used here to tell npm that the following options are to be given to the app.
@@ -87,7 +88,7 @@ $ sudo npm install -g npm   # update npm
 ```bash
 $ git clone https://github.com/jean-emmanuel/open-stage-control
 $ cd open-stage-control
-$ npm install --save-optional
+$ npm install --only=dev
 $ export PLATFORM=TARGET_PLATFORM # TARGET_PLATFORM can be linux, win32 (windows) or darwin (os x)
 $ export ARCH=TARGET_ARCH         # TARGET_ARCH can be ia32 or x64
 $ npm run build
@@ -96,6 +97,8 @@ $ # Do the following if you want a deb package for debian/ubuntu
 $ npm run deb32
 $ # or
 $ npm run deb64
+$ # or
+$ npm run debarm
 ```
 
 This will build the app in `dist/open-stage-control-PLATFORM-ARCH`.
