@@ -7,7 +7,7 @@ before_install:
   - sudo dpkg --add-architecture i386
   - sudo apt-get update -qq
   - sudo apt-get install -qq wine
-install: npm install --save-optional --production
+install: npm install --only=dev
 deploy:
   provider: releases
   api-key:
