@@ -11,7 +11,7 @@
   },
   "scripts": {
     "postinstall":"cd app && npm install",
-    "start": "cd app && npm start",
+    "start": "cd app && npm start --",
     "build": "npm run build-js && npm run build-css && electron-packager ./app open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/images/logo --overwrite --ignore \"(app/node_modules/electron.*)\"",
     "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/ --icon app/resources/images/logo.png",
     "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/ --icon app/resources/images/logo.png",
