@@ -40,6 +40,7 @@ body {
         flex-direction: column;
         > .navigation {
             background:var(--color-bg);
+            margin-right:1rem; // because widgets have a fake 1rem right-border
         }
         > .content {
             background:none;

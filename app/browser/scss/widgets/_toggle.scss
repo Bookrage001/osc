@@ -49,6 +49,10 @@
             &:before {
                 opacity: .3;
             }
+            &:after {
+                border-top-color: var(--color-custom);
+                opacity: 0.3;
+            }
 
         }
     }
