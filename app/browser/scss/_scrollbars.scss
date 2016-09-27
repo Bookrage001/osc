@@ -22,12 +22,17 @@
 }
 ::-webkit-scrollbar-thumb {
     background:var(--color-raised);
+
     &:vertical {
         border-left:2rem solid var(--color-bg);
     }
     &:horizontal {
         border-top:2rem solid var(--color-bg);
     }
+}
+
+@mixin arrow($i) {
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="50px" width="50px"><text x="50%" y="50%" font-size="30" fill="rgba(255,255,255,0.15)" alignment-baseline="central" text-anchor="middle" font-family="fontawesome"> '+$i+' </text></svg>');
 }
 
 ::-webkit-scrollbar-button:decrement:start, ::-webkit-scrollbar-button:increment:end {
@@ -37,29 +42,35 @@
     width: var(--scrollbar-size);
 
     display: block;
+    color:red;
+
+    background-size:contain;
+    background-position: center;
 
     &:vertical {
         &:decrement:start {
             border-left:2rem solid var(--color-bg);
             border-bottom:2rem solid var(--color-bg);
+            @include arrow()
         }
 
         &:increment:end {
             border-left:2rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
-
+            @include arrow()
         }
     }
     &:horizontal {
         &:decrement:start {
             border-right:2rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
+            @include arrow()
         }
 
         &:increment:end {
             border-left:2rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
-
+            @include arrow()
         }
     }
 
