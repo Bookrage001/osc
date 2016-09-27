@@ -112,7 +112,7 @@
     left:0;
     right:0;
     bottom:0;
-    border:1rem solid var(--color-accent);
+    border:1rem dashed var(--color-accent);
     pointer-events: none;
 }
 .widget.editing:after {
@@ -195,7 +195,6 @@
         bottom: 0;
         right: 0;
         cursor: se-resize;
-
     }
     &.ui-resizable-e {
         top: 50%;
@@ -208,6 +207,7 @@
         left: 50%;
         margin-left:-5rem;
         cursor: s-resize;
+
     }
 }
 
