@@ -102,7 +102,7 @@
 
 .widget.editing {
     z-index: 11!important;
-    overflow: visible;
+    overflow: hidden;
 }
 .widget.editing:after, li.editing a:before, a.editing:before, .content.editing:before, #container.editing:before{
     content:"";
@@ -112,7 +112,7 @@
     left:0;
     right:0;
     bottom:0;
-    border:1rem dashed var(--color-accent);
+    border:1rem solid var(--color-accent);
     pointer-events: none;
 }
 .widget.editing:after {
@@ -179,10 +179,8 @@
     justify-content: center;
     align-items: center;
     background: var(--color-accent);
-    width:20rem;
-    height:20rem;
-    border-radius:100%;
-    box-shadow: 0 0 4rem 0 var(--color-bg);
+    width:10rem;
+    height:10rem;
 
     &:after {
         content:"";
@@ -194,35 +192,22 @@
     }
     &.ui-resizable-se {
         content:"";
-        bottom: 5rem;
-        right: 5rem;
+        bottom: 0;
+        right: 0;
         cursor: se-resize;
-        &:before {
-            content:"\f065";
-            font-family: FontAwesome;
-            transform:rotate(90deg)
-        }
+
     }
     &.ui-resizable-e {
         top: 50%;
-        margin-top:-10rem;
-        right: 5rem;
+        margin-top:-5rem;
+        right: 0;
         cursor: e-resize;
-        &:before {
-            content:"\f051";
-            font-family: FontAwesome;
-        }
     }
     &.ui-resizable-s {
-        bottom: 5rem;
+        bottom: 0;
         left: 50%;
-        margin-left:-10rem;
+        margin-left:-5rem;
         cursor: s-resize;
-        &:before {
-            content:"\f051";
-            font-family: FontAwesome;
-            transform: rotate(90deg);
-        }
     }
 }
 
@@ -244,24 +229,23 @@
 
 .ui-draggable-handle:not(.label) {
     position: absolute;
-    top: 5rem;
-    left: 5rem;
+    top: 0;
+    left: 0;
     z-index: 100000;
-    height:20rem;
-    width: 20rem;
+    height:10rem;
+    width: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius:100%;
     background: var(--color-accent);
-    box-shadow: 0 0 4rem 0 var(--color-bg);
-
-    &:before {
-        content:"\f0b2";
-        font-family: FontAwesome;
-        transform: rotate(45deg);
+    &:after {
+        content:"";
+        position: absolute;
+        top:-5rem;
+        right:-5rem;
+        left:-5rem;
+        bottom:-5rem;
     }
-
 }
 
 .ui-draggable-handle {

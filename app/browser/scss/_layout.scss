@@ -30,7 +30,7 @@ body {
     position: absolute;
     overflow: auto;
     left:0;
-    right:0;
+    right:-1rem; // because widgets have a fake 1rem right-border
     top:0;
     bottom:0;
     background:var(--color-bg);
@@ -105,17 +105,17 @@ body {
 				bottom:0;
 				left:0;
 				right:0;
-				height:1rem;
+				top:0;
 				opacity: 0;
-				transition: all .2s;
-				transform: scale(0);
+				transition: opacity .2s;
+                z-index: -1;
 			}
             &.on a, .sidepanel-open {
 				position: relative;
                 background: var(--color-raised);
+                z-index: 0;
 				&:after {
-					opacity:1;
-					transform: scale(1);
+					opacity:0.3;
 				}
             }
         }

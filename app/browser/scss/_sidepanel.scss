@@ -76,6 +76,9 @@
             border-left:8rem solid var(--color-fg);
         }
     }
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
 }
 .actions {
     padding:1rem;
@@ -112,10 +115,10 @@
         overflow: visible;
 
         &.on {
+            z-index: 0;
             pointer-events: none;
             &:after {
-                opacity:1;
-                transform: scale(1);
+                opacity:.3;
             }
         }
         &:before {
@@ -135,10 +138,10 @@
             top:0;
             left:0;
             right:0;
-            height:1rem;
+            bottom:0;
             opacity: 0;
-            transition: all .2s;
-            transform: scale(0);
+            transition: opacity .2s;
+            z-index: -1;
         }
     }
 }

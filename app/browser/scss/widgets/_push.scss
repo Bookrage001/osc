@@ -3,13 +3,7 @@
     .active {
         background: var(--color-fg);
     }
-    .light:after {
-        content:"";
-        position: absolute;
-        width:100%;
-        height:100%;
-        box-shadow: 0 0 0 4rem var(--color-text-fade) inset;
-        opacity: .1;
-
+    .light:after{
+        display: none;
     }
 }

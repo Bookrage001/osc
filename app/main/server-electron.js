@@ -7,7 +7,7 @@ module.exports = function(settings,app,ipc,browserWindow) {
         icon: path.resolve(__dirname + '/../resources/images/logo.png'),
         title:settings.read('appName'),
         backgroundColor:'#1a1d22',
-        autoHideMenuBar:true,
+        // autoHideMenuBar:true,
         // show:false
     })
 
