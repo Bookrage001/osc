@@ -64,7 +64,6 @@ $ npm install
 **Run**
 
 ```bash
-$ npm build-js && npm build-css
 $ npm start [ -- options]
 
 # A double hyphen ("--") is used here to tell npm that the following options are to be given to the app.
