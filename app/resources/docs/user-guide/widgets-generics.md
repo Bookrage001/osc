@@ -65,7 +65,7 @@ A widget object is a javascript object. All widgets share a set of generic prope
 #### `css`
 - type: `string`
 - default: *empty*
-- usage: the `css` property can be used to override inherited [theming](theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element though this property.
+- usage: the `css` property can be used to override inherited [theming](theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element through this property.
 
 ----
 ### OSC
