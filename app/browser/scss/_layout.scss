@@ -35,16 +35,17 @@ body {
     bottom:0;
     background:var(--color-bg);
     transform: rotateZ(0);
-    &.has-tabs {
-        display: flex;
-        flex-direction: column;
-        > .navigation {
-            background:var(--color-bg);
-            margin-right:1rem; // because widgets have a fake 1rem right-border
-        }
-        > .content {
-            background:none;
-        }
+}
+.has-tabs {
+    display: flex;
+    flex-direction: column;
+    > .navigation {
+        background:var(--color-bg);
+        margin-right:1rem; // because widgets have a fake 1rem right-border
+    }
+    > .content {
+        background:none;
+        margin-right:1rem; // because widgets have a fake 1rem right-border
     }
 }
 
