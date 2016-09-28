@@ -1,4 +1,6 @@
-var path = require('path')
+var path = require('path'),
+    shortcut = require('electron-localshortcut')
+
 module.exports = function(settings,app,ipc,browserWindow) {
 
     window = new browserWindow({
@@ -6,9 +8,7 @@ module.exports = function(settings,app,ipc,browserWindow) {
         height: 600,
         icon: path.resolve(__dirname + '/../resources/images/logo.png'),
         title:settings.read('appName'),
-        backgroundColor:'#1a1d22',
-        // autoHideMenuBar:true,
-        // show:false
+        backgroundColor:'#1a1d22'
     })
 
     window.loadURL('file://' + __dirname + '/../browser/index.html')
@@ -19,37 +19,20 @@ module.exports = function(settings,app,ipc,browserWindow) {
 
     window.setMenuBarVisibility(false)
 
-    var Menu = require('electron').Menu
+    shortcut.register(window,'CmdOrCtrl+R',function(){
+        window.reload()
+    })
 
-    Menu.setApplicationMenu(Menu.buildFromTemplate(
-        [
-            {
-                label: 'View',
-                submenu: [
-                    {
-                        label: 'Restart',
-                        accelerator: 'CmdOrCtrl+R',
-                        click: function(){
-                            window.reload()
-                        }
-                    },
-                    {
-                        label: 'Toggle DevTools',
-                        accelerator: 'F12',
-                        click: function() { window.toggleDevTools(); }
-                    },
-                    {
-                        label: 'Toggle Fullscreen',
-                        accelerator: 'F11',
-                        click: function() { window.setFullScreen(!window.isFullScreen()); }
-                    }
-                ]
-            },
-        ]
-    ))
+    shortcut.register(window,'F11',function(){
+        window.setFullScreen(!window.isFullScreen())
+    })
+
+    shortcut.register(window,'F12',function(){
+        window.toggleDevTools();
+    })
+
 
     // mainProcess > renderProcess ipc shorthand
-
     ipc.send = function(name,data) {
         window.webContents.send(name,data)
     }

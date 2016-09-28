@@ -19,7 +19,7 @@ if (!settings.read('noGui')) {
             app.quit()
         }
     })
-
+    
     app.on('ready',function(){
         var server = require('./server-electron')(settings,app,ipc,browserWindow),
             osc = require('./osc')(ipc,settings),
