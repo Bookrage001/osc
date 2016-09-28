@@ -27,6 +27,11 @@ A widget object is a javascript object. All widgets share a set of generic prope
 - default: generated unique 'widget_n'
 - usage: widgets sharing the same `id` will act as clones and update each other's value(s) without sending extra osc messages.
 
+#### `id`
+- type: `string`
+- default: `empty`
+- usage: widgets sharing the same `linkId` update each other's value(s) AND send their respective osc messages.
+
 
 
 ----
@@ -38,7 +43,7 @@ A widget object is a javascript object. All widgets share a set of generic prope
 - usage:
     - set to `false` to hide completely
     - set to `icon: fontawesome-class` to display an icon from [FontAwesome](http://fontawesome.io/icons/) (replace `fontawesome-class` with the icon's name)
-    
+
 #### `top` / `left`
 - type: `number|percentage`
 - default: `auto`
