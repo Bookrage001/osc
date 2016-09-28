@@ -143,8 +143,8 @@ var init = function(){
         actions['<i class="fa fa-trash"></i> Delete'] = function(){
             var popup = createPopup('Are you sure ?',`
                 <div class="actions">
-                    <div class="btn warning confirm-delete">DELETE</div>
-                    <div class="btn cancel-delete">CANCEL</div>
+                    <a class="btn warning confirm-delete">DELETE</a>
+                    <a class="btn cancel-delete">CANCEL</a>
                 </div>
             `)
             $('.confirm-delete').click(function(){
