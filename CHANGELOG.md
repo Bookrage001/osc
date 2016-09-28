@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.7.0
+
+- bug fixes
+  - osc messages with 0-item and 1-item args are correctly unpacked and routed
+  - buttons can handle messages with 0 arg if one of their state has the value "null"
+- ui
+  - nice and bigger scrollbar
+  - right-click no longer starts a dragging gesture
+- editor
+  - copy/paste data auto-incrementation fix
+- widgets
+  - new equalizer plotter
+  - push/toggles made more obvious
+  - knob's new options: angle and origin
+  - fader's new option: origin
+- engine
+  - electron 1.4.1 (chrome 53, node 6.5.0)
+- misc
+  - rewritten sliders and plots using canvas and prototypes inheritance
+  - reorganized package using the two-package.json structure: js and css assets are now create at build time, and only necessary dependencies are shipped with the app
 
 ## 0.6.3
 
