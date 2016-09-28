@@ -101,8 +101,8 @@ range: {
 
 #### `noPip`
 - type: `boolean`
-- default: `false`
-- usage: set to `true` to hide the scale
+- default: `true`
+- usage: set to `false` to show the scale
 
 #### `compact`
 - type: `boolean`
