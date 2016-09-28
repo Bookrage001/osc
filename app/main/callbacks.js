@@ -1,4 +1,5 @@
-var vm = require('vm')
+var vm = require('vm'),
+	path = require('path')
 
 module.exports = function(settings,fs,ipc,osc,dialog) {
 
@@ -10,7 +11,8 @@ module.exports = function(settings,fs,ipc,osc,dialog) {
 		    var recentSessions = settings.read('recentSessions')
 
 			if (settings.read('examples')) {
-				recentSessions = fs.readdirSync('examples')
+				var dir = path.resolve(__dirname + '/../examples')
+				recentSessions = fs.readdirSync(dir)
 				recentSessions = recentSessions.map(function(file){return 'examples/' + file})
 			}
 
