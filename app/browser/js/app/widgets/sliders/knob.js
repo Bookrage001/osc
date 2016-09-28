@@ -16,7 +16,7 @@ module.exports.options = {
     width:'auto',
     height:'auto',
     color:'auto',
-    noPip:false,
+    noPip:true,
     compact:false,
     angle:270,
     css:'',
@@ -49,6 +49,14 @@ Knob = function(widgetData) {
     if (widgetData.compact) {
         this.widget.addClass('compact')
         this.margin = 0
+    }
+
+    if (!widgetData.noPip) {
+        this.wrapper.append(`
+            <div class="pips">
+                <div>${this.rangeLabels[0]}</div><div>${this.rangeLabels[this.rangeLabels.length-1]}</div>
+            </div>
+        `)
     }
 
     this.lastOffsetX = 0

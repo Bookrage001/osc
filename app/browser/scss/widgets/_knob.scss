@@ -39,4 +39,18 @@
             pointer-events: none;
         }
     }
+    .pips {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        div {
+            padding: 0 8%;
+            font-size: 11rem;
+            color: var(--color-text-fade);
+        }
+    }
 }
