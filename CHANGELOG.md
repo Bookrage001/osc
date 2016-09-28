@@ -18,6 +18,7 @@
 - engine
   - electron 1.4.1 (chrome 53, node 6.5.0)
 - misc
+  - added `--examples` switch for showing the availabe example sessions instead of the history 
   - rewritten sliders and plots using canvas and prototypes inheritance
   - reorganized package using the two-package.json structure: js and css assets are now create at build time, and only necessary dependencies are shipped with the app
 
