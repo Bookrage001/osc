@@ -77,7 +77,9 @@
         }
     }
     &::-webkit-scrollbar-button {
-        display: none;
+        border-color: var(--color-fg);
+        border-width:8rem;
+        background-color: var(--color-raised);
     }
 }
 .actions {
