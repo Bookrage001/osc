@@ -8,6 +8,7 @@ module.exports = function(settings) {
 	        server      = http.createServer(express),
 	        io          = require('socket.io')(),
 	        ioWildcard  = require('socketio-wildcard')(),
+			ifaces		= require('os').networkInterfaces(),
 	        ipc 		= {}
 
 	    express.get('/', function(req, res){
@@ -51,8 +52,17 @@ module.exports = function(settings) {
 		    });
 		}
 
+		var appAddresses = []
+		Object.keys(ifaces).forEach(function (ifname) {
+			for (i=0;i<ifaces[ifname].length;i++) {
+				if (ifaces[ifname][i].family == 'IPv4') {
+					appAddresses.push('http://' + ifaces[ifname][i].address + ':' + settings.read('noGui'))
+				}
+			}
+		})
 
-		console.log('Headless mode: app available at http://127.0.0.1:'+settings.read('noGui'))
+
+		console.log('Headless mode: app available at ' + appAddresses.join(' & '))
 
 		return {
 			ipc:ipc,
