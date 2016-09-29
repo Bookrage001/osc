@@ -174,22 +174,17 @@ i {
     left:50%;
     margin-top:-15rem;
     text-align: center;
-    .spinner {
-        display: block;
-        margin: 0 auto;
-        height:30rem;
-        width:30rem;
-        border-radius: 50%;
-        border:2rem solid var(--color-track);
-        border-top-color:var(--color-accent);
-        animation: spin .5s linear infinite;
-    }
-    #status {
-        margin-top: 10rem;
-        display: inline-block;
+}
 
-    }
-
+.spinner {
+    display: block;
+    margin: 0 auto;
+    height:30rem;
+    width:30rem;
+    border-radius: 50%;
+    border:2rem solid var(--color-track);
+    border-top-color:var(--color-accent);
+    animation: spin .5s linear infinite;
 }
 
 @keyframes spin {
