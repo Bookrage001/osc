@@ -1,6 +1,6 @@
 module.exports = {
 
-    createPopup: function(title,content) {
+    createPopup: function(title,content,closable) {
 
         var popup = $(`
             <div class="popup">
@@ -11,9 +11,13 @@ module.exports = {
             </div>`),
             closer = popup.find('.popup-title .closer')
 
-        closer.click(function(){
-            popup.close()
-        })
+        if (closable) {
+            closer.click(function(){
+                popup.close()
+            })
+        } else {
+            closer.remove()
+        }
 
 
         popup.close = function(){
