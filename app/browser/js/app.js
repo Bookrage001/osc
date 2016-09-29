@@ -11,6 +11,8 @@ EDITING = false
 
 TRAVERSING = false
 
+OSCSYNCONLY = false
+
 TABS = {}
 
 

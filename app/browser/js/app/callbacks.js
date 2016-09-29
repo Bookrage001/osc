@@ -82,8 +82,23 @@ module.exports = {
     sessionOpen: function(event,data){
         var data = data || event
         var session = JSON.parse(data)
-        init(session)
+        init(session,function(){
+            IPC.send('sessionOpened')
+        })
 
+    },
+
+    stateSend:function(){
+        var p = utils.createPopup('New client connecting...','<p><div class="spinner"></div></p>', false)
+
+        setTimeout(function(){
+
+            OSCSYNCONLY = true
+            actions.stateSend()
+            OSCSYNCONLY = false
+
+            p.close()
+        },150)
     },
 
     error: function(event,data){

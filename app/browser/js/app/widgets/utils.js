@@ -1,7 +1,11 @@
 module.exports = {
 
     sendOsc: function(data){
-        IPC.send('sendOsc', data)
+        if (!OSCSYNCONLY) {
+            IPC.send('sendOsc', data)
+        } else {
+            IPC.send('syncOsc', data)
+        }
     },
 
 	clip: function(value,range) {
