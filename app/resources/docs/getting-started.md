@@ -6,15 +6,15 @@
 
 Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
 
-```bash
+```
 Options:
   -h, --help       display help
   -s, --sync       synchronized hosts (ip:port pairs) (all osc messages will also be sent to these)
   -i, --input-port osc input port (for synchronization / feedback)
   -d, --debug      log received osc in the console
-  -p, --port       http port of the app\'s server (default to 8080)
+  -p, --port       http port of the app's server (default to 8080)
   -n, --nogui      disable default gui
-  -g, --gui-only   app\'s ip:port, default to localhost:8080, only launch the gui (a server instance must be running)
+  -g, --gui-only   app's ip:port, default to localhost:8080, only launch the gui (a server instance must be running)
   -l, --load       session file to load
   -t, --theme      theme name or path (mutliple values allowed)
 
