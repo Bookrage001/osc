@@ -2,9 +2,8 @@ var path = require('path'),
     shortcut = require('electron-localshortcut'),
     {app, BrowserWindow, dialog} = require('electron'),
     settings = require('./settings'),
-    address = settings.read('address')? 'http://' + settings.read('address') : settings.read('appAddresses')[0]
+    address = typeof settings.read('guiOnly')=='string'? 'http://' + settings.read('guiOnly') : settings.read('appAddresses')[0]
 
-console.log(address)
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
 }

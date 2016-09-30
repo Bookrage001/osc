@@ -15,8 +15,7 @@ var argv = require('yargs')
             'i':{alias:'input-port',describe:'osc input port (for synchronization)'},
             'd':{alias:'debug',describe:'log received osc messages in the console'},
             'n':{alias:'no-gui',describe:'disable default gui'},
-            'g':{alias:'gui-only',describe:'only launch the gui (a server instance must be running) '},
-            'a':{alias:'address',describe:'app\'s ip:port (for gui-only mode, default to localhost:8080)'},
+            'g':{alias:'gui-only',describe:'app\'s ip:port, default to localhost:8080, only launch the gui (a server instance must be running)'},
             't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
             'examples':{describe:'list examples instead of recent sessions'}
         })
@@ -40,7 +39,6 @@ var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8
         sessionFile:  argv.l || false,
         noGui: argv.n || false,
         guiOnly: argv.g || false,
-        address: argv.a || false,
         appAddresses:function(){
             var appAddresses = []
 
