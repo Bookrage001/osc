@@ -8,13 +8,16 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 
 ```bash
 Options:
-  -h, --help     display help
-  -s, --sync     synchronized hosts (ip:port pairs) (all osc messages will also be sent to these)
-  -l, --load     session file to load
-  -p, --port     osc input port (for synchronization / feedback)
-  -d, --debug    log received osc in the console
-  -n, --nogui    disable default gui and makes the app availabe through http on specified port
-  -t, --theme    theme name or path (mutliple values allowed)
+  -h, --help       display help
+  -s, --sync       synchronized hosts (ip:port pairs) (all osc messages will also be sent to these)
+  -i, --input-port osc input port (for synchronization / feedback)
+  -d, --debug      log received osc in the console
+  -p, --port       http port of the app\'s server (default to 8080)
+  -n, --nogui      disable default gui
+  -g, --gui-only   only launch the gui (a server instance must be running)
+  -a, --address    app\'s ip:port (for gui-only mode, default to localhost:8080
+  -l, --load       session file to load
+  -t, --theme      theme name or path (mutliple values allowed)
 
 Examples:
 
@@ -22,9 +25,12 @@ $ open-stage-control -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
 
-$ open-stage-control -n 8080 -l path/to/session.js
+$ open-stage-control -n -l path/to/session.js
 
 This will create a headless app available through http on port 8080. Multiple clients can use the app (with chrome only) simultaneously, their widgets will be synchronized.
+
+$ open-stage-control -n -l path/to/session.js
+
 
 
 $ open-stage-control -t light noinput /path/to/custom_theme.css
