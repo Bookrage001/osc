@@ -21,35 +21,11 @@ module.exports =  {
 	    ipc.send('sessionList',recentSessions,clientId)
 	},
 
-	sessionBrowse: function(data) {
-	    var sessionlist = settings.read('recentSessions'),
-			self = this
-        dialog.showOpenDialog(window,{title:'Load session file',defaultPath:settings.read('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
-            if (file==undefined) {return}
-            settings.write('sessionPath',file[0].replace(file[0].split('/').pop(),''))
-            self.sessionOpen({path:file[0]})
-        })
-	},
-
-	sessionSave: function(data) {
-		var self = this
-	    dialog.showSaveDialog(window,{title:'Save current session',defaultPath:settings.read('sessionPath'),filters: [ { name: 'OSC Session file', extensions: ['js'] }]},function(file){
-
-	        if (file==undefined) {return}
-	        settings.write('sessionPath',file.replace(file.split('/').pop(),''))
-
-	        if (file.indexOf('.js')==-1){file+='.js'}
-	        fs.writeFile(file,data, function (err, data) {
-	            if (err) throw err
-				self.sessionAddToHistory(file)
-	            console.log('The session was saved in '+file)
-	        })
-	    })
-	},
-
-
 	sessionAddToHistory: function(data) {
 	    var sessionlist = settings.read('recentSessions')
+
+		if (!fs.lstatSync(data).isFile()) return
+
 	    // add session to history
 	    sessionlist.unshift(data)
 	    // remove doubles from history

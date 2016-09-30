@@ -87,12 +87,14 @@ module.exports = {
         var prompt = $('<input type="file" accept=".js"/>')
         prompt.click()
         prompt.on('change',function(e){
-            var reader = new FileReader();
+            var reader = new FileReader(),
+                file = e.target.files[0]
+
             reader.onloadend = function(e) {
                 var session = e.target.result
-                IPC.send('sessionOpen',{file:session})
+                IPC.send('sessionOpen',{file:session,path:file.path})
             }
-            reader.readAsText(e.target.files[0],'utf-8');
+            reader.readAsText(file, 'utf-8');
         })
 
     },
