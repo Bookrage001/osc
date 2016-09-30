@@ -17,9 +17,9 @@
     "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/ --icon app/resources/images/logo.png",
     "debarm": "electron-installer-debian --src dist/open-stage-control-linux-armv7l/ --arch armv7l --dest dist/open-stage-control-linux-armv7l/ --icon app/resources/images/logo.png",
     "watch-css": "nodemon --watch app/browser/scss -e scss -x \"npm run build-css\"",
-    "watch-js": "nodemon --watch app/browser/js -e js --ignore app/browser/js/browser-headless.bundle.js -x \"npm run build-js\"",
+    "watch-js": "nodemon --watch app/browser/js -e js --ignore app/browser/js/browser.bundle.js -x \"npm run build-js\"",
     "build-css": "node-sass --include-path app/browser/scss app/browser/scss/style.scss   app/browser/css/style.css --output-style compressed",
-    "build-js": "browserify app/browser/js/browser-headless.js -o app/browser/js/browser-headless.bundle.js",
+    "build-js": "browserify app/browser/js/browser.js -o app/browser/js/browser.bundle.js",
     "deploy-docs": "cd app/resources && mkdocs gh-deploy --clean && rm -rf site",
     "test": "npm run build"
   }

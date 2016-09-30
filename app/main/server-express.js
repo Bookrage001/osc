@@ -10,7 +10,7 @@ var express     = require('express')(),
 	settings	= require('./settings')
 
 express.get('/', function(req, res){
-    res.sendFile(path.resolve(__dirname + '/../browser/index-headless.html'))
+    res.sendFile(path.resolve(__dirname + '/../browser/index.html'))
 })
 express.get('*', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser' + req.path))

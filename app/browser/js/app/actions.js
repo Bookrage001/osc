@@ -15,15 +15,10 @@ module.exports = {
 
     stateSave: function() {
         state = JSON.stringify(module.exports.stateGet(),null,'    ')
-        if (WEBFRAME) {
-            IPC.send('stateSave',state)
-        } else {
-            var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
-            var blob = new Blob([state],{type : 'text/plain'});
-            down.attr('href', window.URL.createObjectURL(blob))
-            down[0].click()
-        }
-
+        var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
+        var blob = new Blob([state],{type : 'text/plain'});
+        down.attr('href', window.URL.createObjectURL(blob))
+        down[0].click()
     },
 
     stateGet: function (){
@@ -42,21 +37,17 @@ module.exports = {
     },
 
     stateLoad: function() {
-        if (WEBFRAME) {
-            IPC.send('stateLoad')
-        } else {
-            var prompt = $('<input type="file" accept=".preset"/>')
-            prompt.click()
-            prompt.on('change',function(e){
-                var reader = new FileReader();
-                reader.onloadend = function(e) {
-                    var preset = e.target.result
-                    module.exports.stateSet(JSON.parse(preset),true)
-                    STATE = preset
-                }
-                reader.readAsText(e.target.files[0],'utf-8');
-            })
-        }
+        var prompt = $('<input type="file" accept=".preset"/>')
+        prompt.click()
+        prompt.on('change',function(e){
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                var preset = e.target.result
+                module.exports.stateSet(JSON.parse(preset),true)
+                STATE = preset
+            }
+            reader.readAsText(e.target.files[0],'utf-8');
+        })
     },
 
     stateSend: function(){
@@ -81,47 +72,37 @@ module.exports = {
 
     toggleFullscreen: function(){
 
-        if (WEBFRAME) {
-            IPC.send('fullscreen')
-        } else {
-            var isInFullScreen = document.webkitIsFullScreen
+        var isInFullScreen = document.webkitIsFullScreen
 
-            if (isInFullScreen) {
-                document.webkitExitFullscreen()
-            } else {
-                document.documentElement.webkitRequestFullScreen()
-            }
+        if (isInFullScreen) {
+            document.webkitExitFullscreen()
+        } else {
+            document.documentElement.webkitRequestFullScreen()
         }
+
     },
 
     sessionBrowse: function(){
 
-        if (WEBFRAME) {
-            IPC.send('sessionBrowse')
-        } else {
-            var prompt = $('<input type="file" accept=".js"/>')
-            prompt.click()
-            prompt.on('change',function(e){
-                var reader = new FileReader();
-                reader.onloadend = function(e) {
-                    var session = e.target.result
-                    IPC.send('sessionOpen',{file:session})
-                }
-                reader.readAsText(e.target.files[0],'utf-8');
-            })
-        }
+        var prompt = $('<input type="file" accept=".js"/>')
+        prompt.click()
+        prompt.on('change',function(e){
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                var session = e.target.result
+                IPC.send('sessionOpen',{file:session})
+            }
+            reader.readAsText(e.target.files[0],'utf-8');
+        })
+
     },
 
     sessionSave: function() {
         var sessionfile = JSON.stringify(SESSION,null,'    ')
-        if (WEBFRAME) {
-            IPC.send('sessionSave',sessionfile)
-        } else {
-            var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.js"></a>')
-            var blob = new Blob([sessionfile],{type : 'text/plain'});
-            down.attr('href', window.URL.createObjectURL(blob))
-            down[0].click()
-        }
+        var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.js"></a>')
+        var blob = new Blob([sessionfile],{type : 'text/plain'});
+        down.attr('href', window.URL.createObjectURL(blob))
+        down[0].click()
 
     },
 
