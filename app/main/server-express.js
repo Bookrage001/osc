@@ -39,15 +39,17 @@ module.exports = function(settings) {
 		        socket.on('*', function(e){
 		            var name = e.data[0],
 		                data = e.data[1]
-		            if (callbacks[name]) callbacks[name](data,socket.id)
-		            if ((name=='sendOsc' && data.sync!==false) || name=='syncOsc') {
-		                // synchronize all other connected clients
-		                socket.broadcast.emit('receiveOsc',data)
-		            }
+
+					if ((name=='sendOsc' && data.sync!==false) || name=='syncOsc') {
+						// synchronize all other connected clients
+						socket.broadcast.emit('receiveOsc',data)
+					}
 					if (name=='sessionOpened') {
 						// synchronize all other connected clients
 						socket.broadcast.emit('stateSend',data)
 					}
+					
+		            if (callbacks[name]) callbacks[name](data,socket.id)
 		        });
 		    });
 		}
