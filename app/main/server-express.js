@@ -7,7 +7,7 @@ var express     = require('express')(),
     ioWildcard  = require('socketio-wildcard')(),
     ipc 		= {},
 	settings	= require('./settings'),
-    appAddresses = settings.appAddresses
+    appAddresses = settings.read('appAddresses')
 
 express.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser/index.html'))

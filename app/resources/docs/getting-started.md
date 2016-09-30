@@ -15,7 +15,7 @@ Options:
   -p, --port       http port of the app\'s server (default to 8080)
   -n, --nogui      disable default gui
   -g, --gui-only   only launch the gui (a server instance must be running)
-  -a, --address    app\'s ip:port (for gui-only mode, default to localhost:8080
+  -a, --address    app\'s ip:port (for gui-only mode, default to localhost:8080)
   -l, --load       session file to load
   -t, --theme      theme name or path (mutliple values allowed)
 
