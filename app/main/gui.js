@@ -1,7 +1,8 @@
 var path = require('path'),
     shortcut = require('electron-localshortcut'),
     {app, BrowserWindow, dialog} = require('electron'),
-    settings = require('./settings')
+    settings = require('./settings'),
+    address = 'http://' + settings.read('address') || settings.read('appAddresses')[0]
 
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
@@ -24,7 +25,7 @@ app.on('ready',function(){
         backgroundColor:'#1a1d22'
     })
 
-    window.loadURL('http://127.0.0.1:' + settings.read('httpPort'))
+    window.loadURL(address)
 
     window.on('closed', function() {
         window = null

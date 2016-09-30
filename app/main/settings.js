@@ -3,18 +3,20 @@ if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 
 var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
     configFile = require('path').join(baseDir, '.open-stage-control'),
-    fs = require('fs')
+    fs = require('fs'),
+    ifaces = require('os').networkInterfaces()
 
 var argv = require('yargs')
         .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
         .options({
             's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
             'l':{alias:'load',type:'string',describe:'session file to load'},
-            'p':{alias:'port',describe:'http port of the app\'s server'},
+            'p':{alias:'port',describe:'http port of the app\'s server (default to 8080)'},
             'i':{alias:'input-port',describe:'osc input port (for synchronization)'},
             'd':{alias:'debug',describe:'log received osc messages in the console'},
-            'n':{alias:'no-gui',describe:'disable default gui and makes the app availabe through http on specified port'},
+            'n':{alias:'no-gui',describe:'disable default gui'},
             'g':{alias:'gui-only',describe:'only launch the gui (a server instance must be running) '},
+            'a':{alias:'address',describe:'app\'s ip:port (for gui-only mode, default to localhost:8080)'},
             't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
             'examples':{describe:'list examples instead of recent sessions'}
         })
@@ -38,6 +40,20 @@ var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8
         sessionFile:  argv.l || false,
         noGui: argv.n || false,
         guiOnly: argv.g || false,
+        address: argv.a || false,
+        appAddresses:function(){
+            var appAddresses = []
+
+            Object.keys(ifaces).forEach(function (ifname) {
+            	for (i=0;i<ifaces[ifname].length;i++) {
+            		if (ifaces[ifname][i].family == 'IPv4') {
+            			appAddresses.push('http://' + ifaces[ifname][i].address + ':' + (argv.p || 8080))
+            		}
+            	}
+            })
+
+            return appAddresses
+        }(),
         examples: argv.examples,
         theme: function(){
             if (!argv.t) return

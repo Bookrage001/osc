@@ -5,9 +5,9 @@ var express     = require('express')(),
     server      = http.createServer(express),
     io          = require('socket.io')(),
     ioWildcard  = require('socketio-wildcard')(),
-	ifaces		= require('os').networkInterfaces(),
     ipc 		= {},
-	settings	= require('./settings')
+	settings	= require('./settings'),
+    appAddresses = settings.appAddresses
 
 express.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser/index.html'))
@@ -52,15 +52,6 @@ var bindCallbacks = function(callbacks) {
     });
 }
 
-var appAddresses = []
-
-Object.keys(ifaces).forEach(function (ifname) {
-	for (i=0;i<ifaces[ifname].length;i++) {
-		if (ifaces[ifname][i].family == 'IPv4') {
-			appAddresses.push('http://' + ifaces[ifname][i].address + ':' + settings.read('httpPort'))
-		}
-	}
-})
 
 
 console.log('App available at ' + appAddresses.join(' & '))
