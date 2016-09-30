@@ -155,6 +155,8 @@ module.exports.widgets = function(data,parent) {
         // create widget
         var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
 
+        // store widgets target
+        widgetInner.target = widgetData.target
 
         widgetContainer[0].appendChild(widgetInner[0])
 

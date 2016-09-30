@@ -11,7 +11,8 @@ module.exports = {
         // fetch ids corresponding to the osc path
         var path = data.path,
             pathref = path,
-            args = data.args
+            args = data.args,
+            target = data.target
 
         if (typeof data.args == 'object') {
             for (var i=data.args.length-1;i>=0;i--) {
@@ -31,7 +32,13 @@ module.exports = {
         else if (args.length==1) args = args[0]
 
         for (i in WIDGETS_BY_PATH[pathref]) {
-            if (WIDGETS_BY_PATH[pathref][i]) WIDGETS_BY_PATH[pathref][i].setValue(args,false,true)
+            // if the message target is provided (when message comes from another client connected to the same server)
+            // then we only update the widgets that have the same target
+            // compare arrays using > and < operators (both false = equality)
+            if (!target || !(WIDGETS_BY_PATH[pathref][i].target < target || WIDGETS_BY_PATH[pathref][i].target > target)) {
+                // update matching widgets
+                if (WIDGETS_BY_PATH[pathref][i]) WIDGETS_BY_PATH[pathref][i].setValue(args,false,true)
+            }
         }
 
 
