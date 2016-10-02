@@ -123,7 +123,7 @@ Fader.prototype.draginitHandle = function(e, data, traversing){
 
         // this.percent = clip(this.percent,[0,100])
 
-    this.setValue(this.percentToValue(this.percent), true, true, true)
+    this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 
 }
 
@@ -133,7 +133,7 @@ Fader.prototype.dragHandle = function(e, data) {
         this.percent + ( data.speedX/(this.width - this.margin * PXSCALE * 2)) * 100:
         this.percent + (-data.speedY/(this.height - this.margin * PXSCALE * 2)) * 100
 
-    this.setValue(this.percentToValue(this.percent), true, true, true)
+    this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 
 }
 

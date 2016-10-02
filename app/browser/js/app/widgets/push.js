@@ -77,6 +77,10 @@ module.exports.create = function(widgetData,container) {
     }
 
     widget.setValue = function(v,options={}) {
+        if (options.fromLocal) {
+            widget.setValuePrivate(v,options.send,false)
+            return
+        }
         if (v===widgetData.on || (v=='false'&&widgetData.on===false)) {
             widget.addClass('on')
             widget.state = 1

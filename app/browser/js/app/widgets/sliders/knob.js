@@ -89,7 +89,7 @@ Knob.prototype.draginitHandle = function(e, data, traversing){
 
     this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
 
-    this.setValue(this.percentToValue(this.percent), true, true, true)
+    this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 
 }
 
@@ -109,7 +109,7 @@ Knob.prototype.dragHandle = function(e, data, traversing) {
 
     this.percent = this.percent,[0,100]
 
-    this.setValue(this.percentToValue(this.percent), true, true, true)
+    this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 
 }
 

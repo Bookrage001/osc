@@ -149,7 +149,7 @@ _sliders_base.prototype.setValue = function(v,options={}) {
 
     var value = roundTo(clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax]),this.widgetData.precision)
 
-    if (options.dragged && this.value == value) send = false
+    if ((options.dragged || options.fromLocal) && this.value == value) options.send = false
 
     this.value = value
 

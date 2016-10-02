@@ -63,7 +63,7 @@ module.exports.sync = function() {
             var v = widget.getValue()
             for (i in WIDGETS[id]) {
                 if (!WIDGETS[id][i].is(widget) && WIDGETS[id][i].setValue) {
-                    WIDGETS[id][i].setValue(v)
+                    WIDGETS[id][i].setValue(v,{fromLocal:true})
                 }
             }
         }
@@ -73,7 +73,7 @@ module.exports.sync = function() {
             var v = widget.getValue()
             for (i in WIDGETS_LINKED[linkId]) {
                 if (!WIDGETS_LINKED[linkId][i].is(widget) && WIDGETS_LINKED[linkId][i].setValue) {
-                    WIDGETS_LINKED[linkId][i].setValue(v,{send:true,sync:true})
+                    WIDGETS_LINKED[linkId][i].setValue(v,{send:true,sync:false,fromLocal:true})
                 }
             }
         }
