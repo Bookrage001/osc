@@ -43,7 +43,7 @@ module.exports.create = function(widgetData,container) {
 
     widget.fakeclick = function(){
         var newVal = widget.state?widgetData.off:widgetData.on
-        widget.setValue(newVal,true,true)
+        widget.setValue(newVal,{sync:true,send:true})
         $document.on('dragend.toggle',function(){
             $document.off('dragend.toggle')
             widget.on('draginit.toggle',function(){
@@ -57,18 +57,18 @@ module.exports.create = function(widgetData,container) {
     widget.getValue = function() {
         return widget.state?widgetData.on:widgetData.off
     }
-    widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,options={}) {
         if (v===widgetData.on || (v=='false'&&widgetData.on===false)) {
             widget.addClass('on')
             widget.state = 1
-            if (send) widget.sendValue(widgetData.on)
+            if (options.send) widget.sendValue(widgetData.on)
         } else if (v===widgetData.off || (v=='false'&&widgetData.off===false)) {
             widget.removeClass('on')
             widget.state = 0
-            if (send) widget.sendValue(widgetData.off)
+            if (options.send) widget.sendValue(widgetData.off)
         }
 
-        if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
 
     }
     widget.sendValue = function(v) {

@@ -76,19 +76,19 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
-    widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,options={}) {
         if (v===widgetData.on || (v=='false'&&widgetData.on===false)) {
             widget.addClass('on')
             widget.state = 1
-            if (send) widget.sendValue(v)
+            if (options.send) widget.sendValue(v)
             widget.lastChanged = 'state'
-            if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
         } else if (v===widgetData.off || (v=='false'&&widgetData.off===false)) {
             widget.removeClass('on')
             widget.state = 0
-            if (send) widget.sendValue(v)
+            if (options.send) widget.sendValue(v)
             widget.lastChanged = 'state'
-            if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
         }
     }
 

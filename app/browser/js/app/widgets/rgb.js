@@ -196,7 +196,7 @@ module.exports.create = function(widgetData,container) {
                 rgb = hsbToRgb({h:h,s:s,b:l})
             return [rgb.r,rgb.g,rgb.b]
         }
-        widget.setValue = function(v,send,sync) {
+        widget.setValue = function(v,options={}) {
             if (!v || v.length!=3) return
 
             for (i in [0,1,2]) {
@@ -226,8 +226,8 @@ module.exports.create = function(widgetData,container) {
 
 
 
-            if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
-            if (send) widget.sendValue(v)
+            if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (options.send) widget.sendValue(v)
         }
         widget.sendValue = function(v) {
             var args = widgetData.preArgs.concat(v)
@@ -273,17 +273,17 @@ module.exports.create = function(widgetData,container) {
         value.r.change(function(){
             var r = clip(value.r.val(),[0,255])
             var v = widget.getValue()
-            widget.setValue([r,v[1],v[2]],true,true)
+            widget.setValue([r,v[1],v[2]],{sync:true,send:true})
         })
         value.g.change(function(){
             var g = clip(value.g.val(),[0,255])
             var v = widget.getValue()
-            widget.setValue([v[0],g,v[2]],true,true)
+            widget.setValue([v[0],g,v[2]],{sync:true,send:true})
         })
         value.b.change(function(){
             var b = clip(value.b.val(),[0,255])
             var v = widget.getValue()
-            widget.setValue([v[0],v[1],b],true,true)
+            widget.setValue([v[0],v[1],b],{sync:true,send:true})
         })
 
         widget.setValue([0,0,0])

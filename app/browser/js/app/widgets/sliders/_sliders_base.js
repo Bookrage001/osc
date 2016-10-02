@@ -62,7 +62,7 @@ var _sliders_base = module.exports = function(){
     this.canvas.on('drag',this.dragHandleProxy.bind(this))
 
     this.input.change(function(){
-        this.widget.setValue(parseFloat(this.input.val()),true,true)
+        this.widget.setValue(parseFloat(this.input.val()),{sync:true,send:true})
     }.bind(this))
 
     this.widget.getValue = function(){
@@ -104,7 +104,7 @@ _sliders_base.prototype.mousewheelHandle = function(e, data, traversing) {
 
     this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
 
-    this.setValue(this.percentToValue(this.percent), true, true)
+    this.setValue(this.percentToValue(this.percent), {sync:true,send:true})
 
 
 }
@@ -144,23 +144,23 @@ _sliders_base.prototype.valueToPercent = function(value) {
     }
 }
 
-_sliders_base.prototype.setValue = function(v,send,sync, dragged) {
+_sliders_base.prototype.setValue = function(v,options={}) {
     if (typeof v != 'number') return
 
     var value = roundTo(clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax]),this.widgetData.precision)
 
-    if (dragged && this.value == value) send = false
+    if (options.dragged && this.value == value) send = false
 
     this.value = value
 
-    if (!dragged) this.percent = this.valueToPercent(this.value)
+    if (!options.dragged) this.percent = this.valueToPercent(this.value)
 
     this.draw()
 
     this.showValue()
 
-    if (sync) this.widget.trigger('sync',[this.widgetData.id,this.widget,this.widgetData.linkId])
-    if (send) this.sendValue(v)
+    if (options.sync) this.widget.trigger('sync',[this.widgetData.id,this.widget,this.widgetData.linkId])
+    if (options.send) this.sendValue(v)
 }
 
 _sliders_base.prototype.sendValue = function(value) {

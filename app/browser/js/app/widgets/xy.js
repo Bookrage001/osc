@@ -140,7 +140,7 @@ module.exports.create = function(widgetData,container) {
 
         return [x,y]
     }
-    widget.setValue = function(v,send,sync) {
+    widget.setValue = function(v,options={}) {
         if (!v || v.length!=2) return
 
         for (i in [0,1]) {
@@ -158,8 +158,8 @@ module.exports.create = function(widgetData,container) {
         widget.value = v
 
         widget.showValue(v)
-        if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
-        if (send) widget.sendValue(v)
+        if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+        if (options.send) widget.sendValue(v)
     }
     widget.sendValue = function(v) {
         var args = widgetData.preArgs.concat(v)
@@ -196,12 +196,12 @@ module.exports.create = function(widgetData,container) {
     value.x.change(function(){
         var v = widget.getValue()
         v[0] = clip(value.x.val(),[range.x.min,range.x.max])
-        widget.setValue(v,true,true)
+        widget.setValue(v,{sync:true,send:true})
     })
     value.y.change(function(){
         var v = widget.getValue()
         v[1] = clip(value.y.val(),[range.y.min,range.y.max])
-        widget.setValue(v,true,true)
+        widget.setValue(v,{sync:true,send:true})
     })
 
     widget.setValue([range.x.min,range.y.min])

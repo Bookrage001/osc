@@ -47,7 +47,7 @@ module.exports.create = function(widgetData,container) {
 
         widget.find('.value').on('draginit',function(e,dd){
             var data = $(this).data()
-            if (data.value!=widget.value || widget.value===undefined) widget.setValue(data.value,true,true)
+            if (data.value!=widget.value || widget.value===undefined) widget.setValue(data.value,{sync:true,send:true})
         })
 
 
@@ -55,7 +55,7 @@ module.exports.create = function(widgetData,container) {
         widget.getValue = function() {
             return widget.value
         }
-        widget.setValue = function(v,send,sync) {
+        widget.setValue = function(v,options={}) {
             var i = widget.values.indexOf(v)
             if (i!=-1) {
                 widget.value = widget.values[i]
@@ -64,8 +64,8 @@ module.exports.create = function(widgetData,container) {
         			$(this).removeClass('ripple')
         			next()
         		})
-                if (send) widget.sendValue(widget.value)
-                if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+                if (options.send) widget.sendValue(widget.value)
+                if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
             }
 
         }
