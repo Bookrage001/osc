@@ -48,8 +48,8 @@ Visualizer.prototype = Object.create(_plots_base.prototype)
 
 Visualizer.prototype.constructor = Visualizer
 
-Visualizer.prototype.syncHandle = function(e,id,w) {
-    if (this.widgetData.widgetId!=id || !WIDGETS[id]) return
+Visualizer.prototype.syncHandle = function(e) {
+    if (this.widgetData.widgetId!=e.id || !WIDGETS[e.id]) return
     this.startLoop()
 }
 
