@@ -13,9 +13,9 @@ var widgets = {
     rgb: require('./widgets/rgb'),
 
     // matrices
-    multitoggle: require('./widgets/multitoggle'),
-    multipush: require('./widgets/multipush'),
-    multifader: require('./widgets/multifader'),
+    multitoggle: require('./widgets/matrices/multitoggle'),
+    multipush: require('./widgets/matrices/multipush'),
+    multifader: require('./widgets/matrices/multifader'),
 
     // plots
     led: require('./widgets/plots/led'),

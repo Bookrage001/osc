@@ -1,3 +1,5 @@
+var _matrices_base = require('./_matrices_base')
+
 module.exports.options = {
     type:'multipush',
     id:'auto',
@@ -25,19 +27,13 @@ module.exports.options = {
     preArgs:[],
     target:[]
 }
-module.exports.create = function(widgetData,container) {
 
-	var parsewidgets = require('../parser').widgets
 
-    var widget = $(`
-        <div class="matrix">
-        </div>\
-        `),
-        $document = $(document)
+var Multipush = function(widgetData) {
 
-    widget.value = []
+    _matrices_base.apply(this,arguments)
 
-	for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
+    for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 		var data = {
 			type:'push',
 			id: widgetData.id + '/' + i,
@@ -49,29 +45,21 @@ module.exports.create = function(widgetData,container) {
             preArgs:widgetData.preArgs,
             target:widgetData.target
 		}
-		var element = parsewidgets([data],widget)
+		var element = parsewidgets([data],this.widget)
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)
 		element[0].classList.add('not-editable')
 
-        widget.value[i] = widgetData.off
+        this.value[i] = widgetData.off
 
 	}
 
+}
 
+Multipush.prototype = Object.create(_matrices_base.prototype)
 
-    widget.on('sync',function(e){
-        if (e.id==widgetData.id) return
-        widget.value[e.widget.parent().index()] = e.widget.getValue()
-        widget.trigger({type:'sync',id:widgetData.id,widget:widget})
-    })
+Multipush.prototype.constructor = Multipush
 
-
-
-    widget.getValue = function(){
-        return widget.value
-    }
-
-    widget.enableTraversingGestures()
-
-    return widget
+module.exports.create = function(widgetData) {
+    var multipush = new Multipush(widgetData)
+    return multipush.widget
 }

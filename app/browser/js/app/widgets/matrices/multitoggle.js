@@ -1,3 +1,5 @@
+var _matrices_base = require('./_matrices_base')
+
 module.exports.options = {
     type:'multitoggle',
     id:'auto',
@@ -25,19 +27,12 @@ module.exports.options = {
     preArgs:[],
     target:[]
 }
-module.exports.create = function(widgetData,container) {
 
-	var parsewidgets = require('../parser').widgets
+var Multitoggle = function(widgetData) {
 
-    var widget = $(`
-        <div class="matrix">
-        </div>\
-        `),
-        $document = $(document)
+    _matrices_base.apply(this,arguments)
 
-    widget.value = []
-
-	for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
+    for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 		var data = {
 			type:'toggle',
 			id: widgetData.id + '/' + i,
@@ -49,28 +44,21 @@ module.exports.create = function(widgetData,container) {
             preArgs:widgetData.preArgs,
             target:widgetData.target
 		}
-		var element = parsewidgets([data],widget)
+		var element = parsewidgets([data],this.widget)
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)
 		element[0].classList.add('not-editable')
 
-        widget.value[i] = widgetData.off
+        this.value[i] = widgetData.off
 
 	}
 
+}
 
+Multitoggle.prototype = Object.create(_matrices_base.prototype)
 
-    widget.on('sync',function(e){
-        if (e.id==widgetData.id) return
-        widget.value[e.widget.parent().index()] = e.widget.getValue()
-        widget.trigger({type:'sync',id:widgetData.id,widget:widget})
-    })
+Multitoggle.prototype.constructor = Multitoggle
 
-
-    widget.getValue = function(){
-        return widget.value
-    }
-
-    widget.enableTraversingGestures()
-
-    return widget
+module.exports.create = function(widgetData) {
+    var multitoggle = new Multitoggle(widgetData)
+    return multitoggle.widget
 }
