@@ -36,7 +36,7 @@ module.exports.create = function(widgetData,container) {
 
     if (widgetData.vertical) widget.addClass('vertical')
 
-    widget.setValue = function(v,send,sync){
+    widget.setValue = function(v){
         text = typeof v=='object' && !v.length?label:v
 		widget.text(text)
     }

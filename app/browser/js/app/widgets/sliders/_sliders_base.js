@@ -159,7 +159,7 @@ _sliders_base.prototype.setValue = function(v,options={}) {
 
     this.showValue()
 
-    if (options.sync) this.widget.trigger('sync',[this.widgetData.id,this.widget,this.widgetData.linkId])
+    if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
     if (options.send) this.sendValue(v)
 }
 

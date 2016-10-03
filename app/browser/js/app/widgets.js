@@ -56,14 +56,15 @@ module.exports.createWidget =  function(){
 }()
 
 module.exports.sync = function() {
-    $('body').off('sync.global').on('sync.global',function(e,id,widget,linkId){
+    $('body').off('sync.global').on('sync.global',function(e){
+        var {id, widget, linkId, fromExternal, options} = e
         // Widget that share the same id will update each other
         // without sending any extra osc message
         if (WIDGETS[id] && WIDGETS[id].length>1) {
             var v = widget.getValue()
             for (i in WIDGETS[id]) {
                 if (!WIDGETS[id][i].is(widget) && WIDGETS[id][i].setValue) {
-                    WIDGETS[id][i].setValue(v,{fromLocal:true})
+                    WIDGETS[id][i].setValue(v,{send:false,sync:false})
                 }
             }
         }
@@ -73,7 +74,7 @@ module.exports.sync = function() {
             var v = widget.getValue()
             for (i in WIDGETS_LINKED[linkId]) {
                 if (!WIDGETS_LINKED[linkId][i].is(widget) && WIDGETS_LINKED[linkId][i].setValue) {
-                    WIDGETS_LINKED[linkId][i].setValue(v,{send:true,sync:false,fromLocal:true})
+                    WIDGETS_LINKED[linkId][i].setValue(v,{send:options.send,sync:false})
                 }
             }
         }

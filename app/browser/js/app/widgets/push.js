@@ -45,9 +45,9 @@ module.exports.create = function(widgetData,container) {
     })
 
     widget.fakeclick = function(){
-        if (!widget.active) widget.setValuePrivate(widgetData.on,true,true)
+        if (!widget.active) widget.setValuePrivate(widgetData.on,{send:true,sync:true})
         $document.on('dragend.push',function(){
-            widget.setValuePrivate(widgetData.off,true,true)
+            widget.setValuePrivate(widgetData.off,{send:true,sync:true})
             $document.off('dragend.push')
             widget.on('draginit.push',function(){
                 widget.off('draginit.push')
@@ -60,25 +60,25 @@ module.exports.create = function(widgetData,container) {
         return widget[widget.lastChanged]?widgetData.on:widgetData.off
     }
 
-    widget.setValuePrivate = function(v,send,sync) {
+    widget.setValuePrivate = function(v,options={}) {
         if (v===widgetData.on || (v=='false'&&widgetData.on===false)) {
             widget.addClass('active')
             widget.active = 1
-            if (send) widget.sendValue(v)
+            if (options.send) widget.sendValue(v)
             widget.lastChanged = 'active'
-            if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (options.sync) widget.trigger({type:'sync',id:widgetData.id,widget:widget, linkId:widgetData.linkId, options:options})
         } else if (v===widgetData.off || (v=='false'&&widgetData.off===false)) {
             widget.removeClass('active')
             widget.active = 0
-            if (send) widget.sendValue(v)
+            if (options.send) widget.sendValue(v)
             widget.lastChanged = 'active'
-            if (sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (options.sync) widget.trigger({type:'sync',id:widgetData.id,widget:widget, linkId:widgetData.linkId, options:options})
         }
     }
 
     widget.setValue = function(v,options={}) {
-        if (options.fromLocal) {
-            widget.setValuePrivate(v,options.send,false)
+        if (!options.fromExternal) {
+            if (options.send || options.sync) widget.setValuePrivate(v,options)
             return
         }
         if (v===widgetData.on || (v=='false'&&widgetData.on===false)) {
@@ -86,13 +86,13 @@ module.exports.create = function(widgetData,container) {
             widget.state = 1
             if (options.send) widget.sendValue(v)
             widget.lastChanged = 'state'
-            if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (options.sync) widget.trigger({type:'sync',id:widgetData.id,widget:widget, linkId:widgetData.linkId,options:options})
         } else if (v===widgetData.off || (v=='false'&&widgetData.off===false)) {
             widget.removeClass('on')
             widget.state = 0
             if (options.send) widget.sendValue(v)
             widget.lastChanged = 'state'
-            if (options.sync) widget.trigger('sync',[widgetData.id,widget,widgetData.linkId])
+            if (options.sync) widget.trigger({type:'sync',id:widgetData.id,widget:widget, linkId:widgetData.linkId,options:options})
         }
     }
 

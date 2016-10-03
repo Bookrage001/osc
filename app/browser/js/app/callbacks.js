@@ -37,7 +37,7 @@ module.exports = {
             // compare arrays using > and < operators (both false = equality)
             if (!target || !(WIDGETS_BY_PATH[pathref][i].target < target || WIDGETS_BY_PATH[pathref][i].target > target)) {
                 // update matching widgets
-                if (WIDGETS_BY_PATH[pathref][i]) WIDGETS_BY_PATH[pathref][i].setValue(args,{send:false,sync:true,fromLocal:target})
+                if (WIDGETS_BY_PATH[pathref][i]) WIDGETS_BY_PATH[pathref][i].setValue(args,{send:false,sync:true,fromExternal:!target})
             }
         }
 

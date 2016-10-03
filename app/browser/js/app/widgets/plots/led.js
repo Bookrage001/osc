@@ -30,7 +30,7 @@ module.exports.create = function(widgetData,container) {
         led = widget.find('span'),
         range = widgetData.range
 
-    widget.setValue = function(v,send,sync){
+    widget.setValue = function(v){
         if (typeof v != 'number') return
         led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision,widgetData.logScale,true))
     }
