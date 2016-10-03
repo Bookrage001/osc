@@ -39,8 +39,8 @@ _plots_base.prototype.syncHandleProxy = function() {
     this.syncHandle.apply(this,arguments)
 }
 
-_plots_base.prototype.syncHandle = function(e,id,w) {
-    if (this.linkedWidgets.indexOf(id)==-1 || !WIDGETS[id]) return
+_plots_base.prototype.syncHandle = function(e) {
+    if (this.linkedWidgets.indexOf(e.id)==-1 || !WIDGETS[e.id]) return
     this.updateData()
     requestAnimationFrame(this.draw.bind(this))
 }
