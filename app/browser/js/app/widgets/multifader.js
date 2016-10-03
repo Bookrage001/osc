@@ -68,10 +68,10 @@ module.exports.create = function(widgetData,container) {
 
 
 
-    widget.on('sync',function(e,id,w){
-        if (id==widgetData.id) return
-        widget.value[w.parent().index()] = w.getValue()
-        widget.trigger('sync',{id:widgetData.id,widget:widget})
+    widget.on('sync',function(e){
+        if (e.id==widgetData.id) return
+        widget.value[e.widget.parent().index()] = e.widget.getValue()
+        widget.trigger({type:'sync',id:widgetData.id,widget:widget})
     })
 
 
