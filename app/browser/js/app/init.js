@@ -2,13 +2,14 @@ var parsetabs = require('./parser').tabs,
     ui = require('./ui'),
     sync = require('./widgets').sync,
     editorDisable = require('./actions').editorDisable,
-    editorInit = require('./editor/init')
+    editorInit = require('./editor/init'),
+    {loading} = require('./utils')
 
 module.exports = function(session,callback) {
 
         $('#lobby').remove()
         $('#container').empty()
-        var spinner = $('<div id="loading"><div class="spinner"></div></div>').appendTo('#container')
+        var p = loading('Loading session file...')
 
         setTimeout(function(){
             parsetabs(session,$('#container'),true)
@@ -31,7 +32,7 @@ module.exports = function(session,callback) {
 
 
             setTimeout(function(){
-                spinner.remove()
+                p.close()
                 if (!callback) return
                 setTimeout(function(){
                     callback()

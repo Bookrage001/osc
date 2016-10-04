@@ -96,7 +96,7 @@ module.exports = {
     },
 
     stateSend:function(){
-        var p = utils.createPopup('New client connecting...','<p><div class="spinner"></div></p>', false)
+        var p = utils.loading('New client connecting...')
 
         setTimeout(function(){
 

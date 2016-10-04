@@ -36,6 +36,9 @@ module.exports = {
 
         return popup
     },
+    loading: function(title){
+        return module.exports.createPopup(title,'<p><div class="spinner"></div></p>', false)
+    },
     icon: function(i) {
         return `<i class="fa fa-fw fa-${i}"></i>`
     }
