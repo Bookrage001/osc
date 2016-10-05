@@ -8,6 +8,8 @@ var vm = require('vm'),
 module.exports =  {
 
 	ready: function(data,clientId) {
+		ipc.send('connected')
+
 		if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
 	    if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
 	    var recentSessions = settings.read('recentSessions')

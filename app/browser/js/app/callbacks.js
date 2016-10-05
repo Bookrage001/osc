@@ -44,6 +44,10 @@ module.exports = {
 
     },
 
+    connected:function(){
+        LOADING.close()
+    },
+
     stateLoad: function(event,data){
         var data = data || event
         data = JSON.parse(data)

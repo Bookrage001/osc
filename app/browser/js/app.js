@@ -51,6 +51,7 @@ for (i in callbacks) {
 }
 
 ///////////////////////
-
-
-IPC.send('ready')
+$(document).ready(function(){
+    LOADING = require('./app/utils').loading('Connecting server...')
+    IPC.send('ready')
+})
