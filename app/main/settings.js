@@ -11,11 +11,11 @@ var argv = require('yargs')
         .options({
             's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
             'l':{alias:'load',type:'string',describe:'session file to load'},
-            'p':{alias:'port',describe:'http port of the app\'s server (default to 8080)'},
-            'i':{alias:'input-port',describe:'osc input port (for synchronization)'},
+            'p':{alias:'port',describe:'http port of the server (default to 8080)'},
+            'o':{alias:'osc-port',describe:'osc input port'},
             'd':{alias:'debug',describe:'log received osc messages in the console'},
             'n':{alias:'no-gui',describe:'disable default gui'},
-            'g':{alias:'gui-only',describe:'app\'s ip:port, default to localhost:8080, only launch the gui (a server instance must be running)'},
+            'g':{alias:'gui-only',describe:'server\'s ip:port, default to localhost:8080, only launch the gui (a server instance must be running)'},
             't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
             'examples':{describe:'list examples instead of recent sessions'}
         })
