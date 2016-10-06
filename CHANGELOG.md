@@ -1,5 +1,18 @@
 # Changelog
 
+## next
+
+- main
+  - the headless server/clients model is now the only one beeing used : the GUI mode is nothing more than an embedded chromium (electron) client
+  - when a new client opens a session on the server, it is synchronized with the other clients
+- new switches : `--no-gui`, `--gui-only`, `--port`, `--osc-port` (see docs)
+- ui
+  - explicit loadings
+- widgets
+  - make push's backlight only respond to external osc messages (not to synchronization messages from other widgets or clients)
+- misc
+  - rewritten matrices with prototypes inheritance
+
 ## 0.7.0
 
 - bug fixes
@@ -18,7 +31,7 @@
 - engine
   - electron 1.4.1 (chrome 53, node 6.5.0)
 - misc
-  - added `--examples` switch for showing the availabe example sessions instead of the history 
+  - added `--examples` switch for showing the availabe example sessions instead of the history
   - rewritten sliders and plots using canvas and prototypes inheritance
   - reorganized package using the two-package.json structure: js and css assets are now create at build time, and only necessary dependencies are shipped with the app
 
