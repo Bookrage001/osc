@@ -12,6 +12,7 @@
   - make push's backlight only respond to external osc messages (not to synchronization messages from other widgets or clients)
   - remove special `false` value case for push/toggles (which used to disable osc sending)
   - add `norelease` option to `push` for disabling osc messages when releasing the button
+  - `true` and `false` values are now properly sent as boolean
 - misc
   - rewritten matrices with prototypes inheritance
 

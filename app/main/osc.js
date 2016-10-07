@@ -14,7 +14,7 @@ if (oscInPort) {
         ipc.send('receiveOsc',data)
 		if (debug) console.log('OSC received: ',data, 'From : ' + rinfo.address + ':' + rinfo.port)
     })
-	
+
 }
 
 module.exports = {
@@ -33,10 +33,11 @@ module.exports = {
 		    if (typeof args=='object' && args!==null) {
 		        for (i in args) {
 		            var arg = args[i]
-
 		            if (typeof arg == 'number' && arg!==null && typeof arg != 'object') {
 		                message.append({type:numberType,value:arg})
-		            } else if (arg!==null && typeof arg != 'object'){
+		            } else if (typeof arg == "boolean") {
+						message.append({type:"boolean",value:arg})
+					} else if (arg!==null && typeof arg != 'object'){
 		                message.append({type:'string',value:String(arg)})
 		            } else if (arg!==null && typeof arg == 'object' && arg.type && arg.value!=undefined) {
 						message.append({type:arg.type,value:arg.value})
@@ -45,7 +46,9 @@ module.exports = {
 		    } else if (args!==null){
 		        if (typeof args == 'number') {
 		            message.append({type:numberType,value:args})
-		        } else if (typeof args == 'object'  && arg.type && arg.value!=undefined) {
+		        } else if (typeof args == "boolean") {
+					message.append({type:"boolean",value:args})
+				} else if (typeof args == 'object'  && arg.type && arg.value!=undefined) {
 					message.append({type:args.type,value:args.value})
 		        } else {
 		            message.append({type:'string',value:String(args)})
