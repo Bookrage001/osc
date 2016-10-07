@@ -55,14 +55,17 @@ module.exports.create = function(widgetData,container) {
 
 
     widget.getValue = function() {
-        return widget.state?widgetData.on:widgetData.off
+        return widget.state ?
+            widgetData.on.value !== undefined ? widgetData.on.value : widgetData.on
+            :
+            widgetData.off.value !== undefined ? widgetData.off.value : widgetData.off
     }
     widget.setValue = function(v,options={}) {
-        if (v===widgetData.on || (v=='false'&&widgetData.on===false)) {
+        if (v===widgetData.on || (v.value === widgetData.on.value && v.value !== undefined)) {
             widget.addClass('on')
             widget.state = 1
             if (options.send) widget.sendValue(widgetData.on)
-        } else if (v===widgetData.off || (v=='false'&&widgetData.off===false)) {
+        } else if (v===widgetData.off || (v.value === widgetData.off.value && v.value !== undefined)) {
             widget.removeClass('on')
             widget.state = 0
             if (options.send) widget.sendValue(widgetData.off)
@@ -72,7 +75,6 @@ module.exports.create = function(widgetData,container) {
 
     }
     widget.sendValue = function(v) {
-        if (v===false) return
         var args = widgetData.preArgs.concat(v)
 
         sendOsc({
@@ -82,6 +84,5 @@ module.exports.create = function(widgetData,container) {
             args:args
         })
     }
-    widget.setValue()
     return widget
 }
