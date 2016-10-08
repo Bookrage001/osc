@@ -33,7 +33,7 @@ var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8
 
         appName: 'Open Stage Control',
         syncTargets: argv.s || false,
-        oscInPort: argv.i || 0,
+        oscInPort: argv.o || 0,
         httpPort: argv.p || 8080,
         debug: argv.d || false,
         sessionFile:  argv.l || false,
