@@ -4,7 +4,7 @@ var settings = require('./settings')
 if (!settings.read('guiOnly')) {
 
 
-    var server = require('./server-express'),
+    var server = require('./server'),
     osc = require('./osc'),
     callbacks = require('./callbacks')
 

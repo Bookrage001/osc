@@ -3,7 +3,7 @@ var vm = require('vm'),
 	fs = require('fs'),
 	settings = require('./settings'),
 	osc = require('./osc'),
-	ipc = require('./server-express').ipc
+	ipc = require('./server').ipc
 
 module.exports =  {
 

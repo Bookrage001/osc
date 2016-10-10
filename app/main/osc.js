@@ -1,5 +1,5 @@
 var osc = require('node-osc'),
-	ipc = require('./server-express').ipc,
+	ipc = require('./server').ipc,
 	settings = require('./settings'),
 	oscInPort = settings.read('oscInPort'),
 	debug = settings.read('debug')
