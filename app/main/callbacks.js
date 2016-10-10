@@ -67,6 +67,8 @@ module.exports =  {
 
 	sendOsc: function(data) {
 
+			if (data.syncOnly) return
+
 	        var targets = []
 
 	        if (settings.read('syncTargets') && data.sync!==false) Array.prototype.push.apply(targets, settings.read('syncTargets'))
