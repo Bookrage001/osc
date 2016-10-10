@@ -74,7 +74,7 @@ module.exports.create = function(widgetData,container) {
         } else if (v===widgetData.off || (v.value === widgetData.off.value && v.value !== undefined)) {
             widget.removeClass('active')
             widget.active = 0
-            if (options.send && !widgetData.norelease) widget.sendValue(v)
+            if (options.send) widget.sendValue(v, widgetData.norelease)
             widget.lastChanged = 'active'
             if (options.sync) widget.trigger({type:'sync',id:widgetData.id,widget:widget, linkId:widgetData.linkId, options:options})
         }
@@ -100,14 +100,15 @@ module.exports.create = function(widgetData,container) {
         }
     }
 
-    widget.sendValue = function(v) {
+    widget.sendValue = function(v, norelease) {
         var args = widgetData.preArgs.concat(v)
 
         sendOsc({
             target:widgetData.target,
             path:widgetData.path,
             precision:widgetData.precision,
-            args:args
+            args:args,
+            syncOnly:norelease
         })
     }
     return widget
