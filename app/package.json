@@ -11,7 +11,7 @@
   "dependencies": {
     "vmodule":"1.0.1",
     "electron-localshortcut":"0.6.1",
-    "osc": "2.0.3",
+    "osc": "2.1.0",
     "yargs": "5.0.0",
     "socket.io": "1.4.8",
     "socket.io-client": "1.4.8",
