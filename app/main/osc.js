@@ -21,6 +21,10 @@ oscServer.on('message', function (msg, bundle, info) {
 	if (debug) console.log('OSC received: ',data, 'From : ' + info.address + ':' + info.port)
 })
 
+oscServer.on('error', function (error) {
+	console.log(error)
+})
+
 oscServer.open()
 
 
@@ -58,7 +62,7 @@ module.exports = {
 		    address: path,
 		    args: message
 		}, host, port);
-		
+
 		if (debug) console.log('OSC sent: ',{path:path,args:message}, 'To : ' + host + ':' + port)
 
 	}
