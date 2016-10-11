@@ -16,11 +16,11 @@
     "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/ --icon app/resources/images/logo.png",
     "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/ --icon app/resources/images/logo.png",
     "debarm": "electron-installer-debian --src dist/open-stage-control-linux-armv7l/ --arch armv7l --dest dist/open-stage-control-linux-armv7l/ --icon app/resources/images/logo.png",
-    "watch-css": "nodemon --watch app/browser/scss -e scss -x \"npm run build-css\"",
-    "watch-js": "nodemon --watch app/browser/js -e js --ignore app/browser/js/browser.bundle.js -x \"npm run build-js\"",
-    "build-css": "node-sass --include-path app/browser/scss app/browser/scss/style.scss   app/browser/css/style.css --output-style compressed",
-    "build-js": "browserify app/browser/js/browser.js -o app/browser/js/browser.bundle.js",
-    "deploy-docs": "cd app/resources && mkdocs gh-deploy --clean && rm -rf site",
+    "watch-css": "nodemon --watch src/browser/scss -e scss -x \"npm run build-css\"",
+    "watch-js": "nodemon --watch src/browser/js -e js -x \"npm run build-js\"",
+    "build-css": "node-sass --include-path src/browser/scss src/browser/scss/style.scss app/browser/style.css --output-style compressed",
+    "build-js": "browserify src/browser/js/browser.js -o app/browser/browser.bundle.js",
+    "deploy-docs": "cd resources && mkdocs gh-deploy --clean && rm -rf site",
     "test": "npm run build"
   }
 }
