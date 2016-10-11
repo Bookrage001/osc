@@ -6,6 +6,7 @@
     "browserify": "13.1.0",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.2",
+    "socket.io-client": "1.4.8",
     "electron-installer-debian": "0.3.1",
     "electron-packager": "8.0.0"
   },
@@ -18,9 +19,8 @@
     "debarm": "electron-installer-debian --src dist/open-stage-control-linux-armv7l/ --arch armv7l --dest dist/open-stage-control-linux-armv7l/ --icon app/resources/images/logo.png",
     "watch-css": "nodemon --watch src/browser/scss -e scss -x \"npm run build-css\"",
     "watch-js": "nodemon --watch src/browser/js -e js -x \"npm run build-js\"",
-    "build-css": "node-sass --include-path src/browser/scss src/browser/scss/style.scss app/browser/style.css --output-style compressed",
-    "socket.io-client": "1.4.8",
-    "build-js": "browserify src/browser/js/browser.js -o app/browser/browser.bundle.js",
+    "build-css": "node-sass --include-path src/browser/scss src/browser/scss/style.scss app/browser/styles.css --output-style compressed",
+    "build-js": "browserify src/browser/js/browser.js -o app/browser/scripts.js",
     "deploy-docs": "cd resources && mkdocs gh-deploy --clean && rm -rf site",
     "test": "npm run build"
   }
