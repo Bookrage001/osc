@@ -5,7 +5,7 @@
 - main
   - the headless server/clients model is now the only one beeing used : the GUI mode is nothing more than an embedded chromium (electron) client
   - when a new client opens a session on the server, it is synchronized with the other clients
-- new switches : `--no-gui`, `--gui-only`, `--port`, `--osc-port` (see docs)
+  - **new switches** : `--no-gui`, `--gui-only`, `--port`, `--osc-port`, `--version` (see docs)
 - ui
   - explicit loadings
 - widgets
