@@ -14,7 +14,6 @@
     "osc": "2.1.0",
     "yargs": "5.0.0",
     "socket.io": "1.4.8",
-    "socket.io-client": "1.4.8",
     "socketio-wildcard": "0.3.0",
     "express": "4.14.0"
   },
