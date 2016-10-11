@@ -17,12 +17,13 @@ var argv = require('yargs')
             'n':{alias:'no-gui',describe:'disable default gui'},
             'g':{alias:'gui-only',describe:'server\'s ip:port, default to localhost:8080, only launch the gui (a server instance must be running)'},
             't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
-            'examples':{describe:'list examples instead of recent sessions'}
+            'e':{alias:'examples',describe:'list examples instead of recent sessions'}
         })
         .check(function(a,x){if(a.i==undefined || !isNaN(a.i)&&a.i>1023&&parseInt(a.i)===a.i){return true}else{throw 'Error: Port must be an integer >= 1024'}})
         .check(function(a,x){if(a.p==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
         .check(function(a,x){if(a.s==undefined || a.s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Sync hosts must be ip:port pairs & port must be >= 1024'}})
         .strict()
+        .version().alias('v','version')
         .argv
 
 var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8'))} catch(err) {return {}}}(),
