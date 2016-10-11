@@ -20,7 +20,6 @@ app.on('ready',function(){
     window = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: path.resolve(__dirname + '/../resources/images/logo.png'),
         title:settings.read('appName'),
         backgroundColor:'#1a1d22'
     })
