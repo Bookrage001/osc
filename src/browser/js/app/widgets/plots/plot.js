@@ -20,6 +20,7 @@ module.exports.options = {
 	points:[],
 	rangeX: {min:0,max:1},
 	rangeY: {min:0,max:1},
+    origin: 'auto',
     logScaleX: false,
     logScaleY: false,
 

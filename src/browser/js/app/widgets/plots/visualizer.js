@@ -20,6 +20,7 @@ module.exports.options = {
 	widgetId:'',
     duration:1,
 	range: {min:0,max:1},
+    origin: 'auto',
     logScale: false,
 
     separator3:'osc',
@@ -34,8 +35,7 @@ var Visualizer = function(widgetData) {
 
     this.pips.y.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
     this.pips.y.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
-    this.pips.x.min = ''
-    this.pips.x.max = ''
+    this.pips.x = false
     this.length = Math.round(clip(60*widgetData.duration,[8,4096]))
     this.data = new Array(this.length)
     this.value = widgetData.range.min
@@ -77,10 +77,10 @@ Visualizer.prototype.draw_data = function(){
     var first = true
     var point = []
 
-    for (var i=this.length-1;i>=0;i=i-1) {
+    for (var i=0;i<this.length;i++) {
         var newpoint = [
-            mapToScale(i,[0,this.length-1],[15*PXSCALE,this.width-15*PXSCALE],1),
-            mapToScale(this.data[i],[this.widgetData.range.min,this.widgetData.range.max],[this.height-15*PXSCALE,15*PXSCALE],1,this.widgetData.logScale,true),
+            mapToScale(i,[0,this.length-1],[0,this.width],1),
+            mapToScale(this.data[i],[this.widgetData.range.min,this.widgetData.range.max],[this.height-PXSCALE,PXSCALE],1,this.widgetData.logScale,true),
         ]
         if (first) {
             this.ctx.moveTo(newpoint[0],newpoint[1])

@@ -61,6 +61,10 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `y` axis (log10)
 
+#### `origin`
+- type: `number`
+- default: `auto`
+- usage: defines the y-axis origin. Set to `false` to disable it.
 
 ## Eq
 
@@ -106,7 +110,10 @@ The Eq receives an array of filter objects and draws their frequency response be
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
-
+#### `origin`
+- type: `number`
+- default: `auto`
+- usage: defines the y-axis origin. Set to `false` to disable it.
 
 ## Visualizer
 
@@ -139,6 +146,10 @@ The visualizer displays the evolution in time of a received value (through osc) 
 - default: `false`
 - usage: set to `true` use logarithmic scaling (log10)
 
+#### `origin`
+- type: `number`
+- default: `auto`
+- usage: defines the y-axis origin. Set to `false` to disable it.
 
 ## Text
 

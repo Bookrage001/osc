@@ -21,6 +21,7 @@ module.exports.options = {
 	filters:[],
     resolution:128,
 	rangeY: {min:-20,max:20},
+    origin: 'auto',
     logScaleX: false,
 
     separator3:'osc',
