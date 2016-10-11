@@ -104,7 +104,7 @@ _sliders_base.prototype.mousewheelHandle = function(e, data, traversing) {
 
     this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
 
-    this.setValue(this.percentToValue(this.percent), {sync:true,send:true})
+    this.setValue(this.percentToValue(this.percent), {sync:true,send:true,dragged:true})
 
 
 }
