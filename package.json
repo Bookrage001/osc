@@ -2,13 +2,13 @@
   "name": "open-stage-control-dev",
   "description": "This is the dev package, see ./app/package.json",
   "dependencies": {
-    "electron-prebuilt": "1.4.1",
+    "electron-prebuilt": "1.4.3",
     "browserify": "13.1.0",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.2",
-    "socket.io-client": "1.4.8",
-    "electron-installer-debian": "0.3.1",
-    "electron-packager": "8.0.0"
+    "socket.io-client": "1.5.0",
+    "electron-installer-debian": "0.4.0",
+    "electron-packager": "8.1.0"
   },
   "scripts": {
     "postinstall": "cp resources/images/logo.ico app/browser/favicon.ico && cd app && npm install && cd .. && npm run build-js && npm run build-css",
