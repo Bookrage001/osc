@@ -1,5 +1,11 @@
 # Changelog
 
+## next
+
+- widgets
+  - remove margins from `plots`
+  - added `origin` options to `plots`
+
 ## 0.8.0
 
 - main
