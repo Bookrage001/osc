@@ -1,7 +1,9 @@
 # Changelog
 
-## next
+## 0.8.1
 
+- bug
+  - broken `fader` with `horizontal` set to `true` and `compact` set to `false`
 - widgets
   - remove margins from `plots`
   - added `origin` options to `plots`

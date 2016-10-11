@@ -192,12 +192,12 @@ Fader.prototype.draw = function(){
 
             this.ctx.save()
             this.ctx.globalAlpha = 0.3
-            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 10 * PXSCALE, Math.PI * 2)
+            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 10 * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
             this.ctx.restore()
 
             this.ctx.beginPath()
-            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 4 * PXSCALE, Math.PI * 2)
+            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 4 * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
         }
 
