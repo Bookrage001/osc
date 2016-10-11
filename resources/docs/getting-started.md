@@ -8,15 +8,19 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 
 ```
 Options:
-  -h, --help       display help
-  -s, --sync       synchronized hosts (ip:port pairs) (all osc messages will also be sent to these)
-  -o, --osc-port osc input port (for synchronization / feedback)
-  -d, --debug      log received osc in the console
-  -p, --port       http port of the server (default to 8080)
-  -n, --no-gui      disable default gui
-  -g, --gui-only   server's ip:port, default to localhost:8080, only launch the gui (a server instance must be running)
-  -l, --load       session file to load
-  -t, --theme      theme name or path (mutliple values allowed)
+  -s, --sync      synchronized hosts (ip:port pairs)
+  -l, --load      session file to load
+  -p, --port      http port of the server (default to 8080)
+  -o, --osc-port  osc input port
+  -d, --debug     log received osc messages in the console
+  -n, --no-gui    disable default gui
+  -g, --gui-only  server's ip:port, default to localhost:8080, only launch the
+                  gui (a server instance must be running)
+  -t, --theme     theme name or path (mutliple values allowed)   
+  -e, --examples  list examples instead of recent sessions
+  -h, --help      display help
+  -v, --version   display version number
+
 
 Examples:
 
