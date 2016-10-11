@@ -13,6 +13,8 @@
   - removed special `false` value case for push/toggles (which used to disable osc sending)
   - add `norelease` option to `push` for disabling osc messages when releasing the button
   - `true` and `false` values are now properly sent as boolean
+- engine
+  - electron 1.4.3
 - misc
   - rewritten matrices with prototypes inheritance
 
