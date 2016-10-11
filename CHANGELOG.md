@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.8.0
 
 - main
   - the headless server/clients model is now the only one beeing used : the GUI mode is nothing more than an embedded chromium (electron) client
