@@ -35,7 +35,7 @@ It relies on the use of several libraries :
 
 - [Node.js](https://nodejs.org/)
 - [Electron](http://electron.atom.io/)
-- [node-osc](https://github.com/TheAlphaNerd/node-osc)
+- [osc.js](https://github.com/colinbdclark/osc.js)
 - [socket.io](http://socket.io)
 - [browserify](http://browserify.org)
 - [express](http://expressjs.com)
