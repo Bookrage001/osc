@@ -103,12 +103,20 @@ preArgs: [
     0.5,        // this will be sent as an integer if precision equals 0
     1,          // this will be sent as float if precision is different from 0
     {
-        type:"float",
+        type:"f",
         value:0.5
     },
     {
-        type:"integer",
+        type:"i",
         value:1
+    },
+    {
+        type:"T",
+        value:true
+    },
+    {
+        type:"F",
+        value:false
     }
 ]
 ```
