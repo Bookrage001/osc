@@ -31,8 +31,8 @@
     }
 }
 
-@mixin arrow($i) {
-    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="50px" width="50px"><text x="50%" y="50%" font-size="30" fill="rgba(255,255,255,0.5)" alignment-baseline="central" text-anchor="middle" font-family="fontawesome"> '+$i+' </text></svg>');
+@mixin arrow($r) {
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="50px" width="50px"><g stroke="rgba(255,255,255,0.5)" transform="rotate('+$r+' 25 25)"><line x1="15" y1="20" x2="25" y2="30" stroke-width="2" /><line x1="25" y1="30" x2="35" y2="20" stroke-width="2" /></g></svg>');
     background-blend-mode: difference, normal;
 }
 
@@ -52,26 +52,26 @@
         &:decrement:start {
             border-left:2rem solid var(--color-bg);
             border-bottom:2rem solid var(--color-bg);
-            @include arrow()
+            @include arrow(180)
         }
 
         &:increment:end {
             border-left:2rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
-            @include arrow()
+            @include arrow(0)
         }
     }
     &:horizontal {
         &:decrement:start {
             border-right:2rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
-            @include arrow()
+            @include arrow(90)
         }
 
         &:increment:end {
             border-left:2rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
-            @include arrow()
+            @include arrow(-90)
         }
     }
 
