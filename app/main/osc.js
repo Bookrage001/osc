@@ -28,6 +28,17 @@ oscServer.on('error', function (error) {
 oscServer.open()
 
 
+var parseType = function(type){
+	var t = type[0].match(/[bhtdscrmTFNI]/)
+
+	if (t!==null) {
+		return t[0]
+	} else {
+		return 's'
+	}
+
+}
+
 var parseArg = function(arg,precision){
 	if (arg==null) return null
 	switch (typeof arg) {
@@ -36,7 +47,7 @@ var parseArg = function(arg,precision){
 		case 'boolean':
 			return {type: arg ? 'T' : 'F', value: arg}
 		case 'object':
-			return {type: arg.type, value: arg.value}
+			return {type: parseType(arg.type), value: arg.value}
 		default:
 			return {type: 'string', value:String(arg)}
 	}

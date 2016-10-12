@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- bug
+  - avoid crash when sending osc with incorrect typetags
+
 ## 0.8.1
 
 - bug
@@ -21,7 +26,7 @@
   - removed special `false` value case for push/toggles (which used to disable osc sending)
   - add `norelease` option to `push` for disabling osc messages when releasing the button
   - `true` and `false` values are now properly sent as boolean
-  - **args type definition** in `preArgs` option now uses the osc typetags only ('f', 'i', 'T', 'F', etc) 
+  - **args type definition** in `preArgs` option now uses the osc typetags only ('f', 'i', 'T', 'F', etc)
 - engine
   - electron 1.4.3
 - misc
