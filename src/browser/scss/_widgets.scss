@@ -42,7 +42,8 @@
         background: var(--color-raised);
         border-bottom:1rem solid var(--color-bg);
         flex-shrink: 0;
-
+        display: flex;
+        justify-content: space-around;
         &.accent {
             color:var(--color-accent);
         }
