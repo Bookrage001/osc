@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.3
+
+- bug fixes
+  - scrollbar arrows not showing
+- widgets
+  - matrices : all `fader`, `push` and `toggle` options are now available to `multifader`, `multipush` and `multitoggle`
+
 ## 0.8.2
 
 - bug

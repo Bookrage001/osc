@@ -33,18 +33,19 @@ var Multipush = function(widgetData) {
 
     _matrices_base.apply(this,arguments)
 
+
+    var strData = JSON.stringify(widgetData)
+
     for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
-		var data = {
-			type:'push',
-			id: widgetData.id + '/' + i,
-			label:i,
-			on:widgetData.on,
-			off:widgetData.off,
-			precision:widgetData.precision,
-			path:widgetData.path + '/' + i,
-            preArgs:widgetData.preArgs,
-            target:widgetData.target
-		}
+
+        var data = JSON.parse(strData)
+
+        data.top = data.left = data.height = data.width = 'auto'
+        data.type = 'push'
+        data.id = widgetData.id + '/' + i
+        data.label = i
+        data.path = widgetData.path + '/' + i
+
 		var element = parsewidgets([data],this.widget)
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)
 		element[0].classList.add('not-editable')

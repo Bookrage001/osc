@@ -16,16 +16,24 @@ module.exports.options = {
     top:'auto',
     width:'auto',
     height:'auto',
-    color:'auto',
+    alignRight:false,
+    horizontal:false,
+    noPip:true,
     compact:false,
+    color:'auto',
     css:'',
 
+    separator2:'behaviour',
 
-    separator2:'osc',
+    snap:false,
+
+    separator3:'osc',
 
     range:{min:0,max:1},
+    origin: 'auto',
     logScale:false,
     precision:2,
+    meter:false,
     path:'auto',
     preArgs:[],
     target:[]
@@ -36,22 +44,22 @@ var Multifader = function(widgetData) {
 
     _matrices_base.apply(this,arguments)
 
+    if (widgetData.horizontal) {
+        this.widget.addClass('horizontal')
+    }
+
+    var strData = JSON.stringify(widgetData)
+
     for (var i=0;i<widgetData.strips;i++) {
-        var data = {
-            type:'fader',
-            id: widgetData.id + '/' + i,
-            label:i,
-            horizontal:false,
-            snap:true,
-            range:widgetData.range,
-            logScale:widgetData.logScale,
-            precision:widgetData.precision,
-            path:widgetData.path + '/' + i,
-            preArgs:widgetData.preArgs,
-            target:widgetData.target,
-            noPip:true,
-            compact:widgetData.compact
-        }
+
+        var data = JSON.parse(strData)
+
+        data.top = data.left = data.height = data.width = 'auto'
+        data.type = 'fader'
+        data.id = widgetData.id + '/' + i
+        data.label = i
+        data.path = widgetData.path + '/' + i
+
         var element = parsewidgets([data],this.widget)
         element[0].setAttribute('style',`width:${100/widgetData.strips}%`)
         element[0].classList.add('not-editable')
