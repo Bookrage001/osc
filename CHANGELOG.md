@@ -4,6 +4,7 @@
 
 - bug fixes
   - scrollbar arrows not showing
+  - `fader` pips position when `noPip` is `true`
 - widgets
   - matrices : all `fader`, `push` and `toggle` options are now available to `multifader`, `multipush` and `multitoggle`
 

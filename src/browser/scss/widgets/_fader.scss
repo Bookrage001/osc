@@ -40,7 +40,16 @@
         }
 
     }
-
+    &:not(.has-pip):not(.compact) {
+        .meter-container {
+            margin-left: 15rem;
+        }
+        &.align-right {
+            .meter-container {
+                margin-left: -18rem;
+            }
+        }
+    }
     &.has-pips {
 
         .wrapper canvas {
@@ -184,6 +193,12 @@
             bottom: 0;
             left: auto;
             right:0;
+        }
+        &.align-right {
+            .meter-container {
+                right: auto;
+                left:0;
+            }
         }
         &.horizontal {
             .meter-container {
