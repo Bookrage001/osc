@@ -33,6 +33,31 @@
         align-items:stretch;
         &.horizontal {
             flex-direction: column;
+            .fader-container {
+                flex-direction: row;
+                width: 100%;
+                .fader {
+                    width:100%;
+                }
+                .label {
+                    width:35rem;
+                    height:100%;
+                    border-bottom:0;
+                    border-right:1rem solid var(--color-bg);
+                    max-height: initial;
+                    span {
+                        transform: rotate(180deg);
+                        display: block;
+                        position: relative;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-writing-mode:vertical-lr;
+                        text-align: center;
+                        height:100%;
+                    }
+                }
+            }
+
         }
     }
     .widget {

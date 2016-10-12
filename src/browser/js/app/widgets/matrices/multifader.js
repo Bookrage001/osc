@@ -61,7 +61,7 @@ var Multifader = function(widgetData) {
         data.path = widgetData.path + '/' + i
 
         var element = parsewidgets([data],this.widget)
-        element[0].setAttribute('style',`width:${100/widgetData.strips}%`)
+        element[0].setAttribute('style',`${widgetData.horizontal?'height':'width'}:${100/widgetData.strips}%`)
         element[0].classList.add('not-editable')
 
         if (widgetData.traversing) element.find('.fader-wrapper').off('drag')
