@@ -29,7 +29,7 @@ oscServer.open()
 
 
 var parseType = function(type){
-	var t = type[0].match(/[bhtdscrmTFNI]/)
+	var t = type[0].match(/[bhtdscrmifTFNI]/)
 
 	if (t!==null) {
 		return t[0]
