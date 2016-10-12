@@ -56,16 +56,16 @@ module.exports.create = function(widgetData,container) {
 
     widget.getValue = function() {
         return widget.state ?
-            widgetData.on.value !== undefined ? widgetData.on.value : widgetData.on
+            widgetData.on != null && widgetData.on.value !== undefined ? widgetData.on.value : widgetData.on
             :
-            widgetData.off.value !== undefined ? widgetData.off.value : widgetData.off
+            widgetData.off != null && widgetData.off.value !== undefined ? widgetData.off.value : widgetData.off
     }
     widget.setValue = function(v,options={}) {
-        if (v===widgetData.on || (v.value === widgetData.on.value && v.value !== undefined)) {
+        if (v===widgetData.on || (widgetData.on != null && v.value === widgetData.on.value && v.value !== undefined)) {
             widget.addClass('on')
             widget.state = 1
             if (options.send) widget.sendValue(widgetData.on)
-        } else if (v===widgetData.off || (v.value === widgetData.off.value && v.value !== undefined)) {
+        } else if (v===widgetData.off || (widgetData.off != null && v.value === widgetData.off.value && v.value !== undefined)) {
             widget.removeClass('on')
             widget.state = 0
             if (options.send) widget.sendValue(widgetData.off)

@@ -60,10 +60,7 @@ module.exports.create = function(widgetData,container) {
             if (i!=-1) {
                 widget.value = widget.values[i]
                 widget.find('.on').removeClass('on')
-                widget.find('.value').eq(i).addClass('on').removeClass('ripple').addClass('ripple').delay(250).queue(function(next){
-        			$(this).removeClass('ripple')
-        			next()
-        		})
+                widget.find('.value').eq(i).addClass('on')
                 if (options.send) widget.sendValue(widget.value)
                 if (options.sync) widget.trigger({type:'sync',id:widgetData.id,widget:widget, linkId:widgetData.linkId, options})
             }

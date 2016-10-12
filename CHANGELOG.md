@@ -5,6 +5,7 @@
 - bug
   - avoid crash when sending osc with incorrect typetags
   - fixed fallback typetag ('s')
+  - fixed broken `null` value for `push` & `toggle`
 
 ## 0.8.1
 
