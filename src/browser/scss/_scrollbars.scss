@@ -32,7 +32,7 @@
 }
 
 @mixin arrow($r) {
-    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="50px" width="50px"><g stroke="rgba(255,255,255,0.5)" transform="rotate('+$r+' 25 25)"><line x1="15" y1="20" x2="25" y2="30" stroke-width="2" /><line x1="25" y1="30" x2="35" y2="20" stroke-width="2" /></g></svg>');
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="50px" width="50px"><g stroke="rgba(255,255,255,0.5)" transform="rotate('+$r+' 25 25)"><line x1="16" y1="20" x2="25" y2="29" stroke-width="2" /><line x1="25" y1="29" x2="34" y2="20" stroke-width="2" /></g></svg>');
     background-blend-mode: difference, normal;
 }
 
