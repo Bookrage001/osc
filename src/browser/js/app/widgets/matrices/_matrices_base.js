@@ -11,7 +11,6 @@ var _matrices_base = module.exports = function(widgetData){
     this.value = []
 
     this.widget.getValue = function(){
-        console.log(this.value)
         return this.value
     }.bind(this)
 
