@@ -25,7 +25,7 @@ module.exports.options = {
 
     separator2:'behaviour',
 
-    snap:false,
+    traversing:true,
 
     separator3:'osc',
 
@@ -63,11 +63,15 @@ var Multifader = function(widgetData) {
         var element = parsewidgets([data],this.widget)
         element[0].setAttribute('style',`width:${100/widgetData.strips}%`)
         element[0].classList.add('not-editable')
-        element.find('.fader-wrapper').off('drag')
+
+        if (widgetData.traversing) element.find('.fader-wrapper').off('drag')
 
         this.value[i] = widgetData.range.min
 
     }
+
+    if (widgetData.traversing) this.widget.enableTraversingGestures()
+
 }
 
 Multifader.prototype = Object.create(_matrices_base.prototype)

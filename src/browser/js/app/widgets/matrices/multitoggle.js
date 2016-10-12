@@ -18,7 +18,11 @@ module.exports.options = {
     color:'auto',
     css:'',
 
-    separator2:'osc',
+    separator2:'behaviour',
+
+    traversing:true,
+
+    separator3:'osc',
 
     on:1,
     off:0,
@@ -37,13 +41,13 @@ var Multitoggle = function(widgetData) {
 
     for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 
-            var data = JSON.parse(strData)
+        var data = JSON.parse(strData)
 
-            data.top = data.left = data.height = data.width = 'auto'
-            data.type = 'toggle'
-            data.id = widgetData.id + '/' + i
-            data.label = i
-            data.path = widgetData.path + '/' + i
+        data.top = data.left = data.height = data.width = 'auto'
+        data.type = 'toggle'
+        data.id = widgetData.id + '/' + i
+        data.label = i
+        data.path = widgetData.path + '/' + i
 
 		var element = parsewidgets([data],this.widget)
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)
@@ -52,6 +56,8 @@ var Multitoggle = function(widgetData) {
         this.value[i] = widgetData.off
 
 	}
+
+    if (widgetData.traversing) this.widget.enableTraversingGestures()
 
 }
 

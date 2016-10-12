@@ -20,7 +20,6 @@ var _matrices_base = module.exports = function(widgetData){
         this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget})
     }.bind(this))
 
-    this.widget.enableTraversingGestures()
 
 }
 

@@ -21,18 +21,13 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `path`: same as the widget's with `/i` appended to it
 
+#### `traversing`
+- type: `boolean`
+- default: `true`
+- usage: enable traversing gestures
 
-#### `range`
-- see fader's [`range`](sliders/#fader)
-
-#### `logScale`
-- see fader's [`logScale`](sliders/#fader)
-
-#### `unit`
-- see fader's [`unit`](sliders/#fader)
-
-#### `compact`
-- see fader's [`compact`](sliders/#fader)
+#### `options`
+- see fader's [`options`](sliders/#fader)
 
 
 ----
@@ -53,12 +48,13 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `path`: same as the widget's with `/i` appended to it
 
+#### `traversing`
+- type: `boolean`
+- default: `true`
+- usage: enable traversing gestures
 
-#### `on`
-- see toggle's [`on`](buttons/#toggle)
-
-#### `off`
-- see toggle's [`off`](buttons/#toggle)
+#### `options`
+- see toggle's [`options`](buttons/#toggle)
 
 
 ----
@@ -78,9 +74,11 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `path`: same as the widget's with `/i` appended to it
 
+#### `traversing`
+- type: `boolean`
+- default: `true`
+- usage: enable traversing gestures
 
-#### `on`
-- see push's [`on`](buttons/#push)
 
-#### `off`
-- see push's [`off`](buttons/#push)
+#### `options`
+- see push's [`options`](buttons/#push)

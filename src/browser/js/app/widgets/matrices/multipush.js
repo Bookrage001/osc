@@ -18,10 +18,15 @@ module.exports.options = {
     color:'auto',
     css:'',
 
-    separator2:'osc',
+    separator2:'behaviour',
+
+    traversing:true,
+
+    separator3:'osc',
 
     on:1,
     off:0,
+    norelease:false,
     precision:2,
     path:'auto',
     preArgs:[],
@@ -53,6 +58,9 @@ var Multipush = function(widgetData) {
         this.value[i] = widgetData.off
 
 	}
+
+    if (widgetData.traversing) this.widget.enableTraversingGestures()
+
 
 }
 
