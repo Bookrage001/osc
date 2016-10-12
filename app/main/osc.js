@@ -49,7 +49,7 @@ var parseArg = function(arg,precision){
 		case 'object':
 			return {type: parseType(arg.type), value: arg.value}
 		default:
-			return {type: 'string', value:String(arg)}
+			return {type: 's', value:String(arg)}
 	}
 }
 
