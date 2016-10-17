@@ -1,6 +1,6 @@
 {
   "name": "open-stage-control-builder",
-  "description": "This is the builder package, see ./app/package.json",
+  "description": "A libre desktop OSC bi-directionnal control surface application - builder package",
   "dependencies": {
     "electron": "1.4.3",
     "browserify": "13.1.0",
