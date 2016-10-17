@@ -23,5 +23,6 @@
     "build-js": "browserify src/browser/js/browser.js -o app/browser/scripts.js",
     "deploy-docs": "cd resources && mkdocs gh-deploy --clean && rm -rf site",
     "test": "npm run build"
-  }
+  },
+  "version": "0.8.3"
 }
