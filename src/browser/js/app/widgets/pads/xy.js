@@ -40,40 +40,54 @@ var Xy = function(widgetData) {
 
     _pads_base.apply(this,arguments)
 
-    this.xFader = new Fader({
-        compact:true,
-        horizontal:true,
-        height:'100%',
-        width:'100%',
-        snap:widgetData.snap,
-        range:widgetData.rangeX,
-        precision:widgetData.precision
-    })
-    this.yFader = new Fader({
-        compact:true,
-        horizontal:false,
-        height:'100%',
-        width:'100%',
-        snap:widgetData.snap,
-        range:widgetData.rangeY,
-        precision:widgetData.precision
+    this.value = []
 
-    })
+    this.faders = {
+        x: new Fader({
+            id:0,
+            compact:true,
+            horizontal:true,
+            height:'100%',
+            width:'100%',
+            snap:widgetData.snap,
+            range:widgetData.rangeX,
+            precision:widgetData.precision
+        }),
+        y: new Fader({
+            id:1,
+            compact:true,
+            horizontal:false,
+            height:'100%',
+            width:'100%',
+            snap:widgetData.snap,
+            range:widgetData.rangeY,
+            precision:widgetData.precision
 
-    this.wrapper.append(this.xFader.widget)
-    this.wrapper.append(this.yFader.widget)
+        })
+    }
 
-    this.widget.on('sync',(data)=>{
-        // console.log('sync:',data.widget.getValue())
+    this.wrapper.append(this.faders.x.widget)
+    this.wrapper.append(this.faders.y.widget)
+
+    this.widget.on('sync',(e)=>{
+        e.stopPropagation()
+
+        var {id, widget} = e
+        var v = widget.getValue()
+
+        if (this.value[id] != v) {
+            this.value[id] = v
+            this.sendValue()
+        }
     })
 
     this.wrapper.on('draginit',(e, data, traversing)=>{
-        this.xFader.draginitHandleProxy(e, data, traversing)
-        this.yFader.draginitHandleProxy(e, data, traversing)
+        this.faders.x.draginitHandleProxy(e, data, traversing)
+        this.faders.y.draginitHandleProxy(e, data, traversing)
     })
     this.wrapper.on('drag',(e, data, traversing)=>{
-        this.xFader.dragHandleProxy(e, data, traversing)
-        this.yFader.dragHandleProxy(e, data, traversing)
+        this.faders.x.dragHandleProxy(e, data, traversing)
+        this.faders.y.dragHandleProxy(e, data, traversing)
     })
 
 }
