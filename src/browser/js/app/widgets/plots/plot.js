@@ -31,7 +31,7 @@ module.exports.options = {
 
 }
 
-var Plot = function(widgetData) {
+var Plot = module.exports.Plot = function(widgetData) {
 
     _plots_base.call(this,widgetData)
 

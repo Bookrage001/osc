@@ -40,7 +40,7 @@ module.exports.options = {
 }
 
 
-var Multifader = function(widgetData) {
+var Multifader = module.exports.Multifader = function(widgetData) {
 
     _matrices_base.apply(this,arguments)
 

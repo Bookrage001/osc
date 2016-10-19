@@ -38,7 +38,7 @@ module.exports.options = {
     target:[]
 }
 
-var Fader = function(widgetData){
+var Fader = module.exports.Fader = function(widgetData){
 
     _sliders_base.apply(this,arguments)
     this.widget.addClass('fader')

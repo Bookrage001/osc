@@ -38,7 +38,7 @@ module.exports.options = {
 
 
 
-Knob = function(widgetData) {
+var Knob = module.exports.Knob = function(widgetData) {
 
     _sliders_base.apply(this,arguments)
 

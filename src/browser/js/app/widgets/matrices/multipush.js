@@ -34,7 +34,7 @@ module.exports.options = {
 }
 
 
-var Multipush = function(widgetData) {
+var Multipush = module.exports.Multipush = function(widgetData) {
 
     _matrices_base.apply(this,arguments)
 

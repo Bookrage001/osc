@@ -32,7 +32,7 @@ module.exports.options = {
     target:[]
 }
 
-var Multitoggle = function(widgetData) {
+var Multitoggle = module.exports.Multitoggle = function(widgetData) {
 
     _matrices_base.apply(this,arguments)
 

@@ -29,7 +29,7 @@ module.exports.options = {
     preArgs:[],
 }
 
-var Visualizer = function(widgetData) {
+var Visualizer = module.exports.Visualizer = function(widgetData) {
 
     _plots_base.call(this,widgetData)
 
