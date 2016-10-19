@@ -1,3 +1,30 @@
+.pad {
+    height:100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    > .wrapper {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        .fader {
+            --color-gauge:transparent;
+            --color-pips: var(--color-text-fade);
+            --color-knob: var(--color-custom);
+            pointer-events: none;
+            position: absolute;
+            width:100%;
+            height:100%;
+            .wrapper canvas {
+                background:transparent;
+            }
+            .input {
+                display: none;
+            }
+        }
+    }
+}
+
 .xy-container, .rgb-container {
     width:200rem;
     height:250rem;
