@@ -97,18 +97,6 @@ Xy.prototype = Object.create(_pads_base.prototype)
 
 Xy.prototype.constructor = Xy
 
-Xy.prototype.sendValue = function() {
-    var args = this.widgetData.preArgs.concat(this.value)
-
-    sendOsc({
-        target:this.widgetData.target,
-        path:this.widgetData.path,
-        precision:this.widgetData.precision,
-        args:args
-    })
-
-}
-
 module.exports.create = function(widgetData) {
     var xy = new Xy(widgetData)
     return xy.widget

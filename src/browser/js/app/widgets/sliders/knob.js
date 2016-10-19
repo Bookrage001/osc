@@ -225,8 +225,6 @@ Knob.prototype.draw = function(){
         this.ctx.restore()
     }
 
-
-
 }
 
 

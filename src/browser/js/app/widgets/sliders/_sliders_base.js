@@ -163,18 +163,6 @@ _sliders_base.prototype.setValue = function(v,options={}) {
     if (options.send) this.sendValue(v)
 }
 
-_sliders_base.prototype.sendValue = function(value) {
-    var args = this.widgetData.preArgs.concat(value)
-
-    sendOsc({
-        target:this.widgetData.target,
-        path:this.widgetData.path,
-        precision:this.widgetData.precision,
-        args:args
-    })
-
-}
-
 _sliders_base.prototype.showValue = function() {
     this.input.val(this.value + this.unit)
 }

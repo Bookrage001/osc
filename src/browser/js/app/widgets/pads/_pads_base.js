@@ -26,12 +26,6 @@ _pads_base.prototype.setValue = function(v,options={}) {
 
 }
 
-
-
-_pads_base.prototype.sendValue = function(value) {
-
-}
-
 _pads_base.prototype.showValue = function() {
     this.input.val(this.value + this.unit)
 }
