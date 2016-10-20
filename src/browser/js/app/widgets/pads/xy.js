@@ -33,7 +33,7 @@ module.exports.options = {
     target:[]
 }
 
-var Xy = modules.exports.Xy = function(widgetData) {
+var Xy = module.exports.Xy = function(widgetData) {
 
     _pads_base.apply(this,arguments)
 
@@ -86,6 +86,9 @@ var Xy = modules.exports.Xy = function(widgetData) {
     this.wrapper.append(this.faders.y.widget)
 
     this.widget.on('sync',(e)=>{
+
+        if (e.id == this.widgetData.id) return
+
         e.stopPropagation()
 
         var {id, widget, options} = e
@@ -95,7 +98,7 @@ var Xy = modules.exports.Xy = function(widgetData) {
             this.value[id] = v
             if (options.send) this.sendValue()
             this.showValue(id)
-            $('body').trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+            this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
         }
     })
 
