@@ -63,7 +63,8 @@ var Xy = function(widgetData) {
             width:'100%',
             snap:widgetData.snap,
             range:widgetData.rangeX,
-            precision:widgetData.precision
+            precision:widgetData.precision,
+            logScale:widgetData.logScaleX
         }),
         y: new Fader({
             id:1,
@@ -73,7 +74,8 @@ var Xy = function(widgetData) {
             width:'100%',
             snap:widgetData.snap,
             range:widgetData.rangeY,
-            precision:widgetData.precision
+            precision:widgetData.precision,
+            logScale:widgetData.logScaleY
 
         })
     }
