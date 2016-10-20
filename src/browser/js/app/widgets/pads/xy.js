@@ -117,7 +117,7 @@ var Xy = function(widgetData) {
     this.showValue(1)
 
     this.widget.getValue = () => {
-        return this.value
+        return [this.value[0], this.value[1]]
     }
     this.widget.setValue = (v,o) => {
         this.setValue(v,o)
