@@ -38,6 +38,12 @@ var Xy = module.exports.Xy = function(widgetData) {
 
     _pads_base.apply(this,arguments)
 
+    this.split = this.widgetData.split?
+                    typeof this.widgetData.split == 'object'?
+                        this.widgetData.split
+                        : {x: this.widgetData.path + '/x', y: this.widgetData.path + '/y'}
+                    : false
+
     this.widget.append(`
         <div class="labels row">
             <span class="input">X</span>
