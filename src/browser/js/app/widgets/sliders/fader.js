@@ -1,4 +1,4 @@
-var {clip, mapToScale, sendOsc} = require('../utils'),
+var {clip, mapToScale} = require('../utils'),
     _sliders_base = require('./_sliders_base')
 
 

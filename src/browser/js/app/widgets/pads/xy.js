@@ -1,6 +1,5 @@
 var _pads_base = require('./_pads_base'),
-    Fader = require('./_fake_fader'),
-    {sendOsc} = require('../utils')
+    Fader = require('./_fake_fader')
 
 module.exports.options = {
     type:'xy',
