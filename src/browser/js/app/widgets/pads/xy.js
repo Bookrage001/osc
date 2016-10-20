@@ -91,11 +91,11 @@ var Xy = module.exports.Xy = function(widgetData) {
         var {id, widget, options} = e
         var v = widget.getValue()
 
-        if (this.value[id] != v) {
-            this.value[id] = v
-            if (options.send) this.sendValue()
-            if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-        }
+        this.value[id] = v
+
+        if (options.send) this.sendValue()
+        if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+
     })
 
     this.wrapper.on('draginit',(e, data, traversing)=>{
@@ -123,9 +123,20 @@ Xy.prototype = Object.create(_pads_base.prototype)
 Xy.prototype.constructor = Xy
 
 Xy.prototype.setValue = function(v, options){
+
     if (!v || v.length!=2) return
-    this.faders.x.setValue(v[0], {sync: true, send:options.send})
-    this.faders.y.setValue(v[1], {sync: true, send:options.send})
+
+    this.faders.x.setValue(v[0], {sync: false, send:false, dragged:false})
+    this.faders.y.setValue(v[1], {sync: false, send:false, dragged:false})
+
+    this.value = [
+        this.faders.x.widget.getValue(),
+        this.faders.y.widget.getValue()
+    ]
+
+    if (options.send) this.sendValue()
+    if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+
 }
 
 module.exports.create = function(widgetData) {
