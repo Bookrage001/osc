@@ -84,9 +84,7 @@ var Xy = module.exports.Xy = function(widgetData) {
     this.wrapper.append(this.faders.x.widget)
     this.wrapper.append(this.faders.y.widget)
 
-    this.widget.on('sync',(e)=>{
-
-        if (e.xyIgnore) return
+    this.wrapper.on('sync',(e)=>{
 
         e.stopPropagation()
 
@@ -96,7 +94,7 @@ var Xy = module.exports.Xy = function(widgetData) {
         if (this.value[id] != v) {
             this.value[id] = v
             if (options.send) this.sendValue()
-            if (options.sync) this.widget.trigger({type:'sync',xyIgnore:true, id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+            if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
         }
     })
 
