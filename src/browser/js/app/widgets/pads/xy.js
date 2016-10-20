@@ -66,7 +66,7 @@ var Xy = module.exports.Xy = function(widgetData) {
             range:widgetData.rangeX,
             precision:widgetData.precision,
             logScale:widgetData.logScaleX
-        }),
+        }, true),
         y: new Fader({
             id:1,
             compact:true,
@@ -78,7 +78,7 @@ var Xy = module.exports.Xy = function(widgetData) {
             precision:widgetData.precision,
             logScale:widgetData.logScaleY
 
-        })
+        }, true)
     }
 
     this.inputs = [
