@@ -86,7 +86,7 @@ var Xy = module.exports.Xy = function(widgetData) {
 
     this.widget.on('sync',(e)=>{
 
-        if (e.id == this.widgetData.id) return
+        if (e.xyIgnore) return
 
         e.stopPropagation()
 
@@ -96,7 +96,7 @@ var Xy = module.exports.Xy = function(widgetData) {
         if (this.value[id] != v) {
             this.value[id] = v
             if (options.send) this.sendValue()
-            this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+            if (options.sync) this.widget.trigger({type:'sync',xyIgnore:true, id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
         }
     })
 
@@ -112,8 +112,8 @@ var Xy = module.exports.Xy = function(widgetData) {
     this.widget.getValue = () => {
         return [this.value[0], this.value[1]]
     }
-    this.widget.setValue = (v,o) => {
-        this.setValue(v,o)
+    this.widget.setValue = (v, options) => {
+        this.setValue(v, options)
     }
 
 
