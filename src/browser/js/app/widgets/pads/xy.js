@@ -33,7 +33,7 @@ module.exports.options = {
     target:[]
 }
 
-var Xy = function(widgetData) {
+var Xy = modules.exports.Xy = function(widgetData) {
 
     _pads_base.apply(this,arguments)
 
