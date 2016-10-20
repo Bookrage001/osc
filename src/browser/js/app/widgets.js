@@ -10,7 +10,7 @@ var widgets = {
 
     // pads
     xy: require('./widgets/pads/xy'),
-    rgb: require('./widgets/rgb'),
+    rgb: require('./widgets/pads/rgb'),
 
     // matrices
     multitoggle: require('./widgets/matrices/multitoggle'),
