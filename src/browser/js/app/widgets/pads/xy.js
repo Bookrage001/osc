@@ -48,12 +48,6 @@ var Xy = module.exports.Xy = function(widgetData) {
         </div>
     `)
 
-    this.inputs = [
-        this.widget.find('.x').fakeInput({align:'center'}),
-        this.widget.find('.y').fakeInput({align:'center'})
-    ]
-
-
     this.faders = {
         x: new Fader({
             id:0,
@@ -80,6 +74,11 @@ var Xy = module.exports.Xy = function(widgetData) {
         })
     }
 
+    this.inputs = [
+        this.widget.find('.x').replaceWith(this.faders.x.input),
+        this.widget.find('.y').replaceWith(this.faders.y.input)
+    ]
+
     this.value = [this.faders.x.value, this.faders.y.value]
 
     this.wrapper.append(this.faders.x.widget)
@@ -97,7 +96,6 @@ var Xy = module.exports.Xy = function(widgetData) {
         if (this.value[id] != v) {
             this.value[id] = v
             if (options.send) this.sendValue()
-            this.showValue(id)
             this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
         }
     })
@@ -110,16 +108,6 @@ var Xy = module.exports.Xy = function(widgetData) {
         this.faders.x.dragHandleProxy(e, data, traversing)
         this.faders.y.dragHandleProxy(e, data, traversing)
     })
-
-    this.inputs[0].change(()=>{
-        this.faders.x.setValue(parseFloat(this.inputs[0].val()),{sync:true,send:true})
-    })
-    this.inputs[1].change(()=>{
-        this.faders.y.setValue(parseFloat(this.inputs[1].val()),{sync:true,send:true})
-    })
-
-    this.showValue(0)
-    this.showValue(1)
 
     this.widget.getValue = () => {
         return [this.value[0], this.value[1]]
@@ -140,11 +128,6 @@ Xy.prototype.setValue = function(v, options){
     if (!v || v.length!=2) return
     this.faders.x.setValue(v[0], {sync: true, send:options.send})
     this.faders.y.setValue(v[1], {sync: true, send:options.send})
-}
-
-
-Xy.prototype.showValue = function(i){
-    this.inputs[i].val(this.value[i])
 }
 
 module.exports.create = function(widgetData) {

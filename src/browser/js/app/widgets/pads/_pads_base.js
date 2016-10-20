@@ -25,7 +25,3 @@ _pads_base.prototype.setValue = function(v,options={}) {
     if (typeof v != 'number') return
 
 }
-
-_pads_base.prototype.showValue = function() {
-    this.input.val(this.value + this.unit)
-}
