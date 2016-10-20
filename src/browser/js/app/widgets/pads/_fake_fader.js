@@ -11,3 +11,5 @@ _fake_fader.prototype = Object.create(Fader.prototype)
 _fake_fader.prototype.constructor = _fake_fader
 
 _fake_fader.prototype.sendValue = function(){}
+
+_fake_fader.prototype.draw = function(){}

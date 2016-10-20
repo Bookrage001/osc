@@ -1,5 +1,6 @@
 var _pads_base = require('./_pads_base'),
-    Fader = require('./_fake_fader')
+    Fader = require('./_fake_fader'),
+    {clip} = require('../utils')
 
 module.exports.options = {
     type:'xy',
@@ -95,7 +96,7 @@ var Xy = module.exports.Xy = function(widgetData) {
 
         if (options.send) this.sendValue()
         if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-
+        this.draw()
     })
 
     this.wrapper.on('draginit',(e, data, traversing)=>{
@@ -136,7 +137,41 @@ Xy.prototype.setValue = function(v, options){
 
     if (options.send) this.sendValue()
     if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+    this.draw()
+}
 
+Xy.prototype.draw = function(){
+
+    var x = clip(this.faders.x.percent / 100 * this.width,[0,this.width]),
+        y = clip((1 - this.faders.y.percent / 100) * this.height,[0,this.height])
+
+    this.ctx.clearRect(0,0,this.width,this.height)
+
+    this.ctx.fillStyle = this.faders.x.colors.custom
+    this.ctx.lineWidth = PXSCALE
+    this.ctx.strokeStyle = this.faders.x.colors.custom
+
+    this.ctx.save()
+    this.ctx.globalAlpha = 0.3
+
+    this.ctx.beginPath()
+    this.ctx.arc(x, y, 10 * PXSCALE, Math.PI * 2, false)
+    this.ctx.fill()
+
+    this.ctx.globalAlpha = 0.1
+
+    this.ctx.beginPath()
+    this.ctx.moveTo(0,y)
+    this.ctx.lineTo(this.width,y)
+    this.ctx.moveTo(x,0)
+    this.ctx.lineTo(x,this.height)
+    this.ctx.stroke()
+
+    this.ctx.restore()
+
+    this.ctx.beginPath()
+    this.ctx.arc(x, y, 4 * PXSCALE, Math.PI * 2, false)
+    this.ctx.fill()
 }
 
 module.exports.create = function(widgetData) {
