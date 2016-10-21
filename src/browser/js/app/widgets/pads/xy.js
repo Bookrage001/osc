@@ -92,27 +92,30 @@ var Xy = module.exports.Xy = function(widgetData) {
     this.wrapper.append(this.faders.y.widget)
 
     this.wrapper.on('sync',(e)=>{
-
         e.stopPropagation()
-
-        var {id, widget, options} = e
-        var v = widget.getValue()
-
-        this.value[id] = v
-
-        if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-        this.draw()
     })
 
     this.wrapper.on('draginit',(e, data, traversing)=>{
         this.faders.x.draginitHandleProxy(e, data, traversing)
         this.faders.y.draginitHandleProxy(e, data, traversing)
+        this.dragHandle()
     })
     this.wrapper.on('drag',(e, data, traversing)=>{
         this.faders.x.dragHandleProxy(e, data, traversing)
         this.faders.y.dragHandleProxy(e, data, traversing)
+        this.dragHandle()
     })
+
+
+    this.faders.x.input.change(()=>{
+        var v = [this.faders.x.value, this.faders.y.value]
+        this.setValue(v,{send:true,sync:true})
+    })
+    this.faders.y.input.change(()=>{
+        var v = [this.faders.x.value, this.faders.y.value]
+        this.setValue(v,{send:true,sync:true})
+    })
+
 
     this.widget.getValue = () => {
         return [this.value[0], this.value[1]]
@@ -129,20 +132,33 @@ Xy.prototype = Object.create(_pads_base.prototype)
 
 Xy.prototype.constructor = Xy
 
-Xy.prototype.setValue = function(v, options){
+Xy.prototype.dragHandle = function(){
+    var x = this.faders.x.value,
+        y = this.faders.y.value
+
+
+    if (x != this.value[0] || y != this.value[1]) {
+        this.setValue([x, y],{send:true,sync:true,dragged:true})
+    }
+}
+
+Xy.prototype.setValue = function(v, options={}){
 
     if (!v || v.length!=2) return
 
-    this.faders.x.setValue(v[0], {sync: false, send:false, dragged:false})
-    this.faders.y.setValue(v[1], {sync: false, send:false, dragged:false})
+    if (!options.dragged) {
+        this.faders.x.setValue(v[0], {sync: false, send:false, dragged:false})
+        this.faders.y.setValue(v[1], {sync: false, send:false, dragged:false})
+    }
 
     this.value = [
-        this.faders.x.widget.getValue(),
-        this.faders.y.widget.getValue()
+        this.faders.x.value,
+        this.faders.y.value
     ]
 
     if (options.send) this.sendValue()
     if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+
     this.draw()
 }
 
