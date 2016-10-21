@@ -11,6 +11,7 @@ var widgets = {
     // pads
     xy: require('./widgets/pads/xy'),
     rgb: require('./widgets/pads/rgb'),
+    multixy: require('./widgets/pads/multixy'),
 
     // matrices
     multitoggle: require('./widgets/matrices/multitoggle'),
@@ -33,7 +34,7 @@ var widgets = {
 module.exports.categories = {
     'Sliders':['fader','knob'],
     'Buttons':['toggle','push','switch'],
-    'Pads':['xy','rgb'],
+    'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush'],
     'Plots':['plot','eq','visualizer','led','meter','text'],
     'Containers':['panel','strip']

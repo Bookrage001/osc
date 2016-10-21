@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- misc
+  - rewritten `pads` with prototype inheritance and using faders under the hood to handle events
+
 ## 0.8.3
 
 - bug fixes
