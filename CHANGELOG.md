@@ -2,6 +2,9 @@
 
 ## next
 
+
+- widgets
+  - **new** `multixy` pad 
 - misc
   - rewritten `pads` with prototype inheritance and using faders under the hood to handle events
 
