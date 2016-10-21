@@ -71,7 +71,7 @@ module.exports =  {
 
 	        var targets = []
 
-	        if (settings.read('syncTargets') && data.sync!==false) Array.prototype.push.apply(targets, settings.read('syncTargets'))
+	        if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
 	        if (data.target) Array.prototype.push.apply(targets, data.target)
 
 
