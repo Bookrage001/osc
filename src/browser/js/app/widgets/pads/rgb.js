@@ -152,11 +152,13 @@ Rgb.prototype.dragHandle = function(){
 
     if (h != this.hsb.h ||s != this.hsb.s || b != this.hsb.b) {
 
+        var huechange = h != this.hsb.h
+
         this.hsb.h = this.faders.h.value
         this.hsb.s = this.faders.s.value
         this.hsb.b = this.faders.b.value
 
-        this.update({nohue:true})
+        this.update({nohue: !huechange})
 
         var rgb = hsbToRgb(this.hsb)
         if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
