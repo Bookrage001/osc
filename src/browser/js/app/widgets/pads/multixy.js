@@ -7,9 +7,9 @@ module.exports.options = {
     id:'auto',
     linkId:'',
 
-    separator2:'behaviour',
+    separator1:'multi xy',
 
-    points: 3,
+    points: 2,
 
     separator2:'style',
 
