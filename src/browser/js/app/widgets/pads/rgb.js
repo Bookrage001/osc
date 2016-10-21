@@ -1,6 +1,6 @@
 var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
-    {clip, hsbToRgb, rgbToHsb} = require('../utils')
+    {clip, roundTo, hsbToRgb, rgbToHsb} = require('../utils')
 
 
 module.exports.options = {
@@ -124,7 +124,7 @@ var Rgb = module.exports.Rgb = function(widgetData) {
 
     this.inputs.forEach(function(input,i){
         input.change(()=>{
-            this.value[i] = parseInt(clip(this.inputs[i].val(),[0,255]))
+            this.value[i] = parseFloat(clip(this.inputs[i].val(),[0,255]))
             this.setValue(this.value,{send:true,sync:true})
         })
     },this)
@@ -171,7 +171,7 @@ Rgb.prototype.setValue = function(v, options={}){
     if (!v || v.length!=3) return
 
     for (i in [0,1,2]) {
-        v[i] = clip(v[i],[0,255])
+        v[i] = roundTo(clip(v[i],[0,255]),this.widgetData.precision)
     }
 
     var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
