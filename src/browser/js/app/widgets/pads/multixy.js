@@ -73,7 +73,7 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
 
 
     this.handles.forEach((handle, i)=>{
-        handle.on('draginit, drag',(e, data, traversing)=>{
+        handle.on('draginit drag',(e, data, traversing)=>{
             this.pads[i].wrapper.trigger(e.type, [data, traversing])
             var v = this.pads[i].widget.getValue()
             if (v < [this.value[i*2], this.value[i*2+1]] || v > [this.value[i*2], this.value[i*2+1]]) {
