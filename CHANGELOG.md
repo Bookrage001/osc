@@ -1,12 +1,14 @@
 # Changelog
 
-## next
+## 0.9.0
 
 
 - widgets
-  - **new** `multixy` pad 
+  - **new** `multixy` pad
 - misc
-  - rewritten `pads` with prototype inheritance and using faders under the hood to handle events
+  - rewritten `pads` with prototype inheritance and using faders under the hood to handle events (this adds *fader*'s `range` capabilities to *xy*)
+- engine
+  - electron 1.4.4
 
 ## 0.8.3
 
