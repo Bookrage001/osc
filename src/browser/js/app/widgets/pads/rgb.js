@@ -213,7 +213,7 @@ Rgb.prototype.draw = function(){
 
     var x = clip(this.faders.s.percent / 100 * this.width,[0,this.width]),
         y = clip((1 - this.faders.b.percent / 100) * this.height,[0,this.height]),
-        color = this.hsb.b > 70 && this.hsb.s < 30 ? 'black' : 'white'
+        color = this.hsb.b > 70 && this.hsb.s < 30 ? '#555' : 'white'
 
     this.ctx.clearRect(0,0,this.width,this.height)
 
