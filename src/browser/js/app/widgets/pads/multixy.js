@@ -62,6 +62,7 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
             logScale:widgetData.logScaleY
         })
         this.pads[i].sendValue = ()=>{}
+        this.pads[i].draw = ()=>{}
         this.wrapper.append(this.pads[i].widget)
 
         this.handles[i] = $(`<div class="handle">${i}</div>`)
@@ -127,6 +128,31 @@ MultiXy.prototype.updateHandlesPosition = function(){
     }
 }
 
+MultiXy.prototype.draw = function(){
+
+    this.ctx.clearRect(0,0,this.width,this.height)
+
+    this.ctx.fillStyle = this.colors.text
+    this.ctx.lineWidth = PXSCALE
+    this.ctx.strokeStyle = this.colors.custom
+
+    for (var i=0;i<this.widgetData.points;i++) {
+        var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * this.width,
+            y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * this.height
+
+            this.ctx.beginPath()
+            this.ctx.arc(x, y, 10 * PXSCALE, Math.PI * 2, false)
+            this.ctx.stroke()
+
+            this.ctx.font =  PXSCALE * 11 + 'px Droid Sans'
+            this.ctx.textAlign = 'center'
+            this.ctx.textBaseline = 'middle'
+            this.ctx.fillText(i,x,y)
+
+    }
+}
+
+
 MultiXy.prototype.setValue = function(v, options={}){
     if (!v || v.length!=this.widgetData.points * 2) return
 
@@ -137,6 +163,7 @@ MultiXy.prototype.setValue = function(v, options={}){
     }
 
     this.updateHandlesPosition()
+    this.draw()
 
     for (var i=0;i<this.widgetData.points * 2;i=i+2) {
         [this.value[i],this.value[i+1]]  = this.pads[i/2].widget.getValue()
