@@ -1,7 +1,11 @@
 # Changelog
 
-## 0.9.0
+## next
 
+- widgets
+  - multiXy: added `pointSize` option; made default size bigger; points don't overflow the pad anymore 
+
+## 0.9.0
 
 - widgets
   - **new** `multixy` pad

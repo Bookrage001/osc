@@ -48,7 +48,7 @@ Pads are multidimensional widgets that output multiple values.
 - usage:
     - set to `true` to send separate osc messages for `x` and `y` axis. The `path` will be the same as the widget's with `/x` or `/y` appended to it
     - can be set as an object to specify a different `path` : `{x:'/osc_path_x', y:'/osc_path_y'}`
-- note: the widget will only respond to its original osc path, not to the splitted version 
+- note: the widget will only respond to its original osc path, not to the splitted version
 
 ----
 
@@ -61,6 +61,15 @@ Pads are multidimensional widgets that output multiple values.
 }
 ```
 
+#### `points`
+- type: `integer`
+- default: `2`
+- usage: defines the number of points on the pad
+
+#### `pointSize`
+- type: `integer`
+- default: `15`
+- usage: defines the points's size
 
 #### `rangeX`
 - type: `object`

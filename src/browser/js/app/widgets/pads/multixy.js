@@ -10,6 +10,7 @@ module.exports.options = {
     separator1:'multi xy',
 
     points: 2,
+    pointSize: 15,
 
     separator2:'style',
 
@@ -37,6 +38,9 @@ module.exports.options = {
 var MultiXy = module.exports.MultiXy = function(widgetData) {
 
     _pads_base.apply(this,arguments)
+
+    this.pointSize = parseInt(this.widgetData.pointSize)
+    this.widget[0].style.setProperty("--point-size",this.pointSize + 'rem')
 
     this.split = this.widgetData.split?
                     typeof this.widgetData.split == 'object'?
@@ -105,6 +109,9 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
     }
     this.setValue(v)
 
+    this.draw()
+    this.updateHandlesPosition()
+
 
 }
 
@@ -121,8 +128,8 @@ MultiXy.prototype.resizeHandle = function(){
 MultiXy.prototype.updateHandlesPosition = function(){
     for (var i=0;i<this.widgetData.points;i++) {
         this.handles[i][0].setAttribute('style',`
-            transform:translate3d(${clip(this.pads[i].faders.x.percent,[0,100]) / 100 * this.width}px,
-                                  ${- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * this.height}px,
+            transform:translate3d(${clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE}px,
+                                  ${- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) - (this.pointSize + 1) * PXSCALE}px,
                                   0);
         `)
     }
@@ -137,11 +144,11 @@ MultiXy.prototype.draw = function(){
     this.ctx.strokeStyle = this.colors.custom
 
     for (var i=0;i<this.widgetData.points;i++) {
-        var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * this.width,
-            y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * this.height
+        var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
+            y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
 
             this.ctx.beginPath()
-            this.ctx.arc(x, y, 10 * PXSCALE, Math.PI * 2, false)
+            this.ctx.arc(x, y, this.pointSize * PXSCALE, Math.PI * 2, false)
             this.ctx.stroke()
 
             this.ctx.font =  PXSCALE * 11 + 'px Droid Sans'
