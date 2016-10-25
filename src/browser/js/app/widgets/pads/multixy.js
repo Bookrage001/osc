@@ -109,10 +109,6 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
     }
     this.setValue(v)
 
-    this.draw()
-    this.updateHandlesPosition()
-
-
 }
 
 
