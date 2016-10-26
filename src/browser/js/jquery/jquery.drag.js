@@ -43,7 +43,7 @@
                 mouseStartHandler = function(e){
 
                     // ignore mouse event when fired by a simulated touch event
-                    if (e.originalEvent.sourceCapabilities.firesTouchEvents || e.button == 2) return
+                    if ((e.originalEvent.sourceCapabilities && e.originalEvent.sourceCapabilities.firesTouchEvents) || e.button == 2) return
 
                     isPointerDown = true
                     target = $this
@@ -84,7 +84,7 @@
                     e.stopPropagation()
 
                     // ignore mouse event when fired by a simulated touch event
-                    if (e.originalEvent.sourceCapabilities.firesTouchEvents) return
+                    if (e.originalEvent.sourceCapabilities && e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
                     e.speedX = e.pageX - previousEvent.pageX
                     e.speedY = e.pageY - previousEvent.pageY
