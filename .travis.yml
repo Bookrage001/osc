@@ -2,11 +2,12 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - "4.1"
+  - "6"
 before_install:
   - sudo dpkg --add-architecture i386
   - sudo apt-get update -qq
   - sudo apt-get install -qq wine
+  - "if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi"
 install: npm install --only=dev
 deploy:
   provider: releases
