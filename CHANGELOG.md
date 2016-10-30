@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.2
+
+- bug fixes
+  - [windows] fix long path issue (#35)
+
 ## 0.9.1
 
 - widgets
