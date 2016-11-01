@@ -21,8 +21,9 @@ var customModule = (function(){
 	var file = (function(){try {return fs.readFileSync(settings.read('customModule'),'utf8')} catch(err) {console.log('CustomModule Error: File not found: ' + settings.read('customModule'));return false}})(),
 		mod,
 		context = {
-			console:console,
-			sendOsc:sendOsc
+			console: console,
+			sendOsc: sendOsc,
+			receiveOsc: receiveOsc
 		}
 	try {
 		mod = vm.runInContext(file, vm.createContext(context))
