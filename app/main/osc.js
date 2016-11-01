@@ -15,41 +15,6 @@ var oscServer = new osc.UDPPort({
     localPort: oscInPort
 });
 
-var customModule = (function(){
-	if (!settings.read('customModule')) return false
-
-	var file = (function(){try {return fs.readFileSync(settings.read('customModule'),'utf8')} catch(err) {console.log('CustomModule Error: File not found: ' + settings.read('customModule'));return false}})(),
-		mod,
-		context = {
-			console: console,
-			sendOsc: sendOsc,
-			receiveOsc: receiveOsc
-		}
-	try {
-		mod = vm.runInContext(file, vm.createContext(context))
-	} catch(err) {
-		console.log(err)
-	}
-	return mod
-})()
-
-var oscInFilter = function(data){
-	if (customModule.oscInFilter) {
-		return customModule.oscInFilter(data)
-	} else {
-		return data
-	}
-}
-var oscOutFilter = function(data){
-	if (customModule.oscOutFilter) {
-		return customModule.oscOutFilter(data)
-	} else {
-		return data
-	}
-}
-
-
-
 
 var parseType = function(type){
 	var t = type[0].match(/[bhtdscrmifTFNI]/)
@@ -99,6 +64,40 @@ var receiveOsc = function(data, info){
 
 	if (debug) console.log('OSC received: ', {path:data.address, args: data.args}, 'From : ' + data.address + ':' + data.port)
 
+}
+
+var customModule = (function(){
+	if (!settings.read('customModule')) return false
+
+	var file = (function(){try {return fs.readFileSync(settings.read('customModule'),'utf8')} catch(err) {console.log('CustomModule Error: File not found: ' + settings.read('customModule'));return false}})(),
+		mod,
+		context = {
+			console: console,
+			sendOsc: sendOsc,
+			receiveOsc: receiveOsc
+		}
+	try {
+		mod = vm.runInContext(file, vm.createContext(context))
+	} catch(err) {
+		console.log(err)
+	}
+	return mod
+})()
+
+
+var oscInFilter = function(data){
+	if (customModule.oscInFilter) {
+		return customModule.oscInFilter(data)
+	} else {
+		return data
+	}
+}
+var oscOutFilter = function(data){
+	if (customModule.oscOutFilter) {
+		return customModule.oscOutFilter(data)
+	} else {
+		return data
+	}
 }
 
 
