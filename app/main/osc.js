@@ -5,7 +5,9 @@ var osc = require('osc'),
 	ipc = require('./server').ipc,
 	settings = require('./settings'),
 	oscInPort = settings.read('oscInPort'),
-	debug = settings.read('debug')
+	debug = settings.read('debug'),
+	vm = require('vm'),
+	fs = require('fs')
 
 
 var oscServer = new osc.UDPPort({
@@ -13,19 +15,37 @@ var oscServer = new osc.UDPPort({
     localPort: oscInPort
 });
 
+var customModule = (function(){
+	var file = (function(){try {return fs.readFileSync(settings.read('customModule'),'utf8')} catch(err) {console.log('File not found: ' + settings.read('customModule'));return false}})(),
+		mod,
+		context = {
+			console:console,
+			sendOsc:sendOsc
+		}
+	try {
+		mod = vm.runInContext(file, vm.createContext(context))
+	} catch(err) {
+		console.log(err)
+	}
+	return mod
+})()
 
-oscServer.on('message', function (msg, bundle, info) {
-    var data = {path: msg.address, args: msg.args}
-    if (data.args.length==1) data.args = data.args[0]
-    ipc.send('receiveOsc',data)
-	if (debug) console.log('OSC received: ',data, 'From : ' + info.address + ':' + info.port)
-})
+var oscInFilter = function(data){
+	if (customModule.oscInFilter) {
+		return customModule.oscInFilter(data)
+	} else {
+		return data
+	}
+}
+var oscOutFilter = function(data){
+	if (customModule.oscOutFilter) {
+		return customModule.oscOutFilter(data)
+	} else {
+		return data
+	}
+}
 
-oscServer.on('error', function (error) {
-	console.log(error)
-})
 
-oscServer.open()
 
 
 var parseType = function(type){
@@ -53,6 +73,44 @@ var parseArg = function(arg,precision){
 	}
 }
 
+var sendOsc = function(data){
+
+	if (!data) return
+
+	oscServer.send({
+		address: data.address,
+		args: data.args
+	}, data.host, data.port);
+
+	if (debug) console.log('OSC sent: ',{path:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
+
+}
+
+var receiveOsc = function(data, info){
+
+	if (!data) return
+
+	if (data.args.length==1) data.args = data.args[0]
+
+	ipc.send('receiveOsc',data)
+
+	if (debug) console.log('OSC received: ', {path:data.address, args: data.args}, 'From : ' + data.address + ':' + data.port)
+
+}
+
+
+oscServer.on('message', function (msg, bundle, info) {
+    var data = oscInFilter({path: msg.address, args: msg.args, host: info.address, port: info.port})
+	receiveOsc(data)
+})
+
+oscServer.on('error', function (error) {
+	console.log(error)
+})
+
+oscServer.open()
+
+
 module.exports = {
 
 	send: function(host,port,path,args,precision) {
@@ -69,12 +127,9 @@ module.exports = {
 			if (arg!=null) message.push(arg)
 	    }
 
-		oscServer.send({
-		    address: path,
-		    args: message
-		}, host, port);
+		var data = oscOutFilter({address:path, args: message, host: host, port: port})
 
-		if (debug) console.log('OSC sent: ',{path:path,args:message}, 'To : ' + host + ':' + port)
+		sendOsc(data)
 
 	}
 }

@@ -10,6 +10,7 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 Options:
   -s, --sync      synchronized hosts (ip:port pairs)
   -l, --load      session file to load
+  -c, --custom-module  custom module file to load
   -p, --port      http port of the server (default to 8080)
   -o, --osc-port  osc input port
   -d, --debug     log received osc messages in the console

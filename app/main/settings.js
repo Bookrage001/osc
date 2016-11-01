@@ -11,6 +11,7 @@ var argv = require('yargs')
         .options({
             's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
             'l':{alias:'load',type:'string',describe:'session file to load'},
+            'c':{alias:'custom-module',type:'string',describe:'custom module file to load'},
             'p':{alias:'port',describe:'http port of the server (default to 8080)'},
             'o':{alias:'osc-port',describe:'osc input port'},
             'd':{alias:'debug',describe:'log received osc messages in the console'},
@@ -38,6 +39,7 @@ var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8
         httpPort: argv.p || 8080,
         debug: argv.d || false,
         sessionFile:  argv.l || false,
+        customModule: argv.c || false,
         noGui: argv.n || false,
         guiOnly: argv.g || false,
         appAddresses:function(){
