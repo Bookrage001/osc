@@ -16,7 +16,9 @@ var oscServer = new osc.UDPPort({
 });
 
 var customModule = (function(){
-	var file = (function(){try {return fs.readFileSync(settings.read('customModule'),'utf8')} catch(err) {console.log('File not found: ' + settings.read('customModule'));return false}})(),
+	if (!settings.read('customModule')) return false
+
+	var file = (function(){try {return fs.readFileSync(settings.read('customModule'),'utf8')} catch(err) {console.log('CustomModule Error: File not found: ' + settings.read('customModule'));return false}})(),
 		mod,
 		context = {
 			console:console,
