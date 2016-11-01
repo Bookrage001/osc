@@ -11,16 +11,23 @@ It must be of the following form:
 
     return {
         oscInFilter:function(data){
+            // Filter incomming osc messages
+
             var {address, args, host, port} = data
 
             // do what you want
 
-            // return data if you want the message to be processed (and sent)
+            // return data if you want the message to be processed
             return data
 
         },
         oscOutFilter:function(data){
+            // Filter outgoing osc messages
+
             // same as oscInFilter
+
+            // return data if you want the message to be and sent
+            return data
         }
     }
 
@@ -30,6 +37,6 @@ It must be of the following form:
 
 The module is executed in a restricted context, only a few globals are available :
 
-- `console` object
-- `sendOsc` function
-- `receiveOsc` function
+- `console`: `object`
+- `sendOsc`: `function({address, args, host, port})`
+- `receiveOsc`: `function({address, args, host, port})`
