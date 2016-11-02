@@ -4,7 +4,8 @@
 
 - main
   - **new** `-c / --custom-module` switch allowing user to define custom osc filtering fonctions
-  - `address` is now used everywhere instead of `path` to describe osc address to avoid confusion. Session files using the old `path` option for widgets are still supported. 
+  - `address` is now used everywhere instead of `path` to describe osc address to avoid confusion. Session files using the old `path` option for widgets are still supported.
+  - **osc bundles** are properly received (subsequent messages are processed separately with a delay if the timetag is set) 
 
 
 ## 0.9.2

@@ -101,9 +101,13 @@ var oscOutFilter = function(data){
 }
 
 
-oscServer.on('message', function (msg, bundle, info) {
-    var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
-	receiveOsc(data)
+oscServer.on('message', function (msg, timetag, info) {
+	var delay = timetag? Math.max(0,timetag.native - Date.now()) : 0,
+		timer = delay ? setTimeout : setImmediate
+	setTimeout(()=>{
+		var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
+		receiveOsc(data)
+	}, delay)
 })
 
 oscServer.on('error', function (error) {
