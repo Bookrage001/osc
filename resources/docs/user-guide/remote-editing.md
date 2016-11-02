@@ -1,6 +1,6 @@
 # Remote editing
 
-The interface can be remotely edited by sending the appropriate osc messages (`-o` / `--osc-port` must be set).
+The interface can be remotely edited by sending the appropriate osc messages (from an external source with `-o` / `--osc-port` set, or via `custom-module` scripting).
 
 ```
 /EXEC COMMAND ARGS
