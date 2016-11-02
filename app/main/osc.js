@@ -62,7 +62,7 @@ var receiveOsc = function(data, info){
 
 	ipc.send('receiveOsc',data)
 
-	if (debug) console.log('OSC received: ', {address:data.address, args: data.args}, 'From : ' + data.address + ':' + data.port)
+	if (debug) console.log('OSC received: ', {address:data.address, args: data.args}, 'From : ' + data.host + ':' + data.port)
 
 }
 
