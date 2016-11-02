@@ -8,7 +8,7 @@ The interface can be remotely edited by sending the appropriate osc messages (fr
 
 ## Supported commands
 
-### `edit` :  `/EXEC edit id options`
+#### `edit` :  `/EXEC edit id options`
 
 Apply a set of options to an existing widget
 
