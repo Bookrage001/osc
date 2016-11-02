@@ -28,7 +28,7 @@ module.exports.options = {
     off:0,
     norelease:false,
     precision:2,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     target:[]
 }
@@ -49,7 +49,7 @@ var Multipush = module.exports.Multipush = function(widgetData) {
         data.type = 'push'
         data.id = widgetData.id + '/' + i
         data.label = i
-        data.path = widgetData.path + '/' + i
+        data.address = widgetData.address + '/' + i
 
 		var element = parsewidgets([data],this.widget)
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)

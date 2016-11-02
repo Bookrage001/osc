@@ -8,17 +8,17 @@ module.exports = {
     receiveOsc: function(event,data){
         var data = data || event
 
-        // fetch ids corresponding to the osc path
-        var path = data.path,
-            pathref = path,
+        // fetch ids corresponding to the osc address
+        var address = data.address,
+            addressref = address,
             args = data.args,
             target = data.target
 
         if (typeof data.args == 'object') {
             for (var i=data.args.length-1;i>=0;i--) {
-                var ref = path+'||||'+data.args.slice(0,i).join('||||')
-                if (WIDGETS_BY_PATH[ref]) {
-                    pathref = ref
+                var ref = address+'||||'+data.args.slice(0,i).join('||||')
+                if (WIDGETS_BY_ADDRESS[ref]) {
+                    addressref = ref
                     args = data.args.slice(i,data.args.length)
                     continue
                 }
@@ -31,13 +31,13 @@ module.exports = {
         if (args.length==0) args = null
         else if (args.length==1) args = args[0]
 
-        for (i in WIDGETS_BY_PATH[pathref]) {
+        for (i in WIDGETS_BY_ADDRESS[addressref]) {
             // if the message target is provided (when message comes from another client connected to the same server)
             // then we only update the widgets that have the same target
             // compare arrays using > and < operators (both false = equality)
-            if (!target || !(WIDGETS_BY_PATH[pathref][i].target < target || WIDGETS_BY_PATH[pathref][i].target > target)) {
+            if (!target || !(WIDGETS_BY_ADDRESS[addressref][i].target < target || WIDGETS_BY_ADDRESS[addressref][i].target > target)) {
                 // update matching widgets
-                if (WIDGETS_BY_PATH[pathref][i]) WIDGETS_BY_PATH[pathref][i].setValue(args,{send:false,sync:true,fromExternal:!target})
+                if (WIDGETS_BY_ADDRESS[addressref][i]) WIDGETS_BY_ADDRESS[addressref][i].setValue(args,{send:false,sync:true,fromExternal:!target})
             }
         }
 

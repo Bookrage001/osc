@@ -21,7 +21,7 @@ module.exports.options = {
     off:0,
     norelease:false,
     precision:2,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     target:[]
 }
@@ -105,7 +105,7 @@ module.exports.create = function(widgetData,container) {
 
         sendOsc({
             target:widgetData.target,
-            path:widgetData.path,
+            address:widgetData.address,
             precision:widgetData.precision,
             args:args,
             syncOnly:norelease

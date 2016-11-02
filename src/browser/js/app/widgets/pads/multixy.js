@@ -29,7 +29,7 @@ module.exports.options = {
     logScaleX:false,
     logScaleY:false,
     precision:2,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     split:false,
     target:[]
@@ -48,8 +48,8 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
                         : (()=>{
                             var s={};
                             for (var i=0; i<this.widgetData.points * 2;i=i+2) {
-                                s[i]=this.widgetData.path + '/' + i/2 + '/x'
-                                s[i+1]=this.widgetData.path + '/' + i/2 + '/y'
+                                s[i]=this.widgetData.address + '/' + i/2 + '/x'
+                                s[i+1]=this.widgetData.address + '/' + i/2 + '/y'
                             };
                             return s
                         })()

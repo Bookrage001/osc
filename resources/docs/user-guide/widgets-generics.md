@@ -85,10 +85,10 @@ A widget object is a javascript object. All widgets share a set of generic prope
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
 
-#### `path`
+#### `address`
 - type: `string`
 - default: `/widgets_id`
-- usage: this is the `path` of the osc messages sent by the widget
+- usage: this is the `address` of the osc messages sent by the widget
 
 #### `preArgs`
 - type: `array`

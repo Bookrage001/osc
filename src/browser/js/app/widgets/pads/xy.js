@@ -28,7 +28,7 @@ module.exports.options = {
     logScaleX:false,
     logScaleY:false,
     precision:2,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     split:false,
     target:[]
@@ -41,7 +41,7 @@ var Xy = module.exports.Xy = function(widgetData) {
     this.split = this.widgetData.split?
                     typeof this.widgetData.split == 'object'?
                         this.widgetData.split
-                        : {x: this.widgetData.path + '/x', y: this.widgetData.path + '/y'}
+                        : {x: this.widgetData.address + '/x', y: this.widgetData.address + '/y'}
                     : false
 
     this.widget.append(`

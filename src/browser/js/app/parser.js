@@ -20,7 +20,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         // Reset Globals
         WIDGETS = {}
         WIDGETS_LINKED = {}
-        WIDGETS_BY_PATH = {}
+        WIDGETS_BY_ADDRESS = {}
         SESSION = data
         for (i in TABS) {
             if (i!='#container') {
@@ -101,7 +101,9 @@ module.exports.widgets = function(data,parent) {
             widgetData.id = id
         }
 
-        widgetData.path = widgetData.path=='auto'?'/' + widgetData.id:widgetData.path
+        if (widgetData.path) widgetData.address = widgetData.path
+        
+        widgetData.address = widgetData.address=='auto'?'/' + widgetData.id:widgetData.address
         widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false
 
         for (i in widgetData) {
@@ -170,11 +172,11 @@ module.exports.widgets = function(data,parent) {
             WIDGETS_LINKED[widgetData.linkId].push(widgetInner)
         }
 
-        // store widget by path and encode preArgs for perfect cross-app sync
-        if (widgetData.path)  {
-            var pathref = widgetData.preArgs&&widgetData.preArgs.length?widgetData.path+'||||'+widgetData.preArgs.join('||||'):widgetData.path
-            if (WIDGETS_BY_PATH[pathref]==undefined) WIDGETS_BY_PATH[pathref] = []
-            WIDGETS_BY_PATH[pathref].push(widgetInner)
+        // store widget by address and encode preArgs for perfect cross-app sync
+        if (widgetData.address)  {
+            var addressref = widgetData.preArgs&&widgetData.preArgs.length?widgetData.address+'||||'+widgetData.preArgs.join('||||'):widgetData.address
+            if (WIDGETS_BY_ADDRESS[addressref]==undefined) WIDGETS_BY_ADDRESS[addressref] = []
+            WIDGETS_BY_ADDRESS[addressref].push(widgetInner)
         }
 
         parent[0].appendChild(widgetContainer[0])

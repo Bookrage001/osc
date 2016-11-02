@@ -24,7 +24,7 @@ module.exports.options = {
     separator3:'osc',
 
     precision:0,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     split:false,
     target:[]
@@ -37,7 +37,7 @@ var Rgb = module.exports.Rgb = function(widgetData) {
     this.split = this.widgetData.split?
                     typeof this.widgetData.split == 'object'?
                         this.widgetData.split
-                        : {r: this.widgetData.path + '/r', g: this.widgetData.path + '/g', b: this.widgetData.path + '/b'}
+                        : {r: this.widgetData.address + '/r', g: this.widgetData.address + '/g', b: this.widgetData.address + '/b'}
                     : false
 
     this.widget.append(`

@@ -46,9 +46,9 @@ Pads are multidimensional widgets that output multiple values.
 - type: `boolean|object`
 - default: `false`
 - usage:
-    - set to `true` to send separate osc messages for `x` and `y` axis. The `path` will be the same as the widget's with `/x` or `/y` appended to it
-    - can be set as an object to specify a different `path` : `{x:'/osc_path_x', y:'/osc_path_y'}`
-- note: the widget will only respond to its original osc path, not to the splitted version
+    - set to `true` to send separate osc messages for `x` and `y` axis. The `address` will be the same as the widget's with `/x` or `/y` appended to it
+    - can be set as an object to specify a different `address` : `{x:'/osc_address_x', y:'/osc_address_y'}`
+- note: the widget will only respond to its original osc address, not to the splitted version
 
 ----
 
@@ -98,9 +98,9 @@ Pads are multidimensional widgets that output multiple values.
 - type: `boolean|object`
 - default: `false`
 - usage:
-    - set to `true` to send separate osc messages for each point's `x` and `y` axis. The `path` will be the same as the widget's with `/N/x` or `/N/y` appended to it, where `N` is the point's id.
-    - can be set as an object to specify a different `path` : `{0:'/osc_path/0', 1:'/osc_path_/1'}` (each path will be appended `/x` or `y`)
-- note: the widget will only respond to its original osc path, not to the splitted version
+    - set to `true` to send separate osc messages for each point's `x` and `y` axis. The `address` will be the same as the widget's with `/N/x` or `/N/y` appended to it, where `N` is the point's id.
+    - can be set as an object to specify a different `address` : `{0:'/osc_address/0', 1:'/osc_address_/1'}` (each address will be appended `/x` or `y`)
+- note: the widget will only respond to its original osc address, not to the splitted version
 
 ----
 
@@ -128,5 +128,5 @@ RGB is a variant of XY, it outputs rgb values between 0 and 255.
 - type: `boolean|object`
 - default: `false`
 - usage:
-    - set to `true` to send separate osc messages for `r` and `g` & `b`. The `path` will be the same as the widget's with `/r`, `/g` or `/b` appended to it
-    - can be set as an object to specify a different `path` : `{r:'/osc_path_r', g:'/osc_path_g',b:'/osc_path_b'}`
+    - set to `true` to send separate osc messages for `r` and `g` & `b`. The `address` will be the same as the widget's with `/r`, `/g` or `/b` appended to it
+    - can be set as an object to specify a different `address` : `{r:'/osc_address_r', g:'/osc_address_g',b:'/osc_address_b'}`

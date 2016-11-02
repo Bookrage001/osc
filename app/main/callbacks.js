@@ -80,7 +80,7 @@ module.exports =  {
 	            var host = targets[i].split(':')[0],
 	                port = targets[i].split(':')[1]
 
-	            if (port) osc.send(host,port,data.path,data.args,data.precision)
+	            if (port) osc.send(host,port,data.address,data.args,data.precision)
 
 	        }
 	},

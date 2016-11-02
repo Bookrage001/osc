@@ -16,7 +16,7 @@ module.exports.options = {
     separator2:'osc',
 
     preArgs:[],
-    path:'auto',
+    address:'auto',
     defaultText:''
 }
 module.exports.create = function(widgetData,container) {

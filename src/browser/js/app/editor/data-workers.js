@@ -117,27 +117,27 @@ var incrementWidget = function(data){
 
     var id = data.id,
         label = data.label,
-        path = data.path
+        address = data.address
 
     if (id && id==label) {
         data.label = 'auto'
     }
-    if (id && path == '/'+id) {
+    if (id && address == '/'+id) {
 
-        data.path = 'auto'
+        data.address = 'auto'
 
-    } else if (path){
-        var pathref
-        while (WIDGETS_BY_PATH[pathref]) {
-            path = path.replace(/([0-9]*)$/,function(m){
+    } else if (address){
+        var addressref
+        while (WIDGETS_BY_ADDRESS[addressref]) {
+            address = address.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
                 return n
             })
-            pathref = data.preArgs&&data.preArgs.length?path+'||||'+data.preArgs.join('||||'):path
+            addressref = data.preArgs&&data.preArgs.length?address+'||||'+data.preArgs.join('||||'):address
         }
-        WIDGETS_BY_PATH[pathref] = []
-        data.path = path
+        WIDGETS_BY_ADDRESS[addressref] = []
+        data.address = address
 
     }
 

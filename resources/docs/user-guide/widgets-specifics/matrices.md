@@ -19,7 +19,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: number of faders in the row, each fader will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
     - `id`: same as the widget's with `/i` appended to it
     - `label`: `i`
-    - `path`: same as the widget's with `/i` appended to it
+    - `address`: same as the widget's with `/i` appended to it
 
 #### `traversing`
 - type: `boolean`
@@ -46,7 +46,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: defines the number of columns and and rows. Each cell will contain a toggle button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
     - `id`: same as the widget's with `/i` appended to it
     - `label`: `i`
-    - `path`: same as the widget's with `/i` appended to it
+    - `address`: same as the widget's with `/i` appended to it
 
 #### `traversing`
 - type: `boolean`
@@ -72,7 +72,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: defines the number of columns and and rows. Each cell will contain a push button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
     - `id`: same as the widget's with `/i` appended to it
     - `label`: `i`
-    - `path`: same as the widget's with `/i` appended to it
+    - `address`: same as the widget's with `/i` appended to it
 
 #### `traversing`
 - type: `boolean`

@@ -31,7 +31,7 @@ module.exports.options = {
     origin: 'auto',
     logScale:false,
     precision:2,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     target:[]
 }

@@ -27,7 +27,7 @@ module.exports.options = {
     on:1,
     off:0,
     precision:2,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     target:[]
 }
@@ -47,7 +47,7 @@ var Multitoggle = module.exports.Multitoggle = function(widgetData) {
         data.type = 'toggle'
         data.id = widgetData.id + '/' + i
         data.label = i
-        data.path = widgetData.path + '/' + i
+        data.address = widgetData.address + '/' + i
 
 		var element = parsewidgets([data],this.widget)
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)

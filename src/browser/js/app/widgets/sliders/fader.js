@@ -33,7 +33,7 @@ module.exports.options = {
     logScale:false,
     precision:2,
     meter:false,
-    path:'auto',
+    address:'auto',
     preArgs:[],
     target:[]
 }
@@ -94,7 +94,7 @@ var Fader = module.exports.Fader = function(widgetData){
             horizontal:widgetData.horizontal,
             range:widgetData.range,
             logScale:widgetData.logScale,
-            path:widgetData.path + '/meter',
+            address:widgetData.address + '/meter',
             preArgs:widgetData.preArgs,
             color:widgetData.color
         }

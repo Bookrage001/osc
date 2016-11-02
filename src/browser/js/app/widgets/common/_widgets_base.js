@@ -11,7 +11,7 @@ _widget_base.prototype.sendValue = function() {
 
     sendOsc({
         target:this.widgetData.target,
-        path:this.widgetData.path,
+        address:this.widgetData.address,
         precision:this.widgetData.precision,
         args:args,
         syncOnly:this.split?true:false
@@ -22,7 +22,7 @@ _widget_base.prototype.sendValue = function() {
         for (i in this.split) {
             sendOsc({
                 target:this.widgetData.target,
-                path:this.split[i],
+                address:this.split[i],
                 precision:this.widgetData.precision,
                 args:this.widgetData.preArgs.concat(this.value[n]),
                 sync:false

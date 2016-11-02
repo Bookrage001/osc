@@ -50,7 +50,7 @@ var sendOsc = function(data){
 		args: data.args
 	}, data.host, data.port);
 
-	if (debug) console.log('OSC sent: ',{path:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
+	if (debug) console.log('OSC sent: ',{address:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
 
 }
 
@@ -62,7 +62,7 @@ var receiveOsc = function(data, info){
 
 	ipc.send('receiveOsc',data)
 
-	if (debug) console.log('OSC received: ', {path:data.address, args: data.args}, 'From : ' + data.address + ':' + data.port)
+	if (debug) console.log('OSC received: ', {address:data.address, args: data.args}, 'From : ' + data.address + ':' + data.port)
 
 }
 
@@ -102,7 +102,7 @@ var oscOutFilter = function(data){
 
 
 oscServer.on('message', function (msg, bundle, info) {
-    var data = oscInFilter({path: msg.address, args: msg.args, host: info.address, port: info.port})
+    var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
 	receiveOsc(data)
 })
 
@@ -115,7 +115,7 @@ oscServer.open()
 
 module.exports = {
 
-	send: function(host,port,path,args,precision) {
+	send: function(host,port,address,args,precision) {
 
 	    var message = []
 
@@ -129,7 +129,7 @@ module.exports = {
 			if (arg!=null) message.push(arg)
 	    }
 
-		var data = oscOutFilter({address:path, args: message, host: host, port: port})
+		var data = oscOutFilter({address:address, args: message, host: host, port: port})
 
 		sendOsc(data)
 

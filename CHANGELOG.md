@@ -4,6 +4,7 @@
 
 - main
   - **new** `-c / --custom-module` switch allowing user to define custom osc filtering fonctions
+  - `address` is now used everywhere instead of `path` to describe osc address to avoid confusion. Session files using the old `path` option for widgets are still supported. 
 
 
 ## 0.9.2

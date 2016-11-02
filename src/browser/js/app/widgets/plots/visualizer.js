@@ -25,7 +25,7 @@ module.exports.options = {
 
     separator3:'osc',
 
-    path:'auto',
+    address:'auto',
     preArgs:[],
 }
 
