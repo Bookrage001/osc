@@ -1,3 +1,7 @@
+/*
+    Session File Parser
+*/
+
 var widgets = require('./widgets'),
     widgetOptions = widgets.widgetOptions,
     createWidget = widgets.createWidget,
@@ -85,14 +89,18 @@ module.exports.widgets = function(data,parent) {
     for (i in data) {
         var widgetData = data[i]
 
+        // Set default widget type
         widgetData.type =  widgetData.type || 'fader'
 
+        // Safe copy widget's options
         var tmpWidgetOptions = JSON.parse(JSON.stringify(widgetOptions))
 
+        // Set widget's undefined options to default
         for (i in tmpWidgetOptions[widgetData.type]) {
             if (i.indexOf('separator')==-1 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
         }
 
+        // Genrate widget's id, based on its type
         if (widgetData.id=='auto') {
             var id
             while (!id || WIDGETS[id]) {
@@ -101,18 +109,15 @@ module.exports.widgets = function(data,parent) {
             widgetData.id = id
         }
 
+        // Backward compatibility patch: path -> address
         if (widgetData.path) widgetData.address = widgetData.path
-        
-        widgetData.address = widgetData.address=='auto'?'/' + widgetData.id:widgetData.address
-        widgetData.target = widgetData.target?(Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]):false
 
+        // Genrate default address
+        widgetData.address = widgetData.address=='auto'?'/' + widgetData.id:widgetData.address
+
+        // Delete unrecognized options
         for (i in widgetData) {
             if (widgetOptions[widgetData.type][i]===undefined && i!='type') {delete widgetData[i]}
-        }
-
-
-        for (t in {width:'',height:'',top:'',left:''}) {
-            widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
         }
 
         if (parent.hasClass('strip')) {
@@ -120,38 +125,53 @@ module.exports.widgets = function(data,parent) {
             delete widgetData.left
         }
 
+        // Turn preArgs into array
         if (widgetData.preArgs!=undefined) {
             widgetData.preArgs = Array.isArray(widgetData.preArgs)?widgetData.preArgs:[widgetData.preArgs]
         }
+
+        // Turn preArgs into array
         if (widgetData.target!=undefined) {
             widgetData.target = Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]
         }
 
+
+        // dimensions / coordinates can't be < 0
+        for (t in {width:'',height:'',top:'',left:''}) {
+            widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
+        }
+
+        // convert dimensions / coordinates to rem
         var width = parseFloat(widgetData.width)==widgetData.width?parseFloat(widgetData.width)+'rem' : widgetData.width,
             height = parseFloat(widgetData.height)==widgetData.height?parseFloat(widgetData.height)+'rem' : widgetData.height,
             left = parseFloat(widgetData.left)==widgetData.left?parseFloat(widgetData.left)+'rem' : widgetData.left,
             top = parseFloat(widgetData.top)==widgetData.top?parseFloat(widgetData.top)+'rem' : widgetData.top
 
 
+        // dimensions / coordinates css
         var styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};min-width:auto;`:'',
             styleH = widgetData.height&&widgetData.height!='auto'?`height:${height};min-height:auto;`:'',
             styleL = widgetData.left&&widgetData.left!='auto'||widgetData.left==0?`left:${left};`:'',
             styleT = widgetData.top&&widgetData.top!='auto'||widgetData.top==0?`top:${top};`:''
 
+        // Generate label, iconify if starting with "icon:"
         var label = widgetData.label == 'auto'?
                         widgetData.id:
                         typeof widgetData.label == 'string' && widgetData.label.indexOf('icon:')!=-1?
                             icon(widgetData.label.split(':')[1].trim().replace('fa-','')):
                             widgetData.label
 
+        // create container
         var widgetContainer = $(`
             <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
                 <div class="label"><span>${label}</span></div>
             </div>
         `)
 
+        // Set custom css color variable
         if (widgetData.color && widgetData.color!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetData.color)
 
+        // Hide label if false
         if (widgetData.label===false) widgetContainer.addClass('nolabel')
 
         // create widget
@@ -179,6 +199,7 @@ module.exports.widgets = function(data,parent) {
             WIDGETS_BY_ADDRESS[addressref].push(widgetInner)
         }
 
+        // Append the widget to its parent
         parent[0].appendChild(widgetContainer[0])
     }
 
