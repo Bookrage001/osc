@@ -100,14 +100,20 @@ var oscOutFilter = function(data){
 	}
 }
 
+var oscInHandler = function(msg, timetag, info){
+	var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
+	receiveOsc(data)
+}
 
 oscServer.on('message', function (msg, timetag, info) {
-	var delay = timetag? Math.max(0,timetag.native - Date.now()) : 0,
-		timer = delay ? setTimeout : setImmediate
-	setTimeout(()=>{
-		var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
-		receiveOsc(data)
-	}, delay)
+	var delay = timetag? Math.max(0,timetag.native - Date.now()) : 0
+	if (delay) {
+		setTimeout(()=>{
+			oscInHandler(msg, timetag, info)
+		}, delay)
+	} else {
+		oscInHandler(msg, timetag, info)
+	}
 })
 
 oscServer.on('error', function (error) {
