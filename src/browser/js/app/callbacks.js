@@ -2,14 +2,14 @@ var init = require('./init'),
     actions = require('./actions'),
     utils = require('./utils'),
     icon = utils.icon,
-    {remoteEdit} = require('./editor/data-workers')
+    remoteExec = require('./remote-exec')
 
 module.exports = {
 
     receiveOsc: function(event,data){
         var data = data || event
 
-        if (data.address == '/EDIT') return remoteEdit(data.args[0], data.args[1])
+        if (data.address == '/EXEC') return remoteExec(data.args)
 
         // fetch ids corresponding to the osc address
         var address = data.address,

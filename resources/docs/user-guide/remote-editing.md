@@ -2,9 +2,13 @@
 
 The interface can be remotely edited by sending the appropriate osc messages (`-o` / `--osc-port` must be set).
 
-## supported commands
+```
+/EXEC COMMAND ARGS
+```
 
-### `/EDIT id options`
+## Supported commands
+
+### `edit` :  `/EXEC edit id options`
 
 Apply a set of options to an existing widget
 
