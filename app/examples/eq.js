@@ -69,9 +69,10 @@
                             "max": 20
                         },
                         "logScaleX": true,
-                        "path": "/eq_1",
                         "preArgs": [],
-                        "resolution": 512
+                        "resolution": 512,
+                        "origin": "auto",
+                        "address": "/eq_1"
                     },
                     {
                         "id": "Band 1",
@@ -91,8 +92,8 @@
                                 "linkId": "",
                                 "on": 1,
                                 "off": 0,
-                                "path": "/eq_on_1",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_on_1"
                             },
                             {
                                 "id": "eq_freq_1",
@@ -102,7 +103,6 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "path": "/eq_freq_1",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -119,7 +119,8 @@
                                 "horizontal": true,
                                 "meter": false,
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_freq_1"
                             },
                             {
                                 "id": "eq_q_1",
@@ -129,7 +130,6 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "path": "/eq_q_1",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -146,7 +146,8 @@
                                 "horizontal": true,
                                 "meter": false,
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_q_1"
                             }
                         ],
                         "left": 0,
@@ -176,7 +177,7 @@
                                 "off": 0,
                                 "linkId": "",
                                 "target": [],
-                                "path": "/eq_on_2"
+                                "address": "/eq_on_2"
                             },
                             {
                                 "id": "eq_freq_2",
@@ -186,7 +187,6 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "path": "/eq_freq_2",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -203,7 +203,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_freq_2"
                             },
                             {
                                 "id": "eq_q_2",
@@ -213,7 +214,6 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "path": "/eq_q_2",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -230,7 +230,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_q_2"
                             },
                             {
                                 "id": "eq_gain_2",
@@ -240,7 +241,6 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "path": "/eq_gain_2",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -257,7 +257,8 @@
                                 "linkId": "",
                                 "width": "auto",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_gain_2"
                             }
                         ],
                         "left": 100,
@@ -286,8 +287,8 @@
                                 "on": 1,
                                 "off": 0,
                                 "linkId": "",
-                                "path": "/eq_on_3",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_on_3"
                             },
                             {
                                 "id": "eq_freq_3",
@@ -297,7 +298,6 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "path": "/eq_freq_3",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -314,7 +314,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_freq_3"
                             },
                             {
                                 "id": "eq_q_3",
@@ -324,7 +325,6 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "path": "/eq_q_3",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -341,7 +341,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_q_3"
                             },
                             {
                                 "id": "eq_gain_3",
@@ -351,7 +352,6 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "path": "/eq_gain_3",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -368,7 +368,8 @@
                                 "linkId": "",
                                 "width": "auto",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_gain_3"
                             },
                             {
                                 "type": "switch",
@@ -380,14 +381,14 @@
                                 "color": "auto",
                                 "css": "",
                                 "precision": 2,
-                                "path": "/eq_type_3",
                                 "preArgs": [],
                                 "target": [],
                                 "values": {
                                     "notch": "notch",
                                     "peak": "peak"
                                 },
-                                "linkId": ""
+                                "linkId": "",
+                                "address": "/eq_type_3"
                             }
                         ],
                         "left": 200,
@@ -416,8 +417,8 @@
                                 "on": 1,
                                 "off": 0,
                                 "linkId": "",
-                                "path": "/eq_on_4",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_on_4"
                             },
                             {
                                 "id": "eq_freq_4",
@@ -427,7 +428,6 @@
                                     "min": 20,
                                     "max": 22050
                                 },
-                                "path": "/eq_freq_4",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -444,7 +444,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_freq_4"
                             },
                             {
                                 "id": "eq_q_4",
@@ -454,7 +455,6 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "path": "/eq_q_4",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -471,7 +471,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_q_4"
                             },
                             {
                                 "id": "eq_gain_4",
@@ -481,7 +482,6 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "path": "/eq_gain_4",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -498,7 +498,8 @@
                                 "linkId": "",
                                 "width": "auto",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_gain_4"
                             },
                             {
                                 "type": "switch",
@@ -510,14 +511,14 @@
                                 "color": "auto",
                                 "css": "",
                                 "precision": 2,
-                                "path": "/eq_type_4",
                                 "preArgs": [],
                                 "target": [],
                                 "values": {
                                     "notch": "notch",
                                     "peak": "peak"
                                 },
-                                "linkId": ""
+                                "linkId": "",
+                                "address": "/eq_type_4"
                             }
                         ],
                         "left": 300,
@@ -546,8 +547,8 @@
                                 "on": 1,
                                 "off": 0,
                                 "linkId": "",
-                                "path": "/eq_on_5",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_on_5"
                             },
                             {
                                 "id": "eq_freq_5",
@@ -557,7 +558,6 @@
                                     "min": 10000,
                                     "max": 22050
                                 },
-                                "path": "/eq_freq_5",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -574,7 +574,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_freq_5"
                             },
                             {
                                 "id": "eq_q_5",
@@ -584,7 +585,6 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "path": "/eq_q_5",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -601,7 +601,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_q_5"
                             },
                             {
                                 "id": "eq_gain_5",
@@ -611,7 +612,6 @@
                                     "min": -20,
                                     "max": 20
                                 },
-                                "path": "/eq_gain_5",
                                 "unit": "dB",
                                 "height": 70,
                                 "color": "auto",
@@ -628,7 +628,8 @@
                                 "linkId": "",
                                 "width": "auto",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_gain_5"
                             }
                         ],
                         "left": 400,
@@ -657,8 +658,8 @@
                                 "on": 1,
                                 "off": 0,
                                 "linkId": "",
-                                "path": "/eq_on_6",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_on_6"
                             },
                             {
                                 "id": "eq_freq_6",
@@ -668,7 +669,6 @@
                                     "min": 10000,
                                     "max": 22050
                                 },
-                                "path": "/eq_freq_6",
                                 "unit": "Hz",
                                 "width": "auto",
                                 "height": 70,
@@ -685,7 +685,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_freq_6"
                             },
                             {
                                 "id": "eq_q_6",
@@ -695,7 +696,6 @@
                                     "min": 0.125,
                                     "max": 8
                                 },
-                                "path": "/eq_q_6",
                                 "unit": "",
                                 "width": "auto",
                                 "height": 70,
@@ -712,7 +712,8 @@
                                 "meter": false,
                                 "linkId": "",
                                 "origin": "auto",
-                                "target": []
+                                "target": [],
+                                "address": "/eq_q_6"
                             }
                         ],
                         "left": 500,

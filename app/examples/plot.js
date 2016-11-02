@@ -14,16 +14,22 @@
                 "height": 254,
                 "horizontal": false,
                 "css": "",
-                "absolute": false,
                 "range": {
                     "min": 0,
                     "max": 1
                 },
                 "logScale": false,
                 "precision": 2,
-                "path": "/fader_1",
                 "target": [],
-                "meter": false
+                "meter": false,
+                "alignRight": false,
+                "noPip": false,
+                "compact": false,
+                "color": "auto",
+                "snap": false,
+                "origin": "auto",
+                "address": "/fader_1",
+                "preArgs": []
             },
             {
                 "type": "fader",
@@ -37,16 +43,22 @@
                 "height": 253,
                 "horizontal": false,
                 "css": "",
-                "absolute": false,
                 "range": {
                     "min": 0,
                     "max": 1
                 },
                 "logScale": false,
                 "precision": 2,
-                "path": "/fader_2",
                 "target": [],
-                "meter": false
+                "meter": false,
+                "alignRight": false,
+                "noPip": false,
+                "compact": false,
+                "color": "auto",
+                "snap": false,
+                "origin": "auto",
+                "address": "/fader_2",
+                "preArgs": []
             },
             {
                 "type": "fader",
@@ -60,16 +72,22 @@
                 "height": 253,
                 "horizontal": false,
                 "css": "",
-                "absolute": false,
                 "range": {
                     "min": 0,
                     "max": 1
                 },
                 "logScale": false,
                 "precision": 2,
-                "path": "/fader_3",
                 "target": [],
-                "meter": false
+                "meter": false,
+                "alignRight": false,
+                "noPip": false,
+                "compact": false,
+                "color": "auto",
+                "snap": false,
+                "origin": "auto",
+                "address": "/fader_3",
+                "preArgs": []
             },
             {
                 "type": "fader",
@@ -83,16 +101,22 @@
                 "height": 253,
                 "horizontal": false,
                 "css": "",
-                "absolute": false,
                 "range": {
                     "min": 0,
                     "max": 1
                 },
                 "logScale": false,
                 "precision": 2,
-                "path": "/fader_4",
                 "target": [],
-                "meter": false
+                "meter": false,
+                "alignRight": false,
+                "noPip": false,
+                "compact": false,
+                "color": "auto",
+                "snap": false,
+                "origin": "auto",
+                "address": "/fader_4",
+                "preArgs": []
             },
             {
                 "type": "plot",
@@ -131,7 +155,10 @@
                 },
                 "logScaleX": false,
                 "logScaleY": false,
-                "path": "/plot_1"
+                "color": "auto",
+                "origin": "auto",
+                "address": "/plot_1",
+                "preArgs": []
             },
             {
                 "type": "visualizer",
@@ -149,7 +176,10 @@
                 },
                 "logScale": false,
                 "label": "visualizer (fader1)",
-                "path": "/visualizer_(fader_1)"
+                "color": "auto",
+                "origin": "auto",
+                "address": "/visualizer_(fader_1)",
+                "preArgs": []
             },
             {
                 "type": "rgb",
@@ -161,11 +191,12 @@
                 "width": "auto",
                 "height": "auto",
                 "css": "",
-                "absolute": false,
                 "precision": 0,
-                "path": "/rgb_1",
                 "split": false,
-                "target": []
+                "target": [],
+                "snap": false,
+                "address": "/rgb_1",
+                "preArgs": []
             },
             {
                 "type": "plot",
@@ -187,7 +218,10 @@
                 "logScaleY": false,
                 "id": "plot_2",
                 "label": "plot_2 (rgb)",
-                "path": "/plot_2"
+                "color": "auto",
+                "origin": "auto",
+                "address": "/plot_2",
+                "preArgs": []
             }
         ]
     },
@@ -209,10 +243,19 @@
                     "max": 1
                 },
                 "precision": 2,
-                "path": "/multifader_1",
                 "target": [],
                 "logScale": false,
-                "css": ""
+                "css": "",
+                "alignRight": false,
+                "horizontal": false,
+                "noPip": true,
+                "compact": false,
+                "color": "auto",
+                "traversing": true,
+                "origin": "auto",
+                "meter": false,
+                "address": "/multifader_1",
+                "preArgs": []
             },
             {
                 "type": "plot",
@@ -233,8 +276,11 @@
                 },
                 "logScaleX": false,
                 "logScaleY": false,
-                "path": "/plot_3",
-                "css": "z-index:1"
+                "css": "z-index:1",
+                "color": "auto",
+                "origin": "auto",
+                "address": "/plot_3",
+                "preArgs": []
             },
             {
                 "type": "multitoggle",
@@ -246,14 +292,17 @@
                 "height": 229,
                 "css": "",
                 "precision": 2,
-                "path": "/multifader_2",
                 "target": [],
                 "matrix": [
                     2,
                     2
                 ],
                 "on": 1,
-                "off": 0
+                "off": 0,
+                "color": "auto",
+                "traversing": true,
+                "address": "/multifader_2",
+                "preArgs": []
             },
             {
                 "type": "plot",
@@ -275,7 +324,10 @@
                 "logScaleX": false,
                 "logScaleY": false,
                 "id": "plot_4",
-                "path": "/plot_4"
+                "color": "auto",
+                "origin": "auto",
+                "address": "/plot_4",
+                "preArgs": []
             }
         ]
     },
@@ -300,7 +352,16 @@
                 "logScale": false,
                 "id": "multifader_2",
                 "label": "auto",
-                "path": "/multifader_2"
+                "alignRight": false,
+                "horizontal": false,
+                "noPip": true,
+                "compact": false,
+                "color": "auto",
+                "traversing": true,
+                "origin": "auto",
+                "meter": false,
+                "address": "/multifader_2",
+                "preArgs": []
             },
             {
                 "type": "plot",
@@ -321,8 +382,11 @@
                 "logScaleY": false,
                 "css": "z-index:1",
                 "label": "There is a transparent multifader above this plot, just touch it... incredible, isn't it ?",
-                "path": "/plot_6",
-                "id": "plot_7"
+                "id": "plot_7",
+                "color": "auto",
+                "origin": "auto",
+                "address": "/plot_6",
+                "preArgs": []
             }
         ]
     }
