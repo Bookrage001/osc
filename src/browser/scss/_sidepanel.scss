@@ -69,11 +69,17 @@
         &:vertical {
             border-left:8rem solid var(--color-fg);
         }
+        &:horizontal {
+            border-top:8rem solid var(--color-fg);
+        }
     }
     &::-webkit-scrollbar-thumb {
         background:var(--color-raised);
         &:vertical {
             border-left:8rem solid var(--color-fg);
+        }
+        &:horizontal {
+            border-top:8rem solid var(--color-fg);
         }
     }
     &::-webkit-scrollbar-button {
