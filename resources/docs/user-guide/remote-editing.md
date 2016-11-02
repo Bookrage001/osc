@@ -9,5 +9,5 @@ The interface can be remotely edited by sending the appropriate osc messages (`-
 Apply a set of options to an existing widget
 
 - `id`: `string`, widget's `id`
-- `option`: `string`, JSON object defining the new properties to merge
+- `options`: `string`, JSON object defining the new properties to merge
   - example: `{"label":"New Label", "color":"red"}`
