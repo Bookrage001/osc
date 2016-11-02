@@ -47,7 +47,7 @@ var getObjectData = function(obj){
 
 }
 
-var updateDom = function(container,data) {
+var updateDom = function(container,data, remote) {
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
@@ -61,7 +61,7 @@ var updateDom = function(container,data) {
         var newContainer = parsewidgets([data],container.parent())
         container.replaceWith(newContainer)
 
-        editObject(newContainer,data)
+        if (!remote) editObject(newContainer,data)
 
     } else if (container.hasClass('tab')) {
         // tab
@@ -77,7 +77,7 @@ var updateDom = function(container,data) {
 
         $(`[data-tab="#${container.attr('id')}"]`).html(`<a><span>${data.label}</span></a>`)
 
-        editObject(newContainer,data)
+        if (!remote) editObject(newContainer,data)
 
     } else if (container.attr('id')=='container') {
         // session
@@ -85,8 +85,10 @@ var updateDom = function(container,data) {
         container.empty()
         parsetabs(data,container,true)
 
-        editSession(newContainer,data)
-        sidepanelCreateToggle()
+        if (!remote) {
+            editSession(newContainer,data)
+            sidepanelCreateToggle()
+        }
 
     }
 
@@ -163,8 +165,23 @@ var incrementWidget = function(data){
 
 }
 
+var remoteEdit = function(id,json) {
+    var newdata = JSON.parse(json),
+        containers = WIDGETS[id]
+
+    if (!WIDGETS[id]) return
+    for (i in WIDGETS[id]) {
+        var container = WIDGETS[id][i].parent(),
+            data = getObjectData(container)
+            
+        $.extend(true,data,newdata)
+        updateDom(container,data,true)
+    }
+}
+
 module.exports = {
     updateDom:updateDom,
     getObjectData:getObjectData,
-    incrementWidget:incrementWidget
+    incrementWidget:incrementWidget,
+    remoteEdit:remoteEdit
 }
