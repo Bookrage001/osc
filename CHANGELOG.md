@@ -1,5 +1,11 @@
 # Changelog
 
+## next
+
+- main
+  - **new** `-c / --custom-module` allowing user to define custom osc filtering fonctions
+
+
 ## 0.9.2
 
 - bug fixes
