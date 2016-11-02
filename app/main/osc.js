@@ -12,7 +12,8 @@ var osc = require('osc'),
 
 var oscServer = new osc.UDPPort({
     localAddress: "0.0.0.0",
-    localPort: oscInPort
+    localPort: oscInPort,
+	metadata: true
 });
 
 
@@ -102,6 +103,9 @@ var oscOutFilter = function(data){
 
 var oscInHandler = function(msg, timetag, info){
 	var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
+	for (i in data.args) {
+		data.args[i] = data.args[i].value 
+	}
 	receiveOsc(data)
 }
 

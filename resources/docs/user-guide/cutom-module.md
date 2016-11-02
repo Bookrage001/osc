@@ -17,8 +17,13 @@ It must be of the following form:
 
             // do what you want
 
+            // address = string
+            // args = array of {value, type} objects
+            // host = string
+            // port = integer
+            
             // return data if you want the message to be processed
-            return data
+            return {address, args, host, port}
 
         },
         oscOutFilter:function(data){
@@ -27,7 +32,7 @@ It must be of the following form:
             // same as oscInFilter
 
             // return data if you want the message to be and sent
-            return data
+            return {address, args, host, port}
         }
     }
 
