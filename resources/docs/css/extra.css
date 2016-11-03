@@ -1,0 +1,30 @@
+a {
+    color: #528bff;
+}
+
+.navbar-default {
+    border-bottom: 4px solid #528bff
+}
+
+.navbar-right li {
+    font-size: 0;
+}
+.navbar-right li i {
+    font-size: 14px;
+    position: relative;
+    top: 4px;
+}
+.navbar-right li.disabled a {
+    color:#888!important
+}
+
+.bs-sidebar .nav > li > a {
+    padding: 2px 20px;
+}
+
+
+footer {
+    font-size:14px;
+    line-height: 1;
+    margin-bottom: 16px;
+}
