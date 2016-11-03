@@ -32,7 +32,7 @@ var parseArg = function(arg,precision){
 	if (arg==null) return null
 	switch (typeof arg) {
 		case 'number':
-			return {type: precision == 0 ? 'i' : 'f', value: parseFloat(arg.toFixed(Math.min(precision,20)))}
+			return {type: precision == 0 ? 'i' : 'f', value: parseFloat(arg.toFixed(precision))}
 		case 'boolean':
 			return {type: arg ? 'T' : 'F', value: arg}
 		case 'object':
