@@ -107,7 +107,7 @@ var Rgb = module.exports.Rgb = function(widgetData) {
 
     this.faders.h.widget.on('sync',(e)=>{
         e.stopPropagation()
-        this.dragHandle()
+        this.dragHandle(true)
     })
 
     this.wrapper.on('draginit',(e, data, traversing)=>{
@@ -145,24 +145,22 @@ Rgb.prototype = Object.create(_pads_base.prototype)
 
 Rgb.prototype.constructor = Rgb
 
-Rgb.prototype.dragHandle = function(){
+Rgb.prototype.dragHandle = function(hue){
     var h =this.faders.h.value,
         s = this.faders.s.value,
         b = this.faders.b.value
 
     if (h != this.hsb.h ||s != this.hsb.s || b != this.hsb.b) {
 
-        var huechange = h != this.hsb.h
-
         this.hsb.h = this.faders.h.value
         this.hsb.s = this.faders.s.value
         this.hsb.b = this.faders.b.value
 
-        this.update({nohue: !huechange})
+        this.update({nohue:!hue})
 
         var rgb = hsbToRgb(this.hsb)
         if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
-            this.setValue([rgb.r, rgb.g, rgb.b],{send:true,sync:true,dragged:true})
+            this.setValue([rgb.r, rgb.g, rgb.b],{send:true,sync:true,dragged:true,nohue:!hue})
         }
     }
 
@@ -190,7 +188,7 @@ Rgb.prototype.setValue = function(v, options={}){
     if (options.send) this.sendValue()
     if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
 
-    if (!options.dragged) this.update()
+    this.update({nohue:options.nohue})
 }
 
 Rgb.prototype.update = function(options={}) {
