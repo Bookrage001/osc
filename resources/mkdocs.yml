@@ -5,3 +5,6 @@ copyright: "Open Stage Control is an <a href='http://ammd.net'>AMMD</a> software
 site_description: "A libre desktop OSC bi-directionnal control surface application."
 extra_css:
     - css/extra.css
+extra_js:
+    - js/extra.js
+site_favicon: img/logo.png
