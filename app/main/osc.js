@@ -32,7 +32,7 @@ var parseArg = function(arg,precision){
 	if (arg==null) return null
 	switch (typeof arg) {
 		case 'number':
-			return {type: precision == 0 ? 'i' : 'f', value: arg}
+			return {type: precision == 0 ? 'i' : 'f', value: parseFloat(arg.toFixed(Math.min(precision,20)))}
 		case 'boolean':
 			return {type: arg ? 'T' : 'F', value: arg}
 		case 'object':
@@ -104,7 +104,7 @@ var oscOutFilter = function(data){
 var oscInHandler = function(msg, timetag, info){
 	var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
 	for (i in data.args) {
-		data.args[i] = data.args[i].value 
+		data.args[i] = data.args[i].value
 	}
 	receiveOsc(data)
 }
