@@ -1,7 +1,7 @@
-<iframe class="pull-right" style="margin-top:5px;" src="https://ghbtns.com/github-btn.html?user=jean-emmanuel&repo=open-stage-control&type=star&count=true" frameborder="0" scrolling="0" width="80px" height="30px"></iframe>
 
-<img src="img/logo.png" height="40px"/> <b>Open Stage Control</b>
+# <small> <img src="img/logo.png" height="40px"/> Open Stage Control </small> <iframe class="pull-right" style="margin-top:15px;" src="https://ghbtns.com/github-btn.html?user=jean-emmanuel&repo=open-stage-control&type=star&count=true" frameborder="0" scrolling="0" width="80px" height="30px"></iframe>
 
+<div class="clearfix"></div>
 ----
 
 Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS and run as a Node / [Electron](http://electron.atom.io/) web server that accepts any number of Chrome / Chromium / Electron clients.
