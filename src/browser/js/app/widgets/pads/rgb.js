@@ -190,7 +190,7 @@ Rgb.prototype.setValue = function(v, options={}){
     if (options.send) this.sendValue()
     if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
 
-    this.update()
+    if (!options.dragged) this.update()
 }
 
 Rgb.prototype.update = function(options={}) {
