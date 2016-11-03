@@ -171,13 +171,12 @@ Rgb.prototype.setValue = function(v, options={}){
     if (!v || v.length!=3) return
 
     for (i in [0,1,2]) {
-        v[i] = roundTo(clip(v[i],[0,255]),this.widgetData.precision)
+        v[i] = clip(v[i],[0,255])
     }
 
     var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
     if (!options.dragged) {
-        this.faders.h.setValue(hsb.h, {sync: false, send:false, dragged:false})
         this.faders.s.setValue(hsb.s, {sync: false, send:false, dragged:false})
         this.faders.b.setValue(hsb.b, {sync: false, send:false, dragged:false})
     }
@@ -188,19 +187,20 @@ Rgb.prototype.setValue = function(v, options={}){
     if (options.send) this.sendValue()
     if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
 
-    this.update({nohue:options.nohue})
+    this.update({dragged:options.dragged, nohue:options.nohue || (v[0]==v[1]&&v[1]==v[2])})
 }
 
 Rgb.prototype.update = function(options={}) {
 
-    if (!options.nohue) {
+    if (!options.nohue && !options.dragged) {
         var hue = hsbToRgb({h:this.hsb.h,s:100,b:100})
-        this.hue = `rgb(${hue.r},${hue.g},${hue.b})`
+        this.hue = `rgb(${Math.round(hue.r)},${Math.round(hue.g)},${Math.round(hue.b)})`
         this.wrapper[0].setAttribute('style',`background:${this.hue}`)
+        this.faders.h.setValue(this.hsb.h, {sync: false, send:false, dragged:false})
     }
 
     for (i in this.inputs) [
-        this.inputs[i].val(this.value[i])
+        this.inputs[i].val(roundTo(this.value[i],this.widgetData.precision))
     ]
 
     this.draw()

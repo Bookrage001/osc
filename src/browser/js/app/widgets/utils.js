@@ -61,7 +61,7 @@ module.exports = {
 			else if(h<360) {rgb.r=t1; rgb.g=t2;	rgb.b=t1-t3}
 			else {rgb.r=0; rgb.g=0;	rgb.b=0}
 		}
-		return {r:Math.round(rgb.r), g:Math.round(rgb.g), b:Math.round(rgb.b)}
+		return rgb
 	},
 
 	rgbToHsb: function (rgb) {
