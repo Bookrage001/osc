@@ -135,6 +135,9 @@ module.exports.widgets = function(data,parent) {
             widgetData.target = Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]
         }
 
+        if (widgetData.precision) {
+            widgetData.precision = Math.min(20,Math.max(widgetData.precision,0))
+        }
 
         // dimensions / coordinates can't be < 0
         for (t in {width:'',height:'',top:'',left:''}) {

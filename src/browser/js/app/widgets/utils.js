@@ -29,17 +29,12 @@ module.exports = {
 
 	    value = Math.max(Math.min(rangeOut[0],rangeOut[1]),Math.min(value,Math.max(rangeOut[0],rangeOut[1])))
 
-	    if (precision!==false) value = module.exports.roundTo(value, precision)
+	    if (precision!==false) value = parseFloat(value.toFixed(precision))
 
 
 	    return value
 
 	},
-
-    roundTo: function(value, precision) {
-        var roundFactor = precision!=undefined?Math.pow(10,precision):100
-        return  Math.round(value*roundFactor)/roundFactor
-    },
 
 	hsbToRgb: function (hsb) {
 		var rgb = {}

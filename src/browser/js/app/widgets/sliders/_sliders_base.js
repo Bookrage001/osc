@@ -1,4 +1,4 @@
-var {clip, roundTo, mapToScale, sendOsc} = require('../utils')
+var {clip, mapToScale, sendOsc} = require('../utils')
 var _canvas_base = require('../common/_canvas_base')
 
 var _sliders_base = module.exports = function(){
@@ -16,7 +16,6 @@ var _sliders_base = module.exports = function(){
 
     this.wrapper = this.widget.find('.wrapper')
     this.input = this.widget.find('.input').fakeInput({align:'center'})
-    this.roundFactor = Math.pow(10,this.widgetData.precision)
     this.value = undefined
     this.percent = 0
 
@@ -147,7 +146,7 @@ _sliders_base.prototype.valueToPercent = function(value) {
 _sliders_base.prototype.setValue = function(v,options={}) {
     if (typeof v != 'number') return
 
-    var value = roundTo(clip(Math.round(v*this.roundFactor)/this.roundFactor,[this.rangeValsMin,this.rangeValsMax]),this.widgetData.precision)
+    var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 
     if ((options.dragged || options.fromLocal) && this.value == value) options.send = false
 
@@ -164,5 +163,5 @@ _sliders_base.prototype.setValue = function(v,options={}) {
 }
 
 _sliders_base.prototype.showValue = function() {
-    this.input.val(this.value + this.unit)
+    this.input.val(this.value.toFixed(this.widgetData.precision) + this.unit)
 }

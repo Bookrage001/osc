@@ -1,6 +1,6 @@
 var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
-    {clip, roundTo, hsbToRgb, rgbToHsb} = require('../utils')
+    {clip, hsbToRgb, rgbToHsb} = require('../utils')
 
 
 module.exports.options = {
@@ -200,7 +200,7 @@ Rgb.prototype.update = function(options={}) {
     }
 
     for (i in this.inputs) [
-        this.inputs[i].val(roundTo(this.value[i],this.widgetData.precision))
+        this.inputs[i].val(this.value[i].toFixed(this.widgetData.precision))
     ]
 
     this.draw()
