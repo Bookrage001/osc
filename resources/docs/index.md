@@ -3,8 +3,8 @@
 
 ----
 
-<a class="btn btn-primary btn-sm" href="https://github.com/jean-emmanuel/open-stage-control/releases"><i class="fa fa-download fa-fw"></i> <span id="github-version">...</span></a>
-<a class="btn btn-info btn-sm" href="http://openstagecontrol.herokuapp.com/"><i class="fa fa-bolt fa-fw"></i> Demo</a>
+<a class="btn btn-primary btn-sm" href="https://github.com/jean-emmanuel/open-stage-control/releases"><i class="fa fa-download fa-fw"></i> Latest release (<span id="github-version">...</span>)</a>
+<a class="btn btn-info btn-sm" href="http://openstagecontrol.herokuapp.com/"><i class="fa fa-chrome fa-fw"></i> Demo (chrome 49+ required)</a>
 <a class="btn btn-default btn-sm pull-right" href="https://github.com/jean-emmanuel/open-stage-control"><i class="fa fa-star fa-fw"></i> <span  id="github-stars">...</span></a>
 
 ----
