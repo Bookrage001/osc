@@ -70,7 +70,16 @@ module.exports = {
             </div>`)
 
         for (i in data) {
-            $('#lobby .list').append('<a class="btn load" data-session="'+data[i]+'">'+data[i]+'<span>'+icon('remove')+'</span></a>')
+            var max = 50
+            var path = data[i],
+                file = path.split('\\').pop().split('/').pop(),
+                length = data[i].length
+            path = path.replace(file,'')
+            if (length > max - 3) {
+                path = path.substr(0,Math.floor((path.length)/2)-(length-max)/2) + '...' + path.substr(Math.ceil((path.length)/2)+(length-max)/2, path.length)
+            }
+
+            $('#lobby .list').append('<a class="btn load" data-session="'+data[i]+'">'+file+' <em style="opacity:0.45">('+path+')</em><span>'+icon('remove')+'</span></a>')
         }
         $('#lobby .footer').append('<a class="btn browse">'+icon('folder-open')+' Browse</a>')
         $('#lobby .footer').append('<a class="btn new">'+icon('file-o')+' New</a>')
