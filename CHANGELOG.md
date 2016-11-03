@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.10.0-alpha
 
 - main
   - **new** `-c / --custom-module` switch allowing user to define custom osc filtering fonctions
