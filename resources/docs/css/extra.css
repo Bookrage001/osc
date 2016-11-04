@@ -1,6 +1,13 @@
+body {
+}
+
 a {
     color: #528bff;
 
+}
+
+.text-justify {
+    text-align: justify
 }
 
 .navbar-default {

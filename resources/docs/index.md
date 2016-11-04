@@ -1,35 +1,22 @@
+<div class="well">
+    <p class="text-center">
+        <img src="img/logo.png" height="80px" class="img-circle"/>
+    </p>
 
-# <img src="img/logo.png" height="80px"/> <small> Open Stage Control </small>
 
-----
+    <p class="text-center">
+        Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS and run as a Node / <a href="http://electron.atom.io/">Electron</a> web server that accepts any number of Chrome / Chromium / Electron clients.
+    </p>
 
-<a class="btn btn-primary btn-sm" href="https://github.com/jean-emmanuel/open-stage-control/releases"><i class="fa fa-download fa-fw"></i> Latest release (<span id="github-version">...</span>)</a>
-<a class="btn btn-info btn-sm" href="http://openstagecontrol.herokuapp.com/"><i class="fa fa-chrome fa-fw"></i> Demo (chrome 49+ required)</a>
-<a class="btn btn-default btn-sm pull-right" href="https://github.com/jean-emmanuel/open-stage-control"><i class="fa fa-star fa-fw"></i> <span  id="github-stars">...</span></a>
+    <br/>
 
-----
-
-Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS and run as a Node / [Electron](http://electron.atom.io/) web server that accepts any number of Chrome / Chromium / Electron clients.
-
-<div class="row">
-<div class="col-md-6">
-<img src="img/screenshot-1.png" alt="..." class="img-thumbnail">
-</div>
-<div class="col-md-6">
-<img src="img/screenshot-2.png" alt="..." class="img-thumbnail">
-</div>
+    <div class="">
+    <a class="btn btn-default btn-sm pull-right" href="https://github.com/jean-emmanuel/open-stage-control"><i class="fa fa-star fa-fw"></i> <span  id="github-stars">...</span></a>
+    <a class="btn btn-primary btn-sm" href="https://github.com/jean-emmanuel/open-stage-control/releases"><i class="fa fa-download fa-fw"></i> Latest release (<span id="github-version">...</span>)</a>
+    <a class="btn btn-info btn-sm" href="http://openstagecontrol.herokuapp.com/"><i class="fa fa-chrome fa-fw"></i> Demo (chrome 49+ required)</a>
+    </div>
 </div>
 
-
-## Demo
-
-You can try the app here [http://openstagecontrol.herokuapp.com/](http://openstagecontrol.herokuapp.com/)
-
-Please note that :
-
-- Chrome/Chromium **49** at least is required
-- Since there is only one instance running, all connected guests are synchronized (widgets using the same osc paths update each other's states) : you might experience some unwanted synchronization with other users unless you specify custom parameters for your widgets.
-- You might want to download the examples sessions files under *examples/* and load them in the app to get started.
 
 
 ## Features
