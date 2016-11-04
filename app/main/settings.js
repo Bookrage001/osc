@@ -6,29 +6,59 @@ var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'
     fs = require('fs'),
     ifaces = require('os').networkInterfaces()
 
+
+var options = {
+    's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)',
+         check: (s)=>{
+             return (s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$') != null) ?
+                 true : 'Sync hosts must be ip:port pairs & port must be >= 1024'
+         }
+    },
+    'l':{alias:'load',type:'string',file:'js',describe:'session file to load'},
+    'c':{alias:'custom-module',type:'string',file:'js',describe:'custom module file to load'},
+    'p':{alias:'port',type:'number',describe:'http port of the server (default to 8080)',
+         check: (p)=>{
+             return (!isNaN(p) && p > 1023 && parseInt(p)===p) ?
+                true : 'Port must be an integer >= 1024'
+         }
+     },
+     'o':{alias:'osc-port',type:'number',describe:'osc input port',
+          check: (o)=>{
+              return (!isNaN(o) && o > 1023 && parseInt(o)===o) ?
+                 true : 'Port must be an integer >= 1024'
+          }
+     },
+    'd':{alias:'debug',type:'boolean',describe:'log received osc messages in the console'},
+    'n':{alias:'no-gui',type:'boolean',describe:'disable default gui'},
+    'g':{alias:'gui-only',type:'string',describe:'server\'s ip:port, default to localhost:8080, only launch the gui (a server instance must be running)'},
+    't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
+    'e':{alias:'examples',type:'boolean',describe:'list examples instead of recent sessions'}
+}
+
+
 var argv = require('yargs')
         .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
-        .options({
-            's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)'},
-            'l':{alias:'load',type:'string',describe:'session file to load'},
-            'c':{alias:'custom-module',type:'string',describe:'custom module file to load'},
-            'p':{alias:'port',describe:'http port of the server (default to 8080)'},
-            'o':{alias:'osc-port',describe:'osc input port'},
-            'd':{alias:'debug',describe:'log received osc messages in the console'},
-            'n':{alias:'no-gui',describe:'disable default gui'},
-            'g':{alias:'gui-only',describe:'server\'s ip:port, default to localhost:8080, only launch the gui (a server instance must be running)'},
-            't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
-            'e':{alias:'examples',describe:'list examples instead of recent sessions'}
+        .options(options)
+        .check((argv)=>{
+            for (key in options) {
+                var ok = true
+                if (options[key].check && argv[key] != undefined) {
+                    ok = options[key].check(argv[key])
+                }
+                if (ok!==true) {
+                    throw ok
+                }
+            }
+            return true
         })
-        .check(function(a,x){if(a.i==undefined || !isNaN(a.i)&&a.i>1023&&parseInt(a.i)===a.i){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-        .check(function(a,x){if(a.p==undefined || !isNaN(a.p)&&a.p>1023&&parseInt(a.p)===a.p){return true}else{throw 'Error: Port must be an integer >= 1024'}})
-        .check(function(a,x){if(a.s==undefined || a.s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$')!=null){return true}else{throw 'Error: Sync hosts must be ip:port pairs & port must be >= 1024'}})
         .strict()
         .version().alias('v','version')
-        .argv
+
+argv = argv.argv
 
 var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8'))} catch(err) {return {}}}(),
     defaultConfig = {
+        argv:argv,
         presetPath : process.cwd(),
         sessionPath: process.cwd(),
         recentSessions: [],
@@ -73,13 +103,14 @@ var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8
     }
 
 module.exports = {
-
+    options:options,
     read:function(key){
         var x = config[key] || defaultConfig[key]
         return x
     },
-    write:function(key,value) {
+    write:function(key,value,tmp) {
         config[key] = value
+        if (tmp) return
         fs.writeFile(configFile,JSON.stringify(config,null,4), function (err, data) {
             if (err) throw err
         })
