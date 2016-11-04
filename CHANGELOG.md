@@ -6,7 +6,7 @@
   - rgb: minor visual glitch on extreme value, drawing performance improved
   - main: examples sessions path are properly stored as absolute paths
 - ui
-  - session files' path are automatically shortened
+  - lobby: session file names are diplayed first, then shortened paths 
 
 ## 0.10.0-alpha-2
 
