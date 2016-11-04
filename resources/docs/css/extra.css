@@ -65,6 +65,7 @@ a {
 .bs-sidebar {
     border-width: 0 1px 0 0;
     box-shadow: none;
+    background: none;
 }
 
 .bs-sidebar .nav > li > a {
