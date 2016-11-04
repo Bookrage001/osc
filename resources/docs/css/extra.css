@@ -1,11 +1,48 @@
 a {
     color: #528bff;
+
 }
 
 .navbar-default {
-    border-bottom: 4px solid #528bff
+    border-bottom: 1px solid #ddd;
+    background: #fafafa;
 }
 
+.navbar-default .navbar-nav a {
+    color: #222!important;
+}
+.navbar-toggle span {
+    background: #222!important;
+}
+
+.dropdown-menu {
+    background: #fafafa!important;
+    box-shadow: none;
+    border:1px solid #ddd!important;
+    margin-top: 0px!important;
+}
+.dropdown-submenu a:after {
+    border-left-color:#888!important
+}
+
+.navbar-default .active > a,
+.navbar-default .open > a,
+.navbar-default .navbar-nav a:focus,
+.navbar-default .navbar-nav a:hover,
+.navbar-default .navbar-nav a:active {
+    background: #eee!important;
+}
+
+.navbar-brand {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color:#528bff!important;
+}
+
+.navbar-right {
+    height: 45px;
+}
 .navbar-right li {
     font-size: 0;
 }
@@ -18,8 +55,18 @@ a {
     color:#888!important
 }
 
+.bs-sidebar {
+    border-width: 0 1px 0 0;
+    box-shadow: none;
+}
+
 .bs-sidebar .nav > li > a {
     padding: 2px 20px;
+}
+
+.bs-sidebar  a {
+    margin-right: -1px;
+    color:inherit;
 }
 
 
