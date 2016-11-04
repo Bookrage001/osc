@@ -1,12 +1,12 @@
 # Changelog
 
-## next
+## 0.10.1
 
 - bug fixes
   - rgb: minor visual glitch on extreme value, drawing performance improved
-  - main: examples sessions path are properly stored as absolute paths
+  - main: examples sessions path are properly stored as absolute paths (fixes `-e / --examples` mode)
 - ui
-  - lobby: session file names are diplayed first, then shortened paths 
+  - lobby: session file names are diplayed first, then shortened paths
 
 ## 0.10.0-alpha-2
 
