@@ -7,6 +7,8 @@
   - main: examples sessions path are properly stored as absolute paths (fixes `-e / --examples` mode)
 - ui
   - lobby: session file names are diplayed first, then shortened paths
+- misc
+  - widgets `precision` doesn't affect their visual interraction accuracy since values are now rounded only before osc sending
 
 ## 0.10.0-alpha-2
 
