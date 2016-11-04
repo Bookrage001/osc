@@ -31,7 +31,9 @@
 
 ## Supported platforms
 
-Same as [Electron's supported platforms](https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md)
+The server can run on all [platforms supported by Electron](https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md). Any client that can run chrome browser can connect to the server.
+
+
 
 ## License & credits
 
