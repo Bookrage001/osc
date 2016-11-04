@@ -84,6 +84,7 @@ A widget object is a javascript object. All widgets share a set of generic prope
     - this defines the targets of the widget's osc messages
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
+    - if no target is set, messages can still be sent if the server has synchronized hosts (`-s / --sync`)
 
 #### `address`
 - type: `string`

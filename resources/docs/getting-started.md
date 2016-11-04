@@ -8,7 +8,7 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 
 ```
 Options:
-  -s, --sync      synchronized hosts (ip:port pairs)
+  -s, --sync      synchronized hosts (ip:port pairs) (osc messages sent by widgets will be also send to these targets)
   -l, --load      session file to load
   -c, --custom-module  custom module file to load
   -p, --port      http port of the server (default to 8080)
