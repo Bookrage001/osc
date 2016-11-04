@@ -4,7 +4,7 @@ Open Stage Control is a libre desktop OSC bi-directionnal control surface applic
 
 ## Documentation
 
-[Read the documentation](http://jean-emmanuel.github.io/open-stage-control/)
+[Read the documentation](http://osc.ammd.net)
 
 *The docs' sources are located in [resources/](https://github.com/jean-emmanuel/open-stage-control/blob/master/resources)*
 
