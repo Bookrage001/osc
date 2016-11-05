@@ -27,10 +27,10 @@ var start = function(readyApp) {
         var address = typeof settings.read('guiOnly')=='string'? 'http://' + settings.read('guiOnly') : settings.read('appAddresses')[0]
 
         if (app.isReady()) {
-            return require('./electron-window')({address:address})
+            return require('./electron-window')({address:address, shortcuts:true})
         } else {
             app.on('ready',function(){
-                require('./electron-window')({address:address})
+                require('./electron-window')({address:address, shortcuts:false})
             })
         }
     }
@@ -52,7 +52,7 @@ if (cli) {
         launcher
 
     app.on('ready',function(){
-        launcher = require('./electron-window')({address:address, type:'splash', width:600, height:450})
+        launcher = require('./electron-window')({address:address, shortcuts:false, type:'splash', width:600, height:450})
     })
 
     ipcMain.on('start',function(e, options){

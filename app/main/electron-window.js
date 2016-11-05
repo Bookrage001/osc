@@ -23,17 +23,21 @@ module.exports = function(options={}) {
 
     window.setMenuBarVisibility(false)
 
-    shortcut.register(window,'CmdOrCtrl+R',function(){
-        window.reload()
-    })
+    if (options.shortcuts) {
 
-    shortcut.register(window,'F11',function(){
-        window.setFullScreen(!window.isFullScreen())
-    })
+        shortcut.register(window,'CmdOrCtrl+R',function(){
+            window.reload()
+        })
 
-    shortcut.register(window,'F12',function(){
-        window.toggleDevTools();
-    })
+        shortcut.register(window,'F11',function(){
+            window.setFullScreen(!window.isFullScreen())
+        })
+
+        shortcut.register(window,'F12',function(){
+            window.toggleDevTools();
+        })
+
+    }
 
     return window
 
