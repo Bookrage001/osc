@@ -105,6 +105,9 @@
         start.click((e)=>{
 
             e.preventDefault()
+
+            if (form.find('.error').length) return
+
             start.addClass('disabled').off('click')
 
             for (i in argv) {
