@@ -202,6 +202,9 @@ i {
                 top:1rem;
             }
             padding-right:35rem;
+            input[disabled] {
+                color:var(--color-accent);
+            }
         }
         .error-msg {
             transition: height .25s;
@@ -231,8 +234,28 @@ i {
     }
     .start {
         border: 1rem solid var(--color-bg);
+        z-index: 1;
         &.disabled {
             opacity: .5;
+        }
+        &.started {
+            color:#fff;
+            cursor: default;
+            a {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+        &.started:before {
+            content:"";
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background-color: var(--color-accent);
+            opacity: 0.25;
+            z-index: -1;
         }
     }
 }

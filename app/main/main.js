@@ -61,13 +61,10 @@ if (cli) {
             settings.write(i, options[i], true)
         }
 
-        launcher.hide()
-
         var gui = start()
 
-        gui.on('close',function(){
-            launcher.close()
-        })
+        launcher.webContents.send('started')
+
     })
 
 

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../browser/fonts/droid-sans.css"/>
     <script>
     var {remote, ipcRenderer, shell} = require('electron'),
-        dialog = remote.require('electron').dialog,
+        {dialog, webContents} = remote.require('electron'),
         settings = remote.require('./main/settings'),
         packageInfos = remote.require('./package.json')
         packageVersion = packageInfos.version,
@@ -118,7 +118,9 @@
 
             if (form.find('.error').length) return
 
-            start.addClass('disabled').off('click')
+            start.off('click')
+            $('input').attr('disabled','true')
+            $('.clear').addClass('disabled')
 
             setTimeout(()=>{
 
@@ -135,6 +137,12 @@
 
         })
 
+        // server started callback
+        ipcRenderer.on('started',function(){
+            var addresses = settings.read('appAddresses').map((a)=>{return `<a href="${a}">${a}</a>`})
+            start.addClass('started').html('App available at ' + addresses.join(' & '))
+        })
+
 
         // ready
 
@@ -146,6 +154,15 @@
         },0)
 
 
+        // open links in system's browser
+        $(document).click((e,url)=>{
+            var url = $(e.target).attr('href')
+            if (url) {
+                e.preventDefault()
+                shell.openExternal(url)
+            }
+        })
+
         // New version info
         if (navigator.onLine) {
 
@@ -155,14 +172,9 @@
             request.onload = function() {
               if (request.status >= 200 && request.status < 400) {
                 var data = JSON.parse(request.responseText);
-                console.log(data)
-                if (data[0].name != 'v' + packageVersion) {
-                    $('#new-version').html(` [<a href="#" target="_blank">${data[0].name} availabe</a>]`)
-                    $('#new-version').click(function(e) {
-                        e.preventDefault()
-                        shell.openExternal(`${packageUrl}/releases`)
-                    });
 
+                if (data[0].name == 'v' + packageVersion) {
+                    $('#new-version').html(` [<a href="${packageUrl}/releases" target="_blank">${data[0].name} is availabe</a>]`)
                 }
 
               }
