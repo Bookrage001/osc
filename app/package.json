@@ -21,6 +21,9 @@
   "scripts": {
     "start": "electron ."
   },
+  "engines": {
+    "node": "6"
+  },
   "keywords": [
     "osc",
     "interface",
