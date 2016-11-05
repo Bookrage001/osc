@@ -14,6 +14,7 @@
     var {remote, ipcRenderer} = require('electron'),
         dialog = remote.require('electron').dialog,
         settings = remote.require('./main/settings'),
+        version = remote.require('./package.json').version,
         argv_remote = settings.read('argv'),
         argv = {},
         $ = require('jquery-slim')
@@ -26,7 +27,7 @@
 
         var form = $(`
             <form class="form" id="form">
-                <div class="btn title disabled">Open Stage Control</div>
+                <div class="btn title disabled">Open Stage Control (v${version})</div>
             </form>
         `)
 

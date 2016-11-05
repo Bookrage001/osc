@@ -4,6 +4,7 @@
 
 - main
   - launcher: resetting boolean option properly sets it to false
+  - launcher: display package's version
   - guis: adjust window's background to match the app's
 - ui
   - launcher and session lobby appear more smoothly
