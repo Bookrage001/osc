@@ -127,9 +127,10 @@
         })
 
         form.appendTo('#launcher')
+        $('#loading').remove()
         setTimeout(()=>{
             form.addClass('loaded')
-        },100)
+        },0)
 
     })
 
@@ -139,6 +140,7 @@
 </head>
 
 <body id="launcher">
+    <div id="loading"><div class="spinner"></div></div>
 </body>
 
 </html>
