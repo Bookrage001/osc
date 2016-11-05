@@ -254,12 +254,13 @@ i {
     border-radius: 50%;
     border:2rem solid var(--color-track);
     border-top-color:var(--color-accent);
+    transform: rotateZ(0deg);
     animation: spin .5s linear infinite;
 }
 
 @keyframes spin {
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
+    0% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(360deg);}
 }
 
 
