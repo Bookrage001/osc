@@ -3,7 +3,8 @@
 ## 0.10.4
 
 - main
-  - launcher: display new version if available
+  - launcher displays new version if available
+  - launcher stays opened after starting the server and/or the gui except if `--gui-only` is set 
 
 ## 0.10.3
 
