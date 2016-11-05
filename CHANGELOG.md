@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.10.2
 
 - main
   - when executing the app with no CLI argument, a launcher window is created allowing user to adjust settings before starting the server (config is saved in the user's directory)
