@@ -7,7 +7,8 @@
 Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
 
 
-Here are the available command-line switches. Note that when running without command-line switch, a launcher window will be spawn to help setting them. 
+Below are the available command-line switches. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
+ 
 
 ```
 Options:
