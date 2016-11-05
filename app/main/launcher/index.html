@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="../../browser/fonts/font-awesome.min.css"/>
     <link rel="stylesheet" href="../../browser/fonts/droid-sans.css"/>
     <script>
-    var {remote, ipcRenderer} = require('electron'),
+    var {remote, ipcRenderer, shell} = require('electron'),
         dialog = remote.require('electron').dialog,
         settings = remote.require('./main/settings'),
-        version = remote.require('./package.json').version,
+        packageInfos = remote.require('./package.json')
+        packageVersion = packageInfos.version,
+        packageUrl = packageInfos.repository.url,
         argv_remote = settings.read('argv'),
         argv = {},
         $ = require('jquery-slim')
@@ -27,7 +29,7 @@
 
         var form = $(`
             <form class="form" id="form">
-                <div class="btn title disabled">Open Stage Control (v${version})</div>
+                <div class="btn title">Open Stage Control (v${packageVersion})<span id="new-version"</div>
             </form>
         `)
 
@@ -106,8 +108,10 @@
 
         })
 
-        var start = $(`<div class="btn start">Start</div>`).appendTo(form)
 
+        // Starter (oneshot)
+
+        var start = $(`<div class="btn start">Start</div>`).appendTo(form)
         start.click((e)=>{
 
             e.preventDefault()
@@ -131,11 +135,42 @@
 
         })
 
+
+        // ready
+
         form.appendTo('#launcher')
+
         $('#loading').remove()
         setTimeout(()=>{
             form.addClass('loaded')
         },0)
+
+
+        // New version info
+        if (navigator.onLine) {
+
+            var request = new XMLHttpRequest();
+            request.open('GET', 'https://api.github.com/repos/jean-emmanuel/open-stage-control/tags', true);
+
+            request.onload = function() {
+              if (request.status >= 200 && request.status < 400) {
+                var data = JSON.parse(request.responseText);
+                console.log(data)
+                if (data[0].name == 'v' + packageVersion) {
+                    $('#new-version').html(` [<a href="#" target="_blank">${data[0].name} availabe</a>]`)
+                    $('#new-version').click(function(e) {
+                        e.preventDefault()
+                        shell.openExternal(`${packageUrl}/releases`)
+                    });
+
+                }
+
+              }
+            };
+
+            request.send();
+
+        }
 
     })
 

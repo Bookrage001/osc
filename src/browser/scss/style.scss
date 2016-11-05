@@ -222,6 +222,12 @@ i {
         border: 1rem solid var(--color-bg);
         color: var(--color-accent);
         margin-bottom: 4rem;
+        cursor: default;
+        #new-version {
+            color:yellow;
+            cursor: pointer;
+            float:right;
+        }
     }
     .start {
         border: 1rem solid var(--color-bg);
