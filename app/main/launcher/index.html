@@ -24,7 +24,12 @@
 
     $(document).ready(()=>{
 
-        var form = $('#form')
+        var form = $(`
+            <form class="form" id="form">
+                <div class="btn title disabled">Open Stage Control</div>
+            </form>
+        `)
+
         $.each(settings.options, (i, option)=>{
 
             var wrapper = $(`<div class="item-wrapper"></div>`),
@@ -121,6 +126,11 @@
 
         })
 
+        form.appendTo('#launcher')
+        setTimeout(()=>{
+            form.addClass('loaded')
+        },100)
+
     })
 
 
@@ -129,9 +139,6 @@
 </head>
 
 <body id="launcher">
-    <form class="form" id="form">
-        <div class="btn title disabled">Open Stage Control</div>
-    </form>
 </body>
 
 </html>
