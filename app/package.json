@@ -15,7 +15,8 @@
     "yargs": "6.0.0",
     "socket.io": "1.5.0",
     "socketio-wildcard": "0.3.0",
-    "express": "4.14.0"
+    "express": "4.14.0",
+    "jquery-slim": "3.0.0"
   },
   "scripts": {
     "start": "electron ."
