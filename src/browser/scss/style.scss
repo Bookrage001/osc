@@ -66,6 +66,9 @@ i {
         padding:8rem;
         padding-right: 15rem;
     }
+    &.tiny {
+        padding:6rem;
+    }
     &.warning {
         background:firebrick;
     }
@@ -158,6 +161,59 @@ i {
     }
 }
 
+
+#launcher {
+    padding:2rem;
+    .form {
+        width: 100%;
+        height: 100%;
+        background: var(--color-fg);
+        padding:10rem;
+        overflow: auto;
+    }
+    .item-wrapper {
+        margin-bottom:4rem;
+        .input-wrapper {
+            position: relative;
+            height: 28rem;
+            overflow: hidden;
+            margin: 0;
+            .clear {
+                padding:0;
+                height:26rem;
+                width: 26rem;
+                line-height: 26rem;
+                text-align: center;
+                position: absolute;
+                right:1rem;
+                top:1rem;
+            }
+            padding-right:35rem;
+        }
+        .error-msg {
+            transition: height .25s;
+            height: 0rem;
+            white-space:normal;
+            padding: 0 4rem;
+        }
+        &.error {
+            .error-msg {
+                height: 28rem;
+                line-height: 28rem;
+                background: rgba(red,0.25)
+            }
+            box-shadow: 0 0 1rem 0 rgba(red,1);
+        }
+    }
+    .title {
+        border: 1rem solid var(--color-bg);
+        color: var(--color-accent);
+        margin-bottom: 4rem;
+    }
+    .start {
+        border: 1rem solid var(--color-bg);
+    }
+}
 
 
 
