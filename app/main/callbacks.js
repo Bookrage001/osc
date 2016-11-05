@@ -9,7 +9,7 @@ module.exports =  {
 
 	ready: function(data,clientId) {
 		ipc.send('connected')
-		console.log(settings.read('sessionFile'))
+
 		if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
 	    if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
 	    var recentSessions = settings.read('recentSessions')
