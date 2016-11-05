@@ -1,5 +1,12 @@
 # Changelog
 
+## next
+
+- main
+  - launcher: resetting boolean option properly sets it to false
+  - guis: adjust window's background to match the app's 
+
+
 ## 0.10.2
 
 - main

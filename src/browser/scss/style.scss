@@ -169,7 +169,10 @@ i {
         height: 100%;
         background: var(--color-fg);
         padding:10rem;
-        overflow: auto;
+        overflow: hidden;
+        &.loaded {
+            overflow: auto;
+        }
     }
     .item-wrapper {
         margin-bottom:4rem;
