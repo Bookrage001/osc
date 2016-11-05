@@ -225,6 +225,9 @@ i {
     }
     .start {
         border: 1rem solid var(--color-bg);
+        &.disabled {
+            opacity: .5;
+        }
     }
 }
 
@@ -278,6 +281,8 @@ i {
     display: flex;
     align-items: center;
     z-index:1000000;
+    transform: translate3d(0,0,0);
+
     &:before {
         content: "";
         position: absolute;

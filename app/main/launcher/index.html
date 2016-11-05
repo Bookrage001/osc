@@ -115,14 +115,18 @@
 
             start.addClass('disabled').off('click')
 
-            for (i in argv) {
-                if (argv[i] === '') {
-                    argv[i] = undefined
+            setTimeout(()=>{
+
+                for (i in argv) {
+                    if (argv[i] === '') {
+                        argv[i] = undefined
+                    }
                 }
-            }
-            settings.makeDefaultConfig(argv)
-            settings.write('argv',argv)
-            ipcRenderer.send('start')
+                settings.makeDefaultConfig(argv)
+                settings.write('argv',argv)
+                ipcRenderer.send('start')
+
+            },1)
 
         })
 
