@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.4
+
+- main
+  - launcher: display new version if available
+
 ## 0.10.3
 
 - main
