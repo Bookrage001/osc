@@ -30,7 +30,7 @@ var options = {
      },
     'd':{alias:'debug',type:'boolean',describe:'log received osc messages in the console'},
     'n':{alias:'no-gui',type:'boolean',describe:'disable default gui'},
-    'g':{alias:'gui-only',type:'string',describe:'server\'s ip:port, default to localhost:8080'},
+    'g':{alias:'gui-only',type:'string',describe:'app server\'s url. If true, local port (--port) is used'},
     't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
     'e':{alias:'examples',type:'boolean',describe:'list examples instead of recent sessions'}
 }

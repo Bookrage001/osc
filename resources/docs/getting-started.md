@@ -6,6 +6,9 @@
 
 Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
 
+
+Here are the available command-line switches. Note that when running without command-line switch, a launcher window will be spawn to help setting them. 
+
 ```
 Options:
   -s, --sync      synchronized hosts (ip:port pairs) (osc messages sent by widgets will also be sent to these targets)
@@ -15,8 +18,7 @@ Options:
   -o, --osc-port  osc input port
   -d, --debug     log received osc messages in the console
   -n, --no-gui    disable default gui
-  -g, --gui-only  server's ip:port, default to localhost:8080, only launch the
-                  gui (a server instance must be running)
+  -g, --gui-only  app server's url. If true, local port (--port) is used
   -t, --theme     theme name or path (mutliple values allowed)   
   -e, --examples  list examples instead of recent sessions
   -h, --help      display help
