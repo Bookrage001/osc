@@ -37,6 +37,10 @@ module.exports = function(options={}) {
             window.toggleDevTools();
         })
 
+    } else {
+        shortcut.register(window,'CmdOrCtrl+R',function(e){
+            return false
+        })
     }
 
     return window

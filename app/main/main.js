@@ -30,7 +30,7 @@ var start = function(readyApp) {
             return require('./electron-window')({address:address, shortcuts:true})
         } else {
             app.on('ready',function(){
-                require('./electron-window')({address:address, shortcuts:false})
+                require('./electron-window')({address:address, shortcuts:true})
             })
         }
     }
