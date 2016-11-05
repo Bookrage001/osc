@@ -1,11 +1,12 @@
 # Changelog
 
-## next
+## 0.10.3
 
 - main
   - launcher: resetting boolean option properly sets it to false
-  - guis: adjust window's background to match the app's 
-
+  - guis: adjust window's background to match the app's
+- ui
+  - launcher and session lobby appear more smoothly
 
 ## 0.10.2
 
