@@ -63,7 +63,15 @@ if (cli) {
 
         var gui = start()
 
-        launcher.webContents.send('started')
+        if (settings.read('guiOnly')) {
+            launcher.hide()
+            gui.on('close',()=>{
+                launcher.close()
+            })
+        } else {
+            launcher.webContents.send('started')
+        }
+
 
     })
 
