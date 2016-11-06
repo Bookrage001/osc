@@ -74,7 +74,7 @@ var makeDefaultConfig = function(argv){
         sessionFile:  argv.l || false,
         customModule: argv.c || false,
         noGui: argv.n || false,
-        guiOnly: argv.g || false,
+        guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
         appAddresses:function(){
             var appAddresses = []
 
