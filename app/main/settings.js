@@ -88,7 +88,7 @@ var makeDefaultConfig = function(argv){
 
             return appAddresses
         }(),
-        examples: argv.examples,
+        examples: argv.e,
         theme: function(){
             if (!argv.t) return
             var style = []
