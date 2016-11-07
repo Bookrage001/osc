@@ -4,9 +4,9 @@
 
 - bug fixes
   - `-g / --no-gui` didn't prevent the launcher from spanwing
-  - `-e / --examples` not correctly parsed 
+  - `-e / --examples` not correctly parsed
 - widgets
-  - added generic `value` option for setting a widget's initial value
+  - added generic `value` option for setting a widget's initial value (does not sync linked widget nor send osc message)
   - **text** widget's `defaultText` replaced with `value`  
 
 ## 0.10.4
