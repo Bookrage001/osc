@@ -1,0 +1,174 @@
+var {remote, ipcRenderer, shell} = require('electron'),
+    {dialog, webContents} = remote.require('electron'),
+    settings = remote.require('./main/settings'),
+    packageInfos = remote.require('./package.json')
+    packageVersion = packageInfos.version,
+    packageUrl = packageInfos.repository.url,
+    argv_remote = settings.read('argv'),
+    argv = {},
+    $ = require('jquery-slim')
+
+for (i in argv_remote) {
+    argv[i] = argv_remote[i]
+}
+
+$(document).ready(()=>{
+
+    var form = $(`
+        <form class="form" id="form">
+            <div class="btn title">Open Stage Control (v${packageVersion})<span id="new-version"</div>
+        </form>
+    `)
+
+    $.each(settings.options, (i, option)=>{
+
+        var wrapper = $(`<div class="item-wrapper"></div>`),
+            item = $(`
+            <div class="input-wrapper">
+                <label>${option.alias}</label>
+            </div>
+            `).appendTo(wrapper),
+            input,
+            cancel,
+            value = argv[i] == undefined ? '' : argv[i]
+
+        if (option.type=='boolean') {
+
+            input = $(`<input name="${i}" class="checkbox" data-type="${option.type}" value="${value}"/>`)
+            input.click(function(e){
+                e.preventDefault()
+                input.val(!eval(input.val())).trigger('change')
+            })
+
+        } else if (option.file) {
+
+            input = $(`<input class="btn" name="${i}" value="${value}" placeholder="${option.describe}"/>`)
+            input.click(function(e){
+                e.preventDefault()
+                dialog.showOpenDialog({filters:[{name:'js',extensions:['js']}]},function(file){
+                    input.val(file).change()
+                })
+            })
+        } else {
+
+            input = $(`<input name="${i}" data-type="${option.type}" value="${value}" placeholder="${option.describe}"/>`)
+
+        }
+
+
+        input.appendTo(item)
+
+        input.on('change',function(e){
+            var v = $(this).val()
+            if (option.type == 'boolean') {
+                v = v == 'true'
+                input.val(v)
+            } else if (v && option.type == 'array'){
+                v = v.trim().split(' ')
+            } else if (v && option.type == 'number'){
+                v = parseFloat(v)
+            }
+
+            if (v != '' && option.check && option.check(v) !== true) {
+                wrapper.addClass('error')
+                wrapper.append(`<div class="error-msg">${option.check(v)}</div>`)
+            } else {
+                wrapper.removeClass('error')
+                wrapper.find('.error-msg').remove()
+                argv[i] = v
+            }
+        })
+
+        cancel = $(`<div class="btn clear"><i class="fa fa-remove fa-fw"></i></div>`)
+        cancel.click((e)=>{
+            e.preventDefault()
+            if (option.type == 'boolean') {
+                input.val('false')
+            } else {
+                input.val('')
+            }
+            input.trigger('change')
+        })
+        cancel.appendTo(item)
+
+        form.append(wrapper)
+
+    })
+
+
+    // Starter (oneshot)
+
+    var start = $(`<div class="btn start">Start</div>`).appendTo(form)
+    start.click((e)=>{
+
+        e.preventDefault()
+
+        if (form.find('.error').length) return
+
+        start.off('click')
+        $('input').attr('disabled','true')
+        $('.clear').addClass('disabled')
+
+        setTimeout(()=>{
+
+            for (i in argv) {
+                if (argv[i] === '') {
+                    argv[i] = undefined
+                }
+            }
+            settings.makeDefaultConfig(argv)
+            settings.write('argv',argv)
+            ipcRenderer.send('start')
+
+        },1)
+
+    })
+
+    // server started callback
+    ipcRenderer.on('started',function(){
+        var addresses = settings.read('appAddresses').map((a)=>{return `<a href="${a}">${a}</a>`})
+        start.addClass('started').html('App available at ' + addresses.join(' & '))
+    })
+
+
+    // ready
+
+    form.appendTo('#launcher')
+
+    $('#loading').remove()
+    setTimeout(()=>{
+        form.addClass('loaded')
+    },0)
+
+
+    // open links in system's browser
+    $(document).click((e,url)=>{
+        var url = $(e.target).attr('href')
+        if (url) {
+            e.preventDefault()
+            shell.openExternal(url)
+        }
+    })
+
+    // New version info
+    if (navigator.onLine) {
+
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://api.github.com/repos/jean-emmanuel/open-stage-control/tags', true);
+
+        request.onload = function() {
+          if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+
+            if (data[0].name != 'v' + packageVersion) {
+                $('#new-version').html(` [<a href="${packageUrl}/releases" target="_blank">${data[0].name} is availabe</a>]`)
+            }
+
+          }
+        };
+
+        request.send();
+
+    }
+
+})
