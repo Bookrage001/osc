@@ -8,7 +8,7 @@
 - main
   - launcher displays options descriptions for booleans too
 - widgets
-  - added generic `value` option for setting a widget's initial value (does not sync linked widget nor send osc message)
+  - added generic `value` option for setting a widget's initial value (does not sync linked widgets nor send osc message)
   - **text** widget's `defaultText` replaced with `value`
   - multixy dots are drawn with filled background instead of stroke
 
