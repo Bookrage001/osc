@@ -71,11 +71,17 @@ A widget object is a javascript object. All widgets share a set of generic prope
 ### OSC
 
 
+#### `value`
+- type: `*`
+- default: `empty`
+- usage: if set, the widget will be initialized with this `value`. This won't affect linked widgets and won't send any osc message. 
+- note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc)
+
+
 #### `precision`
 - type: `integer`
 - default: `2`
 - usage: the `precision` property defines the number of decimals to display and to send. Set to `0` to send `integers` only.
-
 
 #### `target`
 - type: `array`

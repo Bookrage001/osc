@@ -19,6 +19,7 @@ module.exports.options = {
 
     on:1,
     off:0,
+    value:'',
     precision:2,
     address:'auto',
     preArgs:[],

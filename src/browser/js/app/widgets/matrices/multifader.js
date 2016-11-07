@@ -30,6 +30,7 @@ module.exports.options = {
     separator3:'osc',
 
     range:{min:0,max:1},
+    value:'',
     origin: 'auto',
     logScale:false,
     precision:2,

@@ -202,6 +202,11 @@ module.exports.widgets = function(data,parent) {
             WIDGETS_BY_ADDRESS[addressref].push(widgetInner)
         }
 
+        // set widget's initial state
+        if (widgetData.value !== '' && widgetInner.setValue) {
+            widgetInner.setValue(widgetData.value)
+        }
+
         // Append the widget to its parent
         parent[0].appendChild(widgetContainer[0])
     }

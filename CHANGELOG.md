@@ -1,10 +1,18 @@
 # Changelog
 
+## next
+
+- main
+  - `--no-gui` didn't prevent the launcher from spanwing
+- widgets
+  - added generic `value` option for setting a widget's initial value
+  - **text** widget's `defaultText` replaced with `value`  
+
 ## 0.10.4
 
 - main
   - launcher displays new version if available
-  - launcher stays opened after starting the server and/or the gui except if `--gui-only` is set 
+  - launcher stays opened after starting the server and/or the gui except if `--gui-only` is set
 
 ## 0.10.3
 

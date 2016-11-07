@@ -26,6 +26,7 @@ module.exports.options = {
 
     on:1,
     off:0,
+    value:'',
     norelease:false,
     precision:2,
     address:'auto',

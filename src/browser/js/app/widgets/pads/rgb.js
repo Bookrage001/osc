@@ -23,6 +23,7 @@ module.exports.options = {
 
     separator3:'osc',
 
+    value:'',
     precision:0,
     address:'auto',
     preArgs:[],

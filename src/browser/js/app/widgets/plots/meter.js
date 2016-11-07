@@ -20,6 +20,7 @@ module.exports.options = {
 
     range:{min:0,max:1},
     logScale:false,
+    value:'',
     address:'auto',
     preArgs:[]
 }

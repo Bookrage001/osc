@@ -29,6 +29,7 @@ module.exports.options = {
 
     range:{min:0,max:1},
     origin: 'auto',
+    value:'',
     logScale:false,
     precision:2,
     address:'auto',

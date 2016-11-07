@@ -167,12 +167,6 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 - default: `false`
 - usage: set to `true` display vertically
 
-#### `defaultText`
-- type: `string`
-- default: `empty`
-- usage: default text to be displayed. If not set, `label` or `id` is used
-
-
 ## Meter
 
 Meter displays incoming numerical values (via osc) as a gauge level

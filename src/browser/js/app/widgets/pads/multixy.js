@@ -28,6 +28,7 @@ module.exports.options = {
     rangeY:{min:0,max:1},
     logScaleX:false,
     logScaleY:false,
+    value:'',
     precision:2,
     address:'auto',
     preArgs:[],

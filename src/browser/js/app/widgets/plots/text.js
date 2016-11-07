@@ -15,18 +15,16 @@ module.exports.options = {
 
     separator2:'osc',
 
+    value:'',
     preArgs:[],
     address:'auto',
-    defaultText:''
 }
 module.exports.create = function(widgetData,container) {
     var widget = $(`
             <div class="text">
             </div>
             `),
-		label = widgetData.defaultText!==''?
-                    widgetData.defaultText:
-                    widgetData.label===false?
+		label = widgetData.label===false?
                         widgetData.id:
                         widgetData.label=='auto'?
                             widgetData.id:
