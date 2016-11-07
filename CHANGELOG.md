@@ -2,8 +2,9 @@
 
 ## next
 
-- main
-  - `--no-gui` didn't prevent the launcher from spanwing
+- bug fixes
+  - `-g / --no-gui` didn't prevent the launcher from spanwing
+  - `-e / --examples` not correctly parsed 
 - widgets
   - added generic `value` option for setting a widget's initial value
   - **text** widget's `defaultText` replaced with `value`  
