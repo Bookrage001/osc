@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.11.0
 
 - bug fixes
   - `-g / --no-gui` not preventing the launcher from spawning
