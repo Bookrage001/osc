@@ -5,6 +5,8 @@
 - bug fixes
   - `-g / --no-gui` didn't prevent the launcher from spanwing
   - `-e / --examples` not correctly parsed
+- main
+  - launcher displays options descriptions for booleans too
 - widgets
   - added generic `value` option for setting a widget's initial value (does not sync linked widget nor send osc message)
   - **text** widget's `defaultText` replaced with `value`  

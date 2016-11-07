@@ -34,7 +34,7 @@ $(document).ready(()=>{
 
         if (option.type=='boolean') {
 
-            input = $(`<input name="${i}" class="checkbox" data-type="${option.type}" value="${value}"/>`)
+            input = $(`<input name="${i}" class="checkbox" data-type="${option.type}" value="${value ? true : ''}" placeholder="${option.describe}"/>`)
             input.click(function(e){
                 e.preventDefault()
                 input.val(!eval(input.val())).trigger('change')
@@ -61,7 +61,7 @@ $(document).ready(()=>{
         input.on('change',function(e){
             var v = $(this).val()
             if (option.type == 'boolean') {
-                v = v == 'true'
+                v = v == 'true' ? true : ''
                 input.val(v)
             } else if (v && option.type == 'array'){
                 v = v.trim().split(' ')
