@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.1
+
+- bug fixes
+  -  meters in faders were not always properly positionned
+
 ## 0.11.0
 
 - bug fixes

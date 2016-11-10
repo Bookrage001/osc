@@ -41,9 +41,6 @@
 
     }
     &:not(.has-pip):not(.compact) {
-        .meter-container {
-            margin-left: 15rem;
-        }
         &.align-right {
             .meter-container {
                 margin-left: -18rem;
@@ -100,51 +97,6 @@
                 }
             }
         }
-        &.horizontal {
-            .wrapper canvas {
-                padding-right:0;
-                padding-bottom: 20rem;
-            }
-            .wrapper .meter-container {
-                left:20rem;
-                right:20rem;
-                height: 3rem;
-                min-height: 3rem;
-                width: auto;
-                top:50%;
-                margin-top: 3rem;
-            }
-
-            .pips {
-                top:50%;
-                left:20rem;
-                right:20rem;
-                font-size: 0;
-                height:4rem;
-                width:auto;
-                margin:0;
-                margin-top: 10rem;
-                background: linear-gradient(to right,  transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
-                background-size: 5px 100%;
-                background-repeat: repeat-x;
-                .pip {
-                    width:1px;
-                    height:6rem;
-                    margin: 0;
-                    &:before {
-                        top:0;
-                        bottom:0;
-                        left:-4px;
-                        right:-4px;
-                    }
-                    span {
-                        top:15rem;
-                        left:-15rem!important;
-                        right:auto;
-                    }
-                }
-            }
-        }
 
         &.align-right {
             .wrapper canvas {
@@ -168,6 +120,52 @@
                         right:3rem;
                         left:auto;
                     }
+                }
+            }
+        }
+    }
+    &.horizontal {
+        &:not(.compact).has-pips .wrapper canvas, &:not(.compact).has-meter .wrapper canvas {
+            padding-right:0;
+            padding-bottom: 20rem;
+        }
+
+        .wrapper .meter-container {
+            left:20rem;
+            right:20rem;
+            height: 3rem;
+            min-height: 3rem;
+            width: auto;
+            top:50%;
+            margin-top: 3rem;
+        }
+
+        .pips {
+            top:50%;
+            left:20rem;
+            right:20rem;
+            font-size: 0;
+            height:4rem;
+            width:auto;
+            margin:0;
+            margin-top: 10rem;
+            background: linear-gradient(to right,  transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
+            background-size: 5px 100%;
+            background-repeat: repeat-x;
+            .pip {
+                width:1px;
+                height:6rem;
+                margin: 0;
+                &:before {
+                    top:0;
+                    bottom:0;
+                    left:-4px;
+                    right:-4px;
+                }
+                span {
+                    top:15rem;
+                    left:-15rem!important;
+                    right:auto;
                 }
             }
         }
