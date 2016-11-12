@@ -161,13 +161,12 @@ Knob.prototype.draw = function(){
         this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (10 + this.margin) * PXSCALE, min, max)
         this.ctx.stroke()
 
-        this.ctx.save()
         this.ctx.globalAlpha = 0.5
         this.ctx.beginPath()
         this.ctx.strokeStyle = this.colors.gauge
         this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (10 + this.margin) * PXSCALE, Math.min(o,d), Math.max(o,d))
         this.ctx.stroke()
-        this.ctx.restore()
+        this.ctx.globalAlpha = 1
 
 
         this.ctx.save()

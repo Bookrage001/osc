@@ -146,7 +146,6 @@ MultiXy.prototype.draw = function(){
         var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
             y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
 
-            this.ctx.save()
             this.ctx.globalAlpha = 0.3
             this.ctx.fillStyle = this.colors.custom
 
@@ -154,7 +153,7 @@ MultiXy.prototype.draw = function(){
             this.ctx.arc(x, y, this.pointSize * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
 
-            this.ctx.restore()
+            this.ctx.globalAlpha = 1
 
             this.ctx.font =  PXSCALE * 11 + 'px Droid Sans'
             this.ctx.fillText(i,x,y)

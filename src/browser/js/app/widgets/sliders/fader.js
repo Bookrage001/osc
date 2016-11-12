@@ -159,7 +159,6 @@ Fader.prototype.draw = function(){
         if (this.widgetData.compact) {
 
 
-            this.ctx.save()
             this.ctx.globalAlpha = 0.3
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
@@ -167,7 +166,7 @@ Fader.prototype.draw = function(){
             this.ctx.lineTo(o, this.height / 2)
             this.ctx.lineWidth = this.height
             this.ctx.stroke()
-            this.ctx.restore()
+            this.ctx.globalAlpha = 1
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.knob
@@ -191,11 +190,10 @@ Fader.prototype.draw = function(){
 
             this.ctx.fillStyle = this.colors.knob
 
-            this.ctx.save()
             this.ctx.globalAlpha = 0.3
             this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 10 * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
-            this.ctx.restore()
+            this.ctx.globalAlpha = 1
 
             this.ctx.beginPath()
             this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 4 * PXSCALE, Math.PI * 2, false)
@@ -208,7 +206,6 @@ Fader.prototype.draw = function(){
         if (this.widgetData.compact) {
 
 
-            this.ctx.save()
             this.ctx.globalAlpha = 0.3
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
@@ -216,7 +213,7 @@ Fader.prototype.draw = function(){
             this.ctx.lineTo(this.width / 2, o)
             this.ctx.lineWidth = this.width
             this.ctx.stroke()
-            this.ctx.restore()
+            this.ctx.globalAlpha = 1
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.knob
@@ -241,11 +238,10 @@ Fader.prototype.draw = function(){
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.knob
-            this.ctx.save()
             this.ctx.globalAlpha = 0.3
             this.ctx.arc(this.width / 2, d, 10 * PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
-            this.ctx.restore()
+            this.ctx.globalAlpha = 1
 
             this.ctx.beginPath()
             this.ctx.arc(this.width / 2, d, 4 * PXSCALE, Math.PI * 2,false)

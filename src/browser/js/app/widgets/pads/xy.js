@@ -174,7 +174,6 @@ Xy.prototype.draw = function(){
     this.ctx.lineWidth = PXSCALE
     this.ctx.strokeStyle = this.faders.x.colors.custom
 
-    this.ctx.save()
     this.ctx.globalAlpha = 0.3
 
     this.ctx.beginPath()
@@ -190,7 +189,7 @@ Xy.prototype.draw = function(){
     this.ctx.lineTo(x,this.height)
     this.ctx.stroke()
 
-    this.ctx.restore()
+    this.ctx.globalAlpha = 1
 
     this.ctx.beginPath()
     this.ctx.arc(x, y, 4 * PXSCALE, Math.PI * 2, false)

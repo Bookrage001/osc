@@ -67,14 +67,13 @@ _plots_base.prototype.draw = function() {
 
         var origin = mapToScale(this.widgetData.origin||this.rangeY.min,[this.rangeY.min,this.rangeY.max],[this.height,0],0,this.widgetData.logScaleY,true)
 
-        this.ctx.save()
         this.ctx.globalAlpha = 0.1
         this.ctx.fillStyle = this.colors.custom
         this.ctx.lineTo(this.width,origin)
         this.ctx.lineTo(0,origin)
         this.ctx.closePath()
         this.ctx.fill()
-        this.ctx.restore()
+        this.ctx.globalAlpha = 1
 
     }
 
