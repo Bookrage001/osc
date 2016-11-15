@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.2
+
+- widgets
+  - multixy: minor style update
+
 ## 0.11.1
 
 - bug fixes

@@ -136,9 +136,6 @@ MultiXy.prototype.draw = function(){
 
     this.ctx.clearRect(0,0,this.width,this.height)
 
-    this.ctx.fillStyle = this.colors.text
-    this.ctx.lineWidth = PXSCALE
-    this.ctx.strokeStyle = this.colors.custom
     this.ctx.textAlign = 'center'
     this.ctx.textBaseline = 'middle'
 
@@ -147,16 +144,22 @@ MultiXy.prototype.draw = function(){
             y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
 
             this.ctx.globalAlpha = 0.3
+            this.ctx.strokeStyle = this.colors.custom
             this.ctx.fillStyle = this.colors.custom
+            this.ctx.lineWidth = PXSCALE * 2
 
             this.ctx.beginPath()
             this.ctx.arc(x, y, this.pointSize * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
+            this.ctx.stroke()
 
             this.ctx.globalAlpha = 1
-
-            this.ctx.font =  PXSCALE * 11 + 'px Droid Sans'
+            this.ctx.fillStyle = this.colors.text
+            this.ctx.strokeStyle = this.colors.text
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.font = PXSCALE * 11 + 'px Droid Sans'
             this.ctx.fillText(i,x,y)
+            this.ctx.strokeText(i,x,y)
 
     }
 }
