@@ -5,8 +5,8 @@
 - bug fixes
   - meters in faders were not always properly positionned
 - widgets
-  - knob: gauge's width is proportionnal to the knob's size in `compact` mode; widget's content centering fixed;
-  
+  - knob: gauge's width is proportionnal to the knob's size in `compact` mode; widget's content centering fixed; `compact` style update;
+
 ## 0.11.0
 
 - bug fixes
