@@ -136,6 +136,7 @@ Knob.prototype.percentToAngle = function(percent) {
 Knob.prototype.resizeHandle = function() {
     _sliders_base.prototype.resizeHandle.call(this)
     this.minDimension = Math.min(this.width, this.height)
+    this.gaugeWidth = this.minDimension / 8
     this.canvas[0].style.top = (this.minDimension / 2 - 15) * this.lostHeightFactor + 'px'
     if (this.widgetData.compact) {
         this.input[0].style.marginTop = (this.minDimension / 2 - 15) * this.lostHeightFactor + 'px'
@@ -155,18 +156,31 @@ Knob.prototype.draw = function(){
 
     if (this.widgetData.compact) {
 
-        this.ctx.lineWidth = 10 * PXSCALE
+        this.ctx.lineWidth = this.gaugeWidth * PXSCALE
+        this.ctx.globalAlpha = 0.3
         this.ctx.beginPath()
         this.ctx.strokeStyle = this.colors.track
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (10 + this.margin) * PXSCALE, min, max)
+        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth + this.margin) * PXSCALE, min, max)
         this.ctx.stroke()
 
         this.ctx.globalAlpha = 0.5
         this.ctx.beginPath()
         this.ctx.strokeStyle = this.colors.gauge
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (10 + this.margin) * PXSCALE, Math.min(o,d), Math.max(o,d))
+        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth + this.margin) * PXSCALE, Math.min(o,d), Math.max(o,d))
         this.ctx.stroke()
+
+        this.ctx.lineWidth = 1 * PXSCALE
+        this.ctx.beginPath()
+        this.ctx.strokeStyle = this.colors.track
+        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE, min, max)
+        this.ctx.stroke()
+
         this.ctx.globalAlpha = 1
+
+        this.ctx.beginPath()
+        this.ctx.strokeStyle = this.colors.gauge
+        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE, Math.min(o,d), Math.max(o,d))
+        this.ctx.stroke()
 
 
         this.ctx.save()
@@ -179,8 +193,8 @@ Knob.prototype.draw = function(){
 
         this.ctx.strokeStyle = this.colors.knob
         this.ctx.lineWidth = 1 * PXSCALE
-        this.ctx.moveTo(this.width / 2 + this.minDimension / 2 - (10 + this.margin - 5) * PXSCALE, this.height / 2)
-        this.ctx.lineTo(this.width / 2 + this.minDimension / 2 - (10 + this.margin + 5) * PXSCALE, this.height / 2)
+        this.ctx.moveTo(this.width / 2 + this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE, this.height / 2)
+        this.ctx.lineTo(this.width / 2 + this.minDimension / 2 - (this.gaugeWidth * 1.5 + this.margin) * PXSCALE, this.height / 2)
         this.ctx.stroke()
 
         this.ctx.restore()

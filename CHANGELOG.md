@@ -3,8 +3,9 @@
 ## 0.11.1
 
 - bug fixes
-  -  meters in faders were not always properly positionned
-
+  - meters in faders were not always properly positionned
+- widgets
+  - knob: gauge's width is proportionnal to the knob's size in `compact` mode
 ## 0.11.0
 
 - bug fixes
