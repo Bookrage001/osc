@@ -67,10 +67,9 @@ var Knob = module.exports.Knob = function(widgetData) {
     this.maxAngle = widgetData.angle
 
     // calculate lost height factor
-    var a = Math.sin((360 - this.maxAngle)),
-        h = a < 0 ? 1 - a : a
-
-    this.lostHeightFactor = h / 4
+    var a = this.maxAngle <= 180 ?
+                1 : 1 - Math.sin((this.maxAngle - 180) / 2 * Math.PI / 180)
+    this.lostHeightFactor = a / 4
 
 }
 
@@ -137,10 +136,10 @@ Knob.prototype.resizeHandle = function() {
     _sliders_base.prototype.resizeHandle.call(this)
     this.minDimension = Math.min(this.width, this.height)
     this.gaugeWidth = this.minDimension / 8
-    this.canvas[0].style.top = (this.minDimension / 2 - 15) * this.lostHeightFactor + 'px'
     if (this.widgetData.compact) {
-        this.input[0].style.marginTop = (this.minDimension / 2 - 15) * this.lostHeightFactor + 'px'
-
+        this.canvas[0].style.top = this.input[0].style.marginTop = (this.minDimension) * this.lostHeightFactor - this.gaugeWidth / 4 + 'px'
+    } else {
+        this.canvas[0].style.top  = Math.min((this.minDimension) * this.lostHeightFactor - this.margin * PXSCALE / 2, this.input.outerHeight() * .5) + 'px'
     }
 }
 
