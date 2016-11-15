@@ -2,9 +2,9 @@ var {Fader} = require('../sliders/fader')
 
 var _fake_fader = module.exports = function(widgetData, cancelDraw){
 
-    Fader.apply(this, arguments)
+    this.noDraw = true
 
-    if (cancelDraw) this.draw = ()=>{}
+    Fader.apply(this, arguments)
 }
 
 _fake_fader.prototype = Object.create(Fader.prototype)

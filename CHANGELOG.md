@@ -4,6 +4,8 @@
 
 - widgets
   - multixy: minor style update
+  - fader: display pips to `compact` mode when `range` has multiple breakpoints
+  - pads: display pips when `range` has multiple breakpoints
 
 ## 0.11.1
 

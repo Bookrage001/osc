@@ -29,13 +29,20 @@
             height:100%;
             position: absolute;
             pointer-events: none;
+            z-index: 1;
         }
         .fader {
             pointer-events: none;
             position: absolute;
             width:100%;
             height:100%;
-            opacity: 0;
+            z-index: 0;
+            --color-knob:transparent;
+            --color-gauge:transparent;
+            * {
+                background: transparent!important;
+
+            }
             .input {
                 display: none;
             }
@@ -49,6 +56,10 @@
             background: red;
             > canvas {
                 z-index: 1;
+            }
+            .fader {
+                --color-knob:transparent;
+                --color-gauge:transparent;
             }
             &:before, &:after {
         		content:"";

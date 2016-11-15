@@ -159,6 +159,21 @@ Fader.prototype.draw = function(){
         if (this.widgetData.compact) {
 
 
+            if (!this.widgetData.noPip) {
+                this.ctx.lineWidth = PXSCALE
+                this.ctx.strokeStyle = this.colors.text
+                this.ctx.globalAlpha = 0.05
+
+                var x
+                for (var i = 1;i < this.rangeKeys.length - 1;i++) {
+                    x = this.percentToCoord(this.rangeKeys[i])
+                    this.ctx.beginPath()
+                    this.ctx.moveTo(x, 0)
+                    this.ctx.lineTo(x, this.height)
+                    this.ctx.stroke()
+                }
+            }
+
             this.ctx.globalAlpha = 0.3
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
@@ -204,6 +219,21 @@ Fader.prototype.draw = function(){
     } else {
 
         if (this.widgetData.compact) {
+
+            if (!this.widgetData.noPip) {
+                this.ctx.lineWidth = PXSCALE
+                this.ctx.strokeStyle = this.colors.text
+                this.ctx.globalAlpha = 0.05
+
+                var y
+                for (var i = 1;i < this.rangeKeys.length - 1;i++) {
+                    y = this.percentToCoord(this.rangeKeys[i])
+                    this.ctx.beginPath()
+                    this.ctx.moveTo(0, y)
+                    this.ctx.lineTo(this.width, y)
+                    this.ctx.stroke()
+                }
+            }
 
 
             this.ctx.globalAlpha = 0.3

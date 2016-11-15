@@ -154,7 +154,7 @@ _sliders_base.prototype.setValue = function(v,options={}) {
 
     if (!options.dragged) this.percent = this.valueToPercent(this.value)
 
-    this.draw()
+    if (!this.noDraw) this.draw()
 
     this.showValue()
 
