@@ -151,6 +151,8 @@ MultiXy.prototype.draw = function(){
             this.ctx.beginPath()
             this.ctx.arc(x, y, this.pointSize * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
+            this.ctx.beginPath()
+            this.ctx.arc(x, y, (this.pointSize-1) * PXSCALE, Math.PI * 2, false)
             this.ctx.stroke()
 
             this.ctx.globalAlpha = 1
