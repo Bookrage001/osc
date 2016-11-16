@@ -2,7 +2,7 @@ var {Fader} = require('../sliders/fader')
 
 var _fake_fader = module.exports = function(widgetData, cancelDraw){
 
-    this.noDraw = true
+    if (cancelDraw) this.noDraw = true
 
     Fader.apply(this, arguments)
 }
