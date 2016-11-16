@@ -167,6 +167,11 @@
                         if (isNaN(i)) continue
 
 
+                        if (oE.targetTouches[j].target.length > 1) {
+                            //"é"
+                        }
+
+
                         var touch = oE.changedTouches[i],
                             id = touch.identifier
 

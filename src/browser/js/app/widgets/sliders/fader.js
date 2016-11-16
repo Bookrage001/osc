@@ -158,15 +158,22 @@ Fader.prototype.draw = function(){
     if (this.widgetData.horizontal) {
         if (this.widgetData.compact) {
 
-
             if (!this.widgetData.noPip) {
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.strokeStyle = this.colors.text
-                this.ctx.globalAlpha = 0.05
+                this.ctx.globalAlpha = 0.3
 
-                var x
+                var x,
+                    min = Math.min(d,o),
+                    max = Math.max(d,o)
+
                 for (var i = 1;i < this.rangeKeys.length - 1;i++) {
-                    x = this.percentToCoord(this.rangeKeys[i])
+                    x = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5 * PXSCALE
+                    if (x < max && x > min) {
+                        this.ctx.strokeStyle = this.colors.gauge
+
+                    } else {
+                        this.ctx.strokeStyle = this.colors.track
+                    }
                     this.ctx.beginPath()
                     this.ctx.moveTo(x, 0)
                     this.ctx.lineTo(x, this.height)
@@ -181,8 +188,8 @@ Fader.prototype.draw = function(){
             this.ctx.lineTo(o, this.height / 2)
             this.ctx.lineWidth = this.height
             this.ctx.stroke()
-            this.ctx.globalAlpha = 1
 
+            this.ctx.globalAlpha = 1
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.knob
             this.ctx.rect(Math.min(d,this.width-PXSCALE), 0, PXSCALE, this.height)
@@ -222,19 +229,25 @@ Fader.prototype.draw = function(){
 
             if (!this.widgetData.noPip) {
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.strokeStyle = this.colors.text
-                this.ctx.globalAlpha = 0.05
+                this.ctx.globalAlpha = 0.3
 
-                var y
+                var y,
+                    min = Math.min(d,o),
+                    max = Math.max(d,o)
+
                 for (var i = 1;i < this.rangeKeys.length - 1;i++) {
-                    y = this.percentToCoord(this.rangeKeys[i])
+                    y = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5 * PXSCALE
+                    if (y < max && y > min) {
+                        this.ctx.strokeStyle = this.colors.gauge
+                    } else {
+                        this.ctx.strokeStyle = this.colors.track
+                    }
                     this.ctx.beginPath()
                     this.ctx.moveTo(0, y)
                     this.ctx.lineTo(this.width, y)
                     this.ctx.stroke()
                 }
             }
-
 
             this.ctx.globalAlpha = 0.3
             this.ctx.strokeStyle = this.colors.gauge
@@ -243,8 +256,8 @@ Fader.prototype.draw = function(){
             this.ctx.lineTo(this.width / 2, o)
             this.ctx.lineWidth = this.width
             this.ctx.stroke()
-            this.ctx.globalAlpha = 1
 
+            this.ctx.globalAlpha = 1
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.knob
             this.ctx.rect(0, Math.min(d, this.height - PXSCALE), this.width, PXSCALE)
