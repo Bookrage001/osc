@@ -129,6 +129,7 @@
 
                     var oE = e.originalEvent
 
+                    touches:
                     for (i in oE.changedTouches) {
                         if (isNaN(i)) continue
 
@@ -147,6 +148,12 @@
                         var off = getOffset(touch.target)
                         touch.offsetX = touch.pageX-off.left
                         touch.offsetY = touch.pageY-off.top
+
+                        for (j in targets) {
+                            if (targets[j][0].isSameNode(touch.target)) {
+                                continue touches
+                            }
+                        }
 
                         targets[id].triggerHandler('draginit',[touch,e.originalEvent.traversing])
 
@@ -167,22 +174,17 @@
                         if (isNaN(i)) continue
 
 
-                        if (oE.targetTouches[j].target.length > 1) {
-                            //"é"
-                        }
-
-
                         var touch = oE.changedTouches[i],
-                            id = touch.identifier
+                            id = touch.identifier,
+                            speedFactor = oE.targetTouches.length == 1 ? 1 : Math.pow(2,oE.targetTouches.length)
 
                         if (e.originalEvent.traversing) {
                             targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
                         }
 
-                        // touched[targets[id]] = touched[targets[id]]?touched[targets[id]]+1:1
 
-                        touch.speedX = touch.pageX - previousTouches[id].pageX
-                        touch.speedY = touch.pageY - previousTouches[id].pageY
+                        touch.speedX = (touch.pageX - previousTouches[id].pageX) / speedFactor
+                        touch.speedY = (touch.pageY - previousTouches[id].pageY) / speedFactor
 
                         touch.deltaX = touch.speedX + previousTouches[id].deltaX
                         touch.deltaY = touch.speedY + previousTouches[id].deltaY
