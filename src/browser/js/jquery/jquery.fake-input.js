@@ -25,7 +25,7 @@
 
 			if (height==100 && width==100) return
 
-            self.color = getComputedStyle(document.documentElement).getPropertyValue("--color-text")
+            self.color = getComputedStyle(canvas[0]).getPropertyValue("--color-text")
 			self.height=height
 			self.width=width
 
