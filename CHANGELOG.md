@@ -2,6 +2,8 @@
 
 ## 0.11.2
 
+- touch
+  - using multiple fingers to control a widget increases the precision (reduces the gesture's computed speed)
 - widgets
   - fader: display pips to `compact` mode when `range` has multiple breakpoints
   - pads: display pips when `range` has multiple breakpoints
