@@ -66,7 +66,6 @@
 					.change(function(){
 						self.val($(this).val())
                         i.blur()
-                        setTimeout(function(){self.focus()},1)
 					})
 			i.blur(function(){
 					self.attr('tabindex','0')
@@ -77,7 +76,9 @@
                 if (e.originalEvent.target!=i[0]) {
                     i.blur()
                 }
-			})
+			}).on('keydown.popup', function(e){
+                if (e.keyCode==13) i.change()
+            })
 
 		})
 
