@@ -76,8 +76,9 @@
                 if (e.originalEvent.target!=i[0]) {
                     i.blur()
                 }
-			}).on('keydown.popup', function(e){
+			}).on('keydown.fakeInput', function(e){
                 if (e.keyCode==13) i.change()
+                if (e.keyCode==27) i.off('change').blur()
             })
 
 		})
