@@ -168,7 +168,7 @@ Fader.prototype.draw = function(){
 
             if (!this.widgetData.noPip) {
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.globalAlpha = 0.05
+                this.ctx.globalAlpha = 0.1
 
                 var x,
                     min = Math.min(d,o),
@@ -232,7 +232,7 @@ Fader.prototype.draw = function(){
 
             if (!this.widgetData.noPip) {
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.globalAlpha = 0.05
+                this.ctx.globalAlpha = 0.1
 
                 var y,
                     min = Math.min(d,o),
