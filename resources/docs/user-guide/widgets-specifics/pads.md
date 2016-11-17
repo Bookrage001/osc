@@ -105,7 +105,7 @@ Pads are multidimensional widgets that output multiple values.
 #### `snap`
 - type: `boolean`
 - default: `false`
-- usage: by default, the points must be touched directy to be dragged; if set to `true`, touching anywhere on the widget's surface will assign the points to the touching fingers one by one.
+- usage: by default, the points are dragged from their initial position; if set to `true`, touching anywhere on the widget's surface will make them snap to the touching coordinates (one per touch).
 
 ----
 

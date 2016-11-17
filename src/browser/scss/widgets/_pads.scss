@@ -121,9 +121,8 @@
                 position: absolute;
                 width:calc(100% - calc(var(--point-size) * 2 + 2rem));
                 height:calc(100% - calc(var(--point-size) * 2 + 2rem));
-                pointer-events: none;
                 &.active {
-                    pointer-events: none!important;
+                    pointer-events: none;
                 }
                 .wrapper {
                     background: transparent;
@@ -148,9 +147,6 @@
                 cursor: -webkit-grab;
                 opacity: 0;
                 z-index: 1;
-            }
-            &.snap > .pad {
-                pointer-events: auto;
             }
 
         }

@@ -10,7 +10,7 @@ module.exports.options = {
     separator1:'multi xy',
 
     points: 2,
-    pointSize: 15,
+    pointSize: 20,
     snap:false,
 
     separator2:'style',
@@ -65,7 +65,8 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
             rangeX:widgetData.rangeX,
             rangeY:widgetData.rangeY,
             precision:widgetData.precision,
-            logScale:widgetData.logScaleY
+            logScaleX:widgetData.logScaleX,
+            logScaleY:widgetData.logScaleY
         })
         this.pads[i].sendValue = ()=>{}
         this.pads[i].draw = ()=>{}
@@ -74,7 +75,6 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
         this.handles[i] = $(`<div class="handle">${i}</div>`)
         this.wrapper.append(this.handles[i])
 
-        if (this.widgetData.snap) {
             let pad = this.pads[i]
             pad.wrapper.on('draginit',(e)=>{
                 pad.widget.addClass('active')
@@ -82,13 +82,9 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
             pad.wrapper.on('dragend',(e)=>{
                 pad.widget.removeClass('active')
             })
-
-        }
     }
 
-    if (this.widgetData.snap) {
         this.wrapper.addClass('snap')
-    }
 
     this.value = []
 
@@ -100,20 +96,12 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
                 this.pads[i].widget.addClass('active')
             }
             this.pads[i].wrapper.trigger(e.type, [data, traversing])
-            var v = this.pads[i].widget.getValue()
-            if (v < [this.value[i*2], this.value[i*2+1]] || v > [this.value[i*2], this.value[i*2+1]]) {
-                var n = this.widget.getValue()
-                n[i] = v
-                this.setValue(n, {sync:true,send:true, dragged:true})
-            }
         })
     })
 
     this.wrapper.on('sync',(e)=>{
         e.stopPropagation()
-        if (this.widgetData.snap) {
-            this.setValue(this.widget.getValue(), e.options)
-        }
+        this.setValue(this.widget.getValue(), e.options)
     })
 
     this.widget.getValue = () => {
