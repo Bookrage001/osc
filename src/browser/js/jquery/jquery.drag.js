@@ -140,6 +140,7 @@
                         for (j in targets) {
                             if (targets[j][0].isSameNode(touch.target)) {
                                 emit = false
+                                break
                             }
                         }
 
