@@ -175,10 +175,16 @@
                     for (i in oE.changedTouches) {
                         if (isNaN(i)) continue
 
+                        var nFingers = 0
+                        for (j in oE.touches) {
+                            if (oE.touches[j].target && oE.touches[j].target.isSameNode(oE.changedTouches[i].target)) {
+                                nFingers += 1
+                            }
+                        }
 
                         var touch = oE.changedTouches[i],
                             id = touch.identifier,
-                            speedFactor = oE.targetTouches.length == 1 ? 1 : Math.pow(2,oE.targetTouches.length)
+                            speedFactor = nFingers * nFingers
 
                         if (e.originalEvent.traversing) {
                             targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
