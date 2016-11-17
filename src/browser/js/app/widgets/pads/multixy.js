@@ -11,6 +11,7 @@ module.exports.options = {
 
     points: 2,
     pointSize: 15,
+    snap:false,
 
     separator2:'style',
 
@@ -58,7 +59,7 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
 
     this.handles = []
     this.pads = []
-    for (var i=0;i<this.widgetData.points;i++) {
+    for (var i=this.widgetData.points-1;i>=0;i--) {
         this.pads[i] = new Xy({
             snap:widgetData.snap,
             rangeX:widgetData.rangeX,
@@ -72,13 +73,32 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
 
         this.handles[i] = $(`<div class="handle">${i}</div>`)
         this.wrapper.append(this.handles[i])
+
+        if (this.widgetData.snap) {
+            let pad = this.pads[i]
+            pad.wrapper.on('draginit',(e)=>{
+                pad.widget.addClass('active')
+            })
+            pad.wrapper.on('dragend',(e)=>{
+                pad.widget.removeClass('active')
+            })
+
+        }
+    }
+
+    if (this.widgetData.snap) {
+        this.wrapper.addClass('snap')
     }
 
     this.value = []
 
 
     this.handles.forEach((handle, i)=>{
-        handle.on('draginit drag',(e, data, traversing)=>{
+        handle.on('draginit drag dragend',(e, data, traversing)=>{
+            if (this.widgetData.snap && e.type == 'draginit') {
+                e.type = 'drag'
+                this.pads[i].widget.addClass('active')
+            }
             this.pads[i].wrapper.trigger(e.type, [data, traversing])
             var v = this.pads[i].widget.getValue()
             if (v < [this.value[i*2], this.value[i*2+1]] || v > [this.value[i*2], this.value[i*2+1]]) {
@@ -91,6 +111,9 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
 
     this.wrapper.on('sync',(e)=>{
         e.stopPropagation()
+        if (this.widgetData.snap) {
+            this.setValue(this.widget.getValue(), e.options)
+        }
     })
 
     this.widget.getValue = () => {

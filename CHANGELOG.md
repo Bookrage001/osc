@@ -5,7 +5,7 @@
 - widgets
   - fader: display pips to `compact` mode when `range` has multiple breakpoints
   - pads: display pips when `range` has multiple breakpoints
-  - multixy: style update (stroked dots, bold number font)
+  - multixy: style update (stroked dots, bold number font); `snap` option added.
 
 ## 0.11.1
 

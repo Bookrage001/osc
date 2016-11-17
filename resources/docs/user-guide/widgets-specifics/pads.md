@@ -102,6 +102,11 @@ Pads are multidimensional widgets that output multiple values.
     - can be set as an object to specify a different `address` : `{0:'/osc_address/0', 1:'/osc_address_/1'}` (each address will be appended `/x` or `y`)
 - note: the widget will only respond to its original osc address, not to the splitted version
 
+#### `snap`
+- type: `boolean`
+- default: `false`
+- usage: by default, the points must be touched directy to be dragged; if set to `true`, touching anywhere on the widget's surface will assign the points to the touching fingers one by one.
+
 ----
 
 ## RGB
