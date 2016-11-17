@@ -134,7 +134,14 @@
                         if (isNaN(i)) continue
 
                         var touch = oE.changedTouches[i],
-                            id = touch.identifier
+                            id = touch.identifier,
+                            emit = true
+
+                        for (j in targets) {
+                            if (targets[j][0].isSameNode(touch.target)) {
+                                emit = false
+                            }
+                        }
 
                         targets[id] = $(touch.target)
                         previousTouches[id] = touch
@@ -149,13 +156,8 @@
                         touch.offsetX = touch.pageX-off.left
                         touch.offsetY = touch.pageY-off.top
 
-                        for (j in targets) {
-                            if (targets[j][0].isSameNode(touch.target)) {
-                                continue touches
-                            }
-                        }
 
-                        targets[id].triggerHandler('draginit',[touch,e.originalEvent.traversing])
+                        if (emit) targets[id].triggerHandler('draginit',[touch,e.originalEvent.traversing])
 
                     }
 
