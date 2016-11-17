@@ -129,7 +129,6 @@
 
                     var oE = e.originalEvent
 
-                    touches:
                     for (i in oE.changedTouches) {
                         if (isNaN(i)) continue
 
