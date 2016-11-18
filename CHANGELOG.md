@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.3
+
+- widgets
+  - knob: gesture's precision is proportionnal to the widget's size
+
 ## 0.11.2
 
 - touch

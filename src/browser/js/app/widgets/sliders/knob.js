@@ -98,7 +98,7 @@ Knob.prototype.dragHandle = function(e, data, traversing) {
 
     if (!(traversing || this.widgetData.snap)) {
 
-        this.percent = -data.speedY + this.percent
+        this.percent = -100*data.speedY/this.height + this.percent
 
     } else {
 
