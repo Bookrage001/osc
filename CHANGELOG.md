@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.4
+
+- bug fixes
+  - fader: default `height/width` not set when `top/left` is `auto`
+
 ## 0.11.3
 
 - widgets
