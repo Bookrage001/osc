@@ -4,6 +4,8 @@
 
 - widgets
   - knob: gesture's precision is proportionnal to the widget's size
+- ui
+  - cleaner forms in editor and launcher
 
 ## 0.11.2
 
