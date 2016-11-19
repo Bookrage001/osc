@@ -39,7 +39,7 @@ module.exports.options = {
     target:[]
 }
 
-var Fader = module.exports.Fader = function(widgetData){
+var Fader = module.exports.Fader = function(widgetData, container){
 
     _sliders_base.apply(this,arguments)
     this.widget.addClass('fader')
@@ -47,7 +47,14 @@ var Fader = module.exports.Fader = function(widgetData){
 
 
     if (widgetData.horizontal) {
-        this.widget.addClass('horizontal')
+        container.add(this.widget).addClass('horizontal')
+        if (widgetData.width == 'auto' && widgetData.left != 'auto') {
+            container.css({'width':'auto', 'right':'0'})
+        }
+    } else {
+        if (widgetData.height == 'auto' && widgetData.top != 'auto') {
+            container.css({'height':'auto', 'bottom':'0'})
+        }
     }
 
     if (widgetData.compact) {

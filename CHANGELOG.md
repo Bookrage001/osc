@@ -4,6 +4,7 @@
 
 - widgets
   - knob: gesture's precision is proportionnal to the widget's size
+  - fader: `height:auto` (or `width` for `horizontal` mode) makes the fader expand automatically
 - ui
   - cleaner forms in editor and launcher
 

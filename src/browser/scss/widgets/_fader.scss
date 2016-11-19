@@ -2,8 +2,10 @@
     --color-pips: var(--color-text-fade);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
-    height:100%;
     width:100rem;
+    &.horizontal {
+        height:130rem;
+    }
 }
 
 .fader {
