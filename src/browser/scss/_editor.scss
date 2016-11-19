@@ -1,23 +1,37 @@
 
 .form {
+    line-height: 18rem;
     .input-wrapper {
         display: flex;
-        margin-bottom:4rem;
+        // margin-bottom:4rem;
+        margin-top: -1rem;
+        // box-shadow: 0 0 0 1 var(--color-bg);
         background:var(--color-bg);
         align-items: center;
+        z-index: 1;
+        border-bottom: 1rem solid var(--color-bg);
+
+
         &:last-child {
             margin-bottom:0;
         }
         label {
-            background: var(--color-fg);
+            background: var(--color-raised);
             flex-shrink: 0;
-            padding: 5rem;
-            border:1rem solid var(--color-bg);
+            padding: 6rem 5rem 4rem;
+            // border:1rem solid var(--color-bg);
+            // border-bottom: 1rem solid var(--color-bg);
+            min-width: 25%;
+            box-shadow: 1rem  0 0 0 var(--color-bg) inset;
+            // margin-top: -1rem;
+
+
         }
         .input, input {
             background: var(--color-bg);
             width:100%;
             padding:5rem;
+            border-top:1rem solid var(--color-fg);
         }
         &.column {
             flex-direction: column;
@@ -43,9 +57,6 @@
         font:inherit;
         color:var(--color-text);
         width:100%;
-        &:focus {
-            border-color:var(--color-accent);
-        }
         .btn {
             background:var(--color-raised);
             box-shadow: 0 0 0 1rem var(--color-bg);
@@ -54,6 +65,9 @@
     .checkbox {
         background:var(--color-raised);
         cursor: pointer;
+        &[value="true"] {
+            color: var(--color-accent)
+        }
     }
     .select-wrapper {
         position: relative;
@@ -66,6 +80,14 @@
             right:0;
             top:0;
             font-size: 20rem;
+            line-height: 15rem;
+
+        }
+        // border-top:1rem solid var(--color-fg);
+
+        .input {
+            line-height: 15rem;
+            border:0;
         }
     }
     select {
@@ -77,17 +99,19 @@
     .separator {
         line-height: 30rem;
         height: 30rem;
-        margin-bottom: 5rem;
+        margin-top: 10rem;
         position: relative;
         display: flex;
         align-items: center;
-        &:before, &:after {
-            content:"";
-            top:14rem;
-            width: 100%;
-            height: 1rem;
-            background: var(--color-text-fade);
-        }
+        background: var(--color-faded);
+        border: 1rem solid var(--color-bg);
+        // &:before, &:after {
+        //     content:"";
+        //     top:14rem;
+        //     width: 100%;
+        //     height: 1rem;
+        //     background: var(--color-text-fade);
+        // }
         span {
             font-variant: small-caps;
             position: relative;

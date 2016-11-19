@@ -185,12 +185,16 @@ i {
         }
     }
     .item-wrapper {
-        margin-bottom:4rem;
+        // margin-bottom:4rem;
+        label {
+            min-width:90rem;
+            padding-left: 7rem;
+        }
         .input-wrapper {
             position: relative;
-            height: 28rem;
-            overflow: hidden;
-            margin: 0;
+            // height: 28rem;
+            // overflow: hidden;
+            // margin: 0;
             .clear {
                 padding:0;
                 height:26rem;
@@ -199,9 +203,13 @@ i {
                 text-align: center;
                 position: absolute;
                 right:1rem;
-                top:1rem;
+                top:2rem;
+                background: none;
+                opacity: .7;
             }
-            padding-right:35rem;
+            input {
+                padding-right:35rem;
+            }
             input[disabled] {
                 color:var(--color-accent);
             }
@@ -211,21 +219,23 @@ i {
             height: 0rem;
             white-space:normal;
             padding: 0 4rem;
+            margin-left:1rem;
         }
         &.error {
+
             .error-msg {
                 height: 28rem;
                 line-height: 28rem;
                 background: rgba(red,0.25)
             }
-            box-shadow: 0 0 1rem 0 rgba(red,1);
         }
     }
     .title {
+        background: var(--color-faded);
         border: 1rem solid var(--color-bg);
+        margin-bottom: -1rem;
         color: var(--color-accent);
-        margin-bottom: 4rem;
-        cursor: default;
+        cursor: default;z-index: 2;
         #new-version {
             color:yellow;
             cursor: pointer;
@@ -235,6 +245,17 @@ i {
     .start {
         border: 1rem solid var(--color-bg);
         z-index: 1;
+        margin-top: 5rem;
+        &:after {
+            content:"";
+            position: absolute;
+            top:0;
+            left:0;
+            right: 0;
+            bottom:0;
+            box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
+
+        }
         &.disabled {
             opacity: .5;
         }

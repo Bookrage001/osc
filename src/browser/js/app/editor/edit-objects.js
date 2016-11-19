@@ -31,6 +31,8 @@ var editObject = function(container, data, refresh){
 
     var params = isWidget?widgetOptions[data.type]:{label:''}
 
+    $(`<div class="separator"><span>${isWidget?'Widget':'Tab'}</span></div>`).appendTo(form)
+
     for (i in params) {
 
         if (i.indexOf('separator')!=-1) {
@@ -96,6 +98,8 @@ var editObject = function(container, data, refresh){
     // widget list edit
     if (((isWidget&&widgetOptions[data.type].widgets) || (container.hasClass('tab'))) && (!data.tabs||!data.tabs.length)) {
 
+        $(`<div class="separator"><span>Widgets</span></div>`).appendTo(form)
+
         var list = $('<ul class="input"></ul>'),
             wrapper = $('<div class="input-wrapper column"></div>').appendTo(form)
 
@@ -142,13 +146,15 @@ var editObject = function(container, data, refresh){
             updateDom(container,data)
         })
 
-        $('<label>widgets</label>').appendTo(wrapper)
         list.appendTo(wrapper)
 
     }
 
     // tab list edit
     if (((isWidget&&widgetOptions[data.type].tabs) || (container.hasClass('tab'))) && (!data.widgets||!data.widgets.length)) {
+
+        $(`<div class="separator"><span>Tabs</span></div>`).appendTo(form)
+
         //tabs
         var list = $('<ul class="input"></ul>'),
             wrapper = $('<div class="input-wrapper column"></div>').appendTo(form)
@@ -195,7 +201,6 @@ var editObject = function(container, data, refresh){
             updateDom(container,data)
         })
 
-        $('<label>tabs</label>').appendTo(wrapper)
         list.appendTo(wrapper)
     }
 
@@ -249,8 +254,11 @@ var editSession = function(container,data,refresh){
     $('.editor').append('<div class="editor-container"></div>')
 
 
-    var form = $('<div class="form"></div>').appendTo('.editor-container'),
-        list = $('<ul class="input"></ul>'),
+    var form = $('<div class="form"></div>').appendTo('.editor-container')
+
+    $(`<div class="separator"><span>Tabs</span></div>`).appendTo(form)
+
+    var list = $('<ul class="input"></ul>'),
         wrapper = $('<div class="input-wrapper column"></div>').appendTo(form)
 
 
@@ -296,7 +304,6 @@ var editSession = function(container,data,refresh){
         updateDom(container,data)
     })
 
-    $('<label>tabs</label>').appendTo(wrapper)
     list.appendTo(wrapper)
 
 
