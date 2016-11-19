@@ -47,7 +47,7 @@ var Fader = module.exports.Fader = function(widgetData, container){
 
 
     if (widgetData.horizontal) {
-        container.add(this.widget).addClass('horizontal')
+        this.widget.add(container).addClass('horizontal')
         if (widgetData.width == 'auto' && widgetData.left != 'auto') {
             container.css({'width':'auto', 'right':'0'})
         }
