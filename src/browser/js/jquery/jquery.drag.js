@@ -312,9 +312,6 @@
 
         if (e.button==2)  {
             e.preventDefault()
-            var off = getOffset(e.target)
-            e.offsetX = e.pageX-off.left
-            e.offsetY = e.pageY-off.top
             $(e.target).trigger('fake-right-click',e)
         }
 
