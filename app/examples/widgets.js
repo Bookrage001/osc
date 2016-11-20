@@ -29,7 +29,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_1"
+                        "address": "/knob_1",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -51,7 +52,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_1"
+                        "address": "/switch_1",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -75,7 +77,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -87,7 +89,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_1"
+                        "address": "/fader_1",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -105,7 +108,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_1"
+                        "address": "/toggle_1",
+                        "value": ""
                     }
                 ],
                 "id": "strip_1",
@@ -146,7 +150,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_2"
+                        "address": "/knob_2",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -168,7 +173,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_2"
+                        "address": "/switch_2",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -192,7 +198,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -204,7 +210,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_2"
+                        "address": "/fader_2",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -222,7 +229,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_2"
+                        "address": "/toggle_2",
+                        "value": ""
                     }
                 ],
                 "id": "strip_2",
@@ -263,7 +271,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_3"
+                        "address": "/knob_3",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -285,7 +294,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_3"
+                        "address": "/switch_3",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -309,7 +319,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -321,7 +331,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_3"
+                        "address": "/fader_3",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -339,7 +350,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_3"
+                        "address": "/toggle_3",
+                        "value": ""
                     }
                 ],
                 "id": "strip_3",
@@ -380,7 +392,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_4"
+                        "address": "/knob_4",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -402,7 +415,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_4"
+                        "address": "/switch_4",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -426,7 +440,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -438,7 +452,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_4"
+                        "address": "/fader_4",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -456,7 +471,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_4"
+                        "address": "/toggle_4",
+                        "value": ""
                     }
                 ],
                 "id": "strip_4",
@@ -497,7 +513,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_5"
+                        "address": "/knob_5",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -519,7 +536,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_5"
+                        "address": "/switch_5",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -543,7 +561,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -555,7 +573,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_5"
+                        "address": "/fader_5",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -573,7 +592,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_5"
+                        "address": "/toggle_5",
+                        "value": ""
                     }
                 ],
                 "id": "strip_5",
@@ -614,7 +634,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_6"
+                        "address": "/knob_6",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -636,7 +657,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_6"
+                        "address": "/switch_6",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -660,7 +682,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -672,7 +694,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_6"
+                        "address": "/fader_6",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -690,7 +713,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_6"
+                        "address": "/toggle_6",
+                        "value": ""
                     }
                 ],
                 "id": "strip_6",
@@ -731,7 +755,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_7"
+                        "address": "/knob_7",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -753,7 +778,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_7"
+                        "address": "/switch_7",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -777,7 +803,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -789,7 +815,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_7"
+                        "address": "/fader_7",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -807,7 +834,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_7"
+                        "address": "/toggle_7",
+                        "value": ""
                     }
                 ],
                 "id": "strip_7",
@@ -848,7 +876,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_8"
+                        "address": "/knob_8",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -870,7 +899,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_8"
+                        "address": "/switch_8",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -894,7 +924,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -906,7 +936,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_8"
+                        "address": "/fader_8",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -924,7 +955,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_8"
+                        "address": "/toggle_8",
+                        "value": ""
                     }
                 ],
                 "id": "strip_8",
@@ -965,7 +997,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_9"
+                        "address": "/knob_9",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -987,7 +1020,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_9"
+                        "address": "/switch_9",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -1011,7 +1045,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -1023,7 +1057,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_9"
+                        "address": "/fader_9",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -1041,7 +1076,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_9"
+                        "address": "/toggle_9",
+                        "value": ""
                     }
                 ],
                 "id": "strip_9",
@@ -1082,7 +1118,8 @@
                         "compact": false,
                         "angle": 270,
                         "origin": "auto",
-                        "address": "/knob_10"
+                        "address": "/knob_10",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -1104,7 +1141,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/switch_10"
+                        "address": "/switch_10",
+                        "value": ""
                     },
                     {
                         "label": false,
@@ -1128,7 +1166,7 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "horizontal": false,
                         "css": "",
                         "precision": 2,
@@ -1140,7 +1178,8 @@
                         "noPip": false,
                         "compact": false,
                         "origin": "auto",
-                        "address": "/fader_10"
+                        "address": "/fader_10",
+                        "value": ""
                     },
                     {
                         "label": "Mute",
@@ -1158,7 +1197,8 @@
                         "precision": 2,
                         "color": "auto",
                         "preArgs": [],
-                        "address": "/toggle_10"
+                        "address": "/toggle_10",
+                        "value": ""
                     }
                 ],
                 "id": "strip_10",
@@ -1195,7 +1235,8 @@
                         "precision": 0,
                         "split": false,
                         "preArgs": [],
-                        "address": "/rgb_1"
+                        "address": "/rgb_1",
+                        "value": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1223,7 +1264,8 @@
                         "logScaleX": false,
                         "logScaleY": false,
                         "preArgs": [],
-                        "address": "/xy_1"
+                        "address": "/xy_1",
+                        "value": ""
                     }
                 ],
                 "id": "strip_11",
@@ -1254,7 +1296,8 @@
                         "precision": 0,
                         "split": false,
                         "preArgs": [],
-                        "address": "/rgb_2"
+                        "address": "/rgb_2",
+                        "value": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1282,7 +1325,8 @@
                         "logScaleX": false,
                         "logScaleY": false,
                         "preArgs": [],
-                        "address": "/xy_2"
+                        "address": "/xy_2",
+                        "value": ""
                     }
                 ],
                 "id": "strip_12",
@@ -1313,7 +1357,8 @@
                         "precision": 0,
                         "split": false,
                         "preArgs": [],
-                        "address": "/rgb_3"
+                        "address": "/rgb_3",
+                        "value": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1341,7 +1386,8 @@
                         "logScaleX": false,
                         "logScaleY": false,
                         "preArgs": [],
-                        "address": "/xy_3"
+                        "address": "/xy_3",
+                        "value": ""
                     }
                 ],
                 "id": "strip_13",
@@ -1372,7 +1418,8 @@
                         "precision": 0,
                         "split": false,
                         "preArgs": [],
-                        "address": "/rgb_4"
+                        "address": "/rgb_4",
+                        "value": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1400,7 +1447,8 @@
                         "logScaleX": false,
                         "logScaleY": false,
                         "preArgs": [],
-                        "address": "/xy_4"
+                        "address": "/xy_4",
+                        "value": ""
                     }
                 ],
                 "id": "strip_14",
@@ -1431,7 +1479,8 @@
                         "precision": 0,
                         "split": false,
                         "preArgs": [],
-                        "address": "/rgb_5"
+                        "address": "/rgb_5",
+                        "value": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1459,7 +1508,8 @@
                         "logScaleX": false,
                         "logScaleY": false,
                         "preArgs": [],
-                        "address": "/xy_5"
+                        "address": "/xy_5",
+                        "value": ""
                     }
                 ],
                 "id": "strip_15",
@@ -1490,7 +1540,8 @@
                         "precision": 0,
                         "split": false,
                         "preArgs": [],
-                        "address": "/rgb_6"
+                        "address": "/rgb_6",
+                        "value": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1518,7 +1569,8 @@
                         "logScaleX": false,
                         "logScaleY": false,
                         "preArgs": [],
-                        "address": "/xy_6"
+                        "address": "/xy_6",
+                        "value": ""
                     }
                 ],
                 "id": "strip_16",
@@ -1574,7 +1626,8 @@
                                 "noPip": false,
                                 "compact": false,
                                 "origin": "auto",
-                                "address": "/fader_12"
+                                "address": "/fader_12",
+                                "value": ""
                             },
                             {
                                 "type": "fader",
@@ -1603,7 +1656,8 @@
                                 "noPip": false,
                                 "compact": false,
                                 "origin": "auto",
-                                "address": "/fader_13"
+                                "address": "/fader_13",
+                                "value": ""
                             },
                             {
                                 "type": "fader",
@@ -1632,7 +1686,8 @@
                                 "noPip": false,
                                 "compact": false,
                                 "origin": "auto",
-                                "address": "/fader_14"
+                                "address": "/fader_14",
+                                "value": ""
                             },
                             {
                                 "type": "fader",
@@ -1661,7 +1716,8 @@
                                 "noPip": false,
                                 "compact": false,
                                 "origin": "auto",
-                                "address": "/fader_25"
+                                "address": "/fader_25",
+                                "value": ""
                             }
                         ],
                         "tabs": [],
@@ -1788,7 +1844,8 @@
                                         "compact": false,
                                         "angle": 270,
                                         "origin": "auto",
-                                        "address": "/fader_21"
+                                        "address": "/fader_21",
+                                        "value": ""
                                     },
                                     {
                                         "type": "knob",
@@ -1815,7 +1872,8 @@
                                         "compact": false,
                                         "angle": 270,
                                         "origin": "auto",
-                                        "address": "/fader_22"
+                                        "address": "/fader_22",
+                                        "value": ""
                                     },
                                     {
                                         "type": "knob",
@@ -1842,7 +1900,8 @@
                                         "compact": false,
                                         "angle": 270,
                                         "origin": "auto",
-                                        "address": "/fader_23"
+                                        "address": "/fader_23",
+                                        "value": ""
                                     },
                                     {
                                         "type": "knob",
@@ -1869,7 +1928,8 @@
                                         "compact": false,
                                         "angle": 270,
                                         "origin": "auto",
-                                        "address": "/fader_24"
+                                        "address": "/fader_24",
+                                        "value": ""
                                     }
                                 ]
                             },
@@ -1916,7 +1976,8 @@
                 "traversing": true,
                 "origin": "auto",
                 "meter": false,
-                "address": "/multifader_1"
+                "address": "/multifader_1",
+                "value": ""
             },
             {
                 "type": "multipush",
@@ -1939,7 +2000,8 @@
                 "preArgs": [],
                 "traversing": true,
                 "norelease": false,
-                "address": "/multipush_1"
+                "address": "/multipush_1",
+                "value": ""
             },
             {
                 "type": "multitoggle",
@@ -1961,7 +2023,8 @@
                 "color": "auto",
                 "preArgs": [],
                 "traversing": true,
-                "address": "/multitoggle_1"
+                "address": "/multitoggle_1",
+                "value": ""
             }
         ]
     }
