@@ -175,7 +175,7 @@ Fader.prototype.draw = function(){
 
             if (!this.widgetData.noPip) {
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.globalAlpha = 0.1
+                this.ctx.globalAlpha = 1
 
                 var x,
                     min = Math.min(d,o),
@@ -183,7 +183,7 @@ Fader.prototype.draw = function(){
 
                 for (var i = 1;i < this.rangeKeys.length - 1;i++) {
                     x = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
-                    this.ctx.strokeStyle = this.colors.text
+                    this.ctx.strokeStyle = this.colors.bg
                     this.ctx.beginPath()
                     this.ctx.moveTo(x, 0)
                     this.ctx.lineTo(x, this.height)
@@ -239,7 +239,7 @@ Fader.prototype.draw = function(){
 
             if (!this.widgetData.noPip) {
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.globalAlpha = 0.1
+                this.ctx.globalAlpha = 1
 
                 var y,
                     min = Math.min(d,o),
@@ -247,7 +247,7 @@ Fader.prototype.draw = function(){
 
                 for (var i = 1;i < this.rangeKeys.length - 1;i++) {
                     y = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
-                    this.ctx.strokeStyle = this.colors.text
+                    this.ctx.strokeStyle = this.colors.bg
                     this.ctx.beginPath()
                     this.ctx.moveTo(0, y)
                     this.ctx.lineTo(this.width, y)
