@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.5
+
+- bug fixes
+  - [regression] broken horizontal fader and pads
+
 ## 0.11.4
 
 - bug fixes
