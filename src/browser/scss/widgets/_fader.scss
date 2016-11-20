@@ -175,6 +175,7 @@
         }
     }
     &.compact {
+        box-shadow: 0 0 0 1rem var(--color-bg); 
         .wrapper canvas {
             background: var(--color-faded)
         }
