@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.7
+
+- bug fixes
+  - error popups raised by the main process can be closed
+
 ## 0.11.6
 
 - widgets

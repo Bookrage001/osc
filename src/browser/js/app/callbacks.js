@@ -133,7 +133,7 @@ module.exports = {
     error: function(event,data){
         var data = data || event
 
-        utils.createPopup(icon('warning')+'&nbsp;'+data.title,data.text)
+        utils.createPopup(icon('warning')+'&nbsp;'+data.title,data.text,true)
     },
 
     applyStyle: function(event,data){
