@@ -4,6 +4,10 @@
 
 - widgets
   - meter: rewritten using fader as base
+  - strip: center widget horizontally if width is set
+  - fader/knob: compact gauge's alpha varies slightly as the distance to the origin grows
+- misc
+  - one example session added
 
 ## 0.11.5
 
