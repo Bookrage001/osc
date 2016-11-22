@@ -240,20 +240,20 @@ Fader.prototype.draw = function(){
 
             if (!this.widgetData.noPip) {
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.globalAlpha = 1
+                this.ctx.globalAlpha = 0.75
 
                 var y,
                     min = Math.min(d,o),
                     max = Math.max(d,o)
 
+                this.ctx.beginPath()
                 for (var i = 1;i < this.rangeKeys.length - 1;i++) {
                     y = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
                     this.ctx.strokeStyle = this.colors.bg
-                    this.ctx.beginPath()
                     this.ctx.moveTo(0, y)
                     this.ctx.lineTo(this.width, y)
-                    this.ctx.stroke()
                 }
+                this.ctx.stroke()
             }
 
             this.ctx.globalAlpha = 1
