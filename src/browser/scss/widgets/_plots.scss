@@ -66,6 +66,7 @@
 
 .text-container {
     --color-custom:var(--color-accent);
+    flex-shrink: 0;
 
     .text {
         flex: 1;
