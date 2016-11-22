@@ -157,8 +157,8 @@ Fader.prototype.percentToCoord = function(percent) {
 
 Fader.prototype.draw = function(){
 
-    var d = this.percentToCoord(this.percent),
-        o = this.percentToCoord(this.valueToPercent(this.originValue))
+    var d = Math.round(this.percentToCoord(this.percent)),
+        o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue)))
 
     this.ctx.clearRect(0,0,this.width,this.height)
 
