@@ -158,7 +158,8 @@ Fader.prototype.percentToCoord = function(percent) {
 Fader.prototype.draw = function(){
 
     var d = Math.round(this.percentToCoord(this.percent)),
-        o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue)))
+        o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue))),
+        m = Math.round(this.widgetData.horizontal ? this.height / 2 : this.width / 2)
 
     this.ctx.clearRect(0,0,this.width,this.height)
 
@@ -168,8 +169,8 @@ Fader.prototype.draw = function(){
             this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o)/this.width
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
-            this.ctx.moveTo(d, this.height / 2)
-            this.ctx.lineTo(o, this.height / 2)
+            this.ctx.moveTo(d, m)
+            this.ctx.lineTo(o, m)
             this.ctx.lineWidth = this.height
             this.ctx.stroke()
 
@@ -202,25 +203,25 @@ Fader.prototype.draw = function(){
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.track
-            this.ctx.rect(this.margin * PXSCALE, this.height / 2 - 1 * PXSCALE, this.width - this.margin  * 2 * PXSCALE, 2 * PXSCALE)
+            this.ctx.rect(this.margin * PXSCALE, m - 1 * PXSCALE, this.width - this.margin  * 2 * PXSCALE, 2 * PXSCALE)
             this.ctx.fill()
 
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
-            this.ctx.moveTo(d + this.margin * PXSCALE, this.height / 2)
-            this.ctx.lineTo(o + this.margin * PXSCALE, this.height / 2)
+            this.ctx.moveTo(d + this.margin * PXSCALE, m)
+            this.ctx.lineTo(o + this.margin * PXSCALE, m)
             this.ctx.lineWidth = 2 * PXSCALE
             this.ctx.stroke()
 
             this.ctx.fillStyle = this.colors.knob
 
             this.ctx.globalAlpha = 0.3
-            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 10 * PXSCALE, Math.PI * 2, false)
+            this.ctx.arc(d + this.margin * PXSCALE, m, 10 * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
             this.ctx.globalAlpha = 1
 
             this.ctx.beginPath()
-            this.ctx.arc(d + this.margin * PXSCALE, this.height / 2, 4 * PXSCALE, Math.PI * 2, false)
+            this.ctx.arc(d + this.margin * PXSCALE, m, 4 * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
         }
 
@@ -232,8 +233,8 @@ Fader.prototype.draw = function(){
             this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o)/this.height
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
-            this.ctx.moveTo(this.width / 2, d)
-            this.ctx.lineTo(this.width / 2, o)
+            this.ctx.moveTo(m, d)
+            this.ctx.lineTo(m, o)
             this.ctx.lineWidth = this.width
             this.ctx.stroke()
 
@@ -266,13 +267,13 @@ Fader.prototype.draw = function(){
 
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.track
-            this.ctx.rect(this.width / 2 - 1 * PXSCALE, this.margin * PXSCALE, 2 * PXSCALE, this.height - this.margin *2 * PXSCALE)
+            this.ctx.rect(m - 1 * PXSCALE, this.margin * PXSCALE, 2 * PXSCALE, this.height - this.margin *2 * PXSCALE)
             this.ctx.fill()
 
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
-            this.ctx.moveTo(this.width / 2, d)
-            this.ctx.lineTo(this.width / 2, o)
+            this.ctx.moveTo(m, d)
+            this.ctx.lineTo(m, o)
             this.ctx.lineWidth = 2 * PXSCALE
             this.ctx.stroke()
 
@@ -280,12 +281,12 @@ Fader.prototype.draw = function(){
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.knob
             this.ctx.globalAlpha = 0.3
-            this.ctx.arc(this.width / 2, d, 10 * PXSCALE, Math.PI * 2,false)
+            this.ctx.arc(m, d, 10 * PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
             this.ctx.globalAlpha = 1
 
             this.ctx.beginPath()
-            this.ctx.arc(this.width / 2, d, 4 * PXSCALE, Math.PI * 2,false)
+            this.ctx.arc(m, d, 4 * PXSCALE, Math.PI * 2,false)
             this.ctx.fill()
         }
     }
