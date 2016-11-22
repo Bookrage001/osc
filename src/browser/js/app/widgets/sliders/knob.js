@@ -182,22 +182,20 @@ Knob.prototype.draw = function(){
         this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE, Math.min(o,d), Math.max(o,d))
         this.ctx.stroke()
 
-
-        this.ctx.save()
-
-        this.ctx.translate(this.width / 2, this.height / 2)
-        this.ctx.rotate(d)
-        this.ctx.translate(-this.width / 2, -this.height / 2)
-
         this.ctx.beginPath()
 
         this.ctx.strokeStyle = this.colors.knob
         this.ctx.lineWidth = 1 * PXSCALE
-        this.ctx.moveTo(this.width / 2 + this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE, this.height / 2)
-        this.ctx.lineTo(this.width / 2 + this.minDimension / 2 - (this.gaugeWidth * 1.5 + this.margin) * PXSCALE, this.height / 2)
-        this.ctx.stroke()
 
-        this.ctx.restore()
+        let r1 = this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE,
+            r2 = this.minDimension / 2 - (this.gaugeWidth * 1.5 + this.margin) * PXSCALE,
+            a  = 2 * Math.PI - d
+
+
+        this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
+        this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
+
+        this.ctx.stroke()
 
 
     } else {
