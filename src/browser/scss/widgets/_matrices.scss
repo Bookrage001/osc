@@ -31,15 +31,8 @@
     .matrix {
         padding:0!important;
         align-items:stretch;
-        .compact {
-            border-top:1rem solid var(--color-bg);
-        }
         &.horizontal {
             flex-direction: column;
-            .compact {
-                border-top:0;
-                border-left:1rem solid var(--color-bg);
-            }
             .fader-container {
                 flex-direction: row;
                 width: 100%;
