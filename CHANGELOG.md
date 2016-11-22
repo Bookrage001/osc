@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.11.6
 
 - widgets
   - meter: rewritten using fader as base
