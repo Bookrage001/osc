@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- widgets
+  - meter: rewritten using fader as base
+
 ## 0.11.5
 
 - bug fixes

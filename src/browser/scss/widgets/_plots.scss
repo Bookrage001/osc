@@ -59,44 +59,8 @@
 .meter-container {
     --color-custom:var(--color-accent);
     --color-gauge: var(--color-custom);
-
-    height: 100rem;
-	.meter {
-        display: flex;
-        flex-direction: row;
-        flex:1;
-        position: relative;
-
-        background: var(--color-track);
-
-		.level {
-			width:100%;
-            flex:1;
-			transform-origin: bottom;
-			background:var(--color-custom);
-            // opacity: .5;
-		}
-        &::after {
-            content:"";
-            position: absolute;
-            top:0;
-            left:0;
-            bottom:0;
-            right:0;
-            background-image: linear-gradient(transparent 1px, var(--color-fg) 1px, var(--color-fg) 2px );
-            background-size: 100% 2px;
-            background-repeat: repeat;
-        }
-        &.horizontal {
-            &::after {
-                background-image: linear-gradient(to left, transparent 1px, var(--color-fg) 1px, var(--color-fg) 2px );
-                background-size: 2px 100% ;
-            }
-            .level {
-                transform-origin: left;
-            }
-        }
-    }
+    --color-knob: transparent;
+    background: var(--color-faded)
 
 }
 

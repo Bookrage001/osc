@@ -53,7 +53,7 @@
     }
     &.has-pips {
 
-        .wrapper canvas {
+        > .wrapper > canvas {
             padding-right: 28rem;
         }
 
@@ -103,7 +103,7 @@
         }
 
         &.align-right {
-            .wrapper canvas {
+            > .wrapper > canvas {
                 padding-right: 0;
                 padding-left: 28rem;
             }
@@ -175,7 +175,7 @@
         }
     }
     &.compact {
-        box-shadow: 0 0 0 1rem var(--color-bg); 
+        box-shadow: 0 0 0 1rem var(--color-bg);
         .wrapper canvas {
             background: var(--color-faded)
         }
@@ -196,11 +196,15 @@
             bottom: 0;
             left: auto;
             right:0;
+            border-right-width: 0;
+            border-bottom-width: 0;
         }
         &.align-right {
             .meter-container {
                 right: auto;
                 left:0;
+                border-right-width: 1rem;
+                box-shadow: none;
             }
         }
         &.horizontal {
