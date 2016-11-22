@@ -166,7 +166,7 @@ Fader.prototype.draw = function(){
     if (this.widgetData.horizontal) {
         if (this.widgetData.compact) {
 
-            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o)/this.width
+            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.width-o)
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
             this.ctx.moveTo(d, m)
@@ -230,7 +230,7 @@ Fader.prototype.draw = function(){
 
         if (this.widgetData.compact) {
 
-            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o)/this.height
+            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.height-o)
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
             this.ctx.moveTo(m, d)
