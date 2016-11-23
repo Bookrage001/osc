@@ -1,12 +1,13 @@
 # Changelog
 
-## 0.11.7
+## 0.12.0
 
 - bug fixes
   - error popups raised by the main process can be closed
   - sliders don't send same value over network when the value change is below the widget's precision
 - widgets
   - **new** (piano) keyboard widget
+  - matrices: fixed `preArgs` option; added `split` option (default to `false`), *it changes the default osc messages formatting for these widgets*
 
 ## 0.11.6
 
