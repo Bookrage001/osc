@@ -171,7 +171,7 @@ Fader.prototype.draw = function(){
             this.ctx.beginPath()
             this.ctx.moveTo(d, m)
             this.ctx.lineTo(o, m)
-            this.ctx.lineWidth = this.height
+            this.ctx.lineWidth = this.height + 1
             this.ctx.stroke()
 
             if (!this.widgetData.noPip) {
@@ -235,7 +235,7 @@ Fader.prototype.draw = function(){
             this.ctx.beginPath()
             this.ctx.moveTo(m, d)
             this.ctx.lineTo(m, o)
-            this.ctx.lineWidth = this.width
+            this.ctx.lineWidth = this.width + 1
             this.ctx.stroke()
 
             if (!this.widgetData.noPip) {
