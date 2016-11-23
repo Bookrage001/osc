@@ -70,14 +70,15 @@
 
 .keyboard-container {
     --color-black: var(--color-raised);
+    --color-white: ivory;
     height:90rem;
     width:240rem;
-    
+
     .matrix {
         position: relative;
         overflow: hidden;
         .white {
-            --color-raised: var(--color-white, ivory);
+            --color-raised: var(--color-white);
         }
         .black {
             --color-raised: var(--color-black);
