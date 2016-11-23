@@ -30,6 +30,7 @@ module.exports.options = {
     precision:2,
     address:'auto',
     preArgs:[],
+    split:false,
     target:[]
 }
 
@@ -43,7 +44,7 @@ var Keyboard = module.exports.Keyboard = function(widgetData) {
         pattern = 'wbwbwwbwbwbw',
         wCount = 0
 
-    for (var i=widgetData.start;i<widgetData.keys+widgetData.start;i++) {
+    for (var i=widgetData.start;i<widgetData.keys+widgetData.start&&i<108;i++) {
 
         var data = JSON.parse(strData)
 
@@ -52,7 +53,8 @@ var Keyboard = module.exports.Keyboard = function(widgetData) {
         data.type = 'push'
         data.id = widgetData.id + '/' + i
         data.label = false
-        data.address = widgetData.address + '/' + i
+        data.address = widgetData.split ? widgetData.address : widgetData.address + '/' + i
+        data.preArgs = widgetData.split ? [i].concat(widgetData.preArgs) : widgetData.preArgs
 
 		var element = parsewidgets([data],this.widget)
 		element[0].classList.add('not-editable')
@@ -65,7 +67,7 @@ var Keyboard = module.exports.Keyboard = function(widgetData) {
 
         }
 
-        this.value[i] = widgetData.off
+        this.value[i-widgetData.start] = widgetData.off
 
 	}
 
