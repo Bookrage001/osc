@@ -26,8 +26,14 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - default: `true`
 - usage: enable traversing gestures
 
+#### `split`
+- type: `boolean`
+- default: `false`
+- usage: if `true`, the fader's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+
 #### `options`
 - see fader's [`options`](sliders/#fader)
+
 
 
 ----
@@ -52,6 +58,12 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - type: `boolean`
 - default: `true`
 - usage: enable traversing gestures
+
+#### `split`
+- type: `boolean`
+- default: `false`
+- usage: if `true`, the toggle's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+
 
 #### `options`
 - see toggle's [`options`](buttons/#toggle)
@@ -79,6 +91,47 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - default: `true`
 - usage: enable traversing gestures
 
+#### `split`
+- type: `boolean`
+- default: `false`
+- usage: if `true`, the push's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+
+#### `options`
+- see push's [`options`](buttons/#push)
+
+
+----
+## Keyboard
+
+This one works pretty much like the multipush, excepts it looks like a piano keyboard ad
+
+```js
+{
+    type:'keyboard',
+    // etc
+}
+```
+
+#### `keys`
+- type: `integer`
+- default: `24`
+- usage: defines the number keys
+
+#### `start`
+- type: `integer`
+- default: `60`
+- usage: MIDI note number to start with (default is C4)
+
+
+#### `traversing`
+- type: `boolean`
+- default: `true`
+- usage: enable traversing gestures
+
+#### `split`
+- type: `boolean`
+- default: `false`
+- usage: if `true`, the note's midi code will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
 
 #### `options`
 - see push's [`options`](buttons/#push)
