@@ -33,7 +33,7 @@ module.exports.create = function(widgetData,container) {
 
     widget.setValue = function(v){
         if (typeof v != 'number') return
-        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],widgetData.precision,widgetData.logScale,true))
+        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],false,widgetData.logScale,true))
     }
 
     widget.setValue(range.min)
