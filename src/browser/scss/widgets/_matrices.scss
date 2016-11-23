@@ -69,14 +69,15 @@
 }
 
 .keyboard-container {
+    --color-black: var(--color-raised);
     .matrix {
         position: relative;
         overflow: hidden;
         .white {
-            --color-raised:ivory;
+            --color-raised: var(--color-white, ivory);
         }
         .black {
-            // --color-raised:ebony;
+            --color-raised: var(--color-black);
             position: absolute;
             z-index: 1;
             top:0;
