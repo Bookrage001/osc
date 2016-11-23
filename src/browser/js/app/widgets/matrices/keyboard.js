@@ -6,7 +6,8 @@ module.exports.options = {
 
     separator0: 'Matrix',
 
-    keys: 12,
+    keys: 24,
+    start:60,
 
     separator1:'style',
 
@@ -26,8 +27,6 @@ module.exports.options = {
 
     on:1,
     off:0,
-    value:'',
-    norelease:false,
     precision:2,
     address:'auto',
     preArgs:[],
@@ -44,7 +43,7 @@ var Keyboard = module.exports.Keyboard = function(widgetData) {
         pattern = 'wbwbwwbwbwbw',
         wCount = 0
 
-    for (var i=0;i<widgetData.keys;i++) {
+    for (var i=widgetData.start;i<widgetData.keys+widgetData.start;i++) {
 
         var data = JSON.parse(strData)
 
@@ -71,9 +70,11 @@ var Keyboard = module.exports.Keyboard = function(widgetData) {
 	}
 
     this.widget.find('.widget.white').css('width',`${100/wCount}%`)
-    this.widget.find('.widget.black').css('width',`${100/wCount * 6/10}%`)
     this.widget.find('.widget.black').each(function(){
-        $(this).css('left',`${100/wCount * ($(this).data('wCount') - 3/10)}%`)
+        $(this).css({
+            'width':`${100/wCount * 6/10}%`,
+            'left':`${100/wCount * ($(this).data('wCount') - 3/10)}%`
+        })
 
     })
 
