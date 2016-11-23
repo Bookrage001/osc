@@ -9,7 +9,8 @@ var widgets = require('../widgets'),
     sidepanelCreateToggle = require('../sidepanel').createToggle,
     editObject = function(a,b){require('./edit-objects').editObject(a,b,true)},
     editSession =  function(a,b){require('./edit-objects').editSession(a,b,true)},
-    purgeStores = require('./purge')
+    purgeStores = require('./purge'),
+    {iconify} = require('../utils')
 
 
 var getObjectData = function(obj){
@@ -75,7 +76,7 @@ var updateDom = function(container,data, remote) {
             container.removeClass('has-tabs')
         }
 
-        $(`[data-tab="#${container.attr('id')}"]`).html(`<a><span>${data.label}</span></a>`)
+        $(`[data-tab="#${container.attr('id')}"]`).html(`<a><span>${iconify(data.label)}</span></a>`)
 
         if (!remote) editObject(newContainer,data)
 

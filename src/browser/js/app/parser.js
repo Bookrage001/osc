@@ -5,7 +5,7 @@
 var widgets = require('./widgets'),
     widgetOptions = widgets.widgetOptions,
     createWidget = widgets.createWidget,
-    icon = require('./utils').icon
+    {iconify} = require('./utils')
 
 var getIterator = function(id,type){
     var iterator = MISC.iterators[type]
@@ -53,17 +53,18 @@ module.exports.tabs = function(data,parent,main,parentLabel){
             hash = hashCode(label),
             id = 'tab_'+hash+'_'+getIterator('tab'+hash,'tab')
 
-        tabData.label = label
+        tabData.label = iconify(label)
+
         delete tabData.id
 
-        navtabs.append(`<li data-tab="#${id}"><a><span>${label}</span></a></li>`)
+        navtabs.append(`<li data-tab="#${id}"><a><span>${tabData.label}</span></a></li>`)
 
         var tabContent = $(`<div class="tab ${tabData.tabs&&tabData.tabs.length?'has-tabs':''}" id="${id}" data-index="${i}"></div>`)
         tabContent.data(tabData)
 
 
         if (tabData.tabs && tabData.tabs.length) {
-            module.exports.tabs(tabData.tabs,tabContent,false,label)
+            module.exports.tabs(tabData.tabs,tabContent,false,tabData.label)
         } else if (tabData.widgets && tabData.widgets.length) {
             module.exports.widgets(tabData.widgets,tabContent)
         }
@@ -160,9 +161,7 @@ module.exports.widgets = function(data,parent) {
         // Generate label, iconify if starting with "icon:"
         var label = widgetData.label == 'auto'?
                         widgetData.id:
-                        typeof widgetData.label == 'string' && widgetData.label.indexOf('icon:')!=-1?
-                            icon(widgetData.label.split(':')[1].trim().replace('fa-','')):
-                            widgetData.label
+                        iconify(widgetData.label)
 
         // create container
         var widgetContainer = $(`
