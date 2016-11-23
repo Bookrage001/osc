@@ -11,8 +11,8 @@
 
         div {
             border-radius: 100%;
-            width:calc(100% - 20rem);
-            padding-bottom:calc(100% - 20rem);
+            width:70%;
+            padding-bottom:70%;
             margin: 0 auto;
             background:var(--color-track);
             position: relative;
@@ -26,10 +26,10 @@
                     content:"";
                     border-radius:100%;
                     position: absolute;
-                    top:-1rem;left:-1rem;right:-1rem;bottom:-1rem;
+                    top:-10%;left:-10%;right:-10%;bottom:-10%;
                     display:block;
-                    border: 6rem solid var(--color-fg);
-                    opacity: 0.8;
+                    background-color:var(--color-custom);
+                    opacity: 0.2;
                 }
             }
         }
