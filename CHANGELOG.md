@@ -4,6 +4,7 @@
 
 - bug fixes
   - error popups raised by the main process can be closed
+  - sliders don't send same value over network when the value change is below the widget's precision 
 
 ## 0.11.6
 

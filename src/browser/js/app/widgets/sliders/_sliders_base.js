@@ -148,7 +148,7 @@ _sliders_base.prototype.setValue = function(v,options={}) {
 
     var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 
-    if ((options.dragged || options.fromLocal) && this.value == value) options.send = false
+    if ((options.dragged || options.fromLocal) && this.value.toFixed(this.widgetData.precision) == value.toFixed(this.widgetData.precision)) options.send = false
 
     this.value = value
 
