@@ -70,6 +70,9 @@
 
 .keyboard-container {
     --color-black: var(--color-raised);
+    height:90rem;
+    width:240rem;
+    
     .matrix {
         position: relative;
         overflow: hidden;
