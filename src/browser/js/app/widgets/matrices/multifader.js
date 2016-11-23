@@ -37,6 +37,7 @@ module.exports.options = {
     meter:false,
     address:'auto',
     preArgs:[],
+    split:true,
     target:[]
 }
 
@@ -59,7 +60,8 @@ var Multifader = module.exports.Multifader = function(widgetData) {
         data.type = 'fader'
         data.id = widgetData.id + '/' + i
         data.label = i
-        data.address = widgetData.address + '/' + i
+        data.address = widgetData.split ? widgetData.address : widgetData.address + '/' + i
+        data.preArgs = widgetData.split ? [i].concat(widgetData.preArgs) : widgetData.preArgs
 
         var element = parsewidgets([data],this.widget)
         element[0].setAttribute('style',`${widgetData.horizontal?'height':'width'}:${100/widgetData.strips}%`)

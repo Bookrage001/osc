@@ -30,6 +30,7 @@ module.exports.options = {
     precision:2,
     address:'auto',
     preArgs:[],
+    split:true,
     target:[]
 }
 
@@ -48,7 +49,8 @@ var Multitoggle = module.exports.Multitoggle = function(widgetData) {
         data.type = 'toggle'
         data.id = widgetData.id + '/' + i
         data.label = i
-        data.address = widgetData.address + '/' + i
+        data.address = widgetData.split ? widgetData.address : widgetData.address + '/' + i
+        data.preArgs = widgetData.split ? [i].concat(widgetData.preArgs) : widgetData.preArgs
 
 		var element = parsewidgets([data],this.widget)
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)
