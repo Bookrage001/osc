@@ -67,3 +67,23 @@
         }
     }
 }
+
+.keyboard-container {
+    .matrix {
+        position: relative;
+        overflow: hidden;
+        .white {
+            --color-raised:ivory;
+        }
+        .black {
+            // --color-raised:ebony;
+            position: absolute;
+            z-index: 1;
+            top:0;
+            height: 65%;
+        }
+        .light.active {
+            opacity: .25;
+        }
+    }
+}

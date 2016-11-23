@@ -17,6 +17,7 @@ var widgets = {
     multitoggle: require('./widgets/matrices/multitoggle'),
     multipush: require('./widgets/matrices/multipush'),
     multifader: require('./widgets/matrices/multifader'),
+    keyboard: require('./widgets/matrices/keyboard'),
 
     // plots
     led: require('./widgets/plots/led'),
@@ -35,7 +36,7 @@ module.exports.categories = {
     'Sliders':['fader','knob'],
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb','multixy'],
-    'Matrices':['multifader','multitoggle','multipush'],
+    'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
     'Plots':['plot','eq','visualizer','led','meter','text'],
     'Containers':['panel','strip']
 }
