@@ -60,9 +60,9 @@ var Multifader = module.exports.Multifader = function(widgetData) {
         data.type = 'fader'
         data.id = widgetData.id + '/' + i
         data.label = i
-        data.address = widgetData.split ? widgetData.address : widgetData.address + '/' + i
-        data.preArgs = widgetData.split ? [i].concat(widgetData.preArgs) : widgetData.preArgs
-
+        data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
+        data.preArgs = widgetData.split ? widgetData.preArgs : [i].concat(widgetData.preArgs)
+        
         var element = parsewidgets([data],this.widget)
         element[0].setAttribute('style',`${widgetData.horizontal?'height':'width'}:${100/widgetData.strips}%`)
         element[0].classList.add('not-editable')
