@@ -30,7 +30,7 @@ module.exports.options = {
     precision:2,
     address:'auto',
     preArgs:[],
-    split:true,
+    split:false,
     target:[]
 }
 
