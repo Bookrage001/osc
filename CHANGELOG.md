@@ -9,7 +9,10 @@
   - **new** (piano) keyboard widget
   - matrices: fixed `preArgs` option; added `split` option (default to `false`), *it changes the default osc messages formatting for these widgets*
   - icons in labels are inserted using the `^` prefix
-
+  - text: icons support in value
+- tabs
+  - icons support in label
+  
 ## 0.11.6
 
 - widgets

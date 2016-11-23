@@ -1,3 +1,5 @@
+var {iconify} = require('../../utils')
+
 module.exports.options = {
     type:'text',
     id:'auto',
@@ -36,7 +38,7 @@ module.exports.create = function(widgetData,container) {
 
     widget.setValue = function(v){
         text = typeof v=='object' && !v.length?label:v
-		widget.text(text)
+		widget.html(iconify(text))
     }
 
     widget.getValue = function(){
