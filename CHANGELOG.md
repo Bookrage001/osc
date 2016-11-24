@@ -14,6 +14,7 @@
   - icons support in label
 - misc
   - fontawesom update (4.7.0)
+  
 ## 0.11.6
 
 - widgets
