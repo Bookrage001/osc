@@ -45,8 +45,7 @@ var _sliders_base = module.exports = function(){
     this.originValue = this.widgetData.origin=='auto'?
                             this.rangeValsMin:
                             clip(this.widgetData.origin,[this.rangeValsMin,this.rangeValsMax])
-
-
+    this.springValue = this.widgetData.value || this.originValue
 
     this.widget.on('fake-right-click',function(e){
         if (!EDITING) {
@@ -59,6 +58,12 @@ var _sliders_base = module.exports = function(){
     this.widget.on('mousewheel',this.mousewheelHandleProxy.bind(this))
     this.canvas.on('draginit',this.draginitHandleProxy.bind(this))
     this.canvas.on('drag',this.dragHandleProxy.bind(this))
+
+    if (this.widgetData.spring) {
+        this.canvas.on('dragend', ()=>{
+            this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
+        })
+    }
 
     this.input.change(function(){
         this.widget.setValue(parseFloat(this.input.val()),{sync:true,send:true})

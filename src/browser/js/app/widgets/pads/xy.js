@@ -20,6 +20,7 @@ module.exports.options = {
     separator2:'behaviour',
 
     snap:false,
+    spring:false,
 
     separator3:'osc',
 
@@ -63,8 +64,10 @@ var Xy = module.exports.Xy = function(widgetData) {
             horizontal:true,
             height:'100%',
             width:'100%',
+            value:widgetData.value.length==2?widgetData.value[0]:'',
             snap:widgetData.snap,
             range:widgetData.rangeX,
+            origin:'auto',
             precision:widgetData.precision,
             logScale:widgetData.logScaleX
         }, true),
@@ -74,8 +77,10 @@ var Xy = module.exports.Xy = function(widgetData) {
             horizontal:false,
             height:'100%',
             width:'100%',
+            value:widgetData.value.length==2?widgetData.value[1]:'',
             snap:widgetData.snap,
             range:widgetData.rangeY,
+            origin:'auto',
             precision:widgetData.precision,
             logScale:widgetData.logScaleY
 
@@ -106,6 +111,13 @@ var Xy = module.exports.Xy = function(widgetData) {
         this.faders.y.dragHandleProxy(e, data, traversing)
         this.dragHandle()
     })
+
+    if (this.widgetData.spring) {
+        this.wrapper.on('dragend', ()=>{
+            this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true,fromLocal:true})
+        })
+    }
+
 
 
     this.faders.x.input.change(()=>{

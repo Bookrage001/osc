@@ -25,6 +25,7 @@ module.exports.options = {
     separator2:'behaviour',
 
     snap:false,
+    spring:false,
 
     separator3:'osc',
 
