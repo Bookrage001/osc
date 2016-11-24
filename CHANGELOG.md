@@ -7,7 +7,7 @@
   - sliders don't send same value over network when the value change is below the widget's precision
 - widgets
   - **new** (piano) keyboard widget
-  - matrices: fixed `preArgs` option; added `split` option (default to `false`), *it changes the default osc messages formatting for these widgets*
+  - matrices: fixed `preArgs` option; added `split` option (default to `false`), *this changes the default osc messages formatting for these widgets*
   - icons in labels are inserted using the `^` prefix
   - text: icons support in value
 - tabs
