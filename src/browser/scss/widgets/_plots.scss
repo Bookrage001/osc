@@ -60,8 +60,11 @@
     --color-custom:var(--color-accent);
     --color-gauge: var(--color-custom);
     --color-knob: transparent;
-    background: var(--color-faded)
-
+    background: var(--color-faded);
+    width:100rem;
+    &.horizontal {
+        height: 130rem;
+    }
 }
 
 .text-container {
