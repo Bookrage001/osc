@@ -10,7 +10,7 @@
                 "width": "100%",
                 "horizontal": true,
                 "color": "auto",
-                "css": "bottom:100rem;height:auto",
+                "css": "height:calc(100% - 100rem)",
                 "widgets": [
                     {
                         "type": "strip",
@@ -1710,10 +1710,7 @@
                     {
                         "type": "keyboard",
                         "label": "^music",
-                        "width": "100%",
-                        "height": "100rem",
                         "color": "auto",
-                        "css": "bottom:0",
                         "id": "strip_12",
                         "keys": 100,
                         "start": 36,
@@ -1724,7 +1721,10 @@
                         "address": "/strip_12",
                         "preArgs": [],
                         "split": false,
-                        "target": []
+                        "target": [],
+                        "height": "auto",
+                        "width": "auto",
+                        "css": ""
                     }
                 ],
                 "id": "strip_12"
