@@ -1555,8 +1555,7 @@
                                     "92%": 3,
                                     "max": 6
                                 },
-                                "origin": "auto",
-                                "value": "",
+                                "origin": 0,
                                 "logScale": false,
                                 "precision": 2,
                                 "meter": false,
@@ -1564,7 +1563,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": true,
+                                "value": ""
                             }
                         ],
                         "width": "auto"
@@ -1759,7 +1759,7 @@
                 "widgets": [
                     {
                         "type": "xy",
-                        "id": "xy_1",
+                        "id": "modpad",
                         "linkId": "",
                         "label": "auto",
                         "width": 96.15625,
@@ -1784,7 +1784,7 @@
                             0.5
                         ],
                         "precision": 2,
-                        "address": "/xy_1",
+                        "address": "/mod",
                         "preArgs": [],
                         "split": false,
                         "target": [],
@@ -1794,14 +1794,14 @@
                         "type": "keyboard",
                         "label": "^music",
                         "color": "auto",
-                        "id": "strip_12",
+                        "id": "keyboard",
                         "keys": 100,
                         "start": 36,
                         "traversing": true,
                         "on": 1,
                         "off": 0,
                         "precision": 2,
-                        "address": "/strip_12",
+                        "address": "/note",
                         "preArgs": [],
                         "split": false,
                         "target": [],
@@ -1828,13 +1828,13 @@
                                 "color": "auto",
                                 "css": "",
                                 "precision": 2,
-                                "address": "/fader_11",
+                                "address": "/octave/up",
                                 "preArgs": [],
                                 "target": [],
                                 "on": 1,
                                 "off": 0,
-                                "norelease": false,
-                                "id": "push_1"
+                                "norelease": true,
+                                "id": "octave_up"
                             },
                             {
                                 "type": "push",
@@ -1844,14 +1844,14 @@
                                 "color": "auto",
                                 "css": "",
                                 "precision": 2,
-                                "address": "/fader_11",
+                                "address": "/octave/down",
                                 "preArgs": [],
                                 "target": [],
                                 "on": 1,
                                 "off": 0,
                                 "linkId": "",
-                                "norelease": false,
-                                "id": "push_2"
+                                "norelease": true,
+                                "id": "octave_down"
                             }
                         ]
                     }
