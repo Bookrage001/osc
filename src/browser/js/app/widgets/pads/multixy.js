@@ -12,6 +12,7 @@ module.exports.options = {
     points: 2,
     pointSize: 20,
     snap:false,
+    spring:false,
 
     separator2:'style',
 
@@ -62,6 +63,8 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
     for (var i=this.widgetData.points-1;i>=0;i--) {
         this.pads[i] = new Xy({
             snap:widgetData.snap,
+            spring:widgetData.spring,
+            value:widgetData.value.length == widgetData.points * 2 ? [widgetData.value[i*2], widgetData.value[i*2 + 1]] : '',
             rangeX:widgetData.rangeX,
             rangeY:widgetData.rangeY,
             precision:widgetData.precision,
