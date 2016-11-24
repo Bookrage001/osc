@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.12.1
+
+- widgets
+  - sliders/xy: add `spring` option that makes that widget jump back to its initial value when released
+
 ## 0.12.0
 
 - bug fixes
