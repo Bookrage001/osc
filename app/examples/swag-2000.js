@@ -45,7 +45,8 @@
                                 "address": "/knob_1",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -88,7 +89,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -114,7 +116,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -140,7 +143,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -175,7 +179,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "width": "auto"
+                                "width": "auto",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -213,7 +218,8 @@
                                 "address": "/knob_5",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -256,7 +262,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -282,7 +289,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -308,7 +316,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -343,7 +352,8 @@
                                 "address": "/fader_2",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -381,7 +391,8 @@
                                 "address": "/knob_9",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -424,7 +435,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -450,7 +462,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -476,7 +489,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -511,7 +525,8 @@
                                 "address": "/fader_3",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -549,7 +564,8 @@
                                 "address": "/knob_13",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -592,7 +608,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -618,7 +635,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -644,7 +662,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -679,7 +698,8 @@
                                 "address": "/fader_4",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -717,7 +737,8 @@
                                 "address": "/knob_17",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -760,7 +781,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -786,7 +808,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -812,7 +835,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -847,7 +871,8 @@
                                 "address": "/fader_5",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -885,7 +910,8 @@
                                 "address": "/knob_21",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -928,7 +954,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -954,7 +981,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -980,7 +1008,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -1015,7 +1044,8 @@
                                 "address": "/fader_6",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -1052,7 +1082,8 @@
                                 "address": "/knob_25",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -1095,7 +1126,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1121,7 +1153,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1147,7 +1180,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -1182,7 +1216,8 @@
                                 "address": "/fader_7",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "height": "auto",
@@ -1221,7 +1256,8 @@
                                 "address": "/knob_29",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -1264,7 +1300,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1290,7 +1327,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1316,7 +1354,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -1351,7 +1390,8 @@
                                 "address": "/fader_8",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -1389,7 +1429,8 @@
                                 "address": "/knob_33",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -1432,7 +1473,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1444,7 +1486,7 @@
                                 "color": "auto",
                                 "noPip": true,
                                 "compact": true,
-                                "angle": 270,
+                                "angle": 360,
                                 "css": "",
                                 "snap": false,
                                 "logScale": false,
@@ -1458,7 +1500,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1484,7 +1527,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -1519,7 +1563,8 @@
                                 "address": "/fader_9",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -1557,7 +1602,8 @@
                                 "address": "/knob_37",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "toggle",
@@ -1600,7 +1646,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1626,7 +1673,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "knob",
@@ -1652,7 +1700,8 @@
                                 },
                                 "origin": "auto",
                                 "value": "",
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             },
                             {
                                 "type": "fader",
@@ -1687,7 +1736,8 @@
                                 "address": "/fader_10",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "spring": false
                             }
                         ],
                         "width": "auto"
@@ -1708,6 +1758,39 @@
                 "horizontal": true,
                 "widgets": [
                     {
+                        "type": "xy",
+                        "id": "xy_1",
+                        "linkId": "",
+                        "label": "auto",
+                        "width": 96.15625,
+                        "height": "auto",
+                        "color": "auto",
+                        "css": "--display-input:none",
+                        "snap": false,
+                        "rangeX": {
+                            "min": 0,
+                            "50%": 0.5,
+                            "max": 1
+                        },
+                        "rangeY": {
+                            "min": 0,
+                            "50%": 0.5,
+                            "max": 1
+                        },
+                        "logScaleX": false,
+                        "logScaleY": false,
+                        "value": [
+                            0.5,
+                            0.5
+                        ],
+                        "precision": 2,
+                        "address": "/xy_1",
+                        "preArgs": [],
+                        "split": false,
+                        "target": [],
+                        "spring": true
+                    },
+                    {
                         "type": "keyboard",
                         "label": "^music",
                         "color": "auto",
@@ -1725,6 +1808,52 @@
                         "height": "auto",
                         "width": "auto",
                         "css": ""
+                    },
+                    {
+                        "type": "strip",
+                        "id": "strip_13",
+                        "label": "oct.",
+                        "width": 90.75,
+                        "height": "auto",
+                        "horizontal": false,
+                        "color": "auto",
+                        "css": "",
+                        "widgets": [
+                            {
+                                "type": "push",
+                                "linkId": "",
+                                "label": "^plus",
+                                "width": "auto",
+                                "height": "50%",
+                                "color": "auto",
+                                "css": "",
+                                "precision": 2,
+                                "address": "/fader_11",
+                                "preArgs": [],
+                                "target": [],
+                                "on": 1,
+                                "off": 0,
+                                "norelease": false,
+                                "id": "push_1"
+                            },
+                            {
+                                "type": "push",
+                                "label": "^minus",
+                                "width": "auto",
+                                "height": "50%",
+                                "color": "auto",
+                                "css": "",
+                                "precision": 2,
+                                "address": "/fader_11",
+                                "preArgs": [],
+                                "target": [],
+                                "on": 1,
+                                "off": 0,
+                                "linkId": "",
+                                "norelease": false,
+                                "id": "push_2"
+                            }
+                        ]
                     }
                 ],
                 "id": "strip_12"
