@@ -117,7 +117,7 @@ var sidepanel = function(data){
 }(data)
 
 var toggle = function(){
-	$(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
+	var t = $(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
 		var t = 0
 		if (!$('#sidepanel').hasClass('sidepanel-open')) t = 250
 
@@ -132,6 +132,10 @@ var toggle = function(){
 	if ($('#sidepanel').hasClass('sidepanel-open')) {
 		$('#open-toggle, #container').addClass('sidepanel-open')
 	}
+
+	$(document).on('keydown.sidepanel', function(e){
+		if (e.keyCode==121) t.click()
+	})
 }
 
 module.exports = {
