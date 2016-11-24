@@ -1555,7 +1555,6 @@
                                     "92%": 3,
                                     "max": 6
                                 },
-                                "origin": 0,
                                 "logScale": false,
                                 "precision": 2,
                                 "meter": false,
@@ -1564,7 +1563,8 @@
                                 "target": [],
                                 "linkId": "",
                                 "spring": true,
-                                "value": ""
+                                "value": "",
+                                "origin": "auto"
                             }
                         ],
                         "width": "auto"
