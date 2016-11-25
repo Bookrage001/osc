@@ -16,9 +16,10 @@ module.exports = {
     stateSave: function() {
         state = JSON.stringify(module.exports.stateGet(),null,'    ')
         var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
-        var blob = new Blob([state],{type : 'text/plain'});
+        var blob = new Blob([state],{type : 'application/x-javascript'});
         down.attr('href', window.URL.createObjectURL(blob))
-        down[0].click()
+        var event = new MouseEvent("click");
+        down[0].dispatchEvent(event);
     },
 
     stateGet: function (){
@@ -72,12 +73,14 @@ module.exports = {
 
     toggleFullscreen: function(){
 
-        var isInFullScreen = document.webkitIsFullScreen
+        var isInFullScreen = document.webkitFullScreenElement || document.mozFullScreenElement
 
         if (isInFullScreen) {
-            document.webkitExitFullscreen()
+            if (document.webkitExitFullscreen) document.webkitExitFullscreen()
+            if (document.mozCancelFullScreen) document.mozCancelFullScreen()
         } else {
-            document.documentElement.webkitRequestFullScreen()
+            if (document.documentElement.webkitRequestFullScreen) document.documentElement.webkitRequestFullScreen()
+            if (document.documentElement.mozRequestFullScreen) document.documentElement.mozRequestFullScreen(true)
         }
 
     },
@@ -102,10 +105,10 @@ module.exports = {
     sessionSave: function() {
         var sessionfile = JSON.stringify(SESSION,null,'    ')
         var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.js"></a>')
-        var blob = new Blob([sessionfile],{type : 'text/plain'});
+        var blob = new Blob([sessionfile],{type : 'application/x-javascript'});
         down.attr('href', window.URL.createObjectURL(blob))
-        down[0].click()
-
+        var event = new MouseEvent("click");
+        down[0].dispatchEvent(event);
     },
 
 	editorEnable: function(){

@@ -44,14 +44,14 @@
 
 			ctx.clearRect(0,0,self.width,self.height)
 			ctx.font =  PXSCALE * 2 * 13 + 'px Droid Sans'
-			ctx.textBaseline = "top"
+			ctx.textBaseline = "middle"
 			ctx.fillStyle = self.color
 
             if (self.center) {
                 ctx.textAlign = settings.align
-                ctx.fillText(newVal,self.width/2,0)
+                ctx.fillText(newVal,self.width/2,this.height/2)
             } else {
-                ctx.fillText(newVal,0,0)
+                ctx.fillText(newVal,0,this.height/2)
             }
 
 
