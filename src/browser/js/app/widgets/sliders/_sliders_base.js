@@ -45,7 +45,7 @@ var _sliders_base = module.exports = function(){
     this.originValue = this.widgetData.origin=='auto'?
                             this.rangeValsMin:
                             clip(this.widgetData.origin,[this.rangeValsMin,this.rangeValsMax])
-    this.springValue = this.widgetData.value || this.originValue
+    this.springValue = this.widgetData.value != '' ? this.widgetData.value :  this.originValue
 
     this.widget.on('fake-right-click',function(e){
         if (!EDITING) {
