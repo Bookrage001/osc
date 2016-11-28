@@ -57,7 +57,7 @@ Running the app from the sources slightly differs from using built binaries : in
 
 **Requirements**
 
-- [Node.js >= 6](https://nodejs.org/)
+- [Node.js >= 4](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
 ```bash

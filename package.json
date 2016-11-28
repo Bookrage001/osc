@@ -20,8 +20,7 @@
     "watch-css": "nodemon --watch src/browser/scss -e scss -x \"npm run build-css\"",
     "watch-js": "nodemon --watch src/browser/js -e js -x \"npm run build-js\"",
     "build-css": "node-sass --include-path src/browser/scss src/browser/scss/style.scss app/browser/styles.css --output-style compressed",
-    "build-js": "browserify src/browser/js/browser.js -o app/browser/scripts.js --noparse=app/browser/scripts.js",
-    "build-js-node4": "node scripts/build-js.node4.js > app/browser/scripts.js",
+    "build-js": "node scripts/build-js.js > app/browser/scripts.js",
     "deploy-docs": "cd resources && mkdocs gh-deploy --clean && rm -rf site",
     "test": "npm run build"
   },
