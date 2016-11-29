@@ -2,8 +2,14 @@
 
 ## 0.12.1
 
+- main
+  - firefox compatibility improved
+  - launcher window is no longer of the `splash` type, as it can be difficult to close with some window managers
 - widgets
   - sliders/xy: add `spring` option that makes that widget jump back to its initial value when released
+  - keyboard: black keys pressed state is more noticeable
+- misc
+  - building with node 4 is fixed
 
 ## 0.12.0
 
