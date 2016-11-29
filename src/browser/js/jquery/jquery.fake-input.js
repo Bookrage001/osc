@@ -23,7 +23,7 @@
 			var width = width*2,
 				height = height*2
 
-			if (height==100 && width==100) return
+			if (height==100 && width==100 || !width) return
 
             self.color = getComputedStyle(canvas[0]).getPropertyValue("--color-text")
 			self.height=height
