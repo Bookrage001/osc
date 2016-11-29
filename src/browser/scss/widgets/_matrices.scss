@@ -79,6 +79,9 @@
         overflow: hidden;
         .white {
             --color-raised: var(--color-white);
+            .light.active {
+                opacity: .25;
+            }
         }
         .black {
             --color-raised: var(--color-black);
@@ -86,9 +89,10 @@
             z-index: 1;
             top:0;
             height: 65%;
-        }
-        .light.active {
-            opacity: .25;
+            .light.active {
+                opacity: .5;
+                box-shadow: none;
+            }
         }
     }
 }
