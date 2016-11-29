@@ -6,7 +6,7 @@
     "browserify": "13.1.0",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.2",
-    "socket.io-client": "1.5.0",
+    "socket.io-client": "1.7.1",
     "electron-installer-debian": "0.4.0",
     "electron-packager": "8.1.0"
   },
