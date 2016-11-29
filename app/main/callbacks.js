@@ -116,6 +116,10 @@ module.exports =  {
 	    window.setFullScreen(!window.isFullScreen())
 	},
 
+	reloadCss:function(){
+		ipc.send('reloadCss')
+	},
+
 	log: function(data) {
 		console.log(data)
 	}

@@ -145,6 +145,16 @@ module.exports = {
             PXSCALE = data.match(/--pixel-scale\s*:\s*([^;]*)/)[1]
             INITIALZOOM = PXSCALE
         }
+    },
+
+    reloadCss: function(){
+        var queryString = '?reload=' + new Date().getTime();
+        $('link[rel="stylesheet"]').each(function () {
+            this.href = this.href.replace(/\?.*|$/, queryString);
+        });
+        setTimeout(()=>{
+            $('canvas').trigger('resize')
+        },100)
     }
 
 }
