@@ -31,10 +31,7 @@ var tabs = function() {
     $('li[data-tab]').first().click()
 }
 
-// horizontal scrolling & zoom with mousewheel
-// if shift is pressed (native), or if there is no vertical scrollbar,
-//                               or if mouse is on h-scrollbar
-var scrollbarHeight = 20
+// zoom zoom
 var scrolls = function(){
     $('html').on('mousewheel.zoom',function(e) {
         // console.log(e)
