@@ -209,6 +209,9 @@ i {
             input {
                 padding-right:35rem;
             }
+            input[value="true"] {
+                color: inherit;
+            }
             input[disabled] {
                 color:var(--color-accent);
             }
