@@ -32,13 +32,13 @@ var options = {
     'n':{alias:'no-gui',type:'boolean',describe:'disable default gui',
          check: (n,argv)=>{
              return (!argv.g) ?
-                true : 'no-gui and gui-only can\'s be enbabled simulataneously'
+                true : 'no-gui and gui-only can\'s be enabled simulataneously'
          }
      },
     'g':{alias:'gui-only',type:'string',describe:'app server\'s url. If true, local port (--port) is used',
          check: (g,argv)=>{
              return (!argv.n) ?
-                true : 'no-gui and gui-only can\'s be enbabled simulataneously'
+                true : 'no-gui and gui-only can\'s be enabled simulataneously'
          }
     },
     't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
