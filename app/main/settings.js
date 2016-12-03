@@ -29,8 +29,18 @@ var options = {
           }
      },
     'd':{alias:'debug',type:'boolean',describe:'log received osc messages in the console'},
-    'n':{alias:'no-gui',type:'boolean',describe:'disable default gui'},
-    'g':{alias:'gui-only',type:'string',describe:'app server\'s url. If true, local port (--port) is used'},
+    'n':{alias:'no-gui',type:'boolean',describe:'disable default gui',
+         check: (n,argv)=>{
+             return (!argv.g) ?
+                true : 'no-gui and gui-only can\'s be enbabled simulataneously'
+         }
+     },
+    'g':{alias:'gui-only',type:'string',describe:'app server\'s url. If true, local port (--port) is used',
+         check: (g,argv)=>{
+             return (!argv.n) ?
+                true : 'no-gui and gui-only can\'s be enbabled simulataneously'
+         }
+    },
     't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
     'e':{alias:'examples',type:'boolean',describe:'list examples instead of recent sessions'}
 }
@@ -40,16 +50,16 @@ var argv = require('yargs')
         .help('help').usage(`\nUsage:\n  $0 [options]`).alias('h', 'help')
         .options(options)
         .check((argv)=>{
+            var err = []
             for (key in options) {
-                var ok = true
                 if (options[key].check && argv[key] != undefined) {
-                    ok = options[key].check(argv[key])
-                }
-                if (ok!==true) {
-                    throw ok
+                    var c = options[key].check(argv[key],argv)
+                    if (c!==true) {
+                        err.push(`-${key}: ${c}`)
+                    }
                 }
             }
-            return true
+            return err.length ? err.join('\n') : true
         })
         .strict()
         .version().alias('v','version')
