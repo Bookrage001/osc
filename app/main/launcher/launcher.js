@@ -58,7 +58,7 @@ $(document).ready(()=>{
 
         input.appendTo(item)
 
-        input.on('change',function(e){
+        input.on('change',function(e,stop){
             var v = $(this).val()
             if (option.type == 'boolean') {
                 v = v == 'true' ? true : ''
@@ -78,6 +78,8 @@ $(document).ready(()=>{
                 wrapper.find('.error-msg').remove()
                 argv[i] = v
             }
+
+            if (!stop) $('input').not(input).trigger('change',true)
         })
 
         cancel = $(`<div class="btn clear"><i class="fa fa-remove fa-fw"></i></div>`)
@@ -136,6 +138,9 @@ $(document).ready(()=>{
     // ready
 
     form.appendTo('#launcher')
+
+    $('input').trigger('change')
+
 
     $('#loading').remove()
     setTimeout(()=>{
