@@ -71,6 +71,7 @@ $(document).ready(()=>{
 
             if (v != '' && option.check && option.check(v, argv) !== true) {
                 wrapper.addClass('error')
+                wrapper.find('.error-msg').remove()
                 wrapper.append(`<div class="error-msg">${option.check(v, argv   )}</div>`)
             } else {
                 wrapper.removeClass('error')
