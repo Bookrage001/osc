@@ -69,9 +69,9 @@ $(document).ready(()=>{
                 v = parseFloat(v)
             }
 
-            if (v != '' && option.check && option.check(v) !== true) {
+            if (v != '' && option.check && option.check(v, argv) !== true) {
                 wrapper.addClass('error')
-                wrapper.append(`<div class="error-msg">${option.check(v)}</div>`)
+                wrapper.append(`<div class="error-msg">${option.check(v, argv   )}</div>`)
             } else {
                 wrapper.removeClass('error')
                 wrapper.find('.error-msg').remove()
@@ -103,6 +103,7 @@ $(document).ready(()=>{
 
         e.preventDefault()
 
+        $('input').change()
         if (form.find('.error').length) return
 
         start.off('click')
