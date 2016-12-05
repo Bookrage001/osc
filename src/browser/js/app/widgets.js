@@ -30,6 +30,7 @@ var widgets = {
     // containers
     strip: require('./widgets/containers/strip'),
     panel: require('./widgets/containers/panel'),
+    modal: require('./widgets/containers/modal'),
 }
 
 module.exports.categories = {
@@ -38,7 +39,7 @@ module.exports.categories = {
     'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
     'Plots':['plot','eq','visualizer','led','meter','text'],
-    'Containers':['panel','strip']
+    'Containers':['panel','strip','modal']
 }
 
 module.exports.widgetOptions = function(){

@@ -1,24 +1,4 @@
-.panel-container {
-    width: 200rem;
-    height: 200rem;
-    border:0;
-
-    background: var(--color-fg);
-
-    &:before {
-        content:"";
-        position: absolute;
-        top:0;
-        bottom:0;
-        right: 0;
-        left: 0;
-        border-bottom: 1rem solid  var(--color-bg);
-        border-right: 1rem solid  var(--color-bg);
-        pointer-events: none;
-        z-index: 2;
-
-    }
-
+.panel-container-base {
 
     &.nolabel .panel {
         top:0;
@@ -60,5 +40,68 @@
 
     .content {
         background: transparent;
+    }
+}
+
+.panel-container {
+    @extend .panel-container-base;
+
+    width: 200rem;
+    height: 200rem;
+
+    border:0;
+
+    background: var(--color-fg);
+
+    &:before {
+        content:"";
+        position: absolute;
+        top:0;
+        bottom:0;
+        right: 0;
+        left: 0;
+        border-bottom: 1rem solid  var(--color-bg);
+        border-right: 1rem solid  var(--color-bg);
+        pointer-events: none;
+        z-index: 2;
+
+    }
+}
+
+.modal-container {
+    @extend .panel-container-base;
+    @extend .toggle-container;
+    &.on {
+        position: fixed;
+        top:0!important;
+        left:0!important;
+        right:0!important;
+        bottom:0!important;
+        width: auto!important;
+        height: auto!important;
+        border:0;
+        > .light, > .label {
+            min-height:auto!important;
+            height:var(--nav-height)!important;
+        }
+    }
+    .panel {
+        display: none!important;
+        background: var(--color-fg);
+        transform: translateZ(0);
+        &.on {
+            display: block!important;
+            &.has-tabs  {
+                display: flex!important;
+            }
+            position: absolute;
+            top:var(--nav-height);
+            left:0;
+            right:0;
+            bottom:0;
+            border-right:0;
+            height: auto!important;
+            border-top:1rem solid var(--color-bg);
+        }
     }
 }
