@@ -5,8 +5,8 @@ var widgets = {
 
     // buttons
     toggle: require('./widgets/buttons/toggle'),
-    switch: require('./widgets/switch'),
-    push: require('./widgets/push'),
+    push: require('./widgets/buttons/push'),
+    switch: require('./widgets/buttons/switch'),
 
     // pads
     xy: require('./widgets/pads/xy'),
