@@ -4,7 +4,7 @@ var widgets = {
     knob: require('./widgets/sliders/knob'),
 
     // buttons
-    toggle: require('./widgets/toggle'),
+    toggle: require('./widgets/buttons/toggle'),
     switch: require('./widgets/switch'),
     push: require('./widgets/push'),
 
