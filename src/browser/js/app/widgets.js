@@ -28,8 +28,8 @@ var widgets = {
     text: require('./widgets/plots/text'),
 
     // containers
-    strip: require('./widgets/strip'),
-    panel: require('./widgets/panel'),
+    strip: require('./widgets/containers/strip'),
+    panel: require('./widgets/containers/panel'),
 }
 
 module.exports.categories = {
