@@ -46,8 +46,6 @@ var Panel = module.exports.Panel = function(widgetData) {
 
 }
 
-_widgets_base.apply(this,arguments)
-
 Panel.prototype = Object.create(_widgets_base.prototype)
 
 Panel.prototype.constructor = Panel

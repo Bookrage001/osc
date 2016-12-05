@@ -41,8 +41,6 @@ var Strip = module.exports.Strip = function(widgetData, container) {
 
 }
 
-_widgets_base.apply(this,arguments)
-
 Strip.prototype = Object.create(_widgets_base.prototype)
 
 Strip.prototype.constructor = Strip
