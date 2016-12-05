@@ -5,7 +5,7 @@
     padding:0!important;
     background: var(--color-raised);
 
-    .label {
+    > .label {
         position: absolute;
         top:1rem;
         left:0;
@@ -20,11 +20,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1;
     }
 
     cursor: pointer;
 
-    .light {
+    > .light {
         box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
         flex:1;
 
