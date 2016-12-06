@@ -100,7 +100,7 @@ module.exports = {
         })
         lobby.find('.new').click(function(e){
             e.stopPropagation()
-            init([{}],function(){$('#open-toggle, .enable-editor').click();$('.editor-root').trigger('mousedown.editor')})
+            module.exports.sessionNew()
         })
         $('#lobby').append(lobby)
         setTimeout(()=>{
@@ -115,6 +115,13 @@ module.exports = {
             IPC.send('sessionOpened')
         })
 
+    },
+
+    sessionNew: function(){
+        init([{}],function(){
+            $('#open-toggle, .enable-editor').click()
+            $('.editor-root').trigger('fake-click')
+        })
     },
 
     stateSend:function(){
