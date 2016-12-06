@@ -71,6 +71,7 @@
 .modal-container {
     @extend .panel-container-base;
     @extend .toggle-container;
+
     > .light:after {
             content:"\f077";
             font-family: FontAwesome;
@@ -85,6 +86,28 @@
             text-align: center;
             float:right;
     }
+
+    > .panel {
+        display: none!important;
+        background: var(--color-fg);
+        transform: translateZ(0);
+        &.on {
+            transform: translateZ(0);
+            display: block!important;
+            &.has-tabs  {
+                display: flex!important;
+            }
+            position: absolute;
+            top:var(--nav-height);
+            left:0;
+            right:0;
+            bottom:0;
+            border-right:0;
+            height: auto!important;
+            border-top:1rem solid var(--color-bg);
+        }
+    }
+
     &.on {
         position: fixed;
         top:0!important;
@@ -109,24 +132,4 @@
         }
     }
 
-    .panel {
-        display: none!important;
-        background: var(--color-fg);
-        transform: translateZ(0);
-        &.on {
-            transform: translateZ(0);
-            display: block!important;
-            &.has-tabs  {
-                display: flex!important;
-            }
-            position: absolute;
-            top:var(--nav-height);
-            left:0;
-            right:0;
-            bottom:0;
-            border-right:0;
-            height: auto!important;
-            border-top:1rem solid var(--color-bg);
-        }
-    }
 }
