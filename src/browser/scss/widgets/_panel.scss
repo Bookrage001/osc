@@ -129,6 +129,15 @@
                 content:"\f068";
                 transform: none;
                 opacity: .5;
+                width:var(--nav-height);
+                height:var(--nav-height);
+                line-height: var(--nav-height);
+                background:var(--color-fg);
+                padding:0;
+                opacity: 1;
+                position: relative;
+                margin-right: 1rem;
+                box-shadow: -1rem 0 0 0 var(--color-bg);
         }
         > .light:before {
             transition:all .2s;
