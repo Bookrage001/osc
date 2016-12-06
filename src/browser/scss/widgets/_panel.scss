@@ -95,6 +95,7 @@
         width: auto!important;
         height: auto!important;
         border:0;
+        z-index: 99999;
         > .light, > .label {
             min-height:auto!important;
             height:var(--nav-height)!important;
