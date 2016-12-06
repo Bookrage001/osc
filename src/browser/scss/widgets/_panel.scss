@@ -124,6 +124,11 @@
         > .light, > .label {
             min-height:auto!important;
             height:var(--nav-height)!important;
+            flex:0;
+        }
+        > .light {
+            position: relative;
+            box-shadow: none;
         }
         > .light:after {
                 content:"\f068";
