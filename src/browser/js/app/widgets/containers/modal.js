@@ -11,11 +11,14 @@ module.exports.options = {
 	top:'auto',
 	width:'auto',
 	height:'auto',
-	scroll:true,
 	color:'auto',
 	css:'',
 
-	separator2:'chilren',
+	separator2:'osc',
+
+	address:'auto',
+
+	separator3:'chilren',
 
 	widgets:[],
 	tabs:[]
@@ -25,6 +28,7 @@ var Modal = module.exports.Modal = function(widgetData, container) {
 
 	Panel.apply(this,arguments)
 
+	this.widget.removeClass('noscroll')
 	this.container = container
 
 	container.append('<div class="light"></div>')
