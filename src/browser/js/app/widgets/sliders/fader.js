@@ -296,5 +296,5 @@ Fader.prototype.draw = function(){
 module.exports.create = function(widgetData,container) {
 
     var fader = new Fader(widgetData, container)
-    return fader.widget
+    return fader
 }

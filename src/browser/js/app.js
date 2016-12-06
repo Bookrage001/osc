@@ -1,8 +1,5 @@
 ///////////////////////
 
-WIDGETS = {}
-WIDGETS_LINKED = {}
-WIDGETS_BY_ADDRESS = {}
 SESSION = []
 STATE = []
 

@@ -1,3 +1,5 @@
+var {WidgetManager} = require('../managers')
+
 module.exports = function(purgetabs) {
 
     // prune tabs store
@@ -37,34 +39,9 @@ module.exports = function(purgetabs) {
     // prune widget stores
     // if widgets cannot be found in buffered tabs, it must be unreferenced
 	var $b = $(bufferedTabs)
-    for (i in WIDGETS) {
-        for (var j=WIDGETS[i].length-1;j>=0;j--) {
-            if (!$b.find(WIDGETS[i][j]).length) {
-                WIDGETS[i].splice(j,1)
-            }
-        }
-        if (!WIDGETS[i].length) {
-            delete WIDGETS[i]
-        }
-    }
-    for (i in WIDGETS_LINKED) {
-        for (var j=WIDGETS_LINKED[i].length-1;j>=0;j--) {
-            if (!$b.find(WIDGETS_LINKED[i][j]).length) {
-                WIDGETS_LINKED[i].splice(j,1)
-            }
-        }
-        if (!WIDGETS_LINKED[i].length) {
-            delete WIDGETS_LINKED[i]
-        }
-    }
-    for (i in WIDGETS_BY_ADDRESS) {
-        for (var j=WIDGETS_BY_ADDRESS[i].length-1;j>=0;j--) {
-            if (!$b.find(WIDGETS_BY_ADDRESS[i][j]).length) {
-                WIDGETS_BY_ADDRESS[i].splice(j,1)
-            }
-        }
-        if (!WIDGETS_BY_ADDRESS[i].length) {
-            delete WIDGETS_BY_ADDRESS[i]
+    for (hash in WidgetManager.widgets) {
+        if (!$b.find(WidgetManager.widgets[hash].widget).length) {
+            WidgetManager.removeWidget(hash)
         }
     }
 }

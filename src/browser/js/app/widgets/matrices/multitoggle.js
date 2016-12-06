@@ -70,5 +70,5 @@ Multitoggle.prototype.constructor = Multitoggle
 
 module.exports.create = function(widgetData) {
     var multitoggle = new Multitoggle(widgetData)
-    return multitoggle.widget
+    return multitoggle
 }

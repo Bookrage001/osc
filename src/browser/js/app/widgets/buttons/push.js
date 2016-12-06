@@ -47,20 +47,21 @@ var Push = module.exports.Push = function(widgetData,container) {
         this.fakeclick()
     })
 
-    this.widget.getValue = ()=>{
-        return this[this.lastChanged] ?
-            this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
-            :
-            this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
-    }
-
-    this.widget.setValue = this.setValue.bind(this)
 }
 
 
 Push.prototype = Object.create(_widgets_base.prototype)
 
 Push.prototype.constructor = Push
+
+Push.prototype.getValue = function(){
+
+    return this[this.lastChanged] ?
+        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
+        :
+        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
+
+}
 
 Push.prototype.fakeclick = function(){
     if (!this.active) this.setValuePrivate(this.widgetData.on,{send:true,sync:true})
@@ -113,5 +114,5 @@ Push.prototype.setValue = function(v,options={}) {
 
 module.exports.create = function(widgetData, container) {
     var push = new Push(widgetData, container)
-    return push.widget
+    return push
 }

@@ -10,13 +10,10 @@ var _matrices_base = module.exports = function(widgetData){
         `)
     this.value = []
 
-    this.widget.getValue = function(){
-        return this.value
-    }.bind(this)
 
     this.widget.on('sync',function(e){
         if (e.id==this.widgetData.id) return
-        this.value[e.widget.parent().index()] = e.widget.getValue()
+        this.value[e.widget.parent().index()] = e.widget.abstract.getValue()
         this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget})
     }.bind(this))
 

@@ -66,14 +66,9 @@ var _sliders_base = module.exports = function(){
     }
 
     this.input.change(function(){
-        this.widget.setValue(parseFloat(this.input.val()),{sync:true,send:true})
+        this.setValue(parseFloat(this.input.val()),{sync:true,send:true})
     }.bind(this))
 
-    this.widget.getValue = function(){
-        return this.value
-    }.bind(this)
-
-    this.widget.setValue = this.setValue.bind(this)
 
     this.setValue(this.originValue)
 

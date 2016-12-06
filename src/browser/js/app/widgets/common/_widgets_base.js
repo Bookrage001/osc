@@ -33,3 +33,27 @@ _widget_base.prototype.sendValue = function() {
     }
 
 }
+
+_widget_base.prototype.getValue = function() {
+
+    if (typeof this.value == 'object') {
+
+        return (()=>{
+
+            var a = []
+
+            for (i in this.value)  {
+                a.push(this.value[i])
+            }
+            
+            return a
+
+        })()
+
+    } else {
+
+        return this.value
+
+    }
+
+}

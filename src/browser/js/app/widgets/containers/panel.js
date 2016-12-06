@@ -52,5 +52,5 @@ Panel.prototype.constructor = Panel
 
 module.exports.create = function(widgetData) {
     var panel = new Panel(widgetData)
-    return panel.widget
+    return panel
 }

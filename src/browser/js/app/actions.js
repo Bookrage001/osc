@@ -1,3 +1,5 @@
+var {WidgetManager} = require('./managers')
+
 module.exports = {
 
     stateQuickSave: function(preset){
@@ -24,13 +26,13 @@ module.exports = {
 
     stateGet: function (){
         var data = []
-        for (i in WIDGETS) {
-            var widget = WIDGETS[i]
-            for (var j=widget.length-1;j>=0;j--) {
-                if (widget[j].setValue && widget[j].getValue) {
-                    var v = widget[j].getValue()
-                    if (v!=undefined) data.push([i,v])
-                    break
+        for (i in WidgetManager.widgets) {
+            var widget = WidgetManager.widgets[i]
+            if (widget.setValue && widget.getValue) {
+                var v = widget.getValue()
+                if (v!=undefined) {
+                    data.push([widget.widgetData.id,v])
+                    continue
                 }
             }
         }
@@ -60,11 +62,12 @@ module.exports = {
     stateSet: function(preset,send){
 
         for (i in preset) {
-            var data = preset[i]
-            if (WIDGETS[data[0]]!=undefined) {
-                for (var i=WIDGETS[data[0]].length-1;i>=0;i--) {
-                    if (WIDGETS[data[0]][i].setValue) {
-                        WIDGETS[data[0]][i].setValue(data[1],{send:send,sync:true})
+            var data = preset[i],
+                widgets = WidgetManager.getWidgetById(data[0])
+            if (widgets.length) {
+                for (var i=widgets.length-1;i>=0;i--) {
+                    if (widgets[i].setValue) {
+                        widgets[i].setValue(data[1],{send:send,sync:true})
                     }
                 }
             }

@@ -46,14 +46,7 @@ var Toggle = module.exports.Toggle = function(widgetData,container) {
     })
 
 
-    this.widget.getValue = ()=>{
-        return this.widget.state ?
-            this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
-            :
-            this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
-    }
-    this.value = this.widget.getValue()
-    this.widget.setValue = this.setValue.bind(this)
+    this.value = this.getValue()
 
 }
 
@@ -62,9 +55,18 @@ Toggle.prototype = Object.create(_widgets_base.prototype)
 
 Toggle.prototype.constructor = Toggle
 
+Toggle.prototype.getValue = function(){
+
+    return this.widget.state ?
+        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
+        :
+        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
+
+}
+
 Toggle.prototype.fakeclick = function(){
     var newVal = this.widget.state?this.widgetData.off:this.widgetData.on
-    this.widget.setValue(newVal,{sync:true,send:true})
+    this.setValue(newVal,{sync:true,send:true})
     $document.on('dragend.toggle',()=>{
         $document.off('dragend.toggle')
         this.widget.on('draginit.toggle',()=>{
@@ -95,5 +97,5 @@ Toggle.prototype.setValue = function(v,options={}){
 
 module.exports.create = function(widgetData, container) {
     var toggle = new Toggle(widgetData, container)
-    return toggle.widget
+    return toggle
 }

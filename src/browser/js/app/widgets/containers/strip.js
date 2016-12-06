@@ -47,5 +47,5 @@ Strip.prototype.constructor = Strip
 
 module.exports.create = function(widgetData, container) {
     var strip = new Strip(widgetData, container)
-    return strip.widget
+    return strip
 }

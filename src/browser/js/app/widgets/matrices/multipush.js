@@ -73,5 +73,5 @@ Multipush.prototype.constructor = Multipush
 
 module.exports.create = function(widgetData) {
     var multipush = new Multipush(widgetData)
-    return multipush.widget
+    return multipush
 }

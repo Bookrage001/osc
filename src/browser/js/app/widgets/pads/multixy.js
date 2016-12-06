@@ -104,23 +104,13 @@ var MultiXy = module.exports.MultiXy = function(widgetData) {
 
     this.wrapper.on('sync',(e)=>{
         e.stopPropagation()
-        this.setValue(this.widget.getValue(), e.options)
+        this.setValue(this.getValue(), e.options)
     })
 
-    this.widget.getValue = () => {
-        var v = []
-        for (var i=0;i<this.pads.length * 2;i=i+2) {
-            [v[i],v[i+1]] = this.pads[i/2].widget.getValue()
-        }
-        return v
-    }
-    this.widget.setValue = (v, options) => {
-        this.setValue(v, options)
-    }
 
     var v = []
     for (var i=0;i<this.widgetData.points * 2;i=i+2) {
-        [v[i],v[i+1]]  = this.pads[i/2].widget.getValue()
+        [v[i],v[i+1]]  = this.pads[i/2].getValue()
     }
     this.setValue(v)
 
@@ -180,6 +170,15 @@ MultiXy.prototype.draw = function(){
     }
 }
 
+MultiXy.prototype.getValue = function(){
+
+    var v = []
+    for (var i=0;i<this.pads.length * 2;i=i+2) {
+        [v[i],v[i+1]] = this.pads[i/2].getValue()
+    }
+    return v
+
+}
 
 MultiXy.prototype.setValue = function(v, options={}){
     if (!v || v.length!=this.widgetData.points * 2) return
@@ -194,7 +193,7 @@ MultiXy.prototype.setValue = function(v, options={}){
     this.draw()
 
     for (var i=0;i<this.widgetData.points * 2;i=i+2) {
-        [this.value[i],this.value[i+1]]  = this.pads[i/2].widget.getValue()
+        [this.value[i],this.value[i+1]]  = this.pads[i/2].getValue()
     }
 
 
@@ -208,5 +207,5 @@ MultiXy.prototype.setValue = function(v, options={}){
 
 module.exports.create = function(widgetData) {
     var xy = new MultiXy(widgetData)
-    return xy.widget
+    return xy
 }

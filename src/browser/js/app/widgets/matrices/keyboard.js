@@ -91,5 +91,5 @@ Keyboard.prototype.constructor = Keyboard
 
 module.exports.create = function(widgetData) {
     var keyboard = new Keyboard(widgetData)
-    return keyboard.widget
+    return keyboard
 }

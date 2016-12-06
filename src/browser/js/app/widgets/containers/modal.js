@@ -42,10 +42,6 @@ var Modal = module.exports.Modal = function(widgetData, container) {
 		this.setValue(!this.value)
 	})
 
-	this.widget.setValue = this.setValue.bind(this)
-	this.widget.getValue = ()=>{
-		return this.value
-	}
 
 }
 
@@ -69,5 +65,5 @@ Modal.prototype.setValue = function(v) {
 
 module.exports.create = function(widgetData, container) {
     var modal = new Modal(widgetData, container)
-    return modal.widget
+    return modal
 }

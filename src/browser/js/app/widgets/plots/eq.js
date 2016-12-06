@@ -1,6 +1,7 @@
 var {mapToScale, clip} = require('../utils'),
     _biquad_response = require('./_biquad_response'),
-    _plots_base = require('./_plots_base')
+    _plots_base = require('./_plots_base'),
+    {WidgetManager} = require('../../managers')
 
 module.exports.options = {
 	type:'eq',
@@ -69,10 +70,11 @@ Eq.prototype.updateData = function(){
         filters[i] = {}
 
         for (j in filter) {
+            let widget = WidgetManager.getWidgetById(filter[j])
 
-            if (typeof filter[j]=='string' && WIDGETS[filter[j]]) {
+            if (typeof filter[j]=='string' && widget.length) {
 
-                filters[i][j] = WIDGETS[filter[j]][WIDGETS[filter[j]].length-1].getValue()
+                filters[i][j] = widget[widget.length-1].getValue()
 
             } else {
 
@@ -109,5 +111,5 @@ Eq.prototype.updateData = function(){
 
 module.exports.create = function(widgetData) {
     var eq = new Eq(widgetData)
-    return eq.widget
+    return eq
 }

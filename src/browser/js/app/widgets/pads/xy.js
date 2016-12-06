@@ -130,14 +130,6 @@ var Xy = module.exports.Xy = function(widgetData) {
     })
 
 
-    this.widget.getValue = () => {
-        return [this.value[0], this.value[1]]
-    }
-    this.widget.setValue = (v, options) => {
-        this.setValue(v, options)
-    }
-
-
 }
 
 
@@ -154,6 +146,7 @@ Xy.prototype.dragHandle = function(){
         this.setValue([x, y],{send:true,sync:true,dragged:true})
     }
 }
+
 
 Xy.prototype.setValue = function(v, options={}){
 
@@ -210,5 +203,5 @@ Xy.prototype.draw = function(){
 
 module.exports.create = function(widgetData) {
     var xy = new Xy(widgetData)
-    return xy.widget
+    return xy
 }

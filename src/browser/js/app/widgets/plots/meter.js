@@ -37,7 +37,6 @@ var Meter = module.exports.Meter = function(widgetData, container){
     Fader.apply(this, arguments)
 
     this.input.hide()
-    this.widget.getValue = false
 
     this.widget.addClass('meter')
 }
@@ -46,10 +45,10 @@ Meter.prototype = Object.create(Fader.prototype)
 
 Meter.prototype.constructor = Meter
 
-Meter.prototype.sendValue = false
+Meter.prototype.sendValue = ()=>{}
 
 module.exports.create = function(widgetData,container) {
 
     var meter = new Meter(widgetData, container)
-    return meter.widget
+    return meter
 }

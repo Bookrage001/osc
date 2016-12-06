@@ -2,6 +2,8 @@
     Session File Parser
 */
 
+var {WidgetManager} = require('./managers')
+
 var widgets = require('./widgets'),
     widgetOptions = widgets.widgetOptions,
     createWidget = widgets.createWidget,
@@ -22,9 +24,6 @@ module.exports.tabs = function(data,parent,main,parentLabel){
 
     if (main) {
         // Reset Globals
-        WIDGETS = {}
-        WIDGETS_LINKED = {}
-        WIDGETS_BY_ADDRESS = {}
         SESSION = data
         for (i in TABS) {
             if (i!='#container') {
@@ -104,7 +103,7 @@ module.exports.widgets = function(data,parent) {
         // Genrate widget's id, based on its type
         if (widgetData.id=='auto') {
             var id
-            while (!id || WIDGETS[id]) {
+            while (!id || WidgetManager.getWidgetById(id).length) {
                 id=widgetData.type+'_'+getIterator(widgetData.type,'widget')
             }
             widgetData.id = id
@@ -179,27 +178,9 @@ module.exports.widgets = function(data,parent) {
         // create widget
         var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
 
-        // store widgets target
-        widgetInner.target = widgetData.target
+        widgetContainer[0].appendChild(widgetInner.widget[0])
 
-        widgetContainer[0].appendChild(widgetInner[0])
-
-        // store widget reference for cross widget sync
-        if (WIDGETS[widgetData.id]==undefined) WIDGETS[widgetData.id] = []
-        WIDGETS[widgetData.id].push(widgetInner)
-
-        // store widget with linkId for widgte linking
-        if (widgetData.linkId && widgetData.linkId.length) {
-            if (WIDGETS_LINKED[widgetData.linkId]==undefined) WIDGETS_LINKED[widgetData.linkId] = []
-            WIDGETS_LINKED[widgetData.linkId].push(widgetInner)
-        }
-
-        // store widget by address and encode preArgs for perfect cross-app sync
-        if (widgetData.address)  {
-            var addressref = widgetData.preArgs&&widgetData.preArgs.length?widgetData.address+'||||'+widgetData.preArgs.join('||||'):widgetData.address
-            if (WIDGETS_BY_ADDRESS[addressref]==undefined) WIDGETS_BY_ADDRESS[addressref] = []
-            WIDGETS_BY_ADDRESS[addressref].push(widgetInner)
-        }
+        WidgetManager.addWidget(widgetInner)
 
         // set widget's initial state
         if (widgetData.value !== '' && widgetInner.setValue) {

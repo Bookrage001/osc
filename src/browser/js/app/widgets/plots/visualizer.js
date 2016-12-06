@@ -1,5 +1,7 @@
 var {mapToScale, clip} = require('../utils'),
-    _plots_base = require('./_plots_base')
+    _plots_base = require('./_plots_base'),
+    {WidgetManager} = require('../../managers')
+
 
 module.exports.options = {
 	type:'visualizer',
@@ -50,7 +52,7 @@ Visualizer.prototype = Object.create(_plots_base.prototype)
 Visualizer.prototype.constructor = Visualizer
 
 Visualizer.prototype.syncHandle = function(e) {
-    if (this.widgetData.widgetId!=e.id || !WIDGETS[e.id]) return
+    if (this.widgetData.widgetId!=e.id || !WidgetManager.getWidgetById(e.id).length) return
     this.startLoop()
 }
 
@@ -101,10 +103,11 @@ Visualizer.prototype.draw_data = function(){
 
 
 Visualizer.prototype.updateData = function(){
-    var id = this.widgetData.widgetId
+    var id = this.widgetData.widgetId,
+        widget = WidgetManager.getWidgetById(id)
 
-    if (typeof id == 'string' && WIDGETS[id]) {
-        var v = WIDGETS[id][WIDGETS[id].length-1].getValue()
+    if (typeof id == 'string' && widget.length) {
+        var v = widget[widget.length-1].getValue()
         this.data.push(v)
         this.value = v
     } else {
@@ -123,5 +126,5 @@ Visualizer.prototype.setValue = function(v) {
 
 module.exports.create = function(widgetData,container) {
     var visualizer = new Visualizer(widgetData)
-    return visualizer.widget
+    return visualizer
 }

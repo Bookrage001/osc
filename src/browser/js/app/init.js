@@ -28,7 +28,7 @@ module.exports = function(session,callback) {
             ui.init()
             editorDisable()
             editorInit()
-            sync()
+            // sync()
 
 
             setTimeout(function(){

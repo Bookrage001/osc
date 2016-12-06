@@ -65,12 +65,6 @@ var Switch = module.exports.Switch = function(widgetData,container) {
         })
 
 
-
-        this.widget.getValue = ()=>{
-            return this.value
-        }
-        this.widget.setValue = this.setValue.bind(this)
-
 }
 
 
@@ -93,5 +87,5 @@ Switch.prototype.setValue = function(v,options={}) {
 
 module.exports.create = function(widgetData, container) {
     var _switch = new Switch(widgetData, container)
-    return _switch.widget
+    return _switch
 }

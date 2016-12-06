@@ -1,6 +1,5 @@
 var widgets = require('../widgets'),
     widgetOptions = widgets.widgetOptions,
-    sync = widgets.sync,
     parser = require('../parser')
     parsewidgets = parser.widgets,
     parsetabs = parser.tabs,
@@ -10,7 +9,8 @@ var widgets = require('../widgets'),
     editObject = function(a,b){require('./edit-objects').editObject(a,b,true)},
     editSession =  function(a,b){require('./edit-objects').editSession(a,b,true)},
     purgeStores = require('./purge'),
-    {iconify} = require('../utils')
+    {iconify} = require('../utils'),
+    {WidgetManager} = require('../managers')
 
 
 var getObjectData = function(obj){
@@ -101,7 +101,6 @@ var updateDom = function(container,data, remote) {
 
     // restore state
     actions.stateSet(state,false)
-    sync()
     ui.scrolls()
     $('#sidepanel').scrollTop(scroll)
 
@@ -131,7 +130,7 @@ var incrementWidget = function(data){
 
     } else if (address){
         var addressref
-        while (WIDGETS_BY_ADDRESS[addressref]) {
+        while (WidgetManager.getWidgetByAddress(addressref)) {
             address = address.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
@@ -139,20 +138,20 @@ var incrementWidget = function(data){
             })
             addressref = data.preArgs&&data.preArgs.length?address+'||||'+data.preArgs.join('||||'):address
         }
-        WIDGETS_BY_ADDRESS[addressref] = []
+        
         data.address = address
 
     }
 
     if (id) {
-        while (WIDGETS[id]) {
+        while (WidgetManager.getWidgetById(id)) {
             id = id.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
                 return n
             })
         }
-        WIDGETS[id] = []
+
         data.id = id
 
     }

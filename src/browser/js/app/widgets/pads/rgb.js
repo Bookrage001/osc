@@ -131,13 +131,6 @@ var Rgb = module.exports.Rgb = function(widgetData) {
     },this)
 
 
-    this.widget.getValue = () => {
-        return [this.value[0], this.value[1], this.value[2]]
-    }
-    this.widget.setValue = (v, options) => {
-        this.setValue(v, options)
-    }
-
     this.setValue([0,0,0])
 }
 
@@ -244,5 +237,5 @@ Rgb.prototype.draw = function(){
 
 module.exports.create = function(widgetData) {
     var rgb = new Rgb(widgetData)
-    return rgb.widget
+    return rgb
 }

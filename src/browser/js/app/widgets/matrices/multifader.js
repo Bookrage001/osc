@@ -83,5 +83,5 @@ Multifader.prototype.constructor = Multifader
 
 module.exports.create = function(widgetData) {
     var multifader = new Multifader(widgetData)
-    return multifader.widget
+    return multifader
 }

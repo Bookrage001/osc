@@ -1,4 +1,6 @@
-var {iconify} = require('../../utils')
+var {iconify} = require('../../utils'),
+    _widgets_base = require('../common/_widgets_base')
+
 
 module.exports.options = {
     type:'text',
@@ -21,31 +23,44 @@ module.exports.options = {
     preArgs:[],
     address:'auto',
 }
-module.exports.create = function(widgetData,container) {
-    var widget = $(`
+
+var Text = module.exports.Text = function(widgetData,container) {
+
+    _widgets_base.apply(this,arguments)
+
+
+    this.widget = $(`
             <div class="text">
             </div>
-            `),
-		label = widgetData.label===false?
-                        widgetData.id:
-                        widgetData.label=='auto'?
+            `)
+
+	this.defaultValue = widgetData.label===false?
                             widgetData.id:
-                            widgetData.label,
-        text = label
+                            widgetData.label=='auto'?
+                                widgetData.id:
+                                widgetData.label
+
+    this.value = this.defaultValue
 
 
-    if (widgetData.vertical) widget.addClass('vertical')
+    if (this.widgetData.vertical) this.widget.addClass('vertical')
 
-    widget.setValue = function(v){
-        text = typeof v=='object' && !v.length?label:v
-		widget.html(iconify(text))
-    }
+    this.setValue(this.value)
 
-    widget.getValue = function(){
-        return text
-    }
+}
 
-    widget.setValue(label)
+Text.prototype = Object.create(_widgets_base.prototype)
 
-    return widget
+Text.prototype.constructor = Text
+
+Text.prototype.setValue = function(v){
+
+    this.value = typeof v=='object' && !v.length ? this.defaultValue : v
+    this.widget.html(iconify(this.value))
+
+}
+
+module.exports.create = function(widgetData, container) {
+    var text = new Text(widgetData, container)
+    return text
 }

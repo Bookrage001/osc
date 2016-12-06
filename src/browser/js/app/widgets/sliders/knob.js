@@ -243,5 +243,5 @@ Knob.prototype.draw = function(){
 
 module.exports.create = function(widgetData) {
     var knob = new Knob(widgetData)
-    return knob.widget
+    return knob
 }

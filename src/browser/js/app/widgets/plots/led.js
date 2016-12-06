@@ -1,4 +1,6 @@
-var {mapToScale} = require('../utils')
+var {mapToScale} = require('../utils'),
+    _widgets_base = require('../common/_widgets_base')
+
 
 module.exports.options = {
     type:'led',
@@ -22,21 +24,36 @@ module.exports.options = {
     preArgs:[],
     address:'auto'
 }
-module.exports.create = function(widgetData,container) {
-    var widget = $(`
+
+var Led = module.exports.Led = function(widgetData,container) {
+
+    _widgets_base.apply(this,arguments)
+
+    this.widget = $(`
             <div class="led">
                 <div><span></span></div>
             </div>
             `),
-        led = widget.find('span'),
-        range = widgetData.range
+    this.led = this.widget.find('span')
 
-    widget.setValue = function(v){
-        if (typeof v != 'number') return
-        led.css('opacity',mapToScale(v,[range.min,range.max],[0,1],false,widgetData.logScale,true))
-    }
 
-    widget.setValue(range.min)
+    this.setValue(this.widgetData.range.min)
 
-    return widget
+}
+
+
+Led.prototype = Object.create(_widgets_base.prototype)
+
+Led.prototype.constructor = Led
+
+Led.prototype.setValue = function(v){
+
+    if (typeof v != 'number') return
+    this.led.css('opacity',mapToScale(v,[this.widgetData.range.min,this.widgetData.range.max],[0,1],false,this.widgetData.logScale,true))
+
+}
+
+module.exports.create = function(widgetData, container) {
+    var led = new Led(widgetData, container)
+    return led
 }
