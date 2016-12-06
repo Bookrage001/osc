@@ -44,7 +44,7 @@ var options = {
     't':{alias:'theme',type:'array',describe:'theme name or path (mutliple values allowed)'},
     'e':{alias:'examples',type:'boolean',describe:'list examples instead of recent sessions',
          check: (e,argv)=>{
-             return (!argv.l) ?
+             return (!e || !argv.l) ?
                 true : 'examples can\'t be listed if --load is set'
          }
     }
