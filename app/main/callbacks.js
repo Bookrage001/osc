@@ -11,8 +11,15 @@ module.exports =  {
 		ipc.send('connected')
 
 		if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
-	    if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
-	    var recentSessions = settings.read('recentSessions')
+
+		if (settings.read('newSession')) {
+			ipc.send('sessionNew')
+			return
+		}
+
+		if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
+
+		var recentSessions = settings.read('recentSessions')
 
 		if (settings.read('examples')) {
 			var dir = path.resolve(__dirname + '/../examples')

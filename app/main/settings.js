@@ -15,6 +15,7 @@ var options = {
          }
     },
     'l':{alias:'load',type:'string',file:'js',describe:'session file to load'},
+    'b':{alias:'blank',type:'boolean',describe:'load a blank session and start the editor'},
     'c':{alias:'custom-module',type:'string',file:'js',describe:'custom module file to load'},
     'p':{alias:'port',type:'number',describe:'http port of the server (default to 8080)',
          check: (p)=>{
@@ -87,6 +88,7 @@ var makeDefaultConfig = function(argv){
         httpPort: argv.p || 8080,
         debug: argv.d || false,
         sessionFile:  argv.l || false,
+        newSession:  argv.b || false,
         customModule: argv.c || false,
         noGui: argv.n || false,
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
