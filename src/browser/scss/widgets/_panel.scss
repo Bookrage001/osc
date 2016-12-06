@@ -107,7 +107,7 @@
             bottom:0;
             border-right:0;
             height: auto!important;
-            border-top:1rem solid var(--color-bg);
+            border-top:2rem solid var(--color-bg);
         }
     }
 
@@ -128,7 +128,6 @@
         > .light:after {
                 content:"\f068";
                 transform: none;
-                opacity: .5;
                 width:var(--nav-height);
                 height:var(--nav-height);
                 line-height: var(--nav-height);
