@@ -86,6 +86,9 @@
             text-align: center;
             float:right;
     }
+    > .label {
+        top:0;
+    }
 
     > .panel {
         display: none!important;
