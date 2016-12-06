@@ -71,7 +71,22 @@
 .modal-container {
     @extend .panel-container-base;
     @extend .toggle-container;
+    > .light:after {
+            content:"\f077";
+            font-family: FontAwesome;
+            border:0;
+            padding: 2rem 4rem;
+            opacity: .5;
+            transform: rotateZ(45deg);
+            display: block;
+            width:10rem;
+            height:10rem;
+            line-height: 10rem;
+            text-align: center;
+            float:right;
+    }
     &.on {
+        transition:all .1s;
         position: fixed;
         top:0!important;
         left:0!important;
@@ -84,12 +99,19 @@
             min-height:auto!important;
             height:var(--nav-height)!important;
         }
+        > .light:after {
+                content:"\f068";
+                transform: none;
+                opacity: .5;
+        }
     }
+
     .panel {
         display: none!important;
         background: var(--color-fg);
         transform: translateZ(0);
         &.on {
+            transform: translateZ(0);
             display: block!important;
             &.has-tabs  {
                 display: flex!important;
