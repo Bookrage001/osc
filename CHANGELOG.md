@@ -1,12 +1,16 @@
 # Changelog
 
-## 0.12.1
+## 0.13.0
 
 - main
+  - **new** `-b / --blank` option to start editing a new session directly
+  - some inconsistent parameter combinations are now prevented
   - firefox compatibility improved
   - launcher window is no longer of the `splash` type, as it can be difficult to close with some window managers
 - widgets
+  - **new** `modal` container : a button that turns into a fullscreen panel when clicked.
   - sliders/xy: add `spring` option that makes that widget jump back to its initial value when released
+  - fader: horizontal mode default height fixed
   - keyboard: black keys pressed state is more noticeable
 - misc
   - building with node 4 is fixed
