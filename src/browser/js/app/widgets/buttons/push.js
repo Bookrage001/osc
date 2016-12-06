@@ -1,5 +1,6 @@
 var _widgets_base = require('../common/_widgets_base'),
-    $document = $(document)
+    $document = $(document),
+    {sendOsc} = require('../utils')
 
 module.exports.options = {
     type:'push',
@@ -111,6 +112,19 @@ Push.prototype.setValue = function(v,options={}) {
     }
 }
 
+Push.prototype.sendValue = function(v, norelease) {
+
+    var args = this.widgetData.preArgs.concat(v)
+
+    sendOsc({
+        target: this.widgetData.target,
+        address: this.widgetData.address,
+        precision: this.widgetData.precision,
+        args:args,
+        syncOnly:norelease
+    })
+
+}
 
 module.exports.create = function(widgetData, container) {
     var push = new Push(widgetData, container)
