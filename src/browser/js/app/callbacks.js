@@ -9,8 +9,7 @@ var init = require('./init'),
 
 var callbacks = module.exports = {
 
-    receiveOsc: function(event,data){
-        var data = data || event
+    receiveOsc: function(data){
         osc.receive(data)
     },
 
@@ -18,15 +17,14 @@ var callbacks = module.exports = {
         LOADING.close()
     },
 
-    stateLoad: function(event,data){
-        var data = data || event
+    stateLoad: function(data){
         data = JSON.parse(data)
         actions.stateSet(data,true)
         actions.stateQuickSave(data)
     },
 
-    sessionList: function(event,data){
-        var data = data || event
+    sessionList: function(data){
+
         var lobby = $(`
             <div class="main">
                 <div class="header">
@@ -75,8 +73,7 @@ var callbacks = module.exports = {
         })
     },
 
-    sessionOpen: function(event,data){
-        var data = data || event
+    sessionOpen: function(data){
         var session = JSON.parse(data)
         init(session,function(){
             ipc.send('sessionOpened')
@@ -104,14 +101,11 @@ var callbacks = module.exports = {
         },150)
     },
 
-    error: function(event,data){
-        var data = data || event
-
+    error: function(data){
         utils.createPopup(icon('warning')+'&nbsp;'+data.title,data.text,true)
     },
 
-    applyStyle: function(event,data){
-        var data = data || event
+    applyStyle: function(data){
         var style = document.createElement('style');
         style.innerHTML = data.join('');
         document.body.appendChild(style);
@@ -134,8 +128,8 @@ var callbacks = module.exports = {
 }
 
 var bindCallback = function(i) {
-    ipc.on(i,function(event,data){
-        callbacks[i](event,data)
+    ipc.on(i,function(data){
+        callbacks[i](data)
     })
 }
 
