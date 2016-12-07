@@ -1,9 +1,12 @@
 var WidgetManager = function(){
 
     this.widgets = []
+
     this.addressRoute = {}
     this.idRoute = {}
     this.linkIdRoute = {}
+
+    this.preArgsSeparator = '||||'
 
     $(document).ready(()=>{
         $('body').off('sync.global').on('sync.global',(e)=>{
@@ -49,7 +52,7 @@ WidgetManager.prototype.createHash = function(widget) {
 WidgetManager.prototype.createAddressRef = function(widget) {
 
     return widget.widgetData.preArgs && widget.widgetData.preArgs.length ?
-                widget.widgetData.address + '||||' + widget.widgetData.preArgs.join('||||')
+                widget.widgetData.address + this.preArgsSeparator + widget.widgetData.preArgs.join(this.preArgsSeparator)
               : widget.widgetData.address
 
 }

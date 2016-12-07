@@ -34,12 +34,20 @@ Osc.prototype.receive = function(data){
 
     if (typeof data.args == 'object') {
         for (var i=data.args.length-1;i>=0;i--) {
-            var ref = address+'||||'+data.args.slice(0,i).join('||||')
+
+            var ref = widgetManager.createAddressRef({
+                        widgetData: {
+                            preArgs: data.args.slice(0,i),
+                            address: address
+                        }
+                    })
+
             if (widgetManager.getWidgetByAddress(ref).length) {
                 addressref = ref
                 args = data.args.slice(i,data.args.length)
                 continue
             }
+
         }
     } else {
         args = data.args

@@ -130,13 +130,18 @@ var incrementWidget = function(data){
 
     } else if (address){
         var addressref
-        while (widgetManager.getWidgetByAddress(addressref)) {
+        while (widgetManager.getWidgetByAddress(addressref).length) {
             address = address.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
                 return n
             })
-            addressref = data.preArgs&&data.preArgs.length?address+'||||'+data.preArgs.join('||||'):address
+            addressref = widgetManager.createAddressRef({
+                            widgetData: {
+                                preArgs: data.preArgs,
+                                address: address
+                            }
+                        })
         }
 
         data.address = address
@@ -144,7 +149,7 @@ var incrementWidget = function(data){
     }
 
     if (id) {
-        while (widgetManager.getWidgetById(id)) {
+        while (widgetManager.getWidgetById(id).length) {
             id = id.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
