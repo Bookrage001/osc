@@ -91,10 +91,10 @@ WidgetManager.prototype.removeWidget = function(hash) {
         linkId =  widget.widgetData.linkId,
         id = widget.widgetData.id
 
-    delete this.widgets[hash]
-    delete this.idRoute[id][h2]
-    delete this.linkIdRoute[linkId][h2]
-    delete this.addressRoute[address][h2]
+    if (this.widgets[hash]) delete this.widgets[hash]
+    if (id && this.idRoute[id][h2]) delete this.idRoute[id][h2]
+    if (linkId && this.linkIdRoute[linkId][h2]) delete this.linkIdRoute[linkId][h2]
+    if (address && this.addressRoute[address][h2]) delete this.addressRoute[address][h2]
 }
 
 WidgetManager.prototype.getWidgetBy = function(key, dict) {
