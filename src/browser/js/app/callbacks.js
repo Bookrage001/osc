@@ -117,7 +117,7 @@ var callbacks = module.exports = {
 
     reloadCss: function(){
         var queryString = '?reload=' + new Date().getTime();
-        $('link[rel="stylesheet"]').each(function () {
+        $('link[rel="stylesheet"][hot-reload]').each(function () {
             this.href = this.href.replace(/\?.*|$/, queryString);
         });
         setTimeout(()=>{
