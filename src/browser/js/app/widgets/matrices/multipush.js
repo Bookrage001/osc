@@ -43,6 +43,9 @@ var Multipush = module.exports.Multipush = function(widgetData) {
 
     var strData = JSON.stringify(widgetData)
 
+    var	parsers = require('../../parser'),
+        parsewidgets = parsers.widgets
+
     for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
 
         var data = JSON.parse(strData)

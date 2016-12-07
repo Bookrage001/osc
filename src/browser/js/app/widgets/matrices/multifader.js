@@ -52,6 +52,9 @@ var Multifader = module.exports.Multifader = function(widgetData) {
 
     var strData = JSON.stringify(widgetData)
 
+    var	parsers = require('../../parser'),
+        parsewidgets = parsers.widgets
+        
     for (var i=0;i<widgetData.strips;i++) {
 
         var data = JSON.parse(strData)

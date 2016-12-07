@@ -44,6 +44,9 @@ var Keyboard = module.exports.Keyboard = function(widgetData) {
         pattern = 'wbwbwwbwbwbw',
         wCount = 0
 
+    var	parsers = require('../../parser'),
+        parsewidgets = parsers.widgets
+
     for (var i=widgetData.start;i<widgetData.keys+widgetData.start&&i<108;i++) {
 
         var data = JSON.parse(strData)
