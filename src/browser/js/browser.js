@@ -6,9 +6,6 @@ STATE = []
 CLIPBOARD = null
 EDITING = false
 
-TRAVERSING = false
-
-OSCSYNCONLY = false
 
 TABS = {}
 
