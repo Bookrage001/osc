@@ -1,4 +1,4 @@
-var {WidgetManager} = require('./managers'),
+var {widgetManager} = require('./managers'),
     ipc = require('./ipc')
 
 module.exports = {
@@ -27,8 +27,8 @@ module.exports = {
 
     stateGet: function (){
         var data = []
-        for (i in WidgetManager.widgets) {
-            var widget = WidgetManager.widgets[i]
+        for (i in widgetManager.widgets) {
+            var widget = widgetManager.widgets[i]
             if (widget.setValue && widget.getValue) {
                 var v = widget.getValue()
                 if (v!=undefined) {
@@ -64,7 +64,7 @@ module.exports = {
 
         for (i in preset) {
             var data = preset[i],
-                widgets = WidgetManager.getWidgetById(data[0])
+                widgets = widgetManager.getWidgetById(data[0])
             if (widgets.length) {
                 for (var i=widgets.length-1;i>=0;i--) {
                     if (widgets[i].setValue) {

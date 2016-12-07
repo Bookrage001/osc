@@ -1,7 +1,7 @@
 var {mapToScale, clip} = require('../utils'),
     _biquad_response = require('./_biquad_response'),
     _plots_base = require('./_plots_base'),
-    {WidgetManager} = require('../../managers')
+    {widgetManager} = require('../../managers')
 
 module.exports.options = {
 	type:'eq',
@@ -70,7 +70,7 @@ Eq.prototype.updateData = function(){
         filters[i] = {}
 
         for (j in filter) {
-            let widget = WidgetManager.getWidgetById(filter[j])
+            let widget = widgetManager.getWidgetById(filter[j])
 
             if (typeof filter[j]=='string' && widget.length) {
 

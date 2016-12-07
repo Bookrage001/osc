@@ -1,6 +1,6 @@
 var {mapToScale} = require('../utils'),
     _plots_base = require('./_plots_base'),
-    {WidgetManager} = require('../../managers')
+    {widgetManager} = require('../../managers')
 
 module.exports.options = {
 	type:'plot',
@@ -54,7 +54,7 @@ var Plot = module.exports.Plot = function(widgetData) {
     this.updateData = function(){
         var data = [],
             points = widgetData.points,
-            widget = WidgetManager.getWidgetById(points)
+            widget = widgetManager.getWidgetById(points)
 
         if (typeof points=='string' && widget.length) {
 
@@ -67,7 +67,7 @@ var Plot = module.exports.Plot = function(widgetData) {
                 data[i] = []
 
                 for (k in [0,1]) {
-                    let widget = WidgetManager.getWidgetById(points[i][k])
+                    let widget = widgetManager.getWidgetById(points[i][k])
                     if (typeof points[i][k] == 'string' && widget.length) {
                         data[i][k] = widget[widget.length-1].getValue()
                     } else {

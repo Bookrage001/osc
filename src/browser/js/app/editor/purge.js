@@ -1,4 +1,4 @@
-var {WidgetManager} = require('../managers')
+var {widgetManager} = require('../managers')
 
 module.exports = function(purgetabs) {
 
@@ -39,9 +39,9 @@ module.exports = function(purgetabs) {
     // prune widget stores
     // if widgets cannot be found in buffered tabs, it must be unreferenced
 	var $b = $(bufferedTabs)
-    for (hash in WidgetManager.widgets) {
-        if (!$b.find(WidgetManager.widgets[hash].widget).length) {
-            WidgetManager.removeWidget(hash)
+    for (hash in widgetManager.widgets) {
+        if (!$b.find(widgetManager.widgets[hash].widget).length) {
+            widgetManager.removeWidget(hash)
         }
     }
 }

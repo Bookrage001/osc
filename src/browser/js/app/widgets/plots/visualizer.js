@@ -1,6 +1,6 @@
 var {mapToScale, clip} = require('../utils'),
     _plots_base = require('./_plots_base'),
-    {WidgetManager} = require('../../managers')
+    {widgetManager} = require('../../managers')
 
 
 module.exports.options = {
@@ -52,7 +52,7 @@ Visualizer.prototype = Object.create(_plots_base.prototype)
 Visualizer.prototype.constructor = Visualizer
 
 Visualizer.prototype.syncHandle = function(e) {
-    if (this.widgetData.widgetId!=e.id || !WidgetManager.getWidgetById(e.id).length) return
+    if (this.widgetData.widgetId!=e.id || !widgetManager.getWidgetById(e.id).length) return
     this.startLoop()
 }
 
@@ -104,7 +104,7 @@ Visualizer.prototype.draw_data = function(){
 
 Visualizer.prototype.updateData = function(){
     var id = this.widgetData.widgetId,
-        widget = WidgetManager.getWidgetById(id)
+        widget = widgetManager.getWidgetById(id)
 
     if (typeof id == 'string' && widget.length) {
         var v = widget[widget.length-1].getValue()

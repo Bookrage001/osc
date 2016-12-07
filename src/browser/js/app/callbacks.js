@@ -3,7 +3,7 @@ var init = require('./init'),
     utils = require('./utils'),
     icon = utils.icon,
     remoteExec = require('./remote-exec'),
-    {WidgetManager} = require('./managers'),
+    {widgetManager} = require('./managers'),
     ipc = require('./ipc'),
     osc = require('./osc')
 
@@ -23,7 +23,7 @@ var callbacks = module.exports = {
         if (typeof data.args == 'object') {
             for (var i=data.args.length-1;i>=0;i--) {
                 var ref = address+'||||'+data.args.slice(0,i).join('||||')
-                if (WidgetManager.getWidgetByAddress(ref).length) {
+                if (widgetManager.getWidgetByAddress(ref).length) {
                     addressref = ref
                     args = data.args.slice(i,data.args.length)
                     continue
@@ -38,7 +38,7 @@ var callbacks = module.exports = {
         else if (args.length==1) args = args[0]
 
 
-        let widget = WidgetManager.getWidgetByAddress(addressref)
+        let widget = widgetManager.getWidgetByAddress(addressref)
 
         for (i in widget) {
             // if the message target is provided (when message comes from another client connected to the same server)

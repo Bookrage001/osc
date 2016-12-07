@@ -2,7 +2,7 @@
     Session File Parser
 */
 
-var {WidgetManager} = require('./managers')
+var {widgetManager} = require('./managers')
 
 var widgets = require('./widgets'),
     widgetOptions = widgets.widgetOptions,
@@ -103,7 +103,7 @@ module.exports.widgets = function(data,parent) {
         // Genrate widget's id, based on its type
         if (widgetData.id=='auto') {
             var id
-            while (!id || WidgetManager.getWidgetById(id).length) {
+            while (!id || widgetManager.getWidgetById(id).length) {
                 id=widgetData.type+'_'+getIterator(widgetData.type,'widget')
             }
             widgetData.id = id
@@ -180,7 +180,7 @@ module.exports.widgets = function(data,parent) {
 
         widgetContainer[0].appendChild(widgetInner.widget[0])
 
-        WidgetManager.addWidget(widgetInner)
+        widgetManager.addWidget(widgetInner)
 
         // set widget's initial state
         if (widgetData.value !== '' && widgetInner.setValue) {

@@ -10,7 +10,7 @@ var widgets = require('../widgets'),
     editSession =  function(a,b){require('./edit-objects').editSession(a,b,true)},
     purgeStores = require('./purge'),
     {iconify} = require('../utils'),
-    {WidgetManager} = require('../managers')
+    {widgetManager} = require('../managers')
 
 
 var getObjectData = function(obj){
@@ -130,7 +130,7 @@ var incrementWidget = function(data){
 
     } else if (address){
         var addressref
-        while (WidgetManager.getWidgetByAddress(addressref)) {
+        while (widgetManager.getWidgetByAddress(addressref)) {
             address = address.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
@@ -138,13 +138,13 @@ var incrementWidget = function(data){
             })
             addressref = data.preArgs&&data.preArgs.length?address+'||||'+data.preArgs.join('||||'):address
         }
-        
+
         data.address = address
 
     }
 
     if (id) {
-        while (WidgetManager.getWidgetById(id)) {
+        while (widgetManager.getWidgetById(id)) {
             id = id.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n

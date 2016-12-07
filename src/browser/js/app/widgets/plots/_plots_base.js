@@ -1,6 +1,6 @@
 var {mapToScale} = require('../utils'),
     _canvas_base = require('../common/_canvas_base'),
-    {WidgetManager} = require('../../managers')
+    {widgetManager} = require('../../managers')
 
 var _plots_base = module.exports = function(){
 
@@ -41,7 +41,7 @@ _plots_base.prototype.syncHandleProxy = function() {
 }
 
 _plots_base.prototype.syncHandle = function(e) {
-    if (this.linkedWidgets.indexOf(e.id)==-1 || !WidgetManager.getWidgetById(e.id).length) return
+    if (this.linkedWidgets.indexOf(e.id)==-1 || !widgetManager.getWidgetById(e.id).length) return
     this.updateData()
     requestAnimationFrame(this.draw.bind(this))
 }

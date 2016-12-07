@@ -1,11 +1,11 @@
 var {getObjectData, updateDom} = require('./editor/data-workers'),
-    {WidgetManager} = require('./managers')
+    {widgetManager} = require('./managers')
 
 var callbacks = {
     edit: function(args) {
         var [id, json] = args,
             newdata = JSON.parse(json),
-            containers = WidgetManager.getWidgetById(id)
+            containers = widgetManager.getWidgetById(id)
 
         if (!containers.length) return
         for (var i=containers.length-1;i>=0;i--) {

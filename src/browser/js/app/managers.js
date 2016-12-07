@@ -130,6 +130,6 @@ WidgetManager.prototype.getWidgetByAddress = function(address) {
 }
 
 
-var m = new WidgetManager()
+var widgetManager = new WidgetManager()
 
-module.exports.WidgetManager = m
+module.exports.widgetManager = widgetManager

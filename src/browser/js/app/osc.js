@@ -1,5 +1,5 @@
 var remoteExec = require('./remote-exec'),
-    {WidgetManager} = require('./managers'),
+    {widgetManager} = require('./managers'),
     ipc = require('./ipc')
 
 var Osc = function(){
@@ -35,7 +35,7 @@ Osc.prototype.receive = function(data){
     if (typeof data.args == 'object') {
         for (var i=data.args.length-1;i>=0;i--) {
             var ref = address+'||||'+data.args.slice(0,i).join('||||')
-            if (WidgetManager.getWidgetByAddress(ref).length) {
+            if (widgetManager.getWidgetByAddress(ref).length) {
                 addressref = ref
                 args = data.args.slice(i,data.args.length)
                 continue
@@ -50,7 +50,7 @@ Osc.prototype.receive = function(data){
     else if (args.length==1) args = args[0]
 
 
-    let widget = WidgetManager.getWidgetByAddress(addressref)
+    let widget = widgetManager.getWidgetByAddress(addressref)
 
     for (i in widget) {
         // if the message target is provided (when message comes from another client connected to the same server)
