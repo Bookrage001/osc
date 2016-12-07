@@ -1,8 +1,5 @@
 var widgets = require('../widgets'),
     widgetOptions = widgets.widgetOptions,
-    parser = require('../parser')
-    parsewidgets = parser.widgets,
-    parsetabs = parser.tabs,
     ui = require('../ui'),
     actions = require('../actions'),
     sidepanelCreateToggle = require('../sidepanel').createToggle,
@@ -55,10 +52,14 @@ var updateDom = function(container,data, remote) {
         state = actions.stateGet(),
         purgetabs = data.tabs?true:false
 
+    var parser = require('../parser'),
+        parsewidgets = parser.widgets,
+        parsetabs = parser.tabs
 
 
     if (container.hasClass('widget')) {
         // widget
+        console.log(parsewidgets)
         var newContainer = parsewidgets([data],container.parent())
         container.replaceWith(newContainer)
 
