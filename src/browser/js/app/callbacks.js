@@ -3,7 +3,8 @@ var init = require('./init'),
     utils = require('./utils'),
     icon = utils.icon,
     remoteExec = require('./remote-exec'),
-    {WidgetManager} = require('./managers')
+    {WidgetManager} = require('./managers'),
+    osc = require('./osc')
 
 module.exports = {
 
@@ -133,9 +134,9 @@ module.exports = {
 
         setTimeout(function(){
 
-            OSCSYNCONLY = true
+            osc.syncOnly = true
             actions.stateSend()
-            OSCSYNCONLY = false
+            osc.syncOnly = false
 
             p.close()
         },150)

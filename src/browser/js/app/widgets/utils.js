@@ -1,13 +1,5 @@
 module.exports = {
 
-    sendOsc: function(data){
-        if (!OSCSYNCONLY) {
-            IPC.send('sendOsc', data)
-        } else {
-            IPC.send('syncOsc', data)
-        }
-    },
-
 	clip: function(value,range) {
 	    var value = parseFloat(value)
 

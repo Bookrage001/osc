@@ -1,4 +1,4 @@
-var {clip, mapToScale, sendOsc} = require('../utils')
+var {clip, mapToScale} = require('../utils')
 var _canvas_base = require('../common/_canvas_base')
 
 var _sliders_base = module.exports = function(){
