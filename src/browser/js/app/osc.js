@@ -63,3 +63,7 @@ Osc.prototype.receive = function(data){
     }
 
 }
+
+var osc = new Osc()
+
+module.exports = osc
