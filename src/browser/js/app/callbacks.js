@@ -4,9 +4,10 @@ var init = require('./init'),
     icon = utils.icon,
     remoteExec = require('./remote-exec'),
     {WidgetManager} = require('./managers'),
+    ipc = require('./ipc'),
     osc = require('./osc')
 
-module.exports = {
+var callbacks = module.exports = {
 
     receiveOsc: function(event,data){
         var data = data || event
@@ -92,11 +93,11 @@ module.exports = {
         footer.append('<a class="btn new">'+icon('file-o')+' New</a>')
         lobby.find('.load').click(function(e){
             e.stopPropagation()
-            IPC.send('sessionOpen',{path:$(this).data('session')})
+            ipc.send('sessionOpen',{path:$(this).data('session')})
         })
         lobby.find('a span').click(function(e){
             e.stopPropagation()
-            IPC.send('sessionRemoveFromHistory',$(this).parent().data('session'))
+            ipc.send('sessionRemoveFromHistory',$(this).parent().data('session'))
             $(this).parents('a').remove()
         })
         lobby.find('.browse').click(function(e){
@@ -117,7 +118,7 @@ module.exports = {
         var data = data || event
         var session = JSON.parse(data)
         init(session,function(){
-            IPC.send('sessionOpened')
+            ipc.send('sessionOpened')
         })
 
     },
@@ -169,4 +170,14 @@ module.exports = {
         },100)
     }
 
+}
+
+var bindCallback = function(i) {
+    ipc.on(i,function(event,data){
+        callbacks[i](event,data)
+    })
+}
+
+for (i in callbacks) {
+    bindCallback(i)
 }

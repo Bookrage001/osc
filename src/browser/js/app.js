@@ -35,20 +35,13 @@ require('./jquery/jquery.fake-input')
 
 ///////////////////////
 
-var callbacks = require('./app/callbacks')
+var callbacks = require('./app/callbacks'),
+    ipc = require('./app/ipc')
 
-var bindCallback = function(i) {
-    IPC.on(i,function(event,data){
-        callbacks[i](event,data)
-    })
-}
 
-for (i in callbacks) {
-    bindCallback(i)
-}
 
 ///////////////////////
 $(document).ready(function(){
     LOADING = require('./app/utils').loading('Connecting server...')
-    IPC.send('ready')
+    ipc.send('ready')
 })

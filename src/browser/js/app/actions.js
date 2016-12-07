@@ -1,4 +1,5 @@
-var {WidgetManager} = require('./managers')
+var {WidgetManager} = require('./managers'),
+    ipc = require('./ipc')
 
 module.exports = {
 
@@ -98,7 +99,7 @@ module.exports = {
 
             reader.onloadend = function(e) {
                 var session = e.target.result
-                IPC.send('sessionOpen',{file:session,path:file.path})
+                ipc.send('sessionOpen',{file:session,path:file.path})
             }
             reader.readAsText(file, 'utf-8');
         })
