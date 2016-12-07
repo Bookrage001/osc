@@ -1,7 +1,6 @@
 var parsetabs = require('./parser').tabs,
     ui = require('./ui'),
-    sync = require('./widgets').sync,
-    editorDisable = require('./actions').editorDisable,
+    {editorDisable} = require('./actions'),
     editorInit = require('./editor/init'),
     {loading} = require('./utils')
 
@@ -14,22 +13,9 @@ module.exports = function(session,callback) {
         setTimeout(function(){
             parsetabs(session,$('#container'),true)
 
-            // var t = $('<div></div>').appendTo('body')
-            // for (id in TABS) {
-            //     if (id!='#container') {
-            //         t[0].appendChild(TABS[id].tab[0])
-            //     }
-            // }
-            // setTimeout(function(){
-            //     t.detach()
-            // },250)
-
-
             ui.init()
             editorDisable()
             editorInit()
-            // sync()
-
 
             setTimeout(function(){
                 p.close()
