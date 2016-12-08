@@ -8,12 +8,13 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 
 
 Below are the available command-line switches. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
- 
+
 
 ```
 Options:
   -s, --sync      synchronized hosts (ip:port pairs) (osc messages sent by widgets will also be sent to these targets)
   -l, --load      session file to load
+  -b, --blank     load a blank session and start the editor
   -c, --custom-module  custom module file to load
   -p, --port      http port of the server (default to 8080)
   -o, --osc-port  osc input port
