@@ -10,14 +10,6 @@ EDITING = false
 TABS = {}
 
 
-MISC = {
-    iterators: {
-        widget:{},
-        tab:{}
-    }
-}
-
-
 PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
 INITIALZOOM = PXSCALE
 

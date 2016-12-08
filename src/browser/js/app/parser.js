@@ -9,12 +9,14 @@ var widgets = require('./widgets'),
     createWidget = widgets.createWidget,
     {iconify} = require('./utils')
 
-var getIterator = function(id,type){
-    var iterator = MISC.iterators[type]
-    if (iterator[id]==undefined) iterator[id] = 0
-    iterator[id] += 1
-    return iterator[id]
-}
+var iterators = {
+        widget:{},
+        tab:{}
+    },
+    getIterator = function(id,type){
+        iterators[type][id] = (iterators[type][id] || 0) + 1
+        return iterators[type][id]
+    }
 
 var hashCode = function(s){
   return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
@@ -29,13 +31,15 @@ module.exports.tabs = function(data,parent,main,parentLabel){
             if (i!='#container') {
                 TABS[i].parent.remove()
                 TABS[i].tab.remove()
+                delete TABS[i]
             }
         }
         TABS['#container'] = {
             tab:$('#container')
         }
 
-        MISC.iterators.tab = {}
+        iterators.tab = {}
+        iterators.widget = {}
     }
 
     var main = main?'main ':'',
