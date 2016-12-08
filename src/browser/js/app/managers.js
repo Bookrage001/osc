@@ -100,6 +100,17 @@ WidgetManager.prototype.removeWidget = function(hash) {
     if (address && this.addressRoute[address][h2]) delete this.addressRoute[address][h2]
 }
 
+WidgetManager.prototype.purge = function() {
+
+    this.widgets = {}
+
+    this.addressRoute = {}
+    this.idRoute = {}
+    this.linkIdRoute = {}
+
+}
+
+
 WidgetManager.prototype.getWidgetBy = function(key, dict) {
 
     var w = [],
