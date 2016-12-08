@@ -9,7 +9,7 @@ var callbacks = {
 
         if (!containers.length) return
         for (var i=containers.length-1;i>=0;i--) {
-            var container = containers[i].parent(),
+            var container = containers[i].widget.parent(),
                 data = getObjectData(container)
 
             $.extend(true,data,newdata)
