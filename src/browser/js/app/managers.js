@@ -1,6 +1,6 @@
 var WidgetManager = function(){
 
-    this.widgets = []
+    this.widgets = {}
 
     this.addressRoute = {}
     this.idRoute = {}
