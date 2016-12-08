@@ -61,7 +61,7 @@ WidgetManager.prototype.addWidget = function(widget) {
 
     var h1 = this.createHash(),
         h2 = this.createHash(),
-        hash = [h1,h2].join('/')
+        hash = [h1,h2].join('/'),
         address = this.createAddressRef(widget),
         id = widget.widgetData.id,
         linkId = widget.widgetData.linkId
@@ -124,7 +124,7 @@ WidgetManager.prototype.getWidgetBy = function(key, dict) {
         } else {
             widgets.push(this.widgets[[h1,h2].join('/')])
         }
-    }
+    }b
 
     return widgets
 
