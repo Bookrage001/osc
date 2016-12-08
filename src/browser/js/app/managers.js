@@ -92,12 +92,26 @@ WidgetManager.prototype.removeWidget = function(hash) {
         id = widget.widgetData.id
 
     if (this.widgets[hash]) delete this.widgets[hash]
-    if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash),1)
-    if (linkId && this.linkIdRoute[linkId].indexOf(hash) != -1) this.linkIdRoute[linkId].splice(this.linkIdRoute[linkId].indexOf(hash),1)
-    if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash),1)
+    if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)
+    if (linkId && this.linkIdRoute[linkId].indexOf(hash) != -1) this.linkIdRoute[linkId].splice(this.linkIdRoute[linkId].indexOf(hash), 1)
+    if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash), 1)
 }
 
 WidgetManager.prototype.purge = function() {
+
+    for (route of [this.addressRoute, this.idRoute, this.linkIdRoute]) {
+        for (key in route) {
+            for (hash in route[key]) {
+                if (!this.widgets[hash]) {
+                    route[key].splice(route[key].indexOf(hash, 1))
+                }
+            }
+        }
+    }
+
+}
+
+WidgetManager.prototype.reset = function() {
 
     this.widgets = {}
 

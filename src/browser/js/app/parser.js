@@ -41,7 +41,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         iterators.tab = {}
         iterators.widget = {}
 
-        widgetManager.purge()
+        widgetManager.reset()
     }
 
     var main = main?'main ':'',

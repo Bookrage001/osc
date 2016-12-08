@@ -44,4 +44,6 @@ module.exports = function(purgetabs) {
             widgetManager.removeWidget(hash)
         }
     }
+    widgetManager.purge()
+    
 }
