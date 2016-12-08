@@ -59,9 +59,7 @@ WidgetManager.prototype.createAddressRef = function(widget) {
 
 WidgetManager.prototype.addWidget = function(widget) {
 
-    var h1 = this.createHash(),
-        h2 = this.createHash(),
-        hash = this.createHash(),
+    var hash = this.createHash(),
         address = this.createAddressRef(widget),
         id = widget.widgetData.id,
         linkId = widget.widgetData.linkId
