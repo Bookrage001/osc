@@ -106,10 +106,18 @@ var updateDom = function(container,data, remote) {
 
 }
 
+var fakeStore = {}
 
-var incrementWidget = function(data){
+var incrementWidget = function(data, root){
 
     if (!data) return
+
+    if (root !== false) {
+        fakeStore = {
+            id:[],
+            address:[]
+        }
+    }
 
     delete data.linkId
 
@@ -126,7 +134,7 @@ var incrementWidget = function(data){
 
     } else if (address){
         var addressref
-        while (widgetManager.getWidgetByAddress(addressref).length) {
+        while (fakeStore.address.indexOf(address) != -1 || widgetManager.getWidgetByAddress(addressref).length) {
             address = address.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
@@ -140,12 +148,14 @@ var incrementWidget = function(data){
                         })
         }
 
+        fakeStore.address.push(address)
+
         data.address = address
 
     }
 
     if (id) {
-        while (widgetManager.getWidgetById(id).length) {
+        while (fakeStore.id.indexOf(id) != -1 || widgetManager.getWidgetById(id).length) {
             id = id.replace(/([0-9]*)$/,function(m){
                 var n = parseInt(m)+1
                 n = isNaN(n)?1:n
@@ -153,13 +163,22 @@ var incrementWidget = function(data){
             })
         }
 
+        fakeStore.id.push(id)
+
         data.id = id
 
     }
 
+    if (data.widgets && data.widgets.length) {
+        for (i in data.widgets) {
+            data.widgets[i] = incrementWidget(data.widgets[i], false)
+        }
+    }
 
-    for (i in data) {
-        if (typeof data[i] == 'object') data[i] = incrementWidget(data[i])
+    if (data.tabs && data.tabs.length) {
+        for (i in data.tabs) {
+            data.tabs[i] = incrementWidget(data.tabs[i], false)
+        }
     }
 
     return data
