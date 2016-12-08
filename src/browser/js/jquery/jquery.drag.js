@@ -292,8 +292,10 @@
         self.addEventListener("mousedown", down, true)
         self.addEventListener("touchstart", down, true)
 
+        this.on('draginit.traversing',()=>{})
 
         this.on('disableTraversingGestures',function() {
+            this.off('draginit.traversing')
             self.removeEventListener("mousedown", down, true)
             self.removeEventListener("touchstart", down, true)
         })
