@@ -39,6 +39,11 @@ var Meter = module.exports.Meter = function(widgetData, container){
     this.input.hide()
 
     this.widget.addClass('meter')
+
+    this.widget.off('mousewheel')
+    this.canvas.off('draginit')
+    this.canvas.off('drag')
+
 }
 
 Meter.prototype = Object.create(Fader.prototype)
