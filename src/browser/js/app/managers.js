@@ -61,7 +61,7 @@ WidgetManager.prototype.addWidget = function(widget) {
 
     var h1 = this.createHash(),
         h2 = this.createHash(),
-        hash = [h1,h2].join('/'),
+        hash = this.createHash(),
         address = this.createAddressRef(widget),
         id = widget.widgetData.id,
         linkId = widget.widgetData.linkId
@@ -69,17 +69,17 @@ WidgetManager.prototype.addWidget = function(widget) {
 
     this.widgets[hash] = widget
 
-    if (!this.idRoute[id]) this.idRoute[id] = {}
-    this.idRoute[id][h2] = h1
+    if (!this.idRoute[id]) this.idRoute[id] = []
+    this.idRoute[id].push(hash)
 
     if (address) {
-        if (!this.addressRoute[address]) this.addressRoute[address] = {}
-        this.addressRoute[address][h2] = h1
+        if (!this.addressRoute[address]) this.addressRoute[address] = []
+        this.addressRoute[address].push(hash)
     }
 
     if (linkId) {
-        if (!this.linkIdRoute[linkId]) this.linkIdRoute[linkId] = {}
-        this.linkIdRoute[linkId][h2] = h1
+        if (!this.linkIdRoute[linkId]) this.linkIdRoute[linkId] = []
+        this.linkIdRoute[linkId].push(hash)
     }
 
     widget.widget.abstract = widget
@@ -89,15 +89,14 @@ WidgetManager.prototype.addWidget = function(widget) {
 WidgetManager.prototype.removeWidget = function(hash) {
 
     var widget = this.widgets[hash],
-        h2 = hash.split('/')[1]
         address = this.createAddressRef(widget),
         linkId =  widget.widgetData.linkId,
         id = widget.widgetData.id
 
     if (this.widgets[hash]) delete this.widgets[hash]
-    if (id && this.idRoute[id][h2]) delete this.idRoute[id][h2]
-    if (linkId && this.linkIdRoute[linkId][h2]) delete this.linkIdRoute[linkId][h2]
-    if (address && this.addressRoute[address][h2]) delete this.addressRoute[address][h2]
+    if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash),1)
+    if (linkId && this.linkIdRoute[linkId].indexOf(hash) != -1) this.linkIdRoute[linkId].splice(this.linkIdRoute[linkId].indexOf(hash),1)
+    if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash),1)
 }
 
 WidgetManager.prototype.purge = function() {
@@ -114,17 +113,17 @@ WidgetManager.prototype.purge = function() {
 WidgetManager.prototype.getWidgetBy = function(key, dict) {
 
     var widgets = [],
-        h1, w
+        hash, w
 
-    for (h2 in dict[key]) {
-        h1 = dict[key][h2]
-        w = this.widgets[[h1,h2].join('/')]
+    for (i = dict[key] ? dict[key].length-1 : -1; i>=0; i--) {
+        hash = dict[key][i]
+        w = this.widgets[hash]
         if (!w) {
-            delete dict[key][h2]
+            dict[key].splice(i,1)
         } else {
-            widgets.push(this.widgets[[h1,h2].join('/')])
+            widgets.push(this.widgets[hash])
         }
-    }b
+    }
 
     return widgets
 
