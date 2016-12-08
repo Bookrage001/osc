@@ -7,11 +7,11 @@ var Ipc = function(){
 }
 
 Ipc.prototype.send = function(){
-    return this.socket.emit(...arguments)
+    return this.socket.emit.apply(this.socket, arguments)
 }
 
 Ipc.prototype.on = function(){
-    return this.socket.on(...arguments)
+    return this.socket.on.apply(this.socket, arguments)
 }
 
 var ipc = new Ipc()
