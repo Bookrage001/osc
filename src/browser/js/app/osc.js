@@ -8,6 +8,10 @@ var Osc = function(){
 
 }
 
+Osc.prototype.init = function(data) {
+    this.remoteExec = require('./remote-exec')
+}
+
 Osc.prototype.send = function(data) {
 
     if (this.syncOnly) {

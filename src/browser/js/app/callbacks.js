@@ -7,8 +7,6 @@ var init = require('./init'),
     ipc = require('./ipc'),
     osc = require('./osc')
 
-osc.remoteExec = remoteExec
-
 var callbacks = module.exports = {
 
     receiveOsc: function(data){

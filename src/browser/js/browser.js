@@ -33,8 +33,10 @@ require('./jquery/jquery.fake-input')
 ///////////////////////
 
 var callbacks = require('./app/callbacks'),
-    ipc = require('./app/ipc')
+    ipc = require('./app/ipc'),
+    osc = require('./app/osc')
 
+osc.init()
 
 
 ///////////////////////
