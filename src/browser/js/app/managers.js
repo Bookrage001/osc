@@ -128,7 +128,7 @@ WidgetManager.prototype.getWidgetBy = function(key, dict) {
     var widgets = [],
         hash, w
 
-    for (i = dict[key] ? dict[key].length-1 : -1; i>=0; i--) {
+    for (var i = dict[key] ? dict[key].length-1 : -1; i>=0; i--) {
         hash = dict[key][i]
         w = this.widgets[hash]
         if (!w) {
