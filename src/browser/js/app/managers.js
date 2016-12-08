@@ -101,9 +101,10 @@ WidgetManager.prototype.purge = function() {
 
     for (route of [this.addressRoute, this.idRoute, this.linkIdRoute]) {
         for (key in route) {
-            for (hash in route[key]) {
+            for (i=route[key].length-1; i>=0; i--) {
+                let hash = route[key][i]
                 if (!this.widgets[hash]) {
-                    route[key].splice(route[key].indexOf(hash, 1))
+                    route[key].splice(i, 1)
                 }
             }
         }
