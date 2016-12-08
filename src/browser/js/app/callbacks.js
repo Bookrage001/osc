@@ -2,8 +2,6 @@ var init = require('./init'),
     actions = require('./actions'),
     utils = require('./utils'),
     icon = utils.icon,
-    remoteExec = require('./remote-exec'),
-    {widgetManager} = require('./managers'),
     ipc = require('./ipc'),
     osc = require('./osc')
 
