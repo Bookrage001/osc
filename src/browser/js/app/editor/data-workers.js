@@ -1,6 +1,4 @@
-var widgets = require('../widgets'),
-    widgetOptions = widgets.widgetOptions,
-    ui = require('../ui'),
+var ui = require('../ui'),
     actions = require('../actions'),
     sidepanelCreateToggle = require('../sidepanel').createToggle,
     editObject = function(a,b){require('./edit-objects').editObject(a,b,true)},
@@ -8,7 +6,9 @@ var widgets = require('../widgets'),
     purgeStores = require('./purge'),
     {iconify} = require('../utils'),
     {widgetManager} = require('../managers')
-
+    parser = require('../parser'),
+    parsewidgets = parser.widgets,
+    parsetabs = parser.tabs
 
 var getObjectData = function(obj){
     var path = []
@@ -51,10 +51,6 @@ var updateDom = function(container,data, remote) {
     var scroll = $('#sidepanel').scrollTop(),
         state = actions.stateGet(),
         purgetabs = data.tabs?true:false
-
-    var parser = require('../parser'),
-        parsewidgets = parser.widgets,
-        parsetabs = parser.tabs
 
 
     if (container.hasClass('widget')) {

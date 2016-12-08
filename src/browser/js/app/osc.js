@@ -1,10 +1,10 @@
-var remoteExec = require('./remote-exec'),
-    {widgetManager} = require('./managers'),
+var {widgetManager} = require('./managers'),
     ipc = require('./ipc')
 
 var Osc = function(){
 
     this.syncOnly = false
+    this.remoteExec = ()=>{console.error('remote-exec module not loaded')}
 
 }
 
@@ -24,7 +24,7 @@ Osc.prototype.send = function(data) {
 
 Osc.prototype.receive = function(data){
 
-    if (data.address == '/EXEC') return remoteExec(data.args)
+    if (data.address == '/EXEC') return this.remoteExec(data.args)
 
     // fetch ids corresponding to the osc address
     var address = data.address,
