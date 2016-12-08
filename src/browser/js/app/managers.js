@@ -113,15 +113,20 @@ WidgetManager.prototype.purge = function() {
 
 WidgetManager.prototype.getWidgetBy = function(key, dict) {
 
-    var w = [],
-        h1
+    var widgets = [],
+        h1, w
 
     for (h2 in dict[key]) {
         h1 = dict[key][h2]
-        w.push(this.widgets[[h1,h2].join('/')])
+        w = this.widgets[[h1,h2].join('/')]
+        if (!w) {
+            delete dict[key][h2]
+        } else {
+            widgets.push(this.widgets[[h1,h2].join('/')])
+        }
     }
 
-    return w
+    return widgets
 
 }
 
