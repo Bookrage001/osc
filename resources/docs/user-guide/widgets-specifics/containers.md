@@ -53,3 +53,26 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - type: `array`
 - default: `[]`
 - usage: each element of the `array` must be a tab `object`. A panel cannot contain widgets and tabs simultaneously.
+
+----
+
+## Modal
+
+Modals are buttons that turn into a fullscreen panels when enabled. They can be enabled via osc (1 to enable, 0 to disable).
+
+```js
+{
+    type:'modal',
+    // etc
+}
+```
+
+#### `widgets`
+- type: `array`
+- default: `[]`
+- usage: each element of the `array` must be a widget `object`. A modal cannot contain widgets and tabs simultaneously.
+
+#### `tabs`
+- type: `array`
+- default: `[]`
+- usage: each element of the `array` must be a tab `object`. A modal cannot contain widgets and tabs simultaneously.
