@@ -9,6 +9,8 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 
 Below are the available command-line switches. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
 
+Note: `--disable-vsync` can only be enabled from a terminal.
+
 
 ```
 Options:
@@ -23,6 +25,8 @@ Options:
   -g, --gui-only  app server's url. If true, local port (--port) is used
   -t, --theme     theme name or path (mutliple values allowed)   
   -e, --examples  list examples instead of recent sessions
+      --disable-vsync  disable gui's vertical synchronization
+
   -h, --help      display help
   -v, --version   display version number
 
