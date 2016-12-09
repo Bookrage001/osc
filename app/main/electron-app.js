@@ -1,11 +1,16 @@
-var shortcut = require('electron-localshortcut'),
-    {app, dialog} = require('electron')
-    
+var {app, dialog} = require('electron'),
+    settings = require('./settings')
+
 dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
 }
 
 app.commandLine.appendSwitch('--enable-touch-events')
+
+
+if (settings.read('noVsync')) {
+    app.commandLine.appendSwitch('--disable-gpu-vsync')
+}
 
 
 app.on('window-all-closed', function() {
