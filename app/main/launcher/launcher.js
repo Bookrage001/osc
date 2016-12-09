@@ -81,6 +81,14 @@ $(document).ready(()=>{
                 argv[i] = v
             }
 
+            if (option.restart && v!=value && !wrapper.hasClass('restart')) {
+                wrapper.addClass('restart')
+                wrapper.append(`<div class="restart-msg">The app must be restarted for this change to take effect.</div>`)
+            } else if (option.restart && wrapper.hasClass('restart')) {
+                wrapper.removeClass('restart')
+                wrapper.find('.restart-msg').remove()
+            }
+
             if (!stop) $('input').not(input).trigger('change',true)
         })
 

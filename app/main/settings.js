@@ -49,7 +49,7 @@ var options = {
                 true : 'examples can\'t be listed if --load is set'
          }
     },
-    'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization', launcher: false}
+    'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization', restart: true}
 }
 
 

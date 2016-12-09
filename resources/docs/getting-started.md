@@ -9,8 +9,6 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 
 Below are the available command-line switches. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
 
-Note: `--disable-vsync` can only be enabled from a terminal.
-
 
 ```
 Options:

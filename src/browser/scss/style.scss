@@ -216,19 +216,23 @@ i {
                 color:var(--color-accent);
             }
         }
-        .error-msg {
+        .error-msg, .restart-msg {
             transition: height .25s;
             height: 0rem;
             white-space:normal;
             padding: 0 4rem;
             margin-left:1rem;
         }
-        &.error {
-
+        &.error, &.restart {
             .error-msg {
                 height: 28rem;
                 line-height: 28rem;
                 background: rgba(red,0.25)
+            }
+            .restart-msg {
+                height: 28rem;
+                line-height: 28rem;
+                background: rgba(yellow,0.25)
             }
         }
     }
