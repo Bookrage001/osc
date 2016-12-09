@@ -25,7 +25,7 @@ $(document).ready(()=>{
         var wrapper = $(`<div class="item-wrapper"></div>`),
             item = $(`
             <div class="input-wrapper">
-                <label>${option.alias}</label>
+                <label>${option.alias || i}</label>
             </div>
             `).appendTo(wrapper),
             input,
