@@ -6,6 +6,7 @@ dialog.showErrorBox = function(title,err) {
 }
 
 app.commandLine.appendSwitch('--enable-touch-events')
+app.commandLine.appendSwitch('--disable-gpu-vsync')
 
 app.on('window-all-closed', function() {
     if (process.platform != 'darwin') {
