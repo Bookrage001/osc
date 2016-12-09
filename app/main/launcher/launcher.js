@@ -101,39 +101,63 @@ $(document).ready(()=>{
     })
 
 
+    var save = $(`<div class="btn start save">Save</div>`).appendTo(form),
+        saveWithCallback = function(callback) {
+            $('input').change()
+            if (form.find('.error').length) return
+
+            setTimeout(()=>{
+
+                for (i in argv) {
+                    if (argv[i] === '') {
+                        argv[i] = undefined
+                    }
+                }
+                try {
+                    settings.makeDefaultConfig(argv)
+                    settings.write('argv',argv)
+                    save.addClass('saved')
+                    setTimeout(()=>{
+                        save.removeClass('saved')
+                    }, 250)
+                    if (callback) callback()
+                } catch (err) {
+
+                }
+
+            },1)
+        }
+
+    save.click((e)=>{
+
+        e.preventDefault()
+        saveWithCallback()
+
+    })
+
     // Starter (oneshot)
 
     var start = $(`<div class="btn start">Start</div>`).appendTo(form)
     start.click((e)=>{
 
         e.preventDefault()
-
-        $('input').change()
-        if (form.find('.error').length) return
-
-        start.off('click')
-        $('input').attr('disabled','true')
-        $('.clear').addClass('disabled')
-
-        setTimeout(()=>{
-
-            for (i in argv) {
-                if (argv[i] === '') {
-                    argv[i] = undefined
-                }
-            }
-            settings.makeDefaultConfig(argv)
-            settings.write('argv',argv)
+        saveWithCallback(()=>{
+            start.off('click')
+            save.off('click')
+            $('input').attr('disabled','true')
+            $('.clear').addClass('disabled')
             ipcRenderer.send('start')
-
-        },1)
+        })
 
     })
+
+
 
     // server started callback
     ipcRenderer.on('started',function(){
         var addresses = settings.read('appAddresses').map((a)=>{return `<a href="${a}">${a}</a>`})
         start.addClass('started').html('App available at ' + addresses.join(' & '))
+        save.remove()
     })
 
 

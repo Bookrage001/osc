@@ -57,10 +57,6 @@ if (cli) {
 
     ipcMain.on('start',function(e, options){
 
-        for (i in options) {
-            settings.write(i, options[i], true)
-        }
-
         var gui = start()
 
         if (settings.read('guiOnly')) {

@@ -281,6 +281,27 @@ i {
             z-index: -1;
         }
     }
+    .save {
+        float:left;
+        width:91rem;
+        &:before {
+            transition: opacity .5s;
+            content:"";
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background-color: var(--color-accent);
+            opacity: 0;
+            z-index: -1;
+        }
+        &.saved:before {
+            transition: none;
+            opacity: 0.25;
+
+        }
+    }
 }
 
 
