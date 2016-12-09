@@ -48,7 +48,8 @@ var options = {
              return (!e || !argv.l) ?
                 true : 'examples can\'t be listed if --load is set'
          }
-    }
+    },
+    'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization'}
 }
 
 
@@ -92,6 +93,7 @@ var makeDefaultConfig = function(argv){
         customModule: argv.c || false,
         noGui: argv.n || false,
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
+        noVsync: argv['disable-vsync'] || false,
         appAddresses:function(){
             var appAddresses = []
 

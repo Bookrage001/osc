@@ -26,6 +26,10 @@ var start = function(readyApp) {
         var app = require('./electron-app')
         var address = typeof settings.read('guiOnly')=='string'? 'http://' + settings.read('guiOnly') : settings.read('appAddresses')[0]
 
+        if (settings.read('noVsync')) {
+            app.commandLine.appendSwitch('--disable-gpu-vsync')
+        }
+
         if (app.isReady()) {
             return require('./electron-window')({address:address, shortcuts:true})
         } else {
