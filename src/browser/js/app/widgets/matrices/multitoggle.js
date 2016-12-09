@@ -7,6 +7,7 @@ module.exports.options = {
 	separator0: 'Matrix',
 
 	matrix: [2,2],
+    start:0,
 
     separator1:'style',
 
@@ -44,7 +45,7 @@ var Multitoggle = module.exports.Multitoggle = function(widgetData) {
     var	parsers = require('../../parser'),
         parsewidgets = parsers.widgets
 
-    for (var i=0;i<widgetData.matrix[0]*widgetData.matrix[1];i++) {
+    for (var i=widgetData.start;i<widgetData.matrix[0]*widgetData.matrix[1]+widgetData.start;i++) {
 
         var data = JSON.parse(strData)
 
@@ -59,7 +60,7 @@ var Multitoggle = module.exports.Multitoggle = function(widgetData) {
 		element[0].setAttribute('style',`width:${100/widgetData.matrix[0]}%`)
 		element[0].classList.add('not-editable')
 
-        this.value[i] = widgetData.off
+        this.value[i-widgetData.start] = widgetData.off
 
 	}
 

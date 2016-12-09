@@ -39,6 +39,7 @@ var Keyboard = module.exports.Keyboard = function(widgetData) {
 
     _matrices_base.apply(this,arguments)
 
+    widgetData.keys = parseInt(widgetData.keys)
 
     var strData = JSON.stringify(widgetData),
         pattern = 'wbwbwwbwbwbw',

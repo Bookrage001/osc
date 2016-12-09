@@ -21,6 +21,11 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `address`: same as the widget's with `/i` appended to it
 
+#### `start`
+- type: `integer`
+- default: `0`
+- usage: first faders's index
+
 #### `traversing`
 - type: `boolean`
 - default: `true`
@@ -54,6 +59,11 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `address`: same as the widget's with `/i` appended to it
 
+#### `start`
+- type: `integer`
+- default: `0`
+- usage: first toggle's index
+
 #### `traversing`
 - type: `boolean`
 - default: `true`
@@ -85,6 +95,12 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `id`: same as the widget's with `/i` appended to it
     - `label`: `i`
     - `address`: same as the widget's with `/i` appended to it
+
+#### `start`
+- type: `integer`
+- default: `0`
+- usage: first push's index
+
 
 #### `traversing`
 - type: `boolean`

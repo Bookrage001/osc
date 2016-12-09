@@ -7,6 +7,7 @@ module.exports.options = {
     separator0:'Matrix',
 
     strips:2,
+    start:0,
 
     separator1:'style',
 
@@ -46,6 +47,8 @@ var Multifader = module.exports.Multifader = function(widgetData) {
 
     _matrices_base.apply(this,arguments)
 
+    widgetData.strips = parseInt(widgetData.strips)
+
     if (widgetData.horizontal) {
         this.widget.addClass('horizontal')
     }
@@ -54,8 +57,8 @@ var Multifader = module.exports.Multifader = function(widgetData) {
 
     var	parsers = require('../../parser'),
         parsewidgets = parsers.widgets
-        
-    for (var i=0;i<widgetData.strips;i++) {
+
+    for (var i=widgetData.start; i<widgetData.strips+widgetData.start;i++) {
 
         var data = JSON.parse(strData)
 
@@ -72,7 +75,7 @@ var Multifader = module.exports.Multifader = function(widgetData) {
 
         if (widgetData.traversing) element.find('.fader-wrapper').off('drag')
 
-        this.value[i] = widgetData.range.min
+        this.value[i-widgetData.start] = widgetData.range.min
 
     }
 

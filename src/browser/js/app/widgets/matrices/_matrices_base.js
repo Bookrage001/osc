@@ -8,8 +8,10 @@ var _matrices_base = module.exports = function(widgetData){
         <div class="matrix">
         </div>\
         `)
+
     this.value = []
 
+    widgetData.start = parseInt(widgetData.start)
 
     this.widget.on('sync',function(e){
         if (e.id==this.widgetData.id) return

@@ -12,6 +12,7 @@
   - sliders/xy: add `spring` option that makes that widget jump back to its initial value when released
   - fader: horizontal mode default height fixed
   - keyboard: black keys pressed state is more noticeable
+  - matrices: added `start` option to choose the first subwidget's `id`
 - misc
   - building with node 4 is fixed
 
