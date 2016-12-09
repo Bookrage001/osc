@@ -202,16 +202,18 @@ Fader.prototype.draw = function(){
 
         } else {
 
+            this.ctx.lineWidth = Math.round(2 * PXSCALE)
+
             this.ctx.beginPath()
-            this.ctx.fillStyle = this.colors.track
-            this.ctx.rect(this.margin * PXSCALE, m - 1 * PXSCALE, this.width - this.margin  * 2 * PXSCALE, 2 * PXSCALE)
-            this.ctx.fill()
+            this.ctx.strokeStyle = this.colors.track
+            this.ctx.moveTo(this.margin * PXSCALE, m)
+            this.ctx.lineTo(this.width - this.margin * PXSCALE, m )
+            this.ctx.stroke()
 
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.moveTo(d + this.margin * PXSCALE, m)
             this.ctx.lineTo(o + this.margin * PXSCALE, m)
-            this.ctx.lineWidth = 2 * PXSCALE
             this.ctx.stroke()
 
             this.ctx.fillStyle = this.colors.knob
@@ -266,16 +268,18 @@ Fader.prototype.draw = function(){
 
         } else {
 
+            this.ctx.lineWidth = Math.round(2 * PXSCALE)
+
             this.ctx.beginPath()
-            this.ctx.fillStyle = this.colors.track
-            this.ctx.rect(m - 1 * PXSCALE, this.margin * PXSCALE, 2 * PXSCALE, this.height - this.margin *2 * PXSCALE)
-            this.ctx.fill()
+            this.ctx.strokeStyle = this.colors.track
+            this.ctx.moveTo(m, this.margin * PXSCALE)
+            this.ctx.lineTo(m, this.height - this.margin * PXSCALE)
+            this.ctx.stroke()
 
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.moveTo(m, d)
             this.ctx.lineTo(m, o)
-            this.ctx.lineWidth = 2 * PXSCALE
             this.ctx.stroke()
 
 
