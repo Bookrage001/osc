@@ -4,8 +4,9 @@
 
 - main
   - **new** `-b / --blank` option to start editing a new session directly
+  - **new** `--disable-vsync` option that improves performance (reduce input lag) on some systems
   - some inconsistent parameter combinations are now prevented
-  - firefox compatibility improved
+  - firefox compatibility improved (yet not perfect)
   - launcher window is no longer of the `splash` type, as it can be difficult to close with some window managers
 - widgets
   - **new** `modal` container : a button that turns into a fullscreen panel when clicked.
