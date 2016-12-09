@@ -22,6 +22,8 @@ $(document).ready(()=>{
 
     $.each(settings.options, (i, option)=>{
 
+        if (option.launcher === false) return
+
         var wrapper = $(`<div class="item-wrapper"></div>`),
             item = $(`
             <div class="input-wrapper">
