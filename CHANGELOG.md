@@ -14,6 +14,8 @@
   - fader: horizontal mode default height fixed
   - keyboard: black keys pressed state is more noticeable
   - matrices: added `start` option to choose the first subwidget's `id`
+- editor
+  - **new** snap-to-grid feature 
 - misc
   - building with node 4 is fixed
 
