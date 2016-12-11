@@ -32,12 +32,13 @@
      }
 
     .label {
-        padding:10rem 10rem;
         text-overflow:ellipsis;
         overflow:hidden;
         text-align:center;
-        height:35rem;
-        max-height:35rem;
+        height:30rem;
+        max-height:30rem;
+        line-height: 30rem;
+        font-size: 12rem;
         width: 100%;
         background: var(--color-raised);
         border-bottom:1rem solid var(--color-bg);

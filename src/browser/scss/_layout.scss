@@ -83,6 +83,9 @@ body {
 
             &:last-child {
                 margin-right:0;
+                i {
+                    font-size: 14rem;
+                }
             }
             a {
                 background: var(--color-fg);
