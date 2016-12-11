@@ -1,5 +1,6 @@
 var {widgetManager} = require('./managers'),
-    ipc = require('./ipc')
+    ipc = require('./ipc'),
+    {Fader} = require('./widgets/sliders/fader')
 
 module.exports = {
 
@@ -122,6 +123,19 @@ module.exports = {
         $('.disable-editor').removeClass('on')
         $('body').addClass('editor-enabled')
         EDITING = true
+
+
+        var f = $('<div class="form" id="grid-width-input"></div'),
+            w = $('<div class="input-wrapper"><label>Grid</label></div>').appendTo(f),
+            i = $('<input type="number" step="1" min="1" max="100"></div>').appendTo(w)
+        i.val(GRIDWIDTH)
+        i.change(()=>{
+            var v = Math.max(Math.min(parseInt(i.val()),100),1)
+            i.val(v)
+            GRIDWIDTH = v
+            document.documentElement.style.setProperty("--grid-width",GRIDWIDTH)
+        })
+        $('.editor').append(f)
     },
 	editorDisable: function(){
         $('.widget.ui-resizable').resizable('destroy')
@@ -132,6 +146,7 @@ module.exports = {
         $('.disable-editor').addClass('on')
         $('.enable-editor').removeClass('on')
         $('body').removeClass('editor-enabled')
+        $('#grid-width-input').remove()
         EDITING = false
     },
 
