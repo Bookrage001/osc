@@ -107,10 +107,9 @@ var callbacks = module.exports = {
         var style = document.createElement('style');
         style.innerHTML = data.join('');
         document.body.appendChild(style);
-        if (data.indexOf('--pixel-scale')!=-1) {
-            PXSCALE = data.match(/--pixel-scale\s*:\s*([^;]*)/)[1]
-            INITIALZOOM = PXSCALE
-        }
+        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
+        INITIALZOOM = PXSCALE
     },
 
     reloadCss: function(){
