@@ -81,8 +81,8 @@ var init = function(){
 
 
                         if (!target.attr('data-tab')) {
-                            newData.top = d.offsetY
-                            newData.left= d.offsetX
+                            newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                            newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                         } else {
                             delete newData.top
                             delete newData.left
@@ -95,8 +95,8 @@ var init = function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD))
                         if (!target.attr('data-tab')) {
-                            newData.top = d.offsetY
-                            newData.left= d.offsetX
+                            newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                            newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                         } else {
                             delete newData.top
                             delete newData.left
@@ -113,8 +113,8 @@ var init = function(){
                     data.widgets = data.widgets || []
                     var newData = {type:widgetType}
                     if (!target.attr('data-tab')) {
-                        newData.top = d.offsetY
-                        newData.left= d.offsetX
+                        newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                        newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                     }
                     data.widgets.push(newData)
                     updateDom(container,data)

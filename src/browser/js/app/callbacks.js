@@ -121,6 +121,9 @@ var callbacks = module.exports = {
         setTimeout(()=>{
             $('canvas').trigger('resize')
         },100)
+        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
+        INITIALZOOM = PXSCALE
     }
 
 }

@@ -288,3 +288,18 @@
         cursor:-webkit-grabbing;
     }
 }
+
+// GRID
+
+.editor-enabled {
+
+    .tab:not(.has-tabs), .panel {
+        background-image: linear-gradient(to bottom, var(--color-grid)  1rem,  transparent 1rem),
+                          linear-gradient(to right, var(--color-grid)  1rem,  transparent 1rem);
+        --size: calc(var(--grid-width) * calc(var(--grid-width) - 1) / calc(var(--grid-width) - 1) * 1rem);
+        background-size: var(--size) var(--size);
+        background-attachment: local;
+        background-position: -1rem -1rem;
+    }
+
+}

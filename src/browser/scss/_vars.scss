@@ -12,6 +12,7 @@
 
     --color-accent:#528bff;
     --color-custom:var(--color-accent);
+    --color-grid: transparentize(#528bff, 0.9);
 
 
 
@@ -20,6 +21,8 @@
     --scrollbar-size:30rem;
 
     --pixel-scale:1;
+
+    --grid-width:10;
 
     /* Unset variables by default
 

@@ -116,10 +116,11 @@ module.exports = {
     },
 
 	editorEnable: function(){
+        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         $('.editor-root').attr('data-tab','#container').removeClass('disabled')
         $('.enable-editor').addClass('on')
         $('.disable-editor').removeClass('on')
-
+        $('body').addClass('editor-enabled')
         EDITING = true
     },
 	editorDisable: function(){
@@ -130,7 +131,7 @@ module.exports = {
         $('.editor-container').remove()
         $('.disable-editor').addClass('on')
         $('.enable-editor').removeClass('on')
-
+        $('body').removeClass('editor-enabled')
         EDITING = false
     },
 

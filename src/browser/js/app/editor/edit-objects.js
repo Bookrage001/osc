@@ -212,17 +212,26 @@ var editObject = function(container, data, refresh){
             start: function(event, ui){
                 handleTarget = $(event.originalEvent.target)
             },
+            resize: function(event, ui) {
+                ui.size.height = Math.round(ui.size.height / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                ui.size.width = Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+            },
             stop: function( event, ui ) {
-                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.max(ui.size.height,30)/PXSCALE
-                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width = Math.max(ui.size.width,30)/PXSCALE
+                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.round((Math.max(ui.size.height,30)/PXSCALE) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width =  Math.round((Math.max(ui.size.width,30)/PXSCALE) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                 updateDom(container,data)
-            }
+            },
+            grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
         })
     }
 
     if (data.hasOwnProperty('top')) {
         container.draggable({
                 cursor:'-webkit-grabbing',
+                drag: function(event, ui) {
+                    ui.position.top = Math.round(ui.position.top / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                    ui.position.left = Math.round(ui.position.left / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                },
                 stop: function( event, ui ) {
                     event.preventDefault()
                     data.top = (ui.helper.position().top + container.parent().scrollTop())/PXSCALE
@@ -231,8 +240,7 @@ var editObject = function(container, data, refresh){
                     updateDom(container,data)
                 },
                 handle:'.ui-draggable-handle, > .label',
-                snap:'.widget',
-                snapTolerance:5,
+                grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],
                 helper:function(){return $('<div class="ui-helper"></div>').css({height:container.outerHeight(),width:container.outerWidth()})}
         }).append('<div class="ui-draggable-handle"></div>')
     }
