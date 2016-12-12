@@ -44,6 +44,7 @@ var scrolls = function(){
             document.documentElement.style.setProperty("--pixel-scale",'')
             document.documentElement.style.setProperty("--pixel-scale",PXSCALE)
 
+            $(window).resize()
         }
     })
     $(document).on('keydown.resetzoom', function(e){
@@ -51,6 +52,8 @@ var scrolls = function(){
             PXSCALE = INITIALZOOM
             document.documentElement.style.setProperty("--pixel-scale",'')
             document.documentElement.style.setProperty("--pixel-scale",PXSCALE)
+
+            $(window).resize()
         }
     })
 
