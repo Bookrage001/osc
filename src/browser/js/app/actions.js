@@ -130,11 +130,13 @@ module.exports = {
             i = $('<input type="number" step="1" min="1" max="100"></div>').appendTo(w)
         i.val(GRIDWIDTH)
         i.on('keyup mouseup change mousewheel',()=>{
-            var v = Math.max(Math.min(parseInt(i.val()),100),1)
-            if (isNaN(v)) return
-            i.val(v)
-            GRIDWIDTH = v
-            document.documentElement.style.setProperty("--grid-width",GRIDWIDTH)
+            setTimeout(()=>{
+                var v = Math.max(Math.min(parseInt(i.val()),100),1)
+                if (isNaN(v)) return
+                i.val(v)
+                GRIDWIDTH = v
+                document.documentElement.style.setProperty("--grid-width",GRIDWIDTH)
+            })
         })
         $('.editor').append(f)
     },
