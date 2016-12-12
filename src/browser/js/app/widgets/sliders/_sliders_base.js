@@ -117,13 +117,13 @@ _sliders_base.prototype.dragHandle = function(e, data, traversing) {
 }
 
 
-_sliders_base.prototype.resizeHandle = function() {
-    if (!self.visible) {
+_sliders_base.prototype.resizeHandle = function(e, width, height, checkColors) {
+    if (!this.visible || checkColors) {
         this.colors.track = getComputedStyle(this.widget[0]).getPropertyValue('--color-track')
         this.colors.gauge = getComputedStyle(this.widget[0]).getPropertyValue('--color-gauge')
         this.colors.knob = getComputedStyle(this.widget[0]).getPropertyValue('--color-knob')
     }
-    _canvas_base.prototype.resizeHandle.call(this)
+    _canvas_base.prototype.resizeHandle.apply(this, arguments)
 }
 
 

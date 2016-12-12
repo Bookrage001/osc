@@ -16,7 +16,7 @@ var _canvas_base = module.exports = function() {
     this.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
 
 
-    this.canvas.resize(this.resizeHandleProxy.bind(this))
+    this.canvas.on('resize',this.resizeHandleProxy.bind(this))
 
     this.ctx.arc = (x, y, r, s, e, c)=>{
 
@@ -35,10 +35,10 @@ _canvas_base.prototype.resizeHandleProxy = function() {
     this.resizeHandle.apply(this,arguments)
 }
 
-_canvas_base.prototype.resizeHandle = function(){
+_canvas_base.prototype.resizeHandle = function(e, width, height, checkColors){
 
-    var width = this.canvas.width(),
-        height = this.canvas.height()
+    var width = width || this.canvas.width(),
+        height = height || this.canvas.height()
 
     if (height==100 && width==100) return
 
@@ -49,7 +49,7 @@ _canvas_base.prototype.resizeHandle = function(){
     this.canvas[0].setAttribute('width',width)
     this.canvas[0].setAttribute('height',height)
 
-    if (!self.visible) {
+    if (!this.visible || checkColors) {
         this.visible = true
         this.colors.custom = getComputedStyle(this.widget[0]).getPropertyValue('--color-custom')
         this.colors.text = getComputedStyle(this.widget[0]).getPropertyValue('--color-text')

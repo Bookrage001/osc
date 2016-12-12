@@ -134,7 +134,7 @@ Knob.prototype.percentToAngle = function(percent) {
 }
 
 Knob.prototype.resizeHandle = function() {
-    _sliders_base.prototype.resizeHandle.call(this)
+    _sliders_base.prototype.resizeHandle.apply(this, arguments)
     this.minDimension = Math.min(this.width, this.height)
     this.gaugeWidth = this.minDimension / 8
     if (this.widgetData.compact) {

@@ -48,7 +48,7 @@ _plots_base.prototype.syncHandle = function(e) {
 
 _plots_base.prototype.resizeHandle = function(){
     this.updateData()
-    _canvas_base.prototype.resizeHandle.call(this)
+    _canvas_base.prototype.resizeHandle.apply(this, arguments)
 }
 
 _plots_base.prototype.draw = function() {

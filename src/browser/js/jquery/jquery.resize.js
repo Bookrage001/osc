@@ -56,8 +56,9 @@
 
             if (!document.contains(elem)) continue
 
-            var width = elem.offsetWidth,
-                height = elem.offsetHeight
+            var style = window.getComputedStyle(elem),
+                width = parseInt(style['width']) - parseInt(style['padding-left']) - parseInt(style['padding-right']),
+                height = parseInt(style['height']) - parseInt(style['padding-top']) - parseInt(style['padding-bottom'])
 
             if (!width) continue
 

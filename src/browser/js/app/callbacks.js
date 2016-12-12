@@ -118,7 +118,7 @@ var callbacks = module.exports = {
             this.href = this.href.replace(/\?.*|$/, queryString);
         });
         setTimeout(()=>{
-            $('canvas').trigger('resize')
+            $('canvas').trigger('resize',[0,0,true])
         },100)
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
