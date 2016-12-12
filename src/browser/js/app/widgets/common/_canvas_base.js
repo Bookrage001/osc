@@ -18,6 +18,11 @@ var _canvas_base = module.exports = function() {
 
     this.canvas.resize(this.resizeHandleProxy.bind(this))
 
+    this.ctx.arc = (x, y, r, s, e, c)=>{
+
+        CanvasRenderingContext2D.prototype.arc.call(this.ctx, x, y, Math.max(0,r), s, e, c)
+
+    }
 
 }
 
