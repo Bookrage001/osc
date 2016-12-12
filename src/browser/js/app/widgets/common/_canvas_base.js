@@ -37,17 +37,18 @@ _canvas_base.prototype.resizeHandleProxy = function() {
 
 _canvas_base.prototype.resizeHandle = function(e, width, height, checkColors){
 
-    var width = width || this.canvas.width(),
-        height = height || this.canvas.height()
+    var width = width,
+        height = height
 
-    if (height==100 && width==100) return
+    if (width && height) {
 
+        this.height=height
+        this.width=width
 
-    this.height=height
-    this.width=width
+        this.canvas[0].setAttribute('width',width)
+        this.canvas[0].setAttribute('height',height)
 
-    this.canvas[0].setAttribute('width',width)
-    this.canvas[0].setAttribute('height',height)
+    }
 
     if (!this.visible || checkColors) {
         this.visible = true
