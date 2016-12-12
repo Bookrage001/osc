@@ -294,18 +294,6 @@
 .editor-enabled {
 
     .tab:not(.has-tabs), .panel {
-        &:after {
-            content:"";
-            position: absolute;;
-            top:0;
-            left: 0;
-            bottom:0;
-            right:0;
-            background: var(--color-bg);
-            z-index: -1;
-            opacity: 1;
-            animation: fade .25s normal forwards;
-        }
         background-image: linear-gradient(to bottom, var(--color-grid)  1rem,  transparent 1rem),
                           linear-gradient(to right, var(--color-grid)  1rem,  transparent 1rem);
         --size: calc(var(--grid-width) * calc(var(--grid-width) - 1) / calc(var(--grid-width) - 1) * 1rem);
@@ -314,8 +302,4 @@
         background-position: -1rem -1rem;
     }
 
-}
-@keyframes fade {
-    from {opacity: 1;}
-    to {opacity: 0;}
 }
