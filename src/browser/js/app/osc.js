@@ -70,7 +70,7 @@ Osc.prototype.receive = function(data){
         // compare arrays using > and < operators (both false = equality)
         if (!target || !(widget[i].widgetData.target < target || widget[i].widgetData.target > target)) {
             // update matching widgets
-            if (widget[i]) widget[i].setValue(args,{send:false,sync:true,fromExternal:!target})
+            if (widget[i] && widget[i].setValue) widget[i].setValue(args,{send:false,sync:true,fromExternal:!target})
         }
     }
 
