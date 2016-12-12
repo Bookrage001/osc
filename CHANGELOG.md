@@ -8,14 +8,18 @@
   - some inconsistent parameter combinations are now prevented
   - firefox compatibility improved (yet not perfect)
   - launcher window is no longer of the `splash` type, as it was difficult to close with some window managers
+- ui
+  - main font-size reduce to 12px
 - widgets
   - **new** `modal` container : a button that turns into a fullscreen panel when clicked.
   - sliders/xy: add `spring` option that makes that widget jump back to its initial value when released
   - fader: horizontal mode default height fixed
   - keyboard: black keys pressed state is more noticeable
   - matrices: added `start` option to choose the first subwidget's `id`
+  - labels' height reduced
 - editor
-  - **new** snap-to-grid feature 
+  - **new** snap-to-grid feature
+  - widgets' min-width set to grid's width
 - misc
   - building with node 4 is fixed
 
