@@ -92,6 +92,5 @@
     }
 
     $(window).resize(checkResizes)
-    resizePollingLoop()
 
 })(jQuery)
