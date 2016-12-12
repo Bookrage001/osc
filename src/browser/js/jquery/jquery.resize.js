@@ -4,31 +4,20 @@
 */
 (function($){
 
-    var elems = [],
-        resizedElems = [],
-        pollInterval = 250,
-        resizeTimeout
+    var elems = []
 
     $.event.special.resize = {
-      setup: function() {
+      setup: function(data, namespaces, handler) {
 
           if (this===window) return false
 
-          var elem = this
-
           // Add this element to the list of internal elements to monitor.
-          elems.push( elem )
+          elems.push(this)
 
-          // If this is the first element added, start the polling loop.
-          if ( elems.length === 1 ) {
-            resizePollingLoop()
-          }
       },
       teardown: function() {
 
           if (this===window) return false
-
-          var elem = this
 
           // Remove this element from the list of internal elements to monitor.
           for (var i = elems.length - 1; i >= 0; i--) {
@@ -44,7 +33,6 @@
 
       },
       add: function(handleObj) {
-
           if (this===window) return false
 
           // Save a reference to the bound event handler.
@@ -54,12 +42,15 @@
             // Call the originally-bound event handler and return its result.
             return old_handler.apply(this, arguments)
           }
+
+          this.resizeHandler = handleObj.handler
+
       }
     }
 
     function checkResizes(){
         // Iterate over all elements to which the 'resize' event is bound.
-        resizedElems = []
+        var resizedElems = []
         for (var i = elems.length - 1; i >= 0; i--) {
             var elem = elems[i]
 
@@ -79,15 +70,8 @@
             }
         }
         for (var i = resizedElems.length - 1; i >= 0; i--)  {
-            $(resizedElems[i]).triggerHandler('resize',[resizedElems[i].resizedataw,resizedElems[i].resizedatah])
+            resizedElems[i].resizeHandler(undefined, resizedElems[i].resizedataw, resizedElems[i].resizedatah)
         }
-
-    }
-
-    function resizePollingLoop() {
-        // yep, setTimeout, 'cuz requestAnimation doesn't seem to perform that well
-        checkResizes()
-        resizeTimeout = window.setTimeout(resizePollingLoop, pollInterval)
 
     }
 

@@ -18,7 +18,6 @@
 		self.attr('tabindex',"0")
 
 		canvas.resize(function(e,width,height){
-            e.stopPropagation()
 
 			var width = width*2,
 				height = height*2
