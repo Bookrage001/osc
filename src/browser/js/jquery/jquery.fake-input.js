@@ -14,22 +14,26 @@
 		self.width = undefined
 		self.color = undefined
         self.center = settings.align == 'center'
+        self.visible = false
 
 		self.attr('tabindex',"0")
 
-		canvas.resize(function(e,width,height){
+		canvas.resize(function(e,width,height,checkColors){
 
 			var width = width*2,
 				height = height*2
 
-			if (height==100 && width==100 || !width) return
+			if (width && height) {
+                self.height=height
+                self.width=width
 
-            self.color = getComputedStyle(canvas[0]).getPropertyValue("--color-text")
-			self.height=height
-			self.width=width
+                canvas[0].setAttribute('width',width)
+                canvas[0].setAttribute('height',height)
+            }
 
-			canvas[0].setAttribute('width',width)
-			canvas[0].setAttribute('height',height)
+            if (!self.visible || checkColors) {
+                self.color = getComputedStyle(canvas[0]).getPropertyValue("--color-text")
+            }
 
 			self.val(self.value)
 		})
