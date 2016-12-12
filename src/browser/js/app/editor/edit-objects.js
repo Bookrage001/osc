@@ -218,7 +218,7 @@ var editObject = function(container, data, refresh){
             },
             stop: function( event, ui ) {
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.round((Math.max(ui.size.height,30)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width =  Math.round((Math.max(ui.size.width,30)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                 updateDom(container,data)
             },
             grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
