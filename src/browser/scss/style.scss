@@ -373,8 +373,10 @@ i {
     .popup-title {
         position: relative;
         padding:15rem;
-        padding-right: 50rem;
         background:var(--color-raised);
+        &.closable {
+            padding-right: 50rem;
+        }
         .closer {
             position:absolute;
             right:0rem;
