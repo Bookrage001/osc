@@ -5,6 +5,7 @@
 (function($){
 
     var elems = [],
+        resizedElems = [],
         pollInterval = 250,
         resizeTimeout
 
@@ -58,26 +59,27 @@
 
     function checkResizes(){
         // Iterate over all elements to which the 'resize' event is bound.
+        resizedElems = []
         for (var i = elems.length - 1; i >= 0; i--) {
-            var elem = elems[i],
-                width = elem.offsetWidth,
+            var elem = elems[i]
+
+            if (!document.contains(elem)) continue
+
+            var width = elem.offsetWidth,
                 height = elem.offsetHeight
 
             if (!width) continue
 
-            var data = {
-                    w:elem.resizedataw,
-                    h:elem.resizedatah
-                }
-
             // If element size has changed since the last time, update the element
             // data store and trigger the 'resize' event.
-            if ( width != data.w || height != data.h ) {
+            if ( width != elem.resizedataw || height != elem.resizedatah ) {
                 elem.resizedataw = width
                 elem.resizedatah = height
-                $(elem).triggerHandler('resize',[width,height])
+                resizedElems.push(elem)
             }
-
+        }
+        for (var i = resizedElems.length - 1; i >= 0; i--)  {
+            $(resizedElems[i]).triggerHandler('resize',[resizedElems[i].resizedataw,resizedElems[i].resizedatah])
         }
 
     }
