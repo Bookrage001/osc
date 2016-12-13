@@ -108,23 +108,20 @@ var init = function(){
             }
 
             actions['<i class="fa fa-plus"></i> Add widget'] = {}
-            var createFunction = function(widgetType,container,data){
-                return function() {
-                    data.widgets = data.widgets || []
-                    var newData = {type:widgetType}
-                    if (!target.attr('data-tab')) {
-                        newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                        newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                    }
-                    data.widgets.push(newData)
-                    updateDom(container,data)
-                }
-            }
             for (category in widgetCategories) {
                 actions['<i class="fa fa-plus"></i> Add widget'][category] = {}
                 for (t in widgetCategories[category]) {
-                    var wtype = widgetCategories[category][t]
-                    actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] = createFunction(wtype,container,data)
+                    let wtype = widgetCategories[category][t]
+                    actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] =  function(){
+                            data.widgets = data.widgets || []
+                            var newData = {type:wtype}
+                            if (!target.attr('data-tab')) {
+                                newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                                newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                            }
+                            data.widgets.push(newData)
+                            updateDom(container,data)
+                    }
 
                 }
             }
