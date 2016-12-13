@@ -56,7 +56,9 @@ var init = function(){
         }
 
 
-        var actions = {}
+        var actions = {},
+            clickX = Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
+            clickY = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
         // actions['<i class="fa fa-edit"></i> Edit'] = function(){editObject(container,data)}
 
@@ -81,8 +83,8 @@ var init = function(){
 
 
                         if (!target.attr('data-tab')) {
-                            newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                            newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                            newData.top = clickY
+                            newData.left= clickX
                         } else {
                             delete newData.top
                             delete newData.left
@@ -95,8 +97,8 @@ var init = function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(JSON.stringify(CLIPBOARD))
                         if (!target.attr('data-tab')) {
-                            newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                            newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                            newData.top = clickY
+                            newData.left= clickX
                         } else {
                             delete newData.top
                             delete newData.left
@@ -116,8 +118,8 @@ var init = function(){
                             data.widgets = data.widgets || []
                             var newData = {type:wtype}
                             if (!target.attr('data-tab')) {
-                                newData.top = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                                newData.left= Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                                newData.top = clickY
+                                newData.left= clickX
                             }
                             data.widgets.push(newData)
                             updateDom(container,data)
