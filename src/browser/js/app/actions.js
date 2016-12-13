@@ -78,7 +78,7 @@ module.exports = {
 
     toggleFullscreen: function(){
 
-        var isInFullScreen = document.webkitFullScreenElement || document.mozFullScreenElement
+        var isInFullScreen = document.webkitFullscreenElement || document.mozFullScreenElement
 
         if (isInFullScreen) {
             if (document.webkitExitFullscreen) document.webkitExitFullscreen()
