@@ -94,7 +94,7 @@ var sidepanel = function(data){
 		var itemData = data[i]
 
 		var item = $('<li></li>'),
-			inner = $('<div></div>').appendTo(item)
+			inner = $('<div></div>').appendTo(item),
 			wrapper = $('<div class="actions"></div>').appendTo(inner)
 
 		if (itemData.title) $('<div class="title">'+itemData.title+'</div>').prependTo(wrapper)
