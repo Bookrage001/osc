@@ -122,7 +122,7 @@ MultiXy.prototype = Object.create(_pads_base.prototype)
 MultiXy.prototype.constructor = MultiXy
 
 MultiXy.prototype.resizeHandle = function(){
-    _pads_base.prototype.resizeHandle.call(this)
+    _pads_base.prototype.resizeHandle.apply(this, arguments)
     this.updateHandlesPosition()
 }
 

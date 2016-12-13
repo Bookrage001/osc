@@ -52,12 +52,13 @@ _canvas_base.prototype.resizeHandle = function(e, width, height, checkColors){
 
     if (!this.visible || checkColors) {
         this.visible = true
-        this.colors.custom = getComputedStyle(this.widget[0]).getPropertyValue('--color-custom')
-        this.colors.text = getComputedStyle(this.widget[0]).getPropertyValue('--color-text')
-        this.colors.raised = getComputedStyle(this.widget[0]).getPropertyValue('--color-raised')
-        this.colors.bg = getComputedStyle(this.widget[0]).getPropertyValue('--color-bg')
-        this.colors.fg = getComputedStyle(this.widget[0]).getPropertyValue('--color-fg')
-        this.colors.faded = getComputedStyle(this.widget[0]).getPropertyValue('--color-faded')
+        var style =  getComputedStyle(this.widget[0])
+        this.colors.custom = style.getPropertyValue('--color-custom')
+        this.colors.text = style.getPropertyValue('--color-text')
+        this.colors.raised = style.getPropertyValue('--color-raised')
+        this.colors.bg = style.getPropertyValue('--color-bg')
+        this.colors.fg = style.getPropertyValue('--color-fg')
+        this.colors.faded = style.getPropertyValue('--color-faded')
     }
 
     requestAnimationFrame(this.draw.bind(this))

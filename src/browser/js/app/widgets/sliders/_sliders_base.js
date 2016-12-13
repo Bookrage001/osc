@@ -119,9 +119,10 @@ _sliders_base.prototype.dragHandle = function(e, data, traversing) {
 
 _sliders_base.prototype.resizeHandle = function(e, width, height, checkColors) {
     if (!this.visible || checkColors) {
-        this.colors.track = getComputedStyle(this.widget[0]).getPropertyValue('--color-track')
-        this.colors.gauge = getComputedStyle(this.widget[0]).getPropertyValue('--color-gauge')
-        this.colors.knob = getComputedStyle(this.widget[0]).getPropertyValue('--color-knob')
+        var style =  getComputedStyle(this.widget[0])
+        this.colors.track = style.getPropertyValue('--color-track')
+        this.colors.gauge = style.getPropertyValue('--color-gauge')
+        this.colors.knob = style.getPropertyValue('--color-knob')
     }
     _canvas_base.prototype.resizeHandle.apply(this, arguments)
 }
