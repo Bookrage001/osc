@@ -27,10 +27,6 @@
               }
           }
 
-          if ( !elems.length ) {
-            clearTimeout(resizeTimeout)
-          }
-
       },
       add: function(handleObj) {
           if (this===window) return false
