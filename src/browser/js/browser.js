@@ -16,11 +16,11 @@ INITIALZOOM = PXSCALE
 
 ///////////////////////
 
-$ = jQuery = require('./jquery/jquery.min')
-require('./jquery/jquery.ui')
-require('./jquery/jquery.drag')
-require('./jquery/jquery.resize')
-require('./jquery/jquery.fake-input')
+$ = jQuery = require('./libs/jquery.min')
+require('./libs/jquery.ui')
+require('./libs/jquery.drag')
+require('./libs/jquery.resize')
+require('./libs/jquery.fake-input')
 
 ///////////////////////
 
