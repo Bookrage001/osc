@@ -122,6 +122,8 @@ module.exports = {
         $('.enable-editor').addClass('on')
         $('.disable-editor').removeClass('on')
         $('body').addClass('editor-enabled')
+                 .toggleClass('no-grid', GRIDWIDTH==1)
+
         EDITING = true
 
 
@@ -135,6 +137,7 @@ module.exports = {
                 if (isNaN(v)) return
                 i.val(v)
                 GRIDWIDTH = v
+                $('body').toggleClass('no-grid', GRIDWIDTH==1)
                 document.documentElement.style.setProperty("--grid-width",GRIDWIDTH)
             })
         })
