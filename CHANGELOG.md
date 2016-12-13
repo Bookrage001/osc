@@ -8,8 +8,6 @@
   - some inconsistent parameter combinations are now prevented
   - firefox compatibility improved (yet not perfect)
   - launcher window is no longer of the `splash` type, as it was difficult to close with some window managers
-- ui
-  - main font-size reduced to 12px
 - widgets
   - **new** `modal` container : a button that turns into a fullscreen panel when clicked.
   - sliders/xy: add `spring` option that makes that widget jump back to its initial value when released
