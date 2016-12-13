@@ -49,7 +49,7 @@ Osc.prototype.receive = function(data){
             if (widgetManager.getWidgetByAddress(ref).length) {
                 addressref = ref
                 args = data.args.slice(i,data.args.length)
-                continue
+                break
             }
 
         }

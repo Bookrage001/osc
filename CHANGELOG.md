@@ -2,6 +2,8 @@
 
 ## 0.13.1
 
+- bug fixes
+  - regression preventing received osc messages to be properly routed to widgets with `preArgs`
 - debug
   - errors occuring in the browser process are now piped to the main process' console with the source file name and the line number.
 
