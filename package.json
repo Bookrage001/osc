@@ -4,6 +4,7 @@
   "dependencies": {
     "electron": "1.4.4",
     "browserify": "13.1.0",
+    "exorcist": "0.4.0",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.2",
     "socket.io-client": "1.7.1",
