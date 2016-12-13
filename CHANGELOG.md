@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.1
+
+- debug
+  - errors occuring in the browser process are now piped to the main process' console with the source file name and the line number.
+
 ## 0.13.0
 
 - main
