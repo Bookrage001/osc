@@ -23,7 +23,7 @@ var options = {
                 true : 'Port must be an integer >= 1024'
          }
      },
-     'o':{alias:'osc-port',type:'number',describe:'osc input port',
+     'o':{alias:'osc-port',type:'number',describe:'osc input port (default to --port)',
           check: (o)=>{
               return (!isNaN(o) && o > 1023 && parseInt(o)===o) ?
                  true : 'Port must be an integer >= 1024'

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.2
+
+- main
+  - osc input port (`-o`) is now set to the http port (`-p`) by default
+
 ## 0.13.1
 
 - bug fixes

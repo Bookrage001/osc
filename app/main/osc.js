@@ -4,7 +4,7 @@ require('vmodule')('serialport', {}, {global: true})
 var osc = require('osc'),
 	ipc = require('./server').ipc,
 	settings = require('./settings'),
-	oscInPort = settings.read('oscInPort'),
+	oscInPort = settings.read('oscInPort') || settings.read('httpPort'),
 	debug = settings.read('debug'),
 	vm = require('vm'),
 	fs = require('fs')
