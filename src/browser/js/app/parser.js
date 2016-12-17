@@ -103,7 +103,7 @@ module.exports.widgets = function(data,parent) {
 
         // Set widget's undefined options to default
         for (i in tmpWidgetOptions[widgetData.type]) {
-            if (i.indexOf('separator')==-1 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
+            if (i.indexOf('_')!=0 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
         }
 
         // Genrate widget's id, based on its type

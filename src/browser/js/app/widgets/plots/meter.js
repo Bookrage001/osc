@@ -1,59 +1,54 @@
-var {Fader} = require('../sliders/fader')
+var Fader = require('../sliders/fader')
 
-module.exports.options = {
-    type:'fader',
-    id:'auto',
+module.exports = class Meter extends Fader {
 
-    separator1:'style',
+    static options() {
 
-    label:'auto',
-    unit:'',
-    left:'auto',
-    top:'auto',
-    width:'auto',
-    height:'auto',
-    horizontal:false,
-    color:'auto',
-    css:'',
+        return {
+            type:'fader',
+            id:'auto',
 
-    separator3:'osc',
+            _style:'style',
 
-    range:{min:0,max:1},
-    logScale:false,
-    origin:'auto',
-    value:'',
-    address:'auto',
-    preArgs:[]
-}
+            label:'auto',
+            unit:'',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            horizontal:false,
+            color:'auto',
+            css:'',
 
+            _osc:'osc',
 
-var {Fader} = require('../sliders/fader')
+            range:{min:0,max:1},
+            logScale:false,
+            origin:'auto',
+            value:'',
+            address:'auto',
+            preArgs:[]
+        }
 
-var Meter = module.exports.Meter = function(widgetData, container){
+    }
 
-    var data = widgetData
-    data.compact = true
+    constructor(widgetData) {
 
-    Fader.apply(this, arguments)
+        widgetData.compact = true
 
-    this.input.hide()
+        super(...arguments)
 
-    this.widget.addClass('meter')
+        this.input.hide()
 
-    this.widget.off('mousewheel')
-    this.canvas.off('draginit')
-    this.canvas.off('drag')
+        this.widget.addClass('meter')
+                   .off('mousewheel')
 
-}
+        this.canvas.off('draginit drag')
 
-Meter.prototype = Object.create(Fader.prototype)
+    }
 
-Meter.prototype.constructor = Meter
+    sendValue() {
+        // disabled
+    }
 
-Meter.prototype.sendValue = ()=>{}
-
-module.exports.create = function(widgetData,container) {
-
-    var meter = new Meter(widgetData, container)
-    return meter
 }

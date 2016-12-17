@@ -1,101 +1,100 @@
 var _widgets_base = require('../common/_widgets_base'),
     $document = $(document)
 
-module.exports.options = {
-    type:'toggle',
-    id:'auto',
-    linkId:'',
+module.exports = class Toggle extends _widgets_base {
 
-    separator1:'style',
+    static options() {
 
-    label:'auto',
-    left:'auto',
-    top:'auto',
-    width:'auto',
-    height:'auto',
-    color:'auto',
-    css:'',
+        return {
+            type:'toggle',
+            id:'auto',
+            linkId:'',
 
-    separator2:'osc',
+            _style:'style',
 
-    on:1,
-    off:0,
-    value:'',
-    precision:2,
-    address:'auto',
-    preArgs:[],
-    target:[]
-}
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            color:'auto',
+            css:'',
 
-var Toggle = module.exports.Toggle = function(widgetData,container) {
+            _osc:'osc',
 
-    _widgets_base.apply(this, arguments)
+            on:1,
+            off:0,
+            value:'',
+            precision:2,
+            address:'auto',
+            preArgs:[],
+            target:[]
+        }
 
-    this.widget = $(`
-        <div class="light">
-        </div>\
-        `)
+    }
 
-    this.widget.value = this.widget.find('span')
-    this.widget.state = 0
+    constructor() {
 
-    this.widget.on('drag',(e)=>{e.stopPropagation()})
-    this.widget.on('draginit.toggle',()=>{
-        this.widget.off('draginit.toggle')
-        this.fakeclick()
-    })
+        var widgetHtml = `
+            <div class="light"></div>
+        `
 
+        super(...arguments, widgetHtml)
 
-    this.value = this.getValue()
+        this.widget.value = this.widget.find('span')
+        this.widget.state = 0
 
-}
-
-
-Toggle.prototype = Object.create(_widgets_base.prototype)
-
-Toggle.prototype.constructor = Toggle
-
-Toggle.prototype.getValue = function(){
-
-    return this.widget.state ?
-        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
-        :
-        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
-
-}
-
-Toggle.prototype.fakeclick = function(){
-    var newVal = this.widget.state?this.widgetData.off:this.widgetData.on
-    this.setValue(newVal,{sync:true,send:true})
-    $document.on('dragend.toggle',()=>{
-        $document.off('dragend.toggle')
+        this.widget.on('drag',(e)=>{e.stopPropagation()})
         this.widget.on('draginit.toggle',()=>{
             this.widget.off('draginit.toggle')
             this.fakeclick()
         })
-    })
-}
 
 
-Toggle.prototype.setValue = function(v,options={}){
-    if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
-        this.widget.addClass('on')
-        this.widget.state = 1
-        this.value = this.widgetData.on
-        if (options.send) this.sendValue(this.widgetData.on)
-    } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
-        this.widget.removeClass('on')
-        this.widget.state = 0
-        this.value = this.widgetData.off
-        if (options.send) this.sendValue(this.widgetData.off)
+        this.value = this.getValue()
+
     }
 
-    if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options})
+    getValue() {
 
-}
+        return this.widget.state ?
+        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
+        :
+        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
+
+    }
+
+    fakeclick() {
+
+        var newVal = this.widget.state?this.widgetData.off:this.widgetData.on
+        this.setValue(newVal,{sync:true,send:true})
+        $document.on('dragend.toggle',()=>{
+            $document.off('dragend.toggle')
+            this.widget.on('draginit.toggle',()=>{
+                this.widget.off('draginit.toggle')
+                this.fakeclick()
+            })
+        })
+
+    }
 
 
-module.exports.create = function(widgetData, container) {
-    var toggle = new Toggle(widgetData, container)
-    return toggle
+    setValue(v,options={}) {
+
+        if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
+            this.widget.addClass('on')
+            this.widget.state = 1
+            this.value = this.widgetData.on
+            if (options.send) this.sendValue(this.widgetData.on)
+        } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
+            this.widget.removeClass('on')
+            this.widget.state = 0
+            this.value = this.widgetData.off
+            if (options.send) this.sendValue(this.widgetData.off)
+        }
+
+        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options})
+
+    }
+
 }

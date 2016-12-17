@@ -1,56 +1,55 @@
 var _widgets_base = require('../common/_widgets_base')
 
-module.exports.options = {
-	type:'panel',
-	id:'auto',
+module.exports = class Panel extends _widgets_base {
 
-	separator1:'style',
+	static options() {
 
-	label:'auto',
-	left:'auto',
-	top:'auto',
-	width:'auto',
-	height:'auto',
-	scroll:true,
-	color:'auto',
-	css:'',
+		return {
+			type:'panel',
+			id:'auto',
 
-	separator2:'chilren',
+			_style:'style',
 
-	widgets:[],
-	tabs:[]
-}
+			label:'auto',
+			left:'auto',
+			top:'auto',
+			width:'auto',
+			height:'auto',
+			scroll:true,
+			color:'auto',
+			css:'',
 
-var Panel = module.exports.Panel = function(widgetData) {
+			_children:'chilren',
 
-	_widgets_base.apply(this,arguments)
+			widgets:[],
+			tabs:[]
+		}
 
-	var	parsers = require('../../parser'),
-		parsewidgets = parsers.widgets,
-		parsetabs = parsers.tabs
+	}
+
+	constructor(widgetData) {
 
 
-	this.widget = $(`
-            <div class="panel">
-            </div>
-            `)
+		var widgetHtml = `
+			<div class="panel
+						${!widgetData.scroll?'noscroll':''}
+						${widgetData.tabs.length?'has-tabs':''}
+						">
+			</div>
+		`
 
-    if (!widgetData.scroll) this.widget.addClass('noscroll')
+		super(...arguments, widgetHtml)
 
-    if (widgetData.tabs.length) {
-        parsetabs(widgetData.tabs,this.widget)
-		this.widget.addClass('has-tabs')
-    } else {
-        parsewidgets(widgetData.widgets,this.widget)
-    }
+		var	parsers = require('../../parser'),
+			parsewidgets = parsers.widgets,
+			parsetabs = parsers.tabs
 
-}
+		if (widgetData.tabs.length) {
+			parsetabs(widgetData.tabs,this.widget)
+		} else {
+			parsewidgets(widgetData.widgets,this.widget)
+		}
 
-Panel.prototype = Object.create(_widgets_base.prototype)
+	}
 
-Panel.prototype.constructor = Panel
-
-module.exports.create = function(widgetData) {
-    var panel = new Panel(widgetData)
-    return panel
 }

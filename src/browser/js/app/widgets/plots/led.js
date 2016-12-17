@@ -1,59 +1,57 @@
 var {mapToScale} = require('../utils'),
     _widgets_base = require('../common/_widgets_base')
 
+module.exports = class Led extends _widgets_base {
 
-module.exports.options = {
-    type:'led',
-    id:'auto',
+    static options() {
 
-    separator1:'style',
+        return {
+            type:'led',
+            id:'auto',
 
-    label:'auto',
-    left:'auto',
-    top:'auto',
-    width:'auto',
-    height:'auto',
-    color:'auto',
-    css:'',
+            _style:'style',
 
-    separator2:'osc',
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            color:'auto',
+            css:'',
 
-    range:{min:0,max:1},
-    logScale:false,
-    value:'',
-    preArgs:[],
-    address:'auto'
-}
+            _osc:'osc',
 
-var Led = module.exports.Led = function(widgetData,container) {
+            range:{min:0,max:1},
+            logScale:false,
+            value:'',
+            preArgs:[],
+            address:'auto'
 
-    _widgets_base.apply(this,arguments)
+        }
 
-    this.widget = $(`
+    }
+
+    constructor(widgetData) {
+
+        var widgetHtml = `
             <div class="led">
                 <div><span></span></div>
             </div>
-            `),
-    this.led = this.widget.find('span')
+        `
 
+        super(...arguments, widgetHtml)
 
-    this.setValue(this.widgetData.range.min)
+        this.led = this.widget.find('span')
 
-}
+        this.setValue(widgetData.range.min)
 
+    }
 
-Led.prototype = Object.create(_widgets_base.prototype)
+    setValue(v) {
 
-Led.prototype.constructor = Led
+        if (typeof v != 'number') return
+        this.led.css('opacity',mapToScale(v,[this.widgetData.range.min,this.widgetData.range.max],[0,1],false,this.widgetData.logScale,true))
 
-Led.prototype.setValue = function(v){
+    }
 
-    if (typeof v != 'number') return
-    this.led.css('opacity',mapToScale(v,[this.widgetData.range.min,this.widgetData.range.max],[0,1],false,this.widgetData.logScale,true))
-
-}
-
-module.exports.create = function(widgetData, container) {
-    var led = new Led(widgetData, container)
-    return led
 }

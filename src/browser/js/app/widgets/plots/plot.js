@@ -2,58 +2,67 @@ var {mapToScale} = require('../utils'),
     _plots_base = require('./_plots_base'),
     {widgetManager} = require('../../managers')
 
-module.exports.options = {
-	type:'plot',
-	id:'auto',
+module.exports = class Plot extends _plots_base {
 
-	separator1:'style',
+    static options() {
 
-	label:'auto',
-	left:'auto',
-	top:'auto',
-	width:'auto',
-	height:'auto',
-    color:'auto',
-	css:'',
+        return {
+        	type:'plot',
+        	id:'auto',
 
-	separator2:'plot',
+        	_style:'style',
 
-	points:[],
-	rangeX: {min:0,max:1},
-	rangeY: {min:0,max:1},
-    origin: 'auto',
-    logScaleX: false,
-    logScaleY: false,
+        	label:'auto',
+        	left:'auto',
+        	top:'auto',
+        	width:'auto',
+        	height:'auto',
+            color:'auto',
+        	css:'',
 
-    separator3:'osc',
+        	_plot:'plot',
 
-    address:'auto',
-    preArgs:[],
+        	points:[],
+        	rangeX: {min:0,max:1},
+        	rangeY: {min:0,max:1},
+            origin: 'auto',
+            logScaleX: false,
+            logScaleY: false,
 
-}
+            _osc:'osc',
 
-var Plot = module.exports.Plot = function(widgetData) {
+            address:'auto',
+            preArgs:[],
 
-    _plots_base.call(this,widgetData)
+        }
 
-    if (typeof widgetData.points=='string') {
+    }
 
-        this.linkedWidgets.push(widgetData.points)
+    constructor(widgetData) {
 
-    } else if (typeof widgetData.points=='object') {
+        super(...arguments)
 
-        for (i in widgetData.points) {
-            for (j in widgetData.points[i]) {
-                if (typeof widgetData.points[i][j] == 'string') {
-                    this.linkedWidgets.push(widgetData.points[i][j])
+        if (typeof widgetData.points=='string') {
+
+            this.linkedWidgets.push(widgetData.points)
+
+        } else if (typeof widgetData.points=='object') {
+
+            for (i in widgetData.points) {
+                for (j in widgetData.points[i]) {
+                    if (typeof widgetData.points[i][j] == 'string') {
+                        this.linkedWidgets.push(widgetData.points[i][j])
+                    }
                 }
             }
         }
+
     }
 
-    this.updateData = function(){
+    updateData() {
+
         var data = [],
-            points = widgetData.points,
+            points = this.widgetData.points,
             widget = widgetManager.getWidgetById(points)
 
         if (typeof points=='string' && widget.length) {
@@ -66,7 +75,7 @@ var Plot = module.exports.Plot = function(widgetData) {
 
                 data[i] = []
 
-                for (k in [0,1]) {
+                for (var k in [0,1]) {
                     let widget = widgetManager.getWidgetById(points[i][k])
                     if (typeof points[i][k] == 'string' && widget.length) {
                         data[i][k] = widget[widget.length-1].getValue()
@@ -80,14 +89,7 @@ var Plot = module.exports.Plot = function(widgetData) {
         }
 
         if (data.length) this.data = data
+
     }
-}
 
-Plot.prototype = Object.create(_plots_base.prototype)
-
-Plot.prototype.constructor = Plot
-
-module.exports.create = function(widgetData) {
-    var plot = new Plot(widgetData)
-    return plot
 }

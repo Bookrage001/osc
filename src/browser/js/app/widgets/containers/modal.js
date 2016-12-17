@@ -1,69 +1,65 @@
-var {Panel} = require('./panel')
-
-module.exports.options = {
-	type:'modal',
-	id:'auto',
-
-	separator1:'style',
-
-	label:'auto',
-	left:'auto',
-	top:'auto',
-	width:'auto',
-	height:'auto',
-	color:'auto',
-	css:'',
-
-	separator2:'osc',
-
-	address:'auto',
-
-	separator3:'chilren',
-
-	widgets:[],
-	tabs:[]
-}
-
-var Modal = module.exports.Modal = function(widgetData, container) {
-
-	Panel.apply(this,arguments)
-
-	this.widget.removeClass('noscroll')
-	this.container = container
-
-	container.append('<div class="light"></div>')
-	this.light = container.find('.light').first()
-
-	this.modal = this.widget.detach()
-
-	this.value = false
-
-	this.light.on('fake-click',()=>{
-		this.setValue(!this.value)
-	})
+var Panel = require('./panel'),
+	_widgets_base = require('../common/_widgets_base')
 
 
-}
+module.exports = class Modal extends Panel {
 
-Modal.prototype = Object.create(Panel.prototype)
+	static options() {
 
-Modal.prototype.constructor = Modal
+		return  {
+			type:'modal',
+			id:'auto',
 
-Modal.prototype.setValue = function(v) {
-	if (v) {
-		this.container.addClass('on')
-		this.widget.addClass('on')
-		this.light.addClass('on')
-		this.value = true
-	} else {
-		this.container.removeClass('on')
-		this.widget.removeClass('on')
-		this.light.removeClass('on')
-		this.value = false
+			_style:'style',
+
+			label:'auto',
+			left:'auto',
+			top:'auto',
+			width:'auto',
+			height:'auto',
+			color:'auto',
+			css:'',
+
+			_osc:'osc',
+
+			address:'auto',
+
+			_chidlren:'chilren',
+
+			widgets:[],
+			tabs:[]
+		}
+
 	}
-}
 
-module.exports.create = function(widgetData, container) {
-    var modal = new Modal(widgetData, container)
-    return modal
+	constructor(widgetData, container) {
+
+		super(...arguments)
+
+		this.widget.removeClass('noscroll')
+		this.container = container
+
+		container.append('<div class="light"></div>')
+		this.light = container.find('.light').first()
+
+		this.modal = this.widget.detach()
+
+		this.value = false
+
+		this.light.on('fake-click',()=>{
+			this.setValue(!this.value)
+		})
+
+
+	}
+
+	setValue(v) {
+
+		this.value = v ? true : false
+		this.container.toggleClass('on', this.value)
+		this.widget.toggleClass('on', this.value)
+		this.light.toggleClass('on', this.value)
+
+	}
+
 }

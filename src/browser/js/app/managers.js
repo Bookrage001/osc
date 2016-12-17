@@ -81,6 +81,7 @@ WidgetManager.prototype.addWidget = function(widget) {
     }
 
     widget.widget.abstract = widget
+    if (widget.container) widget.container[0].abstract = widget
 
 }
 

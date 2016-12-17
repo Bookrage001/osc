@@ -1,51 +1,50 @@
 var _widgets_base = require('../common/_widgets_base')
 
-module.exports.options = {
-    type:'strip',
-    id:'auto',
+module.exports = class Strip extends _widgets_base {
 
-    separator1:'style',
+    static options() {
 
-    label:'auto',
-    left:'auto',
-    top:'auto',
-    width:'auto',
-    height:'auto',
-    horizontal:false,
-    color:'auto',
-    css:'',
+        return  {
+            type:'strip',
+            id:'auto',
 
-    separator2:'children',
+            _style:'style',
 
-    widgets:[]
-}
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            horizontal:false,
+            color:'auto',
+            css:'',
 
-var Strip = module.exports.Strip = function(widgetData, container) {
+            _children:'children',
 
-	_widgets_base.apply(this,arguments)
+            widgets:[]
+        }
 
-    var parsewidgets = require('../../parser').widgets
-
-    this.widget = $(`
-            <div class="strip">
-            </div>
-    `)
-    if (widgetData.horizontal) {
-        container.addClass('horizontal')
-    } else {
-        container.addClass('vertical')
     }
 
-    parsewidgets(widgetData.widgets,this.widget)
+    constructor(widgetData, container) {
+
+        var widgetHtml = `
+            <div class="strip"></div>
+        `
+
+        super(...arguments, widgetHtml)
+
+        var parsewidgets = require('../../parser').widgets
+
+        if (widgetData.horizontal) {
+            container.addClass('horizontal')
+        } else {
+            container.addClass('vertical')
+        }
+
+        parsewidgets(widgetData.widgets,this.widget)
+
+    }
 
 
-}
-
-Strip.prototype = Object.create(_widgets_base.prototype)
-
-Strip.prototype.constructor = Strip
-
-module.exports.create = function(widgetData, container) {
-    var strip = new Strip(widgetData, container)
-    return strip
 }

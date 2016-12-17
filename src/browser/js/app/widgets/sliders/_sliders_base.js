@@ -1,168 +1,185 @@
-var {clip, mapToScale} = require('../utils')
-var _canvas_base = require('../common/_canvas_base')
+var {clip, mapToScale} = require('../utils'),
+    _canvas_base = require('../common/_canvas_base')
 
-var _sliders_base = module.exports = function(){
+module.exports = class _sliders_base extends _canvas_base {
 
-    this.widget = $(`
-        <div class="slider">
-            <div class="wrapper">
-                <canvas></canvas>
+    constructor(widgetData) {
+
+        var widgetHtml = `
+            <div class="slider">
+                <div class="wrapper">
+                    <canvas></canvas>
+                </div>
+                <div class="input"></div>
             </div>
-            <div class="input"></div>
-        </div>
-    `)
+        `
 
-    _canvas_base.apply(this, arguments)
+        super(...arguments, widgetHtml)
 
-    this.wrapper = this.widget.find('.wrapper')
-    this.input = this.widget.find('.input').fakeInput({align:'center'})
-    this.value = undefined
-    this.percent = 0
+        this.wrapper = this.widget.find('.wrapper')
+        this.input = this.widget.find('.input').fakeInput({align:'center'})
+        this.value = undefined
+        this.percent = 0
 
-    this.unit = this.widgetData.unit ? ' ' + this.widgetData.unit : ''
+        this.unit = widgetData.unit ? ' ' + widgetData.unit : ''
 
 
-    this.rangeKeys = []
-    this.rangeVals = []
-    this.rangeLabels = []
+        this.rangeKeys = []
+        this.rangeVals = []
+        this.rangeLabels = []
 
-    for (k in this.widgetData.range) {
-        var key = k=='min'?0:k=='max'?100:parseInt(k),
-            val = typeof this.widgetData.range[k] == 'object'?
-                        this.widgetData.range[k][Object.keys(this.widgetData.range[k])[0]]:
-                        this.widgetData.range[k],
-            label = typeof this.widgetData.range[k] == 'object'?
-                        Object.keys(this.widgetData.range[k])[0]:
-                        val
+        for (var k in widgetData.range) {
+            var key = k=='min'?0:k=='max'?100:parseInt(k),
+                val = typeof widgetData.range[k] == 'object'?
+                            widgetData.range[k][Object.keys(widgetData.range[k])[0]]:
+                            widgetData.range[k],
+                label = typeof widgetData.range[k] == 'object'?
+                            Object.keys(widgetData.range[k])[0]:
+                            val
 
-        this.rangeKeys.push(key)
-        this.rangeVals.push(val)
-        this.rangeLabels.push(label)
-    }
-    this.rangeValsMax = Math.max.apply(Math, this.rangeVals),
-    this.rangeValsMin = Math.min.apply(Math, this.rangeVals)
-
-    this.originValue = this.widgetData.origin=='auto'?
-                            this.rangeValsMin:
-                            clip(this.widgetData.origin,[this.rangeValsMin,this.rangeValsMax])
-    this.springValue = this.widgetData.value != '' ? this.widgetData.value :  this.originValue
-
-    this.widget.on('fake-right-click',function(e){
-        if (!EDITING) {
-            e.stopPropagation()
-            e.preventDefault()
-            this.input.focus()
+            this.rangeKeys.push(key)
+            this.rangeVals.push(val)
+            this.rangeLabels.push(label)
         }
-    }.bind(this))
+        this.rangeValsMax = Math.max(...this.rangeVals),
+        this.rangeValsMin = Math.min(...this.rangeVals)
 
-    this.widget.on('mousewheel',this.mousewheelHandleProxy.bind(this))
-    this.canvas.on('draginit',this.draginitHandleProxy.bind(this))
-    this.canvas.on('drag',this.dragHandleProxy.bind(this))
+        this.originValue = widgetData.origin=='auto'?
+                                this.rangeValsMin:
+                                clip(widgetData.origin,[this.rangeValsMin,this.rangeValsMax])
+        this.springValue = widgetData.value != '' ? widgetData.value :  this.originValue
 
-    if (this.widgetData.spring) {
-        this.canvas.on('dragend', ()=>{
-            this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
+        this.widget.on('fake-right-click',function(e){
+            if (!EDITING) {
+                e.stopPropagation()
+                e.preventDefault()
+                this.input.focus()
+            }
+        }.bind(this))
+
+        this.widget.on('mousewheel',this.mousewheelHandleProxy.bind(this))
+        this.canvas.on('draginit',this.draginitHandleProxy.bind(this))
+        this.canvas.on('drag',this.dragHandleProxy.bind(this))
+
+        if (widgetData.spring) {
+            this.canvas.on('dragend', ()=>{
+                this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
+            })
+        }
+
+        this.input.change(()=>{
+
+            this.setValue(parseFloat(this.input.val()),{sync:true,send:true})
+
         })
+
+        this.setValue(this.originValue)
+
     }
 
-    this.input.change(function(){
-        this.setValue(parseFloat(this.input.val()),{sync:true,send:true})
-    }.bind(this))
+    mousewheelHandleProxy() {
+
+        this.mousewheelHandle(...arguments)
+
+    }
+
+    draginitHandleProxy() {
+
+        this.draginitHandle(...arguments)
+
+    }
+
+    dragHandleProxy() {
+
+        this.dragHandle(...arguments)
+
+    }
 
 
-    this.setValue(this.originValue)
+    mousewheelHandle(e, data, traversing) {
 
-}
+        if (e.originalEvent.wheelDeltaX) return
 
-_sliders_base.prototype = Object.create(_canvas_base.prototype)
+        e.preventDefault()
+        e.stopPropagation()
 
-_sliders_base.prototype.constructor = _sliders_base
-
-
-_sliders_base.prototype.mousewheelHandleProxy = function() {
-    this.mousewheelHandle.apply(this,arguments)
-}
-
-_sliders_base.prototype.draginitHandleProxy = function() {
-    this.draginitHandle.apply(this,arguments)
-}
-
-_sliders_base.prototype.dragHandleProxy = function() {
-    this.dragHandle.apply(this,arguments)
-}
-
-
-_sliders_base.prototype.mousewheelHandle = function(e, data, traversing) {
-    if (e.originalEvent.wheelDeltaX) return
-
-    e.preventDefault()
-    e.stopPropagation()
-
-    var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta),
+        var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta),
         increment = e.ctrlKey?0.25:1
 
-    this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
+        this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
 
-    this.setValue(this.percentToValue(this.percent), {sync:true,send:true,dragged:true})
+        this.setValue(this.percentToValue(this.percent), {sync:true,send:true,dragged:true})
 
-
-}
-
-_sliders_base.prototype.draginitHandle = function(e, data, traversing) {
-
-}
-
-_sliders_base.prototype.dragHandle = function(e, data, traversing) {
-
-}
-
-
-_sliders_base.prototype.resizeHandle = function(e, width, height, checkColors) {
-    if (!this.visible || checkColors) {
-        var style =  getComputedStyle(this.widget[0])
-        this.colors.track = style.getPropertyValue('--color-track')
-        this.colors.gauge = style.getPropertyValue('--color-gauge')
-        this.colors.knob = style.getPropertyValue('--color-knob')
     }
-    _canvas_base.prototype.resizeHandle.apply(this, arguments)
-}
 
+    draginitHandle(e, data, traversing) {
 
-_sliders_base.prototype.percentToValue = function(percent) {
-    var h = clip(percent,[0,100])
-    for (var i=0;i<this.rangeKeys.length-1;i++) {
-        if (h <= this.rangeKeys[i+1] && h >= this.rangeKeys[i]) {
-            return mapToScale(h,[this.rangeKeys[i],this.rangeKeys[i+1]],[this.rangeVals[i],this.rangeVals[i+1]],false,this.widgetData.logScale)
+    }
+
+    dragHandle(e, data, traversing) {
+
+    }
+
+    resizeHandle(e, width, height, checkColors) {
+
+        if (!this.visible || checkColors) {
+            var style =  getComputedStyle(this.widget[0])
+            this.colors.track = style.getPropertyValue('--color-track')
+            this.colors.gauge = style.getPropertyValue('--color-gauge')
+            this.colors.knob = style.getPropertyValue('--color-knob')
         }
+
+        super.resizeHandle(...arguments)
+
     }
-}
-_sliders_base.prototype.valueToPercent = function(value) {
-    for (var i=0;i<this.rangeVals.length-1;i++) {
-        if (value <= this.rangeVals[i+1] && value >= this.rangeVals[i]) {
-            return mapToScale(value,[this.rangeVals[i],this.rangeVals[i+1]],[this.rangeKeys[i],this.rangeKeys[i+1]],false,this.widgetData.logScale,true)
+
+
+    percentToValue(percent) {
+
+        var h = clip(percent,[0,100])
+        for (var i=0;i<this.rangeKeys.length-1;i++) {
+            if (h <= this.rangeKeys[i+1] && h >= this.rangeKeys[i]) {
+                return mapToScale(h,[this.rangeKeys[i],this.rangeKeys[i+1]],[this.rangeVals[i],this.rangeVals[i+1]],false,this.widgetData.logScale)
+            }
         }
+
     }
-}
 
-_sliders_base.prototype.setValue = function(v,options={}) {
-    if (typeof v != 'number') return
+    valueToPercent(value) {
 
-    var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
+        for (var i=0;i<this.rangeVals.length-1;i++) {
+            if (value <= this.rangeVals[i+1] && value >= this.rangeVals[i]) {
+                return mapToScale(value,[this.rangeVals[i],this.rangeVals[i+1]],[this.rangeKeys[i],this.rangeKeys[i+1]],false,this.widgetData.logScale,true)
+            }
+        }
 
-    if ((options.dragged || options.fromLocal) && this.value.toFixed(this.widgetData.precision) == value.toFixed(this.widgetData.precision)) options.send = false
+    }
 
-    this.value = value
+    setValue(v,options={}) {
 
-    if (!options.dragged) this.percent = this.valueToPercent(this.value)
+        if (typeof v != 'number') return
 
-    if (!this.noDraw) this.draw()
+        var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 
-    this.showValue()
+        if ((options.dragged || options.fromLocal) && this.value.toFixed(this.widgetData.precision) == value.toFixed(this.widgetData.precision)) options.send = false
 
-    if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-    if (options.send) this.sendValue(v)
-}
+        this.value = value
 
-_sliders_base.prototype.showValue = function() {
-    this.input.val(this.value.toFixed(this.widgetData.precision) + this.unit)
+        if (!options.dragged) this.percent = this.valueToPercent(this.value)
+
+        if (!this.noDraw) this.draw()
+
+        this.showValue()
+
+        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        if (options.send) this.sendValue(v)
+
+    }
+
+    showValue() {
+
+        this.input.val(this.value.toFixed(this.widgetData.precision) + this.unit)
+
+    }
+
 }

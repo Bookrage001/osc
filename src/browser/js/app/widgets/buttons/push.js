@@ -2,131 +2,133 @@ var _widgets_base = require('../common/_widgets_base'),
     $document = $(document),
     osc = require('../../osc')
 
-module.exports.options = {
-    type:'push',
-    id:'auto',
-    linkId:'',
+module.exports = class Push extends _widgets_base {
 
-    separator1:'style',
+    static options() {
 
-    label:'auto',
-    left:'auto',
-    top:'auto',
-    width:'auto',
-    height:'auto',
-    color:'auto',
-    css:'',
+        return {
+            type:'push',
+            id:'auto',
+            linkId:'',
 
-    separator2:'osc',
+            separator1:'style',
 
-    on:1,
-    off:0,
-    norelease:false,
-    precision:2,
-    address:'auto',
-    preArgs:[],
-    target:[]
-}
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            color:'auto',
+            css:'',
 
-var Push = module.exports.Push = function(widgetData,container) {
+            separator2:'osc',
 
-    _widgets_base.apply(this, arguments)
+            on:1,
+            off:0,
+            norelease:false,
+            precision:2,
+            address:'auto',
+            preArgs:[],
+            target:[]
+        }
 
+    }
 
-    this.widget = $(`
-        <div class="light">
-        </div>\
-        `)
+    constructor(widgetData) {
 
-    this.state = 0
-    this.active = 0
-    this.lastChanged = 'state'
+        var widgetHtml = `
+            <div class="light"></div>
+        `
 
-    this.widget.on('drag',function(e){e.stopPropagation()})
-    this.widget.on('draginit.push',()=>{
-        this.widget.off('draginit.push')
-        this.fakeclick()
-    })
+        super(...arguments, widgetHtml)
 
-}
+        this.state = 0
+        this.active = 0
+        this.lastChanged = 'state'
 
-
-Push.prototype = Object.create(_widgets_base.prototype)
-
-Push.prototype.constructor = Push
-
-Push.prototype.getValue = function(){
-
-    return this[this.lastChanged] ?
-        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
-        :
-        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
-
-}
-
-Push.prototype.fakeclick = function(){
-    if (!this.active) this.setValuePrivate(this.widgetData.on,{send:true,sync:true})
-    $document.on('dragend.push',()=>{
-        this.setValuePrivate(this.widgetData.off,{send:true,sync:true})
-        $document.off('dragend.push')
+        this.widget.on('drag',function(e){e.stopPropagation()})
         this.widget.on('draginit.push',()=>{
             this.widget.off('draginit.push')
             this.fakeclick()
         })
-    })
-}
 
-Push.prototype.setValuePrivate = function(v,options={}) {
-    if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
-        this.widget.addClass('active')
-        this.active = 1
-        if (options.send) this.sendValue(v)
-        this.lastChanged = 'active'
-        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-    } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
-        this.widget.removeClass('active')
-        this.active = 0
-        if (options.send) this.sendValue(v, this.widgetData.norelease)
-        this.lastChanged = 'active'
-        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
     }
-}
 
-Push.prototype.setValue = function(v,options={}) {
-    if (!options.fromExternal) {
-        if (options.send || options.sync) this.setValuePrivate(v,options)
-        return
+    getValue(){
+
+        return this[this.lastChanged] ?
+        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
+        :
+        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
+
     }
-    if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
-        this.widget.addClass('on')
-        this.state = 1
-        if (options.send) this.sendValue(v)
-        this.lastChanged = 'state'
-        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId,options:options})
-    } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
-        this.widget.removeClass('on')
-        this.state = 0
-        if (options.send) this.sendValue(v)
-        this.lastChanged = 'state'
-        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId,options:options})
+
+    fakeclick(){
+
+        if (!this.active) this.setValuePrivate(this.widgetData.on,{send:true,sync:true})
+        $document.on('dragend.push',()=>{
+            this.setValuePrivate(this.widgetData.off,{send:true,sync:true})
+            $document.off('dragend.push')
+            this.widget.on('draginit.push',()=>{
+                this.widget.off('draginit.push')
+                this.fakeclick()
+            })
+        })
+
     }
-}
 
-Push.prototype.sendValue = function(v, norelease) {
+    setValuePrivate(v,options={}) {
 
-    var args = this.widgetData.preArgs.concat(v)
+        if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
+            this.widget.addClass('active')
+            this.active = 1
+            if (options.send) this.sendValue(v)
+            this.lastChanged = 'active'
+            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
+            this.widget.removeClass('active')
+            this.active = 0
+            if (options.send) this.sendValue(v, this.widgetData.norelease)
+            this.lastChanged = 'active'
+            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        }
 
-    osc.send({
-        target: this.widgetData.target,
-        address: this.widgetData.address,
-        precision: this.widgetData.precision,
-        args:args,
-        syncOnly:norelease
-    })
+    }
 
-}
+    setValue(v,options={}) {
 
-module.exports.create = function(widgetData, container) {
-    var push = new Push(widgetData, container)
-    return push
+        if (!options.fromExternal) {
+            if (options.send || options.sync) this.setValuePrivate(v,options)
+            return
+        }
+        if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
+            this.widget.addClass('on')
+            this.state = 1
+            if (options.send) this.sendValue(v)
+            this.lastChanged = 'state'
+            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId,options:options})
+        } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
+            this.widget.removeClass('on')
+            this.state = 0
+            if (options.send) this.sendValue(v)
+            this.lastChanged = 'state'
+            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId,options:options})
+        }
+
+    }
+
+    sendValue(v, norelease) {
+
+        var args = this.widgetData.preArgs.concat(v)
+
+        osc.send({
+            target: this.widgetData.target,
+            address: this.widgetData.address,
+            precision: this.widgetData.precision,
+            args:args,
+            syncOnly:norelease
+        })
+
+    }
+
 }

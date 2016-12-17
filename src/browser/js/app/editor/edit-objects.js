@@ -35,7 +35,7 @@ var editObject = function(container, data, refresh){
 
     for (i in params) {
 
-        if (i.indexOf('separator')!=-1) {
+        if (i.indexOf('_')==0) {
             $(`<div class="separator"><span>${params[i]}</span></div>`).appendTo(form)
             continue
         } else if (data[i]===undefined) {

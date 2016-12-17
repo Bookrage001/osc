@@ -1,66 +1,60 @@
 var {iconify} = require('../../utils'),
     _widgets_base = require('../common/_widgets_base')
 
+module.exports = class Text extends _widgets_base {
 
-module.exports.options = {
-    type:'text',
-    id:'auto',
+    static options() {
 
-    separator1:'style',
+        return {
+            type:'text',
+            id:'auto',
 
-    label:'auto',
-    left:'auto',
-    top:'auto',
-    width:'auto',
-    height:'auto',
-    vertical:false,
-    color:'auto',
-    css:'',
+            _style:'style',
 
-    separator2:'osc',
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            vertical:false,
+            color:'auto',
+            css:'',
 
-    value:'',
-    preArgs:[],
-    address:'auto',
-}
+            _osc:'osc',
 
-var Text = module.exports.Text = function(widgetData,container) {
+            value:'',
+            preArgs:[],
+            address:'auto',
+        }
 
-    _widgets_base.apply(this,arguments)
+    }
 
+    constructor(widgetData) {
 
-    this.widget = $(`
-            <div class="text">
+        var widgetHtml = `
+            <div class="text ${widgetData.vertical?'vertical':''}">
             </div>
-            `)
+        `
 
-	this.defaultValue = widgetData.label===false?
-                            widgetData.id:
-                            widgetData.label=='auto'?
+        super(...arguments, widgetHtml)
+
+    	this.defaultValue = widgetData.label===false?
                                 widgetData.id:
-                                widgetData.label
+                                widgetData.label=='auto'?
+                                    widgetData.id:
+                                    widgetData.label
 
-    this.value = this.defaultValue
+        this.value = this.defaultValue
 
+        this.setValue(this.value)
 
-    if (this.widgetData.vertical) this.widget.addClass('vertical')
+    }
 
-    this.setValue(this.value)
+    setValue(v) {
 
-}
+        this.value = typeof v=='object' && !v.length ? this.defaultValue : v
+        this.widget.html(iconify(this.value))
 
-Text.prototype = Object.create(_widgets_base.prototype)
+    }
 
-Text.prototype.constructor = Text
-
-Text.prototype.setValue = function(v){
-
-    this.value = typeof v=='object' && !v.length ? this.defaultValue : v
-    this.widget.html(iconify(this.value))
-
-}
-
-module.exports.create = function(widgetData, container) {
-    var text = new Text(widgetData, container)
-    return text
 }

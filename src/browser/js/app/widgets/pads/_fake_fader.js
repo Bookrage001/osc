@@ -1,14 +1,16 @@
-var {Fader} = require('../sliders/fader')
+var Fader = require('../sliders/fader')
 
-var _fake_fader = module.exports = function(widgetData, cancelDraw){
+module.exports = class _fake_fader extends Fader {
 
-    if (cancelDraw) this.noDraw = true
+    constructor(widgetData, cancelDraw) {
 
-    Fader.apply(this, arguments)
+        super(widgetData, false)
+
+        if (cancelDraw) this.noDraw = true
+    }
+
+    sendValue() {
+        // disabled
+    }
+
 }
-
-_fake_fader.prototype = Object.create(Fader.prototype)
-
-_fake_fader.prototype.constructor = _fake_fader
-
-_fake_fader.prototype.sendValue = function(){}

@@ -1,58 +1,72 @@
 var osc = require('../../osc')
 
 
-var _widget_base = module.exports = function(widgetData) {
-    this.widgetData = widgetData
-}
+module.exports = class {
 
-_widget_base.prototype.sendValue = function() {
+    static options() {
 
-    var args = this.widgetData.preArgs.concat(this.value)
+        throw 'Calling unimplemented static options() method'
 
-    osc.send({
-        target:this.widgetData.target,
-        address:this.widgetData.address,
-        precision:this.widgetData.precision,
-        args:args,
-        syncOnly:this.split?true:false
-    })
-
-    if (this.split) {
-        var n = 0
-        for (i in this.split) {
-            osc.send({
-                target:this.widgetData.target,
-                address:this.split[i],
-                precision:this.widgetData.precision,
-                args:this.widgetData.preArgs.concat(this.value[n]),
-                sync:false
-
-            })
-            n++
-        }
     }
 
-}
+    constructor(widgetData, widgetContainer, widgetHtml) {
 
-_widget_base.prototype.getValue = function() {
+        this.container = widgetContainer
+        this.widget = $(widgetHtml)
+        this.widgetData = widgetData
 
-    if (typeof this.value == 'object') {
+    }
 
-        return (()=>{
+    sendValue() {
 
-            var a = []
+        var args = this.widgetData.preArgs.concat(this.value)
 
-            for (i in this.value)  {
-                a.push(this.value[i])
+        osc.send({
+            target:this.widgetData.target,
+            address:this.widgetData.address,
+            precision:this.widgetData.precision,
+            args:args,
+            syncOnly:this.split?true:false
+        })
+
+        if (this.split) {
+            var n = 0
+            for (i in this.split) {
+                osc.send({
+                    target:this.widgetData.target,
+                    address:this.split[i],
+                    precision:this.widgetData.precision,
+                    args:this.widgetData.preArgs.concat(this.value[n]),
+                    sync:false
+
+                })
+                n++
             }
+        }
 
-            return a
+    }
 
-        })()
+    getValue() {
 
-    } else {
+        if (typeof this.value == 'object') {
 
-        return this.value
+            return (()=>{
+
+                var a = []
+
+                for (i in this.value)  {
+                    a.push(this.value[i])
+                }
+
+                return a
+
+            })()
+
+        } else {
+
+            return this.value
+
+        }
 
     }
 
