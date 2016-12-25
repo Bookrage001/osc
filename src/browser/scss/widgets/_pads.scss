@@ -119,8 +119,8 @@
             }
             > .pad {
                 position: absolute;
-                width:calc(100% - calc(var(--point-size) * 2 + 2rem));
-                height:calc(100% - calc(var(--point-size) * 2 + 2rem));
+                width:calc(100% - 2 * var(--point-size) - 2rem);
+                height:calc(100% - 2 * var(--point-size)  - 2rem);
                 &.active {
                     pointer-events: none;
                 }
