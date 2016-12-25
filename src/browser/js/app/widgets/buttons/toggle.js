@@ -33,7 +33,7 @@ module.exports = class Toggle extends _widgets_base {
 
     }
 
-    constructor() {
+    constructor(widgetData) {
 
         var widgetHtml = `
             <div class="light"></div>
@@ -51,16 +51,7 @@ module.exports = class Toggle extends _widgets_base {
         })
 
 
-        this.value = this.getValue()
-
-    }
-
-    getValue() {
-
-        return this.widget.state ?
-        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
-        :
-        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
+        this.value = widgetData.off
 
     }
 
@@ -85,12 +76,12 @@ module.exports = class Toggle extends _widgets_base {
             this.widget.addClass('on')
             this.widget.state = 1
             this.value = this.widgetData.on
-            if (options.send) this.sendValue(this.widgetData.on)
+            if (options.send) this.sendValue()
         } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
             this.widget.removeClass('on')
             this.widget.state = 0
             this.value = this.widgetData.off
-            if (options.send) this.sendValue(this.widgetData.off)
+            if (options.send) this.sendValue()
         }
 
         if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options})

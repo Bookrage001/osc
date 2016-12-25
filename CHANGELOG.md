@@ -2,9 +2,14 @@
 
 ## 0.13.2
 
+- bug fixes
+  - some layout regressions in chrome v49
 - main
   - osc input port (`-o`) is now set to the http port (`-p`) by default
-
+- misc
+  - all widgets classes were rewritten using ES6 class expressions
+  - firefox's minimal version is now 46 because of a ES6 related bug (*note that it's still not officially supported*)
+  
 ## 0.13.1
 
 - bug fixes
