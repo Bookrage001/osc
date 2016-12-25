@@ -23,11 +23,10 @@
         max-height: 100%;
         width: 100%;
         position: relative;
+        display: flex;
 
         canvas {
-            height: 100%;
             width: 100%;
-            position: relative;
         }
     }
     &.compact {

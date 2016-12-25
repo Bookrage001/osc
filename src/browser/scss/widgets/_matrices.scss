@@ -31,8 +31,10 @@
     .matrix {
         padding:0!important;
         align-items:stretch;
+        flex-wrap: nowrap;
         &.horizontal {
             flex-direction: column;
+            display: flex;
             .fader-container {
                 flex-direction: row;
                 width: 100%;
@@ -41,7 +43,7 @@
                 }
                 .label {
                     width:35rem;
-                    height:100%;
+                    height:auto;
                     max-height: initial;
                     span {
                         transform: rotate(180deg);
@@ -56,9 +58,14 @@
             }
 
         }
-    }
-    .widget {
-        height: auto;
+        > .widget {
+            height: auto;
+
+            > .fader {
+                height: auto;
+                flex: 1;
+            }
+        }
     }
     .fader-wrapper {
         padding:10rem 0 20rem!important;
