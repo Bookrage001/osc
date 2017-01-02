@@ -48,19 +48,10 @@ module.exports = class {
 
     getValue() {
 
+
         if (typeof this.value == 'object') {
 
-            return (()=>{
-
-                var a = []
-
-                for (i in this.value)  {
-                    a.push(this.value[i])
-                }
-
-                return a
-
-            })()
+            return JSON.parse(JSON.stringify(this.value))
 
         } else {
 
