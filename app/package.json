@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "vmodule":"1.0.1",
-    "electron-localshortcut":"0.6.1",
-    "osc": "2.1.0",
-    "yargs": "6.0.0",
-    "socket.io": "1.7.1",
+    "electron-localshortcut": "1.0.0",
+    "osc": "2.2.0",
+    "yargs": "6.6.0",
+    "socket.io": "1.7.2",
     "socketio-wildcard": "0.3.0",
     "express": "4.14.0",
     "jquery-slim": "3.0.0"

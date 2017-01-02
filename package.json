@@ -2,14 +2,14 @@
   "name": "open-stage-control-builder",
   "description": "A libre desktop OSC bi-directionnal control surface application - builder package",
   "dependencies": {
-    "electron": "1.4.4",
-    "browserify": "13.1.0",
+    "electron": "1.4.13",
+    "browserify": "13.1.1",
     "exorcist": "0.4.0",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.1.1",
     "nodemon": "^1.9.2",
-    "socket.io-client": "1.7.1",
+    "socket.io-client": "1.7.2",
     "electron-installer-debian": "0.4.0",
-    "electron-packager": "8.1.0"
+    "electron-packager": "8.4.0"
   },
   "scripts": {
     "postinstall": "cp resources/images/logo.ico app/browser/favicon.ico && cd app && npm install && cd .. && npm run build-js && npm run build-css",
