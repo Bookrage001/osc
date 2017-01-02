@@ -1,4 +1,5 @@
-// destroy serialport module as it's currently unsupported and would throw when required by osc
+// destroy serialport module
+// (electron-rebuild breaks it for node-only mode)
 require('vmodule')('serialport', {}, {global: true})
 
 var osc = require('osc'),
