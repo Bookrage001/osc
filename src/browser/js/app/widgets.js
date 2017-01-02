@@ -31,6 +31,10 @@ var widgets = {
     strip: require('./widgets/containers/strip'),
     panel: require('./widgets/containers/panel'),
     modal: require('./widgets/containers/modal'),
+
+    // state switchers
+    switcher: require('./widgets/switchers/switcher'),
+    crossfader: require('./widgets/switchers/crossfader'),
 }
 
 module.exports.categories = {
@@ -39,7 +43,8 @@ module.exports.categories = {
     'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
     'Plots':['plot','eq','visualizer','led','meter','text'],
-    'Containers':['panel','strip','modal']
+    'Containers':['panel','strip','modal'],
+    'Switchers':['switcher','crossfader']
 }
 
 module.exports.widgetOptions = function(){

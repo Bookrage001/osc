@@ -73,3 +73,35 @@
         }
     }
 }
+
+
+.switcher-container, .crossfader-container {
+    .switcher {
+        width: 100%;
+        flex:1;
+    }
+}
+
+.crossfader-container {
+    .switcher {
+        display:flex;
+        &.horizontal {
+            flex-direction: column;
+            .fader-container {
+                width: 100%;
+                height: auto
+            }
+        }
+    }
+   .switch {
+       height: auto;
+       flex:1;
+   }
+   .fader-container {
+       height: auto;
+       flex:1;
+       .input {
+           display: none;
+       }
+   }
+}
