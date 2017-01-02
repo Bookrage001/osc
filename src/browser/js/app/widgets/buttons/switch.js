@@ -1,4 +1,5 @@
 var _widgets_base = require('../common/_widgets_base'),
+    {iconify} = require('../../utils'),
     $document = $(document)
 
 module.exports = class Switch extends _widgets_base {
@@ -45,7 +46,7 @@ module.exports = class Switch extends _widgets_base {
 
         for (var k in widgetData.values) {
             this.values.push(widgetData.values[k])
-            $(`<div class="value">${parseFloat(k) != k ? k : widgetData.values[k]}</div>`).data({value:widgetData.values[k]}).appendTo(this.widget)
+            $(`<div class="value">${parseFloat(k) != k ? iconify(k) : widgetData.values[k]}</div>`).data({value:widgetData.values[k]}).appendTo(this.widget)
         }
 
         this.value = undefined
@@ -75,6 +76,10 @@ module.exports = class Switch extends _widgets_base {
             this.widget.find('.on').removeClass('on')
             this.widget.find('.value').eq(i).addClass('on')
             if (options.send) this.sendValue(this.value)
+            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options})
+        } else {
+            this.widget.find('.on').removeClass('on')
+            this.value = undefined
             if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options})
         }
 
