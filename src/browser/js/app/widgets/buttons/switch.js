@@ -45,7 +45,7 @@ module.exports = class Switch extends _widgets_base {
 
         for (var k in widgetData.values) {
             this.values.push(widgetData.values[k])
-            $('<div class="value">'+k+'</div>').data({value:widgetData.values[k]}).appendTo(this.widget)
+            $(`<div class="value">${parseFloat(k) != k ? k : widgetData.values[k]}</div>`).data({value:widgetData.values[k]}).appendTo(this.widget)
         }
 
         this.value = undefined
