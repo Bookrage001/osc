@@ -99,7 +99,7 @@
        flex:1;
    }
    .fader-container {
-       height: auto;
+       min-height: 60%;
        flex:1;
        .input {
            display: none;
