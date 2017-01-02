@@ -52,11 +52,13 @@ module.exports = class Push extends _widgets_base {
             this.fakeclick()
         })
 
+        this.value = widgetData.off
+
     }
 
-    getValue(){
+    updateValue(){
 
-        return this[this.lastChanged] ?
+        this.value = this[this.lastChanged] ?
         this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
         :
         this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
@@ -82,14 +84,16 @@ module.exports = class Push extends _widgets_base {
         if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
             this.widget.addClass('active')
             this.active = 1
-            if (options.send) this.sendValue(v)
             this.lastChanged = 'active'
+            this.updateValue()
+            if (options.send) this.sendValue(v)
             if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
         } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
             this.widget.removeClass('active')
             this.active = 0
-            if (options.send) this.sendValue(v, this.widgetData.norelease)
             this.lastChanged = 'active'
+            this.updateValue()
+            if (options.send) this.sendValue(v, this.widgetData.norelease)
             if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
         }
 
