@@ -14,7 +14,6 @@
         &.horizontal {
             flex-direction:row;
             .value {
-                padding:6rem;
                 text-align: center;
                 display: flex;
                 justify-content: center;
@@ -37,7 +36,6 @@
             position: relative;
             border-top: 1rem solid var(--color-bg);
             white-space: normal;
-            padding:12rem;
             text-align: center;
             word-break: break-all;
             overflow: hidden;
@@ -68,6 +66,9 @@
                 opacity: .3;
                 box-shadow: 0 0 1rem 0 var(--color-custom) inset;
 
+            }
+            i {
+                width: auto;
             }
 
         }
