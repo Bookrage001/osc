@@ -7,6 +7,7 @@ module.exports = class Crossfader extends Switcher {
     static options(){
 
         var o = super.options()
+        o.type = 'crossfader'
         delete o.values
 
         return o
@@ -67,7 +68,7 @@ module.exports = class Crossfader extends Switcher {
 
 
         } else if (!isNaN(v)) {
-            
+
             this.fader.setValue(v, {dragged:options.dragged})
             this.value._fader = this.fader.getValue()
             this.value._selected = false
