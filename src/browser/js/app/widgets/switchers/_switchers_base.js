@@ -1,7 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
     {widgetManager} = require('../../managers'),
     {stateSet} = require('../../actions'),
-    var osc = require('../../osc')
+    osc = require('../../osc')
 
 
 module.exports = class _switchers_base extends _widgets_base {
