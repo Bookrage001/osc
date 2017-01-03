@@ -42,6 +42,8 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         iterators.widget = {}
 
         widgetManager.reset()
+
+        var $body = $('body')
     }
 
     var main = main?'main ':'',
@@ -73,6 +75,10 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         } else if (tabData.widgets && tabData.widgets.length) {
             module.exports.widgets(tabData.widgets,tabContent)
         }
+
+        tabContent.on('sync.detached', (e)=>{
+            if (!document.contains(tabContent[0])) $body.trigger(e)
+        })
 
         // content.append(tabContent)
         TABS['#'+id]= {
