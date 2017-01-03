@@ -80,7 +80,9 @@ module.exports = class Crossfader extends Switcher {
 
                 if (s['B'][i] === undefined) continue
 
-                if (typeof s['A'][i] == 'object') {
+                if (Array.isArray(s['A'][i])) {
+
+                    a[i] = []
 
                     for (var k in s['A'][i]) {
 
