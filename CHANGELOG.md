@@ -6,10 +6,13 @@
   - some layout regressions in chrome v49
 - main
   - osc input port (`-o`) is now set to the http port (`-p`) by default
+- widgets
+  - **new** `crossfader` and `switcher` widgets that store and recall the state of other widgets
+  - `matrices` now accept multiple color values (that will be sequencially passed to their children)
 - misc
   - all widgets classes were rewritten using ES6 class expressions
   - firefox's minimal version is now 46 because of a ES6 related bug (*note that it's still not officially supported*)
-  
+
 ## 0.13.1
 
 - bug fixes

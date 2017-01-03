@@ -36,6 +36,11 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - default: `false`
 - usage: if `true`, the fader's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
 
+#### `color`
+- type: `string|array`
+- default: `auto`, inherited accent color
+- usage: can be an `array` of css color `strings`, which will be sequentially passed to the faders 
+
 #### `options`
 - see fader's [`options`](sliders/#fader)
 
@@ -74,6 +79,12 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - default: `false`
 - usage: if `true`, the toggle's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
 
+#### `color`
+- type: `string|array`
+- default: `auto`, inherited accent color
+- usage: can be an `array` of css color `strings`, which will be sequentially passed to the toggles
+
+
 
 #### `options`
 - see toggle's [`options`](buttons/#toggle)
@@ -111,6 +122,11 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - type: `boolean`
 - default: `false`
 - usage: if `true`, the push's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+
+#### `color`
+- type: `string|array`
+- default: `auto`, inherited accent color
+- usage: can be an `array` of css color `strings`, which will be sequentially passed to the pushes
 
 #### `options`
 - see push's [`options`](buttons/#push)
