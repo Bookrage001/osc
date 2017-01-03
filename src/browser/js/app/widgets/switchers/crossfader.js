@@ -50,25 +50,25 @@ module.exports = class Crossfader extends Switcher {
 
         if (typeof v == 'object') {
 
-            this.fader.setValue(this.value._fader)
+            this.fader.setValue(this.value._fader, {dragged:options.dragged})
 
         }
 
         if (v == 'A' || v <= 0) {
 
-            this.fader.setValue(0)
+            this.fader.setValue(0, {dragged:options.dragged})
             this.value._fader = 0
 
 
         } else if (v == 'B' || v >= 1) {
 
-            this.fader.setValue(1)
+            this.fader.setValue(1, {dragged:options.dragged})
             this.value._fader = 1
 
 
         } else if (!isNaN(v)) {
 
-            this.fader.setValue(v)
+            this.fader.setValue(v, {dragged:options.dragged})
             this.value._fader = this.fader.getValue()
             this.value._selected = false
             this.switch.setValue()
