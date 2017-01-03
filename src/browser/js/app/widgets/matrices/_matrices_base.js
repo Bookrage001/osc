@@ -26,8 +26,4 @@ module.exports = class _matrices_base extends _widgets_base {
     }
 
 
-    getValue() {
-        return this.value
-    }
-
 }

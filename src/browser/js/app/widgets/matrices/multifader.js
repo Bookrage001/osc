@@ -61,7 +61,7 @@ module.exports = class Multifader extends _matrices_base {
         var strData = JSON.stringify(widgetData)
 
         var	parsers = require('../../parser'),
-        parsewidgets = parsers.widgets
+            parsewidgets = parsers.widgets
 
         for (var i=widgetData.start; i<widgetData.strips+widgetData.start;i++) {
 
@@ -73,9 +73,10 @@ module.exports = class Multifader extends _matrices_base {
             data.label = i
             data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
             data.preArgs = widgetData.split ? widgetData.preArgs : [i].concat(widgetData.preArgs)
+            data.color = typeof widgetData.color == 'object' ? '' + widgetData.color[i % widgetData.color.length] : widgetData.color
 
             var element = parsewidgets([data],this.widget)
-            element[0].setAttribute('style',`${widgetData.horizontal?'height':'width'}:${100/widgetData.strips}%`)
+            element[0].style.setProperty(widgetData.horizontal?'height':'width', 100/widgetData.strips + '%')
             element[0].classList.add('not-editable')
 
             if (widgetData.traversing) element.find('.fader-wrapper').off('drag')
