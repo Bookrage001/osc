@@ -30,13 +30,19 @@ module.exports = class _plots_base extends _canvas_base {
         }
 
 
-        $('body').on('sync',this.syncHandleProxy.bind(this))
+        this.syncHandleProxy = ()=>{
+
+            this.syncHandle(...arguments)
+
+        }
+
+        $('body').on('sync',this.syncHandleProxy)
 
     }
 
-    syncHandleProxy() {
+    onRemove() {
 
-        this.syncHandle(...arguments)
+        $('body').off('sync',this.syncHandleProxy)
 
     }
 

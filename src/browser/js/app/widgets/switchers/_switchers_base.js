@@ -18,8 +18,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
         }
 
-
-        $('body').on('sync',(e)=>{
+        this.syncHandler = (e)=>{
 
             var {id, widget, linkId, fromExternal, options} = e
 
@@ -29,8 +28,16 @@ module.exports = class _switchers_base extends _widgets_base {
 
             }
 
-        })
+        }
 
+        $('body').on('sync',this.syncHandler)
+
+
+    }
+
+    onRemove() {
+
+        $('body').off('sync',this.syncHandler)
 
     }
 
