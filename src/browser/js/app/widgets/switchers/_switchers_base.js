@@ -1,7 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
     {widgetManager} = require('../../managers'),
     {stateSet} = require('../../actions'),
-    osc = require('../../osc')
+    var osc = require('../../osc')
 
 
 module.exports = class _switchers_base extends _widgets_base {
@@ -105,6 +105,19 @@ module.exports = class _switchers_base extends _widgets_base {
 
         if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
         if (options.send) this.sendValue()
+
+    }
+
+    sendValue() {
+
+        var args = this.widgetData.preArgs.concat(this.value)
+
+        osc.send({
+            target:this.widgetData.target,
+            address:this.widgetData.address,
+            args:args,
+            syncOnly:true
+        })
 
     }
 
