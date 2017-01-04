@@ -1,7 +1,6 @@
 var osc = require('../../osc')
 
-
-module.exports = class {
+module.exports = class _widgets_base {
 
     static options() {
 
@@ -48,16 +47,23 @@ module.exports = class {
 
     getValue() {
 
+        return _widgets_base.deepCopy(this.value)
 
-        if (typeof this.value == 'object') {
+    }
 
-            return JSON.parse(JSON.stringify(this.value))
+    static deepCopy(obj){
 
-        } else {
+        var copy = obj,
+            key
 
-            return this.value
-
+        if (typeof obj === 'object') {
+            copy = Array.isArray(obj) ? [] : {}
+            for (key in obj) {
+                copy[key] = _widgets_base.deepCopy(obj[key])
+            }
         }
+
+        return copy
 
     }
 
