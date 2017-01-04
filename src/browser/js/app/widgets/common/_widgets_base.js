@@ -8,11 +8,19 @@ module.exports = class _widgets_base {
 
     }
 
+    static createHash() {
+
+        return String(Math.random()).split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+
+    }
+
     constructor(widgetData, widgetContainer, widgetHtml) {
 
         this.container = widgetContainer
         this.widget = $(widgetHtml)
         this.widgetData = widgetData
+        this.hash = _widgets_base.createHash()
+
 
     }
 

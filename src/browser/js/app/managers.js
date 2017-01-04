@@ -43,12 +43,6 @@ var WidgetManager = function(){
 }
 
 
-WidgetManager.prototype.createHash = function(widget) {
-
-    return String(Math.random()).split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
-
-}
-
 WidgetManager.prototype.createAddressRef = function(widget) {
 
     return widget.widgetData.preArgs && widget.widgetData.preArgs.length ?
@@ -59,7 +53,7 @@ WidgetManager.prototype.createAddressRef = function(widget) {
 
 WidgetManager.prototype.addWidget = function(widget) {
 
-    var hash = this.createHash(),
+    var hash = widget.hash,
         address = this.createAddressRef(widget),
         id = widget.widgetData.id,
         linkId = widget.widgetData.linkId
