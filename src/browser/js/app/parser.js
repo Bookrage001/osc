@@ -22,6 +22,11 @@ var hashCode = function(s){
   return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
 }
 
+var $body
+$(function() {
+    $body = $('body')
+})
+
 module.exports.tabs = function(data,parent,main,parentLabel){
 
     if (main) {
@@ -43,7 +48,6 @@ module.exports.tabs = function(data,parent,main,parentLabel){
 
         widgetManager.reset()
 
-        var $body = $('body')
     }
 
     var main = main?'main ':'',
