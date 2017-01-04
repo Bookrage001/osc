@@ -20,26 +20,27 @@ module.exports = class _switchers_base extends _widgets_base {
 
         }
 
-        this.syncHandler = (e)=>{
-
-            var {id, widget, linkId, fromExternal, options} = e
-
-            if (this.value._selected !== false && this.value[this.value._selected] && widget.abstract._isSwitcher !== true && this.isWatching(id, widget)) {
-
-                this.value[this.value._selected][id] = JSON.parse(JSON.stringify(widget.abstract.getValue()))
-
-            }
-
-        }
-
-        $('body').on('sync',this.syncHandler)
+        $('body').on(`sync.${this.hash}`,this.syncHandler.bind(this))
 
 
     }
 
+    syncHandler(e) {
+
+        var {id, widget} = e
+
+        if (this.value._selected !== false && this.value[this.value._selected] && widget.abstract._isSwitcher !== true && this.isWatching(id, widget)) {
+
+            this.value[this.value._selected][id] = JSON.parse(JSON.stringify(widget.abstract.getValue()))
+
+        }
+
+    }
+
+
     onRemove() {
 
-        $('body').off('sync',this.syncHandler)
+        $('body').off(`sync.${this.hash}`)
 
     }
 
