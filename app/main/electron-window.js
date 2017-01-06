@@ -34,7 +34,7 @@ module.exports = function(options={}) {
         })
 
         shortcut.register(window,'F12',function(){
-            window.toggleDevTools();
+            window.toggleDevTools()
         })
 
     } else {

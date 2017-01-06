@@ -15,7 +15,7 @@ var oscServer = new osc.UDPPort({
     localAddress: "0.0.0.0",
     localPort: oscInPort,
 	metadata: true
-});
+})
 
 
 var parseType = function(type){
@@ -50,7 +50,7 @@ var sendOsc = function(data){
 	oscServer.send({
 		address: data.address,
 		args: data.args
-	}, data.host, data.port);
+	}, data.host, data.port)
 
 	if (debug) console.log('OSC sent: ',{address:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
 
@@ -69,21 +69,32 @@ var receiveOsc = function(data, info){
 }
 
 var customModule = (function(){
+
 	if (!settings.read('customModule')) return false
 
-	var file = (function(){try {return fs.readFileSync(settings.read('customModule'),'utf8')} catch(err) {console.log('CustomModule Error: File not found: ' + settings.read('customModule'));return false}})(),
+	var file = (function(){
+			try {
+				return fs.readFileSync(settings.read('customModule'),'utf8')
+			} catch(err) {
+				console.log('CustomModule Error: File not found: ' + settings.read('customModule'))
+				return false
+			}
+		})(),
 		mod,
 		context = {
 			console: console,
 			sendOsc: sendOsc,
 			receiveOsc: receiveOsc
 		}
+
 	try {
 		mod = vm.runInContext(file, vm.createContext(context))
 	} catch(err) {
 		console.log(err)
 	}
+
 	return mod
+
 })()
 
 

@@ -20,7 +20,7 @@ express.get('*', function(req, res){
 io.use(ioWildcard)
 
 
-io.listen(server);
+io.listen(server)
 
 server.listen(settings.read('httpPort'))
 
@@ -48,8 +48,8 @@ var bindCallbacks = function(callbacks) {
 			}
 
             if (callbacks[name]) callbacks[name](data,socket.id)
-        });
-    });
+        })
+    })
 }
 
 
