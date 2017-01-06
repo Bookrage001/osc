@@ -148,7 +148,7 @@ var init = function(){
             `)
             $('.confirm-delete').click(function(){
                 popup.close()
-                var parentContainer = container.parents('.widget, .tab, #container').first()
+                var parentContainer = container.parents('.widget, .tab, #container').first(),
                     parentData = getObjectData(parentContainer)
 
 
