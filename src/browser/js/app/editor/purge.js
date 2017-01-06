@@ -16,7 +16,7 @@ module.exports = function(purgetabs) {
             }
 
             // remove deleted tabs that are not referenced (have no navigation link pointing to them)
-    		var $f = $(formerBuffuredTabs)
+            var $f = $(formerBuffuredTabs)
             for (i in TABS) {
                 if (!($f.find(`[data-tab="${i}"]`).length || i== '#container')) {
                     delete TABS[i]
@@ -38,12 +38,12 @@ module.exports = function(purgetabs) {
 
     // prune widget stores
     // if widgets cannot be found in buffered tabs, it must be unreferenced
-	var $b = $(bufferedTabs)
+    var $b = $(bufferedTabs)
     for (hash in widgetManager.widgets) {
         if (!$b.find(widgetManager.widgets[hash].widget).length) {
             widgetManager.removeWidget(hash)
         }
     }
     widgetManager.purge()
-    
+
 }

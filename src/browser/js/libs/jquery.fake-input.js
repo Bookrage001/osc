@@ -3,27 +3,27 @@
 
         var settings = $.extend({
             align:'left'
-        }, options );
+        }, options )
 
-		var self= this,
-			canvas = $('<canvas></canvas>').appendTo(self),
-			ctx = canvas[0].getContext('2d')
+        var self= this,
+            canvas = $('<canvas></canvas>').appendTo(self),
+            ctx = canvas[0].getContext('2d')
 
-		self.value = undefined
-		self.height = undefined
-		self.width = undefined
-		self.color = undefined
+        self.value = undefined
+        self.height = undefined
+        self.width = undefined
+        self.color = undefined
         self.center = settings.align == 'center'
         self.visible = false
 
-		self.attr('tabindex',"0")
+        self.attr('tabindex',"0")
 
-		canvas.resize(function(e,width,height,checkColors){
+        canvas.resize(function(e,width,height,checkColors){
 
-			var width = width*2,
-				height = height*2
+            var width = width*2,
+                height = height*2
 
-			if (width && height) {
+            if (width && height) {
                 self.height=height
                 self.width=width
 
@@ -36,20 +36,22 @@
                 self.fontSize = parseFloat(getComputedStyle(canvas[0]).getPropertyValue("font-size"))
             }
 
-			self.val(self.value)
-		})
+            self.val(self.value)
 
-		self.val = function(newVal) {
-			if (newVal==undefined) return self.value
+        })
 
-			self.value = newVal
+        self.val = function(newVal) {
 
-			if (!self.height || !self.width || (self.height==100 && self.width==100)) return
+            if (newVal==undefined) return self.value
 
-			ctx.clearRect(0,0,self.width,self.height)
-			ctx.font =  2 * self.fontSize + 'px Droid Sans'
-			ctx.textBaseline = "middle"
-			ctx.fillStyle = self.color
+            self.value = newVal
+
+            if (!self.height || !self.width || (self.height==100 && self.width==100)) return
+
+            ctx.clearRect(0,0,self.width,self.height)
+            ctx.font =  2 * self.fontSize + 'px Droid Sans'
+            ctx.textBaseline = "middle"
+            ctx.fillStyle = self.color
 
             if (self.center) {
                 ctx.textAlign = settings.align
@@ -58,36 +60,35 @@
                 ctx.fillText(newVal,0,this.height/2)
             }
 
+        }
 
-		}
-
-		self.on('focus',function(){
-			self.attr('tabindex','-1')
-			var i = $('<input></input>')
-					.prependTo(self)
-					.val(self.value)
-					.focus()
-					.change(function(){
-						self.val($(this).val())
+        self.on('focus',function(){
+            self.attr('tabindex','-1')
+            var i = $('<input></input>')
+                    .prependTo(self)
+                    .val(self.value)
+                    .focus()
+                    .change(function(){
+                        self.val($(this).val())
                         i.blur()
-					})
-			i.blur(function(){
-					self.attr('tabindex','0')
-					i.remove()
+                    })
+            i.blur(function(){
+                    self.attr('tabindex','0')
+                    i.remove()
                     $(document).off('.fakeInput')
-			})
-			$(document).on('touchstart.fakeInput mousedown.fakeInput',function(e){
+            })
+            $(document).on('touchstart.fakeInput mousedown.fakeInput',function(e){
                 if (e.originalEvent.target!=i[0]) {
                     i.blur()
                 }
-			}).on('keydown.fakeInput', function(e){
+            }).on('keydown.fakeInput', function(e){
                 if (e.keyCode==13) i.change()
                 if (e.keyCode==27) i.off('change').blur()
             })
 
-		})
+        })
 
-		return self
+        return self
 
     }
 })(jQuery)

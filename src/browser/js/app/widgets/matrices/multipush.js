@@ -48,7 +48,7 @@ module.exports = class Multipush extends _matrices_base {
 
         var strData = JSON.stringify(widgetData)
 
-        var	parsers = require('../../parser'),
+        var    parsers = require('../../parser'),
         parsewidgets = parsers.widgets
 
         for (var i=widgetData.start;i<widgetData.matrix[0]*widgetData.matrix[1]+widgetData.start;i++) {

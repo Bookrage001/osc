@@ -8,9 +8,9 @@ module.exports = class Multitoggle extends _matrices_base {
             type:'multitoggle',
             id:'auto',
 
-        	_matrix: 'Matrix',
+            _matrix: 'Matrix',
 
-        	matrix: [2,2],
+            matrix: [2,2],
             start:0,
 
             _style:'style',
@@ -47,7 +47,7 @@ module.exports = class Multitoggle extends _matrices_base {
 
         var strData = JSON.stringify(widgetData)
 
-        var	parsers = require('../../parser'),
+        var    parsers = require('../../parser'),
         parsewidgets = parsers.widgets
 
         for (var i=widgetData.start;i<widgetData.matrix[0]*widgetData.matrix[1]+widgetData.start;i++) {

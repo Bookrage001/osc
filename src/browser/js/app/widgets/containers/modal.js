@@ -1,65 +1,65 @@
 var Panel = require('./panel'),
-	_widgets_base = require('../common/_widgets_base')
+    _widgets_base = require('../common/_widgets_base')
 
 
 module.exports = class Modal extends Panel {
 
-	static options() {
+    static options() {
 
-		return  {
-			type:'modal',
-			id:'auto',
+        return  {
+            type:'modal',
+            id:'auto',
 
-			_style:'style',
+            _style:'style',
 
-			label:'auto',
-			left:'auto',
-			top:'auto',
-			width:'auto',
-			height:'auto',
-			color:'auto',
-			css:'',
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            color:'auto',
+            css:'',
 
-			_osc:'osc',
+            _osc:'osc',
 
-			address:'auto',
+            address:'auto',
 
-			_chidlren:'chilren',
+            _chidlren:'chilren',
 
-			widgets:[],
-			tabs:[]
-		}
+            widgets:[],
+            tabs:[]
+        }
 
-	}
+    }
 
-	constructor(widgetData, container) {
+    constructor(widgetData, container) {
 
-		super(...arguments)
+        super(...arguments)
 
-		this.widget.removeClass('noscroll')
-		this.container = container
+        this.widget.removeClass('noscroll')
+        this.container = container
 
-		container.append('<div class="light"></div>')
-		this.light = container.find('.light').first()
+        container.append('<div class="light"></div>')
+        this.light = container.find('.light').first()
 
-		this.modal = this.widget.detach()
+        this.modal = this.widget.detach()
 
-		this.value = false
+        this.value = false
 
-		this.light.on('fake-click',()=>{
-			this.setValue(!this.value)
-		})
+        this.light.on('fake-click',()=>{
+            this.setValue(!this.value)
+        })
 
 
-	}
+    }
 
-	setValue(v) {
+    setValue(v) {
 
-		this.value = v ? true : false
-		this.container.toggleClass('on', this.value)
-		this.widget.toggleClass('on', this.value)
-		this.light.toggleClass('on', this.value)
+        this.value = v ? true : false
+        this.container.toggleClass('on', this.value)
+        this.widget.toggleClass('on', this.value)
+        this.light.toggleClass('on', this.value)
 
-	}
+    }
 
 }

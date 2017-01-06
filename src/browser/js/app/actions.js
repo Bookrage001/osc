@@ -20,10 +20,10 @@ module.exports = {
     stateSave: function() {
         state = JSON.stringify(module.exports.stateGet(),null,'    ')
         var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
-        var blob = new Blob([state],{type : 'application/x-javascript'});
+        var blob = new Blob([state],{type : 'application/x-javascript'})
         down.attr('href', window.URL.createObjectURL(blob))
-        var event = new MouseEvent("click");
-        down[0].dispatchEvent(event);
+        var event = new MouseEvent("click")
+        down[0].dispatchEvent(event)
     },
 
     stateGet: function (){
@@ -45,13 +45,13 @@ module.exports = {
         var prompt = $('<input type="file" accept=".preset"/>')
         prompt.click()
         prompt.on('change',function(e){
-            var reader = new FileReader();
+            var reader = new FileReader()
             reader.onloadend = function(e) {
                 var preset = e.target.result
                 module.exports.stateSet(JSON.parse(preset),true)
                 STATE = preset
             }
-            reader.readAsText(e.target.files[0],'utf-8');
+            reader.readAsText(e.target.files[0],'utf-8')
         })
     },
 
@@ -102,7 +102,7 @@ module.exports = {
                 var session = e.target.result
                 ipc.send('sessionOpen',{file:session,path:file.path})
             }
-            reader.readAsText(file, 'utf-8');
+            reader.readAsText(file, 'utf-8')
         })
 
     },
@@ -110,13 +110,13 @@ module.exports = {
     sessionSave: function() {
         var sessionfile = JSON.stringify(SESSION,null,'    ')
         var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.js"></a>')
-        var blob = new Blob([sessionfile],{type : 'application/x-javascript'});
+        var blob = new Blob([sessionfile],{type : 'application/x-javascript'})
         down.attr('href', window.URL.createObjectURL(blob))
-        var event = new MouseEvent("click");
-        down[0].dispatchEvent(event);
+        var event = new MouseEvent("click")
+        down[0].dispatchEvent(event)
     },
 
-	editorEnable: function(){
+    editorEnable: function(){
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         $('.editor-root').attr('data-tab','#container').removeClass('disabled')
         $('.enable-editor').addClass('on')
@@ -143,7 +143,7 @@ module.exports = {
         })
         $('.editor').append(f)
     },
-	editorDisable: function(){
+    editorDisable: function(){
         $('.widget.ui-resizable').resizable('destroy')
         $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
         $('.editing').removeClass('editing')

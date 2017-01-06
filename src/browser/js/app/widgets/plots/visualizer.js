@@ -7,24 +7,24 @@ module.exports = class Visualizer extends _plots_base {
     static options() {
 
         return {
-        	type:'visualizer',
-        	id:'auto',
+            type:'visualizer',
+            id:'auto',
 
-        	_style:'style',
+            _style:'style',
 
-        	label:'auto',
-        	left:'auto',
-        	top:'auto',
-        	width:'auto',
-        	height:'auto',
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
             color:'auto',
-        	css:'',
+            css:'',
 
-        	_plot:'plot',
+            _plot:'plot',
 
-        	widgetId:'',
+            widgetId:'',
             duration:1,
-        	range: {min:0,max:1},
+            range: {min:0,max:1},
             origin: 'auto',
             logScale: false,
 

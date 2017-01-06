@@ -19,7 +19,7 @@ var iterators = {
     }
 
 var hashCode = function(s){
-  return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+    return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)
 }
 
 var $body

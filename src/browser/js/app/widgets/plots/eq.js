@@ -8,24 +8,24 @@ module.exports = class Eq extends _plots_base {
     static options() {
 
         return {
-        	type:'eq',
-        	id:'auto',
+            type:'eq',
+            id:'auto',
 
-        	_style:'style',
+            _style:'style',
 
-        	label:'auto',
-        	left:'auto',
-        	top:'auto',
-        	width:'auto',
-        	height:'auto',
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
             color:'auto',
-        	css:'',
+            css:'',
 
-        	_plot:'plot',
+            _plot:'plot',
 
-        	filters:[],
+            filters:[],
             resolution:128,
-        	rangeY: {min:-20,max:20},
+            rangeY: {min:-20,max:20},
             origin: 'auto',
             logScaleX: false,
 

@@ -2,54 +2,54 @@ var _widgets_base = require('../common/_widgets_base')
 
 module.exports = class Panel extends _widgets_base {
 
-	static options() {
+    static options() {
 
-		return {
-			type:'panel',
-			id:'auto',
+        return {
+            type:'panel',
+            id:'auto',
 
-			_style:'style',
+            _style:'style',
 
-			label:'auto',
-			left:'auto',
-			top:'auto',
-			width:'auto',
-			height:'auto',
-			scroll:true,
-			color:'auto',
-			css:'',
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+            scroll:true,
+            color:'auto',
+            css:'',
 
-			_children:'chilren',
+            _children:'chilren',
 
-			widgets:[],
-			tabs:[]
-		}
+            widgets:[],
+            tabs:[]
+        }
 
-	}
+    }
 
-	constructor(widgetData) {
+    constructor(widgetData) {
 
 
-		var widgetHtml = `
-			<div class="panel
-						${!widgetData.scroll?'noscroll':''}
-						${widgetData.tabs.length?'has-tabs':''}
-						">
-			</div>
-		`
+        var widgetHtml = `
+            <div class="panel
+                        ${!widgetData.scroll?'noscroll':''}
+                        ${widgetData.tabs.length?'has-tabs':''}
+                        ">
+            </div>
+        `
 
-		super(...arguments, widgetHtml)
+        super(...arguments, widgetHtml)
 
-		var	parsers = require('../../parser'),
-			parsewidgets = parsers.widgets,
-			parsetabs = parsers.tabs
+        var    parsers = require('../../parser'),
+            parsewidgets = parsers.widgets,
+            parsetabs = parsers.tabs
 
-		if (widgetData.tabs.length) {
-			parsetabs(widgetData.tabs,this.widget)
-		} else {
-			parsewidgets(widgetData.widgets,this.widget)
-		}
+        if (widgetData.tabs.length) {
+            parsetabs(widgetData.tabs,this.widget)
+        } else {
+            parsewidgets(widgetData.widgets,this.widget)
+        }
 
-	}
+    }
 
 }

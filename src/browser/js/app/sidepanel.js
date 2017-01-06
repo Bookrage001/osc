@@ -1,5 +1,5 @@
 var actions = require('./actions'),
-	icon = require('./utils').icon
+    icon = require('./utils').icon
 
 var data = [
     {
@@ -11,137 +11,137 @@ var data = [
 
         ]
     },
-	{
-		title: icon('sliders') + '&nbsp; State',
-		actions: [
-			{
-				title:'Store',
-				action:actions.stateQuickSave
-			},
-			{
-				title:'Recall',
-				action:actions.stateQuickLoad,
-				class:'disabled quickload'
-			},
-			{
-				title:'Send All',
-				action:actions.stateSend
-			},
-			{
-				title:'Import',
-				action:actions.stateLoad
-			},
-			{
-				title:'Export',
-				action:actions.stateSave
-			}
-		]
-	},
-	{
-		title: icon('magic') + '&nbsp; Traversing gestures',
-		actions: [
-			{
-				title:'On',
-				action:actions.traversingEnable,
-				class:'traversingEnable'
-			},
-			{
-				title:'Off',
-				action:actions.traversingDisable,
-				class:'traversingDisable on'
-			}
-		]
-	},
-	{
-		title: icon('edit') + '&nbsp; Editor',
-		class:'editor',
-		actions: [
-			{
-				title:'On',
-				action:actions.editorEnable,
-				class:'enable-editor'
-			},
-			{
-				title:'Off',
-				action:actions.editorDisable,
-				class:'on disable-editor'
-			},
-			{
-				title:'Root',
-				class:'editor-root disabled'
-			},
-			{
-				title:'Load',
-				action:actions.sessionBrowse
-			},
-			{
-				title:'Save',
-				action:actions.sessionSave
-			}
-		]
-	},
+    {
+        title: icon('sliders') + '&nbsp; State',
+        actions: [
+            {
+                title:'Store',
+                action:actions.stateQuickSave
+            },
+            {
+                title:'Recall',
+                action:actions.stateQuickLoad,
+                class:'disabled quickload'
+            },
+            {
+                title:'Send All',
+                action:actions.stateSend
+            },
+            {
+                title:'Import',
+                action:actions.stateLoad
+            },
+            {
+                title:'Export',
+                action:actions.stateSave
+            }
+        ]
+    },
+    {
+        title: icon('magic') + '&nbsp; Traversing gestures',
+        actions: [
+            {
+                title:'On',
+                action:actions.traversingEnable,
+                class:'traversingEnable'
+            },
+            {
+                title:'Off',
+                action:actions.traversingDisable,
+                class:'traversingDisable on'
+            }
+        ]
+    },
+    {
+        title: icon('edit') + '&nbsp; Editor',
+        class:'editor',
+        actions: [
+            {
+                title:'On',
+                action:actions.editorEnable,
+                class:'enable-editor'
+            },
+            {
+                title:'Off',
+                action:actions.editorDisable,
+                class:'on disable-editor'
+            },
+            {
+                title:'Root',
+                class:'editor-root disabled'
+            },
+            {
+                title:'Load',
+                action:actions.sessionBrowse
+            },
+            {
+                title:'Save',
+                action:actions.sessionSave
+            }
+        ]
+    },
 ]
 
 var sidepanel = function(data){
 
-	var bindAction = function(el,callback) {
-		el.click(function(){callback()})
-	}
+    var bindAction = function(el,callback) {
+        el.click(function(){callback()})
+    }
 
-	var  html = $('<ul id="options"></ul>')
+    var  html = $('<ul id="options"></ul>')
 
-	for (i in data) {
-		var itemData = data[i]
+    for (i in data) {
+        var itemData = data[i]
 
-		var item = $('<li></li>'),
-			inner = $('<div></div>').appendTo(item),
-			wrapper = $('<div class="actions"></div>').appendTo(inner)
+        var item = $('<li></li>'),
+            inner = $('<div></div>').appendTo(item),
+            wrapper = $('<div class="actions"></div>').appendTo(inner)
 
-		if (itemData.title) $('<div class="title">'+itemData.title+'</div>').prependTo(wrapper)
-		if (itemData.class) inner.attr('class',itemData.class)
+        if (itemData.title) $('<div class="title">'+itemData.title+'</div>').prependTo(wrapper)
+        if (itemData.class) inner.attr('class',itemData.class)
 
-		for (j in itemData.actions) {
-			var actionData = itemData.actions[j]
-			var el = $('<a class="btn">'+actionData.title+'</a>').appendTo(wrapper)
-			if (actionData.action) bindAction(el, actionData.action)
+        for (j in itemData.actions) {
+            var actionData = itemData.actions[j]
+            var el = $('<a class="btn">'+actionData.title+'</a>').appendTo(wrapper)
+            if (actionData.action) bindAction(el, actionData.action)
 
-			if (actionData.class) el.addClass(actionData.class)
+            if (actionData.class) el.addClass(actionData.class)
 
-		}
-		item.appendTo(html)
+        }
+        item.appendTo(html)
 
-	}
+    }
 
-	return html
+    return html
 
 }(data)
 
 var toggle = function(){
-	var t = $(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
-		var t = 0
-		if (!$('#sidepanel').hasClass('sidepanel-open')) t = 250
+    var t = $(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
+        var t = 0
+        if (!$('#sidepanel').hasClass('sidepanel-open')) t = 250
 
-		$('#open-toggle, #sidepanel').toggleClass('sidepanel-open')
-		setTimeout(function(){
-			$('#container').toggleClass('sidepanel-open')
-			$(window).resize()
-		},t)
-	}).on('mousedown touchstart',function(e){e.stopPropagation()})
+        $('#open-toggle, #sidepanel').toggleClass('sidepanel-open')
+        setTimeout(function(){
+            $('#container').toggleClass('sidepanel-open')
+            $(window).resize()
+        },t)
+    }).on('mousedown touchstart',function(e){e.stopPropagation()})
 
-	// in case where are hot loading a session
-	if ($('#sidepanel').hasClass('sidepanel-open')) {
-		$('#open-toggle, #container').addClass('sidepanel-open')
-	}
+    // in case where are hot loading a session
+    if ($('#sidepanel').hasClass('sidepanel-open')) {
+        $('#open-toggle, #container').addClass('sidepanel-open')
+    }
 
-	$(document).on('keydown.sidepanel', function(e){
-		if (e.keyCode==121) t.click()
-	})
+    $(document).on('keydown.sidepanel', function(e){
+        if (e.keyCode==121) t.click()
+    })
 }
 
 module.exports = {
-	init:function(){
-		$('#sidepanel').append(sidepanel)
-		toggle()
-	},
-	createToggle:toggle
+    init:function(){
+        $('#sidepanel').append(sidepanel)
+        toggle()
+    },
+    createToggle:toggle
 }

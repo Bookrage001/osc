@@ -104,19 +104,19 @@ var callbacks = module.exports = {
     },
 
     applyStyle: function(data){
-        var style = document.createElement('style');
-        style.innerHTML = data.join('');
-        document.body.appendChild(style);
+        var style = document.createElement('style')
+        style.innerHTML = data.join('')
+        document.body.appendChild(style)
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
         INITIALZOOM = PXSCALE
     },
 
     reloadCss: function(){
-        var queryString = '?reload=' + new Date().getTime();
+        var queryString = '?reload=' + new Date().getTime()
         $('link[rel="stylesheet"][hot-reload]').each(function () {
-            this.href = this.href.replace(/\?.*|$/, queryString);
-        });
+            this.href = this.href.replace(/\?.*|$/, queryString)
+        })
         setTimeout(()=>{
             $('canvas').trigger('resize',[0,0,true])
         },100)

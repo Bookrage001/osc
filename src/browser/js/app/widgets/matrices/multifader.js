@@ -60,7 +60,7 @@ module.exports = class Multifader extends _matrices_base {
 
         var strData = JSON.stringify(widgetData)
 
-        var	parsers = require('../../parser'),
+        var    parsers = require('../../parser'),
             parsewidgets = parsers.widgets
 
         for (var i=widgetData.start; i<widgetData.strips+widgetData.start;i++) {

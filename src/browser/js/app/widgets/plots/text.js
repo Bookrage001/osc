@@ -38,7 +38,7 @@ module.exports = class Text extends _widgets_base {
 
         super(...arguments, widgetHtml)
 
-    	this.defaultValue = widgetData.label===false?
+        this.defaultValue = widgetData.label===false?
                                 widgetData.id:
                                 widgetData.label=='auto'?
                                     widgetData.id:

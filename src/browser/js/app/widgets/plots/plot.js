@@ -7,24 +7,24 @@ module.exports = class Plot extends _plots_base {
     static options() {
 
         return {
-        	type:'plot',
-        	id:'auto',
+            type:'plot',
+            id:'auto',
 
-        	_style:'style',
+            _style:'style',
 
-        	label:'auto',
-        	left:'auto',
-        	top:'auto',
-        	width:'auto',
-        	height:'auto',
+            label:'auto',
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
             color:'auto',
-        	css:'',
+            css:'',
 
-        	_plot:'plot',
+            _plot:'plot',
 
-        	points:[],
-        	rangeX: {min:0,max:1},
-        	rangeY: {min:0,max:1},
+            points:[],
+            rangeX: {min:0,max:1},
+            rangeY: {min:0,max:1},
             origin: 'auto',
             logScaleX: false,
             logScaleY: false,
