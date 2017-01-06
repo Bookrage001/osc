@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.13.2
+## 0.14.0
 
 - bug fixes
   - some layout regressions in chrome v49
@@ -9,6 +9,9 @@
 - widgets
   - **new** `crossfader` and `switcher` widgets that store and recall the state of other widgets
   - `matrices` now accept multiple color values (that will be sequencially passed to their children)
+  - `switches` accept icons in their values' labels
+- engine
+  - electron v1.4.13
 - misc
   - all widgets classes were rewritten using ES6 class expressions
   - firefox's minimal version is now 46 because of a ES6 related bug (*note that it's still not officially supported*)
