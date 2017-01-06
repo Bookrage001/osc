@@ -19,7 +19,7 @@ var iterators = {
     }
 
 var hashCode = function(s){
-    return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)
+  return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
 }
 
 var $body
@@ -70,7 +70,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
 
         navtabs.append(`<li data-tab="#${id}"><a><span>${tabData.label}</span></a></li>`)
 
-        var tabContent = $(`<div class="tab ${tabData.tabs&&tabData.tabs.length?'has-tabs':''}" id="${id}" data-index="${i}"></div>`)
+        let tabContent = $(`<div class="tab ${tabData.tabs&&tabData.tabs.length?'has-tabs':''}" id="${id}" data-index="${i}"></div>`)
         tabContent.data(tabData)
 
 
