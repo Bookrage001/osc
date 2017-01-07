@@ -21,16 +21,16 @@ The switcher looks like the [`switch`](buttons/#switch). Each of its possible va
 - default:
     `empty`
 - usage:
-  - as a `string`: a widget's `id` whose state changes will be stored
-  - as an `array`: a list of widget `id`s
+    - as a `string`: a widget's `id` whose state changes will be stored
+    - as an `array`: a list of widget `id` `strings`
 
 
 #### `values`
 - type: `array|object`
 - default: `["A", "B"]`
 - usage:
-  - `array` of possible values to switch between : `[1,2,3]`
-  - `object` of `"label":value` pairs
+    - `array` of possible values to switch between : `[1,2,3]`
+    - `object` of `"label":value` pairs
 
 
 ## Crossfader
