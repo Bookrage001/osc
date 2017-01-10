@@ -16,7 +16,7 @@
             margin-bottom:0;
         }
         label {
-            background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
+            background: var(--color-fg);
             flex-shrink: 0;
             padding: 6rem 7rem 4rem;
             // border:1rem solid var(--color-bg);
@@ -59,11 +59,11 @@
         width:100%;
         .btn {
             background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
-            box-shadow: 0 0 0 1rem var(--color-bg);
+            box-shadow: 0 1rem 0 0 var(--color-light) inset;
+            border-radius: 2rem;
         }
     }
-    .checkbox {
-        background:var(--color-raised);
+    .input-wrapper .checkbox {
         cursor: pointer;
         &[value="true"] {
             color: var(--color-accent)
