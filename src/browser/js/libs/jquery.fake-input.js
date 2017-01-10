@@ -78,7 +78,7 @@
                     $(document).off('.fakeInput')
             })
             $(document).on('touchstart.fakeInput mousedown.fakeInput',function(e){
-                if (e.originalEvent.target!=i[0]) {
+                if (e.originalEvent.target!=i[0] && !(e.originalEvent.sourceCapabilities && e.originalEvent.sourceCapabilities.firesTouchEvents)) {
                     i.blur()
                 }
             }).on('keydown.fakeInput', function(e){
