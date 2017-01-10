@@ -28,7 +28,7 @@
         &:after {
             content:"";
             position: absolute;
-            box-shadow: 0 10rem 10rem -12rem var(--color-bg) inset, 0 -10rem 10rem -12rem var(--color-bg) inset;
+            box-shadow: 0 10rem 10rem -11rem var(--color-bg) inset, 0 -10rem 10rem -11rem var(--color-bg) inset;
             height: 100%;
             width: 100%;
             pointer-events: none;
