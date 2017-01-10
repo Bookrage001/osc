@@ -52,7 +52,6 @@
                                 "type": "toggle",
                                 "id": "toggle_1",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -63,7 +62,8 @@
                                 "address": "/toggle_1",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -225,7 +225,6 @@
                                 "type": "toggle",
                                 "id": "toggle_3",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -236,7 +235,8 @@
                                 "address": "/toggle_3",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -398,7 +398,6 @@
                                 "type": "toggle",
                                 "id": "toggle_5",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -409,7 +408,8 @@
                                 "address": "/toggle_5",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -571,7 +571,6 @@
                                 "type": "toggle",
                                 "id": "toggle_7",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -582,7 +581,8 @@
                                 "address": "/toggle_7",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -744,7 +744,6 @@
                                 "type": "toggle",
                                 "id": "toggle_9",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -755,7 +754,8 @@
                                 "address": "/toggle_9",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -917,7 +917,6 @@
                                 "type": "toggle",
                                 "id": "toggle_10",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -928,7 +927,8 @@
                                 "address": "/toggle_10",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -1089,7 +1089,6 @@
                                 "type": "toggle",
                                 "id": "toggle_13",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -1100,7 +1099,8 @@
                                 "address": "/toggle_13",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -1263,7 +1263,6 @@
                                 "type": "toggle",
                                 "id": "toggle_15",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -1274,7 +1273,8 @@
                                 "address": "/toggle_15",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -1436,7 +1436,6 @@
                                 "type": "toggle",
                                 "id": "toggle_17",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -1447,7 +1446,8 @@
                                 "address": "/toggle_17",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -1609,7 +1609,6 @@
                                 "type": "toggle",
                                 "id": "toggle_19",
                                 "label": "F1",
-                                "width": "90%",
                                 "height": 40,
                                 "color": "auto",
                                 "css": "",
@@ -1620,7 +1619,8 @@
                                 "address": "/toggle_19",
                                 "preArgs": [],
                                 "target": [],
-                                "linkId": ""
+                                "linkId": "",
+                                "width": "auto"
                             },
                             {
                                 "type": "knob",
@@ -1834,7 +1834,9 @@
                                 "on": 1,
                                 "off": 0,
                                 "norelease": true,
-                                "id": "octave_up"
+                                "id": "octave_up",
+                                "separator1": "style",
+                                "separator2": "osc"
                             },
                             {
                                 "type": "push",
@@ -1851,7 +1853,9 @@
                                 "off": 0,
                                 "linkId": "",
                                 "norelease": true,
-                                "id": "octave_down"
+                                "id": "octave_down",
+                                "separator1": "style",
+                                "separator2": "osc"
                             }
                         ]
                     }
