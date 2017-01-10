@@ -130,7 +130,7 @@
                     var oE = e.originalEvent
 
                     for (i in oE.changedTouches) {
-                        if (isNaN(i)) continue
+                        if (isNaN(i) || !oE.changedTouches[i]) continue
 
                         var touch = oE.changedTouches[i],
                             id = touch.identifier,
@@ -173,7 +173,7 @@
                     var oE = e.originalEvent
 
                     for (i in oE.changedTouches) {
-                        if (isNaN(i)) continue
+                        if (isNaN(i) || !oE.changedTouches[i]) continue
 
                         var nFingers = 0
                         for (j in oE.touches) {
@@ -229,7 +229,7 @@
 
                     for (i in oE.changedTouches) {
 
-                        if (isNaN(i)) continue
+                        if (isNaN(i) || !oE.changedTouches[i]) continue
 
                         var touch = oE.changedTouches[i],
                             id = touch.identifier
