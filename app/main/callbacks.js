@@ -33,16 +33,20 @@ module.exports =  {
 	sessionAddToHistory: function(data) {
 	    var sessionlist = settings.read('recentSessions')
 
-		if (!fs.lstatSync(data).isFile()) return
+		fs.lstat(data,(err, stats)=>{
 
-	    // add session to history
-	    sessionlist.unshift(data)
-	    // remove doubles from history
-	    sessionlist = sessionlist.filter(function(elem, index, self) {
-	        return index == self.indexOf(elem)
-	    })
-	    // save history
-	    settings.write('recentSessions',sessionlist)
+            if (err || !stats.isFile()) return
+
+            // add session to history
+            sessionlist.unshift(data)
+            // remove doubles from history
+            sessionlist = sessionlist.filter(function(elem, index, self) {
+                return index == self.indexOf(elem)
+            })
+            // save history
+            settings.write('recentSessions',sessionlist)
+
+        })
 	},
 
 	sessionRemoveFromHistory: function(data) {
