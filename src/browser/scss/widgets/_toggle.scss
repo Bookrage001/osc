@@ -37,6 +37,7 @@
             left:2rem;
             right:2rem;
             border-top: 2rem solid var(--color-light);
+            box-shadow: 0 0 1rem 0 var(--color-faded);
             z-index: 1;
         }
 
@@ -54,6 +55,7 @@
             }
             &:after {
                 border-top-color: var(--color-custom);
+                box-shadow: none;
                 opacity: .7;
             }
 
