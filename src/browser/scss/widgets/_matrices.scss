@@ -93,6 +93,7 @@
             --color-light: var(--color-white);
             .light.active:before {
                 opacity: .5;
+                background:var(--color-fg);
             }
         }
         .black {
@@ -102,7 +103,8 @@
             top:0;
             height: 65%;
             .light.active:before {
-                opacity: .25;
+                opacity: 1;
+                background:var(--color-fg);
             }
         }
     }
