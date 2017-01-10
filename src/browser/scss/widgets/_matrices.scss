@@ -5,6 +5,9 @@
     &.nolabel .matrix {
         top:0;
     }
+    > .label {
+        border-bottom:1rem solid var(--color-bg);
+    }
 }
 .matrix {
     flex:1;
@@ -13,7 +16,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-right:-1rem;
+    margin-right:-2rem;
     margin-bottom: -1rem;
 
     > .widget {
@@ -80,25 +83,26 @@
     --color-white: #ccc;
     height:90rem;
     width:240rem;
-
+    .label {
+        border-bottom: 1rem solid var(--color-bg);
+    }
     .matrix {
         position: relative;
         overflow: hidden;
         .white {
-            --color-raised: var(--color-white);
-            .light.active {
-                opacity: .25;
+            --color-light: var(--color-white);
+            .light.active:before {
+                opacity: .5;
             }
         }
         .black {
-            --color-raised: var(--color-black);
+            --color-light: var(--color-black);
             position: absolute;
             z-index: 1;
             top:0;
             height: 65%;
-            .light.active {
-                opacity: .5;
-                box-shadow: none;
+            .light.active:before {
+                opacity: .25;
             }
         }
     }

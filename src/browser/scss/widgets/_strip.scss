@@ -27,7 +27,9 @@
             width:auto;
             margin:0;
             border-color: transparent;
-            box-shadow: none;
+            &:not(:first-child) {
+                // box-shadow: none;
+            }
             .label {
               background-image: none;
             }
@@ -41,9 +43,9 @@
             width: 100%;
             max-width: 100%;
             // margin-right:1rem;
-            &:not(:first-child) > .label {
-                border-top:1rem solid  var(--color-bg);
-            }
+            // &:not(:first-child) > .label {
+            //     border-top:1rem solid  var(--color-bg);
+            // }
         }
         &::before {
             border-right: 1rem solid  var(--color-bg);

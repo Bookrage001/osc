@@ -1,6 +1,17 @@
 .switch-container {
     width:100rem;
     flex-shrink: 0;
+    .label {
+        border-bottom: 1rem solid var(--color-bg);
+    }
+    &.nolabel {
+        .switch .value:first-child {
+            box-shadow: none!important;
+        }
+        .switch.horizontal .value {
+            box-shadow: none;
+        }
+    }
     .switch {
         height:100%;
         width:100%;
@@ -29,7 +40,7 @@
             }
         }
         .value {
-            background:var(--color-raised);
+            background:var(--color-light);
             padding:6rem;
             color:var(--color-text);
             width:100%;
@@ -43,11 +54,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
+            box-shadow: 0 1rem 0 0 var(--color-light) inset;
 
             &:first-child {
                 border-top:0;
             }
+
             &:last-child {
                 margin-bottom:0;
             }
@@ -65,8 +77,6 @@
             }
             &.on:before {
                 opacity: .3;
-                box-shadow: 0 0 1rem 0 var(--color-custom) inset;
-
             }
             i {
                 width: auto;
@@ -78,6 +88,9 @@
 
 
 .switcher-container, .crossfader-container {
+    .label {
+        border-bottom: 1rem solid var(--color-bg);
+    }
     .switcher {
         width: 100%;
         flex:1;
@@ -89,6 +102,10 @@
         display:flex;
         &.horizontal {
             flex-direction: column;
+            .switch {
+                border-bottom: 1rem solid var(--color-bg);
+                border-right: 0;
+            }
             .fader-container {
                 width: 100%;
                 height: auto
@@ -98,6 +115,7 @@
    .switch {
        height: auto;
        flex:1;
+       border-right: 1rem solid var(--color-bg);
    }
    .fader-container {
        min-height: 60%;

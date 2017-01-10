@@ -1,3 +1,6 @@
+$base: #528bff;
+
+
 :root {
 
     --color-text:rgba(white,.8);
@@ -13,6 +16,21 @@
     --color-accent:#528bff;
     --color-custom:var(--color-accent);
     --color-grid: transparentize(#528bff, 0.9);
+
+
+
+--color-accent:$base;
+--color-custom:var(--color-accent);
+
+
+--color-fg: darken(desaturate($base,82%),45%);
+--color-bg: darken(desaturate($base,82%),53%);
+--color-track: var(--color-bg);
+--color-light:rgba(lighten($base,10%),.1);
+
+--color-raised:var(--color-light);
+--color-faded: darken(desaturate($base,78%),48%);
+
 
 
 

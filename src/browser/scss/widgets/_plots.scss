@@ -46,6 +46,15 @@
         flex-direction: row;
         flex:1;
         position: relative;
+        background:linear-gradient(to right, var(--color-faded), var(--color-fg) 300%);
+        &:after {
+            content:"";
+            position: absolute;
+            box-shadow: 0 10rem 10rem -12rem var(--color-bg) inset, 0 -10rem 10rem -12rem var(--color-bg) inset;
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+        }
     }
     canvas {
         position: absolute;

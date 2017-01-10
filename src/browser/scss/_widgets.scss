@@ -5,16 +5,16 @@
     overflow: hidden;
     position:relative;
     vertical-align:top;
-    box-shadow: -0.5rem -0.5rem 0 0.5rem;
+    box-shadow: -0.5rem -0.5rem 0 0.5rem var(--color-bg),  0 1rem 0 0 var(--color-light) inset;
     color:var(--color-bg);
     border-right:1rem solid var(--color-bg);
     border-bottom:1rem solid var(--color-bg);
-    background:var(--color-fg);
     -webkit-tap-highlight-color:transparent;
     min-height:30rem;
     min-width:30rem;
     display: inline-flex;
     flex-direction: column;
+    background: var(--color-fg);
 
     > * {
         color:var(--color-text)
@@ -40,8 +40,7 @@
         line-height: 30rem;
         padding:0 6rem;
         width: 100%;
-        background: var(--color-raised);
-        border-bottom:1rem solid var(--color-bg);
+        // background: var(--color-raised);
         flex-shrink: 0;
         display: flex;
         justify-content: space-around;

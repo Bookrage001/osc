@@ -3,7 +3,7 @@
     min-height: 60rem;
     flex-shrink: 0;
     padding:0!important;
-    background: var(--color-raised);
+    background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
 
     > .label {
         position: absolute;
@@ -26,15 +26,18 @@
     cursor: pointer;
 
     > .light {
-        
-        box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
         flex:1;
 
         &:after {
             content:"";
-            border-top: 4rem solid var(--color-text-fade);
-            opacity: .1;
+            opacity: 1;
+            position: absolute;
             display: block;
+            top:2rem;
+            left:2rem;
+            right:2rem;
+            border-top: 2rem solid var(--color-light);
+            z-index: 1;
         }
 
         &:before {
@@ -46,14 +49,12 @@
             opacity: 0;
         }
         &.on {
-
-            box-shadow: 0 0 1rem 0 var(--color-custom) inset;
             &:before {
                 opacity: .3;
             }
             &:after {
                 border-top-color: var(--color-custom);
-                opacity: 0.3;
+                opacity: .7;
             }
 
         }

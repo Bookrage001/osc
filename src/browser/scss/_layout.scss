@@ -88,7 +88,8 @@ body {
                 }
             }
             a {
-                background: var(--color-fg);
+                background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
+                // background: var(--color-fg);
                 pointer-events: none;
                 padding: 5rem;
                 height:100%;
@@ -97,6 +98,7 @@ body {
                 overflow:hidden;
                 text-align:center;
                 position:relative;
+                box-shadow: 0 1rem 0 0 var(--color-light) inset;
                 span {
                     display:block;
                     width:100%;
@@ -117,7 +119,6 @@ body {
 			}
             &.on a, .sidepanel-open {
 				position: relative;
-                background: var(--color-raised);
                 z-index: 0;
 				&:after {
 					opacity:0.3;

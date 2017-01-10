@@ -22,7 +22,16 @@
         position: relative;
         height: 100%;
         width: 100%;
-        background:var(--color-faded);
+        background:linear-gradient(to right, var(--color-faded), var(--color-fg) 300%);
+        &:after {
+            content:"";
+            position: absolute;
+            box-shadow: 0 10rem 10rem -12rem var(--color-bg) inset, 0 -10rem 10rem -12rem var(--color-bg) inset;
+            height: 100%;
+            width: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
         > canvas {
             width:100%;
             height:100%;
@@ -61,7 +70,7 @@
                 --color-knob:transparent;
                 --color-gauge:transparent;
             }
-            &:before, &:after {
+            &:before {
         		content:"";
         		position: absolute;
         		left:0;
@@ -70,10 +79,7 @@
         		height: 100%;
         	}
             &:before {
-                background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-            }
-            &:after {
-                background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+                background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%), linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
             }
         }
         > .hue-wrapper {
@@ -111,8 +117,20 @@
 .multixy-container {
     > .pad {
         --point-size:10rem;
+        &:after {
+            content:"";
+            position: absolute;
+            box-shadow: 0 10rem 10rem -12rem var(--color-bg) inset, 0 -10rem 10rem -12rem var(--color-bg) inset;
+            height: 100%;
+            width: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
         > .wrapper {
             padding: calc(var(--point-size) + 1rem);
+            &:after {
+                content:none;
+            }
             > canvas {
                 top:0;
                 left:0;
@@ -126,6 +144,9 @@
                 }
                 .wrapper {
                     background: transparent;
+                    &:after {
+                        content:none;
+                    }
                 }
                 .row {
                     display: none;

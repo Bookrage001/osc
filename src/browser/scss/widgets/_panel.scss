@@ -3,6 +3,9 @@
     &.nolabel .panel {
         top:0;
     }
+    > .label {
+        border-bottom:1rem solid var(--color-bg);
+    }
 
     .panel {
         overflow: auto;
@@ -141,7 +144,7 @@
                 opacity: 1;
                 position: relative;
                 margin-right: 1rem;
-                box-shadow: -1rem 0 0 0 var(--color-bg);
+                box-shadow: -1rem 0 0 0 var(--color-bg), 0 1rem 0 0 var(--color-light) inset;
         }
         > .light:before {
             transition:all .2s;

@@ -54,7 +54,7 @@ i {
 
 
 .btn {
-    background: var(--color-raised);
+    background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
     display: block;
     padding:15rem;
     position: relative;
@@ -374,6 +374,8 @@ i {
         position: relative;
         padding:15rem;
         background:var(--color-raised);
+        border-bottom: 1rem solid var(--color-bg);
+
         &.closable {
             padding-right: 50rem;
         }

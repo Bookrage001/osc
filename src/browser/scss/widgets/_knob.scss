@@ -2,6 +2,7 @@
     --color-pips: var(--color-text-fade);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
+    --color-track: var(--color-bg);
 
     width: 100rem;
     height: 120rem;
@@ -27,6 +28,7 @@
 
         canvas {
             width: 100%;
+            position: relative;
         }
     }
     &.compact {

@@ -16,7 +16,7 @@
             margin-bottom:0;
         }
         label {
-            background: var(--color-raised);
+            background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
             flex-shrink: 0;
             padding: 6rem 7rem 4rem;
             // border:1rem solid var(--color-bg);
@@ -58,7 +58,7 @@
         color:var(--color-text);
         width:100%;
         .btn {
-            background:var(--color-raised);
+            background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
             box-shadow: 0 0 0 1rem var(--color-bg);
         }
     }
@@ -147,7 +147,7 @@
 .context-menu {
     position:fixed;
     z-index: 999999999;
-    background: var(--color-raised);
+    background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
     box-shadow: 0 0 4rem 0;
     color:var(--color-track);
     .item {
@@ -183,7 +183,17 @@
                 pointer-events: auto;
                 opacity: 1;
             }
-            background:var(--color-accent);
+            &:after {
+                content:"";
+                position: absolute;
+                left:0;
+                top:0;
+                width: 100%;
+                height:100%;
+                background:var(--color-accent);
+                opacity: 0.3;
+                z-index: -1;
+            }
         }
         &.has-sub:before {
             content:"\f105";
