@@ -63,7 +63,7 @@ i {
     overflow: hidden;
     cursor: pointer;
     box-shadow: 0 1rem 0 0 var(--color-light) inset;
-    
+
     &.small {
         padding:8rem;
         padding-right: 15rem;
@@ -196,6 +196,8 @@ i {
             // height: 28rem;
             // overflow: hidden;
             // margin: 0;
+            box-shadow: none;
+
             .clear {
                 padding:0;
                 height:26rem;
@@ -207,9 +209,11 @@ i {
                 top:2rem;
                 background: none;
                 opacity: .7;
+                box-shadow: none;
             }
             input {
                 padding-right:35rem;
+                box-shadow: none;
             }
             input[value="true"] {
                 color: inherit;
@@ -244,6 +248,8 @@ i {
         margin-bottom: -1rem;
         color: var(--color-accent);
         cursor: default;z-index: 2;
+        box-shadow: none;
+
         #new-version {
             color:yellow;
             cursor: pointer;
