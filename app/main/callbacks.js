@@ -99,9 +99,10 @@ module.exports =  {
                         var watchFile = ()=>{
                             var watcher = chokidar.watch(data.path)
                             watcher.on('change',()=>{
-                                for (var k in openedSessions[data.path]) {
-                                    if (openedSessions[data.path][k] != lastSavingClient) {
-                                        module.exports.sessionOpen({path:data.path}, openedSessions[data.path][k])
+                                var openedSessionsClone = JSON.parse(JSON.stringify(openedSessions[data.path]))
+                                for (var k in openedSessionsClone) {
+                                    if (openedSessionsClone[k] != lastSavingClient) {
+                                        module.exports.sessionOpen({path:data.path}, openedSessionsClone[k])
                                     }
                                 }
                                 watcher.close()
