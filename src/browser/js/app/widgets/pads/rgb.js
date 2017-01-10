@@ -92,8 +92,6 @@ module.exports = class Rgb extends _pads_base {
             }, true)
         }
 
-        this.faders.h.margin = 0
-
         this.inputs = [
             this.widget.find('.r').fakeInput({align:'center'}),
             this.widget.find('.g').fakeInput({align:'center'}),

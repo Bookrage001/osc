@@ -23,6 +23,8 @@
         height: 100%;
         width: 100%;
         background:var(--color-faded);
+        box-shadow: 0 1rem 0 0 var(--color-light);
+
         &:after {
             content:"";
             position: absolute;
@@ -91,12 +93,15 @@
         		content:"";
         		position: absolute;
         		left:0;
-        		top:0;
-        		width: 100%;
-        		height: 100%;
+        		top:11rem;
+        		left:12rem;
+                right:12rem;
+        		height: 8rem;
                 background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
                 z-index: -1;
-                opacity: 0.5;
+                opacity: .75;
+                border-radius: 15rem;
+                box-shadow: 0 0 0 7rem var(--color-bg), 0 1rem 0 7rem var(--color-light);
         	}
             .fader {
                 --color-knob:var(--color-text);
