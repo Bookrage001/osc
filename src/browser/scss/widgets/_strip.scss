@@ -74,6 +74,8 @@
         }
         > .label {
             width:30rem;
+            line-height: 20rem;
+            flex-shrink: 0;
             height:100%;
             border-bottom:0;
             border-right:1rem solid var(--color-bg);
