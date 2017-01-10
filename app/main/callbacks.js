@@ -1,9 +1,9 @@
 var vm = require('vm'),
-	path = require('path'),
-	fs = require('fs'),
-	settings = require('./settings'),
-	osc = require('./osc'),
-	ipc = require('./server').ipc,
+    path = require('path'),
+    fs = require('fs'),
+    settings = require('./settings'),
+    osc = require('./osc'),
+    ipc = require('./server').ipc,
     chokidar = require('chokidar')
 
 var openedSessions = {},
@@ -11,33 +11,33 @@ var openedSessions = {},
 
 module.exports =  {
 
-	ready: function(data,clientId) {
-		ipc.send('connected')
+    ready: function(data,clientId) {
+        ipc.send('connected')
 
-		if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
+        if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
 
-		if (settings.read('newSession')) {
-			ipc.send('sessionNew')
-			return
-		}
+        if (settings.read('newSession')) {
+            ipc.send('sessionNew')
+            return
+        }
 
-		if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
+        if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
 
-		var recentSessions = settings.read('recentSessions')
+        var recentSessions = settings.read('recentSessions')
 
-		if (settings.read('examples')) {
-			var dir = path.resolve(__dirname + '/../examples')
-			recentSessions = fs.readdirSync(dir)
-			recentSessions = recentSessions.map(function(file){return dir + '/' + file})
-		}
+        if (settings.read('examples')) {
+            var dir = path.resolve(__dirname + '/../examples')
+            recentSessions = fs.readdirSync(dir)
+            recentSessions = recentSessions.map(function(file){return dir + '/' + file})
+        }
 
-	    ipc.send('sessionList',recentSessions,clientId)
-	},
+        ipc.send('sessionList',recentSessions,clientId)
+    },
 
-	sessionAddToHistory: function(data) {
-	    var sessionlist = settings.read('recentSessions')
+    sessionAddToHistory: function(data) {
+        var sessionlist = settings.read('recentSessions')
 
-		fs.lstat(data,(err, stats)=>{
+        fs.lstat(data,(err, stats)=>{
 
             if (err || !stats.isFile()) return
 
@@ -51,30 +51,30 @@ module.exports =  {
             settings.write('recentSessions',sessionlist)
 
         })
-	},
+    },
 
-	sessionRemoveFromHistory: function(data) {
-	    var sessionlist = settings.read('recentSessions')
-	    sessionlist.splice(data,1)
-	    settings.write('recentSessions',sessionlist)
-	},
+    sessionRemoveFromHistory: function(data) {
+        var sessionlist = settings.read('recentSessions')
+        sessionlist.splice(data,1)
+        settings.write('recentSessions',sessionlist)
+    },
 
-	sessionOpen: function(data,clientId) {
-	    var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
-	        error = file===false&&data.path?'Session file "' + data.path + '" not found.':false,
-	        session
+    sessionOpen: function(data,clientId) {
+        var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
+            error = file===false&&data.path?'Session file "' + data.path + '" not found.':false,
+            session
 
-	    try {
-	        session = vm.runInNewContext(file)
-	    } catch(err) {
-	        error = err
-	    }
+        try {
+            session = vm.runInNewContext(file)
+        } catch(err) {
+            error = err
+        }
 
-		if (!session) error= 'No session object returned'
+        if (!session) error= 'No session object returned'
 
-	    if (!error) {
+        if (!error) {
 
-	        ipc.send('sessionOpen',JSON.stringify(session),clientId)
+            ipc.send('sessionOpen',JSON.stringify(session),clientId)
 
 
             for (var i in openedSessions) {
@@ -96,19 +96,20 @@ module.exports =  {
 
                         openedSessions[data.path] = []
 
-                            var watchFile = ()=>{
-                                var watcher = chokidar.watch(data.path)
-                                watcher.on('change',()=>{
-                                    for (var k in openedSessions[data.path]) {
-                                        if (openedSessions[data.path][k] != lastSavingClient) {
-                                            module.exports.sessionOpen({path:data.path}, openedSessions[data.path][k])
-                                        }
+                        var watchFile = ()=>{
+                            var watcher = chokidar.watch(data.path)
+                            watcher.on('change',()=>{
+                                for (var k in openedSessions[data.path]) {
+                                    if (openedSessions[data.path][k] != lastSavingClient) {
+                                        module.exports.sessionOpen({path:data.path}, openedSessions[data.path][k])
                                     }
-                                    watcher.close()
-                                    watchFile()
-                                })
-                            }
-                            watchFile()
+                                }
+                                watcher.close()
+                                watchFile()
+                            })
+                        }
+
+                        watchFile()
 
 
                     }
@@ -119,12 +120,12 @@ module.exports =  {
 
             }
 
-	    } else {
+        } else {
 
-	        ipc.send('error',{title:'Error: invalid session file',text:'<p>'+error+'</p>'})
+            ipc.send('error',{title:'Error: invalid session file',text:'<p>'+error+'</p>'})
 
-	    }
-	},
+        }
+    },
 
     savingSession: function(data, clientId) {
 
@@ -132,62 +133,62 @@ module.exports =  {
 
     },
 
-	sendOsc: function(data) {
+    sendOsc: function(data) {
 
-			if (data.syncOnly) return
+            if (data.syncOnly) return
 
-	        var targets = []
+            var targets = []
 
-	        if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
-	        if (data.target) Array.prototype.push.apply(targets, data.target)
+            if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
+            if (data.target) Array.prototype.push.apply(targets, data.target)
 
 
-	        for (i in targets) {
+            for (i in targets) {
 
-	            var host = targets[i].split(':')[0],
-	                port = targets[i].split(':')[1]
+                var host = targets[i].split(':')[0],
+                    port = targets[i].split(':')[1]
 
-	            if (port) osc.send(host,port,data.address,data.args,data.precision)
+                if (port) osc.send(host,port,data.address,data.args,data.precision)
 
-	        }
-	},
+            }
+    },
 
-	stateSave: function(data) {
-	    dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    stateSave: function(data) {
+        dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
-	        if (file==undefined) {return}
-	        settings.write('presetPath',file)
+            if (file==undefined) {return}
+            settings.write('presetPath',file)
 
-	        if (file.indexOf('.preset')==-1){file+='.preset'}
-	        fs.writeFile(file,data, function (err, data) {
-	            if (err) throw err
-	            console.log('The current state was saved in '+file)
-	        })
-	    })
-	},
+            if (file.indexOf('.preset')==-1){file+='.preset'}
+            fs.writeFile(file,data, function (err, data) {
+                if (err) throw err
+                console.log('The current state was saved in '+file)
+            })
+        })
+    },
 
-	stateLoad: function(data,clientId) {
-	    dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
+    stateLoad: function(data,clientId) {
+        dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
 
-	        if (file==undefined) {return}
-	        settings.write('presetPath',file[0])
+            if (file==undefined) {return}
+            settings.write('presetPath',file[0])
 
-	        fs.readFile(file[0],'utf-8', function read(err, data) {
-	            if (err) throw err
-	            ipc.send('stateLoad',data,clientId)
-	        })
-	    })
-	},
+            fs.readFile(file[0],'utf-8', function read(err, data) {
+                if (err) throw err
+                ipc.send('stateLoad',data,clientId)
+            })
+        })
+    },
 
-	fullscreen: function(data) {
-	    window.setFullScreen(!window.isFullScreen())
-	},
+    fullscreen: function(data) {
+        window.setFullScreen(!window.isFullScreen())
+    },
 
-	reloadCss:function(){
-		ipc.send('reloadCss')
-	},
+    reloadCss:function(){
+        ipc.send('reloadCss')
+    },
 
-	log: function(data) {
-		console.log(data)
-	}
+    log: function(data) {
+        console.log(data)
+    }
 }
