@@ -127,9 +127,11 @@ module.exports = {
         EDITING = true
 
 
-        var f = $('<div class="form" id="grid-width-input"></div'),
-            w = $('<div class="input-wrapper"><label>Grid</label></div>').appendTo(f),
+        var f = $('<div class="form" id="grid-width-input"></div>'),
+            h = $('<div class="separator"><span>Grid</span></div>').appendTo(f),
+            w = $('<div class="input-wrapper"><label>Width</label></div>').appendTo(f),
             i = $('<input type="number" step="1" min="1" max="100"></div>').appendTo(w)
+            
         i.val(GRIDWIDTH)
         i.on('keyup mouseup change mousewheel',()=>{
             setTimeout(()=>{
