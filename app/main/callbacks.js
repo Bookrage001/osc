@@ -3,7 +3,11 @@ var vm = require('vm'),
 	fs = require('fs'),
 	settings = require('./settings'),
 	osc = require('./osc'),
-	ipc = require('./server').ipc
+	ipc = require('./server').ipc,
+    chokidar = require('chokidar')
+
+var openedSessions = {},
+    lastSavingClient
 
 module.exports =  {
 
@@ -69,12 +73,64 @@ module.exports =  {
 		if (!session) error= 'No session object returned'
 
 	    if (!error) {
-	        if (data.path) this.sessionAddToHistory(data.path)
+
 	        ipc.send('sessionOpen',JSON.stringify(session),clientId)
+
+
+            for (var i in openedSessions) {
+                if (openedSessions[i].indexOf(clientId) != -1) {
+                    openedSessions[i].splice(openedSessions[i].indexOf(clientId), 1)
+                }
+            }
+
+            if (data.path) {
+
+                this.sessionAddToHistory(data.path)
+
+                fs.lstat(data.path, (err, stats)=>{
+
+                    if (err || !stats.isFile()) return
+
+
+                    if (!openedSessions[data.path]) {
+
+                        openedSessions[data.path] = []
+
+                            var watchFile = ()=>{
+                                var watcher = chokidar.watch(data.path)
+                                watcher.on('change',()=>{
+                                    for (var k in openedSessions[data.path]) {
+                                        if (openedSessions[data.path][k] != lastSavingClient) {
+                                            module.exports.sessionOpen({path:data.path}, openedSessions[data.path][k])
+                                        }
+                                    }
+                                    watcher.close()
+                                    watchFile()
+                                })
+                            }
+                            watchFile()
+
+
+                    }
+
+                    openedSessions[data.path].push(clientId)
+
+                })
+
+            }
+
 	    } else {
+
 	        ipc.send('error',{title:'Error: invalid session file',text:'<p>'+error+'</p>'})
+
 	    }
 	},
+
+    savingSession: function(data, clientId) {
+
+        lastSavingClient = clientId
+
+    },
 
 	sendOsc: function(data) {
 

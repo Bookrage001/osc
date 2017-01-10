@@ -114,6 +114,7 @@ module.exports = {
         down.attr('href', window.URL.createObjectURL(blob))
         var event = new MouseEvent("click")
         down[0].dispatchEvent(event)
+        ipc.send('savingSession')
     },
 
     editorEnable: function(){
