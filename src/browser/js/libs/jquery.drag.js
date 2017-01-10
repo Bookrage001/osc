@@ -125,7 +125,7 @@
 
             var self = this,
                 touchStartHandler = function(e){
-                    e.preventDefault()
+                    // e.preventDefault()
 
                     var oE = e.originalEvent
 
@@ -296,6 +296,7 @@
 
         this.on('disableTraversingGestures',()=>{
             this.off('draginit.traversing')
+            this.off('disableTraversingGestures')
             self.removeEventListener("mousedown", down, true)
             self.removeEventListener("touchstart", down, true)
         })
