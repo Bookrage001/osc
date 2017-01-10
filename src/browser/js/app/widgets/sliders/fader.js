@@ -51,7 +51,7 @@ module.exports = class Fader extends _sliders_base {
         super(...arguments)
 
         this.widget.addClass('fader')
-        this.margin = 20
+        this.margin = 15
 
 
         if (widgetData.horizontal) {

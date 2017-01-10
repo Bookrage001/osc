@@ -3,7 +3,7 @@
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
     --color-track: var(--color-bg);
-    
+
     width:100rem;
     height:100%;
     &.horizontal {
@@ -35,8 +35,8 @@
             pointer-events: none;
 
             position: absolute;
-            top:20rem;
-            bottom:19rem;
+            top:15rem;
+            bottom:14rem;
             left:50%;
             height: auto;
             width:3rem;
@@ -61,8 +61,8 @@
             pointer-events: none;
 
             position: absolute;
-            top:20rem;
-            bottom:20rem;
+            top:15rem;
+            bottom:15rem;
             left:50%;
             z-index: 0;
             width: 4rem;
@@ -135,8 +135,8 @@
         }
 
         .wrapper .meter-container {
-            left:20rem;
-            right:20rem;
+            left:15rem;
+            right:15rem;
             height: 3rem;
             min-height: 3rem;
             width: auto;
@@ -146,8 +146,8 @@
 
         .pips {
             top:50%;
-            left:20rem;
-            right:20rem;
+            left:15rem;
+            right:15rem;
             font-size: 0;
             height:4rem;
             width:auto;
