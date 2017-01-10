@@ -2,6 +2,13 @@
 
 ## 0.14.0
 
+- style
+  - improved coherence, no more pure greys, better differenciation between clickable and static elements
+- bug fixes
+  - `push`: options separators not hidden in the editor
+
+## 0.14.0
+
 - bug fixes
   - some layout regressions in chrome v49
 - main
