@@ -125,9 +125,10 @@
 
             var self = this,
                 touchStartHandler = function(e){
-                    // e.preventDefault()
 
                     var oE = e.originalEvent
+
+                    if (!oE.traversing) e.preventDefault()
 
                     for (i in oE.changedTouches) {
                         if (isNaN(i) || !oE.changedTouches[i]) continue
