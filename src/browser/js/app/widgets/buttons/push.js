@@ -11,7 +11,7 @@ module.exports = class Push extends _widgets_base {
             id:'auto',
             linkId:'',
 
-            separator1:'style',
+            _style:'style',
 
             label:'auto',
             left:'auto',
@@ -21,7 +21,7 @@ module.exports = class Push extends _widgets_base {
             color:'auto',
             css:'',
 
-            separator2:'osc',
+            _osc:'osc',
 
             on:1,
             off:0,
