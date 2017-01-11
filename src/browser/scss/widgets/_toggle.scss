@@ -33,12 +33,14 @@
             opacity: 1;
             position: absolute;
             display: block;
-            top:2rem;
-            left:2rem;
-            right:2rem;
-            border-top: 2rem solid var(--color-light);
-            box-shadow: 0 0 1rem 0 var(--color-faded);
+            top:3rem;
+            left:3rem;
+            right:3rem;
+            border-top: 2rem solid var(--color-bg);
+            box-shadow: 0 1rem 0 0 var(--color-light), 0 1rem 0 0 var(--color-light);
             z-index: 1;
+            opacity: .5;
+
         }
 
         &:before {
