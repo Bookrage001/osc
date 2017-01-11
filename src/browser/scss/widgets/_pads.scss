@@ -99,9 +99,9 @@
         		height: 8rem;
                 background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
                 z-index: -1;
-                opacity: .75;
+                opacity: .6;
                 border-radius: 15rem;
-                box-shadow: 0 0 0 7rem var(--color-bg), 0 1rem 0 7rem var(--color-light);
+                box-shadow: 0 0 0 7rem var(--color-bg), 0 1rem 0 7rem var(--color-light), 0 1rem 0 7rem var(--color-light);
         	}
             .fader {
                 --color-knob:var(--color-text);
