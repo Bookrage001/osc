@@ -206,10 +206,25 @@ module.exports = class Knob extends _sliders_base {
 
         } else {
 
+
+            var r = Math.max(this.minDimension / 2 - (30 + this.margin) * PXSCALE, 2 * PXSCALE)
+
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.raised
-            this.ctx.arc(this.width / 2, this.height / 2,  Math.max(this.minDimension / 2 - (30 + this.margin) * PXSCALE, 2 * PXSCALE), 0, Math.PI * 2)
+            this.ctx.arc(this.width / 2, this.height / 2,  r, 0, Math.PI * 2)
             this.ctx.fill()
+
+            if ( this.colors.raised){
+                var grd=this.ctx.createRadialGradient(this.width / 2, this.height / 2, r - 4 * PXSCALE , this.width / 2, this.height / 2, r)
+                grd.addColorStop(0, 'transparent')
+                grd.addColorStop(1, this.colors.raised)
+            }
+
+            this.ctx.beginPath()
+            this.ctx.fillStyle = grd
+            this.ctx.arc(this.width / 2, this.height / 2, r, 0, Math.PI * 2)
+            this.ctx.fill()
+
 
             this.ctx.lineWidth = 2 * PXSCALE
             this.ctx.beginPath()
