@@ -131,6 +131,7 @@
             pointer-events: none;
             z-index: 2;
         }
+
         > .wrapper {
             padding: calc(var(--point-size) + 1rem);
             &:after {
@@ -140,13 +141,21 @@
                 top:0;
                 left:0;
             }
-            > .pad {
+            .handle {
                 position: absolute;
                 width:calc(100% - 2 * var(--point-size) - 2rem);
                 height:calc(100% - 2 * var(--point-size)  - 2rem);
+                cursor: -webkit-grab;
+                z-index: 1;
                 &.active {
                     pointer-events: none;
                 }
+            }
+            > .pad {
+                pointer-events: none;
+                position: absolute;
+                width:calc(100% - 2 * var(--point-size) - 2rem);
+                height:calc(100% - 2 * var(--point-size)  - 2rem);
                 .wrapper {
                     background: transparent;
                     &:after {
@@ -160,21 +169,6 @@
                     opacity: 0;
                 }
             }
-            > .handle {
-                position: absolute;
-                left:0;
-                bottom:0;
-                width:calc(var(--point-size) * 2 + 4rem);
-                height: calc(var(--point-size) * 2 + 4rem);
-                margin:0 0 calc(-1 * var(--point-size) - 2rem) calc(-1 * var(--point-size) - 2rem);
-                text-align: center;
-                line-height: calc(var(--point-size) * 2 + 4rem);
-                border-radius: calc(var(--point-size) * 2 + 4rem);
-                cursor: -webkit-grab;
-                opacity: 0;
-                z-index: 1;
-            }
-
         }
     }
 }

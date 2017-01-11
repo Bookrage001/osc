@@ -65,6 +65,9 @@ module.exports = class MultiXy extends _pads_base {
                         : false
 
         this.handles = []
+        this.handlesPositions = []
+        this.handlesToPads = []
+
         this.pads = []
 
         for (var i=widgetData.points-1;i>=0;i--) {
@@ -82,28 +85,54 @@ module.exports = class MultiXy extends _pads_base {
             this.pads[i].draw = ()=>{}
             this.wrapper.append(this.pads[i].widget)
 
-            this.handles[i] = $(`<div class="handle">${i}</div>`)
+            this.handles[i] = $(`<div class="handle"></div>`)
+
             this.wrapper.append(this.handles[i])
 
-                let pad = this.pads[i]
-                pad.wrapper.on('draginit',(e)=>{
-                    pad.widget.addClass('active')
-                })
-                pad.wrapper.on('dragend',(e)=>{
-                    pad.widget.removeClass('active')
-                })
         }
+
 
         this.value = []
 
-        this.handles.forEach((handle, i)=>{
-            handle.on('draginit drag dragend',(e, data, traversing)=>{
-                if (widgetData.snap && e.type == 'draginit') {
-                    e.type = 'drag'
-                    this.pads[i].widget.addClass('active')
+        this.handles.forEach((handle, index)=>{
+
+            handle.on('draginit',(e, data, traversing)=>{
+
+                handle.addClass('active')
+
+                var id, ndiff, diff = -1
+
+                for (var i in this.handles) {
+                    if (this.handlesToPads.indexOf(i) != -1) continue
+                    ndiff = Math.abs(data.offsetX -  this.handlesPositions[i][0]) + Math.abs(data.offsetY - (this.handlesPositions[i][1] + this.height))
+                    if (diff == -1 || ndiff < diff) {
+                        id = i
+                        diff = ndiff
+                    }
                 }
-                this.pads[i].wrapper.trigger(e.type, [data, traversing])
+
+                this.handlesToPads[index] = id
+
+                if (this.pads[id]) this.pads[id].wrapper.trigger(e.type, [data, traversing])
+
             })
+
+            handle.on('drag',(e, data, traversing)=>{
+
+                var id = this.handlesToPads[index]
+                if (this.pads[id]) this.pads[id].wrapper.trigger(e.type, [data, traversing])
+
+            })
+
+            handle.on('dragend',(e, data, traversing)=>{
+
+                var id = this.handlesToPads[index]
+                if (this.pads[id]) this.pads[id].wrapper.trigger(e.type, [data, traversing])
+                handle.removeClass('active')
+                this.handlesToPads[index] = false
+
+            })
+
         })
 
         this.wrapper.on('sync',(e)=>{
@@ -131,11 +160,10 @@ module.exports = class MultiXy extends _pads_base {
     updateHandlesPosition() {
 
         for (var i=0;i<this.widgetData.points;i++) {
-            this.handles[i][0].setAttribute('style',`
-                transform:translate3d(${clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE}px,
-                                      ${- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) - (this.pointSize + 1) * PXSCALE}px,
-                                      0);
-            `)
+
+            this.handlesPositions[i] = [clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
+                                        ,- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) - (this.pointSize + 1) * PXSCALE]
+
         }
 
     }
