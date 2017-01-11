@@ -119,3 +119,14 @@ $ npm run debarm
 This will build the app in `dist/open-stage-control-PLATFORM-ARCH`.
 
 *Please note that building the app for windows from a linux system requires wine to be installed.*
+
+----
+## Running a true headless server
+
+Electron, Open Stage Control's engine, is based on chromium and can't run out of the box without a display server. However, using a virtual framebuffer does the trick. Detailed instructions can be found in Electron's [documentation](http://electron.atom.io/docs/tutorial/testing-on-headless-ci/).
+
+In short: install `https://github.com/jean-emmanuel/open-stage-control/issues/xfvb` and prepend your command with `xvfb-run`:  
+
+```bash
+xvfb-run open-stage-control -n
+```
