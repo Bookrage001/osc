@@ -95,14 +95,19 @@ module.exports = class MultiXy extends _pads_base {
         this.value = []
 
         this.handles.forEach((handle, index)=>{
-
+            let active = false
             handle.on('draginit',(e, data, traversing)=>{
 
-                if (traversing) {
+                if (traversing && active) {
+                    handle.triggerHandler('drag',[data, traversing])
                     return
                 }
 
-                handle.addClass('active')
+                active = true
+
+                if (!traversing) {
+                    handle.addClass('active')
+                }
 
                 var id, ndiff, diff = -1
 
@@ -134,6 +139,7 @@ module.exports = class MultiXy extends _pads_base {
                 if (this.pads[id]) this.pads[id].wrapper.trigger(e.type, [data, traversing])
                 handle.removeClass('active')
                 this.handlesToPads[index] = false
+                active = false
 
             })
 
