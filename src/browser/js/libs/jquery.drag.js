@@ -125,10 +125,9 @@
 
             var self = this,
                 touchStartHandler = function(e){
+                    e.preventDefault()
 
                     var oE = e.originalEvent
-
-                    if (!oE.traversing) e.preventDefault()
 
                     for (i in oE.changedTouches) {
                         if (isNaN(i) || !oE.changedTouches[i]) continue
@@ -191,6 +190,7 @@
                             targets[id] = $(document.elementFromPoint(touch.clientX, touch.clientY))
                         }
 
+                        if (!targets[id]) continue
 
                         touch.speedX = (touch.pageX - previousTouches[id].pageX) / speedFactor
                         touch.speedY = (touch.pageY - previousTouches[id].pageY) / speedFactor
@@ -297,9 +297,9 @@
 
         this.on('disableTraversingGestures',()=>{
             this.off('draginit.traversing')
-            this.off('disableTraversingGestures')
             self.removeEventListener("mousedown", down, true)
             self.removeEventListener("touchstart", down, true)
+            this.o
         })
 
 
