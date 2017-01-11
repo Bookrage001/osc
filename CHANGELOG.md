@@ -1,16 +1,17 @@
 # Changelog
 
-## 0.14.0
+## 0.15.0
 
 - style
-  - improved coherence, no more pure greys, better differenciation between clickable and static elements
+  - improved coherence, no more pure greys, better differenciation between clickable and static elements. Went back from "pure flat" to "flatty" to help with that (ie a few shadows to make layout more self-explanatory). Some widgets were slightly repimped.
 - bug fixes
   - `push`: options separators not hidden in the editor
+  - error when touching a non-interractive object while touching a widget with the other fingers
 - widgets
   - `multixy` now behaves smarter: points are assigned to the closest touch points
 - main
   - modifying a session file will automatically update clients that have loaded the same file
-  
+
 ## 0.14.0
 
 - bug fixes
