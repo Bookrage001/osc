@@ -6,7 +6,11 @@
   - improved coherence, no more pure greys, better differenciation between clickable and static elements
 - bug fixes
   - `push`: options separators not hidden in the editor
-
+- widgets
+  - `multixy` now behaves smarter: points are assigned to the closest touch points
+- main
+  - modifying a session file will automatically update clients that have loaded the same file
+  
 ## 0.14.0
 
 - bug fixes
