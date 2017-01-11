@@ -1,4 +1,5 @@
 $base: #528bff;
+$accent: adjust_hue($base, -10);
 
 
 :root {
@@ -6,31 +7,20 @@ $base: #528bff;
     --color-text:rgba(white,.8);
     --color-text-fade:rgba(white,0.5);
 
-    --color-bg:darken(#2b2f37,5%); // secondary
-    --color-fg:lighten(#2b2f37,1%); // primary
-    --color-raised:lighten(#2b2f37,5%); // raised
-    --color-faded: darken(#2b2f37,1%); // faded
 
-    --color-track: lighten(#1a1d22,1%); // widgets unfilled value
-
-    --color-accent:#528bff;
+    --color-accent:$accent;
     --color-custom:var(--color-accent);
-    --color-grid: transparentize(#528bff, 0.9);
+    --color-grid: transparentize($accent, 0.9);
 
+    --color-fg: darken(desaturate($base,75%),45%);
+    --color-bg: darken(desaturate($base,75%),53%);
+    --color-light:rgba(lighten($accent,10%),.1);
 
+    --color-faded: darken(desaturate($base,70%),46%);
 
---color-accent:$base;
---color-custom:var(--color-accent);
-
-
---color-fg: darken(desaturate($base,82%),45%);
---color-bg: darken(desaturate($base,82%),53%);
---color-track: var(--color-bg);
---color-light:rgba(lighten($base,10%),.1);
-
---color-raised:var(--color-light);
---color-faded: darken(desaturate($base,78%),48%);
-
+    // deprecated
+    --color-raised:var(--color-light);
+    --color-track: var(--color-bg);
 
 
 

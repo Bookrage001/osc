@@ -11,7 +11,7 @@ module.exports = function(options={}) {
         width: options.width || 800,
         height: options.height || 600,
         title: options.title || settings.read('appName'),
-        backgroundColor:'#202329',
+        backgroundColor:'#191f2a',
         type:options.type
     })
 
