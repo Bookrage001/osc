@@ -98,6 +98,10 @@ module.exports = class MultiXy extends _pads_base {
 
             handle.on('draginit',(e, data, traversing)=>{
 
+                if (traversing) {
+                    return
+                }
+
                 handle.addClass('active')
 
                 var id, ndiff, diff = -1
