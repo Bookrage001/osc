@@ -215,7 +215,7 @@ module.exports = class Knob extends _sliders_base {
             this.ctx.fill()
 
             if ( this.colors.raised){
-                var grd=this.ctx.createRadialGradient(this.width / 2, this.height / 2, r - 4 * PXSCALE , this.width / 2, this.height / 2, r)
+                var grd=this.ctx.createRadialGradient(this.width / 2, this.height / 2, Math.max(r - 4 * PXSCALE, PXSCALE), this.width / 2, this.height / 2, r)
                 grd.addColorStop(0, 'transparent')
                 grd.addColorStop(1, this.colors.raised)
             }
