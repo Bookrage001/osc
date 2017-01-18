@@ -16,6 +16,8 @@ $accent: adjust_hue($base, -10);
     --color-bg: darken(desaturate($base,75%),53%);
     --color-light:rgba(lighten($accent,10%),.1);
 
+    --color-light-fg: mix(darken(desaturate($base,75%),45%), lighten($accent,10%), 90%);
+
     --color-faded: darken(desaturate($base,70%),46%);
 
     // deprecated

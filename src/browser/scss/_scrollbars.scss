@@ -21,7 +21,7 @@
     border-top:2rem solid var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
+    background: var(--color-light-fg);
 
     &:vertical {
         border-left:2rem solid var(--color-bg);

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.15.1
+
+- misc
+  - minor css-related performance fixes
+
 ## 0.15.0
 
 - style

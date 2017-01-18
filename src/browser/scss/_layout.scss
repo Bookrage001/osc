@@ -88,7 +88,7 @@ body {
                 }
             }
             a {
-                background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
+                background: var(--color-light-fg);
                 // background: var(--color-fg);
                 pointer-events: none;
                 padding: 5rem;

@@ -3,7 +3,7 @@
     min-height: 60rem;
     flex-shrink: 0;
     padding:0!important;
-    background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
+    background: var(--color-light-fg);
 
     > .label {
         position: absolute;

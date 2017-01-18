@@ -58,7 +58,7 @@
         color:var(--color-text);
         width:100%;
         .btn {
-            background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
+            background: var(--color-light-fg);
             box-shadow: 0 1rem 0 0 var(--color-light) inset;
             border-radius: 2rem;
         }
@@ -147,7 +147,7 @@
 .context-menu {
     position:fixed;
     z-index: 999999999;
-    background: linear-gradient(var(--color-light),var(--color-light)), var(--color-fg);
+    background: var(--color-light-fg);
     box-shadow: 0 0 4rem 1rem var(--color-bg);
     .item {
         color:var(--color-text)
