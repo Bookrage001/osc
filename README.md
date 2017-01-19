@@ -25,13 +25,13 @@ Please note that :
 
 ## Features
 
-- mouse & multi-touch sensitive widgets
-- modular & responsive layout
+- multiplatform desktop server application with built-in client interface
+- mouse & multitouch interfaces compatible with **Chrome 49** or later
+- all the widgets you need !
 - built-in live editor
-- bi-directionnal osc bindings
-- headless server mode with any number of clients using chromium
-- app state store / recall & import / export
-- themes !
+- clients synchronization
+- deep customization possibilities such as theming and messages filtering
+- *true* control over what the widgets send
 
 ## Supported platforms
 
