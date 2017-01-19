@@ -79,7 +79,7 @@
 }
 
 .keyboard-container {
-    --color-black: var(--color-raised);
+    --color-black: var(--color-light-fg);
     --color-white: #ccc;
     height:90rem;
     width:240rem;
@@ -90,14 +90,14 @@
         position: relative;
         overflow: hidden;
         .white {
-            --color-light: var(--color-white);
+            --color-light-fg: var(--color-white);
             .light.active:before {
                 opacity: .5;
                 background:var(--color-fg);
             }
         }
         .black {
-            --color-light: var(--color-black);
+            --color-light-fg: var(--color-black);
             position: absolute;
             z-index: 1;
             top:0;
