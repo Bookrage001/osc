@@ -1,27 +1,24 @@
-# <img src="https://github.com/jean-emmanuel/open-stage-control/blob/master/resources/images/logo.png" height="80px"/> Open Stage Control
+<div class="well">
+    <p class="text-center">
+        <img src="https://github.com/jean-emmanuel/open-stage-control/blob/master/resources/images/logo.png" height="80px" class="img-circle"/>
+    </p>
 
-Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS and run as a Node / [Electron](http://electron.atom.io/) web server that accepts any number of Chrome / Chromium / Electron clients.
+
+    <p class="text-center">
+        Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS and run as a Node / <a href="http://electron.atom.io/">Electron</a> web server that accepts any number of Chrome / Chromium / Electron clients.
+    </p>
+
+    <br/>
+
+    <div class="">
+    <a class="btn btn-primary btn-sm" href="https://github.com/jean-emmanuel/open-stage-control/releases">Latest release</a>
+    <a class="btn btn-info btn-sm" href="http://openstagecontrol.herokuapp.com/">Demo (chrome 49+ required)</a>
+    </div>
+</div>
 
 ## Documentation
 
-[Read the documentation](http://osc.ammd.net)
-
-*The docs' sources are located in [resources/](https://github.com/jean-emmanuel/open-stage-control/blob/master/resources)*
-
-## Download
-
-Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
-
-## Demo
-
-You can try the app here [http://openstagecontrol.herokuapp.com/](http://openstagecontrol.herokuapp.com/)
-
-Please note that :
-
-- Chrome/Chromium **49** at least is required
-- Since there is only one instance running, all connected guests are synchronized (widgets using the same osc paths update each other's states) : you might experience some unwanted synchronization with other users unless you specify custom parameters for your widgets.
-- You might want to download the examples sessions files under *examples/* and load them in the app to get started.
-
+The documentation is located at [osc.ammd.net](http://osc.ammd.net)
 
 ## Features
 
@@ -35,8 +32,7 @@ Please note that :
 
 ## Supported platforms
 
-Same as [Electron's supported platforms](https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md)
-
+The server can run on all [platforms supported by Electron](https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md). Any client that can run chrome browser can connect to the server.
 
 ## License & credits
 
