@@ -2,8 +2,10 @@
 
 ## 0.15.1
 
+- widgets
+  - multifader: add `snap` options
 - misc
-  - minor css-related performance fixes
+  - minor css-related performance fix
 
 ## 0.15.0
 
