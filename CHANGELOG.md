@@ -6,6 +6,7 @@
   - multifader: add `snap` option
 - misc
   - minor css-related performance fix
+  - some titles in the editor had the first-letter uppercased
 
 ## 0.15.0
 
