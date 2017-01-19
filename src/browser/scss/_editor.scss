@@ -105,14 +105,8 @@
         align-items: center;
         background: var(--color-faded);
         border: 1rem solid var(--color-bg);
-        // &:before, &:after {
-        //     content:"";
-        //     top:14rem;
-        //     width: 100%;
-        //     height: 1rem;
-        //     background: var(--color-text-fade);
-        // }
         span {
+            text-transform: lowercase;
             font-variant: small-caps;
             position: relative;
             display: block;
