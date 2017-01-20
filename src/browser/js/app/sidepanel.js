@@ -5,7 +5,7 @@ var data = [
     {
         actions: [
             {
-                title:'Fullscreen (F11)',
+                title:'Fullscreen',
                 action:actions.toggleFullscreen
             }
 
