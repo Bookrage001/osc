@@ -104,7 +104,7 @@
                 box-shadow: 0 0 0 7rem var(--color-bg), 0 1rem 0 7rem var(--color-light), 0 1rem 0 7rem var(--color-light);
         	}
             .fader {
-                --color-knob:var(--color-text);
+                --color-knob:white;
                 --color-gauge:transparent;
                 --color-track:transparent;
                 canvas {
