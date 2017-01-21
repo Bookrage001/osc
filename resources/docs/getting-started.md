@@ -10,8 +10,8 @@ Prebuilt binaries for Linux, Windows and OS X can be found on the [release](http
 Below are the available command-line switches. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
 
 
-```bash
-Options:
+**Options**
+```
   -s, --sync      synchronized hosts (ip:port pairs) (osc messages sent by widgets will also be sent to these targets)
   -l, --load      session file to load
   -b, --blank     load a blank session and start the editor
@@ -27,30 +27,21 @@ Options:
 
   -h, --help      display help
   -v, --version   display version number
+```
 
+**Examples**
 
-Examples:
+```
 
 $ open-stage-control -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
 
+----
+
 $ open-stage-control -n -l path/to/session.js
 
 This will create a headless app available through http on port 8080. Multiple clients can use the app (with chrome only) simultaneously, their widgets will be synchronized.
-
-$ open-stage-control -n -l path/to/session.js
-
-
-
-$ open-stage-control -t light noinput /path/to/custom_theme.css
-
-This will apply three themes (light ui, remove all inputs, and a custom theme file)
-
-
-Available themes:
-- light
-- noinput
 ```
 
 ----
@@ -125,7 +116,7 @@ This will build the app in `dist/open-stage-control-PLATFORM-ARCH`.
 
 Electron, Open Stage Control's engine, is based on chromium and can't run out of the box without a display server. However, using a virtual framebuffer does the trick. Detailed instructions can be found in Electron's [documentation](http://electron.atom.io/docs/tutorial/testing-on-headless-ci/).
 
-In short: install `https://github.com/jean-emmanuel/open-stage-control/issues/xfvb` and prepend your command with `xvfb-run`:  
+In short: install [xvfb](https://en.wikipedia.org/wiki/Xvfb) and prepend your command with `xvfb-run`:  
 
 ```bash
 xvfb-run open-stage-control -n
