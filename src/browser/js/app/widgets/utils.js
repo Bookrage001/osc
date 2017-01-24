@@ -1,5 +1,3 @@
-var math = require('mathjs')
-
 module.exports = {
 
     clip: function(value,range) {
@@ -72,5 +70,10 @@ module.exports = {
         return hsb
     },
 
-    math: math
+    math: function(){
+        var math = require('mathjs')
+        // set math's parser array index base to zero
+        math.expression.transform = Object.create(math)
+        return math
+    }()
 }
