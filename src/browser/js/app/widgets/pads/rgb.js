@@ -42,9 +42,9 @@ module.exports = class Rgb extends _pads_base {
         super(...arguments)
 
         this.split = widgetData.split?
-                        typeof widgetData.split == 'object'?
+                        typeof widgetData.split == 'object' && widgetData.split.length == 3 ?
                             widgetData.split
-                            : {r: widgetData.address + '/r', g: widgetData.address + '/g', b: widgetData.address + '/b'}
+                            : [widgetData.address + '/r', widgetData.address + '/g', widgetData.address + '/b']
                         : false
 
         this.widget.append(`

@@ -47,9 +47,9 @@ module.exports = class Xy extends _pads_base {
         super(...arguments)
 
         this.split = widgetData.split?
-            typeof widgetData.split == 'object'?
+            typeof widgetData.split == 'object' && widgetData.split.length == 2 ?
                 widgetData.split
-                : {x: widgetData.address + '/x', y: widgetData.address + '/y'}
+                : [widgetData.address + '/x', widgetData.address + '/y']
             : false
 
         this.widget.append(`

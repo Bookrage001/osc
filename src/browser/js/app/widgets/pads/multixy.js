@@ -52,7 +52,7 @@ module.exports = class MultiXy extends _pads_base {
         this.widget[0].style.setProperty("--point-size",this.pointSize + 'rem')
 
         this.split = widgetData.split?
-                        typeof widgetData.split == 'object'?
+                        typeof widgetData.split == 'object' && widgetData.split.length == 2 * widgetData.points ?
                             widgetData.split
                             : (()=>{
                                 var s={};
