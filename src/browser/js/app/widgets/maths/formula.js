@@ -83,8 +83,9 @@ module.exports = class Formula extends _widgets_base {
             this.value = mathEval(formula).valueOf()
 
             this.showValue()
+
             if (e.options.sync) this.widget.trigger({type: 'sync',id: this.widgetData.id,widget: this.widget, linkId: this.widgetData.linkId, options: e.options})
-            if (e.options.send) this.sendValue(this.value)
+            if (e.options.send) this.sendValue()
 
         } catch(err) {
 
@@ -105,7 +106,7 @@ module.exports = class Formula extends _widgets_base {
                     copy[key] = Formula.deepCopyWithPrecision(obj[key], precision)
                 }
             } else if (typeof obj == 'number') {
-                return copy.toFixed(precision)
+                return parseFloat(copy.toFixed(precision))
             }
 
             return copy
@@ -114,7 +115,7 @@ module.exports = class Formula extends _widgets_base {
 
     showValue() {
 
-        this.input.val(Formula.deepCopyWithPrecision(this.value, this.widgetData.precision))
+        this.input.val(JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.widgetData.precision)))
 
     }
 
