@@ -57,6 +57,8 @@ module.exports = class Formula extends _widgets_base {
 
         $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
+        this.input.val('...')
+
     }
 
     onRemove() {
