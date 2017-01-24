@@ -19,6 +19,6 @@ Formula evaluates mathematical expressions over other widgets' values each one o
 #### `formula`
 - type: `string`
 - default: `''`
-- usage: a javascript expression in which
+- usage: a [mathjs](http://mathjs.org/docs/expressions/syntax.html) expression in which
   - `${id}` will be replaced the `id`'s value  
 - example: `${fader_1} * 2 + ${fader_2}`

@@ -52,3 +52,4 @@ It relies on the use of several libraries :
 - [jQuery-UI](http://jqueryui.com/) (draggable, resizable & sortable)
 - [Font Awesome](http://fontawesome.io/)
 - [source-map](https://github.com/mozilla/source-map)
+- [mathjs](http://mathjs.org/)
