@@ -55,11 +55,10 @@ var init = function(){
             return
         }
 
-
+        console.log(d)
         var actions = {},
-            clickX = Math.round(d.offsetX / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
-            clickY = Math.round(d.offsetY / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-
+            clickX = Math.round((d.offsetX + d.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
+            clickY = Math.round((d.offsetY + d.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
         // actions['<i class="fa fa-edit"></i> Edit'] = function(){editObject(container,data)}
 
         if (type=='widget') actions['<i class="fa fa-copy"></i> Copy'] = function(){CLIPBOARD=data}
