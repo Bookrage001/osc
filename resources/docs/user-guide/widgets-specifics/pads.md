@@ -124,6 +124,7 @@ RGB is a variant of XY, it outputs rgb values between 0 and 255.
 
 #### `precision`
 - default:`0`
+
 #### `snap`
 - type: `boolean`
 - default: `false`
