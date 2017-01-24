@@ -1,5 +1,6 @@
 var _widgets_base = require('../common/_widgets_base'),
-    {widgetManager} = require('../../managers')
+    {widgetManager} = require('../../managers'),
+    {mathEval} = require('../utils')
 
 
 module.exports = class Formula extends _widgets_base {
@@ -79,7 +80,7 @@ module.exports = class Formula extends _widgets_base {
 
         try {
 
-            this.value = eval(formula)
+            this.value = mathEval(formula).valueOf()
 
             this.showValue()
             if (e.options.sync) this.widget.trigger({type: 'sync',id: this.widgetData.id,widget: this.widget, linkId: this.widgetData.linkId, options: e.options})
@@ -87,7 +88,7 @@ module.exports = class Formula extends _widgets_base {
 
         } catch(err) {
 
-            throw 'Error parsing formula "' + formula + '"'
+            throw 'Error parsing formula "' + formula + '"' + err
 
         }
 

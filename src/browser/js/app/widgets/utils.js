@@ -1,3 +1,10 @@
+var core = require('mathjs/core'),
+    math = core.create()
+
+math.import(require('mathjs/lib/type'))
+math.import(require('mathjs/lib/function'))
+math.import(require('mathjs/lib/expression'))
+
 module.exports = {
 
     clip: function(value,range) {
@@ -68,5 +75,7 @@ module.exports = {
         hsb.s *= 100/255
         hsb.b *= 100/255
         return hsb
-    }
+    },
+
+    mathEval: math.eval
 }
