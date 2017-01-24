@@ -2,7 +2,7 @@ var _widgets_base = require('../common/_widgets_base'),
     {widgetManager} = require('../../managers')
 
 
-module.exports = class Math extends _widgets_base {
+module.exports = class Formula extends _widgets_base {
 
     static options() {
 
@@ -81,8 +81,7 @@ module.exports = class Math extends _widgets_base {
 
             this.value = eval(formula)
 
-            this.input.val(typeof this.value != 'object' ? this.value.toFixed(this.widgetData.precision) : this.value.map((a)=>{return a.toFixed(this.widgetData.precision)}))
-
+            this.showValue()
             if (e.options.sync) this.widget.trigger({type: 'sync',id: this.widgetData.id,widget: this.widget, linkId: this.widgetData.linkId, options: e.options})
             if (e.options.send) this.sendValue(this.value)
 
@@ -93,5 +92,12 @@ module.exports = class Math extends _widgets_base {
         }
 
     }
+
+    showValue() {
+
+        this.input.val(typeof this.value != 'object' ? this.value.toFixed(this.widgetData.precision) : this.value.map((a)=>{return a.toFixed(this.widgetData.precision)}))
+
+    }
+
 
 }

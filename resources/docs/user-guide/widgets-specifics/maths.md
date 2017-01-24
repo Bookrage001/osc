@@ -4,13 +4,13 @@ Maths do the maths !
 
 ----
 
-## Math
+## Formula
 
-Math evaluates mathematical expressions over other widgets' values each one of these widgets changes.
+Formula evaluates mathematical expressions over other widgets' values each one of these widgets changes.
 
 ```js
 {
-    type:'math',
+    type:'formula',
     // etc
 }
 ```

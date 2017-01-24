@@ -37,7 +37,7 @@ var widgets = {
     crossfader: require('./widgets/switchers/crossfader'),
 
     // maths
-    math: require('./widgets/maths/math')
+    formula: require('./widgets/maths/formula')
 }
 
 module.exports.categories = {
@@ -48,7 +48,7 @@ module.exports.categories = {
     'Plots':['plot','eq','visualizer','led','meter','text'],
     'Containers':['panel','strip','modal'],
     'Switchers':['switcher','crossfader'],
-    'Maths':['math']
+    'Maths':['formula']
 }
 
 module.exports.widgetOptions = function(){
