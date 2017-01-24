@@ -1,13 +1,13 @@
 # Changelog
 
-## 0.15.2
+## 0.16.0
 
 - new logo :)
 - bug fixes
-  - editor: new widget are correctly positionned in scrolled areas
+  - editor: new widgets are correctly positionned in scrolled areas
 - widgets
-  - **new** `formula` widget, a javascript expressions evaluator that can process other widgets' values 
-  - `multixy`: support named points
+  - **new** `formula` widget, a javascript expressions evaluator that can process other widgets' values
+  - `multixy` supports named points
 
 ## 0.15.1
 
