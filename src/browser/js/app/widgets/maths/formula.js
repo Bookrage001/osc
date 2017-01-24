@@ -53,6 +53,8 @@ module.exports = class Formula extends _widgets_base {
 
         this.linkedWidgets = widgetData.formula.match(/\$\{([^\}]*)\}/g) == null ? [] : widgetData.formula.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)})
 
+        this.formula = math.compile(widgetData.formula.replace(/\$\{([^\}]*)\}/g, '_$1'))
+
         $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
     }
@@ -72,18 +74,18 @@ module.exports = class Formula extends _widgets_base {
 
     updateValue(e){
 
-        var formula = this.widgetData.formula,
+        var variables = {},
             id
 
         for (id of this.linkedWidgets) {
             if (id !== undefined) {
-                formula = formula.replace('${' + id + '}', '(' + JSON.stringify(widgetManager.getWidgetById(id)[0].getValue()) + ')')
+                variables['_'+id] = widgetManager.getWidgetById(id)[0].getValue()
             }
         }
 
         try {
 
-            var v = math.eval(formula).valueOf()
+            var v = this.formula.eval(variables).valueOf()
 
             this.value = v.data ? v.data : v
 
