@@ -83,7 +83,9 @@ module.exports = class Formula extends _widgets_base {
 
         try {
 
-            this.value = math.eval(formula).valueOf()
+            var v = math.eval(formula).valueOf()
+
+            this.value = v.data ? v.data : v
 
             this.showValue()
 
