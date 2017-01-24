@@ -30,6 +30,7 @@ module.exports = class Formula extends _widgets_base {
 
             precision:2,
             address:'auto',
+            split:[]
             preArgs:[],
             target:[]
         }
@@ -45,6 +46,8 @@ module.exports = class Formula extends _widgets_base {
         `
 
         super(...arguments, widgetHtml)
+
+        this.split = typeof widgetData.split == 'object' && widgetData.split.length ? widgetData.split : false
 
         this.input = this.widget.find('.input').fakeInput({align:'center', disabled:true})
 
