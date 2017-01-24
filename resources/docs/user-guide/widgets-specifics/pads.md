@@ -62,9 +62,9 @@ Pads are multidimensional widgets that output multiple values.
 ```
 
 #### `points`
-- type: `integer`
+- type: `integer|array`
 - default: `2`
-- usage: defines the number of points on the pad
+- usage: defines the number of points on the pad. Can be an `array` of `strings` that will be used as labels for the points (ex: `['A', 'B']`)
 
 #### `pointSize`
 - type: `integer`
@@ -98,7 +98,7 @@ Pads are multidimensional widgets that output multiple values.
 - type: `boolean|object`
 - default: `false`
 - usage:
-    - set to `true` to send separate osc messages for each point's `x` and `y` axis. The `address` will be the same as the widget's with `/N/x` or `/N/y` appended to it, where `N` is the point's id.
+    - set to `true` to send separate osc messages for each point's `x` and `y` axis. The `address` will be the same as the widget's with `/N/x` or `/N/y` appended to it, where `N` is the point's id (or the point's label if `points` is an `array`).
     - can be set as an object to specify a different `address` : `['/0/x', '/0/y', '/1/x', '/2/y']`
 - note: the widget will only respond to its original osc address, not to the splitted version
 

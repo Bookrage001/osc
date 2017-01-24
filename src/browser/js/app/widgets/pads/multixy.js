@@ -48,17 +48,21 @@ module.exports = class MultiXy extends _pads_base {
 
         super(...arguments)
 
+        this.npoints = typeof widgetData.points == 'object' ? widgetData.points.length : widgetData.points
+        this.labels = typeof widgetData.points == 'object'
         this.pointSize = parseInt(widgetData.pointSize)
         this.widget[0].style.setProperty("--point-size",this.pointSize + 'rem')
 
         this.split = widgetData.split?
-                        typeof widgetData.split == 'object' && widgetData.split.length == 2 * widgetData.points ?
+                        typeof widgetData.split == 'object' && widgetData.split.length == 2 * this.npoints ?
                             widgetData.split
                             : (()=>{
-                                var s={};
-                                for (var i=0; i<widgetData.points * 2;i=i+2) {
-                                    s[i]=widgetData.address + '/' + i/2 + '/x'
-                                    s[i+1]=widgetData.address + '/' + i/2 + '/y'
+                                var s={},
+                                    t
+                                for (var i=0; i<this.npoints * 2;i=i+2) {
+                                    t = this.labels ? widgetData.points[i/2] : i/2
+                                    s[i]=widgetData.address + '/' + t + '/x'
+                                    s[i+1]=widgetData.address + '/' + t + '/y'
                                 };
                                 return s
                             })()
@@ -70,7 +74,7 @@ module.exports = class MultiXy extends _pads_base {
 
         this.pads = []
 
-        for (var i=widgetData.points-1;i>=0;i--) {
+        for (var i=this.npoints-1;i>=0;i--) {
             this.pads[i] = new Xy({
                 snap:widgetData.snap,
                 spring:widgetData.spring,
@@ -144,7 +148,7 @@ module.exports = class MultiXy extends _pads_base {
 
 
         var v = []
-        for (var i=0;i<widgetData.points * 2;i=i+2) {
+        for (var i=0;i<this.npoints * 2;i=i+2) {
             [v[i],v[i+1]]  = this.pads[i/2].getValue()
         }
 
@@ -161,7 +165,7 @@ module.exports = class MultiXy extends _pads_base {
 
     updateHandlesPosition() {
 
-        for (var i=0;i<this.widgetData.points;i++) {
+        for (var i=0;i<this.npoints;i++) {
 
             this.handlesPositions[i] = [clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
                                         ,- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) - (this.pointSize + 1) * PXSCALE]
@@ -177,9 +181,10 @@ module.exports = class MultiXy extends _pads_base {
         this.ctx.textAlign = 'center'
         this.ctx.textBaseline = 'middle'
 
-        for (var i=0;i<this.widgetData.points;i++) {
+        for (var i=0;i<this.npoints;i++) {
             var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
-                y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
+                y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
+                t = this.labels ? this.widgetData.points[i] : i
 
                 this.ctx.globalAlpha = 0.3
                 this.ctx.strokeStyle = this.colors.custom
@@ -198,8 +203,8 @@ module.exports = class MultiXy extends _pads_base {
                 this.ctx.strokeStyle = this.colors.text
                 this.ctx.lineWidth = PXSCALE
                 this.ctx.font = PXSCALE * 11 + 'px Droid Sans'
-                this.ctx.fillText(i,x,y)
-                this.ctx.strokeText(i,x,y)
+                this.ctx.fillText(t, x, y)
+                this.ctx.strokeText(t, x, y)
 
         }
 
@@ -217,9 +222,9 @@ module.exports = class MultiXy extends _pads_base {
 
     setValue(v, options={}) {
 
-        if (!v || v.length!=this.widgetData.points * 2) return
+        if (!v || v.length!=this.npoints * 2) return
 
-        for (var i=0;i<this.widgetData.points;i++) {
+        for (var i=0;i<this.npoints;i++) {
             if (!options.dragged) {
                 this.pads[i].setValue([v[i*2],v[i*2+1]])
             }
@@ -228,7 +233,7 @@ module.exports = class MultiXy extends _pads_base {
         this.updateHandlesPosition()
         this.draw()
 
-        for (var i=0;i<this.widgetData.points * 2;i=i+2) {
+        for (var i=0;i<this.npoints * 2;i=i+2) {
             [this.value[i],this.value[i+1]]  = this.pads[i/2].getValue()
         }
 
