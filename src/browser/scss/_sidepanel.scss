@@ -65,6 +65,9 @@
             font-style: italic;
         }
     }
+    &::-webkit-scrollbar {
+        // border: 2rem solid var(--color-bg)
+    }
     &::-webkit-scrollbar-track-piece {
         background: var(--color-bg);
         &:vertical {
@@ -75,7 +78,7 @@
         }
     }
     &::-webkit-scrollbar-thumb {
-        background:var(--color-raised);
+        background:var(--color-light-fg);
         &:vertical {
             border-left:8rem solid var(--color-fg);
         }
@@ -86,7 +89,7 @@
     &::-webkit-scrollbar-button {
         border-color: var(--color-fg);
         border-width:8rem;
-        background-color: var(--color-raised);
+        background-color: var(--color-light-fg);
     }
 }
 .actions {
