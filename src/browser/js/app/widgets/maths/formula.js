@@ -74,7 +74,7 @@ module.exports = class Formula extends _widgets_base {
 
         for (id of this.linkedWidgets) {
             if (id !== undefined) {
-                formula = formula.replace('${' + id + '}', widgetManager.getWidgetById(id)[0].getValue())
+                formula = formula.replace('${' + id + '}', JSON.stringify(widgetManager.getWidgetById(id)[0].getValue()))
             }
         }
 
