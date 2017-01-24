@@ -88,7 +88,7 @@ module.exports = class Formula extends _widgets_base {
 
         } catch(err) {
 
-            throw 'Error parsing formula "' + formula + '"' + err
+            throw 'Error parsing formula "' + formula + '" (' + err + ')'
 
         }
 
