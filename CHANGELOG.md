@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.2
+
+- new logo :)
+- bug fixes
+  - editor: new widget are correctly positionned in scrolled areas
+- widgets
+  - `multixy`: support named points
+
 ## 0.15.1
 
 - widgets
