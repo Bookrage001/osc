@@ -1,0 +1,16 @@
+.math-container {
+    width: 100rem;
+    height:60rem;
+    .math {
+        display:flex;
+        height:100%;
+        background: var(--color-faded);
+        .input {
+            height:auto;
+            width: auto;
+        }
+    }
+    .input {
+        --color-text: var(--color-custom);
+    }
+}

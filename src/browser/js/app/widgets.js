@@ -35,6 +35,9 @@ var widgets = {
     // state switchers
     switcher: require('./widgets/switchers/switcher'),
     crossfader: require('./widgets/switchers/crossfader'),
+
+    // maths
+    math: require('./widgets/maths/math')
 }
 
 module.exports.categories = {
@@ -44,7 +47,8 @@ module.exports.categories = {
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
     'Plots':['plot','eq','visualizer','led','meter','text'],
     'Containers':['panel','strip','modal'],
-    'Switchers':['switcher','crossfader']
+    'Switchers':['switcher','crossfader'],
+    'Maths':['math']
 }
 
 module.exports.widgetOptions = function(){
