@@ -62,31 +62,35 @@
 
         }
 
-        self.on('focus',function(){
-            self.attr('tabindex','-1')
-            var i = $('<input></input>')
-                    .prependTo(self)
-                    .val(self.value)
-                    .focus()
-                    .change(function(){
-                        self.val($(this).val())
+        if (!options.disabled) {
+
+            self.on('focus',function(){
+                self.attr('tabindex','-1')
+                var i = $('<input></input>')
+                        .prependTo(self)
+                        .val(self.value)
+                        .focus()
+                        .change(function(){
+                            self.val($(this).val())
+                            i.blur()
+                        })
+                i.blur(function(){
+                        self.attr('tabindex','0')
+                        i.remove()
+                        $(document).off('.fakeInput')
+                })
+                $(document).on('touchstart.fakeInput mousedown.fakeInput',function(e){
+                    if (e.originalEvent.target!=i[0] && !(e.originalEvent.sourceCapabilities && e.originalEvent.sourceCapabilities.firesTouchEvents)) {
                         i.blur()
-                    })
-            i.blur(function(){
-                    self.attr('tabindex','0')
-                    i.remove()
-                    $(document).off('.fakeInput')
-            })
-            $(document).on('touchstart.fakeInput mousedown.fakeInput',function(e){
-                if (e.originalEvent.target!=i[0] && !(e.originalEvent.sourceCapabilities && e.originalEvent.sourceCapabilities.firesTouchEvents)) {
-                    i.blur()
-                }
-            }).on('keydown.fakeInput', function(e){
-                if (e.keyCode==13) i.change()
-                if (e.keyCode==27) i.off('change').blur()
+                    }
+                }).on('keydown.fakeInput', function(e){
+                    if (e.keyCode==13) i.change()
+                    if (e.keyCode==27) i.off('change').blur()
+                })
+
             })
 
-        })
+        }
 
         return self
 
