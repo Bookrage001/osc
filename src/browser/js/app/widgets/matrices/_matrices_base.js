@@ -19,7 +19,7 @@ module.exports = class _matrices_base extends _widgets_base {
 
             if (e.id==widgetData.id) return
             this.value[e.widget.parent().index()] = e.widget.abstract.getValue()
-            this.widget.trigger({type:'sync',id:widgetData.id,widget:this.widget})
+            this.widget.trigger({type:'sync',id:widgetData.id,widget:this.widget,options:e.options})
 
         })
 
