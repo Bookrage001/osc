@@ -7,7 +7,7 @@ module.exports = class Formula extends _widgets_base {
     static options() {
 
         return {
-            type:'math',
+            type:'formula',
             id:'auto',
             linkId:'',
 
@@ -38,7 +38,7 @@ module.exports = class Formula extends _widgets_base {
     constructor(widgetData) {
 
         var widgetHtml = `
-            <div class="math">
+            <div class="formula">
                 <div class="input"></div>
             </div>
         `
@@ -93,9 +93,27 @@ module.exports = class Formula extends _widgets_base {
 
     }
 
+    static deepCopyWithPrecision(obj, precision) {
+
+            var copy = obj,
+                key
+
+            if (typeof obj === 'object') {
+                copy = Array.isArray(obj) ? [] : {}
+                for (key in obj) {
+                    copy[key] = Formula.deepCopyWithPrecision(obj[key], precision)
+                }
+            } else if (typeof obj == 'number') {
+                return copy.toFixed(precision)
+            }
+
+            return copy
+
+    }
+
     showValue() {
 
-        this.input.val(typeof this.value != 'object' ? this.value.toFixed(this.widgetData.precision) : this.value.map((a)=>{return a.toFixed(this.widgetData.precision)}))
+        this.input.val(Formula.deepCopyWithPrecision(this.value, this.widgetData.precision))
 
     }
 
