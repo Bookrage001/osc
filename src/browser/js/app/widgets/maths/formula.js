@@ -30,7 +30,7 @@ module.exports = class Formula extends _widgets_base {
 
             precision:2,
             address:'auto',
-            split:[]
+            split:[],
             preArgs:[],
             target:[]
         }
