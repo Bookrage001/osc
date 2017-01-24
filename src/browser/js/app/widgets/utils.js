@@ -1,9 +1,4 @@
-var core = require('mathjs/core'),
-    math = core.create()
-
-math.import(require('mathjs/lib/type'))
-math.import(require('mathjs/lib/function'))
-math.import(require('mathjs/lib/expression'))
+var math = require('mathjs')
 
 module.exports = {
 
@@ -77,5 +72,5 @@ module.exports = {
         return hsb
     },
 
-    mathEval: math.eval
+    math: math
 }

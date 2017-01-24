@@ -1,6 +1,6 @@
 var _widgets_base = require('../common/_widgets_base'),
     {widgetManager} = require('../../managers'),
-    {mathEval} = require('../utils')
+    {math} = require('../utils')
 
 
 module.exports = class Formula extends _widgets_base {
@@ -83,7 +83,7 @@ module.exports = class Formula extends _widgets_base {
 
         try {
 
-            this.value = mathEval(formula).valueOf()
+            this.value = math.eval(formula).valueOf()
 
             this.showValue()
 
