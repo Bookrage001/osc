@@ -6,6 +6,7 @@
 - bug fixes
   - editor: new widget are correctly positionned in scrolled areas
 - widgets
+  - **new** `formula` widget, a javascript expressions evaluator that can process other widgets' values 
   - `multixy`: support named points
 
 ## 0.15.1
