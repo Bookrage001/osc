@@ -37,9 +37,11 @@ var parseArg = function(arg,precision){
 		case 'boolean':
 			return {type: arg ? 'T' : 'F', value: arg}
 		case 'object':
-			return {type: parseType(arg.type), value: arg.value}
+		     if (arg.type) {
+                 return {type: parseType(arg.type), value: arg.value}
+             }
 		default:
-			return {type: 's', value:String(arg)}
+			return {type: 's', value:JSON.stringify(arg)}
 	}
 }
 
