@@ -79,7 +79,10 @@
 .text-container {
     --color-custom:var(--color-accent);
     flex-shrink: 0;
-
+    .label {
+        box-shadow: 0 -11rem 10rem 10rem var(--color-bg);
+        z-index: 1;
+    }
     .text {
         flex: 1;
         height:35rem;

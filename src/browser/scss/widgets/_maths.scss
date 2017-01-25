@@ -1,6 +1,10 @@
 .formula-container {
     width: 100rem;
     height:60rem;
+    .label {
+        box-shadow: 0 -11rem 10rem 10rem var(--color-bg);
+        z-index: 1;
+    }
     .formula {
         display:flex;
         height:100%;
