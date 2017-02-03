@@ -92,7 +92,8 @@ var customModule = (function(){
 		context = {
 			console: console,
 			sendOsc: sendOsc,
-			receiveOsc: receiveOsc
+			receiveOsc: receiveOsc,
+            setTimeout: setTimeout
 		}
 
 	try {
@@ -143,6 +144,10 @@ oscServer.on('error', function (error) {
 })
 
 oscServer.open()
+
+if (customModule.init) {
+    customModule.init()
+}
 
 
 module.exports = {
