@@ -64,6 +64,10 @@ var receiveOsc = function(data, info){
 
 	if (!data) return
 
+    for (i in data.args) {
+        data.args[i] = data.args[i].value
+    }
+
 	if (data.args.length==1) data.args = data.args[0]
 
 	ipc.send('receiveOsc',data)
@@ -119,9 +123,7 @@ var oscOutFilter = function(data){
 
 var oscInHandler = function(msg, timetag, info){
 	var data = oscInFilter({address: msg.address, args: msg.args, host: info.address, port: info.port})
-	for (i in data.args) {
-		data.args[i] = data.args[i].value
-	}
+    if (!data) return
 	receiveOsc(data)
 }
 
