@@ -10,6 +10,9 @@ It must be of the following form:
     // Do whatever you want, initialize some variables, declare some functions, ...
 
     return {
+        init: function(){
+            // this will be executed once when the osc server starts
+        },
         oscInFilter:function(data){
             // Filter incomming osc messages
 
@@ -21,7 +24,7 @@ It must be of the following form:
             // args = array of {value, type} objects
             // host = string
             // port = integer
-            
+
             // return data if you want the message to be processed
             return {address, args, host, port}
 
@@ -45,3 +48,4 @@ The module is executed in a restricted context, only a few globals are available
 - `console`: `object`
 - `sendOsc`: `function({address, args, host, port})`
 - `receiveOsc`: `function({address, args, host, port})`
+- `setTimeout`: `function(function, delay)`
