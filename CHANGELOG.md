@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.16.1
+
+- bug fixes
+  - string arguments overquoted in sent osc messages
+- custom module
+  - added support for initialization script
+  - unified expected formatting in sendOsc and receiveOsc methods
+- ui
+  - reduced scrollbars width
+
+
 ## 0.16.0
 
 - new logo :)
