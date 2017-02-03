@@ -40,6 +40,8 @@ var parseArg = function(arg,precision){
 		     if (arg.type) {
                  return {type: parseType(arg.type), value: arg.value}
              }
+        case 'string':
+            return {type: 's', value:arg}
 		default:
 			return {type: 's', value:JSON.stringify(arg)}
 	}
