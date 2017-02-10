@@ -5,7 +5,7 @@ dialog.showErrorBox = function(title,err) {
     console.log(title + ': ' + err)
 }
 
-app.commandLine.appendSwitch('--enable-touch-events')
+app.commandLine.appendSwitch('--touch-events')
 
 
 if (settings.read('noVsync')) {
