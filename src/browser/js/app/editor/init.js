@@ -19,7 +19,7 @@ var init = function(){
         if (!EDITING) return
 
         // ignore mouse event when fired by a simulated touch event
-        if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
+        if (e.ty<pe=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
         $('.context-menu').remove()
 
@@ -55,7 +55,6 @@ var init = function(){
             return
         }
 
-        console.log(d)
         var actions = {},
             clickX = Math.round((d.offsetX + d.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
             clickY = Math.round((d.offsetY + d.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
