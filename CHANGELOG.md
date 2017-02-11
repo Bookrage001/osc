@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.16.2
+
+- bug fixes
+  - crash when remote-editing widgets in a disabled tabs
+  - desktop client touch screen support restored
+
 ## 0.16.1
 
 - bug fixes
