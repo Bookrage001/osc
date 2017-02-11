@@ -19,7 +19,7 @@ var init = function(){
         if (!EDITING) return
 
         // ignore mouse event when fired by a simulated touch event
-        if (e.ty<pe=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
+        if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
         $('.context-menu').remove()
 
