@@ -1,6 +1,7 @@
 # Changelog
 
-## 0.16.2
+
+## 0.16.3
 
 - bug fixes
   - crash when remote-editing widgets in a disabled tabs
