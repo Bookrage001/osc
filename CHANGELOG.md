@@ -4,7 +4,7 @@
 ## 0.16.3
 
 - bug fixes
-  - crash when remote-editing widgets in a disabled tabs
+  - crash when remote-editing widgets in disabled tabs
   - desktop client touch screen support restored
 
 ## 0.16.1
