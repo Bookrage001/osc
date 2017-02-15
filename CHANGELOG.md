@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 0.16.4
+
+- bug fixes
+  - tab links broken after activating traversing gestures
+  - `push` release is now handled per touch point (releasing one finger used to release all pressed buttons)
+
 ## 0.16.3
 
 - bug fixes
