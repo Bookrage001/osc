@@ -32,7 +32,7 @@
 
             var $this = $(this)
 
-            if ($this.data('dragSetup')) return
+            if ($this.data('dragSetup') == 'true') return
             $this.data('dragSetup','true')
 
 
@@ -115,7 +115,7 @@
                 }
 
 
-            $this.on(events.mouse.start,mouseStartHandler)
+            $this.on(events.mouse.start + '.drag-osc',mouseStartHandler)
 
 
             // multi touch hanlder
@@ -250,9 +250,15 @@
 
                 }
 
-            $this.on(events.touch.start,touchStartHandler)
+            $this.on(events.touch.start + '.drag-osc',touchStartHandler)
 
 
+        },
+        teardown: function(){
+            var $this = $(this)
+            $this.off(events.touch.start + '.drag-osc')
+            $this.off(events.mouse.start + '.drag-osc')
+            $this.data('dragSetup','false')
         }
 
     }
@@ -299,7 +305,6 @@
             this.off('draginit.traversing')
             self.removeEventListener("mousedown", down, true)
             self.removeEventListener("touchstart", down, true)
-            this.o
         })
 
 
