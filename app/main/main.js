@@ -25,12 +25,18 @@ var start = function(readyApp) {
 
         var app = require('./electron-app')
         var address = typeof settings.read('guiOnly')=='string'? 'http://' + settings.read('guiOnly') : settings.read('appAddresses')[0]
-
         if (app.isReady()) {
-            return require('./electron-window')({address:address, shortcuts:true})
+            var win = require('./electron-window')({address:address, shortcuts:true})
+            app.on('before-quit',()=>{
+                win.destroy()
+            })
+            return win
         } else {
             app.on('ready',function(){
-                require('./electron-window')({address:address, shortcuts:true})
+                var win = require('./electron-window')({address:address, shortcuts:true})
+                app.on('before-quit',()=>{
+                    win.destroy()
+                })
             })
         }
     }
