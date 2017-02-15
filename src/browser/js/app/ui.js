@@ -5,7 +5,7 @@ var sidepanel = require('./sidepanel').init
 
 // Tabs...
 var tabs = function() {
-    $('#container').click(function(e){
+    $('#container').on('fake-click', function(e){
         var link = e.target
 
         if (!link.hasAttribute('data-tab') || link.classList.contains('on')) return
@@ -22,13 +22,13 @@ var tabs = function() {
 
 
         $(id).find('li[data-tab]:first-child, li.parent + li[data-tab]').each(function(){
-            if (!$(this).siblings('.on').length) $(this).click()
+            if (!$(this).siblings('.on').length) $(this).trigger('fake-click')
         })
 
         $(window).resize()
 
     })
-    $('li[data-tab]').first().click()
+    $('li[data-tab]').first().trigger('fake-click')
 }
 
 // zoom zoom
