@@ -1,5 +1,4 @@
-var _widgets_base = require('../common/_widgets_base'),
-    $document = $(document)
+var _widgets_base = require('../common/_widgets_base')
 
 module.exports = class Toggle extends _widgets_base {
 
@@ -59,8 +58,8 @@ module.exports = class Toggle extends _widgets_base {
 
         var newVal = this.widget.state?this.widgetData.off:this.widgetData.on
         this.setValue(newVal,{sync:true,send:true})
-        $document.on('dragend.toggle',()=>{
-            $document.off('dragend.toggle')
+        this.widget.on('dragend.toggle',()=>{
+            this.widget.off('dragend.toggle')
             this.widget.on('draginit.toggle',()=>{
                 this.widget.off('draginit.toggle')
                 this.fakeclick()

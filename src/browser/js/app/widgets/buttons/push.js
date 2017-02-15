@@ -1,5 +1,4 @@
 var _widgets_base = require('../common/_widgets_base'),
-    $document = $(document),
     osc = require('../../osc')
 
 module.exports = class Push extends _widgets_base {
@@ -68,9 +67,9 @@ module.exports = class Push extends _widgets_base {
     fakeclick(){
 
         if (!this.active) this.setValuePrivate(this.widgetData.on,{send:true,sync:true})
-        $document.on('dragend.push',()=>{
+        this.widget.on('dragend.push',()=>{
             this.setValuePrivate(this.widgetData.off,{send:true,sync:true})
-            $document.off('dragend.push')
+            this.widget.off('dragend.push')
             this.widget.on('draginit.push',()=>{
                 this.widget.off('draginit.push')
                 this.fakeclick()
