@@ -6,6 +6,8 @@
 - bug fixes
   - tab links broken after activating traversing gestures
   - `push` release is now handled per touch point (releasing one finger used to release all pressed buttons)
+- misc
+  - destroy default client window when the app process exits
 
 ## 0.16.3
 
