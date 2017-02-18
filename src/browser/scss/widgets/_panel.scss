@@ -88,6 +88,7 @@
             line-height: 10rem;
             text-align: center;
             float:right;
+            position: static;
     }
     > .label {
         top:0;
@@ -144,6 +145,10 @@
                 opacity: 1;
                 position: relative;
                 margin-right: 1rem;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
                 box-shadow: -1rem 0 0 0 var(--color-bg), 0 1rem 0 0 var(--color-light) inset;
         }
         > .light:before {
