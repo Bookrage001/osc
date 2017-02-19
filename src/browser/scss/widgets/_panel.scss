@@ -138,18 +138,18 @@
         > .light:after {
                 content:"\f068";
                 transform: none;
-                width:var(--nav-height);
+                width:calc(var(--nav-height) + 1rem);
                 height:var(--nav-height);
                 line-height: var(--nav-height);
                 background:var(--color-fg);
                 padding:0;
                 opacity: 1;
                 position: relative;
-                margin-right: 1rem;
                 top: 0;
-                left: 0;
+                left: auto;
                 right: 0;
                 bottom: 0;
+                // border-right: 1rem solid var(--color-bg);
                 box-shadow: -1rem 0 0 0 var(--color-bg), 0 1rem 0 0 var(--color-light) inset;
         }
         > .light:before {
