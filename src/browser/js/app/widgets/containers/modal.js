@@ -60,7 +60,12 @@ module.exports = class Modal extends Panel {
         this.widget.toggleClass('on', this.value)
         this.light.toggleClass('on', this.value)
 
-        if (this.value) $(window).resize()
+        if (this.value) {
+            $(window).resize()
+            this.container.parents('.widget').css('z-index','initial')
+        } else {
+            this.container.parents('.widget').css('z-index','')
+        }
 
     }
 
