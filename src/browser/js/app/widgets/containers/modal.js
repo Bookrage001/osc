@@ -50,7 +50,6 @@ module.exports = class Modal extends Panel {
             this.setValue(!this.value)
         })
 
-
     }
 
     setValue(v) {
@@ -60,13 +59,18 @@ module.exports = class Modal extends Panel {
         this.widget.toggleClass('on', this.value)
         this.light.toggleClass('on', this.value)
 
+        if (this.value) $(window).resize()
+
+        this.fixStacking()
+
+    }
+
+    fixStacking() {
         if (this.value) {
-            $(window).resize()
             this.container.parents('.widget').css('z-index','initial')
         } else {
             this.container.parents('.widget').css('z-index','')
         }
-
     }
 
 }
