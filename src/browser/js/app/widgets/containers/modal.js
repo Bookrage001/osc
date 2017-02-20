@@ -55,6 +55,9 @@ module.exports = class Modal extends Panel {
     setValue(v) {
 
         this.value = v ? true : false
+
+        this.fixScrolling()
+
         this.container.toggleClass('on', this.value)
         this.widget.toggleClass('on', this.value)
         this.light.toggleClass('on', this.value)
@@ -63,6 +66,14 @@ module.exports = class Modal extends Panel {
 
         this.fixStacking()
 
+    }
+
+    fixScrolling(){
+        if (this.value) {
+            this.container.parents('.tab').first().css('overflow','hidden')
+        } else {
+            this.container.parents('.tab').first().css('overflow','')
+        }
     }
 
     fixStacking() {
