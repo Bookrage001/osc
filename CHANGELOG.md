@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 0.16.5
+
+- bug fixes
+  - `modal`: correct z-stacking with absolutely positionned widgets; proper rendering for inner widgets; disable parent tab's scrolling when opened; fix various style glitches;
+  - `strip`: resize glitch when containing compact horizontal sliders
+
 ## 0.16.4
 
 - bug fixes
