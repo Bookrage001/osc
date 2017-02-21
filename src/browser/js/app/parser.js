@@ -178,9 +178,20 @@ module.exports.widgets = function(data,parent) {
                         widgetData.id:
                         iconify(widgetData.label)
 
+
+
+        var css = ';' + widgetData.css,
+            scopedCss = ''
+
+        css.replace(/[;\}]*([^\;\{]*\{[^\}]*\})/g, (m)=>{
+            if (m[0]==';') m = m.substr(1,m.length)
+            scopedCss += '${id}' + m
+            return ''
+        })
+
         // create container
         var widgetContainer = $(`
-            <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + widgetData.css}">
+            <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + css}">
                 <div class="label"><span>${label}</span></div>
             </div>
         `)
@@ -197,6 +208,12 @@ module.exports.widgets = function(data,parent) {
         widgetContainer[0].appendChild(widgetInner.widget[0])
 
         widgetManager.addWidget(widgetInner)
+
+        if (scopedCss.length) {
+            widgetContainer.addClass('css-scope-' + widgetInner.hash)
+            scopedCss = scopedCss.split('${id}').join('.css-scope-' + widgetInner.hash + ' ')
+            widgetContainer.append(`<style>${scopedCss}</style>`)
+        }
 
         // set widget's initial state
         if (widgetData.value !== '' && widgetInner.setValue) {
