@@ -16,7 +16,7 @@ $(document).ready(()=>{
 
     var form = $(`
         <form class="form" id="form">
-            <div class="btn title">Open Stage Control (v${packageVersion})<span id="new-version"</div>
+            <div class="btn header"><span id="title">Open Stage Control</span> <span id="version">(v${packageVersion})</span><span id="new-version"</div>
         </form>
     `)
 

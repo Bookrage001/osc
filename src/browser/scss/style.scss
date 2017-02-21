@@ -127,14 +127,17 @@ i {
 
     }
     .header {
-        padding:20rem;
+        padding:24rem 20rem 20rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         flex-grow: 0;
         background-color: var(--color-faded);
         color:var(--color-accent);
         font-size:16rem;
-        line-height: 24rem;
+        line-height: 20rem;
+
+        text-transform: uppercase;
+        letter-spacing: 2rem;
     }
     .footer {
         background: var(--color-raised);
@@ -242,13 +245,24 @@ i {
             }
         }
     }
-    .title {
+    .header {
         background: var(--color-faded);
         border: 1rem solid var(--color-bg);
         margin-bottom: -1rem;
         color: var(--color-accent);
-        cursor: default;z-index: 2;
+        cursor: default;
+        z-index: 2;
         box-shadow: none;
+
+        #title {
+            text-transform: uppercase;
+            letter-spacing: 2rem;
+        }
+
+        #version {
+            opacity: .5;
+        }
+
 
         #new-version {
             color:yellow;
