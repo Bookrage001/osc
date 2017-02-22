@@ -4,6 +4,7 @@
 
 - widgets
   - `css` option now supports css selectors, scoped to the widgets element
+  - `matrices` don't pass `css` option to their children anymore
 - misc
   - app's title uppercased
   - tabs titles' letter-spacing increased
