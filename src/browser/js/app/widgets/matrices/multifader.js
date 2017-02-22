@@ -75,6 +75,7 @@ module.exports = class Multifader extends _matrices_base {
             data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
             data.preArgs = widgetData.split ? widgetData.preArgs : [i].concat(widgetData.preArgs)
             data.color = typeof widgetData.color == 'object' ? '' + widgetData.color[i % widgetData.color.length] : widgetData.color
+            data.css = ''
 
             var element = parsewidgets([data],this.widget)
             element[0].style.setProperty(widgetData.horizontal?'height':'width', 100/widgetData.strips + '%')

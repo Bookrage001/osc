@@ -64,6 +64,7 @@ module.exports = class Keyboard extends _matrices_base {
             data.label = false
             data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
             data.preArgs = widgetData.split ? widgetData.preArgs : [i].concat(widgetData.preArgs)
+            data.css = ''
 
             var element = parsewidgets([data],this.widget)
             element[0].classList.add('not-editable')
