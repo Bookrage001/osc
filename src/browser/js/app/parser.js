@@ -210,9 +210,9 @@ module.exports.widgets = function(data,parent) {
         widgetManager.addWidget(widgetInner)
 
         if (scopedCss.length) {
-            widgetContainer.addClass('css-scope-' + widgetInner.hash)
-            scopedCss = scopedCss.split('${id}').join('.css-scope-' + widgetInner.hash + ' ')
-            widgetContainer.append(`<style>${scopedCss}</style>`)
+            widgetContainer.attr('id', 'widget-' + widgetInner.hash)
+            scopedCss = scopedCss.split('${id}').join('#widget-' + widgetInner.hash + ' ')
+            widgetContainer.prepend(`<style>${scopedCss}</style>`)
         }
 
         // set widget's initial state
