@@ -3,6 +3,25 @@
 
 ----
 
+
+## Interaction events
+
+### Click / Tap
+
+Click / Tap events are handled at pressing time, not releasing.
+
+### Right-click / Long touch
+
+Widgets that have only one value input will give focus to it when receiving this event. When the editor is enabled, Right-click / Long touch spawns the editor's context menu.
+
+### Drag
+
+The widgets respond to mouse and touch drag gestures with a 1:1 precision ratio. By using two or more fingers, one can obtain higher precision gestures : each finger that touches the widget without moving will slow down the moving one.
+
+
+----
+
+
 ## Editor
 
 The session editor can be enabled in the side panel. Once enabled, clicking on a widget or on a tab will make it the *selected object*, adding a fancy dashed blue border to it.
@@ -24,7 +43,7 @@ By default, widget resizing / dragging snaps to a 10 pixel wide grid. Its width 
 
 ### Context menu
 
-Right clicking on a widget or on a tab will also display a context menu providing useful utilities :
+Right clicking / long touch on a widget or on a tab will also display a context menu providing useful utilities :
 
 - `copy`: copy widget's data
 - `cut`: copy widget's data and delete selected widget
