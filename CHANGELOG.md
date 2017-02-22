@@ -1,5 +1,12 @@
 # Changelog
 
+## next
+
+- widgets
+  - `css` option now supports css selectors, scoped to the widgets element
+- misc
+  - app's title uppercased
+  - tabs titles' letter-spacing increased
 
 ## 0.16.5
 
