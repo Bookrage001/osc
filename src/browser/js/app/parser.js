@@ -180,10 +180,11 @@ module.exports.widgets = function(data,parent) {
 
 
 
+        // parse scoped css
         var css = ';' + widgetData.css,
             scopedCss = ''
 
-        css.replace(/[;\}]*([^\;\{]*\{[^\}]*\})/g, (m)=>{
+        css = css.replace(/[;\}]*([^\;\{]*\{[^\}]*\})/g, (m)=>{
             if (m[0]==';') m = m.substr(1,m.length)
             scopedCss += '${id}' + m
             return ''
@@ -209,6 +210,7 @@ module.exports.widgets = function(data,parent) {
 
         widgetManager.addWidget(widgetInner)
 
+        // apply scoped css 
         if (scopedCss.length) {
             widgetContainer.attr('id', 'widget-' + widgetInner.hash)
             scopedCss = scopedCss.split('${id}').join('#widget-' + widgetInner.hash + ' ')
