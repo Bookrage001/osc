@@ -4,7 +4,7 @@
 
 - widgets
   - `css` option now supports css selectors, scoped to the widgets element
-  - `matrices` don't pass `css` option to their children anymore
+  - `matrices` don't pass `css` option to their children anymore; subwidgets' indexes are now append to `preArgs` instead of being prepended. 
 - misc
   - app's title uppercased
   - tabs titles' letter-spacing increased

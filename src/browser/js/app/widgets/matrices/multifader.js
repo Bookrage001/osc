@@ -73,7 +73,7 @@ module.exports = class Multifader extends _matrices_base {
             data.id = widgetData.id + '/' + i
             data.label = i
             data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
-            data.preArgs = widgetData.split ? widgetData.preArgs : [i].concat(widgetData.preArgs)
+            data.preArgs = widgetData.split ? widgetData.preArgs : [].concat(widgetData.preArgs, i)
             data.color = typeof widgetData.color == 'object' ? '' + widgetData.color[i % widgetData.color.length] : widgetData.color
             data.css = ''
 
