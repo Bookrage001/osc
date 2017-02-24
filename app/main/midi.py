@@ -100,24 +100,26 @@ class MidiRouter(object):
         else:
             return
 
-        ipcSend({'osc':{
-            'address': '/%s' % event,
-            'args': [
-                {
-                    'type': 'i',
-                    'value': channel
-                },
-                {
-                    'type': 'i',
-                    'value': data1
-                },
-                {
-                    'type': 'i',
-                    'value': data2
-                }
-            ],
-            'target': ['midi:' + self.midiDevicesIn[device]]
-        }})
+        if device in self.midiDevicesIn:
+
+            ipcSend({'osc':{
+                'address': '/%s' % event,
+                'args': [
+                    {
+                        'type': 'i',
+                        'value': channel
+                    },
+                    {
+                        'type': 'i',
+                        'value': data1
+                    },
+                    {
+                        'type': 'i',
+                        'value': data2
+                    }
+                ],
+                'target': ['midi:' + self.midiDevicesIn[device]]
+            }})
 
 
     def sendMidi(self, device, event, *args):
@@ -150,8 +152,6 @@ class MidiRouter(object):
 
         elif device == '*':
             self.dispatcher.send(status, data1, data2, 0, -1)
-
-        pass
 
 
 
