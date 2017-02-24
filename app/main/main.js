@@ -29,6 +29,7 @@ var start = function(readyApp) {
             var win = require('./electron-window')({address:address, shortcuts:true})
             app.on('before-quit',()=>{
                 win.destroy()
+                if (osc.midi) osc.midi.stop()
             })
             return win
         } else {
@@ -36,6 +37,7 @@ var start = function(readyApp) {
                 var win = require('./electron-window')({address:address, shortcuts:true})
                 app.on('before-quit',()=>{
                     win.destroy()
+                    if (osc.midi) osc.midi.stop()
                 })
             })
         }

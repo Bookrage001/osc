@@ -6,15 +6,6 @@ var PythonShell = require('python-shell'),
 var py = new PythonShell(path.resolve('/main/midi.py'),{mode:'text', args: settings.read('midi')})
 
 
-
-// py.send('zefezf')
-//
-//
-// py.on('error', function (message) {
-//   // received a message sent from the Python script (a simple "print" statement)
-//   console.log('error:' +message);
-// });
-
 oscToMidi = (data)=>{
     var args = []
     for (i in data.args) {
@@ -41,8 +32,12 @@ init = (receiveOsc)=>{
     })
 }
 
+stop = ()=>{
+    py.childProcess.kill()
+}
 
 module.exports = {
     send: oscToMidi,
-    init: init
+    init: init,
+    stop: stop
 }

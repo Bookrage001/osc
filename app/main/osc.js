@@ -179,5 +179,6 @@ module.exports = {
 
 		sendOsc(data)
 
-	}
+	},
+    midi:midi
 }
