@@ -2,9 +2,11 @@
 
 ## next
 
+- bug fixes
+  - `push` widgets (and `keyboards`) not correctly synchronizing each other (with shared widget ids or between different clients)
 - widgets
   - `css` option now supports css selectors, scoped to the widgets element
-  - `matrices` don't pass `css` option to their children anymore; subwidgets' indexes are now append to `preArgs` instead of being prepended. 
+  - `matrices` don't pass `css` option to their children anymore; subwidgets' indexes are now append to `preArgs` instead of being prepended.
 - misc
   - app's title uppercased
   - tabs titles' letter-spacing increased

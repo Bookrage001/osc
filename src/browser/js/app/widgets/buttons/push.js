@@ -80,14 +80,15 @@ module.exports = class Push extends _widgets_base {
 
     setValuePrivate(v,options={}) {
 
-        if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
+        if (typeof v == 'object' && v !== null) v = v.value
+        if (v===this.widgetData.on || (this.widgetData.on != null && v === this.widgetData.on.value && v !== undefined)) {
             this.widget.addClass('active')
             this.active = 1
             this.lastChanged = 'active'
             this.updateValue()
             if (options.send) this.sendValue(v)
             if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-        } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
+        } else if (v===this.widgetData.off || (this.widgetData.off != null && v === this.widgetData.off.value && v !== undefined)) {
             this.widget.removeClass('active')
             this.active = 0
             this.lastChanged = 'active'
@@ -101,16 +102,17 @@ module.exports = class Push extends _widgets_base {
     setValue(v,options={}) {
 
         if (!options.fromExternal) {
-            if (options.send || options.sync) this.setValuePrivate(v,options)
+            this.setValuePrivate(v,options)
             return
         }
-        if (v===this.widgetData.on || (this.widgetData.on != null && v.value === this.widgetData.on.value && v.value !== undefined)) {
+        if (typeof v == 'object' && v !== null) v = v.value
+        if (v===this.widgetData.on || (this.widgetData.on != null && v === this.widgetData.on.value && v !== undefined)) {
             this.widget.addClass('on')
             this.state = 1
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
             if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId,options:options})
-        } else if (v===this.widgetData.off || (this.widgetData.off != null && v.value === this.widgetData.off.value && v.value !== undefined)) {
+        } else if (v===this.widgetData.off || (this.widgetData.off != null && v === this.widgetData.off.value && v !== undefined)) {
             this.widget.removeClass('on')
             this.state = 0
             if (options.send) this.sendValue(v)
