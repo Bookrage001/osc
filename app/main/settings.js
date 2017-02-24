@@ -29,6 +29,7 @@ var options = {
                  true : 'Port must be an integer >= 1024'
           }
      },
+    'm':{alias:'midi',type:'array',describe:'midi router settings (requires python-pyo)'},
     'd':{alias:'debug',type:'boolean',describe:'log received osc messages in the console'},
     'n':{alias:'no-gui',type:'boolean',describe:'disable default gui',
          check: (n,argv)=>{
@@ -94,6 +95,7 @@ var makeDefaultConfig = function(argv){
         noGui: argv.n || false,
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
         noVsync: argv['disable-vsync'] || false,
+        midi: argv.m,
         appAddresses:function(){
             var appAddresses = []
 

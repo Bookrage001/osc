@@ -8,8 +8,8 @@ var osc = require('osc'),
 	oscInPort = settings.read('oscInPort') || settings.read('httpPort'),
 	debug = settings.read('debug'),
 	vm = require('vm'),
-	fs = require('fs')
-
+	fs = require('fs'),
+    midi = settings.read('midi') ? require('./midi') : false
 
 var oscServer = new osc.UDPPort({
     localAddress: "0.0.0.0",
@@ -51,12 +51,20 @@ var sendOsc = function(data){
 
 	if (!data) return
 
-	oscServer.send({
-		address: data.address,
-		args: data.args
-	}, data.host, data.port)
+    if (data.host == 'midi' && midi) {
 
-	if (debug) console.log('OSC sent: ',{address:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
+        midi.send(data)
+
+    } else {
+
+        oscServer.send({
+            address: data.address,
+            args: data.args
+        }, data.host, data.port)
+
+        if (debug) console.log('OSC sent: ',{address:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
+    }
+
 
 }
 
@@ -149,6 +157,7 @@ if (customModule.init) {
     customModule.init()
 }
 
+midi.init(receiveOsc)
 
 module.exports = {
 

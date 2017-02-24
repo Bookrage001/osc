@@ -2,6 +2,8 @@
 
 ## next
 
+- main
+  - **new** `midi` support
 - bug fixes
   - `push` widgets (and `keyboards`) not correctly synchronizing each other (with shared widget ids or between different clients)
 - widgets
