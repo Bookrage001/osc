@@ -8,32 +8,34 @@ MIDI support requires additionnal softwares to be installed on the server's syst
 - `python 2.7`
 - [`pyo`](http://ajaxsoundstudio.com/software/pyo/) >= 0.8.3
 
-## Usage
+## Setup
 
-#### Setup
-
-When running the app, the `-m / -midi` must be set; it accepts the following arguments (separated by spaces):
+When running the app, the `-m / -midi` switch must be set; it accepts the following arguments (separated by spaces):
 - `list`: prints the available midi inputs / outputs
 - `device_name:input,output`, where:
     - `device_name`
     - `input` is the midi input id (midi message sent to open-stage-control)
     - `output` is the midi output id (midi message sent from open-stage-control)
 
-#### Widget settings
+Multiple devices can be declared
 
-Widgets that have their target set as following will have their messages interpreted as midi commands:
+## Widget settings
 
-- `target`: `[midi:client_name]`
+In order to send midi messages, a widget must have at least one `target` formatted as follow;  
+
+`midi:device_name` (where `device_name` is one of the declared midi devices (see previous section)) 
+
+## Supported commands
 
 Here are the supported commands. One must use the `preArgs` option to make sure the correct number of arguments is sent.
 
+| address | args | note |
+|---------|------|------|
+| `/note` | `channel note velocity` |  (if `velocity` is `0`, a `note off` will be sent) |
+| `/control` | `channel cc   value` |  |
+| `/program` | `channel program` |  |
+| `/pitch` | `channel LSB MSB` |  |
 
-`/note    channel note velocity` (if `velocity` is `0`, a `note off` will be sent)
-`/control channel cc   value`
-`/program channel program`
-`/pitch   channel LSB MSB`
-
-Where:
 
 - `channel` is an integer between 1 and 16
-- `ǹote`, `velocity`, `cc`, `value`, `program`, `LSB`,`MSB`
+- `ǹote`, `velocity`, `cc`, `value`, `program`, `LSB`,`MSB` are integers between 0 and 127
