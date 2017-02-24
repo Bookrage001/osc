@@ -47,7 +47,7 @@ if 'list' in argv:
     message.append('============')
 
     ipcSend({
-        'log': message
+        'log': '\n'.join(message)
     })
 
 
