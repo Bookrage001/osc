@@ -31,17 +31,19 @@ if 'list' in argv:
 
     message.append('===========')
     message.append('MIDI Inputs')
+    message.append('%3i: %s' % (-1, 'null (disabled)'))
 
     for k in range(len(_midiInputs[0])):
 
-        message.append('%i: %s' % (_midiInputs[1][k], _midiInputs[0][k]))
+        message.append('%3i: %s' % (_midiInputs[1][k], _midiInputs[0][k]))
 
     message.append('============')
     message.append('MIDI Outputs')
+    message.append('%3i: %s' % (-1, 'null (disabled)'))
 
     for k in range(len(_midiOutputs[0])):
 
-        message.append('%i: %s' % (_midiOutputs[1][k], _midiOutputs[0][k]))
+        message.append('%3i: %s' % (_midiOutputs[1][k], _midiOutputs[0][k]))
 
 
     message.append('============')
@@ -70,14 +72,17 @@ class MidiRouter(object):
             i = int(pair.split(':')[1].split(',')[0])
             o = int(pair.split(':')[1].split(',')[1])
 
-            if i not in _midiInputs[1]:
+            if i not in _midiInputs[1] and i != -1:
                 raise ValueError('Invalid midi input %i' % i)
 
-            if o not in _midiOutputs[1]:
+            if o not in _midiOutputs[1] and o != -1:
                 raise ValueError('Invalid midi output %i' % o)
 
-            self.midiDevicesIn[i] = name
-            self.midiDevicesOut[name] = o
+            if i != -1:
+                self.midiDevicesIn[i] = name
+
+            if o != -1:
+                self.midiDevicesOut[name] = o
 
     def receiveMidi(self, status, data1, data2, device):
         if 127 < status < 144:
