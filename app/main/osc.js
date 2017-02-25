@@ -157,7 +157,7 @@ if (customModule.init) {
     customModule.init()
 }
 
-midi.init(receiveOsc)
+if (midi) midi.init(receiveOsc)
 
 module.exports = {
 
