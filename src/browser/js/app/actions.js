@@ -158,7 +158,11 @@ module.exports = {
         $('#grid-width-input').remove()
         EDITING = false
     },
-
+    tabsEnable: function(tabs){
+        for (i in tabs) {
+            $(`[data-id="${tabs[i]}"]`).trigger('fake-click')
+        }
+    },
     traversingDisable: function(){
         $('.traversingEnable, .traversingDisable').toggleClass('on')
         $('#container').trigger('disableTraversingGestures')

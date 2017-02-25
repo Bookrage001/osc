@@ -1,5 +1,6 @@
 var {widgetManager} = require('./managers'),
-    ipc = require('./ipc')
+    ipc = require('./ipc'),
+    actions = require('./actions')
 
 var Osc = function(){
 
@@ -29,6 +30,7 @@ Osc.prototype.send = function(data) {
 Osc.prototype.receive = function(data){
 
     if (data.address == '/EXEC') return this.remoteExec(data.args)
+    if (data.address == '/TABS') return actions.tabsEnable(data.args)
 
     // fetch ids corresponding to the osc address
     var address = data.address,
