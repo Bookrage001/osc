@@ -18,7 +18,7 @@ var editObject = function(container, data, refresh){
     if (isWidget) {
         $(container).addClass('editing')
     } else {
-        $(`[data-tab="#${container.attr('id')}"]`).addClass('editing').click()
+        $(`[data-tab="#${container.attr('id')}"]`).addClass('editing')
         $(container).parent().addClass('editing')
     }
 
@@ -29,7 +29,7 @@ var editObject = function(container, data, refresh){
     var form = $('<div class="form"></div>').appendTo('.editor-container')
 
 
-    var params = isWidget?widgetOptions[data.type]:{label:''}
+    var params = isWidget?widgetOptions[data.type]:{label:'', id:''}
 
     $(`<div class="separator"><span>${isWidget?'Widget':'Tab'}</span></div>`).appendTo(form)
 
@@ -87,7 +87,7 @@ var editObject = function(container, data, refresh){
                 }
 
                 data[$(this).attr('title')] = v
-                if (v==='') delete data[$(this).attr('title')]
+                if (v==='' && isWidget) delete data[$(this).attr('title')]
                 updateDom(container,data)
             })
 

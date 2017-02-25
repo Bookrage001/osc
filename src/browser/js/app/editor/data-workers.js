@@ -72,7 +72,7 @@ var updateDom = function(container,data, remote) {
             container.removeClass('has-tabs')
         }
 
-        $(`[data-tab="#${container.attr('id')}"]`).html(`<a><span>${iconify(data.label)}</span></a>`)
+        $(`[data-tab="#${container.attr('id')}"]`).html(`<a ta><span>${iconify(data.label)}</span></a>`).attr('data-id',data.id)
 
         if (!remote) editObject(newContainer,data)
 
@@ -89,7 +89,7 @@ var updateDom = function(container,data, remote) {
 
     }
 
-    newContainer.find('[data-tab]:first-child').click()
+    newContainer.find('[data-tab]:first-child').trigger('fake-click')
 
     $(window).resize()
 

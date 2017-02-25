@@ -64,11 +64,10 @@ module.exports.tabs = function(data,parent,main,parentLabel){
             hash = hashCode(label),
             id = 'tab_'+hash+'_'+getIterator('tab'+hash,'tab')
 
+        tabData.id = tabData.id || ''
         tabData.label = iconify(label)
 
-        delete tabData.id
-
-        navtabs.append(`<li data-tab="#${id}"><a><span>${tabData.label}</span></a></li>`)
+        navtabs.append(`<li data-tab="#${id}" data-id="${tabData.id}"><a><span>${tabData.label}</span></a></li>`)
 
         let tabContent = $(`<div class="tab ${tabData.tabs&&tabData.tabs.length?'has-tabs':''}" id="${id}" data-index="${i}"></div>`)
         tabContent.data(tabData)
@@ -210,7 +209,7 @@ module.exports.widgets = function(data,parent) {
 
         widgetManager.addWidget(widgetInner)
 
-        // apply scoped css 
+        // apply scoped css
         if (scopedCss.length) {
             widgetContainer.attr('id', 'widget-' + widgetInner.hash)
             scopedCss = scopedCss.split('${id}').join('#widget-' + widgetInner.hash + ' ')
