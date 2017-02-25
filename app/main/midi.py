@@ -3,9 +3,32 @@
 from sys import argv, stdin, stdout
 import json as JSON
 
+
+# python -> node communication
+
 def ipcSend(data):
     print(JSON.dumps(data))
     stdout.flush()
+
+# virtual midi port
+
+if 'virtual' in argv:
+    try:
+        import mididings
+    except:
+        raise ImportError('virtual midi port requires python-mididings (linux only)')
+
+    from threading import Thread
+    mididings.config(client_name='Open Stage Control', in_ports=['VIRTUAL', 'OpenStageControl_In'], out_ports=['VIRTUAL', 'OpenStageControl_Out'])
+    t = Thread(target=mididings.run, args=[
+        [
+            mididings.PortFilter('VIRTUAL')>>mididings.Port('OpenStageControl_Out'),
+            mididings.PortFilter('OpenStageControl_In')>>mididings.Port('VIRTUAL')
+        ]
+    ])
+    t.start()
+
+# pyo import and version check
 
 try:
     import pyo
@@ -21,9 +44,13 @@ if not pyo.withPortmidi():
     raise ImportError('python-pyo must be built with portmidi support')
 
 
+# get midi devices
+
 _midiOutputs = pyo.pm_get_output_devices()
 _midiInputs = pyo.pm_get_input_devices()
 
+
+# list midi devices
 
 if 'list' in argv:
 
@@ -35,6 +62,9 @@ if 'list' in argv:
 
     for k in range(len(_midiInputs[0])):
 
+        if 'OpenStageControl' in _midiInputs[0][k]:
+            continue
+
         message.append('%3i: %s' % (_midiInputs[1][k], _midiInputs[0][k]))
 
     message.append('============')
@@ -42,6 +72,9 @@ if 'list' in argv:
     message.append('%3i: %s' % (-1, 'null (disabled)'))
 
     for k in range(len(_midiOutputs[0])):
+
+        if 'OpenStageControl' in _midiOutputs[0][k]:
+            continue
 
         message.append('%3i: %s' % (_midiOutputs[1][k], _midiOutputs[0][k]))
 
@@ -105,6 +138,7 @@ class MidiRouter(object):
         else:
             return
 
+
         if device in self.midiDevicesIn:
 
             ipcSend({'osc':{
@@ -152,6 +186,7 @@ class MidiRouter(object):
         else:
             return
 
+
         if device in self.midiDevicesOut:
             self.dispatcher.send(status, data1, data2, 0, self.midiDevicesOut[device])
 
@@ -168,11 +203,13 @@ for arg in argv:
 router = MidiRouter(patch)
 
 
+# listen for osc->midi commands from node through stdin
+
 while True:
     msg = raw_input()
     try:
         msg = JSON.loads(msg)
-        msg[1] = msg[1].lower() # lower midi event type
+        msg[1] = msg[1].lower()
         router.sendMidi(*msg)
     except:
         pass

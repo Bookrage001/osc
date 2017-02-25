@@ -14,8 +14,12 @@ When running the app, the `-m / -midi` switch must be set; it accepts the follow
 - `list`: prints the available midi inputs / outputs
 - `device_name:input,output`, where:
     - `device_name`
-    - `input` is the midi input id (midi message sent to open-stage-control)
-    - `output` is the midi output id (midi message sent from open-stage-control)
+    - `input` is the midi input number (midi message sent to open-stage-control)
+    - `output` is the midi output number (midi message sent from open-stage-control)
+
+**Linux only**
+
+- `virtual`: (requires [`mididings`](http://das.nasophon.de/mididings/) to be installed) creates a virtual midi device. `VIRTUAL` ports number are to be used in the `device_name:input,output` declation only; ports named `OpenStageControl_In / OpenStageControl_Out` are to be connected to other ports with ALSA)
 
 Multiple devices can be declared
 
@@ -23,7 +27,7 @@ Multiple devices can be declared
 
 In order to send midi messages, a widget must have at least one `target` formatted as follow;  
 
-`midi:device_name` (where `device_name` is one of the declared midi devices (see previous section)) 
+`midi:device_name` (where `device_name` is one of the declared midi devices (see previous section))
 
 ## Supported commands
 
