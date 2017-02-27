@@ -3,7 +3,11 @@ var PythonShell = require('python-shell'),
     settings = require('./settings')
 
 
-var py = new PythonShell(path.resolve('/main/midi.py'),{mode:'text', args: settings.read('midi')})
+var py = new PythonShell(path.resolve('/main/midi.py'),{mode:'text', args: [
+    settings.read('debug') ? 'debug' : '',
+    ...settings.read('midi')
+    ]
+})
 
 
 oscToMidi = (data)=>{
@@ -17,17 +21,16 @@ oscToMidi = (data)=>{
 init = (receiveOsc)=>{
     py.on('message', function (message) {
         // console.log(message)
-
+        var name, data
         try {
-            message = JSON.parse(message)
-            // console.log(JSON.parse(message))
+            [name, data] = JSON.parse(message)
         } catch (err) {
             // console.log(err)
         }
-        if (message.log) {
-            console.log(message.log)
-        } else if (message.osc) {
-            receiveOsc(message.osc)
+        if (name == 'log') {
+            console.log(data)
+        } else if (name ==  'osc') {
+            receiveOsc(data)
         }
     })
 }

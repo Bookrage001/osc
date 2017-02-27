@@ -6,9 +6,14 @@ import json as JSON
 
 # python -> node communication
 
-def ipcSend(data):
-    print(JSON.dumps(data))
+def ipcSend(name, data):
+    print(JSON.dumps([name, data]))
     stdout.flush()
+
+# debug
+debug = False
+if 'debug' in argv:
+    debug = True
 
 # virtual midi port
 virtuals = []
@@ -105,9 +110,7 @@ if 'list' in argv:
 
     message.append('============')
 
-    ipcSend({
-        'log': '\n'.join(message)
-    })
+    ipcSend('log', '\n'.join(message))
 
 
 
@@ -185,7 +188,10 @@ class MidiRouter(object):
 
         if device in self.midiDevicesIn:
 
-            ipcSend({'osc':{
+            if debug:
+                ipcSend('log','MIDI received: %i %i %i \t(from: %s)' % (status, data1, data2, self.midiDevicesIn[device]))
+
+            ipcSend('osc',{
                 'address': '/%s' % event,
                 'args': [
                     {
@@ -202,7 +208,7 @@ class MidiRouter(object):
                     }
                 ],
                 'target': ['midi:' + self.midiDevicesIn[device]]
-            }})
+            })
 
 
     def sendMidi(self, device, event, *args):
@@ -233,10 +239,8 @@ class MidiRouter(object):
 
         if device in self.midiDevicesOut:
             self.dispatcher.send(status, data1, data2, 0, self.midiDevicesOut[device])
-
-        elif device == '*':
-            self.dispatcher.send(status, data1, data2, 0, -1)
-
+            if debug:
+                ipcSend('log','MIDI sent: %i %i %i \t(to: %s)' % (status, data1, data2, device))
 
 
 patch = []
