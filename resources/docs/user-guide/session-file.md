@@ -70,6 +70,11 @@ A tab object is a javascript object which properties are described below.
 - type: `string`
 - default: `Unnamed`
 
+#### `id`
+- type: `string`
+- default: `empty`
+- usage: this is only useful for [remote controlling](remote-control.md) the tabs states.
+
 #### `widgets`
 - type: `array`
 - default: `[]`
