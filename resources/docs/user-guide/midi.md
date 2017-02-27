@@ -8,6 +8,12 @@ MIDI support requires additionnal softwares to be installed on the server's syst
 - `python 2.7`
 - [`pyo`](http://ajaxsoundstudio.com/software/pyo/) >= 0.8.3
 
+**Why an additionnal dependency ?**
+
+Providing cross-platform midi support is not trivial, as it requires os-specific compilations that cannot be automated within Open Stage Control's current packaging workflow. Using a python addon seems the best compromise so far : the core app remains easy to build, and the extra dependency is easy to install.
+
+Note: `pyo` doesn't support Windows 64bit.
+
 ## Setup
 
 When running the app, the `-m / -midi` switch must be set; it accepts the following arguments (separated by spaces):
