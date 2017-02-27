@@ -4,6 +4,8 @@
 
 - main
   - **new** `midi` support
+- ui
+  - **new** `/TABS id1 id2 etc` osc address to remotely enable tabs
 - bug fixes
   - `push` widgets (and `keyboards`) not correctly synchronizing each other (with shared widget ids or between different clients)
 - widgets
