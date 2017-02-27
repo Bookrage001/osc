@@ -1,14 +1,9 @@
-# Remote editing
+# Remote control
 
-The interface can be remotely edited by sending the appropriate osc messages (from an external source with `-o` / `--osc-port` set, or via `custom-module` scripting).
+All widgets that send osc messages respond to the same messages. Additionnaly, Open Stage Control responds to some general osc commands.
 
-```
-/EXEC COMMAND ARGS
-```
 
-## Supported commands
-
-#### `edit` :  `/EXEC edit id options`
+## `/EDIT id options`
 
 
 Apply a set of options to an existing widget by replacing the old ones with the new ones.
@@ -20,8 +15,7 @@ Apply a set of options to an existing widget by replacing the old ones with the 
 
 *Editing a widget can be cpu expensive, hence updating the UI continuously is not a good idea.*
 
-#### `edit_soft` :  `/EXEC edit_soft id options`
-
+## `/EDIT_SOFT id options`
 
 Apply a set of options to an existing widget by merging them to the widget's options.  
 
@@ -31,3 +25,7 @@ Apply a set of options to an existing widget by merging them to the widget's opt
   - example: `{"label":"New Label", "color":"red"}`
 
 *Editing a widget can be cpu expensive, hence updating the UI continuously is not a good idea.*
+
+## `/TABS id id etc`
+
+Open the tabs designated by the `id` parameters. The target tab link must be accesible (opening a tab located in a disabled tab won't work unless you specify the parent tab's `id` before; the safest way to go is to pass the whole tab tree to enable).

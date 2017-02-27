@@ -3,9 +3,10 @@
 ## next
 
 - main
-  - **new** `midi` support
+  - **new** `midi` support ([http://osc.ammd.net/user-guide/midi/](documentation))
 - ui
   - **new** `/TABS id1 id2 etc` osc address to remotely enable tabs
+  - remote editing through `/EXEC` command is now deprecated, use `/EDIT` and `/EDIT_SOFT` instead
 - bug fixes
   - `push` widgets (and `keyboards`) not correctly synchronizing each other (with shared widget ids or between different clients)
 - widgets

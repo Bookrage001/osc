@@ -2,7 +2,13 @@ var {getObjectData, updateDom} = require('./editor/data-workers'),
     {widgetManager} = require('./managers')
 
 var callbacks = {
-    edit: function(args) {
+    '/EXEC': function(args) {
+        // backward-compatibility
+        var [name, ...args] = args
+        if (name == 'edit') return callbacks['/EDIT'](args)
+        if (name == 'edit_soft') return callbacks['/EDIT_SOFT'](args)
+    },
+    '/EDIT': function(args) {
         var [id, json] = args,
             newdata = JSON.parse(json),
             containers = widgetManager.getWidgetById(id)
@@ -18,7 +24,7 @@ var callbacks = {
             updateDom(container,data,true)
         }
     },
-    edit_soft: function(args) {
+    '/EDIT_SOFT': function(args) {
         var [id, json] = args,
             newdata = JSON.parse(json),
             containers = widgetManager.getWidgetById(id)
@@ -31,12 +37,21 @@ var callbacks = {
             $.extend(true,data,newdata)
             updateDom(container,data,true)
         }
+    },
+    '/TABS': function(args) {
+        for (i in args) {
+            $(`[data-id="${args[i]}"]`).trigger('fake-click')
+        }
     }
 }
 
-module.exports = function(args){
-    var [name, ...args] = args
-    if (callbacks[name]) {
-        callbacks[name](args)
+module.exports = {
+    exec: function(name, args){
+        if (callbacks[name]) {
+            callbacks[name](args)
+        }
+    },
+    exists: function(name){
+        return name in callbacks
     }
 }

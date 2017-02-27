@@ -5,12 +5,12 @@ var {widgetManager} = require('./managers'),
 var Osc = function(){
 
     this.syncOnly = false
-    this.remoteExec = ()=>{console.error('remote-exec module not loaded')}
+    this.remoteControl = ()=>{console.error('remote-control module not loaded')}
 
 }
 
 Osc.prototype.init = function(data) {
-    this.remoteExec = require('./remote-exec')
+    this.remoteControl = require('./remote-control')
 }
 
 Osc.prototype.send = function(data) {
@@ -29,8 +29,7 @@ Osc.prototype.send = function(data) {
 
 Osc.prototype.receive = function(data){
 
-    if (data.address == '/EXEC') return this.remoteExec(data.args)
-    if (data.address == '/TABS') return actions.tabsEnable(data.args)
+    if (this.remoteControl.exists(data.address)) return this.remoteControl.exec(data.address, data.args)
 
     // fetch ids corresponding to the osc address
     var address = data.address,
