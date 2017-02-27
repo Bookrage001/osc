@@ -60,7 +60,7 @@ if (cli) {
         launcher
 
     app.on('ready',function(){
-        launcher = require('./electron-window')({address:address, shortcuts:false, width:600, height:482})
+        launcher = require('./electron-window')({address:address, shortcuts:false, width:600, height:510})
     })
 
     ipcMain.on('start',function(e, options){
