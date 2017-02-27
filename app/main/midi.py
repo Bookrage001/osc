@@ -11,22 +11,46 @@ def ipcSend(data):
     stdout.flush()
 
 # virtual midi port
+virtuals = []
+mididingsLoopbackPatch = []
+mididingsInPorts = []
+mididingsOutPorts = []
+pyoHidden = []
+pmPortPrefix = '_virtual_loopback_'
+for arg in argv:
+    if ':virtual' in arg:
 
-if 'virtual' in argv:
-    try:
-        import mididings
-    except:
-        raise ImportError('virtual midi port requires python-mididings (linux only)')
+        name = arg.split(':')[0].replace(' ','_')
+        virtuals.append(name)
+        pmPortname = '%s%i' % (pmPortPrefix, len(virtuals)-1)
 
-    from threading import Thread
-    mididings.config(client_name='Open Stage Control', in_ports=['VIRTUAL', 'OpenStageControl_In'], out_ports=['VIRTUAL', 'OpenStageControl_Out'])
-    t = Thread(target=mididings.run, args=[
-        [
-            mididings.PortFilter('VIRTUAL')>>mididings.Port('OpenStageControl_Out'),
-            mididings.PortFilter('OpenStageControl_In')>>mididings.Port('VIRTUAL')
-        ]
-    ])
-    t.start()
+        pyoHidden.append(pmPortname)
+        pyoHidden.append('%s_in' % name)
+        pyoHidden.append('%s_out' % name)
+
+        mididingsLoopbackPatch.append('mididings.PortFilter("%s")>>mididings.Port("%s_in")' % (pmPortname, name))
+        mididingsLoopbackPatch.append('mididings.PortFilter("%s_out")>>mididings.Port("%s")' % (name, pmPortname))
+
+        mididingsInPorts.insert(0, pmPortname)
+        mididingsInPorts.append('%s_in' % name)
+
+        mididingsOutPorts.insert(0, pmPortname)
+        mididingsOutPorts.append('%s_out' % name)
+
+if len(virtuals) > 0:
+        try:
+            import mididings
+            from threading import Thread
+        except:
+            raise ImportError('virtual midi port requires python-mididings (linux only)')
+
+        mididings.config(client_name='Open Stage Control', in_ports=mididingsInPorts, out_ports=mididingsOutPorts)
+
+        for i in range(len(mididingsLoopbackPatch)):
+            mididingsLoopbackPatch[i] = eval(mididingsLoopbackPatch[i])
+
+        t = Thread(target=mididings.run, args=[mididingsLoopbackPatch])
+        t.start()
 
 # pyo import and version check
 
@@ -62,7 +86,7 @@ if 'list' in argv:
 
     for k in range(len(_midiInputs[0])):
 
-        if 'OpenStageControl' in _midiInputs[0][k]:
+        if _midiInputs[0][k] in pyoHidden:
             continue
 
         message.append('%3i: %s' % (_midiInputs[1][k], _midiInputs[0][k]))
@@ -73,7 +97,7 @@ if 'list' in argv:
 
     for k in range(len(_midiOutputs[0])):
 
-        if 'OpenStageControl' in _midiOutputs[0][k]:
+        if _midiOutputs[0][k] in pyoHidden:
             continue
 
         message.append('%3i: %s' % (_midiOutputs[1][k], _midiOutputs[0][k]))
@@ -102,20 +126,40 @@ class MidiRouter(object):
 
         for pair in midiDevices:
             name = str(pair.split(':')[0])
-            i = int(pair.split(':')[1].split(',')[0])
-            o = int(pair.split(':')[1].split(',')[1])
+            ports = pair.split(':')[1]
 
-            if i not in _midiInputs[1] and i != -1:
-                raise ValueError('Invalid midi input %i' % i)
+            if ports == 'virtual':
+                name = name.replace(' ','_')
+                n = virtuals.index(name)
+                x = -1
+                for i in _midiInputs[0]:
+                    x += 1
+                    if i == '%s%i' % (pmPortPrefix, n):
+                        self.midiDevicesIn[_midiInputs[1][x]] = name
+                        break
+                x = -1
+                for i in _midiOutputs[0]:
+                    x += 1
+                    if i == '%s%i' % (pmPortPrefix, n):
+                        self.midiDevicesOut[name] = _midiOutputs[1][x]
+                        break
 
-            if o not in _midiOutputs[1] and o != -1:
-                raise ValueError('Invalid midi output %i' % o)
 
-            if i != -1:
-                self.midiDevicesIn[i] = name
+            else:
+                i = int(ports.split(',')[0])
+                o = int(ports.split(',')[1])
 
-            if o != -1:
-                self.midiDevicesOut[name] = o
+                if i not in _midiInputs[1] and i != -1:
+                    raise ValueError('Invalid midi input %i' % i)
+
+                if o not in _midiOutputs[1] and o != -1:
+                    raise ValueError('Invalid midi output %i' % o)
+
+                if i != -1:
+                    self.midiDevicesIn[i] = name
+
+                if o != -1:
+                    self.midiDevicesOut[name] = o
 
     def receiveMidi(self, status, data1, data2, device):
         if 127 < status < 144:
@@ -197,7 +241,7 @@ class MidiRouter(object):
 
 patch = []
 for arg in argv:
-    if type(arg) == str and ':' in arg and ',' in arg:
+    if type(arg) == str and ':' in arg:
         patch.append(arg)
 
 router = MidiRouter(patch)

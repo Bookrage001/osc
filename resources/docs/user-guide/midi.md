@@ -19,9 +19,12 @@ When running the app, the `-m / -midi` switch must be set; it accepts the follow
 
 **Linux only**
 
-- `virtual`: (requires [`mididings`](http://das.nasophon.de/mididings/) to be installed) creates a virtual midi device. `VIRTUAL` ports number are to be used in the `device_name:input,output` declation only; ports named `OpenStageControl_In / OpenStageControl_Out` are to be connected to other ports with ALSA)
+- `device_name:virtual`: (requires [`mididings`](http://das.nasophon.de/mididings/) to be installed) creates a virtual midi device called 'Open Stage Control' with the following ports :
+    - `_virtual_loopback_x`: used internally, don't connect anything to it.
+    - `device_name_in`: virtual midi input
+    - `device_name_out`: virtual midi output
 
-Multiple devices can be declared
+Multiple devices can be declared (multiple virtual devices as well).
 
 ## Widget settings
 
