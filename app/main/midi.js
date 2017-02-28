@@ -18,6 +18,10 @@ oscToMidi = (data)=>{
     py.send(JSON.stringify([data.port, data.address, ...args]))
 }
 
+stop = ()=>{
+    py.childProcess.kill()
+}
+
 init = (receiveOsc)=>{
     py.on('message', function (message) {
         // console.log(message)
@@ -31,13 +35,15 @@ init = (receiveOsc)=>{
             console.log(data)
         } else if (name ==  'osc') {
             receiveOsc(data)
+        } else if (name == 'error') {
+            console.log('ERROR: Midi: ' + data)
+            stop()
+            process.exit()
         }
     })
 }
 
-stop = ()=>{
-    py.childProcess.kill()
-}
+
 
 module.exports = {
     send: oscToMidi,

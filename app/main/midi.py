@@ -47,7 +47,7 @@ if len(virtuals) > 0:
             import mididings
             from threading import Thread
         except:
-            raise ImportError('virtual midi port requires python-mididings (linux only)')
+            ipcSend('error', 'virtual midi port requires python-mididings (linux only)')
 
         mididings.config(client_name='Open Stage Control', in_ports=mididingsInPorts, out_ports=mididingsOutPorts)
 
@@ -62,15 +62,15 @@ if len(virtuals) > 0:
 try:
     import pyo
 except:
-    raise ImportError('python-pyo module not found')
+    ipcSend('error','python-pyo module not found')
 
 version = int(pyo.PYO_VERSION.replace('.',''))
 
 if version < 83:
-    raise ImportError('python-pyo >= 8.3.0 module is required (%s found)' % pyo.PYO_VERSION)
+    ipcSend('error','python-pyo >= 8.3.0 module is required (%s found)' % pyo.PYO_VERSION)
 
 if not pyo.withPortmidi():
-    raise ImportError('python-pyo must be built with portmidi support')
+    ipcSend('error','python-pyo must be built with portmidi support')
 
 
 # get midi devices
@@ -153,10 +153,10 @@ class MidiRouter(object):
                 o = int(ports.split(',')[1])
 
                 if i not in _midiInputs[1] and i != -1:
-                    raise ValueError('Invalid midi input %i' % i)
+                    ipcSend('error','Invalid midi input %i' % i)
 
                 if o not in _midiOutputs[1] and o != -1:
-                    raise ValueError('Invalid midi output %i' % o)
+                    ipcSend('error','Invalid midi output %i' % o)
 
                 if i != -1:
                     self.midiDevicesIn[i] = name
