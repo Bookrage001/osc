@@ -3,7 +3,7 @@
 ## next
 
 - main
-  - **new** `midi` support ([http://osc.ammd.net/user-guide/midi/](documentation))
+  - **new** `midi` support ([documentation](http://osc.ammd.net/user-guide/midi/))
 - ui
   - **new** `/TABS id1 id2 etc` osc address to remotely enable tabs
   - remote editing through `/EXEC` command is now deprecated, use `/EDIT` and `/EDIT_SOFT` instead
