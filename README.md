@@ -24,6 +24,7 @@ The documentation is located at [osc.ammd.net](http://osc.ammd.net)
 - clients synchronization
 - deep customization possibilities such as theming and messages filtering
 - *true* control over what the widgets send
+- midi inputs/outputs
 
 ## Supported platforms
 
