@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.17.0
 
 - main
   - **new** `midi` support ([documentation](http://osc.ammd.net/user-guide/midi/))
