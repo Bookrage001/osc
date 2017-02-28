@@ -5,6 +5,7 @@ Open Stage Control can send and receive midi messages using pyo / portmidi.
 ## Requirement
 
 MIDI support requires additionnal softwares to be installed on the server's system:
+
 - `python 2.7`
 - [`pyo`](http://ajaxsoundstudio.com/software/pyo/) >= 0.8.3
 
@@ -17,6 +18,7 @@ Note: `pyo` doesn't support Windows 64bit.
 ## Setup
 
 When running the app, the `-m / -midi` switch must be set; it accepts the following arguments (separated by spaces):
+
 - `list`: prints the available midi inputs / outputs
 - `device_name:input,output`, where:
     - `device_name`
