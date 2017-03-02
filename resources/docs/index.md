@@ -54,3 +54,24 @@ It relies on the use of several libraries :
 - [Font Awesome](http://fontawesome.io/)
 - [source-map](https://github.com/mozilla/source-map)
 - [mathjs](http://mathjs.org/)
+
+
+## Documentation
+
+- [Getting started](getting-started/)
+    - [Session File / Tabs](user-guide/session-file/)
+    - [Interface / Editor](user-guide/interface/)
+    - [Remote Control](user-guide/remote-control/)
+    - [Theming](user-guide/theming/)
+    - [Midi](user-guide/midi/)
+    - [Custom Module](user-guide/custom-module/)
+
+- [Widgets Generics](user-guide/widgets-generics/)
+    - [Buttons](user-guide/widgets-specifics/buttons/)
+    - [Sliders](user-guide/widgets-specifics/sliders/)
+    - [Pads](user-guide/widgets-specifics/pads/)
+    - [Containers](user-guide/widgets-specifics/containers/)
+    - [Matrices](user-guide/widgets-specifics/matrices/)
+    - [Switchers](user-guide/widgets-specifics/switchers/)
+    - [Plots](user-guide/widgets-specifics/plots/)
+    - [Maths](user-guide/widgets-specifics/maths/)
