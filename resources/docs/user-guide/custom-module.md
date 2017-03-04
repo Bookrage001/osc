@@ -43,9 +43,17 @@ It must be of the following form:
 
 ```
 
-The module is executed in a restricted context, only a few globals are available :
+The module is executed in a restricted context, only a few globals areh available :
 
 - `console`: `object`
 - `sendOsc`: `function({address, args, host, port})`
 - `receiveOsc`: `function({address, args, host, port})`
 - `setTimeout`: `function(function, delay)`
+
+
+`sendOsc` and `receiveOsc` expect arguments formatted as follow:
+
+- `address`: `string`
+- `args`: `array` of `{type:"OSC_TYPE_LETTER", value:VALUE}` `objects`
+- `host`: `string` ip address, valid hostname or `midi`
+- `port`: `integer` port number or `string` midi device name
