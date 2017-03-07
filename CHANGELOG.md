@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.17.1
+
+- bug fixes
+  - `midi`: missing dependency
+  - `headless`: terminate `midi` correctly when process exits
+  
 ## 0.17.0
 
 - main
