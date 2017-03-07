@@ -20,7 +20,7 @@ var start = function(readyApp) {
         serverStarted = true
         process.on('exit',()=>{
             if (osc.midi) osc.midi.stop()
-	})
+        })
 
     }
 
@@ -31,16 +31,14 @@ var start = function(readyApp) {
         if (app.isReady()) {
             var win = require('./electron-window')({address:address, shortcuts:true})
             app.on('before-quit',()=>{
-                win.destroy()
-                if (osc.midi) osc.midi.stop()
+                process.exit()
             })
             return win
         } else {
             app.on('ready',function(){
                 var win = require('./electron-window')({address:address, shortcuts:true})
                 app.on('before-quit',()=>{
-                    win.destroy()
-                    if (osc.midi) osc.midi.stop()
+                    process.exit()
                 })
             })
         }
