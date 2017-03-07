@@ -2,8 +2,7 @@ var PythonShell = require('python-shell'),
     path = require('path'),
     settings = require('./settings')
 
-
-var py = new PythonShell(path.resolve('/main/midi.py'),{mode:'text', args: [
+var py = new PythonShell('midi.py', {scriptPath:__dirname, mode:'text', args: [
     settings.read('debug') ? 'debug' : '',
     ...settings.read('midi')
     ]
