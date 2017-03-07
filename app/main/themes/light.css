@@ -3,8 +3,13 @@
 	--color-text-fade: rgba(0,0,0,0.5);
 	--color-bg: #bbb;
 	--color-fg: #ddd;
-	--color-raised: #eee;
+    --color-light-fg: #eee;
 	--color-faded: #ccc;
 	--color-track: #aaa;
-	--color-accent: #307aaa;
+	--color-accent: #aa3010;
+    --color-light: rgba(150,30,10,0.1);
+}
+
+.keyboard-container {
+    --color-black: #333;
 }

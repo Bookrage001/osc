@@ -17,7 +17,8 @@
     "socketio-wildcard": "0.3.0",
     "express": "4.14.0",
     "jquery-slim": "3.0.0",
-    "chokidar": "1.6.1"
+    "chokidar": "1.6.1",
+    "python-shell":"0.4.0"
   },
   "scripts": {
     "start": "electron ."
