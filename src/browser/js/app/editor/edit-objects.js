@@ -3,6 +3,13 @@ var updateDom = require('./data-workers').updateDom,
 
 var ev = 'fake-click'
 
+var editClean = function(){
+    $('.editing').removeClass('editing')
+    $('.widget.ui-resizable').resizable('destroy')
+    $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+    $('.editor-container').remove()
+}
+
 
 var editObject = function(container, data, refresh){
 
@@ -10,10 +17,7 @@ var editObject = function(container, data, refresh){
 
     var isWidget = container.hasClass('widget')
 
-    $('.editing').removeClass('editing')
-    $('.widget.ui-resizable').resizable('destroy')
-    $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
-
+    editClean()
 
     if (isWidget) {
         $(container).addClass('editing')
@@ -22,9 +26,6 @@ var editObject = function(container, data, refresh){
         $(container).parent().addClass('editing')
     }
 
-
-
-    $('.editor-container').remove()
     $('.editor').append('<div class="editor-container"></div>')
     var form = $('<div class="form"></div>').appendTo('.editor-container')
 
@@ -251,14 +252,10 @@ var editSession = function(container,data,refresh){
 
     if (!refresh && $('.editor-root').hasClass('editing')) return
 
-    $('.widget.ui-resizable').resizable('destroy')
-    $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
+    editClean()
 
-
-    $('.editing').removeClass('editing')
     $('.editor-root, #container').addClass('editing')
 
-    $('.editor-container').remove()
     $('.editor').append('<div class="editor-container"></div>')
 
 
@@ -321,5 +318,6 @@ var editSession = function(container,data,refresh){
 
 module.exports = {
     editObject:editObject,
-    editSession:editSession
+    editSession:editSession,
+    editClean:editClean
 }

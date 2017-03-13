@@ -1,11 +1,17 @@
 # Changelog
 
+## 0.17.2
+
+- bug fixes
+  - `editor`: correctly remove editing state when disabling the editor right after going to another tab
+
+
 ## 0.17.1
 
 - bug fixes
   - `midi`: missing dependency
   - `headless`: terminate `midi` correctly when process exits
-  
+
 ## 0.17.0
 
 - main

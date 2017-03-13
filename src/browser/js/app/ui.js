@@ -1,5 +1,6 @@
 var actions = require('./actions'),
-    icon = require('./utils').icon
+    icon = require('./utils').icon,
+    editClean = function(){editClean = require('./editor/edit-objects').editClean; editClean()}
 
 var sidepanel = require('./sidepanel').init
 
@@ -15,6 +16,8 @@ var tabs = function() {
         link.classList.add('on')
 
         var previous = $(link).siblings('.on').removeClass('on').data('tab')
+
+        if (EDITING) editClean()
 
         // TABS[id].tab.appendTo(TABS[id].parent)
         TABS[id].parent[0].appendChild(TABS[id].tab[0])
