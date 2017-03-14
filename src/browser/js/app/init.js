@@ -2,17 +2,25 @@ var parsetabs = require('./parser').tabs,
     ui = require('./ui'),
     {editorDisable} = require('./actions'),
     editorInit = require('./editor/init'),
-    {loading} = require('./utils')
+    {loading, createPopup, icon} = require('./utils')
 
 module.exports = function(session,callback) {
 
-        $('#lobby').remove()
+        $('#lobby').hide()
         $('#container').empty()
         var p = loading('Loading session file...')
 
         setTimeout(function(){
-            parsetabs(session,$('#container'),true)
+            try {
+                parsetabs(session,$('#container'),true)
+            } catch (err) {
+                p.close()
+                $('#lobby').show()
+                createPopup(icon('warning')+'&nbsp; Parsing error', err,true)
+                return
+            }
 
+            $('#lobby').remove()
             ui.init()
             editorDisable()
             editorInit()
