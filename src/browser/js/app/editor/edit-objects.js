@@ -72,7 +72,7 @@ var editObject = function(container, data, refresh){
 
             } else if (i == 'layout') {
 
-                input = $(`<textarea data-type="${type}" title="${i}" rows="1">${value}</textarea>`)
+                input = $(`<textarea data-type="${type}" title="${i}" rows="${value.split('\n').length}">${value}</textarea>`)
                 input.on('input focus', function(){
                     if (this.scrollHeight==0) return
                     this.style.height = 'auto'
