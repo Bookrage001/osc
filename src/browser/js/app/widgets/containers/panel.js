@@ -80,7 +80,7 @@ module.exports = class Panel extends _widgets_base {
                 })
 
             } catch(err) {
-                console.log('Layout parsing error: ' + err.message)
+                throw `Visual Format Language error in ${widgetData.id}.layout: ${err.message} (line ${err.line})`
             }
 
         }
