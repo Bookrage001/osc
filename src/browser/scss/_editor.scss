@@ -68,9 +68,10 @@
         background: none;
         color:var(--color-text);
         width:100%;
-        height:auto;
         padding:5rem;
-        overflow: hidden;
+        overflow-y: hidden;
+        overflow-x: auto;
+        white-space: nowrap;
         resize: none;
     }
     .input-wrapper .checkbox {

@@ -74,9 +74,7 @@ var editObject = function(container, data, refresh){
 
                 input = $(`<textarea data-type="${type}" title="${i}" rows="${value.split('\n').length}">${value}</textarea>`)
                 input.on('input focus', function(){
-                    if (this.scrollHeight==0) return
-                    this.style.height = 'auto'
-                    this.style.height = this.scrollHeight + 'px'
+                    this.setAttribute('rows',$(this).val().split('\n').length)
                 })
                 input.on('keydown', (e)=>{
                     if (e.keyCode == 13 && !e.shiftKey) {
