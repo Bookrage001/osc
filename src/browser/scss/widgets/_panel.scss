@@ -1,6 +1,6 @@
 .panel-container-base {
 
-    &.nolabel .panel {
+    &.nolabel > .panel {
         top:0;
     }
     > .label {
