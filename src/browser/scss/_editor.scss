@@ -7,7 +7,7 @@
         margin-top: -1rem;
         // box-shadow: 0 0 0 1 var(--color-bg);
         background:var(--color-bg);
-        align-items: center;
+        align-items: flex-start;
         z-index: 1;
         border-bottom: 1rem solid var(--color-bg);
 
@@ -23,9 +23,7 @@
             // border-bottom: 1rem solid var(--color-bg);
             min-width: 25%;
             box-shadow: 1rem  0 0 0 var(--color-bg) inset;
-            // margin-top: -1rem;
-
-
+            margin-top: 1rem;
         }
         .input, input {
             background: var(--color-bg);
