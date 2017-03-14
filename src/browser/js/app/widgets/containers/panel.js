@@ -85,6 +85,7 @@ module.exports = class Panel extends _widgets_base {
                 delete widget.abstract.widgetData[prop]
                 $widget.css(prop, this.layout.subViews[id][prop] + 'px')
             }
+            $(window).resize()
         })
     }
 

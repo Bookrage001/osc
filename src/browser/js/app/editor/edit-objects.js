@@ -46,7 +46,7 @@ var editObject = function(container, data, refresh){
         // Common options edit
         if (i!='widgets' && i!='tabs') {
 
-            var type = typeof data[i],
+            let type = typeof data[i],
                 value = type == 'object'?JSON.stringify(data[i]):data[i],
                 wrapper = $('<div class="input-wrapper"></div>').appendTo(form),
                 label = $(`<label>${i}</label>`).appendTo(wrapper),
@@ -68,6 +68,21 @@ var editObject = function(container, data, refresh){
                 input.click(function(){
                     $(this).val(!eval($(this).val())).trigger('change')
                 })
+                input.appendTo(wrapper)
+
+            } else if (i == 'layout') {
+
+                input = $(`<textarea data-type="${type}" title="${i}" rows="1">${value}</textarea>`)
+                input.on('input focus', function(){
+                    this.style.height = 'auto'
+                    this.style.height = this.scrollHeight + 'px'
+                })
+                input.on('keydown', (e)=>{
+                    if (e.keyCode == 13 && !e.shiftKey) {
+                        input.trigger('change')
+                    }
+                })
+                input.trigger('input')
                 input.appendTo(wrapper)
 
             } else {

@@ -63,6 +63,18 @@
             border-radius: 2rem;
         }
     }
+    textarea {
+        display:block;
+        border:0;
+        font:inherit;
+        background: none;
+        color:var(--color-text);
+        width:100%;
+        height:auto;
+        padding:5rem;
+        overflow: hidden;
+        resize: none;
+    }
     .input-wrapper .checkbox {
         cursor: pointer;
         &[value="true"] {
