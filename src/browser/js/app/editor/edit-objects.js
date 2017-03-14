@@ -74,6 +74,7 @@ var editObject = function(container, data, refresh){
 
                 input = $(`<textarea data-type="${type}" title="${i}" rows="1">${value}</textarea>`)
                 input.on('input focus', function(){
+                    if (this.scrollHeight==0) return
                     this.style.height = 'auto'
                     this.style.height = this.scrollHeight + 'px'
                 })
@@ -82,7 +83,6 @@ var editObject = function(container, data, refresh){
                         input.trigger('change')
                     }
                 })
-                input.trigger('input')
                 input.appendTo(wrapper)
 
             } else {
