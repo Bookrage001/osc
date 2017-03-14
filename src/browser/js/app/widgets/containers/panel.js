@@ -56,11 +56,17 @@ module.exports = class Panel extends _widgets_base {
             parsewidgets(widgetData.widgets,this.widget)
         }
 
+        this.children = this.widget.find('> .widget')
+
         if (widgetData.layout != '') {
             try {
 
+                var layout = widgetData.layout.replace(/\$([0-9])+/g, (m)=>{
+                    return this.children[m.replace('$','')].abstract.widgetData.id
+                })
+
                 this.layout = new autolayout.View({
-                    constraints: autolayout.VisualFormat.parse(widgetData.layout.split('\\n').join('\n').split(' ').join(''), {extended: true}),
+                    constraints: autolayout.VisualFormat.parse(layout.split('\\n').join('\n').split(' ').join(''), {extended: true}),
                     spacing: widgetData.spacing
                 });
 
@@ -80,7 +86,7 @@ module.exports = class Panel extends _widgets_base {
         }
     }
     applyLayout(){
-        this.widget.find('> .widget').each((i,widget)=>{
+        this.children.each((i,widget)=>{
             var id = widget.abstract.widgetData.id
             if (!this.layout.subViews[id]) return
             var $widget = $(widget).addClass('absolute-position').css({'min-height':'auto','min-width':'auto'})
