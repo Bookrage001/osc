@@ -29,7 +29,7 @@ module.exports = class Modal extends Panel {
 
             address:'auto',
 
-            _chidlren:'chilren',
+            _chidlren:'children',
 
             widgets:[],
             tabs:[]
