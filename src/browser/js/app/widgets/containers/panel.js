@@ -65,7 +65,10 @@ module.exports = class Panel extends _widgets_base {
                 });
 
                 this.widget.on('resize',(e, w, h)=>{
-                    if (!w) return
+                    if (!w) {
+                        var w = this.widget.width(),
+                            h = this.widget.height()
+                    }
                     this.layout.setSize(w,h)
                     this.applyLayout()
                 })

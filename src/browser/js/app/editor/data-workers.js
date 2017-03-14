@@ -91,7 +91,8 @@ var updateDom = function(container,data, remote) {
 
     newContainer.find('[data-tab]:first-child').trigger('fake-click')
 
-    $(window).resize()
+    newContainer.trigger('resize')
+    // $(window).resize()
 
     purgeStores(purgetabs)
 
