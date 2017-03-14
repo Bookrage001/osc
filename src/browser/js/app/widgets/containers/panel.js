@@ -80,7 +80,7 @@ module.exports = class Panel extends _widgets_base {
         this.widget.find('> .widget').each((i,widget)=>{
             var id = widget.abstract.widgetData.id
             if (!this.layout.subViews[id]) return
-            var $widget = $(widget).addClass('absolute-position')
+            var $widget = $(widget).addClass('absolute-position').css({'min-height':'auto','min-width':'auto'})
             for (var prop of ['height', 'width', 'top', 'left']) {
                 delete widget.abstract.widgetData[prop]
                 $widget.css(prop, this.layout.subViews[id][prop] + 'px')
