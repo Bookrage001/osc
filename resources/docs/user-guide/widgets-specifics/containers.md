@@ -58,7 +58,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 #### `layout`
 - type: `string`
 - default: `''`
-- usage: `layout` must be a valid [Visual Format Language](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) expression. It accepts the [Extended Visual Format Language](https://github.com/IjzerenHein/autolayout.js#extended-visual-format-language-evfl) as well. Widgets are targeted using their `id` or their index prefixed with a `$` (`$0, $1, etc`), the latter method being incompatible with the [range spread operator](https://github.com/IjzerenHein/autolayout.js#view-ranges-spread-operator).
+- usage: `layout` must be a valid [Visual Format Language](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) expression. It accepts the [Extended Visual Format Language](https://github.com/IjzerenHein/autolayout.js#extended-visual-format-language-evfl) as well. Widgets are targeted using their `id` or their index prefixed with a `$` (`$0, $1, etc`), the latter method being incompatible with the [range spread operator](https://github.com/IjzerenHein/autolayout.js#view-ranges-spread-operator). Expressions can be tested and debugged with the online [Visual Format Editor](https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html).
 
 #### `spacing`
 - type: `integer|array`
