@@ -54,6 +54,17 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - default: `[]`
 - usage: each element of the `array` must be a tab `object`. A panel cannot contain widgets and tabs simultaneously.
 
+
+#### `layout`
+- type: `string`
+- default: `''`
+- usage: `layout` must be a valid [Visual Format Language](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) expression. It accepts the [Extended Visual Format Language](https://github.com/IjzerenHein/autolayout.js#extended-visual-format-language-evfl) as well. Widgets are targeted using their `id` or their index prefixed with a `$` (`$0, $1, etc`), the latter method being incompatible with the [range spread operator](https://github.com/IjzerenHein/autolayout.js#view-ranges-spread-operator).
+
+#### `spacing`
+- type: `integer|array`
+- default: `0`
+- usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
+
 ----
 
 ## Modal
@@ -67,12 +78,5 @@ Modals are buttons that turn into a fullscreen panels when enabled. They can be 
 }
 ```
 
-#### `widgets`
-- type: `array`
-- default: `[]`
-- usage: each element of the `array` must be a widget `object`. A modal cannot contain widgets and tabs simultaneously.
-
-#### `tabs`
-- type: `array`
-- default: `[]`
-- usage: each element of the `array` must be a tab `object`. A modal cannot contain widgets and tabs simultaneously.
+#### `options`
+- see panel's [`options`](#panel)
