@@ -4,7 +4,7 @@
 
 - bug fixes
   - `editor`: correctly remove editing state when disabling the editor right after going to another tab
-
+  - `panel/modal`: add `layout` option ([Visual Format Language](https://github.com/IjzerenHein/autolayout.js))
 
 ## 0.17.1
 
