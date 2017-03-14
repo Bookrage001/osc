@@ -20,6 +20,11 @@ module.exports = class Modal extends Panel {
             color:'auto',
             css:'',
 
+            _layout:'layout',
+
+            layout:'',
+            spacing:0,
+
             _osc:'osc',
 
             address:'auto',
