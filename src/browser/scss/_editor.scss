@@ -80,6 +80,9 @@
             color: var(--color-accent)
         }
     }
+    .error {
+        border-left: 1rem solid rgba(red, .75);
+    }
     .select-wrapper {
         position: relative;
         width:100%;

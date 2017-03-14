@@ -102,7 +102,14 @@ var editObject = function(container, data, refresh){
 
                 data[$(this).attr('title')] = v
                 if (v==='' && isWidget) delete data[$(this).attr('title')]
-                updateDom(container,data)
+
+                try {
+                    updateDom(container,data)
+                    input.removeClass('error')
+                } catch (err) {
+                    input.addClass('error')
+                    throw err
+                }
             })
 
         }
