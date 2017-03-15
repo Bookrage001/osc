@@ -75,6 +75,7 @@ module.exports = class Panel extends _widgets_base {
                         var w = this.widget.width(),
                             h = this.widget.height()
                     }
+                    this.children = this.widget.find('> .widget')
                     this.layout.setSize(w,h)
                     this.applyLayout()
                 })
