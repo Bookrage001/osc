@@ -7,6 +7,7 @@
 
 - widgets
   - `panel/modal`: add `layout` option ([Visual Format Language](https://github.com/IjzerenHein/autolayout.js))
+  - `css` option now interprets `&` as a selector for the widget's element itself (useful for targetting pseudo-elements such as `&:after`)
 
 ## 0.17.1
 
