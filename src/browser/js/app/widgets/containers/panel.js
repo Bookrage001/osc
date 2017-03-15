@@ -1,5 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
-    autolayout = require('autolayout')
+    autolayout = require('autolayout'),
+    editObject = function(){editObject = require('../../editor/edit-objects').editObject; editObject(...arguments)}
+
 
 module.exports = class Panel extends _widgets_base {
 
@@ -75,7 +77,6 @@ module.exports = class Panel extends _widgets_base {
                         var w = this.widget.width(),
                             h = this.widget.height()
                     }
-                    this.children = this.widget.find('> .widget')
                     this.layout.setSize(w,h)
                     this.applyLayout()
                 })
@@ -87,7 +88,7 @@ module.exports = class Panel extends _widgets_base {
         }
     }
     applyLayout(){
-        this.children.each((i,widget)=>{
+        this.widget.find('> .widget').each((i,widget)=>{
             var id = widget.abstract.widgetData.id
             if (!this.layout.subViews[id]) return
             var $widget = $(widget).addClass('absolute-position').css({'min-height':'auto','min-width':'auto'})
@@ -95,6 +96,7 @@ module.exports = class Panel extends _widgets_base {
                 delete widget.abstract.widgetData[prop]
                 $widget.css(prop, this.layout.subViews[id][prop] + 'px')
             }
+            if ($widget.hasClass('editing')) editObject($widget,widget.abstract.widgetData,true)
             $(window).resize()
         })
     }

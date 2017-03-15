@@ -1,8 +1,8 @@
 var ui = require('../ui'),
     actions = require('../actions'),
     sidepanelCreateToggle = require('../sidepanel').createToggle,
-    editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments,true)},
-    editSession = function(){editSession = require('./edit-objects').editSession; editSession(...arguments,true)},
+    editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments)},
+    editSession = function(){editSession = require('./edit-objects').editSession; editSession(...arguments)},
     purgeStores = require('./purge'),
     {iconify} = require('../utils'),
     {widgetManager} = require('../managers'),
@@ -58,7 +58,7 @@ var updateDom = function(container,data, remote) {
         var newContainer = parsewidgets([data],container.parent())
         container.replaceWith(newContainer)
 
-        if (!remote) editObject(newContainer,data)
+        if (!remote) editObject(newContainer,data,true)
 
     } else if (container.hasClass('tab')) {
         // tab
@@ -74,7 +74,7 @@ var updateDom = function(container,data, remote) {
 
         $(`[data-tab="#${container.attr('id')}"]`).html(`<a ta><span>${iconify(data.label)}</span></a>`).attr('data-id',data.id)
 
-        if (!remote) editObject(newContainer,data)
+        if (!remote) editObject(newContainer,data,true)
 
     } else if (container.attr('id')=='container') {
         // session
@@ -83,7 +83,7 @@ var updateDom = function(container,data, remote) {
         parsetabs(data,container,true)
 
         if (!remote) {
-            editSession(newContainer,data)
+            editSession(newContainer,data,true)
             sidepanelCreateToggle()
         }
 
