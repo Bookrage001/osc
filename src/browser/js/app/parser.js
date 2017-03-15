@@ -185,7 +185,11 @@ module.exports.widgets = function(data,parent) {
 
         css = css.replace(/[;\}]*([^\;\{]*\{[^\}]*\})/g, (m)=>{
             if (m[0]==';') m = m.substr(1,m.length)
-            scopedCss += '${id}' + m
+            if (m[0]=='&') {
+                scopedCss += m
+            } else {
+                scopedCss += '& ' + m
+            }
             return ''
         })
 
@@ -212,7 +216,7 @@ module.exports.widgets = function(data,parent) {
         // apply scoped css
         if (scopedCss.length) {
             widgetContainer.attr('id', 'widget-' + widgetInner.hash)
-            scopedCss = scopedCss.split('${id}').join('#widget-' + widgetInner.hash + ' ')
+            scopedCss = scopedCss.split('&').join('#widget-' + widgetInner.hash)
             widgetContainer.prepend(`<style>${scopedCss}</style>`)
         }
 
