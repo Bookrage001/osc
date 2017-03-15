@@ -183,8 +183,8 @@ module.exports.widgets = function(data,parent) {
         var css = ';' + widgetData.css,
             scopedCss = ''
 
-        css = css.replace(/[;\}]*([^\;\{]*\{[^\}]*\})/g, (m)=>{
-            if (m[0]==';') m = m.substr(1,m.length)
+        css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
+            m = m.replace(/^[;\}\s]*/,'')
             if (m[0]=='&') {
                 scopedCss += m
             } else {
