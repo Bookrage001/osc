@@ -1,4 +1,6 @@
-var Fader = require('../sliders/fader')
+var Fader = require('../sliders/fader'),
+    {widgetManager} = require('../../managers')
+
 
 module.exports = class Meter extends Fader {
 
@@ -19,6 +21,11 @@ module.exports = class Meter extends Fader {
             horizontal:false,
             color:'auto',
             css:'',
+
+
+            _plot:'plot',
+
+            widgetId:'',
 
             _osc:'osc',
 
@@ -44,6 +51,29 @@ module.exports = class Meter extends Fader {
                    .off('mousewheel')
 
         this.canvas.off('draginit drag')
+
+        if (widgetData.widgetId.length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+
+
+    }
+
+    onRemove() {
+
+        $('body').off(`sync.${this.hash}`)
+
+    }
+
+    syncHandle(e) {
+
+        if (this.widgetData.widgetId!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        var widget = widgetManager.getWidgetById(e.id),
+            value
+        for (var i=widget.length-1; i>=0; i--) {
+            if (widget[i].getValue) {
+                this.setValue(widget[i].getValue())
+                return
+            }
+        }
 
     }
 

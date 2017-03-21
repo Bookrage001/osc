@@ -1,5 +1,6 @@
 var {iconify} = require('../../utils'),
-    _widgets_base = require('../common/_widgets_base')
+    _widgets_base = require('../common/_widgets_base'),
+    {widgetManager} = require('../../managers')
 
 module.exports = class Text extends _widgets_base {
 
@@ -19,6 +20,10 @@ module.exports = class Text extends _widgets_base {
             vertical:false,
             color:'auto',
             css:'',
+
+            _plot:'plot',
+
+            widgetId:'',
 
             _osc:'osc',
 
@@ -46,7 +51,29 @@ module.exports = class Text extends _widgets_base {
 
         this.value = this.defaultValue
 
+        if (widgetData.widgetId.length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+
         this.setValue(this.value)
+
+    }
+
+    onRemove() {
+
+        $('body').off(`sync.${this.hash}`)
+
+    }
+
+    syncHandle(e) {
+
+        if (this.widgetData.widgetId!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        var widget = widgetManager.getWidgetById(e.id),
+            value
+        for (var i=widget.length-1; i>=0; i--) {
+            if (widget[i].getValue) {
+                this.setValue(widget[i].getValue())
+                return
+            }
+        }
 
     }
 

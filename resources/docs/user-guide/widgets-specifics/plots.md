@@ -162,6 +162,11 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 }
 ```
 
+#### `widgetId`
+- type: `object`
+- default: `empty`
+- usage: a widget's `id` whose value will be displayed
+
 #### `vertical`
 - type: `boolean`
 - default: `false`
@@ -177,6 +182,11 @@ Meter displays incoming numerical values (via osc) as a gauge level
     // etc
 }
 ```
+
+#### `widgetId`
+- type: `object`
+- default: `empty`
+- usage: a widget's `id` whose value will be displayed
 
 #### `horizontal`
 - type: `boolean`
