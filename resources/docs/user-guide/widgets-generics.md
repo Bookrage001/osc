@@ -8,6 +8,8 @@ A widget object is a javascript object. All widgets share a set of generic prope
 - [Matrices](widgets-specifics/matrices.md)
 - [Plots](widgets-specifics/plots.md)
 - [Containers](widgets-specifics/containers.md)
+- [Switchers](widgets-specifics/switchers.md)
+- [Maths](widgets-specifics/maths.md)
 
 ```js
 {
@@ -94,6 +96,7 @@ A widget object is a javascript object. All widgets share a set of generic prope
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
     - if no target is set, messages can still be sent if the server has synchronized hosts (`-s / --sync`)
+    - if [`midi`](midi.md) is enabled, targets can be `"midi:device_name"`
 
 #### `address`
 - type: `string`
