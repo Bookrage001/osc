@@ -50,7 +50,13 @@ var options = {
                 true : 'examples can\'t be listed if --load is set'
          }
     },
-    'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization', restart: true}
+    'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization', restart: true},
+    'read-only':{type:'boolean',describe:'disable session editing',
+         check: (r, argv)=>{
+             return (!argv.b) ?
+                true : 'blank session can\'t be started in read-only mode'
+         }
+    },
 }
 
 
@@ -95,6 +101,7 @@ var makeDefaultConfig = function(argv){
         noGui: argv.n || false,
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
         noVsync: argv['disable-vsync'] || false,
+        readOnly: argv['read-only'] || false,
         midi: argv.m,
         appAddresses:function(){
             var appAddresses = []

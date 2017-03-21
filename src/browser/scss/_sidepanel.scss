@@ -83,6 +83,9 @@
         flex-grow: 2;
         padding: 10rem;
         position: relative;
+        &.disabled {
+            color:var(--color-text-fade);
+        }
         &:before {
             content:"";
             position: absolute;

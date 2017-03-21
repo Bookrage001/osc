@@ -16,6 +16,10 @@ module.exports =  {
 
         if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
 
+        if (settings.read('readOnly')) {
+            ipc.send('editorDisable',{permanent:true})
+        }
+
         if (settings.read('newSession')) {
             ipc.send('sessionNew')
             return
@@ -85,7 +89,7 @@ module.exports =  {
 
             if (data.path) {
 
-                this.sessionAddToHistory(data.path)
+                if (!settings.read('readOnly')) this.sessionAddToHistory(data.path)
 
                 fs.lstat(data.path, (err, stats)=>{
 

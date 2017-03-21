@@ -4,7 +4,8 @@
 
 - bug fixes
   - `editor`: correctly remove editing state when disabling the editor right after going to another tab
-
+- main
+  - **new** `--read-only` switch for disabling the editor and preventing change to the session history
 - widgets
   - `panel/modal`: add `layout` option ([Visual Format Language](https://github.com/IjzerenHein/autolayout.js))
   - `css` option now interprets `&` as a selector for the widget's element itself (useful for targetting pseudo-elements such as `&:after`)

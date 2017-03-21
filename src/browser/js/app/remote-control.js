@@ -9,6 +9,9 @@ var callbacks = {
         if (name == 'edit_soft') return callbacks['/EDIT_SOFT'](args)
     },
     '/EDIT': function(args) {
+
+        if (READ_ONLY) return
+
         var [id, json] = args,
             newdata = JSON.parse(json),
             containers = widgetManager.getWidgetById(id)
@@ -25,6 +28,9 @@ var callbacks = {
         }
     },
     '/EDIT_SOFT': function(args) {
+
+        if (READ_ONLY) return
+
         var [id, json] = args,
             newdata = JSON.parse(json),
             containers = widgetManager.getWidgetById(id)

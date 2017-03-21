@@ -5,6 +5,7 @@ STATE = []
 
 CLIPBOARD = null
 EDITING = false
+READ_ONLY = false
 
 
 TABS = {}

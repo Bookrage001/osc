@@ -35,36 +35,54 @@ var callbacks = module.exports = {
             footer = lobby.find('.footer')
 
         for (i in data) {
+
             var max = 50
             var path = data[i],
                 file = path.split('\\').pop().split('/').pop(),
                 length = data[i].length
             path = path.replace(file,'')
+
             if (length > max - 3) {
                 path = path.substr(0,Math.floor((path.length)/2)-(length-max)/2) + '...' + path.substr(Math.ceil((path.length)/2)+(length-max)/2, path.length)
             }
 
-            list.append('<a class="btn load" data-session="'+data[i]+'">'+file+' <em style="opacity:0.45">('+path+')</em><span>'+icon('remove')+'</span></a>')
+            if (!READ_ONLY) {
+            }
+            list.append(`
+                <a class="btn load" data-session="${data[i]}">
+                    ${file}<em style="opacity:0.45">(${path})</em>
+                    ${READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
+                </a>
+            `)
+
         }
-        footer.append('<a class="btn browse">'+icon('folder-open')+' Browse</a>')
-        footer.append('<a class="btn new">'+icon('file-o')+' New</a>')
+
         lobby.find('.load').click(function(e){
             e.stopPropagation()
             ipc.send('sessionOpen',{path:$(this).data('session')})
         })
-        lobby.find('a span').click(function(e){
-            e.stopPropagation()
-            ipc.send('sessionRemoveFromHistory',$(this).parent().data('session'))
-            $(this).parents('a').remove()
-        })
-        lobby.find('.browse').click(function(e){
-            e.stopPropagation()
-            actions.sessionBrowse()
-        })
-        lobby.find('.new').click(function(e){
-            e.stopPropagation()
-            module.exports.sessionNew()
-        })
+
+        if (!READ_ONLY) {
+
+            lobby.find('a span').click(function(e){
+                e.stopPropagation()
+                ipc.send('sessionRemoveFromHistory',$(this).parent().data('session'))
+                $(this).parents('a').remove()
+            })
+
+            footer.append('<a class="btn browse">'+icon('folder-open')+' Browse</a>')
+            footer.append('<a class="btn new">'+icon('file-o')+' New</a>')
+
+            lobby.find('.browse').click(function(e){
+                e.stopPropagation()
+                actions.sessionBrowse()
+            })
+            lobby.find('.new').click(function(e){
+                e.stopPropagation()
+                module.exports.sessionNew()
+            })
+        }
+
         $('#lobby').append(lobby)
         setTimeout(()=>{
             lobby.addClass('loaded')
@@ -97,6 +115,10 @@ var callbacks = module.exports = {
 
             p.close()
         },150)
+    },
+
+    editorDisable: function(data){
+        actions.editorDisable(data.permanent)
     },
 
     error: function(data){
