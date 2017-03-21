@@ -25,6 +25,7 @@ Below are the available command-line switches. Note that when running without an
   -t, --theme     theme name or path (mutliple values allowed)   
   -e, --examples  list examples instead of recent sessions
       --disable-vsync  disable gui's vertical synchronization
+      --read-only      disable session editing and session history changes
 
   -h, --help      display help
   -v, --version   display version number

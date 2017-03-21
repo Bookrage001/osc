@@ -51,7 +51,7 @@ var options = {
          }
     },
     'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization', restart: true},
-    'read-only':{type:'boolean',describe:'disable session editing',
+    'read-only':{type:'boolean',describe:'disable session editing and session history changes',
          check: (r, argv)=>{
              return (!argv.b) ?
                 true : 'blank session can\'t be started in read-only mode'
