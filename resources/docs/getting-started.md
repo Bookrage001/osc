@@ -11,7 +11,7 @@ Below are the available command-line switches. Note that when running without an
 
 
 **Options**
-```
+```markdown
   -s, --sync      synchronized hosts (ip:port pairs) (osc messages sent by widgets will also be sent to these targets)
   -l, --load      session file to load
   -b, --blank     load a blank session and start the editor
