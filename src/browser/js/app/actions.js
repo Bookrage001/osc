@@ -145,7 +145,7 @@ module.exports = {
         })
         $('.editor').append(f)
     },
-    editorDisable: function(permanent){
+    editorDisable: function(){
         $('.widget.ui-resizable').resizable('destroy')
         $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
         $('.editing').removeClass('editing')
@@ -156,12 +156,10 @@ module.exports = {
         $('body').removeClass('editor-enabled')
         $('#grid-width-input').remove()
         EDITING = false
-
-        if (permanent) {
+        if (READ_ONLY) {
+            module.exports.editorEnable = ()=>{}
             $('.editor .btn').remove()
             $('.editor .title').html($('.editor .title').html() + ' (disabled)').addClass('disabled')
-            module.exports.editorEnable = ()=>{}
-            READ_ONLY = true
         }
     },
     traversingDisable: function(){

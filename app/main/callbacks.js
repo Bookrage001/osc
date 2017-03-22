@@ -17,7 +17,7 @@ module.exports =  {
         if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
 
         if (settings.read('readOnly')) {
-            ipc.send('editorDisable',{permanent:true})
+            ipc.send('readOnly')
         }
 
         if (settings.read('newSession')) {

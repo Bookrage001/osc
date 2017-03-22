@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.17.3
+
+Hot fix for `--read-only` switch.
+
 ## 0.17.2
 
 - bug fixes

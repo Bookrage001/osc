@@ -145,8 +145,10 @@ var callbacks = module.exports = {
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
         INITIALZOOM = PXSCALE
+    },
+    readOnly: function(){
+        READ_ONLY = true
     }
-
 }
 
 var bindCallback = function(i) {
