@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vmodule":"1.0.1",
-    "electron-localshortcut": "1.1.0",
+    "electron-localshortcut": "1.1.1",
     "osc": "2.2.0",
     "yargs": "7.0.2",
     "socket.io": "1.7.3",

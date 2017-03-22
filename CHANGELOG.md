@@ -4,7 +4,8 @@
 
 - bug fixes
   - broken `--blank` option fixed (false-positive detection of concurrency with `--read-only`)
-
+  - remove debug message in console when closing windows
+  
 ## 0.17.3
 
 Hot fix for `--read-only` switch.
