@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.17.4
+
+- bug fixes
+  - broken `--blank` option fixed (false-positive detection of concurrency with `--read-only`)
+
 ## 0.17.3
 
 Hot fix for `--read-only` switch.
