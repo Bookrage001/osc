@@ -3,8 +3,9 @@
 ## 0.17.3
 
 Hot fix for `--read-only` switch.
+Dependencies updates.
 
-## 0.17.2
+## 0.17.2 (deleted)
 
 - bug fixes
   - `editor`: correctly remove editing state when disabling the editor right after going to another tab
