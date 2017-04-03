@@ -21,6 +21,17 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 - usage: set to true use logarithmic scaling
 
 
+## RgbLed
+
+```js
+{
+    type:'rgbled',
+    // etc
+}
+```
+
+This one is like the `led` except it takes three arguments (red, green and blue values between 0 and 255) with an optionnal forth argument (alpha, between 0 and 1)
+
 
 ## Plot
 

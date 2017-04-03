@@ -21,6 +21,7 @@ var widgets = {
 
     // plots
     led: require('./widgets/plots/led'),
+    rgbled: require('./widgets/plots/rgbled'),
     plot: require('./widgets/plots/plot'),
     eq: require('./widgets/plots/eq'),
     visualizer: require('./widgets/plots/visualizer'),
@@ -45,7 +46,7 @@ module.exports.categories = {
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
-    'Plots':['plot','eq','visualizer','led','meter','text'],
+    'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text'],
     'Containers':['panel','strip','modal'],
     'Switchers':['switcher','crossfader'],
     'Maths':['formula']
