@@ -162,7 +162,7 @@ module.exports = class Rgb extends _pads_base {
 
     setValue(v, options={}) {
 
-        if (!v || v.length!=3) return
+        if (!v || !v.length || v.length!=3) return
 
         for (i in [0,1,2]) {
             v[i] = clip(v[i],[0,255])
