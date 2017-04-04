@@ -64,6 +64,10 @@ module.exports = class _widgets_base {
         var copy = obj,
             key
 
+        if (obj === null) {
+            return obj
+        }
+
         if (typeof obj === 'object') {
             copy = Array.isArray(obj) ? [] : {}
             for (key in obj) {
