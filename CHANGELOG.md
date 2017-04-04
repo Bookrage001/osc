@@ -2,9 +2,11 @@
 
 ## 0.17.5
 
+- bug fixes
+  - `multixy` snap mode position offset
 - widgets
   - **new** `rgbled` widget
-  
+
 
 ## 0.17.4
 

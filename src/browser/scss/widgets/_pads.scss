@@ -124,11 +124,10 @@
             }
             .handle {
                 position: absolute;
-                padding:calc(100% - 2 * var(--point-size) - 2rem);
-                top:0;
-                left:0;
-                right:0;
-                bottom:0;
+                top:   calc( var(--point-size) + 1rem);
+                left:  calc( var(--point-size) + 1rem);
+                right: calc( var(--point-size) + 1rem);
+                bottom:calc( var(--point-size) + 1rem);
                 cursor: -webkit-grab;
                 z-index: 1;
                 &.active {
