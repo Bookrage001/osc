@@ -21,7 +21,7 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 - usage: set to true use logarithmic scaling
 
 
-# RgbLed
+## RgbLed
 
 ```js
 {
