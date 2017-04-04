@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.17.5
+## 0.17.5
 
 - bug fixes
   - `multixy` snap mode position offset
@@ -8,7 +8,7 @@
   - **new** `rgbled` widget
 
 
-## 0.17.4
+## 0.17.4
 
 - bug fixes
   - broken `--blank` option fixed (false-positive detection of concurrency with `--read-only`)
