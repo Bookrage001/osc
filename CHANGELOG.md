@@ -5,7 +5,7 @@
 - bug fixes
   - `multixy` snap mode position offset
 - widgets
-  - **new** `rgbled` widget
+  - **new** [`rgbled`](http://osc.ammd.net/user-guide/widgets-specifics/plots/#rgbled)
 
 
 ## 0.17.4
