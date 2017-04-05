@@ -282,7 +282,7 @@ i {
             right: 0;
             bottom:0;
             box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
-
+            pointer-events: none;
         }
         &.disabled {
             opacity: .5;

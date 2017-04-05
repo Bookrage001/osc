@@ -1,5 +1,12 @@
 # Changelog
 
+
+
+## 0.17.6
+
+- bug fixes
+  - launcher: link to the app's address is clickable 
+
 ## 0.17.5
 
 - bug fixes
