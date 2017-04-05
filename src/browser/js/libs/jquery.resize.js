@@ -31,17 +31,24 @@
       add: function(handleObj) {
           if (this===window) return false
 
-          // Save a reference to the bound event handler.
-          var old_handler = handleObj.handler
+          if (this.resizeHandler) {
 
-          handleObj.handler = function(event,data) {
-            // Call the originally-bound event handler and return its result.
-            return old_handler.apply(this, arguments)
+              var handler = this.resizeHandler
+
+              this.resizeHandler = function(){
+                  handler(...arguments)
+                  handleObj.handler(...arguments)
+              }
+
+          } else {
+
+              this.resizeHandler = function(){
+                  handleObj.handler(...arguments)
+              }
+
           }
-
-          this.resizeHandler = handleObj.handler
-
       }
+
     }
 
     function checkResizes(){
