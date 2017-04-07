@@ -81,7 +81,7 @@ module.exports = class Multifader extends _matrices_base {
             element[0].style.setProperty(widgetData.horizontal?'height':'width', 100/widgetData.strips + '%')
             element[0].classList.add('not-editable')
 
-            if (widgetData.traversing) element.find('.fader-wrapper').off('drag')
+            if (widgetData.traversing) element.find('canvas').off('drag')
 
             this.value[i-widgetData.start] = widgetData.range.min
 
