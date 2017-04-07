@@ -126,12 +126,14 @@ var callbacks = module.exports = {
     },
 
     applyStyle: function(data){
-        var style = document.createElement('style')
-        style.innerHTML = data.join('')
+        var style = document.createElement('style'),
+            css = data.join('')
+        style.innerHTML = css
         document.body.appendChild(style)
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
-        PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
-        INITIALZOOM = PXSCALE
+        if (css.indexOf('--pixel-scale') != -1) {
+            PXSCALE_RESET()
+        }
     },
 
     reloadCss: function(){
@@ -143,8 +145,7 @@ var callbacks = module.exports = {
             $('canvas').trigger('resize',[0,0,true])
         },100)
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
-        PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
-        INITIALZOOM = PXSCALE
+        PXSCALE_RESET()
     },
     readOnly: function(){
         READ_ONLY = true

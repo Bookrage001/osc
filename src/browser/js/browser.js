@@ -11,8 +11,14 @@ READ_ONLY = false
 TABS = {}
 
 
-PXSCALE =  getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
-INITIALZOOM = PXSCALE
+PXSCALE = 1
+INITIALZOOM = 1
+PXSCALE_RESET = ()=>{
+    PXSCALE = (window.devicePixelRatio || 1) * getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
+    document.documentElement.style.setProperty("--pixel-scale", PXSCALE)
+    INITIALZOOM = PXSCALE
+}
+PXSCALE_RESET()
 
 ///////////////////////
 
