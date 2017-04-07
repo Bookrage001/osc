@@ -55,7 +55,7 @@ var init = function(){
             clickY = Math.round((d.offsetY + d.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
         // actions['<i class="fa fa-edit"></i> Edit'] = function(){editObject(container,data)}
 
-        if (type=='widget') actions['<i class="fa fa-copy"></i> Copy'] = function(){CLIPBOARD=data}
+        if (type=='widget') actions['<i class="fa fa-copy"></i> Copy'] = function(){CLIPBOARD=JSON.parse(JSON.stringify(data))}
 
         if (type=='widget') actions['<i class="fa fa-cut"></i> Cut'] = function(){
             CLIPBOARD=JSON.parse(JSON.stringify(data))
