@@ -41,6 +41,21 @@ var WidgetManager = function(){
         })
     })
 
+    ipc.socket.on('reconnect', ()=>{
+        for (var hash in this.widgets) {
+            ipc.send('addWidget', {
+                hash:hash,
+                data:{
+                    precision: this.widgets[hash].widgetData.precision,
+                    preArgs: this.widgets[hash].widgetData.preArgs,
+                    split: this.widgets[hash].split,
+                    target: this.widgets[hash].widgetData.target,
+                    address: this.widgets[hash].widgetData.address,
+                }
+            })
+        }
+    })
+
 
 }
 

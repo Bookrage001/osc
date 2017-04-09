@@ -206,7 +206,7 @@ module.exports =  {
 
     removeWidget(data, clientId) {
 
-        delete widgetHashTable[data.hash + clientId]
+        delete widgetHashTable[clientId][data.hash]
 
     },
 

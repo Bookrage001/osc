@@ -47,7 +47,9 @@ var bindCallbacks = function(callbacks) {
         })
 
         socket.on('disconnect', function() {
+
             callbacks.removeClientWidgets(socket.id)
+
         })
 
     })

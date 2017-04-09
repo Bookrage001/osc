@@ -1,4 +1,5 @@
-var osc = require('../../osc')
+var osc = require('../../osc'),
+    shortid = require('shortid')
 
 module.exports = class _widgets_base {
 
@@ -10,8 +11,7 @@ module.exports = class _widgets_base {
 
     static createHash() {
 
-        return String(Math.random()).split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
-
+        return shortid.generate()
     }
 
     constructor(widgetData, widgetContainer, widgetHtml) {

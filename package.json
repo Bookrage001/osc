@@ -10,6 +10,7 @@
     "node-sass": "^4.1.1",
     "nodemon": "^1.9.2",
     "socket.io-client": "1.7.3",
+    "shortid": "2.2.8",
     "electron-installer-debian": "0.5.0",
     "electron-packager": "8.6.0"
   },
