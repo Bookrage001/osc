@@ -124,15 +124,21 @@ module.exports = class Push extends _widgets_base {
 
     sendValue(v, norelease) {
 
-        var args = this.widgetData.preArgs.concat(v)
+        if (norelease) {
 
-        osc.send({
-            target: this.widgetData.target,
-            address: this.widgetData.address,
-            precision: this.widgetData.precision,
-            args:args,
-            syncOnly:norelease
-        })
+            osc.send({
+                h: this.hash,
+                v: this.value
+            })
+            
+        } else {
+
+            osc.sync({
+                h: this.hash,
+                v: this.value
+            })
+
+        }
 
     }
 

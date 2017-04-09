@@ -17,13 +17,19 @@ Osc.prototype.send = function(data) {
 
     if (this.syncOnly) {
 
-        ipc.send('syncOsc', data)
+        this.sync(data)
 
     } else {
 
         ipc.send('sendOsc', data)
 
     }
+
+}
+
+Osc.prototype.sync = function(data) {
+
+    ipc.send('syncOsc', data)
 
 }
 

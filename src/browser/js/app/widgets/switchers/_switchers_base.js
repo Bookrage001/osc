@@ -111,13 +111,9 @@ module.exports = class _switchers_base extends _widgets_base {
 
     sendValue() {
 
-        var args = this.widgetData.preArgs.concat(this.value)
-
-        osc.send({
-            target:this.widgetData.target,
-            address:this.widgetData.address,
-            args:args,
-            syncOnly:true
+        osc.sync({
+            h:this.hash,
+            v:this.value
         })
 
     }

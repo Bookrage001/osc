@@ -26,30 +26,10 @@ module.exports = class _widgets_base {
 
     sendValue() {
 
-        var args = this.widgetData.preArgs.concat(this.value)
-
         osc.send({
-            target:this.widgetData.target,
-            address:this.widgetData.address,
-            precision:this.widgetData.precision,
-            args:args,
-            syncOnly:this.split?true:false
+            h:this.hash,
+            v:this.value
         })
-
-        if (this.split) {
-            var n = 0
-            for (i in this.split) {
-                osc.send({
-                    target:this.widgetData.target,
-                    address:this.split[i],
-                    precision:this.widgetData.precision,
-                    args:this.widgetData.preArgs.concat(this.value[n]),
-                    sync:false
-
-                })
-                n++
-            }
-        }
 
     }
 

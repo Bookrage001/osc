@@ -1,3 +1,5 @@
+var ipc = require('./ipc')
+
 var WidgetManager = function(){
 
     this.widgets = {}
@@ -77,6 +79,17 @@ WidgetManager.prototype.addWidget = function(widget) {
     widget.widget.abstract = widget
     if (widget.container) widget.container[0].abstract = widget
 
+    ipc.send('addWidget', {
+        hash:hash,
+        data:{
+            precision: widget.widgetData.precision,
+            preArgs: widget.widgetData.preArgs,
+            split: widget.split,
+            target: widget.widgetData.target,
+            address: widget.widgetData.address,
+        }
+    })
+
 }
 
 WidgetManager.prototype.removeWidget = function(hash) {
@@ -89,6 +102,10 @@ WidgetManager.prototype.removeWidget = function(hash) {
     if (this.widgets[hash]) {
         if (this.widgets[hash].onRemove) this.widgets[hash].onRemove()
         delete this.widgets[hash]
+
+        ipc.send('removeWidget', {
+            hash:hash
+        })
     }
     if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)
     if (linkId && this.linkIdRoute[linkId].indexOf(hash) != -1) this.linkIdRoute[linkId].splice(this.linkIdRoute[linkId].indexOf(hash), 1)

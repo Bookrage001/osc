@@ -3,10 +3,11 @@ var vm = require('vm'),
     fs = require('fs'),
     settings = require('./settings'),
     osc = require('./osc'),
-    ipc = require('./server').ipc,
+    {ipc, clients} = require('./server'),
     chokidar = require('chokidar')
 
 var openedSessions = {},
+    widgetHashTable = {},
     lastSavingClient
 
 module.exports =  {
@@ -132,15 +133,36 @@ module.exports =  {
         }
     },
 
+    sessionOpened: function(data, clientId) {
+        clients[clientId].broadcast.emit('stateSend')
+    },
+
     savingSession: function(data, clientId) {
 
         lastSavingClient = clientId
 
     },
 
-    sendOsc: function(data) {
+    syncOsc: function(data, clientId) {
 
-            if (data.syncOnly) return
+        var value = data.v,
+            data = widgetHashTable[clientId][data.h]
+
+        data.args =  data.preArgs.concat(value)
+
+        clients[clientId].broadcast.emit('receiveOsc', data)
+
+    },
+
+    sendOsc: function(data, clientId) {
+
+
+            var value = data.v,
+                data = widgetHashTable[clientId][data.h]
+
+            data.args =  data.preArgs.concat(value)
+
+            clients[clientId].broadcast.emit('receiveOsc', data)
 
             var targets = []
 
@@ -148,14 +170,52 @@ module.exports =  {
             if (data.target) Array.prototype.push.apply(targets, data.target)
 
 
-            for (i in targets) {
+            for (var i in targets) {
 
                 var host = targets[i].split(':')[0],
                     port = targets[i].split(':')[1]
 
-                if (port) osc.send(host,port,data.address,data.args,data.precision)
+                if (port) {
+
+                    if (data.split) {
+
+                        for (var j in data.split) {
+                            osc.send(host,port,data.split[j],data.args,data.precision)
+                        }
+
+                    } else {
+
+                        osc.send(host,port,data.address,data.args,data.precision)
+
+                    }
+
+
+                }
 
             }
+    },
+
+    addWidget(data, clientId) {
+
+        if (!widgetHashTable[clientId])  {
+            widgetHashTable[clientId] = {}
+        }
+
+        widgetHashTable[clientId][data.hash] = data.data
+    },
+
+    removeWidget(data, clientId) {
+
+        delete widgetHashTable[data.hash + clientId]
+
+    },
+
+    removeClientWidgets(clientId) {
+
+        if (widgetHashTable[clientId]) {
+            delete widgetHashTable[clientId]
+        }
+
     },
 
     stateSave: function(data) {
