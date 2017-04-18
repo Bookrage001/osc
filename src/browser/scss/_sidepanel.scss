@@ -77,8 +77,10 @@
     display: flex;
     align-items: stretch;
     flex-wrap:wrap;
+    flex: 1 1 33%;
     .title {
         background: var(--color-faded);
+        width: 100%;
         min-width: 100%;
         flex-grow: 2;
         padding: 10rem;
