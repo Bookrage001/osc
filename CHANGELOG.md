@@ -7,7 +7,8 @@
 - main
   - osc sending speed optimization: all static infos (target, address, preArgs) are cached server side to reduce network overhead
 - bug fixes
-  - launcher: link to the app's address is clickable
+  - launcher: link to the app's address is now clickable
+  - sidepanel: layout glitches with iOS
 
 ## 0.17.5
 
