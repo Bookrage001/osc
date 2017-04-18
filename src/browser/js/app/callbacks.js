@@ -50,7 +50,7 @@ var callbacks = module.exports = {
             }
             list.append(`
                 <a class="btn load" data-session="${data[i]}">
-                    ${file}<em style="opacity:0.45">(${path})</em>
+                    ${file} <em style="opacity:0.45">(${path})</em>
                     ${READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
                 </a>
             `)
