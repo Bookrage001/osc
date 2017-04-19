@@ -26,7 +26,7 @@ var callbacks = module.exports = {
         var lobby = $(`
             <div class="main">
                 <div class="header">
-                    Open Stage Control
+                    ${PACKAGE.productName}
                 </div>
                 <div class="list"></div>
                 <div class="footer"></div>
