@@ -255,6 +255,7 @@ i {
         cursor: default;
         z-index: 2;
         box-shadow: none;
+        box-shadow: 0 1rem 0 0 var(--color-light) inset;
 
         #title {
             text-transform: uppercase;
@@ -283,7 +284,8 @@ i {
             left:0;
             right: 0;
             bottom:0;
-            box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
+            // box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
+            box-shadow: 0 1rem 0 0 var(--color-light) inset;
             pointer-events: none;
         }
         &.disabled {
@@ -311,7 +313,8 @@ i {
     }
     .save {
         float:left;
-        width:91rem;
+        width:90rem;
+        border-right: 0;
         &:before {
             transition: opacity .5s;
             content:"";
