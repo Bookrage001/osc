@@ -1,5 +1,9 @@
 ///////////////////////
 
+PACKAGE = require('../../../app/package.json')
+
+///////////////////////
+
 SESSION = []
 STATE = []
 

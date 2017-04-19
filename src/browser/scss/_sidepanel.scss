@@ -23,9 +23,23 @@
         opacity: 1;
     }
 
+    .navigation {
+        margin-bottom: 10rem;
+        box-shadow: 0 2rem 0 0 var(--color-bg);
+        li {
+            cursor:default;
+        }
+        a {
+            text-transform: none;
+            font-weight: normal;
+            color: var(--color-accent);
+            justify-content: center;
+        }
+    }
+
     #options {
         position:absolute;
-        top:8rem;
+        // top:8rem;
         left:8rem;
         right:8rem;
         list-style:none;
