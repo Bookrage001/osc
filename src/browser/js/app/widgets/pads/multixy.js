@@ -186,16 +186,18 @@ module.exports = class MultiXy extends _pads_base {
                 y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
                 t = this.labels ? this.widgetData.points[i] : i
 
-                this.ctx.globalAlpha = 0.3
                 this.ctx.strokeStyle = this.colors.custom
                 this.ctx.fillStyle = this.colors.custom
                 this.ctx.lineWidth = PXSCALE * 2
 
+                this.ctx.globalAlpha = 0.3
                 this.ctx.beginPath()
-                this.ctx.arc(x, y, this.pointSize * PXSCALE, Math.PI * 2, false)
+                this.ctx.arc(x, y,(this.pointSize - 2) * PXSCALE, Math.PI * 2, false)
                 this.ctx.fill()
+
+                this.ctx.globalAlpha = 1
                 this.ctx.beginPath()
-                this.ctx.arc(x, y, (this.pointSize-1) * PXSCALE, Math.PI * 2, false)
+                this.ctx.arc(x, y, (this.pointSize - 2) * PXSCALE, Math.PI * 2, false)
                 this.ctx.stroke()
 
                 this.ctx.globalAlpha = 1
