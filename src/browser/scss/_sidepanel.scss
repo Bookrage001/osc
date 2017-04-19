@@ -38,50 +38,53 @@
     }
 
     #options {
-        position:absolute;
-        left:8rem;
-        right:8rem;
-        list-style:none;
-        margin-bottom: 1px;
-        padding-bottom: 8rem;
+        padding: 8rem;
+        margin-bottom: 1rem
+    }
 
-        li {
-            display:block;
-            margin-bottom:8rem;
-            position: relative;
+    #editor {
+        box-shadow: 0 2rem 0 0 var(--color-bg) inset, 0 3rem 0 0 var(--color-light) inset;
+        padding: 1rem 8rem 8rem;
+        &:empty {
+            padding:0;
+        }
+    }
 
-            &:last-child {
-                margin: 0;
+    li {
+        display:block;
+        margin-bottom:8rem;
+        position: relative;
+
+        &:last-child {
+            margin: 0;
+        }
+        .btn + span {
+            position: absolute;
+            right:0rem;
+            top:0rem;
+            padding:8rem;
+            color:var(--color-text-fade);
+            &:hover {
+                color:var(--color-text);
             }
-            .btn + span {
-                position: absolute;
-                right:0rem;
-                top:0rem;
-                padding:8rem;
-                color:var(--color-text-fade);
-                &:hover {
-                    color:var(--color-text);
-                }
-            }
-
-            ul {
-                padding: 4rem;
-                li {
-                    margin-bottom: 4rem;
-                }
-            }
-
         }
 
-        .editor .form {
-            margin-top: 10rem;
+        ul {
+            padding: 4rem;
+            li {
+                margin-bottom: 4rem;
+            }
         }
-        .help {
-            margin-top:10rem;
-            font-size: .75em;
-            text-align: center;
-            font-style: italic;
-        }
+
+    }
+    #editor .form {
+        margin-top: 10rem;
+    }
+    .help {
+        margin-top:10rem;
+        font-size: .75em;
+        text-align: center;
+        font-style: italic;
     }
 }
 .actions {

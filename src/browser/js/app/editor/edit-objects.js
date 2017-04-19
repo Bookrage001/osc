@@ -26,7 +26,7 @@ var editObject = function(container, data, refresh){
         $(container).parent().addClass('editing')
     }
 
-    $('.editor').append('<div class="editor-container"></div>')
+    $('#editor').append('<div class="editor-container"></div>')
     var form = $('<div class="form"></div>').appendTo('.editor-container')
 
 
@@ -276,7 +276,7 @@ var editSession = function(container,data,refresh){
 
     $('.editor-root, #container').addClass('editing')
 
-    $('.editor').append('<div class="editor-container"></div>')
+    $('#editor').append('<div class="editor-container"></div>')
 
 
     var form = $('<div class="form"></div>').appendTo('.editor-container')

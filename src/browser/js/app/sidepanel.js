@@ -54,7 +54,7 @@ var data = [
     },
     {
         title: icon('edit') + '&nbsp; Editor',
-        class:'editor',
+        class:'editor-menu',
         actions: [
             {
                 title:'On',
@@ -148,6 +148,7 @@ module.exports = {
             <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
         `)
         $('#sidepanel').append(sidepanel)
+        $('#sidepanel').append('<div id="editor"></div>')
         toggle()
     },
     createToggle:toggle

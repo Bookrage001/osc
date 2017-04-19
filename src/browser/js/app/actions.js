@@ -143,7 +143,7 @@ module.exports = {
                 document.documentElement.style.setProperty("--grid-width",GRIDWIDTH)
             })
         })
-        $('.editor').append(f)
+        $('.editor-menu').append(f)
     },
     editorDisable: function(){
         $('.widget.ui-resizable').resizable('destroy')
@@ -158,8 +158,8 @@ module.exports = {
         EDITING = false
         if (READ_ONLY) {
             module.exports.editorEnable = ()=>{}
-            $('.editor .btn').remove()
-            $('.editor .title').html($('.editor .title').html() + ' (disabled)').addClass('disabled')
+            $('.editor-menu .btn').remove()
+            $('.editor-menu .title').html($('.editor-menu .title').html() + ' (disabled)').addClass('disabled')
         }
     },
     traversingDisable: function(){
