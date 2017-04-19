@@ -51,9 +51,9 @@ var sendOsc = function(data){
 
 	if (!data) return
 
-    if (data.host == 'midi' && midi) {
+    if (data.host == 'midi') {
 
-        midi.send(data)
+        if (midi) midi.send(data)
 
     } else {
 
