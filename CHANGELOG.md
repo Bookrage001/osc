@@ -9,7 +9,8 @@
 - bug fixes
   - launcher: link to the app's address is now clickable
   - sidepanel: layout glitches with iOS
-
+- misc
+  - some little style fixes
 ## 0.17.5
 
 - bug fixes
