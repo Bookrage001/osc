@@ -138,6 +138,8 @@ i {
 
         text-transform: uppercase;
         letter-spacing: 2rem;
+
+        box-shadow: 0 1rem 0 0 var(--color-light) inset;
     }
     .footer {
         background: var(--color-raised);
@@ -397,6 +399,7 @@ i {
         padding:15rem;
         background:var(--color-raised);
         border-bottom: 1rem solid var(--color-bg);
+        box-shadow: 0 1rem 0 0 var(--color-light) inset;
 
         &.closable {
             padding-right: 50rem;
