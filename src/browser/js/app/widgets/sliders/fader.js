@@ -169,14 +169,6 @@ module.exports = class Fader extends _sliders_base {
         if (this.widgetData.horizontal) {
             if (this.widgetData.compact) {
 
-                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.width-o)
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.beginPath()
-                this.ctx.moveTo(d, m)
-                this.ctx.lineTo(o, m)
-                this.ctx.lineWidth = this.height + 1
-                this.ctx.stroke()
-
                 if (!this.widgetData.noPip) {
                     this.ctx.lineWidth = PXSCALE
                     this.ctx.globalAlpha = 1
@@ -194,6 +186,14 @@ module.exports = class Fader extends _sliders_base {
                         this.ctx.stroke()
                     }
                 }
+
+                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.width-o)
+                this.ctx.strokeStyle = this.colors.gauge
+                this.ctx.beginPath()
+                this.ctx.moveTo(d, m)
+                this.ctx.lineTo(o, m)
+                this.ctx.lineWidth = this.height + 1
+                this.ctx.stroke()
 
                 this.ctx.globalAlpha = 1
                 this.ctx.beginPath()
@@ -235,14 +235,6 @@ module.exports = class Fader extends _sliders_base {
 
             if (this.widgetData.compact) {
 
-                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.height-o)
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.beginPath()
-                this.ctx.moveTo(m, d)
-                this.ctx.lineTo(m, o)
-                this.ctx.lineWidth = this.width + 1
-                this.ctx.stroke()
-
                 if (!this.widgetData.noPip) {
                     this.ctx.lineWidth = PXSCALE
                     this.ctx.globalAlpha = 0.75
@@ -260,6 +252,14 @@ module.exports = class Fader extends _sliders_base {
                     }
                     this.ctx.stroke()
                 }
+
+                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.height-o)
+                this.ctx.strokeStyle = this.colors.gauge
+                this.ctx.beginPath()
+                this.ctx.moveTo(m, d)
+                this.ctx.lineTo(m, o)
+                this.ctx.lineWidth = this.width + 1
+                this.ctx.stroke()
 
                 this.ctx.globalAlpha = 1
                 this.ctx.beginPath()
