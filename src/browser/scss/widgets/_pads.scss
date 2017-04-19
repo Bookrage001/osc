@@ -133,6 +133,14 @@
                 &.active {
                     pointer-events: none;
                 }
+                &:after {
+                    content:"";
+                    position: absolute;
+                    top:   calc( -1 * var(--point-size));
+                    left:  calc( -1 * var(--point-size));
+                    right: calc( -1 * var(--point-size));
+                    bottom:calc( -1 * var(--point-size));
+                }
             }
             > .pad {
                 pointer-events: none;
