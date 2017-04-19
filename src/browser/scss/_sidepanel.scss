@@ -16,7 +16,7 @@
     opacity: 0;
     overflow-y: auto;
     overflow-x: visible;
-    box-shadow: 0 0 15rem 0 var(--color-bg);
+    box-shadow: 0 0 15rem 0 var(--color-bg), 0 0 0 2rem var(--color-bg);
 
     &.sidepanel-open {
         transform: translate3d(calc(-1 * var(--sidepanel-size)),0,0);
