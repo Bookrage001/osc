@@ -145,7 +145,7 @@ var toggle = function(){
 module.exports = {
     init:function(){
         $('#sidepanel').append(`
-            <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()} v${PACKAGE.version}</a></li></ul></div>
+            <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
         `)
         $('#sidepanel').append(sidepanel)
         toggle()

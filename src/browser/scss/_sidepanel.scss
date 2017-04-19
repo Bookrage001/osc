@@ -25,7 +25,7 @@
 
     .navigation {
         margin-bottom: 10rem;
-        box-shadow: 0 2rem 0 0 var(--color-bg);
+        box-shadow: 0 2rem 0 0 var(--color-bg), 0 3rem 0 0 var(--color-light);
         li {
             cursor:default;
         }
@@ -39,7 +39,6 @@
 
     #options {
         position:absolute;
-        // top:8rem;
         left:8rem;
         right:8rem;
         list-style:none;
