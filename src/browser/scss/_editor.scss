@@ -292,19 +292,19 @@
     &:before {
         content:"";
         position: absolute;
-        top:0;
-        left:0;
-        right:1rem;
-        bottom:1rem;
+        top:1rem;
+        left:1rem;
+        right:0;
+        bottom:0;
         border:1rem dashed var(--color-accent);
     }
     &:after {
         content:"";
         position: absolute;
-        top:0;
-        left:0;
-        right:1rem;
-        bottom:1rem;
+        top:1rem;
+        left:1rem;
+        right:0;
+        bottom:0;
         background: var(--color-accent);
         opacity: .25;
     }

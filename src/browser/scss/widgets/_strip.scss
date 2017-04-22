@@ -4,19 +4,6 @@
     width:100rem;
     height:100%;
     overflow: visible;
-    // background: var(--color-bg);
-    border:0;
-
-    &:before {
-        content:"";
-        position: absolute;
-        top:0;
-        bottom:0;
-        right: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 2;
-    }
 
     > .strip {
         height: 100%;
@@ -25,16 +12,12 @@
         flex-direction: column;
         > .widget {
             width:auto;
-            margin:0;
-            // border-color: transparent;
-            &:not(:first-child) {
-                // box-shadow: none;
-            }
             .label {
               background-image: none;
             }
         }
     }
+
     &.vertical {
         > .strip {
             align-items: center;
@@ -42,7 +25,10 @@
         > .strip > .widget {
             width: 100%;
             min-width: 100%;
-            max-width: 100%;
+
+            margin-left:0;
+            border-left:0;
+            margin-left:0rem;
             // margin-right:1rem;
             // &:not(:first-child) > .label {
             //     border-top:1rem solid  var(--color-bg);
@@ -69,8 +55,13 @@
                 flex-shrink: initial;
                 width: 100%;
                 min-height: 100%;
-                max-height: 100%;
+                margin-top:0;
+                border-top:0;
+                margin-left:0rem;
                 height:100%;
+                &:last-child {
+                    border-right:0;
+                }
             }
         }
         > .label {
@@ -79,7 +70,7 @@
             flex-shrink: 0;
             height:100%;
             border-bottom:0;
-            border-right:1rem solid var(--color-bg);
+            // border-right:1rem solid var(--color-bg);
             max-height: initial;
             span {
                 transform: rotate(180deg);

@@ -11,6 +11,8 @@
   - sidepanel: layout glitches with iOS
 - misc
   - some little style fixes
+  - pixel perfect ui fixes
+
 ## 0.17.5
 
 - bug fixes

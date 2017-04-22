@@ -51,25 +51,25 @@
     &:vertical {
         &:decrement:start {
             border-left:2rem solid var(--color-bg);
-            border-bottom:2rem solid var(--color-bg);
+            border-bottom:1rem solid var(--color-bg);
             @include arrow(180)
         }
 
         &:increment:end {
             border-left:2rem solid var(--color-bg);
-            border-top:2rem solid var(--color-bg);
+            border-top:1rem solid var(--color-bg);
             @include arrow(0)
         }
     }
     &:horizontal {
         &:decrement:start {
-            border-right:2rem solid var(--color-bg);
+            border-right:1rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
             @include arrow(90)
         }
 
         &:increment:end {
-            border-left:2rem solid var(--color-bg);
+            border-left:1rem solid var(--color-bg);
             border-top:2rem solid var(--color-bg);
             @include arrow(-90)
         }

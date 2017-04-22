@@ -1,8 +1,5 @@
 .panel-container-base {
 
-    &.nolabel > .panel {
-        top:0;
-    }
     > .label {
         border-bottom:1rem solid var(--color-bg);
     }
@@ -10,12 +7,13 @@
     .panel {
         overflow: auto;
         position: absolute;
-        top:30rem;
+        top:29rem;
         left:0;
         right:0;
         bottom:0;
 
         &.has-tabs {
+            top:30rem;
             display: flex;
             flex-direction: column;
             background: var(--color-bg);
@@ -30,8 +28,17 @@
         }
 
     }
+    &.nolabel {
+        > .panel {
+            top:-1rem;
+        }
+        > .panel.has-tabs {
+            top:0;
+        }
+
+    }
     .navigation {
-        border-top: 0;
+        // margin-top: 1rem;
         background: transparent;
         &:after {
             background: var(--color-bg);
@@ -52,7 +59,7 @@
     width: 200rem;
     height: 200rem;
 
-    border:0;
+    // border:0;
 
     background: var(--color-fg);
 
@@ -63,8 +70,8 @@
         bottom:0;
         right: 0;
         left: 0;
-        border-bottom: 1rem solid  var(--color-bg);
-        border-right: 1rem solid  var(--color-bg);
+        // border-bottom: 1rem solid  var(--color-bg);
+        // border-right: 1rem solid  var(--color-bg);
         pointer-events: none;
         z-index: 2;
 
@@ -112,7 +119,8 @@
             bottom:0;
             border-right:0;
             height: auto!important;
-            border-top:2rem solid var(--color-bg);
+            border-top:1rem solid var(--color-bg);
+            box-shadow: 0 1rem 0 0 var(--color-bg) inset;
         }
     }
 
@@ -138,7 +146,7 @@
         > .light:after {
                 content:"\f00d";
                 transform: none;
-                width:calc(var(--nav-height) + 1rem);
+                width:calc(var(--nav-height));
                 height:var(--nav-height);
                 line-height: var(--nav-height);
                 background:var(--color-fg);

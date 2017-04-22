@@ -24,14 +24,15 @@ body {
     position: relative;
     background:var(--color-fg);
     padding:2rem;
+    margin-top:1rem;
 }
 
 .tab {
     position: absolute;
     overflow: auto;
-    left:0;
-    right:-1rem; // because widgets have a fake 1rem right-border
-    top:0;
+    left:-1rem;
+    right:0;
+    top:-1rem;
     bottom:0;
     background:var(--color-bg);
     transform: rotateZ(0);
@@ -41,17 +42,15 @@ body {
     flex-direction: column;
     > .navigation {
         background:var(--color-bg);
-        margin-right:1rem; // because widgets have a fake 1rem right-border
     }
     > .content {
         background:none;
-        margin-right:1rem; // because widgets have a fake 1rem right-border
     }
 }
 
 .navigation {
     height:var(--nav-height);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     flex-shrink:0;
     font-weight:bold;
     text-transform: uppercase;

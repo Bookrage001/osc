@@ -16,8 +16,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-right:-2rem;
-    margin-bottom: -1rem;
+    margin-left:-1rem;
+    margin-right:-1rem;
+    margin-top: -1rem;
 
     > .widget {
         min-height: 0;
