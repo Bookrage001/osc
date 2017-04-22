@@ -77,11 +77,11 @@ module.exports = class Modal extends Panel {
 
     fixScrolling(){
         if (this.value) {
-            var c = this.container.parents('.tab').first()
+            var c = this.container.parents('.tab, .modal-container > .panel').first()
             this.parentScroll = [c.scrollLeft(), c.scrollTop()]
             c.scrollTop(0).scrollLeft(0).css('overflow','hidden')
         } else {
-            this.container.parents('.tab').first().css('overflow','').scrollLeft(this.parentScroll[0]).scrollTop(this.parentScroll[1])
+            this.container.parents('.tab, .modal-container > .panel').first().css('overflow','').scrollLeft(this.parentScroll[0]).scrollTop(this.parentScroll[1])
         }
     }
 
