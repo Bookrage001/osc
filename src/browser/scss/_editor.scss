@@ -348,7 +348,7 @@
             --size: calc(var(--grid-width) * 1rem);
             background-size: var(--size) var(--size);
             background-attachment: local;
-            background-position: -1rem -1rem;
+            background-position: 0 0;
         }
     }
 
