@@ -26,6 +26,7 @@ module.exports = class Crossfader extends Switcher {
         o.range = {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}}
 
         this.fader = new Fader(o, 0)
+        this.fader.sendValue = ()=>{}
 
         this.widget.append($('<div class="fader-container"></div>').append(this.fader.widget))
 
