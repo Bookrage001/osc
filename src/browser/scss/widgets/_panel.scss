@@ -2,6 +2,7 @@
 
     > .label {
         border-bottom:1rem solid var(--color-bg);
+        z-index: 1;
     }
 
     .panel {
@@ -142,6 +143,8 @@
         > .light {
             position: relative;
             box-shadow: none;
+            box-shadow: 0 2rem 0 0 var(--color-bg);
+            z-index: 1;
         }
         > .light:after {
                 content:"\f00d";
