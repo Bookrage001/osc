@@ -20,15 +20,17 @@
 
         canvas.resize(function(e,width,height,checkColors){
 
-            var width = width*2,
-                height = height*2
+            var width = width,
+                height = height
 
             if (width && height) {
                 self.height=height
                 self.width=width
 
-                canvas[0].setAttribute('width',width)
-                canvas[0].setAttribute('height',height)
+                canvas[0].setAttribute('width',width * 2)
+                canvas[0].setAttribute('height',height * 2)
+
+                ctx.scale(2,2)
             }
 
             if (!self.visible || checkColors) {
@@ -49,7 +51,7 @@
             if (!self.height || !self.width || (self.height==100 && self.width==100)) return
 
             ctx.clearRect(0,0,self.width,self.height)
-            ctx.font =  2 * self.fontSize + 'px Droid Sans'
+            ctx.font =  self.fontSize + 'px Droid Sans'
             ctx.textBaseline = "middle"
             ctx.fillStyle = self.color
 
