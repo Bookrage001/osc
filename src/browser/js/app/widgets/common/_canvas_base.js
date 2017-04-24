@@ -29,7 +29,7 @@ module.exports = class _canvas_base extends _widgets_base {
     }
 
     resizeHandleProxy() {
-        
+
         this.resizeHandle(...arguments)
 
     }
@@ -37,16 +37,19 @@ module.exports = class _canvas_base extends _widgets_base {
     resizeHandle(e, width, height, checkColors){
 
         var width = width,
-            height = height
+            height = height,
+            ratio = CANVAS_SCALING
 
         if (width && height) {
 
             this.height=height
             this.width=width
 
-            this.canvas[0].setAttribute('width',width)
-            this.canvas[0].setAttribute('height',height)
+            this.canvas[0].setAttribute('width',width * ratio)
+            this.canvas[0].setAttribute('height',height * ratio)
 
+            if (ratio != 1) this.ctx.scale(ratio, ratio)
+            
         }
 
         if (!this.visible || checkColors) {

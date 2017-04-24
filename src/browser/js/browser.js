@@ -1,3 +1,5 @@
+ARGV={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){ARGV[k]=v})
+
 ///////////////////////
 
 PACKAGE = require('../../../app/package.json')
@@ -23,6 +25,8 @@ PXSCALE_RESET = ()=>{
     INITIALZOOM = PXSCALE
 }
 PXSCALE_RESET()
+
+CANVAS_SCALING = ARGV.hdpi ? window.devicePixelRatio : 1
 
 ///////////////////////
 
