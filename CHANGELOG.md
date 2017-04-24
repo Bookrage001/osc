@@ -6,6 +6,8 @@
 
 - main
   - osc sending speed optimization: all static infos (target, address, preArgs) are cached server side to reduce network overhead
+- mobile
+  - `hdpi` support (add `?hdpi=1` to the server's url)
 - bug fixes
   - launcher: link to the app's address is now clickable
   - sidepanel: layout glitches with iOS
