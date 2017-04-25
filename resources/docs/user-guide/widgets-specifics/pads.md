@@ -42,6 +42,11 @@ Pads are multidimensional widgets that output multiple values.
 - default: `false`
 - usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
+#### `spring`
+- type: `boolean`
+- default: `false`
+- usage: when set to `true`, the widget will go back to its initial value when released.
+
 #### `split`
 - type: `boolean|object`
 - default: `false`
