@@ -29,13 +29,15 @@
             margin-left:0;
             border-left:0;
             margin-left:0rem;
-            // margin-right:1rem;
-            // &:not(:first-child) > .label {
-            //     border-top:1rem solid  var(--color-bg);
-            // }
+
         }
         &::before {
             border-right: 1rem solid  var(--color-bg);
+        }
+        &.nolabel > .strip > .widget {
+            &:first-child{
+                border-top:0;
+            }
         }
     }
     &.horizontal {
@@ -81,6 +83,12 @@
                 -webkit-writing-mode:vertical-lr;
                 writing-mode:vertical-lr;
                 text-align: center;
+            }
+        }
+
+        &.nolabel > .strip > .widget {
+            &:first-child{
+                border-left:0;
             }
         }
 
