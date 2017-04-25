@@ -1,7 +1,5 @@
 .panel-container-base {
 
-    // --nav
-
     > .label {
         border-bottom:1rem solid var(--color-bg);
         z-index: 1;
@@ -68,23 +66,8 @@
     width: 200rem;
     height: 200rem;
 
-    // border:0;
-
     background: var(--color-fg);
 
-    &:before {
-        content:"";
-        position: absolute;
-        top:0;
-        bottom:0;
-        right: 0;
-        left: 0;
-        // border-bottom: 1rem solid  var(--color-bg);
-        // border-right: 1rem solid  var(--color-bg);
-        pointer-events: none;
-        z-index: 2;
-
-    }
 }
 
 .modal-container {
