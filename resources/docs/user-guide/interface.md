@@ -3,6 +3,17 @@
 
 ----
 
+## URL Options
+
+Client specific options can be set by adding query parameters to the server's url. One must prepend the url with a question mark (`?`) followed by `parameter=value` pairs separated with ampersands (`&`).
+
+Supported options:
+
+- `hdpi=1`: enable high resolution canvas
+
+Example:
+
+`http://server-ip:port?hdpi=1`
 
 ## Interaction events
 
