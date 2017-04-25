@@ -145,6 +145,8 @@ module.exports =  {
 
     syncOsc: function(data, clientId) {
 
+        if (!(widgetHashTable[clientId] && widgetHashTable[clientId][data.h])) return
+
         var value = data.v,
             data = widgetHashTable[clientId][data.h]
 
@@ -156,6 +158,7 @@ module.exports =  {
 
     sendOsc: function(data, clientId) {
 
+            if (!(widgetHashTable[clientId] && widgetHashTable[clientId][data.h])) return
 
             var value = data.v,
                 data = widgetHashTable[clientId][data.h]
