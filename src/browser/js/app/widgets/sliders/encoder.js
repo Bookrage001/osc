@@ -21,14 +21,10 @@ module.exports = class Encoder extends _widgets_base {
             color:'auto',
             css:'',
 
-            _behaviour:'behaviour',
-
-            snap:false,
-            spring:false,
-            ticks:360,
 
             _osc:'osc',
 
+            ticks:360,
             back:-1,
             forth:1,
             release:'',
