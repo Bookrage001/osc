@@ -2,6 +2,7 @@ var widgets = {
     // sliders
     fader: require('./widgets/sliders/fader'),
     knob: require('./widgets/sliders/knob'),
+    encoder: require('./widgets/sliders/encoder'),
 
     // buttons
     toggle: require('./widgets/buttons/toggle'),
@@ -42,7 +43,7 @@ var widgets = {
 }
 
 module.exports.categories = {
-    'Sliders':['fader','knob'],
+    'Sliders':['fader','knob', 'encoder'],
     'Buttons':['toggle','push','switch'],
     'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],

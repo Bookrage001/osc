@@ -1,4 +1,4 @@
-.knob-container {
+.knob-container, .encoder-container {
     --color-pips: var(--color-text-fade);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
@@ -8,6 +8,7 @@
     height: 120rem;
     align-items: center;
     flex-shrink: 0;
+
 }
 
 .knob {
@@ -51,5 +52,30 @@
             font-size: 11rem;
             color: var(--color-text-fade);
         }
+    }
+}
+
+
+.encoder {
+    --color-gauge: transparent;
+
+    height:100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .wrapper {
+        overflow: hidden;
+        flex:1;
+        max-height: 100%;
+        width: 100%;
+        position: relative;
+        display: flex;
+    }
+
+    .input {
+        // display: none;
     }
 }
