@@ -6,11 +6,14 @@
 
 - main
   - osc sending speed optimization: all static infos (target, address, preArgs) are cached server side to reduce network overhead
+- widgets
+  - **new** encoder widget
 - mobile
   - `hdpi` support (add `?hdpi=1` to the server's url)
 - bug fixes
   - launcher: link to the app's address is now clickable
   - sidepanel: layout glitches with iOS
+  - push: broken osc sending method 
 - misc
   - some little style fixes
 
