@@ -124,13 +124,13 @@ module.exports = class Push extends _widgets_base {
 
     sendValue(v, norelease) {
 
-        if (norelease) {
+        if (!norelease) {
 
             osc.send({
                 h: this.hash,
                 v: this.value
             })
-            
+
         } else {
 
             osc.sync({
