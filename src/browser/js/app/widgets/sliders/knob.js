@@ -146,7 +146,7 @@ module.exports = class Knob extends _sliders_base {
         if (this.widgetData.compact) {
             this.canvas[0].style.top = this.input[0].style.marginTop = (this.minDimension) * this.lostHeightFactor - (this.widgetData.label === false ? 0 : this.gaugeWidth / 4) + 'px'
         } else {
-            this.canvas[0].style.top  = Math.min((this.minDimension) * this.lostHeightFactor - this.margin * PXSCALE / 2, this.input.outerHeight() * .5) + 'px'
+            this.canvas[0].style.top  = Math.min((this.minDimension) * this.lostHeightFactor - (this.widgetData.label === false ? 0 : this.margin * PXSCALE / 2), this.input.outerHeight() * .5) + 'px'
         }
 
     }
