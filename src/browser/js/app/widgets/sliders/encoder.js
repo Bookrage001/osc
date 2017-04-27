@@ -2,6 +2,41 @@ var {clip, mapToScale} = require('../utils'),
     Knob = require('./knob'),
     _widgets_base = require('../common/_widgets_base')
 
+
+
+var EncoderKnob = class extends Knob {
+    draginitHandle(e, data, traversing) {
+
+        this.percent = clip(this.percent,[0,100])
+
+        this.lastOffsetX = data.offsetX
+        this.lastOffsetY = data.offsetY
+
+        if (!(traversing || this.widgetData.snap)) return
+
+        this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
+
+        this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true, draginit:true})
+
+    }
+    mousewheelHandle(){}
+}
+var DisplayKnob = class extends Knob {
+    draw(){
+        super.draw()
+
+        this.ctx.beginPath()
+        this.ctx.fillStyle = this.colors.raised
+        this.ctx.strokeStyle = this.colors.raised
+        this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 1.5 * PXSCALE - 2 * PXSCALE, 0, Math.PI * 2)
+        this.ctx.fill()
+        this.ctx.globalAlpha = 0.3
+        this.ctx.lineWidth = 1.1 * PXSCALE
+        this.ctx.stroke()
+        this.ctx.globalAlpha = 1
+    }
+}
+
 module.exports = class Encoder extends _widgets_base {
 
     static options() {
@@ -52,7 +87,7 @@ module.exports = class Encoder extends _widgets_base {
         this.wrapper = this.widget.find('.wrapper')
         this.ticks = Math.abs(parseInt(widgetData.ticks))
 
-        this.knob = new Knob({
+        this.knob = new EncoderKnob({
             label:false,
             angle:360,
             snap:true,
@@ -62,7 +97,7 @@ module.exports = class Encoder extends _widgets_base {
 
         this.knob.noDraw = true
 
-        this.display = new Knob({
+        this.display = new DisplayKnob({
             label:false,
             angle:360,
             range:{min:0,max:this.ticks},
@@ -77,22 +112,6 @@ module.exports = class Encoder extends _widgets_base {
         this.display.setValue(this.ticks/2)
 
         this.previousValue = this.ticks/2
-
-        this.knob.mousewheelHandle = ()=>{}
-        this.knob.draginitHandle = function(e, data, traversing) {
-
-            this.percent = clip(this.percent,[0,100])
-
-            this.lastOffsetX = data.offsetX
-            this.lastOffsetY = data.offsetY
-
-            if (!(traversing || this.widgetData.snap)) return
-
-            this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
-
-            this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true, draginit:true})
-
-        }
 
         this.wrapper.on('sync',(e)=>{
             e.stopPropagation()

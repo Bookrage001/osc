@@ -166,3 +166,50 @@ range: {
 --color-knob:color;
 --color-pips:color;
 ```
+
+## Encoder
+
+An endless knob that only responds to rotative gestures.
+
+```js
+{
+    type:'encoder',
+    // etc
+}
+```
+
+#### `ticks`
+- type: `number`
+- default: `360`
+- usage: defines the granularity / verbosity of the encoder (number of step for a 360° arc)
+
+#### `back`
+- type: `string|number|object`
+- default: `-1`
+- usage: defines which value is sent when rotating the encoder anticlockwise
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+
+#### `forth`
+- type: `string|number|object`
+- default: `1`
+- usage: defines which value is sent when rotating the encoder clockwise
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+
+#### `release`
+- type: `string|number|object`
+- default: `empty`
+- usage: defines which value is sent when releasing the encoder
+    - set to `null` to send send no argument in the osc message
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+
+
+#### `snap`
+- type: `boolean`
+- default: `false`
+- usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
+
+
+#### `css`
+```
+--color-knob:color;
+```
