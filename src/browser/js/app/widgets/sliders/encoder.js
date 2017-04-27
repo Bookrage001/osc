@@ -78,7 +78,8 @@ module.exports = class Encoder extends _widgets_base {
 
         this.previousValue = this.ticks/2
 
-        this.knob.draginitHandle= function(e, data, traversing) {
+        this.knob.mousewheelHandle = ()=>{}
+        this.knob.draginitHandle = function(e, data, traversing) {
 
             this.percent = clip(this.percent,[0,100])
 
@@ -120,7 +121,7 @@ module.exports = class Encoder extends _widgets_base {
         })
 
         this.wrapper.on('dragend', (e)=>{
-            if (widgetData.release !== '') {
+            if (widgetData.release !== '' && this.value !== widgetData.release) {
                 this.knob.setValue(this.ticks/2)
                 this.display.setValue(this.ticks/2)
                 this.setValue(widgetData.release, {sync:true, send:true, dragged:false})
@@ -132,22 +133,27 @@ module.exports = class Encoder extends _widgets_base {
 
     setValue(v,options={}) {
 
-        var match = true
+        if (this.widgetData.snap || (!this.widgetData.snap && !options.draginit)) {
 
-        if (v === this.widgetData.back) {
-            this.value = this.widgetData.back
-        } else if (v === this.widgetData.forth) {
-            this.value = this.widgetData.forth
-        } else if (v === this.widgetData.release && this.widgetData.release !== '') {
-            this.value = this.widgetData.release
-        } else {
-            match = false
+            var match = true
+
+            if (v === this.widgetData.back) {
+                this.value = this.widgetData.back
+            } else if (v === this.widgetData.forth) {
+                this.value = this.widgetData.forth
+            } else if (v === this.widgetData.release && this.widgetData.release !== '') {
+                this.value = this.widgetData.release
+            } else {
+                match = false
+            }
+
         }
+
+        if (options.sync && match) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        if (options.send && match && !(!this.widgetData.snap && options.draginit)) this.sendValue()
 
         if (options.dragged || options.draginit) this.updateDisplay(options.draginit)
 
-        if (options.sync && match) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-        if (options.send && match) this.sendValue()
     }
 
     updateDisplay(init){
