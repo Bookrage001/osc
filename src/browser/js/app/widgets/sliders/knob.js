@@ -162,23 +162,23 @@ module.exports = class Knob extends _sliders_base {
 
         if (this.widgetData.compact) {
 
-            this.ctx.lineWidth = this.gaugeWidth * PXSCALE
+            this.ctx.lineWidth = this.gaugeWidth
             this.ctx.globalAlpha = 0.3
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.track
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth + this.margin) * PXSCALE, min, max)
+            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min, max)
             this.ctx.stroke()
 
             this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o-min:max-o)
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth + this.margin) * PXSCALE, Math.min(o,d), Math.max(o,d))
+            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, Math.min(o,d), Math.max(o,d))
             this.ctx.stroke()
 
             this.ctx.lineWidth = 1 * PXSCALE
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.track
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE, min, max)
+            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE, min, max)
             this.ctx.stroke()
 
 
@@ -186,7 +186,7 @@ module.exports = class Knob extends _sliders_base {
 
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE, Math.min(o,d), Math.max(o,d))
+            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE, Math.min(o,d), Math.max(o,d))
             this.ctx.stroke()
 
             this.ctx.beginPath()
@@ -194,9 +194,9 @@ module.exports = class Knob extends _sliders_base {
             this.ctx.strokeStyle = this.colors.knob
             this.ctx.lineWidth = 1 * PXSCALE
 
-            let r1 = this.minDimension / 2 - (this.gaugeWidth/2 + this.margin) * PXSCALE,
-            r2 = this.minDimension / 2 - (this.gaugeWidth * 1.5 + this.margin) * PXSCALE,
-            a  = 2 * Math.PI - d
+            let r1 = this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE,
+                r2 = this.minDimension / 2 - this.gaugeWidth * 1.5 - this.margin * PXSCALE,
+                a  = 2 * Math.PI - d
 
 
             this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
