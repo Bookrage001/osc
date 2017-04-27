@@ -158,14 +158,18 @@ module.exports = class Fader extends _sliders_base {
     }
 
     resizeHandle(){
-        super.resizeHandle(...arguments)
-        if (this.widgetData.compact) {
-            if (this.widgetData.horizontal) {
-                this.canvas[0].setAttribute('height', 1)
-            } else {
-                this.canvas[0].setAttribute('width', 1)
+            super.resizeHandle(...arguments)
+            
+            if (this.widgetData.compact) {
+                if (this.widgetData.horizontal) {
+                    this.canvas[0].setAttribute('height', 1)
+                } else {
+                    this.canvas[0].setAttribute('width', 1)
+                }
             }
-        }
+
+            if (CANVAS_SCALING != 1) this.ctx.scale(CANVAS_SCALING, CANVAS_SCALING)
+
     }
 
 
