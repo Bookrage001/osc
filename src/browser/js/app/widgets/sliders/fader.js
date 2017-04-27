@@ -157,6 +157,17 @@ module.exports = class Fader extends _sliders_base {
 
     }
 
+    resizeHandle(){
+        super.resizeHandle(...arguments)
+        if (this.widgetData.compact) {
+            if (this.widgetData.horizontal) {
+                this.canvas[0].setAttribute('height', 1)
+            } else {
+                this.canvas[0].setAttribute('width', 1)
+            }
+        }
+    }
+
 
     draw() {
 
@@ -242,8 +253,8 @@ module.exports = class Fader extends _sliders_base {
                     this.ctx.globalAlpha = 0.75
 
                     var y,
-                    min = Math.min(d,o),
-                    max = Math.max(d,o)
+                        min = Math.min(d,o),
+                        max = Math.max(d,o)
 
                     this.ctx.beginPath()
                     for (var i = 1;i < this.rangeKeys.length - 1;i++) {
