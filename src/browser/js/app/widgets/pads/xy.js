@@ -172,9 +172,9 @@ module.exports = class Xy extends _pads_base {
     draw() {
 
         var x = clip(this.faders.x.percent / 100 * this.width,[0,this.width]),
-        y = clip((1 - this.faders.y.percent / 100) * this.height,[0,this.height])
+            y = clip((1 - this.faders.y.percent / 100) * this.height,[0,this.height])
 
-        this.ctx.clearRect(0,0,this.width,this.height)
+        this.clear()
 
         this.ctx.fillStyle = this.faders.x.colors.custom
         this.ctx.lineWidth = PXSCALE
@@ -200,6 +200,11 @@ module.exports = class Xy extends _pads_base {
         this.ctx.beginPath()
         this.ctx.arc(x, y, 4 * PXSCALE, Math.PI * 2, false)
         this.ctx.fill()
+
+        this.clearRect = [
+            [x - 10 * PXSCALE,0, 20 * PXSCALE, this.height],
+            [0, y - 10 * PXSCALE, this.width, 20 * PXSCALE]
+        ]
     }
 
 }

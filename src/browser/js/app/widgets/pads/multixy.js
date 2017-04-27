@@ -176,7 +176,7 @@ module.exports = class MultiXy extends _pads_base {
 
     draw() {
 
-        this.ctx.clearRect(0,0,this.width,this.height)
+        this.clear()
 
         this.ctx.textAlign = 'center'
         this.ctx.textBaseline = 'middle'
@@ -207,6 +207,8 @@ module.exports = class MultiXy extends _pads_base {
                 this.ctx.font = PXSCALE * 11 + 'px Droid Sans'
                 this.ctx.fillText(t, x, y)
                 this.ctx.strokeText(t, x, y)
+
+                this.clearRect[i] = [x - this.pointSize * PXSCALE, y - this.pointSize * PXSCALE, this.pointSize * 2 * PXSCALE, this.pointSize * 2 * PXSCALE]
 
         }
 

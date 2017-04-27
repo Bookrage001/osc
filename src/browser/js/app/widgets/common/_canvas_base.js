@@ -12,11 +12,12 @@ module.exports = class _canvas_base extends _widgets_base {
         this.height = undefined
         this.width = undefined
 
+        this.clearRect = []
+
         this.visible = false
 
         this.colors = {}
         this.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
-
 
         this.canvas.on('resize',this.resizeHandleProxy.bind(this))
 
@@ -48,8 +49,10 @@ module.exports = class _canvas_base extends _widgets_base {
             this.canvas[0].setAttribute('width',width * ratio)
             this.canvas[0].setAttribute('height',height * ratio)
 
+            this.clearRect = []
+
             if (ratio != 1) this.ctx.scale(ratio, ratio)
-            
+
         }
 
         if (!this.visible || checkColors) {
@@ -65,6 +68,24 @@ module.exports = class _canvas_base extends _widgets_base {
 
         requestAnimationFrame(this.draw.bind(this))
 
+    }
+
+    clear() {
+
+        if (!this.clearRect.length) {
+            this.ctx.clearRect(0, 0, this.width, this.height)
+            return
+        }
+
+        if (typeof this.clearRect[0] == 'object') {
+            for (i in this.clearRect) {
+                this.ctx.clearRect(...this.clearRect[i])
+            }
+            return
+        }
+
+        this.ctx.clearRect(...this.clearRect)
+        
     }
 
     draw(){

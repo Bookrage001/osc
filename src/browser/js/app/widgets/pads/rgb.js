@@ -205,10 +205,10 @@ module.exports = class Rgb extends _pads_base {
     draw() {
 
         var x = clip(this.faders.s.percent / 100 * this.width,[0,this.width]),
-        y = clip((1 - this.faders.b.percent / 100) * this.height,[0,this.height]),
-        color = this.hsb.b > 70 && this.hsb.s < 30 ? '#555' : 'white'
+            y = clip((1 - this.faders.b.percent / 100) * this.height,[0,this.height]),
+            color = this.hsb.b > 70 && this.hsb.s < 30 ? '#555' : 'white'
 
-        this.ctx.clearRect(0,0,this.width,this.height)
+        this.clear()
 
         this.ctx.fillStyle = color
         this.ctx.strokeStyle = color
@@ -235,6 +235,11 @@ module.exports = class Rgb extends _pads_base {
         this.ctx.arc(x, y, 4 * PXSCALE, Math.PI * 2, false)
         this.ctx.fill()
 
+
+        this.clearRect = [
+            [x - 10 * PXSCALE,0, 20 * PXSCALE, this.height],
+            [0, y - 10 * PXSCALE, this.width, 20 * PXSCALE]
+        ]
     }
 
 }

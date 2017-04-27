@@ -164,7 +164,7 @@ module.exports = class Fader extends _sliders_base {
         o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue))),
         m = Math.round(this.widgetData.horizontal ? this.height / 2 : this.width / 2)
 
-        this.ctx.clearRect(0,0,this.width,this.height)
+        this.clear()
 
         if (this.widgetData.horizontal) {
             if (this.widgetData.compact) {
@@ -174,8 +174,8 @@ module.exports = class Fader extends _sliders_base {
                     this.ctx.globalAlpha = 1
 
                     var x,
-                    min = Math.min(d,o),
-                    max = Math.max(d,o)
+                        min = Math.min(d,o),
+                        max = Math.max(d,o)
 
                     for (var i = 1;i < this.rangeKeys.length - 1;i++) {
                         x = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
@@ -200,7 +200,6 @@ module.exports = class Fader extends _sliders_base {
                 this.ctx.fillStyle = this.colors.knob
                 this.ctx.rect(Math.min(d,this.width-PXSCALE), 0, PXSCALE, this.height)
                 this.ctx.fill()
-
 
             } else {
 
@@ -228,6 +227,9 @@ module.exports = class Fader extends _sliders_base {
                 this.ctx.beginPath()
                 this.ctx.arc(d + this.margin * PXSCALE, m, 4 * PXSCALE, Math.PI * 2, false)
                 this.ctx.fill()
+
+                this.clearRect = [0, this.height / 2 - 10 * PXSCALE, this.width, 20 * PXSCALE]
+
             }
 
 
@@ -295,6 +297,9 @@ module.exports = class Fader extends _sliders_base {
                 this.ctx.beginPath()
                 this.ctx.arc(m, d, 4 * PXSCALE, Math.PI * 2,false)
                 this.ctx.fill()
+
+                this.clearRect = [this.width / 2 - 10 * PXSCALE, 0, 20 * PXSCALE, this.height]
+
             }
         }
 
