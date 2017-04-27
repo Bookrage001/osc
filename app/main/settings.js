@@ -33,13 +33,13 @@ var options = {
     'd':{alias:'debug',type:'boolean',describe:'log received osc messages in the console'},
     'n':{alias:'no-gui',type:'boolean',describe:'disable default gui',
          check: (n,argv)=>{
-             return (!argv.g) ?
+             return (!n || !argv.g) ?
                 true : 'no-gui and gui-only can\'s be enabled simultaneously'
          }
      },
     'g':{alias:'gui-only',type:'string',describe:'app server\'s url. If true, local port (--port) is used',
          check: (g,argv)=>{
-             return (!argv.n) ?
+             return (!g || !argv.n) ?
                 true : 'no-gui and gui-only can\'s be enabled simultaneously'
          }
     },
