@@ -25,15 +25,18 @@ var DisplayKnob = class extends Knob {
     draw(){
         super.draw()
 
-        this.ctx.beginPath()
-        this.ctx.fillStyle = this.colors.raised
-        this.ctx.strokeStyle = this.colors.raised
-        this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 1.5, 0, Math.PI * 2)
-        this.ctx.fill()
-        this.ctx.globalAlpha = 0.3
-        this.ctx.lineWidth = 1.1 * PXSCALE
-        this.ctx.stroke()
-        this.ctx.globalAlpha = 1
+        if (this.widgetData.compact) {
+            this.ctx.beginPath()
+            this.ctx.fillStyle = this.colors.raised
+            this.ctx.strokeStyle = this.colors.raised
+            this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 1.5, 0, Math.PI * 2)
+            this.ctx.fill()
+            this.ctx.globalAlpha = 0.3
+            this.ctx.lineWidth = 1.1 * PXSCALE
+            this.ctx.stroke()
+            this.ctx.globalAlpha = 1
+        }
+
     }
 }
 
@@ -102,6 +105,7 @@ module.exports = class Encoder extends _widgets_base {
             angle:360,
             range:{min:0,max:this.ticks},
             compact:widgetData.compact,
+            origin:this.ticks/2,
             noPip:true,
         }, true)
 
@@ -120,18 +124,15 @@ module.exports = class Encoder extends _widgets_base {
 
             var direction
 
-            if (value < this.previousValue ||
-                ((this.ticks * .75 < value && value < this.ticks) && (0 < this.previousValue && this.previousValue < this.ticks / 4))
-            ) {
+            if (value < this.previousValue)
                 direction = widgetData.back
-            }
-
-            if ((value > this.previousValue) ||
-                ((0 < value && value < this.ticks / 4) && (this.ticks * .75 < this.previousValue && this.previousValue < this.ticks))
-            ) {
+            if (value > this.previousValue)
                 direction = widgetData.forth
-            }
 
+            if ((this.ticks * .75 < value && value < this.ticks) && (0 < this.previousValue && this.previousValue < this.ticks / 4))
+                direction = widgetData.back
+            if ((0 < value && value < this.ticks / 4) && (this.ticks * .75 < this.previousValue && this.previousValue < this.ticks))
+                direction = widgetData.forth
 
 
             if (direction && (Math.round(value) != Math.round(this.previousValue))) this.setValue(direction, {sync:true, send:true, dragged: e.options.dragged, draginit: e.options.draginit})

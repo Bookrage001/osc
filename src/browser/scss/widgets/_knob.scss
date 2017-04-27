@@ -55,9 +55,13 @@
     }
 }
 
+.encoder-container {
+
+    --color-gauge: transparent;
+
+}
 
 .encoder {
-    --color-gauge: transparent;
 
     height:100%;
     width: 100%;
