@@ -13,7 +13,6 @@
 - bug fixes
   - launcher: link to the app's address is now clickable
   - sidepanel: layout glitches with iOS
-  - push: broken osc sending method 
 - misc
   - some little style fixes
 
