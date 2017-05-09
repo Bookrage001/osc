@@ -216,7 +216,7 @@ class MidiRouter(object):
         channel = int(min(max(args[0],1), 16))
 
         data1 = int(min(max(args[1],0), 127))
-        data2 = int(min(max(args[2],0), 127))
+        data2 = int(min(max(args[2],0), 127)) if len(args) >= 3 else 0
 
         if 'note' in event:
             if data2 == 0:

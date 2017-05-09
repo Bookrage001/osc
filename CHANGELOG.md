@@ -13,6 +13,7 @@
 - bug fixes
   - launcher: link to the app's address is now clickable
   - sidepanel: layout glitches with iOS
+  - midi: `program` now works with the correct number of arguments
 - misc
   - some little style fixes
 
