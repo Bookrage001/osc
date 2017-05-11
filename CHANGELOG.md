@@ -3,7 +3,6 @@
 ## 0.18.0
 
 - engine
-  - electron v1.7.0 (chrome 58)
   - socket.io v2
 - client
   - scripts are now transpiled to ES5 javascript code, thus increasing compatibility with some browser (iOS9's chrome, firefox, etc)
