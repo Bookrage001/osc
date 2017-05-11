@@ -159,7 +159,7 @@ module.exports = class Fader extends _sliders_base {
 
     resizeHandle(){
             super.resizeHandle(...arguments)
-            
+
             if (this.widgetData.compact) {
                 if (this.widgetData.horizontal) {
                     this.canvas[0].setAttribute('height', 1)
@@ -243,7 +243,7 @@ module.exports = class Fader extends _sliders_base {
                 this.ctx.arc(d + this.margin * PXSCALE, m, 4 * PXSCALE, Math.PI * 2, false)
                 this.ctx.fill()
 
-                this.clearRect = [0, this.height / 2 - 10 * PXSCALE, this.width, 20 * PXSCALE]
+                this.clearRect = [0, this.height / 2 - 11 * PXSCALE, this.width, 22 * PXSCALE]
 
             }
 
@@ -313,7 +313,7 @@ module.exports = class Fader extends _sliders_base {
                 this.ctx.arc(m, d, 4 * PXSCALE, Math.PI * 2,false)
                 this.ctx.fill()
 
-                this.clearRect = [this.width / 2 - 10 * PXSCALE, 0, 20 * PXSCALE, this.height]
+                this.clearRect = [this.width / 2 - 11 * PXSCALE, 0, 22 * PXSCALE, this.height]
 
             }
         }
