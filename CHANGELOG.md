@@ -1,6 +1,15 @@
 # Changelog
 
+## 0.18.0
 
+- engine
+  - electron v1.7.0 (chrome 58)
+  - socket.io v2
+- client
+  - scripts are now transpiled to ES5 javascript code, thus increasing compatibility with some browser (iOS9's chrome, firefox, etc)
+  - scripts size reduced from 2.4M to 1M thanks to minification
+- bug fixes
+  - elements duplications in sidepanel when loading another session
 
 ## 0.17.6
 

@@ -12,12 +12,12 @@
     "vmodule":"1.0.1",
     "electron-localshortcut": "1.1.1",
     "osc": "2.2.0",
-    "yargs": "7.0.2",
-    "socket.io": "1.7.3",
+    "yargs": "8.0.1",
+    "socket.io": "2.0.1",
     "socketio-wildcard": "0.4.0",
     "express": "4.15.2",
     "jquery-slim": "3.0.0",
-    "chokidar": "1.6.1",
+    "chokidar": "1.7.0",
     "python-shell":"0.4.0"
   },
   "scripts": {

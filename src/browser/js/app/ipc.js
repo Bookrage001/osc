@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')
+var socket = require('socket.io-client/dist/socket.io.slim.js')
 
 var Ipc = function(){
 

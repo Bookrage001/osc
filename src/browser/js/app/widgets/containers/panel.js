@@ -1,5 +1,5 @@
 var _widgets_base = require('../common/_widgets_base'),
-    autolayout = require('autolayout'),
+    autolayout = require('autolayout/dist/autolayout.min.js'),
     editObject = function(){editObject = require('../../editor/edit-objects').editObject; editObject(...arguments)}
 
 
