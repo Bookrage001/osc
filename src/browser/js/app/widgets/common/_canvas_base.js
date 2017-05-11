@@ -78,14 +78,14 @@ module.exports = class _canvas_base extends _widgets_base {
         }
 
         if (typeof this.clearRect[0] == 'object') {
-            for (i in this.clearRect) {
+            for (let i in this.clearRect) {
                 this.ctx.clearRect(...this.clearRect[i])
             }
             return
         }
 
         this.ctx.clearRect(...this.clearRect)
-        
+
     }
 
     draw(){

@@ -21,7 +21,7 @@ var WidgetManager = function(){
             // without sending any extra osc message
             if (widgetsById.length>1) {
                 var v = widget.abstract.getValue()
-                for (i in widgetsById) {
+                for (let i in widgetsById) {
                     if (!widgetsById[i].widget.is(widget) && widgetsById[i].setValue) {
                         widgetsById[i].setValue(v,{send:false,sync:false})
                     }
@@ -32,7 +32,7 @@ var WidgetManager = function(){
             // Updated widgets will send osc messages normally
             if (widgetsByLinkId.length>1) {
                 var v = widget.abstract.getValue()
-                for (i in widgetsByLinkId) {
+                for (let i in widgetsByLinkId) {
                     if (!widgetsByLinkId[i].widget.is(widget) && widgetsByLinkId[i].setValue) {
                         widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
                     }
@@ -129,9 +129,9 @@ WidgetManager.prototype.removeWidget = function(hash) {
 
 WidgetManager.prototype.purge = function() {
 
-    for (route of [this.addressRoute, this.idRoute, this.linkIdRoute]) {
-        for (key in route) {
-            for (i=route[key].length-1; i>=0; i--) {
+    for (let route of [this.addressRoute, this.idRoute, this.linkIdRoute]) {
+        for (let key in route) {
+            for (let i=route[key].length-1; i>=0; i--) {
                 let hash = route[key][i]
                 if (!this.widgets[hash]) {
                     route[key].splice(i, 1)

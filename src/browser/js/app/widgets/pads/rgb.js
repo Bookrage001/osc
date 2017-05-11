@@ -164,7 +164,7 @@ module.exports = class Rgb extends _pads_base {
 
         if (!v || !v.length || v.length!=3) return
 
-        for (i in [0,1,2]) {
+        for (let i in [0,1,2]) {
             v[i] = clip(v[i],[0,255])
         }
 
@@ -194,7 +194,7 @@ module.exports = class Rgb extends _pads_base {
             this.faders.h.setValue(this.hsb.h, {sync: false, send:false, dragged:false})
         }
 
-        for (i in this.inputs) [
+        for (let i in this.inputs) [
             this.inputs[i].val(this.value[i].toFixed(this.widgetData.precision))
         ]
 

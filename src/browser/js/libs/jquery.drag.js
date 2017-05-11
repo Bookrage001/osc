@@ -45,7 +45,6 @@
                     // ignore mouse event when fired by a simulated touch event
                     if ((e.originalEvent.sourceCapabilities && e.originalEvent.sourceCapabilities.firesTouchEvents) || e.button == 2) return
 
-                    isPointerDown = true
                     target = $this
                     previousEvent = e
 
@@ -93,7 +92,7 @@
 
 
                     target.trigger('dragend',[e,e.originalEvent.traversing])
-                    isPointerDown = false
+
                     $document.off(events.mouse.move,mouseMoveHandler)
                     $document.off(events.mouse.stop,mouseStopHandler)
                     $document.off(events.mouse.out,mouseOutHandler)
@@ -129,14 +128,14 @@
 
                     var oE = e.originalEvent
 
-                    for (i in oE.changedTouches) {
+                    for (let i in oE.changedTouches) {
                         if (isNaN(i) || !oE.changedTouches[i]) continue
 
                         var touch = oE.changedTouches[i],
                             id = touch.identifier,
                             emit = true
 
-                        for (j in targets) {
+                        for (let j in targets) {
                             if (targets[j][0].isSameNode(touch.target)) {
                                 emit = false
                                 break
@@ -172,11 +171,11 @@
 
                     var oE = e.originalEvent
 
-                    for (i in oE.changedTouches) {
+                    for (let i in oE.changedTouches) {
                         if (isNaN(i) || !oE.changedTouches[i]) continue
 
                         var nFingers = 0
-                        for (j in oE.touches) {
+                        for (let j in oE.touches) {
                             if (oE.touches[j].target && oE.touches[j].target.isSameNode(oE.changedTouches[i].target)) {
                                 nFingers += 1
                             }
@@ -228,7 +227,7 @@
 
                     var oE = e.originalEvent
 
-                    for (i in oE.changedTouches) {
+                    for (let i in oE.changedTouches) {
 
                         if (isNaN(i) || !oE.changedTouches[i]) continue
 

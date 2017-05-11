@@ -27,7 +27,7 @@ module.exports = {
 
     stateGet: function (){
         var data = []
-        for (i in widgetManager.widgets) {
+        for (let i in widgetManager.widgets) {
             var widget = widgetManager.widgets[i]
             if (widget.setValue && widget.getValue) {
                 var v = widget.getValue()
@@ -62,7 +62,7 @@ module.exports = {
 
     stateSet: function(preset,send){
 
-        for (i in preset) {
+        for (let i in preset) {
             var data = preset[i],
                 widgets = widgetManager.getWidgetById(data[0])
             if (widgets.length) {
@@ -117,14 +117,14 @@ module.exports = {
     },
 
     editorEnable: function(){
-        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         $('.editor-root').attr('data-tab','#container').removeClass('disabled')
         $('.enable-editor').addClass('on')
         $('.disable-editor').removeClass('on')
         $('body').addClass('editor-enabled')
                  .toggleClass('no-grid', GRIDWIDTH==1)
 
-        EDITING = true
+        window.EDITING = true
 
 
         var f = $('<div class="form" id="grid-width-input"></div>'),

@@ -24,7 +24,7 @@ var menu = function(e,actions,parent){
         m.css({top:e.pageY+'px',left:e.pageX+'px'})
     }
 
-    for (label in actions) {
+    for (let label in actions) {
 
         if (typeof actions[label] == 'object') {
 

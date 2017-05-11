@@ -50,7 +50,7 @@ module.exports = class _widgets_base {
 
         if (typeof obj === 'object') {
             copy = Array.isArray(obj) ? [] : {}
-            for (key in obj) {
+            for (let key in obj) {
                 copy[key] = _widgets_base.deepCopy(obj[key])
             }
         }

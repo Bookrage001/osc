@@ -171,13 +171,13 @@ var incrementWidget = function(data, root){
     }
 
     if (data.widgets && data.widgets.length) {
-        for (i in data.widgets) {
+        for (let i in data.widgets) {
             data.widgets[i] = incrementWidget(data.widgets[i], false)
         }
     }
 
     if (data.tabs && data.tabs.length) {
-        for (i in data.tabs) {
+        for (let i in data.tabs) {
             data.tabs[i] = incrementWidget(data.tabs[i], false)
         }
     }

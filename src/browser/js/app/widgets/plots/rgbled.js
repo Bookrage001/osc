@@ -75,7 +75,7 @@ module.exports = class Led extends _widgets_base {
 
         if (!v || !v.length || v.length<3) return
 
-        for (i in [0,1,2]) {
+        for (let i in [0,1,2]) {
             v[i] = parseInt(clip(v[i],[0,255]))
         }
 

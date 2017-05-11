@@ -55,7 +55,7 @@ module.exports.categories = {
 
 module.exports.widgetOptions = function(){
     var r = {}
-    for (i in widgets) {
+    for (let i in widgets) {
         r[i] = widgets[i].options()
     }
     return r
@@ -63,7 +63,7 @@ module.exports.widgetOptions = function(){
 
 module.exports.createWidget =  function(){
     var r = {}
-    for (i in widgets) {
+    for (let i in widgets) {
         let x = i,
             f = function(){
             return new widgets[x](...arguments)

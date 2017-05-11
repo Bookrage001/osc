@@ -12,7 +12,7 @@ var callbacks = module.exports = {
     },
 
     connected:function(){
-        LOADING.close()
+        window.LOADING.close()
     },
 
     stateLoad: function(data){
@@ -34,7 +34,7 @@ var callbacks = module.exports = {
             list = lobby.find('.list'),
             footer = lobby.find('.footer')
 
-        for (i in data) {
+        for (let i in data) {
 
             var max = 50
             var path = data[i],
@@ -130,7 +130,7 @@ var callbacks = module.exports = {
             css = data.join('')
         style.innerHTML = css
         document.body.appendChild(style)
-        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         if (css.indexOf('--pixel-scale') != -1) {
             PXSCALE_RESET()
         }
@@ -158,6 +158,6 @@ var bindCallback = function(i) {
     })
 }
 
-for (i in callbacks) {
+for (let i in callbacks) {
     bindCallback(i)
 }

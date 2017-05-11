@@ -90,7 +90,7 @@ var sidepanel = function(data){
 
     var  html = $('<ul id="options"></ul>')
 
-    for (i in data) {
+    for (let i in data) {
         var itemData = data[i]
 
         var item = $('<li></li>'),
@@ -100,7 +100,7 @@ var sidepanel = function(data){
         if (itemData.title) $('<div class="title">'+itemData.title+'</div>').prependTo(wrapper)
         if (itemData.class) inner.attr('class',itemData.class)
 
-        for (j in itemData.actions) {
+        for (let j in itemData.actions) {
             var actionData = itemData.actions[j]
             var el = $('<a class="btn">'+actionData.title+'</a>').appendTo(wrapper)
             if (actionData.action) bindAction(el, actionData.action)

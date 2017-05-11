@@ -71,7 +71,7 @@ Osc.prototype.receive = function(data){
 
     let widget = widgetManager.getWidgetByAddress(addressref)
 
-    for (i in widget) {
+    for (let i in widget) {
         // if the message target is provided (when message comes from another client connected to the same server)
         // then we only update the widgets that have the same target
         // compare arrays using > and < operators (both false = equality)

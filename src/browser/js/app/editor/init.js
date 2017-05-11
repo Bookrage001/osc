@@ -103,9 +103,9 @@ var init = function(){
             }
 
             actions['<i class="fa fa-plus"></i> Add widget'] = {}
-            for (category in widgetCategories) {
+            for (let category in widgetCategories) {
                 actions['<i class="fa fa-plus"></i> Add widget'][category] = {}
-                for (t in widgetCategories[category]) {
+                for (let t in widgetCategories[category]) {
                     let wtype = widgetCategories[category][t]
                     actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] =  function(){
                             data.widgets = data.widgets || []

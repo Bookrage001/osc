@@ -48,8 +48,8 @@ module.exports = class Plot extends _plots_base {
 
         } else if (typeof widgetData.points=='object') {
 
-            for (i in widgetData.points) {
-                for (j in widgetData.points[i]) {
+            for (let i in widgetData.points) {
+                for (let j in widgetData.points[i]) {
                     if (typeof widgetData.points[i][j] == 'string') {
                         this.linkedWidgets.push(widgetData.points[i][j])
                     }
@@ -71,7 +71,7 @@ module.exports = class Plot extends _plots_base {
 
         } else if (typeof points=='object') {
 
-            for (i in points) {
+            for (let i in points) {
 
                 data[i] = []
 

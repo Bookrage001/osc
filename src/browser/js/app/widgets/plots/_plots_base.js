@@ -125,7 +125,7 @@ module.exports = class _plots_base extends _canvas_base {
 
         var first = true
         var point = []
-        for (i in this.data) {
+        for (let i in this.data) {
 
             if (this.data[i][1]>this.rangeY.max || this.data[i][1]<this.rangeY.min ||
                 this.data[i][0]>this.rangeX.max || this.data[i][0]<this.rangeX.min) continue

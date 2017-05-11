@@ -34,7 +34,7 @@ var editObject = function(container, data, refresh){
 
     $(`<div class="separator"><span>${isWidget?'Widget':'Tab'}</span></div>`).appendTo(form)
 
-    for (i in params) {
+    for (var i in params) {
 
         if (i.indexOf('_')==0) {
             $(`<div class="separator"><span>${params[i]}</span></div>`).appendTo(form)
@@ -56,10 +56,10 @@ var editObject = function(container, data, refresh){
 
                 input = $(`<select class="input" data-type="${type}" title="${i}"/>`)
 
-                for (t in widgetOptions) {
+                for (let t in widgetOptions) {
                     input.append(`<option ${t==value?'selected=':''} value="${t}">${t}</option>`)
                 }
-                select = $('<div class="select-wrapper"></div>').append(input)
+                let select = $('<div class="select-wrapper"></div>').append(input)
                 select.appendTo(wrapper)
 
             } else if (typeof params[i]=='boolean') {
@@ -130,7 +130,7 @@ var editObject = function(container, data, refresh){
             }
         }
 
-        for (i in data.widgets) {
+        for (var i in data.widgets) {
 
 
             var item = $(`<li data-index="${i}" class="sortables" data-id="${data.widgets[i].id}"><a class="btn small">${data.widgets[i].id||data.widgets[i].label}</a></li>`)
@@ -187,7 +187,7 @@ var editObject = function(container, data, refresh){
             }
         }
 
-        for (i in data.tabs) {
+        for (var i in data.tabs) {
             var item = $(`<li data-index="${i}" class="sortables"><a class="btn small">${data.tabs[i].label}</a></li>`)
                         .appendTo(list)
                         .click(editItem(i))
@@ -293,7 +293,7 @@ var editSession = function(container,data,refresh){
         }
     }
 
-    for (i in data) {
+    for (var i in data) {
         var item = $(`<li data-index="${i}" class="sortables"><a class="btn small">${data[i].label}</a></li>`)
                     .appendTo(list)
                     .click(editItem(i))

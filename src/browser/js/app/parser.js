@@ -32,7 +32,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
     if (main) {
         // Reset Globals
         SESSION = data
-        for (i in TABS) {
+        for (let i in TABS) {
             if (i!='#container') {
                 TABS[i].parent.remove()
                 TABS[i].tab.remove()
@@ -56,7 +56,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
         content = $(document.createElement('div')).addClass('content')
 
 
-    for (i in data) {
+    for (let i in data) {
         var tabData = data[i]
 
 
@@ -101,7 +101,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
 
 module.exports.widgets = function(data,parent) {
 
-    for (i in data) {
+    for (let i in data) {
         var widgetData = data[i]
 
         // Set default widget type
@@ -111,7 +111,7 @@ module.exports.widgets = function(data,parent) {
         var tmpWidgetOptions = JSON.parse(JSON.stringify(widgetOptions))
 
         // Set widget's undefined options to default
-        for (i in tmpWidgetOptions[widgetData.type]) {
+        for (let i in tmpWidgetOptions[widgetData.type]) {
             if (i.indexOf('_')!=0 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
         }
 
@@ -131,7 +131,7 @@ module.exports.widgets = function(data,parent) {
         widgetData.address = widgetData.address=='auto'?'/' + widgetData.id:widgetData.address
 
         // Delete unrecognized options
-        for (i in widgetData) {
+        for (let i in widgetData) {
             if (widgetOptions[widgetData.type][i]===undefined && i!='type') {delete widgetData[i]}
         }
 
@@ -155,7 +155,7 @@ module.exports.widgets = function(data,parent) {
         }
 
         // dimensions / coordinates can't be < 0
-        for (t in {width:'',height:'',top:'',left:''}) {
+        for (let t in {width:'',height:'',top:'',left:''}) {
             widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
         }
 

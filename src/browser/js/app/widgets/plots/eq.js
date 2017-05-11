@@ -48,9 +48,9 @@ module.exports = class Eq extends _plots_base {
 
         widgetData.resolution = clip(widgetData.resolution,[64,1024])
 
-        for (i in widgetData.filters) {
+        for (let i in widgetData.filters) {
 
-            for (j in widgetData.filters[i]) {
+            for (let j in widgetData.filters[i]) {
                 if (typeof widgetData.filters[i][j]=='string' && !(j=='type' && widgetData.filters[i][j].match(/peak|notch|highpass|highshelf|lowpass|lowshelf/))) {
                     this.linkedWidgets.push(widgetData.filters[i][j])
                 }
@@ -66,12 +66,12 @@ module.exports = class Eq extends _plots_base {
         eqResponse = []
 
 
-        for (i in this.widgetData.filters) {
+        for (let i in this.widgetData.filters) {
             var filter = this.widgetData.filters[i]
 
             filters[i] = {}
 
-            for (j in filter) {
+            for (let j in filter) {
                 let widget = widgetManager.getWidgetById(filter[j])
 
                 if (typeof filter[j]=='string' && widget.length) {
@@ -88,7 +88,7 @@ module.exports = class Eq extends _plots_base {
 
         }
 
-        for (i in filters) {
+        for (let i in filters) {
 
             var filterResponse
 

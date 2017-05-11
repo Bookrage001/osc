@@ -45,7 +45,7 @@ var callbacks = {
         }
     },
     '/TABS': function(args) {
-        for (i in args) {
+        for (let i in args) {
             $(`[data-id="${args[i]}"]`).trigger('fake-click')
         }
     }

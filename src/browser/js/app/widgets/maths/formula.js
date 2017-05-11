@@ -79,7 +79,7 @@ module.exports = class Formula extends _widgets_base {
         var variables = {},
             id
 
-        for (id of this.linkedWidgets) {
+        for (let id of this.linkedWidgets) {
             if (id !== undefined) {
                 variables['_'+id] = widgetManager.getWidgetById(id)[0].getValue()
             }
