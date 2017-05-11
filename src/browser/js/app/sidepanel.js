@@ -114,7 +114,7 @@ var sidepanel = function(data){
 
     return html
 
-}(data)
+}
 
 var toggle = function(){
     var t = $(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
@@ -144,10 +144,11 @@ var toggle = function(){
 
 module.exports = {
     init:function(){
+        $('#sidepanel').empty()
         $('#sidepanel').append(`
             <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
         `)
-        $('#sidepanel').append(sidepanel)
+        $('#sidepanel').append(sidepanel(data))
         $('#sidepanel').append('<div id="editor"></div>')
         toggle()
     },
