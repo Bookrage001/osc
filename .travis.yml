@@ -8,8 +8,6 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq wine
 install: npm install
-before_deploy:
-    - export VERSION=0.18.0
 deploy:
   provider: releases
   api-key:
@@ -22,6 +20,7 @@ deploy:
   on:
     tags: true
 before_deploy:
+  - export VERSION=0.18.0
   - npm run deb32
   - npm run deb64
   - npm run debarm
