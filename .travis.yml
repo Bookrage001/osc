@@ -8,35 +8,35 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq wine
 install: npm install
+before_deploy:
+    - export VERSION=0.18.0
 deploy:
   provider: releases
   api-key:
     secure: Nb4qJlmLEE2/ETHEYe8V8eGI08d4GuE5kdQef5ZnB4PrstppLlAjShv5E4DNTsyalMOMDjpw9v+9aQNzxGiGv+lCVVL5oFvqvDpcYusRuF9Qua7oJtFh+5FvjgC1DDjauk5Z7WQWMvzWwfNmqbY/lxPbA4zVy4kdYkGV/8WnzA9AL5fU0ZU8gDsFjcr9Pz81XDsDXtPH/+iMuclMsEl8V/ZuswWlZaFn1Jnb1tcGC5WUCsuNQo/+gGfSK6Qcf9AKsIrOjdzi55s4jqH1N7P/kKi4a2tWUTwmSLrOxdUmSYjXVOxMu0cAEnHSeYREv/5o6J0MbfQrDoxh2y5roPZzqE+FAuFLl+b/+bYlW0mrfYfSuP/VX9LYh5JSvrhN7rZuUfMqS1iM7c9Dx8sZadMnvYEAAJhH8IV/9SkuRa/8QoIpXf7YB9v1jERxs4gk5CPT5Aml6nY/CvMWiEQ/wJhC7iZd/QRHshgfNLfAGlbbNU2KP6ZsVAGD601fyST/8neoQqLqS9mteOr1QME3c5EFw+XaauIQNYZSl+wJr8Y1YMcKY+fbJqqR0TXkbsoxFgV9PRf/4ZCjIJYtmelQVlM7j20XavOHM/Ko6/y7a3pohFz+ql3YR9jGF5XW2foXb4+e6DwTGL91/f75hYcsvXxoKbeaBjWpaSK8532UTeVkhPM=
+  file_glob: true
   file:
-    - "./dist/open-stage-control-i386.deb"
-    - "./dist/open-stage-control-amd64.deb"
-    - "./dist/open-stage-control-armv7l.deb"
-    - "./dist/open-stage-control-linux-ia32.zip"
-    - "./dist/open-stage-control-linux-x64.zip"
-    - "./dist/open-stage-control-linux-armv7l.zip"
-    - "./dist/open-stage-control-osx.zip"
-    - "./dist/open-stage-control-win32.zip"
-    - "./dist/open-stage-control-win64.zip"
+    - "./dist/*.deb"
+    - "./dist/*.zip"
   skip_cleanup: true
   on:
     tags: true
 before_deploy:
-  - cd dist
-  - zip -q -r --symlinks open-stage-control-osx open-stage-control-darwin-x64/open-stage-control.app
-  - zip -q -r open-stage-control-win32 open-stage-control-win32-ia32
-  - zip -q -r open-stage-control-win64 open-stage-control-win32-x64
-  - zip -q -r open-stage-control-linux-ia32 open-stage-control-linux-ia32
-  - zip -q -r open-stage-control-linux-x64 open-stage-control-linux-x64
-  - zip -q -r open-stage-control-linux-armv7l open-stage-control-linux-armv7l
-  - cd ..
   - npm run deb32
   - npm run deb64
   - npm run debarm
-  - mv dist/open-stage-control-linux-ia32/*.deb dist/open-stage-control-i386.deb
-  - mv dist/open-stage-control-linux-x64/*.deb dist/open-stage-control-amd64.deb
-  - mv dist/open-stage-control-linux-armv7l/*.deb dist/open-stage-control-armv7l.deb
+  - mv dist/open-stage-control-linux-ia32/*.deb dist/open-stage-control-${VERSION}-i386.deb
+  - mv dist/open-stage-control-linux-x64/*.deb dist/open-stage-control-${VERSION}-amd64.deb
+  - mv dist/open-stage-control-linux-armv7l/*.deb dist/open-stage-control-${VERSION}-armv7l.deb
+  - cd dist
+  - mv open-stage-control-win32-ia32   open-stage-control-${VERSION}-win32-ia32
+  - mv open-stage-control-win32-x64    open-stage-control-${VERSION}-win32-x64
+  - mv open-stage-control-linux-ia32   open-stage-control-${VERSION}-linux-ia32
+  - mv open-stage-control-linux-x64    open-stage-control-${VERSION}-linux-x64
+  - mv open-stage-control-linux-armv7l open-stage-control-${VERSION}-linux-armv7l
+  - zip -q -r --symlinks open-stage-control-${VERSION}-osx open-stage-control-darwin-x64/open-stage-control.app
+  - zip -q -r open-stage-control-${VERSION}-win32-ia32     open-stage-control-${VERSION}-win32-ia32
+  - zip -q -r open-stage-control-${VERSION}-win32-x64      open-stage-control-${VERSION}-win32-x64
+  - zip -q -r open-stage-control-${VERSION}-linux-ia32     open-stage-control-${VERSION}-linux-ia32
+  - zip -q -r open-stage-control-${VERSION}-linux-x64      open-stage-control-${VERSION}-linux-x64
+  - zip -q -r open-stage-control-${VERSION}-linux-armv7l   open-stage-control-${VERSION}-linux-armv7l
