@@ -6,8 +6,9 @@ node_js:
 before_install:
   - sudo dpkg --add-architecture i386
   - sudo apt-get update -qq
-  - sudo apt-get install -qq wine p7zip-full
+  - sudo apt-get install -qq wine
 install: npm install
+before_deploy:
 deploy:
   provider: releases
   api-key:
@@ -24,18 +25,19 @@ before_deploy:
   - npm run deb32
   - npm run deb64
   - npm run debarm
-  - mv dist/open-stage-control-linux-ia32/*.deb dist/open-stage-control-${VERSION}-i386.deb
-  - mv dist/open-stage-control-linux-x64/*.deb dist/open-stage-control-${VERSION}-amd64.deb
-  - mv dist/open-stage-control-linux-armv7l/*.deb dist/open-stage-control-${VERSION}-armv7l.deb
+  - mv dist/open-stage-control-linux-ia32/*.deb dist/packages/open-stage-control-${VERSION}-i386.deb
+  - mv dist/open-stage-control-linux-x64/*.deb dist/packages/open-stage-control-${VERSION}-amd64.deb
+  - mv dist/open-stage-control-linux-armv7l/*.deb dist/packages/open-stage-control-${VERSION}-armv7l.deb
   - cd dist
+  - mkdir packages
   - mv open-stage-control-win32-ia32   open-stage-control-${VERSION}-win32-ia32
   - mv open-stage-control-win32-x64    open-stage-control-${VERSION}-win32-x64
   - mv open-stage-control-linux-ia32   open-stage-control-${VERSION}-linux-ia32
   - mv open-stage-control-linux-x64    open-stage-control-${VERSION}-linux-x64
   - mv open-stage-control-linux-armv7l open-stage-control-${VERSION}-linux-armv7l
-  - 7z a --symlinks open-stage-control-${VERSION}-osx.zip open-stage-control-darwin-x64/open-stage-control.app
-  - 7z a open-stage-control-${VERSION}-win32-ia32.zip     open-stage-control-${VERSION}-win32-ia32
-  - 7z a open-stage-control-${VERSION}-win32-x64.zip      open-stage-control-${VERSION}-win32-x64
-  - 7z a open-stage-control-${VERSION}-linux-ia32.zip     open-stage-control-${VERSION}-linux-ia32
-  - 7z a open-stage-control-${VERSION}-linux-x64.zip      open-stage-control-${VERSION}-linux-x64
-  - 7z a open-stage-control-${VERSION}-linux-armv7l.zip   open-stage-control-${VERSION}-linux-armv7l
+  - zip -q -r --symlinks packages/open-stage-control-${VERSION}-osx open-stage-control-darwin-x64/open-stage-control.app
+  - zip -q -r packages/open-stage-control-${VERSION}-win32-ia32     open-stage-control-${VERSION}-win32-ia32
+  - zip -q -r packages/open-stage-control-${VERSION}-win32-x64      open-stage-control-${VERSION}-win32-x64
+  - zip -q -r packages/open-stage-control-${VERSION}-linux-ia32     open-stage-control-${VERSION}-linux-ia32
+  - zip -q -r packages/open-stage-control-${VERSION}-linux-x64      open-stage-control-${VERSION}-linux-x64
+  - zip -q -r packages/open-stage-control-${VERSION}-linux-armv7l   open-stage-control-${VERSION}-linux-armv7l
