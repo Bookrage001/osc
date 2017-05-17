@@ -19,7 +19,7 @@ deploy:
   on:
     tags: true
 before_deploy:
-  - export VERSION=0.17.7
+  - export VERSION=$(cat package.json | grep version | sed -e 's/"$//g' | sed -e 's/.*"//g')
   - npm run build
   - npm run deb32
   - npm run deb64
@@ -40,3 +40,4 @@ before_deploy:
   - zip -q -r packages/open-stage-control-${VERSION}-linux-ia32     open-stage-control-${VERSION}-linux-ia32
   - zip -q -r packages/open-stage-control-${VERSION}-linux-x64      open-stage-control-${VERSION}-linux-x64
   - zip -q -r packages/open-stage-control-${VERSION}-linux-armv7l   open-stage-control-${VERSION}-linux-armv7l
+  - ls packages
