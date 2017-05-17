@@ -19,7 +19,7 @@ deploy:
   on:
     tags: true
 before_deploy:
-  - export VERSION=0.18.0
+  - export VERSION=0.17.7
   - npm run build
   - npm run deb32
   - npm run deb64
