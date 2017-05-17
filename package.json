@@ -29,7 +29,7 @@
     "build-css": "node-sass --include-path src/browser/scss src/browser/scss/style.scss app/browser/styles.css --output-style compressed",
     "build-js": "node scripts/build-js.js > app/browser/scripts.js",
     "deploy-docs": "cd resources && mkdocs gh-deploy --clean && rm -rf site",
-    "test": "npm run build"
+    "test": "npm run build-js && npm run build-css"
   },
   "engines": {
     "node": "6"
