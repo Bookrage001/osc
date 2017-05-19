@@ -59,7 +59,7 @@ var init = function(){
 
         if (type=='widget') actions['<i class="fa fa-cut"></i> Cut'] = function(){
             CLIPBOARD=JSON.parse(JSON.stringify(data))
-            var parentContainer = container.parents('.widget, .tab, #container').first()
+            var parentContainer = container.parents('.widget, .tab, #container').first(),
                 parentData = getObjectData(parentContainer)
 
             parentData.widgets.splice(container.index(),1)
