@@ -143,27 +143,49 @@ module.exports =  {
 
     },
 
-    syncOsc: function(data, clientId) {
+    syncOsc: function(shortdata, clientId) {
 
-        if (!(widgetHashTable[clientId] && widgetHashTable[clientId][data.h])) return
+        if (!(widgetHashTable[clientId] && widgetHashTable[clientId][shortdata.h])) return
 
-        var value = data.v,
-            data = widgetHashTable[clientId][data.h]
+        var value = shortdata.v,
+            data = widgetHashTable[clientId][shortdata.h]
 
         data.args =  data.preArgs.concat(value)
+
+        var cloned
+        for (var k in shortdata) {
+            if (!cloned) {
+                data = JSON.parse(JSON.stringify(data))
+                cloned = true
+            }
+            if (data[k]) {
+                data[k] = shortdata[k]
+            }
+        }
 
         clients[clientId].broadcast.emit('receiveOsc', data)
 
     },
 
-    sendOsc: function(data, clientId) {
+    sendOsc: function(shortdata, clientId) {
 
-            if (!(widgetHashTable[clientId] && widgetHashTable[clientId][data.h])) return
+            if (!(widgetHashTable[clientId] && widgetHashTable[clientId][shortdata.h])) return
 
-            var value = data.v,
-                data = widgetHashTable[clientId][data.h]
+            var value = shortdata.v,
+                data = widgetHashTable[clientId][shortdata.h]
 
             data.args =  data.preArgs.concat(value)
+
+            var cloned
+            for (var k in shortdata) {
+                if (!cloned) {
+                    data = JSON.parse(JSON.stringify(data))
+                    cloned = true
+                }
+                if (data[k]) {
+                    data[k] = shortdata[k]
+                }
+            }
 
             clients[clientId].broadcast.emit('receiveOsc', data)
 
