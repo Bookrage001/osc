@@ -165,14 +165,12 @@ module.exports = {
 
 	    var message = []
 
+        if (!Array.isArray(args)) args = [args]
 	    if (typeof args=='object' && args!==null) {
-	        for (i in args) {
+	        for (var i in args) {
 	            var arg = parseArg(args[i],precision)
 				if (arg!=null) message.push(arg)
 	        }
-	    } else if (args!==null){
-			var arg = parseArg(args[i],precision)
-			if (arg!=null) message.push(arg)
 	    }
 
 		var data = oscOutFilter({address:address, args: message, host: host, port: port})
