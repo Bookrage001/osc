@@ -3,7 +3,8 @@
 ## 0.17.8
 
 - bug fixes
-  - regression breaking the state export button 
+  - regression breaking widgets' `split` option (0.17.6)
+  - regression breaking the state export button (0.17.7)
 
 ## 0.17.7
 

@@ -183,7 +183,7 @@ module.exports =  {
                     if (data.split) {
 
                         for (var j in data.split) {
-                            osc.send(host,port,data.split[j],data.args,data.precision)
+                            osc.send(host,port,data.split[j],data.args[j],data.precision)
                         }
 
                     } else {
