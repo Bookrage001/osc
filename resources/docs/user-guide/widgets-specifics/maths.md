@@ -24,6 +24,13 @@ Formula evaluates mathematical expressions over other widgets' values each one o
     - example: `${fader_1} * 2 + ${fader_2}`
 - **important note**: contrary to what is stated in *mathjs*' documentation, **matrix indexes are zero-based** here
 
+#### `condition`
+- type: `string`
+- default: `''`
+- usage:
+    - a [mathjs](http://mathjs.org/docs/expressions/syntax.html) comparison expression that bypasses widget's osc sending when returning`false`
+    - example: `${fader_1} > 0.5`
+
 #### `split`
 - type: `object`
 - default: `[]`

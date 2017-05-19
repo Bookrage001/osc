@@ -5,6 +5,8 @@
 - bug fixes
   - regression breaking widgets' `split` option (0.17.6)
   - regression breaking the state export button (0.17.7)
+- widgets
+  - maths: add `condition` option to [`formula`]http://osc.ammd.net/user-guide/widgets-specifics/maths/#formula)
 
 ## 0.17.7
 
