@@ -17,7 +17,7 @@ module.exports = {
     },
 
     stateSave: function() {
-        state = JSON.stringify(module.exports.stateGet(),null,'    ')
+        var state = JSON.stringify(module.exports.stateGet(),null,'    ')
         var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
         var blob = new Blob([state],{type : 'application/x-javascript'})
         down.attr('href', window.URL.createObjectURL(blob))

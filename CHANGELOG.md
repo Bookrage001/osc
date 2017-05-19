@@ -1,6 +1,11 @@
 # Changelog
 
-## 0.18.0
+## 0.17.8
+
+- bug fixes
+  - regression breaking the state export button 
+
+## 0.17.7
 
 - engine
   - socket.io v2
