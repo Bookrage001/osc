@@ -40,6 +40,7 @@ module.exports = class Fader extends _sliders_base {
             precision:2,
             meter:false,
             address:'auto',
+            touchAddress:'',
             preArgs:[],
             target:[]
         }
@@ -123,6 +124,8 @@ module.exports = class Fader extends _sliders_base {
 
     draginitHandle(e, data, traversing) {
 
+        super.draginitHandle(...arguments)
+
         this.percent = clip(this.percent,[0,100])
 
         if (!(traversing || this.widgetData.snap)) return
@@ -138,6 +141,8 @@ module.exports = class Fader extends _sliders_base {
     }
 
     dragHandle(e, data) {
+
+        super.dragHandle(...arguments)
 
         this.percent = this.widgetData.horizontal?
         this.percent + ( data.speedX/(this.width - this.margin * PXSCALE * 2)) * 100:

@@ -60,12 +60,7 @@ module.exports = class _sliders_base extends _canvas_base {
         this.widget.on('mousewheel',this.mousewheelHandleProxy.bind(this))
         this.canvas.on('draginit',this.draginitHandleProxy.bind(this))
         this.canvas.on('drag',this.dragHandleProxy.bind(this))
-
-        if (widgetData.spring) {
-            this.canvas.on('dragend', ()=>{
-                this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
-            })
-        }
+        this.canvas.on('dragend',this.dragendHandleProxy.bind(this))
 
         this.input.change(()=>{
 
@@ -95,6 +90,11 @@ module.exports = class _sliders_base extends _canvas_base {
 
     }
 
+    dragendHandleProxy() {
+
+        this.dragendHandle(...arguments)
+
+    }
 
     mousewheelHandle(e, data, traversing) {
 
@@ -113,10 +113,27 @@ module.exports = class _sliders_base extends _canvas_base {
     }
 
     draginitHandle(e, data, traversing) {
-
+        if (this.widgetData.touchAddress && this.widgetData.touchAddress.length)
+            this.sendValue({
+                address:this.widgetData.touchAddress,
+                v:1
+            })
     }
 
     dragHandle(e, data, traversing) {
+
+    }
+
+    dragendHandle(e, data, traversing) {
+
+        if (this.widgetData.spring)
+            this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
+
+        if (this.widgetData.touchAddress && this.widgetData.touchAddress.length)
+            this.sendValue({
+                address:this.widgetData.touchAddress,
+                v:0
+            })
 
     }
 

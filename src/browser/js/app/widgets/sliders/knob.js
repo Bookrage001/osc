@@ -37,6 +37,7 @@ module.exports = class Knob extends _sliders_base {
             logScale:false,
             precision:2,
             address:'auto',
+            touchAddress:'',
             preArgs:[],
             target:[]
         }

@@ -72,6 +72,7 @@ module.exports = class Encoder extends _widgets_base {
             release:'',
             precision:2,
             address:'auto',
+            touchAddress:'',
             preArgs:[],
             target:[]
         }
@@ -140,14 +141,28 @@ module.exports = class Encoder extends _widgets_base {
 
         })
 
+        this.wrapper.on('draginit', (e)=>{
+            if (this.widgetData.touchAddress && this.widgetData.touchAddress.length
+                && e.target == this.wrapper[0])
+                this.sendValue({
+                    address:this.widgetData.touchAddress,
+                    v:1
+                })
+        })
+
         this.wrapper.on('dragend', (e)=>{
             if (widgetData.release !== '' && this.value !== widgetData.release) {
                 this.knob.setValue(this.ticks/2)
                 this.display.setValue(this.ticks/2)
                 this.setValue(widgetData.release, {sync:true, send:true, dragged:false})
             }
+            if (this.widgetData.touchAddress && this.widgetData.touchAddress.length
+                && e.target == this.wrapper[0])
+                this.sendValue({
+                    address:this.widgetData.touchAddress,
+                    v:0
+                })
         })
-
 
     }
 

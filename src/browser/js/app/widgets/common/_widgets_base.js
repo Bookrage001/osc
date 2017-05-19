@@ -24,12 +24,20 @@ module.exports = class _widgets_base {
 
     }
 
-    sendValue() {
+    sendValue(overrides) {
 
-        osc.send({
+        var data = {
             h:this.hash,
             v:this.value
-        })
+        }
+
+        if (overrides) {
+            for (var k in overrides) {
+                data[k] = overrides[k]
+            }
+        }
+
+        osc.send(data)
 
     }
 
