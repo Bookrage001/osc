@@ -287,7 +287,8 @@
                 document.addEventListener("mouseup",up,true)
                 document.addEventListener("touchend",up,true)
             },
-            up = function(){
+            up = function(e){
+                makeEventTraversing(e)
                 self.removeEventListener("mousemove", makeEventTraversing, true)
                 self.removeEventListener("touchmove", makeEventTraversing, true)
                 self.removeEventListener("mouseout", makeEventTraversing, true)
