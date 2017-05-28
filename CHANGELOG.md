@@ -11,6 +11,7 @@
 - widgets
   - maths: add `condition` option to [`formula`]http://osc.ammd.net/user-guide/widgets-specifics/maths/#formula)
   - sliders/pads: add `touchAddress` option
+  - fader: add `meterAddress`
 
 ## 0.17.7
 

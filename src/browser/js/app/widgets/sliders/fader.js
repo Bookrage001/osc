@@ -41,6 +41,7 @@ module.exports = class Fader extends _sliders_base {
             meter:false,
             address:'auto',
             touchAddress:'',
+            meterAddress:'',
             preArgs:[],
             target:[]
         }
@@ -111,7 +112,7 @@ module.exports = class Fader extends _sliders_base {
                 horizontal:widgetData.horizontal,
                 range:widgetData.range,
                 logScale:widgetData.logScale,
-                address:widgetData.address + '/meter',
+                address:widgetData.meterAddress || widgetData.address + '/meter',
                 preArgs:widgetData.preArgs,
                 color:widgetData.color
             }

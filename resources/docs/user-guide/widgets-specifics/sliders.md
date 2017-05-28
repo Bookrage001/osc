@@ -83,6 +83,10 @@ range: {
     - the meter's `id` will be the same as the widget's with `/meter` appended to it
     - the meter's `address `will be the same as the widget's with `/meter` appended to it
 
+#### `meterAddress`
+- type: `boolean`
+- default: `empty`
+- usage: overrides the `meter`'s osc address
 
 #### `css`
 ```
