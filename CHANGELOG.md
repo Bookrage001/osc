@@ -10,7 +10,7 @@
   - javascript object are now stringifyied before beeing sent
 - widgets
   - maths: add `condition` option to [`formula`]http://osc.ammd.net/user-guide/widgets-specifics/maths/#formula)
-  - sliders: add `touchAddress` option
+  - sliders/pads: add `touchAddress` option
 
 ## 0.17.7
 
