@@ -14,7 +14,6 @@
     "osc": "2.2.0",
     "yargs": "8.0.1",
     "socket.io": "2.0.1",
-    "socketio-wildcard": "2.0.0",
     "express": "4.15.3",
     "jquery-slim": "3.0.0",
     "chokidar": "1.7.0",

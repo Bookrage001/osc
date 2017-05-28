@@ -4,7 +4,6 @@ var express     = require('express')(),
     http        = require('http'),
     server      = http.createServer(express),
     io          = require('socket.io')(),
-    ioWildcard  = require('socketio-wildcard')(),
     ipc 		= {},
 	settings	= require('./settings'),
     appAddresses = settings.read('appAddresses'),
@@ -16,9 +15,6 @@ express.get('/', function(req, res){
 express.get('*', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
 })
-
-
-io.use(ioWildcard)
 
 
 io.listen(server)
@@ -38,13 +34,11 @@ var bindCallbacks = function(callbacks) {
 
         clients[socket.id] = socket
 
-        socket.on('*', function(e){
-            var name = e.data[0],
-                data = e.data[1]
-
-
-            if (callbacks[name]) callbacks[name](data,socket.id)
-        })
+        for (let name in callbacks) {
+            socket.on(name, (data)=>{
+                callbacks[name](data,socket.id)
+            })
+        }
 
         socket.on('disconnect', function() {
 
