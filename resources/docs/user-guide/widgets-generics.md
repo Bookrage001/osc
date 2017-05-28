@@ -101,7 +101,15 @@ A widget object is a javascript object. All widgets share a set of generic prope
 #### `address`
 - type: `string`
 - default: `/widgets_id`
-- usage: this is the `address` of the osc messages sent by the widget
+- usage: this is the `address` of the osc messages sent by the widget, it must start with a `/`
+
+#### `touchAddress`
+- type: `string`
+- default: `empty`
+- usage: sliders and pads can send special osc messages to inform weither they are currently touched or not. The osc message will be of the following form :
+```
+    /touch/address [preArgs] 0/1
+```
 
 #### `preArgs`
 - type: `array`
