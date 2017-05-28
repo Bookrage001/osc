@@ -1,5 +1,6 @@
 var {clip, mapToScale} = require('../utils'),
-    _canvas_base = require('../common/_canvas_base')
+    _canvas_base = require('../common/_canvas_base'),
+    osctouchstate = require('../mixins/osctouchstate')
 
 module.exports = class _sliders_base extends _canvas_base {
 
@@ -57,6 +58,9 @@ module.exports = class _sliders_base extends _canvas_base {
             }
         }.bind(this))
 
+        if (this.widgetData.touchAddress && this.widgetData.touchAddress.length)
+            osctouchstate(this, this.canvas)
+            
         this.widget.on('mousewheel',this.mousewheelHandleProxy.bind(this))
         this.canvas.on('draginit',this.draginitHandleProxy.bind(this))
         this.canvas.on('drag',this.dragHandleProxy.bind(this))
@@ -113,11 +117,7 @@ module.exports = class _sliders_base extends _canvas_base {
     }
 
     draginitHandle(e, data, traversing) {
-        if (this.widgetData.touchAddress && this.widgetData.touchAddress.length)
-            this.sendValue({
-                address:this.widgetData.touchAddress,
-                v:1
-            })
+
     }
 
     dragHandle(e, data, traversing) {
@@ -128,12 +128,6 @@ module.exports = class _sliders_base extends _canvas_base {
 
         if (this.widgetData.spring)
             this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
-
-        if (this.widgetData.touchAddress && this.widgetData.touchAddress.length)
-            this.sendValue({
-                address:this.widgetData.touchAddress,
-                v:0
-            })
 
     }
 

@@ -30,6 +30,7 @@ module.exports = class Rgb extends _pads_base {
             value:'',
             precision:0,
             address:'auto',
+            touchAddress:'',
             preArgs:[],
             split:false,
             target:[]

@@ -37,6 +37,7 @@ module.exports = class MultiXy extends _pads_base {
             value:'',
             precision:2,
             address:'auto',
+            touchAddress:'',
             preArgs:[],
             split:false,
             target:[]

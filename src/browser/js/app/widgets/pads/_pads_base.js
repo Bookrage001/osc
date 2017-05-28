@@ -1,4 +1,5 @@
-var _canvas_base = require('../common/_canvas_base')
+var _canvas_base = require('../common/_canvas_base'),
+    osctouchstate = require('../mixins/osctouchstate')
 
 module.exports = class _pads_base extends _canvas_base {
 
@@ -15,6 +16,9 @@ module.exports = class _pads_base extends _canvas_base {
         super(...arguments, widgetHtml)
 
         this.wrapper = this.widget.find('.wrapper')
+
+        if (this.widgetData.touchAddress && this.widgetData.touchAddress.length)
+            osctouchstate(this, this.wrapper)
 
     }
 
