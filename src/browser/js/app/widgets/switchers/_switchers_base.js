@@ -104,7 +104,7 @@ module.exports = class _switchers_base extends _widgets_base {
             }
         }
 
-        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
         if (options.send) this.sendValue()
 
     }

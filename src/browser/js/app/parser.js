@@ -154,33 +154,61 @@ module.exports.widgets = function(data,parent) {
             widgetData.precision = Math.min(20,Math.max(widgetData.precision,0))
         }
 
+        // create container
+        var widgetContainer = $(`
+            <div class="widget ${widgetData.type}-container">
+                <div class="label"><span></span></div>
+            </div>
+        `)
+
+        // create widget
+        var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
+
+        widgetContainer[0].appendChild(widgetInner.widget[0])
+
+        widgetManager.addWidget(widgetInner)
+
         // dimensions / coordinates can't be < 0
         for (let t in {width:'',height:'',top:'',left:''}) {
             widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
         }
 
         // convert dimensions / coordinates to rem
-        var width = parseFloat(widgetData.width)==widgetData.width?parseFloat(widgetData.width)+'rem' : widgetData.width,
-            height = parseFloat(widgetData.height)==widgetData.height?parseFloat(widgetData.height)+'rem' : widgetData.height,
-            left = parseFloat(widgetData.left)==widgetData.left?parseFloat(widgetData.left)+'rem' : widgetData.left,
-            top = parseFloat(widgetData.top)==widgetData.top?parseFloat(widgetData.top)+'rem' : widgetData.top
+        var width = parseFloat(widgetInner.getOption('width'))==widgetInner.getOption('width')?parseFloat(widgetInner.getOption('width'))+'rem' : widgetInner.getOption('width'),
+            height = parseFloat(widgetInner.getOption('height'))==widgetInner.getOption('height')?parseFloat(widgetInner.getOption('height'))+'rem' : widgetInner.getOption('height'),
+            left = parseFloat(widgetInner.getOption('left'))==widgetInner.getOption('left')?parseFloat(widgetInner.getOption('left'))+'rem' : widgetInner.getOption('left'),
+            top = parseFloat(widgetInner.getOption('top'))==widgetInner.getOption('top')?parseFloat(widgetInner.getOption('top'))+'rem' : widgetInner.getOption('top')
 
+        var geometry = {}
+        for (var d of ['width', 'height', 'left', 'top']){
+            if (widgetData[d])
+            geometry[d] = `${widgetData[d]}`.indexOf('-') != -1 ? 0 :
+                            parseFloat(widgetData[d]) == widgetData[d] ?
+                                parseFloat(widgetData[d])+'rem' : widgetData[d]
+        }
 
         // dimensions / coordinates css
-        var styleW = widgetData.width&&widgetData.width!='auto'?`width:${width};min-width:auto;`:'',
-            styleH = widgetData.height&&widgetData.height!='auto'?`height:${height};min-height:auto;`:'',
-            styleL = widgetData.left&&widgetData.left!='auto'||widgetData.left==0?`left:${left};`:'',
-            styleT = widgetData.top&&widgetData.top!='auto'||widgetData.top==0?`top:${top};`:''
+        var styleW = widgetInner.getOption('width') && widgetInner.getOption('width') != 'auto' ? `width: ${geometry.width}; min-width:auto;` : '',
+            styleH = widgetInner.getOption('height') && widgetInner.getOption('height') != 'auto' ? `height: ${geometry.height}; min-height:auto;` : '',
+            styleL = widgetInner.getOption('left') && widgetInner.getOption('left') != 'auto'|| widgetInner.getOption('left') == 0 ?`left: ${geometry.left};` : '',
+            styleT = widgetInner.getOption('top') && widgetInner.getOption('top') != 'auto'|| widgetInner.getOption('top') == 0 ? `top: ${geometry.top};` : ''
 
-        // Generate label, iconify if starting with "icon:"
-        var label = widgetData.label == 'auto'?
-                        widgetData.id:
-                        iconify(widgetData.label)
+        if (styleL.length || styleT.length) widgetContainer.addClass('absolute-position')
 
+        // Hide label if false
+        if (widgetInner.getOption('label')===false) {
+            widgetContainer.addClass('nolabel')
+        } else {
+            // Generate label, iconify if starting with "icon:"
+            var label = widgetInner.getOption('label') == 'auto'?
+                            widgetInner.getOption('id'):
+                            iconify(widgetInner.getOption('label'))
 
+            widgetContainer.find('> .label span').html(label)
+        }
 
         // parse scoped css
-        var css = ';' + widgetData.css,
+        var css = ';' + widgetInner.getOption('css'),
             scopedCss = ''
 
         css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
@@ -193,25 +221,8 @@ module.exports.widgets = function(data,parent) {
             return ''
         })
 
-        // create container
-        var widgetContainer = $(`
-            <div class="widget ${widgetData.type}-container ${styleL.length || styleT.length?'absolute-position':''}" style="${styleW + styleH + styleL + styleT + css}">
-                <div class="label"><span>${label}</span></div>
-            </div>
-        `)
-
-        // Set custom css color variable
-        if (widgetData.color && widgetData.color!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetData.color)
-
-        // Hide label if false
-        if (widgetData.label===false) widgetContainer.addClass('nolabel')
-
-        // create widget
-        var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
-
-        widgetContainer[0].appendChild(widgetInner.widget[0])
-
-        widgetManager.addWidget(widgetInner)
+        // apply styles
+        widgetContainer[0].setAttribute('style', styleW + styleH + styleL + styleT + css)
 
         // apply scoped css
         if (scopedCss.length) {
@@ -220,9 +231,12 @@ module.exports.widgets = function(data,parent) {
             widgetContainer.prepend(`<style>${scopedCss}</style>`)
         }
 
+        // Set custom css color variable
+        if (widgetInner.getOption('color') && widgetInner.getOption('color')!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetInner.getOption('color'))
+
         // set widget's initial state
-        if (widgetData.value !== '' && widgetInner.setValue) {
-            widgetInner.setValue(widgetData.value)
+        if (widgetInner.getOption('value') !== '' && widgetInner.setValue) {
+            widgetInner.setValue(widgetInner.getOption('value'))
         }
 
         // Append the widget to its parent

@@ -22,7 +22,7 @@ module.exports = class Crossfader extends Switcher {
 
 
         var o = Fader.options()
-        o.horizontal = widgetData.horizontal
+        o.horizontal = this.getOption('horizontal')
         o.range = {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}}
 
         this.fader = new Fader(o, 0)

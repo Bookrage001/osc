@@ -22,20 +22,20 @@ module.exports = class _sliders_base extends _canvas_base {
         this.value = undefined
         this.percent = 0
 
-        this.unit = widgetData.unit ? ' ' + widgetData.unit : ''
+        this.unit = this.getOption('unit') ? ' ' + this.getOption('unit') : ''
 
 
         this.rangeKeys = []
         this.rangeVals = []
         this.rangeLabels = []
 
-        for (var k in widgetData.range) {
+        for (var k in this.getOption('range')) {
             var key = k=='min'?0:k=='max'?100:parseInt(k),
-                val = typeof widgetData.range[k] == 'object'?
-                            widgetData.range[k][Object.keys(widgetData.range[k])[0]]:
-                            widgetData.range[k],
-                label = typeof widgetData.range[k] == 'object'?
-                            Object.keys(widgetData.range[k])[0]:
+                val = typeof this.getOption('range')[k] == 'object'?
+                            this.getOption('range')[k][Object.keys(this.getOption('range')[k])[0]]:
+                            this.getOption('range')[k],
+                label = typeof this.getOption('range')[k] == 'object'?
+                            Object.keys(this.getOption('range')[k])[0]:
                             val
 
             this.rangeKeys.push(key)
@@ -45,10 +45,10 @@ module.exports = class _sliders_base extends _canvas_base {
         this.rangeValsMax = Math.max(...this.rangeVals),
         this.rangeValsMin = Math.min(...this.rangeVals)
 
-        this.originValue = widgetData.origin=='auto'?
+        this.originValue = this.getOption('origin')=='auto'?
                                 this.rangeValsMin:
-                                clip(widgetData.origin,[this.rangeValsMin,this.rangeValsMax])
-        this.springValue = widgetData.value != '' ? widgetData.value :  this.originValue
+                                clip(this.getOption('origin'), [this.rangeValsMin,this.rangeValsMax])
+        this.springValue = this.getOption('value') != '' ? this.getOption('value') :  this.originValue
 
         this.widget.on('fake-right-click',function(e){
             if (!EDITING) {
@@ -58,9 +58,9 @@ module.exports = class _sliders_base extends _canvas_base {
             }
         }.bind(this))
 
-        if (this.widgetData.touchAddress && this.widgetData.touchAddress.length)
+        if (this.getOption('touchAddress') && this.getOption('touchAddress').length)
             osctouchstate(this, this.canvas)
-            
+
         this.widget.on('mousewheel',this.mousewheelHandleProxy.bind(this))
         this.canvas.on('draginit',this.draginitHandleProxy.bind(this))
         this.canvas.on('drag',this.dragHandleProxy.bind(this))
@@ -110,7 +110,7 @@ module.exports = class _sliders_base extends _canvas_base {
         var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta),
         increment = e.ctrlKey?0.25:1
 
-        this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.widgetData.precision)) * direction  ,[0,100])
+        this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.getOption('precision') + 1)) * direction, [0,100])
 
         this.setValue(this.percentToValue(this.percent), {sync:true,send:true,dragged:true})
 
@@ -126,7 +126,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
     dragendHandle(e, data, traversing) {
 
-        if (this.widgetData.spring)
+        if (this.getOption('spring'))
             this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
 
     }
@@ -150,7 +150,7 @@ module.exports = class _sliders_base extends _canvas_base {
         var h = clip(percent,[0,100])
         for (var i=0;i<this.rangeKeys.length-1;i++) {
             if (h <= this.rangeKeys[i+1] && h >= this.rangeKeys[i]) {
-                return mapToScale(h,[this.rangeKeys[i],this.rangeKeys[i+1]],[this.rangeVals[i],this.rangeVals[i+1]],false,this.widgetData.logScale)
+                return mapToScale(h,[this.rangeKeys[i],this.rangeKeys[i+1]],[this.rangeVals[i],this.rangeVals[i+1]],false,this.getOption('logScale'))
             }
         }
 
@@ -160,7 +160,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
         for (var i=0;i<this.rangeVals.length-1;i++) {
             if (value <= this.rangeVals[i+1] && value >= this.rangeVals[i]) {
-                return mapToScale(value,[this.rangeVals[i],this.rangeVals[i+1]],[this.rangeKeys[i],this.rangeKeys[i+1]],false,this.widgetData.logScale,true)
+                return mapToScale(value,[this.rangeVals[i],this.rangeVals[i+1]],[this.rangeKeys[i],this.rangeKeys[i+1]],false,this.getOption('logScale'),true)
             }
         }
 
@@ -172,7 +172,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
         var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 
-        if ((options.dragged || options.fromLocal) && this.value.toFixed(this.widgetData.precision) == value.toFixed(this.widgetData.precision)) options.send = false
+        if ((options.dragged || options.fromLocal) && this.value.toFixed(this.getOption('precision')) == value.toFixed(this.getOption('precision'))) options.send = false
 
         this.value = value
 
@@ -182,14 +182,14 @@ module.exports = class _sliders_base extends _canvas_base {
 
         this.showValue()
 
-        if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
         if (options.send) this.sendValue(v)
 
     }
 
     showValue() {
 
-        this.input.val(this.value.toFixed(this.widgetData.precision) + this.unit)
+        this.input.val(this.value.toFixed(this.getOption('precision')) + this.unit)
 
     }
 

@@ -42,16 +42,16 @@ module.exports = class Plot extends _plots_base {
 
         super(...arguments)
 
-        if (typeof widgetData.points=='string') {
+        if (typeof this.getOption('points')=='string') {
 
-            this.linkedWidgets.push(widgetData.points)
+            this.linkedWidgets.push(this.getOption('points'))
 
-        } else if (typeof widgetData.points=='object') {
+        } else if (typeof this.getOption('points')=='object') {
 
-            for (let i in widgetData.points) {
-                for (let j in widgetData.points[i]) {
-                    if (typeof widgetData.points[i][j] == 'string') {
-                        this.linkedWidgets.push(widgetData.points[i][j])
+            for (let i in this.getOption('points')) {
+                for (let j in this.getOption('points')[i]) {
+                    if (typeof this.getOption('points')[i][j] == 'string') {
+                        this.linkedWidgets.push(this.getOption('points')[i][j])
                     }
                 }
             }
@@ -62,7 +62,7 @@ module.exports = class Plot extends _plots_base {
     updateData() {
 
         var data = [],
-            points = this.widgetData.points,
+            points = this.getOption('points'),
             widget = widgetManager.getWidgetById(points)
 
         if (typeof points=='string' && widget.length) {

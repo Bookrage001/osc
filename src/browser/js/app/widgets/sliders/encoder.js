@@ -12,7 +12,7 @@ var EncoderKnob = class extends Knob {
         this.lastOffsetX = data.offsetX
         this.lastOffsetY = data.offsetY
 
-        if (!(traversing || this.widgetData.snap)) return
+        if (!(traversing || this.getOption('snap'))) return
 
         this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
 
@@ -25,7 +25,7 @@ var DisplayKnob = class extends Knob {
     draw(){
         super.draw()
 
-        if (this.widgetData.compact) {
+        if (this.getOption('compact')) {
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.raised
             this.ctx.strokeStyle = this.colors.raised
@@ -89,7 +89,7 @@ module.exports = class Encoder extends _widgets_base {
         `)
 
         this.wrapper = this.widget.find('.wrapper')
-        this.ticks = Math.abs(parseInt(widgetData.ticks))
+        this.ticks = Math.abs(parseInt(this.getOption('ticks')))
 
         this.knob = new EncoderKnob({
             label:false,
@@ -105,7 +105,7 @@ module.exports = class Encoder extends _widgets_base {
             label:false,
             angle:360,
             range:{min:0,max:this.ticks},
-            compact:widgetData.compact,
+            compact:this.getOption('compact'),
             origin:this.ticks/2,
             noPip:true,
         }, true)
@@ -126,14 +126,14 @@ module.exports = class Encoder extends _widgets_base {
             var direction
 
             if (value < this.previousValue)
-                direction = widgetData.back
+                direction = this.getOption('back')
             if (value > this.previousValue)
-                direction = widgetData.forth
+                direction = this.getOption('forth')
 
             if ((this.ticks * .75 < value && value < this.ticks) && (0 < this.previousValue && this.previousValue < this.ticks / 4))
-                direction = widgetData.back
+                direction = this.getOption('back')
             if ((0 < value && value < this.ticks / 4) && (this.ticks * .75 < this.previousValue && this.previousValue < this.ticks))
-                direction = widgetData.forth
+                direction = this.getOption('forth')
 
 
             if (direction && (Math.round(value) != Math.round(this.previousValue))) this.setValue(direction, {sync:true, send:true, dragged: e.options.dragged, draginit: e.options.draginit})
@@ -142,24 +142,24 @@ module.exports = class Encoder extends _widgets_base {
         })
 
         this.wrapper.on('draginit', (e)=>{
-            if (this.widgetData.touchAddress && this.widgetData.touchAddress.length
+            if (this.getOption('touchAddress') && this.getOption('touchAddress').length
                 && e.target == this.wrapper[0])
                 this.sendValue({
-                    address:this.widgetData.touchAddress,
+                    address:this.getOption('touchAddress'),
                     v:1
                 })
         })
 
         this.wrapper.on('dragend', (e)=>{
-            if (widgetData.release !== '' && this.value !== widgetData.release) {
+            if (this.getOption('release') !== '' && this.value !== this.getOption('release')) {
                 this.knob.setValue(this.ticks/2)
                 this.display.setValue(this.ticks/2)
-                this.setValue(widgetData.release, {sync:true, send:true, dragged:false})
+                this.setValue(this.getOption('release'), {sync:true, send:true, dragged:false})
             }
-            if (this.widgetData.touchAddress && this.widgetData.touchAddress.length
+            if (this.getOption('touchAddress') && this.getOption('touchAddress').length
                 && e.target == this.wrapper[0])
                 this.sendValue({
-                    address:this.widgetData.touchAddress,
+                    address:this.getOption('touchAddress'),
                     v:0
                 })
         })
@@ -168,24 +168,24 @@ module.exports = class Encoder extends _widgets_base {
 
     setValue(v,options={}) {
 
-        if (this.widgetData.snap || (!this.widgetData.snap && !options.draginit)) {
+        if (this.getOption('snap') || (!this.getOption('snap') && !options.draginit)) {
 
             var match = true
 
-            if (v === this.widgetData.back) {
-                this.value = this.widgetData.back
-            } else if (v === this.widgetData.forth) {
-                this.value = this.widgetData.forth
-            } else if (v === this.widgetData.release && this.widgetData.release !== '') {
-                this.value = this.widgetData.release
+            if (v === this.getOption('back')) {
+                this.value = this.getOption('back')
+            } else if (v === this.getOption('forth')) {
+                this.value = this.getOption('forth')
+            } else if (v === this.getOption('release') && this.getOption('release') !== '') {
+                this.value = this.getOption('release')
             } else {
                 match = false
             }
 
         }
 
-        if (options.sync && match) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-        if (options.send && match && !(!this.widgetData.snap && options.draginit)) this.sendValue()
+        if (options.sync && match) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
+        if (options.send && match && !(!this.getOption('snap') && options.draginit)) this.sendValue()
 
         if (options.dragged || options.draginit) this.updateDisplay(options.draginit)
 
@@ -193,7 +193,7 @@ module.exports = class Encoder extends _widgets_base {
 
     updateDisplay(init){
 
-        if (this.widgetData.snap) {
+        if (this.getOption('snap')) {
             this.display.setValue(this.knob.value)
             return
         }

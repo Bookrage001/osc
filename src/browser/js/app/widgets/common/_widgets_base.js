@@ -1,5 +1,6 @@
 var osc = require('../../osc'),
-    shortid = require('shortid')
+    shortid = require('shortid'),
+    {widgetManager} = require('../../managers')
 
 module.exports = class _widgets_base {
 
@@ -64,6 +65,31 @@ module.exports = class _widgets_base {
         }
 
         return copy
+
+    }
+
+    getOption(key) {
+
+        var opt = this.widgetData[key]
+
+        if (typeof opt == 'string' && opt.indexOf('@{') != -1) {
+            opt = opt.replace(/@\{([^\}]+)\}/g, (m)=>{
+                let id = m.substr(2, m.length - 3).split('.'),
+                    k = id.pop()
+                id = id.join('.')
+
+                var widgets = widgetManager.getWidgetById(id)
+                for (var i in widgets) {
+                    if (widgets[i].widgetData.hasOwnProperty(k)) {
+                        return widgets[i].widgetData[k]
+                    }
+                }
+            })
+
+        }
+
+        return opt
+
 
     }
 

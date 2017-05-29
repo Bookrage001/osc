@@ -44,26 +44,26 @@ module.exports = class Keyboard extends _matrices_base {
 
         super(...arguments)
 
-        widgetData.keys = parseInt(widgetData.keys)
+        this.keys = parseInt(this.getOption('keys'))
 
         var strData = JSON.stringify(widgetData),
-        pattern = 'wbwbwwbwbwbw',
-        wCount = 0
+            pattern = 'wbwbwwbwbwbw',
+            wCount = 0
 
-        var    parsers = require('../../parser'),
-        parsewidgets = parsers.widgets
+        var parsers = require('../../parser'),
+            parsewidgets = parsers.widgets
 
-        for (var i=widgetData.start;i<widgetData.keys+widgetData.start&&i<108;i++) {
+        for (var i = this.start; i < this.keys + this.start && i < 108; i++) {
 
             var data = JSON.parse(strData)
 
 
             data.top = data.left = data.height = data.width = 'auto'
             data.type = 'push'
-            data.id = widgetData.id + '/' + i
+            data.id = this.getOption('id') + '/' + i
             data.label = false
-            data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
-            data.preArgs = widgetData.split ? widgetData.preArgs : [].concat(widgetData.preArgs, i)
+            data.address = this.getOption('split') ? this.getOption('address') + '/' + i : this.getOption('address')
+            data.preArgs = this.getOption('split') ? this.getOption('preArgs') : [].concat(this.getOption('preArgs'), i)
             data.css = ''
 
             var element = parsewidgets([data],this.widget)
@@ -77,7 +77,7 @@ module.exports = class Keyboard extends _matrices_base {
 
             }
 
-            this.value[i-widgetData.start] = widgetData.off
+            this.value[i-this.start] = this.getOption('off')
 
         }
 
@@ -90,7 +90,7 @@ module.exports = class Keyboard extends _matrices_base {
 
         })
 
-        if (widgetData.traversing) this.widget.enableTraversingGestures()
+        if (this.getOption('traversing')) this.widget.enableTraversingGestures()
 
     }
 

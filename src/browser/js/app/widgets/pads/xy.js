@@ -47,10 +47,10 @@ module.exports = class Xy extends _pads_base {
 
         super(...arguments)
 
-        this.split = widgetData.split?
-            typeof widgetData.split == 'object' && widgetData.split.length == 2 ?
-                widgetData.split
-                : [widgetData.address + '/x', widgetData.address + '/y']
+        this.split = this.getOption('split')?
+            typeof this.getOption('split') == 'object' && this.getOption('split').length == 2 ?
+                this.getOption('split')
+                : [this.getOption('address') + '/x', this.getOption('address') + '/y']
             : false
 
         this.widget.append(`
@@ -71,12 +71,12 @@ module.exports = class Xy extends _pads_base {
                 horizontal:true,
                 height:'100%',
                 width:'100%',
-                value:widgetData.value.length==2?widgetData.value[0]:'',
-                snap:widgetData.snap,
-                range:widgetData.rangeX,
+                value:this.getOption('value').length==2?this.getOption('value')[0]:'',
+                snap:this.getOption('snap'),
+                range:this.getOption('rangeX'),
                 origin:'auto',
-                precision:widgetData.precision,
-                logScale:widgetData.logScaleX
+                precision:this.getOption('precision'),
+                logScale:this.getOption('logScaleX')
             }, true),
             y: new Fader({
                 id:1,
@@ -84,12 +84,12 @@ module.exports = class Xy extends _pads_base {
                 horizontal:false,
                 height:'100%',
                 width:'100%',
-                value:widgetData.value.length==2?widgetData.value[1]:'',
-                snap:widgetData.snap,
-                range:widgetData.rangeY,
+                value:this.getOption('value').length==2?this.getOption('value')[1]:'',
+                snap:this.getOption('snap'),
+                range:this.getOption('rangeY'),
                 origin:'auto',
-                precision:widgetData.precision,
-                logScale:widgetData.logScaleY
+                precision:this.getOption('precision'),
+                logScale:this.getOption('logScaleY')
 
             }, true)
         }
@@ -119,7 +119,7 @@ module.exports = class Xy extends _pads_base {
             this.dragHandle()
         })
 
-        if (widgetData.spring) {
+        if (this.getOption('spring')) {
             this.wrapper.on('dragend', ()=>{
                 this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true,fromLocal:true})
             })
@@ -164,7 +164,7 @@ module.exports = class Xy extends _pads_base {
         ]
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        if (options.sync) this.widget.trigger({type:'sync', id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
 
         this.draw()
 

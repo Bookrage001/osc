@@ -46,7 +46,7 @@ module.exports = class Led extends _widgets_base {
 
         this.led = this.widget.find('span')
 
-        if (widgetData.widgetId.length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getOption('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
         this.setValue([0,0,0])
 
@@ -60,9 +60,11 @@ module.exports = class Led extends _widgets_base {
 
     syncHandle(e) {
 
-        if (this.widgetData.widgetId!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        if (this.getOption('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
+
         var widget = widgetManager.getWidgetById(e.id),
             value
+            
         for (var i=widget.length-1; i>=0; i--) {
             if (widget[i].getValue) {
                 this.setValue(widget[i].getValue())

@@ -51,24 +51,24 @@ module.exports = class Push extends _widgets_base {
             this.fakeclick()
         })
 
-        this.value = widgetData.off
+        this.value = this.getOption('off')
 
     }
 
     updateValue(){
 
         this.value = this[this.lastChanged] ?
-        this.widgetData.on != null && this.widgetData.on.value !== undefined ? this.widgetData.on.value : this.widgetData.on
+        this.getOption('on') != null && this.getOption('on').value !== undefined ? this.getOption('on').value : this.getOption('on')
         :
-        this.widgetData.off != null && this.widgetData.off.value !== undefined ? this.widgetData.off.value : this.widgetData.off
+        this.getOption('off') != null && this.getOption('off').value !== undefined ? this.getOption('off').value : this.getOption('off')
 
     }
 
     fakeclick(){
 
-        if (!this.active) this.setValuePrivate(this.widgetData.on,{send:true,sync:true})
+        if (!this.active) this.setValuePrivate(this.getOption('on'),{send:true,sync:true})
         this.widget.on('dragend.push',()=>{
-            this.setValuePrivate(this.widgetData.off,{send:true,sync:true})
+            this.setValuePrivate(this.getOption('off'),{send:true,sync:true})
             this.widget.off('dragend.push')
             this.widget.on('draginit.push',()=>{
                 this.widget.off('draginit.push')
@@ -81,20 +81,20 @@ module.exports = class Push extends _widgets_base {
     setValuePrivate(v,options={}) {
 
         if (typeof v == 'object' && v !== null) v = v.value
-        if (v===this.widgetData.on || (this.widgetData.on != null && v === this.widgetData.on.value && v !== undefined)) {
+        if (v===this.getOption('on') || (this.getOption('on') != null && v === this.getOption('on').value && v !== undefined)) {
             this.widget.addClass('active')
             this.active = 1
             this.lastChanged = 'active'
             this.updateValue()
             if (options.send) this.sendValue(v)
-            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
-        } else if (v===this.widgetData.off || (this.widgetData.off != null && v === this.widgetData.off.value && v !== undefined)) {
+            if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
+        } else if (v===this.getOption('off') || (this.getOption('off') != null && v === this.getOption('off').value && v !== undefined)) {
             this.widget.removeClass('active')
             this.active = 0
             this.lastChanged = 'active'
             this.updateValue()
-            if (options.send) this.sendValue(v, this.widgetData.norelease)
-            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+            if (options.send) this.sendValue(v, this.getOption('norelease'))
+            if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
         }
 
     }
@@ -106,18 +106,18 @@ module.exports = class Push extends _widgets_base {
             return
         }
         if (typeof v == 'object' && v !== null) v = v.value
-        if (v===this.widgetData.on || (this.widgetData.on != null && v === this.widgetData.on.value && v !== undefined)) {
+        if (v===this.getOption('on') || (this.getOption('on') != null && v === this.getOption('on').value && v !== undefined)) {
             this.widget.addClass('on')
             this.state = 1
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
-            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId,options:options})
-        } else if (v===this.widgetData.off || (this.widgetData.off != null && v === this.widgetData.off.value && v !== undefined)) {
+            if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'),options:options})
+        } else if (v===this.getOption('off') || (this.getOption('off') != null && v === this.getOption('off').value && v !== undefined)) {
             this.widget.removeClass('on')
             this.state = 0
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
-            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId,options:options})
+            if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'),options:options})
         }
 
     }

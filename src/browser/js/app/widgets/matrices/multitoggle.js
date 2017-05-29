@@ -47,31 +47,31 @@ module.exports = class Multitoggle extends _matrices_base {
 
         var strData = JSON.stringify(widgetData)
 
-        var    parsers = require('../../parser'),
-        parsewidgets = parsers.widgets
+        var parsers = require('../../parser'),
+            parsewidgets = parsers.widgets
 
-        for (var i=widgetData.start;i<widgetData.matrix[0]*widgetData.matrix[1]+widgetData.start;i++) {
+        for (var i = this.start; i < this.getOption('matrix')[0] * this.getOption('matrix')[1] + this.start; i++) {
 
             var data = JSON.parse(strData)
 
             data.top = data.left = data.height = data.width = 'auto'
             data.type = 'toggle'
-            data.id = widgetData.id + '/' + i
+            data.id = this.getOption('id') + '/' + i
             data.label = i
-            data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
-            data.preArgs = widgetData.split ? widgetData.preArgs : [].concat(widgetData.preArgs, i)
-            data.color = typeof widgetData.color == 'object' ? '' + widgetData.color[i % widgetData.color.length] : widgetData.color
+            data.address = this.getOption('split') ? this.getOption('address') + '/' + i : this.getOption('address')
+            data.preArgs = this.getOption('split') ? this.getOption('preArgs') : [].concat(this.getOption('preArgs'), i)
+            data.color = typeof this.getOption('color') == 'object' ? '' + this.getOption('color')[i % this.getOption('color').length] : this.getOption('color')
             data.css = ''
 
             var element = parsewidgets([data],this.widget)
-            element[0].style.setProperty('width', 100/widgetData.matrix[0] + '%')
+            element[0].style.setProperty('width', 100/this.getOption('matrix')[0] + '%')
             element[0].classList.add('not-editable')
 
-            this.value[i-widgetData.start] = widgetData.off
+            this.value[i-this.start] = this.getOption('off')
 
         }
 
-        if (widgetData.traversing) this.widget.enableTraversingGestures()
+        if (this.getOption('traversing')) this.widget.enableTraversingGestures()
 
     }
 

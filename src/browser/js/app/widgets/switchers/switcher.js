@@ -39,16 +39,18 @@ module.exports = class Switcher extends _switchers_base {
     constructor(widgetData) {
 
         var widgetHtml = `
-            <div class="switcher switch-container ${widgetData.horizontal ? 'horizontal' : ''}"></div>
+            <div class="switcher switch-container"></div>
         `
 
         super(...arguments, widgetHtml)
 
+        if (this.getOption('horizontal')) this.widget.addClass('horizontal')
+
         this.switch = new Switch({
             label:false,
-            values:widgetData.values,
-            value: widgetData.value,
-            horizontal:widgetData.horizontal
+            values:this.getOption('values'),
+            value: this.getOption('value'),
+            horizontal:this.getOption('horizontal')
         },0)
 
         this.switch.sendValue = ()=>{}

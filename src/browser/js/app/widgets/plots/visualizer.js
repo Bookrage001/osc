@@ -41,12 +41,12 @@ module.exports = class Visualizer extends _plots_base {
 
         super(...arguments)
 
-        this.pips.y.min = Math.abs(widgetData.range.min)>=1000?widgetData.range.min/1000+'k':widgetData.range.min
-        this.pips.y.max = Math.abs(widgetData.range.max)>=1000?widgetData.range.max/1000+'k':widgetData.range.max
+        this.pips.y.min = Math.abs(this.getOption('range').min) >= 1000? this.getOption('range').min/1000+'k' : this.getOption('range').min
+        this.pips.y.max = Math.abs(this.getOption('range').max) >= 1000? this.getOption('range').max/1000+'k' : this.getOption('range').max
         this.pips.x = false
-        this.length = Math.round(clip(60*widgetData.duration,[8,4096]))
+        this.length = Math.round(clip(60 * this.getOption('duration'), [8, 4096]))
         this.data = new Array(this.length)
-        this.value = widgetData.range.min
+        this.value = this.getOption('range').min
         this.cancel = false
         this.loop = false
 
@@ -54,7 +54,7 @@ module.exports = class Visualizer extends _plots_base {
 
     syncHandle(e) {
 
-        if (this.widgetData.widgetId!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        if (this.getOption('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
         this.startLoop()
 
     }
@@ -67,7 +67,7 @@ module.exports = class Visualizer extends _plots_base {
             clearInterval(this.loop)
             this.loop = false
             this.cancel = false
-        },1000*this.widgetData.duration)
+        },1000*this.getOption('duration'))
 
         if (this.loop) return
 
@@ -76,7 +76,7 @@ module.exports = class Visualizer extends _plots_base {
             this.updateData()
             this.draw()
 
-        },1000*this.widgetData.duration/this.length)
+        },1000*this.getOption('duration') / this.length)
 
     }
 
@@ -89,13 +89,13 @@ module.exports = class Visualizer extends _plots_base {
         for (var i=0;i<this.length;i++) {
             var newpoint = [
                 mapToScale(i,[0,this.length-1],[0,this.width],1),
-                mapToScale(this.data[i],[this.widgetData.range.min,this.widgetData.range.max],[this.height-PXSCALE,PXSCALE],1,this.widgetData.logScale,true),
+                mapToScale(this.data[i],[this.getOption('range').min,this.getOption('range').max],[this.height-PXSCALE,PXSCALE],1,this.getOption('logScale'),true),
             ]
             if (first) {
                 this.ctx.moveTo(newpoint[0],newpoint[1])
                 first = false
             } else {
-                if (this.widgetData.logScale) {
+                if (this.getOption('logScale')) {
                     this.ctx.quadraticCurveTo(newpoint[0], point[1], newpoint[0], newpoint[1])
                 } else {
                     this.ctx.lineTo(newpoint[0],newpoint[1])
@@ -110,7 +110,7 @@ module.exports = class Visualizer extends _plots_base {
 
     updateData() {
 
-        var id = this.widgetData.widgetId,
+        var id = this.getOption('widgetId'),
         widget = widgetManager.getWidgetById(id)
 
         if (typeof id == 'string' && widget.length) {

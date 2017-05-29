@@ -52,7 +52,7 @@ module.exports = class Meter extends Fader {
 
         this.canvas.off('draginit drag')
 
-        if (widgetData.widgetId.length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getOption('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
 
     }
@@ -65,7 +65,7 @@ module.exports = class Meter extends Fader {
 
     syncHandle(e) {
 
-        if (this.widgetData.widgetId!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        if (this.getOption('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
         var widget = widgetManager.getWidgetById(e.id),
             value
         for (var i=widget.length-1; i>=0; i--) {

@@ -53,9 +53,9 @@ module.exports = class Multifader extends _matrices_base {
 
         super(...arguments)
 
-        widgetData.strips = parseInt(widgetData.strips)
+        this.strips = parseInt(this.getOption('strips'))
 
-        if (widgetData.horizontal) {
+        if (this.getOption('horizontal')) {
             this.widget.addClass('horizontal')
         }
 
@@ -64,30 +64,30 @@ module.exports = class Multifader extends _matrices_base {
         var parsers = require('../../parser'),
             parsewidgets = parsers.widgets
 
-        for (var i=widgetData.start; i<widgetData.strips+widgetData.start;i++) {
+        for (var i = this.start; i < this.strips + this.start; i++) {
 
             var data = JSON.parse(strData)
 
             data.top = data.left = data.height = data.width = 'auto'
             data.type = 'fader'
-            data.id = widgetData.id + '/' + i
+            data.id = this.getOption('id') + '/' + i
             data.label = i
-            data.address = widgetData.split ? widgetData.address + '/' + i : widgetData.address
-            data.preArgs = widgetData.split ? widgetData.preArgs : [].concat(widgetData.preArgs, i)
-            data.color = typeof widgetData.color == 'object' ? '' + widgetData.color[i % widgetData.color.length] : widgetData.color
+            data.address = this.getOption('split') ? this.getOption('address') + '/' + i : this.getOption('address')
+            data.preArgs = this.getOption('split') ? this.getOption('preArgs') : [].concat(this.getOption('preArgs'), i)
+            data.color = typeof this.getOption('color') == 'object' ? '' + this.getOption('color')[i % this.getOption('color').length] : this.getOption('color')
             data.css = ''
 
             var element = parsewidgets([data],this.widget)
-            element[0].style.setProperty(widgetData.horizontal?'height':'width', 100/widgetData.strips + '%')
+            element[0].style.setProperty(this.getOption('horizontal')?'height':'width', 100/this.strips + '%')
             element[0].classList.add('not-editable')
 
-            if (widgetData.traversing) element.find('canvas').off('drag')
+            if (this.getOption('traversing')) element.find('canvas').off('drag')
 
-            this.value[i-widgetData.start] = widgetData.range.min
+            this.value[i-this.start] = this.getOption('range').min
 
         }
 
-        if (widgetData.traversing) this.widget.enableTraversingGestures()
+        if (this.getOption('traversing')) this.widget.enableTraversingGestures()
 
     }
 

@@ -36,13 +36,13 @@ module.exports = class Strip extends _widgets_base {
 
         var parsewidgets = require('../../parser').widgets
 
-        if (widgetData.horizontal) {
+        if (this.getOption('horizontal')) {
             container.addClass('horizontal')
         } else {
             container.addClass('vertical')
         }
 
-        parsewidgets(widgetData.widgets,this.widget)
+        parsewidgets(this.getOption('widgets'),this.widget)
 
     }
 

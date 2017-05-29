@@ -48,31 +48,31 @@ module.exports = class Formula extends _widgets_base {
 
         super(...arguments, widgetHtml)
 
-        widgetData.formula = String(widgetData.formula)
-        widgetData.condition = String(widgetData.condition)
+        this.formula = String(this.getOption('formula'))
+        this.condition = String(this.getOption('condition'))
 
-        this.split = typeof widgetData.split == 'object' && widgetData.split.length ? widgetData.split : false
+        this.split = typeof this.getOption('split') == 'object' && this.getOption('split').length ? this.getOption('split') : false
 
         this.input = this.widget.find('.input').fakeInput({align:'center', disabled:true})
 
         this.linkedWidgets = []
 
-        if (widgetData.formula.length) {
+        if (this.formula.length) {
 
-            if (widgetData.formula.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(widgetData.formula.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
-
-        }
-
-        if (widgetData.condition.length) {
-
-            if (widgetData.condition.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(widgetData.condition.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
+            if (this.formula.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.formula.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
 
         }
 
+        if (this.condition.length) {
 
-        this.formula = math.compile(widgetData.formula.replace(/\$\{([^\}]*)\}/g, '_$1'))
+            if (this.condition.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.condition.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
 
-        this.condition = math.compile(widgetData.condition.replace(/\$\{([^\}]*)\}/g, '_$1'))
+        }
+
+
+        this.formula = math.compile(this.formula.replace(/\$\{([^\}]*)\}/g, '_$1'))
+
+        this.condition = math.compile(this.condition.replace(/\$\{([^\}]*)\}/g, '_$1'))
 
         this.conditionState = true
 
@@ -107,7 +107,7 @@ module.exports = class Formula extends _widgets_base {
             }
         }
 
-        if (this.widgetData.condition.length) {
+        if (this.getOption('condition').length) {
 
             try {
 
@@ -131,7 +131,7 @@ module.exports = class Formula extends _widgets_base {
 
             this.showValue()
 
-            if (e.options.sync && this.conditionState) this.widget.trigger({type: 'sync',id: this.widgetData.id,widget: this.widget, linkId: this.widgetData.linkId, options: e.options})
+            if (e.options.sync && this.conditionState) this.widget.trigger({type: 'sync',id: this.getOption('id'),widget: this.widget, linkId: this.getOption('linkId'), options: e.options})
             if (e.options.send && this.conditionState) this.sendValue()
 
         } catch(err) {
@@ -163,8 +163,8 @@ module.exports = class Formula extends _widgets_base {
     showValue() {
 
         this.input.val(
-            (this.widgetData.condition.length && !this.conditionState ? '* ' : '') +
-            JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.widgetData.precision))
+            (this.getOption('condition').length && !this.conditionState ? '* ' : '') +
+            JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.getOption('precision')))
         )
 
     }

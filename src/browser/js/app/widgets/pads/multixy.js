@@ -49,21 +49,21 @@ module.exports = class MultiXy extends _pads_base {
 
         super(...arguments)
 
-        this.npoints = typeof widgetData.points == 'object' ? widgetData.points.length : widgetData.points
-        this.labels = typeof widgetData.points == 'object'
-        this.pointSize = parseInt(widgetData.pointSize)
+        this.npoints = typeof this.getOption('points') == 'object' ? this.getOption('points').length : this.getOption('points')
+        this.labels = typeof this.getOption('points') == 'object'
+        this.pointSize = parseInt(this.getOption('pointSize'))
         this.widget[0].style.setProperty("--point-size",this.pointSize + 'rem')
 
-        this.split = widgetData.split?
-                        typeof widgetData.split == 'object' && widgetData.split.length == 2 * this.npoints ?
-                            widgetData.split
+        this.split = this.getOption('split')?
+                        typeof this.getOption('split') == 'object' && this.getOption('split').length == 2 * this.npoints ?
+                            this.getOption('split')
                             : (()=>{
                                 var s={},
                                     t
                                 for (var i=0; i<this.npoints * 2;i=i+2) {
-                                    t = this.labels ? widgetData.points[i/2] : i/2
-                                    s[i]=widgetData.address + '/' + t + '/x'
-                                    s[i+1]=widgetData.address + '/' + t + '/y'
+                                    t = this.labels ? this.getOption('points')[i/2] : i/2
+                                    s[i]=this.getOption('address') + '/' + t + '/x'
+                                    s[i+1]=this.getOption('address') + '/' + t + '/y'
                                 };
                                 return s
                             })()
@@ -77,14 +77,14 @@ module.exports = class MultiXy extends _pads_base {
 
         for (var i=this.npoints-1;i>=0;i--) {
             this.pads[i] = new Xy({
-                snap:widgetData.snap,
-                spring:widgetData.spring,
-                value:widgetData.value.length == widgetData.points * 2 ? [widgetData.value[i*2], widgetData.value[i*2 + 1]] : '',
-                rangeX:widgetData.rangeX,
-                rangeY:widgetData.rangeY,
-                precision:widgetData.precision,
-                logScaleX:widgetData.logScaleX,
-                logScaleY:widgetData.logScaleY
+                snap:this.getOption('snap'),
+                spring:this.getOption('spring'),
+                value:this.getOption('value').length == this.getOption('points') * 2 ? [this.getOption('value')[i*2], this.getOption('value')[i*2 + 1]] : '',
+                rangeX:this.getOption('rangeX'),
+                rangeY:this.getOption('rangeY'),
+                precision:this.getOption('precision'),
+                logScaleX:this.getOption('logScaleX'),
+                logScaleY:this.getOption('logScaleY')
             }, false)
             this.pads[i].sendValue = ()=>{}
             this.pads[i].draw = ()=>{}
@@ -185,7 +185,7 @@ module.exports = class MultiXy extends _pads_base {
         for (var i=0;i<this.npoints;i++) {
             var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
                 y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
-                t = this.labels ? this.widgetData.points[i] : i
+                t = this.labels ? this.getOption('points')[i] : i
 
                 this.ctx.strokeStyle = this.colors.custom
                 this.ctx.fillStyle = this.colors.custom
@@ -243,7 +243,7 @@ module.exports = class MultiXy extends _pads_base {
         }
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        if (options.sync) this.widget.trigger({type:'sync', id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
 
     }
 

@@ -23,7 +23,7 @@ module.exports = class Led extends _widgets_base {
             _plot:'plot',
 
             widgetId:'',
-            
+
             _osc:'osc',
 
             range:{min:0,max:1},
@@ -48,9 +48,9 @@ module.exports = class Led extends _widgets_base {
 
         this.led = this.widget.find('span')
 
-        if (widgetData.widgetId.length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getOption('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
-        this.setValue(widgetData.range.min)
+        this.setValue(this.getOption('range').min)
 
     }
 
@@ -62,7 +62,7 @@ module.exports = class Led extends _widgets_base {
 
     syncHandle(e) {
 
-        if (this.widgetData.widgetId!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        if (this.getOption('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
         var widget = widgetManager.getWidgetById(e.id),
             value
         for (var i=widget.length-1; i>=0; i--) {
@@ -76,7 +76,7 @@ module.exports = class Led extends _widgets_base {
     setValue(v) {
 
         if (typeof v != 'number') return
-        this.led.css('opacity',mapToScale(v,[this.widgetData.range.min,this.widgetData.range.max],[0,1],false,this.widgetData.logScale,true))
+        this.led.css('opacity',mapToScale(v,[this.getOption('range').min,this.getOption('range').max],[0,1],false,this.getOption('logScale'),true))
 
     }
 

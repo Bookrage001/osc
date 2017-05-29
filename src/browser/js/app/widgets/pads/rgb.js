@@ -42,10 +42,10 @@ module.exports = class Rgb extends _pads_base {
 
         super(...arguments)
 
-        this.split = widgetData.split?
-                        typeof widgetData.split == 'object' && widgetData.split.length == 3 ?
-                            widgetData.split
-                            : [widgetData.address + '/r', widgetData.address + '/g', widgetData.address + '/b']
+        this.split = this.getOption('split')?
+                        typeof this.getOption('split') == 'object' && this.getOption('split').length == 3 ?
+                            this.getOption('split')
+                            : [this.getOption('address') + '/r', this.getOption('address') + '/g', this.getOption('address') + '/b']
                         : false
 
         this.widget.append(`
@@ -70,7 +70,7 @@ module.exports = class Rgb extends _pads_base {
                 compact:false,
                 noPip:true,
                 horizontal:true,
-                snap:widgetData.snap,
+                snap:this.getOption('snap'),
                 range:{min:0,max:360},
                 precision:2
             }, false),
@@ -78,7 +78,7 @@ module.exports = class Rgb extends _pads_base {
                 id:'s',
                 compact:true,
                 horizontal:true,
-                snap:widgetData.snap,
+                snap:this.getOption('snap'),
                 range:{min:0,max:100},
                 precision:2
 
@@ -87,7 +87,7 @@ module.exports = class Rgb extends _pads_base {
                 id:'b',
                 compact:true,
                 horizontal:false,
-                snap:widgetData.snap,
+                snap:this.getOption('snap'),
                 range:{min:0,max:100},
                 precision:2
             }, true)
@@ -180,7 +180,7 @@ module.exports = class Rgb extends _pads_base {
         this.value = v
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync', id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options:options})
+        if (options.sync) this.widget.trigger({type:'sync', id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
 
         this.update({dragged:options.dragged, nohue:options.nohue || (v[0]==v[1]&&v[1]==v[2])})
 
@@ -196,7 +196,7 @@ module.exports = class Rgb extends _pads_base {
         }
 
         for (let i in this.inputs) [
-            this.inputs[i].val(this.value[i].toFixed(this.widgetData.precision))
+            this.inputs[i].val(this.value[i].toFixed(this.getOption('precision')))
         ]
 
         this.draw()

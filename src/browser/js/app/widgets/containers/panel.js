@@ -39,37 +39,38 @@ module.exports = class Panel extends _widgets_base {
 
 
         var widgetHtml = `
-            <div class="panel
-                        ${!widgetData.scroll?'noscroll':''}
-                        ${widgetData.tabs.length?'has-tabs':''}
-                        ">
+            <div class="panel">
             </div>
         `
 
         super(...arguments, widgetHtml)
 
-        var    parsers = require('../../parser'),
+        if (!this.getOption('scroll')) this.widget.addClass('noscroll')
+        if (this.getOption('tabs').length) this.widget.addClass('has-tabs')
+
+
+        var parsers = require('../../parser'),
             parsewidgets = parsers.widgets,
             parsetabs = parsers.tabs
 
-        if (widgetData.tabs.length) {
-            parsetabs(widgetData.tabs,this.widget)
+        if (this.getOption('tabs').length) {
+            parsetabs(this.getOption('tabs'),this.widget)
         } else {
-            parsewidgets(widgetData.widgets,this.widget)
+            parsewidgets(this.getOption('widgets'),this.widget)
         }
 
         this.children = this.widget.find('> .widget')
 
-        if (widgetData.layout != '') {
+        if (this.getOption('layout') != '') {
             try {
 
-                var layout = widgetData.layout.replace(/\$([0-9])+/g, (m)=>{
-                    return this.children[m.replace('$','')].abstract.widgetData.id
+                var layout = this.getOption('layout').replace(/\$([0-9])+/g, (m)=>{
+                    return this.children[m.replace('$','')].abstract.this.getOption('id')
                 })
 
                 this.layout = new autolayout.View({
                     constraints: autolayout.VisualFormat.parse(layout.split('\\n').join('\n').split(' ').join(''), {extended: true}),
-                    spacing: widgetData.spacing
+                    spacing: this.getOption('spacing')
                 });
 
                 this.widget.on('resize',(e, w, h)=>{
@@ -82,14 +83,14 @@ module.exports = class Panel extends _widgets_base {
                 })
 
             } catch(err) {
-                throw `Visual Format Language error in ${widgetData.id}.layout: ${err.message} (line ${err.line})`
+                throw `Visual Format Language error in ${this.getOption('id')}.layout: ${err.message} (line ${err.line})`
             }
 
         }
     }
     applyLayout(){
         this.widget.find('> .widget').each((i,widget)=>{
-            var id = widget.abstract.widgetData.id
+            var id = widget.abstract.this.getOption('id')
             if (!this.layout.subViews[id]) return
             var $widget = $(widget).addClass('absolute-position').css({'min-height':'auto','min-width':'auto'})
             for (var prop of ['height', 'width', 'top', 'left']) {

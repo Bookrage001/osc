@@ -37,16 +37,18 @@ module.exports = class Switch extends _widgets_base {
     constructor(widgetData) {
 
         var widgetHtml = `
-            <div class="switch ${widgetData.horizontal?'horizontal':''}"></div>
+            <div class="switch"></div>
         `
 
         super(...arguments, widgetHtml)
 
+        if (this.getOption('horizontal')) this.widget.addClass('horizontal')
+
         this.values = []
 
-        for (var k in widgetData.values) {
-            this.values.push(widgetData.values[k])
-            $(`<div class="value">${iconify(parseFloat(k) != k ? k : widgetData.values[k])}</div>`).data({value:widgetData.values[k]}).appendTo(this.widget)
+        for (var k in this.getOption('values')) {
+            this.values.push(this.getOption('values')[k])
+            $(`<div class="value">${iconify(parseFloat(k) != k ? k : this.getOption("values")[k])}</div>`).data({value:this.getOption('values')[k]}).appendTo(this.widget)
         }
 
         this.value = undefined
@@ -76,11 +78,11 @@ module.exports = class Switch extends _widgets_base {
             this.widget.find('.on').removeClass('on')
             this.widget.find('.value').eq(i).addClass('on')
             if (options.send) this.sendValue(this.value)
-            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options})
+            if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options})
         } else {
             this.widget.find('.on').removeClass('on')
             this.value = undefined
-            if (options.sync) this.widget.trigger({type:'sync',id:this.widgetData.id,widget:this.widget, linkId:this.widgetData.linkId, options})
+            if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options})
         }
 
     }}
