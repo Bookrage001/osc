@@ -81,7 +81,7 @@ module.exports = class Text extends _widgets_base {
 
     setValue(v) {
 
-        this.value = typeof v=='object' && !v.length ? this.defaultValue : v
+        this.value = v==null ? this.defaultValue : v
         this.widget.html(iconify(this.value))
 
     }
