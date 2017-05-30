@@ -78,7 +78,7 @@ module.exports = class Xy extends _pads_base {
                 snap:this.getProp('snap'),
                 range:this.getProp('rangeX'),
                 origin:'auto',
-                precision:this.getProp('precision'),
+                precision:this.precision,
                 logScale:this.getProp('logScaleX')
             }, cancelDraw: true}),
             y: new Fader({props:{
@@ -92,7 +92,7 @@ module.exports = class Xy extends _pads_base {
                 snap:this.getProp('snap'),
                 range:this.getProp('rangeY'),
                 origin:'auto',
-                precision:this.getProp('precision'),
+                precision:this.precision,
                 logScale:this.getProp('logScaleY')
             }, cancelDraw: true}),
         }

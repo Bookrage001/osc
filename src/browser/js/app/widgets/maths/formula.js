@@ -164,7 +164,7 @@ module.exports = class Formula extends _widgets_base {
 
         this.input.val(
             (this.getProp('condition').length && !this.conditionState ? '* ' : '') +
-            JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.getProp('precision')))
+            JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.precision))
         )
 
     }

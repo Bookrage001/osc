@@ -199,7 +199,7 @@ module.exports = class Rgb extends _pads_base {
         }
 
         for (let i in this.inputs) [
-            this.inputs[i].val(this.value[i].toFixed(this.getProp('precision')))
+            this.inputs[i].val(this.value[i].toFixed(this.precision))
         ]
 
         this.draw()

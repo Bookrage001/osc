@@ -110,7 +110,7 @@ module.exports = class _sliders_base extends _canvas_base {
         var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta),
         increment = e.ctrlKey?0.25:1
 
-        this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.getProp('precision') + 1)) * direction, [0,100])
+        this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.precision + 1)) * direction, [0,100])
 
         this.setValue(this.percentToValue(this.percent), {sync:true,send:true,dragged:true})
 
@@ -172,7 +172,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
         var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 
-        if ((options.dragged || options.fromLocal) && this.value.toFixed(this.getProp('precision')) == value.toFixed(this.getProp('precision'))) options.send = false
+        if ((options.dragged || options.fromLocal) && this.value.toFixed(this.precision) == value.toFixed(this.precision)) options.send = false
 
         this.value = value
 
@@ -189,7 +189,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
     showValue() {
 
-        this.input.val(this.value.toFixed(this.getProp('precision')) + this.unit)
+        this.input.val(this.value.toFixed(this.precision) + this.unit)
 
     }
 

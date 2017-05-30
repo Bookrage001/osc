@@ -86,7 +86,7 @@ module.exports = class MultiXy extends _pads_base {
                 value:this.getProp('value').length == this.getProp('points') * 2 ? [this.getProp('value')[i*2], this.getProp('value')[i*2 + 1]] : '',
                 rangeX:this.getProp('rangeX'),
                 rangeY:this.getProp('rangeY'),
-                precision:this.getProp('precision'),
+                precision:this.precision,
                 logScaleX:this.getProp('logScaleX'),
                 logScaleY:this.getProp('logScaleY')
             }})

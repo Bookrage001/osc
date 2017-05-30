@@ -138,20 +138,6 @@ module.exports.widgets = function(data, parentNode, parentWidget) {
             delete props.left
         }
 
-        // Turn preArgs into array
-        if (props.preArgs!=undefined) {
-            props.preArgs = Array.isArray(props.preArgs)?props.preArgs:[props.preArgs]
-        }
-
-        // Turn preArgs into array
-        if (props.target!=undefined) {
-            props.target = Array.isArray(props.target)?props.target:[props.target]
-        }
-
-        if (props.precision) {
-            props.precision = Math.min(20,Math.max(props.precision,0))
-        }
-
         // create container
         var widgetContainer = $(`
             <div class="widget ${props.type}-container">
