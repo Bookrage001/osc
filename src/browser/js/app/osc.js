@@ -46,12 +46,7 @@ Osc.prototype.receive = function(data){
     if (typeof data.args == 'object' && data.args != null) {
         for (var i=data.args.length-1;i>=0;i--) {
 
-            var ref = widgetManager.createAddressRef({
-                        widgetData: {
-                            preArgs: data.args.slice(0,i),
-                            address: address
-                        }
-                    })
+            var ref = widgetManager.createAddressRef(null, data.args.slice(0,i), address)
 
             if (widgetManager.getWidgetByAddress(ref).length) {
                 addressref = ref

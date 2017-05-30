@@ -141,12 +141,7 @@ var incrementWidget = function(data, root){
                 n = isNaN(n)?1:n
                 return n
             })
-            addressref = widgetManager.createAddressRef({
-                            widgetData: {
-                                preArgs: data.preArgs,
-                                address: address
-                            }
-                        })
+            addressref = widgetManager.createAddressRef(null, data.preArgs,address)
         }
 
         fakeStore.address.push(address)

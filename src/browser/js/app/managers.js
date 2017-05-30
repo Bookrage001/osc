@@ -60,11 +60,13 @@ var WidgetManager = function(){
 }
 
 
-WidgetManager.prototype.createAddressRef = function(widget) {
+WidgetManager.prototype.createAddressRef = function(widget, preArgs, address) {
+    var preArgs = preArgs || widget.getOption('preArgs'),
+        address = address || widget.getOption('address')
 
-    return widget.getOption('preArgs') && widget.getOption('preArgs').length ?
-                widget.getOption('address') + this.preArgsSeparator + widget.getOption('preArgs').join(this.preArgsSeparator)
-              : widget.getOption('address')
+    return preArgs && preArgs.length ?
+                address + this.preArgsSeparator + preArgs.join(this.preArgsSeparator)
+              : address
 
 }
 
