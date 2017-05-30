@@ -39,7 +39,7 @@ module.exports = class Strip extends _widgets_base {
             this.container.addClass('vertical')
         }
 
-        parsewidgets(this.getProp('widgets'),this.widget, this)
+        parsewidgets(this.props.widgets, this.widget, this)
 
     }
 
