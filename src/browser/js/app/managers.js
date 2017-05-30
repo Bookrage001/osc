@@ -99,7 +99,7 @@ WidgetManager.prototype.addWidget = function(widget) {
     ipc.send('addWidget', {
         hash:hash,
         data:{
-            precision: widget.getProp('precision'),
+            precision: widget.precision,
             preArgs: widget.getProp('preArgs'),
             split: widget.split,
             target: widget.getProp('target'),
