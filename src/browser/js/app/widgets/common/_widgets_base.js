@@ -15,13 +15,13 @@ module.exports = class _widgets_base {
         return shortid.generate()
     }
 
-    constructor(props, widgetContainer, widgetHtml) {
+    constructor(options={}) {
 
-        this.container = widgetContainer
-        this.widget = $(widgetHtml)
-        this.props = props
+        this.container = options.container
+        this.widget = $(options.html)
+        this.props = options.props
+        this.parent = options.parent
         this.hash = _widgets_base.createHash()
-
 
     }
 
@@ -78,7 +78,9 @@ module.exports = class _widgets_base {
                     k = id.pop()
                 id = id.join('.')
 
-                var widgets = widgetManager.getWidgetById(id)
+                var widgets = id == 'parent' && this.parent ?
+                    [this.parent] : widgetManager.getWidgetById(id)
+
                 for (var i in widgets) {
                     if (widgets[i].props.hasOwnProperty(k)) {
                         return widgets[i].getProp(k)

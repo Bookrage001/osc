@@ -34,14 +34,9 @@ module.exports = class Text extends _widgets_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
-            <div class="text">
-            </div>
-        `
-
-        super(...arguments, widgetHtml)
+        super({...options, html: '<div class="text"></div>'})
 
         if (this.getProp('vertical')) this.widget.addClass('vertical')
 

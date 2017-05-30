@@ -1,6 +1,8 @@
 var _switchers_base = require('./_switchers_base'),
     Switch = require('../buttons/switch')
 
+var switchDefaults = Switch.defaults()
+
 module.exports = class Switcher extends _switchers_base {
 
     static defaults() {
@@ -36,22 +38,19 @@ module.exports = class Switcher extends _switchers_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
-            <div class="switcher switch-container"></div>
-        `
-
-        super(...arguments, widgetHtml)
+        super({...options, html: '<div class="switcher switch-container"></div>'})
 
         if (this.getProp('horizontal')) this.widget.addClass('horizontal')
 
-        this.switch = new Switch({
+        this.switch = new Switch({props:{
+            ...switchDefaults,
             label:false,
             values:this.getProp('values'),
             value: this.getProp('value'),
             horizontal:this.getProp('horizontal')
-        },0)
+        }})
 
         this.switch.sendValue = ()=>{}
 

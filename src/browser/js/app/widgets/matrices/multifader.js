@@ -49,9 +49,9 @@ module.exports = class Multifader extends _matrices_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.strips = parseInt(this.getProp('strips'))
 
@@ -59,7 +59,7 @@ module.exports = class Multifader extends _matrices_base {
             this.widget.addClass('horizontal')
         }
 
-        var strData = JSON.stringify(props)
+        var strData = JSON.stringify(options.props)
 
         var parsers = require('../../parser'),
             parsewidgets = parsers.widgets

@@ -35,19 +35,13 @@ module.exports = class Panel extends _widgets_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
 
-        var widgetHtml = `
-            <div class="panel">
-            </div>
-        `
-
-        super(...arguments, widgetHtml)
+        super({...options, html: '<div class="panel"></div>'})
 
         if (!this.getProp('scroll')) this.widget.addClass('noscroll')
         if (this.getProp('tabs').length) this.widget.addClass('has-tabs')
-
 
         var parsers = require('../../parser'),
             parsewidgets = parsers.widgets,
@@ -56,7 +50,7 @@ module.exports = class Panel extends _widgets_base {
         if (this.getProp('tabs').length) {
             parsetabs(this.getProp('tabs'),this.widget)
         } else {
-            parsewidgets(this.getProp('widgets'),this.widget)
+            parsewidgets(this.getProp('widgets'),this.widget, this)
         }
 
         this.children = this.widget.find('> .widget')

@@ -2,9 +2,9 @@ var _widgets_base = require('./_widgets_base')
 
 module.exports = class _canvas_base extends _widgets_base {
 
-    constructor() {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.canvas = this.widget.find('canvas')
         this.ctx = this.canvas[0].getContext('2d')

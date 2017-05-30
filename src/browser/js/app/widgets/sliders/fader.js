@@ -48,16 +48,16 @@ module.exports = class Fader extends _sliders_base {
 
     }
 
-    constructor(props, widgetContainer) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.widget.addClass('fader')
         this.margin = 15
 
 
         if (this.getProp('horizontal')) {
-            this.widget.add(widgetContainer).addClass('horizontal')
+            this.widget.add(this.container).addClass('horizontal')
             if (this.getProp('width') == 'auto' && this.getProp('left') != 'auto') {
                 this.container.css({'width':'auto', 'right':'0'})
             }

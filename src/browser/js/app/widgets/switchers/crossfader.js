@@ -2,6 +2,9 @@ var Switcher = require('./switcher'),
     Fader = require('../sliders/fader'),
     {mapToScale, clip} = require('../utils')
 
+var faderDefaults = Fader.defaults()
+
+
 module.exports = class Crossfader extends Switcher {
 
     static defaults(){
@@ -14,18 +17,18 @@ module.exports = class Crossfader extends Switcher {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        props.values = props.horizontal ? ['A', 'B'] : ['B', 'A']
+        options.props.values = options.props.horizontal ? ['A', 'B'] : ['B', 'A']
 
-        super(...arguments)
+        super(options)
 
+        this.fader = new Fader({props:{
+            ...faderDefaults,
+            horizontal: this.getProp('horizontal'),
+            range: {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}}
+        }})
 
-        var o = Fader.defaults()
-        o.horizontal = this.getProp('horizontal')
-        o.range = {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}}
-
-        this.fader = new Fader(o, 0)
         this.fader.sendValue = ()=>{}
 
         this.widget.append($('<div class="fader-container"></div>').append(this.fader.widget))

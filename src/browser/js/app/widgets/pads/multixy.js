@@ -2,6 +2,9 @@ var _pads_base = require('./_pads_base'),
     Xy = require('./xy'),
     {clip} = require('../utils')
 
+var xyDefaults = Xy.defaults()
+
+
 module.exports = class MultiXy extends _pads_base {
 
     static defaults() {
@@ -45,9 +48,9 @@ module.exports = class MultiXy extends _pads_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.npoints = typeof this.getProp('points') == 'object' ? this.getProp('points').length : this.getProp('points')
         this.labels = typeof this.getProp('points') == 'object'
@@ -76,7 +79,8 @@ module.exports = class MultiXy extends _pads_base {
         this.pads = []
 
         for (var i=this.npoints-1;i>=0;i--) {
-            this.pads[i] = new Xy({
+            this.pads[i] = new Xy({props:{
+                ...xyDefaults,
                 snap:this.getProp('snap'),
                 spring:this.getProp('spring'),
                 value:this.getProp('value').length == this.getProp('points') * 2 ? [this.getProp('value')[i*2], this.getProp('value')[i*2 + 1]] : '',
@@ -85,7 +89,7 @@ module.exports = class MultiXy extends _pads_base {
                 precision:this.getProp('precision'),
                 logScaleX:this.getProp('logScaleX'),
                 logScaleY:this.getProp('logScaleY')
-            }, false)
+            }})
             this.pads[i].sendValue = ()=>{}
             this.pads[i].draw = ()=>{}
             this.wrapper.append(this.pads[i].widget)

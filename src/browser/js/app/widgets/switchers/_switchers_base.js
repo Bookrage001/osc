@@ -6,9 +6,9 @@ var _widgets_base = require('../common/_widgets_base'),
 
 module.exports = class _switchers_base extends _widgets_base {
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this._isSwitcher = true
         this.value = {_selected:false}

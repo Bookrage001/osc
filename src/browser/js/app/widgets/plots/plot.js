@@ -38,9 +38,9 @@ module.exports = class Plot extends _plots_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         if (typeof this.getProp('points')=='string') {
 

@@ -37,15 +37,13 @@ module.exports = class Modal extends Panel {
 
     }
 
-    constructor(props, container) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.widget.removeClass('noscroll')
-        this.container = container
 
-        container.append('<div class="light"></div>')
-        this.light = container.find('.light').first()
+        this.light = $('<div class="light"></div>').appendTo(this.container)
 
         this.modal = this.widget.detach()
 

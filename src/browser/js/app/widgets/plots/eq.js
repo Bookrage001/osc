@@ -38,9 +38,9 @@ module.exports = class Eq extends _plots_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.rangeX = {min:20,max:22050}
         this.pips.x.min = '20'

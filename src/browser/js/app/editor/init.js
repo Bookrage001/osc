@@ -1,7 +1,7 @@
 var {getObjectData, updateDom, incrementWidget} = require('./data-workers'),
     {editObject, editSession, editClean} = require('./edit-objects'),
     createPopup = require('../utils').createPopup,
-    {widgets, widgetCategories} = require('../widgets'),
+    {widgets, categories} = require('../widgets'),
     menu = require('./context-menu')
 
 
@@ -102,10 +102,10 @@ var init = function(){
             }
 
             actions['<i class="fa fa-plus"></i> Add widget'] = {}
-            for (let category in widgetCategories) {
+            for (let category in categories) {
                 actions['<i class="fa fa-plus"></i> Add widget'][category] = {}
-                for (let t in widgetCategories[category]) {
-                    let wtype = widgetCategories[category][t]
+                for (let t in categories[category]) {
+                    let wtype = categories[category][t]
                     actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] =  function(){
                             data.widgets = data.widgets || []
                             var newData = {type:wtype}

@@ -4,15 +4,15 @@ var {mapToScale} = require('../utils'),
 
 module.exports = class _plots_base extends _canvas_base {
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
+        var html = `
             <div class="plot">
                 <canvas></canvas>
             </div>
         `
 
-        super(...arguments, widgetHtml)
+        super({...options, html: html})
 
         this.data = []
         this.linkedWidgets = []

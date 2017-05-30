@@ -97,7 +97,7 @@ module.exports.tabs = function(data,parent,main,parentLabel){
 
 
 
-module.exports.widgets = function(data,parent) {
+module.exports.widgets = function(data, parentNode, parentWidget) {
 
     for (let i in data) {
         var props = data[i]
@@ -133,7 +133,7 @@ module.exports.widgets = function(data,parent) {
             if (defaults[i]===undefined && i!='type') {delete props[i]}
         }
 
-        if (parent.hasClass('strip')) {
+        if (parentNode.hasClass('strip')) {
             delete props.top
             delete props.left
         }
@@ -160,7 +160,7 @@ module.exports.widgets = function(data,parent) {
         `)
 
         // create widget
-        var widgetInner = new widgets[props.type](props, widgetContainer)
+        var widgetInner = new widgets[props.type]({props:props, container:widgetContainer, parent:parentWidget})
 
         widgetContainer[0].appendChild(widgetInner.widget[0])
 
@@ -238,7 +238,7 @@ module.exports.widgets = function(data,parent) {
         }
 
         // Append the widget to its parent
-        parent[0].appendChild(widgetContainer[0])
+        parentNode[0].appendChild(widgetContainer[0])
     }
 
     // Editor needs to get the container object

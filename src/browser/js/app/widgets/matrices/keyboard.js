@@ -40,13 +40,13 @@ module.exports = class Keyboard extends _matrices_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.keys = parseInt(this.getProp('keys'))
 
-        var strData = JSON.stringify(props),
+        var strData = JSON.stringify(options.props),
             pattern = 'wbwbwwbwbwbw',
             wCount = 0
 

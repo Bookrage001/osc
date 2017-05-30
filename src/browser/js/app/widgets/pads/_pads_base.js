@@ -3,9 +3,9 @@ var _canvas_base = require('../common/_canvas_base'),
 
 module.exports = class _pads_base extends _canvas_base {
 
-    constructor() {
+    constructor(options) {
 
-        var widgetHtml = `
+        var html = `
             <div class="pad">
                 <div class="wrapper">
                     <canvas></canvas>
@@ -13,7 +13,7 @@ module.exports = class _pads_base extends _canvas_base {
             </div>
         `
 
-        super(...arguments, widgetHtml)
+        super({...options, html: html})
 
         this.wrapper = this.widget.find('.wrapper')
 

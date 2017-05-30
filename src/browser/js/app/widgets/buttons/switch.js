@@ -34,13 +34,10 @@ module.exports = class Switch extends _widgets_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
-            <div class="switch"></div>
-        `
+        super({...options, html: '<div class="switch"></div>'})
 
-        super(...arguments, widgetHtml)
 
         if (this.getProp('horizontal')) this.widget.addClass('horizontal')
 

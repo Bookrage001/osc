@@ -2,6 +2,7 @@ var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
     {clip, hsbToRgb, rgbToHsb} = require('../utils')
 
+var faderDefaults = Fader.defaults()
 
 module.exports = class Rgb extends _pads_base {
 
@@ -38,9 +39,9 @@ module.exports = class Rgb extends _pads_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.split = this.getProp('split')?
                         typeof this.getProp('split') == 'object' && this.getProp('split').length == 3 ?
@@ -65,7 +66,8 @@ module.exports = class Rgb extends _pads_base {
         this.hueWrapper = this.widget.find('.hue-wrapper')
 
         this.faders = {
-            h: new Fader({
+            h: new Fader({props:{
+                ...faderDefaults,
                 id:'h',
                 compact:false,
                 noPip:true,
@@ -73,24 +75,25 @@ module.exports = class Rgb extends _pads_base {
                 snap:this.getProp('snap'),
                 range:{min:0,max:360},
                 precision:2
-            }, false),
-            s: new Fader({
+            }, cancelDraw: false}),
+            s: new Fader({props:{
+                ...faderDefaults,
                 id:'s',
                 compact:true,
                 horizontal:true,
                 snap:this.getProp('snap'),
                 range:{min:0,max:100},
                 precision:2
-
-            }, true),
-            b: new Fader({
+            }, cancelDraw: true}),
+            b: new Fader({props:{
+                ...faderDefaults,
                 id:'b',
                 compact:true,
                 horizontal:false,
                 snap:this.getProp('snap'),
                 range:{min:0,max:100},
                 precision:2
-            }, true)
+            }, cancelDraw: true})
         }
 
         this.inputs = [

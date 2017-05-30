@@ -44,9 +44,9 @@ module.exports = class Knob extends _sliders_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.widget.addClass('knob')
 

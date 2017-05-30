@@ -34,15 +34,15 @@ module.exports = class Led extends _widgets_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
+        var html = `
             <div class="led">
                 <div><span></span></div>
             </div>
         `
 
-        super(...arguments, widgetHtml)
+        super({...options, html: html})
 
         this.led = this.widget.find('span')
 

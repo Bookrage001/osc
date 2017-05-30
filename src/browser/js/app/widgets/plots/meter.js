@@ -39,11 +39,11 @@ module.exports = class Meter extends Fader {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        props.compact = true
+        options.props.compact = true
 
-        super(...arguments)
+        super(options)
 
         this.input.hide()
 

@@ -79,36 +79,37 @@ module.exports = class Encoder extends _widgets_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments, `
+        var html = `
             <div class="encoder">
                 <div class="wrapper">
                 </div>
             </div>
-        `)
+        `
+        super({...options, html: html})
 
         this.wrapper = this.widget.find('.wrapper')
         this.ticks = Math.abs(parseInt(this.getProp('ticks')))
 
-        this.knob = new EncoderKnob({
+        this.knob = new EncoderKnob({props:{
             label:false,
             angle:360,
             snap:true,
             range:{min:0,max:this.ticks},
             noPip:true,
-        }, true)
+        }})
 
         this.knob.noDraw = true
 
-        this.display = new DisplayKnob({
+        this.display = new DisplayKnob({props:{
             label:false,
             angle:360,
             range:{min:0,max:this.ticks},
             compact:this.getProp('compact'),
             origin:this.ticks/2,
             noPip:true,
-        }, true)
+        }})
 
         this.wrapper.append(this.knob.widget.addClass('drag-knob'))
         this.wrapper.append(this.display.widget.addClass('display-knob'))

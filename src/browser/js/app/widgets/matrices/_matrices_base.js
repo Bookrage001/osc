@@ -2,14 +2,9 @@ var _widgets_base = require('../common/_widgets_base')
 
 module.exports = class _matrices_base extends _widgets_base {
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
-            <div class="matrix"></div>
-        `
-
-        super(...arguments, widgetHtml)
-
+        super({...options, html: '<div class="matrix"></div>'})
 
         this.value = []
 

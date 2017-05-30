@@ -2,11 +2,11 @@ var Fader = require('../sliders/fader')
 
 module.exports = class _fake_fader extends Fader {
 
-    constructor(props, cancelDraw) {
+    constructor(options) {
 
-        super(props, false)
+        super(options)
 
-        if (cancelDraw) this.noDraw = true
+        if (arguments.cancelDraw) this.noDraw = true
     }
 
     sendValue() {

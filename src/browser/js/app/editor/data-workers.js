@@ -55,7 +55,7 @@ var updateDom = function(container,data, remote) {
 
     if (container.hasClass('widget')) {
         // widget
-        var newContainer = parsewidgets([data],container.parent())
+        var newContainer = parsewidgets([data],container.parent(), container[0].abstract.parent)
         container.replaceWith(newContainer)
 
         if (!remote) editObject(newContainer,data,true)

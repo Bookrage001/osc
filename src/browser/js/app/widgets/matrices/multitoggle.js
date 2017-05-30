@@ -41,11 +41,11 @@ module.exports = class Multitoggle extends _matrices_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
-        var strData = JSON.stringify(props)
+        var strData = JSON.stringify(options.props)
 
         var parsers = require('../../parser'),
             parsewidgets = parsers.widgets

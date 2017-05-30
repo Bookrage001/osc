@@ -38,15 +38,15 @@ module.exports = class Formula extends _widgets_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
+        var html = `
             <div class="formula">
                 <div class="input"></div>
             </div>
         `
+        super({...options, html: html})
 
-        super(...arguments, widgetHtml)
 
         this.formula = String(this.getProp('formula'))
         this.condition = String(this.getProp('condition'))

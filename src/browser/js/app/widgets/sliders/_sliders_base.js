@@ -4,9 +4,9 @@ var {clip, mapToScale} = require('../utils'),
 
 module.exports = class _sliders_base extends _canvas_base {
 
-    constructor(props) {
+    constructor(options) {
 
-        var widgetHtml = `
+        var html = `
             <div class="slider">
                 <div class="wrapper">
                     <canvas></canvas>
@@ -15,7 +15,7 @@ module.exports = class _sliders_base extends _canvas_base {
             </div>
         `
 
-        super(...arguments, widgetHtml)
+        super({...options, html: html})
 
         this.wrapper = this.widget.find('.wrapper')
         this.input = this.widget.find('.input').fakeInput({align:'center'})

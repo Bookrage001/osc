@@ -2,6 +2,8 @@ var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
     {clip} = require('../utils')
 
+var faderDefaults = Fader.defaults()
+
 module.exports = class Xy extends _pads_base {
 
     static defaults() {
@@ -43,9 +45,9 @@ module.exports = class Xy extends _pads_base {
 
     }
 
-    constructor(props) {
+    constructor(options) {
 
-        super(...arguments)
+        super(options)
 
         this.split = this.getProp('split')?
             typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
@@ -65,7 +67,8 @@ module.exports = class Xy extends _pads_base {
         `)
 
         this.faders = {
-            x: new Fader({
+            x: new Fader({props:{
+                ...faderDefaults,
                 id:0,
                 compact:true,
                 horizontal:true,
@@ -77,8 +80,9 @@ module.exports = class Xy extends _pads_base {
                 origin:'auto',
                 precision:this.getProp('precision'),
                 logScale:this.getProp('logScaleX')
-            }, true),
-            y: new Fader({
+            }, cancelDraw: true}),
+            y: new Fader({props:{
+                ...faderDefaults,
                 id:1,
                 compact:true,
                 horizontal:false,
@@ -90,8 +94,7 @@ module.exports = class Xy extends _pads_base {
                 origin:'auto',
                 precision:this.getProp('precision'),
                 logScale:this.getProp('logScaleY')
-
-            }, true)
+            }, cancelDraw: true}),
         }
 
         this.inputs = [
