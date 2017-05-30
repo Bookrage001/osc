@@ -33,9 +33,17 @@ module.exports = class _widgets_base {
             this.props.target = [this.props.target]
         }
 
+        // limit precision
         if (this.props.precision) {
             this.precision = Math.min(20,Math.max(this.getProp('precision'),0))
         }
+
+        // strip parent ? no position
+        if (this.parent && this.parent.props.type == 'strip') {
+            delete this.props.top
+            delete this.props.left
+        }
+
     }
 
     sendValue(overrides) {

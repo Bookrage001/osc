@@ -125,17 +125,12 @@ module.exports.widgets = function(data, parentNode, parentWidget) {
         // Backward compatibility patch: path -> address
         if (props.path) props.address = props.path
 
-        // Genrate default address
-        props.address = props.address=='auto'?'/' + props.id:props.address
+        // Generate default address
+        props.address = props.address == 'auto' ? '/' + props.id : props.address
 
         // Delete unrecognized options
         for (let i in props) {
             if (defaults[i]===undefined && i!='type') {delete props[i]}
-        }
-
-        if (parentNode.hasClass('strip')) {
-            delete props.top
-            delete props.left
         }
 
         // create container
