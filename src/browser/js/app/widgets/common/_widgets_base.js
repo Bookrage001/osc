@@ -4,9 +4,9 @@ var osc = require('../../osc'),
 
 module.exports = class _widgets_base {
 
-    static options() {
+    static defaults() {
 
-        throw 'Calling unimplemented static options() method'
+        throw 'Calling unimplemented static defaults() method'
 
     }
 
@@ -15,11 +15,11 @@ module.exports = class _widgets_base {
         return shortid.generate()
     }
 
-    constructor(widgetData, widgetContainer, widgetHtml) {
+    constructor(props, widgetContainer, widgetHtml) {
 
         this.container = widgetContainer
         this.widget = $(widgetHtml)
-        this.widgetData = widgetData
+        this.props = props
         this.hash = _widgets_base.createHash()
 
 
@@ -68,9 +68,9 @@ module.exports = class _widgets_base {
 
     }
 
-    getOption(key) {
+    getProp(key) {
 
-        var opt = this.widgetData[key]
+        var opt = this.props[key]
 
         if (typeof opt == 'string' && opt.indexOf('@{') != -1) {
             opt = opt.replace(/@\{([^\}]+)\}/g, (m)=>{
@@ -80,8 +80,8 @@ module.exports = class _widgets_base {
 
                 var widgets = widgetManager.getWidgetById(id)
                 for (var i in widgets) {
-                    if (widgets[i].widgetData.hasOwnProperty(k)) {
-                        return widgets[i].widgetData[k]
+                    if (widgets[i].props.hasOwnProperty(k)) {
+                        return widgets[i].getProp(k)
                     }
                 }
             })

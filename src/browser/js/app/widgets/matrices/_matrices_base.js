@@ -2,7 +2,7 @@ var _widgets_base = require('../common/_widgets_base')
 
 module.exports = class _matrices_base extends _widgets_base {
 
-    constructor(widgetData) {
+    constructor(props) {
 
         var widgetHtml = `
             <div class="matrix"></div>
@@ -13,13 +13,13 @@ module.exports = class _matrices_base extends _widgets_base {
 
         this.value = []
 
-        this.start = parseInt(this.getOption('start'))
+        this.start = parseInt(this.getProp('start'))
 
         this.widget.on('sync',(e)=>{
 
-            if (e.id==this.getOption('id')) return
+            if (e.id==this.getProp('id')) return
             this.value[e.widget.parent().index()] = e.widget.abstract.getValue()
-            this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget,options:e.options})
+            this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget,options:e.options})
 
         })
 

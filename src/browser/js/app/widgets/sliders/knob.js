@@ -3,7 +3,7 @@ var {clip, mapToScale} = require('../utils'),
 
 module.exports = class Knob extends _sliders_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'knob',
@@ -44,7 +44,7 @@ module.exports = class Knob extends _sliders_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
@@ -52,12 +52,12 @@ module.exports = class Knob extends _sliders_base {
 
         this.margin = 5
 
-        if (this.getOption('compact')) {
+        if (this.getProp('compact')) {
             this.widget.addClass('compact')
             this.margin = 0
         }
 
-        if (!this.getOption('noPip')) {
+        if (!this.getProp('noPip')) {
             this.wrapper.append(`
                 <div class="pips">
                     <div>${this.rangeLabels[0]}</div><div>${this.rangeLabels[this.rangeLabels.length-1]}</div>
@@ -69,7 +69,7 @@ module.exports = class Knob extends _sliders_base {
         this.lastOffsetY = 0
         this.minDimension = 0
 
-        this.maxAngle = this.getOption('angle')
+        this.maxAngle = this.getProp('angle')
 
         // calculate lost height factor
         var a = this.maxAngle <= 180 ?
@@ -85,7 +85,7 @@ module.exports = class Knob extends _sliders_base {
         this.lastOffsetX = data.offsetX
         this.lastOffsetY = data.offsetY
 
-        if (!(traversing || this.getOption('snap'))) return
+        if (!(traversing || this.getProp('snap'))) return
 
         this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
 
@@ -95,7 +95,7 @@ module.exports = class Knob extends _sliders_base {
 
     dragHandle(e, data, traversing) {
 
-        if (!(traversing || this.getOption('snap'))) {
+        if (!(traversing || this.getProp('snap'))) {
 
             this.percent = -100*data.speedY/this.height + this.percent
 
@@ -144,10 +144,10 @@ module.exports = class Knob extends _sliders_base {
         this.minDimension = Math.min(this.width, this.height)
         this.gaugeWidth = this.minDimension / 8
 
-        if (this.getOption('compact')) {
-            this.canvas[0].style.top = this.input[0].style.marginTop = (this.minDimension) * this.lostHeightFactor - (this.getOption('label') === false ? 0 : this.gaugeWidth / 4) + 'px'
+        if (this.getProp('compact')) {
+            this.canvas[0].style.top = this.input[0].style.marginTop = (this.minDimension) * this.lostHeightFactor - (this.getProp('label') === false ? 0 : this.gaugeWidth / 4) + 'px'
         } else {
-            this.canvas[0].style.top  = Math.min((this.minDimension) * this.lostHeightFactor - (this.getOption('label') === false ? 0 : this.margin * PXSCALE / 2), this.input.outerHeight() * .5) + 'px'
+            this.canvas[0].style.top  = Math.min((this.minDimension) * this.lostHeightFactor - (this.getProp('label') === false ? 0 : this.margin * PXSCALE / 2), this.input.outerHeight() * .5) + 'px'
         }
 
     }
@@ -161,7 +161,7 @@ module.exports = class Knob extends _sliders_base {
 
         this.ctx.clearRect(0,0,this.width,this.height)
 
-        if (this.getOption('compact')) {
+        if (this.getProp('compact')) {
 
             this.ctx.lineWidth = this.gaugeWidth
             this.ctx.globalAlpha = 0.3

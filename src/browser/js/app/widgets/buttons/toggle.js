@@ -2,7 +2,7 @@ var _widgets_base = require('../common/_widgets_base')
 
 module.exports = class Toggle extends _widgets_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'toggle',
@@ -32,7 +32,7 @@ module.exports = class Toggle extends _widgets_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         var widgetHtml = `
             <div class="light"></div>
@@ -50,13 +50,13 @@ module.exports = class Toggle extends _widgets_base {
         })
 
 
-        this.value = this.getOption('off')
+        this.value = this.getProp('off')
 
     }
 
     fakeclick() {
 
-        var newVal = this.widget.state?this.getOption('off'):this.getOption('on')
+        var newVal = this.widget.state?this.getProp('off'):this.getProp('on')
         this.setValue(newVal,{sync:true,send:true})
         this.widget.on('dragend.toggle',()=>{
             this.widget.off('dragend.toggle')
@@ -71,19 +71,19 @@ module.exports = class Toggle extends _widgets_base {
 
     setValue(v,options={}) {
 
-        if (v===this.getOption('on') || (this.getOption('on') != null && v.value === this.getOption('on').value && v.value !== undefined)) {
+        if (v===this.getProp('on') || (this.getProp('on') != null && v.value === this.getProp('on').value && v.value !== undefined)) {
             this.widget.addClass('on')
             this.widget.state = 1
-            this.value = this.getOption('on')
+            this.value = this.getProp('on')
             if (options.send) this.sendValue()
-        } else if (v===this.getOption('off') || (this.getOption('off') != null && v.value === this.getOption('off').value && v.value !== undefined)) {
+        } else if (v===this.getProp('off') || (this.getProp('off') != null && v.value === this.getProp('off').value && v.value !== undefined)) {
             this.widget.removeClass('on')
             this.widget.state = 0
-            this.value = this.getOption('off')
+            this.value = this.getProp('off')
             if (options.send) this.sendValue()
         }
 
-        if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options})
+        if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
 
     }
 

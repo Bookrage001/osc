@@ -4,7 +4,7 @@ var Fader = require('../sliders/fader'),
 
 module.exports = class Meter extends Fader {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'fader',
@@ -39,9 +39,9 @@ module.exports = class Meter extends Fader {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
-        widgetData.compact = true
+        props.compact = true
 
         super(...arguments)
 
@@ -52,7 +52,7 @@ module.exports = class Meter extends Fader {
 
         this.canvas.off('draginit drag')
 
-        if (this.getOption('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
 
     }
@@ -65,7 +65,7 @@ module.exports = class Meter extends Fader {
 
     syncHandle(e) {
 
-        if (this.getOption('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
         var widget = widgetManager.getWidgetById(e.id),
             value
         for (var i=widget.length-1; i>=0; i--) {

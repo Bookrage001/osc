@@ -17,7 +17,7 @@ module.exports = class _pads_base extends _canvas_base {
 
         this.wrapper = this.widget.find('.wrapper')
 
-        if (this.getOption('touchAddress') && this.getOption('touchAddress').length)
+        if (this.getProp('touchAddress') && this.getProp('touchAddress').length)
             osctouchstate(this, this.wrapper)
 
     }

@@ -2,7 +2,7 @@ var _matrices_base = require('./_matrices_base')
 
 module.exports = class Multifader extends _matrices_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'multifader',
@@ -49,17 +49,17 @@ module.exports = class Multifader extends _matrices_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
-        this.strips = parseInt(this.getOption('strips'))
+        this.strips = parseInt(this.getProp('strips'))
 
-        if (this.getOption('horizontal')) {
+        if (this.getProp('horizontal')) {
             this.widget.addClass('horizontal')
         }
 
-        var strData = JSON.stringify(widgetData)
+        var strData = JSON.stringify(props)
 
         var parsers = require('../../parser'),
             parsewidgets = parsers.widgets
@@ -70,24 +70,24 @@ module.exports = class Multifader extends _matrices_base {
 
             data.top = data.left = data.height = data.width = 'auto'
             data.type = 'fader'
-            data.id = this.getOption('id') + '/' + i
+            data.id = this.getProp('id') + '/' + i
             data.label = i
-            data.address = this.getOption('split') ? this.getOption('address') + '/' + i : this.getOption('address')
-            data.preArgs = this.getOption('split') ? this.getOption('preArgs') : [].concat(this.getOption('preArgs'), i)
-            data.color = typeof this.getOption('color') == 'object' ? '' + this.getOption('color')[i % this.getOption('color').length] : this.getOption('color')
+            data.address = this.getProp('split') ? this.getProp('address') + '/' + i : this.getProp('address')
+            data.preArgs = this.getProp('split') ? this.getProp('preArgs') : [].concat(this.getProp('preArgs'), i)
+            data.color = typeof this.getProp('color') == 'object' ? '' + this.getProp('color')[i % this.getProp('color').length] : this.getProp('color')
             data.css = ''
 
             var element = parsewidgets([data],this.widget)
-            element[0].style.setProperty(this.getOption('horizontal')?'height':'width', 100/this.strips + '%')
+            element[0].style.setProperty(this.getProp('horizontal')?'height':'width', 100/this.strips + '%')
             element[0].classList.add('not-editable')
 
-            if (this.getOption('traversing')) element.find('canvas').off('drag')
+            if (this.getProp('traversing')) element.find('canvas').off('drag')
 
-            this.value[i-this.start] = this.getOption('range').min
+            this.value[i-this.start] = this.getProp('range').min
 
         }
 
-        if (this.getOption('traversing')) this.widget.enableTraversingGestures()
+        if (this.getProp('traversing')) this.widget.enableTraversingGestures()
 
     }
 

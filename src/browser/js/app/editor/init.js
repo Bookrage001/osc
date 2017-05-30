@@ -1,8 +1,7 @@
 var {getObjectData, updateDom, incrementWidget} = require('./data-workers'),
     {editObject, editSession, editClean} = require('./edit-objects'),
     createPopup = require('../utils').createPopup,
-    widgetOptions = require('../widgets').widgetOptions,
-    widgetCategories = require('../widgets').categories,
+    {widgets, widgetCategories} = require('../widgets'),
     menu = require('./context-menu')
 
 
@@ -66,7 +65,7 @@ var init = function(){
             updateDom(parentContainer,parentData)
         }
 
-        if (((type=='widget'&&widgetOptions[data.type].widgets) || (type=='tab')) && (!data.tabs||!data.tabs.length)) {
+        if (((type=='widget' && widgets[data.type].defaults().widgets) || (type=='tab')) && (!data.tabs||!data.tabs.length)) {
 
             if (CLIPBOARD!=null) {
                 actions['<i class="fa fa-paste"></i> Paste'] = {
@@ -122,7 +121,7 @@ var init = function(){
             }
 
         }
-        if  (((type=='widget'&&widgetOptions[data.type].tabs) || (type=='tab')) && (!data.widgets||!data.widgets.length)) {
+        if  (((type=='widget' && widgets[data.type].defaults().tabs) || (type=='tab')) && (!data.widgets||!data.widgets.length)) {
 
             actions['<i class="fa fa-plus"></i> Add tab'] = function(){
                 data.tabs = data.tabs || []

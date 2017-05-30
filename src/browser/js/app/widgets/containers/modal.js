@@ -4,7 +4,7 @@ var Panel = require('./panel'),
 
 module.exports = class Modal extends Panel {
 
-    static options() {
+    static defaults() {
 
         return  {
             type:'modal',
@@ -37,7 +37,7 @@ module.exports = class Modal extends Panel {
 
     }
 
-    constructor(widgetData, container) {
+    constructor(props, container) {
 
         super(...arguments)
 

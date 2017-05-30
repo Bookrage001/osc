@@ -3,7 +3,7 @@ var _switchers_base = require('./_switchers_base'),
 
 module.exports = class Switcher extends _switchers_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'switcher',
@@ -36,7 +36,7 @@ module.exports = class Switcher extends _switchers_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         var widgetHtml = `
             <div class="switcher switch-container"></div>
@@ -44,13 +44,13 @@ module.exports = class Switcher extends _switchers_base {
 
         super(...arguments, widgetHtml)
 
-        if (this.getOption('horizontal')) this.widget.addClass('horizontal')
+        if (this.getProp('horizontal')) this.widget.addClass('horizontal')
 
         this.switch = new Switch({
             label:false,
-            values:this.getOption('values'),
-            value: this.getOption('value'),
-            horizontal:this.getOption('horizontal')
+            values:this.getProp('values'),
+            value: this.getProp('value'),
+            horizontal:this.getProp('horizontal')
         },0)
 
         this.switch.sendValue = ()=>{}

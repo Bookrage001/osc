@@ -5,7 +5,7 @@ var _pads_base = require('./_pads_base'),
 
 module.exports = class Rgb extends _pads_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'rgb',
@@ -38,14 +38,14 @@ module.exports = class Rgb extends _pads_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
-        this.split = this.getOption('split')?
-                        typeof this.getOption('split') == 'object' && this.getOption('split').length == 3 ?
-                            this.getOption('split')
-                            : [this.getOption('address') + '/r', this.getOption('address') + '/g', this.getOption('address') + '/b']
+        this.split = this.getProp('split')?
+                        typeof this.getProp('split') == 'object' && this.getProp('split').length == 3 ?
+                            this.getProp('split')
+                            : [this.getProp('address') + '/r', this.getProp('address') + '/g', this.getProp('address') + '/b']
                         : false
 
         this.widget.append(`
@@ -70,7 +70,7 @@ module.exports = class Rgb extends _pads_base {
                 compact:false,
                 noPip:true,
                 horizontal:true,
-                snap:this.getOption('snap'),
+                snap:this.getProp('snap'),
                 range:{min:0,max:360},
                 precision:2
             }, false),
@@ -78,7 +78,7 @@ module.exports = class Rgb extends _pads_base {
                 id:'s',
                 compact:true,
                 horizontal:true,
-                snap:this.getOption('snap'),
+                snap:this.getProp('snap'),
                 range:{min:0,max:100},
                 precision:2
 
@@ -87,7 +87,7 @@ module.exports = class Rgb extends _pads_base {
                 id:'b',
                 compact:true,
                 horizontal:false,
-                snap:this.getOption('snap'),
+                snap:this.getProp('snap'),
                 range:{min:0,max:100},
                 precision:2
             }, true)
@@ -180,7 +180,7 @@ module.exports = class Rgb extends _pads_base {
         this.value = v
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync', id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
+        if (options.sync) this.widget.trigger({type:'sync', id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
 
         this.update({dragged:options.dragged, nohue:options.nohue || (v[0]==v[1]&&v[1]==v[2])})
 
@@ -196,7 +196,7 @@ module.exports = class Rgb extends _pads_base {
         }
 
         for (let i in this.inputs) [
-            this.inputs[i].val(this.value[i].toFixed(this.getOption('precision')))
+            this.inputs[i].val(this.value[i].toFixed(this.getProp('precision')))
         ]
 
         this.draw()

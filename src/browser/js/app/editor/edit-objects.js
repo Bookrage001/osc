@@ -1,5 +1,5 @@
 var updateDom = require('./data-workers').updateDom,
-    widgetOptions = require('../widgets').widgetOptions
+    {widgets} = require('../widgets')
 
 var ev = 'fake-click'
 
@@ -30,7 +30,7 @@ var editObject = function(container, data, refresh){
     var form = $('<div class="form"></div>').appendTo('.editor-container')
 
 
-    var params = isWidget?widgetOptions[data.type]:{label:'', id:''}
+    var params = isWidget ? widgets[data.type].defaults() : {label:'', id:''}
 
     $(`<div class="separator"><span>${isWidget?'Widget':'Tab'}</span></div>`).appendTo(form)
 
@@ -56,7 +56,7 @@ var editObject = function(container, data, refresh){
 
                 input = $(`<select class="input" data-type="${type}" title="${i}"/>`)
 
-                for (let t in widgetOptions) {
+                for (let t in widgets) {
                     input.append(`<option ${t==value?'selected=':''} value="${t}">${t}</option>`)
                 }
                 let select = $('<div class="select-wrapper"></div>').append(input)
@@ -117,7 +117,7 @@ var editObject = function(container, data, refresh){
     }
 
     // widget list edit
-    if (((isWidget&&widgetOptions[data.type].widgets) || (container.hasClass('tab'))) && (!data.tabs||!data.tabs.length)) {
+    if (((isWidget && params.widgets) || (container.hasClass('tab'))) && (!data.tabs||!data.tabs.length)) {
 
         $(`<div class="separator"><span>Widgets</span></div>`).appendTo(form)
 
@@ -172,7 +172,7 @@ var editObject = function(container, data, refresh){
     }
 
     // tab list edit
-    if (((isWidget&&widgetOptions[data.type].tabs) || (container.hasClass('tab'))) && (!data.widgets||!data.widgets.length)) {
+    if (((isWidget && params.tabs) || (container.hasClass('tab'))) && (!data.widgets||!data.widgets.length)) {
 
         $(`<div class="separator"><span>Tabs</span></div>`).appendTo(form)
 

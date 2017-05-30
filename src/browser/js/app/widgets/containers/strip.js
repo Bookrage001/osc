@@ -2,7 +2,7 @@ var _widgets_base = require('../common/_widgets_base')
 
 module.exports = class Strip extends _widgets_base {
 
-    static options() {
+    static defaults() {
 
         return  {
             type:'strip',
@@ -26,7 +26,7 @@ module.exports = class Strip extends _widgets_base {
 
     }
 
-    constructor(widgetData, container) {
+    constructor(props, container) {
 
         var widgetHtml = `
             <div class="strip"></div>
@@ -36,13 +36,13 @@ module.exports = class Strip extends _widgets_base {
 
         var parsewidgets = require('../../parser').widgets
 
-        if (this.getOption('horizontal')) {
+        if (this.getProp('horizontal')) {
             container.addClass('horizontal')
         } else {
             container.addClass('vertical')
         }
 
-        parsewidgets(this.getOption('widgets'),this.widget)
+        parsewidgets(this.getProp('widgets'),this.widget)
 
     }
 

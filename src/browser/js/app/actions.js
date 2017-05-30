@@ -32,7 +32,7 @@ module.exports = {
             if (widget.setValue && widget.getValue) {
                 var v = widget.getValue()
                 if (v!=undefined) {
-                    data.push([widget.widgetData.id,v])
+                    data.push([widget.getProp('id'),v])
                     continue
                 }
             }

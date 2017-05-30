@@ -5,7 +5,7 @@ var {mapToScale, clip} = require('../utils'),
 
 module.exports = class Eq extends _plots_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'eq',
@@ -38,7 +38,7 @@ module.exports = class Eq extends _plots_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
@@ -46,13 +46,13 @@ module.exports = class Eq extends _plots_base {
         this.pips.x.min = '20'
         this.pips.x.max = '22k'
 
-        this.resolution = clip(this.getOption('resolution'),[64,1024])
+        this.resolution = clip(this.getProp('resolution'),[64,1024])
 
-        for (let i in this.getOption('filters')) {
+        for (let i in this.getProp('filters')) {
 
-            for (let j in this.getOption('filters')[i]) {
-                if (typeof this.getOption('filters')[i][j]=='string' && !(j=='type' && this.getOption('filters')[i][j].match(/peak|notch|highpass|highshelf|lowpass|lowshelf/))) {
-                    this.linkedWidgets.push(this.getOption('filters')[i][j])
+            for (let j in this.getProp('filters')[i]) {
+                if (typeof this.getProp('filters')[i][j]=='string' && !(j=='type' && this.getProp('filters')[i][j].match(/peak|notch|highpass|highshelf|lowpass|lowshelf/))) {
+                    this.linkedWidgets.push(this.getProp('filters')[i][j])
                 }
             }
 
@@ -66,8 +66,8 @@ module.exports = class Eq extends _plots_base {
         eqResponse = []
 
 
-        for (let i in this.getOption('filters')) {
-            var filter = this.getOption('filters')[i]
+        for (let i in this.getProp('filters')) {
+            var filter = this.getProp('filters')[i]
 
             filters[i] = {}
 
@@ -95,9 +95,9 @@ module.exports = class Eq extends _plots_base {
             if (!filters[i].type) filters[i].type = "peak"
 
             if (!filters[i].on) {
-                filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!this.getOption('logScaleX'), this.resolution)
+                filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!this.getProp('logScaleX'), this.resolution)
             } else {
-                filterResponse = _biquad_response(filters[i],!this.getOption('logScaleX'), this.resolution)
+                filterResponse = _biquad_response(filters[i],!this.getProp('logScaleX'), this.resolution)
             }
 
             for (var k in filterResponse) {

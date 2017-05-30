@@ -6,17 +6,17 @@ var _widgets_base = require('../common/_widgets_base'),
 
 module.exports = class _switchers_base extends _widgets_base {
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
         this._isSwitcher = true
         this.value = {_selected:false}
-        this.linkedWidgets = typeof widgetData.linkedWidgets == 'object' ? widgetData.linkedWidgets : [widgetData.linkedWidgets]
+        this.linkedWidgets = typeof this.getProp('linkedWidgets') == 'object' ? this.getProp('linkedWidgets') : [this.getProp('linkedWidgets')]
 
-        for (var i in widgetData.values) {
+        for (var i in this.getProp('values')) {
 
-            this.value[widgetData.values[i]] = {}
+            this.value[this.getProp('values')[i]] = {}
 
         }
 
@@ -104,7 +104,7 @@ module.exports = class _switchers_base extends _widgets_base {
             }
         }
 
-        if (options.sync) this.widget.trigger({type:'sync',id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
+        if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
         if (options.send) this.sendValue()
 
     }

@@ -4,7 +4,7 @@ var {mapToScale} = require('../utils'),
 
 module.exports = class Led extends _widgets_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'led',
@@ -36,7 +36,7 @@ module.exports = class Led extends _widgets_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         var widgetHtml = `
             <div class="led">
@@ -48,9 +48,9 @@ module.exports = class Led extends _widgets_base {
 
         this.led = this.widget.find('span')
 
-        if (this.getOption('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
-        this.setValue(this.getOption('range').min)
+        this.setValue(this.getProp('range').min)
 
     }
 
@@ -62,7 +62,7 @@ module.exports = class Led extends _widgets_base {
 
     syncHandle(e) {
 
-        if (this.getOption('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
         var widget = widgetManager.getWidgetById(e.id),
             value
         for (var i=widget.length-1; i>=0; i--) {
@@ -76,7 +76,7 @@ module.exports = class Led extends _widgets_base {
     setValue(v) {
 
         if (typeof v != 'number') return
-        this.led.css('opacity',mapToScale(v,[this.getOption('range').min,this.getOption('range').max],[0,1],false,this.getOption('logScale'),true))
+        this.led.css('opacity',mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
 
     }
 

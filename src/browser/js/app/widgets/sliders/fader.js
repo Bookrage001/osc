@@ -4,7 +4,7 @@ var {clip, mapToScale} = require('../utils'),
 
 module.exports = class Fader extends _sliders_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'fader',
@@ -48,7 +48,7 @@ module.exports = class Fader extends _sliders_base {
 
     }
 
-    constructor(widgetData, widgetContainer) {
+    constructor(props, widgetContainer) {
 
         super(...arguments)
 
@@ -56,27 +56,27 @@ module.exports = class Fader extends _sliders_base {
         this.margin = 15
 
 
-        if (this.getOption('horizontal')) {
+        if (this.getProp('horizontal')) {
             this.widget.add(widgetContainer).addClass('horizontal')
-            if (this.getOption('width') == 'auto' && this.getOption('left') != 'auto') {
+            if (this.getProp('width') == 'auto' && this.getProp('left') != 'auto') {
                 this.container.css({'width':'auto', 'right':'0'})
             }
         } else {
-            if (this.getOption('height') == 'auto' && this.getOption('top') != 'auto') {
+            if (this.getProp('height') == 'auto' && this.getProp('top') != 'auto') {
                 this.container.css({'height':'auto', 'bottom':'0'})
             }
         }
 
-        if (this.getOption('compact')) {
+        if (this.getProp('compact')) {
             this.widget.addClass('compact')
             this.margin = 0
         }
 
-        if (this.getOption('alignRight') && !this.getOption('horizontal')) {
+        if (this.getProp('alignRight') && !this.getProp('horizontal')) {
             this.widget.addClass('align-right')
         }
 
-        if (!this.getOption('noPip') && !this.getOption('compact')) {
+        if (!this.getProp('noPip') && !this.getProp('compact')) {
 
             this.widget.addClass('has-pips')
 
@@ -90,7 +90,7 @@ module.exports = class Fader extends _sliders_base {
             for (var i=0;i<=100;i++) {
                 if (pipTexts[i]==undefined) continue
 
-                var pos = this.getOption('horizontal')?'left':'bottom';
+                var pos = this.getProp('horizontal')?'left':'bottom';
 
                 var piptext = `<span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>`
 
@@ -103,18 +103,18 @@ module.exports = class Fader extends _sliders_base {
         }
 
 
-        if (this.getOption('meter')) {
+        if (this.getProp('meter')) {
             var parsewidgets = require('../../parser').widgets
             var data = {
                 type:'meter',
-                id: this.getOption('id') + '/meter',
+                id: this.getProp('id') + '/meter',
                 label:false,
-                horizontal:this.getOption('horizontal'),
-                range:this.getOption('range'),
-                logScale:this.getOption('logScale'),
-                address:this.getOption('meterAddress') || this.getOption('address') + '/meter',
-                preArgs:this.getOption('preArgs'),
-                color:this.getOption('color')
+                horizontal:this.getProp('horizontal'),
+                range:this.getProp('range'),
+                logScale:this.getProp('logScale'),
+                address:this.getProp('meterAddress') || this.getProp('address') + '/meter',
+                preArgs:this.getProp('preArgs'),
+                color:this.getProp('color')
             }
             var element = parsewidgets([data],this.widget.find('.wrapper'))
             element[0].classList.add('not-editable')
@@ -129,9 +129,9 @@ module.exports = class Fader extends _sliders_base {
 
         this.percent = clip(this.percent,[0,100])
 
-        if (!(traversing || this.getOption('snap'))) return
+        if (!(traversing || this.getProp('snap'))) return
 
-        this.percent = this.getOption('horizontal')?
+        this.percent = this.getProp('horizontal')?
         (data.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)) * 100:
         (this.height - data.offsetY - this.margin * PXSCALE) / (this.height - (this.margin * PXSCALE * 2)) * 100
 
@@ -145,7 +145,7 @@ module.exports = class Fader extends _sliders_base {
 
         super.dragHandle(...arguments)
 
-        this.percent = this.getOption('horizontal')?
+        this.percent = this.getProp('horizontal')?
         this.percent + ( data.speedX/(this.width - this.margin * PXSCALE * 2)) * 100:
         this.percent + (-data.speedY/(this.height - this.margin * PXSCALE * 2)) * 100
 
@@ -155,7 +155,7 @@ module.exports = class Fader extends _sliders_base {
 
     percentToCoord(percent) {
 
-        if (this.getOption('horizontal')) {
+        if (this.getProp('horizontal')) {
             return clip(percent / 100,[0,1]) * (this.width - 2 * PXSCALE * this.margin)
         } else {
             return (this.height - this.margin * PXSCALE) - clip(percent / 100, [0,1]) * (this.height - 2 * PXSCALE * this.margin)
@@ -166,8 +166,8 @@ module.exports = class Fader extends _sliders_base {
     resizeHandle(){
             super.resizeHandle(...arguments)
 
-            if (this.getOption('compact')) {
-                if (this.getOption('horizontal')) {
+            if (this.getProp('compact')) {
+                if (this.getProp('horizontal')) {
                     this.canvas[0].setAttribute('height', 1)
                 } else {
                     this.canvas[0].setAttribute('width', 1)
@@ -183,14 +183,14 @@ module.exports = class Fader extends _sliders_base {
 
         var d = Math.round(this.percentToCoord(this.percent)),
         o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue))),
-        m = Math.round(this.getOption('horizontal') ? this.height / 2 : this.width / 2)
+        m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
 
         this.clear()
 
-        if (this.getOption('horizontal')) {
-            if (this.getOption('compact')) {
+        if (this.getProp('horizontal')) {
+            if (this.getProp('compact')) {
 
-                if (!this.getOption('noPip')) {
+                if (!this.getProp('noPip')) {
                     this.ctx.lineWidth = PXSCALE
                     this.ctx.globalAlpha = 1
 
@@ -256,9 +256,9 @@ module.exports = class Fader extends _sliders_base {
 
         } else {
 
-            if (this.getOption('compact')) {
+            if (this.getProp('compact')) {
 
-                if (!this.getOption('noPip')) {
+                if (!this.getProp('noPip')) {
                     this.ctx.lineWidth = PXSCALE
                     this.ctx.globalAlpha = 0.75
 

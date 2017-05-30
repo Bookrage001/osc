@@ -4,7 +4,7 @@ var {mapToScale} = require('../utils'),
 
 module.exports = class _plots_base extends _canvas_base {
 
-    constructor(widgetData) {
+    constructor(props) {
 
         var widgetHtml = `
             <div class="plot">
@@ -16,8 +16,8 @@ module.exports = class _plots_base extends _canvas_base {
 
         this.data = []
         this.linkedWidgets = []
-        this.rangeX = this.getOption('rangeX') || {min:0,max:1}
-        this.rangeY = this.getOption('rangeY') || {min:0,max:1}
+        this.rangeX = this.getProp('rangeX') || {min:0,max:1}
+        this.rangeY = this.getProp('rangeY') || {min:0,max:1}
         this.pips = {
             x : {
                 min: Math.abs(this.rangeX.min)>=1000?this.rangeY.min/1000+'k':this.rangeX.min,
@@ -75,9 +75,9 @@ module.exports = class _plots_base extends _canvas_base {
 
 
 
-        if (this.getOption('origin') !== false) {
+        if (this.getProp('origin') !== false) {
 
-            var origin = mapToScale(this.getOption('origin') || this.rangeY.min,[this.rangeY.min,this.rangeY.max],[this.height,0],0,this.getOption('logScaleY'),true)
+            var origin = mapToScale(this.getProp('origin') || this.rangeY.min,[this.rangeY.min,this.rangeY.max],[this.height,0],0,this.getProp('logScaleY'),true)
 
             this.ctx.globalAlpha = 0.1
             this.ctx.fillStyle = this.colors.custom
@@ -132,13 +132,13 @@ module.exports = class _plots_base extends _canvas_base {
 
             var newpoint = this.data[i].length?
                     [
-                        mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.getOption('logScaleX'),true),
-                        mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getOption('logScaleY'),true),
+                        mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.getProp('logScaleX'),true),
+                        mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getProp('logScaleY'),true),
                     ]
                     :
                     [
-                        mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.getOption('logScaleX'),true),
-                        mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getOption('logScaleY'),true),
+                        mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.getProp('logScaleX'),true),
+                        mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getProp('logScaleY'),true),
                     ]
 
 

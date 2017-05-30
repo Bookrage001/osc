@@ -4,9 +4,7 @@
 
 var {widgetManager} = require('./managers')
 
-var widgets = require('./widgets'),
-    widgetOptions = widgets.widgetOptions,
-    createWidget = widgets.createWidget,
+var {widgets} = require('./widgets'),
     {iconify} = require('./utils')
 
 var iterators = {
@@ -102,67 +100,67 @@ module.exports.tabs = function(data,parent,main,parentLabel){
 module.exports.widgets = function(data,parent) {
 
     for (let i in data) {
-        var widgetData = data[i]
+        var props = data[i]
 
         // Set default widget type
-        widgetData.type =  widgetData.type || 'fader'
+        props.type =  props.type || 'fader'
 
         // Safe copy widget's options
-        var tmpWidgetOptions = JSON.parse(JSON.stringify(widgetOptions))
+        let defaults = widgets[props.type].defaults()
 
         // Set widget's undefined options to default
-        for (let i in tmpWidgetOptions[widgetData.type]) {
-            if (i.indexOf('_')!=0 && widgetData[i]===undefined) widgetData[i] = tmpWidgetOptions[widgetData.type][i]
+        for (let i in defaults) {
+            if (i.indexOf('_')!=0 && props[i]===undefined) props[i] = defaults[i]
         }
 
         // Genrate widget's id, based on its type
-        if (widgetData.id=='auto') {
+        if (props.id=='auto') {
             var id
             while (!id || widgetManager.getWidgetById(id).length) {
-                id=widgetData.type+'_'+getIterator(widgetData.type,'widget')
+                id=props.type+'_'+getIterator(props.type,'widget')
             }
-            widgetData.id = id
+            props.id = id
         }
 
         // Backward compatibility patch: path -> address
-        if (widgetData.path) widgetData.address = widgetData.path
+        if (props.path) props.address = props.path
 
         // Genrate default address
-        widgetData.address = widgetData.address=='auto'?'/' + widgetData.id:widgetData.address
+        props.address = props.address=='auto'?'/' + props.id:props.address
 
         // Delete unrecognized options
-        for (let i in widgetData) {
-            if (widgetOptions[widgetData.type][i]===undefined && i!='type') {delete widgetData[i]}
+        for (let i in props) {
+            if (defaults[i]===undefined && i!='type') {delete props[i]}
         }
 
         if (parent.hasClass('strip')) {
-            delete widgetData.top
-            delete widgetData.left
+            delete props.top
+            delete props.left
         }
 
         // Turn preArgs into array
-        if (widgetData.preArgs!=undefined) {
-            widgetData.preArgs = Array.isArray(widgetData.preArgs)?widgetData.preArgs:[widgetData.preArgs]
+        if (props.preArgs!=undefined) {
+            props.preArgs = Array.isArray(props.preArgs)?props.preArgs:[props.preArgs]
         }
 
         // Turn preArgs into array
-        if (widgetData.target!=undefined) {
-            widgetData.target = Array.isArray(widgetData.target)?widgetData.target:[widgetData.target]
+        if (props.target!=undefined) {
+            props.target = Array.isArray(props.target)?props.target:[props.target]
         }
 
-        if (widgetData.precision) {
-            widgetData.precision = Math.min(20,Math.max(widgetData.precision,0))
+        if (props.precision) {
+            props.precision = Math.min(20,Math.max(props.precision,0))
         }
 
         // create container
         var widgetContainer = $(`
-            <div class="widget ${widgetData.type}-container">
+            <div class="widget ${props.type}-container">
                 <div class="label"><span></span></div>
             </div>
         `)
 
         // create widget
-        var widgetInner = createWidget[widgetData.type](widgetData,widgetContainer)
+        var widgetInner = new widgets[props.type](props, widgetContainer)
 
         widgetContainer[0].appendChild(widgetInner.widget[0])
 
@@ -170,45 +168,45 @@ module.exports.widgets = function(data,parent) {
 
         // dimensions / coordinates can't be < 0
         for (let t in {width:'',height:'',top:'',left:''}) {
-            widgetData[t] = `${widgetData[t]}`.indexOf('-')!=-1?0:widgetData[t]
+            props[t] = `${props[t]}`.indexOf('-')!=-1?0:props[t]
         }
 
         // convert dimensions / coordinates to rem
-        var width = parseFloat(widgetInner.getOption('width'))==widgetInner.getOption('width')?parseFloat(widgetInner.getOption('width'))+'rem' : widgetInner.getOption('width'),
-            height = parseFloat(widgetInner.getOption('height'))==widgetInner.getOption('height')?parseFloat(widgetInner.getOption('height'))+'rem' : widgetInner.getOption('height'),
-            left = parseFloat(widgetInner.getOption('left'))==widgetInner.getOption('left')?parseFloat(widgetInner.getOption('left'))+'rem' : widgetInner.getOption('left'),
-            top = parseFloat(widgetInner.getOption('top'))==widgetInner.getOption('top')?parseFloat(widgetInner.getOption('top'))+'rem' : widgetInner.getOption('top')
+        var width = parseFloat(widgetInner.getProp('width'))==widgetInner.getProp('width')?parseFloat(widgetInner.getProp('width'))+'rem' : widgetInner.getProp('width'),
+            height = parseFloat(widgetInner.getProp('height'))==widgetInner.getProp('height')?parseFloat(widgetInner.getProp('height'))+'rem' : widgetInner.getProp('height'),
+            left = parseFloat(widgetInner.getProp('left'))==widgetInner.getProp('left')?parseFloat(widgetInner.getProp('left'))+'rem' : widgetInner.getProp('left'),
+            top = parseFloat(widgetInner.getProp('top'))==widgetInner.getProp('top')?parseFloat(widgetInner.getProp('top'))+'rem' : widgetInner.getProp('top')
 
         var geometry = {}
         for (var d of ['width', 'height', 'left', 'top']){
-            if (widgetData[d])
-            geometry[d] = `${widgetData[d]}`.indexOf('-') != -1 ? 0 :
-                            parseFloat(widgetData[d]) == widgetData[d] ?
-                                parseFloat(widgetData[d])+'rem' : widgetData[d]
+            if (props[d]!==undefined)
+            geometry[d] = `${props[d]}`.indexOf('-') != -1 ? 0 :
+                            parseFloat(props[d]) == props[d] ?
+                                parseFloat(props[d])+'rem' : props[d]
         }
 
         // dimensions / coordinates css
-        var styleW = widgetInner.getOption('width') && widgetInner.getOption('width') != 'auto' ? `width: ${geometry.width}; min-width:auto;` : '',
-            styleH = widgetInner.getOption('height') && widgetInner.getOption('height') != 'auto' ? `height: ${geometry.height}; min-height:auto;` : '',
-            styleL = widgetInner.getOption('left') && widgetInner.getOption('left') != 'auto'|| widgetInner.getOption('left') == 0 ?`left: ${geometry.left};` : '',
-            styleT = widgetInner.getOption('top') && widgetInner.getOption('top') != 'auto'|| widgetInner.getOption('top') == 0 ? `top: ${geometry.top};` : ''
+        var styleW = widgetInner.getProp('width') && widgetInner.getProp('width') != 'auto' ? `width: ${geometry.width}; min-width:auto;` : '',
+            styleH = widgetInner.getProp('height') && widgetInner.getProp('height') != 'auto' ? `height: ${geometry.height}; min-height:auto;` : '',
+            styleL = widgetInner.getProp('left') && widgetInner.getProp('left') != 'auto'|| widgetInner.getProp('left') == 0 ?`left: ${geometry.left};` : '',
+            styleT = widgetInner.getProp('top') && widgetInner.getProp('top') != 'auto'|| widgetInner.getProp('top') == 0 ? `top: ${geometry.top};` : ''
 
         if (styleL.length || styleT.length) widgetContainer.addClass('absolute-position')
 
         // Hide label if false
-        if (widgetInner.getOption('label')===false) {
+        if (widgetInner.getProp('label')===false) {
             widgetContainer.addClass('nolabel')
         } else {
             // Generate label, iconify if starting with "icon:"
-            var label = widgetInner.getOption('label') == 'auto'?
-                            widgetInner.getOption('id'):
-                            iconify(widgetInner.getOption('label'))
+            var label = widgetInner.getProp('label') == 'auto'?
+                            widgetInner.getProp('id'):
+                            iconify(widgetInner.getProp('label'))
 
             widgetContainer.find('> .label span').html(label)
         }
 
         // parse scoped css
-        var css = ';' + widgetInner.getOption('css'),
+        var css = ';' + widgetInner.getProp('css'),
             scopedCss = ''
 
         css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
@@ -232,11 +230,11 @@ module.exports.widgets = function(data,parent) {
         }
 
         // Set custom css color variable
-        if (widgetInner.getOption('color') && widgetInner.getOption('color')!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetInner.getOption('color'))
+        if (widgetInner.getProp('color') && widgetInner.getProp('color')!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetInner.getProp('color'))
 
         // set widget's initial state
-        if (widgetInner.getOption('value') !== '' && widgetInner.setValue) {
-            widgetInner.setValue(widgetInner.getOption('value'))
+        if (widgetInner.getProp('value') !== '' && widgetInner.setValue) {
+            widgetInner.setValue(widgetInner.getProp('value'))
         }
 
         // Append the widget to its parent

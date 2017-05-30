@@ -2,7 +2,7 @@ var _matrices_base = require('./_matrices_base')
 
 module.exports = class Multipush extends _matrices_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'multipush',
@@ -42,37 +42,37 @@ module.exports = class Multipush extends _matrices_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
-        var strData = JSON.stringify(widgetData)
+        var strData = JSON.stringify(props)
 
         var parsers = require('../../parser'),
             parsewidgets = parsers.widgets
 
-        for (var i = this.start; i < this.getOption('matrix')[0] * this.getOption('matrix')[1] + this.start; i++) {
+        for (var i = this.start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + this.start; i++) {
 
             var data = JSON.parse(strData)
 
             data.top = data.left = data.height = data.width = 'auto'
             data.type = 'push'
-            data.id = this.getOption('id') + '/' + i
+            data.id = this.getProp('id') + '/' + i
             data.label = i
-            data.address = this.getOption('split') ? this.getOption('address') + '/' + i : this.getOption('address')
-            data.preArgs = this.getOption('split') ? this.getOption('preArgs') : [].concat(this.getOption('preArgs'), i)
-            data.color = typeof this.getOption('color') == 'object' ? '' + this.getOption('color')[i % this.getOption('color').length] : this.getOption('color')
+            data.address = this.getProp('split') ? this.getProp('address') + '/' + i : this.getProp('address')
+            data.preArgs = this.getProp('split') ? this.getProp('preArgs') : [].concat(this.getProp('preArgs'), i)
+            data.color = typeof this.getProp('color') == 'object' ? '' + this.getProp('color')[i % this.getProp('color').length] : this.getProp('color')
             data.css = ''
 
             var element = parsewidgets([data],this.widget)
-            element[0].style.setProperty('width', 100/this.getOption('matrix')[0] + '%')
+            element[0].style.setProperty('width', 100/this.getProp('matrix')[0] + '%')
             element[0].classList.add('not-editable')
 
-            this.value[i-this.start] = this.getOption('off')
+            this.value[i-this.start] = this.getProp('off')
 
         }
 
-        if (this.getOption('traversing')) this.widget.enableTraversingGestures()
+        if (this.getProp('traversing')) this.widget.enableTraversingGestures()
 
     }
 

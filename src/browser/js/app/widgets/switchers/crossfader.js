@@ -4,9 +4,9 @@ var Switcher = require('./switcher'),
 
 module.exports = class Crossfader extends Switcher {
 
-    static options(){
+    static defaults(){
 
-        var o = super.options()
+        var o = super.defaults()
         o.type = 'crossfader'
         delete o.values
 
@@ -14,15 +14,15 @@ module.exports = class Crossfader extends Switcher {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
-        widgetData.values = widgetData.horizontal ? ['A', 'B'] : ['B', 'A']
+        props.values = props.horizontal ? ['A', 'B'] : ['B', 'A']
 
         super(...arguments)
 
 
-        var o = Fader.options()
-        o.horizontal = this.getOption('horizontal')
+        var o = Fader.defaults()
+        o.horizontal = this.getProp('horizontal')
         o.range = {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}}
 
         this.fader = new Fader(o, 0)

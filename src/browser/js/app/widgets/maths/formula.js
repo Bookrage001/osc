@@ -5,7 +5,7 @@ var _widgets_base = require('../common/_widgets_base'),
 
 module.exports = class Formula extends _widgets_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'formula',
@@ -38,7 +38,7 @@ module.exports = class Formula extends _widgets_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         var widgetHtml = `
             <div class="formula">
@@ -48,10 +48,10 @@ module.exports = class Formula extends _widgets_base {
 
         super(...arguments, widgetHtml)
 
-        this.formula = String(this.getOption('formula'))
-        this.condition = String(this.getOption('condition'))
+        this.formula = String(this.getProp('formula'))
+        this.condition = String(this.getProp('condition'))
 
-        this.split = typeof this.getOption('split') == 'object' && this.getOption('split').length ? this.getOption('split') : false
+        this.split = typeof this.getProp('split') == 'object' && this.getProp('split').length ? this.getProp('split') : false
 
         this.input = this.widget.find('.input').fakeInput({align:'center', disabled:true})
 
@@ -107,7 +107,7 @@ module.exports = class Formula extends _widgets_base {
             }
         }
 
-        if (this.getOption('condition').length) {
+        if (this.getProp('condition').length) {
 
             try {
 
@@ -131,7 +131,7 @@ module.exports = class Formula extends _widgets_base {
 
             this.showValue()
 
-            if (e.options.sync && this.conditionState) this.widget.trigger({type: 'sync',id: this.getOption('id'),widget: this.widget, linkId: this.getOption('linkId'), options: e.options})
+            if (e.options.sync && this.conditionState) this.widget.trigger({type: 'sync',id: this.getProp('id'),widget: this.widget, linkId: this.getProp('linkId'), options: e.options})
             if (e.options.send && this.conditionState) this.sendValue()
 
         } catch(err) {
@@ -163,8 +163,8 @@ module.exports = class Formula extends _widgets_base {
     showValue() {
 
         this.input.val(
-            (this.getOption('condition').length && !this.conditionState ? '* ' : '') +
-            JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.getOption('precision')))
+            (this.getProp('condition').length && !this.conditionState ? '* ' : '') +
+            JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.getProp('precision')))
         )
 
     }

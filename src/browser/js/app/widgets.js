@@ -1,4 +1,4 @@
-var widgets = {
+module.exports.widgets = {
     // sliders
     fader: require('./widgets/sliders/fader'),
     knob: require('./widgets/sliders/knob'),
@@ -52,23 +52,3 @@ module.exports.categories = {
     'Switchers':['switcher','crossfader'],
     'Maths':['formula']
 }
-
-module.exports.widgetOptions = function(){
-    var r = {}
-    for (let i in widgets) {
-        r[i] = widgets[i].options()
-    }
-    return r
-}()
-
-module.exports.createWidget =  function(){
-    var r = {}
-    for (let i in widgets) {
-        let x = i,
-            f = function(){
-            return new widgets[x](...arguments)
-        }
-        r[i] = f
-    }
-    return r
-}()

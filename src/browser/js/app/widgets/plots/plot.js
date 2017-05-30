@@ -4,7 +4,7 @@ var {mapToScale} = require('../utils'),
 
 module.exports = class Plot extends _plots_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'plot',
@@ -38,20 +38,20 @@ module.exports = class Plot extends _plots_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
-        if (typeof this.getOption('points')=='string') {
+        if (typeof this.getProp('points')=='string') {
 
-            this.linkedWidgets.push(this.getOption('points'))
+            this.linkedWidgets.push(this.getProp('points'))
 
-        } else if (typeof this.getOption('points')=='object') {
+        } else if (typeof this.getProp('points')=='object') {
 
-            for (let i in this.getOption('points')) {
-                for (let j in this.getOption('points')[i]) {
-                    if (typeof this.getOption('points')[i][j] == 'string') {
-                        this.linkedWidgets.push(this.getOption('points')[i][j])
+            for (let i in this.getProp('points')) {
+                for (let j in this.getProp('points')[i]) {
+                    if (typeof this.getProp('points')[i][j] == 'string') {
+                        this.linkedWidgets.push(this.getProp('points')[i][j])
                     }
                 }
             }
@@ -62,7 +62,7 @@ module.exports = class Plot extends _plots_base {
     updateData() {
 
         var data = [],
-            points = this.getOption('points'),
+            points = this.getProp('points'),
             widget = widgetManager.getWidgetById(points)
 
         if (typeof points=='string' && widget.length) {

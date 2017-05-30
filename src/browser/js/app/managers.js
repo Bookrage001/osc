@@ -46,11 +46,11 @@ var WidgetManager = function(){
             ipc.send('addWidget', {
                 hash:hash,
                 data:{
-                    precision: this.widgets[hash].getOption('precision'),
-                    preArgs: this.widgets[hash].getOption('preArgs'),
+                    precision: this.widgets[hash].getProp('precision'),
+                    preArgs: this.widgets[hash].getProp('preArgs'),
                     split: this.widgets[hash].split,
-                    target: this.widgets[hash].getOption('target'),
-                    address: this.widgets[hash].getOption('address'),
+                    target: this.widgets[hash].getProp('target'),
+                    address: this.widgets[hash].getProp('address'),
                 }
             })
         }
@@ -61,8 +61,8 @@ var WidgetManager = function(){
 
 
 WidgetManager.prototype.createAddressRef = function(widget, preArgs, address) {
-    var preArgs = preArgs || widget.getOption('preArgs'),
-        address = address || widget.getOption('address')
+    var preArgs = preArgs || widget.getProp('preArgs'),
+        address = address || widget.getProp('address')
 
     return preArgs && preArgs.length ?
                 address + this.preArgsSeparator + preArgs.join(this.preArgsSeparator)
@@ -74,8 +74,8 @@ WidgetManager.prototype.addWidget = function(widget) {
 
     var hash = widget.hash,
         address = this.createAddressRef(widget),
-        id = widget.getOption('id'),
-        linkId = widget.getOption('linkId')
+        id = widget.getProp('id'),
+        linkId = widget.getProp('linkId')
 
 
     this.widgets[hash] = widget
@@ -99,11 +99,11 @@ WidgetManager.prototype.addWidget = function(widget) {
     ipc.send('addWidget', {
         hash:hash,
         data:{
-            precision: widget.getOption('precision'),
-            preArgs: widget.getOption('preArgs'),
+            precision: widget.getProp('precision'),
+            preArgs: widget.getProp('preArgs'),
             split: widget.split,
-            target: widget.getOption('target'),
-            address: widget.getOption('address'),
+            target: widget.getProp('target'),
+            address: widget.getProp('address'),
         }
     })
 
@@ -113,8 +113,8 @@ WidgetManager.prototype.removeWidget = function(hash) {
 
     var widget = this.widgets[hash],
         address = this.createAddressRef(widget),
-        linkId =  widget.getOption('linkId'),
-        id = widget.getOption('id')
+        linkId =  widget.getProp('linkId'),
+        id = widget.getProp('id')
 
     if (this.widgets[hash]) {
         if (this.widgets[hash].onRemove) this.widgets[hash].onRemove()

@@ -4,7 +4,7 @@ var _pads_base = require('./_pads_base'),
 
 module.exports = class Xy extends _pads_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'xy',
@@ -43,14 +43,14 @@ module.exports = class Xy extends _pads_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
-        this.split = this.getOption('split')?
-            typeof this.getOption('split') == 'object' && this.getOption('split').length == 2 ?
-                this.getOption('split')
-                : [this.getOption('address') + '/x', this.getOption('address') + '/y']
+        this.split = this.getProp('split')?
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
+                this.getProp('split')
+                : [this.getProp('address') + '/x', this.getProp('address') + '/y']
             : false
 
         this.widget.append(`
@@ -71,12 +71,12 @@ module.exports = class Xy extends _pads_base {
                 horizontal:true,
                 height:'100%',
                 width:'100%',
-                value:this.getOption('value').length==2?this.getOption('value')[0]:'',
-                snap:this.getOption('snap'),
-                range:this.getOption('rangeX'),
+                value:this.getProp('value').length==2?this.getProp('value')[0]:'',
+                snap:this.getProp('snap'),
+                range:this.getProp('rangeX'),
                 origin:'auto',
-                precision:this.getOption('precision'),
-                logScale:this.getOption('logScaleX')
+                precision:this.getProp('precision'),
+                logScale:this.getProp('logScaleX')
             }, true),
             y: new Fader({
                 id:1,
@@ -84,12 +84,12 @@ module.exports = class Xy extends _pads_base {
                 horizontal:false,
                 height:'100%',
                 width:'100%',
-                value:this.getOption('value').length==2?this.getOption('value')[1]:'',
-                snap:this.getOption('snap'),
-                range:this.getOption('rangeY'),
+                value:this.getProp('value').length==2?this.getProp('value')[1]:'',
+                snap:this.getProp('snap'),
+                range:this.getProp('rangeY'),
                 origin:'auto',
-                precision:this.getOption('precision'),
-                logScale:this.getOption('logScaleY')
+                precision:this.getProp('precision'),
+                logScale:this.getProp('logScaleY')
 
             }, true)
         }
@@ -119,7 +119,7 @@ module.exports = class Xy extends _pads_base {
             this.dragHandle()
         })
 
-        if (this.getOption('spring')) {
+        if (this.getProp('spring')) {
             this.wrapper.on('dragend', ()=>{
                 this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true,fromLocal:true})
             })
@@ -164,7 +164,7 @@ module.exports = class Xy extends _pads_base {
         ]
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync', id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
+        if (options.sync) this.widget.trigger({type:'sync', id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
 
         this.draw()
 

@@ -19,7 +19,7 @@ var callbacks = {
         if (!containers.length) return
         for (var i=containers.length-1;i>=0;i--) {
             var container = containers[i].widget.parent(),
-                data = containers[i].widgetData
+                data = containers[i].props
 
             for (var k in newdata) {
                 data[k] = newdata[k]
@@ -38,7 +38,7 @@ var callbacks = {
         if (!containers.length) return
         for (var i=containers.length-1;i>=0;i--) {
             var container = containers[i].widget.parent(),
-                data = containers[i].widgetData
+                data = containers[i].props
 
             $.extend(true,data,newdata)
             updateDom(container,data,true)

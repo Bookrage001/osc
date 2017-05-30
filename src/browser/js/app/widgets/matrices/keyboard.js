@@ -2,7 +2,7 @@ var _matrices_base = require('./_matrices_base')
 
 module.exports = class Keyboard extends _matrices_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'keyboard',
@@ -40,13 +40,13 @@ module.exports = class Keyboard extends _matrices_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
-        this.keys = parseInt(this.getOption('keys'))
+        this.keys = parseInt(this.getProp('keys'))
 
-        var strData = JSON.stringify(widgetData),
+        var strData = JSON.stringify(props),
             pattern = 'wbwbwwbwbwbw',
             wCount = 0
 
@@ -60,10 +60,10 @@ module.exports = class Keyboard extends _matrices_base {
 
             data.top = data.left = data.height = data.width = 'auto'
             data.type = 'push'
-            data.id = this.getOption('id') + '/' + i
+            data.id = this.getProp('id') + '/' + i
             data.label = false
-            data.address = this.getOption('split') ? this.getOption('address') + '/' + i : this.getOption('address')
-            data.preArgs = this.getOption('split') ? this.getOption('preArgs') : [].concat(this.getOption('preArgs'), i)
+            data.address = this.getProp('split') ? this.getProp('address') + '/' + i : this.getProp('address')
+            data.preArgs = this.getProp('split') ? this.getProp('preArgs') : [].concat(this.getProp('preArgs'), i)
             data.css = ''
 
             var element = parsewidgets([data],this.widget)
@@ -77,7 +77,7 @@ module.exports = class Keyboard extends _matrices_base {
 
             }
 
-            this.value[i-this.start] = this.getOption('off')
+            this.value[i-this.start] = this.getProp('off')
 
         }
 
@@ -90,7 +90,7 @@ module.exports = class Keyboard extends _matrices_base {
 
         })
 
-        if (this.getOption('traversing')) this.widget.enableTraversingGestures()
+        if (this.getProp('traversing')) this.widget.enableTraversingGestures()
 
     }
 

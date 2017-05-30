@@ -4,7 +4,7 @@ var _pads_base = require('./_pads_base'),
 
 module.exports = class MultiXy extends _pads_base {
 
-    static options() {
+    static defaults() {
 
         return {
             type:'xy',
@@ -45,25 +45,25 @@ module.exports = class MultiXy extends _pads_base {
 
     }
 
-    constructor(widgetData) {
+    constructor(props) {
 
         super(...arguments)
 
-        this.npoints = typeof this.getOption('points') == 'object' ? this.getOption('points').length : this.getOption('points')
-        this.labels = typeof this.getOption('points') == 'object'
-        this.pointSize = parseInt(this.getOption('pointSize'))
+        this.npoints = typeof this.getProp('points') == 'object' ? this.getProp('points').length : this.getProp('points')
+        this.labels = typeof this.getProp('points') == 'object'
+        this.pointSize = parseInt(this.getProp('pointSize'))
         this.widget[0].style.setProperty("--point-size",this.pointSize + 'rem')
 
-        this.split = this.getOption('split')?
-                        typeof this.getOption('split') == 'object' && this.getOption('split').length == 2 * this.npoints ?
-                            this.getOption('split')
+        this.split = this.getProp('split')?
+                        typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 * this.npoints ?
+                            this.getProp('split')
                             : (()=>{
                                 var s={},
                                     t
                                 for (var i=0; i<this.npoints * 2;i=i+2) {
-                                    t = this.labels ? this.getOption('points')[i/2] : i/2
-                                    s[i]=this.getOption('address') + '/' + t + '/x'
-                                    s[i+1]=this.getOption('address') + '/' + t + '/y'
+                                    t = this.labels ? this.getProp('points')[i/2] : i/2
+                                    s[i]=this.getProp('address') + '/' + t + '/x'
+                                    s[i+1]=this.getProp('address') + '/' + t + '/y'
                                 };
                                 return s
                             })()
@@ -77,14 +77,14 @@ module.exports = class MultiXy extends _pads_base {
 
         for (var i=this.npoints-1;i>=0;i--) {
             this.pads[i] = new Xy({
-                snap:this.getOption('snap'),
-                spring:this.getOption('spring'),
-                value:this.getOption('value').length == this.getOption('points') * 2 ? [this.getOption('value')[i*2], this.getOption('value')[i*2 + 1]] : '',
-                rangeX:this.getOption('rangeX'),
-                rangeY:this.getOption('rangeY'),
-                precision:this.getOption('precision'),
-                logScaleX:this.getOption('logScaleX'),
-                logScaleY:this.getOption('logScaleY')
+                snap:this.getProp('snap'),
+                spring:this.getProp('spring'),
+                value:this.getProp('value').length == this.getProp('points') * 2 ? [this.getProp('value')[i*2], this.getProp('value')[i*2 + 1]] : '',
+                rangeX:this.getProp('rangeX'),
+                rangeY:this.getProp('rangeY'),
+                precision:this.getProp('precision'),
+                logScaleX:this.getProp('logScaleX'),
+                logScaleY:this.getProp('logScaleY')
             }, false)
             this.pads[i].sendValue = ()=>{}
             this.pads[i].draw = ()=>{}
@@ -185,7 +185,7 @@ module.exports = class MultiXy extends _pads_base {
         for (var i=0;i<this.npoints;i++) {
             var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
                 y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
-                t = this.labels ? this.getOption('points')[i] : i
+                t = this.labels ? this.getProp('points')[i] : i
 
                 this.ctx.strokeStyle = this.colors.custom
                 this.ctx.fillStyle = this.colors.custom
@@ -243,7 +243,7 @@ module.exports = class MultiXy extends _pads_base {
         }
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync', id:this.getOption('id'),widget:this.widget, linkId:this.getOption('linkId'), options:options})
+        if (options.sync) this.widget.trigger({type:'sync', id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
 
     }
 
