@@ -116,7 +116,7 @@ module.exports = class Fader extends _sliders_base {
                 preArgs:this.getProp('preArgs'),
                 color:this.getProp('color')
             }
-            var element = parsewidgets([data],this.widget.find('.wrapper'))
+            var element = parsewidgets([data],this.widget.find('.wrapper'), this.parent)
             element[0].classList.add('not-editable')
             this.widget[0].classList.add('has-meter')
         }
