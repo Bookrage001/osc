@@ -29,6 +29,8 @@ module.exports = class Panel extends _widgets_base {
 
             _children:'children',
 
+            variables:{},
+
             widgets:[],
             tabs:[]
         }
