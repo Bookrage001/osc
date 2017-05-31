@@ -61,7 +61,7 @@ module.exports = class Panel extends _widgets_base {
             try {
 
                 var layout = this.getProp('layout').replace(/\$([0-9])+/g, (m)=>{
-                    return this.children[m.replace('$','')].abstract.this.getProp('id')
+                    return this.children[m.replace('$','')].abstract.getProp('id')
                 })
 
                 this.layout = new autolayout.View({
