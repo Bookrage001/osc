@@ -86,7 +86,7 @@ module.exports = class Panel extends _widgets_base {
     }
     applyLayout(){
         this.widget.find('> .widget').each((i,widget)=>{
-            var id = widget.abstract.this.getProp('id')
+            var id = widget.abstract.getProp('id')
             if (!this.layout.subViews[id]) return
             var $widget = $(widget).addClass('absolute-position').css({'min-height':'auto','min-width':'auto'})
             for (var prop of ['height', 'width', 'top', 'left']) {
