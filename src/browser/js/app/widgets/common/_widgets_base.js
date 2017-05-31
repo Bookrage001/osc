@@ -97,7 +97,14 @@ module.exports = class _widgets_base {
         if (typeof opt == 'string' && opt.indexOf('@{') != -1) {
             opt = opt.replace(/@\{([^\}]+)\}/g, (m)=>{
                 let id = m.substr(2, m.length - 3).split('.'),
+                    k = id.pop(),
+                    subk = undefined
+
+                if (id.length > 1) {
+                    subk = k
                     k = id.pop()
+                }
+
                 id = id.join('.')
 
                 var widgets = id == 'parent' && this.parent ?
@@ -106,6 +113,7 @@ module.exports = class _widgets_base {
                 for (var i in widgets) {
                     if (widgets[i].props.hasOwnProperty(k)) {
                         var r = widgets[i].getProp(k)
+                        if (subk !== undefined) r = r[subk]
                         if (typeof r != 'string') r = JSON.stringify(r)
                         return r
                     }
