@@ -560,7 +560,7 @@
                                                         "type": "toggle",
                                                         "id": "expand_@{parent.variables.n}",
                                                         "linkId": "",
-                                                        "label": "^arrows-h",
+                                                        "label": "Sel²",
                                                         "css": "",
                                                         "on": 1,
                                                         "off": 0,
@@ -883,7 +883,7 @@
                                                     {
                                                         "type": "toggle",
                                                         "id": "expand_@{parent.variables.n}",
-                                                        "label": "^arrows-h",
+                                                        "label": "Sel²",
                                                         "css": "",
                                                         "on": 1,
                                                         "off": 0,
@@ -1207,7 +1207,7 @@
                                                     {
                                                         "type": "toggle",
                                                         "id": "expand_@{parent.variables.n}",
-                                                        "label": "^arrows-h",
+                                                        "label": "Sel²",
                                                         "css": "",
                                                         "on": 1,
                                                         "off": 0,
@@ -1531,7 +1531,7 @@
                                                     {
                                                         "type": "toggle",
                                                         "id": "expand_@{parent.variables.n}",
-                                                        "label": "^arrows-h",
+                                                        "label": "Sel²",
                                                         "css": "",
                                                         "on": 1,
                                                         "off": 0,
@@ -1854,7 +1854,7 @@
                                                     {
                                                         "type": "toggle",
                                                         "id": "expand_@{parent.variables.n}",
-                                                        "label": "^arrows-h",
+                                                        "label": "Sel²",
                                                         "css": "",
                                                         "on": 1,
                                                         "off": 0,
@@ -2179,7 +2179,7 @@
                                                     {
                                                         "type": "toggle",
                                                         "id": "expand_@{parent.variables.n}",
-                                                        "label": "^arrows-h",
+                                                        "label": "Sel²",
                                                         "css": "",
                                                         "on": 1,
                                                         "off": 0,
@@ -2893,7 +2893,7 @@
                                         "width": "100%",
                                         "height": "100%",
                                         "value": "No plugin found",
-                                        "id": "text_3",
+                                        "id": "text_11",
                                         "left": "auto",
                                         "top": "auto",
                                         "vertical": false,
@@ -2901,7 +2901,7 @@
                                         "css": "",
                                         "widgetId": "",
                                         "preArgs": [],
-                                        "address": "/text_3"
+                                        "address": "/text_11"
                                     }
                                 ],
                                 "tabs": [],
@@ -3169,7 +3169,7 @@
                                                         "type": "toggle",
                                                         "id": "expand_select",
                                                         "linkId": "",
-                                                        "label": "^arrows-h",
+                                                        "label": "Sel²",
                                                         "css": "",
                                                         "on": 1,
                                                         "off": 0,
@@ -3241,22 +3241,20 @@
                                         "widgetId": ""
                                     },
                                     {
-                                        "type": "strip",
+                                        "type": "panel",
                                         "id": "extra_controls_selected",
                                         "label": false,
-                                        "width": 100,
-                                        "height": 330,
-                                        "horizontal": false,
+                                        "width": 120,
                                         "color": "auto",
-                                        "css": "",
+                                        "css": " > .panel {display:flex;flex-direction:column;flex-wrap: nowrap;};.widget {flex-shrink:0}; height: calc(100% - 150rem)",
                                         "widgets": [
                                             {
                                                 "type": "toggle",
                                                 "id": "polaritysel",
                                                 "linkId": "",
                                                 "label": "Polarity Reverse",
-                                                "width": "auto",
-                                                "height": 30,
+                                                "width": "100%",
+                                                "height": 40,
                                                 "color": "auto",
                                                 "css": "",
                                                 "on": 1,
@@ -3265,15 +3263,17 @@
                                                 "preArgs": [],
                                                 "target": [],
                                                 "value": "",
-                                                "address": "/select/polarity"
+                                                "address": "/select/polarity",
+                                                "top": "auto",
+                                                "left": "auto"
                                             },
                                             {
                                                 "type": "toggle",
                                                 "id": "soloisosel",
                                                 "linkId": "",
                                                 "label": "Solo Isolate",
-                                                "width": "auto",
-                                                "height": 30,
+                                                "width": "100%",
+                                                "height": 40,
                                                 "color": "red",
                                                 "css": "",
                                                 "on": 1,
@@ -3282,15 +3282,17 @@
                                                 "preArgs": [],
                                                 "target": [],
                                                 "value": "",
-                                                "address": "/select/solo_iso"
+                                                "address": "/select/solo_iso",
+                                                "top": "auto",
+                                                "left": "auto"
                                             },
                                             {
                                                 "type": "toggle",
                                                 "id": "solosafesel",
                                                 "linkId": "",
                                                 "label": "Lock Solo",
-                                                "width": "auto",
-                                                "height": 30,
+                                                "width": "100%",
+                                                "height": 40,
                                                 "color": "red",
                                                 "css": "",
                                                 "on": 1,
@@ -3299,7 +3301,9 @@
                                                 "preArgs": [],
                                                 "target": [],
                                                 "value": "",
-                                                "address": "/select/solo_safe"
+                                                "address": "/select/solo_safe",
+                                                "top": "auto",
+                                                "left": "auto"
                                             },
                                             {
                                                 "type": "fader",
@@ -3330,7 +3334,9 @@
                                                 "address": "/select/pan_stereo_width",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "width": "auto"
+                                                "width": "auto",
+                                                "top": "auto",
+                                                "left": "auto"
                                             },
                                             {
                                                 "type": "fader",
@@ -3361,7 +3367,9 @@
                                                 "address": "/select/pan_elevation_position",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "width": "auto"
+                                                "width": "auto",
+                                                "top": "auto",
+                                                "left": "auto"
                                             },
                                             {
                                                 "type": "fader",
@@ -3392,7 +3400,9 @@
                                                 "address": "/select/pan_frontback_position",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "width": "auto"
+                                                "width": "auto",
+                                                "top": "auto",
+                                                "left": "auto"
                                             },
                                             {
                                                 "type": "fader",
@@ -3423,25 +3433,32 @@
                                                 "address": "/select/pan_lfe_control",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "width": "auto"
+                                                "width": "auto",
+                                                "top": "auto",
+                                                "left": "auto"
                                             }
                                         ],
-                                        "left": 130,
-                                        "top": 280
+                                        "left": 120,
+                                        "top": 150,
+                                        "scroll": true,
+                                        "layout": "",
+                                        "spacing": 0,
+                                        "variables": {},
+                                        "tabs": [],
+                                        "height": "auto"
                                     },
                                     {
                                         "type": "modal",
-                                        "top": 120,
-                                        "left": 130,
+                                        "top": 110,
+                                        "left": 180,
                                         "id": "sends_panel",
                                         "label": "Sends",
-                                        "width": "auto",
+                                        "width": 60,
                                         "height": 40,
                                         "color": "auto",
                                         "css": "",
                                         "layout": "",
                                         "spacing": 0,
-                                        "address": "/modal_1",
                                         "widgets": [
                                             {
                                                 "type": "text",
@@ -3449,7 +3466,7 @@
                                                 "width": "100%",
                                                 "height": "100%",
                                                 "value": "No send found",
-                                                "id": "text_4",
+                                                "id": "text_12",
                                                 "left": "auto",
                                                 "top": "auto",
                                                 "vertical": false,
@@ -3457,10 +3474,31 @@
                                                 "css": "",
                                                 "widgetId": "",
                                                 "preArgs": [],
-                                                "address": "/text_4"
+                                                "address": "/text_12"
                                             }
                                         ],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "popupWidth": "100%",
+                                        "popupHeight": "100%",
+                                        "address": "/sends_panel"
+                                    },
+                                    {
+                                        "type": "modal",
+                                        "top": 110,
+                                        "left": 120,
+                                        "id": "receives_panel",
+                                        "label": "Receives",
+                                        "width": 60,
+                                        "height": 40,
+                                        "color": "auto",
+                                        "css": "",
+                                        "layout": "",
+                                        "spacing": 0,
+                                        "widgets": [],
+                                        "tabs": [],
+                                        "popupWidth": "100%",
+                                        "popupHeight": "100%",
+                                        "address": "/receives_panel"
                                     }
                                 ],
                                 "tabs": [],
@@ -3744,12 +3782,12 @@
         "widgets": [
             {
                 "type": "strip",
-                "top": 10,
-                "left": 10,
+                "top": 0,
+                "left": 0,
                 "id": "panel_1",
                 "label": "Strip Types",
                 "width": 80,
-                "height": 630,
+                "height": "100%",
                 "color": "auto",
                 "css": ".widget {flex:1;min-height:auto}",
                 "widgets": [
