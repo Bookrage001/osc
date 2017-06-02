@@ -25,7 +25,7 @@ $(function() {
     $body = $('body')
 })
 
-module.exports.tabs = function(data,parent,main,parentLabel){
+module.exports.tabs = function(data,parent,main){
 
     if (main) {
         // Reset Globals
@@ -63,16 +63,16 @@ module.exports.tabs = function(data,parent,main,parentLabel){
             id = 'tab_'+hash+'_'+getIterator('tab'+hash,'tab')
 
         tabData.id = tabData.id || ''
-        tabData.label = iconify(label)
+        tabData.label = label
 
-        navtabs.append(`<li data-tab="#${id}" data-id="${tabData.id}"><a><span>${tabData.label}</span></a></li>`)
+        navtabs.append(`<li data-tab="#${id}" data-id="${tabData.id}"><a><span>${iconify(tabData.label)}</span></a></li>`)
 
         let tabContent = $(`<div class="tab ${tabData.tabs&&tabData.tabs.length?'has-tabs':''}" id="${id}" data-index="${i}"></div>`)
         tabContent.data(tabData)
 
 
         if (tabData.tabs && tabData.tabs.length) {
-            module.exports.tabs(tabData.tabs,tabContent,false,tabData.label)
+            module.exports.tabs(tabData.tabs,tabContent,false)
         } else if (tabData.widgets && tabData.widgets.length) {
             module.exports.widgets(tabData.widgets,tabContent)
         }
