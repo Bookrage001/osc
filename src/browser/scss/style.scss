@@ -390,10 +390,10 @@ i {
     &:before {
         content: "";
         position: absolute;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
+        top:-40rem;
+        left:-40rem;
+        right:-40rem;
+        bottom:-40rem;
         background:var(--color-bg);
         opacity: .5;
     }
@@ -403,6 +403,7 @@ i {
         background:var(--color-light-fg);
         border-bottom: 1rem solid var(--color-bg);
         box-shadow: 0 1rem 0 0 var(--color-light) inset;
+        height:46rem;
 
         &.closable {
             padding-right: 50rem;
@@ -425,7 +426,9 @@ i {
         margin:0 auto;
         position: relative;
         overflow: hidden;
-        border:1rem solid var(--color-track);
+        box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-bg),  0 1rem 0 0 var(--color-light) inset;
+        border-left:1rem solid var(--color-bg);
+        border-top:1rem solid var(--color-bg);
         .popup-content {
             height:100%;
             width:100%;

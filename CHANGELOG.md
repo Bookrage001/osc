@@ -1,5 +1,14 @@
 # Changelog
 
+## next
+
+- widgets
+  - add property inheritance between widgets through `@{parent.propertyName}` statements;
+  - containers: added `variables` options (arbitrary varibles to pass to children)
+  - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options
+- custom module
+  - add access to the app's `settings` object
+
 ## 0.17.8
 
 - bug fixes

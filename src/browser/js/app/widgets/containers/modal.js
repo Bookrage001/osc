@@ -21,7 +21,7 @@ module.exports = class Modal extends _widgets_base {
             color:'auto',
             css:'',
 
-            _layout:'popup',
+            _popup:'popup',
 
             popupWidth:'100%',
             popupHeight:'100%',
@@ -73,8 +73,8 @@ module.exports = class Modal extends _widgets_base {
 
         this.light = $('<div class="light"></div>').appendTo(this.container)
         this.light.on('fake-click',(e)=>{
-            if (e.type != 'fake-right-click')
-            this.setValue(!this.value)
+            if (e.button != 2)
+                this.setValue(!this.value)
         })
 
         this.parentScroll = [0,0]
@@ -87,20 +87,19 @@ module.exports = class Modal extends _widgets_base {
 
         this.value = v ? true : false
 
-        if (!this.init) {
-            this.widget.find('.popup-title .popup-label').html(this.container.find('> .label span').html())
-            this.init = true
-        }
+        if (!this.init) this.widget.find('.popup-title .popup-label').html(this.container.find('> .label span').html())
 
         this.widget.toggle(this.value)
         this.container.toggleClass('on', this.value)
 
         this.fixScrolling()
 
-        if (this.value) $(window).resize()
+        if (this.value) {
+            $(window).resize()
+        }
 
-        this.fixStacking()
-
+        if (!this.init || this.value == true) this.fixStacking()
+        if (!this.init) this.init = true
     }
 
     fixScrolling(){
@@ -114,6 +113,7 @@ module.exports = class Modal extends _widgets_base {
     }
 
     fixStacking() {
+        console.log(this.value, this.container.parents('.widget'))
         if (this.value) {
             this.container.parents('.widget').css('z-index','initial')
         } else {
