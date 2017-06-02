@@ -103,7 +103,8 @@ var customModule = (function(){
 			console: console,
 			sendOsc: sendOsc,
 			receiveOsc: receiveOsc,
-            setTimeout: setTimeout
+            setTimeout: setTimeout,
+            settings: settings
 		}
 
 	try {
