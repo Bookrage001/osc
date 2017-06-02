@@ -26,7 +26,7 @@ var callbacks = module.exports = {
         var lobby = $(`
             <div class="main">
                 <div class="header">
-                    ${PACKAGE.productName}
+                    ${window.PACKAGE.productName}
                 </div>
                 <div class="list"></div>
                 <div class="footer"></div>
@@ -46,12 +46,12 @@ var callbacks = module.exports = {
                 path = path.substr(0,Math.floor((path.length)/2)-(length-max)/2) + '...' + path.substr(Math.ceil((path.length)/2)+(length-max)/2, path.length)
             }
 
-            if (!READ_ONLY) {
+            if (!window.READ_ONLY) {
             }
             list.append(`
                 <a class="btn load" data-session="${data[i]}">
                     ${file} <em style="opacity:0.45">(${path})</em>
-                    ${READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
+                    ${window.READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
                 </a>
             `)
 
@@ -132,7 +132,7 @@ var callbacks = module.exports = {
         document.body.appendChild(style)
         window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
         if (css.indexOf('--pixel-scale') != -1) {
-            PXSCALE_RESET()
+            window.PXSCALE_RESET()
         }
     },
 
@@ -144,11 +144,11 @@ var callbacks = module.exports = {
         setTimeout(()=>{
             $('canvas').trigger('resize',[0,0,true])
         },100)
-        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
-        PXSCALE_RESET()
+        window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        window.PXSCALE_RESET()
     },
     readOnly: function(){
-        READ_ONLY = true
+        window.READ_ONLY = true
     }
 }
 
