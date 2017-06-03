@@ -194,7 +194,6 @@
                             {
                                 "type": "push",
                                 "id": "connect",
-                                "linkId": "connect",
                                 "label": "^plug",
                                 "width": 50,
                                 "css": "",
@@ -212,7 +211,8 @@
                                 "address": "/set_surface",
                                 "left": "auto",
                                 "top": "auto",
-                                "height": "auto"
+                                "height": "auto",
+                                "linkId": ""
                             },
                             {
                                 "type": "push",
@@ -3446,12 +3446,12 @@
                                                 "css": "",
                                                 "widgetId": "",
                                                 "preArgs": [],
-                                                "address": "/text_8"
+                                                "address": "/text_35"
                                             }
                                         ],
                                         "tabs": [],
-                                        "popupWidth": "100%",
-                                        "popupHeight": "100%",
+                                        "popupWidth": "75%",
+                                        "popupHeight": "75%",
                                         "address": "/sends_panel"
                                     },
                                     {
@@ -3481,12 +3481,12 @@
                                                 "css": "",
                                                 "widgetId": "",
                                                 "preArgs": [],
-                                                "address": "/text_9"
+                                                "address": "/text_36"
                                             }
                                         ],
                                         "tabs": [],
-                                        "popupWidth": "100%",
-                                        "popupHeight": "100%",
+                                        "popupWidth": "75%",
+                                        "popupHeight": "75%",
                                         "address": "/receives_panel"
                                     }
                                 ],
@@ -3679,7 +3679,6 @@
                             {
                                 "type": "push",
                                 "id": "connect",
-                                "linkId": "connect",
                                 "label": "^plug",
                                 "width": 50,
                                 "css": "",
@@ -3697,7 +3696,8 @@
                                 "address": "/set_surface",
                                 "left": "auto",
                                 "top": "auto",
-                                "height": "auto"
+                                "height": "auto",
+                                "linkId": ""
                             },
                             {
                                 "type": "push",
