@@ -33,10 +33,9 @@
 
         .meter-container {
             pointer-events: none;
-
             position: absolute;
-            top:15rem;
-            bottom:14rem;
+            top:14rem;
+            bottom:15rem;
             left:50%;
             height: auto;
             width:3rem;
@@ -44,7 +43,10 @@
         }
 
     }
-    &:not(.has-pip):not(.compact) {
+    &:not(.has-pips):not(.compact):not(.horizontal) {
+        .meter-container {
+            margin-left: 14rem;
+        }
         &.align-right {
             .meter-container {
                 margin-left: -18rem;
@@ -135,13 +137,16 @@
         }
 
         .wrapper .meter-container {
-            left:15rem;
+            left:14rem;
             right:15rem;
             height: 3rem;
             min-height: 3rem;
             width: auto;
             top:50%;
             margin-top: 3rem;
+            canvas {
+                padding:0!important;
+            }
         }
 
         .pips {
