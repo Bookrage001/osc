@@ -155,13 +155,12 @@
                                 "id": "fader_1",
                                 "label": false,
                                 "unit": "",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -186,14 +185,16 @@
                                 "width": "auto",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -339,13 +340,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -369,14 +369,16 @@
                                 "linkId": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -522,13 +524,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -552,14 +553,16 @@
                                 "linkId": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -705,13 +708,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -735,14 +737,16 @@
                                 "linkId": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -888,13 +892,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -918,14 +921,16 @@
                                 "linkId": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -1071,13 +1076,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -1101,14 +1105,16 @@
                                 "linkId": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -1252,13 +1258,12 @@
                                 "id": "fader_7",
                                 "label": false,
                                 "unit": "",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -1283,7 +1288,8 @@
                                 "spring": false,
                                 "width": "auto",
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "height": "auto",
@@ -1291,7 +1297,8 @@
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -1437,13 +1444,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -1467,14 +1473,16 @@
                                 "linkId": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -1568,7 +1576,6 @@
                                 "color": "auto",
                                 "noPip": true,
                                 "compact": true,
-                                "angle": 360,
                                 "css": "",
                                 "snap": false,
                                 "logScale": false,
@@ -1584,7 +1591,8 @@
                                 "value": "",
                                 "linkId": "",
                                 "spring": false,
-                                "touchAddress": ""
+                                "touchAddress": "",
+                                "angle": 270
                             },
                             {
                                 "type": "knob",
@@ -1620,13 +1628,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -1650,14 +1657,16 @@
                                 "value": "",
                                 "origin": "auto",
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     },
                     {
                         "type": "strip",
@@ -1803,13 +1812,12 @@
                                 "label": false,
                                 "unit": "",
                                 "width": "auto",
-                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "noPip": false,
                                 "compact": true,
                                 "color": "auto",
-                                "css": "padding:4rem",
+                                "css": "flex:1",
                                 "snap": false,
                                 "range": {
                                     "min": -70,
@@ -1833,20 +1841,23 @@
                                 "linkId": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "meterAddress": ""
+                                "meterAddress": "",
+                                "height": "auto"
                             }
                         ],
                         "width": "auto",
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     }
                 ],
                 "height": "auto",
                 "top": 0,
                 "stretch": false,
-                "variables": {}
+                "variables": {},
+                "spacing": 0
             },
             {
                 "type": "strip",
@@ -1960,12 +1971,14 @@
                         "left": "auto",
                         "top": "auto",
                         "stretch": false,
-                        "variables": {}
+                        "variables": {},
+                        "spacing": 0
                     }
                 ],
                 "id": "strip_12",
                 "stretch": false,
-                "variables": {}
+                "variables": {},
+                "spacing": 0
             }
         ],
         "id": ""

@@ -1,7 +1,6 @@
 .xy-container, .rgb-container, .multixy-container {
     width:200rem;
     height:250rem;
-    flex-shrink: 0;
     .label {
         flex-shrink: 0;
         box-shadow: 0 -11rem 10rem 10rem var(--color-bg);

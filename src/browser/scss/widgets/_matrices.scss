@@ -24,6 +24,7 @@
         min-height: 0;
         min-width: 0;
         margin:0!important;
+        height: auto;
         .label {
             background:none;
             border:0;
@@ -92,7 +93,6 @@
         overflow: hidden;
         .white {
             --color-light-fg: var(--color-white);
-            height:100%;
             .light.active:before {
                 opacity: .5;
                 background:var(--color-fg);

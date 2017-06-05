@@ -22,6 +22,7 @@ module.exports = class Strip extends Panel {
 
             horizontal:false,
             stretch:false,
+            spacing:0,
 
             _children:'children',
 
@@ -37,6 +38,8 @@ module.exports = class Strip extends Panel {
         options.props = {...Panel.defaults(), ...options.props}
 
         super(options)
+
+        this.widget[0].style.setProperty('--spacing', this.getProp('spacing'))
 
         this.container.addClass(this.getProp('horizontal') ? 'horizontal' : 'vertical')
         this.container.addClass(this.getProp('stretch') ? 'stretch' : '')

@@ -30,7 +30,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_1",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -77,9 +79,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -90,7 +91,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_1",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -120,7 +125,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -151,7 +159,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_2",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -198,9 +208,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -211,7 +220,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_2",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -241,7 +254,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -272,7 +288,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_3",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -319,9 +337,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -332,7 +349,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_3",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -362,7 +383,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -393,7 +417,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_4",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -440,9 +466,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -453,7 +478,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_4",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -483,7 +512,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -514,7 +546,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_5",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -561,9 +595,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -574,7 +607,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_5",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -604,7 +641,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -635,7 +675,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_6",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -682,9 +724,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -695,7 +736,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_6",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -725,7 +770,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -756,7 +804,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_7",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -803,9 +853,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -816,7 +865,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_7",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -846,7 +899,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -877,7 +933,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_8",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -924,9 +982,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -937,7 +994,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_8",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -967,7 +1028,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -998,7 +1062,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_9",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -1045,9 +1111,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -1058,7 +1123,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_9",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -1088,7 +1157,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -1119,7 +1191,9 @@
                         "angle": 270,
                         "origin": "auto",
                         "address": "/knob_10",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     },
                     {
                         "label": false,
@@ -1166,9 +1240,8 @@
                         "linkId": "",
                         "unit": "",
                         "width": "auto",
-                        "height": "100%",
                         "horizontal": false,
-                        "css": "",
+                        "css": "flex:1",
                         "precision": 2,
                         "color": "auto",
                         "logScale": false,
@@ -1179,7 +1252,11 @@
                         "compact": false,
                         "origin": "auto",
                         "address": "/fader_10",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "height": "auto"
                     },
                     {
                         "label": "Mute",
@@ -1209,10 +1286,14 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             }
         ],
-        "label": "Strips"
+        "label": "Strips",
+        "id": ""
     },
     {
         "widgets": [
@@ -1236,7 +1317,8 @@
                         "split": false,
                         "preArgs": [],
                         "address": "/rgb_1",
-                        "value": ""
+                        "value": "",
+                        "touchAddress": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1265,7 +1347,9 @@
                         "logScaleY": false,
                         "preArgs": [],
                         "address": "/xy_1",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     }
                 ],
                 "id": "strip_11",
@@ -1275,7 +1359,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -1297,7 +1384,8 @@
                         "split": false,
                         "preArgs": [],
                         "address": "/rgb_2",
-                        "value": ""
+                        "value": "",
+                        "touchAddress": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1326,7 +1414,9 @@
                         "logScaleY": false,
                         "preArgs": [],
                         "address": "/xy_2",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     }
                 ],
                 "id": "strip_12",
@@ -1336,7 +1426,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -1358,7 +1451,8 @@
                         "split": false,
                         "preArgs": [],
                         "address": "/rgb_3",
-                        "value": ""
+                        "value": "",
+                        "touchAddress": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1387,7 +1481,9 @@
                         "logScaleY": false,
                         "preArgs": [],
                         "address": "/xy_3",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     }
                 ],
                 "id": "strip_13",
@@ -1397,7 +1493,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -1419,7 +1518,8 @@
                         "split": false,
                         "preArgs": [],
                         "address": "/rgb_4",
-                        "value": ""
+                        "value": "",
+                        "touchAddress": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1448,7 +1548,9 @@
                         "logScaleY": false,
                         "preArgs": [],
                         "address": "/xy_4",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     }
                 ],
                 "id": "strip_14",
@@ -1458,7 +1560,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -1480,7 +1585,8 @@
                         "split": false,
                         "preArgs": [],
                         "address": "/rgb_5",
-                        "value": ""
+                        "value": "",
+                        "touchAddress": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1509,7 +1615,9 @@
                         "logScaleY": false,
                         "preArgs": [],
                         "address": "/xy_5",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     }
                 ],
                 "id": "strip_15",
@@ -1519,7 +1627,10 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -1541,7 +1652,8 @@
                         "split": false,
                         "preArgs": [],
                         "address": "/rgb_6",
-                        "value": ""
+                        "value": "",
+                        "touchAddress": ""
                     },
                     {
                         "label": "Relative XY",
@@ -1570,7 +1682,9 @@
                         "logScaleY": false,
                         "preArgs": [],
                         "address": "/xy_6",
-                        "value": ""
+                        "value": "",
+                        "spring": false,
+                        "touchAddress": ""
                     }
                 ],
                 "id": "strip_16",
@@ -1580,10 +1694,14 @@
                 "height": "auto",
                 "horizontal": false,
                 "css": "",
-                "color": "auto"
+                "color": "auto",
+                "stretch": false,
+                "spacing": 0,
+                "variables": {}
             }
         ],
-        "label": "Pads"
+        "label": "Pads",
+        "id": ""
     },
     {
         "label": "Multiple tabs",
@@ -1627,7 +1745,10 @@
                                 "compact": false,
                                 "origin": "auto",
                                 "address": "/fader_12",
-                                "value": ""
+                                "value": "",
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1657,7 +1778,10 @@
                                 "compact": false,
                                 "origin": "auto",
                                 "address": "/fader_13",
-                                "value": ""
+                                "value": "",
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1687,7 +1811,10 @@
                                 "compact": false,
                                 "origin": "auto",
                                 "address": "/fader_14",
-                                "value": ""
+                                "value": "",
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1717,14 +1844,20 @@
                                 "compact": false,
                                 "origin": "auto",
                                 "address": "/fader_25",
-                                "value": ""
+                                "value": "",
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
                         "tabs": [],
                         "id": "panel_1",
                         "label": "auto",
                         "color": "auto",
-                        "scroll": true
+                        "scroll": true,
+                        "layout": "",
+                        "spacing": 0,
+                        "variables": {}
                     },
                     {
                         "type": "panel",
@@ -1814,7 +1947,8 @@
                                         "norelease": false,
                                         "address": "/fader_20"
                                     }
-                                ]
+                                ],
+                                "id": ""
                             },
                             {
                                 "label": "Tab 2",
@@ -1845,7 +1979,9 @@
                                         "angle": 270,
                                         "origin": "auto",
                                         "address": "/fader_21",
-                                        "value": ""
+                                        "value": "",
+                                        "spring": false,
+                                        "touchAddress": ""
                                     },
                                     {
                                         "type": "knob",
@@ -1873,7 +2009,9 @@
                                         "angle": 270,
                                         "origin": "auto",
                                         "address": "/fader_22",
-                                        "value": ""
+                                        "value": "",
+                                        "spring": false,
+                                        "touchAddress": ""
                                     },
                                     {
                                         "type": "knob",
@@ -1901,7 +2039,9 @@
                                         "angle": 270,
                                         "origin": "auto",
                                         "address": "/fader_23",
-                                        "value": ""
+                                        "value": "",
+                                        "spring": false,
+                                        "touchAddress": ""
                                     },
                                     {
                                         "type": "knob",
@@ -1929,22 +2069,31 @@
                                         "angle": 270,
                                         "origin": "auto",
                                         "address": "/fader_24",
-                                        "value": ""
+                                        "value": "",
+                                        "spring": false,
+                                        "touchAddress": ""
                                     }
-                                ]
+                                ],
+                                "id": ""
                             },
                             {
-                                "label": "Unnamed"
+                                "label": "Unnamed",
+                                "id": ""
                             }
                         ],
                         "id": "panel_2",
                         "label": "auto",
                         "color": "auto",
-                        "scroll": true
+                        "scroll": true,
+                        "layout": "",
+                        "spacing": 0,
+                        "variables": {}
                     }
-                ]
+                ],
+                "id": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "Multiwidgets",
@@ -1977,7 +2126,10 @@
                 "origin": "auto",
                 "meter": false,
                 "address": "/multifader_1",
-                "value": ""
+                "value": "",
+                "start": 0,
+                "snap": true,
+                "split": false
             },
             {
                 "type": "multipush",
@@ -2001,7 +2153,10 @@
                 "traversing": true,
                 "norelease": false,
                 "address": "/multipush_1",
-                "value": ""
+                "value": "",
+                "start": 0,
+                "style": "style",
+                "split": false
             },
             {
                 "type": "multitoggle",
@@ -2024,8 +2179,11 @@
                 "preArgs": [],
                 "traversing": true,
                 "address": "/multitoggle_1",
-                "value": ""
+                "value": "",
+                "start": 0,
+                "split": false
             }
-        ]
+        ],
+        "id": ""
     }
 ]
