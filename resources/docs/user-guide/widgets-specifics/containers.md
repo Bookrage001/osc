@@ -1,29 +1,12 @@
 # Containers
 
-Containers can contain any widgets
+Containers can contain any widgets. Children can inherit from the container's properties by using the following syntax : `@{parent.propertyName}`. It can be used to:
 
-----
+- concatenate strings: `/@{parent.id}/some_suffix`
+- define object value:   `["@{parent.id}"]`
 
-## Strip
+If the retreived property is an object (`[] / {}`), it can be used as is or one can retreive a specfic item from it: `@{parent.variables.0}` will try to return the first item of the parent's `variables` property.
 
-Strips can contain any number of widgets, which can't be absolutely positioned and whose size can't overflow their parent's.
-
-```js
-{
-    type:'strip',
-    // etc
-}
-```
-
-#### `horizontal`
-- type: `boolean`
-- default: `false`
-- usage: set to `true` to display widgets horizontally
-
-#### `widgets`
-- type: `array`
-- default: `[]`
-- usage: each element of the `array` must be a widget `object`
 
 ----
 
@@ -65,11 +48,51 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - default: `0`
 - usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
 
+#### `variables`
+- type: `*`
+- default: `{}`
+- usage: defines one or more arbitrary variables that can be inherited by children widgets.
+- examples:
+  - `1` (`@{parent.variables}` will return `1`)
+  - `{a: [1, 2], b: 2}` (`@{parent.variables.a}` will return `[1, 2]`)
+  - `[1, 2]` (`@{parent.variables.0}` will return `1`)
+  - `@{parent.variables}` useful when nesting containers
+
+
+----
+
+## Strip
+
+Unidirectionnal panel with stretching capability.
+
+```js
+{
+  type:'strip',
+  // etc
+}
+```
+
+#### `horizontal`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to display widgets horizontally
+
+#### `stretch`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to stretch widgets evenly
+
+#### `widgets`
+- type: `array`
+- default: `[]`
+- usage: each element of the `array` must be a widget `object`
+
+
 ----
 
 ## Modal
 
-Modals are buttons that turn into a fullscreen panels when enabled. They can be enabled via osc (1 to enable, 0 to disable).
+Modals are buttons that turn into a centered popup panels when enabled. They can be enabled via osc (1 to enable, 0 to disable).
 
 ```js
 {
@@ -77,6 +100,12 @@ Modals are buttons that turn into a fullscreen panels when enabled. They can be 
     // etc
 }
 ```
+
+#### `popupWidth` / `popupHeight`
+- type: `number|percentage`
+- default: `100%`
+- usage: sets the modal's size once opened.
+
 
 #### `options`
 - see panel's [`options`](#panel)

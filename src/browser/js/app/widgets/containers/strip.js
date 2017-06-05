@@ -1,6 +1,6 @@
-var _widgets_base = require('../common/_widgets_base')
+var Panel = require('./panel')
 
-module.exports = class Strip extends _widgets_base {
+module.exports = class Strip extends Panel {
 
     static defaults() {
 
@@ -15,11 +15,17 @@ module.exports = class Strip extends _widgets_base {
             top:'auto',
             width:'auto',
             height:'auto',
-            horizontal:false,
             color:'auto',
             css:'',
 
+            _strip: 'strip',
+
+            horizontal:false,
+            stretch:false,
+
             _children:'children',
+
+            variables:{},
 
             widgets:[]
         }
@@ -28,18 +34,13 @@ module.exports = class Strip extends _widgets_base {
 
     constructor(options) {
 
-        super({...options, html: '<div class="strip"></div>'})
+        options.props = {...Panel.defaults(), ...options.props}
 
+        super(options)
 
-        var parsewidgets = require('../../parser').widgets
+        this.container.addClass(this.getProp('horizontal') ? 'horizontal' : 'vertical')
+        this.container.addClass(this.getProp('stretch') ? 'stretch' : '')
 
-        if (this.getProp('horizontal')) {
-            this.container.addClass('horizontal')
-        } else {
-            this.container.addClass('vertical')
-        }
-
-        parsewidgets(this.props.widgets, this.widget, this)
 
     }
 

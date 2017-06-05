@@ -6,6 +6,7 @@
   - add property inheritance between widgets through `@{parent.propertyName}` statements;
   - containers: added `variables` options (arbitrary varibles to pass to children)
   - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options
+  - strip: refactored widget using `panel` as base; added `stretch` option
 - custom module
   - add access to the app's `settings` object
 

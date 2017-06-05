@@ -37,6 +37,8 @@ module.exports = class Modal extends _widgets_base {
 
             _chidlren:'children',
 
+            variables:{},
+
             widgets:[],
             tabs:[]
         }

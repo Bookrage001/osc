@@ -92,6 +92,7 @@
         overflow: hidden;
         .white {
             --color-light-fg: var(--color-white);
+            height:100%;
             .light.active:before {
                 opacity: .5;
                 background:var(--color-fg);

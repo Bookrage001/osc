@@ -1,6 +1,6 @@
 ## Widgets generics
 
-A widget object is a javascript object. All widgets share a set of generic properties described below. Each widget type comes with an additional set of specific properties which are documented in these pages:
+All widgets share a set of generic properties described below. Each widget type comes with an additional set of specific properties which are documented in these pages:
 
 - [Sliders](widgets-specifics/sliders.md)
 - [Buttons](widgets-specifics/buttons.md)

@@ -46,7 +46,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -90,7 +91,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -117,7 +119,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -144,7 +147,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -180,10 +184,16 @@
                                 "target": [],
                                 "linkId": "",
                                 "width": "auto",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -219,7 +229,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -263,7 +274,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -290,7 +302,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -317,7 +330,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -353,10 +367,16 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -392,7 +412,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -436,7 +457,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -463,7 +485,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -490,7 +513,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -526,10 +550,16 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -565,7 +595,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -609,7 +640,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -636,7 +668,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -663,7 +696,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -699,10 +733,16 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -738,7 +778,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -782,7 +823,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -809,7 +851,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -836,7 +879,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -872,10 +916,16 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -911,7 +961,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -955,7 +1006,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -982,7 +1034,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1009,7 +1062,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1045,10 +1099,16 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -1083,7 +1143,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -1127,7 +1188,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1154,7 +1216,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1181,7 +1244,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1217,11 +1281,17 @@
                                 "target": [],
                                 "linkId": "",
                                 "spring": false,
-                                "width": "auto"
+                                "width": "auto",
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
                         "height": "auto",
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -1257,7 +1327,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -1301,7 +1372,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1328,7 +1400,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1355,7 +1428,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1391,10 +1465,16 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -1430,7 +1510,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -1474,7 +1555,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1501,7 +1583,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1528,7 +1611,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1564,10 +1648,16 @@
                                 "linkId": "",
                                 "spring": false,
                                 "value": "",
-                                "origin": "auto"
+                                "origin": "auto",
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     },
                     {
                         "type": "strip",
@@ -1603,7 +1693,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "toggle",
@@ -1647,7 +1738,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1674,7 +1766,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "knob",
@@ -1701,7 +1794,8 @@
                                 "origin": "auto",
                                 "value": "",
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": ""
                             },
                             {
                                 "type": "fader",
@@ -1737,14 +1831,22 @@
                                 "preArgs": [],
                                 "target": [],
                                 "linkId": "",
-                                "spring": false
+                                "spring": false,
+                                "touchAddress": "",
+                                "meterAddress": ""
                             }
                         ],
-                        "width": "auto"
+                        "width": "auto",
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     }
                 ],
                 "height": "auto",
-                "top": 0
+                "top": 0,
+                "stretch": false,
+                "variables": {}
             },
             {
                 "type": "strip",
@@ -1788,7 +1890,8 @@
                         "preArgs": [],
                         "split": false,
                         "target": [],
-                        "spring": true
+                        "spring": true,
+                        "touchAddress": ""
                     },
                     {
                         "type": "keyboard",
@@ -1805,9 +1908,9 @@
                         "preArgs": [],
                         "split": false,
                         "target": [],
-                        "height": "auto",
-                        "width": "auto",
-                        "css": ""
+                        "width": "100%",
+                        "css": "",
+                        "height": "auto"
                     },
                     {
                         "type": "strip",
@@ -1834,9 +1937,7 @@
                                 "on": 1,
                                 "off": 0,
                                 "norelease": true,
-                                "id": "octave_up",
-                                "separator1": "style",
-                                "separator2": "osc"
+                                "id": "octave_up"
                             },
                             {
                                 "type": "push",
@@ -1853,15 +1954,20 @@
                                 "off": 0,
                                 "linkId": "",
                                 "norelease": true,
-                                "id": "octave_down",
-                                "separator1": "style",
-                                "separator2": "osc"
+                                "id": "octave_down"
                             }
-                        ]
+                        ],
+                        "left": "auto",
+                        "top": "auto",
+                        "stretch": false,
+                        "variables": {}
                     }
                 ],
-                "id": "strip_12"
+                "id": "strip_12",
+                "stretch": false,
+                "variables": {}
             }
-        ]
+        ],
+        "id": ""
     }
 ]

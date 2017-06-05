@@ -38,7 +38,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Drums/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Basses",
@@ -76,7 +80,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Basses/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Guitars",
@@ -114,7 +122,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Guitars/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "MxSynths",
@@ -152,7 +164,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/MxSynths/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "MxDrums",
@@ -190,7 +206,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/MxDrums/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Vocals",
@@ -228,7 +248,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Vocals/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Acoustics",
@@ -266,7 +290,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Acoustics/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "FOH",
@@ -304,9 +332,14 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/FOH/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "Drums",
@@ -350,7 +383,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Kick/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Snare",
@@ -388,7 +425,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Snare/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Toms",
@@ -426,7 +467,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Toms/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "OH_L",
@@ -464,7 +509,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/OH-L/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "OH_R",
@@ -502,7 +551,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/OH-R/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Drums",
@@ -540,9 +593,14 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Drums/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
-                ]
+                ],
+                "id": ""
             },
             {
                 "widgets": [
@@ -582,7 +640,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Tom1/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Tom2",
@@ -620,7 +682,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Tom2/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Tom3",
@@ -658,7 +724,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Tom3/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Toms",
@@ -696,10 +766,15 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Toms/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
                 ],
-                "label": "Toms"
+                "label": "Toms",
+                "id": ""
             },
             {
                 "tabs": [
@@ -736,7 +811,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Drums",
@@ -763,7 +841,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Drums",
@@ -790,7 +871,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Drums",
@@ -808,7 +892,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -817,7 +902,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -849,7 +936,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Drums",
@@ -876,7 +966,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Drums",
@@ -903,7 +996,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Drums",
@@ -921,7 +1017,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -930,7 +1027,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -962,7 +1061,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Drums",
@@ -989,7 +1091,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Drums",
@@ -1016,7 +1121,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Drums",
@@ -1034,7 +1142,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1043,7 +1152,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -1075,7 +1186,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Drums",
@@ -1102,7 +1216,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Drums",
@@ -1129,7 +1246,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Drums",
@@ -1147,7 +1267,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Drums/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1156,9 +1277,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "Kick",
@@ -1193,7 +1317,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Kick",
@@ -1220,7 +1347,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Kick",
@@ -1247,7 +1377,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Kick",
@@ -1265,7 +1398,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1274,7 +1408,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -1306,7 +1442,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Kick",
@@ -1333,7 +1472,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Kick",
@@ -1360,7 +1502,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Kick",
@@ -1378,7 +1523,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1387,7 +1533,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -1419,7 +1567,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Kick",
@@ -1446,7 +1597,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Kick",
@@ -1473,7 +1627,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Kick",
@@ -1491,7 +1648,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1500,7 +1658,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -1532,7 +1692,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Kick",
@@ -1559,7 +1722,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Kick",
@@ -1586,7 +1752,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Kick",
@@ -1604,7 +1773,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Kick/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1613,9 +1783,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "Snare",
@@ -1650,7 +1823,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Snare",
@@ -1677,7 +1853,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Snare",
@@ -1704,7 +1883,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Snare",
@@ -1722,7 +1904,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1731,7 +1914,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -1763,7 +1948,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Snare",
@@ -1790,7 +1978,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Snare",
@@ -1817,7 +2008,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Snare",
@@ -1835,7 +2029,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1844,7 +2039,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -1876,7 +2073,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Snare",
@@ -1903,7 +2103,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Snare",
@@ -1930,7 +2133,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Snare",
@@ -1948,7 +2154,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -1957,7 +2164,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -1989,7 +2198,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Snare",
@@ -2016,7 +2228,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Snare",
@@ -2043,7 +2258,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Snare",
@@ -2061,7 +2279,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Snare/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2070,9 +2289,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "Tom 1",
@@ -2107,7 +2329,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Tom1",
@@ -2134,7 +2359,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Tom1",
@@ -2161,7 +2389,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Tom1",
@@ -2179,7 +2410,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2188,7 +2420,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -2220,7 +2454,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Tom1",
@@ -2247,7 +2484,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Tom1",
@@ -2274,7 +2514,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Tom1",
@@ -2292,7 +2535,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2301,7 +2545,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -2333,7 +2579,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Tom1",
@@ -2360,7 +2609,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Tom1",
@@ -2387,7 +2639,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Tom1",
@@ -2405,7 +2660,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2414,7 +2670,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -2446,7 +2704,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Tom1",
@@ -2473,7 +2734,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Tom1",
@@ -2500,7 +2764,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Tom1",
@@ -2518,7 +2785,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom1/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2527,9 +2795,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "Tom 2",
@@ -2564,7 +2835,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Tom2",
@@ -2591,7 +2865,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Tom2",
@@ -2618,7 +2895,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Tom2",
@@ -2636,7 +2916,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2645,7 +2926,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -2677,7 +2960,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Tom2",
@@ -2704,7 +2990,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Tom2",
@@ -2731,7 +3020,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Tom2",
@@ -2749,7 +3041,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2758,7 +3051,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -2790,7 +3085,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Tom2",
@@ -2817,7 +3115,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Tom2",
@@ -2844,7 +3145,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Tom2",
@@ -2862,7 +3166,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2871,7 +3176,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -2903,7 +3210,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Tom2",
@@ -2930,7 +3240,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Tom2",
@@ -2957,7 +3270,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Tom2",
@@ -2975,7 +3291,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom2/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -2984,9 +3301,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "Tom 3",
@@ -3021,7 +3341,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Tom3",
@@ -3048,7 +3371,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Tom3",
@@ -3075,7 +3401,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Tom3",
@@ -3093,7 +3422,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3102,7 +3432,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -3134,7 +3466,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Tom3",
@@ -3161,7 +3496,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Tom3",
@@ -3188,7 +3526,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Tom3",
@@ -3206,7 +3547,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3215,7 +3557,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -3247,7 +3591,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Tom3",
@@ -3274,7 +3621,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Tom3",
@@ -3301,7 +3651,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Tom3",
@@ -3319,7 +3672,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3328,7 +3682,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -3360,7 +3716,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Tom3",
@@ -3387,7 +3746,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Tom3",
@@ -3414,7 +3776,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Tom3",
@@ -3432,7 +3797,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Tom3/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3441,9 +3807,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "OH-L (ride)",
@@ -3478,7 +3847,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_OH_L",
@@ -3505,7 +3877,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_OH_L",
@@ -3532,7 +3907,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_OH_L",
@@ -3550,7 +3928,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3559,7 +3938,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -3591,7 +3972,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_OH_L",
@@ -3618,7 +4002,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_OH_L",
@@ -3645,7 +4032,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_OH_L",
@@ -3663,7 +4053,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3672,7 +4063,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -3704,7 +4097,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_OH_L",
@@ -3731,7 +4127,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_OH_L",
@@ -3758,7 +4157,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_OH_L",
@@ -3776,7 +4178,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3785,7 +4188,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -3817,7 +4222,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_OH_L",
@@ -3844,7 +4252,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_OH_L",
@@ -3871,7 +4282,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_OH_L",
@@ -3889,7 +4303,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-L/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -3898,9 +4313,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "OH-R (hihat)",
@@ -3935,7 +4353,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_OH_R",
@@ -3962,7 +4383,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_OH_R",
@@ -3989,7 +4413,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_OH_R",
@@ -4007,7 +4434,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -4016,7 +4444,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -4048,7 +4478,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_OH_R",
@@ -4075,7 +4508,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_OH_R",
@@ -4102,7 +4538,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_OH_R",
@@ -4120,7 +4559,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -4129,7 +4569,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -4161,7 +4603,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_OH_R",
@@ -4188,7 +4633,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_OH_R",
@@ -4215,7 +4663,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_OH_R",
@@ -4233,7 +4684,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -4242,7 +4694,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -4274,7 +4728,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_OH_R",
@@ -4301,7 +4758,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_OH_R",
@@ -4328,7 +4788,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_OH_R",
@@ -4346,7 +4809,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/OH-R/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -4355,12 +4819,16 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     }
                 ],
-                "label": "EQs"
+                "label": "EQs",
+                "id": ""
             },
             {
                 "label": "Comp",
@@ -4396,7 +4864,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Drums/SC4%20mono/Attack%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Release_Drums",
@@ -4423,7 +4894,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Drums/SC4%20mono/Release%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Thresh_Drums",
@@ -4450,7 +4924,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Drums/SC4%20mono/Threshold%20level%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Ratio_Drums",
@@ -4477,7 +4954,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Drums/SC4%20mono/Ratio%20(1:n)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Makeup_Drums",
@@ -4504,7 +4984,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Drums/SC4%20mono/Makeup%20gain%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -4512,7 +4995,9 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     },
                     {
                         "id": "Comp_Kick",
@@ -4545,7 +5030,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Kick/SC4%20mono/Attack%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Release_Kick",
@@ -4572,7 +5060,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Kick/SC4%20mono/Release%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Thresh_Kick",
@@ -4599,7 +5090,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Kick/SC4%20mono/Threshold%20level%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Ratio_Kick",
@@ -4626,7 +5120,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Kick/SC4%20mono/Ratio%20(1:n)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Makeup_Kick",
@@ -4653,7 +5150,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Kick/SC4%20mono/Makeup%20gain%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -4661,7 +5161,9 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     },
                     {
                         "id": "Comp_Snare",
@@ -4694,7 +5196,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Snare/SC4%20mono/Attack%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Release_Snare",
@@ -4721,7 +5226,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Snare/SC4%20mono/Release%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Thresh_Snare",
@@ -4748,7 +5256,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Snare/SC4%20mono/Threshold%20level%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Ratio_Snare",
@@ -4775,7 +5286,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Snare/SC4%20mono/Ratio%20(1:n)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Makeup_Snare",
@@ -4802,7 +5316,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Snare/SC4%20mono/Makeup%20gain%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -4810,7 +5327,9 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     },
                     {
                         "id": "Comp_Toms",
@@ -4843,7 +5362,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Toms/SC4%20mono/Attack%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Release_Toms",
@@ -4870,7 +5392,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Toms/SC4%20mono/Release%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Thresh_Toms",
@@ -4897,7 +5422,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Toms/SC4%20mono/Threshold%20level%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Ratio_Toms",
@@ -4924,7 +5452,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Toms/SC4%20mono/Ratio%20(1:n)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Makeup_Toms",
@@ -4951,7 +5482,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Toms/SC4%20mono/Makeup%20gain%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -4959,11 +5493,15 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     }
-                ]
+                ],
+                "id": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "Basses",
@@ -5006,7 +5544,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Bass_Dag",
@@ -5044,7 +5586,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Basses",
@@ -5082,10 +5628,15 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Basses/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
                 ],
-                "label": "Main"
+                "label": "Main",
+                "id": ""
             },
             {
                 "widgets": [
@@ -5125,7 +5676,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Oct_Bass_ORL/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Disto_Bass_ORL",
@@ -5163,7 +5718,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Disto_Bass_ORL/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Bass_ORL",
@@ -5201,7 +5760,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Bass_ORL/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Bass_ORL",
@@ -5239,10 +5802,15 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Bass_ORL/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
                 ],
-                "label": "Orl"
+                "label": "Orl",
+                "id": ""
             },
             {
                 "widgets": [
@@ -5282,7 +5850,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Oct_Bass_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Disto_Bass_Dag",
@@ -5320,7 +5892,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Disto_Bass_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Bass_Dag",
@@ -5358,7 +5934,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Bass_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Bass_Dag",
@@ -5396,10 +5976,15 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Bass_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
                 ],
-                "label": "Dag"
+                "label": "Dag",
+                "id": ""
             },
             {
                 "tabs": [
@@ -5435,7 +6020,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Bass_Dag",
@@ -5462,7 +6050,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Bass_Dag",
@@ -5489,7 +6080,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Bass_Dag",
@@ -5507,7 +6101,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -5516,7 +6111,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -5548,7 +6145,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Bass_Dag",
@@ -5575,7 +6175,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Bass_Dag",
@@ -5602,7 +6205,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Bass_Dag",
@@ -5620,7 +6226,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -5629,7 +6236,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -5661,7 +6270,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Bass_Dag",
@@ -5688,7 +6300,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Bass_Dag",
@@ -5715,7 +6330,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Bass_Dag",
@@ -5733,7 +6351,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -5742,7 +6361,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -5774,7 +6395,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Bass_Dag",
@@ -5801,7 +6425,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Bass_Dag",
@@ -5828,7 +6455,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Bass_Dag",
@@ -5846,7 +6476,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Bass_Dag/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -5855,15 +6486,20 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
                         ],
-                        "label": "EQ_Bass_Dag"
+                        "label": "EQ_Bass_Dag",
+                        "id": ""
                     }
                 ],
-                "label": "EQs"
+                "label": "EQs",
+                "id": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "Guitars",
@@ -5904,7 +6540,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Guitar_ORL/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "FX_Gtr_ORL_1",
@@ -5942,7 +6582,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/FX_Gtr_ORL_1/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "FX_Gtr_ORL_2",
@@ -5980,7 +6624,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/FX_Gtr_ORL_2/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "FX_Gtr_ORL",
@@ -6018,7 +6666,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/FX_Gtr_ORL/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Guitar_Dag",
@@ -6056,7 +6708,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Guitar_Dag/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "FX_Gtr_Dag_1",
@@ -6094,7 +6750,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/FX_Gtr_Dag_1/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "FX_Gtr_Dag_2",
@@ -6132,7 +6792,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/FX_Gtr_Dag_2/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "FX_Gtr_Dag",
@@ -6170,7 +6834,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/FX_Gtr_Dag/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Scape_Gtr_Dag",
@@ -6208,7 +6876,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Scape_Gtr_Dag/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Guitars",
@@ -6246,9 +6918,14 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Guitars/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "MxSynths",
@@ -6291,7 +6968,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxBass/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxChords",
@@ -6329,7 +7010,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxChords/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxLead",
@@ -6367,7 +7052,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxLead/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxCtLead",
@@ -6405,7 +7094,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxCtLead/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxClassical",
@@ -6443,7 +7136,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxClassical/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxSynths",
@@ -6481,10 +7178,15 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxSynths/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
                 ],
-                "label": "Main"
+                "label": "Main",
+                "id": ""
             },
             {
                 "tabs": [
@@ -6521,7 +7223,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_MxBass",
@@ -6548,7 +7253,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_MxBass",
@@ -6575,7 +7283,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_MxBass",
@@ -6593,7 +7304,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -6602,7 +7314,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -6634,7 +7348,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_MxBass",
@@ -6661,7 +7378,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_MxBass",
@@ -6688,7 +7408,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_MxBass",
@@ -6706,7 +7429,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -6715,7 +7439,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -6747,7 +7473,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_MxBass",
@@ -6774,7 +7503,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_MxBass",
@@ -6801,7 +7533,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_MxBass",
@@ -6819,7 +7554,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -6828,7 +7564,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -6860,7 +7598,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_MxBass",
@@ -6887,7 +7628,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_MxBass",
@@ -6914,7 +7658,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_MxBass",
@@ -6932,7 +7679,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxBass/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -6941,14 +7689,19 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     }
                 ],
-                "label": "EQs"
+                "label": "EQs",
+                "id": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "MxDrums",
@@ -6991,7 +7744,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxKicks/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxSnares",
@@ -7029,7 +7786,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxSnares/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxCymbs",
@@ -7067,7 +7828,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxCymbs/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxCont",
@@ -7105,7 +7870,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxCont/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxSamples",
@@ -7143,7 +7912,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxSamples/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "MxDrums",
@@ -7181,10 +7954,15 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/MxDrums/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
                 ],
-                "label": "Main"
+                "label": "Main",
+                "id": ""
             },
             {
                 "tabs": [
@@ -7221,7 +7999,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_MxKicks",
@@ -7248,7 +8029,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_MxKicks",
@@ -7275,7 +8059,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_MxKicks",
@@ -7293,7 +8080,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -7302,7 +8090,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -7334,7 +8124,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_MxKicks",
@@ -7361,7 +8154,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_MxKicks",
@@ -7388,7 +8184,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_MxKicks",
@@ -7406,7 +8205,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -7415,7 +8215,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -7447,7 +8249,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_MxKicks",
@@ -7474,7 +8279,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_MxKicks",
@@ -7501,7 +8309,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_MxKicks",
@@ -7519,7 +8330,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -7528,7 +8340,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -7560,7 +8374,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_MxKicks",
@@ -7587,7 +8404,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_MxKicks",
@@ -7614,7 +8434,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_MxKicks",
@@ -7632,7 +8455,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxKicks/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -7641,9 +8465,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "MxCymbs",
@@ -7678,7 +8505,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_MxCymbs",
@@ -7705,7 +8535,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_MxCymbs",
@@ -7732,7 +8565,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_MxCymbs",
@@ -7750,7 +8586,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -7759,7 +8596,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -7791,7 +8630,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_MxCymbs",
@@ -7818,7 +8660,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_MxCymbs",
@@ -7845,7 +8690,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_MxCymbs",
@@ -7863,7 +8711,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -7872,7 +8721,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -7904,7 +8755,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_MxCymbs",
@@ -7931,7 +8785,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_MxCymbs",
@@ -7958,7 +8815,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_MxCymbs",
@@ -7976,7 +8836,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -7985,7 +8846,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -8017,7 +8880,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_MxCymbs",
@@ -8044,7 +8910,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_MxCymbs",
@@ -8071,7 +8940,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_MxCymbs",
@@ -8089,7 +8961,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/MxCymbs/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -8098,14 +8971,19 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     }
                 ],
-                "label": "EQs"
+                "label": "EQs",
+                "id": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "Acoustics",
@@ -8146,7 +9024,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/PianoToy/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Cymbalum",
@@ -8184,7 +9066,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Cymbalum/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "GuitarAc",
@@ -8222,7 +9108,11 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/GuitarAc/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             },
             {
                 "id": "Acoustics",
@@ -8260,9 +9150,14 @@
                 "precision": 2,
                 "meter": false,
                 "address": "/strip/Acoustics/Gain/Gain%20(dB)/unscaled",
-                "preArgs": []
+                "preArgs": [],
+                "spring": false,
+                "value": "",
+                "touchAddress": "",
+                "meterAddress": ""
             }
-        ]
+        ],
+        "id": ""
     },
     {
         "label": "Vocals",
@@ -8305,7 +9200,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Vx_Discours/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Vx_ORL",
@@ -8343,7 +9242,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Vx_ORL/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Vx_ORL_1",
@@ -8381,7 +9284,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Vx_ORL_1/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Vx_ORL_2",
@@ -8419,7 +9326,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Vx_ORL_2/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Vx_ORL",
@@ -8457,7 +9368,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Vx_ORL/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Vx_Dag",
@@ -8495,7 +9410,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Vx_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Vx_Dag_1",
@@ -8533,7 +9452,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Vx_Dag_1/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Vx_Dag_2",
@@ -8571,7 +9494,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Vx_Dag_2/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "FX_Vx_Dag",
@@ -8609,7 +9536,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/FX_Vx_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Scape_Vx_Dag",
@@ -8647,7 +9578,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Scape_Vx_Dag/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Vx_Jeannot",
@@ -8685,7 +9620,11 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Vx_Jeannot/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     },
                     {
                         "id": "Vocals",
@@ -8723,10 +9662,15 @@
                         "precision": 2,
                         "meter": false,
                         "address": "/strip/Vocals/Gain/Gain%20(dB)/unscaled",
-                        "preArgs": []
+                        "preArgs": [],
+                        "spring": false,
+                        "value": "",
+                        "touchAddress": "",
+                        "meterAddress": ""
                     }
                 ],
-                "label": "Main"
+                "label": "Main",
+                "id": ""
             },
             {
                 "tabs": [
@@ -8763,7 +9707,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Vx_ORL",
@@ -8790,7 +9737,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Vx_ORL",
@@ -8817,7 +9767,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Vx_ORL",
@@ -8835,7 +9788,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -8844,7 +9798,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -8876,7 +9832,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Vx_ORL",
@@ -8903,7 +9862,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Vx_ORL",
@@ -8930,7 +9892,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Vx_ORL",
@@ -8948,7 +9913,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -8957,7 +9923,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -8989,7 +9957,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Vx_ORL",
@@ -9016,7 +9987,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Vx_ORL",
@@ -9043,7 +10017,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Vx_ORL",
@@ -9061,7 +10038,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9070,7 +10048,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -9102,7 +10082,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Vx_ORL",
@@ -9129,7 +10112,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Vx_ORL",
@@ -9156,7 +10142,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Vx_ORL",
@@ -9174,7 +10163,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_ORL/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9183,9 +10173,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "Dag",
@@ -9220,7 +10213,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Vx_Dag",
@@ -9247,7 +10243,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Vx_Dag",
@@ -9274,7 +10273,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Vx_Dag",
@@ -9292,7 +10294,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9301,7 +10304,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -9333,7 +10338,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Vx_Dag",
@@ -9360,7 +10368,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Vx_Dag",
@@ -9387,7 +10398,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Vx_Dag",
@@ -9405,7 +10419,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9414,7 +10429,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -9446,7 +10463,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Vx_Dag",
@@ -9473,7 +10493,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Vx_Dag",
@@ -9500,7 +10523,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Vx_Dag",
@@ -9518,7 +10544,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9527,7 +10554,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -9559,7 +10588,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Vx_Dag",
@@ -9586,7 +10618,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Vx_Dag",
@@ -9613,7 +10648,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Vx_Dag",
@@ -9631,7 +10669,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Vx_Dag/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9640,9 +10679,12 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     },
                     {
                         "label": "Scape Dag",
@@ -9677,7 +10719,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_1_Scape_Vx_Dag",
@@ -9704,7 +10749,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_1_Scape_Vx_Dag",
@@ -9731,7 +10779,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_1_Scape_Vx_Dag",
@@ -9749,7 +10800,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%201/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9758,7 +10810,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_2",
@@ -9790,7 +10844,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_2_Scape_Vx_Dag",
@@ -9817,7 +10874,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_2_Scape_Vx_Dag",
@@ -9844,7 +10904,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_2_Scape_Vx_Dag",
@@ -9862,7 +10925,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%202/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9871,7 +10935,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_3",
@@ -9903,7 +10969,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_3_Scape_Vx_Dag",
@@ -9930,7 +10999,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_3_Scape_Vx_Dag",
@@ -9957,7 +11029,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_3_Scape_Vx_Dag",
@@ -9975,7 +11050,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%203/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -9984,7 +11060,9 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             },
                             {
                                 "id": "EQ_4",
@@ -10016,7 +11094,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Frequency%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Band_4_Scape_Vx_Dag",
@@ -10043,7 +11124,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Bandwidth%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_Gain_4_Scape_Vx_Dag",
@@ -10070,7 +11154,10 @@
                                         "logScale": false,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Gain%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "spring": false,
+                                        "value": "",
+                                        "touchAddress": ""
                                     },
                                     {
                                         "id": "EQ_On_4_Scape_Vx_Dag",
@@ -10088,7 +11175,8 @@
                                         "off": 0,
                                         "precision": 2,
                                         "address": "/strip/Scape_Vx_Dag/4-band%20parametric%20filter/Section%204/unscaled",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "value": ""
                                     }
                                 ],
                                 "left": "auto",
@@ -10097,12 +11185,16 @@
                                 "height": "auto",
                                 "horizontal": false,
                                 "color": "auto",
-                                "css": ""
+                                "css": "",
+                                "stretch": false,
+                                "variables": {}
                             }
-                        ]
+                        ],
+                        "id": ""
                     }
                 ],
-                "label": "EQs"
+                "label": "EQs",
+                "id": ""
             },
             {
                 "stack": true,
@@ -10138,7 +11230,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/Gate/LF%20key%20filter%20(Hz)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_HF_Vx_Dag",
@@ -10165,7 +11260,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/Gate/HF%20key%20filter%20(Hz)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Thresh_Vx_Dag",
@@ -10195,7 +11293,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/Gate/Threshold%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Attack_Vx_Dag",
@@ -10222,7 +11323,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/Gate/Attack%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Hold_Vx_Dag",
@@ -10249,7 +11353,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/Gate/Hold%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Decay_Vx_Dag",
@@ -10276,7 +11383,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/Gate/Decay%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -10284,7 +11394,9 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     },
                     {
                         "id": "Gate_Vx_ORL",
@@ -10317,7 +11429,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/Gate/LF%20key%20filter%20(Hz)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_HF_Vx_ORL",
@@ -10344,7 +11459,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/Gate/HF%20key%20filter%20(Hz)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Thresh_Vx_ORL",
@@ -10374,7 +11492,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/Gate/Threshold%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Attack_Vx_ORL",
@@ -10401,7 +11522,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/Gate/Attack%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Hold_Vx_ORL",
@@ -10428,7 +11552,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/Gate/Hold%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Gate_Decay_Vx_ORL",
@@ -10455,7 +11582,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/Gate/Decay%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -10463,10 +11593,13 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     }
                 ],
-                "label": "Gates"
+                "label": "Gates",
+                "id": ""
             },
             {
                 "label": "Comp",
@@ -10502,7 +11635,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/SC4%20mono/Attack%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Release_Vx_Dag",
@@ -10529,7 +11665,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/SC4%20mono/Release%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Thresh_Vx_Dag",
@@ -10556,7 +11695,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/SC4%20mono/Threshold%20level%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Ratio_Vx_Dag",
@@ -10583,7 +11725,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/SC4%20mono/Ratio%20(1:n)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Makeup_Vx_Dag",
@@ -10610,7 +11755,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Dag/SC4%20mono/Makeup%20gain%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -10618,7 +11766,9 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     },
                     {
                         "id": "Comp_Vx_ORL",
@@ -10651,7 +11801,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/SC4%20mono/Attack%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Release_Vx_ORL",
@@ -10678,7 +11831,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/SC4%20mono/Release%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Thresh_Vx_ORL",
@@ -10705,7 +11861,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/SC4%20mono/Threshold%20level%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Ratio_Vx_ORL",
@@ -10732,7 +11891,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/SC4%20mono/Ratio%20(1:n)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Makeup_Vx_ORL",
@@ -10759,7 +11921,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_ORL/SC4%20mono/Makeup%20gain%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -10767,7 +11932,9 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     },
                     {
                         "id": "Comp_Vx_Jeannot",
@@ -10800,7 +11967,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Jeannot/SC4%20mono/Attack%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Release_Vx_Jeannot",
@@ -10827,7 +11997,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Jeannot/SC4%20mono/Release%20time%20(ms)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Thresh_Vx_Jeannot",
@@ -10854,7 +12027,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Jeannot/SC4%20mono/Threshold%20level%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Ratio_Vx_Jeannot",
@@ -10881,7 +12057,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Jeannot/SC4%20mono/Ratio%20(1:n)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             },
                             {
                                 "id": "Comp_Makeup_Vx_Jeannot",
@@ -10908,7 +12087,10 @@
                                 "logScale": false,
                                 "precision": 2,
                                 "address": "/strip/Vx_Jeannot/SC4%20mono/Makeup%20gain%20(dB)/unscaled",
-                                "preArgs": []
+                                "preArgs": [],
+                                "spring": false,
+                                "value": "",
+                                "touchAddress": ""
                             }
                         ],
                         "left": "auto",
@@ -10916,10 +12098,14 @@
                         "width": "auto",
                         "height": "auto",
                         "color": "auto",
-                        "css": ""
+                        "css": "",
+                        "stretch": true,
+                        "variables": {}
                     }
-                ]
+                ],
+                "id": ""
             }
-        ]
+        ],
+        "id": ""
     }
 ]
