@@ -50,9 +50,9 @@ module.exports = class Panel extends _widgets_base {
             parsetabs = parsers.tabs
 
         if (this.getProp('tabs').length) {
-            parsetabs(this.props.tabs, this.widget)
+            parsetabs(this.getProp('tabs'), this.widget)
         } else {
-            parsewidgets(this.props.widgets, this.widget, this)
+            parsewidgets(this.getProp('widgets'), this.widget, this)
         }
 
         this.children = this.widget.find('> .widget')

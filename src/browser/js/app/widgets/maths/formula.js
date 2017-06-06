@@ -86,6 +86,7 @@ module.exports = class Formula extends _widgets_base {
     onRemove() {
 
         $('body').off(`sync.${this.hash}`)
+        super.onRemove()
 
     }
 

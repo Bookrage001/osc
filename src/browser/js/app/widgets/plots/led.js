@@ -57,6 +57,7 @@ module.exports = class Led extends _widgets_base {
     onRemove() {
 
         $('body').off(`sync.${this.hash}`)
+        super.onRemove()
 
     }
 

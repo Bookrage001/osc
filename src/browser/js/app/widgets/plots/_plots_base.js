@@ -44,6 +44,7 @@ module.exports = class _plots_base extends _canvas_base {
     onRemove() {
 
         $('body').off(`sync.${this.hash}`)
+        super.onRemove()
 
     }
 

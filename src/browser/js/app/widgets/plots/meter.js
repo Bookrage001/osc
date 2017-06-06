@@ -60,6 +60,7 @@ module.exports = class Meter extends Fader {
     onRemove() {
 
         $('body').off(`sync.${this.hash}`)
+        super.onRemove()
 
     }
 

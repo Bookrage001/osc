@@ -41,6 +41,7 @@ module.exports = class _switchers_base extends _widgets_base {
     onRemove() {
 
         $('body').off(`sync.${this.hash}`)
+        super.onRemove()
 
     }
 

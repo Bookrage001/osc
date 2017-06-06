@@ -1,6 +1,8 @@
 var osc = require('../../osc'),
     shortid = require('shortid'),
-    {widgetManager} = require('../../managers')
+    {widgetManager} = require('../../managers'),
+    updateDom = function(){ updateDom = require('../../editor/data-workers').updateDom; updateDom(...arguments)}
+
 
 module.exports = class _widgets_base {
 
@@ -24,18 +26,18 @@ module.exports = class _widgets_base {
         this.hash = _widgets_base.createHash()
 
         // Turn preArgs into array
-        if (this.props.preArgs != undefined && !Array.isArray(this.getProp('preArgs'))) {
+        if (this.props.preArgs != undefined && !Array.isArray(this.resolveProp('preArgs', undefined, false))) {
             this.props.preArgs = [this.props.preArgs]
         }
 
         // Turn preArgs into array
-        if (this.props.target != undefined && !Array.isArray(this.getProp('target'))) {
+        if (this.props.target != undefined && !Array.isArray(this.resolveProp('target', undefined, false))) {
             this.props.target = [this.props.target]
         }
 
         // limit precision
         if (this.props.precision) {
-            this.precision = Math.min(20,Math.max(this.getProp('precision'),0))
+            this.precision = Math.min(20,Math.max(this.resolveProp('precision', undefined, false),0))
         }
 
         // strip parent ? no position
@@ -43,6 +45,31 @@ module.exports = class _widgets_base {
             delete this.props.top
             delete this.props.left
         }
+
+
+        // reset @{props} links
+        this.linkedPropsWidgets = []
+        this.linkedProps = []
+
+
+        // cache props (resolve @{props})
+        this.cachedProps = {}
+
+        for (var k in this.props) {
+            if (k != 'widgets' && k != 'tabs') {
+                this.cachedProps[k] = this.resolveProp(k, undefined, true)
+            } else {
+                this.cachedProps[k] = this.props[k]
+            }
+        }
+
+        $('body').on(`widget-created.${this.hash}`, (e, id)=>{
+            if (this.linkedPropsWidgets.indexOf(id) != -1 && id != this.getProp('id')) {
+                this.checkPropsChanged()
+            }
+        })
+
+        $('body').trigger('widget-created', this.getProp('id'))
 
     }
 
@@ -89,9 +116,9 @@ module.exports = class _widgets_base {
 
     }
 
-    getProp(key, opt) {
+    resolveProp(key, opt, storeLinks=true) {
 
-        var opt = key == null ? opt : _widgets_base.deepCopy(this.props[key]),
+        var opt = opt !== undefined ? opt : _widgets_base.deepCopy(this.props[key]),
             obj
 
         if (typeof opt == 'string' && opt.indexOf('@{') != -1) {
@@ -107,12 +134,18 @@ module.exports = class _widgets_base {
 
                 id = id.join('.')
 
+                if (id != 'this' && id != 'parent' && storeLinks) {
+                    this.linkedProps.push(key)
+                    this.linkedPropsWidgets.push(id)
+                }
+
                 var widgets = id == 'parent' && this.parent ?
-                    [this.parent] : widgetManager.getWidgetById(id)
+                    [this.parent] : id == 'this' ? [this] :
+                        widgetManager.getWidgetById(id)
 
                 for (var i in widgets) {
                     if (widgets[i].props.hasOwnProperty(k)) {
-                        var r = widgets[i].getProp(k)
+                        var r = widgets[i].resolveProp(k, undefined, storeLinks)
                         if (subk !== undefined) r = r[subk]
                         if (typeof r != 'string') r = JSON.stringify(r)
                         return r
@@ -126,13 +159,33 @@ module.exports = class _widgets_base {
 
         } else if (opt != null && typeof opt == 'object') {
             for (var k in opt) {
-                opt[k] = this.getProp(null, opt[k])
+                opt[k] = this.resolveProp(key, opt[k], storeLinks)
             }
         }
 
         return opt
 
 
+    }
+
+    getProp(key){
+        return this.cachedProps[key]
+    }
+
+    checkPropsChanged(){
+        for (var key of this.linkedProps) {
+            if (JSON.stringify(this.cachedProps[key]) != JSON.stringify(this.resolveProp(key, undefined, false))) {
+                return this.reCreateWidget()
+            }
+        }
+    }
+
+    reCreateWidget(){
+        updateDom(this.container, this.props, true)
+    }
+
+    onRemove(){
+        $('body').off(`widget-created.${this.hash}`)
     }
 
 }
