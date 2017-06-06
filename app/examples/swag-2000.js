@@ -1878,7 +1878,7 @@
                         "width": 96.15625,
                         "height": "auto",
                         "color": "auto",
-                        "css": "--display-input:none",
+                        "css": "--display-input:none;",
                         "snap": false,
                         "rangeX": {
                             "min": 0,
@@ -1919,9 +1919,9 @@
                         "preArgs": [],
                         "split": false,
                         "target": [],
-                        "width": "100%",
-                        "css": "",
-                        "height": "auto"
+                        "css": "flex:1",
+                        "height": "auto",
+                        "width": "auto"
                     },
                     {
                         "type": "strip",
