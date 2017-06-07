@@ -109,9 +109,9 @@ var editObject = function(container, data, refresh){
 
                 try {
                     updateDom(container,data)
-                    input.removeClass('error')
+                    wrapper.removeClass('error')
                 } catch (err) {
-                    input.addClass('error')
+                    wrapper.addClass('error')
                     throw err
                 }
             })
