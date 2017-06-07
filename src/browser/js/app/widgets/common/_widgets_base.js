@@ -47,7 +47,7 @@ module.exports = class _widgets_base {
         }
 
 
-        // reset @{props} links
+        // @{props} links lists
         this.linkedPropsWidgets = []
         this.linkedProps = []
 
@@ -116,9 +116,11 @@ module.exports = class _widgets_base {
 
     }
 
-    resolveProp(key, opt, storeLinks=true) {
+    resolveProp(key, opt, storeLinks=true, originalWidget, originalKey) {
 
         var opt = opt !== undefined ? opt : _widgets_base.deepCopy(this.props[key]),
+            originalWidget = originalWidget || this,
+            originalKey = originalKey || key,
             obj
 
         if (typeof opt == 'string' && opt.indexOf('@{') != -1) {
@@ -134,21 +136,28 @@ module.exports = class _widgets_base {
 
                 id = id.join('.')
 
-                if (id != 'this' && id != 'parent' && storeLinks) {
-                    this.linkedProps.push(key)
-                    this.linkedPropsWidgets.push(id)
-                }
-
                 var widgets = id == 'parent' && this.parent ?
                     [this.parent] : id == 'this' ? [this] :
                         widgetManager.getWidgetById(id)
 
+
                 for (var i in widgets) {
                     if (widgets[i].props.hasOwnProperty(k)) {
-                        var r = widgets[i].resolveProp(k, undefined, storeLinks)
+
+                        if (originalKey == k && widgets[i].props.id == originalWidget.props.id) {
+                            throw `Circular property reference for ${originalWidget.props.id}.${originalKey}`
+                        }
+
+                        if (id != 'this' && id != 'parent' && storeLinks) {
+                            this.linkedProps.push(key)
+                            this.linkedPropsWidgets.push(id)
+                        }
+
+                        var r = widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalKey)
                         if (subk !== undefined) r = r[subk]
                         if (typeof r != 'string') r = JSON.stringify(r)
                         return r
+
                     }
                 }
             })
@@ -159,7 +168,7 @@ module.exports = class _widgets_base {
 
         } else if (opt != null && typeof opt == 'object') {
             for (var k in opt) {
-                opt[k] = this.resolveProp(key, opt[k], storeLinks)
+                opt[k] = this.resolveProp(key, opt[k], storeLinks, originalWidget, originalKey)
             }
         }
 
