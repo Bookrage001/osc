@@ -165,6 +165,23 @@ module.exports = class Encoder extends _widgets_base {
                 })
         })
 
+        this.wrapper.on('mousewheel', (e)=>{
+
+            if (e.originalEvent.wheelDeltaX || e.originalEvent.wheelDelta == 0) return
+
+            var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta)
+
+            this.display.setValue(this.display.value + direction)
+            this.setValue(direction < 0 ? this.getProp('back') : this.getProp('forth'), {sync:true, send:true})
+
+            if (this.getProp('release') !== '' && this.value !== this.getProp('release')) {
+                this.knob.setValue(this.ticks/2)
+                this.display.setValue(this.ticks/2)
+                this.setValue(this.getProp('release'), {sync:true, send:true, dragged:false})
+            }
+        })
+
+
     }
 
     setValue(v,options={}) {
