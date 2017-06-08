@@ -12,7 +12,7 @@ If the retreived property is an object (`[] / {}`), it can be used as is or one 
 
 ## Panel
 
-Panels can contains tabs or widgets. These can be absolutely positioned and can overflow their parent's size (which will then display scrollbars).
+Panels can contains tabs or widgets. These can be absolutely positioned and can overflow their parent's size (which will then display scrollbars). When a panel contains tabs, it can send and receive its active tab's index through osc.
 
 
 ```js
@@ -38,16 +38,6 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - usage: each element of the `array` must be a tab `object`. A panel cannot contain widgets and tabs simultaneously.
 
 
-#### `layout`
-- type: `string`
-- default: `''`
-- usage: `layout` must be a valid [Visual Format Language](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) expression. It accepts the [Extended Visual Format Language](https://github.com/IjzerenHein/autolayout.js#extended-visual-format-language-evfl) as well. Widgets are targeted using their `id` or their index prefixed with a `$` (`$0, $1, etc`), the latter method being incompatible with the [range spread operator](https://github.com/IjzerenHein/autolayout.js#view-ranges-spread-operator). Expressions can be tested and debugged with the online [Visual Format Editor](https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html).
-
-#### `spacing`
-- type: `integer|array`
-- default: `0`
-- usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
-
 #### `variables`
 - type: `*`
 - default: `{}`
@@ -58,6 +48,18 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
   - `[1, 2]` (`@{parent.variables.0}` will return `1`)
   - `@{parent.variables}` useful when nesting containers
 
+
+#### `layout`
+- type: `string`
+- default: `''`
+- usage: `layout` must be a valid [Visual Format Language](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) expression. It accepts the [Extended Visual Format Language](https://github.com/IjzerenHein/autolayout.js#extended-visual-format-language-evfl) as well. Widgets are targeted using their `id` or their index prefixed with a `$` (`$0, $1, etc`), the latter method being incompatible with the [range spread operator](https://github.com/IjzerenHein/autolayout.js#view-ranges-spread-operator). Expressions can be tested and debugged with the online [Visual Format Editor](https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html).
+- note: this only applies when the panel contains widgets, not tabs
+
+#### `spacing`
+- type: `integer|array`
+- default: `0`
+- usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
+- note: this only applies when the panel contains widgets, not tabs
 
 ----
 
@@ -92,7 +94,7 @@ Unidirectionnal panel with stretching capability.
 
 ## Modal
 
-Modals are buttons that turn into a centered popup panels when enabled. They can be enabled via osc (1 to enable, 0 to disable).
+Modals are buttons that turn into a centered popup panels when enabled. They can only contain widgets. They can send and receive their state via osc (1 to enable, 0 to disable).
 
 ```js
 {
