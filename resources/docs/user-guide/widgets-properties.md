@@ -1,4 +1,4 @@
-## Widgets generics
+## Widgets properties
 
 All widgets share a set of generic properties described below. Each widget type comes with an additional set of specific properties which are documented in these pages:
 
