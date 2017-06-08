@@ -40,7 +40,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 
 #### `variables`
 - type: `*`
-- default: `{}`
+- default: `@{parent.variables}`
 - usage: defines one or more arbitrary variables that can be inherited by children widgets.
 - examples:
   - `1` (`@{parent.variables}` will return `1`)

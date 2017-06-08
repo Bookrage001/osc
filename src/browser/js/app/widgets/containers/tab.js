@@ -31,7 +31,7 @@ module.exports = class Tab extends Panel {
 
             _children:'children',
 
-            variables:{},
+            variables:'@{parent.variables}',
 
             widgets:[],
             tabs:[]

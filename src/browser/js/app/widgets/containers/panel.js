@@ -40,7 +40,7 @@ module.exports = class Panel extends _widgets_base {
 
             _children:'children',
 
-            variables:{},
+            variables:'@{parent.variables}',
 
             widgets:[],
             tabs:[]

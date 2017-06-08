@@ -26,7 +26,7 @@ module.exports = class Strip extends Panel {
 
             _children:'children',
 
-            variables:{},
+            variables:'@{parent.variables}',
 
             widgets:[]
         }
