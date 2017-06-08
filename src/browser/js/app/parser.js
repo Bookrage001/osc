@@ -7,103 +7,29 @@ var {widgetManager} = require('./managers')
 var {widgets} = require('./widgets'),
     {iconify} = require('./utils')
 
-var iterators = {
-        widget:{},
-        tab:{}
-    },
-    getIterator = function(id,type){
-        iterators[type][id] = (iterators[type][id] || 0) + 1
-        return iterators[type][id]
+var iterators = {},
+    getIterator = function(id){
+        iterators[id] = (iterators[id] || 0) + 1
+        return iterators[id]
     }
 
-var hashCode = function(s){
-  return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
-}
+module.exports.reset = function(){
 
-var $body
-$(function() {
-    $body = $('body')
-})
+    iterators = {}
 
-module.exports.tabs = function(data,parent,main){
+    widgetManager.reset()
 
-    if (main) {
-        // Reset Globals
-        SESSION = data
-        for (let i in TABS) {
-            if (i!='#container') {
-                TABS[i].parent.remove()
-                TABS[i].tab.remove()
-                delete TABS[i]
-            }
-        }
-        TABS['#container'] = {
-            tab:$('#container')
-        }
-
-        iterators.tab = {}
-        iterators.widget = {}
-
-        widgetManager.reset()
-
-    }
-
-    var main = main?'main ':'',
-        nav = $(document.createElement('div')).addClass(main + 'navigation'),
-        navtabs = $(document.createElement('ul')).addClass('tablist'),
-        content = $(document.createElement('div')).addClass('content')
-
-
-    for (let i in data) {
-        var tabData = data[i]
-
-
-        var label = tabData.label||tabData.id||'Unnamed',
-            hash = hashCode(label),
-            id = 'tab_'+hash+'_'+getIterator('tab'+hash,'tab')
-
-        tabData.id = tabData.id || ''
-        tabData.label = label
-
-        navtabs.append(`<li data-tab="#${id}" data-id="${tabData.id}"><a><span>${iconify(tabData.label)}</span></a></li>`)
-
-        let tabContent = $(`<div class="tab ${tabData.tabs&&tabData.tabs.length?'has-tabs':''}" id="${id}" data-index="${i}"></div>`)
-        tabContent.data(tabData)
-
-
-        if (tabData.tabs && tabData.tabs.length) {
-            module.exports.tabs(tabData.tabs,tabContent,false)
-        } else if (tabData.widgets && tabData.widgets.length) {
-            module.exports.widgets(tabData.widgets,tabContent)
-        }
-
-        tabContent.on('sync.detached', (e)=>{
-            if (!document.contains(tabContent[0])) $body.trigger(e)
-        })
-
-        // content.append(tabContent)
-        TABS['#'+id]= {
-            parent:content,
-            tab:tabContent,
-            data:tabData
-        }
-
-    }
-
-    nav[0].appendChild(navtabs[0])
-    parent[0].appendChild(nav[0])
-    parent[0].appendChild(content[0])
 }
 
 
 
-module.exports.widgets = function(data, parentNode, parentWidget) {
+module.exports.widgets = function(data, parentNode, parentWidget, tab) {
 
     for (let i in data) {
         var props = data[i]
 
         // Set default widget type
-        props.type =  props.type || 'fader'
+        props.type =  tab ? 'tab' : props.type || 'fader'
 
         // Safe copy widget's options
         let defaults = widgets[props.type].defaults()
@@ -114,10 +40,10 @@ module.exports.widgets = function(data, parentNode, parentWidget) {
         }
 
         // Genrate widget's id, based on its type
-        if (props.id=='auto') {
+        if (props.id=='auto' || !props.id ) {
             var id
             while (!id || widgetManager.getWidgetById(id).length) {
-                id=props.type+'_'+getIterator(props.type,'widget')
+                id=props.type+'_'+getIterator(props.type)
             }
             props.id = id
         }
@@ -147,9 +73,12 @@ module.exports.widgets = function(data, parentNode, parentWidget) {
 
         widgetManager.addWidget(widgetInner)
 
+        widgetContainer[0].setAttribute('data-widget', widgetInner.hash)
+
         // dimensions / coordinates can't be < 0
-        for (let t in {width:'',height:'',top:'',left:''}) {
-            props[t] = `${props[t]}`.indexOf('-')!=-1?0:props[t]
+        for (let t of ['width', 'height', 'top', 'left']) {
+            if (props.hasOwnProperty(t))
+                props[t] = `${props[t]}`.indexOf('-')!=-1?0:props[t]
         }
 
         // convert dimensions / coordinates to rem

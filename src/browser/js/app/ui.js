@@ -4,36 +4,6 @@ var actions = require('./actions'),
 
 var sidepanel = require('./sidepanel').init
 
-// Tabs...
-var tabs = function() {
-    $('#container').on('fake-click', function(e){
-        var link = e.target
-
-        if (!link.hasAttribute('data-tab') || link.classList.contains('on')) return
-
-        var id = link.getAttribute('data-tab')
-
-        link.classList.add('on')
-
-        var previous = $(link).siblings('.on').removeClass('on').data('tab')
-
-        if (EDITING) editClean()
-
-        // TABS[id].tab.appendTo(TABS[id].parent)
-        TABS[id].parent[0].appendChild(TABS[id].tab[0])
-        $(previous).detach()
-
-
-        $(id).find('li[data-tab]:first-child, li.parent + li[data-tab]').each(function(){
-            if (!$(this).siblings('.on').length) $(this).trigger('fake-click')
-        })
-
-        $(window).resize()
-
-    })
-    $('li[data-tab]').first().trigger('fake-click')
-}
-
 // zoom zoom
 var scrolls = function(){
     $('html').on('mousewheel.zoom',function(e) {
@@ -66,9 +36,7 @@ var scrolls = function(){
 module.exports = {
     init: function(){
         sidepanel()
-        tabs()
         scrolls()
     },
-    tabs:tabs,
     scrolls:scrolls
 }

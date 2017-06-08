@@ -44,6 +44,7 @@ module.exports = class _widgets_base {
         if (this.parent && this.parent.props.type == 'strip') {
             delete this.props.top
             delete this.props.left
+            delete this.props[this.parent.getProp('horizontal') ? 'height' : 'width']
         }
 
 

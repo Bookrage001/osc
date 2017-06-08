@@ -1,4 +1,8 @@
 module.exports.widgets = {
+    // tabs
+    tab: require('./widgets/containers/tab'),
+    root: require('./widgets/containers/root'),
+
     // sliders
     fader: require('./widgets/sliders/fader'),
     knob: require('./widgets/sliders/knob'),

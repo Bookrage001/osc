@@ -1,8 +1,6 @@
-var ui = require('../ui'),
-    actions = require('../actions'),
+var actions = require('../actions'),
     sidepanelCreateToggle = require('../sidepanel').createToggle,
     editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments)},
-    editSession = function(){editSession = require('./edit-objects').editSession; editSession(...arguments)},
     purgeStores = require('./purge'),
     {iconify} = require('../utils'),
     {widgetManager} = require('../managers'),
@@ -13,35 +11,11 @@ var ui = require('../ui'),
 var getObjectData = function(obj){
     var path = []
 
-    if (obj.hasClass('tab')) {
-        return TABS['#'+obj.attr('id')].data
+    if (obj.hasClass('widget')) {
+        return obj[0].abstract.props
+    } else {
+        return obj.closest('.widget')[0].abstract.props
     }
-
-    if (obj.is('#container')) {
-        return SESSION
-    }
-
-    while(true) {
-        if (obj.hasClass('widget')) {
-            path.unshift(obj.index())
-            path.unshift('widgets')
-        } else if (obj.hasClass('tab')){
-            path.unshift(obj.data('index'))
-            path.unshift('tabs')
-        } else if (obj.is('#container')) {
-            break
-        }
-
-        obj = obj.parent()
-    }
-
-    path.splice(0,1)
-
-    for (var i=0,data=SESSION, path=path, len=path.length; i<len; i++){
-        data = data[path[i]]
-    }
-
-    return data
 
 }
 
@@ -50,55 +24,29 @@ var updateDom = function(container,data, remote) {
     // save state
     var scroll = $('#sidepanel').scrollTop(),
         state = actions.stateGet(),
-        purgetabs = data.tabs?true:false
+        parentContainer = container.parent(),
+        purge = container[0].abstract.hashes || container[0].abstract.hash
 
+    // widget
+    var newContainer = parsewidgets([data], parentContainer, container[0].abstract.parent)
+    container.replaceWith(newContainer)
 
-    if (container.hasClass('widget')) {
-        // widget
-        var newContainer = parsewidgets([data],container.parent(), container[0].abstract.parent)
-        container.replaceWith(newContainer)
+    if (data.type == 'tab') newContainer.trigger('tab-created')
 
-        if (!remote) editObject(newContainer,data,true)
-
-    } else if (container.hasClass('tab')) {
-        // tab
-        var newContainer = container.empty()
-
-        if (data.widgets && data.widgets.length) parsewidgets(data.widgets,container)
-        if (data.tabs && data.tabs.length) {
-            parsetabs(data.tabs,container,false,data.label)
-            container.addClass('has-tabs')
-        } else {
-            container.removeClass('has-tabs')
-        }
-
-        $(`[data-tab="#${container.attr('id')}"]`).html(`<a ta><span>${iconify(data.label)}</span></a>`).attr('data-id',data.id)
-
-        if (!remote) editObject(newContainer,data,true)
-
-    } else if (container.attr('id')=='container') {
-        // session
-        var newContainer = $('#container')
-        container.empty()
-        parsetabs(data,container,true)
-
-        if (!remote) {
-            editSession(newContainer,data,true)
-            sidepanelCreateToggle()
-        }
-
-    }
-
-    newContainer.find('[data-tab]:first-child').trigger('fake-click')
+    $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
+    sidepanelCreateToggle()
 
     newContainer.trigger('resize')
-    // $(window).resize()
 
-    purgeStores(purgetabs)
+    purgeStores(purge)
 
     // restore state
     actions.stateSet(state,false)
-    ui.scrolls()
+
+    if (!remote) {
+        editObject(newContainer,data,true)
+    }
+
     $('#sidepanel').scrollTop(scroll)
 
 

@@ -1,0 +1,53 @@
+var Panel = require('./panel'),
+    {iconify} = require('../../utils'),
+    Tab = require('./tab')
+
+
+
+module.exports = class Root extends Panel {
+
+    static defaults() {
+
+        return {
+
+            type:'root',
+
+            _osc:'osc',
+
+            value:'',
+            precision:0,
+            address:'auto',
+            preArgs:[],
+            target:[],
+
+            _children:'children',
+
+            variables:{},
+
+            tabs:[]
+        }
+
+    }
+
+    constructor(options) {
+
+        options.props.id = 'root'
+        options.props.scroll = true
+        options.props.label = false
+
+        super(options)
+
+        this.widget.addClass('root')
+        this.widget.find('> .navigation').addClass('main')
+
+    }
+
+    createNavigation() {
+
+        super.createNavigation()
+
+        this.navigation.append(`<li class="not-editable"><a id="open-toggle">${iconify('^navicon')}</a></li>`)
+
+    }
+
+}

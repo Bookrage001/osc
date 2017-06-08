@@ -118,7 +118,7 @@ module.exports = {
 
     editorEnable: function(){
         window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
-        $('.editor-root').attr('data-tab','#container').removeClass('disabled')
+        $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget')).removeClass('disabled')
         $('.enable-editor').addClass('on')
         $('.disable-editor').removeClass('on')
         $('body').addClass('editor-enabled')

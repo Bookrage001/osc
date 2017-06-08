@@ -12,41 +12,11 @@ body {
     flex-direction: column;
     background:var(--color-bg);
     padding:2rem;
-    // transition:right .2s;
     &.sidepanel-open {
         right:var(--sidepanel-size);
     }
 }
 
-.content {
-    height:100%;
-    overflow: hidden;
-    position: relative;
-    background:var(--color-fg);
-    padding:2rem;
-    margin-top:1rem;
-}
-
-.tab {
-    position: absolute;
-    overflow: auto;
-    left:-1rem;
-    right:0;
-    top:-1rem;
-    bottom:0;
-    background:var(--color-bg);
-    transform: rotateZ(0);
-}
-.has-tabs {
-    display: flex;
-    flex-direction: column;
-    > .navigation {
-        background:var(--color-bg);
-    }
-    > .content {
-        background:none;
-    }
-}
 
 .navigation {
     height:var(--nav-height);
@@ -54,6 +24,15 @@ body {
     flex-shrink:0;
     font-weight:bold;
     text-transform: uppercase;
+    background: transparent;
+    height:calc(var(--nav-height) - 2rem);
+
+    &:after {
+        background: var(--color-bg);
+    }
+    a.on {
+        border-color: var(--color-bg);
+    }
 
     &.main {
         li:last-child {

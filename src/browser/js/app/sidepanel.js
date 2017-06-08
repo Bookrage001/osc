@@ -117,7 +117,7 @@ var sidepanel = function(data){
 }
 
 var toggle = function(){
-    var t = $(`<li><a id="open-toggle">${icon('navicon')}</a></li>`).appendTo('.navigation.main ul').click(function(e){
+    var t = $('#open-toggle').parent().off('fake-click').on('fake-click', function(e){
         var t = (!$('#sidepanel').hasClass('sidepanel-open')) ? 250 : 0
 
 
@@ -130,15 +130,15 @@ var toggle = function(){
             $(window).resize()
         },t + 25)
 
-    }).on('mousedown touchstart',function(e){e.stopPropagation()})
+    })
 
     // in case where are hot loading a session
     if ($('#sidepanel').hasClass('sidepanel-open')) {
         $('#open-toggle, #container').addClass('sidepanel-open')
     }
 
-    $(document).on('keydown.sidepanel', function(e){
-        if (e.keyCode==121) t.click()
+    $(document).off('keydown.sidepanel').on('keydown.sidepanel', function(e){
+        if (e.keyCode==121) t.trigger('fake-click')
     })
 }
 

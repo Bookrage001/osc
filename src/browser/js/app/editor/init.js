@@ -1,7 +1,8 @@
 var {getObjectData, updateDom, incrementWidget} = require('./data-workers'),
-    {editObject, editSession, editClean} = require('./edit-objects'),
+    {editObject, editClean} = require('./edit-objects'),
     createPopup = require('../utils').createPopup,
     {widgets, categories} = require('../widgets'),
+    {widgetManager} = require('../managers'),
     menu = require('./context-menu')
 
 
@@ -13,35 +14,36 @@ var init = function(){
         if (!EDITING) return
 
         // ignore mouse event when fired by a simulated touch event
-        if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
+        // already handled in drag.js
+        // if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
         $('.context-menu').remove()
 
-        var target = $(e.target).is('.widget:not(.not-editable), .tab, [data-tab], #container')?
-                        $(e.target):
-                        $(e.target).closest('.widget:not(.not-editable), .tab, [data-tab], #container')
+        if (e.target.classList.contains('not-editable')) return
+
+        var target = e.target.hasAttribute('data-widget')  || e.target.classList.contains('widget') ?
+                        $(e.target).not('.not-editable') : $(e.target).closest('.widget:not(.not-editable)')
 
         if (!target.length) return
 
-        var container = target.attr('data-tab')?TABS[target.attr('data-tab')].tab:target,
-            type = target.hasClass('widget')?'widget':'tab',
+        var widget = widgetManager.widgets[target.attr('data-widget')]
+
+        if (!widget) return
+
+        var container = widget.container,
             parent = container.parent(),
             index = container.index(),
-            data = getObjectData(container)
+            data = getObjectData(container),
+            type = widget.props.type == 'tab' ? 'tab' : 'widget'
 
-        if (container.attr('id')=='container') {
-            editSession(container,SESSION)
-        } else {
-            editObject(container,data)
-        }
-
+        editObject(container,data)
 
         if (e.type!='fake-right-click') return
 
-        if (container.attr('id')=='container') {
+        if (container.hasClass('root-container')) {
             menu(d,{
                 '<i class="fa fa-plus"></i> Add tab': function(){
-                    data.push({})
+                    data.tabs.push({})
                     updateDom(container,data)
                 }
             },'body')
@@ -58,10 +60,10 @@ var init = function(){
 
         if (type=='widget') actions['<i class="fa fa-cut"></i> Cut'] = function(){
             CLIPBOARD=JSON.parse(JSON.stringify(data))
-            var parentContainer = container.parents('.widget, .tab, #container').first(),
+            var parentContainer = container.parents('.widget').first(),
                 parentData = getObjectData(parentContainer)
 
-            parentData.widgets.splice(container.index(),1)
+            parentData.widgets.splice(index,1)
             updateDom(parentContainer,parentData)
         }
 
@@ -140,16 +142,14 @@ var init = function(){
             `)
             $('.confirm-delete').click(function(){
                 popup.close()
-                var parentContainer = container.parents('.widget, .tab, #container').first(),
+                var parentContainer = container.parents('.widget').first(),
                     parentData = getObjectData(parentContainer)
 
 
-                if (type=='widget') {
-                    parentData.widgets.splice(container.index(),1)
-                } else if (type=='tab' && parentContainer.attr('id')!='container') {
-                    parentData.tabs.splice(container.data('index'),1)
+                if (widget.props.type != 'tab') {
+                    parentData.widgets.splice(index,1)
                 } else {
-                    parentData.splice(container.data('index'),1)
+                    parentData.tabs.splice(index,1)
                 }
 
                 updateDom(parentContainer,parentData)

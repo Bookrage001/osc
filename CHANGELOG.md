@@ -1,16 +1,25 @@
 # Changelog
 
-## next
+## 0.18.0
+
+:warning: **Breaking changes** :warning:
+
+Sessions saved with this version will not be readable with older versions (old sessions a can be opened but wont be backward-compatible once saved).
+
 
 - widgets
-  - add property inheritance between widgets through `@{parent.propertyName}` statements;
+  - add property inheritance between widgets with statements `@{parent.propertyName}`, `@{this.propertyName}` and `@{widgetID.propertyName}`
   - containers: added `variables` options (arbitrary varibles to pass to children)
-  - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options
+  - panel: added full osc support (for sending/receiving tab changes)
+  - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options; :warning: removed `tabs` option; added full osc support
   - strip: refactored widget using `panel` as base; added `stretch` option
+  - encoder: mousewheel support
+- session
+  - the root panel is now saved as a special `panel` widget (which means it has savable options)
 - custom module
   - add access to the app's `settings` object
 
-## 0.17.8
+## 0.17.8
 
 - bug fixes
   - regression breaking widgets' `split` option (0.17.6)
@@ -19,7 +28,7 @@
 - osc
   - javascript object are now stringifyied before beeing sent
 - widgets
-  - maths: add `condition` option to [`formula`]http://osc.ammd.net/user-guide/widgets-specifics/maths/#formula)
+  - maths: add `condition` option to [`formula`](http://osc.ammd.net/user-guide/widgets-specifics/maths/#formula)
   - sliders/pads: add `touchAddress` option
   - fader: add `meterAddress`
 

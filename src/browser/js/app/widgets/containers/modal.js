@@ -33,14 +33,17 @@ module.exports = class Modal extends _widgets_base {
 
             _osc:'osc',
 
+            value:'',
+            precision:0,
             address:'auto',
+            preArgs:[],
+            target:[],
 
             _chidlren:'children',
 
             variables:{},
 
             widgets:[],
-            tabs:[]
         }
 
     }
@@ -70,13 +73,13 @@ module.exports = class Modal extends _widgets_base {
         this.widget[0].style.setProperty('--height', height)
 
         this.widget.find('.closer').on('fake-click',(e)=>{
-            this.setValue(false)
+            this.setValue(false, {sync:true, send:true})
         })
 
         this.light = $('<div class="light"></div>').appendTo(this.container)
         this.light.on('fake-click',(e)=>{
             if (e.button != 2)
-                this.setValue(!this.value)
+                this.setValue(!this.value, {sync:true, send:true})
         })
 
         this.parentScroll = [0,0]
@@ -85,7 +88,7 @@ module.exports = class Modal extends _widgets_base {
 
     }
 
-    setValue(v) {
+    setValue(v, options={}) {
 
         this.value = v ? true : false
 
@@ -102,6 +105,10 @@ module.exports = class Modal extends _widgets_base {
 
         if (!this.init || this.value == true) this.fixStacking()
         if (!this.init) this.init = true
+
+        if (options.send) this.sendValue()
+        if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
+
     }
 
     fixScrolling(){
@@ -115,7 +122,6 @@ module.exports = class Modal extends _widgets_base {
     }
 
     fixStacking() {
-        console.log(this.value, this.container.parents('.widget'))
         if (this.value) {
             this.container.parents('.widget').css('z-index','initial')
         } else {

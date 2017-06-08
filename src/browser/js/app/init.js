@@ -1,4 +1,6 @@
-var parsetabs = require('./parser').tabs,
+var parser = require('./parser'),
+    parsewidgets = parser.widgets,
+    reset = parser.reset,
     ui = require('./ui'),
     {editorDisable} = require('./actions'),
     editorInit = require('./editor/init'),
@@ -12,7 +14,17 @@ module.exports = function(session,callback) {
 
         setTimeout(function(){
             try {
-                parsetabs(session,$('#container'),true)
+                reset()
+
+                if (session[0].type != 'root') {
+                    SESSION = [{type:'root', tabs:session}]
+                } else if (session[0].type == 'root'){
+                    SESSION = session
+                } else {
+                    throw 'Malformed session file'
+                }
+
+                parsewidgets(SESSION,$('#container'))
             } catch (err) {
                 p.close()
                 $('#lobby').show()
@@ -24,6 +36,7 @@ module.exports = function(session,callback) {
             ui.init()
             editorDisable()
             editorInit()
+            $(window).resize()
 
             setTimeout(function(){
                 p.close()
