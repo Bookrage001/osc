@@ -29,7 +29,7 @@ var DisplayKnob = class extends Knob {
             this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.raised
             this.ctx.strokeStyle = this.colors.raised
-            this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 1.5, 0, Math.PI * 2)
+            this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 2, 0, Math.PI * 2)
             this.ctx.fill()
             this.ctx.globalAlpha = 0.3
             this.ctx.lineWidth = 1.1 * PXSCALE
