@@ -60,7 +60,13 @@ module.exports = class Modal extends _widgets_base {
 
         super({...options, html:html})
 
-        this.panel = new Panel({props:{...Panel.defaults(), ...options.props}, container: options.container, parent:options.parent})
+        var defaults = Panel.defaults()
+        for (var k in defaults) {
+            if (!options.props.hasOwnProperty(k))
+                options.props[k] = defaults[k]
+        }
+
+        this.panel = new Panel(options)
         this.panel.widget.appendTo(this.widget.find('.popup-content'))
 
         this.widget.hide()
