@@ -167,7 +167,7 @@
 
 .widget.editing {
     z-index: 11!important;
-    overflow: hidden;
+    overflow: visible;
 }
 .widget.editing:after, li.editing a:before, a.editing:before, .content.editing:before, #container.editing:before{
     content:"";
@@ -259,29 +259,42 @@
     &:after {
         content:"";
         position: absolute;
-        top:-5rem;
-        right:-5rem;
-        left:-5rem;
-        bottom:-5rem;
     }
     &.ui-resizable-se {
         content:"";
         bottom: 0;
         right: 0;
         cursor: se-resize;
+        &:after {
+            top:-5rem;
+            right:0;
+            left:-5rem;
+            bottom:0em;
+        }
     }
     &.ui-resizable-e {
         top: 50%;
         margin-top:-5rem;
         right: 0;
         cursor: e-resize;
+        &:after {
+            top:-5rem;
+            right:0;
+            left:-5rem;
+            bottom:-5em;
+        }
     }
     &.ui-resizable-s {
         bottom: 0;
         left: 50%;
         margin-left:-5rem;
         cursor: s-resize;
-
+        &:after {
+            top:-5rem;
+            right:-5rem;
+            left:-5rem;
+            bottom:0em;
+        }
     }
 }
 
@@ -324,9 +337,9 @@
     &:after {
         content:"";
         position: absolute;
-        top:-5rem;
+        top:0;
         right:-5rem;
-        left:-5rem;
+        left:0;
         bottom:-5rem;
     }
 }
