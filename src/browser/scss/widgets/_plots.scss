@@ -1,6 +1,6 @@
 .led-container, .rgbled-container {
     width:100rem;
-    flex-shrink: 0;
+    height:100rem;
 
     .led {
         display: flex;
@@ -8,10 +8,12 @@
         height: 100%;
         overflow: hidden;
         padding:2rem;
+        border-radius: inherit;
         div {
             width:100%;
             height:100%;
             position: relative;
+            border-radius: inherit;
             background:var(--color-track);
             span {
                 width:100%;
@@ -19,6 +21,7 @@
                 position: relative;
                 display:block;
                 background-color:var(--color-custom);
+                border-radius: inherit;
             }
         }
     }
