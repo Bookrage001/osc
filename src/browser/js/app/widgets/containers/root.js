@@ -16,7 +16,7 @@ module.exports = class Root extends Panel {
 
             value:'',
             precision:0,
-            address:'auto',
+            address:'/root',
             preArgs:[],
             target:[],
 

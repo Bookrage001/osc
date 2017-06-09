@@ -74,7 +74,7 @@ module.exports = class Panel extends _widgets_base {
 
             this.navigation.on('fake-click', (e)=>{
                 if (!e.target.hasAttribute('data-widget')) return
-                this.setValue($(e.target).index(), {sync: true, send:true})
+                this.setValue($(e.target).index(), {sync: true, send:this.value != $(e.target).index()})
             })
 
             this.wrapper.on('tab-created', (e)=>{
