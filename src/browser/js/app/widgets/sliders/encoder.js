@@ -22,22 +22,7 @@ var EncoderKnob = class extends Knob {
     mousewheelHandle(){}
 }
 var DisplayKnob = class extends Knob {
-    draw(){
-        super.draw()
 
-        if (this.getProp('compact')) {
-            this.ctx.beginPath()
-            this.ctx.fillStyle = this.colors.raised
-            this.ctx.strokeStyle = this.colors.raised
-            this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 2, 0, Math.PI * 2)
-            this.ctx.fill()
-            this.ctx.globalAlpha = 0.3
-            this.ctx.lineWidth = 1.1 * PXSCALE
-            this.ctx.stroke()
-            this.ctx.globalAlpha = 1
-        }
-
-    }
 }
 
 module.exports = class Encoder extends _widgets_base {

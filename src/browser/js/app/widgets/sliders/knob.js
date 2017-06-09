@@ -72,8 +72,7 @@ module.exports = class Knob extends _sliders_base {
         this.maxAngle = this.getProp('angle')
 
         // calculate lost height factor
-        var a = this.maxAngle <= 180 ?
-                    1 : 1 - Math.sin((this.maxAngle - 180) / 2 * Math.PI / 180)
+        var a = 1 - Math.sin((Math.max(this.maxAngle,247.5) - 180) / 2 * Math.PI / 180)
         this.lostHeightFactor = a / 4
 
     }
@@ -182,13 +181,7 @@ module.exports = class Knob extends _sliders_base {
             this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE, min, max)
             this.ctx.stroke()
 
-
             this.ctx.globalAlpha = 1
-
-            this.ctx.beginPath()
-            this.ctx.strokeStyle = this.colors.gauge
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE, Math.min(o,d), Math.max(o,d))
-            this.ctx.stroke()
 
             this.ctx.beginPath()
 
@@ -205,6 +198,14 @@ module.exports = class Knob extends _sliders_base {
 
             this.ctx.stroke()
 
+            this.ctx.beginPath()
+            this.ctx.fillStyle = this.colors.raised
+            this.ctx.strokeStyle = this.colors.raised
+            this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 2, 0, Math.PI * 2)
+            this.ctx.fill()
+            this.ctx.globalAlpha = 0.3
+            this.ctx.lineWidth = 1.1 * PXSCALE
+            this.ctx.stroke()
 
         } else {
 
