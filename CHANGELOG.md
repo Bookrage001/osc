@@ -12,7 +12,7 @@ Sessions saved with this version will not be readable with older versions (old s
   - containers: added `variables` options (arbitrary varibles to pass to children)
   - panel: added full osc support (for sending/receiving tab changes)
   - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options; :warning: removed `tabs` option; added full osc support
-  - strip: refactored widget using `panel` as base; added `stretch` option
+  - strip: refactored widget using `panel` as base; added `stretch` and `spacing` option; now it's really cool
   - encoder: mousewheel support
 - session
   - the root panel is now saved as a special `panel` widget (which means it has savable options)
