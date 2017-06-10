@@ -19,6 +19,7 @@ module.exports = class Meter extends Fader {
             width:'auto',
             height:'auto',
             horizontal:false,
+            pips:true,
             color:'auto',
             css:'',
 

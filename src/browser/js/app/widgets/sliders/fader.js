@@ -114,7 +114,8 @@ module.exports = class Fader extends _sliders_base {
                 logScale:this.getProp('logScale'),
                 address:this.getProp('meterAddress') || this.getProp('address') + '/meter',
                 preArgs:this.getProp('preArgs'),
-                color:this.getProp('color')
+                color:this.getProp('color'),
+                pips:this.getProp('pips')
             }
             var element = parsewidgets([data],this.widget.find('.wrapper'), this.parent)
             element[0].classList.add('not-editable')
@@ -166,7 +167,7 @@ module.exports = class Fader extends _sliders_base {
     resizeHandle(){
             super.resizeHandle(...arguments)
 
-            if (this.getProp('compact')) {
+            if (this.getProp('compact') && (!this.getProp('pips') || this.rangeKeys.length == 2)) {
                 if (this.getProp('horizontal')) {
                     this.canvas[0].setAttribute('height', 1)
                 } else {
@@ -190,24 +191,6 @@ module.exports = class Fader extends _sliders_base {
         if (this.getProp('horizontal')) {
             if (this.getProp('compact')) {
 
-                if (this.getProp('pips')) {
-                    this.ctx.lineWidth = PXSCALE
-                    this.ctx.globalAlpha = 1
-
-                    var x,
-                        min = Math.min(d,o),
-                        max = Math.max(d,o)
-
-                    for (var i = 1;i < this.rangeKeys.length - 1;i++) {
-                        x = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
-                        this.ctx.strokeStyle = this.colors.bg
-                        this.ctx.beginPath()
-                        this.ctx.moveTo(x, 0)
-                        this.ctx.lineTo(x, this.height)
-                        this.ctx.stroke()
-                    }
-                }
-
                 this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.width-o)
                 this.ctx.strokeStyle = this.colors.gauge
                 this.ctx.beginPath()
@@ -215,6 +198,27 @@ module.exports = class Fader extends _sliders_base {
                 this.ctx.lineTo(o, m)
                 this.ctx.lineWidth = this.height + 1
                 this.ctx.stroke()
+
+
+                if (this.getProp('pips') && this.rangeKeys.length > 2) {
+                    this.ctx.lineWidth = 1 * PXSCALE
+                    this.ctx.globalAlpha = 1
+                    this.ctx.strokeStyle = this.colors.bg
+
+                    var x,
+                        min = Math.min(d,o),
+                        max = Math.max(d,o)
+
+                    this.ctx.beginPath()
+                    for (var i = 1;i < this.rangeKeys.length - 1;i++) {
+                        x = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
+                        this.ctx.moveTo(x, 0)
+                        this.ctx.lineTo(x, 4 * PXSCALE)
+                        this.ctx.moveTo(x, this.height - 4 * PXSCALE)
+                        this.ctx.lineTo(x, this.height)
+                    }
+                    this.ctx.stroke()
+                }
 
                 this.ctx.globalAlpha = 1
                 this.ctx.beginPath()
@@ -258,9 +262,18 @@ module.exports = class Fader extends _sliders_base {
 
             if (this.getProp('compact')) {
 
-                if (this.getProp('pips')) {
-                    this.ctx.lineWidth = PXSCALE
-                    this.ctx.globalAlpha = 0.75
+                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.height-o)
+                this.ctx.strokeStyle = this.colors.gauge
+                this.ctx.beginPath()
+                this.ctx.moveTo(m, d)
+                this.ctx.lineTo(m, o)
+                this.ctx.lineWidth = this.width + 1
+                this.ctx.stroke()
+
+                if (this.getProp('pips') && this.rangeKeys.length > 2) {
+                    this.ctx.lineWidth = 1 * PXSCALE
+                    this.ctx.globalAlpha = 1
+                    this.ctx.strokeStyle = this.colors.bg
 
                     var y,
                         min = Math.min(d,o),
@@ -269,20 +282,13 @@ module.exports = class Fader extends _sliders_base {
                     this.ctx.beginPath()
                     for (var i = 1;i < this.rangeKeys.length - 1;i++) {
                         y = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
-                        this.ctx.strokeStyle = this.colors.bg
                         this.ctx.moveTo(0, y)
+                        this.ctx.lineTo(4 * PXSCALE, y)
+                        this.ctx.moveTo(this.width - 4 * PXSCALE, y)
                         this.ctx.lineTo(this.width, y)
                     }
                     this.ctx.stroke()
                 }
-
-                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.height-o)
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.beginPath()
-                this.ctx.moveTo(m, d)
-                this.ctx.lineTo(m, o)
-                this.ctx.lineWidth = this.width + 1
-                this.ctx.stroke()
 
                 this.ctx.globalAlpha = 1
                 this.ctx.beginPath()
