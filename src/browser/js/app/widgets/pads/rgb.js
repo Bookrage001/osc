@@ -70,7 +70,7 @@ module.exports = class Rgb extends _pads_base {
                 ...faderDefaults,
                 id:'h',
                 compact:false,
-                noPip:true,
+                pips:false,
                 horizontal:true,
                 snap:this.getProp('snap'),
                 range:{min:0,max:360},

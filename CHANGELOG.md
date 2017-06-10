@@ -14,6 +14,8 @@ Sessions saved with this version will not be readable with older versions (old s
   - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options; :warning: removed `tabs` option; added full osc support
   - strip: refactored widget using `panel` as base; added `stretch` and `spacing` option; now it's really cool
   - encoder: mousewheel support
+  - knob/fader: renamed `noPip` option to `pips` (inverted behaviour; backward compatible)
+  - knob: compact design remake
 - session
   - the root panel is now saved as a special `panel` widget (which means it has savable options)
 - custom module

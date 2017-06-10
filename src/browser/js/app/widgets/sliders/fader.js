@@ -21,7 +21,7 @@ module.exports = class Fader extends _sliders_base {
             height:'auto',
             alignRight:false,
             horizontal:false,
-            noPip:false,
+            pips:true,
             compact:false,
             color:'auto',
             css:'',
@@ -76,7 +76,7 @@ module.exports = class Fader extends _sliders_base {
             this.widget.addClass('align-right')
         }
 
-        if (!this.getProp('noPip') && !this.getProp('compact')) {
+        if (this.getProp('pips') && !this.getProp('compact')) {
 
             this.widget.addClass('has-pips')
 
@@ -190,7 +190,7 @@ module.exports = class Fader extends _sliders_base {
         if (this.getProp('horizontal')) {
             if (this.getProp('compact')) {
 
-                if (!this.getProp('noPip')) {
+                if (this.getProp('pips')) {
                     this.ctx.lineWidth = PXSCALE
                     this.ctx.globalAlpha = 1
 
@@ -258,7 +258,7 @@ module.exports = class Fader extends _sliders_base {
 
             if (this.getProp('compact')) {
 
-                if (!this.getProp('noPip')) {
+                if (this.getProp('pips')) {
                     this.ctx.lineWidth = PXSCALE
                     this.ctx.globalAlpha = 0.75
 

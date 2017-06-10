@@ -19,7 +19,7 @@ module.exports = class Knob extends _sliders_base {
             width:'auto',
             height:'auto',
             color:'auto',
-            noPip:true,
+            pips:true,
             compact:false,
             angle:270,
             css:'',
@@ -57,7 +57,7 @@ module.exports = class Knob extends _sliders_base {
             this.margin = 0
         }
 
-        if (!this.getProp('noPip')) {
+        if (this.getProp('pips') && !this.getProp('compact')) {
             this.wrapper.append(`
                 <div class="pips">
                     <div>${this.rangeLabels[0]}</div><div>${this.rangeLabels[this.rangeLabels.length-1]}</div>
@@ -72,7 +72,9 @@ module.exports = class Knob extends _sliders_base {
         this.maxAngle = this.getProp('angle')
 
         // calculate lost height factor
-        var a = 1 - Math.sin((Math.max(this.maxAngle,247.5) - 180) / 2 * Math.PI / 180)
+        var a = this.getProp('compact') ?
+                    (1 - Math.sin((Math.max(this.maxAngle,247.5) - 180) / 2 * Math.PI / 180)) / 3
+                    : 1 - Math.sin((Math.max(this.maxAngle,180) - 180) / 2 * Math.PI / 180)
         this.lostHeightFactor = a / 4
 
     }
@@ -162,50 +164,78 @@ module.exports = class Knob extends _sliders_base {
 
         if (this.getProp('compact')) {
 
-            this.ctx.lineWidth = this.gaugeWidth
-            this.ctx.globalAlpha = 0.3
-            this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.track
+            this.ctx.globalAlpha = 0.3
+            this.ctx.lineWidth = this.gaugeWidth
+            this.ctx.beginPath()
             this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min, max)
             this.ctx.stroke()
 
+            this.ctx.lineWidth = this.gaugeWidth
             this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o-min:max-o)
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, Math.min(o,d), Math.max(o,d))
             this.ctx.stroke()
 
-            this.ctx.lineWidth = 1 * PXSCALE
-            this.ctx.beginPath()
-            this.ctx.strokeStyle = this.colors.track
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE, min, max)
-            this.ctx.stroke()
+            if (this.getProp('pips')) {
+                this.ctx.globalAlpha = 1
 
+                this.ctx.strokeStyle = this.colors.fg
+                this.ctx.lineWidth = 2 * PXSCALE
+
+                for (var pip of this.rangeKeys.concat(this.valueToPercent(this.originValue))) {
+                    if ((pip == 0 || pip == 100) && this.maxAngle < 360) continue
+                    let r1 = this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE,
+                        r2 = this.minDimension / 2 - this.gaugeWidth * 1.5 - this.margin * PXSCALE,
+                        a  = 2 * Math.PI - this.percentToAngle(pip)
+
+                    this.ctx.beginPath()
+                    this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
+                    this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
+                    this.ctx.stroke()
+                }
+            }
+
+            // knob
+            this.ctx.fillStyle = this.colors.fg
+            this.ctx.beginPath()
             this.ctx.globalAlpha = 1
+            this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 1.25, 0, Math.PI * 2)
+            this.ctx.fill()
 
-            this.ctx.beginPath()
-
-            this.ctx.strokeStyle = this.colors.knob
-            this.ctx.lineWidth = 1 * PXSCALE
-
-            let r1 = this.minDimension / 2 - this.gaugeWidth/2 - this.margin * PXSCALE,
-                r2 = this.minDimension / 2 - this.gaugeWidth * 1.5 - this.margin * PXSCALE,
-                a  = 2 * Math.PI - d
-
-
-            this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
-            this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
-
-            this.ctx.stroke()
-
-            this.ctx.beginPath()
             this.ctx.fillStyle = this.colors.raised
             this.ctx.strokeStyle = this.colors.raised
+
+            this.ctx.beginPath()
+            this.ctx.globalAlpha = 1
+            this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 1.5, 0, Math.PI * 2)
+            this.ctx.fill()
+
+            this.ctx.globalAlpha = 1
+            this.ctx.beginPath()
             this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 2, 0, Math.PI * 2)
             this.ctx.fill()
+            this.ctx.lineWidth = 1 * PXSCALE
+            this.ctx.stroke()
             this.ctx.globalAlpha = 0.3
             this.ctx.lineWidth = 1.1 * PXSCALE
             this.ctx.stroke()
+
+            // cursor
+            this.ctx.globalAlpha = 0.75
+            this.ctx.strokeStyle = this.colors.knob
+            this.ctx.lineWidth = 2 * PXSCALE
+
+            let r1 = this.minDimension / 2 - this.gaugeWidth * 2 - this.margin * PXSCALE + 1.1 * PXSCALE,
+                r2 = this.minDimension / 2 - this.gaugeWidth * 1.5 - this.margin * PXSCALE,
+                a  = 2 * Math.PI - d
+
+            this.ctx.beginPath()
+            this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
+            this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
+            this.ctx.stroke()
+
 
         } else {
 

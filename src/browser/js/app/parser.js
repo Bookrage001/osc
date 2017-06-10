@@ -31,6 +31,10 @@ module.exports.widgets = function(data, parentNode, parentWidget, tab) {
         // Set default widget type
         props.type =  tab ? 'tab' : props.type || 'fader'
 
+        // Backward compatibility patches
+        if (props.path) props.address = props.path
+        if (props.noPip) props.pips = !props.noPip
+
         // Safe copy widget's options
         let defaults = widgets[props.type].defaults()
 
@@ -47,9 +51,6 @@ module.exports.widgets = function(data, parentNode, parentWidget, tab) {
             }
             props.id = id
         }
-
-        // Backward compatibility patch: path -> address
-        if (props.path) props.address = props.path
 
         // Generate default address
         props.address = props.address == 'auto' ? '/' + props.id : props.address
