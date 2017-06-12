@@ -6,7 +6,7 @@ var {remote, ipcRenderer, shell} = require('electron'),
     packageUrl = packageInfos.repository.url,
     argv_remote = settings.read('argv'),
     argv = {},
-    $ = require('jquery-slim')
+    $ = require('jquery/dist/jquery.slim.min.js')
 
 for (i in argv_remote) {
     argv[i] = argv_remote[i]

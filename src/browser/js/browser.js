@@ -52,7 +52,7 @@ request.send()
 
 ///////////////////////
 
-window.$ = window.jQuery = require('./libs/jquery.min')
+window.$ = require('jquery/dist/jquery.slim.min.js')
 require('./libs/jquery.ui')
 require('./libs/jquery.drag')
 require('./libs/jquery.resize')

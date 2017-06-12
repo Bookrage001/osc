@@ -81,4 +81,4 @@
 
     $(window).resize(checkResizes)
 
-})(jQuery)
+})($)
