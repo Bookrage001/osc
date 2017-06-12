@@ -1,18 +1,38 @@
-var socket = require('socket.io-client/dist/socket.io.slim.js')
+var worker = require('webworkify')
 
-var Ipc = function(){
+var Ipc = class Ipc {
 
-    this.socket = socket.connect()
+    constructor() {
 
+        this.callbacks = {}
+
+        this.worker = worker(require('./ipc-worker'))
+        this.worker.addEventListener('message', (ev)=>{
+
+            var [name, data] = ev.data
+
+            if (this.callbacks[name]) this.callbacks[name](data)
+
+        })
+
+        this.worker.postMessage(['connect', window.location.href])
+
+    }
+
+    send(name, data) {
+
+        this.worker.postMessage(['send', [name, data]])
+
+    }
+
+    on(name, fn) {
+
+        this.callbacks[name] = fn
+        this.worker.postMessage(['on', name])
+
+    }
 }
 
-Ipc.prototype.send = function(){
-    return this.socket.emit.apply(this.socket, arguments)
-}
-
-Ipc.prototype.on = function(){
-    return this.socket.on.apply(this.socket, arguments)
-}
 
 var ipc = new Ipc()
 
