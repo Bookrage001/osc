@@ -41,7 +41,7 @@ var WidgetManager = function(){
         })
     })
 
-    ipc.socket.on('reconnect', ()=>{
+    ipc.on('reconnect', ()=>{
         for (var hash in this.widgets) {
             ipc.send('addWidget', {
                 hash:hash,

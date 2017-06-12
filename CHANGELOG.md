@@ -20,6 +20,8 @@ Sessions saved with this version will not be readable with older versions (old s
   - the root panel is now saved as a special `panel` widget (which means it has savable options)
 - custom module
   - add access to the app's `settings` object
+- misc
+  - ui performance optimizations (clients <> server communcation is now queued and threaded)
 
 ## 0.17.8
 
