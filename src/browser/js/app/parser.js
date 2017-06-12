@@ -68,7 +68,7 @@ module.exports.widgets = function(data, parentNode, parentWidget, tab) {
         `)
 
         // create widget
-        var widgetInner = new widgets[props.type]({props:props, container:widgetContainer, parent:parentWidget})
+        var widgetInner = new widgets[props.type]({props:props, container:widgetContainer, parent:parentWidget, parentNode:parentNode})
 
         widgetContainer[0].appendChild(widgetInner.widget[0])
 

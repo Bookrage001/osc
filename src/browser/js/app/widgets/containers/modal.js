@@ -68,6 +68,7 @@ module.exports = class Modal extends _widgets_base {
 
         this.panel = new Panel(options)
         this.panel.widget.appendTo(this.widget.find('.popup-content'))
+        if (this.panel.hashes) this.hashes = this.panel.hashes.concat(this.hash)
 
         this.widget.hide()
 

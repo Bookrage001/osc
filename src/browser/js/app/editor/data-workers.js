@@ -24,8 +24,8 @@ var updateDom = function(container,data, remote) {
     // save state
     var scroll = $('#sidepanel').scrollTop(),
         state = actions.stateGet(),
-        parentContainer = container.parent(),
-        purge = container[0].abstract.hashes || container[0].abstract.hash
+        parentContainer = container[0].abstract.parentNode,
+        purge = container[0].abstract.hashes || [container[0].abstract.hash]
 
     // widget
     var newContainer = parsewidgets([data], parentContainer, container[0].abstract.parent)

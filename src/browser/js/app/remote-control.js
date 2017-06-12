@@ -18,7 +18,7 @@ var callbacks = {
 
         if (!containers.length) return
         for (var i=containers.length-1;i>=0;i--) {
-            var container = containers[i].widget.parent(),
+            var container = containers[i].container,
                 data = containers[i].props
 
             for (var k in newdata) {
@@ -37,7 +37,7 @@ var callbacks = {
 
         if (!containers.length) return
         for (var i=containers.length-1;i>=0;i--) {
-            var container = containers[i].widget.parent(),
+            var container = containers[i].container,
                 data = containers[i].props
 
             $.extend(true,data,newdata)

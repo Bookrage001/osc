@@ -32,6 +32,8 @@ It must be of the following form:
         oscOutFilter:function(data){
             // Filter outgoing osc messages
 
+            var {address, args, host, port} = data
+
             // same as oscInFilter
 
             // return data if you want the message to be and sent
@@ -43,7 +45,7 @@ It must be of the following form:
 
 ```
 
-The module is executed in a restricted context, only a few globals areh available :
+The module is executed in a restricted context, only a few globals are available :
 
 - `console`: `object`
 - `sendOsc`: `function({address, args, host, port})`

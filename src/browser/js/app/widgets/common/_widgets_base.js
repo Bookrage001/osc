@@ -23,6 +23,7 @@ module.exports = class _widgets_base {
         this.widget = $(options.html)
         this.props = options.props
         this.parent = options.parent
+        this.parentNode = options.parentNode
         this.hash = _widgets_base.createHash()
 
         // Turn preArgs into array
