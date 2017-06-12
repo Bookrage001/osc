@@ -99,7 +99,8 @@ var callbacks = module.exports = {
 
     sessionNew: function(){
         init([{}],function(){
-            $('#open-toggle, .enable-editor').click()
+            $('.enable-editor').click()
+            $('#open-toggle').trigger('fake-click')
             $('.editor-root').trigger('fake-click')
         })
     },
