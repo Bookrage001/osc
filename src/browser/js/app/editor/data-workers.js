@@ -24,11 +24,10 @@ var updateDom = function(container,data, remote) {
     // save state
     var scroll = $('#sidepanel').scrollTop(),
         state = actions.stateGet(),
-        parentContainer = container[0].abstract.parentNode,
         purge = container[0].abstract.hashes || [container[0].abstract.hash]
 
     // widget
-    var newContainer = parsewidgets([data], parentContainer, container[0].abstract.parent)
+    var newContainer = parsewidgets([data], container[0].abstract.parentNode, container[0].abstract.parent)
     container.replaceWith(newContainer)
 
     if (data.type == 'tab') newContainer.trigger('tab-created')

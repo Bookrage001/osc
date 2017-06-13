@@ -66,9 +66,9 @@ module.exports = {
             var data = preset[i],
                 widgets = widgetManager.getWidgetById(data[0])
             if (widgets.length) {
-                for (var i=widgets.length-1;i>=0;i--) {
-                    if (widgets[i].setValue) {
-                        widgets[i].setValue(data[1],{send:send,sync:true})
+                for (var j=widgets.length-1;j>=0;j--) {
+                    if (widgets[j].setValue) {
+                        widgets[j].setValue(data[1],{send:send,sync:true})
                     }
                 }
             }
