@@ -24,7 +24,7 @@ var WidgetManager = function(){
             if (widgetsById.length>1) {
                 var v = widget.abstract.getValue()
                 for (let i in widgetsById) {
-                    if (!widgetsById[i].widget.is(widget) && widgetsById[i].setValue) {
+                    if (widgetsById[i].hash != widget.abstract.hash && widgetsById[i].setValue) {
                         widgetsById[i].setValue(v,{send:false,sync:false})
                     }
                 }
@@ -35,7 +35,7 @@ var WidgetManager = function(){
             if (widgetsByLinkId.length>1) {
                 var v = widget.abstract.getValue()
                 for (let i in widgetsByLinkId) {
-                    if (!widgetsByLinkId[i].widget.is(widget) && widgetsByLinkId[i].setValue) {
+                    if (widgetsByLinkId[i].hash != widget.abstract.hash && widgetsByLinkId[i].setValue) {
                         widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
                     }
                 }
