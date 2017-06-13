@@ -7,13 +7,14 @@ var Ipc = class Ipc {
     constructor() {
 
         this.socket = io.connect('/', {parser:customParser})
+        this.socket.compress(false)
 
     }
 
 
-    send() {
+    send(event, data) {
 
-        this.socket.emit(...arguments)
+        this.socket.emit(event, data)
 
     }
 
