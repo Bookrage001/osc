@@ -45,9 +45,16 @@ var callbacks = {
         }
     },
     '/TABS': function(args) {
-        for (let i in args) {
-            $(`[data-id="${args[i]}"]`).trigger('fake-click')
+
+        if (!Array.isArray(args)) args = [args]
+
+        for (let id of args) {
+            let ws = widgetManager.getWidgetById(id)
+            for (let w of ws) {
+                $(`.tablink[data-widget="${w.hash}"]`).trigger('fake-click')
+            }
         }
+        
     }
 }
 
