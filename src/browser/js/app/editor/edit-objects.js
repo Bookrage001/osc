@@ -1,5 +1,10 @@
 var updateDom = require('./data-workers').updateDom,
-    {widgets, categories} = require('../widgets')
+    {widgets, categories} = require('../widgets'),
+    defaults = {}
+
+for (var k in widgets) {
+    defaults[k] = widgets[k].defaults()
+}
 
 var ev = 'fake-click'
 
@@ -20,10 +25,10 @@ var editObject = function(container, data, refresh){
     $(`[data-widget="${container.attr('data-widget')}"]`).addClass('editing')
 
     $('#editor').append('<div class="editor-container"></div>')
-    var form = $('<div class="form"></div>').appendTo('.editor-container')
 
+    var form = $('<div class="form"></div>')
 
-    var params = widgets[data.type].defaults()
+    var params = defaults[data.type]
 
     $(`<div class="separator"><span>${data.type == 'tab' ? 'Tab' : data.type == 'root' ? 'Root' : 'Widget'}</span></div>`).appendTo(form)
 
@@ -264,6 +269,8 @@ var editObject = function(container, data, refresh){
                 helper:function(){return $('<div class="ui-helper"></div>').css({height:container.outerHeight(),width:container.outerWidth()})}
         }).append('<div class="ui-draggable-handle"></div>')
     }
+
+    form.appendTo('.editor-container')
 
 }
 
