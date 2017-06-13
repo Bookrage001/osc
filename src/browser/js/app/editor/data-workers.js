@@ -23,8 +23,22 @@ var updateDom = function(container,data, remote) {
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
-        state = actions.stateGet(),
-        purge = container[0].abstract.hashes || [container[0].abstract.hash]
+        oldWidgets = container[0].abstract.hashes || [container[0].abstract.hash],
+        wState = {},
+        wScroll = {}
+
+    for (let h of oldWidgets) {
+        if (widgetManager.widgets[h]) {
+            wState[widgetManager.widgets[h].getProp('id')] = widgetManager.widgets[h].getValue()
+        }
+    }
+
+    // save scroll states
+    for (let h of widgetManager.scrollingWidgets) {
+        if (widgetManager.widgets[h] && widgetManager.widgets[h].scroll) {
+            wScroll[widgetManager.widgets[h].getProp('id')] = widgetManager.widgets[h].scroll()
+        }
+    }
 
     // widget
     var newContainer = parsewidgets([data], container[0].abstract.parentNode, container[0].abstract.parent)
@@ -37,10 +51,22 @@ var updateDom = function(container,data, remote) {
 
     newContainer.trigger('resize')
 
-    purgeStores(purge)
+    purgeStores(oldWidgets)
+
 
     // restore state
-    actions.stateSet(state,false)
+    for (let id in wState) {
+        for (let w of widgetManager.getWidgetById(id)) {
+            if (w.setValue) w.setValue(wState[id])
+        }
+    }
+
+    // restore scroll states
+    for (let id in wScroll) {
+        for (let w of widgetManager.getWidgetById(id)) {
+            if (w.scroll) w.scroll(wScroll[id])
+        }
+    }
 
     if (!remote) {
         editObject(newContainer,data,true)

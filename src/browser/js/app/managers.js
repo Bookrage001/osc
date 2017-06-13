@@ -8,6 +8,8 @@ var WidgetManager = function(){
     this.idRoute = {}
     this.linkIdRoute = {}
 
+    this.scrollingWidgets = []
+
     this.preArgsSeparator = '||||'
 
     $(document).ready(()=>{
@@ -75,7 +77,8 @@ WidgetManager.prototype.addWidget = function(widget) {
     var hash = widget.hash,
         address = this.createAddressRef(widget),
         id = widget.getProp('id'),
-        linkId = widget.getProp('linkId')
+        linkId = widget.getProp('linkId'),
+        scroll = widget.getProp('scroll')
 
 
     this.widgets[hash] = widget
@@ -91,6 +94,10 @@ WidgetManager.prototype.addWidget = function(widget) {
     if (linkId) {
         if (!this.linkIdRoute[linkId]) this.linkIdRoute[linkId] = []
         this.linkIdRoute[linkId].push(hash)
+    }
+
+    if (scroll) {
+        this.scrollingWidgets.push(hash)
     }
 
     widget.widget.abstract = widget
@@ -114,7 +121,8 @@ WidgetManager.prototype.removeWidget = function(hash) {
     var widget = this.widgets[hash],
         address = this.createAddressRef(widget),
         linkId =  widget.getProp('linkId'),
-        id = widget.getProp('id')
+        id = widget.getProp('id'),
+        scroll = widget.getProp('scroll')
 
     if (this.widgets[hash]) {
         if (this.widgets[hash].onRemove) this.widgets[hash].onRemove()
@@ -127,6 +135,7 @@ WidgetManager.prototype.removeWidget = function(hash) {
     if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)
     if (linkId && this.linkIdRoute[linkId].indexOf(hash) != -1) this.linkIdRoute[linkId].splice(this.linkIdRoute[linkId].indexOf(hash), 1)
     if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash), 1)
+    if (scroll && this.scrollingWidgets.indexOf(hash) != -1) this.scrollingWidgets.splice(this.scrollingWidgets.indexOf(hash), 1)
 }
 
 WidgetManager.prototype.purge = function() {
@@ -139,6 +148,12 @@ WidgetManager.prototype.purge = function() {
                     route[key].splice(i, 1)
                 }
             }
+        }
+    }
+
+    for (let i in this.scrollingWidgets) {
+        if (!this.widgets[this.scrollingWidgets[i]]) {
+            this.scrollingWidgets.splice(i, 1)
         }
     }
 

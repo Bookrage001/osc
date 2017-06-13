@@ -57,7 +57,7 @@ module.exports = class Panel extends _widgets_base {
         if (this.getProp('tabs') && this.getProp('tabs').length) this.widget.addClass('has-tabs')
 
 
-        this.value = 0
+        this.value = this.getProp('value') || 0
         this.tabs = []
 
         var parsers = require('../../parser'),
@@ -187,6 +187,17 @@ module.exports = class Panel extends _widgets_base {
             if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
 
         }
+    }
+
+    scroll(s) {
+
+        if (!s) {
+            return [this.widget.scrollLeft(), this.widget.scrollTop()]
+        } else {
+            this.widget.scrollLeft(s[0])
+            this.widget.scrollTop(s[1])
+        }
+
     }
 
 }
