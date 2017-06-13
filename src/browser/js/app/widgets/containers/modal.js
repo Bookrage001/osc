@@ -1,9 +1,8 @@
 var Panel = require('./panel'),
-    _widgets_base = require('../common/_widgets_base'),
     {icon} = require('../../utils')
 
 
-module.exports = class Modal extends _widgets_base {
+module.exports = class Modal extends Panel {
 
     static defaults() {
 
@@ -50,36 +49,30 @@ module.exports = class Modal extends _widgets_base {
 
     constructor(options) {
 
-        var html = `
+        options.props.tabs = []
+
+        super(options)
+
+        this.popup = $(`
             <div class="popup">
                 <div class="popup-wrapper">
                     <div class="popup-title closable"><span class="popup-label"></span><span class="closer">${icon('remove')}</span></div>
                     <div class="popup-content"></div>
                 </div>
-            </div>`
+            </div>
+        `)
 
-        super({...options, html:html})
+        this.popup.appendTo(this.container).hide()
 
-        var defaults = Panel.defaults()
-        for (var k in defaults) {
-            if (!options.props.hasOwnProperty(k))
-                options.props[k] = defaults[k]
-        }
-
-        this.panel = new Panel(options)
-        this.panel.widget.appendTo(this.widget.find('.popup-content'))
-        if (this.panel.hashes) this.hashes = this.panel.hashes.concat(this.hash)
-
-        this.widget.hide()
 
         // convert dimensions / coordinates to rem
         var width = parseFloat(this.getProp('popupWidth'))==this.getProp('popupWidth')?parseFloat(this.getProp('popupWidth'))+'rem' : this.getProp('popupWidth'),
             height = parseFloat(this.getProp('popupHeight'))==this.getProp('popupHeight')?parseFloat(this.getProp('popupHeight'))+'rem' : this.getProp('popupHeight')
 
-        this.widget[0].style.setProperty('--width', width)
-        this.widget[0].style.setProperty('--height', height)
+        this.popup[0].style.setProperty('--width', width)
+        this.popup[0].style.setProperty('--height', height)
 
-        this.widget.find('.closer').on('fake-click',(e)=>{
+        this.popup.find('.closer').on('fake-click',(e)=>{
             this.setValue(false, {sync:true, send:true})
         })
 
@@ -99,9 +92,12 @@ module.exports = class Modal extends _widgets_base {
 
         this.value = v ? true : false
 
-        if (!this.init) this.widget.find('.popup-title .popup-label').html(this.container.find('> .label span').html())
+        if (!this.init) {
+            this.popup.find('.popup-title .popup-label').html(this.container.find('> .label span').html())
+            this.widget.detach().appendTo(this.popup.find('.popup-content'))
+        }
 
-        this.widget.toggle(this.value)
+        this.popup.toggle(this.value)
         this.container.toggleClass('on', this.value)
 
         this.fixScrolling()
@@ -114,7 +110,7 @@ module.exports = class Modal extends _widgets_base {
         if (!this.init) this.init = true
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
+        if (options.sync) this.light.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
 
     }
 
