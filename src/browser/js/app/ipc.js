@@ -1,34 +1,44 @@
-var worker = require('webworkify')
+var io = require('socket.io-client/dist/socket.io.slim.js'),
+    customParser = require('socket.io-msgpack-parser')
+
 
 var Ipc = class Ipc {
 
     constructor() {
 
-        this.callbacks = {}
+        this.queue = []
+        this.socket = io.connect('/', {parser:customParser})
 
-        this.worker = worker(require('./ipc-worker'))
-        this.worker.addEventListener('message', (ev)=>{
+        setInterval(this.flush.bind(this), 5)
 
-            var [name, data] = ev.data
 
-            if (this.callbacks[name]) this.callbacks[name](data)
-
-        })
-
-        this.worker.postMessage(['connect', window.location.href])
 
     }
 
-    send(name, data) {
 
-        this.worker.postMessage(['send', [name, data]])
+    flush() {
+
+        if (this.queue.length) {
+
+            for (let msg of this.queue) {
+
+                this.socket.emit(...msg)
+            }
+            this.queue = []
+        }
+
+    }
+
+    send() {
+
+        this.queue.push(arguments)
 
     }
 
     on(name, fn) {
 
-        this.callbacks[name] = fn
-        this.worker.postMessage(['on', name])
+
+        this.socket.on(name, fn)
 
     }
 }

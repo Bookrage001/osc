@@ -21,7 +21,7 @@ Sessions saved with this version will not be readable with older versions (old s
 - custom module
   - add access to the app's `settings` object
 - misc
-  - ui performance optimizations (clients <> server communcation is now queued and threaded)
+  - ui performance optimizations (queued clients <> server communcation)
 
 ## 0.17.8
 

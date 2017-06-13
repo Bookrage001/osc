@@ -3,7 +3,8 @@ var express     = require('express')(),
     path        = require('path'),
     http        = require('http'),
     server      = http.createServer(express),
-    io          = require('socket.io')(),
+    customParser= require('socket.io-msgpack-parser'),
+    io          = require('socket.io')(server, {parser:customParser}),
     ipc 		= {},
 	settings	= require('./settings'),
     appAddresses = settings.read('appAddresses'),
@@ -15,9 +16,6 @@ express.get('/', function(req, res){
 express.get('*', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
 })
-
-
-io.listen(server)
 
 server.listen(settings.read('httpPort'))
 
