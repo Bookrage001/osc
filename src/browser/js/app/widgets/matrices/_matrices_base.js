@@ -19,6 +19,18 @@ module.exports = class _matrices_base extends _widgets_base {
         })
 
     }
+    
+    registerHashes() {
+        this.hashes = [this.hash]
+        var widgets = this.widget.find('.widget')
+        for (let widget of widgets) {
+            if (widget.abstract.hashes) {
+                this.hashes = this.hashes.concat(widget.abstract.hashes)
+            } else {
+                this.hashes.push(widget.abstract.hash)
+            }
+        }
+    }
 
     // conflicts with switchers (double osc send)
     // setValue(v, options={}) {
