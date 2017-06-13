@@ -115,7 +115,7 @@ module.exports = class Panel extends _widgets_base {
 
         for (let tab of tabs) {
             this.tabs.push(tab.abstract)
-            this.navigation.append(`<li data-widget="${tab.abstract.hash}"><a><span>${$(tab).find('> .label span').html()}</span></a></li>`)
+            this.navigation.append(`<li class="tablink" data-widget="${tab.abstract.hash}"><a><span>${$(tab).find('> .label span').html()}</span></a></li>`)
         }
 
         this.registerHashes()
