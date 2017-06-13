@@ -80,7 +80,7 @@ module.exports = class Fader extends _sliders_base {
 
             this.widget.addClass('has-pips')
 
-            var pips = $('<div class="pips"></div>').appendTo(this.widget.find('.wrapper'))
+            var pips = $('<div class="pips"></div>').appendTo(this.wrapper)
             var pipTexts = {}
             for (var k in this.rangeKeys) {
                 pipTexts[this.rangeKeys[k]]=this.rangeLabels[k]
@@ -117,7 +117,7 @@ module.exports = class Fader extends _sliders_base {
                 color:this.getProp('color'),
                 pips:this.getProp('pips')
             }
-            var element = parsewidgets([data],this.widget.find('.wrapper'), this.parent)
+            var element = parsewidgets([data],this.wrapper, this.parent)
             element[0].classList.add('not-editable')
             this.widget[0].classList.add('has-meter')
         }

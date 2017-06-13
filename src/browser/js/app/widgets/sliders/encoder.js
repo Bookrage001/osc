@@ -74,7 +74,7 @@ module.exports = class Encoder extends _widgets_base {
         `
         super({...options, html: html})
 
-        this.wrapper = this.widget.find('.wrapper')
+        this.wrapper = this.wrapper
         this.ticks = Math.abs(parseInt(this.getProp('ticks')))
 
         this.knob = new EncoderKnob({props:{
