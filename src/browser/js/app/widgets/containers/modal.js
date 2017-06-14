@@ -52,6 +52,7 @@ module.exports = class Modal extends Panel {
     constructor(options) {
 
         options.props.tabs = []
+        options.props.scroll = true
 
         super(options)
 
@@ -91,7 +92,7 @@ module.exports = class Modal extends Panel {
         }
 
         this.parentScroll = [0,0]
-        this.value = false
+        this.value = 0
         this.init = false
 
     }
@@ -100,21 +101,22 @@ module.exports = class Modal extends Panel {
 
         this.value = v ? 1 : 0
 
-        if (!this.init) {
+        if (!this.init && this.value) {
             this.popup.find('.popup-title .popup-label').html(this.container.find('> .label span').html())
             this.widget.detach().appendTo(this.popup.find('.popup-content'))
         }
 
-        this.popup.toggle(this.value)
-        this.container.toggleClass('on', this.value)
-
         this.fixScrolling()
+        
+        this.popup.toggle(this.value?true:false)
+        this.container.toggleClass('on', this.value?true:false)
+
 
         if (this.value) {
             $(window).resize()
         }
 
-        if (!this.init || this.value == true) this.fixStacking()
+        if (!this.init || this.value) this.fixStacking()
         if (!this.init) this.init = true
 
         if (options.send) this.sendValue()
@@ -124,11 +126,11 @@ module.exports = class Modal extends Panel {
 
     fixScrolling(){
         if (this.value) {
-            var c = this.container.parents('.tab, .modal-container > .panel').first()
+            var c = this.container.parents('.panel.tab').first()
             this.parentScroll = [c.scrollLeft(), c.scrollTop()]
             c.scrollTop(0).scrollLeft(0).css('overflow','hidden')
         } else {
-            this.container.parents('.tab, .modal-container > .panel').first().css('overflow','').scrollLeft(this.parentScroll[0]).scrollTop(this.parentScroll[1])
+            this.container.parents('.panel.tab').first().css('overflow','').scrollLeft(this.parentScroll[0]).scrollTop(this.parentScroll[1])
         }
     }
 
