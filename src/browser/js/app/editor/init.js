@@ -56,10 +56,12 @@ var init = function(){
             clickY = Math.round((d.offsetY + d.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
         // actions['<i class="fa fa-edit"></i> Edit'] = function(){editObject(container,data)}
 
-        if (type=='widget') actions['<i class="fa fa-copy"></i> Copy'] = function(){CLIPBOARD=JSON.parse(JSON.stringify(data))}
+        // actions['<i class="fa fa-object-group"></i> Edit parent'] = function(){parent.trigger('fake-click')}
+
+        if (type=='widget') actions['<i class="fa fa-copy"></i> Copy'] = function(){CLIPBOARD=JSON.stringify(data)}
 
         if (type=='widget') actions['<i class="fa fa-cut"></i> Cut'] = function(){
-            CLIPBOARD=JSON.parse(JSON.stringify(data))
+            CLIPBOARD=JSON.stringify(data)
             var parentContainer = container.parents('.widget').first(),
                 parentData = getObjectData(parentContainer)
 
@@ -73,7 +75,7 @@ var init = function(){
                 actions['<i class="fa fa-paste"></i> Paste'] = {
                     '<i class="fa fa-plus-circle"></i> ID + 1':function(){
                         data.widgets = data.widgets || []
-                        var newData = incrementWidget(JSON.parse(JSON.stringify(CLIPBOARD)))
+                        var newData = incrementWidget(JSON.parse(CLIPBOARD))
 
 
                         if (!target.hasClass('tablink')) {
@@ -89,7 +91,7 @@ var init = function(){
                     },
                     '<i class="fa fa-clone"></i> Clone':function(){
                         data.widgets = data.widgets || []
-                        var newData = JSON.parse(JSON.stringify(CLIPBOARD))
+                        var newData = JSON.parse(CLIPBOARD)
                         if (!target.hasClass('tablink')) {
                             newData.top = clickY
                             newData.left= clickX
