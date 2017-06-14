@@ -11,7 +11,7 @@ Sessions saved with this version will not be readable with older versions (old s
   - add property inheritance between widgets with statements `@{parent.propertyName}`, `@{this.propertyName}` and `@{widgetID.propertyName}`
   - containers: added `variables` options (arbitrary varibles to pass to children)
   - panel: added full osc support (for sending/receiving tab changes)
-  - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options; :warning: removed `tabs` option; added full osc support
+  - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options; :warning: removed `tabs` option; added full osc support; added `doubleTap` option (makes it openable with double taps instead of single taps)
   - strip: refactored widget using `panel` as base; added `stretch` and `spacing` option; now it's really cool
   - sliders: added double tap support (resets the widget to its initial value)
   - knob/fader: renamed `noPip` option to `pips` (inverted behaviour; backward compatible)
@@ -19,6 +19,7 @@ Sessions saved with this version will not be readable with older versions (old s
   - knob: compact design remake
 - bug fixes
   - sliders: fixed `spring` when `value` equals `0`
+  - modal: fixed osc values (was `True`/`False` instead of `1`/`0`)
 - session
   - the root panel is now saved as a special `panel` widget (which means it has savable options)
 - custom module

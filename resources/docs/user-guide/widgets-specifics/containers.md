@@ -65,7 +65,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 
 ## Strip
 
-Unidirectionnal panel with stretching capability. By default, children widgets that don't have an explicit `width`/`height` set will be shrinked to respect the sizes specified by others. Adding `flex:1;` to a children's `css` will give it the ability the fill the remaining space. Multiple children can have a `flex:x;` css property (`x` will ponderate their expansion). 
+Unidirectionnal panel with stretching capability. By default, children widgets that don't have an explicit `width`/`height` set will be shrinked to respect the sizes specified by others. Adding `flex:1;` to a children's `css` will give it the ability the fill the remaining space. Multiple children can have a `flex:x;` css property (`x` will ponderate their expansion).
 
 ```js
 {
@@ -103,11 +103,15 @@ Modals are buttons that turn into a centered popup panels when enabled. They can
 }
 ```
 
+#### `doubleTap`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to make the modal require a double tap to open instead of a single tap
+
 #### `popupWidth` / `popupHeight`
 - type: `number|percentage`
 - default: `100%`
-- usage: sets the modal's size once opened.
-
+- usage: sets the modal's size once opened
 
 #### `options`
 - see panel's [`options`](#panel)

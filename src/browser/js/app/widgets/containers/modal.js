@@ -1,5 +1,6 @@
 var Panel = require('./panel'),
-    {icon} = require('../../utils')
+    {icon} = require('../../utils'),
+    doubletabreset = require('../mixins/double_tap_reset')
 
 
 module.exports = class Modal extends Panel {
@@ -22,6 +23,7 @@ module.exports = class Modal extends Panel {
 
             _popup:'popup',
 
+            doubleTap: false,
             popupWidth:'100%',
             popupHeight:'100%',
 
@@ -73,14 +75,20 @@ module.exports = class Modal extends Panel {
         this.popup[0].style.setProperty('--height', height)
 
         this.popup.find('.closer').on('fake-click',(e)=>{
-            this.setValue(false, {sync:true, send:true})
+            this.setValue(0, {sync:true, send:true})
         })
 
         this.light = $('<div class="light"></div>').appendTo(this.container)
-        this.light.on('fake-click',(e)=>{
-            if (e.button != 2)
-                this.setValue(!this.value, {sync:true, send:true})
-        })
+
+        if (this.getProp('doubleTap')) {
+            doubletabreset(this.light, ()=>{
+                this.setValue(1, {sync:true, send:true})
+            })
+        } else {
+            this.light.on('fake-click',(e)=>{
+                this.setValue(1, {sync:true, send:true})
+            })
+        }
 
         this.parentScroll = [0,0]
         this.value = false
@@ -90,7 +98,7 @@ module.exports = class Modal extends Panel {
 
     setValue(v, options={}) {
 
-        this.value = v ? true : false
+        this.value = v ? 1 : 0
 
         if (!this.init) {
             this.popup.find('.popup-title .popup-label').html(this.container.find('> .label span').html())
