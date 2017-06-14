@@ -50,7 +50,7 @@ module.exports = class _sliders_base extends _canvas_base {
                                 this.rangeValsMin:
                                 clip(this.getProp('origin'), [this.rangeValsMin,this.rangeValsMax])
 
-        this.springValue = this.getProp('value') != '' ? this.getProp('value') :  this.originValue
+        this.springValue = this.getProp('value') !== '' ? this.getProp('value') :  this.originValue
 
         doubletabreset(this.widget, ()=>{
             this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
