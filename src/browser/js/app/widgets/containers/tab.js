@@ -14,6 +14,7 @@ module.exports = class Tab extends Panel {
             _style:'style',
 
             label:'auto',
+            color:'auto',
             css:'',
 
             _layout:'layout',

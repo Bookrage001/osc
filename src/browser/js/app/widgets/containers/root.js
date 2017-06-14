@@ -12,6 +12,12 @@ module.exports = class Root extends Panel {
 
             type:'root',
 
+            _style:'style',
+
+            color:'auto',
+            css:'',
+
+
             _osc:'osc',
 
             value:'',
