@@ -45,7 +45,7 @@ The session editor can be enabled in the side panel. Once enabled, clicking on a
 
 ### Properties
 
-All the selected object's properties are displayed and can be modified in the side panel. Any modification will redraw the object **and all its children** if the submitted data is valid. Please refer to the [widgets reference](widgets-generics.md) for the list of valid options.
+All the selected object's properties are displayed and can be modified in the side panel. Any modification will redraw the object **and all its children** if the submitted data is valid. Please refer to the [widgets reference](widgets-properties.md) for the list of valid options.
 
 Widgets containers such as tabs, strips and panels will also list their children here, which can be reordered using drag-and-drop.
 

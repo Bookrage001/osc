@@ -201,20 +201,20 @@ An endless knob that only responds to rotative gestures.
 - type: `string|number|object`
 - default: `-1`
 - usage: defines which value is sent when rotating the encoder anticlockwise
-    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
 #### `forth`
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent when rotating the encoder clockwise
-    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
 #### `release`
 - type: `string|number|object`
 - default: `empty`
 - usage: defines which value is sent when releasing the encoder
     - set to `null` to send send no argument in the osc message
-    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-generics.md#preargs))
+    - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
 
 #### `snap`
