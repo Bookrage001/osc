@@ -14,17 +14,6 @@ module.exports = class Panel extends _widgets_base {
             type:'panel',
             id:'auto',
 
-            _style:'style',
-
-            label:'auto',
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-            scroll:true,
-            color:'auto',
-            css:'',
-
             _layout:'layout',
 
             layout:'',
