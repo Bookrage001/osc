@@ -1,6 +1,7 @@
 var {clip, mapToScale} = require('../utils'),
     _canvas_base = require('../common/_canvas_base'),
-    osctouchstate = require('../mixins/osctouchstate')
+    osctouchstate = require('../mixins/osc_touch_state'),
+    doubletabreset = require('../mixins/double_tap_reset')
 
 module.exports = class _sliders_base extends _canvas_base {
 
@@ -48,7 +49,12 @@ module.exports = class _sliders_base extends _canvas_base {
         this.originValue = this.getProp('origin')=='auto'?
                                 this.rangeValsMin:
                                 clip(this.getProp('origin'), [this.rangeValsMin,this.rangeValsMax])
+
         this.springValue = this.getProp('value') != '' ? this.getProp('value') :  this.originValue
+
+        doubletabreset(this.widget, ()=>{
+            this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
+        })
 
         this.widget.on('fake-right-click',function(e){
             if (!EDITING) {

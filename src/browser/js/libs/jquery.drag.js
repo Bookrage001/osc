@@ -313,47 +313,53 @@
     }
 
 
+    var longTapTimer = false,
+        clearLongTapTimer = function() {
+            clearTimeout(longTapTimer)
+            longTapTimer = false
+        }
+
     $document.on('mousedown',function(e){
 
         if (e.originalEvent.sourceCapabilities && e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
-        $(e.target).trigger('fake-click')
 
         if (e.button==2)  {
+
             e.preventDefault()
-            $(e.target).trigger('fake-right-click',e)
+            $(e.target).trigger('fake-right-click', e)
+
+        } else {
+
+            $(e.target).trigger('fake-click', e)
+
         }
 
     })
 
-    var touchTapTimer = false,
-        clearTouchTapTimer = function() {
-            clearTimeout(touchTapTimer)
-            touchTapTimer = false
-        }
-
     $document.on(events.touch.start,function(e){
-        $(e.target).trigger('fake-click')
+        var touch = e.originalEvent.changedTouches[0]
 
-        if (!touchTapTimer&&e.originalEvent.touches.length==1) {
-            touchTapTimer = setTimeout(function(){
-                if (touchTapTimer) {
-                    var touch = e.originalEvent.changedTouches[0],
-                        off = getOffset(touch.target)
+        $(e.target).trigger('fake-click', touch)
+
+        if (!longTapTimer&&e.originalEvent.touches.length==1) {
+            longTapTimer = setTimeout(function(){
+                if (longTapTimer) {
+                    var off = getOffset(touch.target)
 
                     touch.offsetX = touch.pageX-off.left
                     touch.offsetY = touch.pageY-off.top
                     $(e.originalEvent.changedTouches[0].target).trigger('fake-right-click',touch)
                 }
-                touchTapTimer = false
+                longTapTimer = false
             },600)
         } else {
-            clearTouchTapTimer()
+            clearLongTapTimer()
         }
     })
 
     $document.on(events.touch.stop + ' ' + events.touch.move,function(e){
-        clearTouchTapTimer()
+        clearLongTapTimer()
     })
 
     $document.on('contextmenu',function(){return false})

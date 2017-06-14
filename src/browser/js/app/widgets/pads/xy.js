@@ -1,6 +1,7 @@
 var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
-    {clip} = require('../utils')
+    {clip} = require('../utils'),
+    doubletabreset = require('../mixins/double_tap_reset')
 
 var faderDefaults = Fader.defaults()
 
@@ -127,6 +128,10 @@ module.exports = class Xy extends _pads_base {
                 this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true,fromLocal:true})
             })
         }
+
+        doubletabreset(this.wrapper, ()=>{
+            this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true, send:true, fromLocal:true})
+        })
 
         this.faders.x.input.change(()=>{
             var v = [this.faders.x.value, this.faders.y.value]
