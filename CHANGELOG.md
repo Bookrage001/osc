@@ -13,7 +13,7 @@ Sessions saved with this version will not be readable with older versions (old s
   - panel: added full osc support (for sending/receiving tab changes)
   - modal: changed style to fit popups' appearance; added `popupWidth` and `popupHeight` options; :warning: removed `tabs` option; added full osc support; added `doubleTap` option (makes it openable with double taps instead of single taps)
   - strip: refactored widget using `panel` as base; added `stretch` and `spacing` option; now it's really cool
-  - sliders: added double tap support (resets the widget to its initial value)
+  - sliders: added `doubleTap` option (double taps reset the widget to its initial value when enabled)
   - knob/fader: renamed `noPip` option to `pips` (inverted behaviour; backward compatible)
   - encoder: mousewheel support
   - knob: compact design remake

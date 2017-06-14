@@ -28,6 +28,7 @@ module.exports = class Xy extends _pads_base {
 
             snap:false,
             spring:false,
+            doubleTap:false,
 
             _osc:'osc',
 
@@ -129,9 +130,11 @@ module.exports = class Xy extends _pads_base {
             })
         }
 
-        doubletabreset(this.wrapper, ()=>{
-            this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true, send:true, fromLocal:true})
-        })
+        if (this.getProp('doubleTap')) {
+            doubletabreset(this.wrapper, ()=>{
+                this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true, send:true, fromLocal:true})
+            })
+        }
 
         this.faders.x.input.change(()=>{
             var v = [this.faders.x.value, this.faders.y.value]

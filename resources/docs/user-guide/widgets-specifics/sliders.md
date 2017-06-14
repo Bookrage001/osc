@@ -1,7 +1,6 @@
 # Sliders
 
-Sliders are unidimensional widgets that output one value at a time. They reset to their initial value when receiving double tap / click events.
-
+Sliders are unidimensional widgets that output one value at a time.
 
 ----
 
@@ -75,6 +74,12 @@ range: {
 - type: `boolean`
 - default: `false`
 - usage: when set to `true`, the widget will go back to its initial value when released.
+
+
+#### `doubleTap`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to make the fader reset to its initial value when receiving a double tap
 
 #### `meter`
 - type: `boolean`
@@ -164,6 +169,11 @@ range: {
 - default: `false`
 - usage: when set to `true`, the widget will go back to its initial value when released.
 
+#### `doubleTap`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to make the knob reset to its initial value when receiving a double tap
+
 #### `css`
 ```
 --color-gauge:color;
@@ -212,6 +222,10 @@ An endless knob that only responds to rotative gestures.
 - default: `false`
 - usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
+#### `doubleTap`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to make the encoder reset to its initial value when receiving a double tap
 
 #### `css`
 ```

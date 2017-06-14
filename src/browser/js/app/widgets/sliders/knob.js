@@ -28,6 +28,7 @@ module.exports = class Knob extends _sliders_base {
 
             snap:false,
             spring:false,
+            doubleTap:false,
 
             _osc:'osc',
 

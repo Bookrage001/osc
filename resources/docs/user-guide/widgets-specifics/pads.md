@@ -6,8 +6,6 @@ Pads are multidimensional widgets that output multiple values.
 
 ## XY
 
-Xy reset to their initial value when receiving double tap / click events.
-
 ```js
 {
     type:'xy',
@@ -48,6 +46,11 @@ Xy reset to their initial value when receiving double tap / click events.
 - type: `boolean`
 - default: `false`
 - usage: when set to `true`, the widget will go back to its initial value when released.
+
+#### `doubleTap`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to make the xy reset to its initial value when receiving a double tap
 
 #### `split`
 - type: `boolean|object`

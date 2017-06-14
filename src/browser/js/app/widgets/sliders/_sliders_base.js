@@ -52,9 +52,13 @@ module.exports = class _sliders_base extends _canvas_base {
 
         this.springValue = this.getProp('value') !== '' ? this.getProp('value') :  this.originValue
 
-        doubletabreset(this.widget, ()=>{
-            this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
-        })
+        if (this.getProp('doubleTap')) {
+
+            doubletabreset(this.widget, ()=>{
+                this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
+            })
+
+        }
 
         this.widget.on('fake-right-click',function(e){
             if (!EDITING) {

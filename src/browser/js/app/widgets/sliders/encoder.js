@@ -49,6 +49,7 @@ module.exports = class Encoder extends _widgets_base {
             _behaviour:'behaviour',
 
             snap:false,
+            doubleTap:false,
 
             _osc:'osc',
 
@@ -151,13 +152,17 @@ module.exports = class Encoder extends _widgets_base {
                 })
         })
 
-        doubletabreset(this.wrapper, ()=>{
-                this.knob.setValue(this.ticks/2)
-                this.display.setValue(this.ticks/2)
-            if (this.getProp('release') !== '' && this.value !== this.getProp('release')) {
-                this.setValue(this.getProp('release'), {sync:true, send:true, dragged:false})
-            }
-        })
+        if (this.getProp('doubleTap')) {
+
+            doubletabreset(this.wrapper, ()=>{
+                    this.knob.setValue(this.ticks/2)
+                    this.display.setValue(this.ticks/2)
+                if (this.getProp('release') !== '' && this.value !== this.getProp('release')) {
+                    this.setValue(this.getProp('release'), {sync:true, send:true, dragged:false})
+                }
+            })
+
+        }
 
         this.wrapper.on('mousewheel', (e)=>{
 
