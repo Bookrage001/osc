@@ -28,6 +28,8 @@ PXSCALE_RESET()
 
 window.CANVAS_SCALING = ARGV.hdpi ? window.devicePixelRatio : 1
 
+window.DOUBLE_TAP_TIME = ARGV.doubletap ? ARGV.doubletap : 375
+
 ///////////////////////
 
 window.sourceMap = require('./libs/source-map.min.js')

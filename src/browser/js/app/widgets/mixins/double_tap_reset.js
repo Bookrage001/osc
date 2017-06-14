@@ -11,7 +11,7 @@ module.exports = (element, callback)=>{
         var tapLength = tapTime - lastTapTime
 
     	if (
-            tapLength < 400 && touchId == d.identifier &&
+            tapLength < DOUBLE_TAP_TIME && touchId == d.identifier &&
             Math.abs(lastTapX - d.pageX) < 20 &&
             Math.abs(lastTapY - d.pageY) < 20
         ) {
