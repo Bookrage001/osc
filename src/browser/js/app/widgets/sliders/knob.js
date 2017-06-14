@@ -172,7 +172,7 @@ module.exports = class Knob extends _sliders_base {
             this.ctx.stroke()
 
             this.ctx.lineWidth = this.gaugeWidth
-            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o-min:max-o)
+            this.ctx.globalAlpha = 0.3 + 0.2 * Math.abs(d-o) / (d<o?o-min:max-o)
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, Math.min(o,d), Math.max(o,d))
