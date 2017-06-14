@@ -1,6 +1,7 @@
 var {clip, mapToScale} = require('../utils'),
     Knob = require('./knob'),
-    _widgets_base = require('../common/_widgets_base')
+    _widgets_base = require('../common/_widgets_base'),
+    doubletabreset = require('../mixins/double_tap_reset')
 
 
 
@@ -74,7 +75,7 @@ module.exports = class Encoder extends _widgets_base {
         `
         super({...options, html: html})
 
-        this.wrapper = this.wrapper
+        this.wrapper = this.find('.wrapper')
         this.ticks = Math.abs(parseInt(this.getProp('ticks')))
 
         this.knob = new EncoderKnob({props:{
@@ -148,6 +149,14 @@ module.exports = class Encoder extends _widgets_base {
                     address:this.getProp('touchAddress'),
                     v:0
                 })
+        })
+
+        doubletabreset(this.wrapper, ()=>{
+                this.knob.setValue(this.ticks/2)
+                this.display.setValue(this.ticks/2)
+            if (this.getProp('release') !== '' && this.value !== this.getProp('release')) {
+                this.setValue(this.getProp('release'), {sync:true, send:true, dragged:false})
+            }
         })
 
         this.wrapper.on('mousewheel', (e)=>{
