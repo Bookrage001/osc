@@ -10,6 +10,7 @@ Client specific options can be set by adding query parameters to the server's ur
 Supported options:
 
 - `hdpi=1`: enable high resolution canvas
+- `doubletab=X`: sets the double tap/click time thershold in milliseconds (default to `375`)
 
 Example:
 
@@ -20,6 +21,10 @@ Example:
 ### Click / Tap
 
 Click / Tap events are handled at pressing time, not releasing.
+
+### Double Click / Tap
+
+Some widgets handle double click / tap events.
 
 ### Right-click / Long touch
 
@@ -56,11 +61,12 @@ By default, widget resizing / dragging snaps to a 10 pixel wide grid. Its width 
 
 Right clicking / long touch on a widget or on a tab will also display a context menu providing useful utilities :
 
-- `copy`: copy widget's data
-- `cut`: copy widget's data and delete selected widget
-- `paste`: paste copied widget in selected container
+- `Edit parent`: selects the widget's parent for edition
+- `Copy`: copy widget's data
+- `Cut`: copy widget's data and delete selected widget
+- `Paste`: paste copied widget in selected container
   - `n+1` : increments the id of the copied widget (and all its children) before pasting
-  - `clone` : paste the exact same widget
+  - `Clone` : paste the exact same widget
 - `Add widget`: create a new widget in selected container
 - `Add tab`: create a new tab in selected container
 - `Delete`: delete selected tab or widget

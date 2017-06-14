@@ -32,6 +32,8 @@ It can be used to:
 
 If the retreived property is an object (`[] / {}`), it can be used as is or one can retreive a specfic item from it: `@{parent.variables.0}` will try to return the first item of the parent's `variables` property.
 
+Note: the root panel's `id` is `root`.
+
 ----
 ### Basics
 

@@ -6,6 +6,8 @@ Pads are multidimensional widgets that output multiple values.
 
 ## XY
 
+Xy reset to their initial value when receiving double tap / click events.
+
 ```js
 {
     type:'xy',

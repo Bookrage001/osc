@@ -1,6 +1,6 @@
 # Sliders
 
-Sliders are unidimensional widgets that output one value at a time.
+Sliders are unidimensional widgets that output one value at a time. They reset to their initial value when receiving double tap / click events.
 
 
 ----
