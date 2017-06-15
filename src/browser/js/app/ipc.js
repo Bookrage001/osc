@@ -1,12 +1,11 @@
-var io = require('socket.io-client/dist/socket.io.slim.js'),
-    customParser = require('socket.io-msgpack-parser')
+var io = require('socket.io-client/dist/socket.io.slim.js')
 
 
 var Ipc = class Ipc {
 
     constructor() {
 
-        this.socket = io.connect('/', {parser:customParser})
+        this.socket = io.connect('/')
         this.socket.compress(false)
 
     }

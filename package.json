@@ -10,7 +10,6 @@
     "node-sass": "^4.1.1",
     "nodemon": "^1.9.2",
     "socket.io-client": "2.0.3",
-    "socket.io-msgpack-parser": "2.1.0",
     "jquery": "3.2.1",
     "shortid": "2.2.8",
     "electron-installer-debian": "0.5.2",
