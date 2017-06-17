@@ -50,7 +50,7 @@ var options = {
                 true : 'examples can\'t be listed if --load is set'
          }
     },
-    'url-options':{type:'array',describe:'url options query string (opt=value pairs)',
+    'url-options':{type:'array',describe:'url options (opt=value pairs)',
         check: (u, argv)=>{
             return (!u || !argv.n) ?
             true : 'url options can\'t be passed in no-gui mode'
