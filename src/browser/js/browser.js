@@ -18,11 +18,10 @@ window.TABS = {}
 
 
 window.PXSCALE = 1
-window.INITIALZOOM = 1
+window.INITIALZOOM = ARGV.zoom ? ARGV.zoom : 1
 window.PXSCALE_RESET = ()=>{
-    PXSCALE = getComputedStyle(document.documentElement).getPropertyValue("--pixel-scale")
+    PXSCALE = INITIALZOOM
     document.documentElement.style.setProperty("--pixel-scale", PXSCALE)
-    INITIALZOOM = PXSCALE
 }
 PXSCALE_RESET()
 
