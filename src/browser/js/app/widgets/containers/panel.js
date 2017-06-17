@@ -116,8 +116,9 @@ module.exports = class Panel extends _widgets_base {
         var tabs = this.wrapper.find('> .widget')
 
         for (let tab of tabs) {
+            let style = tab.abstract.getProp('color') == 'auto' ? '' : `style="--color-custom:${tab.abstract.getProp('color')}"`
             this.tabs.push(tab.abstract)
-            this.navigation.append(`<li class="tablink" data-widget="${tab.abstract.hash}"><a><span>${$(tab).find('> .label span').html()}</span></a></li>`)
+            this.navigation.append(`<li class="tablink" data-widget="${tab.abstract.hash}" ${style}><a><span>${$(tab).find('> .label span').html()}</span></a></li>`)
         }
 
         this.registerHashes()
