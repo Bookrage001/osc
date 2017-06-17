@@ -50,6 +50,12 @@ var options = {
                 true : 'examples can\'t be listed if --load is set'
          }
     },
+    'url-options':{type:'array',describe:'url options query string (opt=value pairs)',
+        check: (u, argv)=>{
+            return (!u || !argv.n) ?
+            true : 'url options can\'t be passed in no-gui mode'
+        }
+    },
     'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization', restart: true},
     'read-only':{type:'boolean',describe:'disable session editing and session history changes',
          check: (r, argv)=>{
@@ -100,6 +106,7 @@ var makeDefaultConfig = function(argv){
         customModule: argv.c || false,
         noGui: argv.n || false,
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
+        urlOptions: argv['url-options'] ? '?' + argv['url-options'].join('&') : '',
         noVsync: argv['disable-vsync'] || false,
         readOnly: argv['read-only'] || false,
         midi: argv.m,

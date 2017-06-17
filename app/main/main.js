@@ -28,6 +28,7 @@ var start = function(readyApp) {
 
         var app = require('./electron-app')
         var address = typeof settings.read('guiOnly')=='string'? 'http://' + settings.read('guiOnly') : settings.read('appAddresses')[0]
+        address += settings.read('urlOptions')
         if (app.isReady()) {
             var win = require('./electron-window')({address:address, shortcuts:true})
             app.on('before-quit',()=>{
