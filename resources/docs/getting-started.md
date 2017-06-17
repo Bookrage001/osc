@@ -1,99 +1,100 @@
 # Getting started
 
-----
-## Run from binaries
+!!! tip ""
+    Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
 
 
-Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
+## Options
 
+Below are the available command-line options. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
 
-Below are the available command-line switches. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
+| Option | Description |
+|---|---|
+| sync | synchronized hosts (ip:port pairs) (osc messages sent by widgets will also be sent to these targets)|
+| load | session file to load |
+| blank | load a blank session and start the editor |
+| custom-module | custom module file to load |
+| port | http port of the server (default to 8080) |
+| osc-port | osc input port (default to --port) |
+| midi | midi router settings (requires python-pyo) |
+| debug | log received osc messages in the console |
+| no-gui | disable default gui |
+| gui-only | app server's url. If true, local port (--port) is used |
+| theme | theme name or path (mutliple values allowed)    |
+| examples | list examples instead of recent sessions |
+| url-options | [url options](extras/url-options) (opt=value pairs) |
+| disable-vsync | disable gui's vertical synchronization |
+| read-only | disable session editing and session history changes |
 
+Command-line only :
 
-**Options**
-```markdown
-  -s, --sync      synchronized hosts (ip:port pairs) (osc messages sent by widgets will also be sent to these targets)
-  -l, --load      session file to load
-  -b, --blank     load a blank session and start the editor
-  -c, --custom-module  custom module file to load
-  -p, --port      http port of the server (default to 8080)
-  -o, --osc-port  osc input port (default to --port)
-  -m, --midi      midi router settings (requires python-pyo)
-  -d, --debug     log received osc messages in the console
-  -n, --no-gui    disable default gui
-  -g, --gui-only  app server's url. If true, local port (--port) is used
-  -t, --theme     theme name or path (mutliple values allowed)   
-  -e, --examples  list examples instead of recent sessions
-      --disable-vsync  disable gui's vertical synchronization
-      --read-only      disable session editing and session history changes
-
-  -h, --help      display help
-  -v, --version   display version number
-```
+| Option | Description |
+|---|---|
+| help | print available options |
+| version | print version number |
 
 **Examples**
 
 ```
-
-$ open-stage-control -s 127.0.0.1:5555 127.0.0.1:6666 -p 7777
+$ open-stage-control --sync 127.0.0.1:5555 127.0.0.1:6666 --port 7777
+```
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
 
-----
-
-$ open-stage-control -n -l path/to/session.js
-
-This will create a headless app available through http on port 8080. Multiple clients can use the app (with chrome only) simultaneously, their widgets will be synchronized.
+```
+$ open-stage-control --no-gui --load path/to/session.js --port 9999
 ```
 
-----
+This will create a headless app available through http on port 9999 with session.js loaded automatically.
+
 ## Run from sources
 
 Running the app from the sources slightly differs from using built binaries : instead of running a binary, we'll launch the app with npm.
 
-**Requirements**
+**1. Requirements**
 
 - [Node.js >= 4](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
-```bash
+```
 $ sudo apt-get install nodejs npm  # install nodejs & npm
 $ sudo npm install -g npm   # update npm
 ```
 
 
-**Download**
+**2. Download sources**
 
-```bash
+```
 $ git clone https://github.com/jean-emmanuel/open-stage-control
 $ cd open-stage-control/
 $ npm install
- ```
-
-**Run**
-
-```bash
-$ npm start [ -- options]
-
-# A double hyphen ("--") is used here to tell npm that the following options are to be given to the app.
 ```
 
-----
+**3. Run !**
+
+```
+$ npm start [ -- options]
+```
+
+!!! note ""
+    A double hyphen (`--`) is used here to tell npm that the options are to be passed to the app.
+
+
 ## Build from sources
 
-**Requirements**
+**1. Requirements**
 
-- [Node.js](https://nodejs.org/)
+- [Node.js >= 4](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
-```bash
-$ sudo apt-get install npm  # install nodejs & npm
+```
+$ sudo apt-get install nodejs npm  # install nodejs & npm
 $ sudo npm install -g npm   # update npm
 ```
 
-**Build**
+**2. Build**
 
-```bash
+```
 $ git clone https://github.com/jean-emmanuel/open-stage-control
 $ cd open-stage-control
 $ npm install
@@ -101,25 +102,30 @@ $ export PLATFORM=TARGET_PLATFORM # TARGET_PLATFORM can be linux, win32 (windows
 $ export ARCH=TARGET_ARCH         # TARGET_ARCH can be ia32, x64 or armv7l
 $ npm run build
 
-$ # Do the following if you want a deb package for debian/ubuntu
+# Do the following if you want a deb package for debian/ubuntu
+
 $ npm run deb32
-$ # or
+
+# or
+
 $ npm run deb64
-$ # or
+
+# or
+
 $ npm run debarm
 ```
 
 This will build the app in `dist/open-stage-control-PLATFORM-ARCH`.
 
-*Please note that building the app for windows from a linux system requires wine to be installed.*
+!!! note ""
+    Building the app for windows from a linux system requires wine to be installed.*
 
-----
-## Running a true headless server
+## Running in a headless context
 
 Electron, Open Stage Control's engine, is based on chromium and can't run out of the box without a display server. However, using a virtual framebuffer does the trick. Detailed instructions can be found in Electron's [documentation](http://electron.atom.io/docs/tutorial/testing-on-headless-ci/).
 
 In short: install [xvfb](https://en.wikipedia.org/wiki/Xvfb) and prepend your command with `xvfb-run`:  
 
-```bash
-xvfb-run open-stage-control -n
+```
+$ xvfb-run open-stage-control -n
 ```

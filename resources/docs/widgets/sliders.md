@@ -2,7 +2,7 @@
 
 Sliders are unidimensional widgets that output one value at a time.
 
-----
+
 
 ## Fader
 ```js
@@ -12,28 +12,28 @@ Sliders are unidimensional widgets that output one value at a time.
 }
 ```
 
-#### `horizontal`
+### `horizontal`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display the fader horizontally
 
-#### `alignRight`
+### `alignRight`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to invert the pip's and fader's position
 
-#### `noPip`
+### `noPip`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to hide the scale
 
-#### `compact`
+### `compact`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display (right-click/long-touch still triggers it).
 
 
-#### `range`
+### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: `range` defines the breakpoints of the fader's scale
@@ -48,59 +48,59 @@ range: {
 }
 ```
 
-#### `origin`
+### `origin`
 - type: `number`
 - default: `auto`
 - usage: `origin` defines the starting point's value of the fader's gauge
 
-#### `logScale`
+### `logScale`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` use logarithmic scaling between breakpoints (log10)
 
 
-#### `unit`
+### `unit`
 - type: `string`
 - default: `empty`
 - usage: `unit` will be appended to the displayed widget's value (it doesn't affect osc messages)
 
 
-#### `snap`
+### `snap`
 - type: `boolean`
 - default: `false`
 - usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
-#### `spring`
+### `spring`
 - type: `boolean`
 - default: `false`
 - usage: when set to `true`, the widget will go back to its initial value when released.
 
 
-#### `doubleTap`
+### `doubleTap`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to make the fader reset to its initial value when receiving a double tap
 
-#### `meter`
+### `meter`
 - type: `boolean`
 - default: `false`
 - usage: set to true to display a vu-meter next in the fader
     - the meter's `id` will be the same as the widget's with `/meter` appended to it
     - the meter's `address `will be the same as the widget's with `/meter` appended to it
 
-#### `meterAddress`
+### `meterAddress`
 - type: `boolean`
 - default: `empty`
 - usage: overrides the `meter`'s osc address
 
-#### `css`
+### `css`
 ```
 --color-gauge:color;
 --color-knob:color;
 --color-pips:color;
 ```
 
-----
+
 
 ## Knob
 
@@ -112,22 +112,22 @@ range: {
 ```
 
 
-#### `noPip`
+### `noPip`
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to show the scale
 
-#### `compact`
+### `compact`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display a compact alternative for the widget. Disables mouse/touch focusing on the value display.
 
-#### `angle`
+### `angle`
 - type: `number`
 - default: `270`
 - usage: `angle` defines the angle's width of the knob, in degrees
 
-#### `range`
+### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: `range` defines the breakpoints of the fader's scale
@@ -142,39 +142,39 @@ range: {
 }
 ```
 
-#### `origin`
+### `origin`
 - type: `number`
 - default: `auto`
 - usage: `origin` defines the starting point's value of the knob's gauge
 
-#### `logScale`
+### `logScale`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` use logarithmic scaling between breakpoints
 
 
-#### `unit`
+### `unit`
 - type: `string`
 - default: `empty`
 - usage: `unit` will be appended to the displayed widget's value (it doesn't affect osc messages)
 
 
-#### `snap`
+### `snap`
 - type: `boolean`
 - default: `false`
 - usage: by default, dragging the widget *vertically* will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
-#### `spring`
+### `spring`
 - type: `boolean`
 - default: `false`
 - usage: when set to `true`, the widget will go back to its initial value when released.
 
-#### `doubleTap`
+### `doubleTap`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to make the knob reset to its initial value when receiving a double tap
 
-#### `css`
+### `css`
 ```
 --color-gauge:color;
 --color-knob:color;
@@ -192,24 +192,24 @@ An endless knob that only responds to rotative gestures.
 }
 ```
 
-#### `ticks`
+### `ticks`
 - type: `number`
 - default: `360`
 - usage: defines the granularity / verbosity of the encoder (number of step for a 360° arc)
 
-#### `back`
+### `back`
 - type: `string|number|object`
 - default: `-1`
 - usage: defines which value is sent when rotating the encoder anticlockwise
     - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
-#### `forth`
+### `forth`
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent when rotating the encoder clockwise
     - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
-#### `release`
+### `release`
 - type: `string|number|object`
 - default: `empty`
 - usage: defines which value is sent when releasing the encoder
@@ -217,17 +217,17 @@ An endless knob that only responds to rotative gestures.
     - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
 
-#### `snap`
+### `snap`
 - type: `boolean`
 - default: `false`
 - usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
 
-#### `doubleTap`
+### `doubleTap`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to make the encoder reset to its initial value when receiving a double tap
 
-#### `css`
+### `css`
 ```
 --color-knob:color;
 ```

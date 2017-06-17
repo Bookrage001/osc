@@ -10,12 +10,12 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 }
 ```
 
-#### `range`
+### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: defines the `min` and `max` value the led's intensity will be mapped to
 
-#### `logScale`
+### `logScale`
 - type: `boolean`
 - default: `false`
 - usage: set to true use logarithmic scaling
@@ -44,7 +44,7 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
 }
 ```
 
-#### `points`
+### `points`
 - type: `array|string`
 - default: `[]`
 - usage:
@@ -53,7 +53,7 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
         - `number`: constant values
         - `string`: a widget's `id` whose value will be used
 
-#### `range`
+### `range`
 - type: `object`
 - default:
     `{
@@ -62,17 +62,17 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
     }`
 - usage: defines the `min` and `max` values for the `x` and `y` axis
 
-#### `logScaleX`
+### `logScaleX`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
-#### `logScaleY`
+### `logScaleY`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `y` axis (log10)
 
-#### `origin`
+### `origin`
 - type: `number`
 - default: `auto`
 - usage: defines the y-axis origin. Set to `false` to disable it.
@@ -88,7 +88,7 @@ The Eq receives an array of filter objects and draws their frequency response be
 }
 ```
 
-#### `filters`
+### `filters`
 - type: `array`
 - default: `[]`
 - usage:
@@ -105,23 +105,23 @@ The Eq receives an array of filter objects and draws their frequency response be
 }
 ```
 
-#### `resolution`
+### `resolution`
 - type: `number`
 - default: `128`
 - usage: defines the number of points used to compute the frequency response
 
-#### `rangeY`
+### `rangeY`
 - type: `object`
 - default:
     `{"min":-20,"max":20}`
 - usage: defines the `min` and `max` values for the `y` axis (dB level)
 
-#### `logScaleX`
+### `logScaleX`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
-#### `origin`
+### `origin`
 - type: `number`
 - default: `auto`
 - usage: defines the y-axis origin. Set to `false` to disable it.
@@ -137,27 +137,27 @@ The visualizer displays the evolution in time of a received value (through osc) 
 }
 ```
 
-#### `widgetId`
+### `widgetId`
 - type: `object`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed (thus bypassing the incoming osc)
 
-#### `duration`
+### `duration`
 - type: `number`
 - default: `1`
 - usage: window size in seconds
 
-#### `range`
+### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: defines the `min` and `max` values for the `y` axis
 
-#### `logScale`
+### `logScale`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` use logarithmic scaling (log10)
 
-#### `origin`
+### `origin`
 - type: `number`
 - default: `auto`
 - usage: defines the y-axis origin. Set to `false` to disable it.
@@ -173,12 +173,12 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 }
 ```
 
-#### `widgetId`
+### `widgetId`
 - type: `object`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed
 
-#### `vertical`
+### `vertical`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` display vertically
@@ -194,18 +194,18 @@ Meter displays incoming numerical values (via osc) as a gauge level
 }
 ```
 
-#### `widgetId`
+### `widgetId`
 - type: `object`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed
 
-#### `horizontal`
+### `horizontal`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display the meter horizontally
 
-#### `range`
+### `range`
 - see fader's [`range`](sliders/#fader)
 
-#### `logScale`
+### `logScale`
 - see fader's [`logScale`](sliders/#fader)

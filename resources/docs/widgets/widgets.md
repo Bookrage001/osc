@@ -1,69 +1,34 @@
-## Widgets properties
+# Widgets properties
 
-All widgets share a set of generic properties described below. Each widget type comes with an additional set of specific properties which are documented in these pages:
+All widgets share a set of generic properties described below.
 
-- [Sliders](widgets-specifics/sliders.md)
-- [Buttons](widgets-specifics/buttons.md)
-- [Pads](widgets-specifics/pads.md)
-- [Matrices](widgets-specifics/matrices.md)
-- [Plots](widgets-specifics/plots.md)
-- [Containers](widgets-specifics/containers.md)
-- [Switchers](widgets-specifics/switchers.md)
-- [Maths](widgets-specifics/maths.md)
+## Basics
 
-```js
-{
-    // widget properties
-}
-```
-
-## Property inheritance
-
-Widgets can use each other's property values by using the following syntaxes:
-
-- `@{this.propertyName}`
-- `@{parent.propertyName}`
-- `@{widgetId.propertyName}` (where `widgetId` is the target widget's `id`)
-
-It can be used to:
-
-- concatenate strings: `/@{parent.id}/some_suffix`
-- define object value:   `["@{parent.id}"]`
-
-If the retreived property is an object (`[] / {}`), it can be used as is or one can retreive a specfic item from it: `@{parent.variables.0}` will try to return the first item of the parent's `variables` property.
-
-Note: the root panel's `id` is `root`.
-
-----
-### Basics
-
-#### `type`
+### `type`
 - type: `string`
 - default: `fader`
 
-#### `id`
+### `id`
 - type: `string`
 - default: generated unique 'widget_n'
 - usage: widgets sharing the same `id` will act as clones and update each other's value(s) without sending extra osc messages.
 
-#### `linkId`
+### `linkId`
 - type: `string`
 - default: `empty`
 - usage: widgets sharing the same `linkId` update each other's value(s) AND send their respective osc messages.
 
 
+## Style
 
-----
-### Style
-
-#### `label`
+### `label`
 - type: `string|false`
 - default: `auto`, which displays `id`
 - usage:
     - set to `false` to hide completely
     - insert icons from [FontAwesome](http://fontawesome.io/icons/) using the prefix `^` followed by the icon's name : `made with ^heart`, etc
 
-#### `top` / `left`
+### `top` / `left`
 - type: `number|percentage`
 - default: `auto`
 - usage:
@@ -71,17 +36,17 @@ Note: the root panel's `id` is `root`.
     - otherwise, the widget will be absolutely positioned
 
 
-#### `width` / `height`
+### `width` / `height`
 - type: `number|percentage`
 - default: `auto`
 
-#### `color`
+### `color`
 - type: `string`
 - default: `auto`, inherited accent color
 - usage: any valid `css` color code is valid, this will change the default accent color for the widget and all its children
 
 
-#### `css`
+### `css`
 - type: `string`
 - default: *empty*
 - usage: the `css` property can be used to override inherited [theming](theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element through this property, `css` selectors can also be used apply custom styles to the widget's children.
@@ -89,23 +54,23 @@ Note: the root panel's `id` is `root`.
     - `border-radius:5rem; .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size and all its children's labels'
     - `border-radius:5rem; > .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size (the `>` selector targets only the direct children of the widget element)
 
-----
-### OSC
+
+## OSC
 
 
-#### `value`
+### `value`
 - type: `*`
 - default: `empty`
 - usage: if set, the widget will be initialized with this `value`. This won't affect linked widgets and won't send any osc message.
 - note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc). **Changes made to `value` won't be visible until the session is reloaded.**
 
 
-#### `precision`
+### `precision`
 - type: `integer`
 - default: `2`
 - usage: the `precision` property defines the number of decimals to display and to send. Set to `0` to send `integers` only.
 
-#### `target`
+### `target`
 - type: `array`
 - default: `[]`
 - usage:
@@ -115,12 +80,12 @@ Note: the root panel's `id` is `root`.
     - if no target is set, messages can still be sent if the server has synchronized hosts (`-s / --sync`)
     - if [`midi`](midi.md) is enabled, targets can be `"midi:device_name"`
 
-#### `address`
+### `address`
 - type: `string`
 - default: `/widgets_id`
 - usage: this is the `address` of the osc messages sent by the widget, it must start with a `/`
 
-#### `touchAddress`
+### `touchAddress`
 - type: `string`
 - default: `empty`
 - usage: sliders and pads can send special osc messages to inform weither they are currently touched or not. The osc message will be of the following form :
@@ -128,7 +93,7 @@ Note: the root panel's `id` is `root`.
     /touch/address [preArgs] 0/1
 ```
 
-#### `preArgs`
+### `preArgs`
 - type: `array`
 - default: `[]`
 - usage:

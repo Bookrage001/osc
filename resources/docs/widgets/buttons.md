@@ -2,7 +2,7 @@
 
 Buttons are exactly what you think they are.
 
-----
+
 
 ## Toggle
 ```js
@@ -12,14 +12,14 @@ Buttons are exactly what you think they are.
 }
 ```
 
-#### `on`
+### `on`
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent on `on` position
     - set to `null` to send send no argument in the osc message
     - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
-#### `off`
+### `off`
 - type: `string|number|object`
 - default: `0`
 - usage: defines which value is sent on `off` position
@@ -27,7 +27,7 @@ Buttons are exactly what you think they are.
     - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
 
-----
+
 
 ## Push
 ```js
@@ -37,14 +37,14 @@ Buttons are exactly what you think they are.
 }
 ```
 
-#### `on`
+### `on`
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent when pushing the button
     - set to `null` to send send no argument in the osc message
     - can be an `object` if the type needs to be specified (see [preArgs](../widgets-properties.md#preargs))
 
-#### `off`
+### `off`
 - type: `string|number|object`
 - default: `0`
 - usage: defines which value is sent when releasing the button
@@ -59,7 +59,7 @@ Buttons are exactly what you think they are.
 Setting the `push`'s value externally (via osc) will toggle it's inner light.
 
 
-----
+
 
 ## Switch
 ```js
@@ -69,7 +69,7 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
 }
 ```
 
-#### `values`
+### `values`
 - type: `array|object`
 - default: `{"Value 1":1,"Value 2":2}`
 - usage:

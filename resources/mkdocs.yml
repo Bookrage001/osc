@@ -1,10 +1,59 @@
 site_name: Open Stage Control
+repo_name: open-stage-control
 repo_url: https://github.com/jean-emmanuel/open-stage-control
-theme: cinder
 copyright: "Open Stage Control is an <a href='http://ammd.net'>AMMD</a> software licensed under the <a href='https://github.com/jean-emmanuel/open-stage-control/blob/master/LICENSE'>GNU/GPLv3</a> License"
 site_description: "A libre desktop OSC bi-directionnal control surface application."
-extra_css:
-    - css/extra.css
-extra_js:
-    - js/extra.js
+
+theme: material
+
 site_favicon: img/logo.png
+
+extra:
+    palette:
+      primary: blue grey
+      accent: blue
+    feature:
+      tabs: false
+    logo: img/logo-material.svg
+
+pages:
+    - Open Stage Control: index.md
+    - Getting started: getting-started.md
+    - User interface: interface.md
+    - Editing sessions: editing-sessions.md
+    - Widgets reference:
+        - Widget properties: widgets/widgets.md
+        - Containers: widgets/containers.md
+        - Sliders: widgets/sliders.md
+        - Pads: widgets/pads.md
+        - Buttons: widgets/buttons.md
+        - Switchers: widgets/switchers.md
+        - Plots: widgets/plots.md
+        - Matrices: widgets/matrices.md
+        - Maths: widgets/maths.md
+    - Extras:
+        - Property inheritance: extras/property-inheritance.md
+        - Theming: extras/theming.md
+        - URL options: extras/url-options.md
+        - Remote control: extras/remote-control.md
+        - Custom module: extras/custom-module.md
+        - Midi: extras/midi.md
+
+markdown_extensions:
+    - markdown.extensions.admonition
+    - markdown.extensions.codehilite(guess_lang=false)
+    - markdown.extensions.def_list
+    - markdown.extensions.footnotes
+    - markdown.extensions.meta
+    - markdown.extensions.toc(permalink=true)
+    - pymdownx.arithmatex
+    - pymdownx.betterem(smart_enable=all)
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.inlinehilite
+    - pymdownx.magiclink
+    - pymdownx.mark
+    - pymdownx.smartsymbols
+    - pymdownx.superfences
+    - pymdownx.tasklist(custom_checkbox=true)
+    - pymdownx.tilde

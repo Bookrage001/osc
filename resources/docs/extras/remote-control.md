@@ -10,10 +10,11 @@ Apply a set of options to an existing widget by replacing the old ones with the 
 
 
 - `id`: `string`, widget's `id`
-- `options`: `string`, JSON object defining the new properties to merge
+- `options`: `string`, JSON stringified object defining the new properties to merge
   - example: `{"label":"New Label", "color":"red"}`
 
-*Editing a widget can be cpu expensive, hence updating the UI continuously is not a good idea.*
+!!! warning ""
+    Editing a widget can be cpu expensive, hence updating the UI continuously is not a good idea
 
 ## `/EDIT_SOFT id options`
 
@@ -21,10 +22,11 @@ Apply a set of options to an existing widget by merging them to the widget's opt
 
 
 - `id`: `string`, widget's `id`
-- `options`: `string`, JSON object defining the new properties to merge
+- `options`: `string`, JSON stringified object defining the new properties to merge
   - example: `{"label":"New Label", "color":"red"}`
 
-*Editing a widget can be cpu expensive, hence updating the UI continuously is not a good idea.*
+!!! warning ""
+    Editing a widget can be cpu expensive, hence updating the UI continuously is not a good idea
 
 ## `/TABS id id etc`
 

@@ -2,7 +2,7 @@
 
 Switcher can store and recall the state of other widgets.
 
-----
+
 
 ## Switcher
 
@@ -16,7 +16,7 @@ The switcher looks like the [`switch`](buttons/#switch). Each of its possible va
 }
 ```
 
-#### `linkedWidgets`
+### `linkedWidgets`
 - type: `array|string`
 - default:
     `empty`
@@ -25,7 +25,7 @@ The switcher looks like the [`switch`](buttons/#switch). Each of its possible va
     - as an `array`: a list of widget `id` `strings`
 
 
-#### `values`
+### `values`
 - type: `array|object`
 - default: `["A", "B"]`
 - usage:
