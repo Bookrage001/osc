@@ -191,9 +191,9 @@ module.exports = class Fader extends _sliders_base {
         var width = this.getProp('horizontal') ? this.height : this.width,
             height = !this.getProp('horizontal') ? this.height : this.width
 
-        var d = this.percentToCoord(this.percent),
-            o = this.percentToCoord(this.valueToPercent(this.originValue)),
-            m = this.getProp('horizontal') ? this.height / 2 : this.width / 2
+        var d = Math.round(this.percentToCoord(this.percent)),
+            o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue))),
+            m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
 
         this.clear()
 
@@ -288,7 +288,7 @@ module.exports = class Fader extends _sliders_base {
             this.ctx.lineWidth = PXSCALE
 
             this.ctx.beginPath()
-            this.ctx.rect(m - 7 * PXSCALE, d - 13 * PXSCALE, 14 * PXSCALE, 26 * PXSCALE)
+            this.ctx.rect(m - 7.5 * PXSCALE, d - 13.5 * PXSCALE, 15 * PXSCALE, 27 * PXSCALE)
             this.ctx.lineWidth = PXSCALE
             this.ctx.strokeStyle = this.colors.light
             this.ctx.stroke()
