@@ -204,7 +204,7 @@ module.exports = class Fader extends _sliders_base {
 
         if (this.getProp('compact')) {
 
-            this.ctx.globalAlpha = 0.4//0.2 + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
+            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
             this.ctx.moveTo(m, o)
