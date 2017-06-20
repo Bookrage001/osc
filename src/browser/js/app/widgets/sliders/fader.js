@@ -23,6 +23,7 @@ module.exports = class Fader extends _sliders_base {
             horizontal:false,
             pips:true,
             compact:false,
+            dashed:false,
             color:'auto',
             css:'',
 
@@ -77,7 +78,27 @@ module.exports = class Fader extends _sliders_base {
             this.widget.addClass('align-right')
         }
 
-        if (this.getProp('pips') && !this.getProp('compact')) {
+        if (this.getProp('meter')) {
+            var parsewidgets = require('../../parser').widgets
+            var data = {
+                type:'meter',
+                id: this.getProp('id') + '/meter',
+                label:false,
+                horizontal:this.getProp('horizontal'),
+                range:this.getProp('range'),
+                logScale:this.getProp('logScale'),
+                address:this.getProp('meterAddress') || this.getProp('address') + '/meter',
+                preArgs:this.getProp('preArgs'),
+                color:this.getProp('color'),
+                pips:false,
+                dashed:true
+            }
+            var element = parsewidgets([data],this.wrapper, this.parent)
+            element[0].classList.add('not-editable')
+            this.widget[0].classList.add('has-meter')
+        }
+
+        if (this.getProp('pips')) {
 
             this.widget.addClass('has-pips')
 
@@ -103,25 +124,6 @@ module.exports = class Fader extends _sliders_base {
             pips[0].innerHTML = pipsInner
         }
 
-
-        if (this.getProp('meter')) {
-            var parsewidgets = require('../../parser').widgets
-            var data = {
-                type:'meter',
-                id: this.getProp('id') + '/meter',
-                label:false,
-                horizontal:this.getProp('horizontal'),
-                range:this.getProp('range'),
-                logScale:this.getProp('logScale'),
-                address:this.getProp('meterAddress') || this.getProp('address') + '/meter',
-                preArgs:this.getProp('preArgs'),
-                color:this.getProp('color'),
-                pips:this.getProp('pips')
-            }
-            var element = parsewidgets([data],this.wrapper, this.parent)
-            element[0].classList.add('not-editable')
-            this.widget[0].classList.add('has-meter')
-        }
 
     }
 
@@ -176,7 +178,8 @@ module.exports = class Fader extends _sliders_base {
                 }
             }
 
-            if (this.getProp('horizontal')) {
+            if (this.getProp('horizontal')){
+                this.ctx.setTransform(1, 0, 0, 1, 0, 0)
                 this.ctx.rotate(-Math.PI/2)
                 this.ctx.translate(-this.height, 0)
             }
@@ -195,39 +198,21 @@ module.exports = class Fader extends _sliders_base {
             o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue))),
             m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
 
+        var dashed = this.getProp('dashed')
+
         this.clear()
 
         if (this.getProp('compact')) {
 
-            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
+            this.ctx.globalAlpha = 0.4//0.2 + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
-            this.ctx.moveTo(m, d)
-            this.ctx.lineTo(m, o)
+            this.ctx.moveTo(m, o)
+            this.ctx.lineTo(m, d)
             this.ctx.lineWidth = width + 2 * PXSCALE
+            if (dashed) this.ctx.setLineDash([PXSCALE, PXSCALE])
             this.ctx.stroke()
-
-            if (this.getProp('pips') && this.rangeKeys.length > 2) {
-                this.ctx.globalAlpha = 1
-
-                var y,
-                    min = Math.min(d,o),
-                    max = Math.max(d,o)
-
-                this.ctx.beginPath()
-                for (var i = 1;i < this.rangeKeys.length - 1;i++) {
-                    y = this.percentToCoord(this.rangeKeys[i])
-                    this.ctx.rect(0, y - PXSCALE, 4.5 * PXSCALE, 2 * PXSCALE)
-                    this.ctx.rect(width - 4.5 * PXSCALE, y - PXSCALE, 4.5 * PXSCALE, 2 * PXSCALE)
-                }
-                this.ctx.fillStyle = this.colors.pips
-                this.ctx.fill()
-                this.ctx.fillStyle = this.colors.light
-                this.ctx.fill()
-                this.ctx.lineWidth = 1 * PXSCALE
-                this.ctx.strokeStyle = this.colors.track
-                this.ctx.stroke()
-            }
+            if (dashed) this.ctx.setLineDash([])
 
             this.ctx.globalAlpha = 1
             this.ctx.beginPath()
@@ -268,10 +253,11 @@ module.exports = class Fader extends _sliders_base {
             this.ctx.beginPath()
             this.ctx.globalAlpha = 1
             this.ctx.strokeStyle = this.colors.gauge
-            this.ctx.moveTo(m, d)
-            this.ctx.lineTo(m, o)
+            this.ctx.moveTo(m, o)
+            this.ctx.lineTo(m, d)
+            if (dashed) this.ctx.setLineDash([PXSCALE, PXSCALE])
             this.ctx.stroke()
-
+            if (dashed) this.ctx.setLineDash([])
 
             this.ctx.globalAlpha = 1
 

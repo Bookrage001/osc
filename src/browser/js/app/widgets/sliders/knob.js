@@ -20,6 +20,7 @@ module.exports = class Knob extends _sliders_base {
             height:'auto',
             color:'auto',
             pips:true,
+            dashed:false,
             angle:270,
             css:'',
 
@@ -149,7 +150,9 @@ module.exports = class Knob extends _sliders_base {
         var o = this.percentToAngle(this.valueToPercent(this.originValue)),
             d = this.percentToAngle(this.percent),
             min = this.percentToAngle(0),
-            max = this.percentToAngle(100)
+            max = this.percentToAngle(100),
+            dashed = this.getProp('dashed')
+
 
         this.ctx.clearRect(0,0,this.width,this.height)
 
@@ -177,7 +180,10 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.lineWidth = 2 * PXSCALE
         this.ctx.beginPath()
         this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, Math.min(o,d), Math.max(o,d))
+        if (dashed) this.ctx.setLineDash([1.5, 1.5])
         this.ctx.stroke()
+        if (dashed) this.ctx.setLineDash([])
+
 
         if (this.getProp('pips')) {
             this.ctx.globalAlpha = 1

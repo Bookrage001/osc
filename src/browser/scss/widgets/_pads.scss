@@ -18,12 +18,16 @@
         display: flex;
         text-align: center;
         flex-shrink: 0;
+        .input {
+            flex:1;
+        }
     }
     > .wrapper {
         position: relative;
         height: 100%;
         width: 100%;
         background:var(--color-track);
+        border: 1rem solid var(--color-bg);
 
         > canvas {
             width:100%;
@@ -31,7 +35,6 @@
             position: absolute;
             pointer-events: none;
             z-index: 1;
-            border: 1rem solid var(--color-bg);
         }
         .fader {
             pointer-events: none;
@@ -47,7 +50,7 @@
                 background: transparent!important;
 
             }
-            canvas {
+            .wrapper {
                 border:none;
             }
             .input {
@@ -87,8 +90,7 @@
             z-index: 1;
             .fader {
                 position: relative;
-                border-radius: 3rem;
-
+                box-shadow: 0 0 0 1rem var(--color-light);
                 &:after {
                     content:"";
                     position: absolute;
@@ -99,18 +101,10 @@
                     background:transparent linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
                     z-index: -1;
                     opacity: 0.7;
-                    border-radius: inherit;
                 }
                 --color-knob:white;
                 --color-gauge:transparent;
                 --color-track:transparent;
-                .wrapper {
-                    border-radius: inherit;
-                }
-                canvas {
-                    background: transparent;
-                    border-radius: inherit;
-                }
             }
             .input {
                 display: none;
@@ -156,10 +150,11 @@
                 width:calc(100% - 2 * var(--point-size) - 2rem);
                 height:calc(100% - 2 * var(--point-size)  - 2rem);
                 .wrapper {
-                    background: transparent;
+                    border:0;
                 }
                 canvas {
-                    border:none;
+                    border:0;
+                    background: transparent;
                 }
                 .row {
                     display: none;

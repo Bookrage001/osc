@@ -49,7 +49,7 @@
         }
     }
     .input {
-        width:100%;
+        width:auto;
         height:24rem;
         border:0;
         background:transparent;
@@ -58,6 +58,8 @@
         padding:4rem 5rem;
         position: relative;
         display: var(--display-input);
+        // background: var(--color-track);
+        // border: 1rem solid var(--color-bg);
 
         input {
             position: absolute;
@@ -74,6 +76,7 @@
             color:var(--color-accent);
             border-radius: 0;
             -webkit-appearance:none;
+            // font-weight: bold;
         }
         canvas {
             width:100%;

@@ -53,10 +53,16 @@
     --color-custom:var(--color-accent);
     --color-gauge: var(--color-custom);
     --color-knob: transparent;
-    // background: var(--color-faded);
     width:100rem;
+    padding:1rem;
     &.horizontal {
         height: 130rem;
+    }
+    .fader {
+        border:1rem solid var(--color-bg);
+    }
+    canvas {
+        image-rendering:pixelated;
     }
 }
 

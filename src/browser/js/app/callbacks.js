@@ -146,7 +146,7 @@ var callbacks = module.exports = {
             $('canvas').trigger('resize',[0,0,true])
         },100)
         window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
-        window.PXSCALE_RESET()
+        // window.PXSCALE_RESET()
     },
     readOnly: function(){
         window.READ_ONLY = true

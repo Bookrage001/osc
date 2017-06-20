@@ -38,6 +38,11 @@
                 self.fontSize = parseFloat(getComputedStyle(canvas[0]).getPropertyValue("font-size"))
             }
 
+            ctx.font = self.fontSize + 'px Droid Sans'
+            ctx.textBaseline = "middle"
+            ctx.fillStyle = self.color
+            ctx.textAlign = settings.align
+
             self.val(self.value)
 
         })
@@ -51,15 +56,13 @@
             if (!self.height || !self.width || (self.height==100 && self.width==100)) return
 
             ctx.clearRect(0,0,self.width,self.height)
-            ctx.font =  self.fontSize + 'px Droid Sans'
-            ctx.textBaseline = "middle"
-            ctx.fillStyle = self.color
 
-            if (self.center) {
-                ctx.textAlign = settings.align
+            if (settings.align == 'center') {
                 ctx.fillText(newVal,self.width/2,this.height/2)
-            } else {
+            } else if (settings.align == 'left') {
                 ctx.fillText(newVal,0,this.height/2)
+            } else if (settings.align == 'right') {
+                ctx.fillText(newVal,this.width,this.height/2)
             }
 
         }

@@ -69,12 +69,12 @@ module.exports = class _sliders_base extends _canvas_base {
         }.bind(this))
 
         if (this.getProp('touchAddress') && this.getProp('touchAddress').length)
-            osctouchstate(this, this.canvas)
+            osctouchstate(this, this.wrapper)
 
-        this.widget.on('mousewheel',this.mousewheelHandleProxy.bind(this))
-        this.canvas.on('draginit',this.draginitHandleProxy.bind(this))
-        this.canvas.on('drag',this.dragHandleProxy.bind(this))
-        this.canvas.on('dragend',this.dragendHandleProxy.bind(this))
+        this.wrapper.on('mousewheel',this.mousewheelHandleProxy.bind(this))
+        this.wrapper.on('draginit',this.draginitHandleProxy.bind(this))
+        this.wrapper.on('drag',this.dragHandleProxy.bind(this))
+        this.wrapper.on('dragend',this.dragendHandleProxy.bind(this))
 
         this.input.change(()=>{
 

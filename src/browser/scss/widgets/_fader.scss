@@ -2,7 +2,7 @@
     --color-pips: var(--color-text-fade);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
-
+    padding: 1rem;
     width:100rem;
     height:100%;
     &.horizontal {
@@ -27,59 +27,39 @@
         width: 100%;
         position: relative;
         display: flex;
+        justify-content: center;
 
-        canvas {
-            width: 100%;
-        }
-
-        .meter-container {
+        > * {
             pointer-events: none;
-            position: absolute;
-            top:14rem;
-            bottom:15rem;
-            left:50%;
-            height: auto;
-            width:3rem;
-            min-width: 3rem;
         }
 
-    }
-    &:not(.has-pips):not(.compact):not(.horizontal) {
+        > canvas {
+            width: 20rem;
+            image-rendering:pixelated;
+        }
+
         .meter-container {
-            margin-left: 14rem;
-        }
-        &.align-right {
-            .meter-container {
-                margin-left: -18rem;
-            }
-        }
-    }
-    &.has-pips {
-
-        > .wrapper > canvas {
-            padding-right: 28rem;
+            height: auto;
+            width:6rem!important;
+            min-width: auto;
+            flex-grow: 0;
+            --color-border:transparent;
+            border:0;
+            margin: 14rem 0 14rem 5rem;
         }
 
         .pips {
-            pointer-events: none;
-
-            position: absolute;
-            top:16rem;
-            bottom:16rem;
-            left:50%;
-            z-index: 0;
-            width: 4rem;
-            margin-left: 7rem;
-            background: linear-gradient(to bottom, transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
-            background-size: 100% 5px;
-            background-repeat: repeat-y;
+            width: 3rem;
+            background-color: var(--color-raised);
+            position: relative;
+            margin: 16rem 12rem 16rem 5rem;
 
             .pip {
                 height:1px;
                 background: var(--color-pips);
                 color:var(--color-fg);
                 position: absolute;
-                width:8rem;
+                width:5rem;
                 left:0;
                 &:before {
                     content:"";
@@ -105,21 +85,18 @@
             }
         }
 
-        &.align-right {
-            > .wrapper > canvas {
-                padding-right: 0;
-                padding-left: 28rem;
-            }
-            .wrapper .meter-container {
-                left: auto;
-                right:50%;
-                margin-left: 0;
+    }
+
+    &.align-right {
+        .wrapper {
+            flex-direction: row-reverse;
+            .meter-container {
+                margin: 14rem 5rem 14rem 12rem;
+
             }
             .pips {
-                margin-left: 0;
-                margin-right: 7rem;
-                left:auto;
-                right:50%;
+                margin: 16rem 5rem 16rem 0;
+                background-position: top right;
                 .pip {
                     right:0;
                     left:auto;
@@ -131,110 +108,171 @@
             }
         }
     }
+
     &.horizontal {
-        &:not(.compact).has-pips .wrapper canvas, &:not(.compact).has-meter .wrapper canvas {
-            padding-right:0;
-            padding-bottom: 20rem;
-        }
-
-        .wrapper .meter-container {
-            left:14rem;
-            right:15rem;
-            height: 3rem;
-            min-height: 3rem;
-            width: auto;
-            top:50%;
-            margin-top: 3rem;
-            canvas {
-                padding:0!important;
-            }
-        }
-
-        .pips {
-            top:50%;
-            left:16rem;
-            right:16rem;
-            font-size: 0;
-            height:4rem;
-            width:auto;
-            margin:0;
-            margin-top: 10rem;
-            background: linear-gradient(to right,  transparent 0, transparent 2px, var(--color-pips)  2px, var(--color-pips) 3px, transparent 3px, transparent 5px);
-            background-size: 5px 100%;
-            background-repeat: repeat-x;
-            .pip {
-                width:1px;
-                height:6rem;
-                margin: 0;
-                &:before {
-                    top:0;
-                    bottom:0;
-                    left:-4px;
-                    right:-4px;
-                }
-                span {
-                    top:15rem;
-                    left:-15rem!important;
-                    right:auto;
-                }
-            }
-        }
-    }
-    &.compact {
-        --color-pips: var(--color-raised);
-
-        border:1rem solid var(--color-light);
-        .wrapper > canvas {
-            border:1rem solid var(--color-bg);
-        }
         .wrapper {
-
-            canvas {
-                background: var(--color-track);
-            }
-        }
-        .input {
-            overflow: hidden;
-            position: absolute;
-            top:50%;
-            transform: rotate(-90deg);
-            pointer-events: none;
-            width: 100rem;
-            margin-left: -50rem;
-            left:50%;
-            z-index: 3;
-            margin-top: -12rem;
-        }
-        .meter-container {
-            top: -1rem;
-            bottom: 0;
-            left: auto;
-            right:0;
-            border-right-width: 0;
-            border-bottom-width: 0;
-        }
-        &.align-right {
-            .meter-container {
-                right: auto;
-                left:0;
-                border-right-width: 1rem;
-                box-shadow: none;
-            }
-        }
-        &.horizontal {
-            .meter-container {
-                top: auto;
-                bottom: 0;
-                left: -1rem;
-                right:0;
-                height: 3rem;
-                min-height: 3rem;
+            flex-direction: column;
+            > canvas {
                 width: auto;
+                height: 20rem;
             }
-            .input {
-                transform: none;
-                top:50%;
+
+            .meter-container {
+                width: auto!important;
+                height:6rem;
+                min-height: auto;
+                margin: 5rem 14rem 0 14rem;
+            }
+
+            .pips {
+                width:auto;
+                height: 3rem;
+                margin: 5rem 16rem 12rem 16rem;
+                .pip {
+                    width:1px;
+                    height:5rem;
+                    margin: 0;
+                    &:before {
+                        top:0;
+                        bottom:0;
+                        left:-4px;
+                        right:-4px;
+                    }
+                    span {
+                        top:15rem;
+                        left:-15rem!important;
+                        right:auto;
+                    }
+                }
             }
         }
     }
+
+    &.compact {
+        .wrapper {
+            border: 1rem solid var(--color-bg);
+            > canvas {
+                flex:1;
+                background: var(--color-track);
+                order:1;
+            }
+            .meter-container {
+                order:3;
+                margin: 0;
+                border: 0;
+                box-shadow: none;
+                padding: 0;
+                .fader {
+                    border: 0;
+                    border-left: 1rem solid var(--color-bg);
+                    .wrapper {
+                        border: 0;
+                    }
+                }
+                .pips {
+                    display: none;
+                }
+            }
+            > .pips {
+                overflow: hidden;
+                margin: 0;
+                order:2;
+                background: var(--color-fg);
+                border:0;
+                border-left: 1rem solid var(--color-bg);
+                .pip {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &.align-right {
+            .wrapper {
+                .meter-container {
+                    .fader {
+                        border: 0;
+                        border-right: 1rem solid var(--color-bg);
+                    }
+                }
+                .pips {
+                    border:0;
+                    border-right: 1rem solid var(--color-bg);
+                }
+            }
+        }
+
+
+        --input-margin:0rem;
+        &.has-meter {
+            --input-margin:-3rem;
+        }
+
+        .input {
+            pointer-events: none;
+            position: absolute;
+            border:0;
+            background:transparent;
+        }
+
+        &.horizontal {
+            position:relative;
+
+            .wrapper {
+                .meter-container {
+                    .fader {
+                        border: 0;
+                        border-top: 1rem solid var(--color-bg);
+                    }
+                }
+            }
+
+            .input {
+                top:50%;
+                margin-top: calc(var(--input-margin) - 12rem );
+            }
+
+            .pips {
+                border:0;
+                border-top: 1rem solid var(--color-bg);
+                .pip:last-child {
+                    left:auto!important;
+                    right:0;
+                }
+            }
+        }
+
+        &:not(.horizontal) {
+            .input {
+
+                overflow: hidden;
+                position: absolute;
+                top:50%;
+                transform: rotate(-90deg);
+                width: 100rem;
+                margin-top: -12rem;
+                margin-left: calc(-1 * 50rem + var(--input-margin));
+                left:50%;
+                z-index: 3;
+            }
+
+            &.align-right {
+                .input {
+                    margin-left: calc(-1 * 50rem - var(--input-margin));
+                }
+            }
+
+            .pips {
+                .pip:last-child {
+                    top:0;
+                }
+            }
+        }
+
+
+
+    }
+
+
 }
