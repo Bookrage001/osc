@@ -53,11 +53,13 @@ $accent: adjust_hue($base, -10);
     --color-bg: #1e2833;
     --color-raised: #3d4956;
     --color-track: #222d38;
-    --color-raised-2: #516173;
-
     --color-light:rgba(white, .06);
 
-    --color-faded: darken(desaturate($base,70%),46%);
+
+    --color-raised-2: red;
+    --color-faded: pink;
+
+
 
 
 
