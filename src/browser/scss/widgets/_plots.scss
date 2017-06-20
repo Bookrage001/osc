@@ -50,19 +50,12 @@
 
 
 .meter-container {
+    @extend .fader-container;
     --color-custom:var(--color-accent);
     --color-gauge: var(--color-custom);
     --color-knob: transparent;
-    width:100rem;
-    padding:1rem;
-    &.horizontal {
-        height: 130rem;
-    }
-    .fader {
-        border:1rem solid var(--color-bg);
-    }
-    canvas {
-        image-rendering:pixelated;
+    .wrapper {
+        pointer-events: none;
     }
 }
 

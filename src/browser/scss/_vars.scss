@@ -1,67 +1,30 @@
-$base: #528bff;
-$accent: adjust_hue($base, -10);
-
-
 :root {
-/*
-    --color-text:rgba(white,.8);
-    --color-text-fade:rgba(white,0.5);
 
-
-    --color-accent:$accent;
-    --color-custom:var(--color-accent);
-    --color-grid: transparentize($accent, 0.9);
-
-    --color-fg: darken(desaturate($base,75%),45%);
-    --color-bg: darken(desaturate($base,75%),53%);
-    --color-light:rgba(lighten($accent,10%),.1);
-
-    --color-raised: mix(darken(desaturate($base,75%),45%), lighten($accent,10%), 90%);
-
-    --color-faded: darken(desaturate($base,70%),46%);
-
-    // deprecated
-    --color-raised:var(--color-light);
-    --color-track: var(--color-bg);
-
-
-
-    --nav-height:40rem;
-    --sidepanel-size:300rem;
-    --scrollbar-size:20rem;
-
-    --pixel-scale:1;
-
-    --grid-width:10;
-
-
-    --display-input:none; // Hides widgets' numeric inputs
-
-    */
-
+    ////////////////////// COLOR SCHEME
 
     --color-text:rgba(white,.8);
     --color-text-fade:rgba(white,0.5);
 
+    $accent:#52a8ff;
+    --color-fg: #283143;
+    --color-bg: #191f2a;
+    --color-raised: #313f55;
+    --color-track: #20293a;
 
-    // --color-accent:#13dbe2;
-    --color-accent:$accent;
-    --color-custom:var(--color-accent);
-    --color-grid: transparentize($accent, 0.9);
-
-    --color-fg: #313c49;
-    --color-bg: #1e2833;
-    --color-raised: #3d4956;
-    --color-track: #222d38;
     --color-light:rgba(white, .06);
 
+    ////////////////////// AUTO
+
+    --color-custom:var(--color-accent);
+    --color-accent:$accent;
+    --color-grid: transparentize($accent, 0.9);
+
+    ////////////////////// DEPRECATED
 
     --color-raised-2: red;
     --color-faded: pink;
 
-
-
-
+    ////////////////////// MISC
 
     --nav-height:40rem;
     --sidepanel-size:300rem;
