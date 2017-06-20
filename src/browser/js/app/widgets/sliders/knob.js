@@ -151,7 +151,8 @@ module.exports = class Knob extends _sliders_base {
             d = this.percentToAngle(this.percent),
             min = this.percentToAngle(0),
             max = this.percentToAngle(100),
-            dashed = this.getProp('dashed')
+            dashed = this.getProp('dashed'),
+            angle1px = PXSCALE / (this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE)
 
 
         this.ctx.clearRect(0,0,this.width,this.height)
@@ -161,13 +162,13 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.strokeStyle = this.colors.light
         this.ctx.lineWidth = 7 * PXSCALE
         this.ctx.beginPath()
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - 0.06, max + 0.06)
+        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - 2 * angle1px, max + 2 * angle1px)
         this.ctx.stroke()
 
         this.ctx.strokeStyle = this.colors.bg
         this.ctx.lineWidth = 5 * PXSCALE
         this.ctx.beginPath()
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - 0.03, max + 0.03)
+        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - angle1px, max + angle1px)
         this.ctx.stroke()
 
         this.ctx.strokeStyle = this.colors.track
@@ -183,27 +184,6 @@ module.exports = class Knob extends _sliders_base {
         if (dashed) this.ctx.setLineDash([1.5, 1.5])
         this.ctx.stroke()
         if (dashed) this.ctx.setLineDash([])
-
-
-        if (this.getProp('pips')) {
-            this.ctx.globalAlpha = 1
-
-
-            for (var pip of this.rangeKeys.concat(this.valueToPercent(this.originValue))) {
-                if ((pip == 0 || pip == 100) && this.maxAngle < 360) continue
-                let r1 = this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE - 3.5 * PXSCALE,
-                    r2 = this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE + 3.5 * PXSCALE,
-                    a  = 2 * Math.PI - this.percentToAngle(pip)
-
-                this.ctx.beginPath()
-                this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
-                this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
-
-                this.ctx.strokeStyle = this.colors.fg
-                this.ctx.lineWidth = 2 * PXSCALE
-                this.ctx.stroke()
-            }
-        }
 
         // knob
 

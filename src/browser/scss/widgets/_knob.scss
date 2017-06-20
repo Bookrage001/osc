@@ -31,6 +31,7 @@
         canvas {
             width: 100%;
             position: relative;
+            pointer-events: none;
             image-rendering: pixelated;
         }
     }
