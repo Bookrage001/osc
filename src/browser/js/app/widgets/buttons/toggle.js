@@ -34,7 +34,7 @@ module.exports = class Toggle extends _widgets_base {
 
     constructor(options) {
 
-        super({...options, html: '<div class="light"></div>'})
+        super({...options, html: '<div class="toggle"><div class="light"></div></div>'})
 
         this.widget.value = this.widget.find('span')
         this.widget.state = 0

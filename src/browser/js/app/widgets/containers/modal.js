@@ -79,7 +79,7 @@ module.exports = class Modal extends Panel {
             this.setValue(0, {sync:true, send:true})
         })
 
-        this.light = $('<div class="light"></div>').appendTo(this.container)
+        this.light = $('<div class="toggle"><div class="light"></div></div>').appendTo(this.container)
 
         if (this.getProp('doubleTap')) {
             doubletabreset(this.light, ()=>{
@@ -107,7 +107,7 @@ module.exports = class Modal extends Panel {
         }
 
         this.fixScrolling()
-        
+
         this.popup.toggle(this.value?true:false)
         this.container.toggleClass('on', this.value?true:false)
 

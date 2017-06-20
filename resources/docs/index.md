@@ -4,11 +4,11 @@ Open Stage Control is a libre desktop OSC bi-directionnal control surface applic
 
 ![](img/mockup.png)
 
-<span style="border:1px solid grey;padding:5px">
+<span style="border:1px solid lightgrey;padding:5px">
 [Try the online demo (chrome 49 required)](http://demo.osc.ammd.net)
 </span>
 
-<span style="border:1px solid grey;padding:5px">[**Get the latest release**](https://github.com/jean-emmanuel/open-stage-control/releases)
+<span style="border:1px solid lightgrey;padding:5px">[Download the latest release](https://github.com/jean-emmanuel/open-stage-control/releases)
 </span>
 
 ## Supported platforms

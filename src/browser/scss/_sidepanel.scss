@@ -10,13 +10,15 @@
     right:0;
     bottom:0;
     margin-right:calc(-1 * var(--sidepanel-size));
-    background:var(--color-fg);
+    background:var(--color-bg);
     transition:transform .25s, opacity .25s;
     transform: translate3d(0,0,0);
     opacity: 0;
     overflow-y: auto;
     overflow-x: visible;
     box-shadow: 0 0 15rem 0 var(--color-bg), 0 0 0 2rem var(--color-bg);
+    display: flex;
+    flex-direction: column;
 
     &.sidepanel-open {
         transform: translate3d(calc(-1 * var(--sidepanel-size)),0,0);
@@ -24,7 +26,8 @@
     }
 
     .navigation {
-        box-shadow: 0 2rem 0 0 var(--color-bg), 0 3rem 0 0 var(--color-light);
+        margin-bottom:2rem;
+        margin-left: 0;
         li {
             cursor:default;
         }
@@ -37,8 +40,10 @@
     }
 
     #options {
+        box-shadow: 0 0 0 1rem var(--color-light) inset;
+        background: var(--color-fg);
         padding: 8rem;
-        margin-bottom: 1rem;
+        flex:1;
         li {
             display: block;
             margin-bottom: 8rem;
@@ -57,7 +62,8 @@
     flex-wrap:wrap;
     .title {
         flex: 1 1 100%;
-        background: var(--color-faded);
+        background: var(--color-fg);
+        box-shadow: 0 0 0 1rem var(--color-light) inset;
         padding: 10rem;
         position: relative;
         &.disabled {

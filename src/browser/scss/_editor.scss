@@ -1,8 +1,11 @@
 #editor {
-    box-shadow: 0 2rem 0 0 var(--color-bg) inset, 0 3rem 0 0 var(--color-light) inset;
+    box-shadow: 0 0 0 1rem var(--color-light) inset;
+    background: var(--color-fg);
     padding: 1rem 8rem 8rem;
+    margin-top: 2rem;
     &:empty {
         padding:0;
+        margin: 0;
     }
     ul {
         padding: 4rem;
@@ -19,9 +22,9 @@
         right:0rem;
         top:0rem;
         padding:8rem;
-        color:var(--color-text-fade);
+        opacity: 0.6;
         &:hover {
-            color:var(--color-text);
+            opacity: 1;
         }
     }
 
@@ -29,7 +32,6 @@
         margin-top: 10rem;
     }
 }
-
 .form {
     line-height: 18rem;
     .input-wrapper {
@@ -76,7 +78,7 @@
     label {
         display: block;
         font-size: 10rem;
-        background: var(--color-faded);
+        // background: var(--color-track);
     }
     .info {
         color:var(--color-text-fade);
@@ -89,7 +91,7 @@
         color:var(--color-text);
         width:100%;
         .btn {
-            background: var(--color-light-fg);
+            background: var(--color-raised);
             box-shadow: 0 1rem 0 0 var(--color-light) inset;
             border-radius: 2rem;
         }
@@ -150,8 +152,8 @@
         position: relative;
         display: flex;
         align-items: center;
-        background: var(--color-faded);
         border: 1rem solid var(--color-bg);
+        box-shadow: 0 0 0 1rem var(--color-light) inset;
         span {
             text-transform: lowercase;
             font-variant: small-caps;
@@ -188,7 +190,7 @@
 .context-menu {
     position:fixed;
     z-index: 999999999;
-    background: var(--color-light-fg);
+    background: var(--color-raised);
     box-shadow: 0 0 4rem 1rem var(--color-bg);
     .item {
         color:var(--color-text)

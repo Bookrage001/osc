@@ -1,12 +1,17 @@
 .push-container {
     @extend .toggle-container;
-    > .label {
-        top:0;
-    }
-    .active {
-        background: var(--color-light);
-    }
-    .light:after{
-        display: none;
+    // .label {
+    //     top:0;
+    // }
+    .toggle {
+        &.active {
+            background-color: var(--color-fg);
+        }
+        &.on .light:before {
+            opacity: 0.3;
+        }
+        .light:after{
+            display: none;
+        }
     }
 }

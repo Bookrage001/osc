@@ -1,8 +1,13 @@
 .panel-container-base {
+    --color-border:var(--color-bg);
+    z-index: 1;
+
+    box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-border),  0 0 0 1rem var(--color-light) inset!important;
 
     > .label {
-        border-bottom:1rem solid var(--color-bg);
-        z-index: 1;
+        border-bottom:1rem solid var(--color-border);
+        z-index: 20;
+        box-shadow: 0 -1rem 0 0 var(--color-light) inset;
     }
 
     .panel {
@@ -12,13 +17,30 @@
         left:-1rem;
         right:0;
         bottom:0;
+        background: var(--color-fg);
+        --color-border: var(--color-fg);
+        box-shadow: 0.5rem 0.5rem 0 1.5rem var(--color-light) inset;
 
+        &.tab, &.root, &.has-tabs {
+            background: var(--color-bg);
+            --color-border: var(--color-bg);
+            box-shadow: none;
+
+        }
+        &:not(.tab) {
+            > .widget {
+                box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-border);
+                background: transparent;
+            }
+        }
         &.has-tabs {
             top:30rem;
             display: flex;
             flex-direction: column;
             background: var(--color-bg);
+
             > .tabs-wrapper {
+                background: var(--color-fg);
                 display: flex;
                 flex-direction: column;
                 left:-1rem;
@@ -78,9 +100,11 @@
 .strip-container {
     @extend .panel-container-base;
 
-
     width: 100rem;
     height: 100%;
+
+    background: var(--color-fg)!important;
+
     &.horizontal {
         width: 100%;
         height: 130rem;
@@ -89,6 +113,7 @@
 
     &.vertical {
         > .panel {
+
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -123,7 +148,9 @@
             flex-shrink: 0;
             height:100%;
             border-bottom:0;
-            border-right:1rem solid var(--color-bg);
+            border-right:1rem solid var(--color-border);
+            box-shadow: -1rem 0 0 0 var(--color-light) inset;
+            position: relative;
             max-height: initial;
             span {
                 transform: rotate(180deg);
@@ -154,24 +181,26 @@
 }
 
 .modal-container {
-    @extend .panel-container-base;
     @extend .toggle-container;
 
-    > .light:after {
+    .toggle .light:after {
             content:"\f077";
             font-family: FontAwesome;
-            border:0;
-            padding: 2rem 4rem;
-            opacity: .5;
             transform: rotateZ(45deg);
             display: block;
             width:10rem;
             height:10rem;
+            right:2rem;
+            top:2rem;
+            left:auto;
             line-height: 10rem;
             text-align: center;
             float:right;
-            position: static;
+            position: absolute;;
             box-shadow: none;
+            background: none;
+            color:var(--color-track);
+            text-shadow: 0 0 1rem var(--color-light);
     }
     > .label {
         top:0;
@@ -218,6 +247,10 @@
     }
     &.on {
         z-index: 99999;
+        @extend .panel-container-base;
+        .toggle .light:after {
+            color:var(--color-custom);
+        }
     }
 
 }
@@ -236,7 +269,7 @@
 .tab-container, .root-container {
     height: 100%;
     box-shadow: none;
-
+    background: var(--color-bg)!important;
 
     > .panel {
         transform: rotateZ(0);

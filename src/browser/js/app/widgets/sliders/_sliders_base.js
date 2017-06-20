@@ -148,6 +148,7 @@ module.exports = class _sliders_base extends _canvas_base {
             this.colors.track = style.getPropertyValue('--color-track')
             this.colors.gauge = style.getPropertyValue('--color-gauge')
             this.colors.knob = style.getPropertyValue('--color-knob')
+            this.colors.pips = style.getPropertyValue('--color-pips')
         }
 
         super.resizeHandle(...arguments)

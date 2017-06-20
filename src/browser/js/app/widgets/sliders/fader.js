@@ -54,7 +54,7 @@ module.exports = class Fader extends _sliders_base {
         super(options)
 
         this.widget.addClass('fader')
-        this.margin = 15
+        this.margin = 16
 
 
         if (this.getProp('horizontal')) {
@@ -158,7 +158,7 @@ module.exports = class Fader extends _sliders_base {
     percentToCoord(percent) {
 
         if (this.getProp('horizontal')) {
-            return clip(percent / 100,[0,1]) * (this.width - 2 * PXSCALE * this.margin)
+            return clip(percent / 100,[0,1]) * (this.width - 2 * PXSCALE * this.margin) + this.margin * PXSCALE
         } else {
             return (this.height - this.margin * PXSCALE) - clip(percent / 100, [0,1]) * (this.height - 2 * PXSCALE * this.margin)
         }
@@ -176,6 +176,11 @@ module.exports = class Fader extends _sliders_base {
                 }
             }
 
+            if (this.getProp('horizontal')) {
+                this.ctx.rotate(-Math.PI/2)
+                this.ctx.translate(-this.height, 0)
+            }
+
             if (CANVAS_SCALING != 1) this.ctx.scale(CANVAS_SCALING, CANVAS_SCALING)
 
     }
@@ -183,152 +188,117 @@ module.exports = class Fader extends _sliders_base {
 
     draw() {
 
-        var d = Math.round(this.percentToCoord(this.percent)),
-        o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue))),
-        m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
+        var width = this.getProp('horizontal') ? this.height : this.width,
+            height = !this.getProp('horizontal') ? this.height : this.width
+
+        var d = this.percentToCoord(this.percent),
+            o = this.percentToCoord(this.valueToPercent(this.originValue)),
+            m = this.getProp('horizontal') ? this.height / 2 : this.width / 2
 
         this.clear()
 
-        if (this.getProp('horizontal')) {
-            if (this.getProp('compact')) {
+        if (this.getProp('compact')) {
 
-                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.width-o)
-                this.ctx.strokeStyle = this.colors.gauge
+            this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
+            this.ctx.strokeStyle = this.colors.gauge
+            this.ctx.beginPath()
+            this.ctx.moveTo(m, d)
+            this.ctx.lineTo(m, o)
+            this.ctx.lineWidth = width + 2 * PXSCALE
+            this.ctx.stroke()
+
+            if (this.getProp('pips') && this.rangeKeys.length > 2) {
+                this.ctx.globalAlpha = 1
+
+                var y,
+                    min = Math.min(d,o),
+                    max = Math.max(d,o)
+
                 this.ctx.beginPath()
-                this.ctx.moveTo(d, m)
-                this.ctx.lineTo(o, m)
-                this.ctx.lineWidth = this.height + 1
-                this.ctx.stroke()
-
-
-                if (this.getProp('pips') && this.rangeKeys.length > 2) {
-                    this.ctx.lineWidth = 1 * PXSCALE
-                    this.ctx.globalAlpha = 1
-                    this.ctx.strokeStyle = this.colors.bg
-
-                    var x,
-                        min = Math.min(d,o),
-                        max = Math.max(d,o)
-
-                    this.ctx.beginPath()
-                    for (var i = 1;i < this.rangeKeys.length - 1;i++) {
-                        x = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
-                        this.ctx.moveTo(x, 0)
-                        this.ctx.lineTo(x, 4 * PXSCALE)
-                        this.ctx.moveTo(x, this.height - 4 * PXSCALE)
-                        this.ctx.lineTo(x, this.height)
-                    }
-                    this.ctx.stroke()
+                for (var i = 1;i < this.rangeKeys.length - 1;i++) {
+                    y = this.percentToCoord(this.rangeKeys[i])
+                    this.ctx.rect(0, y - PXSCALE, 4.5 * PXSCALE, 2 * PXSCALE)
+                    this.ctx.rect(width - 4.5 * PXSCALE, y - PXSCALE, 4.5 * PXSCALE, 2 * PXSCALE)
                 }
-
-                this.ctx.globalAlpha = 1
-                this.ctx.beginPath()
-                this.ctx.fillStyle = this.colors.knob
-                this.ctx.rect(Math.min(d,this.width-PXSCALE), 0, PXSCALE, this.height)
+                this.ctx.fillStyle = this.colors.pips
                 this.ctx.fill()
-
-            } else {
-
-                this.ctx.lineWidth = Math.round(2 * PXSCALE)
-
-                this.ctx.beginPath()
+                this.ctx.fillStyle = this.colors.light
+                this.ctx.fill()
+                this.ctx.lineWidth = 1 * PXSCALE
                 this.ctx.strokeStyle = this.colors.track
-                this.ctx.moveTo(this.margin * PXSCALE, m)
-                this.ctx.lineTo(this.width - this.margin * PXSCALE, m )
                 this.ctx.stroke()
-
-                this.ctx.beginPath()
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.moveTo(d + this.margin * PXSCALE, m)
-                this.ctx.lineTo(o + this.margin * PXSCALE, m)
-                this.ctx.stroke()
-
-                this.ctx.fillStyle = this.colors.knob
-
-                this.ctx.globalAlpha = 0.3
-                this.ctx.arc(d + this.margin * PXSCALE, m, 10 * PXSCALE, Math.PI * 2, false)
-                this.ctx.fill()
-                this.ctx.globalAlpha = 1
-
-                this.ctx.beginPath()
-                this.ctx.arc(d + this.margin * PXSCALE, m, 4 * PXSCALE, Math.PI * 2, false)
-                this.ctx.fill()
-
-                this.clearRect = [0, this.height / 2 - 11 * PXSCALE, this.width, 22 * PXSCALE]
-
             }
 
+            this.ctx.globalAlpha = 1
+            this.ctx.beginPath()
+            this.ctx.fillStyle = this.colors.knob
+            this.ctx.rect(0, Math.min(d, height - PXSCALE), width, PXSCALE)
+            this.ctx.fill()
+
+            this.clearRect = [0, 0, width, height]
 
         } else {
 
-            if (this.getProp('compact')) {
+            this.ctx.lineWidth = 6 * PXSCALE
 
-                this.ctx.globalAlpha = 0.2 + 0.2 * Math.abs(d-o) / (d<o?o:this.height-o)
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.beginPath()
-                this.ctx.moveTo(m, d)
-                this.ctx.lineTo(m, o)
-                this.ctx.lineWidth = this.width + 1
-                this.ctx.stroke()
+            this.ctx.beginPath()
+            this.ctx.globalAlpha = 1
+            this.ctx.strokeStyle = this.colors.light
+            this.ctx.moveTo(m, this.margin * PXSCALE - 2 * PXSCALE)
+            this.ctx.lineTo(m, height - this.margin * PXSCALE + 2 * PXSCALE)
+            this.ctx.stroke()
 
-                if (this.getProp('pips') && this.rangeKeys.length > 2) {
-                    this.ctx.lineWidth = 1 * PXSCALE
-                    this.ctx.globalAlpha = 1
-                    this.ctx.strokeStyle = this.colors.bg
+            this.ctx.lineWidth = 4 * PXSCALE
 
-                    var y,
-                        min = Math.min(d,o),
-                        max = Math.max(d,o)
+            this.ctx.beginPath()
+            this.ctx.globalAlpha = 1
+            this.ctx.strokeStyle = this.colors.bg
+            this.ctx.moveTo(m, this.margin * PXSCALE - PXSCALE)
+            this.ctx.lineTo(m, height - this.margin * PXSCALE + PXSCALE)
+            this.ctx.stroke()
 
-                    this.ctx.beginPath()
-                    for (var i = 1;i < this.rangeKeys.length - 1;i++) {
-                        y = Math.round(this.percentToCoord(this.rangeKeys[i])) + 0.5
-                        this.ctx.moveTo(0, y)
-                        this.ctx.lineTo(4 * PXSCALE, y)
-                        this.ctx.moveTo(this.width - 4 * PXSCALE, y)
-                        this.ctx.lineTo(this.width, y)
-                    }
-                    this.ctx.stroke()
-                }
+            this.ctx.lineWidth = 2 * PXSCALE
 
-                this.ctx.globalAlpha = 1
-                this.ctx.beginPath()
-                this.ctx.fillStyle = this.colors.knob
-                this.ctx.rect(0, Math.min(d, this.height - PXSCALE), this.width, PXSCALE)
-                this.ctx.fill()
+            this.ctx.beginPath()
+            this.ctx.strokeStyle = this.colors.track
+            this.ctx.moveTo(m, this.margin * PXSCALE)
+            this.ctx.lineTo(m, height - this.margin * PXSCALE)
+            this.ctx.stroke()
+
+            this.ctx.beginPath()
+            this.ctx.globalAlpha = 1
+            this.ctx.strokeStyle = this.colors.gauge
+            this.ctx.moveTo(m, d)
+            this.ctx.lineTo(m, o)
+            this.ctx.stroke()
 
 
-            } else {
+            this.ctx.globalAlpha = 1
 
-                this.ctx.lineWidth = Math.round(2 * PXSCALE)
+            this.ctx.beginPath()
+            this.ctx.rect(m - 9 * PXSCALE, d - 15 * PXSCALE, 18 * PXSCALE, 30 * PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.fillStyle = this.colors.track
+            this.ctx.fill()
 
-                this.ctx.beginPath()
-                this.ctx.strokeStyle = this.colors.track
-                this.ctx.moveTo(m, this.margin * PXSCALE)
-                this.ctx.lineTo(m, this.height - this.margin * PXSCALE)
-                this.ctx.stroke()
+            this.ctx.beginPath()
+            this.ctx.rect(m - 8 * PXSCALE, d - 14 * PXSCALE, 16 * PXSCALE, 28 * PXSCALE)
+            this.ctx.fillStyle = this.colors.raised
+            this.ctx.fill()
+            this.ctx.lineWidth = PXSCALE
 
-                this.ctx.beginPath()
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.moveTo(m, d)
-                this.ctx.lineTo(m, o)
-                this.ctx.stroke()
+            this.ctx.beginPath()
+            this.ctx.rect(m - 7 * PXSCALE, d - 13 * PXSCALE, 14 * PXSCALE, 26 * PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.strokeStyle = this.colors.light
+            this.ctx.stroke()
 
+            this.ctx.beginPath()
+            this.ctx.rect(m - 4 * PXSCALE, d, 8 * PXSCALE, PXSCALE)
+            this.ctx.fillStyle = this.colors.knob
+            this.ctx.fill()
 
-                this.ctx.beginPath()
-                this.ctx.fillStyle = this.colors.knob
-                this.ctx.globalAlpha = 0.3
-                this.ctx.arc(m, d, 10 * PXSCALE, Math.PI * 2,false)
-                this.ctx.fill()
-                this.ctx.globalAlpha = 1
-
-                this.ctx.beginPath()
-                this.ctx.arc(m, d, 4 * PXSCALE, Math.PI * 2,false)
-                this.ctx.fill()
-
-                this.clearRect = [this.width / 2 - 11 * PXSCALE, 0, 22 * PXSCALE, this.height]
-
-            }
+            this.clearRect = [width / 2 - 11 * PXSCALE, 0, 22 * PXSCALE, height]
         }
 
     }

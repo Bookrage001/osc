@@ -1,11 +1,13 @@
 .switch-container {
+    --color-border:var(--color-bg);
+    z-index: 1;
     width:100rem;
     .label {
         border-bottom: 1rem solid var(--color-bg);
     }
     &.nolabel {
         .switch .value:first-child {
-            box-shadow: none!important;
+            // box-shadow: none!important;
         }
         .switch.horizontal .value {
             box-shadow: none;
@@ -20,6 +22,8 @@
         align-items: stretch;
         flex:1;
         z-index: 1;
+        background:var(--color-bg);
+
 
         &.horizontal {
             flex-direction:row;
@@ -39,13 +43,14 @@
             }
         }
         .value {
-            background:var(--color-light);
+            background:var(--color-raised);
             padding:6rem;
             color:var(--color-text);
             width:100%;
-            height:100%;
+            flex:1;
             position: relative;
-            border-top: 1rem solid var(--color-bg);
+            // border-top: 1rem solid var(--color-bg);
+            margin-bottom:1rem;
             white-space: normal;
             text-align: center;
             word-break: break-all;
@@ -53,10 +58,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 1rem 0 0 var(--color-light) inset;
+            box-shadow: 0 0 0 1rem var(--color-light) inset!important;
 
             &:first-child {
-                border-top:0;
+                // border-top:0;
             }
 
             &:last-child {
@@ -87,18 +92,17 @@
 
 
 .switcher-container, .crossfader-container {
-    .label {
-        border-bottom: 1rem solid var(--color-bg);
-    }
     .switcher {
-        width: 100%;
         flex:1;
+        width:auto;
     }
 }
 
 .crossfader-container {
     .switcher {
         display:flex;
+        margin: 1rem;
+        border: 1rem solid var(--color-bg);
         &.horizontal {
             flex-direction: column;
             .switch {

@@ -58,6 +58,10 @@ module.exports = class Multifader extends _matrices_base {
         if (this.getProp('horizontal')) {
             this.widget.addClass('horizontal')
         }
+        
+        if (this.getProp('compact')) {
+            this.widget.addClass('compact')
+        }
 
         var strData = JSON.stringify(options.props)
 

@@ -2,12 +2,13 @@
     --color-pips: var(--color-text-fade);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
-    --color-track: var(--color-bg);
 
     width: 100rem;
     height: 120rem;
     align-items: center;
-
+    .input {
+        // display: none!important;
+    }
 }
 
 .knob {
@@ -29,15 +30,10 @@
         canvas {
             width: 100%;
             position: relative;
+            image-rendering: pixelated;
         }
     }
-    &.compact {
-        .input {
-            position: absolute;
-            top:calc(50% - 12rem);
-            pointer-events: none;
-        }
-    }
+
     .pips {
         position: absolute;
         bottom: 0;

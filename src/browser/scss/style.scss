@@ -54,7 +54,7 @@ i {
 
 
 .btn {
-    background: var(--color-light-fg);
+    background: var(--color-raised);
     display: block;
     padding:15rem;
     position: relative;
@@ -62,7 +62,7 @@ i {
     text-overflow: ellipsis;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 1rem 0 0 var(--color-light) inset;
+    box-shadow: 0 0 0 1rem var(--color-light) inset;
 
     &.small {
         padding:8rem;
@@ -131,22 +131,21 @@ i {
         white-space: nowrap;
         text-overflow: ellipsis;
         flex-grow: 0;
-        background-color: var(--color-faded);
+        background-color: var(--color-fg);
         color:var(--color-accent);
         font-size:16rem;
         line-height: 20rem;
 
         text-transform: uppercase;
-        letter-spacing: 2rem;
+        letter-spacing: 2.5rem;
 
         box-shadow: 0 1rem 0 0 var(--color-light) inset;
     }
     .footer {
-        background: var(--color-raised);
+        background: var(--color-fg);
         white-space: nowrap;
         text-overflow: ellipsis;
         flex-grow: 0;
-        background: var(--color-faded);
         border-top:2rem solid var(--color-bg);
     }
     a {
@@ -170,7 +169,7 @@ i {
             right:0rem;
             top:0rem;
             padding:15rem;
-            color:var(--color-text-fade);
+            color:var(--color-text-fader);
         }
     }
 }
@@ -248,14 +247,14 @@ i {
         }
     }
     .header {
-        background: var(--color-faded);
+        background: var(--color-fg);
         border: 1rem solid var(--color-bg);
         margin-bottom: -1rem;
         color: var(--color-accent);
         cursor: default;
         z-index: 2;
         box-shadow: none;
-        box-shadow: 0 1rem 0 0 var(--color-light) inset;
+        box-shadow: 0 0 0 1rem var(--color-light) inset;
 
         #title {
             text-transform: uppercase;
@@ -284,8 +283,7 @@ i {
             left:0;
             right: 0;
             bottom:0;
-            // box-shadow: 0 0 1rem 0 var(--color-text-fade) inset;
-            box-shadow: 0 1rem 0 0 var(--color-light) inset;
+            box-shadow: 0 0 0 1rem var(--color-light) inset;
             pointer-events: none;
         }
         &.disabled {
@@ -400,7 +398,7 @@ i {
     .popup-title {
         position: relative;
         padding:15rem;
-        background:var(--color-light-fg);
+        background:var(--color-raised);
         border-bottom: 1rem solid var(--color-bg);
         box-shadow: 0 1rem 0 0 var(--color-light) inset;
         height:46rem;

@@ -8,20 +8,18 @@
     &.nolabel .matrix {
         top:0;
     }
-    > .label {
-        border-bottom:1rem solid var(--color-bg);
-    }
+
 }
+
 .matrix {
     flex:1;
     overflow: auto;
-    background: var(--color-bg);
+    // background: var(--color-bg);
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-left:-1rem;
-    margin-right:-1rem;
-    margin-top: -1rem;
+    padding:1rem 2rem 2rem 1rem;
+
 
     > .widget {
         min-height: 0;
@@ -37,7 +35,7 @@
 
 .multifader-container {
     .matrix {
-        padding:0!important;
+        // padding:0!important;
         align-items:stretch;
         flex-wrap: nowrap;
         &.horizontal {
@@ -72,6 +70,22 @@
             > .fader {
                 height: auto;
                 flex: 1;
+
+            }
+        }
+        &.compact {
+            > .widget {
+                // box-shadow: none;
+                .label {
+                    box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-bg);
+                    box-shadow: 0 0 0 1rem var(--color-light) inset;
+                }
+                .wrapper {
+                    padding:0;
+                    canvas{
+                        border:none;
+                    }
+                }
             }
         }
     }
@@ -81,36 +95,32 @@
             left:0!important;
         }
     }
+
 }
 
 .keyboard-container {
-    --color-black: var(--color-light-fg);
+    --color-black: var(--color-raised);
     --color-white: #ccc;
     height:90rem;
     width:240rem;
-    .label {
-        border-bottom: 1rem solid var(--color-bg);
-    }
     .matrix {
         position: relative;
         overflow: hidden;
         .white {
-            --color-light-fg: var(--color-white);
-            .light.active:before {
-                opacity: .5;
-                background:var(--color-fg);
-            }
+            --color-raised: var(--color-white);
+            // &.active {
+            //     background:var(--color-custom);
+            // }
         }
         .black {
-            --color-light-fg: var(--color-black);
+            --color-raised: var(--color-black);
             position: absolute;
-            z-index: 1;
-            top:0;
+            z-index: 2;
+            top:1rem;
             height: 65%;
-            .light.active:before {
-                opacity: 1;
-                background:var(--color-fg);
-            }
+            // &.active {
+            //     background:var(--color-custom);
+            // }
         }
     }
 }

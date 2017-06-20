@@ -2,7 +2,57 @@
     width:100rem;
     height: 60rem;
     padding:0!important;
-    background: var(--color-light-fg);
+    --color-border:var(--color-bg);
+    z-index: 1;
+
+    .toggle {
+
+        background: var(--color-raised);
+        cursor: pointer;
+        flex:1;
+        display: flex;
+
+
+        .light {
+
+            flex:1;
+            display: flex;
+            box-shadow: 0 0 0 1rem var(--color-light) inset;
+            pointer-events: none;
+
+            &:after {
+                content:"";
+                opacity: 1;
+                position: absolute;
+                display: block;
+                top:3rem;
+                left:3rem;
+                right:3rem;
+                height: 4rem;
+                background: var(--color-track);
+                box-shadow: 0 0 0 1rem var(--color-light), 0 0 0 1rem var(--color-track) inset;
+                z-index: 1;
+            }
+
+            &:before {
+                content:"";
+                flex:1;
+                background: var(--color-custom);
+                opacity: 0;
+            }
+        }
+
+        &.on {
+            // background: var(--color-fg);
+
+            .light:after {
+                background: var(--color-custom);
+            }
+
+
+        }
+
+    }
 
     > .label {
         position: absolute;
@@ -20,47 +70,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1;
+        z-index: 2;
     }
 
-    cursor: pointer;
-
-    > .light {
-        flex:1;
-
-        &:after {
-            content:"";
-            opacity: 1;
-            position: absolute;
-            display: block;
-            top:3rem;
-            left:3rem;
-            right:3rem;
-            border-top: 2rem solid var(--color-bg);
-            box-shadow: 0 1rem 0 0 var(--color-light), 0 1rem 0 0 var(--color-light);
-            z-index: 1;
-            opacity: .5;
-
-        }
-
-        &:before {
-            content:"";
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background: var(--color-custom);
-            opacity: 0;
-        }
-        &.on {
-            &:before {
-                opacity: .3;
-            }
-            &:after {
-                border-top-color: var(--color-custom);
-                box-shadow: none;
-                opacity: .7;
-            }
-
-        }
-    }
 }

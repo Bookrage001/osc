@@ -2,7 +2,6 @@
     --color-pips: var(--color-text-fade);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
-    --color-track: var(--color-bg);
 
     width:100rem;
     height:100%;
@@ -10,6 +9,8 @@
         height:130rem;
         width:100%
     }
+
+
 }
 
 .fader {
@@ -28,6 +29,7 @@
         display: flex;
 
         canvas {
+            image-rendering: pixelated;
             width: 100%;
         }
 
@@ -63,8 +65,8 @@
             pointer-events: none;
 
             position: absolute;
-            top:15rem;
-            bottom:15rem;
+            top:16rem;
+            bottom:16rem;
             left:50%;
             z-index: 0;
             width: 4rem;
@@ -151,8 +153,8 @@
 
         .pips {
             top:50%;
-            left:15rem;
-            right:15rem;
+            left:16rem;
+            right:16rem;
             font-size: 0;
             height:4rem;
             width:auto;
@@ -180,9 +182,17 @@
         }
     }
     &.compact {
-        box-shadow: 0 0 0 1rem var(--color-bg);
-        .wrapper canvas {
-            background: var(--color-faded)
+        --color-pips: var(--color-raised);
+
+        border:1rem solid var(--color-light);
+        .wrapper > canvas {
+            border:1rem solid var(--color-bg);
+        }
+        .wrapper {
+
+            canvas {
+                background: var(--color-track);
+            }
         }
         .input {
             overflow: hidden;

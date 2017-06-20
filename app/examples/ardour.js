@@ -21,15 +21,14 @@
                         "variables": {},
                         "widgets": [
                             {
-                                "type": "panel",
+                                "type": "strip",
                                 "top": 50,
                                 "left": 0,
                                 "id": "transport",
                                 "label": false,
                                 "width": "100%",
-                                "height": 50,
+                                "height": 40,
                                 "color": "auto",
-                                "css": "> .panel {display: flex;padding-top:10rem}; > .panel > .widget {flex:1; min-height:100%}",
                                 "widgets": [
                                     {
                                         "type": "fader",
@@ -39,10 +38,9 @@
                                         "unit": "",
                                         "alignRight": false,
                                         "horizontal": true,
-                                        "noPip": false,
                                         "compact": true,
                                         "color": "auto",
-                                        "css": ".input {display:none}; width:110rem; flex:2",
+                                        "css": ".input {display:none}; flex:2;",
                                         "snap": false,
                                         "spring": true,
                                         "range": {
@@ -59,17 +57,15 @@
                                         "target": [],
                                         "touchAddress": "",
                                         "meterAddress": "",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "width": "auto",
-                                        "height": "auto"
+                                        "pips": true,
+                                        "doubleTap": false,
+                                        "width": 90
                                     },
                                     {
                                         "type": "push",
                                         "id": "zero",
                                         "linkId": "",
                                         "label": "^step-backward",
-                                        "width": 50,
                                         "css": "",
                                         "on": 1,
                                         "off": 0,
@@ -79,16 +75,13 @@
                                         "color": "auto",
                                         "norelease": false,
                                         "address": "/goto_start",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "end",
                                         "linkId": "",
                                         "label": "^step-forward",
-                                        "width": 50,
                                         "css": "",
                                         "on": 1,
                                         "off": 0,
@@ -98,16 +91,13 @@
                                         "color": "auto",
                                         "norelease": false,
                                         "address": "/goto_end",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "play",
                                         "linkId": "",
                                         "label": "^play",
-                                        "width": 50,
                                         "color": "lime",
                                         "css": "",
                                         "on": 1,
@@ -117,16 +107,13 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/transport_play",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "transport_stop",
                                         "linkId": "",
                                         "label": "^stop",
-                                        "width": 50,
                                         "color": "red",
                                         "css": "",
                                         "on": 1,
@@ -136,16 +123,13 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/transport_stop",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "masterrec",
                                         "linkId": "",
                                         "label": "^circle",
-                                        "width": 50,
                                         "color": "red",
                                         "css": "",
                                         "on": 1,
@@ -155,9 +139,7 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/rec_enable_toggle",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "text",
@@ -170,17 +152,13 @@
                                         "value": "00:00:00:00",
                                         "address": "/position/smpte",
                                         "widgetId": "",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "width": "auto",
-                                        "height": "auto"
+                                        "width": 180
                                     },
                                     {
                                         "type": "push",
                                         "id": "solocan",
                                         "linkId": "",
                                         "label": "Solo",
-                                        "width": 50,
                                         "color": "red",
                                         "on": 1,
                                         "off": 0,
@@ -190,15 +168,12 @@
                                         "norelease": false,
                                         "address": "/cancel_all_solos",
                                         "css": "",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "connect",
                                         "label": "^plug",
-                                        "width": 50,
                                         "css": "",
                                         "on": 0,
                                         "off": null,
@@ -212,10 +187,8 @@
                                         ],
                                         "norelease": true,
                                         "address": "/set_surface",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
@@ -230,11 +203,8 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/bank_down",
-                                        "height": "auto",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "width": "auto",
-                                        "css": ""
+                                        "css": "",
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
@@ -249,39 +219,43 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/bank_up",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "width": "auto",
-                                        "height": "auto",
-                                        "css": ""
+                                        "css": "",
+                                        "width": "auto"
                                     }
                                 ],
-                                "scroll": false,
-                                "layout": "",
                                 "spacing": 0,
                                 "variables": {},
-                                "tabs": [],
+                                "css": "",
+                                "horizontal": true,
+                                "stretch": false,
+                                "_style": "style",
+                                "_children": "children",
+                                "scroll": true,
+                                "_layout": "layout",
+                                "layout": "",
+                                "_osc": "osc",
                                 "value": "",
                                 "precision": 0,
-                                "address": "/transport",
+                                "address": "auto",
                                 "preArgs": [],
-                                "target": []
+                                "target": [],
+                                "tabs": []
                             },
                             {
                                 "type": "text",
-                                "left": 0,
                                 "id": "sess_name",
                                 "label": false,
-                                "width": "100%",
-                                "height": 40,
+                                "height": 30,
                                 "vertical": false,
                                 "color": "MediumSpringGreen ",
-                                "css": "",
                                 "preArgs": [],
                                 "top": 10,
                                 "value": " ",
                                 "address": "/session_name",
-                                "widgetId": ""
+                                "widgetId": "",
+                                "width": "100%",
+                                "left": "auto",
+                                "css": ""
                             },
                             {
                                 "type": "panel",
@@ -341,7 +315,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -352,7 +325,9 @@
                                                 "touchAddress": "",
                                                 "meterAddress": "",
                                                 "css": "bottom:0",
-                                                "top": "auto"
+                                                "top": "auto",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "fader",
@@ -378,7 +353,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -387,7 +361,9 @@
                                                 "value": "",
                                                 "address": "/strip/trimdB",
                                                 "touchAddress": "",
-                                                "meterAddress": ""
+                                                "meterAddress": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -435,7 +411,6 @@
                                                         "preArgs": [
                                                             "@{parent.variables.n}"
                                                         ],
-                                                        "noPip": false,
                                                         "snap": false,
                                                         "compact": false,
                                                         "alignRight": false,
@@ -445,7 +420,9 @@
                                                         "address": "/strip/gain",
                                                         "touchAddress": "",
                                                         "meterAddress": "/strip/meter",
-                                                        "width": 80
+                                                        "width": 80,
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -679,7 +656,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -691,7 +667,9 @@
                                                 "meterAddress": "",
                                                 "css": "bottom:0",
                                                 "top": "auto",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "fader",
@@ -716,7 +694,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -726,7 +703,9 @@
                                                 "address": "/strip/trimdB",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -773,7 +752,6 @@
                                                         "preArgs": [
                                                             "@{parent.variables.n}"
                                                         ],
-                                                        "noPip": false,
                                                         "snap": false,
                                                         "compact": false,
                                                         "alignRight": false,
@@ -784,7 +762,9 @@
                                                         "touchAddress": "",
                                                         "meterAddress": "/strip/meter",
                                                         "width": 80,
-                                                        "linkId": ""
+                                                        "linkId": "",
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1018,7 +998,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -1030,7 +1009,9 @@
                                                 "meterAddress": "",
                                                 "css": "bottom:0",
                                                 "top": "auto",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "fader",
@@ -1055,7 +1036,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -1065,7 +1045,9 @@
                                                 "address": "/strip/trimdB",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -1112,7 +1094,6 @@
                                                         "preArgs": [
                                                             "@{parent.variables.n}"
                                                         ],
-                                                        "noPip": false,
                                                         "snap": false,
                                                         "compact": false,
                                                         "alignRight": false,
@@ -1123,7 +1104,9 @@
                                                         "touchAddress": "",
                                                         "meterAddress": "/strip/meter",
                                                         "width": 80,
-                                                        "linkId": ""
+                                                        "linkId": "",
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1357,7 +1340,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -1369,7 +1351,9 @@
                                                 "meterAddress": "",
                                                 "css": "bottom:0",
                                                 "top": "auto",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "fader",
@@ -1394,7 +1378,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -1404,7 +1387,9 @@
                                                 "address": "/strip/trimdB",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -1451,7 +1436,6 @@
                                                         "preArgs": [
                                                             "@{parent.variables.n}"
                                                         ],
-                                                        "noPip": false,
                                                         "snap": false,
                                                         "compact": false,
                                                         "alignRight": false,
@@ -1462,7 +1446,9 @@
                                                         "touchAddress": "",
                                                         "meterAddress": "/strip/meter",
                                                         "width": 80,
-                                                        "linkId": ""
+                                                        "linkId": "",
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1696,7 +1682,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -1708,7 +1693,9 @@
                                                 "meterAddress": "",
                                                 "css": "bottom:0",
                                                 "top": "auto",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "fader",
@@ -1733,7 +1720,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -1743,7 +1729,9 @@
                                                 "address": "/strip/trimdB",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -1790,7 +1778,6 @@
                                                         "preArgs": [
                                                             "@{parent.variables.n}"
                                                         ],
-                                                        "noPip": false,
                                                         "snap": false,
                                                         "compact": false,
                                                         "alignRight": false,
@@ -1801,7 +1788,9 @@
                                                         "touchAddress": "",
                                                         "meterAddress": "/strip/meter",
                                                         "width": 80,
-                                                        "linkId": ""
+                                                        "linkId": "",
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -2035,7 +2024,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -2047,7 +2035,9 @@
                                                 "meterAddress": "",
                                                 "css": "bottom:0",
                                                 "top": "auto",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "fader",
@@ -2072,7 +2062,6 @@
                                                 "preArgs": [
                                                     "@{parent.variables.n}"
                                                 ],
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -2082,7 +2071,9 @@
                                                 "address": "/strip/trimdB",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "linkId": ""
+                                                "linkId": "",
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -2129,7 +2120,6 @@
                                                         "preArgs": [
                                                             "@{parent.variables.n}"
                                                         ],
-                                                        "noPip": false,
                                                         "snap": false,
                                                         "compact": false,
                                                         "alignRight": false,
@@ -2140,7 +2130,9 @@
                                                         "touchAddress": "",
                                                         "meterAddress": "/strip/meter",
                                                         "width": 80,
-                                                        "linkId": ""
+                                                        "linkId": "",
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -2389,7 +2381,6 @@
                                                 "meter": true,
                                                 "target": [],
                                                 "color": "auto",
-                                                "noPip": false,
                                                 "snap": false,
                                                 "compact": false,
                                                 "alignRight": false,
@@ -2401,7 +2392,9 @@
                                                 "meterAddress": "/master/meter",
                                                 "width": 80,
                                                 "linkId": "",
-                                                "preArgs": []
+                                                "preArgs": [],
+                                                "pips": true,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -2419,7 +2412,6 @@
                                                         "width": 40,
                                                         "height": 150,
                                                         "color": "auto",
-                                                        "noPip": false,
                                                         "compact": true,
                                                         "css": "height:calc(100% - 90rem)",
                                                         "snap": false,
@@ -2451,7 +2443,9 @@
                                                         "horizontal": false,
                                                         "meter": false,
                                                         "meterAddress": "",
-                                                        "unit": ""
+                                                        "unit": "",
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2590,7 +2584,6 @@
                                         "target": [],
                                         "color": "lime",
                                         "preArgs": [],
-                                        "noPip": true,
                                         "snap": false,
                                         "compact": true,
                                         "alignRight": false,
@@ -2600,7 +2593,9 @@
                                         "address": "/master/trimdB",
                                         "touchAddress": "",
                                         "meterAddress": "",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "pips": false,
+                                        "doubleTap": false
                                     },
                                     {
                                         "type": "fader",
@@ -2622,7 +2617,6 @@
                                         "target": [],
                                         "color": "lime",
                                         "preArgs": [],
-                                        "noPip": true,
                                         "snap": false,
                                         "compact": true,
                                         "alignRight": false,
@@ -2633,7 +2627,9 @@
                                         "touchAddress": "",
                                         "meterAddress": "",
                                         "css": "bottom:0",
-                                        "top": "auto"
+                                        "top": "auto",
+                                        "pips": false,
+                                        "doubleTap": false
                                     }
                                 ],
                                 "tabs": [],
@@ -2674,6 +2670,7 @@
                 "target": [],
                 "variables": {},
                 "tabs": [],
+                "color": "auto",
                 "scroll": true
             },
             {
@@ -2744,7 +2741,6 @@
                                                 "meter": true,
                                                 "target": [],
                                                 "color": "auto",
-                                                "noPip": false,
                                                 "snap": false,
                                                 "compact": false,
                                                 "alignRight": false,
@@ -2756,14 +2752,15 @@
                                                 "meterAddress": "/master/meter",
                                                 "width": 80,
                                                 "linkId": "",
-                                                "preArgs": []
+                                                "preArgs": [],
+                                                "pips": true,
+                                                "doubleTap": false
                                             },
                                             {
-                                                "type": "panel",
+                                                "type": "strip",
                                                 "id": "monitor",
                                                 "label": "^headphones",
                                                 "width": 40,
-                                                "height": 300,
                                                 "color": "auto",
                                                 "widgets": [
                                                     {
@@ -2771,12 +2768,8 @@
                                                         "id": "monitor",
                                                         "linkId": "",
                                                         "label": false,
-                                                        "width": 40,
-                                                        "height": 150,
                                                         "color": "auto",
-                                                        "noPip": false,
                                                         "compact": true,
-                                                        "css": "height:calc(100% - 90rem)",
                                                         "snap": false,
                                                         "range": {
                                                             "min": {
@@ -2795,8 +2788,6 @@
                                                         "precision": 2,
                                                         "preArgs": [],
                                                         "target": [],
-                                                        "left": 0,
-                                                        "top": 0,
                                                         "origin": "auto",
                                                         "spring": false,
                                                         "value": "",
@@ -2806,79 +2797,81 @@
                                                         "horizontal": false,
                                                         "meter": false,
                                                         "meterAddress": "",
-                                                        "unit": ""
+                                                        "unit": "",
+                                                        "pips": true,
+                                                        "doubleTap": false,
+                                                        "height": 10,
+                                                        "css": "flex:1"
                                                     },
                                                     {
                                                         "type": "toggle",
-                                                        "left": 0,
                                                         "id": "monmute",
                                                         "linkId": "",
                                                         "label": "Mute",
-                                                        "width": 40,
                                                         "height": 30,
                                                         "color": "Yellow",
-                                                        "css": "font-size:10rem; bottom:60rem",
+                                                        "css": "font-size:10rem; ",
                                                         "on": 1,
                                                         "off": 0,
                                                         "value": "",
                                                         "precision": 2,
                                                         "address": "/monitor/mute",
                                                         "preArgs": [],
-                                                        "target": [],
-                                                        "top": "auto"
+                                                        "target": []
                                                     },
                                                     {
                                                         "type": "toggle",
-                                                        "left": 0,
                                                         "id": "mondim",
                                                         "linkId": "",
                                                         "label": "Dim",
-                                                        "width": 40,
                                                         "height": 30,
                                                         "color": "Orange",
-                                                        "css": "font-size:10rem; bottom: 30rem",
+                                                        "css": "font-size:10rem; ",
                                                         "on": 1,
                                                         "off": 0,
                                                         "value": "",
                                                         "precision": 2,
                                                         "address": "/monitor/dim",
                                                         "preArgs": [],
-                                                        "target": [],
-                                                        "top": "auto"
+                                                        "target": []
                                                     },
                                                     {
                                                         "type": "toggle",
-                                                        "left": 0,
                                                         "id": "monmono",
                                                         "linkId": "",
                                                         "label": "Mono",
-                                                        "width": 40,
                                                         "height": 30,
                                                         "color": "Blue",
-                                                        "css": "font-size:10rem; bottom:0",
+                                                        "css": "font-size:10rem;",
                                                         "on": 1,
                                                         "off": 0,
                                                         "value": "",
                                                         "precision": 2,
                                                         "address": "/monitor/mono",
                                                         "preArgs": [],
-                                                        "target": [],
-                                                        "top": "auto"
+                                                        "target": []
                                                     }
                                                 ],
-                                                "scroll": false,
-                                                "tabs": [],
                                                 "top": 0,
                                                 "left": 80,
-                                                "layout": "",
                                                 "spacing": 0,
                                                 "variables": {},
                                                 "css": "height:calc(100% - 50rem)",
+                                                "horizontal": false,
+                                                "stretch": false,
+                                                "_style": "style",
+                                                "_children": "children",
+                                                "height": "auto",
+                                                "scroll": true,
+                                                "_layout": "layout",
+                                                "layout": "",
+                                                "_osc": "osc",
                                                 "value": "",
                                                 "precision": 0,
-                                                "address": "/monitor",
+                                                "address": "auto",
                                                 "preArgs": [],
-                                                "target": []
+                                                "target": [],
+                                                "tabs": []
                                             },
                                             {
                                                 "type": "toggle",
@@ -2945,7 +2938,6 @@
                                         "target": [],
                                         "color": "lime",
                                         "preArgs": [],
-                                        "noPip": true,
                                         "snap": false,
                                         "compact": true,
                                         "alignRight": false,
@@ -2955,7 +2947,9 @@
                                         "address": "/master/trimdB",
                                         "touchAddress": "",
                                         "meterAddress": "",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "pips": false,
+                                        "doubleTap": false
                                     },
                                     {
                                         "type": "fader",
@@ -2977,7 +2971,6 @@
                                         "target": [],
                                         "color": "lime",
                                         "preArgs": [],
-                                        "noPip": true,
                                         "snap": false,
                                         "compact": true,
                                         "alignRight": false,
@@ -2988,7 +2981,9 @@
                                         "touchAddress": "",
                                         "meterAddress": "",
                                         "css": "bottom:0",
-                                        "top": "auto"
+                                        "top": "auto",
+                                        "pips": false,
+                                        "doubleTap": false
                                     }
                                 ],
                                 "tabs": [],
@@ -3086,7 +3081,6 @@
                                                 "meter": false,
                                                 "target": [],
                                                 "color": "lime",
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -3098,7 +3092,9 @@
                                                 "meterAddress": "",
                                                 "css": "bottom:0",
                                                 "top": "auto",
-                                                "preArgs": []
+                                                "preArgs": [],
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "fader",
@@ -3121,7 +3117,6 @@
                                                 "meter": false,
                                                 "target": [],
                                                 "color": "lime",
-                                                "noPip": true,
                                                 "snap": false,
                                                 "compact": true,
                                                 "alignRight": false,
@@ -3131,7 +3126,9 @@
                                                 "address": "/select/trimdB",
                                                 "touchAddress": "",
                                                 "meterAddress": "",
-                                                "preArgs": []
+                                                "preArgs": [],
+                                                "pips": false,
+                                                "doubleTap": false
                                             },
                                             {
                                                 "type": "panel",
@@ -3176,7 +3173,6 @@
                                                         "meter": true,
                                                         "target": [],
                                                         "color": "auto",
-                                                        "noPip": false,
                                                         "snap": false,
                                                         "compact": false,
                                                         "alignRight": false,
@@ -3187,7 +3183,9 @@
                                                         "touchAddress": "",
                                                         "meterAddress": "/select/meter",
                                                         "width": 80,
-                                                        "preArgs": []
+                                                        "preArgs": [],
+                                                        "pips": true,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -3216,11 +3214,7 @@
                                                                 "color": "red",
                                                                 "value": "",
                                                                 "address": "/select/recenable",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3235,11 +3229,7 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/record_safe",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3254,11 +3244,7 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/select/monitor_input",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3273,11 +3259,7 @@
                                                                 "color": "orange",
                                                                 "value": "",
                                                                 "address": "/select/monitor_disk",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3292,11 +3274,7 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/solo",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3311,11 +3289,7 @@
                                                                 "color": "yellow",
                                                                 "value": "",
                                                                 "address": "/select/mute",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3330,11 +3304,7 @@
                                                                 "color": "pink",
                                                                 "value": "",
                                                                 "address": "/select/expand",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             }
                                                         ],
                                                         "tabs": [],
@@ -3486,7 +3456,6 @@
                                                         "target": [],
                                                         "color": "lime",
                                                         "preArgs": [],
-                                                        "noPip": true,
                                                         "snap": false,
                                                         "compact": true,
                                                         "alignRight": false,
@@ -3498,7 +3467,9 @@
                                                         "meterAddress": "",
                                                         "width": "auto",
                                                         "top": "auto",
-                                                        "left": "auto"
+                                                        "left": "auto",
+                                                        "pips": false,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3519,7 +3490,6 @@
                                                         "target": [],
                                                         "color": "lime",
                                                         "preArgs": [],
-                                                        "noPip": true,
                                                         "snap": false,
                                                         "compact": true,
                                                         "alignRight": false,
@@ -3531,7 +3501,9 @@
                                                         "meterAddress": "",
                                                         "width": "auto",
                                                         "top": "auto",
-                                                        "left": "auto"
+                                                        "left": "auto",
+                                                        "pips": false,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3552,7 +3524,6 @@
                                                         "target": [],
                                                         "color": "lime",
                                                         "preArgs": [],
-                                                        "noPip": true,
                                                         "snap": false,
                                                         "compact": true,
                                                         "alignRight": false,
@@ -3564,7 +3535,9 @@
                                                         "meterAddress": "",
                                                         "width": "auto",
                                                         "top": "auto",
-                                                        "left": "auto"
+                                                        "left": "auto",
+                                                        "pips": false,
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3585,7 +3558,6 @@
                                                         "target": [],
                                                         "color": "lime",
                                                         "preArgs": [],
-                                                        "noPip": true,
                                                         "snap": false,
                                                         "compact": true,
                                                         "alignRight": false,
@@ -3597,7 +3569,9 @@
                                                         "meterAddress": "",
                                                         "width": "auto",
                                                         "top": "auto",
-                                                        "left": "auto"
+                                                        "left": "auto",
+                                                        "pips": false,
+                                                        "doubleTap": false
                                                     }
                                                 ],
                                                 "left": 120,
@@ -3651,7 +3625,10 @@
                                                 "value": "",
                                                 "precision": 0,
                                                 "preArgs": [],
-                                                "target": []
+                                                "target": [],
+                                                "doubleTap": false,
+                                                "tabs": [],
+                                                "scroll": true
                                             },
                                             {
                                                 "type": "modal",
@@ -3690,7 +3667,10 @@
                                                 "value": "",
                                                 "precision": 0,
                                                 "preArgs": [],
-                                                "target": []
+                                                "target": [],
+                                                "doubleTap": false,
+                                                "tabs": [],
+                                                "scroll": true
                                             }
                                         ],
                                         "tabs": [],
@@ -3737,7 +3717,6 @@
                                         "unit": "",
                                         "alignRight": false,
                                         "horizontal": true,
-                                        "noPip": false,
                                         "compact": true,
                                         "color": "auto",
                                         "css": ".input {display:none}; width:110rem; flex:2",
@@ -3760,7 +3739,9 @@
                                         "top": "auto",
                                         "left": "auto",
                                         "width": "auto",
-                                        "height": "auto"
+                                        "height": "auto",
+                                        "pips": true,
+                                        "doubleTap": false
                                     },
                                     {
                                         "type": "push",
@@ -4001,6 +3982,7 @@
                 "target": [],
                 "variables": {},
                 "tabs": [],
+                "color": "auto",
                 "scroll": true
             },
             {
@@ -4198,7 +4180,19 @@
                         "horizontal": false,
                         "stretch": false,
                         "spacing": 0,
-                        "variables": {}
+                        "variables": {},
+                        "_style": "style",
+                        "scroll": true,
+                        "_layout": "layout",
+                        "layout": "",
+                        "_osc": "osc",
+                        "value": "",
+                        "precision": 0,
+                        "address": "auto",
+                        "preArgs": [],
+                        "target": [],
+                        "_children": "children",
+                        "tabs": []
                     }
                 ],
                 "type": "tab",
@@ -4212,6 +4206,7 @@
                 "target": [],
                 "variables": {},
                 "tabs": [],
+                "color": "auto",
                 "scroll": true
             }
         ],
@@ -4221,6 +4216,8 @@
         "preArgs": [],
         "target": [],
         "variables": {},
+        "color": "auto",
+        "css": "",
         "id": "root",
         "scroll": true,
         "label": false
