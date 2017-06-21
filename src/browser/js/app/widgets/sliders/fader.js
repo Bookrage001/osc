@@ -170,7 +170,7 @@ module.exports = class Fader extends _sliders_base {
     resizeHandle(){
             super.resizeHandle(...arguments)
 
-            if (this.getProp('compact') && (!this.getProp('pips') || this.rangeKeys.length == 2)) {
+            if (this.getProp('compact')) {
                 if (this.getProp('horizontal')) {
                     this.canvas[0].setAttribute('height', 1)
                 } else {
