@@ -51,17 +51,7 @@ module.exports = class Knob extends _sliders_base {
 
         this.widget.addClass('knob')
 
-        this.margin = 5
-
         this.widget.addClass('compact')
-
-        if (this.getProp('pips')) {
-            this.wrapper.append(`
-                <div class="pips">
-                    <div>${this.rangeLabels[0]}</div><div>${this.rangeLabels[this.rangeLabels.length-1]}</div>
-                </div>
-            `)
-        }
 
         this.lastOffsetX = 0
         this.lastOffsetY = 0
@@ -139,9 +129,8 @@ module.exports = class Knob extends _sliders_base {
         super.resizeHandle(...arguments)
 
         this.minDimension = Math.min(this.width, this.height)
-        this.gaugeWidth = this.minDimension / 12
 
-        this.canvas[0].style.top = (this.minDimension) * this.lostHeightFactor - (this.getProp('label') === false ? 0 : this.gaugeWidth / 4) + 'px'
+        this.wrapper[0].style.top = (this.minDimension) * this.lostHeightFactor - (this.getProp('label') === false ? 0 : this.gaugeWidth / 4) + 'px'
 
     }
 
@@ -152,25 +141,55 @@ module.exports = class Knob extends _sliders_base {
             min = this.percentToAngle(0),
             max = this.percentToAngle(100),
             dashed = this.getProp('dashed'),
-            angle1px = PXSCALE / (this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE)
+            pipsWidth = this.getProp('pips') ? 3 * PXSCALE : 0,
+            pipsRadius =  this.minDimension / 2 - pipsWidth / 2 - 5 * PXSCALE,
+            gaugeWidth = 7 * PXSCALE,
+            gaugeRadius = pipsRadius - gaugeWidth / 2 - pipsWidth / 2,
+            knobRadius = gaugeRadius - gaugeWidth
 
 
         this.ctx.clearRect(0,0,this.width,this.height)
 
         this.ctx.globalAlpha = 1
 
+        if (pipsWidth) {
+            this.ctx.strokeStyle = this.colors.light
+            this.ctx.lineWidth = pipsWidth
+            this.ctx.beginPath()
+            this.ctx.arc(this.width / 2, this.height / 2, pipsRadius, min - PXSCALE /  pipsRadius, max + PXSCALE /  pipsRadius)
+            this.ctx.stroke()
+
+            this.ctx.beginPath()
+            for (var pip of this.rangeKeys.concat(this.valueToPercent(this.originValue))) {
+                let r1 = pipsRadius - pipsWidth / 2,
+                    r2 = pipsRadius + pipsWidth / 2 + PXSCALE,
+                    a  = 2 * Math.PI - this.percentToAngle(pip)
+
+                if (pip == 0)   a += 1.5 * PXSCALE / pipsRadius
+                if (pip == 100) a -= 1.5 * PXSCALE / pipsRadius
+
+                this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
+                this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
+            }
+
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.strokeStyle = this.colors.pips
+            this.ctx.stroke()
+
+        }
+
         if (this.minDimension >= 50) {
 
             this.ctx.strokeStyle = this.colors.light
-            this.ctx.lineWidth = 7 * PXSCALE
+            this.ctx.lineWidth = gaugeWidth
             this.ctx.beginPath()
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - 2 * angle1px, max + 2 * angle1px)
+            this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min - 2 * PXSCALE /  gaugeRadius, max + 2 * PXSCALE /  gaugeRadius)
             this.ctx.stroke()
 
             this.ctx.strokeStyle = this.colors.bg
-            this.ctx.lineWidth = 5 * PXSCALE
+            this.ctx.lineWidth = gaugeWidth - 2 * PXSCALE
             this.ctx.beginPath()
-            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - angle1px, max + angle1px)
+            this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min - PXSCALE /  gaugeRadius, max + PXSCALE /  gaugeRadius)
             this.ctx.stroke()
 
         }
@@ -178,16 +197,16 @@ module.exports = class Knob extends _sliders_base {
         if (dashed) this.ctx.setLineDash([1.5, 1.5])
 
         this.ctx.strokeStyle = this.colors.track
-        this.ctx.lineWidth = 2 * PXSCALE
+        this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
         this.ctx.beginPath()
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min, max)
+        this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min, max)
         this.ctx.stroke()
 
         this.ctx.strokeStyle = this.colors.gauge
-        this.ctx.lineWidth = 2 * PXSCALE
+        this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
         this.ctx.beginPath()
 
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, o, d, o > d)
+        this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, o, d, o > d)
         this.ctx.stroke()
 
         if (dashed) this.ctx.setLineDash([])
@@ -199,22 +218,22 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.fillStyle = this.colors.raised
         this.ctx.beginPath()
         this.ctx.globalAlpha = 1
-        this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 2 - this.margin * PXSCALE, 0, Math.PI * 2)
+        this.ctx.arc(this.width / 2, this.height / 2,  knobRadius, 0, Math.PI * 2)
         this.ctx.fill()
         this.ctx.strokeStyle = this.colors.track
         this.ctx.stroke()
 
         this.ctx.beginPath()
         this.ctx.globalAlpha = 1
-        this.ctx.arc(this.width / 2, this.height / 2,  this.minDimension / 2 - this.gaugeWidth * 2 - this.margin * PXSCALE - PXSCALE, 0, Math.PI * 2)
+        this.ctx.arc(this.width / 2, this.height / 2,  knobRadius - PXSCALE, 0, Math.PI * 2)
         this.ctx.strokeStyle = this.colors.light
         this.ctx.stroke()
 
         // cursor
         this.ctx.globalAlpha = 1
 
-        let r1 = this.minDimension / 2 - this.gaugeWidth * 2 - this.margin * PXSCALE,
-            r2 = this.minDimension / 2 - this.gaugeWidth * 3 - this.margin * PXSCALE,
+        let r1 = knobRadius,
+            r2 = knobRadius / 3,
             a  = 2 * Math.PI - d
 
         this.ctx.beginPath()
