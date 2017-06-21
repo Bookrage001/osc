@@ -52,7 +52,7 @@
             width: 3rem;
             background-color: var(--color-light);
             position: relative;
-            margin: 16rem 12rem 16rem 5rem;
+            margin: 17rem 12rem 15rem 5rem;
 
             .pip {
                 height:1px;
@@ -127,7 +127,7 @@
             .pips {
                 width:auto;
                 height: 3rem;
-                margin: 5rem 16rem 12rem 16rem;
+                margin: 5rem 15rem 12rem 17rem;
                 .pip {
                     width:1px;
                     height:5rem;
@@ -178,7 +178,7 @@
                 overflow: hidden;
                 margin: 0;
                 order:2;
-                background: var(--color-fg);
+                background: var(--color-track);
                 border:0;
                 border-left: 1rem solid var(--color-bg);
                 .pip {
