@@ -89,6 +89,21 @@ argv = argv.argv
 var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8'))} catch(err) {return {}}}(),
     defaultConfig
 
+var loadTheme = function(t){
+    if (!t) return
+    var style = []
+    for (i in t) {
+        try {style.push(fs.readFileSync(__dirname + '/themes/' + t[i] + '.css','utf-8'))}
+        catch(err) {
+            try {style.push(fs.readFileSync(t[i],'utf-8'))}
+            catch(err) {
+                console.log('Theme "' + t[i] + '" not found.')
+            }
+        }
+    }
+    return style.join('\n')
+}
+
 var makeDefaultConfig = function(argv){
     defaultConfig = {
         argv:argv,
@@ -124,20 +139,7 @@ var makeDefaultConfig = function(argv){
             return appAddresses
         }(),
         examples: argv.e,
-        theme: function(){
-            if (!argv.t) return
-            var style = []
-            for (i in argv.t) {
-                try {style.push(fs.readFileSync(__dirname + '/themes/' + argv.t[i] + '.css','utf-8'))}
-                catch(err) {
-                    try {style.push(fs.readFileSync(argv.t[i],'utf-8'))}
-                    catch(err) {
-                        console.log('Theme "' + argv.t[i] + '" not found.')
-                    }
-                }
-            }
-            return style.join('\n')
-        }()
+        theme: loadTheme(argv.t)
     }
 }
 
@@ -157,6 +159,9 @@ module.exports = {
         fs.writeFile(configFile,JSON.stringify(config,null,4), function (err, data) {
             if (err) throw err
         })
+    },
+    reloadTheme:function(){
+        module.exports.write('theme',loadTheme(argv.t),true)
     }
 
 }

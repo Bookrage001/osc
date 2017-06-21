@@ -273,6 +273,7 @@ module.exports =  {
     },
 
     reloadCss:function(){
+        if (settings.read('theme')) settings.reloadTheme()
         ipc.send('reloadCss')
     },
 
