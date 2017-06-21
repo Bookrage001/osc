@@ -184,7 +184,7 @@
 .modal-container {
     @extend .toggle-container;
 
-    .toggle .light:after {
+    > .toggle .light:after {
             content:"\f077";
             font-family: FontAwesome;
             transform: rotateZ(45deg);
