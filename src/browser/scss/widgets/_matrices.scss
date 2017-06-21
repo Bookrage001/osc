@@ -74,16 +74,27 @@
             }
         }
         &.compact {
+            padding:2rem;
             > .widget {
-                // box-shadow: none;
+                box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-bg);
                 .label {
                     box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-bg);
                     box-shadow: 0 0 0 1rem var(--color-light) inset;
                 }
+                padding:0;
                 .wrapper {
-                    padding:0;
+                    border:0;
+                    border-top:1rem solid var(--color-bg);
                     canvas{
                         border:none;
+                    }
+                }
+            }
+            &.horizontal {
+                > .widget {
+                    .wrapper {
+                        border:0;
+                        border-left:1rem solid var(--color-bg);
                     }
                 }
             }
