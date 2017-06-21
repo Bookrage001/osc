@@ -196,7 +196,7 @@ module.exports = class Rgb extends _pads_base {
         if (!options.nohue && !options.dragged) {
             var hue = hsbToRgb({h:this.hsb.h,s:100,b:100})
             this.hue = `rgb(${Math.round(hue.r)},${Math.round(hue.g)},${Math.round(hue.b)})`
-            this.wrapper[0].setAttribute('style',`background:${this.hue}`)
+            this.wrapper[0].setAttribute('style',`background-color:${this.hue}`)
             this.faders.h.setValue(this.hsb.h, {sync: false, send:false, dragged:false})
         }
 
