@@ -9,8 +9,15 @@
         height:130rem;
         width:100%
     }
+}
 
-
+.panel:not(.tab) > .fader-container {
+    --color-border:transparent;
+    > .fader.compact .wrapper {
+        padding: 1rem;
+        border: 1rem solid var(--color-light);
+        box-shadow: 0 0 0 1rem var(--color-bg) inset;
+    }
 }
 
 .fader {

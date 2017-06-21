@@ -1,11 +1,11 @@
 .formula-container {
     width: 100rem;
     height:60rem;
+    padding: 1rem;
     .formula {
         display:flex;
         height:100%;
         background: var(--color-track);
-        margin:1rem;
         border:1rem solid var(--color-bg);
         .input {
             height:auto;
@@ -14,5 +14,14 @@
     }
     .input {
         --color-text: var(--color-custom);
+    }
+}
+
+.panel:not(.tab) > .formula-container {
+    --color-border:transparent;
+    .formula {
+        padding: 1rem;
+        border:1rem solid var(--color-light);
+        box-shadow: 0 0 0 1rem var(--color-bg) inset;
     }
 }
