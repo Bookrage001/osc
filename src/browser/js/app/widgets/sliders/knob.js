@@ -159,17 +159,21 @@ module.exports = class Knob extends _sliders_base {
 
         this.ctx.globalAlpha = 1
 
-        this.ctx.strokeStyle = this.colors.light
-        this.ctx.lineWidth = 7 * PXSCALE
-        this.ctx.beginPath()
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - 2 * angle1px, max + 2 * angle1px)
-        this.ctx.stroke()
+        if (this.minDimension >= 50) {
 
-        this.ctx.strokeStyle = this.colors.bg
-        this.ctx.lineWidth = 5 * PXSCALE
-        this.ctx.beginPath()
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - angle1px, max + angle1px)
-        this.ctx.stroke()
+            this.ctx.strokeStyle = this.colors.light
+            this.ctx.lineWidth = 7 * PXSCALE
+            this.ctx.beginPath()
+            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - 2 * angle1px, max + 2 * angle1px)
+            this.ctx.stroke()
+
+            this.ctx.strokeStyle = this.colors.bg
+            this.ctx.lineWidth = 5 * PXSCALE
+            this.ctx.beginPath()
+            this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, min - angle1px, max + angle1px)
+            this.ctx.stroke()
+
+        }
 
         this.ctx.strokeStyle = this.colors.track
         this.ctx.lineWidth = 2 * PXSCALE
