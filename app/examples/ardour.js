@@ -57,9 +57,10 @@
                                         "target": [],
                                         "touchAddress": "",
                                         "meterAddress": "",
-                                        "pips": true,
+                                        "pips": false,
                                         "doubleTap": false,
-                                        "width": 90
+                                        "width": 90,
+                                        "dashed": false
                                     },
                                     {
                                         "type": "push",
@@ -327,7 +328,8 @@
                                                 "css": "bottom:0",
                                                 "top": "auto",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "fader",
@@ -363,7 +365,8 @@
                                                 "touchAddress": "",
                                                 "meterAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -422,7 +425,8 @@
                                                         "meterAddress": "/strip/meter",
                                                         "width": 80,
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -669,7 +673,8 @@
                                                 "top": "auto",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "fader",
@@ -705,7 +710,8 @@
                                                 "meterAddress": "",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -764,7 +770,8 @@
                                                         "width": 80,
                                                         "linkId": "",
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1011,7 +1018,8 @@
                                                 "top": "auto",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "fader",
@@ -1047,7 +1055,8 @@
                                                 "meterAddress": "",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -1106,7 +1115,8 @@
                                                         "width": 80,
                                                         "linkId": "",
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1353,7 +1363,8 @@
                                                 "top": "auto",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "fader",
@@ -1389,7 +1400,8 @@
                                                 "meterAddress": "",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -1448,7 +1460,8 @@
                                                         "width": 80,
                                                         "linkId": "",
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1695,7 +1708,8 @@
                                                 "top": "auto",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "fader",
@@ -1731,7 +1745,8 @@
                                                 "meterAddress": "",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -1790,7 +1805,8 @@
                                                         "width": 80,
                                                         "linkId": "",
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -2037,7 +2053,8 @@
                                                 "top": "auto",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "fader",
@@ -2073,7 +2090,8 @@
                                                 "meterAddress": "",
                                                 "linkId": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -2132,7 +2150,8 @@
                                                         "width": 80,
                                                         "linkId": "",
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -2394,7 +2413,8 @@
                                                 "linkId": "",
                                                 "preArgs": [],
                                                 "pips": true,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -2445,7 +2465,8 @@
                                                         "meterAddress": "",
                                                         "unit": "",
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2595,7 +2616,8 @@
                                         "meterAddress": "",
                                         "linkId": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "type": "fader",
@@ -2629,7 +2651,8 @@
                                         "css": "bottom:0",
                                         "top": "auto",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "tabs": [],
@@ -2754,7 +2777,8 @@
                                                 "linkId": "",
                                                 "preArgs": [],
                                                 "pips": true,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "strip",
@@ -2801,7 +2825,8 @@
                                                         "pips": true,
                                                         "doubleTap": false,
                                                         "height": 10,
-                                                        "css": "flex:1"
+                                                        "css": "flex:1",
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2949,7 +2974,8 @@
                                         "meterAddress": "",
                                         "linkId": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "type": "fader",
@@ -2983,7 +3009,8 @@
                                         "css": "bottom:0",
                                         "top": "auto",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "tabs": [],
@@ -3094,7 +3121,8 @@
                                                 "top": "auto",
                                                 "preArgs": [],
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "fader",
@@ -3128,7 +3156,8 @@
                                                 "meterAddress": "",
                                                 "preArgs": [],
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "panel",
@@ -3185,7 +3214,8 @@
                                                         "width": 80,
                                                         "preArgs": [],
                                                         "pips": true,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "panel",
@@ -3469,7 +3499,8 @@
                                                         "top": "auto",
                                                         "left": "auto",
                                                         "pips": false,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3503,7 +3534,8 @@
                                                         "top": "auto",
                                                         "left": "auto",
                                                         "pips": false,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3537,7 +3569,8 @@
                                                         "top": "auto",
                                                         "left": "auto",
                                                         "pips": false,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3571,7 +3604,8 @@
                                                         "top": "auto",
                                                         "left": "auto",
                                                         "pips": false,
-                                                        "doubleTap": false
+                                                        "doubleTap": false,
+                                                        "dashed": false
                                                     }
                                                 ],
                                                 "left": 120,
@@ -3699,15 +3733,30 @@
                                 "target": []
                             },
                             {
-                                "type": "panel",
+                                "type": "text",
+                                "id": "sess_name",
+                                "label": false,
+                                "height": 30,
+                                "vertical": false,
+                                "color": "MediumSpringGreen ",
+                                "preArgs": [],
+                                "top": 10,
+                                "value": " ",
+                                "address": "/session_name",
+                                "widgetId": "",
+                                "width": "100%",
+                                "left": 0,
+                                "css": ""
+                            },
+                            {
+                                "type": "strip",
                                 "top": 50,
                                 "left": 0,
                                 "id": "transport",
                                 "label": false,
                                 "width": "100%",
-                                "height": 50,
+                                "height": 40,
                                 "color": "auto",
-                                "css": "> .panel {display: flex;padding-top:10rem}; > .panel > .widget {flex:1; min-height:100%}",
                                 "widgets": [
                                     {
                                         "type": "fader",
@@ -3719,7 +3768,7 @@
                                         "horizontal": true,
                                         "compact": true,
                                         "color": "auto",
-                                        "css": ".input {display:none}; width:110rem; flex:2",
+                                        "css": ".input {display:none}; flex:2;",
                                         "snap": false,
                                         "spring": true,
                                         "range": {
@@ -3736,19 +3785,16 @@
                                         "target": [],
                                         "touchAddress": "",
                                         "meterAddress": "",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "width": "auto",
-                                        "height": "auto",
-                                        "pips": true,
-                                        "doubleTap": false
+                                        "pips": false,
+                                        "doubleTap": false,
+                                        "width": 90,
+                                        "dashed": false
                                     },
                                     {
                                         "type": "push",
                                         "id": "zero",
                                         "linkId": "",
                                         "label": "^step-backward",
-                                        "width": 50,
                                         "css": "",
                                         "on": 1,
                                         "off": 0,
@@ -3758,16 +3804,13 @@
                                         "color": "auto",
                                         "norelease": false,
                                         "address": "/goto_start",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "end",
                                         "linkId": "",
                                         "label": "^step-forward",
-                                        "width": 50,
                                         "css": "",
                                         "on": 1,
                                         "off": 0,
@@ -3777,16 +3820,13 @@
                                         "color": "auto",
                                         "norelease": false,
                                         "address": "/goto_end",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "play",
                                         "linkId": "",
                                         "label": "^play",
-                                        "width": 50,
                                         "color": "lime",
                                         "css": "",
                                         "on": 1,
@@ -3796,16 +3836,13 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/transport_play",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "transport_stop",
                                         "linkId": "",
                                         "label": "^stop",
-                                        "width": 50,
                                         "color": "red",
                                         "css": "",
                                         "on": 1,
@@ -3815,16 +3852,13 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/transport_stop",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "masterrec",
                                         "linkId": "",
                                         "label": "^circle",
-                                        "width": 50,
                                         "color": "red",
                                         "css": "",
                                         "on": 1,
@@ -3834,9 +3868,7 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/rec_enable_toggle",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "text",
@@ -3849,17 +3881,13 @@
                                         "value": "00:00:00:00",
                                         "address": "/position/smpte",
                                         "widgetId": "",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "width": "auto",
-                                        "height": "auto"
+                                        "width": 180
                                     },
                                     {
                                         "type": "push",
                                         "id": "solocan",
                                         "linkId": "",
                                         "label": "Solo",
-                                        "width": 50,
                                         "color": "red",
                                         "on": 1,
                                         "off": 0,
@@ -3869,15 +3897,12 @@
                                         "norelease": false,
                                         "address": "/cancel_all_solos",
                                         "css": "",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto"
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
                                         "id": "connect",
                                         "label": "^plug",
-                                        "width": 50,
                                         "css": "",
                                         "on": 0,
                                         "off": null,
@@ -3891,10 +3916,8 @@
                                         ],
                                         "norelease": true,
                                         "address": "/set_surface",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "height": "auto",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
@@ -3909,11 +3932,8 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/bank_down",
-                                        "height": "auto",
-                                        "top": "auto",
-                                        "left": "auto",
-                                        "width": "auto",
-                                        "css": ""
+                                        "css": "",
+                                        "width": "auto"
                                     },
                                     {
                                         "type": "push",
@@ -3928,39 +3948,27 @@
                                         "target": [],
                                         "norelease": false,
                                         "address": "/bank_up",
-                                        "left": "auto",
-                                        "top": "auto",
-                                        "width": "auto",
-                                        "height": "auto",
-                                        "css": ""
+                                        "css": "",
+                                        "width": "auto"
                                     }
                                 ],
-                                "scroll": false,
-                                "layout": "",
                                 "spacing": 0,
                                 "variables": {},
-                                "tabs": [],
+                                "css": "",
+                                "horizontal": true,
+                                "stretch": false,
+                                "_style": "style",
+                                "_children": "children",
+                                "scroll": true,
+                                "_layout": "layout",
+                                "layout": "",
+                                "_osc": "osc",
                                 "value": "",
                                 "precision": 0,
-                                "address": "/transport",
+                                "address": "auto",
                                 "preArgs": [],
-                                "target": []
-                            },
-                            {
-                                "type": "text",
-                                "left": 0,
-                                "id": "sess_name",
-                                "label": false,
-                                "width": "100%",
-                                "height": 40,
-                                "vertical": false,
-                                "color": "MediumSpringGreen ",
-                                "css": "",
-                                "preArgs": [],
-                                "top": 10,
-                                "value": " ",
-                                "address": "/session_name",
-                                "widgetId": ""
+                                "target": [],
+                                "tabs": []
                             }
                         ],
                         "tabs": [],
@@ -4182,6 +4190,7 @@
                         "spacing": 0,
                         "variables": {},
                         "_style": "style",
+                        "_children": "children",
                         "scroll": true,
                         "_layout": "layout",
                         "layout": "",
@@ -4191,7 +4200,6 @@
                         "address": "auto",
                         "preArgs": [],
                         "target": [],
-                        "_children": "children",
                         "tabs": []
                     }
                 ],
