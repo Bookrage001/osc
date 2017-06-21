@@ -117,7 +117,7 @@ module.exports = class Modal extends Panel {
         }
 
         if (!this.init || this.value) this.fixStacking()
-        if (!this.init) this.init = true
+        if (!this.init && this.value) this.init = true
 
         if (options.send) this.sendValue()
         if (options.sync) this.light.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
