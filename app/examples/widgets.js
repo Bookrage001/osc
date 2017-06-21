@@ -27,15 +27,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_1",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -97,7 +97,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -166,15 +167,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_2",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -236,7 +237,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -305,15 +307,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_3",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -375,7 +377,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -444,15 +447,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_4",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -514,7 +517,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -583,15 +587,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_5",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -653,7 +657,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -722,15 +727,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_6",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -792,7 +797,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -861,15 +867,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_7",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -931,7 +937,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -1000,15 +1007,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_8",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -1070,7 +1077,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -1139,15 +1147,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_9",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -1209,7 +1217,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -1278,15 +1287,15 @@
                                 "color": "auto",
                                 "logScale": false,
                                 "preArgs": [],
-                                "compact": false,
                                 "angle": 270,
-                                "origin": "auto",
+                                "origin": 0.5,
                                 "address": "/knob_10",
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "pips": false,
-                                "doubleTap": false
+                                "pips": true,
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": false,
@@ -1348,7 +1357,8 @@
                                 "meterAddress": "",
                                 "height": "auto",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "label": "Mute",
@@ -1944,7 +1954,8 @@
                                         "touchAddress": "",
                                         "meterAddress": "",
                                         "pips": true,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "type": "fader",
@@ -1978,7 +1989,8 @@
                                         "touchAddress": "",
                                         "meterAddress": "",
                                         "pips": true,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "type": "fader",
@@ -2012,7 +2024,8 @@
                                         "touchAddress": "",
                                         "meterAddress": "",
                                         "pips": true,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "type": "fader",
@@ -2046,7 +2059,8 @@
                                         "touchAddress": "",
                                         "meterAddress": "",
                                         "pips": true,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "tabs": [],
@@ -2191,7 +2205,6 @@
                                                 "color": "auto",
                                                 "logScale": false,
                                                 "preArgs": [],
-                                                "compact": false,
                                                 "angle": 270,
                                                 "origin": "auto",
                                                 "address": "/fader_21",
@@ -2199,7 +2212,8 @@
                                                 "spring": false,
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "knob",
@@ -2222,7 +2236,6 @@
                                                 "color": "auto",
                                                 "logScale": false,
                                                 "preArgs": [],
-                                                "compact": false,
                                                 "angle": 270,
                                                 "origin": "auto",
                                                 "address": "/fader_22",
@@ -2230,7 +2243,8 @@
                                                 "spring": false,
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "knob",
@@ -2253,7 +2267,6 @@
                                                 "color": "auto",
                                                 "logScale": false,
                                                 "preArgs": [],
-                                                "compact": false,
                                                 "angle": 270,
                                                 "origin": "auto",
                                                 "address": "/fader_23",
@@ -2261,7 +2274,8 @@
                                                 "spring": false,
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "type": "knob",
@@ -2284,7 +2298,6 @@
                                                 "color": "auto",
                                                 "logScale": false,
                                                 "preArgs": [],
-                                                "compact": false,
                                                 "angle": 270,
                                                 "origin": "auto",
                                                 "address": "/fader_24",
@@ -2292,7 +2305,8 @@
                                                 "spring": false,
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             }
                                         ],
                                         "id": "tab_6",
