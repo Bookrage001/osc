@@ -14,8 +14,7 @@ var scrolls = function(){
             var d = -e.originalEvent.deltaY/(10*Math.abs(e.originalEvent.deltaY))
 
             PXSCALE = parseFloat(d)+parseFloat(PXSCALE)
-            document.documentElement.style.setProperty("--pixel-scale",'')
-            document.documentElement.style.setProperty("--pixel-scale",PXSCALE)
+            document.documentElement.style.setProperty('font-size', PXSCALE + 'px')
 
             $(window).resize()
         }
@@ -23,8 +22,7 @@ var scrolls = function(){
     $(document).on('keydown.resetzoom', function(e){
         if (e.keyCode==96||e.keyCode==48) {
             PXSCALE = INITIALZOOM
-            document.documentElement.style.setProperty("--pixel-scale",'')
-            document.documentElement.style.setProperty("--pixel-scale",PXSCALE)
+            document.documentElement.style.setProperty('font-size', PXSCALE + 'px')
 
             $(window).resize()
         }

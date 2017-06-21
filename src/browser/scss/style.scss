@@ -33,7 +33,7 @@ html, body {
 
 html{
     // global pixel scaling
-    font-size: calc(var(--pixel-scale) * 1px);
+    font-size: 1px;
 
     // prevent android's auto font-resize
     max-height: 999999px;

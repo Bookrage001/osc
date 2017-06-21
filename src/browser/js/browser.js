@@ -21,7 +21,7 @@ window.PXSCALE = 1
 window.INITIALZOOM = ARGV.zoom ? ARGV.zoom : 1
 window.PXSCALE_RESET = ()=>{
     PXSCALE = INITIALZOOM
-    document.documentElement.style.setProperty("--pixel-scale", PXSCALE)
+    document.documentElement.style.setProperty('font-size', PXSCALE + 'px')
 }
 PXSCALE_RESET()
 
