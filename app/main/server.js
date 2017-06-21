@@ -13,7 +13,12 @@ express.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser/index.html'))
 })
 express.get('*', function(req, res){
-    res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
+    if (req.path.indexOf('theme.css') != -1 && settings.read('theme')) {
+        res.set('Content-Type', 'text/css');
+        res.send(new Buffer(settings.read('theme')))
+    } else {
+        res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
+    }
 })
 
 server.listen(settings.read('httpPort'))

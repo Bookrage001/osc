@@ -15,8 +15,6 @@ module.exports =  {
     ready: function(data,clientId) {
         ipc.send('connected')
 
-        if (settings.read('theme')) ipc.send('applyStyle',settings.read('theme'),clientId)
-
         if (settings.read('readOnly')) {
             ipc.send('readOnly')
         }

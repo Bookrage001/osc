@@ -126,17 +126,6 @@ var callbacks = module.exports = {
         utils.createPopup(icon('warning')+'&nbsp;'+data.title,data.text,true)
     },
 
-    applyStyle: function(data){
-        var style = document.createElement('style'),
-            css = data.join('')
-        style.innerHTML = css
-        document.body.appendChild(style)
-        window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
-        if (css.indexOf('--pixel-scale') != -1) {
-            window.PXSCALE_RESET()
-        }
-    },
-
     reloadCss: function(){
         var queryString = '?reload=' + new Date().getTime()
         $('link[rel="stylesheet"][hot-reload]').each(function () {
