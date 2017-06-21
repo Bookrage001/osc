@@ -354,13 +354,35 @@ i {
 .spinner {
     display: block;
     margin: 0 auto;
-    height:30rem;
-    width:30rem;
+    height:36rem;
+    width:36rem;
     border-radius: 50%;
-    border:2rem solid var(--color-track);
-    border-top-color:var(--color-accent);
-    transform: rotateZ(0deg);
-    animation: spin .5s linear infinite;
+    border:5rem solid var(--color-light);
+    position: relative;
+
+    &:before {
+        content:"";
+        position: absolute;
+        left:-4rem;
+        top:-4rem;
+        right:-4rem;
+        bottom:-4rem;
+        border:4rem solid var(--color-bg);
+        border-radius: 50%;
+    }
+    &:after {
+        content:"";
+        position: absolute;
+        left:-3rem;
+        top:-3rem;
+        right:-3rem;
+        bottom:-3rem;
+        border:2rem solid var(--color-track);
+        border-top:2rem solid var(--color-accent);
+        transform: rotateZ(0deg);
+        animation: spin .5s linear infinite;
+        border-radius: 50%;
+    }
 }
 
 @keyframes spin {
