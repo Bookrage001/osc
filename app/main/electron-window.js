@@ -3,6 +3,10 @@ var path = require('path'),
     shortcut = require('electron-localshortcut'),
     settings = require('./settings')
 
+var bgColor = settings.read('theme') && settings.read('theme').indexOf('--color-bg:') != -1 ?
+                settings.read('theme').match(/--color-bg:([^;]*);/)[1].trim()
+                : '#191f2a'
+
 module.exports = function(options={}) {
 
     var window
@@ -11,7 +15,7 @@ module.exports = function(options={}) {
         width: options.width || 800,
         height: options.height || 600,
         title: options.title || settings.read('appName'),
-        backgroundColor:'#191f2a',
+        backgroundColor: bgColor,
         type:options.type
     })
 
