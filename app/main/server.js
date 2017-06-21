@@ -13,9 +13,13 @@ express.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser/index.html'))
 })
 express.get('*', function(req, res){
-    if (req.path.indexOf('theme.css') != -1 && settings.read('theme')) {
-        res.set('Content-Type', 'text/css');
-        res.send(new Buffer(settings.read('theme')))
+    if (req.path.indexOf('theme.css') != -1) {
+        if (settings.read('theme')) {
+            res.set('Content-Type', 'text/css');
+            res.send(new Buffer(settings.read('theme')))
+        } else {
+            res.send('')
+        }
     } else {
         res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
     }
