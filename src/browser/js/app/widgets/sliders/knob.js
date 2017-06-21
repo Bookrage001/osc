@@ -175,6 +175,8 @@ module.exports = class Knob extends _sliders_base {
 
         }
 
+        if (dashed) this.ctx.setLineDash([1.5, 1.5])
+
         this.ctx.strokeStyle = this.colors.track
         this.ctx.lineWidth = 2 * PXSCALE
         this.ctx.beginPath()
@@ -184,9 +186,10 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.strokeStyle = this.colors.gauge
         this.ctx.lineWidth = 2 * PXSCALE
         this.ctx.beginPath()
-        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, Math.min(o,d), Math.max(o,d))
-        if (dashed) this.ctx.setLineDash([1.5, 1.5])
+
+        this.ctx.arc(this.width / 2, this.height / 2, this.minDimension / 2 - this.gaugeWidth - this.margin * PXSCALE, o, d, o > d)
         this.ctx.stroke()
+
         if (dashed) this.ctx.setLineDash([])
 
         // knob
