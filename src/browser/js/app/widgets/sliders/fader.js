@@ -60,14 +60,7 @@ module.exports = class Fader extends _sliders_base {
 
         if (this.getProp('horizontal')) {
             this.widget.add(this.container).addClass('horizontal')
-            if (this.getProp('width') == 'auto' && this.getProp('left') != 'auto') {
-                this.container.css({'width':'auto', 'right':'0'})
-            }
-        } else {
-            if (this.getProp('height') == 'auto' && this.getProp('top') != 'auto') {
-                this.container.css({'height':'auto', 'bottom':'0'})
-            }
-        }
+        } 
 
         if (this.getProp('compact')) {
             this.widget.addClass('compact')
