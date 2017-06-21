@@ -136,7 +136,7 @@ var makeDefaultConfig = function(argv){
                     }
                 }
             }
-            return style
+            return style.join('\n')
         }()
     }
 }
