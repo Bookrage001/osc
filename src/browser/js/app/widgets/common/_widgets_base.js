@@ -36,11 +36,6 @@ module.exports = class _widgets_base {
             this.props.target = [this.props.target]
         }
 
-        // limit precision
-        if (this.props.precision) {
-            this.precision = Math.min(20,Math.max(this.resolveProp('precision', undefined, false),0))
-        }
-
         // strip parent ? no position
         if (this.parent && this.parent.props.type == 'strip') {
             delete this.props.top
@@ -72,6 +67,11 @@ module.exports = class _widgets_base {
         })
 
         $('body').trigger('widget-created', this.getProp('id'))
+
+        // cache precision
+        if (this.props.precision != undefined) {
+            this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
+        }
 
     }
 

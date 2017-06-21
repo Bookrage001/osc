@@ -48,7 +48,7 @@ var WidgetManager = function(){
             ipc.send('addWidget', {
                 hash:hash,
                 data:{
-                    precision: this.widgets[hash].getProp('precision'),
+                    precision: this.widgets[hash].precision,
                     preArgs: this.widgets[hash].getProp('preArgs'),
                     split: this.widgets[hash].split,
                     target: this.widgets[hash].getProp('target'),
@@ -106,7 +106,7 @@ WidgetManager.prototype.addWidget = function(widget) {
     ipc.send('addWidget', {
         hash:hash,
         data:{
-            precision: widget.getProp('precision'),
+            precision: widget.precision,
             preArgs: widget.getProp('preArgs'),
             split: widget.split,
             target: widget.getProp('target'),
