@@ -40,13 +40,10 @@ module.exports = class Led extends _widgets_base {
 
         var html = `
             <div class="led">
-                <div><span></span></div>
             </div>
         `
 
         super({...options, html: html})
-
-        this.led = this.widget.find('span')
 
         if (this.getProp('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
@@ -77,7 +74,7 @@ module.exports = class Led extends _widgets_base {
     setValue(v) {
 
         if (typeof v != 'number') return
-        this.led.css('opacity',mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
+        this.widget[0].style.setProperty('--opacity', mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
 
     }
 

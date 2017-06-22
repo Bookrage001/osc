@@ -38,13 +38,10 @@ module.exports = class Led extends _widgets_base {
 
         var html = `
             <div class="led">
-                <div><span></span></div>
             </div>
         `
 
         super({...options, html: html})
-
-        this.led = this.widget.find('span')
 
         if (this.getProp('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
 
@@ -84,7 +81,7 @@ module.exports = class Led extends _widgets_base {
 
         v[3] = clip(v[3] != undefined ? v[3] : 1,[0,1])
 
-        this.led[0].style.setProperty('--color-custom',`rgba(${v[0]}, ${v[1]}, ${v[2]}, ${v[3]})`)
+        this.widget[0].style.setProperty('--color-custom',`rgba(${v[0]}, ${v[1]}, ${v[2]}, ${v[3]})`)
 
     }
 
