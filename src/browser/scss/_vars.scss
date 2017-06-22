@@ -2,22 +2,22 @@
 
     ////////////////////// COLOR SCHEME
 
-    --color-text:rgba(white,.8);
-    --color-text-fade:rgba(white,0.5);
+    --color-text:rgba(255, 255, 255, .8);
+    --color-text-fade:rgba(255, 255, 255, .5);
 
-    $accent:#52a8ff;
-    --color-fg: #283143;
-    --color-bg: #191f2a;
-    --color-raised: #313f55;
-    --color-track: #20293a;
+    --color-accent:rgba(82, 168, 255, 1);
+    --color-grid:  rgba(82, 168, 255, .1);
 
-    --color-light:rgba(white, .06);
+    --color-bg: rgb(25, 31, 42);
+    --color-track: rgb(32, 41, 58);
+    --color-fg: rgb(40, 49, 67);
+    --color-raised: rgb(49, 63, 85);
+
+    --color-light:rgba(255, 255, 255, .06);
 
     ////////////////////// AUTO
 
     --color-custom:var(--color-accent);
-    --color-accent:$accent;
-    --color-grid: transparentize($accent, 0.9);
 
     ////////////////////// MISC
 
