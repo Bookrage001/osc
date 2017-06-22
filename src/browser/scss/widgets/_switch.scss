@@ -138,7 +138,7 @@
     &.noselect .select:before {
         content:"...";
         position: absolute;
-        padding:0 5rem;
+        padding-left:10rem;
         left:0;
         top:50%;
         margin-top:-12rem;
@@ -158,7 +158,7 @@
             vertical-align: middle;
             background:transparent;
             border: 1rem solid var(--color-light);
-            padding: 0 15rem 0 5rem;
+            padding: 0 20rem 0 10rem;
             -webkit-appearance:none;
             appearance:none;
             background: var(--color-raised);
@@ -168,7 +168,7 @@
             content:"\f107";
             font-family: FontAwesome;
             position: absolute;
-            padding:0 5rem;
+            padding:0 10rem;
             right:0;
             top:50%;
             margin-top:-11rem;
