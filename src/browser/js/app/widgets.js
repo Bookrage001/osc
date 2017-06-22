@@ -12,7 +12,7 @@ module.exports.widgets = {
     toggle: require('./widgets/buttons/toggle'),
     push: require('./widgets/buttons/push'),
     switch: require('./widgets/buttons/switch'),
-    select: require('./widgets/buttons/select'),
+    dropdown: require('./widgets/buttons/dropdown'),
 
     // pads
     xy: require('./widgets/pads/xy'),
@@ -49,7 +49,7 @@ module.exports.widgets = {
 
 module.exports.categories = {
     'Sliders':['fader','knob', 'encoder'],
-    'Buttons':['toggle','push','switch', 'select'],
+    'Buttons':['toggle','push','switch', 'dropdown'],
     'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text'],

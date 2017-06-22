@@ -1,13 +1,12 @@
 var _widgets_base = require('../common/_widgets_base'),
-    {iconify} = require('../../utils'),
-    $document = $(document)
+    {iconify} = require('../../utils')
 
-module.exports = class Select extends _widgets_base {
+module.exports = class Dropdown extends _widgets_base {
 
     static defaults() {
 
         return {
-            type:'select',
+            type:'dropdown',
             id:'auto',
             linkId:'',
 
