@@ -28,7 +28,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -46,7 +46,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Basses",
@@ -71,7 +72,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -89,7 +90,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Guitars",
@@ -114,7 +116,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -132,7 +134,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "MxSynths",
@@ -157,7 +160,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -175,7 +178,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "MxDrums",
@@ -200,7 +204,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -218,7 +222,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Vocals",
@@ -243,7 +248,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -261,7 +266,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Acoustics",
@@ -286,7 +292,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -304,7 +310,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "FOH",
@@ -330,7 +337,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -347,7 +354,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     }
                 ],
                 "id": "tab_1",
@@ -394,7 +402,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -412,7 +420,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Snare",
@@ -437,7 +446,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -455,7 +464,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Toms",
@@ -480,7 +490,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -498,7 +508,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "OH_L",
@@ -523,7 +534,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -541,7 +552,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "OH_R",
@@ -566,7 +578,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -584,7 +596,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Drums",
@@ -610,7 +623,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -627,7 +640,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "id": "tab_3",
@@ -670,7 +684,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -688,7 +702,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Tom2",
@@ -713,7 +728,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -731,7 +746,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Tom3",
@@ -756,7 +772,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -774,7 +790,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Toms",
@@ -800,7 +817,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -817,7 +834,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "label": "Toms",
@@ -861,7 +879,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -874,7 +891,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Drums",
@@ -891,7 +909,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -904,7 +921,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Drums",
@@ -921,7 +939,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -934,7 +951,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Drums",
@@ -966,6 +984,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -975,7 +994,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -998,7 +1016,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1011,7 +1028,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Drums",
@@ -1028,7 +1046,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1041,7 +1058,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Drums",
@@ -1058,7 +1076,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1071,7 +1088,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Drums",
@@ -1103,6 +1121,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -1112,7 +1131,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -1135,7 +1153,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1148,7 +1165,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Drums",
@@ -1165,7 +1183,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1178,7 +1195,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Drums",
@@ -1195,7 +1213,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1208,7 +1225,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Drums",
@@ -1240,6 +1258,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -1249,7 +1268,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -1272,7 +1290,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1285,7 +1302,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Drums",
@@ -1302,7 +1320,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1315,7 +1332,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Drums",
@@ -1332,7 +1350,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1345,7 +1362,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Drums",
@@ -1377,6 +1395,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -1386,7 +1405,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -1428,7 +1446,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1441,7 +1458,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Kick",
@@ -1458,7 +1476,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1471,7 +1488,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Kick",
@@ -1488,7 +1506,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1501,7 +1518,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Kick",
@@ -1533,6 +1551,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -1542,7 +1561,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -1565,7 +1583,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1578,7 +1595,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Kick",
@@ -1595,7 +1613,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1608,7 +1625,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Kick",
@@ -1625,7 +1643,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1638,7 +1655,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Kick",
@@ -1670,6 +1688,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -1679,7 +1698,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -1702,7 +1720,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1715,7 +1732,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Kick",
@@ -1732,7 +1750,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1745,7 +1762,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Kick",
@@ -1762,7 +1780,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1775,7 +1792,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Kick",
@@ -1807,6 +1825,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -1816,7 +1835,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -1839,7 +1857,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1852,7 +1869,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Kick",
@@ -1869,7 +1887,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1882,7 +1899,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Kick",
@@ -1899,7 +1917,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -1912,7 +1929,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Kick",
@@ -1944,6 +1962,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -1953,7 +1972,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -1995,7 +2013,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2008,7 +2025,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Snare",
@@ -2025,7 +2043,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2038,7 +2055,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Snare",
@@ -2055,7 +2073,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2068,7 +2085,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Snare",
@@ -2100,6 +2118,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -2109,7 +2128,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -2132,7 +2150,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2145,7 +2162,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Snare",
@@ -2162,7 +2180,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2175,7 +2192,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Snare",
@@ -2192,7 +2210,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2205,7 +2222,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Snare",
@@ -2237,6 +2255,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -2246,7 +2265,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -2269,7 +2287,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2282,7 +2299,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Snare",
@@ -2299,7 +2317,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2312,7 +2329,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Snare",
@@ -2329,7 +2347,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2342,7 +2359,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Snare",
@@ -2374,6 +2392,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -2383,7 +2402,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -2406,7 +2424,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2419,7 +2436,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Snare",
@@ -2436,7 +2454,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2449,7 +2466,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Snare",
@@ -2466,7 +2484,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2479,7 +2496,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Snare",
@@ -2511,6 +2529,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -2520,7 +2539,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -2562,7 +2580,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2575,7 +2592,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Tom1",
@@ -2592,7 +2610,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2605,7 +2622,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Tom1",
@@ -2622,7 +2640,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2635,7 +2652,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Tom1",
@@ -2667,6 +2685,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -2676,7 +2695,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -2699,7 +2717,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2712,7 +2729,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Tom1",
@@ -2729,7 +2747,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2742,7 +2759,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Tom1",
@@ -2759,7 +2777,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2772,7 +2789,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Tom1",
@@ -2804,6 +2822,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -2813,7 +2832,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -2836,7 +2854,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2849,7 +2866,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Tom1",
@@ -2866,7 +2884,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2879,7 +2896,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Tom1",
@@ -2896,7 +2914,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2909,7 +2926,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Tom1",
@@ -2941,6 +2959,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -2950,7 +2969,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -2973,7 +2991,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -2986,7 +3003,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Tom1",
@@ -3003,7 +3021,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3016,7 +3033,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Tom1",
@@ -3033,7 +3051,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3046,7 +3063,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Tom1",
@@ -3078,6 +3096,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -3087,7 +3106,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -3129,7 +3147,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3142,7 +3159,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Tom2",
@@ -3159,7 +3177,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3172,7 +3189,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Tom2",
@@ -3189,7 +3207,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3202,7 +3219,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Tom2",
@@ -3234,6 +3252,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -3243,7 +3262,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -3266,7 +3284,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3279,7 +3296,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Tom2",
@@ -3296,7 +3314,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3309,7 +3326,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Tom2",
@@ -3326,7 +3344,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3339,7 +3356,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Tom2",
@@ -3371,6 +3389,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -3380,7 +3399,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -3403,7 +3421,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3416,7 +3433,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Tom2",
@@ -3433,7 +3451,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3446,7 +3463,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Tom2",
@@ -3463,7 +3481,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3476,7 +3493,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Tom2",
@@ -3508,6 +3526,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -3517,7 +3536,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -3540,7 +3558,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3553,7 +3570,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Tom2",
@@ -3570,7 +3588,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3583,7 +3600,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Tom2",
@@ -3600,7 +3618,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3613,7 +3630,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Tom2",
@@ -3645,6 +3663,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -3654,7 +3673,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -3696,7 +3714,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3709,7 +3726,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Tom3",
@@ -3726,7 +3744,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3739,7 +3756,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Tom3",
@@ -3756,7 +3774,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3769,7 +3786,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Tom3",
@@ -3801,6 +3819,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -3810,7 +3829,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -3833,7 +3851,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3846,7 +3863,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Tom3",
@@ -3863,7 +3881,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3876,7 +3893,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Tom3",
@@ -3893,7 +3911,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3906,7 +3923,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Tom3",
@@ -3938,6 +3956,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -3947,7 +3966,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -3970,7 +3988,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -3983,7 +4000,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Tom3",
@@ -4000,7 +4018,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4013,7 +4030,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Tom3",
@@ -4030,7 +4048,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4043,7 +4060,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Tom3",
@@ -4075,6 +4093,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -4084,7 +4103,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -4107,7 +4125,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4120,7 +4137,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Tom3",
@@ -4137,7 +4155,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4150,7 +4167,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Tom3",
@@ -4167,7 +4185,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4180,7 +4197,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Tom3",
@@ -4212,6 +4230,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -4221,7 +4240,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -4263,7 +4281,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4276,7 +4293,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_OH_L",
@@ -4293,7 +4311,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4306,7 +4323,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_OH_L",
@@ -4323,7 +4341,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4336,7 +4353,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_OH_L",
@@ -4368,6 +4386,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -4377,7 +4396,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -4400,7 +4418,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4413,7 +4430,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_OH_L",
@@ -4430,7 +4448,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4443,7 +4460,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_OH_L",
@@ -4460,7 +4478,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4473,7 +4490,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_OH_L",
@@ -4505,6 +4523,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -4514,7 +4533,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -4537,7 +4555,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4550,7 +4567,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_OH_L",
@@ -4567,7 +4585,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4580,7 +4597,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_OH_L",
@@ -4597,7 +4615,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4610,7 +4627,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_OH_L",
@@ -4642,6 +4660,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -4651,7 +4670,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -4674,7 +4692,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4687,7 +4704,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_OH_L",
@@ -4704,7 +4722,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4717,7 +4734,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_OH_L",
@@ -4734,7 +4752,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4747,7 +4764,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_OH_L",
@@ -4779,6 +4797,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -4788,7 +4807,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -4830,7 +4848,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4843,7 +4860,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_OH_R",
@@ -4860,7 +4878,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4873,7 +4890,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_OH_R",
@@ -4890,7 +4908,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4903,7 +4920,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_OH_R",
@@ -4935,6 +4953,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -4944,7 +4963,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -4967,7 +4985,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -4980,7 +4997,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_OH_R",
@@ -4997,7 +5015,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5010,7 +5027,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_OH_R",
@@ -5027,7 +5045,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5040,7 +5057,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_OH_R",
@@ -5072,6 +5090,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -5081,7 +5100,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -5104,7 +5122,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5117,7 +5134,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_OH_R",
@@ -5134,7 +5152,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5147,7 +5164,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_OH_R",
@@ -5164,7 +5182,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5177,7 +5194,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_OH_R",
@@ -5209,6 +5227,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -5218,7 +5237,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -5241,7 +5259,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5254,7 +5271,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_OH_R",
@@ -5271,7 +5289,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5284,7 +5301,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_OH_R",
@@ -5301,7 +5319,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -5314,7 +5331,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_OH_R",
@@ -5346,6 +5364,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -5355,7 +5374,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -5415,7 +5433,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5428,7 +5445,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Release_Drums",
@@ -5445,7 +5463,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5458,7 +5475,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Thresh_Drums",
@@ -5475,7 +5493,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5488,7 +5505,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Ratio_Drums",
@@ -5505,7 +5523,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5518,7 +5535,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Makeup_Drums",
@@ -5535,7 +5553,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5548,7 +5565,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -5561,6 +5579,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -5570,7 +5589,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             },
                             {
@@ -5594,7 +5612,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5607,7 +5624,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Release_Kick",
@@ -5624,7 +5642,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5637,7 +5654,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Thresh_Kick",
@@ -5654,7 +5672,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5667,7 +5684,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Ratio_Kick",
@@ -5684,7 +5702,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5697,7 +5714,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Makeup_Kick",
@@ -5714,7 +5732,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5727,7 +5744,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -5740,6 +5758,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -5749,7 +5768,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             },
                             {
@@ -5773,7 +5791,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5786,7 +5803,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Release_Snare",
@@ -5803,7 +5821,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5816,7 +5833,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Thresh_Snare",
@@ -5833,7 +5851,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5846,7 +5863,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Ratio_Snare",
@@ -5863,7 +5881,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5876,7 +5893,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Makeup_Snare",
@@ -5893,7 +5911,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5906,7 +5923,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -5919,6 +5937,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -5928,7 +5947,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             },
                             {
@@ -5952,7 +5970,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5965,7 +5982,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Release_Toms",
@@ -5982,7 +6000,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -5995,7 +6012,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Thresh_Toms",
@@ -6012,7 +6030,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -6025,7 +6042,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Ratio_Toms",
@@ -6042,7 +6060,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -6055,7 +6072,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Makeup_Toms",
@@ -6072,7 +6090,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -6085,7 +6102,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -6098,6 +6116,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -6107,7 +6126,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             }
                         ],
@@ -6170,7 +6188,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6188,7 +6206,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Bass_Dag",
@@ -6213,7 +6232,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6231,7 +6250,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Basses",
@@ -6257,7 +6277,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6274,7 +6294,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "label": "Main",
@@ -6318,7 +6339,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6336,7 +6357,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Disto_Bass_ORL",
@@ -6361,7 +6383,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6379,7 +6401,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Bass_ORL",
@@ -6404,7 +6427,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6422,7 +6445,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Bass_ORL",
@@ -6448,7 +6472,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6465,7 +6489,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "label": "Orl",
@@ -6509,7 +6534,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6527,7 +6552,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Disto_Bass_Dag",
@@ -6552,7 +6578,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6570,7 +6596,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Bass_Dag",
@@ -6595,7 +6622,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6613,7 +6640,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Bass_Dag",
@@ -6639,7 +6667,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -6656,7 +6684,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "label": "Dag",
@@ -6699,7 +6728,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -6712,7 +6740,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Bass_Dag",
@@ -6729,7 +6758,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -6742,7 +6770,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Bass_Dag",
@@ -6759,7 +6788,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -6772,7 +6800,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Bass_Dag",
@@ -6804,6 +6833,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -6813,7 +6843,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -6836,7 +6865,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -6849,7 +6877,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Bass_Dag",
@@ -6866,7 +6895,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -6879,7 +6907,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Bass_Dag",
@@ -6896,7 +6925,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -6909,7 +6937,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Bass_Dag",
@@ -6941,6 +6970,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -6950,7 +6980,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -6973,7 +7002,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -6986,7 +7014,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Bass_Dag",
@@ -7003,7 +7032,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -7016,7 +7044,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Bass_Dag",
@@ -7033,7 +7062,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -7046,7 +7074,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Bass_Dag",
@@ -7078,6 +7107,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -7087,7 +7117,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -7110,7 +7139,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -7123,7 +7151,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Bass_Dag",
@@ -7140,7 +7169,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -7153,7 +7181,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Bass_Dag",
@@ -7170,7 +7199,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -7183,7 +7211,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Bass_Dag",
@@ -7215,6 +7244,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -7224,7 +7254,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -7303,7 +7332,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7321,7 +7350,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "FX_Gtr_ORL_1",
@@ -7346,7 +7376,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7364,7 +7394,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "FX_Gtr_ORL_2",
@@ -7389,7 +7420,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7407,7 +7438,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "FX_Gtr_ORL",
@@ -7432,7 +7464,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7450,7 +7482,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Guitar_Dag",
@@ -7475,7 +7508,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7493,7 +7526,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "FX_Gtr_Dag_1",
@@ -7518,7 +7552,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7536,7 +7570,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "FX_Gtr_Dag_2",
@@ -7561,7 +7596,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7579,7 +7614,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "FX_Gtr_Dag",
@@ -7604,7 +7640,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7622,7 +7658,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Scape_Gtr_Dag",
@@ -7647,7 +7684,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7665,7 +7702,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Guitars",
@@ -7691,7 +7729,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -7708,7 +7746,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     }
                 ],
                 "id": "tab_21",
@@ -7754,7 +7793,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -7772,7 +7811,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxChords",
@@ -7797,7 +7837,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -7815,7 +7855,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxLead",
@@ -7840,7 +7881,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -7858,7 +7899,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxCtLead",
@@ -7883,7 +7925,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -7901,7 +7943,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxClassical",
@@ -7926,7 +7969,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -7944,7 +7987,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxSynths",
@@ -7970,7 +8014,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -7987,7 +8031,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "label": "Main",
@@ -8031,7 +8076,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8044,7 +8088,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_MxBass",
@@ -8061,7 +8106,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8074,7 +8118,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_MxBass",
@@ -8091,7 +8136,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8104,7 +8148,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_MxBass",
@@ -8136,6 +8181,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -8145,7 +8191,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -8168,7 +8213,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8181,7 +8225,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_MxBass",
@@ -8198,7 +8243,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8211,7 +8255,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_MxBass",
@@ -8228,7 +8273,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8241,7 +8285,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_MxBass",
@@ -8273,6 +8318,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -8282,7 +8328,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -8305,7 +8350,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8318,7 +8362,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_MxBass",
@@ -8335,7 +8380,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8348,7 +8392,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_MxBass",
@@ -8365,7 +8410,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8378,7 +8422,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_MxBass",
@@ -8410,6 +8455,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -8419,7 +8465,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -8442,7 +8487,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8455,7 +8499,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_MxBass",
@@ -8472,7 +8517,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8485,7 +8529,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_MxBass",
@@ -8502,7 +8547,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8515,7 +8559,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_MxBass",
@@ -8547,6 +8592,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -8556,7 +8602,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -8636,7 +8681,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -8654,7 +8699,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxSnares",
@@ -8679,7 +8725,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -8697,7 +8743,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxCymbs",
@@ -8722,7 +8769,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -8740,7 +8787,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxCont",
@@ -8765,7 +8813,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -8783,7 +8831,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxSamples",
@@ -8808,7 +8857,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -8826,7 +8875,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "MxDrums",
@@ -8852,7 +8902,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -8869,7 +8919,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "label": "Main",
@@ -8913,7 +8964,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8926,7 +8976,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_MxKicks",
@@ -8943,7 +8994,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8956,7 +9006,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_MxKicks",
@@ -8973,7 +9024,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -8986,7 +9036,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_MxKicks",
@@ -9018,6 +9069,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -9027,7 +9079,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -9050,7 +9101,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9063,7 +9113,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_MxKicks",
@@ -9080,7 +9131,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9093,7 +9143,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_MxKicks",
@@ -9110,7 +9161,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9123,7 +9173,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_MxKicks",
@@ -9155,6 +9206,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -9164,7 +9216,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -9187,7 +9238,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9200,7 +9250,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_MxKicks",
@@ -9217,7 +9268,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9230,7 +9280,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_MxKicks",
@@ -9247,7 +9298,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9260,7 +9310,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_MxKicks",
@@ -9292,6 +9343,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -9301,7 +9353,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -9324,7 +9375,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9337,7 +9387,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_MxKicks",
@@ -9354,7 +9405,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9367,7 +9417,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_MxKicks",
@@ -9384,7 +9435,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9397,7 +9447,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_MxKicks",
@@ -9429,6 +9480,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -9438,7 +9490,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -9480,7 +9531,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9493,7 +9543,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_MxCymbs",
@@ -9510,7 +9561,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9523,7 +9573,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_MxCymbs",
@@ -9540,7 +9591,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9553,7 +9603,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_MxCymbs",
@@ -9585,6 +9636,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -9594,7 +9646,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -9617,7 +9668,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9630,7 +9680,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_MxCymbs",
@@ -9647,7 +9698,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9660,7 +9710,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_MxCymbs",
@@ -9677,7 +9728,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9690,7 +9740,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_MxCymbs",
@@ -9722,6 +9773,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -9731,7 +9783,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -9754,7 +9805,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9767,7 +9817,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_MxCymbs",
@@ -9784,7 +9835,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9797,7 +9847,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_MxCymbs",
@@ -9814,7 +9865,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9827,7 +9877,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_MxCymbs",
@@ -9859,6 +9910,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -9868,7 +9920,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -9891,7 +9942,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9904,7 +9954,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_MxCymbs",
@@ -9921,7 +9972,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9934,7 +9984,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_MxCymbs",
@@ -9951,7 +10002,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -9964,7 +10014,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_MxCymbs",
@@ -9996,6 +10047,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -10005,7 +10057,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -10083,7 +10134,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -10101,7 +10152,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Cymbalum",
@@ -10126,7 +10178,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -10144,7 +10196,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "GuitarAc",
@@ -10169,7 +10222,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -10187,7 +10240,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     },
                     {
                         "id": "Acoustics",
@@ -10213,7 +10267,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": "auto",
+                        "height": "100%",
                         "alignRight": false,
                         "horizontal": false,
                         "compact": false,
@@ -10230,7 +10284,8 @@
                         "touchAddress": "",
                         "meterAddress": "",
                         "pips": true,
-                        "doubleTap": false
+                        "doubleTap": false,
+                        "dashed": false
                     }
                 ],
                 "id": "tab_31",
@@ -10276,7 +10331,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10294,7 +10349,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Vx_ORL",
@@ -10319,7 +10375,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10337,7 +10393,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Vx_ORL_1",
@@ -10362,7 +10419,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10380,7 +10437,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Vx_ORL_2",
@@ -10405,7 +10463,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10423,7 +10481,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Vx_ORL",
@@ -10448,7 +10507,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10466,7 +10525,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Vx_Dag",
@@ -10491,7 +10551,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10509,7 +10569,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Vx_Dag_1",
@@ -10534,7 +10595,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10552,7 +10613,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Vx_Dag_2",
@@ -10577,7 +10639,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10595,7 +10657,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "FX_Vx_Dag",
@@ -10620,7 +10683,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10638,7 +10701,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Scape_Vx_Dag",
@@ -10663,7 +10727,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10681,7 +10745,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Vx_Jeannot",
@@ -10706,7 +10771,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10724,7 +10789,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             },
                             {
                                 "id": "Vocals",
@@ -10750,7 +10816,7 @@
                                 "left": "auto",
                                 "top": "auto",
                                 "width": "auto",
-                                "height": "auto",
+                                "height": "100%",
                                 "alignRight": false,
                                 "horizontal": false,
                                 "compact": false,
@@ -10767,7 +10833,8 @@
                                 "touchAddress": "",
                                 "meterAddress": "",
                                 "pips": true,
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "dashed": false
                             }
                         ],
                         "label": "Main",
@@ -10811,7 +10878,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -10824,7 +10890,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Vx_ORL",
@@ -10841,7 +10908,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -10854,7 +10920,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Vx_ORL",
@@ -10871,7 +10938,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -10884,7 +10950,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Vx_ORL",
@@ -10916,6 +10983,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -10925,7 +10993,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -10948,7 +11015,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -10961,7 +11027,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Vx_ORL",
@@ -10978,7 +11045,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -10991,7 +11057,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Vx_ORL",
@@ -11008,7 +11075,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11021,7 +11087,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Vx_ORL",
@@ -11053,6 +11120,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -11062,7 +11130,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -11085,7 +11152,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11098,7 +11164,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Vx_ORL",
@@ -11115,7 +11182,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11128,7 +11194,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Vx_ORL",
@@ -11145,7 +11212,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11158,7 +11224,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Vx_ORL",
@@ -11190,6 +11257,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -11199,7 +11267,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -11222,7 +11289,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11235,7 +11301,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Vx_ORL",
@@ -11252,7 +11319,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11265,7 +11331,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Vx_ORL",
@@ -11282,7 +11349,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11295,7 +11361,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Vx_ORL",
@@ -11327,6 +11394,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -11336,7 +11404,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -11378,7 +11445,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11391,7 +11457,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Vx_Dag",
@@ -11408,7 +11475,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11421,7 +11487,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Vx_Dag",
@@ -11438,7 +11505,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11451,7 +11517,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Vx_Dag",
@@ -11483,6 +11550,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -11492,7 +11560,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -11515,7 +11582,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11528,7 +11594,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Vx_Dag",
@@ -11545,7 +11612,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11558,7 +11624,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Vx_Dag",
@@ -11575,7 +11642,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11588,7 +11654,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Vx_Dag",
@@ -11620,6 +11687,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -11629,7 +11697,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -11652,7 +11719,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11665,7 +11731,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Vx_Dag",
@@ -11682,7 +11749,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11695,7 +11761,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Vx_Dag",
@@ -11712,7 +11779,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11725,7 +11791,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Vx_Dag",
@@ -11757,6 +11824,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -11766,7 +11834,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -11789,7 +11856,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11802,7 +11868,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Vx_Dag",
@@ -11819,7 +11886,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11832,7 +11898,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Vx_Dag",
@@ -11849,7 +11916,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11862,7 +11928,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Vx_Dag",
@@ -11894,6 +11961,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -11903,7 +11971,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -11945,7 +12012,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11958,7 +12024,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_1_Scape_Vx_Dag",
@@ -11975,7 +12042,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -11988,7 +12054,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_1_Scape_Vx_Dag",
@@ -12005,7 +12072,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12018,7 +12084,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_1_Scape_Vx_Dag",
@@ -12050,6 +12117,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -12059,7 +12127,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -12082,7 +12149,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12095,7 +12161,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_2_Scape_Vx_Dag",
@@ -12112,7 +12179,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12125,7 +12191,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_2_Scape_Vx_Dag",
@@ -12142,7 +12209,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12155,7 +12221,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_2_Scape_Vx_Dag",
@@ -12187,6 +12254,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -12196,7 +12264,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -12219,7 +12286,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12232,7 +12298,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_3_Scape_Vx_Dag",
@@ -12249,7 +12316,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12262,7 +12328,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_3_Scape_Vx_Dag",
@@ -12279,7 +12346,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12292,7 +12358,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_3_Scape_Vx_Dag",
@@ -12324,6 +12391,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -12333,7 +12401,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     },
                                     {
@@ -12356,7 +12423,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12369,7 +12435,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Band_4_Scape_Vx_Dag",
@@ -12386,7 +12453,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12399,7 +12465,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_Gain_4_Scape_Vx_Dag",
@@ -12416,7 +12483,6 @@
                                                 "unit": "",
                                                 "height": "auto",
                                                 "color": "auto",
-                                                "compact": false,
                                                 "angle": 270,
                                                 "css": "",
                                                 "snap": false,
@@ -12429,7 +12495,8 @@
                                                 "value": "",
                                                 "touchAddress": "",
                                                 "pips": false,
-                                                "doubleTap": false
+                                                "doubleTap": false,
+                                                "dashed": false
                                             },
                                             {
                                                 "id": "EQ_On_4_Scape_Vx_Dag",
@@ -12461,6 +12528,7 @@
                                         "variables": {},
                                         "spacing": 0,
                                         "_style": "style",
+                                        "_children": "children",
                                         "scroll": true,
                                         "_layout": "layout",
                                         "layout": "",
@@ -12470,7 +12538,6 @@
                                         "address": "auto",
                                         "preArgs": [],
                                         "target": [],
-                                        "_children": "children",
                                         "tabs": []
                                     }
                                 ],
@@ -12529,7 +12596,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12542,7 +12608,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_HF_Vx_Dag",
@@ -12559,7 +12626,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12572,7 +12638,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Thresh_Vx_Dag",
@@ -12592,7 +12659,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12605,7 +12671,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Attack_Vx_Dag",
@@ -12622,7 +12689,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12635,7 +12701,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Hold_Vx_Dag",
@@ -12652,7 +12719,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12665,7 +12731,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Decay_Vx_Dag",
@@ -12682,7 +12749,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12695,7 +12761,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -12708,6 +12775,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -12717,7 +12785,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             },
                             {
@@ -12741,7 +12808,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12754,7 +12820,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_HF_Vx_ORL",
@@ -12771,7 +12838,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12784,7 +12850,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Thresh_Vx_ORL",
@@ -12804,7 +12871,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12817,7 +12883,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Attack_Vx_ORL",
@@ -12834,7 +12901,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12847,7 +12913,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Hold_Vx_ORL",
@@ -12864,7 +12931,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12877,7 +12943,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Gate_Decay_Vx_ORL",
@@ -12894,7 +12961,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12907,7 +12973,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -12920,6 +12987,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -12929,7 +12997,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             }
                         ],
@@ -12973,7 +13040,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -12986,7 +13052,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Release_Vx_Dag",
@@ -13003,7 +13070,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13016,7 +13082,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Thresh_Vx_Dag",
@@ -13033,7 +13100,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13046,7 +13112,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Ratio_Vx_Dag",
@@ -13063,7 +13130,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13076,7 +13142,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Makeup_Vx_Dag",
@@ -13093,7 +13160,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13106,7 +13172,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -13119,6 +13186,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -13128,7 +13196,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             },
                             {
@@ -13152,7 +13219,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13165,7 +13231,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Release_Vx_ORL",
@@ -13182,7 +13249,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13195,7 +13261,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Thresh_Vx_ORL",
@@ -13212,7 +13279,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13225,7 +13291,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Ratio_Vx_ORL",
@@ -13242,7 +13309,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13255,7 +13321,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Makeup_Vx_ORL",
@@ -13272,7 +13339,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13285,7 +13351,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -13298,6 +13365,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -13307,7 +13375,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             },
                             {
@@ -13331,7 +13398,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13344,7 +13410,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Release_Vx_Jeannot",
@@ -13361,7 +13428,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13374,7 +13440,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Thresh_Vx_Jeannot",
@@ -13391,7 +13458,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13404,7 +13470,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Ratio_Vx_Jeannot",
@@ -13421,7 +13488,6 @@
                                         "unit": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13434,7 +13500,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     },
                                     {
                                         "id": "Comp_Makeup_Vx_Jeannot",
@@ -13451,7 +13518,6 @@
                                         "linkId": "",
                                         "width": "auto",
                                         "color": "auto",
-                                        "compact": false,
                                         "angle": 270,
                                         "css": "",
                                         "snap": false,
@@ -13464,7 +13530,8 @@
                                         "value": "",
                                         "touchAddress": "",
                                         "pips": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "dashed": false
                                     }
                                 ],
                                 "left": "auto",
@@ -13477,6 +13544,7 @@
                                 "variables": {},
                                 "spacing": 0,
                                 "_style": "style",
+                                "_children": "children",
                                 "scroll": true,
                                 "_layout": "layout",
                                 "layout": "",
@@ -13486,7 +13554,6 @@
                                 "address": "auto",
                                 "preArgs": [],
                                 "target": [],
-                                "_children": "children",
                                 "tabs": []
                             }
                         ],
