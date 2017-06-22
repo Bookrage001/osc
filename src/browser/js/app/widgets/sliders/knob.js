@@ -136,13 +136,16 @@ module.exports = class Knob extends _sliders_base {
 
     draw() {
 
+        var tiny = this.minDimension < 50,
+            margin = tiny ? 0 : 5 * PXSCALE
+
         var o = this.percentToAngle(this.valueToPercent(this.originValue)),
             d = this.percentToAngle(this.percent),
             min = this.percentToAngle(0),
             max = this.percentToAngle(100),
             dashed = this.getProp('dashed'),
             pipsWidth = this.getProp('pips') ? 3 * PXSCALE : 0,
-            pipsRadius =  this.minDimension / 2 - pipsWidth / 2 - 5 * PXSCALE,
+            pipsRadius =  this.minDimension / 2 - pipsWidth / 2 - margin,
             gaugeWidth = 7 * PXSCALE,
             gaugeRadius = pipsRadius - gaugeWidth / 2 - pipsWidth / 2,
             knobRadius = gaugeRadius - gaugeWidth
@@ -178,7 +181,7 @@ module.exports = class Knob extends _sliders_base {
 
         }
 
-        if (this.minDimension >= 50) {
+        if (!tiny) {
 
             this.ctx.strokeStyle = this.colors.light
             this.ctx.lineWidth = gaugeWidth
