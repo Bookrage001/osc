@@ -2,7 +2,7 @@
 if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 
 var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
-    configFile = require('path').join(baseDir, '.open-stage-control'),
+    configPath = require('path').join(baseDir, '.open-stage-control'),
     fs = require('fs'),
     ifaces = require('os').networkInterfaces()
 
@@ -86,7 +86,8 @@ var argv = require('yargs')
 
 argv = argv.argv
 
-var config = function(){try {return JSON.parse(fs.readFileSync(configFile,'utf-8'))} catch(err) {return {}}}(),
+var configFile = function(){try {return JSON.parse(fs.readFileSync(configPath,'utf-8'))} catch(err) {return {}}}(),
+    config = JSON.parse(JSON.stringify(configFile)),
     defaultConfig
 
 var loadTheme = function(t){
@@ -156,7 +157,8 @@ module.exports = {
     write:function(key,value,tmp) {
         config[key] = value
         if (tmp) return
-        fs.writeFile(configFile,JSON.stringify(config,null,4), function (err, data) {
+        configFile[key] = value
+        fs.writeFile(configPath,JSON.stringify(configFile,null,4), function (err, data) {
             if (err) throw err
         })
     },
