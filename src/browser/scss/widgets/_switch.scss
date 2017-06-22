@@ -123,3 +123,61 @@
        }
    }
 }
+
+.select-container {
+
+    --color-border:var(--color-bg);
+    z-index: 1;
+    width:100rem;
+    height: 60rem;
+
+    > .label {
+        border-bottom:1rem solid var(--color-bg);
+    }
+
+    &.noselect .select:before {
+        content:"...";
+        position: absolute;
+        padding:0 5rem;
+        left:0;
+        top:50%;
+        margin-top:-12rem;
+        height: 20rem;
+        line-height: 20rem;
+        pointer-events: none;
+    }
+
+    .select {
+        flex:1;
+        position: relative;
+        select {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            vertical-align: middle;
+            background:transparent;
+            border: 1rem solid var(--color-light);
+            padding: 0 15rem 0 5rem;
+            -webkit-appearance:none;
+            appearance:none;
+            background: var(--color-raised);
+            color:inherit;
+        }
+        &:after{
+            content:"\f107";
+            font-family: FontAwesome;
+            position: absolute;
+            padding:0 5rem;
+            right:0;
+            top:50%;
+            margin-top:-11rem;
+            font-size: 20rem;
+            height: 20rem;
+            line-height: 20rem;
+            pointer-events: none;
+        }
+        option {
+        }
+    }
+}
