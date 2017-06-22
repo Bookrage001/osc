@@ -157,10 +157,10 @@
                 height:calc(100% - 2 * var(--point-size)  - 2rem);
                 .wrapper {
                     border:0;
+                    background: transparent;
                 }
                 canvas {
                     border:0;
-                    background: transparent;
                 }
                 .row {
                     display: none;
