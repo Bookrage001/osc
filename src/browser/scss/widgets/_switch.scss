@@ -112,18 +112,18 @@
             }
             .fader-container {
                 width: 100%;
-                height: auto
+                height: auto;
             }
         }
     }
    .switch {
        height: auto;
-       flex:1;
+       flex:2;
        border-right: 1rem solid var(--color-bg);
    }
    .fader-container {
-       min-height: 60%;
-       flex:1;
+       height: 100%;
+       flex:3;
        .input {
            display: none;
        }
