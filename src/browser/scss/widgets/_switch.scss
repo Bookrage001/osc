@@ -13,7 +13,7 @@
             box-shadow: none;
         }
     }
-    .switch {
+    .switch, .switcher {
         height:100%;
         width:100%;
         cursor: pointer;
@@ -150,6 +150,7 @@
     .select {
         flex:1;
         position: relative;
+        overflow: hidden;
         select {
             display: block;
             width: 100%;
