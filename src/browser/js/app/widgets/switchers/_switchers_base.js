@@ -31,7 +31,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
         if (this.value._selected !== false && this.value[this.value._selected] && widget.abstract._isSwitcher !== true && this.isWatching(id, widget)) {
 
-            this.value[this.value._selected][id] = JSON.parse(JSON.stringify(widget.abstract.getValue()))
+            this.value[this.value._selected][id] = widget.abstract.getValue()
 
         }
 
