@@ -75,3 +75,18 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
 - usage:
     - `array` of possible values to switch between : `[1,2,3]`
     - `object` of `"label":value` pairs
+
+## Dropdown
+```js
+{
+    type:'dropdown',
+    // etc
+}
+```
+
+### `values`
+- type: `array|object`
+- default: `{"Value 1":1,"Value 2":2}`
+- usage:
+    - `array` of possible values to switch between : `[1,2,3]`
+    - `object` of `"label":value` pairs

@@ -22,16 +22,20 @@ Sliders are unidimensional widgets that output one value at a time.
 - default: `false`
 - usage: set to `true` to invert the pip's and fader's position
 
-### `noPip`
+### `pips`
 - type: `boolean`
-- default: `false`
-- usage: set to `true` to hide the scale
+- default: `true`
+- usage: set to `false` to hide the scale
 
 ### `compact`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display (right-click/long-touch still triggers it).
 
+### `dashed`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to display a dashed gauge
 
 ### `range`
 - type: `object`
@@ -112,15 +116,15 @@ range: {
 ```
 
 
-### `noPip`
+### `pips`
 - type: `boolean`
 - default: `true`
-- usage: set to `false` to show the scale
+- usage: set to `false` to hide the scale
 
 ### `compact`
 - type: `boolean`
 - default: `false`
-- usage: set to `true` to display a compact alternative for the widget. Disables mouse/touch focusing on the value display.
+- usage: set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display (right-click/long-touch still triggers it).
 
 ### `angle`
 - type: `number`
