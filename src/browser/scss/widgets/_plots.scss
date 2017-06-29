@@ -83,6 +83,7 @@
 .panel:not(.tab) > .eq-container,
 .panel:not(.tab) > .plot-container {
     --color-border:transparent;
+    padding: 0rem;
     .plot, .text, .led {
         padding: 1rem;
         background-clip: content-box;

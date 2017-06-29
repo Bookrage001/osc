@@ -19,6 +19,7 @@
 
 .panel:not(.tab) > .formula-container {
     --color-border:transparent;
+    padding: 0rem;
     .formula {
         padding: 1rem;
         border:1rem solid var(--color-light);
