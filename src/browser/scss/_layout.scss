@@ -79,6 +79,7 @@ body {
                 position:relative;
                 box-shadow: 0 0 0 1rem var(--color-light) inset;
                 letter-spacing: 1rem;
+                font-size: 12rem;
                 span {
                     display:block;
                     width:100%;
@@ -98,13 +99,13 @@ body {
                 z-index: -1;
 			}
             &.on a, .sidepanel-open {
-				position: relative;
+	            position: relative;
                 z-index: 0;
                 background:var(--color-fg);
                 color: var(--color-custom);
-				&:after {
-					// opacity:0.3;
-				}
+  				&:after {
+  			// 		opacity:0.3;
+  				}
             }
         }
         .parent + li a {

@@ -85,9 +85,11 @@
     --color-border:transparent;
     padding: 0rem;
     .plot, .text, .led {
-        padding: 1rem;
+        padding: 0rem;
+        margin: 1rem;
         background-clip: content-box;
-        border:1rem solid var(--color-light);
-        box-shadow: 0 0 0 1rem var(--color-bg) inset;
+        box-shadow: 0 0 0 1rem var(--color-fg);
+        outline:1rem solid var(--color-light);
+        border: 1rem solid var(--color-bg);
     }
 }

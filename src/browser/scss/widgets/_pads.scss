@@ -13,13 +13,14 @@
 .panel:not(.tab) > .rgb-container,
 .panel:not(.tab) > .multixy-container {
     --color-border:transparent;
-    padding: 0rem;
+    padding: 0;
     > .pad {
       padding: 1rem;
     }
     > .pad > .wrapper {
-        border:1rem solid var(--color-light);
-        box-shadow: 0 0 0 1rem var(--color-bg) inset;
+        outline:1rem solid var(--color-light);
+        box-shadow: 0 0 0 1rem var(--color-fg);
+        border: 1rem solid var(--color-bg);
     }
 }
 
