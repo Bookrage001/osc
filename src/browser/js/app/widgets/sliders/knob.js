@@ -102,8 +102,8 @@ module.exports = class Knob extends _sliders_base {
     coordsToAngle(x,y) {
 
         var xToCenter = x - this.width /2,
-        yToCenter = y - this.height / 2,
-        angle =  Math.atan2(-yToCenter, -xToCenter) * 180 / Math.PI + 90
+            yToCenter = y - this.height / 2,
+            angle =  Math.atan2(-yToCenter, -xToCenter) * 180 / Math.PI + 90
 
         return angle<0?360+angle:angle
 
@@ -119,8 +119,8 @@ module.exports = class Knob extends _sliders_base {
 
         var percent = clip(percent, [0, 100])
         return  2 * Math.PI * percent / 100 * (this.maxAngle / 360) // angle relative to maxAngle
-        + Math.PI / 2                                       // quarter circle offset
-        + Math.PI * (1 - this.maxAngle / 360)               // centering offset depending on maxAngle
+                + Math.PI / 2                                       // quarter circle offset
+                + Math.PI * (1 - this.maxAngle / 360)               // centering offset depending on maxAngle
 
     }
 
@@ -136,7 +136,7 @@ module.exports = class Knob extends _sliders_base {
 
     draw() {
 
-        var tiny = this.minDimension < 50,
+        var tiny = this.minDimension < 45,
             margin = tiny ? 0 : 5 * PXSCALE
 
         var o = this.percentToAngle(this.valueToPercent(this.originValue)),
@@ -223,7 +223,7 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.globalAlpha = 1
         this.ctx.arc(this.width / 2, this.height / 2,  knobRadius, 0, Math.PI * 2)
         this.ctx.fill()
-        this.ctx.strokeStyle = this.colors.track
+        this.ctx.strokeStyle = this.colors.bg
         this.ctx.stroke()
 
         this.ctx.beginPath()
@@ -236,14 +236,14 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.globalAlpha = 1
 
         let r1 = knobRadius,
-            r2 = knobRadius / 3,
+            r2 = knobRadius / 2,
             a  = 2 * Math.PI - d
 
         this.ctx.beginPath()
         this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
-        this.ctx.lineTo((r1/2) * Math.cos(a) + this.width / 2, this.height / 2 - (r1/2) * Math.sin(a))
+        this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
 
-        this.ctx.lineWidth = 2 * PXSCALE
+        this.ctx.lineWidth = tiny ? PXSCALE : 2 * PXSCALE
         this.ctx.strokeStyle = this.colors.knob
         this.ctx.stroke()
 
