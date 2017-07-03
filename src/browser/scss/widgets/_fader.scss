@@ -226,6 +226,12 @@
         &.has-meter {
             --input-margin:-3rem;
         }
+        &.has-pips {
+            --input-margin:-1rem;
+        }
+        &.has-meter.has-pips {
+            --input-margin:-4rem;
+        }
 
         .input {
             pointer-events: none;
