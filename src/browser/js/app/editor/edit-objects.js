@@ -71,6 +71,7 @@ var editObject = function(container, data, refresh){
 
                 input = $(`<textarea class="input" data-type="${type}" title="${i}" rows="${value.split('\n').length}">${value}</textarea>`)
                 input.on('input focus', function(){
+                    this.setAttribute('rows',0)
                     this.setAttribute('rows',input.val().split('\n').length)
                 })
                 input.on('keydown', (e)=>{
