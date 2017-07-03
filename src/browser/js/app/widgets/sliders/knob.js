@@ -228,7 +228,7 @@ module.exports = class Knob extends _sliders_base {
 
         this.ctx.beginPath()
         this.ctx.globalAlpha = 1
-        this.ctx.arc(this.width / 2, this.height / 2,  knobRadius - PXSCALE, 0, Math.PI * 2)
+        this.ctx.arc(this.width / 2, this.height / 2,  knobRadius - PXSCALE * 1.5, 0, Math.PI * 2)
         this.ctx.strokeStyle = this.colors.light
         this.ctx.stroke()
 
