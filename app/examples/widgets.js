@@ -2497,7 +2497,7 @@
         "css": "",
         "value": "",
         "precision": 0,
-        "address": "/root",
+        "address": "/widgets",
         "preArgs": [],
         "target": [],
         "variables": {},

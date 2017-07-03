@@ -37,7 +37,8 @@
                         "doubleTap": false,
                         "value": "",
                         "touchAddress": "",
-                        "meterAddress": ""
+                        "meterAddress": "",
+                        "dashed": false
                     },
                     {
                         "type": "fader",
@@ -48,7 +49,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": 253,
+                        "height": 254,
                         "horizontal": false,
                         "css": "",
                         "range": {
@@ -71,7 +72,8 @@
                         "doubleTap": false,
                         "value": "",
                         "touchAddress": "",
-                        "meterAddress": ""
+                        "meterAddress": "",
+                        "dashed": false
                     },
                     {
                         "type": "fader",
@@ -82,7 +84,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": 253,
+                        "height": 254,
                         "horizontal": false,
                         "css": "",
                         "range": {
@@ -105,7 +107,8 @@
                         "doubleTap": false,
                         "value": "",
                         "touchAddress": "",
-                        "meterAddress": ""
+                        "meterAddress": "",
+                        "dashed": false
                     },
                     {
                         "type": "fader",
@@ -116,7 +119,7 @@
                         "left": "auto",
                         "top": "auto",
                         "width": "auto",
-                        "height": 253,
+                        "height": 254,
                         "horizontal": false,
                         "css": "",
                         "range": {
@@ -139,7 +142,8 @@
                         "doubleTap": false,
                         "value": "",
                         "touchAddress": "",
-                        "meterAddress": ""
+                        "meterAddress": "",
+                        "dashed": false
                     },
                     {
                         "type": "plot",
@@ -148,7 +152,7 @@
                         "left": 400,
                         "top": 122,
                         "width": 200,
-                        "height": 131,
+                        "height": 132,
                         "css": "",
                         "points": [
                             [
@@ -212,8 +216,7 @@
                         "label": "auto",
                         "left": 0,
                         "top": 254,
-                        "width": "auto",
-                        "height": "auto",
+                        "height": 240,
                         "css": "",
                         "precision": 0,
                         "split": false,
@@ -222,14 +225,15 @@
                         "address": "/rgb_1",
                         "preArgs": [],
                         "value": "",
-                        "touchAddress": ""
+                        "touchAddress": "",
+                        "width": 200
                     },
                     {
                         "type": "plot",
                         "left": 200,
-                        "top": 253,
+                        "top": 254,
                         "width": 400,
-                        "height": 251,
+                        "height": 240,
                         "css": "",
                         "points": "rgb_1",
                         "rangeX": {
@@ -474,7 +478,7 @@
         "css": "",
         "value": "",
         "precision": 0,
-        "address": "/root",
+        "address": "/plots",
         "preArgs": [],
         "target": [],
         "variables": {},

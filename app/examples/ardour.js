@@ -3230,7 +3230,11 @@
                                                                 "color": "red",
                                                                 "value": "",
                                                                 "address": "/select/recenable",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto"
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3245,7 +3249,11 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/record_safe",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto"
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3260,7 +3268,11 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/select/monitor_input",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto"
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3275,7 +3287,11 @@
                                                                 "color": "orange",
                                                                 "value": "",
                                                                 "address": "/select/monitor_disk",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto"
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3290,7 +3306,11 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/solo",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto"
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3305,7 +3325,11 @@
                                                                 "color": "yellow",
                                                                 "value": "",
                                                                 "address": "/select/mute",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto"
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3320,7 +3344,11 @@
                                                                 "color": "pink",
                                                                 "value": "",
                                                                 "address": "/select/expand",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto"
                                                             }
                                                         ],
                                                         "tabs": [],
@@ -4206,7 +4234,7 @@
         ],
         "value": "",
         "precision": 0,
-        "address": "/root_1",
+        "address": "/ardour",
         "preArgs": [],
         "target": [],
         "variables": {},
