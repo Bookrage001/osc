@@ -47,7 +47,7 @@ var editObject = function(container, data, refresh){
             if (i=='type' && (data.type == 'tab' || data.type == 'root')) continue
 
             let type = typeof data[i],
-                value = type == 'object'?JSON.stringify(data[i]):data[i],
+                value = type != 'string'?JSON.stringify(data[i], null, '  '):data[i],
                 wrapper = $('<div class="input-wrapper"></div>').appendTo(form),
                 label = $(`<label>${i}</label>`).appendTo(wrapper),
                 input
@@ -74,7 +74,7 @@ var editObject = function(container, data, refresh){
                 })
                 input.appendTo(wrapper)
 
-            } else if (i == 'layout') {
+            } else {
 
                 input = $(`<textarea data-type="${type}" title="${i}" rows="${value.split('\n').length}">${value}</textarea>`)
                 input.on('input focus', function(){
@@ -82,14 +82,10 @@ var editObject = function(container, data, refresh){
                 })
                 input.on('keydown', (e)=>{
                     if (e.keyCode == 13 && !e.shiftKey) {
+                        e.preventDefault()
                         input.trigger('change')
                     }
                 })
-                input.appendTo(wrapper)
-
-            } else {
-
-                input = $(`<input data-type="${type}" value='${value}' title="${i}"/>`)
                 input.appendTo(wrapper)
 
             }
@@ -97,15 +93,18 @@ var editObject = function(container, data, refresh){
 
             input.on('change',function(){
                 // var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
-                var v
+                var v,
+                    $this = $(this)
+                    
                 try {
-                    eval(`v=${$(this).val()}`)
+                    v = JSON.parse($this.val())
                 } catch(err) {
-                    v = $(this).val()
+                    v = $this.val()
                 }
 
-                data[$(this).attr('title')] = v
-                if (v==='') delete data[$(this).attr('title')]
+                data[$this.attr('title')] = v
+
+                if (v==='') delete data[$this.attr('title')]
 
                 try {
                     updateDom(container,data)

@@ -107,6 +107,7 @@
         overflow-y: hidden;
         overflow-x: auto;
         white-space: nowrap;
+        border-top:1rem solid var(--color-fg);
         resize: none;
     }
     .input-wrapper .checkbox {
