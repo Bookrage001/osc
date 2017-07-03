@@ -23,6 +23,7 @@
         top:0rem;
         padding:8rem;
         opacity: 0.6;
+        cursor: pointer;
         &:hover {
             opacity: 1;
         }
@@ -70,10 +71,11 @@
         }
         &.column {
             flex-direction: column;
-            label {
-                width:100%;
-                padding:7rem;
-                margin-bottom: 0;
+            ul {
+                padding: 1rem 2rem!important;
+                li:not(:last-child) {
+                    margin-bottom: 2rem!important;
+                }
             }
         }
         .checkbox {
@@ -110,11 +112,15 @@
         border:0;
         font:inherit;
         color:var(--color-text);
-        width:100%;
+        width:auto;
         .btn {
             background: var(--color-raised);
-            box-shadow: 0 1rem 0 0 var(--color-light) inset;
-            border-radius: 2rem;
+            box-shadow: 0 0 0 1rem var(--color-light) inset,
+                        0 0 0 1rem var(--color-bg);
+            &:not(:last-child){
+                cursor: -webkit-grab;
+                cursor: grab;
+            }
         }
     }
     textarea {
@@ -136,7 +142,8 @@
     }
     .select-wrapper {
         position: relative;
-        width:100%;
+        margin: 2rem;
+        flex:1;
         &:after{
             content:"\f107";
             font-family: FontAwesome;
@@ -145,14 +152,15 @@
             right:0;
             top:0;
             font-size: 20rem;
-            line-height: 15rem;
-
+            pointer-events: none;
         }
-        // border-top:1rem solid var(--color-fg);
 
         .input {
-            line-height: 15rem;
             border:0;
+            width: 100%;
+            cursor: pointer;
+            background: var(--color-fg);
+            box-shadow: 0 0 0 1rem var(--color-light) inset;
         }
     }
     select {

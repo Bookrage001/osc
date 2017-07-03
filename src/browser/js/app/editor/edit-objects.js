@@ -165,7 +165,7 @@ var editObject = function(container, data, refresh){
             }
         })
 
-        var add = $(`<li><a class="btn small">+</a></li>`).appendTo(list).click(function(){
+        var add = $(`<li><a class="btn small">${icon('plus')}</a></li>`).appendTo(list).click(function(){
             data.widgets = data.widgets || []
             data.widgets.push({})
 
@@ -220,7 +220,7 @@ var editObject = function(container, data, refresh){
             }
         })
 
-        var add = $(`<li><a class="btn small">+</a></li>`).appendTo(list).click(function(){
+        var add = $(`<li><a class="btn small">${icon('plus')}</a></li>`).appendTo(list).click(function(){
             data.tabs = data.tabs || []
             data.tabs.push({})
 
