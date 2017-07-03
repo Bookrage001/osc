@@ -1,5 +1,6 @@
 var updateDom = require('./data-workers').updateDom,
     {widgets, categories} = require('../widgets'),
+    {icon} = require('../utils'),
     defaults = {}
 
 for (var k in widgets) {
@@ -66,19 +67,11 @@ var editObject = function(container, data, refresh){
                 let select = $('<div class="select-wrapper"></div>').append(input)
                 select.appendTo(wrapper)
 
-            } else if (typeof params[i]=='boolean') {
-
-                input = $(`<input class="checkbox" data-type="${type}" value='${value}' title="${i}"/>`)
-                input.click(function(){
-                    $(this).val(!eval($(this).val())).trigger('change')
-                })
-                input.appendTo(wrapper)
-
             } else {
 
-                input = $(`<textarea data-type="${type}" title="${i}" rows="${value.split('\n').length}">${value}</textarea>`)
+                input = $(`<textarea class="input" data-type="${type}" title="${i}" rows="${value.split('\n').length}">${value}</textarea>`)
                 input.on('input focus', function(){
-                    this.setAttribute('rows',$(this).val().split('\n').length)
+                    this.setAttribute('rows',input.val().split('\n').length)
                 })
                 input.on('keydown', (e)=>{
                     if (e.keyCode == 13 && !e.shiftKey) {
@@ -90,21 +83,30 @@ var editObject = function(container, data, refresh){
 
             }
 
+            if (typeof params[i]=='boolean') {
+
+               var toggle = $(`<span class="checkbox ${data[i]?'on':''}">${icon('check')}</span>`)
+               toggle.appendTo(wrapper)
+
+               toggle.click(function(){
+                   input.val(!eval(input.val())).trigger('change')
+               })
+
+           }
 
             input.on('change',function(){
                 // var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
-                var v,
-                    $this = $(this)
-                    
+                var v
+
                 try {
-                    v = JSON.parse($this.val())
+                    v = JSON.parse(input.val())
                 } catch(err) {
-                    v = $this.val()
+                    v = input.val()
                 }
 
-                data[$this.attr('title')] = v
+                data[input.attr('title')] = v
 
-                if (v==='') delete data[$this.attr('title')]
+                if (v==='') delete data[input.attr('title')]
 
                 try {
                     updateDom(container,data)

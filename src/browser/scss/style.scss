@@ -226,6 +226,9 @@ i {
             input[disabled] {
                 color:var(--color-accent);
             }
+            .checkbox {
+                right: 30rem;
+            }
         }
         .error-msg, .restart-msg {
             transition: height .25s;

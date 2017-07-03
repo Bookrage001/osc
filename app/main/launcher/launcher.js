@@ -34,28 +34,36 @@ $(document).ready(()=>{
             cancel,
             value = argv[i] == undefined ? '' : argv[i]
 
-        if (option.type=='boolean') {
 
-            input = $(`<input name="${i}" class="checkbox" data-type="${option.type}" value="${value ? true : ''}" placeholder="${option.describe}"/>`)
-            input.click(function(e){
-                e.preventDefault()
-                input.val(!eval(input.val())).trigger('change')
-            })
+        input = $(`<input class="input" name="${i}" data-type="${option.type}" value="${value}" placeholder="${option.describe}"/>`)
 
-        } else if (option.file) {
+        if (option.type == 'boolean') {
 
-            input = $(`<input class="btn" name="${i}" value="${value}" placeholder="${option.describe}"/>`)
-            input.click(function(e){
-                e.preventDefault()
-                dialog.showOpenDialog({filters:[{name:'js',extensions:['js']}]},function(file){
-                    input.val(file).change()
-                })
-            })
-        } else {
+           var toggle = $(`<span class="checkbox ${value?'on':''}"><i class="fa fa-fw fa-check"></i></span>`)
+           toggle.appendTo(item)
 
-            input = $(`<input name="${i}" data-type="${option.type}" value="${value}" placeholder="${option.describe}"/>`)
+           toggle.click(function(e){
+               e.preventDefault()
+               input.val(!eval(input.val())).trigger('change')
+               toggle.toggleClass('on')
+           })
 
-        }
+       }
+
+       if (option.file) {
+
+          var browse = $(`<span class="checkbox">...</span>`)
+          browse.appendTo(item)
+
+          browse.click(function(e){
+              e.preventDefault()
+              dialog.showOpenDialog({filters:[{name:'js',extensions:['js']}]},function(file){
+                  input.val(file).change()
+              })
+          })
+
+      }
+
 
 
         input.appendTo(item)
