@@ -66,6 +66,7 @@
             border-top:1rem solid var(--color-fg);
             border-radius: 0;
             -webkit-appearance:none;
+            cursor: text;
         }
         &.column {
             flex-direction: column;
