@@ -94,29 +94,33 @@ module.exports = class _plots_base extends _canvas_base {
         this.ctx.font = PXSCALE * 10 + 'px sans-serif'
         this.ctx.fillStyle = this.colors.text
 
-        if (this.pips.x) {
+        if (this.getProp('pips')) {
 
-            this.ctx.textBaseline = "bottom"
-            this.ctx.textAlign = 'left'
-            this.ctx.fillText(this.pips.x.min,(this.pips.y?12:2)*PXSCALE,this.height)
-            this.ctx.textAlign = 'right'
-            this.ctx.fillText(this.pips.x.max,this.width-2*PXSCALE,this.height)
+            if (this.pips.x) {
 
-        }
+                this.ctx.textBaseline = "bottom"
+                this.ctx.textAlign = 'left'
+                this.ctx.fillText(this.pips.x.min,(this.pips.y?12:2)*PXSCALE,this.height)
+                this.ctx.textAlign = 'right'
+                this.ctx.fillText(this.pips.x.max,this.width-2*PXSCALE,this.height)
 
-        if (this.pips.y) {
+            }
 
-            this.ctx.save()
-            this.ctx.translate(0, this.height)
-            this.ctx.rotate(-Math.PI/2)
+            if (this.pips.y) {
 
-            this.ctx.textBaseline = "top"
-            this.ctx.textAlign = 'left'
-            this.ctx.fillText(this.pips.y.min,(this.pips.x?12:2)*PXSCALE,2*PXSCALE)
-            this.ctx.textAlign = 'right'
-            this.ctx.fillText(this.pips.y.max,this.height-2*PXSCALE,2*PXSCALE)
-            this.ctx.rotate(Math.PI/2)
-            this.ctx.restore()
+                this.ctx.save()
+                this.ctx.translate(0, this.height)
+                this.ctx.rotate(-Math.PI/2)
+
+                this.ctx.textBaseline = "top"
+                this.ctx.textAlign = 'left'
+                this.ctx.fillText(this.pips.y.min,(this.pips.x?12:2)*PXSCALE,2*PXSCALE)
+                this.ctx.textAlign = 'right'
+                this.ctx.fillText(this.pips.y.max,this.height-2*PXSCALE,2*PXSCALE)
+                this.ctx.rotate(Math.PI/2)
+                this.ctx.restore()
+
+            }
 
         }
 

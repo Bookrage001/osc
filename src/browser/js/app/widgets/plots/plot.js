@@ -17,6 +17,7 @@ module.exports = class Plot extends _plots_base {
             top:'auto',
             width:'auto',
             height:'auto',
+            pips:true,
             color:'auto',
             css:'',
 
