@@ -56,7 +56,7 @@ module.exports = class Switcher extends _switchers_base {
 
         this.widget.append(this.switch.widget)
 
-        this.switch.widget.on('sync', (e)=>{
+        this.switch.widget.on('change', (e)=>{
 
             e.stopPropagation()
 

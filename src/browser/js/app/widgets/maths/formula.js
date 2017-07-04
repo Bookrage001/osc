@@ -132,7 +132,7 @@ module.exports = class Formula extends _widgets_base {
 
             this.showValue()
 
-            if (e.options.sync && this.conditionState) this.widget.trigger({type: 'sync',id: this.getProp('id'),widget: this.widget, linkId: this.getProp('linkId'), options: e.options})
+            if (e.options.sync && this.conditionState) this.widget.trigger({type: 'change',id: this.getProp('id'),widget: this.widget, linkId: this.getProp('linkId'), options: e.options})
             if (e.options.send && this.conditionState) this.sendValue()
 
         } catch(err) {

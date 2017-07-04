@@ -104,7 +104,7 @@ module.exports = class Encoder extends _widgets_base {
 
         this.previousValue = this.ticks/2
 
-        this.wrapper.on('sync',(e)=>{
+        this.wrapper.on('change',(e)=>{
             e.stopPropagation()
 
             var value = this.knob.getValue()
@@ -199,7 +199,7 @@ module.exports = class Encoder extends _widgets_base {
 
         }
 
-        if (options.sync && match) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
+        if (options.sync && match) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
         if (options.send && match && !(!this.getProp('snap') && options.draginit)) this.sendValue()
 
         if (options.dragged || options.draginit) this.updateDisplay(options.draginit)

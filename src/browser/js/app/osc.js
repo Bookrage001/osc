@@ -29,7 +29,7 @@ Osc.prototype.send = function(data) {
 
 Osc.prototype.sync = function(data) {
 
-    ipc.send('syncOsc', data)
+    ipc.send('changeOsc', data)
 
 }
 

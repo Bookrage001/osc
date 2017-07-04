@@ -79,7 +79,7 @@ module.exports = class Toggle extends _widgets_base {
             if (options.send) this.sendValue()
         }
 
-        if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
+        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})
 
     }
 

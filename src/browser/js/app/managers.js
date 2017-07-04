@@ -13,7 +13,7 @@ var WidgetManager = function(){
     this.preArgsSeparator = '||||'
 
     $(document).ready(()=>{
-        $('body').off('sync.global').on('sync.global',(e)=>{
+        $('body').off('change.global').on('change.global',(e)=>{
 
             var {id, widget, linkId, fromExternal, options} = e,
                 widgetsById = this.getWidgetById(id),

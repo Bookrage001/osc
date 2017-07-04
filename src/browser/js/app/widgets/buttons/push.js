@@ -83,14 +83,14 @@ module.exports = class Push extends _widgets_base {
             this.lastChanged = 'active'
             this.updateValue()
             if (options.send) this.sendValue(v)
-            if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
+            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.widget.removeClass('active')
             this.active = 0
             this.lastChanged = 'active'
             this.updateValue()
             if (options.send) this.sendValue(v, this.getProp('norelease'))
-            if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
+            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
         }
 
     }
@@ -107,13 +107,13 @@ module.exports = class Push extends _widgets_base {
             this.state = 1
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
-            if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'),options:options})
+            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'),options:options})
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.widget.removeClass('on')
             this.state = 0
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
-            if (options.sync) this.widget.trigger({type:'sync',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'),options:options})
+            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'),options:options})
         }
 
     }

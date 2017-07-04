@@ -52,7 +52,7 @@ module.exports = class Tab extends Panel {
 
         var $body = $('body')
 
-        this.widget.on('sync.detached', (e)=>{
+        this.widget.on('change.detached', (e)=>{
             if (this.detached) $body.trigger(e)
         })
 

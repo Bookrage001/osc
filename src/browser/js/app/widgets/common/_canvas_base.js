@@ -66,6 +66,9 @@ module.exports = class _canvas_base extends _widgets_base {
             this.colors.fg = style.getPropertyValue('--color-fg')
             this.colors.faded = style.getPropertyValue('--color-faded')
             this.colors.light = style.getPropertyValue('--color-light')
+            this.fontSize = parseFloat(style.getPropertyValue("font-size"))
+            this.fontFamily = style.getPropertyValue("font-family")
+            this.textAlign = style.getPropertyValue("text-align")
         }
 
         requestAnimationFrame(this.draw.bind(this))

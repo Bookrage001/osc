@@ -33,7 +33,7 @@ module.exports = class Crossfader extends Switcher {
 
         this.widget.append($('<div class="fader-container"></div>').append(this.fader.widget))
 
-        this.fader.widget.on('sync', (e)=>{
+        this.fader.widget.on('change', (e)=>{
 
             e.stopPropagation()
 
