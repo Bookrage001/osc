@@ -48,6 +48,7 @@
         > canvas {
             width: 20rem;
             image-rendering:pixelated;
+            z-index: 0;
         }
 
         .meter-container {
@@ -65,6 +66,7 @@
             background-color: var(--color-light);
             position: relative;
             margin: 17rem 12rem 15rem 5rem;
+            z-index: 0;
 
             .pip {
                 height:1rem;
@@ -75,12 +77,12 @@
                 left:0;
 
                 &:before {
-                    content:"";
+                    // content:"";
                     position: absolute;
-                    top:-4rem;
+                    top:-3rem;
                     left:0;
                     right:0;
-                    bottom:-4rem;
+                    bottom:-3rem;
                     background: var(--color-fg);
                     z-index: -1;
                 }
@@ -148,8 +150,8 @@
                     &:before {
                         top:0;
                         bottom:0;
-                        left:-4rem;
-                        right:-4rem;
+                        left:-3rem;
+                        right:-3rem;
                     }
                     span {
                         top:15rem;
