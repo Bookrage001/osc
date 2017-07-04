@@ -60,7 +60,7 @@ module.exports = class Fader extends _sliders_base {
 
         if (this.getProp('horizontal')) {
             this.widget.add(this.container).addClass('horizontal')
-        } 
+        }
 
         if (this.getProp('compact')) {
             this.widget.addClass('compact')
@@ -163,6 +163,7 @@ module.exports = class Fader extends _sliders_base {
     resizeHandle(){
             super.resizeHandle(...arguments)
 
+
             if (this.getProp('compact')) {
                 if (this.getProp('horizontal')) {
                     this.canvas[0].setAttribute('height', 1)
@@ -175,9 +176,12 @@ module.exports = class Fader extends _sliders_base {
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0)
                 this.ctx.rotate(-Math.PI/2)
                 this.ctx.translate(-this.height, 0)
+
+                var ratio = CANVAS_SCALING * this.scaling
+
+                if (ratio != 1) this.ctx.scale(ratio, ratio)
             }
 
-            if (CANVAS_SCALING != 1) this.ctx.scale(CANVAS_SCALING, CANVAS_SCALING)
 
     }
 

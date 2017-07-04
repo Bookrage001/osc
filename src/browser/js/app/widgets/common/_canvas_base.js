@@ -11,6 +11,7 @@ module.exports = class _canvas_base extends _widgets_base {
 
         this.height = undefined
         this.width = undefined
+        this.scaling = 1
 
         this.clearRect = []
 
@@ -39,7 +40,7 @@ module.exports = class _canvas_base extends _widgets_base {
 
         var width = width,
             height = height,
-            ratio = CANVAS_SCALING
+            ratio = CANVAS_SCALING * this.scaling
 
         if (width && height) {
 
