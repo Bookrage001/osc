@@ -2,7 +2,7 @@
   "name": "open-stage-control-builder",
   "description": "A libre desktop OSC bi-directionnal control surface application - builder package",
   "dependencies": {
-    "electron": "1.6.11",
+    "electron": "1.7.4",
     "mathjs": "3.13.3",
     "autolayout": "0.7.0",
     "browserify": "14.4.0",
