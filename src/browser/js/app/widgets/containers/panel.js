@@ -73,6 +73,7 @@ module.exports = class Panel extends _widgets_base {
 
             parsewidgets(this.getProp('tabs'), this.wrapper, this, true)
             this.createNavigation()
+            this.registerHashes()
 
             this.navigation.on('fake-click', (e)=>{
                 if (!e.target.hasAttribute('data-widget')) return
@@ -82,7 +83,6 @@ module.exports = class Panel extends _widgets_base {
             this.wrapper.on('tab-created', (e)=>{
                 e.stopPropagation()
                 this.createNavigation()
-
             })
 
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
@@ -96,9 +96,10 @@ module.exports = class Panel extends _widgets_base {
 
     }
 
-    registerHashes() {
+    registerHashes(edited) {
+
         this.hashes = [this.hash]
-        var widgets = this.widget.find('.widget')
+        var widgets = this.widget.add(this.wrapper).find('> .widget')
         for (let widget of widgets) {
             if (widget.abstract.hashes) {
                 this.hashes = this.hashes.concat(widget.abstract.hashes)
@@ -106,6 +107,8 @@ module.exports = class Panel extends _widgets_base {
                 this.hashes.push(widget.abstract.hash)
             }
         }
+
+        if (edited && this.parent && this.parent.registerHashes) this.parent.registerHashes(true)
     }
 
     createNavigation() {
@@ -120,8 +123,6 @@ module.exports = class Panel extends _widgets_base {
             this.tabs.push(tab.abstract)
             this.navigation.append(`<li class="tablink" data-widget="${tab.abstract.hash}" ${style}><a><span>${$(tab).find('> .label span').html()}</span></a></li>`)
         }
-
-        this.registerHashes()
 
         this.setValue(this.value)
 

@@ -46,6 +46,10 @@ var updateDom = function(container,data, remote) {
 
     if (data.type == 'tab') newContainer.trigger('tab-created')
 
+    if (container[0].abstract.parent && container[0].abstract.parent.registerHashes) {
+        container[0].abstract.parent.registerHashes(true)
+    }
+
     $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
     sidepanelCreateToggle()
 
