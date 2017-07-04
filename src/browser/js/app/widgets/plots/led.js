@@ -46,7 +46,7 @@ module.exports = class Led extends _widgets_base {
 
         super({...options, html: html})
 
-        if (this.getProp('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
 
         this.setValue(this.getProp('range').min)
 
@@ -54,7 +54,7 @@ module.exports = class Led extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`sync.${this.hash}`)
+        $('body').off(`change.${this.hash}`)
         super.onRemove()
 
     }

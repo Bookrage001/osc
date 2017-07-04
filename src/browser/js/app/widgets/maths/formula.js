@@ -77,7 +77,7 @@ module.exports = class Formula extends _widgets_base {
         this.conditionState = true
 
 
-        $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
 
         this.input.val('...')
 
@@ -85,7 +85,7 @@ module.exports = class Formula extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`sync.${this.hash}`)
+        $('body').off(`change.${this.hash}`)
         super.onRemove()
 
     }

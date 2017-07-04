@@ -20,7 +20,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
         }
 
-        $('body').on(`sync.${this.hash}`,this.syncHandler.bind(this))
+        $('body').on(`change.${this.hash}`,this.syncHandler.bind(this))
 
 
     }
@@ -40,7 +40,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`sync.${this.hash}`)
+        $('body').off(`change.${this.hash}`)
         super.onRemove()
 
     }

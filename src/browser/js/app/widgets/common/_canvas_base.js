@@ -69,6 +69,9 @@ module.exports = class _canvas_base extends _widgets_base {
             this.fontSize = parseFloat(style.getPropertyValue("font-size"))
             this.fontFamily = style.getPropertyValue("font-family")
             this.textAlign = style.getPropertyValue("text-align")
+            this.ctx.textBaseline = "middle"
+            this.ctx.font = this.fontSize + 'px ' + this.fontFamily
+            this.ctx.textAlign = this.textAlign
         }
 
         requestAnimationFrame(this.draw.bind(this))

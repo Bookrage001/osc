@@ -48,7 +48,7 @@ module.exports = class Text extends _widgets_base {
 
         this.value = this.defaultValue
 
-        if (this.getProp('widgetId').length) $('body').on(`sync.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
 
         this.setValue(this.value)
 
@@ -56,7 +56,7 @@ module.exports = class Text extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`sync.${this.hash}`)
+        $('body').off(`change.${this.hash}`)
         super.onRemove()
 
     }

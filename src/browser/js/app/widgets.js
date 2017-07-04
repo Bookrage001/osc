@@ -43,6 +43,9 @@ module.exports.widgets = {
     switcher: require('./widgets/switchers/switcher'),
     crossfader: require('./widgets/switchers/crossfader'),
 
+    // inputs
+    input: require('./widgets/inputs/input'),
+
     // maths
     formula: require('./widgets/maths/formula')
 }
@@ -55,5 +58,6 @@ module.exports.categories = {
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text'],
     'Containers':['panel','strip','modal'],
     'Switchers':['switcher','crossfader'],
+    'Inputs':['input'],
     'Maths':['formula']
 }
