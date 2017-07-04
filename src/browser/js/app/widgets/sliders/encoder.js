@@ -43,7 +43,6 @@ module.exports = class Encoder extends _widgets_base {
             width:'auto',
             height:'auto',
             color:'auto',
-            compact:true,
             css:'',
 
             _behaviour:'behaviour',
@@ -84,7 +83,7 @@ module.exports = class Encoder extends _widgets_base {
             angle:360,
             snap:true,
             range:{min:0,max:this.ticks},
-            noPip:true,
+            pips:false,
         }})
 
         this.knob.noDraw = true
@@ -93,9 +92,8 @@ module.exports = class Encoder extends _widgets_base {
             label:false,
             angle:360,
             range:{min:0,max:this.ticks},
-            compact:this.getProp('compact'),
             origin:this.ticks/2,
-            noPip:true,
+            pips:false,
         }})
 
         this.wrapper.append(this.knob.widget.addClass('drag-knob'))
