@@ -153,8 +153,8 @@ var editObject = function(container, data, refresh){
         }
 
         list.sortable({
-            forcePlaceholderSize: true,
             items: '.sortables',
+            placeholder: "sortable-placeholder btn small",
             start:function(){$(this).sortable( "refreshPositions" )},
             update: function(e,ui){
                 var prevIndex = $(ui.item).attr('data-index')
@@ -208,9 +208,9 @@ var editObject = function(container, data, refresh){
         }
 
         list.sortable({
-            start:function(){$(this).sortable( "refreshPositions" )},
-            forcePlaceholderSize: true,
             items: '.sortables',
+            placeholder: "sortable-placeholder btn small",
+            start:function(){$(this).sortable( "refreshPositions" )},
             update: function(e,ui){
                 var prevIndex = $(ui.item).attr('data-index')
                 var newIndex  = $(ui.item).index()

@@ -73,8 +73,16 @@
             flex-direction: column;
             ul {
                 padding: 1rem 2rem!important;
+                overflow: auto;
                 li:not(:last-child) {
                     margin-bottom: 2rem!important;
+                }
+                .sortable-placeholder {
+                    background: transparent;
+                    &:after {
+                        content:"|";
+                        color: transparent;
+                    }
                 }
             }
         }
