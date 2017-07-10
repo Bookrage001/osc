@@ -9,18 +9,17 @@ MIDI support requires additionnal softwares to be installed on the server's syst
 - python 2 / 3
 - [pyrtmidi](https://github.com/patrickkidd/pyrtmidi)
 
-**Why an additionnal dependency ?**
-
-Providing cross-platform midi support is not trivial, as it requires os-specific compilations that cannot be automated within Open Stage Control's current packaging workflow. Using a python addon seems the best compromise so far : the core app remains easy to build, and the extra dependency is easy to install.
+!!! note "Why an additionnal dependency ?"
+    Providing cross-platform midi support is not trivial, as it requires os-specific compilations that cannot be automated within Open Stage Control's current packaging workflow. Using a python addon seems the best compromise so far : the core app remains easy to build, and the extra dependency is easy to install.
 
 ## Setup
 
 When running the app, the `-m / -midi` switch must be set; it accepts the following options (separated by spaces):
 
-- `list`: prints the available midi ports
+- `list`: prints the available midi ports to the consolle
 - `device_name:input,output`: connect to midi ports `input` and `output`; osc messages sent to target `midi:device_name` will be processed as midi events; Multiple devices can be declared
 
-*This works under linux only:*
+*Linux only:*
 
 - `device_name:virtual`: creates a virtual midi device with one input port and one output port
 - `jack`: use jack-midi instead of alsa (pyrtmidi midi must be compiled with the `--jack-midi` flag in order to make this work)
@@ -33,8 +32,8 @@ In order to send midi messages, a widget must have at least one `target` formatt
 
 ## Supported events
 
-!!! tip ""
-    Use the `preArgs` option to make sure the correct number of arguments is sent.
+!!! warning ""
+    Use the [`preArgs`](/widgets/widgets/#preargs) option to make sure the correct number of arguments is sent.
 
 
 
