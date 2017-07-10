@@ -23,8 +23,10 @@ module.exports = class Multifader extends _matrices_base {
             height:'auto',
             alignRight:false,
             horizontal:false,
-            noPip:true,
+            pips:false,
+            input:true,
             compact:false,
+            dashed:false,
             color:'auto',
             css:'',
 
@@ -58,7 +60,7 @@ module.exports = class Multifader extends _matrices_base {
         if (this.getProp('horizontal')) {
             this.widget.addClass('horizontal')
         }
-        
+
         if (this.getProp('compact')) {
             this.widget.addClass('compact')
         }
