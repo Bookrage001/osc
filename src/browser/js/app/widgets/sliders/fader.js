@@ -161,24 +161,24 @@ module.exports = class Fader extends _sliders_base {
 
     }
 
-    resizeHandle(){
-            super.resizeHandle(...arguments)
+    resizeHandle(e, width, height, checkColors) {
 
+            var ratio = CANVAS_SCALING * this.scaling
 
             if (this.getProp('compact')) {
                 if (this.getProp('horizontal')) {
-                    this.canvas[0].setAttribute('height', 1)
+                    super.resizeHandle(e, width, 1 / ratio, checkColors)
                 } else {
-                    this.canvas[0].setAttribute('width', 1)
+                    super.resizeHandle(e, 1 / ratio, height, checkColors)
                 }
+            } else {
+                super.resizeHandle(...arguments)
             }
 
             if (this.getProp('horizontal')){
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0)
                 this.ctx.rotate(-Math.PI/2)
                 this.ctx.translate(-this.height, 0)
-
-                var ratio = CANVAS_SCALING * this.scaling
 
                 if (ratio != 1) this.ctx.scale(ratio, ratio)
             }
