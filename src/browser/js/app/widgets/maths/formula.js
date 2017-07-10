@@ -1,6 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
     {widgetManager} = require('../../managers'),
-    {math} = require('../utils')
+    {math} = require('../utils'),
+    Input = require('../inputs/input')
 
 
 module.exports = class Formula extends _widgets_base {
@@ -42,7 +43,6 @@ module.exports = class Formula extends _widgets_base {
 
         var html = `
             <div class="formula">
-                <div class="input"></div>
             </div>
         `
         super({...options, html: html})
@@ -53,7 +53,15 @@ module.exports = class Formula extends _widgets_base {
 
         this.split = typeof this.getProp('split') == 'object' && this.getProp('split').length ? this.getProp('split') : false
 
-        this.input = this.widget.find('.input').fakeInput({align:'center', disabled:true})
+        this.input = new Input({
+            props:{
+                ...Input.defaults(),
+                precision:this.getProp('precision')
+            },
+            parent:this, parentNode:this.widget
+        })
+
+        this.widget.append(this.input.widget)
 
         this.linkedWidgets = []
 
@@ -79,7 +87,7 @@ module.exports = class Formula extends _widgets_base {
 
         $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
 
-        this.input.val('...')
+        this.input.setValue('...')
 
     }
 
@@ -143,32 +151,15 @@ module.exports = class Formula extends _widgets_base {
 
     }
 
-    static deepCopyWithPrecision(obj, precision) {
-
-            var copy = obj,
-                key
-
-            if (typeof obj === 'object') {
-                copy = Array.isArray(obj) ? [] : {}
-                for (key in obj) {
-                    copy[key] = Formula.deepCopyWithPrecision(obj[key], precision)
-                }
-            } else if (typeof obj == 'number') {
-                return parseFloat(copy.toFixed(precision))
-            }
-
-            return copy
-
-    }
-
     showValue() {
 
-        this.input.val(
-            (this.getProp('condition').length && !this.conditionState ? '* ' : '') +
-            JSON.stringify(Formula.deepCopyWithPrecision(this.value, this.precision))
-        )
+        this.input.setValue(this.value)
+
+        if (this.getProp('condition').length && !this.conditionState) {
+            this.input.stringValue = '* ' + this.input.stringValue
+            this.input.draw()
+        }
 
     }
-
 
 }

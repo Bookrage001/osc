@@ -36,6 +36,8 @@
         flex:initial!important;
         display: block;
         flex-shrink: 0!important;
+        background: transparent!important;
+        border: 0!important;
     }
     > .wrapper {
         position: relative;

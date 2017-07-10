@@ -21,6 +21,7 @@ module.exports = class Rgb extends _pads_base {
             top:'auto',
             width:'auto',
             height:'auto',
+            input: true,
             css:'',
 
             _behaviour:'behaviour',
