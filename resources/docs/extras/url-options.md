@@ -5,7 +5,8 @@ Client specific options can be set by adding query parameters to the server's ur
 
 | Option | Value | Default | Description |
 |----|----|----|----|
-| hdpi | 1 / 0 | 0 |enable high resolution canvas |
+| hdpi | 1 / 0 | 0 | enable high resolution canvas |
+| forceHdpi | number | 0 | force canvas scaling (ignore `hdpi`) |
 | doubletab | number | 375 | sets the double tap/click time thershold in milliseconds |
 | zoom | number | 1 | sets the initial zoom |
 
