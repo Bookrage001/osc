@@ -61,6 +61,10 @@
             justify-content: center;
             box-shadow: 0 0 0 1rem var(--color-light) inset!important;
 
+            &.on {
+                background: var(--color-fg);
+                color: var(--color-custom);
+            }
             &:first-child {
                 // border-top:0;
             }
@@ -69,20 +73,6 @@
                 margin-bottom:0;
             }
 
-            &:before {
-                content:"";
-                position: absolute;
-                left:0;
-                top:0;
-                right:0;
-                bottom:0;
-                background: var(--color-custom);
-                opacity: 0;
-                z-index: 2;
-            }
-            &.on:before {
-                opacity: .3;
-            }
             i {
                 width: auto;
             }

@@ -37,8 +37,8 @@
             &:before {
                 content:"";
                 flex:1;
-                background: var(--color-custom);
                 opacity: 0;
+                box-shadow: 0 0 0 1rem var(--color-custom) inset;
             }
         }
 
