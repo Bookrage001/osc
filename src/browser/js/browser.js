@@ -25,7 +25,7 @@ window.PXSCALE_RESET = ()=>{
 }
 PXSCALE_RESET()
 
-window.CANVAS_SCALING = parseFloat(ARGV.forceHdpi) || ARGV.hdpi ? window.devicePixelRatio : 1
+window.CANVAS_SCALING = parseFloat(ARGV.forceHdpi) || ( ARGV.hdpi ? window.devicePixelRatio : 1 )
 
 window.DOUBLE_TAP_TIME = ARGV.doubletap ? ARGV.doubletap : 375
 
