@@ -8,12 +8,11 @@
         background: var(--color-track);
         border:1rem solid var(--color-bg);
         .input {
-            height:auto;
-            width: 100%;
+            background: transparent!important;
+            border: 0!important;
+            --color-text: var(--color-custom);
+            pointer-events: none;
         }
-    }
-    .input {
-        --color-text: var(--color-custom);
     }
 }
 
