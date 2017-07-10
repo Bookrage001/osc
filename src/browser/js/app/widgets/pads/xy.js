@@ -1,7 +1,8 @@
 var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
     {clip} = require('../utils'),
-    doubletabreset = require('../mixins/double_tap_reset')
+    doubletabreset = require('../mixins/double_tap_reset'),
+    Input = require('../inputs/input')
 
 var faderDefaults = Fader.defaults()
 
@@ -21,6 +22,7 @@ module.exports = class Xy extends _pads_base {
             top:'auto',
             width:'auto',
             height:'auto',
+            input: true,
             color:'auto',
             css:'',
 
@@ -57,17 +59,6 @@ module.exports = class Xy extends _pads_base {
                 : [this.getProp('address') + '/x', this.getProp('address') + '/y']
             : false
 
-        this.widget.append(`
-            <div class="labels row">
-                <span class="input">X</span>
-                <span class="input">Y</span>
-            </div>
-            <div class="row">
-                <div class="input x"></div>
-                <div class="input y"></div>
-            </div>
-        `)
-
         this.faders = {
             x: new Fader({props:{
                 ...faderDefaults,
@@ -101,11 +92,6 @@ module.exports = class Xy extends _pads_base {
             }, cancelDraw: true}),
         }
 
-        this.inputs = [
-            this.widget.find('.x').replaceWith(this.faders.x.input),
-            this.widget.find('.y').replaceWith(this.faders.y.input)
-        ]
-
         this.value = [this.faders.x.value, this.faders.y.value]
 
         this.wrapper.append(this.faders.x.widget)
@@ -138,14 +124,22 @@ module.exports = class Xy extends _pads_base {
             })
         }
 
-        this.faders.x.input.change(()=>{
-            var v = [this.faders.x.value, this.faders.y.value]
-            this.setValue(v,{send:true,sync:true})
-        })
-        this.faders.y.input.change(()=>{
-            var v = [this.faders.x.value, this.faders.y.value]
-            this.setValue(v,{send:true,sync:true})
-        })
+        if (this.getProp('input')) {
+
+            this.input = new Input({
+                props:{...Input.defaults(), precision:this.getProp('precision'), unit:this.getProp('unit')},
+                parent:this, parentNode:this.widget
+            })
+            this.widget.append(this.input.widget)
+            this.input.widget.on('change', (e)=>{
+                e.preventDefault()
+                this.setValue(this.input.getValue())
+                this.showValue()
+            })
+
+        }
+
+        this.setValue([0,0])
 
     }
 
@@ -180,6 +174,8 @@ module.exports = class Xy extends _pads_base {
         if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
 
         this.draw()
+
+        this.showValue()
 
     }
 
@@ -219,6 +215,12 @@ module.exports = class Xy extends _pads_base {
             [x - 10 * PXSCALE,0, 20 * PXSCALE, this.height],
             [0, y - 10 * PXSCALE, this.width, 20 * PXSCALE]
         ]
+    }
+
+    showValue() {
+
+        if (this.getProp('input')) this.input.setValue(this.value)
+
     }
 
 }

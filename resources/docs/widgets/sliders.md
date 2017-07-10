@@ -27,6 +27,11 @@ Sliders are unidimensional widgets that output one value at a time.
 - default: `true`
 - usage: set to `false` to hide the scale
 
+### `input`
+- type: `boolean`
+- default: `true`
+- usage: set to `false` to hide the built-in input
+
 ### `compact`
 - type: `boolean`
 - default: `false`
@@ -120,6 +125,11 @@ range: {
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to hide the scale
+
+### `input`
+- type: `boolean`
+- default: `true`
+- usage: set to `false` to hide the built-in input
 
 ### `compact`
 - type: `boolean`

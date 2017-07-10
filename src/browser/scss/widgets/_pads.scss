@@ -30,13 +30,12 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    .row {
-        display: flex;
-        text-align: center;
-        flex-shrink: 0;
-        .input {
-            flex:1;
-        }
+    > .input {
+        height: 25rem;
+        line-height: 25rem;
+        flex:initial!important;
+        display: block;
+        flex-shrink: 0!important;
     }
     > .wrapper {
         position: relative;
@@ -166,7 +165,7 @@
                 canvas {
                     border:0;
                 }
-                .row {
+                .input {
                     display: none;
                 }
                 &:not(:nth-child(2)) {

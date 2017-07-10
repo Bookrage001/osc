@@ -45,10 +45,9 @@ module.exports = class Meter extends Fader {
     constructor(options) {
 
         options.props.compact = true
+        options.props.input = false
 
         super(options)
-
-        this.input.hide()
 
         this.widget.addClass('meter')
                    .off('mousewheel')

@@ -52,13 +52,17 @@ module.exports = class _canvas_base extends _widgets_base {
 
             this.clearRect = []
 
-            if (ratio != 1) this.ctx.scale(ratio, ratio)
+            if (ratio != 1) {
+                this.ctx.setTransform(1, 0, 0, 1, 0, 0)
+                this.ctx.scale(ratio, ratio)
+            }
 
         }
 
+        var style =  getComputedStyle(this.widget[0])
+
         if (!this.visible || checkColors) {
             this.visible = true
-            var style =  getComputedStyle(this.widget[0])
             this.colors.custom = style.getPropertyValue('--color-custom')
             this.colors.text = style.getPropertyValue('--color-text')
             this.colors.raised = style.getPropertyValue('--color-raised')
@@ -66,13 +70,14 @@ module.exports = class _canvas_base extends _widgets_base {
             this.colors.fg = style.getPropertyValue('--color-fg')
             this.colors.faded = style.getPropertyValue('--color-faded')
             this.colors.light = style.getPropertyValue('--color-light')
-            this.fontSize = parseFloat(style.getPropertyValue("font-size"))
             this.fontFamily = style.getPropertyValue("font-family")
             this.textAlign = style.getPropertyValue("text-align")
-            this.ctx.textBaseline = "middle"
-            this.ctx.font = this.fontSize + 'px ' + this.fontFamily
-            this.ctx.textAlign = this.textAlign
         }
+
+        this.fontSize = parseFloat(style.getPropertyValue("font-size"))
+        this.ctx.font = this.fontSize + 'px ' + this.fontFamily
+        this.ctx.textBaseline = "middle"
+        this.ctx.textAlign = this.textAlign
 
         requestAnimationFrame(this.draw.bind(this))
 

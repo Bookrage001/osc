@@ -20,7 +20,7 @@ var scrolls = function(){
         }
     })
     $(document).on('keydown.resetzoom', function(e){
-        if (e.keyCode==96||e.keyCode==48) {
+        if (e.ctrlKey && (e.keyCode==96||e.keyCode==48)) {
             PXSCALE = INITIALZOOM
             document.documentElement.style.setProperty('font-size', PXSCALE + 'px')
 

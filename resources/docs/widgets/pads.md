@@ -13,6 +13,10 @@ Pads are multidimensional widgets that output multiple values.
 }
 ```
 
+### `input`
+- type: `boolean`
+- default: `true`
+- usage: set to `false` to hide the built-in input
 
 ### `rangeX`
 - type: `object`
@@ -131,6 +135,10 @@ RGB is a variant of XY, it outputs rgb values between 0 and 255.
 }
 ```
 
+### `input`
+- type: `boolean`
+- default: `true`
+- usage: set to `false` to hide the built-in input
 
 ### `precision`
 - default:`0`

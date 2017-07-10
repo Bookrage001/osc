@@ -20,6 +20,15 @@
     flex-direction: column;
     position: relative;
 
+    > .input {
+        height: 25rem;
+        line-height: 25rem;
+        flex:initial!important;
+        display: block;
+        background: transparent!important;
+        border: 0!important;
+    }
+
     .wrapper {
         overflow: hidden;
         flex:1;

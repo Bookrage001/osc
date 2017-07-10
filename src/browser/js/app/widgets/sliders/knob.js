@@ -20,6 +20,7 @@ module.exports = class Knob extends _sliders_base {
             height:'auto',
             color:'auto',
             pips:true,
+            input: true,
             dashed:false,
             angle:270,
             css:'',

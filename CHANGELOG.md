@@ -5,14 +5,16 @@
 - ui
   - general design improved, heavily inspired by [budislavTVP](http://budislavtvp.deviantart.com/) works; color schemes are much simpler and easier to customize (try `--theme light` !)
 - widgets
-  - fader / meter: added `dashed` option;
-  - meter: added `alignRight` option;
-  - knob: removed `compact` option; added `dashed` option;
+  - fader: added `dashed` option; added `input` option;
+  - meter: added `alignRight` option; added `dashed` option;
+  - knob: removed `compact` option; added `dashed` option; added `input` option;
+  - xy/rgb: added `input` option;
   - panel: remove inner widgets dark borders
   - buttons: new `dropdown` widget
+  - new `input` widget
 - editor
   - option fields are now multiline (`ctrl + enter` to add a new line), and pretty printed;
-  - added checkboxes for boolean options 
+  - added checkboxes for boolean options
 - midi
   - replaced `pyo` dependency with [`pyrtmidi`](https://github.com/patrickkidd/pyrtmidi): lighter, dedicated to midi, and handling virtual ports (no `mididings` dependency anymore)
   - pitchbend value is now a single integer between 0 and 16383

@@ -1,6 +1,7 @@
 var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
-    {clip, hsbToRgb, rgbToHsb} = require('../utils')
+    {clip, hsbToRgb, rgbToHsb} = require('../utils'),
+    Input = require('../inputs/input')
 
 var faderDefaults = Fader.defaults()
 
@@ -49,21 +50,7 @@ module.exports = class Rgb extends _pads_base {
                             : [this.getProp('address') + '/r', this.getProp('address') + '/g', this.getProp('address') + '/b']
                         : false
 
-        this.widget.append(`
-            <div class="hue-wrapper"></div>
-            <div class="labels row">
-                <span class="input">R</span>
-                <span class="input">G</span>
-                <span class="input">B</span>
-            </div>
-            <div class="row">
-                <div class="input r"></div>
-                <div class="input g"></div>
-                <div class="input b"></div>
-            </div>
-        `)
-
-        this.hueWrapper = this.widget.find('.hue-wrapper')
+        this.hueWrapper = $(`<div class="hue-wrapper"></div>`).appendTo(this.widget)
 
         this.faders = {
             h: new Fader({props:{
@@ -98,12 +85,6 @@ module.exports = class Rgb extends _pads_base {
             }, cancelDraw: true})
         }
 
-        this.inputs = [
-            this.widget.find('.r').fakeInput({align:'center'}),
-            this.widget.find('.g').fakeInput({align:'center'}),
-            this.widget.find('.b').fakeInput({align:'center'})
-        ]
-
         this.value = []
         this.hsb = {h:0,s:0,b:0}
 
@@ -132,14 +113,20 @@ module.exports = class Rgb extends _pads_base {
             this.dragHandle()
         })
 
+        if (this.getProp('input')) {
 
-        this.inputs.forEach(function(input,i){
-            input.change(()=>{
-                this.value[i] = parseFloat(clip(this.inputs[i].val(),[0,255]))
-                this.setValue(this.value,{send:true,sync:true})
+            this.input = new Input({
+                props:{...Input.defaults(), precision:this.getProp('precision'), unit:this.getProp('unit')},
+                parent:this, parentNode:this.widget
             })
-        },this)
+            this.widget.append(this.input.widget)
+            this.input.widget.on('change', (e)=>{
+                e.preventDefault()
+                this.setValue(this.input.getValue())
+                this.showValue()
+            })
 
+        }
 
         this.setValue([0,0,0])
 
@@ -200,11 +187,10 @@ module.exports = class Rgb extends _pads_base {
             this.faders.h.setValue(this.hsb.h, {sync: false, send:false, dragged:false})
         }
 
-        for (let i in this.inputs) [
-            this.inputs[i].val(this.value[i].toFixed(this.precision))
-        ]
 
         this.draw()
+
+        this.showValue()
 
     }
 
@@ -246,6 +232,12 @@ module.exports = class Rgb extends _pads_base {
             [x - 10 * PXSCALE,0, 20 * PXSCALE, this.height],
             [0, y - 10 * PXSCALE, this.width, 20 * PXSCALE]
         ]
+    }
+
+    showValue() {
+
+        if (this.getProp('input')) this.input.setValue(this.value)
+
     }
 
 }

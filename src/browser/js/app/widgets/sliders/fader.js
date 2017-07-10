@@ -22,6 +22,7 @@ module.exports = class Fader extends _sliders_base {
             alignRight:false,
             horizontal:false,
             pips:true,
+            input: true,
             compact:false,
             dashed:false,
             color:'auto',

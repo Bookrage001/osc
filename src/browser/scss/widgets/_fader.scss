@@ -32,6 +32,15 @@
     flex-direction: column;
     position: relative;
 
+    > .input {
+        height: 25rem;
+        line-height: 25rem;
+        flex:initial!important;
+        display: block;
+        background: transparent!important;
+        border: 0!important;
+    }
+
     .wrapper {
         overflow: hidden;
         flex:1;
@@ -240,6 +249,10 @@
             position: absolute;
             border:0;
             background:transparent;
+            overflow: hidden;
+            position: absolute;
+            top:50%;
+            left:50%;
         }
 
         &.horizontal {
@@ -255,8 +268,10 @@
             }
 
             .input {
-                top:50%;
-                margin-top: calc(var(--input-margin) - 12rem );
+                width: 100rem;
+                height: 24rem;
+                margin-left: -50rem;
+                margin-top: calc(-1 * 12rem + var(--input-margin));
             }
 
             .pips {
@@ -274,16 +289,15 @@
 
         &:not(.horizontal) {
             .input {
-
-                overflow: hidden;
-                position: absolute;
-                top:50%;
-                transform: rotate(-90deg);
-                width: 100rem;
-                margin-top: -12rem;
-                margin-left: calc(-1 * 50rem + var(--input-margin));
-                left:50%;
+                height: 100rem;
+                width: 24rem;
+                margin-top: -50rem;
+                margin-left: calc(-1 * 12rem + var(--input-margin));
                 z-index: 3;
+                input {
+                    transform: rotate(-90deg);
+                    width: 100rem;
+                }
             }
 
             &.align-right {

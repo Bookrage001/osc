@@ -1,7 +1,8 @@
 var {clip, mapToScale} = require('../utils'),
     _canvas_base = require('../common/_canvas_base'),
     osctouchstate = require('../mixins/osc_touch_state'),
-    doubletabreset = require('../mixins/double_tap_reset')
+    doubletabreset = require('../mixins/double_tap_reset'),
+    Input = require('../inputs/input')
 
 module.exports = class _sliders_base extends _canvas_base {
 
@@ -12,14 +13,13 @@ module.exports = class _sliders_base extends _canvas_base {
                 <div class="wrapper">
                     <canvas></canvas>
                 </div>
-                <div class="input"></div>
             </div>
         `
 
         super({...options, html: html})
 
         this.wrapper = this.widget.find('.wrapper')
-        this.input = this.widget.find('.input').fakeInput({align:'center'})
+
         this.value = undefined
         this.percent = 0
 
@@ -60,14 +60,6 @@ module.exports = class _sliders_base extends _canvas_base {
 
         }
 
-        this.widget.on('fake-right-click',function(e){
-            if (!EDITING) {
-                e.stopPropagation()
-                e.preventDefault()
-                this.input.focus()
-            }
-        }.bind(this))
-
         if (this.getProp('touchAddress') && this.getProp('touchAddress').length)
             osctouchstate(this, this.wrapper)
 
@@ -76,11 +68,35 @@ module.exports = class _sliders_base extends _canvas_base {
         this.wrapper.on('drag',this.dragHandleProxy.bind(this))
         this.wrapper.on('dragend',this.dragendHandleProxy.bind(this))
 
-        this.input.change(()=>{
 
-            this.setValue(parseFloat(this.input.val()),{sync:true,send:true})
+        if (this.getProp('input')) {
 
-        })
+            this.input = new Input({
+                props:{
+                    ...Input.defaults(),
+                    precision:this.getProp('precision'),
+                    unit:this.getProp('unit'),
+                    horizontal: this.getProp('type') == 'fader' && this.getProp('compact') && !this.getProp('horizontal')
+                },
+                parent:this, parentNode:this.widget
+            })
+
+            this.widget.append(this.input.widget)
+            this.input.widget.on('change', (e)=>{
+                e.preventDefault()
+                this.setValue(this.input.getValue())
+                this.showValue()
+            })
+
+            this.widget.on('fake-right-click',function(e){
+                if (!EDITING) {
+                    e.stopPropagation()
+                    e.preventDefault()
+                    this.input.canvas.focus()
+                }
+            }.bind(this))
+
+        }
 
         this.setValue(this.originValue)
 
@@ -200,7 +216,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
     showValue() {
 
-        this.input.val(this.value.toFixed(this.precision) + this.unit)
+        if (this.getProp('input')) this.input.setValue(this.value)
 
     }
 
