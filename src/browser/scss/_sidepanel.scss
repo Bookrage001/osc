@@ -96,18 +96,19 @@
         &.on {
             z-index: 0;
             pointer-events: none;
-            background: var(--color-fg);
             color: var(--color-custom);
+            background: var(--color-fg);
+            &:after {
+                content: "";
+                position: absolute;
+                top:0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0.35;
+                background: radial-gradient( ellipse at center, transparent, var(--color-bg));
+            }
         }
-        &:before {
-            // content:"";
-            position: absolute;
-            top:0;
-            left:0;
-            right:0;
-            bottom:0;
-            box-shadow: 0 0 0 1rem;
-            color:var(--color-bg);
-        }
+
     }
 }

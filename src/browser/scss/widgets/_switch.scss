@@ -59,11 +59,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 0 0 1rem var(--color-light) inset!important;
+            box-shadow: 0 0 0 1rem var(--color-light) inset;
 
             &.on {
                 background: var(--color-fg);
                 color: var(--color-custom);
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top:0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    opacity: 0.35;
+                    background: radial-gradient( ellipse at center, transparent, var(--color-bg));
+                }
             }
             &:first-child {
                 // border-top:0;
