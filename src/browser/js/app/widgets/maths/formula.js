@@ -88,6 +88,10 @@ module.exports = class Formula extends _widgets_base {
 
         $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
 
+        this.input.widget.on('change', (e)=>{
+            e.stopPropagation()
+        })
+
         this.input.setValue('...')
 
     }

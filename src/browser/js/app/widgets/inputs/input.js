@@ -54,41 +54,51 @@ module.exports = class Input extends _canvas_base {
         this.value = ''
         this.stringValue = ''
 
+
         if (this.getProp('editable')) {
 
-            this.canvas.on('focus',()=>{
-                this.canvas.attr('tabindex','-1')
-                let v = this.stringValue
-                let i = $('<input></input>')
-                .prependTo(this.widget)
-                .val(v)
-                .focus()
-                .change((e)=>{
-                    e.stopPropagation()
-                    i.off('change')
-                    var v = i.val()
-                    i.blur()
-                    this.setValue(v, {sync:true, send:true})
-                })
-                i.blur(()=>{
-                    this.canvas.attr('tabindex','0')
-                    i.remove()
-                    $(document).off('.fakeInput')
-                })
-                $(document).on('fake-click.fakeInput',function(e, d){
-                    if (d.originalEvent.target!=i[0]) {
-                        i.blur()
-                    }
-                }).on('keydown.fakeInput', function(e){
-                    if (e.keyCode==13) i.change()
-                    if (e.keyCode==27) i.off('change').blur()
-                })
+            this.canvas.on('focus', this.focus.bind(this))
+            this.input = $('<input></input>')
 
+            this.input.on('change', (e)=>{
+                e.stopPropagation()
             })
 
         }
 
         if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
+
+    }
+
+    focus() {
+
+        this.canvas.attr('tabindex','-1')
+        this.input
+            .val(this.stringValue)
+            .prependTo(this.widget)
+            .focus()
+            .on('blur', (e)=>{
+                this.blur()
+            })
+            .on('keydown', (e)=>{
+                if (e.keyCode==13) this.blur()
+                if (e.keyCode==27) this.blur(false)
+            })
+    }
+
+    blur(change=true) {
+
+        if (change) this.inputChange()
+
+        this.input.off('blur keydown')
+        this.canvas.attr('tabindex','0')
+        this.input.detach()
+
+    }
+
+    inputChange() {
+
+        this.setValue(this.input.val(), {sync:true, send:true})
 
     }
 
