@@ -210,6 +210,7 @@ module.exports = class Input extends _canvas_base {
     }
 
     getStringValue() {
+        if (this.value === undefined) return ''
         return typeof this.value != 'string' ?
             JSON.stringify(Input.deepCopyWithPrecision(this.value, this.precision)).replace(/,/g, ', ') :
             this.value
