@@ -133,7 +133,7 @@ module.exports = class Xy extends _pads_base {
             this.widget.append(this.input.widget)
             this.input.widget.on('change', (e)=>{
                 e.preventDefault()
-                this.setValue(this.input.getValue())
+                this.setValue(this.input.getValue(), {sync:true, send:true})
                 this.showValue()
             })
 

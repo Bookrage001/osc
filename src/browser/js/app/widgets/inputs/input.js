@@ -26,6 +26,7 @@ module.exports = class Input extends _canvas_base {
             _plot:'input',
 
             widgetId:'',
+            editable:true,
 
             _osc:'osc',
 
@@ -53,32 +54,36 @@ module.exports = class Input extends _canvas_base {
         this.value = ''
         this.stringValue = ''
 
-        this.canvas.on('focus',()=>{
-            this.canvas.attr('tabindex','-1')
-            let v = this.stringValue
-            let i = $('<input></input>')
-                    .prependTo(this.widget)
-                    .val(v)
-                    .focus()
-                    .change(()=>{
-                        this.setValue(i.val(), {sync:true, send:true})
-                        i.blur()
-                    })
-            i.blur(()=>{
-                this.canvas.attr('tabindex','0')
-                i.remove()
-                $(document).off('.fakeInput')
-            })
-            $(document).on('fake-click.fakeInput',function(e, d){
-                if (d.originalEvent.target!=i[0]) {
+        if (this.getProp('editable')) {
+
+            this.canvas.on('focus',()=>{
+                this.canvas.attr('tabindex','-1')
+                let v = this.stringValue
+                let i = $('<input></input>')
+                .prependTo(this.widget)
+                .val(v)
+                .focus()
+                .change(()=>{
+                    this.setValue(i.val(), {sync:true, send:true})
                     i.blur()
-                }
-            }).on('keydown.fakeInput', function(e){
-                if (e.keyCode==13) i.change()
-                if (e.keyCode==27) i.off('change').blur()
+                })
+                i.blur(()=>{
+                    this.canvas.attr('tabindex','0')
+                    i.remove()
+                    $(document).off('.fakeInput')
+                })
+                $(document).on('fake-click.fakeInput',function(e, d){
+                    if (d.originalEvent.target!=i[0]) {
+                        i.blur()
+                    }
+                }).on('keydown.fakeInput', function(e){
+                    if (e.keyCode==13) i.change()
+                    if (e.keyCode==27) i.off('change').blur()
+                })
+
             })
 
-        })
+        }
 
         if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
 
@@ -134,9 +139,9 @@ module.exports = class Input extends _canvas_base {
         this.stringValue = this.getStringValue()
         this.draw()
 
-        if (this.getProp('widgetId').length && !options.sync) {
+        if (this.getProp('widgetId').length && options.hash != this.hash) {
             var widget = widgetManager.getWidgetById(this.getProp('widgetId'))
-
+            options.hash = this.hash
             for (var i=widget.length-1; i>=0; i--) {
                 if (widget[i].setValue) {
                     widget[i].setValue(this.value, options)

@@ -56,6 +56,7 @@ module.exports = class Formula extends _widgets_base {
         this.input = new Input({
             props:{
                 ...Input.defaults(),
+                editable:false,
                 precision:this.getProp('precision')
             },
             parent:this, parentNode:this.widget
