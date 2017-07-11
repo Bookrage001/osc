@@ -25,4 +25,7 @@
             display: none;
         }
     }
+    &.on > .label {
+        color: var(--color-custom)
+    }
 }

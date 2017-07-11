@@ -46,8 +46,10 @@ module.exports = class Push extends _widgets_base {
             this.widget.off('draginit.push')
             this.fakeclick()
         })
+        this.classHolders = this.widget.add(this.container)
 
         this.value = this.getProp('off')
+
 
     }
 
@@ -103,13 +105,13 @@ module.exports = class Push extends _widgets_base {
         }
         if (typeof v == 'object' && v !== null) v = v.value
         if (v===this.getProp('on') || (this.getProp('on') != null && v === this.getProp('on').value && v !== undefined)) {
-            this.widget.addClass('on')
+            this.classHolders.addClass('on')
             this.state = 1
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
             if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'),options:options})
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
-            this.widget.removeClass('on')
+            this.classHolders.removeClass('on')
             this.state = 0
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
