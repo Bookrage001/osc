@@ -63,9 +63,12 @@ module.exports = class Input extends _canvas_base {
                 .prependTo(this.widget)
                 .val(v)
                 .focus()
-                .change(()=>{
-                    this.setValue(i.val(), {sync:true, send:true})
+                .change((e)=>{
+                    e.stopPropagation()
+                    i.off('change')
+                    var v = i.val()
                     i.blur()
+                    this.setValue(v, {sync:true, send:true})
                 })
                 i.blur(()=>{
                     this.canvas.attr('tabindex','0')
@@ -105,7 +108,7 @@ module.exports = class Input extends _canvas_base {
 
         for (var i=widget.length-1; i>=0; i--) {
             if (widget[i].getValue) {
-                this.setValue(widget[i].getValue(), e.options)
+                this.setValue(widget[i].getValue(), {...e.options, fromSync:true})
                 return
             }
         }
@@ -139,7 +142,7 @@ module.exports = class Input extends _canvas_base {
         this.stringValue = this.getStringValue()
         this.draw()
 
-        if (this.getProp('widgetId').length && options.hash != this.hash) {
+        if (this.getProp('widgetId').length && !options.fromSync) {
             var widget = widgetManager.getWidgetById(this.getProp('widgetId'))
             options.hash = this.hash
             for (var i=widget.length-1; i>=0; i--) {
@@ -150,7 +153,7 @@ module.exports = class Input extends _canvas_base {
         }
 
         if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
-        if (options.send) this.sendValue(v)
+        if (options.send && !options.fromSync) this.sendValue()
 
     }
 
