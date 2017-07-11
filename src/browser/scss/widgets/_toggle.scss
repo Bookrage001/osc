@@ -11,6 +11,7 @@
         cursor: pointer;
         flex:1;
         display: flex;
+        border-radius: inherit;
 
 
         .light {
@@ -19,6 +20,7 @@
             display: flex;
             box-shadow: 0 0 0 1rem var(--color-light) inset;
             pointer-events: none;
+            border-radius: inherit;
 
             &:after {
                 content:"";
@@ -32,6 +34,7 @@
                 background: var(--color-track);
                 box-shadow: 0 0 0 1rem var(--color-light), 0 0 0 1rem var(--color-bg) inset;
                 z-index: 1;
+                border-radius: inherit;
             }
 
             &:before {
@@ -39,11 +42,11 @@
                 flex:1;
                 opacity: 0;
                 box-shadow: 0 0 0 1rem var(--color-custom) inset;
+                border-radius: inherit;
             }
         }
 
         &.on {
-            // background: var(--color-fg);
 
             .light:after {
                 background: var(--color-custom);

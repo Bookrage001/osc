@@ -86,18 +86,6 @@ body {
                     -webkit-mask: linear-gradient(to left, rgba(0, 0, 0, 0), #000000 10rem) no-repeat;
                 }
             }
-			a:after {
-				content:"";
-				background:var(--color-custom);
-				position: absolute;
-				bottom:0;
-				left:0;
-				right:0;
-				top:0;
-				opacity: 0;
-				transition: opacity .2s;
-                z-index: -1;
-			}
             &.on a, .sidepanel-open {
 	            position: relative;
                 z-index: 0;
