@@ -179,20 +179,7 @@ body {
         text-overflow: ellipsis;
         background: none;
         border-bottom:1rem solid var(--color-bg);
-        &:hover {
-            background:var(--color-raised)
-        }
-        &:focus {
-            &:after {
-                content:"";
-                position: absolute;
-                top:0;
-                left:0;
-                bottom:0;
-                border-left:1rem solid var(--color-accent);
-                opacity: 0.3;
-            }
-        }
+
         &:last-child {
             border-bottom:0;
         }
@@ -496,6 +483,7 @@ body {
             white-space: normal;
             background:var(--color-fg);
             box-shadow: 0 0 0 1rem var(--color-light) inset;
+            text-transform: none;
         }
     }
 }
