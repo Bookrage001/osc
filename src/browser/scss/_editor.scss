@@ -46,6 +46,8 @@
         border-bottom: 1rem solid var(--color-bg);
         position: relative;
         justify-content: center;
+        text-transform: none;
+        font-weight: 500;
 
         &:last-child {
             margin-bottom:0;
@@ -98,6 +100,9 @@
             background: var(--color-fg);
             text-align: center;
             box-shadow: 0 0 0 1rem var(--color-light) inset;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             i {
                 color: transparent;
             }
@@ -144,6 +149,7 @@
         white-space: nowrap;
         border-top:1rem solid var(--color-fg);
         resize: none;
+        font-size: 12rem!important;    
     }
     .error label{
         border-right: 1rem solid rgba(red, .75);
@@ -173,6 +179,7 @@
     }
     select {
         -webkit-appearance:none;
+        font-size: 12rem!important;
     }
     .submit {
         margin-top:30rem;
@@ -227,6 +234,7 @@
     z-index: 999999999;
     background: var(--color-raised);
     box-shadow: 0 0 4rem 1rem var(--color-bg);
+    text-transform: none;
     .item {
         color:var(--color-text)
     }

@@ -75,7 +75,8 @@ module.exports = class _canvas_base extends _widgets_base {
         }
 
         this.fontSize = parseFloat(style.getPropertyValue("font-size"))
-        this.ctx.font = this.fontSize + 'px ' + this.fontFamily
+        this.fontWeight = parseFloat(style.getPropertyValue("font-weight"))
+        this.ctx.font = this.fontWeight + ' ' + this.fontSize + 'px ' + this.fontFamily
         this.ctx.textBaseline = "middle"
         this.ctx.textAlign = this.textAlign
 

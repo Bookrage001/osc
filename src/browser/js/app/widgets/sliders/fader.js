@@ -249,7 +249,7 @@ module.exports = class Fader extends _sliders_base {
             this.ctx.stroke()
 
             this.ctx.beginPath()
-            this.ctx.globalAlpha = 1
+            this.ctx.globalAlpha = 0.7
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.moveTo(m, o)
             this.ctx.lineTo(m, d)

@@ -33,7 +33,6 @@
         }
         a {
             text-transform: none;
-            font-weight: normal;
             color: var(--color-accent);
             justify-content: center;
         }
@@ -67,7 +66,6 @@
         padding: 10rem;
         position: relative;
         margin: 0.5rem;
-
         &.disabled {
             color:var(--color-text-fade);
         }

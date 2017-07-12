@@ -148,7 +148,7 @@ module.exports = class Knob extends _sliders_base {
             pipsWidth = this.getProp('pips') ? 3 * PXSCALE : 0,
             pipsRadius =  this.minDimension / 2 - pipsWidth / 2 - margin,
             gaugeWidth = 7 * PXSCALE,
-            gaugeRadius = pipsRadius - gaugeWidth / 2 - pipsWidth / 2,
+            gaugeRadius = pipsRadius - gaugeWidth / 2 - pipsWidth * 1.5,
             knobRadius = gaugeRadius - gaugeWidth
 
 
@@ -166,7 +166,7 @@ module.exports = class Knob extends _sliders_base {
             this.ctx.beginPath()
             for (var pip of this.rangeKeys.concat(this.valueToPercent(this.originValue))) {
                 let r1 = pipsRadius - pipsWidth / 2,
-                    r2 = pipsRadius + pipsWidth / 2 + PXSCALE,
+                    r2 = pipsRadius + pipsWidth / 2,
                     a  = 2 * Math.PI - this.percentToAngle(pip)
 
                 if (pip == 0)   a += 1.5 * PXSCALE / pipsRadius
@@ -176,9 +176,14 @@ module.exports = class Knob extends _sliders_base {
                 this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
             }
 
-            this.ctx.lineWidth = PXSCALE
+            this.ctx.lineWidth = PXSCALE * 7
+            this.ctx.strokeStyle = this.colors.fg
+            this.ctx.stroke()
+
+            this.ctx.lineWidth = PXSCALE * 3
             this.ctx.strokeStyle = this.colors.pips
             this.ctx.stroke()
+
 
         }
 
@@ -206,6 +211,7 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min, max)
         this.ctx.stroke()
 
+        this.ctx.globalAlpha = 0.7
         this.ctx.strokeStyle = this.colors.gauge
         this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
         this.ctx.beginPath()

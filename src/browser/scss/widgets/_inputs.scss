@@ -21,6 +21,8 @@
         padding:1rem;
         border: 1rem solid var(--color-bg);
         background: var(--color-track);
+        font-size: 12rem;
+
 
         input {
             height: 100%;
@@ -35,6 +37,8 @@
             text-align:inherit;
             vertical-align: top;
             // font-weight: bold;
+            letter-spacing: 1rem;
+
         }
         canvas {
             height: 100%;

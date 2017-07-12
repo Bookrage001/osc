@@ -184,9 +184,10 @@
     @extend .toggle-container;
 
     > .toggle .light:after {
-            content:"\f077";
+            content:"\f0da";
             font-family: FontAwesome;
-            transform: rotateZ(45deg);
+            transform: rotateZ(-45deg);
+            font-size: 20rem;
             display: block;
             width:10rem;
             height:10rem;
@@ -199,8 +200,7 @@
             position: absolute;;
             box-shadow: none;
             background: none;
-            color:var(--color-bg);
-            text-shadow: 0 0 1rem var(--color-light);
+            color:var(--color-text-fade);
     }
     > .label {
         top:0;

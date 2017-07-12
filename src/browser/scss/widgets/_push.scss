@@ -1,8 +1,5 @@
 .push-container {
     @extend .toggle-container;
-    .label {
-        top:0;
-    }
     .toggle {
         &.active {
             // background-color: var(--color-fg);

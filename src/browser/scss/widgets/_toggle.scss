@@ -87,10 +87,15 @@
         justify-content: center;
         align-items: center;
         z-index: 2;
+        font-family: roboto;
+        // font-weight: bold;
+        color:var(--color-text);
+        // letter-spacing: 1rem;
     }
 
     &.on > .label {
-        color: var(--color-custom)
+        color: var(--color-custom);
+        opacity: 1;
     }
 
 }

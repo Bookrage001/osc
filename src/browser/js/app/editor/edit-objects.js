@@ -58,7 +58,7 @@ var editObject = function(container, data, refresh){
                 input = $(`<select class="input" data-type="${type}" title="${i}"/>`)
 
                 for (let c in categories) {
-                    input.append(`<optgroup label="${c}">`)
+                    input.append(`<optgroup label="> ${c}">`)
                     for (let t of categories[c]) {
                         input.append(`<option ${t==value?'selected=':''} value="${t}">${t}</option>`)
                     }

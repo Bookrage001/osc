@@ -40,16 +40,23 @@ html{
 }
 
 body {
-    font-size:13rem;
-    line-height:16rem;
+    line-height:17rem;
     font-family:Droid Sans;
-    color:var(--color-text);
+    color:  var(--color-text);
     white-space:nowrap;
     opacity:1;
     cursor: default;
-}
-i {
-    // font-size: 14rem!important;
+    font-family: 'Roboto';
+    font-size:11rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+
+    // text-transform: uppercase;
+    // color:var(--color-text-fade);
+    i {
+        font-size: 12rem!important;
+    }
 }
 
 
@@ -63,7 +70,6 @@ i {
     overflow: hidden;
     cursor: pointer;
     box-shadow: 0 0 0 1rem var(--color-light) inset;
-
     &.small {
         padding:8rem;
         padding-right: 15rem;
@@ -124,20 +130,18 @@ i {
         overflow: auto;
         background: var(--color-fg);
         border-top:2rem solid var(--color-bg);
-
+        text-transform: none;
+        font-weight: 500;
     }
     .header {
-        padding:24rem 20rem 20rem;
+        padding:20rem 20rem 18rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         flex-grow: 0;
         background-color: var(--color-fg);
         color:var(--color-accent);
-        font-size:16rem;
-        line-height: 20rem;
-
-        text-transform: uppercase;
-        letter-spacing: 2.5rem;
+        letter-spacing: 1rem;
+        font-size: 12rem;
 
         box-shadow: 0 0 0 1rem var(--color-light) inset;
     }
@@ -262,11 +266,13 @@ i {
 
         #title {
             text-transform: uppercase;
-            letter-spacing: 2rem;
+            letter-spacing: 1rem;
+            font-size: 12rem;
         }
 
         #version {
             opacity: .5;
+            text-transform: none;
         }
 
 
