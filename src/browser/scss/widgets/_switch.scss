@@ -62,7 +62,7 @@
             box-shadow: 0 0 0 1rem var(--color-light) inset;
 
             &.on {
-                background: var(--color-fg);
+                // background: var(--color-fg);
                 color: var(--color-custom);
                 &:after {
                     content: "";

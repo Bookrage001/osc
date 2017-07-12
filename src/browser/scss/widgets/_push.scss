@@ -5,8 +5,7 @@
     }
     .toggle {
         &.active {
-            background-color: var(--color-fg);
-            box-shadow: 0 0 10rem 0 var(--color-track) inset;
+            // background-color: var(--color-fg);
             &:after {
                 content: "";
                 position: absolute;

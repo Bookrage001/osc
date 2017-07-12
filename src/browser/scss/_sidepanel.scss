@@ -97,7 +97,7 @@
             z-index: 0;
             pointer-events: none;
             color: var(--color-custom);
-            background: var(--color-fg);
+            // background: var(--color-fg);
             &:after {
                 content: "";
                 position: absolute;

@@ -89,7 +89,7 @@ body {
             &.on a, .sidepanel-open {
 	            position: relative;
                 z-index: 0;
-                background:var(--color-fg);
+                // background:var(--color-fg);
                 color: var(--color-custom);
                 &:after {
                     content: "";
