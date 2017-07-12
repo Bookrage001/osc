@@ -22,8 +22,16 @@
             pointer-events: none;
             border-radius: inherit;
 
-            &:after {
+            &:before {
                 content:"";
+                flex:1;
+                opacity: 0;
+                box-shadow: 0 0 0 1rem var(--color-custom) inset;
+                border-radius: inherit;
+            }
+
+            &:after {
+                // content:"";
                 opacity: 1;
                 position: absolute;
                 display: block;
@@ -37,21 +45,26 @@
                 border-radius: inherit;
             }
 
-            &:before {
-                content:"";
-                flex:1;
-                opacity: 0;
-                box-shadow: 0 0 0 1rem var(--color-custom) inset;
-                border-radius: inherit;
-            }
         }
 
         &.on {
+            &:after {
+                content: "";
+                position: absolute;
+                top:0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0.35;
+                background: radial-gradient( ellipse at center, transparent, var(--color-bg));
+            }
 
+            .light:before {
+                opacity: 0.3;
+            }
             .light:after {
                 background: var(--color-custom);
             }
-
 
         }
 
@@ -59,7 +72,7 @@
 
     > .label {
         position: absolute;
-        top:7rem;
+        top:2rem;
         left:2rem;
         right:2rem;
         bottom:2rem;
@@ -74,6 +87,10 @@
         justify-content: center;
         align-items: center;
         z-index: 2;
+    }
+
+    &.on > .label {
+        color: var(--color-custom)
     }
 
 }

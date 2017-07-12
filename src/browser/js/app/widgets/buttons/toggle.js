@@ -45,6 +45,7 @@ module.exports = class Toggle extends _widgets_base {
             this.fakeclick()
         })
 
+        this.classHolders = this.widget.add(this.container)
 
         this.value = this.getProp('off')
 
@@ -68,12 +69,12 @@ module.exports = class Toggle extends _widgets_base {
     setValue(v,options={}) {
 
         if (v===this.getProp('on') || (this.getProp('on') != null && v.value === this.getProp('on').value && v.value !== undefined)) {
-            this.widget.addClass('on')
+            this.classHolders.addClass('on')
             this.widget.state = 1
             this.value = this.getProp('on')
             if (options.send) this.sendValue()
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v.value === this.getProp('off').value && v.value !== undefined)) {
-            this.widget.removeClass('on')
+            this.classHolders.removeClass('on')
             this.widget.state = 0
             this.value = this.getProp('off')
             if (options.send) this.sendValue()

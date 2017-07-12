@@ -17,14 +17,9 @@
                 background: radial-gradient( ellipse at center, transparent, var(--color-bg));
             }
         }
-        &.on .light:before {
-            opacity: 0.3;
-        }
         .light:after{
             display: none;
         }
     }
-    &.on > .label {
-        color: var(--color-custom)
-    }
+
 }
