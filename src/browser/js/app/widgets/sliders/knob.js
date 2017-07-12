@@ -169,8 +169,8 @@ module.exports = class Knob extends _sliders_base {
                     r2 = pipsRadius + pipsWidth / 2,
                     a  = 2 * Math.PI - this.percentToAngle(pip)
 
-                if (pip == 0)   a += 1.5 * PXSCALE / pipsRadius
-                if (pip == 100) a -= 1.5 * PXSCALE / pipsRadius
+                if (pip == 0 && this.maxAngle != 360)   a += 1.5 * PXSCALE / pipsRadius
+                if (pip == 100 && this.maxAngle != 360) a -= 1.5 * PXSCALE / pipsRadius
 
                 this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
                 this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
