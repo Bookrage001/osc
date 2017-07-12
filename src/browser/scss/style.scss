@@ -132,6 +132,20 @@ body {
         border-top:2rem solid var(--color-bg);
         text-transform: none;
         font-weight: 500;
+        a {
+            box-shadow: none;
+            &:hover, &:focus {
+                &:after {
+                    content:"";
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    bottom:0;
+                    border-left:1rem solid var(--color-accent);
+                    opacity: 0.3;
+                }
+            }
+        }
     }
     .header {
         padding:20rem 20rem 18rem;
@@ -142,7 +156,7 @@ body {
         color:var(--color-accent);
         letter-spacing: 1rem;
         font-size: 12rem;
-
+        background:var(--color-raised);
         box-shadow: 0 0 0 1rem var(--color-light) inset;
     }
     .footer {
@@ -151,6 +165,9 @@ body {
         text-overflow: ellipsis;
         flex-grow: 0;
         border-top:2rem solid var(--color-bg);
+        a  {
+            background:var(--color-raised)
+        }
     }
     a {
         display: block;
@@ -164,6 +181,17 @@ body {
         border-bottom:1rem solid var(--color-bg);
         &:hover {
             background:var(--color-raised)
+        }
+        &:focus {
+            &:after {
+                content:"";
+                position: absolute;
+                top:0;
+                left:0;
+                bottom:0;
+                border-left:1rem solid var(--color-accent);
+                opacity: 0.3;
+            }
         }
         &:last-child {
             border-bottom:0;

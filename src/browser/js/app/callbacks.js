@@ -49,7 +49,7 @@ var callbacks = module.exports = {
             if (!window.READ_ONLY) {
             }
             list.append(`
-                <a class="btn load" data-session="${data[i]}">
+                <a href="#" tabIndex="0" class="btn load" data-session="${data[i]}">
                     ${file} <em style="opacity:0.45">(${path})</em>
                     ${window.READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
                 </a>
@@ -58,6 +58,7 @@ var callbacks = module.exports = {
         }
 
         lobby.find('.load').click(function(e){
+            e.preventDefault()
             e.stopPropagation()
             ipc.send('sessionOpen',{path:$(this).data('session')})
         })
