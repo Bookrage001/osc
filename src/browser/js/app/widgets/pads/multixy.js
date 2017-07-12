@@ -183,12 +183,9 @@ module.exports = class MultiXy extends _pads_base {
 
         this.clear()
 
-        this.ctx.textAlign = 'center'
-        this.ctx.textBaseline = 'middle'
-
         for (var i=0;i<this.npoints;i++) {
-            var x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
-                y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE,
+            var x = Math.round(clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE),
+                y = Math.round((100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE),
                 t = this.labels ? this.getProp('points')[i] : i
 
                 this.ctx.strokeStyle = this.colors.custom
@@ -207,11 +204,8 @@ module.exports = class MultiXy extends _pads_base {
 
                 this.ctx.globalAlpha = 1
                 this.ctx.fillStyle = this.colors.text
-                this.ctx.strokeStyle = this.colors.text
                 this.ctx.lineWidth = PXSCALE
-                this.ctx.font = PXSCALE * 11 + 'px Droid Sans'
                 this.ctx.fillText(t, x, y)
-                this.ctx.strokeText(t, x, y)
 
                 this.clearRect[i] = [x - this.pointSize * PXSCALE, y - this.pointSize * PXSCALE, this.pointSize * 2 * PXSCALE, this.pointSize * 2 * PXSCALE]
 

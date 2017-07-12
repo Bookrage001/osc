@@ -128,6 +128,10 @@
 .multixy-container {
     > .pad {
         --point-size:10rem;
+        text-align: center;
+        font-weight: 500;
+        font-size: 12rem;
+
         > .wrapper {
             padding: calc(var(--point-size) + 1rem);
 
