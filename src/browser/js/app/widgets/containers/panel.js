@@ -85,6 +85,8 @@ module.exports = class Panel extends _widgets_base {
                 this.createNavigation()
             })
 
+            this.setValue(this.getProp('value') || 0)
+
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
             parsewidgets(this.getProp('widgets'), this.widget, this)
@@ -93,7 +95,6 @@ module.exports = class Panel extends _widgets_base {
 
         }
 
-        this.setValue(this.getProp('value') || 0)
 
     }
 
