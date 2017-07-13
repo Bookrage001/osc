@@ -6,8 +6,8 @@ Open Stage Control can send and receive midi messages using a tiny python addon.
 
 MIDI support requires additionnal softwares to be installed on the server's system:
 
-- python 2 / 3
-- [pyrtmidi](https://github.com/patrickkidd/pyrtmidi)
+- python (2 / 3)
+- [pyrtmidi](https://github.com/patrickkidd/pyrtmidi) (2.3.2)
 
 !!! note "Why an additionnal dependency ?"
     Providing cross-platform midi support is not trivial, as it requires os-specific compilations that cannot be automated within Open Stage Control's current packaging workflow. Using a python addon seems the best compromise so far : the core app remains easy to build, and the extra dependency is easy to install.
