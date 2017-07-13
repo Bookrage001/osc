@@ -60,7 +60,8 @@
                                         "pips": false,
                                         "doubleTap": false,
                                         "width": 90,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     },
                                     {
                                         "type": "push",
@@ -329,7 +330,8 @@
                                                 "top": "auto",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "fader",
@@ -366,7 +368,8 @@
                                                 "meterAddress": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "panel",
@@ -395,7 +398,7 @@
                                                         "css": "",
                                                         "range": {
                                                             "min": {
-                                                                "inf": -200
+                                                                "-inf": -200
                                                             },
                                                             "6%": -60,
                                                             "12%": -50,
@@ -426,7 +429,8 @@
                                                         "width": 80,
                                                         "pips": true,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "panel",
@@ -674,7 +678,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "fader",
@@ -711,7 +716,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "panel",
@@ -739,7 +745,7 @@
                                                         "css": "",
                                                         "range": {
                                                             "min": {
-                                                                "inf": -200
+                                                                "-inf": -200
                                                             },
                                                             "6%": -60,
                                                             "12%": -50,
@@ -771,7 +777,8 @@
                                                         "linkId": "",
                                                         "pips": true,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1019,7 +1026,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "fader",
@@ -1056,7 +1064,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "panel",
@@ -1084,7 +1093,7 @@
                                                         "css": "",
                                                         "range": {
                                                             "min": {
-                                                                "inf": -200
+                                                                "-inf": -200
                                                             },
                                                             "6%": -60,
                                                             "12%": -50,
@@ -1116,7 +1125,8 @@
                                                         "linkId": "",
                                                         "pips": true,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1364,7 +1374,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "fader",
@@ -1401,7 +1412,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "panel",
@@ -1429,7 +1441,7 @@
                                                         "css": "",
                                                         "range": {
                                                             "min": {
-                                                                "inf": -200
+                                                                "-inf": -200
                                                             },
                                                             "6%": -60,
                                                             "12%": -50,
@@ -1461,7 +1473,8 @@
                                                         "linkId": "",
                                                         "pips": true,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "panel",
@@ -1709,7 +1722,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "fader",
@@ -1746,7 +1760,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "panel",
@@ -1774,7 +1789,7 @@
                                                         "css": "",
                                                         "range": {
                                                             "min": {
-                                                                "inf": -200
+                                                                "-inf": -200
                                                             },
                                                             "6%": -60,
                                                             "12%": -50,
@@ -1806,7 +1821,8 @@
                                                         "linkId": "",
                                                         "pips": true,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "panel",
@@ -2054,7 +2070,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "fader",
@@ -2091,7 +2108,8 @@
                                                 "linkId": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "panel",
@@ -2119,7 +2137,7 @@
                                                         "css": "",
                                                         "range": {
                                                             "min": {
-                                                                "inf": -200
+                                                                "-inf": -200
                                                             },
                                                             "6%": -60,
                                                             "12%": -50,
@@ -2151,7 +2169,8 @@
                                                         "linkId": "",
                                                         "pips": true,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "panel",
@@ -2384,7 +2403,7 @@
                                                 "css": "",
                                                 "range": {
                                                     "min": {
-                                                        "inf": -200
+                                                        "-inf": -200
                                                     },
                                                     "6%": -60,
                                                     "12%": -50,
@@ -2414,7 +2433,8 @@
                                                 "preArgs": [],
                                                 "pips": true,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "strip",
@@ -2458,7 +2478,8 @@
                                                         "doubleTap": false,
                                                         "dashed": false,
                                                         "angle": 270,
-                                                        "css": "font-size:8rem"
+                                                        "css": "font-size:8rem",
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2607,7 +2628,8 @@
                                         "linkId": "",
                                         "pips": false,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     },
                                     {
                                         "type": "fader",
@@ -2642,7 +2664,8 @@
                                         "top": "auto",
                                         "pips": false,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     }
                                 ],
                                 "tabs": [],
@@ -2738,7 +2761,7 @@
                                                 "css": "",
                                                 "range": {
                                                     "min": {
-                                                        "inf": -200
+                                                        "-inf": -200
                                                     },
                                                     "6%": -60,
                                                     "12%": -50,
@@ -2768,7 +2791,8 @@
                                                 "preArgs": [],
                                                 "pips": true,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "toggle",
@@ -2831,7 +2855,8 @@
                                                         "doubleTap": false,
                                                         "dashed": false,
                                                         "angle": 270,
-                                                        "css": "font-size:8rem"
+                                                        "css": "font-size:8rem",
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2961,7 +2986,8 @@
                                         "linkId": "",
                                         "pips": false,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     },
                                     {
                                         "type": "fader",
@@ -2996,7 +3022,8 @@
                                         "top": "auto",
                                         "pips": false,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     }
                                 ],
                                 "tabs": [],
@@ -3108,7 +3135,8 @@
                                                 "preArgs": [],
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "fader",
@@ -3143,7 +3171,8 @@
                                                 "preArgs": [],
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "panel",
@@ -3172,7 +3201,7 @@
                                                         "css": "",
                                                         "range": {
                                                             "min": {
-                                                                "inf": -200
+                                                                "-inf": -200
                                                             },
                                                             "6%": -60,
                                                             "12%": -50,
@@ -3201,7 +3230,8 @@
                                                         "preArgs": [],
                                                         "pips": true,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "panel",
@@ -3230,11 +3260,7 @@
                                                                 "color": "red",
                                                                 "value": "",
                                                                 "address": "/select/recenable",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3249,11 +3275,7 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/record_safe",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3268,11 +3290,7 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/select/monitor_input",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3287,11 +3305,7 @@
                                                                 "color": "orange",
                                                                 "value": "",
                                                                 "address": "/select/monitor_disk",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3306,11 +3320,7 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/solo",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3325,11 +3335,7 @@
                                                                 "color": "yellow",
                                                                 "value": "",
                                                                 "address": "/select/mute",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3344,11 +3350,7 @@
                                                                 "color": "pink",
                                                                 "value": "",
                                                                 "address": "/select/expand",
-                                                                "preArgs": [],
-                                                                "left": "auto",
-                                                                "top": "auto",
-                                                                "width": "auto",
-                                                                "height": "auto"
+                                                                "preArgs": []
                                                             }
                                                         ],
                                                         "tabs": [],
@@ -3514,7 +3516,8 @@
                                                         "left": "auto",
                                                         "pips": false,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3549,7 +3552,8 @@
                                                         "left": "auto",
                                                         "pips": false,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3584,7 +3588,8 @@
                                                         "left": "auto",
                                                         "pips": false,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     },
                                                     {
                                                         "type": "fader",
@@ -3619,7 +3624,8 @@
                                                         "left": "auto",
                                                         "pips": false,
                                                         "doubleTap": false,
-                                                        "dashed": false
+                                                        "dashed": false,
+                                                        "input": true
                                                     }
                                                 ],
                                                 "left": 120,
@@ -3802,7 +3808,8 @@
                                         "pips": false,
                                         "doubleTap": false,
                                         "width": 90,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     },
                                     {
                                         "type": "push",
