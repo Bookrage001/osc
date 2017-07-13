@@ -16,6 +16,7 @@ module.exports = class Toggle extends _widgets_base {
             top:'auto',
             width:'auto',
             height:'auto',
+            led: false,
             color:'auto',
             css:'',
 
@@ -34,7 +35,7 @@ module.exports = class Toggle extends _widgets_base {
 
     constructor(options) {
 
-        super({...options, html: '<div class="toggle"><div class="light"></div></div>'})
+        super({...options, html: '<div class="toggle"></div>'})
 
         this.widget.value = this.widget.find('span')
         this.widget.state = 0
@@ -44,6 +45,8 @@ module.exports = class Toggle extends _widgets_base {
             this.widget.off('draginit.toggle')
             this.fakeclick()
         })
+
+        if (this.getProp('led')) this.container.addClass('led')
 
         this.classHolders = this.widget.add(this.container)
 

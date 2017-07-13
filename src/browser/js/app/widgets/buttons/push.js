@@ -35,7 +35,7 @@ module.exports = class Push extends _widgets_base {
 
     constructor(options) {
 
-        super({...options, html: '<div class="toggle"><div class="light"></div></div>'})
+        super({...options, html: '<div class="toggle"></div>'})
 
         this.state = 0
         this.active = 0

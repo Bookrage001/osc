@@ -183,24 +183,26 @@
 .modal-container {
     @extend .toggle-container;
 
-    > .toggle .light:after {
-            content:"\f0da";
+    > .toggle:after {
+            content:"\f0da"!important;
             font-family: FontAwesome;
             transform: rotateZ(-45deg);
             font-size: 20rem;
             display: block;
             width:8rem;
             height:6rem;
-            right:2rem;
-            top:1rem;
-            left:auto;
+            right:2rem!important;
+            top:1rem!important;
+            left:auto!important;
+            bottom:auto!important;
             line-height: 10rem;
             text-align: center;
             float:right;
-            position: absolute;;
+            position: absolute;
             box-shadow: none;
-            background: none;
+            background: none!important;
             color:var(--color-text-fade);
+            opacity: 1!important;
     }
 
     > .panel {
@@ -245,7 +247,7 @@
     }
     &.on {
         z-index: 99999;
-        > .toggle .light:after {
+        > .toggle:after {
             color:var(--color-custom);
         }
     }

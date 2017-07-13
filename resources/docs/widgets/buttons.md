@@ -12,6 +12,11 @@ Buttons are exactly what you think they are.
 }
 ```
 
+### `led`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to display the toggle's state with a led
+
 ### `on`
 - type: `string|number|object`
 - default: `1`
