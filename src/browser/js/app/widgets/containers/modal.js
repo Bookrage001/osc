@@ -109,7 +109,7 @@ module.exports = class Modal extends Panel {
         this.fixScrolling()
 
         this.popup.toggle(this.value?true:false)
-        this.container.toggleClass('on', this.value?true:false)
+        this.container.add(this.light).toggleClass('on', this.value?true:false)
 
 
         if (this.value) {

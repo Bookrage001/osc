@@ -189,10 +189,10 @@
             transform: rotateZ(-45deg);
             font-size: 20rem;
             display: block;
-            width:10rem;
-            height:10rem;
+            width:8rem;
+            height:6rem;
             right:2rem;
-            top:2rem;
+            top:1rem;
             left:auto;
             line-height: 10rem;
             text-align: center;
@@ -202,9 +202,7 @@
             background: none;
             color:var(--color-text-fade);
     }
-    > .label {
-        top:0;
-    }
+
     > .panel {
         display: none;
     }
@@ -247,8 +245,7 @@
     }
     &.on {
         z-index: 99999;
-        @extend .panel-container-base;
-        .toggle .light:after {
+        > .toggle .light:after {
             color:var(--color-custom);
         }
     }
