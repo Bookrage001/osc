@@ -185,7 +185,9 @@
                                         "preArgs": [
                                             6,
                                             159,
-                                            8403
+                                            18579,
+                                            0,
+                                            0
                                         ],
                                         "norelease": true,
                                         "address": "/set_surface",
@@ -462,7 +464,8 @@
                                                                     "@{parent.variables.n}"
                                                                 ],
                                                                 "value": "",
-                                                                "address": "/strip/recenable"
+                                                                "address": "/strip/recenable",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -479,7 +482,8 @@
                                                                     "@{parent.variables.n}"
                                                                 ],
                                                                 "value": "",
-                                                                "address": "/strip/record_safe"
+                                                                "address": "/strip/record_safe",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -496,7 +500,8 @@
                                                                 "off": 0,
                                                                 "on": 1,
                                                                 "value": "",
-                                                                "address": "/strip/monitor_input"
+                                                                "address": "/strip/monitor_input",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -513,7 +518,8 @@
                                                                     "@{parent.variables.n}"
                                                                 ],
                                                                 "value": "",
-                                                                "address": "/strip/monitor_disk"
+                                                                "address": "/strip/monitor_disk",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -530,7 +536,8 @@
                                                                     "@{parent.variables.n}"
                                                                 ],
                                                                 "value": "",
-                                                                "address": "/strip/solo"
+                                                                "address": "/strip/solo",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -547,7 +554,8 @@
                                                                     "@{parent.variables.n}"
                                                                 ],
                                                                 "value": "",
-                                                                "address": "/strip/mute"
+                                                                "address": "/strip/mute",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -564,7 +572,8 @@
                                                                     "@{parent.variables.n}"
                                                                 ],
                                                                 "value": "",
-                                                                "address": "/strip/expand"
+                                                                "address": "/strip/expand",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "push",
@@ -810,7 +819,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/recenable",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -827,7 +837,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/record_safe",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -844,7 +855,8 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/strip/monitor_input",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -861,7 +873,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/monitor_disk",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -878,7 +891,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/solo",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -895,7 +909,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/mute",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -912,7 +927,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/expand",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "push",
@@ -1158,7 +1174,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/recenable",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1175,7 +1192,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/record_safe",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1192,7 +1210,8 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/strip/monitor_input",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1209,7 +1228,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/monitor_disk",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1226,7 +1246,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/solo",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1243,7 +1264,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/mute",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1260,7 +1282,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/expand",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "push",
@@ -1506,7 +1529,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/recenable",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1523,7 +1547,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/record_safe",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1540,7 +1565,8 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/strip/monitor_input",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1557,7 +1583,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/monitor_disk",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1574,7 +1601,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/solo",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1591,7 +1619,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/mute",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1608,7 +1637,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/expand",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "push",
@@ -1853,7 +1883,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/recenable",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1870,7 +1901,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/record_safe",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1887,7 +1919,8 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/strip/monitor_input",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1904,7 +1937,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/monitor_disk",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1921,7 +1955,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/solo",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1938,7 +1973,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/mute",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -1955,7 +1991,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/expand",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "push",
@@ -2202,7 +2239,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/recenable",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -2219,7 +2257,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/record_safe",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -2236,7 +2275,8 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/strip/monitor_input",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -2253,7 +2293,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/monitor_disk",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -2270,7 +2311,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/solo",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -2287,7 +2329,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/mute",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -2304,7 +2347,8 @@
                                                                 ],
                                                                 "value": "",
                                                                 "address": "/strip/expand",
-                                                                "linkId": ""
+                                                                "linkId": "",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "push",
@@ -2495,7 +2539,8 @@
                                                         "precision": 2,
                                                         "address": "/monitor/mute",
                                                         "preArgs": [],
-                                                        "target": []
+                                                        "target": [],
+                                                        "led": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2511,7 +2556,8 @@
                                                         "precision": 2,
                                                         "address": "/monitor/dim",
                                                         "preArgs": [],
-                                                        "target": []
+                                                        "target": [],
+                                                        "led": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2527,7 +2573,8 @@
                                                         "precision": 2,
                                                         "address": "/monitor/mono",
                                                         "preArgs": [],
-                                                        "target": []
+                                                        "target": [],
+                                                        "led": false
                                                     }
                                                 ],
                                                 "top": 0,
@@ -2568,7 +2615,8 @@
                                                 "target": [],
                                                 "value": "",
                                                 "address": "/master/mute",
-                                                "top": "auto"
+                                                "top": "auto",
+                                                "led": false
                                             }
                                         ],
                                         "tabs": [],
@@ -2811,7 +2859,8 @@
                                                 "target": [],
                                                 "value": "",
                                                 "address": "/master/mute",
-                                                "top": "auto"
+                                                "top": "auto",
+                                                "led": false
                                             },
                                             {
                                                 "type": "strip",
@@ -2872,7 +2921,8 @@
                                                         "precision": 2,
                                                         "address": "/monitor/mute",
                                                         "preArgs": [],
-                                                        "target": []
+                                                        "target": [],
+                                                        "led": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2888,7 +2938,8 @@
                                                         "precision": 2,
                                                         "address": "/monitor/dim",
                                                         "preArgs": [],
-                                                        "target": []
+                                                        "target": [],
+                                                        "led": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2904,7 +2955,8 @@
                                                         "precision": 2,
                                                         "address": "/monitor/mono",
                                                         "preArgs": [],
-                                                        "target": []
+                                                        "target": [],
+                                                        "led": false
                                                     }
                                                 ],
                                                 "top": 0,
@@ -3260,7 +3312,12 @@
                                                                 "color": "red",
                                                                 "value": "",
                                                                 "address": "/select/recenable",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3275,7 +3332,12 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/record_safe",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3290,7 +3352,12 @@
                                                                 "on": 1,
                                                                 "value": "",
                                                                 "address": "/select/monitor_input",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3305,7 +3372,12 @@
                                                                 "color": "orange",
                                                                 "value": "",
                                                                 "address": "/select/monitor_disk",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3320,7 +3392,12 @@
                                                                 "color": "lime",
                                                                 "value": "",
                                                                 "address": "/select/solo",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3335,7 +3412,12 @@
                                                                 "color": "yellow",
                                                                 "value": "",
                                                                 "address": "/select/mute",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto",
+                                                                "led": false
                                                             },
                                                             {
                                                                 "type": "toggle",
@@ -3350,7 +3432,12 @@
                                                                 "color": "pink",
                                                                 "value": "",
                                                                 "address": "/select/expand",
-                                                                "preArgs": []
+                                                                "preArgs": [],
+                                                                "left": "auto",
+                                                                "top": "auto",
+                                                                "width": "auto",
+                                                                "height": "auto",
+                                                                "led": false
                                                             }
                                                         ],
                                                         "tabs": [],
@@ -3443,7 +3530,8 @@
                                                         "value": "",
                                                         "address": "/select/polarity",
                                                         "top": "auto",
-                                                        "left": "auto"
+                                                        "left": "auto",
+                                                        "led": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -3462,7 +3550,8 @@
                                                         "value": "",
                                                         "address": "/select/solo_iso",
                                                         "top": "auto",
-                                                        "left": "auto"
+                                                        "left": "auto",
+                                                        "led": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -3481,7 +3570,8 @@
                                                         "value": "",
                                                         "address": "/select/solo_safe",
                                                         "top": "auto",
-                                                        "left": "auto"
+                                                        "left": "auto",
+                                                        "led": false
                                                     },
                                                     {
                                                         "type": "fader",
@@ -4043,7 +4133,8 @@
                                 "preArgs": [],
                                 "target": [],
                                 "address": "/null",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4059,7 +4150,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4075,7 +4167,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4091,7 +4184,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4107,7 +4201,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4123,7 +4218,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4139,7 +4235,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4155,7 +4252,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4171,7 +4269,8 @@
                                 "address": "/null",
                                 "linkId": "",
                                 "css": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "toggle",
@@ -4187,7 +4286,8 @@
                                 "target": [],
                                 "address": "/null",
                                 "linkId": "",
-                                "height": "auto"
+                                "height": "auto",
+                                "led": false
                             },
                             {
                                 "type": "formula",

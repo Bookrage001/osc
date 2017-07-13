@@ -21,6 +21,10 @@
     }
 }
 
+.rgbled-container .led {
+    --opacity: 1;
+}
+
 .plot-container, .visualizer-container, .eq-container {
     --color-custom:var(--color-accent);
     height: 200rem;
