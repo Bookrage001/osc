@@ -59,7 +59,7 @@ module.exports = class Panel extends _widgets_base {
         if (this.getProp('tabs') && this.getProp('tabs').length) this.widget.addClass('has-tabs')
 
 
-        this.value = this.getProp('value') || 0
+        this.value = -1
         this.tabs = []
 
         var parsers = require('../../parser'),
@@ -93,6 +93,7 @@ module.exports = class Panel extends _widgets_base {
 
         }
 
+        this.setValue(this.getProp('value') || 0)
 
     }
 
@@ -175,17 +176,21 @@ module.exports = class Panel extends _widgets_base {
     setValue(v, options={}) {
         if (this.tabs.length && typeof v == 'number' && v >= 0 && v < this.tabs.length) {
 
-            for (let i in this.tabs) {
+            if (v != this.value) {
 
-                this.tabs[i].hide()
+                for (let i in this.tabs) {
+
+                    this.tabs[i].hide()
+                }
+
+                this.tabs[v].show()
+
+                this.navigation.find('li').removeClass('on').eq(v).addClass('on')
+                this.value = v
+
+                $(window).resize()
+
             }
-
-            this.tabs[v].show()
-
-            this.navigation.find('li').removeClass('on').eq(v).addClass('on')
-            this.value = v
-
-            $(window).resize()
 
             if (options.send) this.sendValue()
             if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options})

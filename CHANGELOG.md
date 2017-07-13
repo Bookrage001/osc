@@ -3,14 +3,15 @@
 ## 0.19.0
 
 - ui
-  - general design improved, heavily inspired by [budislavTVP](http://budislavtvp.deviantart.com/) works; color schemes are much simpler and easier to customize (try `--theme light` !)
+  - general design improved, heavily inspired by [budislavTVP](http://budislavtvp.deviantart.com/) works; color schemes are much simpler and easier to customize (try `--theme light` !); Font changed to Roboto; Texts are slightly thicker and uppercased in most cases for better readability (use css `text-transform:none` to disable the latter).
 - widgets
   - fader: added `dashed` option; added `input` option;
   - meter: added `alignRight` option; added `dashed` option;
   - knob: removed `compact` option; added `dashed` option; added `input` option;
   - xy/rgb: added `input` option;
-  - panel: remove inner widgets dark borders
-  - buttons: new `dropdown` widget
+  - panel: removed inner widgets dark borders
+  - buttons: new `dropdown` widget;
+  - toggle: added `led` option to choose between the old appearance and the new one
   - new `input` widget
 - editor
   - option fields are now multiline (`ctrl + enter` to add a new line), and pretty printed;
