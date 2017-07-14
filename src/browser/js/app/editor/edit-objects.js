@@ -48,7 +48,7 @@ var editObject = function(container, data, refresh){
             if (i=='type' && (data.type == 'tab' || data.type == 'root')) continue
 
             let type = typeof data[i],
-                value = type != 'string'?JSON.stringify(data[i], null, '  '):data[i],
+                value = type != 'string'?JSON.stringify(data[i], null, '  ').replace(/\n\s\s\s\s/g, ' ').replace(/\n\s\s(\}|\])/g, ' $1'):data[i],
                 wrapper = $('<div class="input-wrapper"></div>').appendTo(form),
                 label = $(`<label>${i}</label>`).appendTo(wrapper),
                 input

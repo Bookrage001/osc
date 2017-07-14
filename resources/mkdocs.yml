@@ -4,14 +4,11 @@ repo_url: https://github.com/jean-emmanuel/open-stage-control
 copyright: "Open Stage Control is an <a href='http://ammd.net'>AMMD</a> software licensed under the <a href='https://github.com/jean-emmanuel/open-stage-control/blob/master/LICENSE'>GNU/GPLv3</a> License"
 site_description: "A libre desktop OSC bi-directionnal control surface application."
 
-theme: material
+theme_dir: mkdocs-material/material
 
 site_favicon: img/logo.png
 
 extra:
-    palette:
-      primary: blue grey
-      accent: blue
     feature:
       tabs: false
     logo: img/logo-material.svg
