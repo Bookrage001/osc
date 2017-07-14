@@ -20,6 +20,7 @@ module.exports = class Multitoggle extends _matrices_base {
             top:'auto',
             width:'auto',
             height:'auto',
+            led: false,
             color:'auto',
             css:'',
 
