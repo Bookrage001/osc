@@ -34,7 +34,7 @@ By default, widget resizing / dragging snaps to a 10 pixel wide grid. Its width 
 
 ## Properties
 
-Selected widget's properties are displayed and can be modified in the sidepanel. The [widgets reference](widgets/widgets) section lists the available properties for each widget type.
+Selected widget's properties are displayed and can be modified in the sidepanel. The [widgets reference](widgets/widgets) section lists the available properties for each widget type. Property fields are all multiline (press `shit + enter` for new line).
 
 ## Widget resizing / dragging
 
