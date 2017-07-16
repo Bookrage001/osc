@@ -262,7 +262,7 @@ module.exports = class Fader extends _sliders_base {
             this.ctx.beginPath()
             this.ctx.rect(m - 9 * PXSCALE, d - 15 * PXSCALE, 18 * PXSCALE, 30 * PXSCALE)
             this.ctx.lineWidth = PXSCALE
-            this.ctx.fillStyle = this.colors.track
+            this.ctx.fillStyle = this.colors.bg
             this.ctx.fill()
 
             this.ctx.beginPath()
@@ -276,6 +276,12 @@ module.exports = class Fader extends _sliders_base {
             this.ctx.lineWidth = PXSCALE
             this.ctx.strokeStyle = this.colors.light
             this.ctx.stroke()
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 8 * PXSCALE, d - 14 * PXSCALE, 16 * PXSCALE, PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.fillStyle = this.colors.light
+            this.ctx.fill()
 
             this.ctx.beginPath()
             this.ctx.rect(m - 4 * PXSCALE, d, 8 * PXSCALE, PXSCALE)

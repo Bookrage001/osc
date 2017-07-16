@@ -59,7 +59,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 0 0 1rem var(--color-light) inset;
+            box-shadow: 0 0 0 1rem var(--color-light) inset,
+                        0 1rem 0 0 var(--color-light) inset;
 
             &:before {
                 content:"";
@@ -83,7 +84,7 @@
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    opacity: 0.35;
+                    opacity: 0.4;
                     background: radial-gradient( ellipse at center, transparent, var(--color-bg));
                 }
                 &:before {
@@ -167,6 +168,8 @@
         position: relative;
         overflow: hidden;
         cursor: pointer;
+        box-shadow: 0 0 0 1rem var(--color-light) inset;
+
         select {
             display: block;
             width: 100%;
@@ -174,7 +177,6 @@
             display: flex;
             vertical-align: middle;
             background:transparent;
-            border: 1rem solid var(--color-light);
             padding: 0 20rem 0 10rem;
             -webkit-appearance:none;
             appearance:none;

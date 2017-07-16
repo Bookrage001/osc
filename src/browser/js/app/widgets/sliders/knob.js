@@ -137,6 +137,8 @@ module.exports = class Knob extends _sliders_base {
 
     draw() {
 
+        if (!this.width || !this.height) return
+
         var tiny = this.minDimension < 45,
             margin = tiny ? 0 : 5 * PXSCALE
 
@@ -145,7 +147,7 @@ module.exports = class Knob extends _sliders_base {
             min = this.percentToAngle(0),
             max = this.percentToAngle(100),
             dashed = this.getProp('dashed'),
-            pipsWidth = this.getProp('pips') ? 3 * PXSCALE : 0,
+            pipsWidth = this.getProp('pips') && !tiny ? 3 * PXSCALE : 0,
             pipsRadius =  this.minDimension / 2 - pipsWidth / 2 - margin,
             gaugeWidth = 7 * PXSCALE,
             gaugeRadius = pipsRadius - gaugeWidth / 2 - pipsWidth * 1.5,
@@ -205,7 +207,7 @@ module.exports = class Knob extends _sliders_base {
 
         if (dashed) this.ctx.setLineDash([1.5, 1.5])
 
-        this.ctx.strokeStyle = this.colors.track
+        this.ctx.strokeStyle = tiny ? this.colors.light : this.colors.track
         this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
         this.ctx.beginPath()
         this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min, max)
@@ -237,6 +239,13 @@ module.exports = class Knob extends _sliders_base {
         this.ctx.globalAlpha = 1
         this.ctx.arc(this.width / 2, this.height / 2,  knobRadius - PXSCALE * 1.5, 0, Math.PI * 2)
         this.ctx.strokeStyle = this.colors.light
+        this.ctx.stroke()
+
+        var g = this.ctx.createLinearGradient(this.width / 2, this.height / 2 - knobRadius / 2,this.width / 2,  this.height / 2 + knobRadius / 2);
+        g.addColorStop(0.5, 'transparent');
+        g.addColorStop(0, this.colors.light);
+
+        this.ctx.strokeStyle = g
         this.ctx.stroke()
 
         // cursor
