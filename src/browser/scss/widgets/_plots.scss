@@ -26,7 +26,6 @@
 }
 
 .plot-container, .visualizer-container, .eq-container {
-    --color-custom:var(--color-accent);
     height: 200rem;
     width: 200rem;
     padding:1rem;
@@ -48,8 +47,6 @@
 
 .meter-container {
     @extend .fader-container;
-    --color-custom:var(--color-accent);
-    --color-gauge: var(--color-custom);
     --color-knob: transparent;
     .wrapper {
         pointer-events: none;
@@ -57,7 +54,6 @@
 }
 
 .text-container {
-    --color-custom:var(--color-accent);
     flex-shrink: 0;
     .text {
         flex: 1;
