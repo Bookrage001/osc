@@ -67,14 +67,14 @@
             flex-grow: 0;
             --color-border:transparent;
             border:0;
-            margin: 14rem 0 14rem 5rem;
+            margin: 20rem 0 20rem 5rem;
         }
 
         .pips {
             width: 3rem;
             background-color: var(--color-light);
             position: relative;
-            margin: 17rem 12rem 15rem 5rem;
+            margin: 23rem 12rem 21rem 5rem;
             z-index: 0;
 
             .pip {
@@ -116,11 +116,11 @@
         .wrapper {
             flex-direction: row-reverse;
             .meter-container {
-                margin: 14rem 5rem 14rem 12rem;
+                margin: 20rem 5rem 20rem 0;
 
             }
             .pips {
-                margin: 16rem 5rem 16rem 0;
+                margin: 23rem 5rem 21rem 12rem;
                 background-position: top right;
                 .pip {
                     right:0;
@@ -147,13 +147,13 @@
                 width: auto!important;
                 height:6rem;
                 min-height: auto;
-                margin: 5rem 14rem 0 14rem;
+                margin: 5rem 20rem 0 20rem;
             }
 
             .pips {
                 width:auto;
                 height: 3rem;
-                margin: 5rem 15rem 12rem 17rem;
+                margin: 5rem 22rem 12rem 22rem;
                 .pip {
                     width:1rem;
                     height:5rem;
@@ -303,7 +303,7 @@
 
             &.align-right {
                 .input {
-                    margin-left: calc(-1 * 50rem - var(--input-margin));
+                    margin-left: calc(-1 * 12rem - var(--input-margin));
                 }
             }
 
