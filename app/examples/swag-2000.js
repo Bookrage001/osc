@@ -49,7 +49,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "id": "knob_1"
+                                        "id": "knob_1",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -77,7 +78,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "id": "knob_4"
+                                        "id": "knob_4",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -93,7 +95,8 @@
                                         "address": "/toggle_1",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -109,7 +112,8 @@
                                         "on": 1,
                                         "off": 0,
                                         "id": "toggle_2",
-                                        "height": 40
+                                        "height": 40,
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -148,7 +152,8 @@
                                         "height": "auto",
                                         "pips": false,
                                         "dashed": false,
-                                        "doubleTap": false
+                                        "doubleTap": false,
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -202,7 +207,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_8",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -230,7 +236,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_12",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -246,7 +253,8 @@
                                         "address": "/toggle_4",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -262,7 +270,8 @@
                                         "off": 0,
                                         "id": "toggle_6",
                                         "height": 40,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -301,7 +310,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -355,7 +365,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_16",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -383,7 +394,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_20",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -399,7 +411,8 @@
                                         "address": "/toggle_8",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -415,7 +428,8 @@
                                         "off": 0,
                                         "id": "toggle_11",
                                         "height": 40,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -454,7 +468,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -508,7 +523,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_24",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -536,7 +552,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_28",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -552,7 +569,8 @@
                                         "address": "/toggle_12",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -568,7 +586,8 @@
                                         "off": 0,
                                         "id": "toggle_14",
                                         "height": 40,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -607,7 +626,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -661,7 +681,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_32",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -689,7 +710,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_33",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -705,7 +727,8 @@
                                         "address": "/toggle_16",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -721,7 +744,8 @@
                                         "off": 0,
                                         "id": "toggle_17",
                                         "height": 40,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -760,7 +784,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -814,7 +839,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_34",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -842,7 +868,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_35",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -858,7 +885,8 @@
                                         "address": "/toggle_18",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -874,7 +902,8 @@
                                         "off": 0,
                                         "id": "toggle_19",
                                         "height": 40,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -913,7 +942,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -967,7 +997,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_36",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -995,7 +1026,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_37",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -1011,7 +1043,8 @@
                                         "address": "/toggle_20",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -1027,7 +1060,8 @@
                                         "off": 0,
                                         "id": "toggle_21",
                                         "height": 40,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -1066,7 +1100,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -1119,7 +1154,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_38",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "knob",
@@ -1147,7 +1183,8 @@
                                         "dashed": false,
                                         "doubleTap": false,
                                         "id": "knob_39",
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     },
                                     {
                                         "type": "toggle",
@@ -1163,7 +1200,8 @@
                                         "address": "/toggle_22",
                                         "preArgs": [],
                                         "target": [],
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "toggle",
@@ -1179,7 +1217,8 @@
                                         "off": 0,
                                         "id": "toggle_23",
                                         "height": 40,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "led": false
                                     },
                                     {
                                         "type": "fader",
@@ -1218,7 +1257,8 @@
                                         "pips": false,
                                         "dashed": false,
                                         "doubleTap": false,
-                                        "linkId": ""
+                                        "linkId": "",
+                                        "input": true
                                     }
                                 ],
                                 "stretch": false,
@@ -1301,7 +1341,10 @@
                                 "target": [],
                                 "spring": true,
                                 "touchAddress": "",
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "input": false,
+                                "pips": true,
+                                "pointSize": 5
                             },
                             {
                                 "type": "keyboard",

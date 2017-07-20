@@ -35,7 +35,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -98,7 +99,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -116,7 +118,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_1",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_1",
@@ -175,7 +178,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -238,7 +242,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -256,7 +261,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_2",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_2",
@@ -315,7 +321,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -378,7 +385,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -396,7 +404,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_3",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_3",
@@ -455,7 +464,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -518,7 +528,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -536,7 +547,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_4",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_4",
@@ -595,7 +607,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -658,7 +671,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -676,7 +690,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_5",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_5",
@@ -735,7 +750,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -798,7 +814,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -816,7 +833,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_6",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_6",
@@ -875,7 +893,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -938,7 +957,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -956,7 +976,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_7",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_7",
@@ -1015,7 +1036,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -1078,7 +1100,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -1096,7 +1119,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_8",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_8",
@@ -1155,7 +1179,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -1218,7 +1243,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -1236,7 +1262,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_9",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_9",
@@ -1295,7 +1322,8 @@
                                 "touchAddress": "",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": false,
@@ -1358,7 +1386,8 @@
                                 "height": "auto",
                                 "pips": true,
                                 "doubleTap": false,
-                                "dashed": false
+                                "dashed": false,
+                                "input": true
                             },
                             {
                                 "label": "Mute",
@@ -1376,7 +1405,8 @@
                                 "color": "auto",
                                 "preArgs": [],
                                 "address": "/toggle_10",
-                                "value": ""
+                                "value": "",
+                                "led": false
                             }
                         ],
                         "id": "strip_10",
@@ -1443,7 +1473,8 @@
                                 "preArgs": [],
                                 "address": "/rgb_1",
                                 "value": "",
-                                "touchAddress": ""
+                                "touchAddress": "",
+                                "input": true
                             },
                             {
                                 "label": "Relative XY",
@@ -1458,10 +1489,12 @@
                                 "snap": false,
                                 "rangeX": {
                                     "min": 0,
+                                    "50%": 0.5,
                                     "max": 1
                                 },
                                 "rangeY": {
                                     "min": 0,
+                                    "50%": 0.5,
                                     "max": 1
                                 },
                                 "precision": 2,
@@ -1474,7 +1507,10 @@
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "input": true,
+                                "pips": true,
+                                "pointSize": 20
                             }
                         ],
                         "id": "strip_11",
@@ -1521,7 +1557,8 @@
                                 "preArgs": [],
                                 "address": "/rgb_2",
                                 "value": "",
-                                "touchAddress": ""
+                                "touchAddress": "",
+                                "input": true
                             },
                             {
                                 "label": "Relative XY",
@@ -1552,7 +1589,10 @@
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "input": true,
+                                "pips": true,
+                                "pointSize": 20
                             }
                         ],
                         "id": "strip_12",
@@ -1599,7 +1639,8 @@
                                 "preArgs": [],
                                 "address": "/rgb_3",
                                 "value": "",
-                                "touchAddress": ""
+                                "touchAddress": "",
+                                "input": true
                             },
                             {
                                 "label": "Relative XY",
@@ -1630,7 +1671,10 @@
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "input": true,
+                                "pips": true,
+                                "pointSize": 20
                             }
                         ],
                         "id": "strip_13",
@@ -1677,7 +1721,8 @@
                                 "preArgs": [],
                                 "address": "/rgb_4",
                                 "value": "",
-                                "touchAddress": ""
+                                "touchAddress": "",
+                                "input": true
                             },
                             {
                                 "label": "Relative XY",
@@ -1708,7 +1753,10 @@
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "input": true,
+                                "pips": true,
+                                "pointSize": 20
                             }
                         ],
                         "id": "strip_14",
@@ -1755,7 +1803,8 @@
                                 "preArgs": [],
                                 "address": "/rgb_5",
                                 "value": "",
-                                "touchAddress": ""
+                                "touchAddress": "",
+                                "input": true
                             },
                             {
                                 "label": "Relative XY",
@@ -1786,7 +1835,10 @@
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "input": true,
+                                "pips": true,
+                                "pointSize": 20
                             }
                         ],
                         "id": "strip_15",
@@ -1833,7 +1885,8 @@
                                 "preArgs": [],
                                 "address": "/rgb_6",
                                 "value": "",
-                                "touchAddress": ""
+                                "touchAddress": "",
+                                "input": true
                             },
                             {
                                 "label": "Relative XY",
@@ -1864,7 +1917,10 @@
                                 "value": "",
                                 "spring": false,
                                 "touchAddress": "",
-                                "doubleTap": false
+                                "doubleTap": false,
+                                "input": true,
+                                "pips": true,
+                                "pointSize": 20
                             }
                         ],
                         "id": "strip_16",
@@ -1955,7 +2011,8 @@
                                         "meterAddress": "",
                                         "pips": true,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     },
                                     {
                                         "type": "fader",
@@ -1990,7 +2047,8 @@
                                         "meterAddress": "",
                                         "pips": true,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     },
                                     {
                                         "type": "fader",
@@ -2025,7 +2083,8 @@
                                         "meterAddress": "",
                                         "pips": true,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     },
                                     {
                                         "type": "fader",
@@ -2060,7 +2119,8 @@
                                         "meterAddress": "",
                                         "pips": true,
                                         "doubleTap": false,
-                                        "dashed": false
+                                        "dashed": false,
+                                        "input": true
                                     }
                                 ],
                                 "tabs": [],
@@ -2213,7 +2273,8 @@
                                                 "touchAddress": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "knob",
@@ -2244,7 +2305,8 @@
                                                 "touchAddress": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "knob",
@@ -2275,7 +2337,8 @@
                                                 "touchAddress": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             },
                                             {
                                                 "type": "knob",
@@ -2306,7 +2369,8 @@
                                                 "touchAddress": "",
                                                 "pips": false,
                                                 "doubleTap": false,
-                                                "dashed": false
+                                                "dashed": false,
+                                                "input": true
                                             }
                                         ],
                                         "id": "tab_6",
@@ -2413,7 +2477,6 @@
                         "preArgs": [],
                         "alignRight": false,
                         "horizontal": false,
-                        "noPip": true,
                         "compact": false,
                         "traversing": true,
                         "origin": "auto",
@@ -2422,7 +2485,10 @@
                         "value": "",
                         "start": 0,
                         "snap": true,
-                        "split": false
+                        "split": false,
+                        "pips": false,
+                        "input": true,
+                        "dashed": false
                     },
                     {
                         "type": "multipush",
@@ -2474,7 +2540,8 @@
                         "address": "/multitoggle_1",
                         "value": "",
                         "start": 0,
-                        "split": false
+                        "split": false,
+                        "led": false
                     }
                 ],
                 "id": "tab_8",
