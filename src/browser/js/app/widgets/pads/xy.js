@@ -99,8 +99,6 @@ module.exports = class Xy extends _pads_base {
             }, cancelDraw: true}),
         }
 
-        this.pointSize = parseInt(this.getProp('pointSize'))
-
         this.faders.x.margin = this.faders.y.margin = this.pointSize + 1
 
         this.value = [this.faders.x.value, this.faders.y.value]

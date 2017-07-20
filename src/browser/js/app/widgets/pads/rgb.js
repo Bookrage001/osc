@@ -1,9 +1,11 @@
 var _pads_base = require('./_pads_base'),
+    Xy = require('./xy'),
     Fader = require('./_fake_fader'),
     {clip, hsbToRgb, rgbToHsb} = require('../utils'),
     Input = require('../inputs/input')
 
-var faderDefaults = Fader.defaults()
+var faderDefaults = Fader.defaults(),
+    xyDefaults = Xy.defaults()
 
 module.exports = class Rgb extends _pads_base {
 
@@ -27,6 +29,7 @@ module.exports = class Rgb extends _pads_base {
             _behaviour:'behaviour',
 
             snap:false,
+            spring:false,
 
             _osc:'osc',
 
@@ -43,6 +46,8 @@ module.exports = class Rgb extends _pads_base {
 
     constructor(options) {
 
+        options.props.pointSize = 10
+
         super(options)
 
         this.split = this.getProp('split')?
@@ -53,64 +58,50 @@ module.exports = class Rgb extends _pads_base {
 
         this.hueWrapper = $(`<div class="hue-wrapper"></div>`).appendTo(this.widget)
 
-        this.faders = {
-            h: new Fader({props:{
-                ...faderDefaults,
-                id:'h',
-                compact:true,
-                pips:false,
-                horizontal:true,
-                snap:this.getProp('snap'),
-                range:{min:0,max:360},
-                precision:2
-            }, cancelDraw: false}),
-            s: new Fader({props:{
-                ...faderDefaults,
-                id:'s',
-                compact:true,
-                pips:false,
-                horizontal:true,
-                snap:this.getProp('snap'),
-                range:{min:0,max:100},
-                precision:2
-            }, cancelDraw: true}),
-            b: new Fader({props:{
-                ...faderDefaults,
-                id:'b',
-                compact:true,
-                pips:false,
-                horizontal:false,
-                snap:this.getProp('snap'),
-                range:{min:0,max:100},
-                precision:2
-            }, cancelDraw: true})
-        }
+        this.hue = new Fader({props:{
+            ...faderDefaults,
+            id:'h',
+            compact:true,
+            pips:false,
+            horizontal:true,
+            snap:this.getProp('snap'),
+            range:{min:0,max:360},
+            input:false,
+            precision:2
+        }, cancelDraw: false})
+        this.hue.margin = this.pointSize
+        this.hue.sendValue = ()=>{}
+        this.hueWrapper.append(this.hue.widget)
+
+        this.pad = new Xy({props:{
+            ...xyDefaults,
+            snap:this.getProp('snap'),
+            spring:this.getProp('spring'),
+            rangeX:{min:0,max:100},
+            rangeY:{min:0,max:100},
+            precision:2,
+            pointSize: this.getProp('pointSize'),
+            pips: false,
+            input:false
+        }})
+        this.pad.sendValue = ()=>{}
+        this.wrapper.append(this.pad.widget)
+
 
         this.value = []
         this.hsb = {h:0,s:0,b:0}
-
-        this.wrapper.append(this.faders.s.widget)
-        this.wrapper.append(this.faders.b.widget)
-
-        this.hueWrapper.append(this.faders.h.widget)
 
         this.wrapper.on('change',(e)=>{
             e.stopPropagation()
         })
 
-        this.faders.h.widget.on('change',(e)=>{
+        this.hue.widget.on('change',(e)=>{
             e.stopPropagation()
             this.dragHandle(true)
         })
 
-        this.wrapper.on('draginit',(e, data, traversing)=>{
-            this.faders.s.draginitHandleProxy(e, data, traversing)
-            this.faders.b.draginitHandleProxy(e, data, traversing)
-            this.dragHandle()
-        })
-        this.wrapper.on('drag',(e, data, traversing)=>{
-            this.faders.s.dragHandleProxy(e, data, traversing)
-            this.faders.b.dragHandleProxy(e, data, traversing)
+        this.wrapper.on('change',(e)=>{
+            e.stopPropagation()
             this.dragHandle()
         })
 
@@ -134,15 +125,15 @@ module.exports = class Rgb extends _pads_base {
     }
 
     dragHandle(hue) {
-        var h =this.faders.h.value,
-        s = this.faders.s.value,
-        b = this.faders.b.value
+        var h = this.hue.value,
+            s = this.pad.value[0],
+            b = this.pad.value[1]
 
         if (h != this.hsb.h ||s != this.hsb.s || b != this.hsb.b) {
 
-            this.hsb.h = this.faders.h.value
-            this.hsb.s = this.faders.s.value
-            this.hsb.b = this.faders.b.value
+            this.hsb.h = this.hue.value
+            this.hsb.s = this.pad.value[0]
+            this.hsb.b = this.pad.value[1]
 
             this.update({nohue:!hue})
 
@@ -165,8 +156,7 @@ module.exports = class Rgb extends _pads_base {
         var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
 
         if (!options.dragged) {
-            this.faders.s.setValue(hsb.s, {sync: false, send:false, dragged:false})
-            this.faders.b.setValue(hsb.b, {sync: false, send:false, dragged:false})
+            this.pad.setValue([hsb.s, hsb.b], {sync: false, send:false, dragged:false})
         }
 
         this.hsb = hsb
@@ -182,10 +172,10 @@ module.exports = class Rgb extends _pads_base {
     update(options={}) {
 
         if (!options.nohue && !options.dragged) {
-            var hue = hsbToRgb({h:this.hsb.h,s:100,b:100})
-            this.hue = `rgb(${Math.round(hue.r)},${Math.round(hue.g)},${Math.round(hue.b)})`
-            this.wrapper[0].setAttribute('style',`background-color:${this.hue}`)
-            this.faders.h.setValue(this.hsb.h, {sync: false, send:false, dragged:false})
+            var hue = hsbToRgb({h:this.hsb.h,s:100,b:100}),
+                hueStr = `rgb(${Math.round(hue.r)},${Math.round(hue.g)},${Math.round(hue.b)})`
+            this.canvas[0].setAttribute('style',`background-color:${hueStr}`)
+            this.hue.setValue(this.hsb.h, {sync: false, send:false, dragged:false})
         }
 
 
@@ -197,42 +187,6 @@ module.exports = class Rgb extends _pads_base {
 
     draw() {
 
-        var x = clip(this.faders.s.percent / 100 * this.width,[0,this.width]),
-            y = clip((1 - this.faders.b.percent / 100) * this.height,[0,this.height]),
-            color = this.hsb.b > 70 && this.hsb.s < 30 ? '#555' : 'white'
-
-        this.clear()
-
-        this.ctx.fillStyle = color
-        this.ctx.strokeStyle = color
-        this.ctx.lineWidth = PXSCALE
-
-        this.ctx.globalAlpha = 0.3
-
-        this.ctx.beginPath()
-        this.ctx.arc(x, y, 10 * PXSCALE, Math.PI * 2, false)
-        this.ctx.fill()
-
-        this.ctx.globalAlpha = 0.1
-
-        this.ctx.beginPath()
-        this.ctx.moveTo(0,y)
-        this.ctx.lineTo(this.width,y)
-        this.ctx.moveTo(x,0)
-        this.ctx.lineTo(x,this.height)
-        this.ctx.stroke()
-
-        this.ctx.globalAlpha = 1
-
-        this.ctx.beginPath()
-        this.ctx.arc(x, y, 4 * PXSCALE, Math.PI * 2, false)
-        this.ctx.fill()
-
-
-        this.clearRect = [
-            [x - 10 * PXSCALE,0, 20 * PXSCALE, this.height],
-            [0, y - 10 * PXSCALE, this.width, 20 * PXSCALE]
-        ]
     }
 
     showValue() {
