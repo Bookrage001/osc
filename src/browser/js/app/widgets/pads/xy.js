@@ -23,8 +23,13 @@ module.exports = class Xy extends _pads_base {
             width:'auto',
             height:'auto',
             input: true,
+            pips: true,
             color:'auto',
             css:'',
+
+            _behaviour:'xy',
+
+            pointSize: 20,
 
             _behaviour:'behaviour',
 
@@ -73,7 +78,8 @@ module.exports = class Xy extends _pads_base {
                 range:this.getProp('rangeX'),
                 origin:'auto',
                 precision:this.precision,
-                logScale:this.getProp('logScaleX')
+                logScale:this.getProp('logScaleX'),
+                input:false
             }, cancelDraw: true}),
             y: new Fader({props:{
                 ...faderDefaults,
@@ -88,9 +94,14 @@ module.exports = class Xy extends _pads_base {
                 range:this.getProp('rangeY'),
                 origin:'auto',
                 precision:this.precision,
-                logScale:this.getProp('logScaleY')
+                logScale:this.getProp('logScaleY'),
+                input:false
             }, cancelDraw: true}),
         }
+
+        this.pointSize = parseInt(this.getProp('pointSize'))
+
+        this.faders.x.margin = this.faders.y.margin = this.pointSize + 1
 
         this.value = [this.faders.x.value, this.faders.y.value]
 
@@ -181,40 +192,58 @@ module.exports = class Xy extends _pads_base {
 
     draw() {
 
-        var x = clip(this.faders.x.percent / 100 * this.width,[0,this.width]),
-            y = clip((1 - this.faders.y.percent / 100) * this.height,[0,this.height])
+        var pointSize = this.pointSize * PXSCALE,
+            margin = (pointSize + 1) * PXSCALE,
+            x = this.faders.x.percentToCoord(this.faders.x.percent),
+            y = this.faders.y.percentToCoord(this.faders.y.percent)
 
         this.clear()
 
-        this.ctx.fillStyle = this.faders.x.colors.custom
         this.ctx.lineWidth = PXSCALE
-        this.ctx.strokeStyle = this.faders.x.colors.custom
+        this.ctx.fillStyle = this.colors.custom
+        this.ctx.strokeStyle = this.colors.custom
+
+
+        if (this.getProp('pips')) {
+            this.ctx.globalAlpha = 0.1
+            this.ctx.beginPath()
+            this.ctx.rect(margin + 0.5, margin + 0.5, this.width - margin * 2 - 1, this.height - margin * 2 - 1)
+            this.ctx.stroke()
+
+            this.ctx.beginPath()
+            for (var pip of this.faders.x.rangeKeys.concat(this.faders.x.valueToPercent(this.faders.x.originValue))) {
+                if (pip == 0 || pip == 100) continue
+                var xpip = Math.round(2 * this.faders.x.percentToCoord(pip)) / 2
+                this.ctx.moveTo(xpip, margin + 0.5)
+                this.ctx.lineTo(xpip, this.height - margin - 0.5)
+            }
+            for (pip of this.faders.y.rangeKeys.concat(this.faders.y.valueToPercent(this.faders.y.originValue))) {
+                if (pip == 0 || pip == 100) continue
+                var ypip = Math.round(2 * this.faders.y.percentToCoord(pip)) / 2
+                this.ctx.moveTo(margin + 0.5, ypip)
+                this.ctx.lineTo(this.width - margin - 0.5, ypip)
+            }
+            this.ctx.stroke()
+
+        } else {
+
+            this.clearRect = [x - margin, y - margin, margin * 2, margin * 2]
+
+        }
+
 
         this.ctx.globalAlpha = 0.3
 
         this.ctx.beginPath()
-        this.ctx.arc(x, y, 10 * PXSCALE, Math.PI * 2, false)
-        this.ctx.fill()
-
-        this.ctx.globalAlpha = 0.1
-
-        this.ctx.beginPath()
-        this.ctx.moveTo(0,y)
-        this.ctx.lineTo(this.width,y)
-        this.ctx.moveTo(x,0)
-        this.ctx.lineTo(x,this.height)
+        this.ctx.arc(x, y, pointSize, Math.PI * 2, false)
         this.ctx.stroke()
 
-        this.ctx.globalAlpha = 1
+        this.ctx.globalAlpha = 0.7
 
         this.ctx.beginPath()
-        this.ctx.arc(x, y, 4 * PXSCALE, Math.PI * 2, false)
-        this.ctx.fill()
+        this.ctx.arc(x, y, pointSize / 2, Math.PI * 2, false)
+        this.ctx.stroke()
 
-        this.clearRect = [
-            [x - 10 * PXSCALE,0, 20 * PXSCALE, this.height],
-            [0, y - 10 * PXSCALE, this.width, 20 * PXSCALE]
-        ]
     }
 
     showValue() {

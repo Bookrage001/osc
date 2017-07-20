@@ -28,6 +28,7 @@ module.exports = class MultiXy extends _pads_base {
             top:'auto',
             width:'auto',
             height:'auto',
+            pips: true,
             color:'auto',
             css:'',
 
@@ -55,7 +56,6 @@ module.exports = class MultiXy extends _pads_base {
         this.npoints = typeof this.getProp('points') == 'object' ? this.getProp('points').length : this.getProp('points')
         this.labels = typeof this.getProp('points') == 'object'
         this.pointSize = parseInt(this.getProp('pointSize'))
-        this.widget[0].style.setProperty("--point-size",this.pointSize + 'rem')
 
         this.split = this.getProp('split')?
                         typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 * this.npoints ?
@@ -88,10 +88,12 @@ module.exports = class MultiXy extends _pads_base {
                 rangeY:this.getProp('rangeY'),
                 precision:this.precision,
                 logScaleX:this.getProp('logScaleX'),
-                logScaleY:this.getProp('logScaleY')
+                logScaleY:this.getProp('logScaleY'),
+                pointSize: this.getProp('pointSize'),
+                pips: this.getProp('pips') && i == this.npoints-1,
+                input:false
             }})
             this.pads[i].sendValue = ()=>{}
-            this.pads[i].draw = ()=>{}
             this.wrapper.append(this.pads[i].widget)
 
             this.handles[i] = $(`<div class="handle"></div>`)
@@ -184,30 +186,17 @@ module.exports = class MultiXy extends _pads_base {
         this.clear()
 
         for (var i=0;i<this.npoints;i++) {
-            var x = Math.round(clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE),
-                y = Math.round((100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE),
-                t = this.labels ? this.getProp('points')[i] : i
+            var margin = (this.pointSize + 1) * PXSCALE,
+                x = clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - 2 * margin) + margin,
+                y = (100 - clip(this.pads[i].faders.y.percent,[0,100])) / 100 * (this.height - 2 * margin) + margin,
+                t = (this.labels ? this.getProp('points')[i] : i) + '',
+                length = this.fontSize * t.length
 
-                this.ctx.strokeStyle = this.colors.custom
-                this.ctx.fillStyle = this.colors.custom
-                this.ctx.lineWidth = PXSCALE * 2
+            this.ctx.globalAlpha = 1
+            this.ctx.fillStyle = this.colors.text
+            this.ctx.fillText(t, x, y)
 
-                this.ctx.globalAlpha = 0.3
-                this.ctx.beginPath()
-                this.ctx.arc(x, y,(this.pointSize - 2) * PXSCALE, Math.PI * 2, false)
-                this.ctx.fill()
-
-                this.ctx.globalAlpha = 1
-                this.ctx.beginPath()
-                this.ctx.arc(x, y, (this.pointSize - 2) * PXSCALE, Math.PI * 2, false)
-                this.ctx.stroke()
-
-                this.ctx.globalAlpha = 1
-                this.ctx.fillStyle = this.colors.text
-                this.ctx.lineWidth = PXSCALE
-                this.ctx.fillText(t, x, y)
-
-                this.clearRect[i] = [x - this.pointSize * PXSCALE, y - this.pointSize * PXSCALE, this.pointSize * 2 * PXSCALE, this.pointSize * 2 * PXSCALE]
+            this.clearRect[i] = [x - length / 2, y - this.fontSize / 2, length, this.fontSize]
 
         }
 
