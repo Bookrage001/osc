@@ -29,7 +29,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
         var {id, widget} = e
 
-        if (this.value._selected !== false && this.value[this.value._selected] && widget.abstract._isSwitcher !== true && this.isWatching(id, widget)) {
+        if (widget && this.value._selected !== false && this.value[this.value._selected] && widget._isSwitcher !== true && this.isWatching(id, widget)) {
 
             this.value[this.value._selected][id] = widget.abstract.getValue()
 
@@ -55,7 +55,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
             for (var i in widgets) {
 
-                if (widgets[i].widget[0].contains(widget[0])) return true
+                if (widgets[i].widget[0].contains(widget.widget[0])) return true
 
             }
 
@@ -105,7 +105,7 @@ module.exports = class _switchers_base extends _widgets_base {
             }
         }
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
         if (options.send) this.sendValue()
 
     }

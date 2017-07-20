@@ -180,7 +180,7 @@ module.exports = class Xy extends _pads_base {
         ]
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this.widget, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
 
         this.draw()
 

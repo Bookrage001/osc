@@ -22,9 +22,9 @@ var WidgetManager = function(){
             // Widget that share the same id will update each other
             // without sending any extra osc message
             if (widgetsById.length>1) {
-                var v = widget.abstract.getValue()
+                var v = widget.getValue()
                 for (let i in widgetsById) {
-                    if (widgetsById[i].hash != widget.abstract.hash && widgetsById[i].setValue) {
+                    if (widgetsById[i].hash != widget.hash && widgetsById[i].setValue) {
                         widgetsById[i].setValue(v,{send:false,sync:false})
                     }
                 }
@@ -33,9 +33,9 @@ var WidgetManager = function(){
             // widgets that share the same linkId will update each other.
             // Updated widgets will send osc messages normally
             if (widgetsByLinkId.length>1) {
-                var v = widget.abstract.getValue()
+                var v = widget.getValue()
                 for (let i in widgetsByLinkId) {
-                    if (widgetsByLinkId[i].hash != widget.abstract.hash && widgetsByLinkId[i].setValue) {
+                    if (widgetsByLinkId[i].hash != widget.hash && widgetsByLinkId[i].setValue) {
                         widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
                     }
                 }

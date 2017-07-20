@@ -14,7 +14,7 @@ module.exports = class _matrices_base extends _widgets_base {
 
             if (e.id==this.getProp('id')) return
             this.value[e.widget.parent().index()] = e.widget.abstract.getValue()
-            this.widget.trigger({type:'change',id:this.getProp('id'),widget:this.widget,options:e.options})
+            this.widget.trigger({type:'change',id:this.getProp('id'),widget:this,options:e.options})
 
         })
 
