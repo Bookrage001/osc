@@ -90,7 +90,7 @@
 
             image-rendering:pixelated;
             > .pad {
-                --color-custom:white;
+                --color-custom:var(--color-white);
                 position: absolute;
                 .wrapper {
                     border:0;
@@ -119,7 +119,7 @@
         }
         .hue-wrapper {
             --color-gauge:transparent;
-            --color-knob:white;
+            --color-knob:var(--color-white);
             margin-top: -1rem;
             height: calc(2.5 * var(--pointSize));
             .wrapper {
