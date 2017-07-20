@@ -133,15 +133,15 @@ body {
         text-transform: none;
         font-weight: 500;
         a {
-            box-shadow: none;
-            &:hover, &:focus {
+            &:focus {
                 &:after {
                     content:"";
                     position: absolute;
                     top:0;
                     left:0;
                     bottom:0;
-                    border-left:1rem solid var(--color-accent);
+                    right:0;
+                    border:1rem solid var(--color-accent);
                     opacity: 0.3;
                 }
             }
@@ -189,6 +189,10 @@ body {
             top:0rem;
             padding:15rem;
             color:var(--color-text-fader);
+            z-index: 1;
+            &:hover {
+                color:var(--color-accent);
+            }
         }
     }
 }
@@ -198,7 +202,8 @@ body {
     background: var(--color-fg);
     padding:2rem;
     .form {
-        width: 100%;
+        width: 100%;            // box-shadow: none;
+
         height: 100%;
         background: var(--color-fg);
         padding:12rem;
