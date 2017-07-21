@@ -51,6 +51,7 @@
                     width:30rem;
                     height:auto;
                     max-height: initial;
+                    margin-right: -5rem;
                 }
             }
 
@@ -86,6 +87,9 @@
                     .wrapper {
                         border:0;
                         border-left:1rem solid var(--color-bg);
+                    }
+                    .label {
+                        margin-right: 0;
                     }
                 }
             }
