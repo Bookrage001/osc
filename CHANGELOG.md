@@ -13,9 +13,11 @@
   - buttons: new `dropdown` widget;
   - toggle: added `led` option to choose between the old appearance and the new one
   - new `input` widget
+  - added support for `"self"` value in `target` option (sends the message back to the clients, useful for sending `/EDIT` messages...)
 - editor
-  - option fields are now multiline (`ctrl + enter` to add a new line), and pretty printed;
+  - option fields are now multiline (`ctrl + enter` to add a new line), and pretty printed
   - added checkboxes for boolean options
+  - added `Edit Parent` context menu option
 - midi
   - replaced `pyo` dependency with [`pyrtmidi`](https://github.com/patrickkidd/pyrtmidi): lighter, dedicated to midi only, and handling virtual ports (no `mididings` dependency anymore)
   - pitchbend value is now a single integer between 0 and 16383
