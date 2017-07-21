@@ -42,14 +42,17 @@ module.exports = class Visualizer extends _plots_base {
 
         super(options)
 
+        this.fps = 30
         this.pips.y.min = Math.abs(this.getProp('range').min) >= 1000? this.getProp('range').min/1000+'k' : this.getProp('range').min
         this.pips.y.max = Math.abs(this.getProp('range').max) >= 1000? this.getProp('range').max/1000+'k' : this.getProp('range').max
         this.pips.x = false
-        this.length = Math.round(clip(60 * this.getProp('duration'), [8, 4096]))
+        this.length = Math.round(clip(this.fps * this.getProp('duration'), [8, 4096]))
         this.data = new Array(this.length)
         this.value = this.getProp('range').min
         this.cancel = false
-        this.loop = false
+        this.looping = false
+        this.clock = 0
+        this.lastUpdate = 0
 
     }
 
@@ -62,22 +65,32 @@ module.exports = class Visualizer extends _plots_base {
 
     startLoop() {
 
-        if (this.cancel) clearTimeout(this.cancel)
+        this.clock = new Date().getTime()
+        if (!this.looping) this.loop()
 
-        this.cancel = setTimeout(function(){
-            clearInterval(this.loop)
-            this.loop = false
-            this.cancel = false
-        },1000*this.getProp('duration'))
+    }
 
-        if (this.loop) return
+    loop() {
 
-        this.loop = setInterval(()=>{
+        this.looping = true
+        var t = new Date().getTime()
 
-            this.updateData()
-            this.draw()
+        if (t -this.clock >= 1000 * this.getProp('duration')) {
+            this.looping = false
+            return
+        }
 
-        },1000*this.getProp('duration') / this.length)
+        var ticks = Math.floor((t - this.lastUpdate) / (1000/this.fps))
+
+        this.updateData()
+        if (ticks > 1 && this.lastUpdate != 0) this.shiftData(ticks - 1)
+        
+        this.draw()
+        this.lastUpdate = t
+
+        setTimeout(()=>{
+            this.loop()
+        }, (1000/this.fps))
 
     }
 
@@ -118,11 +131,19 @@ module.exports = class Visualizer extends _plots_base {
             var v = widget[widget.length-1].getValue()
             this.data.push(v)
             this.value = v
+            this.data.splice(0,1)
         } else {
-            this.data.push(this.value)
+            this.shiftData(1)
         }
 
-        this.data.splice(0,1)
+    }
+
+    shiftData(n) {
+
+        for (var i=0; i<n; i++) {
+            this.data.push(this.value)
+            this.data.splice(0,1)
+        }
 
     }
 
