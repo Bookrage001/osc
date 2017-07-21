@@ -759,7 +759,7 @@
                 "scroll": true
             }
         ],
-        "color": "orange",
+        "color": "auto",
         "css": "",
         "value": "",
         "precision": 0,
