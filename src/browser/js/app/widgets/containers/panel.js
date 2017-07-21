@@ -186,12 +186,13 @@ module.exports = class Panel extends _widgets_base {
 
                 this.tabs[v].show()
 
-                this.navigation.find('li').removeClass('on').eq(v).addClass('on')
                 this.value = v
 
                 $(window).resize()
 
             }
+            
+            this.navigation.find('li').removeClass('on').eq(v).addClass('on')
 
             if (options.send) this.sendValue()
             if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
