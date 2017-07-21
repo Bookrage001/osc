@@ -260,6 +260,7 @@ body {
             white-space:normal;
             padding: 0 4rem;
             margin-left:1rem;
+            text-transform: none;
         }
         &.error, &.restart {
             .error-msg {
@@ -270,7 +271,7 @@ body {
             .restart-msg {
                 height: 28rem;
                 line-height: 28rem;
-                background: rgba(yellow,0.25)
+                background: rgba(orange,0.25)
             }
         }
     }
