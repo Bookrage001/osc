@@ -82,6 +82,11 @@ Unidirectionnal panel with stretching capability. By default, children widgets t
 - default: `false`
 - usage: set to `true` to stretch widgets evenly
 
+### `spacing`
+- type: `integer`
+- default: `0`
+- usage: adds space between widgets
+
 ### `border`
 - type: `boolean`
 - default: `true`

@@ -20,12 +20,13 @@
     flex-direction: row;
     padding:1rem 2rem 2rem 1rem;
 
-
     > .widget {
         min-height: 0;
         min-width: 0;
-        margin:0!important;
-        height: auto;
+        // margin:0!important;
+        height: calc( 100% / var(--rows) - var(--spacing));
+        width: calc( 100% / var(--columns) - var(--spacing));
+        margin: calc(var(--spacing) / 2);
         .label {
             background:none;
             border:0;

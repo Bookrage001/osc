@@ -230,7 +230,7 @@
                                         "dashed": true,
                                         "color": "auto",
                                         "css": "margin: 20rem 0 20rem 10rem;",
-                                        "widgetId": "",
+                                        "widgetId": "knob_1",
                                         "range": {
                                             "min": 0,
                                             "max": 1
@@ -246,7 +246,7 @@
                                     },
                                     {
                                         "type": "meter",
-                                        "id": "meter_1",
+                                        "id": "meter_2",
                                         "label": false,
                                         "unit": "",
                                         "alignRight": false,
@@ -255,7 +255,7 @@
                                         "dashed": true,
                                         "color": "auto",
                                         "css": "margin: 20rem 0",
-                                        "widgetId": "",
+                                        "widgetId": "knob_2",
                                         "range": {
                                             "min": 0,
                                             "max": 1
@@ -684,6 +684,61 @@
                         "preArgs": [],
                         "split": false,
                         "target": []
+                    },
+                    {
+                        "type": "multipush",
+                        "top": 10,
+                        "left": 620,
+                        "id": "multipush",
+                        "matrix": [
+                            2,
+                            4
+                        ],
+                        "start": 0,
+                        "spacing": 5,
+                        "label": "auto",
+                        "width": 130,
+                        "height": 220,
+                        "color": "auto",
+                        "css": "",
+                        "traversing": true,
+                        "on": 1,
+                        "off": 0,
+                        "value": "",
+                        "precision": 2,
+                        "address": "/multipush",
+                        "preArgs": [],
+                        "split": false,
+                        "target": [],
+                        "style": "style",
+                        "norelease": false
+                    },
+                    {
+                        "type": "multitoggle",
+                        "top": 240,
+                        "left": 620,
+                        "matrix": [
+                            2,
+                            4
+                        ],
+                        "start": 0,
+                        "spacing": 5,
+                        "label": "auto",
+                        "width": 130,
+                        "height": 220,
+                        "color": "auto",
+                        "css": "",
+                        "traversing": true,
+                        "on": 1,
+                        "off": 0,
+                        "value": "",
+                        "precision": 2,
+                        "address": "/multipush",
+                        "preArgs": [],
+                        "split": false,
+                        "target": [],
+                        "led": true,
+                        "id": "multitoggle"
                     }
                 ],
                 "tabs": [],

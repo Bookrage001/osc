@@ -69,6 +69,11 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - default: `0`
 - usage: first toggle's index
 
+### `spacing`
+- type: `integer`
+- default: `0`
+- usage: adds space between widgets
+
 ### `traversing`
 - type: `boolean`
 - default: `true`
@@ -112,6 +117,10 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - default: `0`
 - usage: first push's index
 
+### `spacing`
+- type: `integer`
+- default: `0`
+- usage: adds space between widgets
 
 ### `traversing`
 - type: `boolean`
