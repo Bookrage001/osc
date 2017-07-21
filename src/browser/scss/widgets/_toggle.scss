@@ -91,8 +91,9 @@
             background: var(--color-custom);
         }
         .toggle:before {
-            box-shadow: 0 0 0 1rem var(--color-light) inset;
             opacity: 1;
+            box-shadow: 0 0 0 1rem var(--color-light) inset,
+                        0 1rem 0 0 var(--color-light) inset;
         }
         > .label {
             top:7rem;
