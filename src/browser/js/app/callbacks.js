@@ -61,6 +61,9 @@ var callbacks = module.exports = {
             e.preventDefault()
             e.stopPropagation()
             ipc.send('sessionOpen',{path:$(this).data('session')})
+        }).on('mousedown touchstart', function(e){
+            e.preventDefault()
+            $(this).blur()
         })
 
         if (!READ_ONLY) {
@@ -71,16 +74,22 @@ var callbacks = module.exports = {
                 $(this).parents('a').remove()
             })
 
-            footer.append('<a class="btn browse">'+icon('folder-open')+' Browse</a>')
-            footer.append('<a class="btn new">'+icon('file-o')+' New</a>')
+            footer.append('<a href="#" tabindex="0" class="btn browse">'+icon('folder-open')+' Browse</a>')
+            footer.append('<a href="#" tabindex="0" class="btn new">'+icon('file-o')+' New</a>')
 
             lobby.find('.browse').click(function(e){
                 e.stopPropagation()
                 actions.sessionBrowse()
+            }).on('mousedown touchstart', function(e){
+                e.preventDefault()
+                $(this).blur()
             })
             lobby.find('.new').click(function(e){
                 e.stopPropagation()
                 module.exports.sessionNew()
+            }).on('mousedown touchstart', function(e){
+                e.preventDefault()
+                $(this).blur()
             })
         }
 
