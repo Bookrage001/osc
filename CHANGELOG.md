@@ -8,7 +8,7 @@
   - fader: added `dashed` option; added `input` option;
   - meter: added `alignRight` option; added `dashed` option;
   - knob: removed `compact` option; added `dashed` option; added `input` option;
-  - xy/rgb: added `input` option;
+  - xy/rgb: added `input` option; added `pips` option:
   - panel: removed inner widgets dark borders
   - buttons: new `dropdown` widget;
   - toggle: added `led` option to choose between the old appearance and the new one
@@ -17,10 +17,11 @@
   - option fields are now multiline (`ctrl + enter` to add a new line), and pretty printed;
   - added checkboxes for boolean options
 - midi
-  - replaced `pyo` dependency with [`pyrtmidi`](https://github.com/patrickkidd/pyrtmidi): lighter, dedicated to midi, and handling virtual ports (no `mididings` dependency anymore)
+  - replaced `pyo` dependency with [`pyrtmidi`](https://github.com/patrickkidd/pyrtmidi): lighter, dedicated to midi only, and handling virtual ports (no `mididings` dependency anymore)
   - pitchbend value is now a single integer between 0 and 16383
 - main
   - added `--url-options` command line option
+  - fixed `--disable-vsync` not working when starting from the launcher
 - documentation
   - new style, better organization
 
