@@ -1,10 +1,5 @@
 var settings = require('./settings')
 
-var cli = false
-for (i in settings.argv) {
-    if (i != '_' && i != '$0' && (settings.argv[i]!=undefined && settings.argv[i]!==false)) cli = true
-}
-
 var serverStarted
 
 var start = function(readyApp) {
@@ -49,7 +44,7 @@ var start = function(readyApp) {
 
 
 
-if (cli) {
+if (settings.cli) {
 
     start()
 

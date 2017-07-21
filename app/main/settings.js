@@ -6,7 +6,6 @@ var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'
     fs = require('fs'),
     ifaces = require('os').networkInterfaces()
 
-
 var options = {
     's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)',
          check: (s)=>{
@@ -86,6 +85,11 @@ var argv = require('yargs')
 
 argv = argv.argv
 
+var cli = false
+for (i in argv) {
+    if (i != '_' && i != '$0' && (argv[i]!=undefined && argv[i]!==false)) cli = true
+}
+
 var configFile = function(){try {return JSON.parse(fs.readFileSync(configPath,'utf-8'))} catch(err) {return {}}}(),
     config = JSON.parse(JSON.stringify(configFile)),
     defaultConfig
@@ -164,6 +168,6 @@ module.exports = {
     },
     reloadTheme:function(){
         module.exports.write('theme',loadTheme(argv.t),true)
-    }
-
+    },
+    cli: cli
 }

@@ -8,7 +8,7 @@ dialog.showErrorBox = function(title,err) {
 app.commandLine.appendSwitch('--touch-events')
 
 
-if (settings.read('noVsync')) {
+if (settings.read('noVsync') || (!settings.cli && settings.read('argv')['disable-vsync'])) {
     app.commandLine.appendSwitch('--disable-gpu-vsync')
 }
 
