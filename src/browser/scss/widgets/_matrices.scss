@@ -39,7 +39,7 @@
         align-items:stretch;
         flex-wrap: nowrap;
         &.horizontal {
-            flex-direction: column;
+            flex-direction: column-reverse;
             display: flex;
             .fader-container {
                 flex-direction: row;
