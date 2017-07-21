@@ -230,13 +230,13 @@ module.exports = class Xy extends _pads_base {
         }
 
 
-        this.ctx.globalAlpha = 0.3
+        this.ctx.globalAlpha = 0.7
 
         this.ctx.beginPath()
         this.ctx.arc(x, y, pointSize, Math.PI * 2, false)
         this.ctx.stroke()
 
-        this.ctx.globalAlpha = 0.7
+        this.ctx.globalAlpha = 1
 
         this.ctx.beginPath()
         this.ctx.arc(x, y, pointSize / 2, Math.PI * 2, false)
