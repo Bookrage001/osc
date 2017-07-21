@@ -185,7 +185,6 @@ module.exports =  {
                 }
             }
 
-            clients[clientId].broadcast.emit('receiveOsc', data)
 
             var targets = []
 
@@ -194,6 +193,11 @@ module.exports =  {
 
 
             for (var i in targets) {
+
+                if (targets[i] == 'self') {
+                    ipc.send('receiveOsc',data,clientId)
+                    continue
+                }
 
                 var host = targets[i].split(':')[0],
                     port = targets[i].split(':')[1]
@@ -216,6 +220,9 @@ module.exports =  {
                 }
 
             }
+
+            clients[clientId].broadcast.emit('receiveOsc', data)
+
     },
 
     addWidget(data, clientId) {

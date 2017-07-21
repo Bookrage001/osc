@@ -615,9 +615,9 @@
                             "root"
                         ],
                         "target": [
-                            "127.0.0.1:8080"
+                            "self"
                         ],
-                        "value": "",
+                        "value": "{ \"color\": \"auto\" }",
                         "values": {
                             "Default": "{ \"color\": \"auto\" }",
                             "Orange": "{ \"color\": \"orange\" }"
@@ -684,7 +684,7 @@
                 "scroll": true
             }
         ],
-        "color": "orange",
+        "color": "auto",
         "css": "",
         "value": "",
         "precision": 0,
