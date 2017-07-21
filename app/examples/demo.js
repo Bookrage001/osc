@@ -495,7 +495,10 @@
                                         },
                                         "logScaleX": false,
                                         "logScaleY": false,
-                                        "value": "",
+                                        "value": [
+                                            0.5,
+                                            0.5
+                                        ],
                                         "precision": 2,
                                         "address": "/xy_1",
                                         "touchAddress": "",
