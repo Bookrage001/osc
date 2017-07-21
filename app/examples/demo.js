@@ -476,16 +476,21 @@
                                         "pips": true,
                                         "color": "auto",
                                         "css": "",
-                                        "pointSize": 10,
                                         "snap": false,
                                         "spring": false,
                                         "doubleTap": false,
                                         "rangeX": {
                                             "min": 0,
+                                            "25%": 0.25,
+                                            "50%": 0.5,
+                                            "75%": 0.75,
                                             "max": 1
                                         },
                                         "rangeY": {
                                             "min": 0,
+                                            "25%": 0.25,
+                                            "50%": 0.5,
+                                            "75%": 0.75,
                                             "max": 1
                                         },
                                         "logScaleX": false,
@@ -496,7 +501,8 @@
                                         "touchAddress": "",
                                         "preArgs": [],
                                         "split": false,
-                                        "target": []
+                                        "target": [],
+                                        "pointSize": 20
                                     }
                                 ],
                                 "tabs": [],
@@ -571,10 +577,16 @@
                                         "spring": false,
                                         "rangeX": {
                                             "min": 0,
+                                            "25%": 0.25,
+                                            "50%": 0.5,
+                                            "75%": 0.75,
                                             "max": 1
                                         },
                                         "rangeY": {
                                             "min": 0,
+                                            "25%": 0.25,
+                                            "50%": 0.5,
+                                            "75%": 0.75,
                                             "max": 1
                                         },
                                         "logScaleX": false,
@@ -710,7 +722,6 @@
                         "preArgs": [],
                         "split": false,
                         "target": [],
-                        "style": "style",
                         "norelease": false
                     },
                     {
@@ -745,7 +756,7 @@
                 "scroll": true
             }
         ],
-        "color": "auto",
+        "color": "orange",
         "css": "",
         "value": "",
         "precision": 0,
