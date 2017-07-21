@@ -121,18 +121,20 @@
             --color-gauge:transparent;
             --color-knob:var(--color-white);
             margin-top: -1rem;
-            height: calc(2.5 * var(--pointSize));
+            height: calc(2 * var(--pointSize) + 8rem);
             .wrapper {
                 &:after {
                     content:"";
                     display: block;
                     position: absolute;
-                    top:var(--pointSize);
+                    top:50%;
+                    margin-top: -2rem;
                     left:var(--pointSize);
                     right:var(--pointSize);
-                    bottom:var(--pointSize);
+                    height: 4rem;
                     background: linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
                     box-shadow: 0 0 0 4rem var(--color-track);
+                    z-index: 1;
                 }
                 background:var(--color-track);
             }

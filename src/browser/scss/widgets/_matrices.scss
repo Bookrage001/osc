@@ -48,19 +48,9 @@
                     width:100%;
                 }
                 .label {
-                    width:35rem;
+                    width:30rem;
                     height:auto;
                     max-height: initial;
-                    span {
-                        transform: rotate(180deg);
-                        display: block;
-                        position: relative;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        -webkit-writing-mode:vertical-lr;
-                        writing-mode:vertical-lr;
-                        text-align: center;
-                    }
                 }
             }
 

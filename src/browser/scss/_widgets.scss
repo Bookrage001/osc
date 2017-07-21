@@ -38,13 +38,12 @@
         text-align:center;
         height:30rem;
         max-height:30rem;
-        line-height: 30rem;
         padding:0 6rem;
         width: 100%;
-        // background: var(--color-raised);
         flex-shrink: 0;
         display: flex;
         justify-content: space-around;
+        align-items: center;
         &.accent {
             color:var(--color-accent);
         }
