@@ -22,6 +22,7 @@ module.exports = class Strip extends Panel {
 
             horizontal:false,
             stretch:false,
+            border:true,
             spacing:0,
 
             _children:'children',

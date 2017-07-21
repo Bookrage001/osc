@@ -84,6 +84,14 @@
 
     }
 
+    &.noborder {
+
+        --color-border: var(--color-fg);
+        > .panel {
+            box-shadow: none;
+        }
+
+    }
 
 }
 

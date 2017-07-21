@@ -20,6 +20,11 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - default: `true`
 - usage: set to `false` to disable scrollbars
 
+### `border`
+- type: `boolean`
+- default: `true`
+- usage: by default, widgets in panels/strip have their border disabled, except for panels and strips. Set to `false` to apply this rule to the panel too.
+
 ### `widgets`
 - type: `array`
 - default: `[]`
@@ -76,6 +81,11 @@ Unidirectionnal panel with stretching capability. By default, children widgets t
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to stretch widgets evenly
+
+### `border`
+- type: `boolean`
+- default: `true`
+- usage: by default, widgets in panels/strip have their border disabled, except for panels and strips. Set to `false` to apply this rule to the strip too.
 
 ### `widgets`
 - type: `array`

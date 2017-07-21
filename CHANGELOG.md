@@ -9,7 +9,7 @@
   - meter: added `alignRight` option; added `dashed` option;
   - knob: removed `compact` option; added `dashed` option; added `input` option;
   - xy/rgb: added `input` option; added `pips` option:
-  - panel: removed inner widgets dark borders
+  - panel/strip: removed inner widgets dark borders; added `border` option;
   - buttons: new `dropdown` widget;
   - toggle: added `led` option to choose between the old appearance and the new one
   - new `input` widget

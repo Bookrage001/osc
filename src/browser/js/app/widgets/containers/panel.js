@@ -25,11 +25,11 @@ module.exports = class Panel extends _widgets_base {
             color:'auto',
             css:'',
 
-            _layout:'layout',
+            _layout:'panel',
 
+            border:true,
             layout:'',
             spacing:0,
-
 
 
             _osc:'osc',
@@ -55,7 +55,8 @@ module.exports = class Panel extends _widgets_base {
 
         super({...options, html: '<div class="panel"></div>'})
 
-        if (!this.getProp('scroll')) this.widget.addClass('noscroll')
+        if (this.getProp('scroll') === false) this.widget.addClass('noscroll')
+        if (this.getProp('border') === false) this.container.addClass('noborder')
         if (this.getProp('tabs') && this.getProp('tabs').length) this.widget.addClass('has-tabs')
 
 
@@ -191,7 +192,7 @@ module.exports = class Panel extends _widgets_base {
                 $(window).resize()
 
             }
-            
+
             this.navigation.find('li').removeClass('on').eq(v).addClass('on')
 
             if (options.send) this.sendValue()
