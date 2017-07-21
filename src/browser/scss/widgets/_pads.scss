@@ -113,7 +113,6 @@
                 background-color: red;
                 background-clip: content-box;
                 background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%), linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-                border-radius: 2rem;
                 opacity: 0.7;
             }
         }
@@ -132,7 +131,6 @@
                     right:var(--pointSize);
                     bottom:var(--pointSize);
                     background: linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
-                    border-radius: 2rem;
                     box-shadow: 0 0 0 4rem var(--color-track);
                 }
                 background:var(--color-track);
