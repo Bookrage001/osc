@@ -40,7 +40,7 @@ module.exports = class Switcher extends _switchers_base {
 
     constructor(options) {
 
-        super({...options, html: '<div class="switcher switch-container"></div>'})
+        super({...options, html: '<div class="switcher"></div>'})
 
         if (this.getProp('horizontal')) this.widget.addClass('horizontal')
 
