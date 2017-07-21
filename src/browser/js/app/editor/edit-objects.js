@@ -97,7 +97,8 @@ var editObject = function(container, data, refresh){
 
             input.on('change',function(){
                 // var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
-                var v
+                var title = input.attr('title'),
+                    v
 
                 try {
                     v = JSON.parse(input.val())
@@ -105,12 +106,15 @@ var editObject = function(container, data, refresh){
                     v = input.val()
                 }
 
-                data[input.attr('title')] = v
+                data[title] = v
 
-                if (v==='') delete data[input.attr('title')]
+                if (v==='') delete data[title]
 
                 try {
-                    updateDom(container,data)
+                    var w = updateDom(container,data)
+                    if (title == 'value' && v != '') {
+                        w[0].abstract.setValue(v, {sync:true})
+                    }
                     wrapper.removeClass('error')
                 } catch (err) {
                     wrapper.addClass('error')
