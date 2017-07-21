@@ -13,13 +13,13 @@ module.exports = class _matrices_base extends _widgets_base {
         this.widget.on('change',(e)=>{
 
             if (e.id==this.getProp('id')) return
-            this.value[e.widget.parent().index()] = e.widget.abstract.getValue()
+            this.value[e.widget.container.index()] = e.widget.getValue()
             this.widget.trigger({type:'change',id:this.getProp('id'),widget:this,options:e.options})
 
         })
 
     }
-    
+
     registerHashes() {
         this.hashes = [this.hash]
         var widgets = this.widget.find('.widget')
