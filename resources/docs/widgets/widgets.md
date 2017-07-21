@@ -62,7 +62,7 @@ All widgets share a set of generic properties described below.
 - type: `*`
 - default: `empty`
 - usage: if set, the widget will be initialized with this `value`. This won't affect linked widgets and won't send any osc message.
-- note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc). **Changes made to `value` won't be visible until the session is reloaded.**
+- note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc).
 
 
 ### `precision`
