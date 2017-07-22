@@ -35,7 +35,7 @@ Osc.prototype.sync = function(data) {
 
 Osc.prototype.receive = function(data){
 
-    if (this.remoteControl.exists(data.address)) return this.remoteControl.exec(data.address, data.args)
+    if (this.remoteControl.exists(data.address)) this.remoteControl.exec(data.address, data.args)
 
     // fetch ids corresponding to the osc address
     var address = data.address,
