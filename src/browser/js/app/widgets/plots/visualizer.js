@@ -53,40 +53,48 @@ module.exports = class Visualizer extends _plots_base {
         this.looping = false
         this.clock = 0
         this.lastUpdate = 0
+        this.watchDuration = 1000 * this.getProp('duration')
+        this.ticks = 0
 
     }
 
     syncHandle(e) {
 
-        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
-        this.startLoop()
+        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length || !e.widget) return
+        this.setValue(e.widget.getValue())
 
     }
 
     startLoop() {
 
         this.clock = new Date().getTime()
-        if (!this.looping) this.loop()
-
+        if (!this.looping) {
+            this.lastUpdate = new Date().getTime()
+            this.looping = true
+            this.ticks = 0
+            this.loop()
+        }
     }
 
     loop() {
 
-        this.looping = true
         var t = new Date().getTime()
 
-        if (t -this.clock >= 1000 * this.getProp('duration')) {
+        if (t -this.clock >= this.watchDuration) {
             this.looping = false
-            return
         }
 
-        var ticks = Math.floor((t - this.lastUpdate) / (1000/this.fps))
+        this.ticks += (t - this.lastUpdate) / (1000/this.fps)
 
-        this.updateData()
-        if (ticks > 1 && this.lastUpdate != 0) this.shiftData(ticks - 1)
-        
-        this.draw()
+        if (Math.floor(this.ticks) > 0) {
+            this.shiftData(Math.floor(this.ticks))
+            this.ticks -= Math.floor(this.ticks)
+            this.draw()
+        }
+
         this.lastUpdate = t
+
+        if (!this.looping) return
 
         setTimeout(()=>{
             this.loop()
@@ -117,23 +125,6 @@ module.exports = class Visualizer extends _plots_base {
 
             }
             point = newpoint
-        }
-
-    }
-
-
-    updateData() {
-
-        var id = this.getProp('widgetId'),
-        widget = widgetManager.getWidgetById(id)
-
-        if (typeof id == 'string' && widget.length) {
-            var v = widget[widget.length-1].getValue()
-            this.data.push(v)
-            this.value = v
-            this.data.splice(0,1)
-        } else {
-            this.shiftData(1)
         }
 
     }
