@@ -189,6 +189,7 @@
             background: var(--color-raised);
             color:inherit;
             font-size: 12rem!important;
+            text-transform: none;
         }
         &:after{
             content:"\f107";
