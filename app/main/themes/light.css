@@ -15,5 +15,7 @@
 }
 
 .keyboard-container {
-    --color-black: #555;
+	--color-black-key: #ccc;
+    --color-white-key: #eee;
+
 }

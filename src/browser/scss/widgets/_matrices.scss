@@ -105,28 +105,33 @@
 }
 
 .keyboard-container {
-    --color-black: var(--color-raised);
-    --color-white: #ccc;
+    --color-black-key: var(--color-raised);
+    --color-white-key: #aaa;
     height:90rem;
     width:240rem;
     .matrix {
         position: relative;
         overflow: hidden;
         .white {
-            --color-raised: var(--color-white);
-            // &.active {
-            //     background:var(--color-custom);
-            // }
+            --color-raised: var(--color-white-key);
+            .toggle:before {
+                box-shadow: 0 0 0 1rem var(--color-light) inset,
+                            0 0 0 1rem var(--color-light) inset;
+            }
+
+
         }
         .black {
-            --color-raised: var(--color-black);
+            --color-raised: var(--color-black-key);
             position: absolute;
             z-index: 2;
             top:1rem;
             height: 65%;
-            // &.active {
-            //     background:var(--color-custom);
-            // }
+            .toggle:before {
+                border-bottom:2rem solid var(--color-bg);
+                box-shadow: 0 0 0 1rem var(--color-light) inset,
+                            0 -1rem 0 0 var(--color-light) inset;
+            }
         }
         .on {
             background: var(--color-custom)
