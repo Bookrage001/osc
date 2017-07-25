@@ -92,8 +92,6 @@ module.exports = class Formula extends _widgets_base {
             e.stopPropagation()
         })
 
-        this.input.setValue('...')
-
     }
 
     onRemove() {
