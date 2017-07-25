@@ -24,8 +24,8 @@ module.exports = class Modal extends Panel {
             _popup:'popup',
 
             doubleTap: false,
-            popupWidth:'100%',
-            popupHeight:'100%',
+            popupWidth:'80%',
+            popupHeight:'80%',
 
             _layout:'layout',
 
