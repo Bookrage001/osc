@@ -57,3 +57,12 @@
     }
 
 }
+
+.panel:not(.tab) > .input-container {
+    > .input {
+        box-shadow: 0 0 0 1rem var(--color-fg);
+
+        outline: 1rem solid var(--color-light);
+        border: 1rem solid var(--color-bg);
+    }
+}
