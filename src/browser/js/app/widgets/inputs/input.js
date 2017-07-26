@@ -54,7 +54,6 @@ module.exports = class Input extends _canvas_base {
         this.value = ''
         this.stringValue = ''
 
-
         if (this.getProp('editable')) {
 
             this.canvas.on('focus', this.focus.bind(this))
@@ -111,21 +110,14 @@ module.exports = class Input extends _canvas_base {
 
     syncHandle(e) {
 
-        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
+        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length || !e.widget) return
 
-        var widget = widgetManager.getWidgetById(e.id),
-            value
-
-        for (var i=widget.length-1; i>=0; i--) {
-            if (widget[i].getValue) {
-                this.setValue(widget[i].getValue(), {...e.options, fromSync:true})
-                return
-            }
-        }
+        this.setValue(e.widget.getValue(), {...e.options, internal:true})
 
     }
 
     resizeHandle(){
+
             super.resizeHandle(...arguments)
 
             if (this.getProp('horizontal')){
@@ -149,18 +141,19 @@ module.exports = class Input extends _canvas_base {
             this.value = v
         }
 
-        this.stringValue = this.getStringValue()
-        this.draw()
-
-        if (this.getProp('widgetId').length && !options.fromSync) {
+        if (!options.internal && this.getProp('widgetId').length) {
             var widget = widgetManager.getWidgetById(this.getProp('widgetId'))
-            options.hash = this.hash
             for (var i=widget.length-1; i>=0; i--) {
                 if (widget[i].setValue) {
                     widget[i].setValue(this.value, options)
+                    this.setValue(widget[i].getValue(), {...options, internal:true})
+                    return
                 }
             }
         }
+
+        this.stringValue = this.getStringValue()
+        this.draw()
 
         if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
         if (options.send && !options.fromSync) this.sendValue()
@@ -173,7 +166,7 @@ module.exports = class Input extends _canvas_base {
             width = this.getProp('horizontal') ? this.height : this.width,
             height = !this.getProp('horizontal') ? this.height : this.width
 
-        if (this.getProp('unit')) v += ' ' + this.getProp('unit')
+        if (this.getProp('unit') && v.length) v += ' ' + this.getProp('unit')
 
         this.clear()
 

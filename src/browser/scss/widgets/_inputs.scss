@@ -38,7 +38,9 @@
             vertical-align: top;
             // font-weight: bold;
             letter-spacing: 1rem;
-
+            &:focus {
+                color:var(--color-custom);
+            }
         }
         canvas {
             height: 100%;
@@ -50,10 +52,7 @@
             display: none;
         }
 
-        &:focus {
-            color:var(--color-accent);
 
-        }
     }
 
 }
