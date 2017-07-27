@@ -3,7 +3,7 @@ var {mapToScale} = require('../utils'),
     {widgetManager} = require('../../managers'),
     {clip} = require('../utils')
 
-module.exports = class Led extends _widgets_base {
+module.exports = class Rbgled extends _widgets_base {
 
     static defaults() {
 
@@ -73,15 +73,32 @@ module.exports = class Led extends _widgets_base {
     }
     setValue(v) {
 
-        if (!v || !v.length || v.length<3) return
+        var c = ''
 
-        for (let i in [0,1,2]) {
-            v[i] = parseInt(clip(v[i],[0,255]))
+        if (Array.isArray(v) && v.length >= 3) {
+
+            for (let i in [0,1,2]) {
+                v[i] = parseInt(clip(v[i],[0,255]))
+            }
+
+            v[3] = clip(v[3] != undefined ? v[3] : 1,[0,1])
+
+            c = `rgba(${v[0]}, ${v[1]}, ${v[2]}, ${v[3]})`
+
+        } else if (typeof v == 'string') {
+
+            c = v
+
+
+        } else {
+
+            return
+
         }
 
-        v[3] = clip(v[3] != undefined ? v[3] : 1,[0,1])
+        this.value = v
 
-        this.widget[0].style.setProperty('--color-custom',`rgba(${v[0]}, ${v[1]}, ${v[2]}, ${v[3]})`)
+        this.widget[0].style.setProperty('--color-custom', c)
 
     }
 
