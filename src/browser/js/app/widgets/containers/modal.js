@@ -91,6 +91,12 @@ module.exports = class Modal extends Panel {
             })
         }
 
+        this.popup.on('fake-click',(e)=>{
+            if (e.target == this.popup[0] && this.value == 1) {
+                this.setValue(0, {sync:true, send:true})
+            }
+        })
+
         this.parentScroll = [0,0]
         this.value = 0
         this.init = false
@@ -110,7 +116,7 @@ module.exports = class Modal extends Panel {
 
         this.popup.toggle(this.value?true:false)
         this.container.add(this.light).toggleClass('on', this.value?true:false)
-
+        this.bindEscKey(this.value)
 
         if (this.value) {
             $(window).resize()
@@ -122,9 +128,27 @@ module.exports = class Modal extends Panel {
         if (options.send) this.sendValue()
         if (options.sync) this.light.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
 
+
     }
 
-    fixScrolling(){
+    bindEscKey(set) {
+
+        if (set) {
+            $(document).on('keydown.' + this.hash, (e)=>{
+                if (e.keyCode==27) this.setValue(0, {sync:true, send:true})
+            })
+        } else {
+            $(document).off('keydown.' + this.hash)
+        }
+
+    }
+
+    onRemove() {
+        this.bindEscKey(false)
+        super.onRemove()
+    }
+
+    fixScrolling() {
         if (this.value) {
             var c = this.container.parents('.panel.tab').first()
             this.parentScroll = [c.scrollLeft(), c.scrollTop()]
