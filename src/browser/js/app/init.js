@@ -2,7 +2,7 @@ var parser = require('./parser'),
     parsewidgets = parser.widgets,
     reset = parser.reset,
     ui = require('./ui'),
-    {editorDisable} = require('./actions'),
+    {editorDisable, stateGet, stateSet} = require('./actions'),
     editorInit = require('./editor/init'),
     {loading, createPopup, icon} = require('./utils')
 
@@ -32,6 +32,7 @@ module.exports = function(session,callback) {
                 return
             }
 
+            stateSet(stateGet(), false)
             $('#lobby').remove()
             ui.init()
             editorDisable()

@@ -28,7 +28,7 @@ var updateDom = function(container,data, remote) {
         wScroll = {}
 
     for (let h of oldWidgets) {
-        if (widgetManager.widgets[h]) {
+        if (widgetManager.widgets[h] && widgetManager.widgets[h].getValue) {
             wState[widgetManager.widgets[h].getProp('id')] = widgetManager.widgets[h].getValue()
         }
     }
