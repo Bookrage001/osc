@@ -30,8 +30,7 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 }
 ```
 
-This one is like the `led` except it takes three arguments (red, green and blue values between 0 and 255) with an optionnal forth argument (alpha, between 0 and 1)
-
+This one is like the `led` except it takes either three arguments (red, green and blue values between 0 and 255) with an optionnal forth argument (alpha, between 0 and 1), or one argument (a valid css color name).
 
 ## Plot
 
