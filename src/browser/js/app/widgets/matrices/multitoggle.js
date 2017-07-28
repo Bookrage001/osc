@@ -8,32 +8,32 @@ module.exports = class Multitoggle extends _matrices_base {
             type:'multitoggle',
             id:'auto',
 
+            _geometry:'geometry',
+
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+
+            _style:'style',
+
+            label:'auto',
+            color:'auto',
+            css:'',
+
             _matrix: 'Matrix',
 
             matrix: [2,2],
             start:0,
             spacing:0,
-
-            _style:'style',
-
-            label:'auto',
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-            led: false,
-            color:'auto',
-            css:'',
-
-            _behaviour:'behaviour',
-
             traversing:true,
-
-            _osc:'osc',
-
+            led: false,
             on:1,
             off:0,
             value:'',
+
+            _osc: 'osc',
+
             precision:2,
             address:'auto',
             preArgs:[],

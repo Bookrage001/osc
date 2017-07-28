@@ -15,35 +15,35 @@ module.exports = class Xy extends _pads_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            input: true,
-            pips: true,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _behaviour:'xy',
+            _xy:'xy',
 
+            input: true,
+            pips: true,
             pointSize: 20,
-
-            _behaviour:'behaviour',
-
             snap:false,
             spring:false,
             doubleTap:false,
-
-            _osc:'osc',
-
             rangeX:{min:0,max:1},
             rangeY:{min:0,max:1},
             logScaleX:false,
             logScaleY:false,
             value:'',
+
+            _osc:'osc',
+
             precision:2,
             address:'auto',
             touchAddress:'',

@@ -10,26 +10,28 @@ module.exports = class Led extends _widgets_base {
             type:'led',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            pips:true,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _plot:'plot',
+            _led:'led',
 
             widgetId:'',
-
-            _osc:'osc',
-
             range:{min:0,max:1},
             logScale:false,
             value:'',
+
+            _osc:'osc',
+
             preArgs:[],
             address:'auto'
 

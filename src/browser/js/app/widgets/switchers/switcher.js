@@ -12,25 +12,28 @@ module.exports = class Switcher extends _switchers_base {
             id:'auto',
             linkId:'',
 
-            _switcher:'Switcher',
+            _geometry:'geometry',
 
-            linkedWidgets:'',
-
-            _style:'style',
-
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            horizontal:false,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _osc:'osc',
+            _switcher:'Switcher',
 
+            horizontal:false,
+            linkedWidgets:'',
             values:['A', 'B'],
             value:'A',
+
+            _osc:'osc',
+
             address:'auto',
             preArgs:[],
             target:[]

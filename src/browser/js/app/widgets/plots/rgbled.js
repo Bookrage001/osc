@@ -11,22 +11,25 @@ module.exports = class Rbgled extends _widgets_base {
             type:'rgbled',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
             css:'',
 
-            _plot:'plot',
+            _rgbled:'rgbled',
 
             widgetId:'',
+            value:'',
 
             _osc:'osc',
 
-            value:'',
             preArgs:[],
             address:'auto'
 

@@ -11,30 +11,30 @@ module.exports = class Modal extends Panel {
             type:'modal',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _popup:'popup',
+            _modal:'modal',
 
             doubleTap: false,
             popupWidth:'80%',
             popupHeight:'80%',
-
-            _layout:'layout',
-
             layout:'',
             spacing:0,
+            value:'',
 
             _osc:'osc',
 
-            value:'',
             precision:0,
             address:'auto',
             preArgs:[],

@@ -8,32 +8,32 @@ module.exports = class Multipush extends _matrices_base {
             type:'multipush',
             id:'auto',
 
+            _geometry:'geometry',
+
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+
+            _style:'style',
+
+            label:'auto',
+            color:'auto',
+            css:'',
+
             _matrix: 'Matrix',
 
             matrix: [2,2],
             start:0,
             spacing:0,
-
-            _style:'style',
-
-            label:'auto',
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-            color:'auto',
-            css:'',
-
-            _behaviour:'behaviour',
-
             traversing:true,
+            on:1,
+            off:0,
+            norelease:false,
+            value:'',
 
             _osc:'osc',
 
-            on:1,
-            off:0,
-            value:'',
-            norelease:false,
             precision:2,
             address:'auto',
             preArgs:[],

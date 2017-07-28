@@ -20,6 +20,7 @@ module.exports = class Strip extends Panel {
 
             _strip: 'strip',
 
+            scroll:true,
             horizontal:false,
             stretch:false,
             border:true,

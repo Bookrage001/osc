@@ -35,27 +35,30 @@ module.exports = class Encoder extends _widgets_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _behaviour:'behaviour',
-
-            snap:false,
-            doubleTap:false,
-
-            _osc:'osc',
+            _encoder: 'encoder',
 
             ticks:360,
             back:-1,
             forth:1,
             release:'',
+            snap:false,
+            doubleTap:false,
+
+            _osc:'osc',
+
             precision:2,
             address:'auto',
             touchAddress:'',

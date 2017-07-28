@@ -10,20 +10,26 @@ module.exports = class Dropdown extends _widgets_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style: 'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _osc:'osc',
+            _dropdown:'dropdown',
 
             values:{"Value 1":1,"Value 2":2},
             value:'',
+
+            _osc:'osc',
+
             precision:2,
             address:'auto',
             preArgs:[],

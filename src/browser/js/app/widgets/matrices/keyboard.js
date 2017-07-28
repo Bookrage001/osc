@@ -8,29 +8,30 @@ module.exports = class Keyboard extends _matrices_base {
             type:'keyboard',
             id:'auto',
 
-            _matrix: 'Matrix',
 
-            keys: 24,
-            start:60,
+            _geometry:'geometry',
 
-            _style:'style',
-
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _behaviour:'behaviour',
+            _matrix: 'Matrix',
 
+            keys: 24,
+            start:60,
             traversing:true,
+            on:1,
+            off:0,
 
             _osc:'osc',
 
-            on:1,
-            off:0,
             precision:2,
             address:'auto',
             preArgs:[],

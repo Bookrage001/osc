@@ -10,33 +10,36 @@ module.exports = class Knob extends _sliders_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
-            unit:'',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
+            css:'',
+
+            _knob:'knob',
+
             pips:true,
             input: true,
             dashed:false,
             angle:270,
-            css:'',
-
-            _behaviour:'behaviour',
-
             snap:false,
             spring:false,
             doubleTap:false,
+            range:{min:0,max:1},
+            logScale:false,
+            unit:'',
+            origin: 'auto',
+            value:'',
 
             _osc:'osc',
 
-            range:{min:0,max:1},
-            origin: 'auto',
-            value:'',
-            logScale:false,
             precision:2,
             address:'auto',
             touchAddress:'',

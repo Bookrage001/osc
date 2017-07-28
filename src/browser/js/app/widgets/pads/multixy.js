@@ -14,31 +14,34 @@ module.exports = class MultiXy extends _pads_base {
             id:'auto',
             linkId:'',
 
+            _geometry:'geometry',
+
+            left:'auto',
+            top:'auto',
+            width:'auto',
+            height:'auto',
+
+            _style:'style',
+
+            label:'auto',
+            color:'auto',
+            css:'',
+
             _mutlixy:'multi xy',
 
             points: 2,
             pointSize: 20,
             snap:false,
             spring:false,
-
-            _style:'style',
-
-            label:'auto',
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
             pips: true,
-            color:'auto',
-            css:'',
-
-            _osc:'osc',
-
             rangeX:{min:0,max:1},
             rangeY:{min:0,max:1},
             logScaleX:false,
             logScaleY:false,
             value:'',
+
+            _osc:'osc',
+
             precision:2,
             address:'auto',
             touchAddress:'',

@@ -11,21 +11,28 @@ module.exports = class Switch extends _widgets_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            horizontal:false,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _osc:'osc',
+            _switch:'switch',
 
+            horizontal:false,
             values:{"Value 1":1,"Value 2":2},
             value:'',
+
+
+            _osc:'osc',
+
             precision:2,
             address:'auto',
             preArgs:[],

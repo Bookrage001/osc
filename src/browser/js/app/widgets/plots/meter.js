@@ -10,32 +10,35 @@ module.exports = class Meter extends Fader {
             type:'fader',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
-            unit:'',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            alignRight:false,
-            horizontal:false,
-            pips:false,
-            dashed:false,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
 
-            _plot:'plot',
+            _meter:'meter',
 
             widgetId:'',
-
-            _osc:'osc',
-
             range:{min:0,max:1},
             logScale:false,
             origin:'auto',
+            unit:'',
+            alignRight:false,
+            horizontal:false,
+            pips:false,
+            dashed:false,
             value:'',
+
+            _osc:'osc',
+
             address:'auto',
             preArgs:[]
         }

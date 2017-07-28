@@ -8,41 +8,47 @@ module.exports = class Multifader extends _matrices_base {
             type:'multifader',
             id:'auto',
 
-            _matrix:'Matrix',
 
-            strips:2,
-            start:0,
+            _geometry:'geometry',
 
-            _style:'style',
-
-            label:'auto',
-            unit:'',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
+            color:'auto',
+            css:'',
+
+            _matrix:'Matrix',
+
+            strips:2,
+            start:0,
+            traversing:true,
+            value:'',
+
+            _fader: 'fader',
+
+            range:{min:0,max:1},
+            logScale:false,
+            unit:'',
+            origin: 'auto',
+            snap:true,
+
+            meter:false,
             alignRight:false,
             horizontal:false,
             pips:false,
             input:true,
             compact:false,
             dashed:false,
-            color:'auto',
-            css:'',
 
-            _behaviour:'behaviour',
-
-            traversing:true,
-            snap:true,
 
             _osc:'osc',
 
-            range:{min:0,max:1},
-            value:'',
-            origin: 'auto',
-            logScale:false,
             precision:2,
-            meter:false,
             address:'auto',
             preArgs:[],
             split:false,

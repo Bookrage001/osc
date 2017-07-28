@@ -13,20 +13,23 @@ module.exports = class Formula extends _widgets_base {
             id:'auto',
             linkId:'',
 
-            _math: 'math',
+            _geometry:'geometry',
 
-            formula: '',
-            condition: '',
-
-            _style:'style',
-
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
+
+            _math: 'math',
+
+            formula: '',
+            condition: '',
 
             _osc:'osc',
 

@@ -11,26 +11,29 @@ module.exports = class Input extends _canvas_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
-            unit: '',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            horizontal:false,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _plot:'input',
+            _input:'input',
 
+            horizontal:false,
+            unit: '',
             widgetId:'',
             editable:true,
+            value:'',
 
             _osc:'osc',
 
-            value:'',
             precision:2,
             address:'auto',
             preArgs:[],

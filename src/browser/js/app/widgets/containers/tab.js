@@ -17,14 +17,14 @@ module.exports = class Tab extends Panel {
             color:'auto',
             css:'',
 
-            _layout:'layout',
+            _panel:'panel',
 
             layout:'',
             spacing:0,
+            value:'',
 
             _osc:'osc',
 
-            value:'',
             precision:0,
             address:'auto',
             preArgs:[],

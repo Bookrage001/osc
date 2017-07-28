@@ -16,24 +16,27 @@ module.exports = class Rgb extends _pads_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            input: true,
+
+            _style:'style',
+
+            label:'auto',
             css:'',
 
-            _behaviour:'behaviour',
+            _rgb:'rgb',
 
+            input: true,
             snap:false,
             spring:false,
+            value:'',
 
             _osc:'osc',
 
-            value:'',
             precision:0,
             address:'auto',
             touchAddress:'',

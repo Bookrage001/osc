@@ -10,28 +10,31 @@ module.exports = class Visualizer extends _plots_base {
             type:'visualizer',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            pips:true,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _plot:'plot',
+            _visualizer:'visualizer',
 
             widgetId:'',
             duration:1,
             range: {min:0,max:1},
             origin: 'auto',
             logScale: false,
+            pips:true,
+            value:'',
 
             _osc:'osc',
 
-            value:'',
             address:'auto',
             preArgs:[],
         }

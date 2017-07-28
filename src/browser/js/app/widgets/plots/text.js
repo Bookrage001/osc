@@ -10,24 +10,27 @@ module.exports = class Text extends _widgets_base {
             type:'text',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            vertical:false,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _plot:'plot',
+            _text: 'text',
 
             widgetId:'',
+            vertical:false,
+            value:'',
 
             _osc:'osc',
 
-            value:'',
             preArgs:[],
             address:'auto',
         }

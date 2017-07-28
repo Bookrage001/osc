@@ -11,19 +11,22 @@ module.exports = class Eq extends _plots_base {
             type:'eq',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            pips:true,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _plot:'plot',
+            _eq:'eq',
 
+            pips:true,
             filters:[],
             resolution:128,
             rangeY: {min:-20,max:20},

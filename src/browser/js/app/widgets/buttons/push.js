@@ -10,21 +10,27 @@ module.exports = class Push extends _widgets_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _osc:'osc',
+            _push: 'push',
 
             on:1,
             off:0,
             norelease:false,
+
+            _osc:'osc',
+
             precision:2,
             address:'auto',
             preArgs:[],

@@ -10,14 +10,16 @@ module.exports = class Plot extends _plots_base {
             type:'plot',
             id:'auto',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            pips:true,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
@@ -29,6 +31,7 @@ module.exports = class Plot extends _plots_base {
             origin: 'auto',
             logScaleX: false,
             logScaleY: false,
+            pips:true,
 
             _osc:'osc',
 

@@ -9,22 +9,28 @@ module.exports = class Toggle extends _widgets_base {
             id:'auto',
             linkId:'',
 
-            _style:'style',
+            _geometry:'geometry',
 
-            label:'auto',
             left:'auto',
             top:'auto',
             width:'auto',
             height:'auto',
-            led: false,
+
+            _style:'style',
+
+            label:'auto',
             color:'auto',
             css:'',
 
-            _osc:'osc',
+            _toggle: 'toggle',
 
+            led: false,
             on:1,
             off:0,
             value:'',
+
+            _osc:'osc',
+
             precision:2,
             address:'auto',
             preArgs:[],
