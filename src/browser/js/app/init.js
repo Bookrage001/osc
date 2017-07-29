@@ -29,7 +29,7 @@ module.exports = function(session,callback) {
                 p.close()
                 $('#lobby').show()
                 createPopup(icon('warning')+'&nbsp; Parsing error', err,true)
-                return
+                throw err
             }
 
             stateSet(stateGet(), false)

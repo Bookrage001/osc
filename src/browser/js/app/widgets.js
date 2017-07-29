@@ -38,6 +38,7 @@ module.exports.widgets = {
     strip: require('./widgets/containers/strip'),
     panel: require('./widgets/containers/panel'),
     modal: require('./widgets/containers/modal'),
+    clone: require('./widgets/containers/clone'),
 
     // state switchers
     switcher: require('./widgets/switchers/switcher'),
@@ -48,6 +49,7 @@ module.exports.widgets = {
 
     // maths
     formula: require('./widgets/maths/formula')
+
 }
 
 module.exports.categories = {
@@ -56,7 +58,7 @@ module.exports.categories = {
     'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text'],
-    'Containers':['panel','strip','modal'],
+    'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['switcher','crossfader'],
     'Inputs':['input'],
     'Maths':['formula']

@@ -260,3 +260,30 @@
         }
     }
 }
+
+.clone-container {
+    width: 100rem;
+    height: 100rem;
+    border:0;
+    box-shadow: none;
+    background: transparent;
+    
+    .clone {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        > .widget {
+            position: relative!important;
+            left:auto!important;
+            bottom:auto!important;
+            right:auto!important;
+            top: auto!important;
+            width: 100%!important;
+            height: 100%!important;
+            min-height: initial!important;
+            max-height: initial!important;
+            min-width: initial!important;
+            max-width: initial!important;
+        }
+    }
+}

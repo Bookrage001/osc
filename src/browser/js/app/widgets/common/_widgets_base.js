@@ -60,13 +60,14 @@ module.exports = class _widgets_base {
             }
         }
 
-        $('body').on(`widget-created.${this.hash}`, (e, id)=>{
+        $('body').on(`widget-created.${this.hash}`, (e)=>{
+            var {id} = e
             if (this.linkedPropsWidgets.indexOf(id) != -1 && id != this.getProp('id')) {
                 this.checkPropsChanged()
             }
         })
 
-        $('body').trigger('widget-created', this.getProp('id'))
+        $('body').trigger({type: 'widget-created', id: this.getProp('id'), hash:this.hash})
 
         // cache precision
         if (this.props.precision != undefined) {
