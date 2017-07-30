@@ -142,7 +142,7 @@ module.exports = class Knob extends _sliders_base {
 
         if (!this.width || !this.height) return
 
-        var tiny = this.minDimension < 45,
+        var tiny = this.minDimension < 45 * PXSCALE,
             margin = tiny ? 0 : 5 * PXSCALE
 
         var o = this.percentToAngle(this.valueToPercent(this.originValue)),
