@@ -123,3 +123,18 @@ Modals are buttons that turn into a centered popup panels when enabled. They can
 
 ### `options`
 - see panel's [`options`](#panel)
+
+
+## Clone
+
+```js
+{
+    type:'clone',
+    // etc
+}
+```
+
+### `widgetId`
+- type: `string`
+- default: `empty`
+- usage: `id` of the widget to clone

@@ -13,6 +13,7 @@
   - buttons: new `dropdown` widget;
   - toggle: added `led` option to choose between the old appearance and the new one
   - new `input` widget
+  - containers: new `clone` widgets
   - added support for `"self"` value in `target` option (sends the message back to the clients, useful for sending `/EDIT` messages...)
 - editor
   - option fields are now multiline (`ctrl + enter` to add a new line), and pretty printed

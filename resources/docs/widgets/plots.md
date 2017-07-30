@@ -10,6 +10,11 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 }
 ```
 
+### `widgetId`
+- type: `string`
+- default: `empty`
+- usage: a widget's `id` whose value will be mapped to the led's color opacity
+
 ### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
@@ -137,7 +142,7 @@ The visualizer displays the evolution in time of a received value (through osc) 
 ```
 
 ### `widgetId`
-- type: `object`
+- type: `string`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed (thus bypassing the incoming osc)
 
@@ -173,7 +178,7 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 ```
 
 ### `widgetId`
-- type: `object`
+- type: `string`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed
 
