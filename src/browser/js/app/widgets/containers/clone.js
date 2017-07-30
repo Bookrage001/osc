@@ -40,6 +40,7 @@ module.exports = class Clone extends _widgets_base {
 
         this.cloneHash = [0]
         this.cloneLock = false
+        this.cloneClass = ''
         this.originalHash = false
         this.createClone()
 
@@ -63,6 +64,7 @@ module.exports = class Clone extends _widgets_base {
         var parsewidgets = require('../../parser').widgets
 
         this.widget.empty()
+        this.container.removeClass(this.cloneClass)
         purge(this.cloneHash)
 
         var widgets = widgetManager.getWidgetById(this.getProp('widgetId'))
@@ -74,11 +76,12 @@ module.exports = class Clone extends _widgets_base {
                 if (this.cloneHash.indexOf(widgets[i].hash) == -1) {
 
                     this.originalHash = widgets[i].hash
+                    this.cloneClass = widgets[i].container.attr('class').match(/[^\s]*-container/)[0]
+                    this.container.addClass(this.cloneClass)
 
                     var c = parsewidgets([_widgets_base.deepCopy(widgets[i].props)], this.widget, this)
 
                     this.widget.find('.widget').addClass('not-editable')
-                    this.container[0].style.setProperty('--color-border', getComputedStyle(c[0]).getPropertyValue('--color-border'))
 
                     this.hashes = [this.hash]
                     if (c[0].abstract.hashes) {
