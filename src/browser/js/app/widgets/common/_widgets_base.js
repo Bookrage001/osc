@@ -67,7 +67,7 @@ module.exports = class _widgets_base {
             }
         })
 
-        $('body').trigger({type: 'widget-created', id: this.getProp('id'), hash:this.hash})
+        $('body').trigger({type: 'widget-created', id: this.getProp('id'), widget:this})
 
         // cache precision
         if (this.props.precision != undefined) {

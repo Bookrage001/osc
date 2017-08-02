@@ -46,18 +46,18 @@ module.exports = class Clone extends _widgets_base {
         this.createClone()
 
         $('body').on(`widget-created.${this.hash}`, (e)=>{
-            var {id, hash} = e
-            if ((id == this.getProp('widgetId') && this.cloneHash.indexOf(hash) == -1)
-            // ||
-                // (widgetManager.widgets[this.originalHash] && widgetManager.widgets[this.originalHash].hashes && widgetManager.widgets[this.originalHash].hashes.indexOf(hash) != -1)
+            var {id, widget} = e
+            if (
+                (id == this.getProp('widgetId') && this.cloneHash.indexOf(widget.hash) == -1) &&
+                !(widget.parent && widget.parent.getProp('type') == 'clone')
             ) {
-                this.createClone()
+                this.createClone(widget)
             }
         })
 
     }
 
-    createClone() {
+    createClone(widget) {
 
         if (this.cloneLock) return
 
@@ -69,13 +69,18 @@ module.exports = class Clone extends _widgets_base {
         this.container.removeClass(this.cloneClass)
         purge(this.cloneHash)
 
-        var widgets = widgetManager.getWidgetById(this.getProp('widgetId'))
+        var widgets = widget ? [widget] : widgetManager.getWidgetById(this.getProp('widgetId'))
 
         if (widgets.length) {
 
             for (var i = widgets.length - 1; i>=0; i--) {
 
-                if (this.cloneHash.indexOf(widgets[i].hash) == -1) {
+                if (
+
+                    this.cloneHash.indexOf(widgets[i].hash) == -1 &&
+                    !(widgets[i].parent && widgets[i].parent.getProp('type') == 'clone')
+
+                ) {
 
                     this.originalHash = widgets[i].hash
                     this.cloneClass = widgets[i].container.attr('class').match(/[^\s]*-container/)[0]
