@@ -47,8 +47,9 @@ module.exports = class Clone extends _widgets_base {
 
         $('body').on(`widget-created.${this.hash}`, (e)=>{
             var {id, hash} = e
-            if ((id == this.getProp('widgetId') && this.cloneHash.indexOf(hash) == -1) ||
-                (widgetManager.widgets[this.originalHash] && widgetManager.widgets[this.originalHash].hashes && widgetManager.widgets[this.originalHash].hashes.indexOf(hash) != -1)
+            if ((id == this.getProp('widgetId') && this.cloneHash.indexOf(hash) == -1)
+            // ||
+                // (widgetManager.widgets[this.originalHash] && widgetManager.widgets[this.originalHash].hashes && widgetManager.widgets[this.originalHash].hashes.indexOf(hash) != -1)
             ) {
                 this.createClone()
             }
@@ -72,7 +73,7 @@ module.exports = class Clone extends _widgets_base {
 
         if (widgets.length) {
 
-            for (var i in widgets) {
+            for (var i = widgets.length - 1; i>=0; i--) {
 
                 if (this.cloneHash.indexOf(widgets[i].hash) == -1) {
 
