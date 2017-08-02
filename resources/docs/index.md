@@ -2,8 +2,6 @@
 
 Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built on web technologies and run as an [Electron](http://electron.atom.io/) web server that accepts any number of clients.
 
-![](img/mockup.png)
-
 <span style="border:1px solid lightgrey;padding:5px">
 [Try the online demo (chrome 49 required)](http://demo.osc.ammd.net)
 </span>
