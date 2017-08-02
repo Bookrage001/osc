@@ -138,3 +138,15 @@ Modals are buttons that turn into a centered popup panels when enabled. They can
 - type: `string`
 - default: `empty`
 - usage: `id` of the widget to clone
+
+### `props`
+- type: `object`
+- default: `{}`
+- usage: cloned widget's properties to override
+- example:
+```json
+{
+    "variables": { "n": 2 },
+    "color": "orange"    
+}
+```

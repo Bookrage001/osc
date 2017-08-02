@@ -25,9 +25,9 @@ module.exports = class Clone extends _widgets_base {
 
             widgetId:'',
 
-            _children:'children',
+            _overrides:'overrides',
 
-            variables:'@{parent.variables}',
+            props:{},
         }
 
     }
@@ -35,6 +35,7 @@ module.exports = class Clone extends _widgets_base {
     constructor(options) {
 
         options.props.label = false
+        options.props.variables = '@{parent.variables}'
 
         super({...options, html: '<div class="clone"></div>'})
 
@@ -79,7 +80,7 @@ module.exports = class Clone extends _widgets_base {
                     this.cloneClass = widgets[i].container.attr('class').match(/[^\s]*-container/)[0]
                     this.container.addClass(this.cloneClass)
 
-                    var c = parsewidgets([_widgets_base.deepCopy(widgets[i].props)], this.widget, this)
+                    var c = parsewidgets([{..._widgets_base.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
 
                     this.widget.find('.widget').addClass('not-editable')
 
