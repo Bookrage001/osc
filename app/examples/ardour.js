@@ -185,7 +185,9 @@
                                         "preArgs": [
                                             6,
                                             159,
-                                            8403
+                                            8403,
+                                            0,
+                                            3
                                         ],
                                         "norelease": true,
                                         "address": "/set_surface",
@@ -293,7 +295,6 @@
                                                                 "color": "auto",
                                                                 "css": "",
                                                                 "value": "Trim",
-                                                                "address": "/input_2",
                                                                 "preArgs": [],
                                                                 "widgetId": "",
                                                                 "height": 20,
@@ -302,7 +303,8 @@
                                                                 "horizontal": false,
                                                                 "editable": false,
                                                                 "precision": 2,
-                                                                "target": []
+                                                                "target": [],
+                                                                "address": "/trim_label_@{parent.variables.n}"
                                                             },
                                                             {
                                                                 "type": "input",
@@ -310,7 +312,6 @@
                                                                 "label": false,
                                                                 "color": "auto",
                                                                 "css": "",
-                                                                "address": "/input_2",
                                                                 "preArgs": [],
                                                                 "widgetId": "trim_knob_@{parent.variables.n}",
                                                                 "height": 20,
@@ -320,7 +321,8 @@
                                                                 "editable": true,
                                                                 "precision": 2,
                                                                 "target": [],
-                                                                "value": ""
+                                                                "value": "",
+                                                                "address": "/trim_input_@{parent.variables.n}"
                                                             }
                                                         ],
                                                         "_style": "style",
@@ -949,7 +951,6 @@
                                                         "color": "auto",
                                                         "css": "",
                                                         "value": "Trim",
-                                                        "address": "/input_2",
                                                         "preArgs": [],
                                                         "widgetId": "",
                                                         "height": 20,
@@ -958,7 +959,8 @@
                                                         "horizontal": false,
                                                         "editable": false,
                                                         "precision": 2,
-                                                        "target": []
+                                                        "target": [],
+                                                        "address": "/mastertrim_label"
                                                     },
                                                     {
                                                         "type": "input",
@@ -1151,9 +1153,6 @@
                                                 "meter": false,
                                                 "target": [],
                                                 "color": "auto",
-                                                "preArgs": [
-                                                    "@{parent.variables.n}"
-                                                ],
                                                 "snap": false,
                                                 "compact": false,
                                                 "alignRight": false,
@@ -1167,7 +1166,8 @@
                                                 "input": false,
                                                 "dashed": false,
                                                 "doubleTap": false,
-                                                "width": 80
+                                                "width": 80,
+                                                "preArgs": []
                                             }
                                         ],
                                         "height": "auto",
