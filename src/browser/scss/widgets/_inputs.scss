@@ -47,9 +47,8 @@
             width: 100%;
         }
         input + canvas {
-            // visibility:hidden;
-            // position: absolute;
             display: none;
+            width: 0;
         }
 
 

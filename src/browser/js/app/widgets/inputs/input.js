@@ -52,8 +52,6 @@ module.exports = class Input extends _canvas_base {
 
         super({...options, html: html})
 
-        this.scalin
-
         this.value = ''
         this.stringValue = ''
 
@@ -72,6 +70,12 @@ module.exports = class Input extends _canvas_base {
 
     }
 
+    resizeHandle() {
+
+        super.resizeHandle(...arguments)
+
+    }
+
     focus() {
 
         this.canvas.attr('tabindex','-1')
@@ -86,6 +90,7 @@ module.exports = class Input extends _canvas_base {
                 if (e.keyCode==13) this.blur()
                 if (e.keyCode==27) this.blur(false)
             })
+
     }
 
     blur(change=true) {
