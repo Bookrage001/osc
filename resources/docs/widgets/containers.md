@@ -121,6 +121,11 @@ Modals are buttons that turn into a centered popup panels when enabled. They can
 - default: `100%`
 - usage: sets the modal's size once opened
 
+### `popupLabel`
+- type: `string`
+- default: `empty`
+- usage: alternative label for the popup
+
 ### `options`
 - see panel's [`options`](#panel)
 

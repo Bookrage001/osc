@@ -1,5 +1,5 @@
 var Panel = require('./panel'),
-    {icon} = require('../../utils'),
+    {icon, iconify} = require('../../utils'),
     doubletabreset = require('../mixins/double_tap_reset')
 
 
@@ -27,6 +27,7 @@ module.exports = class Modal extends Panel {
             _modal:'modal',
 
             doubleTap: false,
+            popupLabel:'',
             popupWidth:'80%',
             popupHeight:'80%',
             layout:'',
@@ -108,7 +109,8 @@ module.exports = class Modal extends Panel {
         this.value = v ? 1 : 0
 
         if (!this.init && this.value) {
-            this.popup.find('.popup-title .popup-label').html(this.container.find('> .label span').html())
+            var label = this.getProp('popupLabel') ? iconify(this.getProp('popupLabel')) : this.container.find('> .label span').html()
+            this.popup.find('.popup-title .popup-label').html(label)
             this.widget.detach().appendTo(this.popup.find('.popup-content'))
         }
 
