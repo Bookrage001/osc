@@ -1,5 +1,5 @@
 .fader-container {
-    --color-pips: var(--color-text-fade);
+    --color-pips: var(--color-custom);
     --color-gauge: var(--color-custom);
     --color-knob: var(--color-custom);
     padding: 1rem;
@@ -57,7 +57,7 @@
         > canvas {
             width: 20rem;
             image-rendering:pixelated;
-            z-index: 0;
+            z-index: 1;
         }
 
         .meter-container {
@@ -67,34 +67,49 @@
             flex-grow: 0;
             --color-border:transparent;
             border:0;
-            margin: 20rem 0 20rem 5rem;
+            margin: 20rem 6rem 20rem 0;
+            order: -1
         }
 
         .pips {
-            width: 3rem;
-            background-color: var(--color-light);
+            width: 35rem;
+            // background-color: var(--color-light);
             position: relative;
-            margin: 23rem 12rem 21rem 5rem;
+            margin: 23rem 0rem 21rem -10rem;
             z-index: 0;
 
             .pip {
                 height:1rem;
-                background: var(--color-pips);
+                // background: var(--color-track);
                 color:var(--color-fg);
                 position: absolute;
-                width:5rem;
                 left:0;
 
                 &:before {
-                    // content:"";
+                    content:"";
                     position: absolute;
-                    top:-3rem;
-                    left:0;
-                    right:0;
-                    bottom:-3rem;
-                    background: var(--color-fg);
-                    z-index: -1;
+                    top:0;
+                    left:-12rem;
+                    width:5rem;
+                    bottom:0;
+                    background: var(--color-custom);
+                    opacity: 0.5;
+                    box-shadow: 0 0 0 1rem var(--color-bg),
+                                0 0 0 2rem var(--color-light);
                 }
+                &:after {
+                    content:"";
+                    position: absolute;
+                    top:0;
+                    left:7rem;
+                    width:5rem;
+                    bottom:0;
+                    background: var(--color-custom);
+                    opacity: 0.5;
+                    box-shadow: 0 0 0 1rem var(--color-bg),
+                                0 0 0 2rem var(--color-light);
+                }
+
                 span {
                     position: absolute;
                     width:30rem;
@@ -102,9 +117,9 @@
                     text-align: center;
                     font-size:10rem;
                     line-height: 12rem;
-                    left:3rem;
+                    left:15rem;
                     top:-5.5rem;
-                    color:var(--color-pips);
+                    color:var(--color-text-fade);
                     text-transform: none;
                 }
             }
@@ -116,18 +131,18 @@
         .wrapper {
             flex-direction: row-reverse;
             .meter-container {
-                margin: 20rem 5rem 20rem 0;
-
+                margin: 20rem 0rem 20rem 6rem;
             }
             .pips {
-                margin: 23rem 5rem 21rem 12rem;
-                background-position: top right;
+                margin: 23rem -10rem 21rem 0rem;
+                // margin: 23rem 5rem 21rem 12rem;
+                // background-position: top right;
                 .pip {
                     right:0;
                     left:auto;
-                    margin-bottom: 0;
+                    // margin-bottom: 0;
                     span {
-                        right:3rem;
+                        right:15rem;
                         left:auto;
                     }
                 }
@@ -147,25 +162,33 @@
                 width: auto!important;
                 height:6rem;
                 min-height: auto;
-                margin: 5rem 20rem 0 20rem;
+                margin: 0 20rem 6rem 20rem;
             }
 
             .pips {
                 width:auto;
-                height: 3rem;
-                margin: 5rem 22rem 12rem 22rem;
+                height: 25rem;
+                margin: -10rem 22rem 0 22rem;
                 .pip {
                     width:1rem;
                     height:5rem;
                     &:before {
-                        top:0;
-                        bottom:0;
-                        left:-3rem;
-                        right:-3rem;
+                        left:0;
+                        top:-12rem;
+                        height:5rem;
+                        right:0;
+                        width:1rem;
+                    }
+                    &:after {
+                        left:0;
+                        top:7rem;
+                        height:5rem;
+                        right:0;
+                        width:1rem;
                     }
                     span {
-                        top:15rem;
-                        left:-15rem!important;
+                        top:20rem;
+                        left:-14rem!important;
                         right:auto;
                     }
 
@@ -200,16 +223,27 @@
                 }
             }
             > .pips {
-                --color-pips:var(--color-custom);
                 overflow: hidden;
                 margin: 0;
                 order:2;
                 background: var(--color-track);
                 border:0;
                 border-left: 1rem solid var(--color-bg);
+                width: 3rem;
                 .pip {
+                    left:0;
+                    right: 0;
                     span {
                         display: none;
+                    }
+                    &:before {
+                        content:none;
+                    }
+                    &:after {
+                        left:0;
+                        right: 0;
+                        box-shadow: none;
+                        opacity: 1;
                     }
                     &:not(:last-child):not(:first-child) {
                       margin-bottom: -1rem;
@@ -276,13 +310,19 @@
             }
 
             .pips {
+                height: 3rem;
                 border:0;
                 border-top: 1rem solid var(--color-bg);
+                width: 100%;
                 .pip {
                   margin: 0;
                   &:last-child {
                     left:auto!important;
                     right:0;
+                  }
+                  &:after {
+                      top:0;
+                      width: 1rem;
                   }
                 }
             }
