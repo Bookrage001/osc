@@ -4,6 +4,7 @@
   "dependencies": {
     "electron": "1.7.4",
     "mathjs": "3.13.3",
+    "kiwi.js": "1.0.1",
     "autolayout": "0.7.0",
     "browserify": "14.4.0",
     "exorcist": "0.4.0",
