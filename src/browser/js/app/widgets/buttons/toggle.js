@@ -1,4 +1,6 @@
-var _widgets_base = require('../common/_widgets_base')
+var _widgets_base = require('../common/_widgets_base'),
+    doubletab = require('../mixins/double_tap')
+
 
 module.exports = class Toggle extends _widgets_base {
 
@@ -24,6 +26,7 @@ module.exports = class Toggle extends _widgets_base {
 
             _toggle: 'toggle',
 
+            doubleTap: false,
             led: false,
             on:1,
             off:0,
@@ -53,6 +56,16 @@ module.exports = class Toggle extends _widgets_base {
         })
 
         if (this.getProp('led')) this.container.addClass('led')
+
+
+        if (this.getProp('doubleTap')) {
+
+            doubletab(this.widget, ()=>{
+                var newVal = this.widget.state?this.getProp('off'):this.getProp('on')
+                this.setValue(newVal,{sync:true,send:true})
+            })
+
+        }
 
         this.classHolders = this.widget.add(this.container)
 
