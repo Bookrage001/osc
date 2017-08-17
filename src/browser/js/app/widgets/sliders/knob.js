@@ -143,7 +143,7 @@ module.exports = class Knob extends _sliders_base {
         if (!this.width || !this.height) return
 
         var tiny = this.minDimension < 45 * PXSCALE,
-            margin = tiny ? 0 : 5 * PXSCALE
+            margin = tiny ? 0 : 3 * PXSCALE
 
         var o = this.percentToAngle(this.valueToPercent(this.originValue)),
             d = this.percentToAngle(this.percent),
@@ -159,38 +159,35 @@ module.exports = class Knob extends _sliders_base {
 
         this.ctx.clearRect(0,0,this.width,this.height)
 
-        this.ctx.globalAlpha = 1
 
         if (pipsWidth) {
-            this.ctx.strokeStyle = this.colors.light
-            this.ctx.lineWidth = pipsWidth
-            this.ctx.beginPath()
-            this.ctx.arc(this.width / 2, this.height / 2, pipsRadius, min - PXSCALE /  pipsRadius, max + PXSCALE /  pipsRadius)
-            this.ctx.stroke()
 
-            this.ctx.beginPath()
+            this.ctx.globalAlpha = 0.75
+
             for (var pip of this.rangeKeys.concat(this.valueToPercent(this.originValue))) {
-                let r1 = pipsRadius - pipsWidth / 2,
-                    r2 = pipsRadius + pipsWidth / 2,
-                    a  = 2 * Math.PI - this.percentToAngle(pip)
 
-                if (pip == 0 && this.maxAngle != 360)   a += 1.5 * PXSCALE / pipsRadius
-                if (pip == 100 && this.maxAngle != 360) a -= 1.5 * PXSCALE / pipsRadius
+                let a  = 2 * Math.PI - this.percentToAngle(pip)
 
-                this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
-                this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
+                this.ctx.beginPath()
+                this.ctx.arc(pipsRadius * Math.cos(a) + this.width / 2, this.height / 2 - pipsRadius * Math.sin(a), 1.25 * PXSCALE, 0, 2 * Math.PI)
+
+                this.ctx.lineWidth = PXSCALE * 4
+                this.ctx.strokeStyle = this.colors.light
+                this.ctx.stroke()
+
+                this.ctx.lineWidth = PXSCALE * 2
+                this.ctx.strokeStyle = this.colors.bg
+                this.ctx.stroke()
+
+                this.ctx.fillStyle = this.colors.pips
+                this.ctx.fill()
+
             }
-
-            this.ctx.lineWidth = PXSCALE * 7
-            this.ctx.strokeStyle = this.colors.fg
-            this.ctx.stroke()
-
-            this.ctx.lineWidth = PXSCALE * 3
-            this.ctx.strokeStyle = this.colors.pips
-            this.ctx.stroke()
 
 
         }
+
+        this.ctx.globalAlpha = 1
 
         if (!tiny) {
 
