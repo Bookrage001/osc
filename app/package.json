@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "vmodule":"1.0.1",
-    "electron-localshortcut": "2.0.0",
+    "electron-localshortcut": "2.0.2",
     "osc": "2.2.0",
     "yargs": "8.0.2",
     "socket.io": "2.0.3",
-    "express": "4.15.3",
+    "express": "4.15.4",
     "jquery": "3.2.1",
     "chokidar": "1.7.0",
     "python-shell":"0.4.0"
