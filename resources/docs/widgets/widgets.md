@@ -49,7 +49,7 @@ All widgets share a set of generic properties described below.
 ### `css`
 - type: `string`
 - default: *empty*
-- usage: the `css` property can be used to override inherited [theming](theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element through this property, `css` selectors can also be used apply custom styles to the widget's children.
+- usage: the `css` property can be used to override inherited [theming](../extras/theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element through this property, `css` selectors can also be used apply custom styles to the widget's children.
 - examples:
     - `border-radius:5rem; .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size and all its children's labels'
     - `border-radius:5rem; > .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size (the `>` selector targets only the direct children of the widget element)
@@ -78,7 +78,7 @@ All widgets share a set of generic properties described below.
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
     - if no target is set, messages can still be sent if the server has synchronized hosts (`-s / --sync`)
-    - if [`midi`](midi.md) is enabled, targets can be `"midi:device_name"`
+    - if [`midi`](../extras/midi.md) is enabled, targets can be `"midi:device_name"`
 
 ### `address`
 - type: `string`
