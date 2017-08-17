@@ -60,7 +60,6 @@ module.exports = class Toggle extends _widgets_base {
 
         } else {
 
-            // this.widget.on('drag',(e)=>{e.stopPropagation()})
             this.widget.on('draginit.toggle',()=>{
                 this.widget.off('draginit.toggle')
                 this.fakeclick()
