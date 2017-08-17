@@ -11,7 +11,7 @@
   - xy/rgb: added `input` option; added `pips` option:
   - panel/strip: removed inner widgets dark borders; added `border` option;
   - buttons: new `dropdown` widget;
-  - toggle: added `led` option to choose between the old appearance and the new one
+  - toggle: added `led` option to choose between the old appearance and the new one; added `douleTap` option
   - new `input` widget
   - containers: new `clone` widgets
   - added support for `"self"` value in `target` option (sends the message back to the clients, useful for sending `/EDIT` messages...)
@@ -22,6 +22,8 @@
 - midi
   - replaced `pyo` dependency with [`pyrtmidi`](https://github.com/patrickkidd/pyrtmidi): lighter, dedicated to midi only, and handling virtual ports (no `mididings` dependency anymore)
   - pitchbend value is now a single integer between 0 and 16383
+- bug fixes
+  - fixed VisualFormat errors in iOS
 - main
   - added `--url-options` command line option
   - fixed `--disable-vsync` not working when starting from the launcher

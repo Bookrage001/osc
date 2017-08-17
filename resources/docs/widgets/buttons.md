@@ -12,6 +12,11 @@ Buttons are exactly what you think they are.
 }
 ```
 
+### `doubleTap`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to make the button require a double tap to be toggled instead of a single tap
+
 ### `led`
 - type: `boolean`
 - default: `false`
