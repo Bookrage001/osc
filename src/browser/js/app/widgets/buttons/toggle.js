@@ -49,20 +49,21 @@ module.exports = class Toggle extends _widgets_base {
         this.widget.value = this.widget.find('span')
         this.widget.state = 0
 
-        this.widget.on('drag',(e)=>{e.stopPropagation()})
-        this.widget.on('draginit.toggle',()=>{
-            this.widget.off('draginit.toggle')
-            this.fakeclick()
-        })
-
         if (this.getProp('led')) this.container.addClass('led')
-
 
         if (this.getProp('doubleTap')) {
 
             doubletab(this.widget, ()=>{
                 var newVal = this.widget.state?this.getProp('off'):this.getProp('on')
                 this.setValue(newVal,{sync:true,send:true})
+            })
+
+        } else {
+
+            // this.widget.on('drag',(e)=>{e.stopPropagation()})
+            this.widget.on('draginit.toggle',()=>{
+                this.widget.off('draginit.toggle')
+                this.fakeclick()
             })
 
         }
