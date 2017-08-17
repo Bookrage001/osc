@@ -1,6 +1,6 @@
 var Panel = require('./panel'),
     {icon, iconify} = require('../../utils'),
-    doubletabreset = require('../mixins/double_tap_reset')
+    doubletab = require('../mixins/double_tap')
 
 
 module.exports = class Modal extends Panel {
@@ -83,7 +83,7 @@ module.exports = class Modal extends Panel {
         this.light = $('<div class="toggle"></div>').appendTo(this.container)
 
         if (this.getProp('doubleTap')) {
-            doubletabreset(this.light, ()=>{
+            doubletab(this.light, ()=>{
                 this.setValue(1, {sync:true, send:true})
             })
         } else {

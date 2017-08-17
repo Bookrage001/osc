@@ -1,7 +1,7 @@
 var {clip, mapToScale} = require('../utils'),
     Knob = require('./knob'),
     _widgets_base = require('../common/_widgets_base'),
-    doubletabreset = require('../mixins/double_tap_reset')
+    doubletab = require('../mixins/double_tap')
 
 
 
@@ -155,7 +155,7 @@ module.exports = class Encoder extends _widgets_base {
 
         if (this.getProp('doubleTap')) {
 
-            doubletabreset(this.wrapper, ()=>{
+            doubletab(this.wrapper, ()=>{
                     this.knob.setValue(this.ticks/2)
                     this.display.setValue(this.ticks/2)
                 if (this.getProp('release') !== '' && this.value !== this.getProp('release')) {

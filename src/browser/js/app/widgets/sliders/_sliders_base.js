@@ -1,7 +1,7 @@
 var {clip, mapToScale} = require('../utils'),
     _canvas_base = require('../common/_canvas_base'),
     osctouchstate = require('../mixins/osc_touch_state'),
-    doubletabreset = require('../mixins/double_tap_reset'),
+    doubletab = require('../mixins/double_tap'),
     Input = require('../inputs/input')
 
 module.exports = class _sliders_base extends _canvas_base {
@@ -54,7 +54,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
         if (this.getProp('doubleTap')) {
 
-            doubletabreset(this.widget, ()=>{
+            doubletab(this.widget, ()=>{
                 this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
             })
 
