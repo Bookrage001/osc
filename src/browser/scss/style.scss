@@ -41,19 +41,15 @@ html{
 
 body {
     line-height:17rem;
-    font-family:Droid Sans;
     color:  var(--color-text);
     white-space:nowrap;
     opacity:1;
     cursor: default;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-size:11rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1rem;
-
-    // text-transform: uppercase;
-    // color:var(--color-text-fade);
     i {
         font-size: 12rem!important;
     }
