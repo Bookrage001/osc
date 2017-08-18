@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.19.1
+
+- bug fixes
+  - launcher: load correct font
+  - midi: python3 compatibility fix
+
 ## 0.19.0
 
 - ui
