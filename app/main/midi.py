@@ -1,4 +1,4 @@
-from sys import argv, stdin, stdout
+from sys import argv, stdin, stdout, version_info
 import json as JSON
 
 
@@ -11,6 +11,9 @@ try:
 except:
     ipcSend('error', 'pyrtmidi not found (or wrong version)')
 
+
+if version_info.major == 3:
+    raw_input = input
 
 def ipcSend(name, data):
     print(JSON.dumps([name, data]))
