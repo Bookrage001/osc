@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.19.2
+
+- bug fixes
+  - lobby: regression breaking the lobby for touch devices
+
+
 ## 0.19.1
 
 - bug fixes

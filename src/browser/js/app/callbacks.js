@@ -62,7 +62,7 @@ var callbacks = module.exports = {
             e.stopPropagation()
             ipc.send('sessionOpen',{path:$(this).data('session')})
         }).on('mousedown touchstart', function(e){
-            e.preventDefault()
+            if (e.type == 'mousedown') e.preventDefault()
             $(this).blur()
         })
 
@@ -81,14 +81,14 @@ var callbacks = module.exports = {
                 e.stopPropagation()
                 actions.sessionBrowse()
             }).on('mousedown touchstart', function(e){
-                e.preventDefault()
+                if (e.type == 'mousedown') e.preventDefault()
                 $(this).blur()
             })
             lobby.find('.new').click(function(e){
                 e.stopPropagation()
                 module.exports.sessionNew()
             }).on('mousedown touchstart', function(e){
-                e.preventDefault()
+                if (e.type == 'mousedown') e.preventDefault()
                 $(this).blur()
             })
         }
