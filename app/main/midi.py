@@ -153,7 +153,7 @@ def sendMidi(name, event, *args):
         if args[2] > 0:
             m = rtmidi.MidiMessage.noteOn(*args)
         else:
-            m = rtmidi.MidiMessage.noteOff(*args)
+            m = rtmidi.MidiMessage.noteOff(args[0], args[1])
 
     elif 'control' in event and len(args) == 3:
         m = rtmidi.MidiMessage.controllerEvent(*args)
