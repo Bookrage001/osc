@@ -12,3 +12,7 @@ Open Stage Control is a libre desktop OSC bi-directionnal control surface applic
 ## Supported platforms
 
 The server can run on all [platforms supported by Electron](https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md). Any client that can run chrome browser can connect to the server.
+
+## Need help ? Found a bug ?
+
+Head over the github [issue tracker](https://github.com/jean-emmanuel/open-stage-control/issues) :)
