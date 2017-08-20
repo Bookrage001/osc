@@ -1,4 +1,5 @@
 from sys import argv, stdin, stdout, version_info
+import traceback
 import json as JSON
 
 
@@ -132,7 +133,14 @@ for name in inputs:
             ipcSend('log','MIDI received: %s' % midi)
 
 
-    inputs[name].setCallback(callback)
+    def errorLoggedCallback(midi):
+
+        try:
+            callback(midi)
+        except:
+            ipcSend('log', 'ERROR: Midi: %s' % traceback.format_exc())
+
+    inputs[name].setCallback(errorLoggedCallback)
 
 def sendMidi(name, event, *args):
 
@@ -163,10 +171,15 @@ def sendMidi(name, event, *args):
 
 
 while True:
-    msg = raw_input()
+
+    try:
+        msg = raw_input()
+    except:
+        break
+
     try:
         msg = JSON.loads(msg)
         msg[1] = msg[1].lower()
         sendMidi(*msg)
     except:
-        pass
+        ipcSend('log', 'ERROR: Midi: %s' % traceback.format_exc())
