@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.19.3
+
+- bug fixes
+  - midi: noteOff messages not being sent;
+
 ## 0.19.2
 
 - bug fixes
