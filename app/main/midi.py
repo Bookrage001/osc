@@ -91,8 +91,7 @@ for arg in argv:
                 except:
                     ipcSend('error', 'can\'t connect to output port %i: %s' % (out_port, out_dev.getPortName(out_port)))
 
-
-for name in inputs:
+def createCallbackFunction(name):
 
     def callback(midi):
 
@@ -140,7 +139,11 @@ for name in inputs:
         except:
             ipcSend('log', 'ERROR: Midi: %s' % traceback.format_exc())
 
-    inputs[name].setCallback(errorLoggedCallback)
+    return errorLoggedCallback
+
+for name in inputs:
+
+    inputs[name].setCallback(createCallbackFunction(name))
 
 def sendMidi(name, event, *args):
 
