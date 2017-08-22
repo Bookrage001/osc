@@ -415,7 +415,8 @@
                                                         "address": "/strip/recenable",
                                                         "led": false,
                                                         "css": "",
-                                                        "width": "auto"
+                                                        "width": "auto",
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -434,7 +435,8 @@
                                                         "address": "/strip/monitor_input",
                                                         "led": false,
                                                         "css": "",
-                                                        "width": "auto"
+                                                        "width": "auto",
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -453,7 +455,8 @@
                                                         "value": "",
                                                         "address": "/strip/monitor_disk",
                                                         "led": false,
-                                                        "width": "auto"
+                                                        "width": "auto",
+                                                        "doubleTap": false
                                                     }
                                                 ],
                                                 "_style": "style",
@@ -661,7 +664,8 @@
                                                         "value": "",
                                                         "address": "/strip/solo",
                                                         "led": false,
-                                                        "width": "auto"
+                                                        "width": "auto",
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -680,7 +684,8 @@
                                                         "value": "",
                                                         "address": "/strip/mute",
                                                         "led": false,
-                                                        "width": "auto"
+                                                        "width": "auto",
+                                                        "doubleTap": false
                                                     }
                                                 ],
                                                 "_style": "style",
@@ -745,7 +750,8 @@
                                                         "value": "",
                                                         "address": "/strip/expand",
                                                         "led": false,
-                                                        "width": "auto"
+                                                        "width": "auto",
+                                                        "doubleTap": false
                                                     }
                                                 ],
                                                 "_style": "style",
@@ -1067,7 +1073,8 @@
                                                 "address": "/master/mute",
                                                 "led": false,
                                                 "width": "auto",
-                                                "preArgs": []
+                                                "preArgs": [],
+                                                "doubleTap": false
                                             }
                                         ],
                                         "_style": "style",
@@ -1351,7 +1358,8 @@
                                                                         "led": false,
                                                                         "css": "",
                                                                         "width": "auto",
-                                                                        "preArgs": []
+                                                                        "preArgs": [],
+                                                                        "doubleTap": false
                                                                     },
                                                                     {
                                                                         "type": "toggle",
@@ -1368,7 +1376,8 @@
                                                                         "led": false,
                                                                         "css": "",
                                                                         "width": "auto",
-                                                                        "preArgs": []
+                                                                        "preArgs": [],
+                                                                        "doubleTap": false
                                                                     },
                                                                     {
                                                                         "type": "toggle",
@@ -1385,7 +1394,8 @@
                                                                         "address": "/monitor/mono",
                                                                         "led": false,
                                                                         "preArgs": [],
-                                                                        "width": "auto"
+                                                                        "width": "auto",
+                                                                        "doubleTap": false
                                                                     }
                                                                 ],
                                                                 "_style": "style",
@@ -1505,7 +1515,8 @@
                                                                                 "target": [],
                                                                                 "address": "/null",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1522,7 +1533,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1539,7 +1551,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1556,7 +1569,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1573,7 +1587,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1590,7 +1605,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1607,7 +1623,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1624,7 +1641,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1641,7 +1659,8 @@
                                                                                 "linkId": "",
                                                                                 "css": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "toggle",
@@ -1658,7 +1677,8 @@
                                                                                 "address": "/null",
                                                                                 "linkId": "",
                                                                                 "height": "auto",
-                                                                                "led": false
+                                                                                "led": false,
+                                                                                "doubleTap": false
                                                                             },
                                                                             {
                                                                                 "type": "formula",
@@ -1884,13 +1904,13 @@
                                                 "id": "select_name",
                                                 "label": false,
                                                 "height": 40,
-                                                "color": "lime",
                                                 "css": "",
                                                 "vertical": false,
                                                 "address": "/select/name",
                                                 "widgetId": "",
-                                                "value": " ",
-                                                "preArgs": []
+                                                "value": " sel",
+                                                "preArgs": [],
+                                                "color": "auto"
                                             },
                                             {
                                                 "type": "strip",
@@ -2041,7 +2061,8 @@
                                                         "led": false,
                                                         "css": "",
                                                         "width": "auto",
-                                                        "preArgs": []
+                                                        "preArgs": [],
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2058,7 +2079,8 @@
                                                         "led": false,
                                                         "css": "",
                                                         "width": "auto",
-                                                        "preArgs": []
+                                                        "preArgs": [],
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2075,7 +2097,8 @@
                                                         "address": "/select/monitor_disk",
                                                         "led": false,
                                                         "width": "auto",
-                                                        "preArgs": []
+                                                        "preArgs": [],
+                                                        "doubleTap": false
                                                     }
                                                 ],
                                                 "_style": "style",
@@ -2383,7 +2406,8 @@
                                                         "address": "/select/solo",
                                                         "led": false,
                                                         "width": "auto",
-                                                        "preArgs": []
+                                                        "preArgs": [],
+                                                        "doubleTap": false
                                                     },
                                                     {
                                                         "type": "toggle",
@@ -2400,7 +2424,8 @@
                                                         "address": "/select/mute",
                                                         "led": false,
                                                         "width": "auto",
-                                                        "preArgs": []
+                                                        "preArgs": [],
+                                                        "doubleTap": false
                                                     }
                                                 ],
                                                 "_style": "style",
@@ -2445,7 +2470,8 @@
                                                         "address": "/select/expand",
                                                         "led": false,
                                                         "width": "auto",
-                                                        "preArgs": []
+                                                        "preArgs": [],
+                                                        "doubleTap": false
                                                     }
                                                 ],
                                                 "_style": "style",
