@@ -4,6 +4,7 @@
 
 - bug fixes
   - buttons: changing background with css works as expected
+  - fader: hidden input in horizontal + compact mode
 
 ## 0.19.3
 
