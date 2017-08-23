@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.19.4
+
+- bug fixes
+  - buttons: changing background with css works as expected
+
 ## 0.19.3
 
 - bug fixes

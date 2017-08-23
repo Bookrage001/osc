@@ -3,11 +3,11 @@
     height: 60rem;
     padding:0!important;
     --color-border:var(--color-bg);
+    background: var(--color-raised);
     z-index: 1;
 
     .toggle {
 
-        background: var(--color-raised);
         cursor: pointer;
         flex:1;
         display: flex;
