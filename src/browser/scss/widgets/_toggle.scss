@@ -3,7 +3,7 @@
     height: 60rem;
     padding:0!important;
     --color-border:var(--color-bg);
-    background: var(--color-raised);
+    --default-bg: var(--color-raised)!important;
     z-index: 1;
 
     .toggle {

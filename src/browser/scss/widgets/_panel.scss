@@ -31,7 +31,7 @@
         &:not(.tab) {
             > .widget {
                 box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-border);
-                background: transparent;
+                --default-bg: transparent;
             }
         }
         &.has-tabs {
