@@ -1,14 +1,17 @@
 var browserify = require('browserify'),
     exorcist = require('exorcist'),
     path = require('path'),
-    babelify = require('babelify')
+    babelify = require('babelify'),
+    prod = process.argv.indexOf('--prod') != -1
 
-
+if (prod) console.warn('\x1b[36m%s\x1b[0m', 'Building minified js bundle for production... This may take a while... ');
 
 var b = browserify(path.resolve(__dirname + '/../src/browser/js/browser.js'), {debug:true});
 
 b.transform(babelify, {presets: ["es2015"], plugins: ["transform-object-rest-spread"]})
- .transform('uglifyify')
- .bundle()
+
+if (prod) b.transform('uglifyify', {global: true})
+
+b.bundle()
  .pipe(exorcist(path.resolve(__dirname + '/../app/browser/scripts.js.map')))
  .pipe(process.stdout)
