@@ -191,7 +191,7 @@ module.exports = class Xy extends _pads_base {
     draw() {
 
         var pointSize = this.pointSize * PXSCALE,
-            margin = (pointSize + 1) * PXSCALE,
+            margin = (this.pointSize + 1) * PXSCALE,
             x = this.faders.x.percentToCoord(this.faders.x.percent),
             y = this.faders.y.percentToCoord(this.faders.y.percent)
 

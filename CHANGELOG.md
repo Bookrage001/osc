@@ -6,6 +6,7 @@
   - buttons: changing `css` background works as expected
   - widgets: changing  `css` (text) color works as expected
   - fader: fix hidden input in horizontal + compact mode
+  - pads: pips scaling bug
 - widgets
   - `css` font-sizes apply correctly to all children (better use percents)
 - misc
