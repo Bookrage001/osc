@@ -63,7 +63,7 @@ module.exports.widgets = function(data, parentNode, parentWidget, tab) {
         // create container
         var widgetContainer = $(`
             <div class="widget ${props.type}-container">
-                <div class="label"><span></span></div>
+                <div class="label"></div>
             </div>
         `)
 
@@ -113,7 +113,7 @@ module.exports.widgets = function(data, parentNode, parentWidget, tab) {
                             widgetInner.getProp('id'):
                             iconify(widgetInner.getProp('label'))
 
-            widgetContainer.find('> .label span').html(label)
+            widgetContainer.find('> .label').html(label)
         }
 
         // parse scoped css

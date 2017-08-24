@@ -109,7 +109,7 @@ module.exports = class Modal extends Panel {
         this.value = v ? 1 : 0
 
         if (!this.init && this.value) {
-            var label = this.getProp('popupLabel') ? iconify(this.getProp('popupLabel')) : this.container.find('> .label span').html()
+            var label = this.getProp('popupLabel') ? iconify(this.getProp('popupLabel')) : this.container.find('> .label').html()
             this.popup.find('.popup-title .popup-label').html(label)
             this.widget.detach().appendTo(this.popup.find('.popup-content'))
         }
