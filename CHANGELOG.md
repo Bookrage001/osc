@@ -3,10 +3,13 @@
 ## 0.19.4
 
 - bug fixes
-  - buttons: changing background with css works as expected
-  - fader: hidden input in horizontal + compact mode
+  - buttons: changing `css` background works as expected
+  - widgets: changing  `css` (text) color works as expected
+  - fader: fix hidden input in horizontal + compact mode
 - widgets
   - `css` font-sizes apply correctly to all children (better use percents)
+- misc
+  - client-side javascript's size reduced !
 
 ## 0.19.3
 
