@@ -5,7 +5,6 @@
     overflow: hidden;
     position:relative;
     vertical-align:top;
-    color:var(--color-bg);
     box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-border), 0 0 0 1rem var(--color-light) inset;
     border-left:1rem solid var(--color-border);
     border-top:1rem solid var(--color-border);
@@ -18,10 +17,6 @@
     max-height: 100%;
     text-transform: uppercase;
     contain: style size layout;
-
-    > * {
-        color:var(--color-text)
-    }
 
     &.absolute-position {
         position: absolute;
