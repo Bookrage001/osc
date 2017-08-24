@@ -5,6 +5,8 @@
 - bug fixes
   - buttons: changing background with css works as expected
   - fader: hidden input in horizontal + compact mode
+- widgets
+  - `css` font-sizes apply correctly to all children (better use percents)
 
 ## 0.19.3
 

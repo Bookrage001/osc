@@ -203,7 +203,7 @@
                     position: absolute;
                     width: auto;
                     height: auto;
-                    top:45rem;
+                    top:-1rem;
                     left:-1rem;
                     right:0rem;
                     bottom:0rem;
@@ -211,6 +211,9 @@
             }
             .popup-title {
                 z-index: 1;
+                .closer {
+                    color:var(--color-custom)
+                }
             }
         }
     }

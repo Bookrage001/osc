@@ -40,21 +40,17 @@ html{
 }
 
 body {
-    line-height:17rem;
     color:  var(--color-text);
     white-space:nowrap;
     opacity:1;
     cursor: default;
     font-family: 'Roboto', sans-serif;
     font-size:11rem;
+    line-height:100%;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1rem;
-    i {
-        font-size: 12rem!important;
-    }
 }
-
 
 .btn {
     background: var(--color-raised);
@@ -144,7 +140,7 @@ body {
         }
     }
     .header {
-        padding:20rem 20rem 18rem;
+        padding:22rem 20rem 20rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         flex-grow: 0;
@@ -179,9 +175,9 @@ body {
     }
     a {
         display: block;
-        padding-right:35rem;
         overflow: hidden;
-        padding-top:15rem;
+        padding:17rem;
+        padding-right:39rem;
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -195,7 +191,7 @@ body {
             position: absolute;
             right:0rem;
             top:0rem;
-            padding:15rem;
+            padding:17rem;
             color:var(--color-text-fader);
             z-index: 1;
             &:hover {
@@ -292,12 +288,13 @@ body {
         z-index: 2;
         box-shadow: none;
         box-shadow: 0 0 0 1rem var(--color-light) inset;
+        padding: 16rem 15rem 14rem;
 
         #title {
             text-transform: uppercase;
             letter-spacing: 1rem;
             font-size: 12rem;
-            line-height: 16rem;
+            line-height: 12rem;
         }
 
         #version {
@@ -459,11 +456,13 @@ body {
     }
     .popup-title {
         position: relative;
-        padding:15rem;
         background:var(--color-raised);
         border-bottom: 1rem solid var(--color-bg);
         box-shadow: 0 0 0 1rem var(--color-light) inset;
         height:46rem;
+        display: flex;
+        padding:0 15rem;
+        align-items: center;
 
         &.closable {
             padding-right: 50rem;
@@ -498,6 +497,7 @@ body {
             background:var(--color-fg);
             box-shadow: 0 0 0 1rem var(--color-light) inset;
             text-transform: none;
+            position: relative;
         }
     }
 }

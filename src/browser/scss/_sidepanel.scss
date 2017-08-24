@@ -63,7 +63,7 @@
         flex: 1 1 100%;
         background: var(--color-fg);
         box-shadow: 0 0 0 1rem var(--color-light) inset;
-        padding: 10rem;
+        padding: 13rem 10rem;
         position: relative;
         margin: 0.5rem;
         &.disabled {
@@ -83,7 +83,7 @@
     }
     a {
         flex: 4 1 32%;
-        padding:10rem;
+        padding:13rem 10rem;
         display: block;
         text-align: center;
         position: relative;
