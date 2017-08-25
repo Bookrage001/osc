@@ -1,6 +1,7 @@
 .switch-container, .switcher-container, .crossfader-container  {
     z-index: 1;
     width:100rem;
+    height:100rem;
     padding:1rem;
 
     &.nolabel {
@@ -101,6 +102,12 @@
             }
 
         }
+    }
+}
+
+.switcher-container {
+    .switcher {
+        flex:1
     }
 }
 
