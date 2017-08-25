@@ -1,9 +1,12 @@
 # Changelog
 
+
 ## 0.19.5
 
 - launcher
   - fixed typo in new version message 
+- misc 
+  - client-side javascript's size reduced, now for real !!
 
 ## 0.19.4
 
