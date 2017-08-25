@@ -117,13 +117,24 @@ module.exports = class Formula extends _widgets_base {
     updateValue(e){
 
         var variables = {},
-            id
+            id, n = 0
 
         for (let id of this.linkedWidgets) {
             if (id !== undefined) {
-                variables['_'+id] = widgetManager.getWidgetById(id)[0].getValue()
+                let widgets = widgetManager.getWidgetById(id)
+                for (let w of widgets) {
+                    if (w.getValue) {
+                        variables['_'+id] = w.getValue()
+                        n++
+                        break
+                    }
+                }
+
             }
         }
+
+        if (!this.linkedWidgets.length || n < this.linkedWidgets.length) return
+
 
         if (this.getProp('condition').length) {
 
