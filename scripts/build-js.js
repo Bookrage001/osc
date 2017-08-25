@@ -3,7 +3,7 @@ var browserify = require('browserify'),
     path = require('path'),
     babelify = require('babelify'),
     prod = process.argv.indexOf('--prod') != -1,
-    fast = process.argv.indexOf('--fast') != -1
+    fast = process.argv.indexOf('--fast') != -1,
     b
 
 
