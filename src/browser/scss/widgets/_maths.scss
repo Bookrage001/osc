@@ -1,12 +1,12 @@
 .formula-container {
     width: 100rem;
     height:60rem;
-    padding: 1rem;
     .formula {
         display:flex;
         height:100%;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
+        margin: 1rem;
         .input {
             background: transparent!important;
             border: 0!important;
