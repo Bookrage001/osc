@@ -9,6 +9,7 @@
   - pads: pips scaling bug
 - widgets
   - `css` font-sizes apply correctly to all children (better use percents)
+  - formula: add `unit` option
 - misc
   - client-side javascript's size reduced !
 

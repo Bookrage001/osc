@@ -30,6 +30,7 @@ module.exports = class Formula extends _widgets_base {
 
             formula: '',
             condition: '',
+            unit: '',
 
             _osc:'osc',
 
@@ -60,7 +61,8 @@ module.exports = class Formula extends _widgets_base {
             props:{
                 ...Input.defaults(),
                 editable:false,
-                precision:this.getProp('precision')
+                precision:this.getProp('precision'),
+                unit: this.getProp('unit')
             },
             parent:this, parentNode:this.widget
         })
@@ -90,6 +92,7 @@ module.exports = class Formula extends _widgets_base {
 
 
         $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
+        this.updateValue({options:{}})
 
         this.input.widget.on('change', (e)=>{
             e.stopPropagation()
