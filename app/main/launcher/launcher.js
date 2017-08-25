@@ -210,7 +210,7 @@ $(document).ready(()=>{
             var data = JSON.parse(request.responseText);
 
             if (data[0].name != 'v' + packageVersion) {
-                $('#new-version').html(` [<a href="${packageUrl}/releases" target="_blank">${data[0].name} is availabe</a>]`)
+                $('#new-version').html(` [<a href="${packageUrl}/releases" target="_blank">${data[0].name} is available</a>]`)
             }
 
           }

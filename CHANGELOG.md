@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.19.5
+
+- launcher
+  - fixed typo in new version message 
+
 ## 0.19.4
 
 - bug fixes
