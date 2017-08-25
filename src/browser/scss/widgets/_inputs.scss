@@ -1,6 +1,7 @@
 .input-container {
     width: 100rem;
     height: 60rem;
+    padding:1rem;
     .input {
 
     }
@@ -17,7 +18,6 @@
         // background: var(--color-track);
         // border: 1rem solid var(--color-bg);
         text-align:center;
-        margin:1rem;
         padding:1rem;
         border: 1rem solid var(--color-bg);
         background: var(--color-track);
@@ -57,9 +57,10 @@
 }
 
 .panel:not(.tab) > .input-container {
+    padding: 0rem;
     > .input {
         box-shadow: 0 0 0 1rem var(--color-fg);
-
+        margin:1rem;
         outline: 1rem solid var(--color-light);
         border: 1rem solid var(--color-bg);
     }
