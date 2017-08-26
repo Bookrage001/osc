@@ -49,6 +49,7 @@
         position: relative;
         display: flex;
         justify-content: center;
+        border-radius: inherit;
 
         > * {
             pointer-events: none;

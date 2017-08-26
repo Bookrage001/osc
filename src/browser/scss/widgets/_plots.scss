@@ -8,7 +8,6 @@
         flex:1;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
-        border-radius: inherit;
         --opacity: 0;
         &:after {
             content:"";

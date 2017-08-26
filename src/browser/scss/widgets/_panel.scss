@@ -233,6 +233,7 @@
         > .toggle:after {
             color:var(--color-custom);
         }
+        border-radius: 0!important; // border radius breaks it smoehow 
     }
 
 }

@@ -29,6 +29,16 @@
          }
      }
 
+     > .label + div {
+        border-top-left-radius:0;
+        border-top-right-radius:0;
+        border-bottom-right-radius:inherit;
+        border-bottom-left-radius:inherit;
+     }
+     &.nolabel > .label + div {
+         border-radius: inherit;
+     }
+
     .label {
         text-overflow:ellipsis;
         overflow:hidden;

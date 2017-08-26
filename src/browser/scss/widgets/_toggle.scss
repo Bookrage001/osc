@@ -11,7 +11,7 @@
         cursor: pointer;
         flex:1;
         display: flex;
-        border-radius: inherit;
+        border-radius: inherit!important;
 
 
         &:before {
@@ -61,7 +61,6 @@
         justify-content: center;
         align-items: center;
         z-index: 2;
-
     }
 
     &.on > .label {
