@@ -17,6 +17,7 @@
     max-height: 100%;
     text-transform: uppercase;
     contain: style size layout;
+    color: var(--color-text);
 
     &.absolute-position {
         position: absolute;
