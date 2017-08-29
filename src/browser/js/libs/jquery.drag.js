@@ -234,7 +234,7 @@
                         var touch = oE.changedTouches[i],
                             id = touch.identifier
 
-                        $(oE.changedTouches[i].target).trigger('dragend',[touch,e.originalEvent.traversing])
+                        $(targets[id]).trigger('dragend',[touch,e.originalEvent.traversing])
 
                         delete previousTouches[id]
                         delete targets[id]
