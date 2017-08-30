@@ -2,26 +2,25 @@
   "name": "open-stage-control-builder",
   "description": "A libre desktop OSC bi-directionnal control surface application - builder package",
   "dependencies": {
-    "autolayout": "0.7.0",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-es2015": "6.24.1",
-    "babelify": "7.3.0",
-    "babelify-es6-polyfill": "^1.0.4",
-    "browserify": "14.4.0",
     "electron": "1.7.5",
-    "electron-packager": "8.7.2",
-    "exorcist": "0.4.0",
-    "jquery": "3.2.1",
-    "kiwi.js": "1.0.1",
     "mathjs": "3.16.1",
+    "kiwi.js": "1.0.1",
+    "autolayout": "0.7.0",
+    "browserify": "14.4.0",
+    "exorcist": "0.4.0",
     "node-sass": "^4.1.1",
     "nodemon": "^1.9.2",
-    "shortid": "2.2.8",
     "socket.io-client": "2.0.3",
+    "jquery": "3.2.1",
+    "shortid": "2.2.8",
+    "electron-packager": "8.7.2",
+    "babelify": "7.3.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
     "uglifyify": "4.0.3"
   },
   "optionalDependencies": {
-    "electron-installer-debian": "0.5.2"
+      "electron-installer-debian": "0.5.2"
   },
   "scripts": {
     "postinstall": "cp resources/images/logo.ico app/browser/favicon.ico && cd app && npm install && cd .. && npm run build-js && npm run build-css",

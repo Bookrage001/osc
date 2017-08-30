@@ -1,5 +1,3 @@
-require('babelify-es6-polyfill')
-
 window.ARGV={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){ARGV[k]=v})
 
 ///////////////////////
