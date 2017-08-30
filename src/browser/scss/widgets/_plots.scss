@@ -5,7 +5,7 @@
     .led {
         display: flex;
         flex-direction: row;
-        flex:1;
+        flex: 1 1 100%;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
         --opacity: 0;
@@ -31,7 +31,7 @@
     .plot {
         display: flex;
         flex-direction: row;
-        flex:1;
+        flex: 1 1 100%;
         position: relative;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
@@ -58,7 +58,7 @@
     flex-shrink: 0;
     padding:1rem;
     .text {
-        flex: 1;
+        flex: 1 1 100%;
         height:35rem;
         padding: 10rem;
         justify-content: center;

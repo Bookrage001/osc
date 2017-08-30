@@ -9,7 +9,7 @@
 .widget {
      .input {
         display: flex;
-        flex:1;
+        flex: 1 1 100%;
         background:transparent;
         color:var(--color-text-fade);
         padding:4rem 5rem;

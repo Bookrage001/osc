@@ -18,7 +18,7 @@
         display: flex;
         flex-direction:column;
         align-items: stretch;
-        flex:1;
+        flex: 1 1 100%;
         z-index: 1;
         background:var(--color-bg);
         border: 1rem solid var(--color-bg);
@@ -32,7 +32,7 @@
                 flex-direction: column;
                 border-top:0;
                 border-right:1rem solid var(--color-bg);
-                flex:1;
+                flex: 1 1 100%;
                 height:auto;
                 margin-bottom:0;
                 &:last-child {
@@ -46,7 +46,7 @@
             padding:6rem;
             color:var(--color-text);
             width:100%;
-            flex:1;
+            flex: 1 1 100%;
             position: relative;
             // border-top: 1rem solid var(--color-bg);
             margin-bottom:1rem;
@@ -113,7 +113,7 @@
 
 .crossfader-container {
     .switcher {
-        flex:1;
+        flex: 1 1 100%;
         width:auto;
         display:flex;
         border: 1rem solid var(--color-bg);
@@ -175,7 +175,7 @@
         }
     }
     .select {
-        flex:1;
+        flex: 1 1 100%;
         position: relative;
         overflow: hidden;
         cursor: pointer;

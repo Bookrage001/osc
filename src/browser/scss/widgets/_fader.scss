@@ -43,7 +43,7 @@
 
     .wrapper {
         overflow: hidden;
-        flex:1;
+        flex: 1 1 100%;
         max-height: 100%;
         width: 100%;
         position: relative;
@@ -202,7 +202,7 @@
         .wrapper {
             border: 1rem solid var(--color-bg);
             > canvas {
-                flex:1;
+                flex: 1 1 100%;
                 background: var(--color-track);
                 order:1;
             }

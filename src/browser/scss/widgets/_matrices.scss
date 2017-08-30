@@ -12,7 +12,7 @@
 }
 
 .matrix {
-    flex:1;
+    flex: 1 1 100%;
     overflow: auto;
     // background: var(--color-bg);
     display: flex;
@@ -62,7 +62,7 @@
 
             > .fader {
                 height: auto;
-                flex: 1;
+                flex: 1 1 100%;
 
             }
         }

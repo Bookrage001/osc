@@ -9,14 +9,14 @@
     .toggle {
 
         cursor: pointer;
-        flex:1;
+        flex: 1 1 100%;
         display: flex;
         border-radius: inherit!important;
 
 
         &:before {
             content:"";
-            flex:1;
+            flex: 1 1 100%;
             opacity: 1;
             box-shadow: 0 0 0 1rem var(--color-light) inset,
                         0 1rem 0 0 var(--color-light) inset;
