@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-
+    flex: 1;
     > .input {
         height: 25rem;
         line-height: 25rem;
@@ -58,6 +58,7 @@
         > canvas {
             width: 20rem;
             image-rendering:pixelated;
+            position: relative;
             z-index: 1;
         }
 

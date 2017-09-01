@@ -148,7 +148,7 @@
 
     }
     &.stretch > .panel > .widget {
-        flex:1
+        flex:1 1 100%;
     }
 
 }
@@ -233,7 +233,7 @@
         > .toggle:after {
             color:var(--color-custom);
         }
-        border-radius: 0!important; // border radius breaks it smoehow 
+        border-radius: 0!important; // border radius breaks it somehow
     }
 
 }
@@ -251,6 +251,7 @@
 
 .tab-container, .root-container {
     height: 100%;
+    flex:1;
     box-shadow: none;
     background: var(--color-bg)!important;
 
@@ -268,7 +269,9 @@
 .clone-container {
     width: 100rem;
     height: 100rem;
-
+    > .label {
+        display: none;
+    }
     .clone {
         position: relative;
         height: 100%;
@@ -288,6 +291,7 @@
             max-height: initial!important;
             min-width: initial!important;
             max-width: initial!important;
+            padding: 0!important;
         }
     }
 }

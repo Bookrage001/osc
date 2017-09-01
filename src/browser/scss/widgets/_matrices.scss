@@ -24,7 +24,8 @@
         min-height: 0;
         min-width: 0;
         // margin:0!important;
-        height: calc( 100% / var(--rows) - var(--spacing));
+        // height: calc( 100% / var(--rows) - var(--spacing));
+        height: auto;
         width: calc( 100% / var(--columns) - var(--spacing));
         margin: calc(var(--spacing) / 2);
         .label {

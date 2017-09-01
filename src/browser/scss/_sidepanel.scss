@@ -42,7 +42,9 @@
         box-shadow: 0 0 0 1rem var(--color-light) inset;
         background: var(--color-fg);
         padding: 8rem;
-        flex: 1 1 100%;
+        flex: 1 1 auto;
+        flex-shrink:0;
+        
         li {
             display: block;
             margin-bottom: 8rem;

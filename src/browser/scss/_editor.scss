@@ -3,12 +3,14 @@
     background: var(--color-fg);
     padding: 1rem 8rem 8rem;
     margin-top: 2rem;
+    flex-shrink:0;
     &:empty {
         padding:0;
         margin: 0;
     }
     ul {
         padding: 4rem;
+        list-style:none;
         li {
             margin-bottom: 4rem;
             position: relative;
@@ -72,7 +74,6 @@
             cursor: text;
         }
         &.column {
-            flex-direction: column;
             ul {
                 padding: 1rem 2rem!important;
                 overflow: auto;
