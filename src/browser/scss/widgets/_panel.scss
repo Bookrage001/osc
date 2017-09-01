@@ -229,7 +229,7 @@
         pointer-events: none;
     }
     &.on {
-        z-index: 99999;
+        z-index: initial;
         > .toggle:after {
             color:var(--color-custom);
         }
