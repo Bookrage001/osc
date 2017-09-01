@@ -8,8 +8,9 @@
 }
 .widget {
      .input {
-        display: flex;
-        flex: 1 1 100%;
+        display: block;
+        flex: 1 0 100%;
+        flex-shrink: 0!important;
         background:transparent;
         color:var(--color-text-fade);
         overflow: hidden;
@@ -20,8 +21,9 @@
         font-size: 109%;
 
         input {
+            display: block;
             width:100%;
-            flex:1;
+            height: 100%;
             font: inherit;
             border:0;
             padding:0;
@@ -37,7 +39,7 @@
             }
         }
         canvas {
-            flex:1;
+            height:100%;
             width:100%;
         }
         input + canvas {

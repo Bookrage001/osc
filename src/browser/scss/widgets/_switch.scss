@@ -12,13 +12,11 @@
         }
     }
     .switch {
-        height:100%;
-        width:100%;
         cursor: pointer;
         display: flex;
         flex-direction:column;
         align-items: stretch;
-        flex: 1 1 100%;
+        flex: 1;
         z-index: 1;
         background:var(--color-bg);
         border: 1rem solid var(--color-bg);
@@ -107,7 +105,8 @@
 
 .switcher-container {
     .switcher {
-        flex:1
+        flex:1;
+        display:flex;
     }
 }
 

@@ -19,15 +19,14 @@
             height: 25rem;
             line-height: 25rem;
             flex:initial!important;
-            display: block;
             flex-shrink: 0!important;
+            display: block;
             background: transparent!important;
             border: 0!important;
         }
         > .wrapper {
             position: relative;
-            height: 100%;
-            width: 100%;
+            flex:1;
             background:var(--color-track);
             border: 1rem solid var(--color-bg);
 
