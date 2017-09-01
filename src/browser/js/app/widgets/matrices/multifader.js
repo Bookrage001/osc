@@ -90,7 +90,6 @@ module.exports = class Multifader extends _matrices_base {
             data.css = ''
 
             var element = parsewidgets([data],this.widget)
-            element[0].style.setProperty(this.getProp('horizontal')?'height':'width', 100/this.strips + '%')
             element[0].classList.add('not-editable')
 
             if (this.getProp('traversing')) element.find('canvas').off('drag')

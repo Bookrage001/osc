@@ -14,7 +14,6 @@
 .matrix {
     flex: 1 1 100%;
     overflow: auto;
-    // background: var(--color-bg);
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -23,8 +22,6 @@
     > .widget {
         min-height: 0;
         min-width: 0;
-        // margin:0!important;
-        // height: calc( 100% / var(--rows) - var(--spacing));
         height: auto;
         width: calc( 100% / var(--columns) - var(--spacing));
         margin: calc(var(--spacing) / 2);
@@ -37,7 +34,6 @@
 
 .multifader-container {
     .matrix {
-        // padding:0!important;
         align-items:stretch;
         flex-wrap: nowrap;
         &.horizontal {
@@ -45,7 +41,7 @@
             display: flex;
             .fader-container {
                 flex-direction: row;
-                width: 100%;
+                flex:1;
                 .fader {
                     width:100%;
                 }
