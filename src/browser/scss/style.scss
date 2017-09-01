@@ -485,7 +485,10 @@ body {
         margin:0 auto;
         position: relative;
         overflow: hidden;
-        box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-bg),  0 1rem 0 0 var(--color-light) inset;
+        box-shadow: 1rem 0 0 0 var(--color-bg),
+                    0 1rem 0 0 var(--color-bg),
+                    1rem 1rem 0 0 var(--color-bg),
+                    0 1rem 0 0 var(--color-light) inset;
         border-left:1rem solid var(--color-bg);
         border-top:1rem solid var(--color-bg);
         .popup-content {

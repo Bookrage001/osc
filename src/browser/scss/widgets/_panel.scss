@@ -2,7 +2,10 @@
     --color-border:var(--color-bg);
     z-index: 1;
 
-    box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-border),  0 0 0 1rem var(--color-light) inset!important;
+    box-shadow: 1rem 0 0 0 var(--color-border),
+                0 1rem 0 0 var(--color-border),
+                1rem 1rem 0 0 var(--color-border),
+                0 1rem 0 0 var(--color-light) inset!important;
 
     > .label {
         border-bottom:1rem solid var(--color-border);
@@ -20,7 +23,9 @@
         bottom:0;
         background: var(--color-fg);
         --color-border: var(--color-fg);
-        box-shadow: 0.5rem 0.5rem 0 1.5rem var(--color-light) inset;
+
+        box-shadow: 0 0 1rem var(--color-light) inset,
+                    1rem 1rem 0 1rem var(--color-light) inset;
 
         &.tab, &.root, &.has-tabs {
             background: var(--color-bg);
@@ -30,7 +35,9 @@
         }
         &:not(.tab) {
             > .widget {
-                box-shadow: 0.5rem 0.5rem 0 0.5rem var(--color-border);
+                box-shadow: 1rem 0 0 0 var(--color-border),
+                            0 1rem 0 0 var(--color-border),
+                            1rem 1rem 0 0 var(--color-border);
                 --default-bg: transparent;
             }
         }
