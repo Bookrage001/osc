@@ -180,13 +180,13 @@
         overflow: hidden;
         cursor: pointer;
         border: 1rem solid var(--color-bg);
+        display: flex;
+        border-radius: inherit;
 
         select {
             box-shadow: 0 0 0 1rem var(--color-light) inset,
                         0 1rem 0 0 var(--color-light) inset;
-            display: block;
-            width: 100%;
-            height: 100%;
+            flex:1;
             display: flex;
             vertical-align: middle;
             background:transparent;
@@ -199,6 +199,7 @@
             font-size: 109%!important;
             line-height: 120%!important;
             text-transform: none;
+            border-radius: inherit;
         }
         &:after{
             content:"\f107";
