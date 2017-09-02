@@ -1,5 +1,16 @@
 # Changelog
 
+## next
+
+- bug fixes
+  - touch release event is properly dispatched in traversing containers (ie keyboards and matrices) (#94)
+  - iOS / Safari compatibility improved
+- widgets
+  - css `border-radius` support enhanced
+  - css `color` applies locally while `--color-text` applies to children too
+- packaging
+  - added `arm64` binaries
+
 ## 0.19.6
 
 - hot fix

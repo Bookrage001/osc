@@ -143,7 +143,18 @@
                         }
 
                         targets[id] = $(touch.target)
-                        previousTouches[id] = touch
+                        previousTouches[id] = {
+                            deltaX:touch.deltaX,
+                            deltaY:touch.deltaY,
+                            offsetX:touch.offsetX,
+                            offsetY:touch.offsetY,
+                            speedX:touch.speedX,
+                            speedY:touch.speedY,
+                            pageX:touch.pageX,
+                            pageY:touch.pageY,
+                            clientX:touch.clientX,
+                            clientY:touch.clientY
+                        }
 
                         touch.speedX = 0
                         touch.speedY = 0
@@ -218,7 +229,18 @@
 
                         }
 
-                        previousTouches[id] = touch
+                        previousTouches[id] = {
+                            deltaX:touch.deltaX,
+                            deltaY:touch.deltaY,
+                            offsetX:touch.offsetX,
+                            offsetY:touch.offsetY,
+                            speedX:touch.speedX,
+                            speedY:touch.speedY,
+                            pageX:touch.pageX,
+                            pageY:touch.pageY,
+                            clientX:touch.clientX,
+                            clientY:touch.clientY
+                        }
 
                     }
 
