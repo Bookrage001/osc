@@ -1,6 +1,8 @@
 from sys import argv, stdin, stdout, version_info
+from binascii import hexlify, unhexlify
 import traceback
 import json as JSON
+import re
 
 
 try:
@@ -108,23 +110,30 @@ def createCallbackFunction(name):
             osc['args'].append({'type': 'i', 'value': midi.getNoteNumber()})
             osc['args'].append({'type': 'i', 'value': midi.getVelocity()})
 
-        if midi.isNoteOff():
+        elif midi.isNoteOff():
             osc['address'] = '/note'
             osc['args'].append({'type': 'i', 'value': midi.getNoteNumber()})
             osc['args'].append({'type': 'i', 'value': 0})
 
-        if midi.isController():
+        elif midi.isController():
             osc['address'] = '/control'
             osc['args'].append({'type': 'i', 'value': midi.getControllerNumber()})
             osc['args'].append({'type': 'i', 'value': midi.getControllerValue()})
 
-        if midi.isProgramChange():
+        elif midi.isProgramChange():
             osc['address'] = '/program'
             osc['args'].append({'type': 'i', 'value': midi.getProgramChangeNumber()})
 
-        if midi.isPitchWheel():
+        elif midi.isPitchWheel():
             osc['address'] = '/pitch'
             osc['args'].append({'type': 'i', 'value': midi.getPitchWheelValue()})
+
+        elif midi.isSysEx():
+            osc['address'] = '/sysex'
+            # Parse the provided data into a hex MIDI data string of the form  'f0 7e 7f 06 01 f7'.
+            v = hexlify(midi.getSysExData()).decode()
+            v = 'f0 ' + ' '.join([v[i:i+2] for i in range(0, len(v), 2)]) + ' f7'
+            osc['args'].append({'type': 'string', 'value': v})
 
         ipcSend('osc', osc)
 
@@ -144,6 +153,10 @@ def createCallbackFunction(name):
 for name in inputs:
 
     inputs[name].setCallback(createCallbackFunction(name))
+    # Activate sysex support
+    inputs[name].ignoreTypes(False, False, True)
+
+sysexRegex = re.compile(r'([^0-9A-Fa-f])\1(\1\1)*')
 
 def sendMidi(name, event, *args):
 
@@ -166,6 +179,22 @@ def sendMidi(name, event, *args):
 
     elif 'pitch' in event and len(args) == 2:
         m = rtmidi.MidiMessage.pitchWheel(*args)
+
+    elif 'sysex' in event:
+        # rtmidi.MidiMessage(unhexlify('f0 7e 7f 06 01 f7')) creates a sysex message
+        # from hex MIDI data string 'f0 7e 7f 06 01 f7'.
+        # We expect all args to be hex strings! args[0] may contain placeholders of
+        # the form 'nn' that are replaced using args[1..N] to create the final message.
+        midiBytes = args[0].replace(' ', '')
+        i = 1
+        for m in sysexRegex.finditer(midiBytes):
+            midiBytes = midiBytes[:m.start()] + args[i].replace(' ', '') + midiBytes[m.end():]
+            i += 1
+
+        if debug:
+            ipcSend('log', 'Sysex string: %s' % midiBytes)
+
+        m = rtmidi.MidiMessage(unhexlify(midiBytes))
 
     outputs[name].sendMessage(m)
 
