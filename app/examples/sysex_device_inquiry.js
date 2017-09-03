@@ -33,7 +33,7 @@
                         "precision": 0,
                         "address": "/sysex",
                         "target": [
-                            "midi:virtual"
+                            "midi:osc"
                         ],
                         "preArgs": [],
                         "off": 0
