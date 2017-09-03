@@ -42,6 +42,9 @@
             .fader-container {
                 flex-direction: row;
                 flex:1;
+                .fader {
+                    width:100%;
+                }
                 .label {
                     width:30rem;
                     height:auto;
@@ -54,6 +57,12 @@
         > .widget {
             height: auto;
             flex:1;
+            
+            > .fader {
+                height: auto;
+                flex: 1 1 100%;
+
+            }
         }
         &.compact {
             > .widget {
