@@ -8,7 +8,7 @@
     box-shadow: 1rem 0 0 0 var(--color-border),
                 0 1rem 0 0 var(--color-border),
                 1rem 1rem 0 0 var(--color-border),
-                0 1rem 0 0 var(--color-light) inset;
+                0 0 0 1rem var(--color-light) inset;
     border-left:1rem solid var(--color-border);
     border-top:1rem solid var(--color-border);
     -webkit-tap-highlight-color:transparent;
