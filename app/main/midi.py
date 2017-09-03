@@ -1,6 +1,8 @@
 from sys import argv, stdin, stdout, version_info
+from binascii import unhexlify
 import traceback
 import json as JSON
+import re
 
 
 try:
@@ -145,6 +147,27 @@ for name in inputs:
 
     inputs[name].setCallback(createCallbackFunction(name))
 
+sysexRegex = re.compile(r'([^0-9A-Fa-f])\1(\1\1)*')
+
+def midify(value, noOfBytes):
+    # Convert value into noOfBytes MIDI bytes. Given a length of 2 bytes, the lower
+    # 7bit of an 8bit value will go into the first byte, and the most-significant
+    # bit will go into the second byte (with the left-most bit being 0 in each byte).
+    # For example, 200 (11001000) will be converted into 48 40 (01001000 01000000).
+    # TODO: Please note that there is no standard conversion. This specific conversion
+    # may only be relevant for certain manufacturers (Keith McMillen, for example).
+    currValue = int(value)
+    result = []
+    
+    for i in range(0, noOfBytes):
+        if i % 2 == 0:
+            result.append(format(currValue & 0x7f, '02x'))
+        else:
+            result.append(format((currValue & 0x80) >> 1, '02x'))
+            currValue >>= 8
+            
+    return ''.join(result)
+
 def sendMidi(name, event, *args):
 
     if name not in outputs:
@@ -166,6 +189,23 @@ def sendMidi(name, event, *args):
 
     elif 'pitch' in event and len(args) == 2:
         m = rtmidi.MidiMessage.pitchWheel(*args)
+
+    elif 'sysex' in event:
+        # rtmidi.MidiMessage(unhexlify('f0 7e 7f 06 01 f7')) creates a sysex message
+        # from hex MIDI data string 'f0 7e 7f 06 01 f7'.
+        # We expect args[0] to be a string of the form 'f0 7e 7f 06 01 f7', and
+        # args[1..n] to be integer values. Strings of the form 'nn' in args[0] are
+        # then replaced using midified args[1..n] to create the final data string.
+        midiBytes = args[0].replace(' ', '')
+        i = 1
+        for m in sysexRegex.finditer(midiBytes):
+            midiBytes = midiBytes[:m.start()] + midify(args[i], (m.end() - m.start()) // 2) + midiBytes[m.end():]
+            i += 1
+
+        if debug:
+            ipcSend('log', 'Sysex string: %s' % midiBytes)
+
+        m = rtmidi.MidiMessage(unhexlify(midiBytes))
 
     outputs[name].sendMessage(m)
 
