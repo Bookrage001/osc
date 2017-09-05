@@ -7,7 +7,7 @@ var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'
     ifaces = require('os').networkInterfaces()
 
 var options = {
-    's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs)',
+    's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs), used as default targets for all widgets',
          check: (s)=>{
              return (s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$') != null) ?
                  true : 'Sync hosts must be ip:port pairs & port must be >= 1024'
