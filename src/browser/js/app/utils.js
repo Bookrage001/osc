@@ -15,8 +15,10 @@ module.exports = {
             closer.click(function(){
                 popup.close()
             })
+            $(document).on('keydown.popup', function(e){
+                if (e.keyCode==27) popup.close()
+            })
         }
-
 
         popup.close = function(){
             $(document).off('.popup')
@@ -25,12 +27,6 @@ module.exports = {
 
         popup.find('.popup-content').append(content)
         $('body').append(popup)
-
-        $(document).on('keydown.popup', function(e){
-            if (e.keyCode==27) popup.close()
-        })
-
-
 
         return popup
     },
