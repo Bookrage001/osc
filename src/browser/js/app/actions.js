@@ -1,5 +1,7 @@
 var {widgetManager} = require('./managers'),
-    ipc = require('./ipc')
+    ipc = require('./ipc'),
+    {saveAs} = require('file-saver')
+
 
 module.exports = {
 
@@ -18,10 +20,8 @@ module.exports = {
 
     stateSave: function() {
         var state = JSON.stringify(module.exports.stateGet(),null,'    ')
-        var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.preset"></a>')
         var blob = new Blob([state],{type : 'application/x-javascript'})
-        down.attr('href', window.URL.createObjectURL(blob))
-        var event = new MouseEvent("click")
+        saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16))
         down[0].dispatchEvent(event)
     },
 
@@ -108,11 +108,8 @@ module.exports = {
 
     sessionSave: function() {
         var sessionfile = JSON.stringify(SESSION,null,'    ')
-        var down = $('<a download="'+new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.js"></a>')
         var blob = new Blob([sessionfile],{type : 'application/x-javascript'})
-        down.attr('href', window.URL.createObjectURL(blob))
-        var event = new MouseEvent("click")
-        down[0].dispatchEvent(event)
+        saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.js')
         ipc.send('savingSession')
     },
 
