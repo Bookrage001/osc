@@ -34,7 +34,7 @@ module.exports = class Clone extends _widgets_base {
 
     constructor(options) {
 
-        options.props.label = false
+        options.props.label = ''
         options.props.variables = '@{parent.variables}'
 
         super({...options, html: '<div class="clone"></div>'})
