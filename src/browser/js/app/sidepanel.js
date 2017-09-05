@@ -1,12 +1,14 @@
 var actions = require('./actions'),
-    icon = require('./utils').icon
+    icon = require('./utils').icon,
+    fullscreen = require('screenfull')
 
 var data = [
     {
         actions: [
             {
                 title:'Fullscreen',
-                action:actions.toggleFullscreen
+                action:actions.toggleFullscreen,
+                class:'fullscreenToggle'
             }
 
         ]
@@ -94,18 +96,15 @@ var sidepanel = function(data){
         var itemData = data[i]
 
         var item = $('<li></li>'),
-            inner = $('<div></div>').appendTo(item),
+            inner = $(`<div class="${itemData.class || ''}"></div>`).appendTo(item),
             wrapper = $('<div class="actions"></div>').appendTo(inner)
 
-        if (itemData.title) $('<div class="title">'+itemData.title+'</div>').prependTo(wrapper)
-        if (itemData.class) inner.attr('class',itemData.class)
+        if (itemData.title) $(`<div class="title">${itemData.title}</div>`).prependTo(wrapper)
 
         for (let j in itemData.actions) {
             var actionData = itemData.actions[j]
-            var el = $('<a class="btn">'+actionData.title+'</a>').appendTo(wrapper)
+            var el = $(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`).appendTo(wrapper)
             if (actionData.action) bindAction(el, actionData.action)
-
-            if (actionData.class) el.addClass(actionData.class)
 
         }
         item.appendTo(html)
@@ -150,6 +149,17 @@ module.exports = {
         `)
         $('#sidepanel').append(sidepanel(data))
         $('#sidepanel').append('<div id="editor"></div>')
+
+        var fsToggle = $('#sidepanel').find('.fullscreenToggle')
+        if (fullscreen.enabled) {
+            fullscreen.off('change')
+            fullscreen.on('change', ()=>{
+                fsToggle.toggleClass('on', fullscreen.isFullScreen)
+            })
+        } else {
+            fsToggle.addClass('disabled')
+        }
+
         toggle()
     },
     createToggle:toggle

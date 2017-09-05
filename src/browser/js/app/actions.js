@@ -1,5 +1,6 @@
 var {widgetManager} = require('./managers'),
     ipc = require('./ipc'),
+    fullscreen = require('screenfull'),
     {saveAs} = require('file-saver')
 
 
@@ -77,15 +78,7 @@ module.exports = {
 
     toggleFullscreen: function(){
 
-        var isInFullScreen = document.webkitFullscreenElement || document.mozFullScreenElement
-
-        if (isInFullScreen) {
-            if (document.webkitExitFullscreen) document.webkitExitFullscreen()
-            if (document.mozCancelFullScreen) document.mozCancelFullScreen()
-        } else {
-            if (document.documentElement.webkitRequestFullScreen) document.documentElement.webkitRequestFullScreen()
-            if (document.documentElement.mozRequestFullScreen) document.documentElement.mozRequestFullScreen(true)
-        }
+        if (fullscreen.enabled) fullscreen.toggle()
 
     },
 

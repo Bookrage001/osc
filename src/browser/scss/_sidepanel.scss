@@ -44,7 +44,7 @@
         padding: 8rem;
         flex: 1 1 auto;
         flex-shrink:0;
-        
+
         li {
             display: block;
             margin-bottom: 8rem;
@@ -95,9 +95,10 @@
 
         &.on {
             z-index: 0;
-            pointer-events: none;
             color: var(--color-custom);
-            // background: var(--color-fg);
+            &:not(.fullscreenToggle) {
+                pointer-events: none;
+            }
             &:after {
                 content: "";
                 position: absolute;
