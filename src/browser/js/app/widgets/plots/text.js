@@ -81,7 +81,7 @@ module.exports = class Text extends _widgets_base {
     setValue(v) {
 
         this.value = v==null ? this.defaultValue : v
-        this.widget.html(iconify(this.value))
+        this.widget.html(iconify(this.value.replace(/\n/g,'<br/>')))
 
     }
 
