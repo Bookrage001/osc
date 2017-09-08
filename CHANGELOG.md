@@ -1,16 +1,23 @@
 # Changelog
 
-## next
+## 0.20.0
 
+- **breaking change**
+  - sessions are now saved as `.json`files by default (the deprecated `.js` extension can still be opened).
+  - states are now saved as `.state` files (the old `.preset` files can be renamed without any problem)
 - bug fixes
   - touch release event is properly dispatched in traversing containers (ie keyboards and matrices) (#94)
-  - iOS / Safari compatibility improved
 - widgets
   - css `border-radius` support enhanced
   - css `color` applies locally while `--color-text` applies to children too
+  - plot/text: new lines are properly printed
 - packaging
   - added `arm64` binaries
-
+- iOS
+  - compatibility improved (version 9.3 and above)
+- engine
+  - electron 1.8.0 (chrome 59)
+  
 ## 0.19.6
 
 - hot fix

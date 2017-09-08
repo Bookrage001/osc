@@ -21,9 +21,8 @@ module.exports = {
 
     stateSave: function() {
         var state = JSON.stringify(module.exports.stateGet(),null,'    ')
-        var blob = new Blob([state],{type : 'application/x-javascript'})
-        saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16))
-        down[0].dispatchEvent(event)
+        var blob = new Blob([state],{type : 'application/json'})
+        saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.state')
     },
 
     stateGet: function (){
@@ -42,7 +41,7 @@ module.exports = {
     },
 
     stateLoad: function() {
-        var prompt = $('<input type="file" accept=".preset"/>')
+        var prompt = $('<input type="file" accept=".state"/>')
         prompt.click()
         prompt.on('change',function(e){
             var reader = new FileReader()
@@ -84,7 +83,7 @@ module.exports = {
 
     sessionBrowse: function(){
 
-        var prompt = $('<input type="file" accept=".js"/>')
+        var prompt = $('<input type="file" accept=".js, .json"/>')
         prompt.click()
         prompt.on('change',function(e){
             var reader = new FileReader(),
@@ -101,8 +100,8 @@ module.exports = {
 
     sessionSave: function() {
         var sessionfile = JSON.stringify(SESSION,null,'    ')
-        var blob = new Blob([sessionfile],{type : 'application/x-javascript'})
-        saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16)+'.js')
+        var blob = new Blob([sessionfile],{type : 'application/json'})
+        alert(saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.json'))
         ipc.send('savingSession')
     },
 
