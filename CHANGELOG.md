@@ -1,9 +1,11 @@
 # Changelog
 
-## 0.20.0
+## 0.20.1
 
 - bug fixes
   - error popups not created
+- misc
+  - rename sessions files to `.json`
 
 ## 0.20.0
 
