@@ -2,6 +2,11 @@
 
 ## 0.20.0
 
+- bug fixes
+  - error popups not created
+
+## 0.20.0
+
 - **breaking changes**
   - sessions are now saved as `.json`files by default (the deprecated `.js` extension can still be opened).
   - states are now saved as `.state` files (the old `.preset` files can be renamed without any problem)
