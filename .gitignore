@@ -1,4 +1,4 @@
-﻿node_modules
+node_modules
 dist
 app/browser/styles.css
 app/browser/scripts.js
