@@ -471,7 +471,10 @@ body {
             position:absolute;
             right:0rem;
             top:0;
-            padding:15rem;
+            padding:0 15rem;
+            bottom:0;
+            display: flex;
+            align-items: center;
             color:var(--color-text-fade);
             cursor: pointer;
         }
