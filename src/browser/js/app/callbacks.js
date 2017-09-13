@@ -133,7 +133,7 @@ var callbacks = module.exports = {
     },
 
     error: function(data){
-       utils.createPopup('Error', data, true)
+       utils.createPopup(icon('warning') + '&nbsp;Error', data, true)
     },
 
     reloadCss: function(){

@@ -126,7 +126,7 @@ module.exports =  {
 
         } else {
 
-            ipc.send('error',{title:'Error: invalid session file',text:'<p>'+error+'</p>'})
+            ipc.send('error', `Invalid session file (${error})`)
 
         }
     },
