@@ -8,6 +8,10 @@ theme_dir: mkdocs-material/material
 
 site_favicon: img/logo.png
 
+google_analytics:
+  - 'UA-41577570-5'
+  - 'auto'
+
 extra:
     feature:
       tabs: false
