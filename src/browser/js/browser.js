@@ -73,10 +73,10 @@ var NoSleep = require('nosleep.js'),
 
 function enableNoSleep() {
   noSleep.enable();
-  document.removeEventListener('touchstart', enableNoSleep, false);
+  document.removeEventListener('click', enableNoSleep, false);
 }
 
-document.addEventListener('touchstart', enableNoSleep, false);
+document.addEventListener('click', enableNoSleep, false);
 
 ///////////////////////
 $(document).ready(function(){
