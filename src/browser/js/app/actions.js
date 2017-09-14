@@ -101,7 +101,7 @@ module.exports = {
     sessionSave: function() {
         var sessionfile = JSON.stringify(SESSION,null,'    ')
         var blob = new Blob([sessionfile],{type : 'application/json'})
-        alert(saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.json'))
+        saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.json')
         ipc.send('savingSession')
     },
 
