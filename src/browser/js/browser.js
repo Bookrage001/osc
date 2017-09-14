@@ -66,6 +66,17 @@ var callbacks = require('./app/callbacks'),
 
 osc.init()
 
+///////////////////////
+
+var NoSleep = require('nosleep.js'),
+    noSleep = new NoSleep();
+
+function enableNoSleep() {
+  noSleep.enable();
+  document.removeEventListener('touchstart', enableNoSleep, false);
+}
+
+document.addEventListener('touchstart', enableNoSleep, false);
 
 ///////////////////////
 $(document).ready(function(){
