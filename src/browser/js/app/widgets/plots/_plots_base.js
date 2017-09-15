@@ -70,7 +70,8 @@ module.exports = class _plots_base extends _canvas_base {
 
         this.draw_data()
 
-        this.ctx.lineWidth = 1*PXSCALE
+        this.ctx.globalAlpha = 0.7
+        this.ctx.lineWidth = 1.5 * PXSCALE
         this.ctx.strokeStyle = this.colors.custom
         this.ctx.stroke()
 
@@ -86,11 +87,11 @@ module.exports = class _plots_base extends _canvas_base {
             this.ctx.lineTo(0,origin)
             this.ctx.closePath()
             this.ctx.fill()
-            this.ctx.globalAlpha = 1
 
         }
 
 
+        this.ctx.globalAlpha = 1
         this.ctx.font = PXSCALE * 10 + 'px sans-serif'
         this.ctx.fillStyle = this.colors.text
 
@@ -128,35 +129,27 @@ module.exports = class _plots_base extends _canvas_base {
 
     draw_data() {
 
-        var first = true
-        var point = []
+        var points = []
         for (let i in this.data) {
 
             if (this.data[i][1]>this.rangeY.max || this.data[i][1]<this.rangeY.min ||
                 this.data[i][0]>this.rangeX.max || this.data[i][0]<this.rangeX.min) continue
 
-            var newpoint = this.data[i].length?
-                    [
-                        mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.getProp('logScaleX'),true),
-                        mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getProp('logScaleY'),true),
-                    ]
-                    :
-                    [
-                        mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.getProp('logScaleX'),true),
-                        mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getProp('logScaleY'),true),
-                    ]
 
-
-            if (first) {
-                this.ctx.moveTo(newpoint[0],newpoint[1])
-                this.ctx.lineTo(newpoint[0],newpoint[1])
-                first = false
+            if (this.data[i].length) {
+                points.push(mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.getProp('logScaleX'),true))
+                points.push(mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getProp('logScaleY'),true))
             } else {
-                // this.ctx.moveTo(point[0],point[1])
-                this.ctx.lineTo(newpoint[0],newpoint[1])
+                points.push(mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.getProp('logScaleX'),true))
+                points.push(mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-PXSCALE,PXSCALE],0,this.getProp('logScaleY'),true))
             }
-            point = newpoint
+
         }
+
+        this.ctx.curve(points, this.getProp('smooth') ? 0.25 : 0,this.width/(points.length/2 - 1))
+
+
+
 
     }
 

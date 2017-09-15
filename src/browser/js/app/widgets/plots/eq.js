@@ -32,6 +32,7 @@ module.exports = class Eq extends _plots_base {
             rangeY: {min:-20,max:20},
             origin: 'auto',
             logScaleX: false,
+            smooth: false,
 
             _osc:'osc',
 

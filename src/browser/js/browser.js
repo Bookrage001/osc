@@ -57,6 +57,7 @@ window.$ = require('jquery/dist/jquery.slim.min.js')
 require('./libs/jquery.ui')
 require('./libs/jquery.drag')
 require('./libs/jquery.resize')
+require('cardinal-spline-js/curve.js')
 
 ///////////////////////
 

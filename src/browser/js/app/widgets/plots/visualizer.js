@@ -30,6 +30,7 @@ module.exports = class Visualizer extends _plots_base {
             range: {min:0,max:1},
             origin: 'auto',
             logScale: false,
+            smooth: false,
             pips:true,
             value:'',
 

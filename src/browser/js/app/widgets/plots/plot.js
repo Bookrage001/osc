@@ -31,6 +31,7 @@ module.exports = class Plot extends _plots_base {
             origin: 'auto',
             logScaleX: false,
             logScaleY: false,
+            smooth: false,
             pips:true,
 
             _osc:'osc',
