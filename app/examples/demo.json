@@ -757,7 +757,7 @@
                         "off": 0,
                         "value": "",
                         "precision": 2,
-                        "address": "/multipush",
+                        "address": "/multitoggle",
                         "preArgs": [],
                         "split": false,
                         "target": [],
