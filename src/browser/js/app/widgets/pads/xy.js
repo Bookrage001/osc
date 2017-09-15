@@ -237,6 +237,7 @@ module.exports = class Xy extends _pads_base {
         this.ctx.stroke()
 
         this.ctx.globalAlpha = 1
+        this.ctx.lineWidth = 1.5 * PXSCALE
 
         this.ctx.beginPath()
         this.ctx.arc(x, y, pointSize / 2, Math.PI * 2, false)
