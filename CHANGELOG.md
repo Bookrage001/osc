@@ -4,6 +4,7 @@
 
 - bug fixes
   - pads: regression breaking the built-in input
+  - multifader: inverted order in horizontal mode
 - widgets
   - plots: add `smooth` option (thanks to [cardinal-spline-js](https://github.com/epistemex/cardinal-spline-js)); draw thicker lines
   - pads: draw thicker inner circle
