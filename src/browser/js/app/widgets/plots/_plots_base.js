@@ -29,6 +29,7 @@ module.exports = class _plots_base extends _canvas_base {
                 max: Math.abs(this.rangeY.max)>=1000?this.rangeY.max/1000+'k':this.rangeY.max
             }
         }
+        this.smooth = this.getProp('smooth') === true ? 0.25 : this.getProp('smooth') === false ? 0 : parseFloat(this.getProp('smooth')) || 0
 
 
 
@@ -147,7 +148,7 @@ module.exports = class _plots_base extends _canvas_base {
 
         }
 
-        this.ctx.curve(points, this.getProp('smooth') ? 0.25 : 0, this.width/(points.length/2 - 1))
+        this.ctx.curve(points, this.smooth, Math.round(this.width/(points.length/2 - 1)))
 
 
 
