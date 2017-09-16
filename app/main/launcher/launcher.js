@@ -162,6 +162,7 @@ $(document).ready(()=>{
             save.off('click')
             $('input').attr('disabled','true')
             $('.clear').addClass('disabled')
+            $('.checkbox').addClass('disabled')
             ipcRenderer.send('start')
         })
 

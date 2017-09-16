@@ -255,6 +255,12 @@ body {
             }
             .checkbox {
                 right: 30rem;
+                &.disabled {
+                    pointer-events: none;
+                    i {
+                        color:var(--color-text-fade);
+                    }
+                }
             }
         }
         .error-msg, .restart-msg {
