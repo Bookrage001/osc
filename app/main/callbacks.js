@@ -289,5 +289,9 @@ module.exports =  {
 
     log: function(data) {
         console.log(data)
+    },
+
+    error: function(data) {
+        console.error(data)
     }
 }

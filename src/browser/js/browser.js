@@ -44,7 +44,7 @@ request.onload = function() {
 
     window.onerror = function(error,url,row,col) {
         var data = smc.originalPositionFor({line:row,column:col})
-        ipc.send('log', `[Renderer process error]\n${error}\nSource: ${data.source} @ line ${data.line}`)
+        ipc.send('error', `[Renderer process error]\n${error}\nSource: ${data.source} @ line ${data.line}`)
     }
   }
 }
