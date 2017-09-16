@@ -37,6 +37,7 @@
         width: 100%;
         position: relative;
         display: flex;
+        touch-action: none;
         canvas {
             width: 100%;
             position: relative;

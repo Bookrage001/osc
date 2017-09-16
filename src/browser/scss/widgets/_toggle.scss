@@ -12,7 +12,7 @@
         flex: 1 1 100%;
         display: flex;
         border-radius: inherit!important;
-
+        touch-action: none;
 
         &:before {
             content:"";

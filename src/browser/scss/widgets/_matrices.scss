@@ -18,6 +18,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     padding:1rem 2rem 2rem 1rem;
+    touch-action: none;
 
     > .widget {
         min-height: 0;
