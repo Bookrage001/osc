@@ -11,6 +11,12 @@
 
 <p><a href="http://openstagecontrol.herokuapp.com/">Try the online demo (Chrome 50+ required)</a></p>
 
+
+ <div style="width:70%; box-shadow: 0 0 5px 0 rgba(0,0,0,.45); border-radius:2px;overflow:hidden">
+<a href="http://osc.ammd.net/img/ardour-osc.png" title="Controlling Ardour"><img alt="Controlling Ardour" src="http://osc.ammd.net/img/ardour-osc.png" style="display:block"/></a>
+</div>
+
+
 ## Documentation
 
 The documentation is located at [osc.ammd.net](http://osc.ammd.net)
