@@ -78,8 +78,6 @@ module.exports =  {
             error = err
         }
 
-        if (!session) error= 'No session object returned'
-
         if (!error) {
 
             ipc.send('sessionOpen',JSON.stringify(session),clientId)
