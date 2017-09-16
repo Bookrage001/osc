@@ -9,7 +9,7 @@
 
 <p><a href="https://github.com/jean-emmanuel/open-stage-control/releases">Download the latest release (prebuilt binaries for Linux, OS X and Windows)</a></p>
 
-<p><a href="http://openstagecontrol.herokuapp.com/">Try the online demo (chrome 49+ required)</a></p>
+<p><a href="http://openstagecontrol.herokuapp.com/">Try the online demo (Chrome 50+ required)</a></p>
 
 ## Documentation
 
@@ -18,7 +18,7 @@ The documentation is located at [osc.ammd.net](http://osc.ammd.net)
 ## Features
 
 - multiplatform desktop server application with built-in client interface
-- mouse & multitouch interfaces compatible with **Chrome 49** or later
+- mouse & multitouch interfaces compatible with **Chrome 50** or later
 - all the widgets you need !
 - built-in live editor
 - clients synchronization
