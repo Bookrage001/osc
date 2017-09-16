@@ -2,12 +2,14 @@
 
 Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built on web technologies and run as an [Electron](http://electron.atom.io/) web server that accepts any number of clients.
 
-<span style="border:1px solid lightgrey;padding:5px">
 [Try the online demo (chrome 49 required)](http://demo.osc.ammd.net)
-</span>
 
-<span style="border:1px solid lightgrey;padding:5px">[Download the latest release](https://github.com/jean-emmanuel/open-stage-control/releases)
-</span>
+[Download the latest release](https://github.com/jean-emmanuel/open-stage-control/releases)
+
+
+ <div style="width:70%; box-shadow: 0 0 5px 0 rgba(0,0,0,.45); border-radius:2px;overflow:hidden">
+<a href="img/ardour-osc.png" title="Controlling Ardour"><img alt="Controlling Ardour" src="img/ardour-osc.png" style="display:block"/></a>
+</div>
 
 ## Supported platforms
 
