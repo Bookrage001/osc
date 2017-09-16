@@ -2,7 +2,7 @@
   "name": "open-stage-control",
   "productName": "Open Stage Control",
   "description": "A libre desktop OSC bi-directionnal control surface application.",
-  "version": "0.20.2",
+  "version": "0.20.3",
   "main": "index.js",
   "author": {
     "name": "Jean-Emmanuel Doucet / AMMD",
