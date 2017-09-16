@@ -57,7 +57,7 @@ if (settings.cli) {
         launcher
 
     app.on('ready',function(){
-        launcher = require('./electron-window')({address:address, shortcuts:true, width:680, height:568, color:'#283143'})
+        launcher = require('./electron-window')({address:address, shortcuts:false, width:680, height:568, color:'#283143'})
     })
 
     process.stdout.write = (function(write) {
