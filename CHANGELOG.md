@@ -4,6 +4,8 @@
 
 - bug fixes
   - allow loading `.json` session files from the launcher
+- launcher
+  - new log/error console (shows once the app is started)
 
 ## 0.20.2
 

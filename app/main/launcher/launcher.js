@@ -167,19 +167,31 @@ $(document).ready(()=>{
 
     })
 
+    form.appendTo('#launcher')
 
 
     // server started callback
     ipcRenderer.on('started',function(){
-        var addresses = settings.read('appAddresses').map((a)=>{return `<a href="${a}">${a}</a>`})
-        start.addClass('started').html('App available at ' + addresses.join(' & '))
+        start.remove()
         save.remove()
+        terminal.show()
+    })
+
+    // Fake console
+    var terminal = $(`<div class="terminal"></div>`).appendTo('#launcher').hide()
+
+    ipcRenderer.on('stdout', function(e, msg){
+        terminal.append(`<div class="log">${msg}</div>`)
+        terminal.scrollTop(terminal.prop('scrollHeight'))
+    })
+
+    ipcRenderer.on('stderr', function(e, msg){
+        terminal.append(`<div class="error">${msg}</div>`)
+        terminal.scrollTop(terminal.prop('scrollHeight'))
     })
 
 
     // ready
-
-    form.appendTo('#launcher')
 
     $('input').trigger('change')
 

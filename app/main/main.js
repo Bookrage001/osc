@@ -57,8 +57,23 @@ if (settings.cli) {
         launcher
 
     app.on('ready',function(){
-        launcher = require('./electron-window')({address:address, shortcuts:false, width:680, height:568, color:'#283143'})
+        launcher = require('./electron-window')({address:address, shortcuts:true, width:680, height:568, color:'#283143'})
     })
+
+    process.stdout.write = (function(write) {
+        return function(string, encoding, fd) {
+            write.apply(process.stdout, arguments)
+            launcher.webContents.send('stdout', string)
+        }
+    })(process.stdout.write)
+
+    process.stderr.write = (function(write) {
+        return function(string, encoding, fd) {
+            write.apply(process.stdout, arguments)
+            launcher.webContents.send('stderr', string)
+        }
+    })(process.stderr.write)
+
 
     ipcMain.on('start',function(e, options){
 

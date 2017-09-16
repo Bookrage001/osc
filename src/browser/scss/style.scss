@@ -204,13 +204,12 @@ body {
 
 #launcher {
     background: var(--color-fg);
-    padding:2rem;
+    padding:14rem;
+    display: flex;
+    flex-direction: column;
     .form {
-        width: 100%;            // box-shadow: none;
-
-        height: 100%;
+        width: 100%;
         background: var(--color-fg);
-        padding:12rem;
         overflow: hidden;
         opacity: 0;
         transition: opacity .25s;
@@ -366,6 +365,42 @@ body {
             transition: none;
             opacity: 0.25;
 
+        }
+    }
+
+    .terminal {
+        margin-top: 5rem;
+        background: var(--color-bg);
+        font-family: monospace;
+        text-transform: none;
+        padding:3rem;
+        border:2rem solid var(--color-bg);
+        letter-spacing: normal;
+        cursor: auto;
+        flex:1;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        height: 50rem;
+        &::-webkit-scrollbar-button:decrement:start, &::-webkit-scrollbar-button:increment:end {
+            display:none;
+        }
+        &::-webkit-scrollbar {
+            width: 8rem;
+        }
+        div {
+            user-select:text;
+            width: 100%;
+            white-space: pre-line;
+            word-wrap: break-word;
+            text-indent: -10px;
+            padding-left: 10px;
+            margin-top: 4rem;
+        }
+        .log {
+        }
+        .error {
+            color: rgba(255, 150, 50, 1)
         }
     }
 }
