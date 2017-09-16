@@ -23,8 +23,7 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 ### `logScale`
 - type: `boolean`
 - default: `false`
-- usage: set to true use logarithmic scaling
-
+- usage: set to true to use logarithmic scaling
 
 ## RgbLed
 
@@ -76,6 +75,11 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `y` axis (log10)
 
+### `smooth`
+- type: `boolean`
+- default: `false`
+- usage: set to true to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
+
 ### `origin`
 - type: `number`
 - default: `auto`
@@ -125,6 +129,11 @@ The Eq receives an array of filter objects and draws their frequency response be
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
+### `smooth`
+- type: `boolean`
+- default: `false`
+- usage: set to true to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
+
 ### `origin`
 - type: `number`
 - default: `auto`
@@ -160,6 +169,11 @@ The visualizer displays the evolution in time of a received value (through osc) 
 - type: `boolean`
 - default: `false`
 - usage: set to `true` use logarithmic scaling (log10)
+
+### `smooth`
+- type: `boolean`
+- default: `false`
+- usage: set to true to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
 
 ### `origin`
 - type: `number`
