@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.20.3
+
+- bug fixes
+  - allow loading `.json` session files from the launcher
+
 ## 0.20.2
 
 - bug fixes
