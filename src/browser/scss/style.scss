@@ -257,7 +257,7 @@ body {
                 right: 30rem;
                 &.disabled {
                     pointer-events: none;
-                    i {
+                    &.on i {
                         color:var(--color-text-fade);
                     }
                 }
