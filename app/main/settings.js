@@ -13,9 +13,9 @@ var options = {
                  true : 'Sync hosts must be ip:port pairs & port must be >= 1024'
          }
     },
-    'l':{alias:'load',type:'string',file:'js',describe:'session file to load'},
+    'l':{alias:'load',type:'string',file:{name:'OSC Session (.json)', extensions: ['json', 'js']},describe:'session file to load'},
     'b':{alias:'blank',type:'boolean',describe:'load a blank session and start the editor'},
-    'c':{alias:'custom-module',type:'string',file:'js',describe:'custom module file to load'},
+    'c':{alias:'custom-module',type:'string',file:{name:'OSC Custom module (.js)', extensions: ['js']},describe:'custom module file to load'},
     'p':{alias:'port',type:'number',describe:'http port of the server (default to 8080)',
          check: (p)=>{
              return (!isNaN(p) && p > 1023 && parseInt(p)===p) ?

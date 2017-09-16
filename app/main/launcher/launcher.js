@@ -57,7 +57,7 @@ $(document).ready(()=>{
 
           browse.click(function(e){
               e.preventDefault()
-              dialog.showOpenDialog({filters:[{name:'js',extensions:['js']}]},function(file){
+              dialog.showOpenDialog({filters:[{name:option.file.name,extensions:option.file.extensions}]},function(file){
                   input.val(file).change()
               })
           })
