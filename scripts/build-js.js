@@ -1,4 +1,5 @@
 var browserify = require('browserify'),
+    licensify = require('licensify'), 
     exorcist = require('exorcist'),
     path = require('path'),
     babelify = require('babelify'),
@@ -10,6 +11,8 @@ var browserify = require('browserify'),
 if (prod) console.warn('\x1b[36m%s\x1b[0m', 'Building minified js bundle for production... This may take a while... ');
 
 b = browserify(path.resolve(__dirname + '/../src/browser/js/browser.js'), {debug:!fast})
+
+b.plugin(licensify)
 
 b = b.transform(babelify, {presets: ["es2015"], plugins: ["transform-object-rest-spread"]})
 

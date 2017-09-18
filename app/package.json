@@ -3,11 +3,23 @@
   "productName": "Open Stage Control",
   "description": "A libre desktop OSC bi-directionnal control surface application.",
   "version": "0.20.3",
-  "main": "index.js",
   "author": {
     "name": "Jean-Emmanuel Doucet / AMMD",
     "email": "jeannot@ammd.net"
   },
+  "keywords": [
+    "osc",
+    "midi",
+    "interface",
+    "multi-touch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jean-emmanuel/open-stage-control"
+  },
+  "homepage": "http://osc.ammd.net/",
+  "license": "GPL-3.0",
+  "main": "index.js",
   "dependencies": {
     "vmodule":"1.0.1",
     "electron-localshortcut": "2.0.2",
@@ -24,15 +36,5 @@
   },
   "engines": {
     "node": "6"
-  },
-  "keywords": [
-    "osc",
-    "interface",
-    "multi-touch"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jean-emmanuel/open-stage-control"
-  },
-  "licence": "GPL-3.0"
+  }
 }
