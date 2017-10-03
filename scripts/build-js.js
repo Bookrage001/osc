@@ -14,7 +14,7 @@ b = browserify(path.resolve(__dirname + '/../src/browser/js/browser.js'), {debug
 
 b.plugin(licensify)
 
-b = b.transform(babelify, {presets: ["es2015"], plugins: ["transform-object-rest-spread"]})
+b = b.transform(babelify, {presets: ["env"]})
 
 if (prod) b = b.transform('uglifyify', {global: true})
 
