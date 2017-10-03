@@ -7,6 +7,12 @@ var init = require('./init'),
 
 var callbacks = module.exports = {
 
+    bundle: function(data) {
+        for (let i in data) {
+            osc.receive(data[i])
+        }
+    },
+
     receiveOsc: function(data){
         osc.receive(data)
     },
