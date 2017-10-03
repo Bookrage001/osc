@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.20.4
+
+- osc
+  - messages received almost simultaneously are now bundled before being sent to the clients. This helps preserving their order.
+- widgets
+  - sliders/pads: when receiving feedback while touched, the widget waits to be released before updating to the latest received value.
+
 ## 0.20.3
 
 - bug fixes

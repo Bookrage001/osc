@@ -1,6 +1,6 @@
 var {clip, mapToScale} = require('../utils'),
     _canvas_base = require('../common/_canvas_base'),
-    osctouchstate = require('../mixins/osc_touch_state'),
+    touchstate = require('../mixins/touch_state'),
     doubletab = require('../mixins/double_tap'),
     Input = require('../inputs/input')
 
@@ -60,8 +60,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
         }
 
-        if (this.getProp('touchAddress') && this.getProp('touchAddress').length)
-            osctouchstate(this, this.wrapper)
+        touchstate(this, this.wrapper)
 
         this.wrapper.on('mousewheel',this.mousewheelHandleProxy.bind(this))
         this.wrapper.on('draginit',this.draginitHandleProxy.bind(this))
@@ -196,6 +195,7 @@ module.exports = class _sliders_base extends _canvas_base {
     setValue(v,options={}) {
 
         if (typeof v != 'number') return
+        if (this.touched && !options.dragged) return this.setValueTouchedQueue = arguments
 
         var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 
