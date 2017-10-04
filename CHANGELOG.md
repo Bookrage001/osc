@@ -2,6 +2,8 @@
 
 ## 0.20.4
 
+- main
+  - renamed `--sync` option to `--send` (deprecation)
 - osc
   - messages received almost simultaneously are now bundled before being sent to the clients. This helps preserving their order.
 - widgets
