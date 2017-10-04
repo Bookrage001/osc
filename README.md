@@ -34,7 +34,8 @@ The documentation is located at [osc.ammd.net](http://osc.ammd.net)
 
 ## Supported platforms
 
-The server can run on all [platforms supported by Electron](https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md). Any client that can run chrome browser can connect to the server.
+The server can run on all [platforms supported by Electron](https://electron.atom.io/docs/tutorial/supported-platforms/).
+The only supported client browsers are the one provided with the server and Chrome/Chromium version `50` or later. For iOS devices, the minimal version required is `9.3`.
 
 ## License & credits
 
