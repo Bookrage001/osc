@@ -10,7 +10,7 @@ Below are the available command-line options. Note that when running without any
 
 | Option | Description |
 |---|---|
-| sync | synchronized hosts (ip:port pairs) (osc messages sent by widgets will also be sent to these targets)|
+| send | default targets for all widgets (ip:port pairs)|
 | load | session file to load |
 | blank | load a blank session and start the editor |
 | custom-module | custom module file to load |
