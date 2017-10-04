@@ -7,10 +7,17 @@ var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'
     ifaces = require('os').networkInterfaces()
 
 var options = {
-    's':{alias:'sync',type:'array',describe:'synchronized hosts (ip:port pairs), used as default targets for all widgets',
+    's':{alias:'send',type:'array',describe:'default targets for all widgets (ip:port pairs)',
          check: (s)=>{
              return (s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$') != null) ?
-                 true : 'Sync hosts must be ip:port pairs & port must be >= 1024'
+                 true : 'Targets must be ip:port pairs & port must be >= 1024'
+         }
+    },
+    'sync':{type:'array',describe:false,launcher:false,
+         check: (s)=>{
+             if (s) console.error('Warning: --sync is deprecated, use --send instead.')
+             return (s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$') != null) ?
+                 true : 'Targets must be ip:port pairs & port must be >= 1024'
          }
     },
     'l':{alias:'load',type:'string',file:{name:'OSC Session (.json)', extensions: ['json', 'js']},describe:'session file to load'},
