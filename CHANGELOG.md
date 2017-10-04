@@ -8,6 +8,8 @@
   - messages received almost simultaneously are now bundled before being sent to the clients. This helps preserving their order.
 - widgets
   - sliders/pads: when receiving feedback while touched, the widget waits to be released before updating to the latest received value.
+- editor
+  - property fields are now parsed using [JSON5](https://github.com/json5/json5), a more flexible notation. Session files are still using  the standard JSON format, this is just a way to avoid typing mistakes when using the editor. 
 
 ## 0.20.3
 
