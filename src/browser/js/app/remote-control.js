@@ -13,7 +13,7 @@ var callbacks = {
         if (READ_ONLY) return
 
         var [id, json] = args,
-            newdata = JSON.parse(json),
+            newdata = JSON.parseFlex(json),
             containers = widgetManager.getWidgetById(id)
 
         if (!containers.length) return
@@ -32,7 +32,7 @@ var callbacks = {
         if (READ_ONLY) return
 
         var [id, json] = args,
-            newdata = JSON.parse(json),
+            newdata = JSON.parseFlex(json),
             containers = widgetManager.getWidgetById(id)
 
         if (!containers.length) return
@@ -54,7 +54,7 @@ var callbacks = {
                 $(`.tablink[data-widget="${w.hash}"]`).trigger('fake-click')
             }
         }
-        
+
     }
 }
 

@@ -1,7 +1,6 @@
 var updateDom = require('./data-workers').updateDom,
     {widgets, categories} = require('../widgets'),
     {icon} = require('../utils'),
-    JSON5 = require('json5'),
     defaults = {}
 
 for (var k in widgets) {
@@ -97,12 +96,12 @@ var editObject = function(container, data, refresh){
            }
 
             input.on('change',function(){
-                // var v = $(this).val()!= '' && $(this).data('type') == 'object'?JSON.parse($(this).val()):$(this).val()
+
                 var title = input.attr('title'),
                     v
 
                 try {
-                    v = JSON5.parse(input.val())
+                    v = JSON.parseFlex(input.val())
                 } catch(err) {
                     v = input.val()
                 }

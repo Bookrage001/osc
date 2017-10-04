@@ -53,6 +53,10 @@ request.send()
 
 ///////////////////////
 
+window.JSON.parseFlex = require('json5').parse
+
+///////////////////////
+
 window.$ = require('jquery/dist/jquery.slim.min.js')
 require('./libs/jquery.ui')
 require('./libs/jquery.drag')

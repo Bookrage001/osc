@@ -10,7 +10,7 @@ Apply a set of options to an existing widget by replacing the old ones with the 
 
 
 - `id`: `string`, widget's `id`
-- `options`: `string`, JSON stringified object defining the new properties to merge
+- `options`: `string`, [JSON5](https://github.com/json5/json5) stringified object defining the new properties to merge
   - example: `{"label":"New Label", "color":"red"}`
 
 !!! warning ""
@@ -22,7 +22,7 @@ Apply a set of options to an existing widget by merging them to the widget's opt
 
 
 - `id`: `string`, widget's `id`
-- `options`: `string`, JSON stringified object defining the new properties to merge
+- `options`: `string`, [JSON5](https://github.com/json5/json5) stringified object defining the new properties to merge
   - example: `{"label":"New Label", "color":"red"}`
 
 !!! warning ""
