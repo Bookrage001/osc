@@ -154,11 +154,13 @@ module.exports = class Input extends _canvas_base {
             for (var i=widget.length-1; i>=0; i--) {
                 if (widget[i].setValue) {
                     widget[i].setValue(this.value, options)
-                    this.setValue(widget[i].getValue(), {...options, internal:true})
+                    this.setValue(widget[i].getValue(), {...options, internal:true, sentOnce:options.send})
                     return
                 }
             }
         }
+
+        if (options.sentOnce) options.send = false
 
         this.stringValue = this.getStringValue()
         this.draw()
