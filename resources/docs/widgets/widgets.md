@@ -77,9 +77,10 @@ All widgets share a set of generic properties described below.
     - this defines the targets of the widget's osc messages
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
-    - if no target is set, messages can still be sent if the server has synchronized hosts (`-s / --sync`)
     - if [`midi`](../extras/midi.md) is enabled, targets can be `"midi:device_name"`
-    - special target "self" will directly send the message back to the client
+    - special item `"self"` can be used to refer to the emitting client directly
+    - if no target is set (empty array `[]`), messages can still be sent if the server has defaults targets (`-s / --send`)
+    - to disable osc regardless of the previous point, set `target` to `[null]`
 
 ### `address`
 - type: `string`

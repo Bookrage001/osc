@@ -188,37 +188,40 @@ module.exports =  {
                 }
             }
 
+            if (data.target.indexOf(null) == -1) {
 
-            var targets = []
+                var targets = []
 
-            if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
-            if (data.target) Array.prototype.push.apply(targets, data.target)
+                if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
+                if (data.target) Array.prototype.push.apply(targets, data.target)
 
 
-            for (var i in targets) {
+                for (var i in targets) {
 
-                if (targets[i] == 'self') {
-                    ipc.send('receiveOsc',data,clientId)
-                    continue
-                }
-
-                var host = targets[i].split(':')[0],
-                    port = targets[i].split(':')[1]
-
-                if (port) {
-
-                    if (data.split) {
-
-                        for (var j in data.split) {
-                            osc.send(host,port,data.split[j],data.args[j],data.precision)
-                        }
-
-                    } else {
-
-                        osc.send(host,port,data.address,data.args,data.precision)
-
+                    if (targets[i] == 'self') {
+                        ipc.send('receiveOsc',data,clientId)
+                        continue
                     }
 
+                    var host = targets[i].split(':')[0],
+                        port = targets[i].split(':')[1]
+
+                    if (port) {
+
+                        if (data.split) {
+
+                            for (var j in data.split) {
+                                osc.send(host,port,data.split[j],data.args[j],data.precision)
+                            }
+
+                        } else {
+
+                            osc.send(host,port,data.address,data.args,data.precision)
+
+                        }
+
+
+                    }
 
                 }
 

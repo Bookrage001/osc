@@ -27,12 +27,12 @@ module.exports = class _widgets_base {
         this.hash = _widgets_base.createHash()
 
         // Turn preArgs into array
-        if (this.props.preArgs != undefined && !Array.isArray(this.resolveProp('preArgs', undefined, false))) {
+        if (this.props.preArgs !== undefined && !Array.isArray(this.resolveProp('preArgs', undefined, false))) {
             this.props.preArgs = [this.props.preArgs]
         }
 
         // Turn preArgs into array
-        if (this.props.target != undefined && !Array.isArray(this.resolveProp('target', undefined, false))) {
+        if (this.props.target !== undefined && !Array.isArray(this.resolveProp('target', undefined, false))) {
             this.props.target = [this.props.target]
         }
 
