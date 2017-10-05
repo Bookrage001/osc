@@ -10,33 +10,33 @@ Below are the available command-line options. Note that when running without any
 
 | Option | Description |
 |---|---|
-| send | default targets for all widgets (ip:port pairs)|
-| load | session file to load |
-| blank | load a blank session and start the editor |
-| custom-module | custom module file to load |
-| port | http port of the server (default to 8080) |
-| osc-port | osc input port (default to --port) |
-| midi | midi router settings (requires python-pyo) |
-| debug | log received osc messages in the console |
-| no-gui | disable default gui |
-| gui-only | app server's url. If true, local port (--port) is used |
-| theme | theme name or path (mutliple values allowed)    |
-| examples | list examples instead of recent sessions |
-| url-options | [url options](extras/url-options) (opt=value pairs) |
-| disable-vsync | disable gui's vertical synchronization |
-| read-only | disable session editing and session history changes |
+| -s, --send | default targets for all widgets (ip:port pairs)|
+| -l, --load | session file to load |
+| -b, --blank | load a blank session and start the editor |
+| -c, --custom-module | custom module file to load |
+| -p, --port | http port of the server (default to 8080) |
+| -o, --osc-port | osc input port (default to --port) |
+| -m, --midi | midi router settings (requires python-pyo) |
+| -d, --debug | log received osc messages in the console |
+| -n, --no-gui | disable default gui |
+| -g, --gui-only | app server's url. If true, local port (--port) is used |
+| -t, --theme | theme name or path (mutliple values allowed)    |
+| -e, --examples | list examples instead of recent sessions |
+| --url-options | [url options](extras/url-options) (opt=value pairs) |
+| --disable-vsync | disable gui's vertical synchronization |
+| --read-only | disable session editing and session history changes |
 
 Command-line only :
 
 | Option | Description |
 |---|---|
-| help | print available options |
-| version | print version number |
+| -h, --help | print available options |
+| -v, --version | print version number |
 
 **Examples**
 
 ```
-$ open-stage-control --sync 127.0.0.1:5555 127.0.0.1:6666 --port 7777
+$ open-stage-control --send 127.0.0.1:5555 127.0.0.1:6666 --port 7777
 ```
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
