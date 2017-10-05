@@ -9,7 +9,7 @@
 - widgets
   - sliders/pads: when receiving feedback while touched, the widget waits to be released before updating to the latest received value.
   - input: the widget's value is no longer validated when leaving focus by clicking somewhere else or hitting the `Tab` key (it must be submitted by hitting the `Enter` key); when submitting a value to another widget, the feedback from this widget doesn't trigger a second osc message anymore
-  - added support for `"null"` value in `target` option to disable osc sending
+  - added support for `null` value in `target` option to disable osc sending
 - misc
   - property fields are now parsed using [JSON5](https://github.com/json5/json5), a more flexible notation. Session files are still written in standard JSON format, this is just a way to avoid typing mistakes when using the editor.
   - remote editing also accepts JSON5 notation
