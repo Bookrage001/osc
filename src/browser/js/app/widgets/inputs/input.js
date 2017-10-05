@@ -84,7 +84,7 @@ module.exports = class Input extends _canvas_base {
             .prependTo(this.widget)
             .focus()
             .on('blur', (e)=>{
-                this.blur()
+                this.blur(false)
             })
             .on('keydown', (e)=>{
                 if (e.keyCode==13) this.blur()
