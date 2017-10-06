@@ -70,7 +70,7 @@ var sendOsc = function(data){
 
 }
 
-var receiveOscQueue = []
+// var receiveOscQueue = []
 
 var receiveOsc = function(data, info){
 
@@ -82,20 +82,22 @@ var receiveOsc = function(data, info){
 
 	if (data.args.length==1) data.args = data.args[0]
 
-	receiveOscQueue.push(data)
+	// receiveOscQueue.push(data)
+
+	ipc.send('receiveOsc',data)
 
 	if (debug) console.log('OSC received: ', {address:data.address, args: data.args}, 'From : ' + data.host + ':' + data.port)
 
 }
 
-setInterval(()=>{
-
-	if (receiveOscQueue.length > 0) {
-		ipc.send('bundle',receiveOscQueue)
-		receiveOscQueue = []
-	}
-
-}, 5)
+// setInterval(()=>{
+//
+// 	if (receiveOscQueue.length > 0) {
+// 		ipc.send('bundle',receiveOscQueue)
+// 		receiveOscQueue = []
+// 	}
+//
+// }, 5)
 
 
 var customModule = (function(){
