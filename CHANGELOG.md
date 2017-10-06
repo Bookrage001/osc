@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.20.4
+## 0.21.0
 
 - main
   - renamed `--sync` option to `--send` (deprecation,  backward-compatible)
