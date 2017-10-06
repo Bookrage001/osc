@@ -46,7 +46,7 @@ module.exports = class Input extends _canvas_base {
 
         var html = `
             <div class="input">
-                <canvas tabindex="0"></canvas>
+                <canvas></canvas>
             </div>
         `
 
@@ -56,7 +56,7 @@ module.exports = class Input extends _canvas_base {
         this.stringValue = ''
 
         if (this.getProp('editable')) {
-
+            this.canvas.attr('tabindex', 0)
             this.canvas.on('focus', this.focus.bind(this))
             this.input = $('<input></input>')
 
