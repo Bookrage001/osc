@@ -1,1 +1,1 @@
-require(__dirname+'/main/main.js')
+require('./main/main')
