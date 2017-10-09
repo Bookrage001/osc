@@ -3,7 +3,7 @@
     ["env", {
       "targets": {
         "ios": "9.3",
-	"chrome": "50"
+        "chrome": "50"
       }
     }]
   ],
