@@ -50,8 +50,10 @@ module.exports = class Visualizer extends _plots_base {
         this.pips.y.min = Math.abs(this.getProp('range').min) >= 1000? this.getProp('range').min/1000+'k' : this.getProp('range').min
         this.pips.y.max = Math.abs(this.getProp('range').max) >= 1000? this.getProp('range').max/1000+'k' : this.getProp('range').max
         this.pips.x = false
+        this.rangeY = this.getProp('range') || {min:0,max:1}
+        this.logScaleY = this.getProp('logScale')
         this.length = Math.round(clip(this.fps * this.getProp('duration'), [8, 4096]))
-        this.data = new Array(this.length)
+        this.data = new Array(this.length).fill(this.rangeY.min)
         this.value = this.getProp('range').min
         this.cancel = false
         this.looping = false
@@ -103,33 +105,6 @@ module.exports = class Visualizer extends _plots_base {
         setTimeout(()=>{
             this.loop()
         }, (1000/this.fps))
-
-    }
-
-
-    draw_data() {
-
-        var first = true
-        var point = []
-
-        for (var i=0;i<this.length;i++) {
-            var newpoint = [
-                mapToScale(i,[0,this.length-1],[0,this.width],1),
-                mapToScale(this.data[i],[this.getProp('range').min,this.getProp('range').max],[this.height-PXSCALE,PXSCALE],1,this.getProp('logScale'),true),
-            ]
-            if (first) {
-                this.ctx.moveTo(newpoint[0],newpoint[1])
-                first = false
-            } else {
-                if (this.getProp('logScale')) {
-                    this.ctx.quadraticCurveTo(newpoint[0], point[1], newpoint[0], newpoint[1])
-                } else {
-                    this.ctx.lineTo(newpoint[0],newpoint[1])
-                }
-
-            }
-            point = newpoint
-        }
 
     }
 

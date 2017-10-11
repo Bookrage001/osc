@@ -19,6 +19,8 @@ module.exports = class _plots_base extends _canvas_base {
         this.linkedWidgets = []
         this.rangeX = this.getProp('rangeX') || {min:0,max:1}
         this.rangeY = this.getProp('rangeY') || {min:0,max:1}
+        this.logScaleX = this.getProp('logScaleX')
+        this.logScaleY = this.getProp('logScaleY')
         this.pips = {
             x : {
                 min: Math.abs(this.rangeX.min)>=1000?this.rangeY.min/1000+'k':this.rangeX.min,
@@ -134,24 +136,17 @@ module.exports = class _plots_base extends _canvas_base {
         var points = []
         for (let i in this.data) {
 
-            if (this.data[i][1]>this.rangeY.max || this.data[i][1]<this.rangeY.min ||
-                this.data[i][0]>this.rangeX.max || this.data[i][0]<this.rangeX.min) continue
-
-
             if (this.data[i].length) {
-                points.push(mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.getProp('logScaleX'),true))
-                points.push(mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.getProp('logScaleY'),true))
+                points.push(mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.logScaleX,true))
+                points.push(mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
             } else {
-                points.push(mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.getProp('logScaleX'),true))
-                points.push(mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.getProp('logScaleY'),true))
+                points.push(mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.logScaleX,true))
+                points.push(mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
             }
 
         }
 
         this.ctx.curve(points, this.smooth, Math.round(this.width/(points.length/2 - 1)))
-
-
-
 
     }
 
