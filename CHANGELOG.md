@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.21.1
+
+- bug fixes
+  - visualizer: fix memory leak when editing; fix ignored `smooth` option
+
 ## 0.21.0
 
 - main
