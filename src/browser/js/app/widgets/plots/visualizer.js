@@ -144,9 +144,20 @@ module.exports = class Visualizer extends _plots_base {
 
     setValue(v) {
 
-        this.value = v
-        this.startLoop()
+        if (Array.isArray(v) && v.length == this.length) {
+
+            this.data = v
+            this.value = v[v.length - 1]
+            this.startLoop()
+
+        } else if (typeof(v) == 'number'){
+
+            this.value = v
+            this.startLoop()
+
+        }
 
     }
+
 
 }
