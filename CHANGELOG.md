@@ -4,6 +4,7 @@
 
 - bug fixes
   - visualizer: fix memory leak when editing; fix ignored `smooth` option
+  - plots: regression preventing widgets with no `target` option from receiving messages sent by other clients
 
 ## 0.21.0
 
