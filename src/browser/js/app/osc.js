@@ -70,7 +70,7 @@ Osc.prototype.receive = function(data){
         // if the message target is provided (when message comes from another client connected to the same server)
         // then we only update the widgets that have the same target
         // compare arrays using > and < operators (both false = equality)
-        if (!target || !(widget[i].getProp('target') < target || widget[i].getProp('target') > target || widget[i].getProp('target').length != target.length)) {
+        if (!target || !(widget[i].getProp('target') < target || widget[i].getProp('target') > target || (widget[i].getProp('target') && widget[i].getProp('target').length !== target.length))) {
             // update matching widgets
             if (widget[i] && widget[i].setValue) widget[i].setValue(args,{send:false,sync:true,fromExternal:!target})
         }
