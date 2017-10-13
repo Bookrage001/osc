@@ -3,7 +3,9 @@
 ## 0.21.2
 
 - bug fixes
-  - cli: broken long flag `--no-gui` 
+  - cli: broken long flag `--no-gui`
+- midi
+  - float values are now allowed and automatically rounded
 
 ## 0.21.1
 
