@@ -63,6 +63,16 @@ Control change event.
 - `cc`: integer between 0 and 127
 - `value`: integer between 0 and 127
 
+Example:
+
+A fader might be configured as follows in order to send a MIDI control message (a volume control in this example):
+
+- `address`: /control
+- `pre-args`: [1, 7] (MIDI channel 1, control number 7 generally used as volume control)
+- `range`: {"min": 0, "max": 127} (MIDI values are encoded in this range)
+- `precision`: 0 (this is important to avoid sending float values)
+- `target`: ["midi:device_name"]
+
 ### `/program channel program`
 
 Program change event.
