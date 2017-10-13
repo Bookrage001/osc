@@ -146,7 +146,7 @@ def createCallbackFunction(name):
         try:
             callback(midi)
         except:
-            ipcSend('log', 'ERROR: Midi: %s' % traceback.format_exc())
+            ipcSend('log', 'ERROR: MIDI: %s' % traceback.format_exc())
 
     return errorLoggedCallback
 
@@ -200,10 +200,16 @@ def sendMidi(name, event, *args):
 
         m = rtmidi.MidiMessage(unhexlify(midiBytes))
 
-    outputs[name].sendMessage(m)
+    if m is None:
 
-    if debug:
-        ipcSend('log','MIDI sent: %s' % m)
+        ipcSend('log','ERROR: MIDI: could not convert osc args to midi message (%s %s)' % (event, " ".join([str(x) for x in args])))
+
+    else:
+
+        outputs[name].sendMessage(m)
+
+        if debug:
+            ipcSend('log','MIDI sent: %s' % m)
 
 
 while True:
@@ -218,4 +224,4 @@ while True:
         msg[1] = msg[1].lower()
         sendMidi(*msg)
     except:
-        ipcSend('log', 'ERROR: Midi: %s' % traceback.format_exc())
+        ipcSend('log', 'ERROR: MIDI: %s' % traceback.format_exc())
