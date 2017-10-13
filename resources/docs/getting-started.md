@@ -129,3 +129,12 @@ In short: install [xvfb](https://en.wikipedia.org/wiki/Xvfb) and prepend your co
 ```
 $ xvfb-run open-stage-control -n
 ```
+
+## Running without Electron
+
+It is possible to run the server in headless mode without Electron using [node](https://nodejs.org) (v6 or higher) :
+
+```
+$ node /path/to/packaged/open-stage-control/resources/app/ -n
+$ node /path/to/sources/open-stage-control/app/ -n
+```
