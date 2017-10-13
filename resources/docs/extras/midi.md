@@ -70,7 +70,6 @@ A fader might be configured as follows in order to send a MIDI control message (
 - `address`: /control
 - `pre-args`: [1, 7] (MIDI channel 1, control number 7 generally used as volume control)
 - `range`: {"min": 0, "max": 127} (MIDI values are encoded in this range)
-- `precision`: 0 (this is important to avoid sending float values)
 - `target`: ["midi:device_name"]
 
 ### `/program channel program`
