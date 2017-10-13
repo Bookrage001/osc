@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.21.2
+
+- bug fixes
+  - cli: broken long flag `--no-gui` 
+
 ## 0.21.1
 
 - bug fixes
