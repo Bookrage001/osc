@@ -166,18 +166,22 @@ def sendMidi(name, event, *args):
     m = None
 
     if 'note' in event and len(args) == 3:
+        args = [int(round(x)) for x in args]
         if args[2] > 0:
             m = rtmidi.MidiMessage.noteOn(*args)
         else:
             m = rtmidi.MidiMessage.noteOff(args[0], args[1])
 
     elif 'control' in event and len(args) == 3:
+        args = [int(round(x)) for x in args]
         m = rtmidi.MidiMessage.controllerEvent(*args)
 
     elif 'program' in event and len(args) == 2:
+        args = [int(round(x)) for x in args]
         m = rtmidi.MidiMessage.programChange(*args)
 
     elif 'pitch' in event and len(args) == 2:
+        args = [int(round(x)) for x in args]
         m = rtmidi.MidiMessage.pitchWheel(*args)
 
     elif 'sysex' in event:
