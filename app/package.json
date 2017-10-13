@@ -34,6 +34,9 @@
   "scripts": {
     "start": "electron ."
   },
+  "yargs": {
+    "boolean-negation": false
+  },
   "engines": {
     "node": "6"
   }
