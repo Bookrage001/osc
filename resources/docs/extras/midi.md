@@ -93,4 +93,4 @@ System exclusive message.
 - `msg`: hexadecimal sysex data string of the form `f0 ... f7`. You may include placeholders of the form `nn` which will be replaced by `v1, .., vN` respectively.
 - `v1, .., vN`: values encoded as hexadecimal data strings to include in `msg`. Most probably, you will need to sepcify a [custom module](/extras/custom-module/) in order to convert numeric widget values into the required hexadecimal format. In general, this conversion will be different for each manufacturer / device.
 
-For a very simple example, refer to session 'sysex_device_inquiry.js' found in the application's sub folder 'resources/app/examples/'. Please remember to adjust the button's `target` to the `device_name` used in your MIDI setup.
+For a very simple example, refer to session 'sysex.json' found in the application's sub folder 'resources/app/examples/'. Please remember to adjust the button's `target` to the `device_name` used in your MIDI setup.
