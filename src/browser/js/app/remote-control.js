@@ -1,5 +1,5 @@
 var {getObjectData, updateDom} = require('./editor/data-workers'),
-    {widgetManager} = require('./managers')
+    widgetManager = require('./managers/widgets')
 
 var callbacks = {
     '/EXEC': function(args) {

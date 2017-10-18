@@ -1,6 +1,6 @@
 var {iconify} = require('../../utils'),
     _widgets_base = require('../common/_widgets_base'),
-    {widgetManager} = require('../../managers')
+    widgetManager = require('../../managers/widgets')
 
 module.exports = class Text extends _widgets_base {
 

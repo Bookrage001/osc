@@ -1,6 +1,6 @@
 var {mapToScale} = require('../utils'),
     _widgets_base = require('../common/_widgets_base'),
-    {widgetManager} = require('../../managers'),
+    widgetManager = require('../../managers/widgets'),
     {clip} = require('../utils')
 
 module.exports = class Rbgled extends _widgets_base {

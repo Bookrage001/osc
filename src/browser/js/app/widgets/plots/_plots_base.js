@@ -1,7 +1,7 @@
 var {mapToScale} = require('../utils'),
     _widgets_base = require('../common/_widgets_base'),
     _canvas_base = require('../common/_canvas_base'),
-    {widgetManager} = require('../../managers')
+    widgetManager = require('../../managers/widgets')
 
 module.exports = class _plots_base extends _canvas_base {
 

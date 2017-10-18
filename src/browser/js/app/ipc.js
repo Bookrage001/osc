@@ -23,6 +23,17 @@ var Ipc = class Ipc {
         this.socket.on(name, fn)
 
     }
+
+    registerCallbacks(callbacks) {
+
+        for (let i in callbacks) {
+            let callback = callbacks[i]
+            this.on(i, (data)=>{
+                callback(data)
+            })
+        }
+
+    }
 }
 
 

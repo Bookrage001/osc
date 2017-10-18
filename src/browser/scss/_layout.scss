@@ -86,7 +86,12 @@ body {
                     -webkit-mask: linear-gradient(to left, rgba(0, 0, 0, 0), #000000 10rem) no-repeat;
                 }
 
-
+            }
+            #open-toggle {
+                pointer-events: auto;
+                i {
+                    pointer-events: none;
+                }
             }
             &.on a, .sidepanel-open {
 	            position: relative;

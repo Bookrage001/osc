@@ -1,5 +1,5 @@
 var Fader = require('../sliders/fader'),
-    {widgetManager} = require('../../managers')
+    widgetManager = require('../../managers/widgets')
 
 
 module.exports = class Meter extends Fader {

@@ -1,9 +1,7 @@
-var actions = require('../actions'),
-    sidepanelCreateToggle = require('../sidepanel').createToggle,
-    editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments)},
+var editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments)},
     purgeStores = require('./purge'),
     {iconify} = require('../utils'),
-    {widgetManager} = require('../managers'),
+    widgetManager = require('../managers/widgets'),
     parser = require('../parser'),
     parsewidgets = parser.widgets,
     parsetabs = parser.tabs
@@ -51,7 +49,6 @@ var updateDom = function(container,data, remote) {
     }
 
     $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
-    sidepanelCreateToggle()
 
     newContainer.trigger('resize')
 

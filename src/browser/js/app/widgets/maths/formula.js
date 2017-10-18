@@ -1,5 +1,5 @@
 var _widgets_base = require('../common/_widgets_base'),
-    {widgetManager} = require('../../managers'),
+    widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
     Input = require('../inputs/input')
 

@@ -1,4 +1,4 @@
-var {widgetManager} = require('../managers')
+var widgetManager = require('../managers/widgets')
 
 module.exports = function(hashes) {
     // prune widget stores

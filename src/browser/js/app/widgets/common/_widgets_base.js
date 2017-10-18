@@ -1,6 +1,6 @@
 var osc = require('../../osc'),
     shortid = require('shortid'),
-    {widgetManager} = require('../../managers'),
+    widgetManager = require('../../managers/widgets'),
     updateDom = function(){ updateDom = require('../../editor/data-workers').updateDom; updateDom(...arguments)}
 
 

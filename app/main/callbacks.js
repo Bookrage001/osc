@@ -267,19 +267,6 @@ module.exports =  {
         })
     },
 
-    stateLoad: function(data,clientId) {
-        dialog.showOpenDialog(window,{title:'Load preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
-
-            if (file==undefined) {return}
-            settings.write('presetPath',file[0])
-
-            fs.readFile(file[0],'utf-8', function read(err, data) {
-                if (err) throw err
-                ipc.send('stateLoad',data,clientId)
-            })
-        })
-    },
-
     fullscreen: function(data) {
         window.setFullScreen(!window.isFullScreen())
     },

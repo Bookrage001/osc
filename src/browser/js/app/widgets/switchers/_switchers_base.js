@@ -1,6 +1,5 @@
 var _widgets_base = require('../common/_widgets_base'),
-    {widgetManager} = require('../../managers'),
-    {stateSet} = require('../../actions'),
+    widgetManager = require('../../managers/widgets'),
     osc = require('../../osc')
 
 

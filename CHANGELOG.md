@@ -6,6 +6,8 @@
   - cli: broken long flag `--no-gui`
 - midi
   - float values are now allowed and automatically rounded
+- misc
+  - some code refactoring
 
 ## 0.21.1
 

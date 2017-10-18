@@ -334,6 +334,12 @@
 
     }
 
+    $.fn.disableTraversingGestures = function() {
+
+        this.trigger('disableTraversingGestures')
+
+    }
+
 
     var longTapTimer = false,
         clearLongTapTimer = function() {

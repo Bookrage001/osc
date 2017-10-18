@@ -1,4 +1,6 @@
-var actions = require('./actions'),
+var state = require('./managers/state'),
+    session = require('./managers/session'),
+    editor = require('./editor/'),
     icon = require('./utils').icon,
     fullscreen = require('screenfull')
 
@@ -7,7 +9,9 @@ var data = [
         actions: [
             {
                 title:'Fullscreen',
-                action:actions.toggleFullscreen,
+                action:()=>{
+                    if (fullscreen.enabled) fullscreen.toggle()
+                },
                 class:'fullscreenToggle'
             }
 
@@ -18,24 +22,27 @@ var data = [
         actions: [
             {
                 title:'Store',
-                action:actions.stateQuickSave
+                action:()=>{
+                    state.quickSave.bind(state)
+                    $('.quickload').removeClass('disabled')
+                }
             },
             {
                 title:'Recall',
-                action:actions.stateQuickLoad,
+                action:state.quickLoad.bind(state),
                 class:'disabled quickload'
             },
             {
                 title:'Send All',
-                action:actions.stateSend
+                action:state.send.bind(state)
             },
             {
                 title:'Import',
-                action:actions.stateLoad
+                action:state.load.bind(state)
             },
             {
                 title:'Export',
-                action:actions.stateSave
+                action:state.save.bind(state)
             }
         ]
     },
@@ -44,12 +51,18 @@ var data = [
         actions: [
             {
                 title:'On',
-                action:actions.traversingEnable,
+                action:()=>{
+                    $('.traversingEnable, .traversingDisable').toggleClass('on')
+                    $('#container').enableTraversingGestures()
+                },
                 class:'traversingEnable'
             },
             {
                 title:'Off',
-                action:actions.traversingDisable,
+                action:()=>{
+                    $('.traversingEnable, .traversingDisable').toggleClass('on')
+                    $('#container').disableTraversingGestures()
+                },
                 class:'traversingDisable on'
             }
         ]
@@ -60,12 +73,12 @@ var data = [
         actions: [
             {
                 title:'On',
-                action:actions.editorEnable,
+                action:editor.enable.bind(editor),
                 class:'enable-editor'
             },
             {
                 title:'Off',
-                action:actions.editorDisable,
+                action:editor.disable.bind(editor),
                 class:'on disable-editor'
             },
             {
@@ -74,93 +87,79 @@ var data = [
             },
             {
                 title:'Load',
-                action:actions.sessionBrowse
+                action:session.browse.bind(session)
             },
             {
                 title:'Save',
-                action:actions.sessionSave
+                action:session.save.bind(session)
             }
         ]
     },
 ]
 
-var sidepanel = function(data){
+var sidepanel = $('<ul id="options"></ul>')
 
-    var bindAction = function(el,callback) {
-        el.click(function(){callback()})
-    }
+for (let i in data) {
 
-    var  html = $('<ul id="options"></ul>')
+    let itemData = data[i],
+        item = $('<li></li>'),
+        inner = $(`<div class="${itemData.class || ''}"></div>`).appendTo(item),
+        wrapper = $('<div class="actions"></div>').appendTo(inner)
 
-    for (let i in data) {
-        var itemData = data[i]
+    if (itemData.title) $(`<div class="title">${itemData.title}</div>`).prependTo(wrapper)
 
-        var item = $('<li></li>'),
-            inner = $(`<div class="${itemData.class || ''}"></div>`).appendTo(item),
-            wrapper = $('<div class="actions"></div>').appendTo(inner)
+    for (let j in itemData.actions) {
 
-        if (itemData.title) $(`<div class="title">${itemData.title}</div>`).prependTo(wrapper)
+        let actionData = itemData.actions[j],
+            element = $(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`).appendTo(wrapper)
 
-        for (let j in itemData.actions) {
-            var actionData = itemData.actions[j]
-            var el = $(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`).appendTo(wrapper)
-            if (actionData.action) bindAction(el, actionData.action)
-
-        }
-        item.appendTo(html)
+        if (actionData.action) element.click(actionData.action)
 
     }
 
-    return html
+    item.appendTo(sidepanel)
 
 }
 
-var toggle = function(){
-    var t = $('#open-toggle').parent().off('fake-click').on('fake-click', function(e){
-        var t = (!$('#sidepanel').hasClass('sidepanel-open')) ? 250 : 0
+
+$('#sidepanel').empty()
+$('#sidepanel').append(`
+    <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
+`)
+$('#sidepanel').append(sidepanel)
+$('#sidepanel').append('<div id="editor"></div>')
+
+$('#container').on('fake-click.sidepanel', function(e){
+
+    if (e.target.id != 'open-toggle') return
+
+    var t = (!$('#sidepanel').hasClass('sidepanel-open')) ? 250 : 0
 
 
-        setTimeout(function(){
-            $('#open-toggle, #sidepanel').toggleClass('sidepanel-open')
-        }, 25)
+    setTimeout(function(){
+        $('#open-toggle, #sidepanel').toggleClass('sidepanel-open')
+    }, 25)
 
-        setTimeout(function(){
-            $('#container').toggleClass('sidepanel-open')
-            $(window).resize()
-        },t + 25)
+    setTimeout(function(){
+        $('#container').toggleClass('sidepanel-open')
+        $(window).resize()
+    },t + 25)
 
+})
+
+$(document).off('keydown.sidepanel').on('keydown.sidepanel', function(e){
+    if (e.keyCode==121) t.trigger('fake-click')
+})
+
+// Fullscreen
+
+var fsToggle = $('#sidepanel').find('.fullscreenToggle')
+
+if (fullscreen.enabled) {
+    fullscreen.off('change')
+    fullscreen.on('change', ()=>{
+        fsToggle.toggleClass('on', fullscreen.isFullScreen)
     })
-
-    // in case where are hot loading a session
-    if ($('#sidepanel').hasClass('sidepanel-open')) {
-        $('#open-toggle, #container').addClass('sidepanel-open')
-    }
-
-    $(document).off('keydown.sidepanel').on('keydown.sidepanel', function(e){
-        if (e.keyCode==121) t.trigger('fake-click')
-    })
-}
-
-module.exports = {
-    init:function(){
-        $('#sidepanel').empty()
-        $('#sidepanel').append(`
-            <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
-        `)
-        $('#sidepanel').append(sidepanel(data))
-        $('#sidepanel').append('<div id="editor"></div>')
-
-        var fsToggle = $('#sidepanel').find('.fullscreenToggle')
-        if (fullscreen.enabled) {
-            fullscreen.off('change')
-            fullscreen.on('change', ()=>{
-                fsToggle.toggleClass('on', fullscreen.isFullScreen)
-            })
-        } else {
-            fsToggle.addClass('disabled')
-        }
-
-        toggle()
-    },
-    createToggle:toggle
+} else {
+    fsToggle.addClass('disabled')
 }

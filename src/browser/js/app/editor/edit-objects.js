@@ -1,5 +1,5 @@
 var updateDom = require('./data-workers').updateDom,
-    {widgets, categories} = require('../widgets'),
+    {widgets, categories} = require('../widgets/'),
     {icon} = require('../utils'),
     defaults = {}
 

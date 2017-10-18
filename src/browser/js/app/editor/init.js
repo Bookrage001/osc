@@ -1,8 +1,8 @@
 var {getObjectData, updateDom, incrementWidget} = require('./data-workers'),
     {editObject, editClean} = require('./edit-objects'),
     createPopup = require('../utils').createPopup,
-    {widgets, categories} = require('../widgets'),
-    {widgetManager} = require('../managers'),
+    {widgets, categories} = require('../widgets/'),
+    widgetManager = require('../managers/widgets'),
     menu = require('./context-menu')
 
 

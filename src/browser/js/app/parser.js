@@ -2,9 +2,9 @@
     Session File Parser
 */
 
-var {widgetManager} = require('./managers')
+var widgetManager = require('./managers/widgets')
 
-var {widgets} = require('./widgets'),
+var {widgets} = require('./widgets/'),
     {iconify} = require('./utils')
 
 var iterators = {},

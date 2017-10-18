@@ -1,6 +1,6 @@
 var {mapToScale} = require('../utils'),
     _widgets_base = require('../common/_widgets_base'),
-    {widgetManager} = require('../../managers')
+    widgetManager = require('../../managers/widgets')
 
 module.exports = class Led extends _widgets_base {
 

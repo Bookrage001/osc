@@ -1,6 +1,6 @@
 var {iconify} = require('../../utils'),
     _canvas_base = require('../common/_canvas_base'),
-    {widgetManager} = require('../../managers')
+    widgetManager = require('../../managers/widgets')
 
 module.exports = class Input extends _canvas_base {
 

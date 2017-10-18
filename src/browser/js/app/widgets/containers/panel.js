@@ -2,7 +2,7 @@ var _widgets_base = require('../common/_widgets_base'),
     autolayout = require('autolayout/dist/autolayout.kiwi.js'),
     {iconify} = require('../../utils'),
     editObject = function(){editObject = require('../../editor/edit-objects').editObject; editObject(...arguments)},
-    {widgetManager} = require('../../managers')
+    widgetManager = require('../../managers/widgets')
 
 
 
