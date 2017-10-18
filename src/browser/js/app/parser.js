@@ -21,8 +21,6 @@ module.exports.reset = function(){
 
 }
 
-
-
 module.exports.widgets = function(data, parentNode, parentWidget, tab) {
 
     for (let i in data) {

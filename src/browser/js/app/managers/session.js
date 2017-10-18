@@ -74,7 +74,7 @@ var SessionManager = class SessionManager {
         var lobby = $(`
             <div class="main">
                 <div class="header">
-                    ${window.PACKAGE.productName}
+                    ${PACKAGE.productName}
                 </div>
                 <div class="list"></div>
                 <div class="footer"></div>
@@ -95,12 +95,12 @@ var SessionManager = class SessionManager {
                 path = path.substr(0,Math.floor((path.length)/2)-(length-max)/2) + '...' + path.substr(Math.ceil((path.length)/2)+(length-max)/2, path.length)
             }
 
-            if (!window.READ_ONLY) {
+            if (!READ_ONLY) {
             }
             list.append(`
                 <a href="#" tabIndex="0" class="btn load" data-session="${data[i]}">
                     ${file} <em style="opacity:0.45">(${path})</em>
-                    ${window.READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
+                    ${READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
                 </a>
             `)
 

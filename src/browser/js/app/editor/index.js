@@ -4,9 +4,6 @@ var Editor = class Editor {
 
     constructor() {
 
-        this.enabled = false
-        EDITING = false
-
         $(document).ready(()=>{
 
             init()
@@ -17,7 +14,7 @@ var Editor = class Editor {
 
     enable() {
 
-        window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
 
         $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget')).removeClass('disabled')
         $('.enable-editor').addClass('on')
@@ -25,9 +22,7 @@ var Editor = class Editor {
         $('body').addClass('editor-enabled')
                  .toggleClass('no-grid', GRIDWIDTH==1)
 
-        this.enabled = true
-        window.EDITING = true
-
+        EDITING = true
 
         var f = $('<div class="form" id="grid-width-input"></div>'),
             h = $('<div class="separator"><span>Grid</span></div>').appendTo(f),
@@ -61,8 +56,7 @@ var Editor = class Editor {
         $('body').removeClass('editor-enabled')
         $('#grid-width-input').remove()
 
-        this.enabled = false
-        window.EDITING = false
+        EDITING = false
 
         if (READ_ONLY) {
             this.enable = ()=>{}

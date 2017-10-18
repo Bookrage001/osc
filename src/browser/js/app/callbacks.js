@@ -19,7 +19,7 @@ var callbacks = module.exports = {
     },
 
     connected:function(){
-        window.LOADING.close()
+        LOADING.close()
     },
 
     sessionList: function(data){
@@ -72,12 +72,12 @@ var callbacks = module.exports = {
         setTimeout(()=>{
             $('canvas').trigger('resize',[0,0,true])
         },100)
-        window.GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
-        // window.PXSCALE_RESET()
+
+        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
     },
-    
+
     readOnly: function(){
-        window.READ_ONLY = true
+        READ_ONLY = true
     }
 
 }
