@@ -3,13 +3,14 @@ require('./app/sourcemap')
 
 var callbacks = require('./app/callbacks'),
     ipc = require('./app/ipc'),
-    osc = require('./app/osc')
+    osc = require('./app/osc'),
+    {loading} = require('./app/utils')
 
 ipc.registerCallbacks(callbacks)
 osc.init()
 
 $(document).ready(function(){
-    window.LOADING = require('./app/utils').loading('Connecting server...')
+    LOADING = loading('Connecting server...')
     require('./app/ui')
     ipc.send('ready')
 })
