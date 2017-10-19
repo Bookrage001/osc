@@ -1,4 +1,5 @@
-var _matrices_base = require('./_matrices_base')
+var _matrices_base = require('./_matrices_base'),
+    parser = require('../../parser')
 
 module.exports = class Multipush extends _matrices_base {
 
@@ -53,9 +54,6 @@ module.exports = class Multipush extends _matrices_base {
 
         var strData = JSON.stringify(options.props)
 
-        var parsers = require('../../parser'),
-            parsewidgets = parsers.widgets
-
         for (var i = this.start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + this.start; i++) {
 
             var data = JSON.parse(strData)
@@ -69,7 +67,7 @@ module.exports = class Multipush extends _matrices_base {
             data.color = typeof this.getProp('color') == 'object' ? '' + this.getProp('color')[i % this.getProp('color').length] : this.getProp('color')
             data.css = ''
 
-            var element = parsewidgets([data],this.widget)
+            var element = parser.parse([data],this.widget)
             element[0].classList.add('not-editable')
 
             this.value[i-this.start] = this.getProp('off')

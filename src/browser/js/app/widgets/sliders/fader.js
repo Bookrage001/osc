@@ -1,5 +1,6 @@
 var {clip, mapToScale} = require('../utils'),
-    _sliders_base = require('./_sliders_base')
+    _sliders_base = require('./_sliders_base'),
+    parser = require('../../parser')
 
 
 module.exports = class Fader extends _sliders_base {
@@ -76,7 +77,6 @@ module.exports = class Fader extends _sliders_base {
         }
 
         if (this.getProp('meter')) {
-            var parsewidgets = require('../../parser').widgets
             var data = {
                 type:'meter',
                 id: this.getProp('id') + '/meter',
@@ -90,7 +90,7 @@ module.exports = class Fader extends _sliders_base {
                 pips:false,
                 dashed:true
             }
-            var element = parsewidgets([data],this.wrapper, this.parent)
+            var element = parser.parse([data],this.wrapper, this.parent)
             element[0].classList.add('not-editable')
             this.widget[0].classList.add('has-meter')
         }

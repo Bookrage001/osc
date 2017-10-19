@@ -2,9 +2,7 @@ var editObject = function(){editObject = require('./edit-objects').editObject; e
     purgeStores = require('./purge'),
     {iconify} = require('../utils'),
     widgetManager = require('../managers/widgets'),
-    parser = require('../parser'),
-    parsewidgets = parser.widgets,
-    parsetabs = parser.tabs
+    parser = require('../parser')
 
 var getObjectData = function(obj){
     var path = []
@@ -39,7 +37,7 @@ var updateDom = function(container,data, remote) {
     }
 
     // widget
-    var newContainer = parsewidgets([data], container[0].abstract.parentNode, container[0].abstract.parent)
+    var newContainer = parser.parse([data], container[0].abstract.parentNode, container[0].abstract.parent)
     container.replaceWith(newContainer)
 
     if (data.type == 'tab') newContainer.trigger('tab-created')

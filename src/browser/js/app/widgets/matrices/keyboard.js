@@ -1,4 +1,6 @@
-var _matrices_base = require('./_matrices_base')
+var _matrices_base = require('./_matrices_base'),
+    parser = require('../../parser')
+
 
 module.exports = class Keyboard extends _matrices_base {
 
@@ -51,9 +53,6 @@ module.exports = class Keyboard extends _matrices_base {
             pattern = 'wbwbwwbwbwbw',
             wCount = 0
 
-        var parsers = require('../../parser'),
-            parsewidgets = parsers.widgets
-
         for (var i = this.start; i < this.keys + this.start && i < 108; i++) {
 
             var data = JSON.parse(strData)
@@ -67,7 +66,7 @@ module.exports = class Keyboard extends _matrices_base {
             data.preArgs = this.getProp('split') ? this.getProp('preArgs') : [].concat(this.getProp('preArgs'), i)
             data.css = ''
 
-            var element = parsewidgets([data],this.widget)
+            var element = parser.parse([data],this.widget)
             element[0].classList.add('not-editable')
 
             if (pattern[i % 12] == 'w') {

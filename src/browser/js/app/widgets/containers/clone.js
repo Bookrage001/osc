@@ -1,6 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
     widgetManager = require('../../managers/widgets'),
-    purge = require('../../editor/purge')
+    purge = require('../../editor/purge'),
+    parser = require('../../parser')
 
 module.exports = class Clone extends _widgets_base {
 
@@ -63,8 +64,6 @@ module.exports = class Clone extends _widgets_base {
 
         this.cloneLock = true
 
-        var parsewidgets = require('../../parser').widgets
-
         this.widget.empty()
         this.container.removeClass(this.cloneClass)
         purge(this.cloneHash)
@@ -86,7 +85,7 @@ module.exports = class Clone extends _widgets_base {
                     this.cloneClass = widgets[i].container.attr('class').match(/[^\s]*-container/)[0]
                     this.container.addClass(this.cloneClass)
 
-                    var c = parsewidgets([{..._widgets_base.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
+                    var c = parser.parse([{..._widgets_base.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
 
                     this.widget.find('.widget').addClass('not-editable')
 

@@ -1,7 +1,5 @@
 var ipc = require('../ipc'),
     parser = require('../parser'),
-    parsewidgets = parser.widgets,
-    reset = parser.reset,
     state = require('./state'),
     editor = require('../editor/'),
     {loading, createPopup, icon} = require('../utils'),
@@ -24,7 +22,7 @@ var SessionManager = class SessionManager {
 
         setTimeout(function(){
             try {
-                reset()
+                parser.reset()
 
                 if (session[0].type != 'root') {
                     this.session = [{type:'root', tabs:session}]
@@ -34,7 +32,7 @@ var SessionManager = class SessionManager {
                     throw 'Malformed session file'
                 }
 
-                parsewidgets(this.session,$('#container'))
+                parser.parse(this.session,$('#container'))
             } catch (err) {
                 p.close()
                 $('#lobby').show()

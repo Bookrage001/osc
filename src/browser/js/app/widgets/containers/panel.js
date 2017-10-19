@@ -2,7 +2,8 @@ var _widgets_base = require('../common/_widgets_base'),
     autolayout = require('autolayout/dist/autolayout.kiwi.js'),
     {iconify} = require('../../utils'),
     editObject = function(){editObject = require('../../editor/edit-objects').editObject; editObject(...arguments)},
-    widgetManager = require('../../managers/widgets')
+    widgetManager = require('../../managers/widgets'),
+    parser = require('../../parser')
 
 
 
@@ -65,16 +66,12 @@ module.exports = class Panel extends _widgets_base {
         this.value = -1
         this.tabs = []
 
-        var parsers = require('../../parser'),
-            parsewidgets = parsers.widgets,
-            parsetabs = parsers.tabs
-
         if (this.getProp('tabs') && this.getProp('tabs').length) {
 
             this.navigation = $('<div class="navigation"><ul class="tablist"></ul></div>').prependTo(this.widget).find('.tablist')
             this.wrapper = $('<div class="tabs-wrapper"></div>').appendTo(this.widget)
 
-            parsewidgets(this.getProp('tabs'), this.wrapper, this, true)
+            parser.parse(this.getProp('tabs'), this.wrapper, this, true)
             this.createNavigation()
             this.registerHashes()
 
@@ -92,7 +89,7 @@ module.exports = class Panel extends _widgets_base {
 
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
-            parsewidgets(this.getProp('widgets'), this.widget, this)
+            parser.parse(this.getProp('widgets'), this.widget, this)
             this.registerHashes()
             if (this.getProp('layout') != '') this.parseLayout()
 
