@@ -1,11 +1,6 @@
-var {app, dialog, Tray, Menu} = require('electron'),
+var {app, Menu} = require('electron'),
     settings = require('./settings'),
-    path = require('path'),
-    tray
-
-dialog.showErrorBox = function(title,err) {
-    console.log(title + ': ' + err)
-}
+    path = require('path')
 
 app.commandLine.appendSwitch('--touch-events')
 

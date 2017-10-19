@@ -40,6 +40,17 @@ var start = function(readyApp) {
         }
     }
 
+    try {
+        require('electron').dialog.showErrorBox = (title, err)=>{
+            console.error(title + ': ' + err)
+        }
+    } catch(e){
+        process.on('uncaughtException', (err)=>{
+            console.error('A JavaScript error occurred in the main process:')
+            console.trace(err)
+        })
+    }
+
 }
 
 
