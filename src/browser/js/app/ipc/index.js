@@ -26,7 +26,7 @@ var Ipc = class Ipc {
 
     init() {
 
-        callbacks = require('./callbacks')
+        var callbacks = require('./callbacks')
 
         for (let i in callbacks) {
             let callback = callbacks[i]
