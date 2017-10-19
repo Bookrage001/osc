@@ -280,6 +280,10 @@ module.exports =  {
         console.log(data)
     },
 
+    error: function(data) {
+        console.error(data)
+    },
+
     errorLog: function(data) {
         console.error(data)
     }
