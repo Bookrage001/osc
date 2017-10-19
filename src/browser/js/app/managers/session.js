@@ -1,4 +1,4 @@
-var ipc = require('../ipc'),
+var ipc = require('../ipc/'),
     parser = require('../parser'),
     state = require('./state'),
     editor = require('../editor/'),

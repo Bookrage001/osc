@@ -1,13 +1,12 @@
 require('./app/globals')
 require('./app/sourcemap')
 
-var callbacks = require('./app/callbacks'),
-    ipc = require('./app/ipc'),
+var ipc = require('./app/ipc/'),
     osc = require('./app/osc'),
     parser = require('./app/parser'),
     {loading} = require('./app/utils')
 
-ipc.registerCallbacks(callbacks)
+ipc.init()
 osc.init()
 parser.init()
 

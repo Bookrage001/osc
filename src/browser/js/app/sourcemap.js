@@ -1,6 +1,6 @@
 var sourceMap = require('../libs/source-map.min.js'),
     request = new XMLHttpRequest(),
-    ipc = require('./ipc')
+    ipc = require('./ipc/')
 
 request.open('GET', 'scripts.js.map', true)
 

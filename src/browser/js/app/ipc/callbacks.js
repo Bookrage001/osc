@@ -1,10 +1,9 @@
-var utils = require('./utils'),
+var utils = require('../utils'),
     icon = utils.icon,
-    ipc = require('./ipc'),
-    osc = require('./osc'),
-    session = require('./managers/session'),
-    state = require('./managers/state'),
-    editor = require('./editor/')
+    osc = require('../osc'),
+    session = require('../managers/session'),
+    state = require('../managers/state'),
+    editor = require('../editor/')
 
 var callbacks = module.exports = {
 

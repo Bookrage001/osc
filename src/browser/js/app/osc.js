@@ -1,5 +1,5 @@
 var widgetManager = require('./managers/widgets'),
-    ipc = require('./ipc')
+    ipc = require('./ipc/')
 
 var Osc = class Osc {
 
