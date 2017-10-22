@@ -73,95 +73,95 @@ var Parser = class Parser {
                 </div>
                 `)
 
-                // create widget
-                var widgetInner = new this.widgets[props.type]({props:props, container:widgetContainer, parent:parentWidget, parentNode:parentNode})
+            // create widget
+            var widgetInner = new this.widgets[props.type]({props:props, container:widgetContainer, parent:parentWidget, parentNode:parentNode})
 
-                widgetContainer[0].appendChild(widgetInner.widget[0])
+            widgetContainer[0].appendChild(widgetInner.widget[0])
 
-                widgetManager.addWidget(widgetInner)
+            widgetManager.addWidget(widgetInner)
 
-                widgetContainer[0].setAttribute('data-widget', widgetInner.hash)
+            widgetContainer[0].setAttribute('data-widget', widgetInner.hash)
 
-                // dimensions / coordinates can't be < 0
-                for (let t of ['width', 'height', 'top', 'left']) {
-                    if (props.hasOwnProperty(t))
-                    props[t] = `${props[t]}`.indexOf('-')!=-1?0:props[t]
-                }
-
-                // convert dimensions / coordinates to rem
-                var width = parseFloat(widgetInner.getProp('width'))==widgetInner.getProp('width')?parseFloat(widgetInner.getProp('width'))+'rem' : widgetInner.getProp('width'),
-                    height = parseFloat(widgetInner.getProp('height'))==widgetInner.getProp('height')?parseFloat(widgetInner.getProp('height'))+'rem' : widgetInner.getProp('height'),
-                    left = parseFloat(widgetInner.getProp('left'))==widgetInner.getProp('left')?parseFloat(widgetInner.getProp('left'))+'rem' : widgetInner.getProp('left'),
-                    top = parseFloat(widgetInner.getProp('top'))==widgetInner.getProp('top')?parseFloat(widgetInner.getProp('top'))+'rem' : widgetInner.getProp('top')
-
-                var geometry = {}
-                for (var d of ['width', 'height', 'left', 'top']){
-                    if (props[d]!==undefined)
-                        geometry[d] = `${props[d]}`.indexOf('-') != -1 ? 0 :
-                    parseFloat(props[d]) == props[d] ?
-                    parseFloat(props[d])+'rem' : props[d]
-                }
-
-                // dimensions / coordinates css
-                var styleW = widgetInner.getProp('width') && widgetInner.getProp('width') != 'auto' ? `width: ${geometry.width}; min-width:${geometry.width};` : '',
-                    styleH = widgetInner.getProp('height') && widgetInner.getProp('height') != 'auto' ? `height: ${geometry.height}; min-height:${geometry.height};` : '',
-                    styleL = widgetInner.getProp('left') && widgetInner.getProp('left') != 'auto'|| widgetInner.getProp('left') == 0 ?`left: ${geometry.left};` : '',
-                    styleT = widgetInner.getProp('top') && widgetInner.getProp('top') != 'auto'|| widgetInner.getProp('top') == 0 ? `top: ${geometry.top};` : ''
-
-                if (styleL.length || styleT.length) widgetContainer.addClass('absolute-position')
-
-                // Hide label if false
-                if (widgetInner.getProp('label')===false) {
-                    widgetContainer.addClass('nolabel')
-                } else {
-                    // Generate label, iconify if starting with "icon:"
-                    var label = widgetInner.getProp('label') == 'auto'?
-                                    widgetInner.getProp('id'):
-                                    iconify(widgetInner.getProp('label'))
-
-                    widgetContainer.find('> .label').html(label)
-                }
-
-                // parse scoped css
-                var css = ';' + widgetInner.getProp('css'),
-                    scopedCss = ''
-
-                css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
-                    m = m.replace(/^[;\}\s]*/,'')
-                    if (m[0]=='&') {
-                        scopedCss += m
-                    } else {
-                        scopedCss += '& ' + m
-                    }
-                    return ''
-                })
-
-                // apply styles
-                widgetContainer[0].setAttribute('style', styleW + styleH + styleL + styleT + css)
-
-                // apply scoped css
-                if (scopedCss.length) {
-                    widgetContainer.attr('id', 'widget-' + widgetInner.hash)
-                    scopedCss = scopedCss.split('&').join('#widget-' + widgetInner.hash)
-                    widgetContainer.prepend(`<style>${scopedCss}</style>`)
-                }
-
-                // Set custom css color variable
-                if (widgetInner.getProp('color') && widgetInner.getProp('color')!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetInner.getProp('color'))
-
-                // set widget's initial state
-                if (widgetInner.getProp('value') !== '' && widgetInner.setValue) {
-                    widgetInner.setValue(widgetInner.getProp('value'))
-                }
-
-                // Append the widget to its parent
-                parentNode[0].appendChild(widgetContainer[0])
+            // dimensions / coordinates can't be < 0
+            for (let t of ['width', 'height', 'top', 'left']) {
+                if (props.hasOwnProperty(t))
+                props[t] = `${props[t]}`.indexOf('-')!=-1?0:props[t]
             }
 
-            // Editor needs to get the container object
-            if (data && data.length==1) return widgetContainer
+            // convert dimensions / coordinates to rem
+            var width = parseFloat(widgetInner.getProp('width'))==widgetInner.getProp('width')?parseFloat(widgetInner.getProp('width'))+'rem' : widgetInner.getProp('width'),
+                height = parseFloat(widgetInner.getProp('height'))==widgetInner.getProp('height')?parseFloat(widgetInner.getProp('height'))+'rem' : widgetInner.getProp('height'),
+                left = parseFloat(widgetInner.getProp('left'))==widgetInner.getProp('left')?parseFloat(widgetInner.getProp('left'))+'rem' : widgetInner.getProp('left'),
+                top = parseFloat(widgetInner.getProp('top'))==widgetInner.getProp('top')?parseFloat(widgetInner.getProp('top'))+'rem' : widgetInner.getProp('top')
 
+            var geometry = {}
+            for (var d of ['width', 'height', 'left', 'top']){
+                if (props[d]!==undefined)
+                    geometry[d] = `${props[d]}`.indexOf('-') != -1 ? 0 :
+                parseFloat(props[d]) == props[d] ?
+                parseFloat(props[d])+'rem' : props[d]
+            }
+
+            // dimensions / coordinates css
+            var styleW = widgetInner.getProp('width') && widgetInner.getProp('width') != 'auto' ? `width: ${geometry.width}; min-width:${geometry.width};` : '',
+                styleH = widgetInner.getProp('height') && widgetInner.getProp('height') != 'auto' ? `height: ${geometry.height}; min-height:${geometry.height};` : '',
+                styleL = widgetInner.getProp('left') && widgetInner.getProp('left') != 'auto'|| widgetInner.getProp('left') == 0 ?`left: ${geometry.left};` : '',
+                styleT = widgetInner.getProp('top') && widgetInner.getProp('top') != 'auto'|| widgetInner.getProp('top') == 0 ? `top: ${geometry.top};` : ''
+
+            if (styleL.length || styleT.length) widgetContainer.addClass('absolute-position')
+
+            // Hide label if false
+            if (widgetInner.getProp('label')===false) {
+                widgetContainer.addClass('nolabel')
+            } else {
+                // Generate label, iconify if starting with "icon:"
+                var label = widgetInner.getProp('label') == 'auto'?
+                                widgetInner.getProp('id'):
+                                iconify(widgetInner.getProp('label'))
+
+                widgetContainer.find('> .label').html(label)
+            }
+
+            // parse scoped css
+            var css = ';' + widgetInner.getProp('css'),
+                scopedCss = ''
+
+            css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
+                m = m.replace(/^[;\}\s]*/,'')
+                if (m[0]=='&') {
+                    scopedCss += m
+                } else {
+                    scopedCss += '& ' + m
+                }
+                return ''
+            })
+
+            // apply styles
+            widgetContainer[0].setAttribute('style', styleW + styleH + styleL + styleT + css)
+
+            // apply scoped css
+            if (scopedCss.length) {
+                widgetContainer.attr('id', 'widget-' + widgetInner.hash)
+                scopedCss = scopedCss.split('&').join('#widget-' + widgetInner.hash)
+                widgetContainer.prepend(`<style>${scopedCss}</style>`)
+            }
+
+            // Set custom css color variable
+            if (widgetInner.getProp('color') && widgetInner.getProp('color')!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetInner.getProp('color'))
+
+            // set widget's initial state
+            if (widgetInner.getProp('value') !== '' && widgetInner.setValue) {
+                widgetInner.setValue(widgetInner.getProp('value'))
+            }
+
+            // Append the widget to its parent
+            parentNode[0].appendChild(widgetContainer[0])
         }
+
+        // Editor needs to get the container object
+        if (data && data.length==1) return widgetContainer
+
+    }
 
 }
 

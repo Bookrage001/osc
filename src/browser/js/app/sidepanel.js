@@ -147,7 +147,7 @@ $('#container').on('fake-click.sidepanel', function(e){
 
 })
 
-$(document).off('keydown.sidepanel').on('keydown.sidepanel', function(e){
+$(document).on('keydown.sidepanel', function(e){
     if (e.keyCode==121) $('#open-toggle').trigger('fake-click')
 })
 
