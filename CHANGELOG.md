@@ -5,6 +5,7 @@
 - bug fixes
   - cli: broken long flag `--no-gui`
   - headless: when running with `node`, errors don't stop the server; when running with `electron` (default), errors are logged in the console instead of being showed in a dialog window
+  - switcher widgets regression (broken) 
 - midi
   - float values are now allowed and automatically rounded
 - misc

@@ -30,7 +30,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
         if (widget && this.value._selected !== false && this.value[this.value._selected] && widget._isSwitcher !== true && this.isWatching(id, widget)) {
 
-            this.value[this.value._selected][id] = widget.abstract.getValue()
+            this.value[this.value._selected][id] = widget.getValue()
 
         }
 
