@@ -126,7 +126,7 @@ var SessionManager = class SessionManager {
 
             lobby.find('.browse').click((e)=>{
                 e.stopPropagation()
-                self.sessionBrowse()
+                self.browse()
             }).on('mousedown touchstart', function(e){
                 if (e.type == 'mousedown') e.preventDefault()
                 $(this).blur()
