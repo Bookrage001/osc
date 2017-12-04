@@ -61,6 +61,6 @@
     "test": "npm run build-js && npm run build-css"
   },
   "engines": {
-    "node": "6"
+    "node": ">=6"
   }
 }
