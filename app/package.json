@@ -24,9 +24,9 @@
     "vmodule":"1.0.1",
     "electron-localshortcut": "2.0.2",
     "osc": "2.2.0",
-    "yargs": "9.0.1",
-    "socket.io": "2.0.3",
-    "express": "4.16.1",
+    "yargs": "10.0.3",
+    "socket.io": "2.0.4",
+    "express": "4.16.2",
     "jquery": "3.2.1",
     "chokidar": "1.7.0",
     "python-shell":"0.4.0"

@@ -22,28 +22,28 @@
     "autolayout": "0.7.0",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-preset-env": "*",
-    "babelify": "7.3.0",
-    "browserify": "14.4.0",
+    "babelify": "8.0.0",
+    "browserify": "14.5.0",
     "cardinal-spline-js": "2.3.6",
     "electron": "~1.8.1",
-    "electron-packager": "9.1.0",
+    "electron-packager": "10.1.0",
     "exorcist": "1.0.0",
     "file-saver": "1.3.3",
     "jquery": "3.2.1",
     "json5": "0.5.1",
     "kiwi.js": "1.0.1",
     "licensify": "3.1.3",
-    "mathjs": "3.16.4",
-    "node-sass": "4.5.3",
-    "nodemon": "1.12.0",
+    "mathjs": "3.17.0",
+    "node-sass": "4.7.2",
+    "nodemon": "1.12.5",
     "nosleep.js": "0.7.0",
-    "screenfull": "3.3.1",
+    "screenfull": "3.3.2",
     "shortid": "2.2.8",
-    "socket.io-client": "2.0.3",
-    "uglifyify": "4.0.4"
+    "socket.io-client": "2.0.4",
+    "uglifyify": "4.0.5"
   },
   "optionalDependencies": {
-    "electron-installer-debian": "0.6.0"
+    "electron-installer-debian": "0.7.1"
   },
   "scripts": {
     "postinstall": "cp resources/images/logo.ico app/browser/favicon.ico && cd app && npm install && cd .. && npm run build-js && npm run build-css",
