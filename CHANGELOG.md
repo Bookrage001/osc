@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.21.3
+
+- bug fixes
+  - session/state: regression (0.21.2) breaking save-to-file function
+- ui
+  - FontAwesome 5 (icon font) !
+
 ## 0.21.2
 
 - bug fixes
