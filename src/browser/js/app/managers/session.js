@@ -20,7 +20,7 @@ var SessionManager = class SessionManager {
         $('#container').empty()
         var p = loading('Loading session file...')
 
-        setTimeout(function(){
+        setTimeout(()=>{
             try {
                 parser.reset()
 

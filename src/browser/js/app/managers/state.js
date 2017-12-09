@@ -73,11 +73,11 @@ var StateManager = class StateManager {
 
         prompt.click()
 
-        prompt.on('change',function(e){
+        prompt.on('change',(e)=>{
 
             var reader = new FileReader()
 
-            reader.onloadend = function(e) {
+            reader.onloadend = (e)=>{
 
                 var preset = e.target.result
                 this.set(JSON.parse(preset),true)
