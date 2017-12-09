@@ -5,7 +5,7 @@ module.exports = {
         var popup = $(`
             <div class="popup">
                 <div class="popup-wrapper">
-                <div class="popup-title ${closable? 'closable' : ''}">${title}${closable? `<span class="closer">${module.exports.icon('remove')}</span>` : ''}</div>
+                <div class="popup-title ${closable? 'closable' : ''}">${title}${closable? `<span class="closer">${module.exports.icon('times')}</span>` : ''}</div>
                 <div class="popup-content"></div>
                 </div>
             </div>`),

@@ -60,7 +60,7 @@ module.exports = class Modal extends Panel {
         this.popup = $(`
             <div class="popup">
                 <div class="popup-wrapper">
-                    <div class="popup-title closable"><span class="popup-label"></span><span class="closer">${icon('remove')}</span></div>
+                    <div class="popup-title closable"><span class="popup-label"></span><span class="closer">${icon('times')}</span></div>
                     <div class="popup-content"></div>
                 </div>
             </div>

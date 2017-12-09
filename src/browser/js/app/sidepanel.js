@@ -18,7 +18,7 @@ var data = [
         ]
     },
     {
-        title: icon('sliders') + '&nbsp; State',
+        title: icon('sliders-h') + '&nbsp; State',
         actions: [
             {
                 title:'Store',

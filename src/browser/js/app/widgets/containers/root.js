@@ -54,7 +54,7 @@ module.exports = class Root extends Panel {
 
         super.createNavigation()
 
-        this.navigation.append(`<li class="not-editable"><a id="open-toggle" class="${$('#sidepanel').hasClass('sidepanel-open')?'sidepanel-open':''}">${iconify('^navicon')}</a></li>`)
+        this.navigation.append(`<li class="not-editable"><a id="open-toggle" class="${$('#sidepanel').hasClass('sidepanel-open')?'sidepanel-open':''}">${iconify('^bars')}</a></li>`)
 
     }
 

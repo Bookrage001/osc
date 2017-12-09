@@ -98,7 +98,7 @@ var SessionManager = class SessionManager {
             list.append(`
                 <a href="#" tabIndex="0" class="btn load" data-session="${data[i]}">
                     ${file} <em style="opacity:0.45">(${path})</em>
-                    ${READ_ONLY? '' : '<span>'+icon('remove')+'</span>'}
+                    ${READ_ONLY? '' : '<span>'+icon('times')+'</span>'}
                 </a>
             `)
 
@@ -122,7 +122,7 @@ var SessionManager = class SessionManager {
             })
 
             footer.append('<a href="#" tabindex="0" class="btn browse">'+icon('folder-open')+' Browse</a>')
-            footer.append('<a href="#" tabindex="0" class="btn new">'+icon('file-o')+' New</a>')
+            footer.append('<a href="#" tabindex="0" class="btn new">'+icon('file')+' New</a>')
 
             lobby.find('.browse').click((e)=>{
                 e.stopPropagation()

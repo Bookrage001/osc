@@ -26,7 +26,7 @@ All widgets share a set of generic properties described below.
 - default: `auto`, which displays `id`
 - usage:
     - set to `false` to hide completely
-    - insert icons from [FontAwesome](http://fontawesome.io/icons/) using the prefix `^` followed by the icon's name : `made with ^heart`, etc
+    - insert icons from [FontAwesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free) using the prefix `^` followed by the icon's name : `made with ^heart`, etc
 
 ### `top` / `left`
 - type: `number|percentage`
