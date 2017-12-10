@@ -6,6 +6,7 @@ var express     = require('express')(),
     io          = require('socket.io')(server),
     ipc 		= {},
 	settings	= require('./settings'),
+    zeroconf = require('./zeroconf'),
     appAddresses = settings.read('appAddresses'),
     clients = {}
 
@@ -26,6 +27,12 @@ express.get('*', function(req, res){
 })
 
 server.listen(settings.read('httpPort'))
+
+zeroconf.publish({
+	name: settings.read('appName'),
+	type: 'http',
+	port: settings.read('httpPort')
+})
 
 ipc.send = function(name,data,clientId) {
     if (clientId) {

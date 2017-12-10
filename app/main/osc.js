@@ -5,6 +5,7 @@ require('vmodule')('serialport', {}, {global: true})
 var osc = require('osc'),
 	ipc = require('./server').ipc,
 	settings = require('./settings'),
+	zeroconf = require('./zeroconf'),
 	oscInPort = settings.read('oscInPort') || settings.read('httpPort'),
 	debug = settings.read('debug'),
 	vm = require('vm'),
@@ -17,6 +18,12 @@ var oscServer = new osc.UDPPort({
 	metadata: true
 })
 
+zeroconf.publish({
+	name: settings.read('appName'),
+	protocol: 'upd',
+	type: 'osc',
+	port: oscInPort
+})
 
 var parseType = function(type){
 	var t = type[0].match(/[bhtdscrmifTFNI]/)
