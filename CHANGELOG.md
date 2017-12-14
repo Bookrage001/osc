@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.22.0
+
+- main
+  - added `zeroconf` / `bonjour` publishing for the http and osc input ports
+- cli
+  - added `--instance-name` option to differenciate mulitple instances in zeroconf networks
+- misc
+  - absolute file paths in widgets' background images urls are now properly resolved
+
 ## 0.21.3
 
 - bug fixes
