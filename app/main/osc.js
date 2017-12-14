@@ -19,7 +19,7 @@ var oscServer = new osc.UDPPort({
 })
 
 zeroconf.publish({
-	name: settings.read('appName'),
+	name: settings.read('appName') + (settings.read('instanceName') ? ' (' + settings.read('instanceName') + ')' : ''),
 	protocol: 'udp',
 	type: 'osc',
 	port: oscInPort

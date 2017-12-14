@@ -69,6 +69,8 @@ var options = {
                 true : 'blank session can\'t be started in read-only mode'
          }
     },
+    'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'
+    },
 }
 
 
@@ -124,6 +126,7 @@ var makeDefaultConfig = function(argv){
         recentSessions: [],
 
         appName: 'Open Stage Control',
+        instanceName: argv['instance-name'] || false,
         syncTargets: argv.s || argv.sync || false,
         oscInPort: argv.o || 0,
         httpPort: argv.p || 8080,

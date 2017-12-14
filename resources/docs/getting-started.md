@@ -25,6 +25,7 @@ Below are the available command-line options. Note that when running without any
 | --url-options | [url options](extras/url-options) (opt=value pairs) |
 | --disable-vsync | disable gui's vertical synchronization |
 | --read-only | disable session editing and session history changes |
+| --instance-name | used to differenciate multiple instances in a zeroconf network |
 
 Command-line only :
 

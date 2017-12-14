@@ -31,7 +31,7 @@ express.get('*', function(req, res){
 server.listen(settings.read('httpPort'))
 
 zeroconf.publish({
-	name: settings.read('appName'),
+	name: settings.read('appName') + (settings.read('instanceName') ? ' (' + settings.read('instanceName') + ')' : ''),
 	type: 'http',
 	port: settings.read('httpPort')
 })
