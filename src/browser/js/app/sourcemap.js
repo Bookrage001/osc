@@ -2,7 +2,7 @@ var sourceMap = require('../libs/source-map.min.js'),
     request = new XMLHttpRequest(),
     ipc = require('./ipc/')
 
-request.open('GET', 'scripts.js.map', true)
+request.open('GET', 'browser/scripts.js.map', true)
 
 request.onload = function() {
 

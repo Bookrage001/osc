@@ -1,4 +1,3 @@
-
 var express     = require('express')(),
     path        = require('path'),
     http        = require('http'),
@@ -13,6 +12,7 @@ var express     = require('express')(),
 express.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser/index.html'))
 })
+
 express.get('*', function(req, res){
     if (req.path.indexOf('theme.css') != -1) {
         res.set('Content-Type', 'text/css');
@@ -21,8 +21,10 @@ express.get('*', function(req, res){
         } else {
             res.send('')
         }
+    } else if (req.path.indexOf('browser/') != -1){
+        res.sendFile(path.resolve(__dirname + '/..' + req.path))
     } else {
-        res.sendFile(path.resolve(__dirname + '/../browser' + req.path))
+        res.sendFile(path.resolve(req.path))
     }
 })
 
