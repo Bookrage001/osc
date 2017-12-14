@@ -364,3 +364,70 @@
 
 
 }
+
+
+.range-container {
+    width:200rem;
+    height:230rem;
+    padding: 1rem;
+    --color-pips: var(--color-custom);
+    --color-gauge: var(--color-custom);
+    --color-knob: var(--color-custom);
+    .range {
+        height:100%;
+        overflow: hidden;
+        display: flex;
+        position: relative;
+        flex: 1;
+        > .wrapper {
+            height:100%;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+            flex:1;
+            .handle {
+                position: absolute;
+                top:   0;
+                left:  0;
+                right: 0;
+                bottom:0;
+                z-index: 1;
+                &.active {
+                    pointer-events: none;
+                }
+            }
+            .fader {
+                position: absolute;
+                top:0;
+                left:0;
+                right:0;
+                bottom:0;
+                .wrapper {
+                    // border: 0;
+                }
+                &:first-child {
+                    opacity: 0;
+                }
+            }
+        }
+        &.compact {
+            > canvas {
+                background: var(--color-track);
+            }
+        }
+    }
+}
+
+.panel:not(.tab) > .range-container {
+  padding: 0rem;
+    --color-border:transparent;
+    .fader.compact {
+      padding: 1rem;
+    }
+    .fader.compact > .wrapper {
+        box-shadow: 0 0 0 1rem var(--color-fg);
+
+        outline: 1rem solid var(--color-light);
+        border: 1rem solid var(--color-bg);
+    }
+}
