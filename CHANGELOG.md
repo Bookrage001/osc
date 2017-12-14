@@ -3,7 +3,7 @@
 ## 0.22.0
 
 - main
-  - added `zeroconf` / `bonjour` publishing for the http and osc input ports
+  - added `zeroconf` / `bonjour` publishing for the app's http and osc input ports
 - cli
   - added `--instance-name` option to differenciate mulitple instances in zeroconf networks
 - misc
@@ -21,7 +21,7 @@
 - bug fixes
   - cli: broken long flag `--no-gui`
   - headless: when running with `node`, errors don't stop the server; when running with `electron` (default), errors are logged in the console instead of being showed in a dialog window
-  - switcher widgets regression (broken) 
+  - switcher widgets regression (broken)
 - midi
   - float values are now allowed and automatically rounded
 - misc
