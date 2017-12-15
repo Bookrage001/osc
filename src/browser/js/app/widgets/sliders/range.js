@@ -41,8 +41,6 @@ module.exports = class Range extends _widgets_base {
 
             precision:2,
             address:'auto',
-            touchAddress:'',
-            meterAddress:'',
             preArgs:[],
             target:[]
         }
