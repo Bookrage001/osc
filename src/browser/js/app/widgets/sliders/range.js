@@ -42,6 +42,7 @@ module.exports = class Range extends _widgets_base {
             precision:2,
             address:'auto',
             preArgs:[],
+            split:false,
             target:[]
         }
 
@@ -56,6 +57,12 @@ module.exports = class Range extends _widgets_base {
         `
 
         super({...options, html: html})
+
+        this.split = this.getProp('split')?
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
+                this.getProp('split')
+                : [this.getProp('address') + '/low', this.getProp('address') + '/high']
+            : false
 
         this.wrapper = this.widget.find('.wrapper')
 
