@@ -37,7 +37,7 @@ module.exports = class Range extends _widgets_base {
             spring:false,
             range:{min:0,max:1},
             logScale:false,
-            value:[0,1],
+            value:'',
 
             _osc:'osc',
 
@@ -111,8 +111,6 @@ module.exports = class Range extends _widgets_base {
 
         this.wrapper.append(this.faders[0].widget)
         this.wrapper.append(this.faders[1].widget)
-
-        this.value = this.getValue()
 
         this.wrapper.on('change',(e)=>{
             e.stopPropagation()
