@@ -6,6 +6,8 @@
   - added `zeroconf` / `bonjour` publishing for the app's http and osc input ports
 - cli
   - added `--instance-name` option to differenciate mulitple instances in zeroconf networks
+- widgets
+  - **new** `range` widget
 - misc
   - absolute file paths in widgets' background images urls are now properly resolved
 

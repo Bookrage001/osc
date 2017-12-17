@@ -245,3 +245,15 @@ An endless knob that only responds to rotative gestures.
 ```
 --color-knob:color;
 ```
+
+
+## Range
+
+A range is a fader with two handles.
+
+```js
+{
+    type:'range',
+    // etc
+}
+```
