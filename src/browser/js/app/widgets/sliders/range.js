@@ -1,5 +1,6 @@
 var _widgets_base = require('../common/_widgets_base'),
-    Fader = require('../pads/_fake_fader')
+    Fader = require('../pads/_fake_fader'),
+    Input = require('../inputs/input')
 
 var faderDefaults = Fader.defaults()
 
@@ -29,8 +30,9 @@ module.exports = class Range extends _widgets_base {
 
             horizontal:false,
             alignRight:false,
-            pips:true,
+            input: true,
             compact:false,
+            pips:true,
             snap:false,
             spring:false,
             range:{min:0,max:1},
@@ -177,7 +179,46 @@ module.exports = class Range extends _widgets_base {
 
         })
 
+        if (this.getProp('input')) {
 
+            this.input = new Input({
+                props:{...Input.defaults(),
+                    precision:this.getProp('precision'),
+                    unit:this.getProp('unit'),
+                    horizontal: this.getProp('compact') && !this.getProp('horizontal')
+                },
+                parent:this, parentNode:this.widget,
+            })
+            this.widget.append(this.input.widget)
+            this.input.widget.on('change', (e)=>{
+                e.stopPropagation()
+                this.setValue(this.input.getValue(), {sync:true, send:true})
+                this.showValue()
+            })
+
+            this.widget.on('fake-right-click',function(e){
+                if (!EDITING) {
+                    e.stopPropagation()
+                    e.preventDefault()
+                    this.input.canvas.focus()
+                }
+            }.bind(this))
+
+        }
+
+
+        if (this.getProp('horizontal')) {
+            this.widget.add(this.container).addClass('horizontal')
+        }
+        if (this.getProp('alignRight') && !this.getProp('horizontal')) {
+            this.widget.addClass('align-right')
+        }
+        if (this.getProp('compact')) {
+            this.widget.addClass('compact')
+        }
+        if (this.getProp('pips')) {
+            this.widget.addClass('has-pips')
+        }
 
         var _this = this
         this.faders[1].draw = function() {
@@ -339,11 +380,20 @@ module.exports = class Range extends _widgets_base {
             this.faders[1].getValue()
         ]
 
-        this.faders[1].draw()
 
         if (options.send) this.sendValue()
         if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
 
+        this.faders[1].draw()
+
+        this.showValue()
+
+
+    }
+
+    showValue() {
+
+        if (this.getProp('input')) this.input.setValue(this.value)
 
     }
 

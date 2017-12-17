@@ -335,9 +335,9 @@
         &:not(.horizontal) {
             .input {
                 height: 100rem;
-                width: 24rem;
+                width: 100rem;
                 margin-top: -50rem;
-                margin-left: calc(-1 * 12rem + var(--input-margin));
+                margin-left: calc(-1 * 50rem + var(--input-margin));
                 z-index: 3;
                 input {
                     transform: rotate(-90deg);
@@ -347,7 +347,7 @@
 
             &.align-right {
                 .input {
-                    margin-left: calc(-1 * 12rem - var(--input-margin));
+                    margin-left: calc(-1 * 50rem - var(--input-margin));
                 }
             }
 
@@ -367,8 +367,12 @@
 
 
 .range-container {
-    width:200rem;
-    height:230rem;
+    width:100rem;
+    height:300rem;
+    &.horizontal {
+        height:130rem;
+        width:300rem
+    }
     padding: 1rem;
     --color-pips: var(--color-custom);
     --color-gauge: var(--color-custom);
@@ -378,13 +382,25 @@
         overflow: hidden;
         display: flex;
         position: relative;
+        flex-direction: column;
         flex: 1;
+        > .input {
+            height: 25rem;
+            flex:initial!important;
+            flex-shrink: 0!important;
+            // display: block;
+            background: transparent!important;
+            border: 0!important;
+        }
         > .wrapper {
-            height:100%;
             overflow: hidden;
-            display: flex;
+            flex: 1 1 100%;
+            max-height: 100%;
+            width: 100%;
             position: relative;
-            flex:1;
+            display: flex;
+            justify-content: center;
+            border-radius: inherit;
             .handle {
                 position: absolute;
                 top:   0;
@@ -415,6 +431,67 @@
                 background: var(--color-track);
             }
         }
+
+
+
+        &.compact {
+
+            --input-margin:0rem;
+            &.has-meter {
+                --input-margin:-3rem;
+            }
+            &.has-pips {
+                --input-margin:-1rem;
+            }
+            &.has-meter.has-pips {
+                --input-margin:-4rem;
+            }
+
+            .input {
+                pointer-events: none;
+                position: absolute;
+                border:0;
+                background:transparent;
+                overflow: hidden;
+                position: absolute;
+                top:50%;
+                left:50%;
+                z-index: 1;
+            }
+
+            &.horizontal {
+
+                .input {
+                    width: 100rem;
+                    height: 24rem;
+                    margin-left: -50rem;
+                    margin-top: calc(-1 * 12rem + var(--input-margin));
+                }
+
+            }
+
+            &:not(.horizontal) {
+                .input {
+                    height: 100rem;
+                    width: 100rem;
+                    margin-top: -50rem;
+                    margin-left: calc(-1 * 50rem + var(--input-margin));
+                    z-index: 3;
+                    input {
+                        transform: rotate(-90deg);
+                        width: 100rem;
+                    }
+                }
+
+                &.align-right {
+                    .input {
+                        margin-left: calc(-1 * 50rem - var(--input-margin));
+                    }
+                }
+            }
+
+        }
+
     }
 }
 
