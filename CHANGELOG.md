@@ -2,6 +2,8 @@
 
 ## 0.22.0
 
+- bug fixes
+  - sessions opened from command line with relative paths are now added to the history with their absolute path
 - main
   - added `zeroconf` / `bonjour` publishing for the app's http and osc input ports
 - cli

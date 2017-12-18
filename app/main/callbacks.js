@@ -45,7 +45,7 @@ module.exports =  {
             if (err || !stats.isFile()) return
 
             // add session to history
-            sessionlist.unshift(data)
+            sessionlist.unshift(path.resolve(data))
             // remove doubles from history
             sessionlist = sessionlist.filter(function(elem, index, self) {
                 return index == self.indexOf(elem)
