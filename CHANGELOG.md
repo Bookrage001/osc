@@ -5,6 +5,7 @@
 - bug fixes
   - sessions opened from command line with relative paths are now added to the history with their absolute path
   - sending an empty message to a `text` widget resets it to its initial value and without ignoring its `value` property
+  - sending no value to a widget with `preArgs` is now possible : all the arguments found in incomming osc messages are now taken into account to match the widgets in the session
 - engine
   - downgraded to the latest *stable* electron release
 - main

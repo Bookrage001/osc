@@ -208,6 +208,42 @@ var WidgetManager = class WidgetManager {
 
     }
 
+    getWidgetByAddressAndArgs(address, args) {
+
+        var addressref = address,
+            restArgs = args
+
+        if (typeof args == 'object' && args != null) {
+            for (var i = args.length; i >= 0; i--) {
+
+                var ref = this.createAddressRef(null, args.slice(0,i), address)
+
+                if (this.getWidgetByAddress(ref).length) {
+                    addressref = ref
+                    restArgs = args.slice(i, args.length)
+                    break
+                }
+
+            }
+        } else {
+            restArgs = args
+        }
+
+
+        if (restArgs == null || restArgs.length == 0) restArgs = null
+        else if (restArgs.length == 1) restArgs = restArgs[0]
+
+
+        var widgets = this.getWidgetByAddress(addressref)
+
+        return [
+            widgets,
+            restArgs
+        ]
+
+    }
+
+
 }
 
 var widgetManager = new WidgetManager()
