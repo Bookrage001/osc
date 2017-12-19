@@ -10,6 +10,8 @@
   - added `--instance-name` option to differenciate mulitple instances in zeroconf networks
 - widgets
   - **new** `range` widget
+  - **new** `image` widget
+  - sending an empty message to a `text` widget resets it to its initial value
 - misc
   - absolute file paths in widgets' background images urls are now properly resolved
 

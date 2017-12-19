@@ -26,6 +26,7 @@ module.exports = class Led extends _widgets_base {
 
             size: 'cover',
             position: 'center',
+            repeat: 'no-repeat',
             border: true,
             cache: true,
             value:'',
@@ -51,26 +52,35 @@ module.exports = class Led extends _widgets_base {
 
         this.widget[0].style.setProperty('background-size', this.getProp('size'))
         this.widget[0].style.setProperty('background-position', this.getProp('position'))
+        this.widget[0].style.setProperty('background-repeat', this.getProp('repeat'))
 
 
     }
 
     setValue(v) {
 
-        var s = '' + v
+        var s = v==null ? '' : '' + v,
+            cache_query = ''
 
-        this.value = s
+        if (!s.length) {
+
+            this.value = this.getProp('value')
+
+        } else if (s != 'reload') {
+
+            if (s.length > 1) this.value = s
+
+        }
 
         if (this.value.length) {
 
-            var cache_query = this.getProp('cache') || s.indexOf('base64') != -1 ? '' : (s.indexOf('?') != -1 ? '&' : '?') + Date.now()
-            this.widget[0].style.setProperty('background-image', `url(${s}${cache_query})`)
-
-        } else {
-
-            this.widget[0].style.setProperty('background-image', '')
+            cache_query = this.getProp('cache') || this.value.indexOf('base64') != -1 ?
+                            '' : (this.value.indexOf('?') != -1 ? '&' : '?') + Date.now()
 
         }
+
+        this.widget[0].style.setProperty('background-image', `url(${this.value}${cache_query})`)
+
     }
 
 }

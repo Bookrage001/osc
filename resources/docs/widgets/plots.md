@@ -227,3 +227,50 @@ Meter displays incoming numerical values (via osc) as a gauge level
 
 ### `logScale`
 - see fader's [`logScale`](sliders/#fader)
+
+
+## Image
+
+Image displays an image from a file path/url or from a base64 encoded image string. Sending an empty message resets the widget to its initial `value`.
+
+```js
+{
+    type:'image',
+    // etc
+}
+```
+
+### `size`
+- type: `string`
+- default: `cover`
+- usage: css [background-size](https://www.w3schools.com/CSSref/css3_pr_background-size.asp)
+
+
+### `position`
+- type: `string`
+- default: `cover`
+- usage: css [background-position](https://www.w3schools.com/CSSref/pr_background-position.asp)
+
+
+### `repeat`
+- type: `string`
+- default: `no-repeat`
+- usage: css [background-repeat](https://www.w3schools.com/CSSref/pr_background-repeat.asp)
+
+
+### `border`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to disable the image's borders and background-color.
+
+### `cache`
+- type: `boolean`
+- default: `true`
+- usage: set to `false` to disable image caching (forces file reload when updating or editing the widget). When `true`, sending `'reload'` to the widget reloads its image without changing its value.
+
+### `value`
+- type: `string`
+- default: `empty`
+- usage : initial image
+  - file url or absolute path
+  - [base64 encoded image](https://duckduckgo.com/?q=base64+encode+image&ia=web) : `data:image/...`

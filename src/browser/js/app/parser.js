@@ -122,10 +122,11 @@ var Parser = class Parser {
                 widgetContainer.find('> .label').html(label)
             }
 
-            // parse scoped css
+            // parse css
             var css = ';' + widgetInner.getProp('css'),
                 scopedCss = ''
 
+            // parse scoped css
             css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
                 m = m.replace(/^[;\}\s]*/,'')
                 if (m[0]=='&') {

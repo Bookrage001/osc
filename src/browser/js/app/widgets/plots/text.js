@@ -43,11 +43,11 @@ module.exports = class Text extends _widgets_base {
 
         if (this.getProp('vertical')) this.widget.addClass('vertical')
 
-        this.defaultValue = this.getProp('label')===false?
+        this.defaultValue = this.getProp('value') || ( this.getProp('label')===false ?
                                 this.getProp('id'):
                                 this.getProp('label')=='auto'?
                                     this.getProp('id'):
-                                    this.getProp('label')
+                                    this.getProp('label') )
 
         this.value = this.defaultValue
 
