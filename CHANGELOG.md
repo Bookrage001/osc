@@ -1,17 +1,17 @@
 # Changelog
 
-## 0.22.0
+## 0.22.0
 
 - bug fixes
   - sessions opened from command line with relative paths are now added to the history with their absolute path
+  - sending an empty message to a `text` widget resets it to its initial value and without ignoring its `value` property
 - main
   - added `zeroconf` / `bonjour` publishing for the app's http and osc input ports
 - cli
   - added `--instance-name` option to differenciate mulitple instances in zeroconf networks
 - widgets
-  - **new** `range` widget
-  - **new** `image` widget
-  - sending an empty message to a `text` widget resets it to its initial value
+  - sliders: **new** `range` widget
+  - plots: **new** `image` widget
 - misc
   - absolute file paths in widgets' background images urls are now properly resolved
 
