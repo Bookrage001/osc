@@ -44,7 +44,39 @@ var callbacks = {
             updateDom(container,data,true)
         }
     },
+
+    '/GET':function(args) {
+
+        var [target, idOrAddress, ...preArgs] = args,
+            widgets = []
+
+        if (idOrAddress[0] == '/') {
+
+            widgets = widgetManager.getWidgetByAddress(
+                widgetManager.createAddressRef(null, preArgs, idOrAddress)
+            )
+
+        } else {
+
+            widgets = widgetManager.getWidgetById(idOrAddress)
+
+        }
+
+        if (!widgets.length) return
+
+        for (var i = widgets.length - 1; i >= 0; i--) {
+
+            if (typeof target == 'string' && target.indexOf(':') != -1) {
+                widgets[i].sendValue({target:[target]})
+            } else {
+                widgets[i].sendValue()
+            }
+
+        }
+
+    },
     '/TABS': function(args) {
+        // DEPRECATED
 
         if (!Array.isArray(args)) args = [args]
 
