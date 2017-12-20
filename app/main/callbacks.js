@@ -188,7 +188,7 @@ module.exports =  {
                 }
             }
 
-            if (data.target.indexOf(null) == -1) {
+            if (!data.target || data.target.indexOf(null) == -1) {
 
                 var targets = []
 
