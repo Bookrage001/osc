@@ -38,7 +38,25 @@ var callbacks = {
             updateDom(container,data,true)
         }
     },
+    '/EDIT/GET': function(args) {
 
+        if (!Array.isArray(args) || args.length != 2) return
+
+        var [target, id] = args,
+            widgets = widgetManager.getWidgetById(id)
+
+        for (var i = widgets.length - 1; i >= 0; i--) {
+            return widgets[i].sendValue({
+                target: [target],
+                address: '/EDIT/GET',
+                v: [
+                    id,
+                    JSON.stringify(widgets[i].props)
+                ],
+                nosync: true
+            })
+        }
+    },
     '/GET':function(args) {
 
         var [target, idOrAddress, ...preArgs] = args,

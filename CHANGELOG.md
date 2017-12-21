@@ -18,7 +18,8 @@
 - remote control
   - **removed** deprecated `/EXEX`
   - renamed `/EDIT_SOFT` to `/EDIT/MERGE`
-  
+  - added  `/EDIT/GET`
+
 
 ## 0.21.3
 

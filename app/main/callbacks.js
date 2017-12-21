@@ -192,7 +192,7 @@ module.exports =  {
 
                 var targets = []
 
-                if (settings.read('syncTargets')) Array.prototype.push.apply(targets, settings.read('syncTargets'))
+                if (settings.read('syncTargets') && !data.nosync) Array.prototype.push.apply(targets, settings.read('syncTargets'))
                 if (data.target) Array.prototype.push.apply(targets, data.target)
 
 
@@ -226,7 +226,7 @@ module.exports =  {
 
             }
 
-            clients[clientId].broadcast.emit('receiveOsc', data)
+            if (!data.nosync) clients[clientId].broadcast.emit('receiveOsc', data)
 
     },
 
