@@ -17,6 +17,8 @@
   - plots: **new** `image` widget
 - remote control
   - **removed** deprecated `/EXEX`
+  - renamed `/EDIT_SOFT` to `/EDIT/MERGE`
+  
 
 ## 0.21.3
 

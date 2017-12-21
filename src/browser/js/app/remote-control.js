@@ -21,7 +21,7 @@ var callbacks = {
             updateDom(container,data,true)
         }
     },
-    '/EDIT_SOFT': function(args) {
+    '/EDIT/MERGE': function(args) {
 
         if (READ_ONLY) return
 
@@ -82,6 +82,9 @@ var callbacks = {
 
     }
 }
+
+// backward-compatibility
+callbacks['/EDIT_SOFT'] = callbacks['/EDIT/MERGE']
 
 module.exports = {
     exec: function(name, args){
