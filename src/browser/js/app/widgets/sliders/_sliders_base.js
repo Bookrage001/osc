@@ -75,7 +75,7 @@ module.exports = class _sliders_base extends _canvas_base {
                     ...Input.defaults(),
                     precision:this.getProp('precision'),
                     unit:this.getProp('unit'),
-                    horizontal: this.getProp('type') == 'fader' && this.getProp('compact') && !this.getProp('horizontal')
+                    vertical: this.getProp('type') == 'fader' && this.getProp('compact') && !this.getProp('horizontal')
                 },
                 parent:this, parentNode:this.widget
             })

@@ -183,7 +183,7 @@ module.exports = class Range extends _widgets_base {
                 props:{...Input.defaults(),
                     precision:this.getProp('precision'),
                     unit:this.getProp('unit'),
-                    horizontal: this.getProp('compact') && !this.getProp('horizontal')
+                    vertical: this.getProp('compact') && !this.getProp('horizontal')
                 },
                 parent:this, parentNode:this.widget,
             })

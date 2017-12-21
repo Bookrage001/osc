@@ -26,7 +26,7 @@ module.exports = class Input extends _canvas_base {
 
             _input:'input',
 
-            horizontal:false,
+            vertical:false,
             unit: '',
             widgetId:'',
             editable:true,
@@ -55,8 +55,8 @@ module.exports = class Input extends _canvas_base {
         this.value = ''
         this.stringValue = ''
 
-        if (this.getProp('horizontal')) {
-            this.widget.addClass('horizontal')
+        if (this.getProp('vertical')) {
+            this.widget.addClass('vertical')
         }
 
         if (this.getProp('editable')) {
@@ -132,7 +132,7 @@ module.exports = class Input extends _canvas_base {
 
             super.resizeHandle(...arguments)
 
-            if (this.getProp('horizontal')){
+            if (this.getProp('vertical')){
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0)
                 this.ctx.rotate(-Math.PI/2)
                 this.ctx.translate(-this.height, 0)
@@ -177,8 +177,8 @@ module.exports = class Input extends _canvas_base {
     draw() {
 
         var v = this.stringValue,
-            width = this.getProp('horizontal') ? this.height : this.width,
-            height = !this.getProp('horizontal') ? this.height : this.width
+            width = this.getProp('vertical') ? this.height : this.width,
+            height = !this.getProp('vertical') ? this.height : this.width
 
         if (this.getProp('unit') && v.length) v += ' ' + this.getProp('unit')
 

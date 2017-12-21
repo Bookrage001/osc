@@ -281,7 +281,6 @@
                                                         "label": false,
                                                         "width": 50,
                                                         "color": "auto",
-                                                        "css": "font-size:90%;",
                                                         "horizontal": true,
                                                         "stretch": true,
                                                         "border": false,
@@ -310,19 +309,20 @@
                                                                 "widgetId": "trim_knob_@{parent.variables.n}",
                                                                 "linkId": "",
                                                                 "unit": "",
-                                                                "horizontal": true,
                                                                 "editable": true,
                                                                 "precision": 1,
                                                                 "target": [],
                                                                 "value": "",
                                                                 "address": "/trim_input_@{parent.variables.n}",
                                                                 "width": "auto",
-                                                                "css": ""
+                                                                "css": "",
+                                                                "vertical": true
                                                             }
                                                         ],
                                                         "_style": "style",
                                                         "_children": "children",
                                                         "scroll": true,
+                                                        "css": "",
                                                         "_geometry": "geometry",
                                                         "_panel": "panel",
                                                         "layout": "",
@@ -583,7 +583,6 @@
                                                 "label": false,
                                                 "unit": "dB",
                                                 "height": 30,
-                                                "horizontal": false,
                                                 "color": "auto",
                                                 "css": "margin:5rem 5rem 0",
                                                 "widgetId": "fader_@{parent.variables.n}",
@@ -592,7 +591,8 @@
                                                 "precision": 2,
                                                 "preArgs": [],
                                                 "target": [],
-                                                "address": "/fader_input_@{parent.variables.n}"
+                                                "address": "/fader_input_@{parent.variables.n}",
+                                                "vertical": false
                                             },
                                             {
                                                 "type": "fader",
@@ -938,7 +938,6 @@
                                                 "label": false,
                                                 "width": 50,
                                                 "color": "auto",
-                                                "css": "font-size:90%;",
                                                 "horizontal": true,
                                                 "stretch": true,
                                                 "border": false,
@@ -967,19 +966,20 @@
                                                         "widgetId": "mastertrim",
                                                         "linkId": "",
                                                         "unit": "",
-                                                        "horizontal": true,
                                                         "editable": true,
                                                         "precision": 1,
                                                         "target": [],
                                                         "value": "",
                                                         "address": "/mastertrim_input",
                                                         "width": "auto",
-                                                        "css": ""
+                                                        "css": "",
+                                                        "vertical": true
                                                     }
                                                 ],
                                                 "_style": "style",
                                                 "_children": "children",
                                                 "scroll": true,
+                                                "css": "",
                                                 "_geometry": "geometry",
                                                 "_panel": "panel",
                                                 "layout": "",
@@ -1192,7 +1192,6 @@
                                         "label": false,
                                         "unit": "dB",
                                         "height": 30,
-                                        "horizontal": false,
                                         "color": "auto",
                                         "css": "margin:5rem 5rem 0",
                                         "widgetId": "Master",
@@ -1201,7 +1200,8 @@
                                         "precision": 2,
                                         "preArgs": [],
                                         "target": [],
-                                        "address": "/master_input"
+                                        "address": "/master_input",
+                                        "vertical": false
                                     },
                                     {
                                         "type": "fader",
@@ -1922,7 +1922,6 @@
                                                         "label": false,
                                                         "width": 50,
                                                         "color": "auto",
-                                                        "css": "font-size:90%;",
                                                         "horizontal": true,
                                                         "stretch": true,
                                                         "border": false,
@@ -1952,18 +1951,19 @@
                                                                 "widgetId": "select_trim_knob",
                                                                 "linkId": "",
                                                                 "unit": "",
-                                                                "horizontal": true,
                                                                 "editable": true,
                                                                 "precision": 1,
                                                                 "target": [],
                                                                 "address": "/select_trim_input",
                                                                 "value": "",
-                                                                "width": "auto"
+                                                                "width": "auto",
+                                                                "vertical": true
                                                             }
                                                         ],
                                                         "_style": "style",
                                                         "_children": "children",
                                                         "scroll": true,
+                                                        "css": "",
                                                         "_geometry": "geometry",
                                                         "_panel": "panel",
                                                         "layout": "",
@@ -2320,7 +2320,6 @@
                                                 "label": false,
                                                 "unit": "dB",
                                                 "height": 30,
-                                                "horizontal": false,
                                                 "color": "auto",
                                                 "css": "margin:5rem 5rem 0",
                                                 "widgetId": "fader_select",
@@ -2329,7 +2328,8 @@
                                                 "precision": 2,
                                                 "preArgs": [],
                                                 "target": [],
-                                                "address": "/fader_input_select"
+                                                "address": "/fader_input_select",
+                                                "vertical": false
                                             },
                                             {
                                                 "type": "fader",

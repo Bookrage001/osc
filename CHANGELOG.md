@@ -13,6 +13,7 @@
 - cli
   - added `--instance-name` option to differenciate mulitple instances in zeroconf networks
 - widgets
+  - inputs: renamed `input`'s property `horizontal` to `vertical` to match how the widget actually displays
   - sliders: **new** `range` widget
   - plots: **new** `image` widget
 - remote control
