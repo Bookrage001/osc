@@ -2,12 +2,6 @@ var {getObjectData, updateDom} = require('./editor/data-workers'),
     widgetManager = require('./managers/widgets')
 
 var callbacks = {
-    '/EXEC': function(args) {
-        // backward-compatibility
-        var [name, ...args] = args
-        if (name == 'edit') return callbacks['/EDIT'](args)
-        if (name == 'edit_soft') return callbacks['/EDIT_SOFT'](args)
-    },
     '/EDIT': function(args) {
 
         if (READ_ONLY) return
@@ -76,7 +70,6 @@ var callbacks = {
 
     },
     '/TABS': function(args) {
-        // DEPRECATED
 
         if (!Array.isArray(args)) args = [args]
 

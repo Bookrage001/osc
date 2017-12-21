@@ -15,8 +15,8 @@
 - widgets
   - sliders: **new** `range` widget
   - plots: **new** `image` widget
-- misc
-  - absolute file paths in widgets' background images urls are now properly resolved
+- remote control
+  - **removed** deprecated `/EXEX`
 
 ## 0.21.3
 
