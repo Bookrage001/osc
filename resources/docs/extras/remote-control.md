@@ -40,7 +40,7 @@ Returns `/EDIT/GET id data`
 - `id`: `string`
 - `data`: `string`
 
-## `/GET target id`
+## `/GET target id`
 
 Sends back a widget's value to specified target.
 
@@ -52,7 +52,7 @@ Returns `/GET id value`
 - `id`: `string`
 - `value`: `*`
 
-## `/GET target address preArg1 preArg2 ...`
+## `/GET target address preArg1 preArg2 ...`
 
 Sends back a widget's value to specified target.
 
