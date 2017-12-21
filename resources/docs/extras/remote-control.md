@@ -68,6 +68,22 @@ Returns `/GET address preArg1 preArg2 ... value`
 - `value`: `*`
 
 
+## `/SET target id value`
+
+Set a widget's value as if it was interacted with from the interface. This is likely to make it send its value.
+
+- `id`: `string`, widget's `id`
+- `value`: `*`, widget's new value
+
+## `/SET address preArg1 preArg2 ... value`
+
+Set a widget's value as if it was interacted with from the interface. This is likely to make it send its value.
+
+- `address`: `string`, widget's `address`
+- `preArg[1...]`: `*`, widget's `preArgs`
+- `value`: `*`, widget's new value
+
+
 ## `/TABS id id etc`
 
 Open the tabs designated by the `id` parameters. The target tab link must be accesible (opening a tab located in a disabled tab won't work unless you specify the parent tab's `id` before; the safest way to go is to pass the whole tab tree to enable).

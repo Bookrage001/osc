@@ -20,6 +20,7 @@
   - renamed `/EDIT_SOFT` to `/EDIT/MERGE`
   - added  `/EDIT/GET` (get a widget's data)
   - added `/GET` (get a widget's value)
+  - added `/SET` (set a widget's value as if it was interacted with from the interface)
 
 
 ## 0.21.3

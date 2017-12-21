@@ -88,6 +88,38 @@ var callbacks = {
         }
 
     },
+    '/SET':function(args) {
+
+        var [idOrAddress, ...preArgsOrValue] = args,
+            widgets = [],
+            value = null
+
+        if (idOrAddress[0] == '/') {
+
+            [widgets, value] = widgetManager.getWidgetByAddressAndArgs(
+                idOrAddress,
+                preArgsOrValue
+            )
+
+        } else {
+
+            widgets = widgetManager.getWidgetById(idOrAddress)
+            value = preArgsOrValue
+            if (value.length == 0) value = null
+            else if (value.length == 1) value = value[0]
+
+        }
+
+        for (var i = widgets.length - 1; i >= 0; i--) {
+
+            return widgets[i].setValue(value, {
+                sync: true,
+                send: true
+            })
+
+        }
+
+    },
     '/TABS': function(args) {
 
         if (!Array.isArray(args)) args = [args]
