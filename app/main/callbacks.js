@@ -175,8 +175,6 @@ module.exports =  {
             var value = shortdata.v,
                 data = widgetHashTable[clientId][shortdata.h]
 
-            data.args =  data.preArgs.concat(value)
-
             var cloned
             for (var k in shortdata) {
                 if (!cloned) {
@@ -187,6 +185,8 @@ module.exports =  {
                     data[k] = shortdata[k]
                 }
             }
+
+            data.args =  data.preArgs.concat(value)
 
             if (!data.target || data.target.indexOf(null) == -1) {
 
