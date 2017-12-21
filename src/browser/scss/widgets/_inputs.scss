@@ -2,8 +2,11 @@
     width: 100rem;
     height: 60rem;
     padding:1rem;
-    .input {
-
+    .horizontal  {
+        input {
+            transform: rotate(-90deg);
+            vertical-align: middle;
+        }
     }
 }
 .widget {

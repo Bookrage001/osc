@@ -55,6 +55,10 @@ module.exports = class Input extends _canvas_base {
         this.value = ''
         this.stringValue = ''
 
+        if (this.getProp('horizontal')) {
+            this.widget.addClass('horizontal')
+        }
+
         if (this.getProp('editable')) {
             this.canvas.attr('tabindex', 0)
             this.canvas.on('focus', this.focus.bind(this))
