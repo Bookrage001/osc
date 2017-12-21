@@ -18,7 +18,8 @@
 - remote control
   - **removed** deprecated `/EXEX`
   - renamed `/EDIT_SOFT` to `/EDIT/MERGE`
-  - added  `/EDIT/GET`
+  - added  `/EDIT/GET` (get a widget's data)
+  - added `/GET` (get a widget's value)
 
 
 ## 0.21.3
