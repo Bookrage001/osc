@@ -46,6 +46,7 @@ var callbacks = {
             widgets = widgetManager.getWidgetById(id)
 
         for (var i = widgets.length - 1; i >= 0; i--) {
+
             return widgets[i].sendValue({
                 target: [target],
                 address: '/EDIT/GET',
@@ -55,6 +56,7 @@ var callbacks = {
                 ],
                 nosync: true
             })
+            
         }
     },
     '/GET':function(args) {
@@ -78,11 +80,10 @@ var callbacks = {
 
         for (var i = widgets.length - 1; i >= 0; i--) {
 
-            if (typeof target == 'string' && target.indexOf(':') != -1) {
-                widgets[i].sendValue({target:[target]})
-            } else {
-                widgets[i].sendValue()
-            }
+            return widgets[i].sendValue({
+                target:[target],
+                nosync: true
+            })
 
         }
 
