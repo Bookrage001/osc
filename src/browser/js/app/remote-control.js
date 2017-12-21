@@ -56,7 +56,7 @@ var callbacks = {
                 ],
                 nosync: true
             })
-            
+
         }
     },
     '/GET':function(args) {
@@ -76,12 +76,12 @@ var callbacks = {
 
         }
 
-        if (!widgets.length) return
-
         for (var i = widgets.length - 1; i >= 0; i--) {
 
             return widgets[i].sendValue({
-                target:[target],
+                target: [target],
+                address: '/GET',
+                preArgs: [idOrAddress, ...preArgs],
                 nosync: true
             })
 
