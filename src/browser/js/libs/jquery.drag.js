@@ -63,8 +63,8 @@
                 mouseMoveHandler = function(e){
                     e.stopPropagation()
 
-                    e.speedX = e.pageX - previousEvent.pageX
-                    e.speedY = e.pageY - previousEvent.pageY
+                    e.speedX = (e.pageX - previousEvent.pageX) / (e.ctrlKey ? 8 : 1)
+                    e.speedY = (e.pageY - previousEvent.pageY) / (e.ctrlKey ? 8 : 1)
                     e.deltaX = e.speedX + previousEvent.deltaX
                     e.deltaY = e.speedY + previousEvent.deltaY
 
