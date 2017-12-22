@@ -142,7 +142,7 @@ module.exports = class Range extends _widgets_base {
                 for (var i in this.handles) {
                     if (this.handlesToFaders.indexOf(i) != -1) continue
 
-                    var coord = this.faders[i].percentToCoord(this.faders[i].percent) - (this.getProp('horizontal') ? -1 : 1) * (i == 0 ? -20 : 20)
+                    var coord = this.faders[i].percentToCoord(this.faders[i].valueToPercent(this.faders[i].value)) - (this.getProp('horizontal') ? -1 : 1) * (i == 0 ? -20 : 20)
 
                     ndiff = this.getProp('horizontal')?
                                 Math.abs(data.offsetX - coord) :
@@ -224,8 +224,8 @@ module.exports = class Range extends _widgets_base {
             var width = this.getProp('horizontal') ? this.height : this.width,
                 height = !this.getProp('horizontal') ? this.height : this.width
 
-            var d = Math.round(this.percentToCoord(_this.faders[this.getProp('horizontal')?0:1].percent)),
-                d2 = Math.round(this.percentToCoord(_this.faders[this.getProp('horizontal')?1:0].percent)),
+            var d = Math.round(this.percentToCoord(this.valueToPercent(_this.faders[this.getProp('horizontal')?0:1].value))),
+                d2 = Math.round(this.percentToCoord(this.valueToPercent(_this.faders[this.getProp('horizontal')?1:0].value))),
                 m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
 
             var dashed = this.getProp('dashed')
