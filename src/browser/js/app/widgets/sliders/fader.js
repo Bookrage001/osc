@@ -130,7 +130,7 @@ module.exports = class Fader extends _sliders_base {
 
         this.percent = clip(this.percent,[0,100])
 
-        if (!(traversing || this.getProp('snap'))) return
+        if (!(traversing || this.getProp('snap'))  || data.ctrlKey) return
 
         this.percent = this.getProp('horizontal')?
         (data.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)) * 100:

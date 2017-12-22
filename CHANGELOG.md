@@ -10,9 +10,9 @@
   - downgraded to the latest *stable* electron release
 - main
   - added `zeroconf` / `bonjour` publishing for the app's http and osc input ports
-- cli
   - added `--instance-name` option to differenciate mulitple instances in zeroconf networks
 - widgets
+  - sliders/pads: holding `Ctrl` now enables high precision dragging with the mouse and bypasses the `snap` option
   - inputs: renamed `input`'s property `horizontal` to `vertical` to match how the widget actually displays
   - sliders: **new** `range` widget
   - plots: **new** `image` widget

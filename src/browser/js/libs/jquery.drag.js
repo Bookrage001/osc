@@ -297,11 +297,12 @@
         }
 
 
-    $.fn.enableTraversingGestures = function() {
+    $.fn.enableTraversingGestures = function(options={}) {
 
         var self = this[0]
 
         var down = function(e){
+                if (e.ctrlKey && options.ctrlKeyCancel) return
                 makeEventTraversing(e)
                 self.addEventListener("mousemove", makeEventTraversing, true)
                 self.addEventListener("touchmove", makeEventTraversing, true)

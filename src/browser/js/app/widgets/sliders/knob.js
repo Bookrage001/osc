@@ -76,7 +76,7 @@ module.exports = class Knob extends _sliders_base {
         this.lastOffsetX = data.offsetX
         this.lastOffsetY = data.offsetY
 
-        if (!(traversing || this.getProp('snap'))) return
+        if (!(traversing || this.getProp('snap'))  || data.ctrlKey) return
 
         this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
 
@@ -86,7 +86,7 @@ module.exports = class Knob extends _sliders_base {
 
     dragHandle(e, data, traversing) {
 
-        if (!(traversing || this.getProp('snap'))) {
+        if (!(traversing || this.getProp('snap')) || data.ctrlKey) {
 
             this.percent = -100*data.speedY/this.height + this.percent
 
