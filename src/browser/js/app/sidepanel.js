@@ -23,7 +23,7 @@ var data = [
             {
                 title:'Store',
                 action:()=>{
-                    state.quickSave.bind(state)
+                    state.quickSave()
                     $('.quickload').removeClass('disabled')
                 }
             },
