@@ -20,6 +20,8 @@
             border-radius: 2rem;
             box-shadow: inset 0 0 10rem var(--color-track);
         }
+        @extend .glass-effect;
+
     }
 }
 
@@ -35,9 +37,9 @@
         display: flex;
         flex-direction: row;
         flex: 1 1 100%;
-        position: relative;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
+        @extend .glass-effect;
     }
     canvas {
         flex:1;
@@ -52,6 +54,7 @@
     --color-knob: transparent;
     .wrapper {
         pointer-events: none;
+        @extend .glass-effect;
     }
 }
 
@@ -76,7 +79,11 @@
             overflow: hidden;
             -webkit-writing-mode:vertical-lr;
             writing-mode:vertical-lr;
+            &:after {
+                transform: rotate(-180deg);
+            }
         }
+        @extend .glass-effect;
     }
 }
 

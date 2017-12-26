@@ -7,6 +7,7 @@
         height:100%;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
+        @extend .glass-effect;
         .input {
             background: transparent!important;
             border: 0!important;

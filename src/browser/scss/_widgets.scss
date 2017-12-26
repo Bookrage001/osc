@@ -61,6 +61,25 @@
     }
 }
 
+.glass-effect {
+    position: relative;
+    &:after {
+        content:"";
+        position: absolute;
+        pointer-events: none;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background: radial-gradient(ellipse farthest-side at center top, var(--color-custom), var(--color-track));
+        background-size: 150% 150%;
+        background-repeat: no-repeat;
+        background-position: center top;
+        opacity: .15;
+        z-index: 3;
+    }
+}
+
 
 @import 'widgets/fader';
 @import 'widgets/knob';
