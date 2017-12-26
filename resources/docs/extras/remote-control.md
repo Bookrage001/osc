@@ -40,6 +40,21 @@ Returns `/EDIT/GET id data`
 - `id`: `string`
 - `data`: `string`
 
+## `/EDIT/GET target address preArg1 preArg2 ...`
+
+Sends back a widget's data (JSON stringified object), including its children, to specified target.
+
+- `target`: `string`, `ip:port` pair
+- `address`: `string`, widget's `address`
+- `preArg[1...]`: `*`, widget's `preArgs`
+
+Returns `/EDIT/GET address preArg1 preArg2 ... data`
+
+- `address`: `string`, widget's `address`
+- `preArg[1...]`: `*`, widget's `preArgs`
+- `data`: `string`
+
+
 ## `/GET target id`
 
 Sends back a widget's value to specified target.
@@ -62,7 +77,6 @@ Sends back a widget's value to specified target.
 
 Returns `/GET address preArg1 preArg2 ... value`
 
-- `id`: `string`
 - `address`: `string`, widget's `address`
 - `preArg[1...]`: `*`, widget's `preArgs`
 - `value`: `*`

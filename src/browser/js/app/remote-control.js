@@ -40,24 +40,33 @@ var callbacks = {
     },
     '/EDIT/GET': function(args) {
 
-        if (!Array.isArray(args) || args.length != 2) return
+        var [target, idOrAddress, ...preArgs] = args,
+            widgets = []
 
-        var [target, id] = args,
-            widgets = widgetManager.getWidgetById(id)
+        if (idOrAddress[0] == '/') {
+
+            widgets = widgetManager.getWidgetByAddress(
+                widgetManager.createAddressRef(null, preArgs, idOrAddress)
+            )
+
+        } else {
+
+            widgets = widgetManager.getWidgetById(idOrAddress)
+
+        }
 
         for (var i = widgets.length - 1; i >= 0; i--) {
 
             return widgets[i].sendValue({
                 target: [target],
                 address: '/EDIT/GET',
-                v: [
-                    id,
-                    JSON.stringify(widgets[i].props)
-                ],
+                preArgs: [idOrAddress, ...preArgs],
+                v: JSON.stringify(widgets[i].props),
                 nosync: true
             })
 
         }
+
     },
     '/GET':function(args) {
 
