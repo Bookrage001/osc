@@ -3,19 +3,22 @@
     height:100rem;
     padding:1rem;
     .led {
+        --opacity: 0;
+        --color-led: var(--color-custom);
         display: flex;
         flex-direction: row;
         flex: 1 1 100%;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
-        --opacity: 0;
-        &:after {
+        &:before {
             content:"";
             width:100%;
             height: 100%;
-            background: var(--color-custom);
+            background: var(--color-led);
             border-radius: inherit;
             opacity: var(--opacity);
+            border-radius: 2rem;
+            box-shadow: inset 0 0 10rem var(--color-track);
         }
     }
 }
