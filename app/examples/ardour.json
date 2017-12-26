@@ -298,7 +298,7 @@
                                                                 "address": "/trim_label_@{parent.variables.n}",
                                                                 "vertical": true,
                                                                 "width": "auto",
-                                                                "css": ""
+                                                                "css": "line-height:12rem"
                                                             },
                                                             {
                                                                 "type": "input",
@@ -949,7 +949,7 @@
                                                         "id": "mastertrim_label",
                                                         "label": false,
                                                         "color": "auto",
-                                                        "css": "",
+                                                        "css": "line-height:12rem",
                                                         "value": "Trim",
                                                         "preArgs": [],
                                                         "widgetId": "",
@@ -1933,7 +1933,7 @@
                                                                 "id": "select_trim_label",
                                                                 "label": false,
                                                                 "color": "auto",
-                                                                "css": "",
+                                                                "css": "line-height:12rem",
                                                                 "value": "Trim",
                                                                 "preArgs": [],
                                                                 "widgetId": "",
