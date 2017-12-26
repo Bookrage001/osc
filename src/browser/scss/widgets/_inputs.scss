@@ -6,6 +6,7 @@
         input {
             transform: rotate(-90deg);
             vertical-align: middle;
+            max-width: initial!important;
         }
     }
 }
@@ -20,8 +21,6 @@
         padding:1rem;
         border: 1rem solid var(--color-bg);
         background: var(--color-track);
-        font-size: 109%;
-
         input {
             display: block;
             flex:1;
