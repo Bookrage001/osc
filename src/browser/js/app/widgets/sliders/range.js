@@ -1,8 +1,174 @@
-var _widgets_base = require('../common/_widgets_base'),
-    Fader = require('../pads/_fake_fader'),
+var {clip} = require('../utils'),
+    _widgets_base = require('../common/_widgets_base'),
+    Fader = require('./fader'),
     Input = require('../inputs/input')
 
 var faderDefaults = Fader.defaults()
+
+var RangeFader = class RangeFader extends Fader {
+
+    constructor(options) {
+
+        super(options)
+        this.cancelDraw = options.cancelDraw
+
+    }
+
+    sendValue() {}
+
+    draginitHandle() {
+
+        this.percent = clip(this.percent,[
+            this.valueToPercent(this.rangeValsMin),
+            this.valueToPercent(this.rangeValsMax)
+        ])
+
+        super.draginitHandle(...arguments)
+    }
+
+    draw() {
+
+        if (this.cancelDraw || !this.parent.faders) return
+
+        var width = this.getProp('horizontal') ? this.height : this.width,
+            height = !this.getProp('horizontal') ? this.height : this.width
+
+        var d = Math.round(this.percentToCoord(this.valueToPercent(this.parent.faders[this.getProp('horizontal')?0:1].value))),
+            d2 = Math.round(this.percentToCoord(this.valueToPercent(this.parent.faders[this.getProp('horizontal')?1:0].value))),
+            m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
+
+        var dashed = this.getProp('dashed')
+
+        this.clear()
+
+        if (this.getProp('compact')) {
+
+            this.ctx.globalAlpha = (dashed ? .3 : .2)  + 0.2 * Math.abs(d-d2) / height
+            this.ctx.strokeStyle = this.colors.gauge
+            this.ctx.beginPath()
+            this.ctx.moveTo(m, d2)
+            this.ctx.lineTo(m, d)
+            this.ctx.lineWidth = width + 2 * PXSCALE
+            if (dashed) this.ctx.setLineDash([PXSCALE, PXSCALE])
+            this.ctx.stroke()
+            if (dashed) this.ctx.setLineDash([])
+
+            this.ctx.globalAlpha = 1
+            this.ctx.beginPath()
+            this.ctx.fillStyle = this.colors.knob
+            this.ctx.rect(0, Math.min(d, height - PXSCALE), width, PXSCALE)
+            this.ctx.rect(0, Math.min(d2, height - PXSCALE), width, PXSCALE)
+            this.ctx.fill()
+
+            this.clearRect = [0, 0, width, height]
+
+        } else {
+
+            this.ctx.lineWidth = 6 * PXSCALE
+
+            this.ctx.beginPath()
+            this.ctx.globalAlpha = 1
+            this.ctx.strokeStyle = this.colors.light
+            this.ctx.moveTo(m, this.margin * PXSCALE - 2 * PXSCALE)
+            this.ctx.lineTo(m, height - this.margin * PXSCALE + 2 * PXSCALE)
+            this.ctx.stroke()
+
+            this.ctx.lineWidth = 4 * PXSCALE
+
+            this.ctx.beginPath()
+            this.ctx.globalAlpha = 1
+            this.ctx.strokeStyle = this.colors.bg
+            this.ctx.moveTo(m, this.margin * PXSCALE - 1 * PXSCALE)
+            this.ctx.lineTo(m, height - this.margin * PXSCALE + 1 * PXSCALE)
+            this.ctx.stroke()
+
+            this.ctx.lineWidth = 2 * PXSCALE
+
+            this.ctx.beginPath()
+            this.ctx.strokeStyle = this.colors.track
+            this.ctx.moveTo(m, this.margin * PXSCALE)
+            this.ctx.lineTo(m, height - this.margin * PXSCALE)
+            this.ctx.stroke()
+
+            this.ctx.beginPath()
+            this.ctx.globalAlpha = 0.7
+            this.ctx.strokeStyle = this.colors.gauge
+            this.ctx.moveTo(m, d2)
+            this.ctx.lineTo(m, d)
+            if (dashed) this.ctx.setLineDash([PXSCALE, PXSCALE])
+            this.ctx.stroke()
+            if (dashed) this.ctx.setLineDash([])
+
+            this.ctx.globalAlpha = 1
+
+            // high knob bg
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 9 * PXSCALE, d - 14 * PXSCALE, 18 * PXSCALE, 16 * PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.fillStyle = this.colors.bg
+            this.ctx.fill()
+
+            // low knob bg
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 9 * PXSCALE, d2 - PXSCALE, 18 * PXSCALE, 16 * PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.fillStyle = this.colors.bg
+            this.ctx.fill()
+
+            // high knob
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 8 * PXSCALE, d - 13 * PXSCALE, 16 * PXSCALE, 14 * PXSCALE)
+            this.ctx.fillStyle = this.colors.raised
+            this.ctx.fill()
+            this.ctx.lineWidth = PXSCALE
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 7.5 * PXSCALE, d - 12.5 * PXSCALE, 15 * PXSCALE, 13.5 * PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.strokeStyle = this.colors.light
+            this.ctx.stroke()
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 8 * PXSCALE, d - 13 * PXSCALE, 16 * PXSCALE, PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.fillStyle = this.colors.light
+            this.ctx.fill()
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 4 * PXSCALE, d, 8 * PXSCALE, PXSCALE)
+            this.ctx.fillStyle = this.colors.knob
+            this.ctx.fill()
+
+            // low knob
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 8 * PXSCALE, d2, 16 * PXSCALE, 14 * PXSCALE)
+            this.ctx.fillStyle = this.colors.raised
+            this.ctx.fill()
+            this.ctx.lineWidth = PXSCALE
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 7.5 * PXSCALE, d2, 15 * PXSCALE, 13.5 * PXSCALE)
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.strokeStyle = this.colors.light
+            this.ctx.stroke()
+
+            this.ctx.beginPath()
+            this.ctx.rect(m - 4 * PXSCALE, d2, 8 * PXSCALE, PXSCALE)
+            this.ctx.fillStyle = this.colors.knob
+            this.ctx.fill()
+
+
+
+            this.clearRect = [width / 2 - 11 * PXSCALE, 0, 22 * PXSCALE, height]
+        }
+    }
+
+}
+
 
 module.exports = class Range extends _widgets_base {
 
@@ -69,9 +235,8 @@ module.exports = class Range extends _widgets_base {
         this.wrapper = this.widget.find('.wrapper')
 
         this.faders = [
-            new Fader({props:{
+            new RangeFader({props:{
                 ...faderDefaults,
-                id:0,
                 compact:this.getProp('compact'),
                 pips:false,
                 alignRight:false,
@@ -86,10 +251,9 @@ module.exports = class Range extends _widgets_base {
                 precision:this.precision,
                 logScale:this.getProp('logScale'),
                 input:false
-            }, cancelDraw: true}),
-            new Fader({props:{
+            }, cancelDraw: true, parent: this}),
+            new RangeFader({props:{
                 ...faderDefaults,
-                id:1,
                 compact:this.getProp('compact'),
                 pips:this.getProp('pips'),
                 alignRight:this.getProp('alignRight'),
@@ -104,10 +268,8 @@ module.exports = class Range extends _widgets_base {
                 precision:this.precision,
                 logScale:this.getProp('logScale'),
                 input:false
-            }, cancelDraw: true})
+            }, cancelDraw: false, parent: this})
         ]
-
-
 
         this.wrapper.append(this.faders[0].widget)
         this.wrapper.append(this.faders[1].widget)
@@ -216,147 +378,6 @@ module.exports = class Range extends _widgets_base {
         }
         if (this.getProp('pips')) {
             this.widget.addClass('has-pips')
-        }
-
-        var _this = this
-        this.faders[1].draw = function() {
-
-            var width = this.getProp('horizontal') ? this.height : this.width,
-                height = !this.getProp('horizontal') ? this.height : this.width
-
-            var d = Math.round(this.percentToCoord(this.valueToPercent(_this.faders[this.getProp('horizontal')?0:1].value))),
-                d2 = Math.round(this.percentToCoord(this.valueToPercent(_this.faders[this.getProp('horizontal')?1:0].value))),
-                m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
-
-            var dashed = this.getProp('dashed')
-
-            this.clear()
-
-            if (this.getProp('compact')) {
-
-                this.ctx.globalAlpha = (dashed ? .3 : .2)  + 0.2 * Math.abs(d-d2) / height
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.beginPath()
-                this.ctx.moveTo(m, d2)
-                this.ctx.lineTo(m, d)
-                this.ctx.lineWidth = width + 2 * PXSCALE
-                if (dashed) this.ctx.setLineDash([PXSCALE, PXSCALE])
-                this.ctx.stroke()
-                if (dashed) this.ctx.setLineDash([])
-
-                this.ctx.globalAlpha = 1
-                this.ctx.beginPath()
-                this.ctx.fillStyle = this.colors.knob
-                this.ctx.rect(0, Math.min(d, height - PXSCALE), width, PXSCALE)
-                this.ctx.rect(0, Math.min(d2, height - PXSCALE), width, PXSCALE)
-                this.ctx.fill()
-
-                this.clearRect = [0, 0, width, height]
-
-            } else {
-
-                this.ctx.lineWidth = 6 * PXSCALE
-
-                this.ctx.beginPath()
-                this.ctx.globalAlpha = 1
-                this.ctx.strokeStyle = this.colors.light
-                this.ctx.moveTo(m, this.margin * PXSCALE - 2 * PXSCALE)
-                this.ctx.lineTo(m, height - this.margin * PXSCALE + 2 * PXSCALE)
-                this.ctx.stroke()
-
-                this.ctx.lineWidth = 4 * PXSCALE
-
-                this.ctx.beginPath()
-                this.ctx.globalAlpha = 1
-                this.ctx.strokeStyle = this.colors.bg
-                this.ctx.moveTo(m, this.margin * PXSCALE - 1 * PXSCALE)
-                this.ctx.lineTo(m, height - this.margin * PXSCALE + 1 * PXSCALE)
-                this.ctx.stroke()
-
-                this.ctx.lineWidth = 2 * PXSCALE
-
-                this.ctx.beginPath()
-                this.ctx.strokeStyle = this.colors.track
-                this.ctx.moveTo(m, this.margin * PXSCALE)
-                this.ctx.lineTo(m, height - this.margin * PXSCALE)
-                this.ctx.stroke()
-
-                this.ctx.beginPath()
-                this.ctx.globalAlpha = 0.7
-                this.ctx.strokeStyle = this.colors.gauge
-                this.ctx.moveTo(m, d2)
-                this.ctx.lineTo(m, d)
-                if (dashed) this.ctx.setLineDash([PXSCALE, PXSCALE])
-                this.ctx.stroke()
-                if (dashed) this.ctx.setLineDash([])
-
-                this.ctx.globalAlpha = 1
-
-                // high knob bg
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 9 * PXSCALE, d - 14 * PXSCALE, 18 * PXSCALE, 16 * PXSCALE)
-                this.ctx.lineWidth = PXSCALE
-                this.ctx.fillStyle = this.colors.bg
-                this.ctx.fill()
-
-                // low knob bg
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 9 * PXSCALE, d2 - PXSCALE, 18 * PXSCALE, 16 * PXSCALE)
-                this.ctx.lineWidth = PXSCALE
-                this.ctx.fillStyle = this.colors.bg
-                this.ctx.fill()
-
-                // high knob
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 8 * PXSCALE, d - 13 * PXSCALE, 16 * PXSCALE, 14 * PXSCALE)
-                this.ctx.fillStyle = this.colors.raised
-                this.ctx.fill()
-                this.ctx.lineWidth = PXSCALE
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 7.5 * PXSCALE, d - 12.5 * PXSCALE, 15 * PXSCALE, 13.5 * PXSCALE)
-                this.ctx.lineWidth = PXSCALE
-                this.ctx.strokeStyle = this.colors.light
-                this.ctx.stroke()
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 8 * PXSCALE, d - 13 * PXSCALE, 16 * PXSCALE, PXSCALE)
-                this.ctx.lineWidth = PXSCALE
-                this.ctx.fillStyle = this.colors.light
-                this.ctx.fill()
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 4 * PXSCALE, d, 8 * PXSCALE, PXSCALE)
-                this.ctx.fillStyle = this.colors.knob
-                this.ctx.fill()
-
-                // low knob
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 8 * PXSCALE, d2, 16 * PXSCALE, 14 * PXSCALE)
-                this.ctx.fillStyle = this.colors.raised
-                this.ctx.fill()
-                this.ctx.lineWidth = PXSCALE
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 7.5 * PXSCALE, d2, 15 * PXSCALE, 13.5 * PXSCALE)
-                this.ctx.lineWidth = PXSCALE
-                this.ctx.strokeStyle = this.colors.light
-                this.ctx.stroke()
-
-                this.ctx.beginPath()
-                this.ctx.rect(m - 4 * PXSCALE, d2, 8 * PXSCALE, PXSCALE)
-                this.ctx.fillStyle = this.colors.knob
-                this.ctx.fill()
-
-
-
-                this.clearRect = [width / 2 - 11 * PXSCALE, 0, 22 * PXSCALE, height]
-            }
-
         }
 
         this.setValue([
