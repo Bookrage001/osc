@@ -359,6 +359,11 @@ module.exports = class Range extends _widgets_base {
 
         }
 
+        this.setValue([
+            this.faders[0].rangeValsMin,
+            this.faders[1].rangeValsMax
+        ])
+
     }
 
     setValue(v, options={}) {
