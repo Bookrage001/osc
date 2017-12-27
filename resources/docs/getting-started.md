@@ -48,6 +48,10 @@ $ open-stage-control --no-gui --load path/to/session.js --port 9999
 
 This will create a headless app available through http on port 9999 with session.js loaded automatically.
 
+!!! tip "What about HTTPS ?"
+    Security is out of the app's scope. If you are concerned about safety, using a private - protected - network should be enough.
+
+
 ## Run from sources
 
 Running the app from the sources slightly differs from using built binaries : instead of running a binary, we'll launch the app with npm.
