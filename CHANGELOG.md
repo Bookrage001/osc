@@ -18,7 +18,7 @@
   - sliders: **new** `range` widget
   - plots: **new** `image` widget
 - remote control
-  - **removed** deprecated `/EXEX`
+  - **removed** deprecated `/EXEC`
   - renamed `/EDIT_SOFT` to `/EDIT/MERGE`
   - added  `/EDIT/GET` (get a widget's data)
   - added `/GET` (get a widget's value)
