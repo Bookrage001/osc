@@ -151,18 +151,12 @@ module.exports =  {
         var value = shortdata.v,
             data = widgetHashTable[clientId][shortdata.h]
 
-        data.args =  data.preArgs.concat(value)
-
-        var cloned
+        data = JSON.parse(JSON.stringify(data))
         for (var k in shortdata) {
-            if (!cloned) {
-                data = JSON.parse(JSON.stringify(data))
-                cloned = true
-            }
-            if (data[k]) {
-                data[k] = shortdata[k]
-            }
+            data[k] = shortdata[k]
         }
+
+        data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
 
         clients[clientId].broadcast.emit('receiveOsc', data)
 
@@ -175,18 +169,12 @@ module.exports =  {
             var value = shortdata.v,
                 data = widgetHashTable[clientId][shortdata.h]
 
-            var cloned
+            data = JSON.parse(JSON.stringify(data))
             for (var k in shortdata) {
-                if (!cloned) {
-                    data = JSON.parse(JSON.stringify(data))
-                    cloned = true
-                }
-                if (data[k]) {
-                    data[k] = shortdata[k]
-                }
+                data[k] = shortdata[k]
             }
 
-            data.args =  data.preArgs.concat(value)
+            data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
 
             if (!data.target || data.target.indexOf(null) == -1) {
 
