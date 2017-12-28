@@ -34,13 +34,13 @@ before_deploy:
   - mv open-stage-control-linux-ia32   open-stage-control-${VERSION}-linux-ia32
   - mv open-stage-control-linux-x64    open-stage-control-${VERSION}-linux-x64
   - mv open-stage-control-linux-armv7l open-stage-control-${VERSION}-linux-armv7l
-  - mv open-stage-control-linux-arm64 open-stage-control-${VERSION}-linux-arm64
+  # - mv open-stage-control-linux-arm64 open-stage-control-${VERSION}-linux-arm64
   - zip -q -r --symlinks packages/open-stage-control-${VERSION}-osx.zip open-stage-control-darwin-x64/open-stage-control.app
   - zip -q -r packages/open-stage-control-${VERSION}-win32-ia32.zip     open-stage-control-${VERSION}-win32-ia32
   - zip -q -r packages/open-stage-control-${VERSION}-win32-x64.zip      open-stage-control-${VERSION}-win32-x64
   - zip -q -r packages/open-stage-control-${VERSION}-linux-ia32.zip     open-stage-control-${VERSION}-linux-ia32
   - zip -q -r packages/open-stage-control-${VERSION}-linux-x64.zip      open-stage-control-${VERSION}-linux-x64
   - zip -q -r packages/open-stage-control-${VERSION}-linux-armv7l.zip   open-stage-control-${VERSION}-linux-armv7l
-  - zip -q -r packages/open-stage-control-${VERSION}-linux-arm64.zip   open-stage-control-${VERSION}-linux-arm64
+  # - zip -q -r packages/open-stage-control-${VERSION}-linux-arm64.zip   open-stage-control-${VERSION}-linux-arm64
   - ls packages
   - cd ..
