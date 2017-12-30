@@ -1,4 +1,4 @@
-var sourceMap = require('../libs/source-map.min.js'),
+var sourceMap = require('source-map'),
     request = new XMLHttpRequest(),
     ipc = require('./ipc/')
 
