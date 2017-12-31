@@ -10,22 +10,22 @@
 }
 ```
 
-### `widgetId`
+### `widgetId`
 - type: `object`
 - default: `empty`
 - usage: a widget's `id` whose value will be linked to the input
 
-### `editable`
+### `editable`
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to make the input non-editable
 
-### `horizontal`
+### `horizontal`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display the input horizontally
 
-### `unit`
+### `unit`
 - type: `string`
 - default: `empty`
 - usage: `unit` will be appended to the displayed widget's value (it doesn't affect osc messages)
@@ -41,17 +41,17 @@
 }
 ```
 
-### `widgetId`
+### `widgetId`
 - type: `object`
 - default: `empty`
 - usage: a widget's `id` whose value will be linked to the Keys
 
-### `binding`
+### `binding`
 - type: `string|array`
 - default: `''`
 - usage: [keyboardjs](https://github.com/RobertWHurst/KeyboardJS) key combo string or array of strings.
 
-### `keydown`
+### `keydown`
 - type: `string`
 - default: `''`
 - usage: [MathJS](http://mathjs.org/docs/expressions/syntax.html) expression whose output will be sent to the linked widget. This will be evaluated when the key combo is pressed. Available variables are ;
@@ -62,12 +62,12 @@
   - `shift`: shift key state   
   - `super`: command/windows key state   
 
-### `keyup`
+### `keyup`
 - type: `string`
 - default: `''`
 - usage: same as `keydown`, but evaluated when releasing the key combo.
 
-### `repeat`
+### `repeat`
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to prevent `keydown` repeats when holding the key combo pressed.
