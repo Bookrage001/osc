@@ -27,11 +27,11 @@ module.exports = class Keys extends _widgets_base {
 
             _keys:'keys',
 
-            binding:'',
             widgetId:'',
+            binding:'',
             keydown:'',
             keyup:'',
-            repeat:false,
+            repeat:true,
 
         }
 
