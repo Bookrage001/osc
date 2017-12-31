@@ -142,6 +142,8 @@ module.exports = class Formula extends _widgets_base {
 
                 var s = this.condition.eval(variables).valueOf()
 
+                if (Array.isArray(s) && s.length == 1) s = s[0]
+                
                 this.conditionState = s.data !== undefined ? s.data : s
 
             } catch(err) {
@@ -155,6 +157,8 @@ module.exports = class Formula extends _widgets_base {
         try {
 
             var v = this.formula.eval(variables).valueOf()
+
+            if (Array.isArray(v) && v.length == 1) v = v[0]
 
             this.value = v.data ? v.data : v
 
