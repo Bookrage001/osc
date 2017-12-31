@@ -1,0 +1,146 @@
+[
+    {
+        "type": "root",
+        "tabs": [
+            {
+                "type": "tab",
+                "id": "tab_1",
+                "label": "auto",
+                "color": "auto",
+                "css": "",
+                "layout": "",
+                "spacing": 0,
+                "value": "",
+                "precision": 0,
+                "address": "/tab_1",
+                "preArgs": [],
+                "target": [],
+                "variables": "@{parent.variables}",
+                "widgets": [
+                    {
+                        "type": "keys",
+                        "top": 300,
+                        "left": 0,
+                        "id": "keys_1",
+                        "width": "auto",
+                        "height": "auto",
+                        "label": "auto",
+                        "color": "auto",
+                        "css": "",
+                        "binding": [
+                            "r",
+                            "f"
+                        ],
+                        "keydown": "# this is a comment\nx = key == \"r\" ?  0.1 : -0.1;\nvalue + x",
+                        "repeat": true,
+                        "widgetId": "fader_1",
+                        "keyup": ""
+                    },
+                    {
+                        "type": "fader",
+                        "top": 0,
+                        "left": 0,
+                        "id": "fader_1",
+                        "linkId": "",
+                        "width": "auto",
+                        "height": "auto",
+                        "label": "auto",
+                        "color": "auto",
+                        "css": "",
+                        "horizontal": false,
+                        "alignRight": false,
+                        "pips": true,
+                        "input": true,
+                        "meter": false,
+                        "compact": false,
+                        "dashed": false,
+                        "snap": false,
+                        "spring": false,
+                        "doubleTap": false,
+                        "range": {
+                            "min": 0,
+                            "max": 1
+                        },
+                        "logScale": false,
+                        "unit": "",
+                        "origin": "auto",
+                        "value": "",
+                        "precision": 2,
+                        "address": "/fader_1",
+                        "touchAddress": "",
+                        "meterAddress": "",
+                        "preArgs": [],
+                        "target": []
+                    },
+                    {
+                        "type": "xy",
+                        "top": 50,
+                        "left": 170,
+                        "id": "xy_1",
+                        "linkId": "",
+                        "width": 210,
+                        "height": 220,
+                        "label": "auto",
+                        "color": "auto",
+                        "css": "",
+                        "input": true,
+                        "pips": true,
+                        "pointSize": 20,
+                        "snap": false,
+                        "spring": false,
+                        "doubleTap": false,
+                        "rangeX": {
+                            "min": 0,
+                            "max": 1
+                        },
+                        "rangeY": {
+                            "min": 0,
+                            "max": 1
+                        },
+                        "logScaleX": false,
+                        "logScaleY": false,
+                        "value": "",
+                        "precision": 2,
+                        "address": "/xy_1",
+                        "touchAddress": "",
+                        "preArgs": [],
+                        "split": false,
+                        "target": []
+                    },
+                    {
+                        "type": "keys",
+                        "top": 270,
+                        "left": 170,
+                        "id": "keys_2",
+                        "width": 210,
+                        "height": "auto",
+                        "label": "auto",
+                        "color": "auto",
+                        "css": "",
+                        "binding": [
+                            "g",
+                            "t"
+                        ],
+                        "widgetId": "xy_1",
+                        "keydown": "x = key == \"t\" ? 0.1 : -0.1;\nvalue[1] + x\nvalue[2] + x\n# value + 0.1 works too",
+                        "keyup": "",
+                        "repeat": false
+                    }
+                ],
+                "tabs": [],
+                "scroll": true
+            }
+        ],
+        "color": "auto",
+        "css": "",
+        "value": "",
+        "precision": 0,
+        "address": "/root",
+        "preArgs": [],
+        "target": [],
+        "variables": {},
+        "id": "root",
+        "scroll": true,
+        "label": false
+    }
+]
