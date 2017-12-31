@@ -48,6 +48,7 @@ module.exports.widgets = {
 
     // inputs
     input: require('./inputs/input'),
+    keys: require('./inputs/keys'),
 
     // maths
     formula: require('./maths/formula')
@@ -62,6 +63,6 @@ module.exports.categories = {
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image'],
     'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['switcher','crossfader'],
-    'Inputs':['input'],
+    'Inputs':['input', 'keys'],
     'Maths':['formula']
 }
