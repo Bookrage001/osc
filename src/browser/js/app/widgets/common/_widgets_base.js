@@ -101,7 +101,7 @@ module.exports = class _widgets_base {
 
     getValue(withPrecision) {
 
-        return _widgets_base.deepCopy(this.value, withPrecision)
+        return _widgets_base.deepCopy(this.value, withPrecision ? this.precision : undefined)
 
     }
 
@@ -177,7 +177,7 @@ module.exports = class _widgets_base {
                         }
 
                         var r = k == '_value' ?
-                                widgets[i].getValue() :
+                                widgets[i].getValue(true) :
                                 widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalPropName)
 
                         if (subk !== undefined) r = r[subk]
