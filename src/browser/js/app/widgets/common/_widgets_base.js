@@ -117,7 +117,7 @@ module.exports = class _widgets_base {
         if (typeof obj === 'object') {
             copy = Array.isArray(obj) ? [] : {}
             for (let key in obj) {
-                copy[key] = _widgets_base.deepCopy(obj[key])
+                copy[key] = _widgets_base.deepCopy(obj[key], precision)
             }
         } else if (typeof obj == 'number') {
             return precision === undefined ? copy : parseFloat(copy.toFixed(precision))
