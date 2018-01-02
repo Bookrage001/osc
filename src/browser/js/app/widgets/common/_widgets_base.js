@@ -59,19 +59,27 @@ module.exports = class _widgets_base {
             }
         }
 
-        $('body').on(`widget-created.${this.hash}`, (e)=>{
-            var {id} = e
-            if (this.linkedProps[id] && id != this.getProp('id')) {
-                this.checkPropsChanged(this.linkedProps[id])
-            }
-        })
+        if (Object.keys(this.linkedProps).length) {
 
-        $('body').on(`change.${this.hash}`, (e)=>{
-            var {id} = e
-            if (this.linkedPropsValue[id] && id != this.getProp('id')) {
-                this.checkPropsChanged(this.linkedPropsValue[id])
-            }
-        })
+            $('body').on(`widget-created.${this.hash}`, (e)=>{
+                var {id} = e
+                if (this.linkedProps[id] && id != this.getProp('id')) {
+                    this.checkPropsChanged(this.linkedProps[id])
+                }
+            })
+
+        }
+
+        if (Object.keys(this.linkedPropsValue).length) {
+
+            $('body').on(`change.${this.hash}`, (e)=>{
+                var {id} = e
+                if (this.linkedPropsValue[id] && id != this.getProp('id')) {
+                    this.checkPropsChanged(this.linkedPropsValue[id])
+                }
+            })
+
+        }
 
         $('body').trigger({type: 'widget-created', id: this.getProp('id'), widget:this})
 
