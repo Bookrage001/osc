@@ -168,7 +168,7 @@ module.exports = class Xy extends _pads_base {
     setValue(v, options={}) {
 
         if (!v || !v.length || v.length!=2) return
-        if (this.touched && !options.dragged) return this.setValueTouchedQueue = arguments
+        if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
         if (!options.dragged) {
             this.faders.x.setValue(v[0], {sync: false, send:false, dragged:false})

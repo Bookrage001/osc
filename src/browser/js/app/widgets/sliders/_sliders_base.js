@@ -195,7 +195,7 @@ module.exports = class _sliders_base extends _canvas_base {
     setValue(v,options={}) {
 
         if (typeof v != 'number') return
-        if (this.touched && !options.dragged) return this.setValueTouchedQueue = arguments
+        if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
         var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 

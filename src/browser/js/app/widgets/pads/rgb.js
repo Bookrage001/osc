@@ -151,7 +151,7 @@ module.exports = class Rgb extends _pads_base {
     setValue(v, options={}) {
 
         if (!v || !v.length || v.length!=3) return
-        if (this.touched && !options.dragged) return this.setValueTouchedQueue = arguments
+        if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
         for (let i in [0,1,2]) {
             v[i] = clip(v[i],[0,255])

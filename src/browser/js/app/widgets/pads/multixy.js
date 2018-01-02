@@ -218,7 +218,7 @@ module.exports = class MultiXy extends _pads_base {
     setValue(v, options={}) {
 
         if (!v || !v.length || v.length!=this.npoints * 2) return
-        if (this.touched && !options.dragged) return this.setValueTouchedQueue = arguments
+        if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
         for (var i=0;i<this.npoints;i++) {
             if (!options.dragged) {
