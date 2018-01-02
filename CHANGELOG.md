@@ -5,6 +5,9 @@
 - bug fixes
   - plots now send their value to other widget for synchronization as expected
   - text widgets now apply their target widget's precision
+- widgets
+  - inputs: **new** `keys` widget, for keyboard bindings
+  - property inheritance: new special property name `_value` (retrieve the widget's value, and update when it changes) 
 
 ## 0.22.0
 
