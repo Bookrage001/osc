@@ -4,7 +4,7 @@
 
 - bug fixes
   - plots now send their value to other widget for synchronization as expected
-  
+  - text widgets now apply their target widget's precision
 
 ## 0.22.0
 

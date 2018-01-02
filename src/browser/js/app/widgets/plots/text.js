@@ -71,7 +71,7 @@ module.exports = class Text extends _widgets_base {
             value
         for (var i=widget.length-1; i>=0; i--) {
             if (widget[i].getValue) {
-                this.setValue(widget[i].getValue(), {sync: e.options.sync})
+                this.setValue(widget[i].getValue(true), {sync: e.options.sync})
                 return
             }
         }
