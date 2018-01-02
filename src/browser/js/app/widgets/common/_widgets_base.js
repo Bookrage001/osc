@@ -45,9 +45,8 @@ module.exports = class _widgets_base {
 
 
         // @{props} links lists
-        this.linkedPropsWidgets = []
-        this.linkedProps = []
-
+        this.linkedProps = {}
+        this.linkedPropsValue = {}
 
         // cache props (resolve @{props})
         this.cachedProps = {}
@@ -62,8 +61,15 @@ module.exports = class _widgets_base {
 
         $('body').on(`widget-created.${this.hash}`, (e)=>{
             var {id} = e
-            if (this.linkedPropsWidgets.indexOf(id) != -1 && id != this.getProp('id')) {
-                this.checkPropsChanged()
+            if (this.linkedProps[id] && id != this.getProp('id')) {
+                this.checkPropsChanged(this.linkedProps[id])
+            }
+        })
+
+        $('body').on(`change.${this.hash}`, (e)=>{
+            var {id} = e
+            if (this.linkedPropsValue[id] && id != this.getProp('id')) {
+                this.checkPropsChanged(this.linkedPropsValue[id])
             }
         })
 
@@ -119,15 +125,15 @@ module.exports = class _widgets_base {
 
     }
 
-    resolveProp(key, opt, storeLinks=true, originalWidget, originalKey) {
+    resolveProp(propName, propValue, storeLinks=true, originalWidget, originalPropName) {
 
-        var opt = opt !== undefined ? opt : _widgets_base.deepCopy(this.props[key]),
+        var propValue = propValue !== undefined ? propValue : _widgets_base.deepCopy(this.props[propName]),
             originalWidget = originalWidget || this,
-            originalKey = originalKey || key,
+            originalPropName = originalPropName || propName,
             obj
 
-        if (typeof opt == 'string' && opt.indexOf('@{') != -1) {
-            opt = opt.replace(/@\{([^\}]+)\}/g, (m)=>{
+        if (typeof propValue == 'string' && propValue.indexOf('@{') != -1) {
+            propValue = propValue.replace(/@\{([^\}]+)\}/g, (m)=>{
                 let id = m.substr(2, m.length - 3).split('.'),
                     k = id.pop(),
                     subk = undefined
@@ -145,20 +151,36 @@ module.exports = class _widgets_base {
 
 
                 for (var i in widgets) {
-                    if (widgets[i].props.hasOwnProperty(k)) {
+                    if (widgets[i].props.hasOwnProperty(k) || k == '_value') {
 
-                        if (originalKey == k && widgets[i].props.id == originalWidget.props.id) {
-                            throw `Circular property reference for ${originalWidget.props.id}.${originalKey}`
+                        if (originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
+                            throw `Circular property reference for ${originalWidget.props.id}.${originalPropName}`
                         }
 
                         if (id != 'this' && id != 'parent' && storeLinks) {
-                            this.linkedProps.push(key)
-                            this.linkedPropsWidgets.push(id)
+
+                            if (k == '_value') {
+
+                                if (!this.linkedPropsValue[id]) this.linkedPropsValue[id] = []
+                                this.linkedPropsValue[id].push(propName)
+
+                            } else {
+
+
+                                if (!this.linkedProps[id]) this.linkedProps[id] = []
+                                this.linkedProps[id].push(propName)
+
+                            }
+
                         }
 
-                        var r = widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalKey)
+                        var r = k == '_value' ?
+                                widgets[i].getValue() :
+                                widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalPropName)
+
                         if (subk !== undefined) r = r[subk]
                         if (typeof r != 'string') r = JSON.stringify(r)
+
                         return r
 
                     }
@@ -166,27 +188,27 @@ module.exports = class _widgets_base {
             })
 
             try {
-                opt = JSON.parse(opt)
+                propValue = JSON.parse(propValue)
             } catch (err) {}
 
-        } else if (opt != null && typeof opt == 'object') {
-            for (var k in opt) {
-                opt[k] = this.resolveProp(key, opt[k], storeLinks, originalWidget, originalKey)
+        } else if (propValue != null && typeof propValue == 'object') {
+            for (var k in propValue) {
+                propValue[k] = this.resolveProp(propName, propValue[k], storeLinks, originalWidget, originalPropName)
             }
         }
 
-        return opt
+        return propValue
 
 
     }
 
-    getProp(key){
-        return this.cachedProps[key]
+    getProp(propName){
+        return this.cachedProps[propName]
     }
 
-    checkPropsChanged(){
-        for (var key of this.linkedProps) {
-            if (JSON.stringify(this.cachedProps[key]) != JSON.stringify(this.resolveProp(key, undefined, false))) {
+    checkPropsChanged(propNames){
+        for (var propName of propNames) {
+            if (JSON.stringify(this.cachedProps[propName]) != JSON.stringify(this.resolveProp(propName, undefined, false))) {
                 return this.reCreateWidget()
             }
         }
@@ -198,6 +220,7 @@ module.exports = class _widgets_base {
 
     onRemove(){
         $('body').off(`widget-created.${this.hash}`)
+                 .off(`change.${this.hash}`)
     }
 
 }
