@@ -99,13 +99,13 @@ module.exports = class _widgets_base {
 
     }
 
-    getValue() {
+    getValue(withPrecision) {
 
-        return _widgets_base.deepCopy(this.value)
+        return _widgets_base.deepCopy(this.value, withPrecision)
 
     }
 
-    static deepCopy(obj){
+    static deepCopy(obj, precision){
 
         var copy = obj,
             key
@@ -119,6 +119,8 @@ module.exports = class _widgets_base {
             for (let key in obj) {
                 copy[key] = _widgets_base.deepCopy(obj[key])
             }
+        } else if (typeof obj == 'number') {
+            return precision === undefined ? copy : parseFloat(copy.toFixed(precision))
         }
 
         return copy

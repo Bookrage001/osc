@@ -1,4 +1,5 @@
 var {iconify} = require('../../utils'),
+    _widgets_base = require('../common/_widgets_base'),
     _canvas_base = require('../common/_canvas_base'),
     widgetManager = require('../../managers/widgets')
 
@@ -198,28 +199,10 @@ module.exports = class Input extends _canvas_base {
 
     }
 
-    static deepCopyWithPrecision(obj, precision) {
-
-            var copy = obj,
-                key
-
-            if (typeof obj === 'object') {
-                copy = Array.isArray(obj) ? [] : {}
-                for (key in obj) {
-                    copy[key] = Input.deepCopyWithPrecision(obj[key], precision)
-                }
-            } else if (typeof obj == 'number') {
-                return parseFloat(copy.toFixed(precision))
-            }
-
-            return copy
-
-    }
-
     getStringValue() {
         if (this.value === undefined) return ''
         return typeof this.value != 'string' ?
-            JSON.stringify(Input.deepCopyWithPrecision(this.value, this.precision)).replace(/,/g, ', ') :
+            JSON.stringify(_widgets_base.deepCopy(this.value, this.precision)).replace(/,/g, ', ') :
             this.value
     }
 
