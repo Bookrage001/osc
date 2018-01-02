@@ -89,17 +89,13 @@ var Parser = class Parser {
             }
 
             // convert dimensions / coordinates to rem
-            var width = parseFloat(widgetInner.getProp('width'))==widgetInner.getProp('width')?parseFloat(widgetInner.getProp('width'))+'rem' : widgetInner.getProp('width'),
-                height = parseFloat(widgetInner.getProp('height'))==widgetInner.getProp('height')?parseFloat(widgetInner.getProp('height'))+'rem' : widgetInner.getProp('height'),
-                left = parseFloat(widgetInner.getProp('left'))==widgetInner.getProp('left')?parseFloat(widgetInner.getProp('left'))+'rem' : widgetInner.getProp('left'),
-                top = parseFloat(widgetInner.getProp('top'))==widgetInner.getProp('top')?parseFloat(widgetInner.getProp('top'))+'rem' : widgetInner.getProp('top')
-
             var geometry = {}
             for (var d of ['width', 'height', 'left', 'top']){
-                if (props[d]!==undefined)
-                    geometry[d] = `${props[d]}`.indexOf('-') != -1 ? 0 :
-                parseFloat(props[d]) == props[d] ?
-                parseFloat(props[d])+'rem' : props[d]
+                let val = widgetInner.getProp(d)
+                if (val !== undefined)
+                    geometry[d] = `${val}`.indexOf('-') != -1 ? 0 :
+                        parseFloat(val) == val ?
+                        parseFloat(val)+'rem' : val
             }
 
             // dimensions / coordinates css
