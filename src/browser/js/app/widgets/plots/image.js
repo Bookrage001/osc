@@ -57,7 +57,7 @@ module.exports = class Led extends _widgets_base {
 
     }
 
-    setValue(v) {
+    setValue(v, options={}) {
 
         var s = v==null ? '' : '' + v,
             cache_query = ''
@@ -80,6 +80,8 @@ module.exports = class Led extends _widgets_base {
         }
 
         this.widget[0].style.setProperty('background-image', `url(${this.value}${cache_query})`)
+
+        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
 
     }
 

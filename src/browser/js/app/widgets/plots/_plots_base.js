@@ -150,10 +150,12 @@ module.exports = class _plots_base extends _canvas_base {
 
     }
 
-    setValue(v) {
+    setValue(v, options={}) {
 
         this.data = v
         this.draw()
+
+        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
 
     }
 

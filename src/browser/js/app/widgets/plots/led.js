@@ -68,17 +68,19 @@ module.exports = class Led extends _widgets_base {
             value
         for (var i=widget.length-1; i>=0; i--) {
             if (widget[i].getValue) {
-                this.setValue(widget[i].getValue())
+                this.setValue(widget[i].getValue(), {sync: e.options.sync})
                 return
             }
         }
 
     }
-    setValue(v) {
+    setValue(v, options={}) {
 
         if (typeof v != 'number') return
         this.value = v
         this.widget[0].style.setProperty('--opacity', mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
+
+        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
 
     }
 

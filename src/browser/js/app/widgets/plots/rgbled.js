@@ -68,13 +68,13 @@ module.exports = class Rbgled extends _widgets_base {
 
         for (var i=widget.length-1; i>=0; i--) {
             if (widget[i].getValue) {
-                this.setValue(widget[i].getValue())
+                this.setValue(widget[i].getValue(), {sync: e.options.sync})
                 return
             }
         }
 
     }
-    setValue(v) {
+    setValue(v, options={}) {
 
         var c = ''
 
@@ -102,6 +102,8 @@ module.exports = class Rbgled extends _widgets_base {
         this.value = v
 
         this.widget[0].style.setProperty('--color-led', c)
+
+        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
 
     }
 

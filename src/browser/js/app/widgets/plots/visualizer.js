@@ -67,7 +67,7 @@ module.exports = class Visualizer extends _plots_base {
     syncHandle(e) {
 
         if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length || !e.widget) return
-        this.setValue(e.widget.getValue())
+        this.setValue(e.widget.getValue(), {sync: e.options.sync})
 
     }
 
@@ -117,7 +117,7 @@ module.exports = class Visualizer extends _plots_base {
 
     }
 
-    setValue(v) {
+    setValue(v, options={}) {
 
         if (Array.isArray(v) && v.length == this.length) {
 
@@ -125,10 +125,16 @@ module.exports = class Visualizer extends _plots_base {
             this.value = v[v.length - 1]
             this.startLoop()
 
+            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+
+
         } else if (typeof(v) == 'number'){
 
             this.value = v
             this.startLoop()
+
+            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+
 
         }
 

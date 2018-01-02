@@ -71,17 +71,19 @@ module.exports = class Text extends _widgets_base {
             value
         for (var i=widget.length-1; i>=0; i--) {
             if (widget[i].getValue) {
-                this.setValue(widget[i].getValue())
+                this.setValue(widget[i].getValue(), {sync: e.options.sync})
                 return
             }
         }
 
     }
 
-    setValue(v) {
+    setValue(v, options={}) {
 
         this.value = v==null ? this.defaultValue : v
         this.widget.html(iconify(String(this.value).replace(/\n/g,'<br/>')))
+
+        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
 
     }
 

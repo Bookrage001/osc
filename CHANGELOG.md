@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23.0
+
+- bug fixes
+  - plots now send their value to other widget for synchronization as expected
+  
+
 ## 0.22.0
 
 - bug fixes

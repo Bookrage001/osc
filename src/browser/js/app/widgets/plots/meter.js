@@ -76,7 +76,7 @@ module.exports = class Meter extends Fader {
             value
         for (var i=widget.length-1; i>=0; i--) {
             if (widget[i].getValue) {
-                this.setValue(widget[i].getValue())
+                this.setValue(widget[i].getValue(), {sync: e.options.sync})
                 return
             }
         }
