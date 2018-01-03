@@ -36,6 +36,8 @@ var updateDom = function(container,data, remote) {
         }
     }
 
+    purgeStores(oldWidgets)
+
     // widget
     var newContainer = parser.parse([data], container[0].abstract.parentNode, container[0].abstract.parent)
     container.replaceWith(newContainer)
@@ -50,7 +52,6 @@ var updateDom = function(container,data, remote) {
 
     newContainer.trigger('resize')
 
-    purgeStores(oldWidgets)
 
 
     // restore state

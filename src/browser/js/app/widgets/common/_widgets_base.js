@@ -159,6 +159,17 @@ module.exports = class _widgets_base {
                     [this.parent] : id == 'this' ? [this] :
                         widgetManager.getWidgetById(id)
 
+                if (!widgets.length) {
+                    var parent = this.parent
+                    while (parent) {
+                        if (parent.getProp('id') == id) {
+                            widgets.push(parent)
+                            storeLinks = false
+                            break
+                        }
+                        parent = parent.parent
+                    }
+                }
 
                 for (var i in widgets) {
                     if (widgets[i].props.hasOwnProperty(k) || k == '_value') {
