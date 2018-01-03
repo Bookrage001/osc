@@ -75,7 +75,8 @@ module.exports = {
             matrix: 'Array'
         })
         // set math's parser array index base to zero
-        math.expression.transform = Object.create(math)
+        math.expression.mathWithTransform = Object.assign({}, math)
+
         return math
     }()
 }
