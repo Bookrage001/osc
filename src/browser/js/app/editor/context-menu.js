@@ -1,59 +1,91 @@
-var correctPosition = function (m, parent){
-    var pos = m.offset(),
-        width = m.outerWidth(),
-        height = m.outerHeight(),
-        totalWidth = $('body').outerWidth(),
-        totalHeight = $('body').outerHeight(),
-        leftAdjust = parent=='body'?0:parent.outerWidth()-2
+class ContextMenu {
 
-    if (width + pos.left > totalWidth) {
-        m.css({'margin-left':totalWidth-(width + pos.left + leftAdjust)})
-    }
-    if (height + pos.top > totalHeight) {
-        m.css({'margin-top':totalHeight-(height + pos.top)})
-    }
-}
+    constructor(){
 
-var ev = 'fake-click'
+        this.menu = null
+        this.event = 'fake-click.editor'
+        this.root = 'body'
 
-
-var menu = function(e,actions,parent){
-
-    var m = $('<div class="context-menu"></div>')
-    if (parent=='body') {
-        m.css({top:e.pageY+'px',left:e.pageX+'px'})
     }
 
-    for (let label in actions) {
+    open(e, actions, parent) {
 
-        if (typeof actions[label] == 'object') {
+        var menu = $('<div class="context-menu"></div>')
 
-            var item = $(`<div class="item has-sub" tabIndex="1">${label}</div>`).appendTo(m).on(ev,function(e){e.stopPropagation()})
-            menu(e,actions[label],item)
-
-
-        } else {
-
-            $(`<div class="item">${label}</div>`).on(ev + '.editor',function(){
-                var callback = actions[label]
-                return function(e){
-                    callback()
-                    $('.context-menu').remove()
-                }
-            }()).appendTo(m)
+        if (!parent) {
+            this.menu = menu
+            menu.css({
+                top: e.pageY + 'px',
+                left: e.pageX + 'px'
+            })
         }
+
+        for (let label in actions) {
+
+            if (typeof actions[label] == 'object') {
+
+                var item = $(`<div class="item has-sub" tabIndex="1">${label}</div>`)
+                            .appendTo(menu)
+                            .on(this.event, function(e){e.stopPropagation()})
+
+                this.open(e,actions[label],item)
+
+
+            } else {
+
+                $(`<div class="item">${label}</div>`).on(this.event,()=>{
+                    actions[label]()
+                    this.close()
+                }).appendTo(menu)
+            }
+
+        }
+
+        if (!parent) {
+
+            menu.find('.item').hover(function(){
+                $(this).siblings().removeClass('focus').find('.focus').removeClass('focus')
+                $(this).addClass('focus')
+            })
+
+        }
+
+        menu.appendTo(parent || this.root)
+
+        this.correctPosition(menu,parent)
+
     }
 
-    m.appendTo(parent)
+    close() {
 
+        if (this.menu) {
 
+            this.menu.remove()
+            this.menu = null
 
-    if (parent=='body') {
-        correctPosition(m,parent)
-    } else {
-        parent.hover(function(){correctPosition(m,parent)})
+        }
+
+    }
+
+    correctPosition(menu, parent) {
+
+        var pos = menu.offset(),
+            width = menu.outerWidth(),
+            height = menu.outerHeight(),
+            totalWidth = $('body').outerWidth(),
+            totalHeight = $('body').outerHeight(),
+            leftAdjust = !parent ? 0 : parent.outerWidth() - 2
+
+        if (width + pos.left > totalWidth) {
+            menu.css({'margin-left': totalWidth - (width + pos.left + leftAdjust)})
+        }
+        if (height + pos.top > totalHeight) {
+            menu.css({'margin-top': totalHeight - (height + pos.top)})
+        }
+
     }
 
 }
 
-module.exports = menu
+
+module.exports = ContextMenu

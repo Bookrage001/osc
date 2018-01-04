@@ -3,9 +3,10 @@ var {getObjectData, updateDom, incrementWidget} = require('./data-workers'),
     createPopup = require('../utils').createPopup,
     {widgets, categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
-    menu = require('./context-menu')
+    ContextMenu = require('./context-menu')
 
 
+var menu = new ContextMenu()
 
 var init = function(){
 
@@ -17,7 +18,7 @@ var init = function(){
         // already handled in drag.js
         // if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
 
-        $('.context-menu').remove()
+        menu.close()
 
         if (e.target.classList.contains('not-editable')) return
 
@@ -41,12 +42,12 @@ var init = function(){
         if (e.type!='fake-right-click') return
 
         if (container.hasClass('root-container')) {
-            menu(d,{
+            menu.open(d,{
                 '<i class="fa fa-plus"></i> Add tab': function(){
                     data.tabs.push({})
                     updateDom(container,data)
                 }
-            },'body')
+            })
 
             return
         }
@@ -168,7 +169,7 @@ var init = function(){
 
         }
 
-        menu(d,actions,'body')
+        menu.open(d,actions)
 
     })
 

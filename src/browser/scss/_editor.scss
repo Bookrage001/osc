@@ -268,7 +268,7 @@
             width: 15rem;
             text-align: center;
         }
-        &:hover, &:focus {
+        &.focus, &:focus {
             > .context-menu {
                 pointer-events: auto;
                 opacity: 1;
