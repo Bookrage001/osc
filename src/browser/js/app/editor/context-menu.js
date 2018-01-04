@@ -12,14 +12,6 @@ class ContextMenu {
 
         var menu = $('<div class="context-menu"></div>')
 
-        if (!parent) {
-            this.menu = menu
-            menu.css({
-                top: e.pageY + 'px',
-                left: e.pageX + 'px'
-            })
-        }
-
         for (let label in actions) {
 
             if (typeof actions[label] == 'object') {
@@ -41,21 +33,31 @@ class ContextMenu {
 
         }
 
-        menu.appendTo(parent || this.root)
+        if (parent) menu.appendTo(parent)
 
         if (!parent) {
+
+            this.menu = menu
+
+            menu.appendTo(this.root)
 
             menu.find('.item').hover(function(){
                 $(this).siblings().removeClass('focus').find('.focus').removeClass('focus')
                 $(this).addClass('focus')
+            }, function(){
+                if (!$(this).hasClass('has-sub')) $(this).removeClass('focus')
+            })
+
+            menu.css({
+                top: e.pageY + 'px',
+                left: e.pageX + 'px'
             })
 
             this.correctPosition(menu)
+
             menu.find('.context-menu').each((i, m)=>{
                 this.correctPosition($(m), $(m).parent())
             })
-
-
 
         }
 
@@ -78,8 +80,8 @@ class ContextMenu {
         var pos = menu.offset(),
             width = menu.outerWidth(),
             height = menu.outerHeight(),
-            totalWidth = $('body').outerWidth(),
-            totalHeight = $('body').outerHeight(),
+            totalWidth = $(this.root).outerWidth(),
+            totalHeight = $(this.root).outerHeight(),
             leftAdjust = !parent ? 0 : parent.outerWidth() - 2
 
         if (width + pos.left > totalWidth) {
