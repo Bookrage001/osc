@@ -82,6 +82,8 @@ var Parser = class Parser {
 
             widgetContainer[0].setAttribute('data-widget', widgetInner.hash)
 
+            widgetInner.created()
+
             // dimensions / coordinates can't be < 0
             for (let t of ['width', 'height', 'top', 'left']) {
                 if (props.hasOwnProperty(t))

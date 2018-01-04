@@ -110,7 +110,7 @@ module.exports = class Panel extends _widgets_base {
             }
         }
 
-        if (edited) $('body').trigger({type: 'widget-created', id: this.getProp('id'), widget:this})
+        if (edited) this.created()
 
         if (edited && this.parent && this.parent.registerHashes) this.parent.registerHashes(true)
     }

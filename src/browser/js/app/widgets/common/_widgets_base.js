@@ -81,12 +81,16 @@ module.exports = class _widgets_base {
 
         }
 
-        $('body').trigger({type: 'widget-created', id: this.getProp('id'), widget:this})
-
         // cache precision
         if (this.props.precision != undefined) {
             this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
         }
+
+    }
+
+    created() {
+
+        $('body').trigger({type: 'widget-created', id: this.getProp('id'), widget:this})
 
     }
 
