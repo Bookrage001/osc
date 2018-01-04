@@ -175,28 +175,29 @@ module.exports = class _widgets_base {
                     }
                 }
 
+                if (id != 'this' && id != 'parent' && storeLinks) {
+
+                    if (k == '_value') {
+
+                        if (!this.linkedPropsValue[id]) this.linkedPropsValue[id] = []
+                        this.linkedPropsValue[id].push(propName)
+
+                    } else {
+
+
+                        if (!this.linkedProps[id]) this.linkedProps[id] = []
+                        this.linkedProps[id].push(propName)
+
+                    }
+
+                }
+
                 for (var i in widgets) {
+
                     if (widgets[i].props.hasOwnProperty(k) || k == '_value') {
 
                         if (originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
                             throw `Circular property reference for ${originalWidget.props.id}.${originalPropName}`
-                        }
-
-                        if (id != 'this' && id != 'parent' && storeLinks) {
-
-                            if (k == '_value') {
-
-                                if (!this.linkedPropsValue[id]) this.linkedPropsValue[id] = []
-                                this.linkedPropsValue[id].push(propName)
-
-                            } else {
-
-
-                                if (!this.linkedProps[id]) this.linkedProps[id] = []
-                                this.linkedProps[id].push(propName)
-
-                            }
-
                         }
 
                         var r = k == '_value' ?
@@ -209,7 +210,9 @@ module.exports = class _widgets_base {
                         return r
 
                     }
+
                 }
+
             })
 
             try {
