@@ -9,6 +9,7 @@
 - widgets
   - inputs: **new** `keys` widget, for keyboard bindings
   - property inheritance: new special property name `_value` (retrieve the widget's value, and update when it changes)
+  - switch: added `showValues` to display both values and labels in the buttons
 
 ## 0.22.0
 

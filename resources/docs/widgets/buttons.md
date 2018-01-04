@@ -78,13 +78,18 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
     // etc
 }
 ```
-
 ### `values`
 - type: `array|object`
 - default: `{"Value 1":1,"Value 2":2}`
 - usage:
     - `array` of possible values to switch between : `[1,2,3]`
     - `object` of `"label":value` pairs
+
+### `showValues`
+- type: `boolean`
+- default: `false`
+- usage: if `values` is an `object`, set to `true` to display both values and labels instead of labels only
+
 
 ## Dropdown
 ```js

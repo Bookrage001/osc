@@ -51,7 +51,7 @@ module.exports = class Switch extends _widgets_base {
 
         this.values = []
 
-	var isArray = Array.isArray(this.getProp('values'))
+        var isArray = Array.isArray(this.getProp('values'))
 
         for (var k in this.getProp('values')) {
 
