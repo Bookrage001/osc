@@ -41,6 +41,8 @@ class ContextMenu {
 
         }
 
+        menu.appendTo(parent || this.root)
+
         if (!parent) {
 
             menu.find('.item').hover(function(){
@@ -48,11 +50,15 @@ class ContextMenu {
                 $(this).addClass('focus')
             })
 
+            this.correctPosition(menu)
+            menu.find('.context-menu').each((i, m)=>{
+                this.correctPosition($(m), $(m).parent())
+            })
+
+
+
         }
 
-        menu.appendTo(parent || this.root)
-
-        this.correctPosition(menu,parent)
 
     }
 
