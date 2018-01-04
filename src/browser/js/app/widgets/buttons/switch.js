@@ -27,7 +27,7 @@ module.exports = class Switch extends _widgets_base {
             _switch:'switch',
 
             horizontal:false,
-            show_values:false,
+            showValues:false,
             values:{"Value 1":1,"Value 2":2},
             value:'',
 
@@ -51,10 +51,17 @@ module.exports = class Switch extends _widgets_base {
 
         this.values = []
 
+	var isArray = Array.isArray(this.getProp('values'))
+
         for (var k in this.getProp('values')) {
+
             this.values.push(this.getProp('values')[k])
-            var the_val = (this.getProp('show_values')) ? ': ' + this.getProp('values')[k] : ''
-            $(`<div class="value">${iconify(parseFloat(k) != k ? k : this.getProp("values")[k]) + the_val}</div>`).data({value:this.getProp('values')[k]}).appendTo(this.widget)
+
+            var label = isArray ? this.getProp('values')[k]: k
+            if (this.getProp('showValues') && !isArray) label = label + ': ' + this.getProp('values')[k]
+
+            $(`<div class="value"> ${iconify(label)}</div>`).data({value:this.getProp('values')[k]}).appendTo(this.widget)
+
         }
 
         this.value = undefined
