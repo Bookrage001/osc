@@ -67,7 +67,7 @@ module.exports = class _widgets_base {
             $('body').on(`widget-created.${this.hash}`, (e)=>{
                 var {id} = e
                 if (this.linkedProps[id] && id != this.getProp('id')) {
-                    this.checkPropsChanged(this.linkedProps[id])
+                    this.checkPropsChanged(this.linkedProps[id], true)
                 }
             })
 
@@ -78,7 +78,7 @@ module.exports = class _widgets_base {
             $('body').on(`change.${this.hash}`, (e)=>{
                 var {id} = e
                 if (this.linkedPropsValue[id] && id != this.getProp('id')) {
-                    this.checkPropsChanged(this.linkedPropsValue[id])
+                    this.checkPropsChanged(this.linkedPropsValue[id], e.options.send)
                 }
             })
 
@@ -237,11 +237,11 @@ module.exports = class _widgets_base {
         return this.cachedProps[propName]
     }
 
-    checkPropsChanged(propNames){
+    checkPropsChanged(propNames, send){
 
         if (propNames.indexOf('value') != -1 && this.propHasChanged('value')) {
             this.cachedProps['value'] = this.resolveProp('value', undefined, false)
-            this.setValue(this.getProp('value'), {sync:true, send:true})
+            this.setValue(this.getProp('value'), {sync:true, send: send})
         }
 
         for (var propName of propNames) {
