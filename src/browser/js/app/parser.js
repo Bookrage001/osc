@@ -150,7 +150,7 @@ var Parser = class Parser {
 
             // set widget's initial state
             if (widgetInner.getProp('value') !== '' && widgetInner.setValue) {
-                widgetInner.setValue(widgetInner.getProp('value'))
+                widgetInner.setValue(widgetInner.getProp('value'), {sync:true})
             }
 
             // Append the widget to its parent
