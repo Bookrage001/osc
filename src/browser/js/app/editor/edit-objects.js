@@ -111,10 +111,7 @@ var editObject = function(container, data, refresh){
                 if (v==='') delete data[title]
 
                 try {
-                    var w = updateDom(container,data)
-                    if (title == 'value' && v != '') {
-                        w[0].abstract.setValue(v, {sync:true})
-                    }
+                    var w = updateDom(container,data, false, title == 'value' && v != '')
                     wrapper.removeClass('error')
                 } catch (err) {
                     wrapper.addClass('error')

@@ -15,7 +15,7 @@ var getObjectData = function(obj){
 
 }
 
-var updateDom = function(container,data, remote) {
+var updateDom = function(container,data, remote, applyValue) {
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
@@ -44,8 +44,8 @@ var updateDom = function(container,data, remote) {
 
     if (data.type == 'tab') newContainer.trigger('tab-created')
 
-    if (container[0].abstract.parent && container[0].abstract.parent.registerHashes) {
-        container[0].abstract.parent.registerHashes(true)
+    if (newContainer[0].abstract.parent && newContainer[0].abstract.parent.registerHashes) {
+        newContainer[0].abstract.parent.registerHashes(true)
     }
 
     $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
@@ -53,8 +53,9 @@ var updateDom = function(container,data, remote) {
     newContainer.trigger('resize')
 
 
-
     // restore state
+    if (applyValue) delete wState[newContainer[0].abstract.getProp('id')]
+
     for (let id in wState) {
         for (let w of widgetManager.getWidgetById(id)) {
             if (w.setValue) w.setValue(wState[id])
