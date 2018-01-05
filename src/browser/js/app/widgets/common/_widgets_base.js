@@ -238,15 +238,30 @@ module.exports = class _widgets_base {
     }
 
     checkPropsChanged(propNames){
+
+        if (propNames.indexOf('value') != -1 && this.propHasChanged('value')) {
+            this.cachedProps['value'] = this.resolveProp('value', undefined, false)
+            this.setValue(this.getProp('value'), {sync:true, send:true})
+        }
+
         for (var propName of propNames) {
-            if (JSON.stringify(this.cachedProps[propName]) != JSON.stringify(this.resolveProp(propName, undefined, false))) {
+            if (propName != 'value' && this.propHasChanged(propName)) {
                 return this.reCreateWidget()
             }
         }
+
     }
 
-    reCreateWidget(){
-        updateDom(this.container, this.props, true)
+    propHasChanged(propName) {
+
+        return JSON.stringify(this.cachedProps[propName]) != JSON.stringify(this.resolveProp(propName, undefined, false))
+
+    }
+
+    reCreateWidget(valueChanged){
+
+        updateDom(this.container, this.props, true, valueChanged)
+
     }
 
     onRemove(){
