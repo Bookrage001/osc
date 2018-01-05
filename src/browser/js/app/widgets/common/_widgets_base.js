@@ -67,7 +67,7 @@ module.exports = class _widgets_base {
             $('body').on(`widget-created.${this.hash}`, (e)=>{
                 var {id} = e
                 if (this.linkedProps[id] && id != this.getProp('id')) {
-                    this.checkPropsChanged(this.linkedProps[id], true)
+                    this.checkPropsChanged(this.linkedProps[id])
                 }
             })
 
