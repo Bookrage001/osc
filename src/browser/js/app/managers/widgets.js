@@ -101,9 +101,6 @@ var WidgetManager = class WidgetManager {
             this.scrollingWidgets.push(hash)
         }
 
-        widget.widget.abstract = widget
-        if (widget.container) widget.container[0].abstract = widget
-
         ipc.send('addWidget', {
             hash:hash,
             data:{
