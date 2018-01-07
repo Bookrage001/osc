@@ -8,6 +8,9 @@ var StateManager = class StateManager {
 
         this.state = []
 
+        this.queue = {}
+        this.queueCounter = 0
+
     }
 
     get() {
@@ -119,6 +122,30 @@ var StateManager = class StateManager {
 
     }
 
+    push(id, value, options) {
+        this.queue[id] = value
+        if (this.queueCounter == 0) this.flush()
+    }
+
+    flush(){
+        for (let id in this.queue) {
+            if (this.queue[id] !== undefined) {
+                for (let w of widgetManager.getWidgetById(id)) {
+                    if (w.setValue) w.setValue(this.queue[id])
+                }
+            }
+        }
+        this.queue = {}
+    }
+
+    incrementQueue() {
+        this.queueCounter++
+    }
+
+    decrementQueue() {
+        this.queueCounter--
+        if (this.queueCounter == 0) this.flush()
+    }
 
 }
 

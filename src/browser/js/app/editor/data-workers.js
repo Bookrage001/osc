@@ -2,6 +2,7 @@ var editObject = function(){editObject = require('./edit-objects').editObject; e
     purgeStores = require('./purge'),
     {iconify} = require('../utils'),
     widgetManager = require('../managers/widgets'),
+    stateManager = require('../managers/state'),
     parser = require('../parser')
 
 var getObjectData = function(obj){
@@ -15,17 +16,18 @@ var getObjectData = function(obj){
 
 }
 
-var updateDom = function(container,data, remote, applyValue) {
+var updateDom = function(container,data, remote) {
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
         oldWidgets = container[0].abstract.hashes || [container[0].abstract.hash],
-        wState = {},
         wScroll = {}
+
+    stateManager.incrementQueue()
 
     for (let h of oldWidgets) {
         if (widgetManager.widgets[h] && widgetManager.widgets[h].getValue) {
-            wState[widgetManager.widgets[h].getProp('id')] = widgetManager.widgets[h].getValue()
+            stateManager.push(widgetManager.widgets[h].getProp('id'), widgetManager.widgets[h].getValue())
         }
     }
 
@@ -54,13 +56,8 @@ var updateDom = function(container,data, remote, applyValue) {
 
 
     // restore state
-    if (applyValue) delete wState[newContainer[0].abstract.getProp('id')]
+    stateManager.decrementQueue()
 
-    for (let id in wState) {
-        for (let w of widgetManager.getWidgetById(id)) {
-            if (w.setValue) w.setValue(wState[id])
-        }
-    }
 
     // restore scroll states
     for (let id in wScroll) {

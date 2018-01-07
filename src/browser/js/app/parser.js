@@ -1,4 +1,5 @@
 var widgetManager = require('./managers/widgets'),
+    stateManager = require('./managers/state'),
     {iconify} = require('./utils')
 
 var Parser = class Parser {
@@ -151,6 +152,7 @@ var Parser = class Parser {
             // set widget's initial state
             if (widgetInner.getProp('value') !== '' && widgetInner.setValue) {
                 widgetInner.setValue(widgetInner.getProp('value'), {sync:true})
+                stateManager.push(widgetInner.getProp('id'), undefined)
             }
 
             // Append the widget to its parent
