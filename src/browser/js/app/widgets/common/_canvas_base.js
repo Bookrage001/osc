@@ -96,7 +96,7 @@ module.exports = class _canvas_base extends _widgets_base {
         this.ctx.textBaseline = "middle"
         this.ctx.textAlign = this.textAlign
 
-        requestAnimationFrame(this.batchDraw.bind(this))
+        requestAnimationFrame(this.draw.bind(this))
 
     }
 
