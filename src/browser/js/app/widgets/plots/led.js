@@ -48,7 +48,7 @@ module.exports = class Led extends _widgets_base {
 
         super({...options, html: html})
 
-        if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) widgetManager.on(`change.${this.hash}`, this.syncHandle.bind(this))
 
         this.setValue(this.getProp('range').min)
 
@@ -56,7 +56,7 @@ module.exports = class Led extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
         super.onRemove()
 
     }
@@ -80,7 +80,7 @@ module.exports = class Led extends _widgets_base {
         this.value = v
         this.widget[0].style.setProperty('--opacity', mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
     }
 

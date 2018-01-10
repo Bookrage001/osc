@@ -91,7 +91,7 @@ module.exports = class Formula extends _widgets_base {
         this.conditionState = true
 
 
-        $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
+        widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
         this.updateValue({options:{}})
 
         this.input.widget.on('change', (e)=>{
@@ -102,7 +102,7 @@ module.exports = class Formula extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
         super.onRemove()
 
     }
@@ -143,7 +143,7 @@ module.exports = class Formula extends _widgets_base {
                 var s = this.condition.eval(variables).valueOf()
 
                 if (Array.isArray(s) && s.length == 1) s = s[0]
-                
+
                 this.conditionState = s.data !== undefined ? s.data : s
 
             } catch(err) {
@@ -165,6 +165,7 @@ module.exports = class Formula extends _widgets_base {
             this.showValue()
 
             if (e.options.sync && this.conditionState) this.widget.trigger({type: 'change',id: this.getProp('id'),widget: this, linkId: this.getProp('linkId'), options: e.options})
+            if (e.options.sync && this.conditionState) this.changed(e.options)
             if (e.options.send && this.conditionState) this.sendValue()
 
         } catch(err) {

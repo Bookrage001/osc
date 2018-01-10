@@ -19,7 +19,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
         }
 
-        $('body').on(`change.${this.hash}`,this.syncHandler.bind(this))
+        widgetManager.on(`change.${this.hash}`,this.syncHandler.bind(this))
 
 
     }
@@ -39,7 +39,7 @@ module.exports = class _switchers_base extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
         super.onRemove()
 
     }
@@ -104,7 +104,7 @@ module.exports = class _switchers_base extends _widgets_base {
             }
         }
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
         if (options.send) this.sendValue()
 
     }

@@ -1,10 +1,11 @@
-var osc = require('../../osc'),
+var EventEmitter = require('../../event-emitter'),
+    osc = require('../../osc'),
     shortid = require('shortid'),
     widgetManager = require('../../managers/widgets'),
     updateDom = function(){ updateDom = require('../../editor/data-workers').updateDom; updateDom(...arguments)}
 
 
-module.exports = class _widgets_base {
+module.exports = class _widgets_base extends EventEmitter {
 
     static defaults() {
 
@@ -18,6 +19,8 @@ module.exports = class _widgets_base {
     }
 
     constructor(options={}) {
+
+        super()
 
         this.container = options.container
         this.widget = $(options.html)
@@ -40,7 +43,7 @@ module.exports = class _widgets_base {
         }
 
         // strip parent ? no position
-        if (this.parent && this.parent.props.type == 'strip') {
+        if (this.parent && this.parent.props && this.parent.props.type == 'strip') {
             delete this.props.top
             delete this.props.left
             delete this.props[this.parent.getProp('horizontal') ? 'height' : 'width']
@@ -75,7 +78,7 @@ module.exports = class _widgets_base {
 
         if (Object.keys(this.linkedPropsValue).length) {
 
-            $('body').on(`change.${this.hash}`, (e)=>{
+            widgetManager.on(`change.${this.hash}`, (e)=>{
                 var {id} = e
                 if (this.linkedPropsValue[id] && id != this.getProp('id')) {
                     this.checkPropsChanged(this.linkedPropsValue[id], e.options.send)
@@ -94,6 +97,17 @@ module.exports = class _widgets_base {
     created() {
 
         $('body').trigger({type: 'widget-created', id: this.getProp('id'), widget:this})
+
+    }
+
+    changed(options) {
+
+        this.trigger(/change(\..*)?/, [{
+            widget: this,
+            options: options,
+            id: this.getProp('id'),
+            linkId: this.getProp('linkId')
+        }])
 
     }
 
@@ -266,7 +280,7 @@ module.exports = class _widgets_base {
 
     onRemove(){
         $('body').off(`widget-created.${this.hash}`)
-                 .off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
     }
 
 }

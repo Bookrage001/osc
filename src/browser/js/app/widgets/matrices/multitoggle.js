@@ -67,7 +67,7 @@ module.exports = class Multitoggle extends _matrices_base {
             data.color = typeof this.getProp('color') == 'object' ? '' + this.getProp('color')[i % this.getProp('color').length] : this.getProp('color')
             data.css = ''
 
-            var element = parser.parse([data],this.widget)
+            var element = parser.parse([data], this.widget, this)
             element[0].classList.add('not-editable')
 
             this.value[i-this.start] = this.getProp('off')

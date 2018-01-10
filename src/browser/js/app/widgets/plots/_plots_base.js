@@ -35,7 +35,7 @@ module.exports = class _plots_base extends _canvas_base {
 
 
 
-        $('body').on(`change.${this.hash}`,this.syncHandleProxy.bind(this))
+        widgetManager.on(`change.${this.hash}`, this.syncHandleProxy.bind(this), this)
 
     }
 
@@ -47,7 +47,7 @@ module.exports = class _plots_base extends _canvas_base {
 
     onRemove() {
 
-        $('body').off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
         super.onRemove()
 
     }
@@ -155,7 +155,7 @@ module.exports = class _plots_base extends _canvas_base {
         this.data = v
         this.draw()
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
     }
 

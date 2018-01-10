@@ -94,17 +94,13 @@ module.exports = class Rgb extends _pads_base {
         this.value = []
         this.hsb = {h:0,s:0,b:0}
 
-        this.wrapper.on('change',(e)=>{
-            e.stopPropagation()
-        })
-
-        this.hue.widget.on('change',(e)=>{
-            e.stopPropagation()
+        this.hue.on('change',(e)=>{
+            e.stopPropagation = true
             this.dragHandle(true)
         })
 
-        this.wrapper.on('change',(e)=>{
-            e.stopPropagation()
+        this.pad.on('change',(e)=>{
+            e.stopPropagation = true
             this.dragHandle()
         })
 
@@ -115,8 +111,8 @@ module.exports = class Rgb extends _pads_base {
                 parent:this, parentNode:this.widget
             })
             this.widget.append(this.input.widget)
-            this.input.widget.on('change', (e)=>{
-                e.stopPropagation()
+            this.input.on('change', (e)=>{
+                e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})
                 this.showValue()
             })
@@ -167,7 +163,7 @@ module.exports = class Rgb extends _pads_base {
         this.value = v
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
         this.update({dragged:options.dragged, nohue:options.nohue || (v[0]==v[1]&&v[1]==v[2])})
 

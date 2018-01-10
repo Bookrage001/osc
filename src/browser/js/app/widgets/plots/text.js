@@ -51,7 +51,7 @@ module.exports = class Text extends _widgets_base {
 
         this.value = this.defaultValue
 
-        if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
 
         this.setValue(this.value)
 
@@ -59,7 +59,7 @@ module.exports = class Text extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
         super.onRemove()
 
     }
@@ -83,7 +83,7 @@ module.exports = class Text extends _widgets_base {
         this.value = v==null ? this.defaultValue : v
         this.widget.html(iconify(String(this.value).replace(/\n/g,'<br/>')))
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
     }
 

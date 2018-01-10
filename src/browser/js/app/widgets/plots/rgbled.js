@@ -46,7 +46,7 @@ module.exports = class Rbgled extends _widgets_base {
 
         super({...options, html: html})
 
-        if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
 
         this.setValue([0,0,0,0])
 
@@ -54,7 +54,7 @@ module.exports = class Rbgled extends _widgets_base {
 
     onRemove() {
 
-        $('body').off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
         super.onRemove()
 
     }
@@ -103,7 +103,7 @@ module.exports = class Rbgled extends _widgets_base {
 
         this.widget[0].style.setProperty('--color-led', c)
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
     }
 

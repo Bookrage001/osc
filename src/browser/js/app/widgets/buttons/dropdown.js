@@ -71,12 +71,12 @@ module.exports = class Dropdown extends _widgets_base {
             this.value = this.values[i]
             if (!options.fromLocal) this.select[0].selectedIndex = i
             if (options.send) this.sendValue()
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
+            if (options.sync) this.changed(options)
             this.container.removeClass('noselect')
         } else {
             this.value = undefined
             this.select[0].selectedIndex = -1
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
+            if (options.sync) this.changed(options)
             this.container.addClass('noselect')
         }
 

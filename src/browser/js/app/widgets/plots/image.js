@@ -81,7 +81,7 @@ module.exports = class Led extends _widgets_base {
 
         this.widget[0].style.setProperty('background-image', `url(${this.value}${cache_query})`)
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
     }
 

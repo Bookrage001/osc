@@ -197,7 +197,7 @@ module.exports = class Panel extends _widgets_base {
             this.navigation.find('li').removeClass('on').eq(v).addClass('on')
 
             if (options.send) this.sendValue()
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
+            if (options.sync) this.changed(options)
 
         }
     }

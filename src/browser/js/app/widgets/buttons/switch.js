@@ -91,11 +91,11 @@ module.exports = class Switch extends _widgets_base {
             this.widget.find('.on').removeClass('on')
             this.widget.find('.value').eq(i).addClass('on')
             if (options.send) this.sendValue(this.value)
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
+            if (options.sync) this.changed(options)
         } else {
             this.widget.find('.on').removeClass('on')
             this.value = undefined
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
+            if (options.sync) this.changed(options)
         }
 
     }}

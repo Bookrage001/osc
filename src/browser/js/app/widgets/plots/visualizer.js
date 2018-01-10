@@ -125,7 +125,7 @@ module.exports = class Visualizer extends _plots_base {
             this.value = v[v.length - 1]
             this.startLoop()
 
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+            if (options.sync) this.changed(options)
 
 
         } else if (typeof(v) == 'number'){
@@ -133,7 +133,7 @@ module.exports = class Visualizer extends _plots_base {
             this.value = v
             this.startLoop()
 
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+            if (options.sync) this.changed(options)
 
 
         }

@@ -81,8 +81,8 @@ module.exports = class _sliders_base extends _canvas_base {
             })
 
             this.widget.append(this.input.widget)
-            this.input.widget.on('change', (e)=>{
-                e.stopPropagation()
+            this.input.on('change', (e)=>{
+                e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})
                 this.showValue()
             })
@@ -209,8 +209,8 @@ module.exports = class _sliders_base extends _canvas_base {
 
         this.showValue()
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
         if (options.send) this.sendValue()
+        if (options.sync) this.changed(options)
 
     }
 

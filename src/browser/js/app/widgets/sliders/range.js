@@ -274,13 +274,19 @@ module.exports = class Range extends _widgets_base {
         this.wrapper.append(this.faders[0].widget)
         this.wrapper.append(this.faders[1].widget)
 
-        this.wrapper.on('change',(e)=>{
-            e.stopPropagation()
+        this.on('change',(e)=>{
+
+            if (e.widget == this) return
+
+            e.stopPropagation = true
+
             var v = [
                 this.faders[0].getValue(),
                 this.faders[1].getValue()
             ]
+
             this.setValue(v, e.options)
+
         })
 
         this.handles = [
@@ -350,8 +356,8 @@ module.exports = class Range extends _widgets_base {
                 parent:this, parentNode:this.widget,
             })
             this.widget.append(this.input.widget)
-            this.input.widget.on('change', (e)=>{
-                e.stopPropagation()
+            this.input.on('change', (e)=>{
+                e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})
                 this.showValue()
             })
@@ -406,7 +412,7 @@ module.exports = class Range extends _widgets_base {
 
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
         this.faders[1].draw()
 

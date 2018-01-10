@@ -95,7 +95,7 @@ module.exports = class MultiXy extends _pads_base {
                 pointSize: this.getProp('pointSize'),
                 pips: this.getProp('pips') && i == this.npoints-1,
                 input:false
-            }})
+            }, parent: this})
             this.pads[i].sendValue = ()=>{}
             this.wrapper.append(this.pads[i].widget)
 
@@ -151,8 +151,9 @@ module.exports = class MultiXy extends _pads_base {
 
         })
 
-        this.wrapper.on('change',(e)=>{
-            e.stopPropagation()
+        this.on('change',(e)=>{
+            if (e.widget == this) return
+            e.stopPropagation = true
             this.setValue(this.getValue(), e.options)
         })
 
@@ -234,7 +235,7 @@ module.exports = class MultiXy extends _pads_base {
         }
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
     }
 

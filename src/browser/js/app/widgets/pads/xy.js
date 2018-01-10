@@ -106,8 +106,12 @@ module.exports = class Xy extends _pads_base {
         this.wrapper.append(this.faders.x.widget)
         this.wrapper.append(this.faders.y.widget)
 
-        this.wrapper.on('change',(e)=>{
-            e.stopPropagation()
+        this.faders.x.on('change',(e)=>{
+            e.stopPropagation = true
+        })
+
+        this.faders.y.on('change',(e)=>{
+            e.stopPropagation = true
         })
 
         this.wrapper.on('draginit',(e, data, traversing)=>{
@@ -140,8 +144,8 @@ module.exports = class Xy extends _pads_base {
                 parent:this, parentNode:this.widget
             })
             this.widget.append(this.input.widget)
-            this.input.widget.on('change', (e)=>{
-                e.stopPropagation()
+            this.input.on('change', (e)=>{
+                e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})
                 this.showValue()
             })
@@ -181,7 +185,7 @@ module.exports = class Xy extends _pads_base {
         ]
 
         if (options.send) this.sendValue()
-        if (options.sync) this.widget.trigger({type:'change', id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
+        if (options.sync) this.changed(options)
 
         this.draw()
 

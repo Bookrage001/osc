@@ -1,6 +1,7 @@
 var Panel = require('./panel'),
     {iconify} = require('../../utils'),
-    Tab = require('./tab')
+    Tab = require('./tab'),
+    widgetManager = require('../../managers/widgets')
 
 
 
@@ -45,6 +46,7 @@ module.exports = class Root extends Panel {
 
         super(options)
 
+        this.parent = widgetManager
         this.widget.addClass('root')
         this.widget.find('> .navigation').addClass('main')
 

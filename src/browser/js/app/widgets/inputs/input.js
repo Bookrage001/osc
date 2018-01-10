@@ -71,7 +71,11 @@ module.exports = class Input extends _canvas_base {
 
         }
 
-        if (this.getProp('widgetId').length) $('body').on(`change.${this.hash}`,this.syncHandle.bind(this))
+        if (this.getProp('widgetId').length) {
+
+            widgetManager.on(`change.${this.hash}`, this.syncHandle.bind(this))
+
+        }
 
     }
 
@@ -116,7 +120,7 @@ module.exports = class Input extends _canvas_base {
 
     onRemove() {
 
-        $('body').off(`change.${this.hash}`)
+        widgetManager.off(`change.${this.hash}`)
         super.onRemove()
 
     }
@@ -170,8 +174,8 @@ module.exports = class Input extends _canvas_base {
         this.stringValue = this.getStringValue()
         this.draw()
 
-        if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options:options})
         if (options.send && !options.fromSync) this.sendValue()
+        if (options.sync) this.changed(options)
 
     }
 

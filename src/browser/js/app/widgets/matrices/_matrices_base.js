@@ -10,11 +10,12 @@ module.exports = class _matrices_base extends _widgets_base {
 
         this.start = parseInt(this.getProp('start'))
 
-        this.widget.on('change',(e)=>{
+        this.on('change',(e)=>{
 
-            if (e.id==this.getProp('id')) return
+            if (e.widget == this) return
+            
             this.value[e.widget.container.index()] = e.widget.getValue()
-            this.widget.trigger({type:'change',id:this.getProp('id'),widget:this,options:e.options})
+            this.changed(e.options)
 
         })
 

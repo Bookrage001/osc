@@ -128,7 +128,7 @@ module.exports = class Modal extends Panel {
         if (!this.init && this.value) this.init = true
 
         if (options.send) this.sendValue()
-        if (options.sync) this.light.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'), options})
+        if (options.sync) this.changed(options)
 
 
     }

@@ -59,15 +59,12 @@ module.exports = class Switcher extends _switchers_base {
 
         this.widget.append(this.switch.widget)
 
-        this.switch.widget.on('change', (e)=>{
+        this.switch.on('change', (e)=>{
 
-            e.stopPropagation()
+            e.stopPropagation = true
+            e.options.fromSelf = true
 
-            var {widget, options} = e
-
-            options.fromSelf = true
-
-            this.setValue(this.switch.getValue(), options)
+            this.setValue(this.switch.getValue(), e.options)
 
         })
 

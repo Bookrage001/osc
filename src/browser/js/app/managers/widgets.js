@@ -1,8 +1,11 @@
-var ipc = require('../ipc/')
+var EventEmitter = require('../event-emitter'),
+    ipc = require('../ipc/')
 
-var WidgetManager = class WidgetManager {
+var WidgetManager = class WidgetManager extends EventEmitter {
 
     constructor() {
+
+        super()
 
         this.widgets = {}
 
@@ -14,37 +17,7 @@ var WidgetManager = class WidgetManager {
 
         this.preArgsSeparator = '||||'
 
-        $(document).ready(()=>{
-
-            $('body').off('change.global').on('change.global',(e)=>{
-
-                var {id, widget, linkId, fromExternal, options} = e,
-                    widgetsById = this.getWidgetById(id),
-                    widgetsByLinkId = this.getWidgetByLinkId(linkId)
-
-                // Widget that share the same id will update each other
-                // without sending any extra osc message
-                if (widgetsById.length>1) {
-                    var v = widget.getValue()
-                    for (let i in widgetsById) {
-                        if (widgetsById[i].hash != widget.hash && widgetsById[i].setValue) {
-                            widgetsById[i].setValue(v,{send:false,sync:false})
-                        }
-                    }
-                }
-
-                // widgets that share the same linkId will update each other.
-                // Updated widgets will send osc messages normally
-                if (widgetsByLinkId.length>1) {
-                    var v = widget.getValue()
-                    for (let i in widgetsByLinkId) {
-                        if (widgetsByLinkId[i].hash != widget.hash && widgetsByLinkId[i].setValue) {
-                            widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
-                        }
-                    }
-                }
-            })
-        })
+        this.on('change', this.onChange, this)
 
         ipc.on('reconnect', ()=>{
             for (var hash in this.widgets) {
@@ -60,6 +33,36 @@ var WidgetManager = class WidgetManager {
                 })
             }
         })
+
+    }
+
+    onChange(e) {
+
+        var {id, widget, linkId, options} = e,
+            widgetsById = this.getWidgetById(id),
+            widgetsByLinkId = linkId ? this.getWidgetByLinkId(linkId) : []
+
+        // Widget that share the same id will update each other
+        // without sending any extra osc message
+        if (widgetsById.length>1) {
+            var v = widget.getValue()
+            for (let i in widgetsById) {
+                if (widgetsById[i].hash != widget.hash && widgetsById[i].setValue) {
+                    widgetsById[i].setValue(v,{send:false,sync:false})
+                }
+            }
+        }
+
+        // widgets that share the same linkId will update each other.
+        // Updated widgets will send osc messages normally
+        if (widgetsByLinkId.length>1) {
+            var v = widget.getValue()
+            for (let i in widgetsByLinkId) {
+                if (widgetsByLinkId[i].hash != widget.hash && widgetsByLinkId[i].setValue) {
+                    widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
+                }
+            }
+        }
 
     }
 
