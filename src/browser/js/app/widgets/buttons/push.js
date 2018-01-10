@@ -115,13 +115,13 @@ module.exports = class Push extends _widgets_base {
             this.state = 1
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'),options:options})
+            if (options.sync) this.changed(options)
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.classHolders.removeClass('on')
             this.state = 0
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
-            if (options.sync) this.widget.trigger({type:'change',id:this.getProp('id'),widget:this, linkId:this.getProp('linkId'),options:options})
+            if (options.sync) this.changed(options)
         }
 
     }
