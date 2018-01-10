@@ -4,6 +4,9 @@ import traceback
 import json as JSON
 import re
 
+def ipcSend(name, data):
+    print(JSON.dumps([name, data]))
+    stdout.flush()
 
 try:
     import rtmidi
@@ -17,10 +20,6 @@ except:
 
 if version_info.major == 3:
     raw_input = input
-
-def ipcSend(name, data):
-    print(JSON.dumps([name, data]))
-    stdout.flush()
 
 debug = False
 if 'debug' in argv:
