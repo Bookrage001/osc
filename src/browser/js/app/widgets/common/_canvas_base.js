@@ -1,5 +1,21 @@
 var _widgets_base = require('./_widgets_base')
 
+var drawQueue = {},
+    flushDrawQueue = ()=>{
+        for (var h in drawQueue) {
+            drawQueue[h].draw()
+        }
+        drawQueue = {}
+    },
+    drawQueueLoop = ()=>{
+        requestAnimationFrame(flushDrawQueue)
+        setTimeout(drawQueueLoop, 1000 / 60)
+    }
+
+drawQueueLoop()
+
+
+
 module.exports = class _canvas_base extends _widgets_base {
 
     constructor(options) {
@@ -80,7 +96,7 @@ module.exports = class _canvas_base extends _widgets_base {
         this.ctx.textBaseline = "middle"
         this.ctx.textAlign = this.textAlign
 
-        requestAnimationFrame(this.draw.bind(this))
+        requestAnimationFrame(this.batchDraw.bind(this))
 
     }
 
@@ -100,6 +116,10 @@ module.exports = class _canvas_base extends _widgets_base {
 
         this.ctx.clearRect(...this.clearRect)
 
+    }
+
+    batchDraw() {
+        drawQueue[this.hash] = this
     }
 
     draw(){

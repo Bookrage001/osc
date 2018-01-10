@@ -182,7 +182,7 @@ module.exports = class Formula extends _widgets_base {
 
         if (this.getProp('condition').length && !this.conditionState) {
             this.input.stringValue = '* ' + this.input.stringValue
-            this.input.draw()
+            this.input.batchDraw()
         }
 
     }

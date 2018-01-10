@@ -172,7 +172,7 @@ module.exports = class Input extends _canvas_base {
         if (options.sentOnce) options.send = false
 
         this.stringValue = this.getStringValue()
-        this.draw()
+        this.batchDraw()
 
         if (options.send && !options.fromSync) this.sendValue()
         if (options.sync) this.changed(options)

@@ -56,7 +56,7 @@ module.exports = class _plots_base extends _canvas_base {
 
         if (this.linkedWidgets.indexOf(e.id)==-1 || !widgetManager.getWidgetById(e.id).length) return
         this.updateData()
-        this.draw()
+        this.batchDraw()
 
     }
 
@@ -153,7 +153,7 @@ module.exports = class _plots_base extends _canvas_base {
     setValue(v, options={}) {
 
         this.data = v
-        this.draw()
+        this.batchDraw()
 
         if (options.sync) this.changed(options)
 

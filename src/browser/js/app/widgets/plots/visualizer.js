@@ -95,7 +95,7 @@ module.exports = class Visualizer extends _plots_base {
         if (Math.floor(this.ticks) > 0) {
             this.shiftData(Math.floor(this.ticks))
             this.ticks -= Math.floor(this.ticks)
-            this.draw()
+            this.batchDraw()
         }
 
         this.lastUpdate = t

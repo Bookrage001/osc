@@ -228,7 +228,7 @@ module.exports = class MultiXy extends _pads_base {
         }
 
         this.updateHandlesPosition()
-        this.draw()
+        this.batchDraw()
 
         for (var i=0;i<this.npoints * 2;i=i+2) {
             [this.value[i],this.value[i+1]]  = this.pads[i/2].getValue()

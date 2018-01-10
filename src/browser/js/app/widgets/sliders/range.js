@@ -414,7 +414,7 @@ module.exports = class Range extends _widgets_base {
         if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
 
-        this.faders[1].draw()
+        this.faders[1].batchDraw()
 
         this.showValue()
 

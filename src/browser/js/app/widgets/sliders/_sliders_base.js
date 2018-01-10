@@ -205,7 +205,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
         if (!options.dragged) this.percent = this.valueToPercent(this.value)
 
-        if (!this.noDraw) this.draw()
+        if (!this.noDraw) this.batchDraw()
 
         this.showValue()
 

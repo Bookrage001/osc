@@ -187,7 +187,7 @@ module.exports = class Xy extends _pads_base {
         if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
 
-        this.draw()
+        this.batchDraw()
 
         this.showValue()
 
