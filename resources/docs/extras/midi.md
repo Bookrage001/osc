@@ -14,7 +14,7 @@ MIDI support requires additional software to be installed on the server's system
 
 ## Setup
 
-When running the app, the `-m / -midi` switch must be set; it accepts the following options (separated by spaces):
+When running the app, the `-m / --midi` switch must be set; it accepts the following options (separated by spaces):
 
 - `list`: prints the available MIDI ports to the console; numbers in the first column may be used for `input`/`output` definition below
 - `device_name:input,output`: connect to midi ports `input` and `output`; osc messages sent to target `midi:device_name` will be processed as midi events; Multiple devices can be declared
