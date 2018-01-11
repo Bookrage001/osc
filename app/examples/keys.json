@@ -122,7 +122,7 @@
                             "t"
                         ],
                         "widgetId": "xy_1",
-                        "keydown": "x = key == \"t\" ? 0.1 : -0.1;\nvalue[1] + x\nvalue[2] + x\n# value + 0.1 works too",
+                        "keydown": "x = key == \"t\" ? 0.1 : -0.1;\nvalue[0] + x\nvalue[1] + x\n# value + 0.1 works too",
                         "keyup": "",
                         "repeat": false
                     }
