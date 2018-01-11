@@ -1,18 +1,26 @@
 var _widgets_base = require('./_widgets_base')
 
 var drawQueue = {},
+    previousFrameTime = 0,
+    delta = 0,
+    frameLength = 1000 / CANVAS_FRAMERATE,
     flushDrawQueue = ()=>{
         for (var h in drawQueue) {
             drawQueue[h].draw()
         }
         drawQueue = {}
     },
-    drawQueueLoop = ()=>{
-        requestAnimationFrame(flushDrawQueue)
-        setTimeout(drawQueueLoop, 1000 / 60)
+    drawQueueLoop = (now)=>{
+        requestAnimationFrame(drawQueueLoop)
+        delta = now - previousFrameTime
+        if (delta > frameLength) {
+            previousFrameTime = now - (delta % frameLength)
+            flushDrawQueue()
+        }
     }
 
-drawQueueLoop()
+
+requestAnimationFrame(drawQueueLoop)
 
 
 

@@ -15,6 +15,7 @@ window.EDITING = false
 window.GRIDWIDTH = 10
 
 
+window.CANVAS_FRAMERATE = parseFloat(ARGV.framerate || 60)
 window.CANVAS_SCALING = parseFloat(ARGV.forceHdpi) || ( ARGV.hdpi ? window.devicePixelRatio : 1 )
 window.INITIALZOOM = ARGV.zoom ? ARGV.zoom : 1
 window.PXSCALE = INITIALZOOM

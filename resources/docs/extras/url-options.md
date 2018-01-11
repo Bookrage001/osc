@@ -9,6 +9,7 @@ Client specific options can be set by adding query parameters to the server's ur
 | forceHdpi | number | 0 | force canvas scaling (ignore `hdpi`) |
 | doubletab | number | 375 | sets the double tap/click time thershold in milliseconds |
 | zoom | number | 1 | sets the initial zoom |
+| framerate | number | 60 | limit canvas drawing framerate |
 
 Example:
 
