@@ -1,27 +1,62 @@
 var _widgets_base = require('./_widgets_base')
 
-var drawQueue = {},
-    previousFrameTime = 0,
-    delta = 0,
-    frameLength = 1000 / CANVAS_FRAMERATE,
-    flushDrawQueue = ()=>{
-        for (var h in drawQueue) {
-            drawQueue[h].draw()
-        }
-        drawQueue = {}
-    },
-    drawQueueLoop = (now)=>{
-        requestAnimationFrame(drawQueueLoop)
-        delta = now - previousFrameTime
-        if (delta > frameLength) {
-            previousFrameTime = now - (delta % frameLength)
-            flushDrawQueue()
-        }
+class CanvasQueue {
+
+    constructor() {
+
+        this.queue = {}
+        this.flushed = 0
+        this.running = false
+        this.frameLength = 1000 / CANVAS_FRAMERATE
+        this.lastFrame = 0
+        this.bindedLoop = this.loop.bind(this)
+
     }
 
+    push(widget) {
 
-requestAnimationFrame(drawQueueLoop)
+        this.queue[widget.hash] = widget
+        this.flushed = 0
 
+        if (!this.running) {
+            this.running = true
+            requestAnimationFrame(this.bindedLoop)
+        }
+
+    }
+
+    flush() {
+
+        for (var h in this.queue) {
+            this.queue[h].draw()
+        }
+
+        this.queue = {}
+        this.flushed++
+
+    }
+
+    loop(timestamp) {
+
+        if (this.flushed >= 10) {
+            this.running = false
+            return
+        }
+
+        requestAnimationFrame(this.bindedLoop)
+
+        var delta = timestamp - this.lastFrame
+
+        if (delta > this.frameLength) {
+            this.lastFrame = timestamp - (delta % this.frameLength)
+            this.flush()
+        }
+
+    }
+
+}
+
+var canvasQueue = new CanvasQueue()
 
 
 module.exports = class _canvas_base extends _widgets_base {
@@ -127,7 +162,9 @@ module.exports = class _canvas_base extends _widgets_base {
     }
 
     batchDraw() {
-        drawQueue[this.hash] = this
+
+        canvasQueue.push(this)
+
     }
 
     draw(){
