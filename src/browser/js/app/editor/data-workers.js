@@ -36,7 +36,7 @@ var updateDom = function(widget, options = {}) {
 
     widget.container.replaceWith(newWidget.container)
 
-    if (data.type == 'tab') newWidget.trigger('tab-created', [{widget: widget}])
+    if (data.type == 'tab') newWidget.parent.trigger('tab-created', [{widget: widget}])
 
     $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
 

@@ -80,7 +80,6 @@ module.exports = class Panel extends _widgets_base {
             })
 
             this.on('tab-created', (e)=>{
-                if (e.widget == this) return
                 this.createNavigation()
                 e.stopPropagation = true
             })
