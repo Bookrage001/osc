@@ -42,7 +42,10 @@ var updateDom = function(container,data, remote) {
 
     // widget
     var newContainer = parser.parse([data], container[0].abstract.parentNode, container[0].abstract.parent)
+
     container.replaceWith(newContainer)
+
+    if (data.type == 'tab') newContainer[0].abstract.trigger('tab-created', [{widget: newContainer[0].abstract}])
 
     $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
 

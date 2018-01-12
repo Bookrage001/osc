@@ -50,8 +50,6 @@ module.exports = class Tab extends Panel {
 
         this.detached = false
 
-        var $body = $('body')
-
     }
 
     hide() {

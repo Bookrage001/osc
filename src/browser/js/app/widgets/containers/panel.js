@@ -79,11 +79,10 @@ module.exports = class Panel extends _widgets_base {
                 this.setValue($(e.target).index(), {sync: true, send:this.value != $(e.target).index()})
             })
 
-            this.on('widget-created', (e)=>{
+            this.on('tab-created', (e)=>{
                 if (e.widget == this) return
-                if (e.widget.parent == this && e.widget.getProp('type') == 'tab') {
-                    this.createNavigation()
-                }
+                this.createNavigation()
+                e.stopPropagation = true
             })
 
             this.setValue(this.getProp('value') || 0)
