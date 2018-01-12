@@ -5,22 +5,13 @@ var editObject = function(){editObject = require('./edit-objects').editObject; e
     stateManager = require('../managers/state'),
     parser = require('../parser')
 
-var getObjectData = function(obj){
-    var path = []
+var updateDom = function(widget, options = {}) {
 
-    if (obj.hasClass('widget')) {
-        return obj[0].abstract.props
-    } else {
-        return obj.closest('.widget')[0].abstract.props
-    }
-
-}
-
-var updateDom = function(container,data, remote) {
+    var data = widget.props
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
-        oldWidgets = container[0].abstract.childrenHashes.concat(container[0].abstract.hash),
+        oldWidgets = widget.childrenHashes.concat(widget.hash),
         wScroll = {}
 
     stateManager.incrementQueue()
@@ -41,15 +32,15 @@ var updateDom = function(container,data, remote) {
     purgeStores(oldWidgets)
 
     // widget
-    var newContainer = parser.parse([data], container[0].abstract.parentNode, container[0].abstract.parent)
+    var newWidget = parser.parse([data], widget.parentNode, widget.parent)
 
-    container.replaceWith(newContainer)
+    widget.container.replaceWith(newWidget.container)
 
-    if (data.type == 'tab') newContainer[0].abstract.trigger('tab-created', [{widget: newContainer[0].abstract}])
+    if (data.type == 'tab') newWidget.trigger('tab-created', [{widget: widget}])
 
     $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
 
-    newContainer.trigger('resize')
+    newWidget.container.trigger('resize')
 
 
     // restore state
@@ -63,15 +54,15 @@ var updateDom = function(container,data, remote) {
         }
     }
 
-    if (!remote) {
-        editObject(newContainer,data,true)
+    if (!options.remote) {
+        editObject(newWidget, {refresh: true})
     }
 
     $('#sidepanel').scrollTop(scroll)
 
 
     // return updated node
-    return newContainer
+    return newWidget
 
 }
 
@@ -151,6 +142,5 @@ var incrementWidget = function(data, root){
 
 module.exports = {
     updateDom:updateDom,
-    getObjectData:getObjectData,
     incrementWidget:incrementWidget
 }

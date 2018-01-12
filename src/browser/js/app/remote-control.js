@@ -1,4 +1,4 @@
-var {getObjectData, updateDom} = require('./editor/data-workers'),
+var {updateDom} = require('./editor/data-workers'),
     widgetManager = require('./managers/widgets')
 
 var callbacks = {
@@ -8,17 +8,20 @@ var callbacks = {
 
         var [id, json] = args,
             newdata = JSON.parseFlex(json),
-            containers = widgetManager.getWidgetById(id)
+            widgets = widgetManager.getWidgetById(id)
 
-        if (!containers.length) return
-        for (var i=containers.length-1;i>=0;i--) {
-            var container = containers[i].container,
-                data = containers[i].props
+        if (!widgets.length) return
+
+        for (var i = widgets.length - 1; i >= 0; i--) {
+
+            var widget = widgets[i],
+                data = widget.props
 
             for (var k in newdata) {
                 data[k] = newdata[k]
             }
-            updateDom(container,data,true)
+            updateDom(widget, {remote: true})
+
         }
     },
     '/EDIT/MERGE': function(args) {
@@ -27,15 +30,18 @@ var callbacks = {
 
         var [id, json] = args,
             newdata = JSON.parseFlex(json),
-            containers = widgetManager.getWidgetById(id)
+            widgets = widgetManager.getWidgetById(id)
 
-        if (!containers.length) return
-        for (var i=containers.length-1;i>=0;i--) {
-            var container = containers[i].container,
-                data = containers[i].props
+        if (!widgets.length) return
+
+        for (var i = widgets.length - 1; i >= 0; i--) {
+
+            var widget = widgets[i],
+                data = widget.props
 
             $.extend(true,data,newdata)
-            updateDom(container,data,true)
+            updateDom(widget, {remote: true})
+
         }
     },
     '/EDIT/GET': function(args) {

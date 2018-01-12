@@ -90,8 +90,9 @@ module.exports = class Fader extends _sliders_base {
                 pips:false,
                 dashed:true
             }
-            var element = parser.parse([data],this.wrapper, this.parent)
-            element[0].classList.add('not-editable')
+            var meter = parser.parse([data],this.wrapper, this.parent)
+            meter.container[0].classList.add('not-editable')
+
             this.widget[0].classList.add('has-meter')
         }
 

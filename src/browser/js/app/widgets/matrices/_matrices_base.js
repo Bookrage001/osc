@@ -21,13 +21,4 @@ module.exports = class _matrices_base extends _widgets_base {
 
     }
 
-    // conflicts with switchers (double osc send)
-    // setValue(v, options={}) {
-    //     if (v && v.length == this.value.length) {
-    //         for (var i in v) {
-    //             this.widget[0].children[i].abstract.setValue(v[i], options)
-    //         }
-    //     }
-    // }
-
 }

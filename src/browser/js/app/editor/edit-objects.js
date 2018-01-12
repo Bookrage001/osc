@@ -17,13 +17,16 @@ var editClean = function(){
 }
 
 
-var editObject = function(container, data, refresh){
+var editObject = function(widget, options = {}){
 
-    if (!refresh && (container.hasClass('editing') || $(`a[data-tab="#${container.attr('id')}"]`).hasClass('editing'))) return
+    var container = widget.container,
+        data = widget.props
+
+    if (!options.refresh && (container.hasClass('editing'))) return
 
     editClean()
 
-    $(`[data-widget="${container.attr('data-widget')}"]`).addClass('editing')
+    $(`[data-widget="${widget.hash}"]`).addClass('editing')
 
     $('#editor').append('<div class="editor-container"></div>')
 
@@ -111,7 +114,7 @@ var editObject = function(container, data, refresh){
                 if (v==='') delete data[title]
 
                 try {
-                    var w = updateDom(container,data, false, title == 'value' && v != '')
+                    updateDom(widget)
                     wrapper.removeClass('error')
                 } catch (err) {
                     wrapper.addClass('error')
@@ -149,7 +152,7 @@ var editObject = function(container, data, refresh){
                           .click(function(e){
                               e.stopPropagation()
                               data.widgets.splice($(this).parent().attr('data-index'),1)
-                              updateDom(container,data)
+                              updateDom(widget)
                           })
         }
 
@@ -163,7 +166,7 @@ var editObject = function(container, data, refresh){
 
                 data.widgets.splice(newIndex, 0, data.widgets.splice(prevIndex, 1)[0])
 
-                updateDom(container,data)
+                updateDom(widget)
             }
         })
 
@@ -171,7 +174,7 @@ var editObject = function(container, data, refresh){
             data.widgets = data.widgets || []
             data.widgets.push({})
 
-            updateDom(container,data)
+            updateDom(widget)
         })
 
         list.appendTo(wrapper)
@@ -204,7 +207,7 @@ var editObject = function(container, data, refresh){
                           .click(function(e){
                               e.stopPropagation()
                               data.tabs.splice($(this).parent().attr('data-index'),1)
-                              updateDom(container,data)
+                              updateDom(widget)
                           })
         }
 
@@ -218,7 +221,7 @@ var editObject = function(container, data, refresh){
 
                 data.tabs.splice(newIndex, 0, data.tabs.splice(prevIndex, 1)[0])
 
-                updateDom(container,data)
+                updateDom(widget)
             }
         })
 
@@ -226,7 +229,7 @@ var editObject = function(container, data, refresh){
             data.tabs = data.tabs || []
             data.tabs.push({})
 
-            updateDom(container,data)
+            updateDom(widget)
         })
 
         list.appendTo(wrapper)
@@ -247,7 +250,7 @@ var editObject = function(container, data, refresh){
             stop: function( event, ui ) {
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                updateDom(container,data)
+                updateDom(widget)
             },
             grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
         })
@@ -265,7 +268,7 @@ var editObject = function(container, data, refresh){
                     data.top = (ui.helper.position().top + container.parent().scrollTop())/PXSCALE
                     data.left = (ui.helper.position().left + container.parent().scrollLeft())/PXSCALE
                     ui.helper.remove()
-                    updateDom(container,data)
+                    updateDom(widget)
                 },
                 handle:'.ui-draggable-handle, > .label',
                 grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],

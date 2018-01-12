@@ -105,9 +105,10 @@ module.exports = class Panel extends _widgets_base {
         var tabs = this.wrapper.find('> .widget')
 
         for (let tab of tabs) {
-            let style = tab.abstract.getProp('color') == 'auto' ? '' : `style="--color-custom:${tab.abstract.getProp('color')}"`
-            this.tabs.push(tab.abstract)
-            this.navigation.append(`<li class="tablink" data-widget="${tab.abstract.hash}" ${style}><a><span>${$(tab).find('> .label').html()}</span></a></li>`)
+            let widget = widgetManager.getWidgetByElement(tab),
+                style = widget.getProp('color') == 'auto' ? '' : `style="--color-custom:${widget.getProp('color')}"`
+            this.tabs.push(widget)
+            this.navigation.append(`<li class="tablink" data-widget="${widget.hash}" ${style}><a><span>${$(tab).find('> .label').html()}</span></a></li>`)
         }
 
         this.setValue(this.value)
@@ -116,12 +117,12 @@ module.exports = class Panel extends _widgets_base {
 
     parseLayout() {
 
-        this.children = this.widget.find('> .widget')
+        var children = this.widget.find('> .widget')
 
         try {
 
             var layout = this.getProp('layout').replace(/\$([0-9])+/g, (m)=>{
-                return this.children[m.replace('$','')].abstract.getProp('id')
+                return widgetManager.getWidgetByElement(children[m.replace('$','')]).getProp('id')
             })
 
             this.layout = new autolayout.View({
@@ -146,15 +147,23 @@ module.exports = class Panel extends _widgets_base {
 
     applyLayout() {
         this.widget.find('> .widget').each((i,widget)=>{
-            var id = widget.abstract.getProp('id')
+
+            var widget = widgetManager.getWidgetByElement(widget),
+                id = widget.getProp('id')
+
             if (!this.layout.subViews[id]) return
-            var $widget = $(widget).addClass('absolute-position').css({'min-height':'auto','min-width':'auto'})
+
+            widget.container.addClass('absolute-position').css({'min-height':'auto','min-width':'auto'})
+
             for (var prop of ['height', 'width', 'top', 'left']) {
-                delete widget.abstract.props[prop]
-                $widget.css(prop, this.layout.subViews[id][prop] + 'px')
+                delete widget.props[prop]
+                widget.container.css(prop, this.layout.subViews[id][prop] + 'px')
             }
-            if ($widget.hasClass('editing')) editObject($widget,widget.abstract.props,true)
+
+            if (widget.container.hasClass('editing')) editObject(widget, {refresh:true})
+
             $(window).resize()
+
         })
     }
 

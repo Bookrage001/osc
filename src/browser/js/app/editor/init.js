@@ -1,4 +1,4 @@
-var {getObjectData, updateDom, incrementWidget} = require('./data-workers'),
+var {updateDom, incrementWidget} = require('./data-workers'),
     {editObject, editClean} = require('./edit-objects'),
     createPopup = require('../utils').createPopup,
     {widgets, categories} = require('../widgets/'),
@@ -14,30 +14,19 @@ var init = function(){
 
         if (!EDITING) return
 
-        // ignore mouse event when fired by a simulated touch event
-        // already handled in drag.js
-        // if (e.type=='mousedown' && e.originalEvent.sourceCapabilities.firesTouchEvents) return
-
         menu.close()
 
-        if (e.target.classList.contains('not-editable')) return
-
-        var target = e.target.hasAttribute('data-widget')  || e.target.classList.contains('widget') ?
-                        $(e.target).not('.not-editable') : $(e.target).closest('.widget:not(.not-editable)')
-
-        if (!target.length) return
-
-        var widget = widgetManager.widgets[target.attr('data-widget')]
+        var widget = widgetManager.getWidgetByElement(e.target, ':not(.not-editable)')
 
         if (!widget) return
 
         var container = widget.container,
-            parent = container.parent(),
+            parent = widget.parentNode,
             index = container.index(),
-            data = getObjectData(container),
+            data = widget.props,
             type = widget.props.type == 'tab' ? 'tab' : 'widget'
 
-        editObject(container,data)
+        editObject(widget)
 
         if (e.type!='fake-right-click') return
 
@@ -45,7 +34,7 @@ var init = function(){
             menu.open(d,{
                 '<i class="fa fa-plus"></i> Add tab': function(){
                     data.tabs.push({})
-                    updateDom(container,data)
+                    updateDom(widget)
                 }
             })
 
@@ -55,7 +44,6 @@ var init = function(){
         var actions = {},
             clickX = Math.round((d.offsetX + d.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
             clickY = Math.round((d.offsetY + d.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-        // actions['<i class="fa fa-edit"></i> Edit'] = function(){editObject(container,data)}
 
         if (parent.hasClass('panel')) {
             actions['<i class="fa fa-object-group"></i> Edit parent'] = function(){parent.trigger('fake-click')}
@@ -65,11 +53,11 @@ var init = function(){
 
         if (type=='widget') actions['<i class="fa fa-cut"></i> Cut'] = function(){
             CLIPBOARD=JSON.stringify(data)
-            var parentContainer = container.parents('.widget').first(),
-                parentData = getObjectData(parentContainer)
+            var parent = widget.parent,
+                parentData = parent.props
 
             parentData.widgets.splice(index,1)
-            updateDom(parentContainer,parentData)
+            updateDom(parent)
         }
 
         if (((type=='widget' && widgets[data.type].defaults().widgets) || (type=='tab')) && (!data.tabs||!data.tabs.length)) {
@@ -90,7 +78,7 @@ var init = function(){
                         }
 
                         data.widgets.push(newData)
-                        updateDom(container,data)
+                        updateDom(widget)
                     },
                     '<i class="fa fa-clone"></i> Clone':function(){
                         data.widgets = data.widgets || []
@@ -103,7 +91,7 @@ var init = function(){
                             delete newData.left
                         }
                         data.widgets.push(newData)
-                        updateDom(container,data)
+                        updateDom(widget)
                     }
                 }
             }
@@ -121,7 +109,7 @@ var init = function(){
                                 newData.left= clickX
                             }
                             data.widgets.push(newData)
-                            updateDom(container,data)
+                            updateDom(widget)
                     }
 
                 }
@@ -133,7 +121,7 @@ var init = function(){
             actions['<i class="fa fa-plus"></i> Add tab'] = function(){
                 data.tabs = data.tabs || []
                 data.tabs.push({})
-                updateDom(container,data)
+                updateDom(widget)
             }
 
         }
@@ -147,8 +135,8 @@ var init = function(){
             `)
             $('.confirm-delete').click(function(){
                 popup.close()
-                var parentContainer = container.parents('.widget').first(),
-                    parentData = getObjectData(parentContainer)
+                var parent = widget.parent,
+                    parentData = parent.props
 
 
                 if (widget.props.type != 'tab') {
@@ -157,7 +145,7 @@ var init = function(){
                     parentData.tabs.splice(index,1)
                 }
 
-                updateDom(parentContainer,parentData)
+                updateDom(parent)
             })
             $('.cancel-delete').click(function(){
                 popup.close()

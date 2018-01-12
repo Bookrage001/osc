@@ -160,7 +160,7 @@ var Parser = class Parser {
         }
 
         // Editor needs to get the container object
-        if (data && data.length==1) return widgetContainer
+        if (data && data.length==1) return widgetInner
 
     }
 

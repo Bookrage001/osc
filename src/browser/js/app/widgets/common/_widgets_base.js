@@ -30,8 +30,9 @@ module.exports = class _widgets_base extends EventEmitter {
         this.hash = _widgets_base.createHash()
         this.childrenHashes = []
 
-        this.widget.abstract = this
-        if (this.container) this.container[0].abstract = this
+        if (this.container) {
+            this.container.attr('data-widget', this.hash)
+        }
 
         // Turn preArgs into array
         if (this.props.preArgs !== undefined && !Array.isArray(this.resolveProp('preArgs', undefined, false))) {

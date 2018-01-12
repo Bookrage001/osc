@@ -66,14 +66,14 @@ module.exports = class Keyboard extends _matrices_base {
             data.preArgs = this.getProp('split') ? this.getProp('preArgs') : [].concat(this.getProp('preArgs'), i)
             data.css = ''
 
-            var element = parser.parse([data], this.widget, this)
-            element[0].classList.add('not-editable')
+            var key = parser.parse([data], this.widget, this)
+            key.container[0].classList.add('not-editable')
 
             if (pattern[i % 12] == 'w') {
-                element.addClass('white')
+                key.container.addClass('white')
                 wCount++
             } else {
-                element.addClass('black').data('wCount',wCount)
+                key.container.addClass('black').data('wCount',wCount)
 
             }
 

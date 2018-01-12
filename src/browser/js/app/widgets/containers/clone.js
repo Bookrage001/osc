@@ -78,7 +78,7 @@ module.exports = class Clone extends _widgets_base {
                     this.cloneClass = widgets[i].container.attr('class').match(/[^\s]*-container/)[0]
                     this.container.addClass(this.cloneClass)
 
-                    var c = parser.parse([{..._widgets_base.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
+                    parser.parse([{..._widgets_base.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
 
                     this.widget.find('.widget').addClass('not-editable')
 
