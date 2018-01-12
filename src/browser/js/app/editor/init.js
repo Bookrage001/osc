@@ -69,7 +69,7 @@ var init = function(){
                         var newData = incrementWidget(JSON.parse(CLIPBOARD))
 
 
-                        if (!target.hasClass('tablink')) {
+                        if (!$(e.target).hasClass('tablink')) {
                             newData.top = clickY
                             newData.left= clickX
                         } else {
@@ -83,7 +83,7 @@ var init = function(){
                     '<i class="fa fa-clone"></i> Clone':function(){
                         data.widgets = data.widgets || []
                         var newData = JSON.parse(CLIPBOARD)
-                        if (!target.hasClass('tablink')) {
+                        if (!$(e.target).hasClass('tablink')) {
                             newData.top = clickY
                             newData.left= clickX
                         } else {
@@ -104,7 +104,7 @@ var init = function(){
                     actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] =  function(){
                             data.widgets = data.widgets || []
                             var newData = {type:wtype}
-                            if (!target.hasClass('tablink')) {
+                            if (!$(e.target).hasClass('tablink')) {
                                 newData.top = clickY
                                 newData.left= clickX
                             }
