@@ -5,9 +5,7 @@ var editObject = function(){editObject = require('./edit-objects').editObject; e
     stateManager = require('../managers/state'),
     parser = require('../parser')
 
-var updateDom = function(widget, options = {}) {
-
-    var data = widget.props
+var updateWidget = function(widget, options = {}) {
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
@@ -32,7 +30,7 @@ var updateDom = function(widget, options = {}) {
     purgeStores(oldWidgets)
 
     // widget
-    var newWidget = parser.parse([data], widget.parentNode, widget.parent)
+    var newWidget = parser.parse([widget.props], widget.parentNode, widget.parent)
 
     widget.container.replaceWith(newWidget.container)
 
@@ -141,6 +139,6 @@ var incrementWidget = function(data, root){
 }
 
 module.exports = {
-    updateDom:updateDom,
+    updateWidget:updateWidget,
     incrementWidget:incrementWidget
 }

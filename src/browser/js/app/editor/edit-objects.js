@@ -1,4 +1,4 @@
-var updateDom = require('./data-workers').updateDom,
+var updateWidget = require('./data-workers').updateWidget,
     {widgets, categories} = require('../widgets/'),
     {icon} = require('../utils'),
     defaults = {}
@@ -114,7 +114,7 @@ var editObject = function(widget, options = {}){
                 if (v==='') delete data[title]
 
                 try {
-                    updateDom(widget)
+                    updateWidget(widget)
                     wrapper.removeClass('error')
                 } catch (err) {
                     wrapper.addClass('error')
@@ -152,7 +152,7 @@ var editObject = function(widget, options = {}){
                           .click(function(e){
                               e.stopPropagation()
                               data.widgets.splice($(this).parent().attr('data-index'),1)
-                              updateDom(widget)
+                              updateWidget(widget)
                           })
         }
 
@@ -166,7 +166,7 @@ var editObject = function(widget, options = {}){
 
                 data.widgets.splice(newIndex, 0, data.widgets.splice(prevIndex, 1)[0])
 
-                updateDom(widget)
+                updateWidget(widget)
             }
         })
 
@@ -174,7 +174,7 @@ var editObject = function(widget, options = {}){
             data.widgets = data.widgets || []
             data.widgets.push({})
 
-            updateDom(widget)
+            updateWidget(widget)
         })
 
         list.appendTo(wrapper)
@@ -207,7 +207,7 @@ var editObject = function(widget, options = {}){
                           .click(function(e){
                               e.stopPropagation()
                               data.tabs.splice($(this).parent().attr('data-index'),1)
-                              updateDom(widget)
+                              updateWidget(widget)
                           })
         }
 
@@ -221,7 +221,7 @@ var editObject = function(widget, options = {}){
 
                 data.tabs.splice(newIndex, 0, data.tabs.splice(prevIndex, 1)[0])
 
-                updateDom(widget)
+                updateWidget(widget)
             }
         })
 
@@ -229,7 +229,7 @@ var editObject = function(widget, options = {}){
             data.tabs = data.tabs || []
             data.tabs.push({})
 
-            updateDom(widget)
+            updateWidget(widget)
         })
 
         list.appendTo(wrapper)
@@ -250,7 +250,7 @@ var editObject = function(widget, options = {}){
             stop: function( event, ui ) {
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                updateDom(widget)
+                updateWidget(widget)
             },
             grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
         })
@@ -268,7 +268,7 @@ var editObject = function(widget, options = {}){
                     data.top = (ui.helper.position().top + container.parent().scrollTop())/PXSCALE
                     data.left = (ui.helper.position().left + container.parent().scrollLeft())/PXSCALE
                     ui.helper.remove()
-                    updateDom(widget)
+                    updateWidget(widget)
                 },
                 handle:'.ui-draggable-handle, > .label',
                 grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],

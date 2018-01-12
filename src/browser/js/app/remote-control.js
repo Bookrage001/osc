@@ -1,4 +1,4 @@
-var {updateDom} = require('./editor/data-workers'),
+var {updateWidget} = require('./editor/data-workers'),
     widgetManager = require('./managers/widgets')
 
 var callbacks = {
@@ -20,7 +20,7 @@ var callbacks = {
             for (var k in newdata) {
                 data[k] = newdata[k]
             }
-            updateDom(widget, {remote: true})
+            updateWidget(widget, {remote: true})
 
         }
     },
@@ -40,7 +40,7 @@ var callbacks = {
                 data = widget.props
 
             $.extend(true,data,newdata)
-            updateDom(widget, {remote: true})
+            updateWidget(widget, {remote: true})
 
         }
     },

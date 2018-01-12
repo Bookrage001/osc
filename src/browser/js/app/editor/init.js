@@ -1,4 +1,4 @@
-var {updateDom, incrementWidget} = require('./data-workers'),
+var {updateWidget, incrementWidget} = require('./data-workers'),
     {editObject, editClean} = require('./edit-objects'),
     createPopup = require('../utils').createPopup,
     {widgets, categories} = require('../widgets/'),
@@ -34,7 +34,7 @@ var init = function(){
             menu.open(d,{
                 '<i class="fa fa-plus"></i> Add tab': function(){
                     data.tabs.push({})
-                    updateDom(widget)
+                    updateWidget(widget)
                 }
             })
 
@@ -57,7 +57,7 @@ var init = function(){
                 parentData = parent.props
 
             parentData.widgets.splice(index,1)
-            updateDom(parent)
+            updateWidget(parent)
         }
 
         if (((type=='widget' && widgets[data.type].defaults().widgets) || (type=='tab')) && (!data.tabs||!data.tabs.length)) {
@@ -78,7 +78,7 @@ var init = function(){
                         }
 
                         data.widgets.push(newData)
-                        updateDom(widget)
+                        updateWidget(widget)
                     },
                     '<i class="fa fa-clone"></i> Clone':function(){
                         data.widgets = data.widgets || []
@@ -91,7 +91,7 @@ var init = function(){
                             delete newData.left
                         }
                         data.widgets.push(newData)
-                        updateDom(widget)
+                        updateWidget(widget)
                     }
                 }
             }
@@ -109,7 +109,7 @@ var init = function(){
                                 newData.left= clickX
                             }
                             data.widgets.push(newData)
-                            updateDom(widget)
+                            updateWidget(widget)
                     }
 
                 }
@@ -121,7 +121,7 @@ var init = function(){
             actions['<i class="fa fa-plus"></i> Add tab'] = function(){
                 data.tabs = data.tabs || []
                 data.tabs.push({})
-                updateDom(widget)
+                updateWidget(widget)
             }
 
         }
@@ -145,7 +145,7 @@ var init = function(){
                     parentData.tabs.splice(index,1)
                 }
 
-                updateDom(parent)
+                updateWidget(parent)
             })
             $('.cancel-delete').click(function(){
                 popup.close()

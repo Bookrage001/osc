@@ -2,7 +2,7 @@ var EventEmitter = require('../../event-emitter'),
     osc = require('../../osc'),
     shortid = require('shortid'),
     widgetManager = require('../../managers/widgets'),
-    updateDom = function(){ updateDom = require('../../editor/data-workers').updateDom; updateDom(...arguments)}
+    updateWidget = function(){ updateWidget = require('../../editor/data-workers').updateWidget; updateWidget(...arguments)}
 
 
 module.exports = class _widgets_base extends EventEmitter {
@@ -287,7 +287,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
     reCreateWidget(valueChanged){
 
-        updateDom(this.container, this.props, true, valueChanged)
+        updateWidget(this.container, this.props, true, valueChanged)
 
     }
 
