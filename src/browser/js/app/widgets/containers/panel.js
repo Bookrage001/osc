@@ -73,16 +73,17 @@ module.exports = class Panel extends _widgets_base {
 
             parser.parse(this.getProp('tabs'), this.wrapper, this, true)
             this.createNavigation()
-            this.registerHashes()
 
             this.navigation.on('fake-click', (e)=>{
                 if (!e.target.hasAttribute('data-widget')) return
                 this.setValue($(e.target).index(), {sync: true, send:this.value != $(e.target).index()})
             })
 
-            this.wrapper.on('tab-created', (e)=>{
-                e.stopPropagation()
-                this.createNavigation()
+            this.on('widget-created', (e)=>{
+                if (e.widget == this) return
+                if (e.widget.parent == this && e.widget.getProp('type') == 'tab') {
+                    this.createNavigation()
+                }
             })
 
             this.setValue(this.getProp('value') || 0)
@@ -90,29 +91,11 @@ module.exports = class Panel extends _widgets_base {
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
             parser.parse(this.getProp('widgets'), this.widget, this)
-            this.registerHashes()
             if (this.getProp('layout') != '') this.parseLayout()
 
         }
 
 
-    }
-
-    registerHashes(edited) {
-
-        this.hashes = [this.hash]
-        var widgets = this.widget.add(this.wrapper).find('> .widget')
-        for (let widget of widgets) {
-            if (widget.abstract.hashes) {
-                this.hashes = this.hashes.concat(widget.abstract.hashes)
-            } else {
-                this.hashes.push(widget.abstract.hash)
-            }
-        }
-
-        if (edited) this.created()
-
-        if (edited && this.parent && this.parent.registerHashes) this.parent.registerHashes(true)
     }
 
     createNavigation() {

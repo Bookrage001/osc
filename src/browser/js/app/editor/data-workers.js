@@ -20,7 +20,7 @@ var updateDom = function(container,data, remote) {
 
     // save state
     var scroll = $('#sidepanel').scrollTop(),
-        oldWidgets = container[0].abstract.hashes || [container[0].abstract.hash],
+        oldWidgets = container[0].abstract.childrenHashes.concat(container[0].abstract.hash),
         wScroll = {}
 
     stateManager.incrementQueue()
@@ -43,12 +43,6 @@ var updateDom = function(container,data, remote) {
     // widget
     var newContainer = parser.parse([data], container[0].abstract.parentNode, container[0].abstract.parent)
     container.replaceWith(newContainer)
-
-    if (data.type == 'tab') newContainer.trigger('tab-created')
-
-    if (newContainer[0].abstract.parent && newContainer[0].abstract.parent.registerHashes) {
-        newContainer[0].abstract.parent.registerHashes(true)
-    }
 
     $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
 

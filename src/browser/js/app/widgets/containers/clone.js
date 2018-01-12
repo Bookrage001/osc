@@ -40,16 +40,15 @@ module.exports = class Clone extends _widgets_base {
 
         super({...options, html: '<div class="clone"></div>'})
 
-        this.cloneHash = [0]
+        this.cloneHashes = []
         this.cloneLock = false
         this.cloneClass = ''
-        this.originalHash = false
         this.createClone()
 
-        $('body').on(`widget-created.${this.hash}`, (e)=>{
+        widgetManager.on(`widget-created.${this.hash}`, (e)=>{
             var {id, widget} = e
             if (
-                (id == this.getProp('widgetId') && this.cloneHash.indexOf(widget.hash) == -1) &&
+                (id == this.getProp('widgetId') && this.cloneHashes.indexOf(widget.hash) == -1) &&
                 !(widget.parent && widget.parent.getProp('type') == 'clone')
             ) {
                 this.createClone(widget)
@@ -66,7 +65,7 @@ module.exports = class Clone extends _widgets_base {
 
         this.widget.empty()
         this.container.removeClass(this.cloneClass)
-        purge(this.cloneHash)
+        purge(this.childrenHashes)
 
         var widgets = widget ? [widget] : widgetManager.getWidgetById(this.getProp('widgetId'))
 
@@ -74,14 +73,8 @@ module.exports = class Clone extends _widgets_base {
 
             for (var i = widgets.length - 1; i>=0; i--) {
 
-                if (
+                if (!(widgets[i].parent && widgets[i].parent.getProp('type') == 'clone')) {
 
-                    this.cloneHash.indexOf(widgets[i].hash) == -1 &&
-                    !(widgets[i].parent && widgets[i].parent.getProp('type') == 'clone')
-
-                ) {
-
-                    this.originalHash = widgets[i].hash
                     this.cloneClass = widgets[i].container.attr('class').match(/[^\s]*-container/)[0]
                     this.container.addClass(this.cloneClass)
 
@@ -89,14 +82,9 @@ module.exports = class Clone extends _widgets_base {
 
                     this.widget.find('.widget').addClass('not-editable')
 
-                    this.hashes = [this.hash]
-                    if (c[0].abstract.hashes) {
-                        this.hashes = this.hashes.concat(c[0].abstract.hashes)
-                        this.cloneHash = c[0].abstract.hashes
-                    } else {
-                        this.hashes.push(c[0].abstract.hash)
-                        this.cloneHash = [c[0].abstract.hash]
-                    }
+                    widgets[i].once(`widget-created.${this.hash}`, (e)=>{
+                        this.createClone()
+                    })
 
                     break
 

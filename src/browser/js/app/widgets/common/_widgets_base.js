@@ -28,6 +28,7 @@ module.exports = class _widgets_base extends EventEmitter {
         this.parent = options.parent
         this.parentNode = options.parentNode
         this.hash = _widgets_base.createHash()
+        this.childrenHashes = []
 
         this.widget.abstract = this
         if (this.container) this.container[0].abstract = this
@@ -67,7 +68,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
         if (Object.keys(this.linkedProps).length) {
 
-            $('body').on(`widget-created.${this.hash}`, (e)=>{
+            widgetManager.on(`widget-created.${this.hash}`, (e)=>{
                 var {id} = e
                 if (this.linkedProps[id] && id != this.getProp('id')) {
                     this.checkPropsChanged(this.linkedProps[id])
@@ -92,11 +93,22 @@ module.exports = class _widgets_base extends EventEmitter {
             this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
         }
 
+        this.on('widget-created', (e)=>{
+
+            if (e.widget == this) return
+
+            this.childrenHashes.push(e.widget.hash)
+
+        })
+
     }
 
     created() {
 
-        $('body').trigger({type: 'widget-created', id: this.getProp('id'), widget:this})
+        this.trigger(/widget-created(\..*)?/, [{
+            id: this.getProp('id'),
+            widget: this
+        }])
 
     }
 
@@ -279,7 +291,7 @@ module.exports = class _widgets_base extends EventEmitter {
     }
 
     onRemove(){
-        $('body').off(`widget-created.${this.hash}`)
+        widgetManager.off(`widget-created.${this.hash}`)
         widgetManager.off(`change.${this.hash}`)
     }
 
