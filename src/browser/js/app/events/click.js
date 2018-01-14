@@ -26,7 +26,7 @@ document.addEventListener('mousedown', (event)=>{
 
 document.addEventListener('touchstart', (event)=>{
 
-    var e = fix(event)
+    var e = fix(event.changedTouches[0])
 
     DOM.dispatchEvent(e.target, 'fake-click', e)
 
