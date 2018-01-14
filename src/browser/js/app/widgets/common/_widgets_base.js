@@ -287,7 +287,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
     reCreateWidget(valueChanged){
 
-        updateWidget(this.container, this.props, true, valueChanged)
+        updateWidget(this, {remote: true})
 
     }
 
