@@ -195,7 +195,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
                 if (!widgets.length) {
                     var parent = this.parent
-                    while (parent) {
+                    while (parent && parent != widgetManager) {
                         if (parent.getProp('id') == id) {
                             widgets.push(parent)
                             storeLinks = false
