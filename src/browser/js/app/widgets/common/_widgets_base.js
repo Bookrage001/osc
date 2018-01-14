@@ -1,4 +1,4 @@
-var EventEmitter = require('../../event-emitter'),
+var EventEmitter = require('../../events/event-emitter'),
     osc = require('../../osc'),
     shortid = require('shortid'),
     widgetManager = require('../../managers/widgets'),

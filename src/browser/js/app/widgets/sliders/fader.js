@@ -125,17 +125,17 @@ module.exports = class Fader extends _sliders_base {
 
     }
 
-    draginitHandle(e, data, traversing) {
+    draginitHandle(e) {
 
         super.draginitHandle(...arguments)
 
         this.percent = clip(this.percent,[0,100])
 
-        if (!(traversing || this.getProp('snap'))  || data.ctrlKey) return
+        if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
 
         this.percent = this.getProp('horizontal')?
-        (data.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)) * 100:
-        (this.height - data.offsetY - this.margin * PXSCALE) / (this.height - (this.margin * PXSCALE * 2)) * 100
+        (e.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)) * 100:
+        (this.height - e.offsetY - this.margin * PXSCALE) / (this.height - (this.margin * PXSCALE * 2)) * 100
 
         // this.percent = clip(this.percent,[0,100])
 
@@ -148,8 +148,8 @@ module.exports = class Fader extends _sliders_base {
         super.dragHandle(...arguments)
 
         this.percent = this.getProp('horizontal')?
-        this.percent + ( data.speedX/(this.width - this.margin * PXSCALE * 2)) * 100:
-        this.percent + (-data.speedY/(this.height - this.margin * PXSCALE * 2)) * 100
+            this.percent + ( e.movementX/(this.width - this.margin * PXSCALE * 2)) * 100 / e.inertia:
+            this.percent + (-e.movementY/(this.height - this.margin * PXSCALE * 2)) * 100  / e.inertia
 
         this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 

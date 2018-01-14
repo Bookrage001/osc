@@ -4,12 +4,6 @@ var Editor = class Editor {
 
     constructor() {
 
-        $(document).ready(()=>{
-
-            init()
-
-        })
-
     }
 
     enable() {

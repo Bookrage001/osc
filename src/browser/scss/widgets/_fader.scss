@@ -401,23 +401,13 @@
             display: flex;
             justify-content: center;
             border-radius: inherit;
-            .handle {
-                position: absolute;
-                top:   0;
-                left:  0;
-                right: 0;
-                bottom:0;
-                z-index: 1;
-                &.active {
-                    pointer-events: none;
-                }
-            }
             .fader {
                 position: absolute;
                 top:0;
                 left:0;
                 right:0;
                 bottom:0;
+                pointer-events: none;
                 .wrapper {
                     // border: 0;
                 }

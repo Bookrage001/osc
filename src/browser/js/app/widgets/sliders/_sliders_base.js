@@ -63,9 +63,10 @@ module.exports = class _sliders_base extends _canvas_base {
         touchstate(this, this.wrapper)
 
         this.wrapper.on('mousewheel',this.mousewheelHandleProxy.bind(this))
-        this.wrapper.on('draginit',this.draginitHandleProxy.bind(this))
-        this.wrapper.on('drag',this.dragHandleProxy.bind(this))
-        this.wrapper.on('dragend',this.dragendHandleProxy.bind(this))
+
+        this.on('draginit', this.draginitHandleProxy.bind(this), {element:this.wrapper[0]})
+        this.on('drag', this.dragHandleProxy.bind(this), {element:this.wrapper[0]})
+        this.on('dragend', this.dragendHandleProxy.bind(this), {element:this.wrapper[0]})
 
 
         if (this.getProp('input')) {

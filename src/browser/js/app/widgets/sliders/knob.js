@@ -69,31 +69,31 @@ module.exports = class Knob extends _sliders_base {
 
     }
 
-    draginitHandle(e, data, traversing) {
+    draginitHandle(e) {
 
         this.percent = clip(this.percent,[0,100])
 
-        this.lastOffsetX = data.offsetX
-        this.lastOffsetY = data.offsetY
+        this.lastOffsetX = e.offsetX
+        this.lastOffsetY = e.offsetY
 
-        if (!(traversing || this.getProp('snap'))  || data.ctrlKey) return
+        if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
 
-        this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
+        this.percent = this.angleToPercent(this.coordsToAngle(e.offsetX, e.offsetY))
 
         this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 
     }
 
-    dragHandle(e, data, traversing) {
+    dragHandle(e) {
 
-        if (!(traversing || this.getProp('snap')) || data.ctrlKey) {
+        if (!(e.traversing || this.getProp('snap')) || e.ctrlKey) {
 
-            this.percent = -100*data.speedY/this.height + this.percent
+            this.percent = -100 * (e.movementY / e.inertia) / this.height + this.percent
 
         } else {
 
-            this.lastOffsetX = this.lastOffsetX + data.speedX
-            this.lastOffsetY = this.lastOffsetY + data.speedY
+            this.lastOffsetX = this.lastOffsetX + e.movementX / e.inertia
+            this.lastOffsetY = this.lastOffsetY + e.movementY / e.inertia
             this.percent = this.angleToPercent(this.coordsToAngle(this.lastOffsetX, this.lastOffsetY))
         }
 

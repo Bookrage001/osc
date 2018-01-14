@@ -66,9 +66,10 @@ module.exports = class Switch extends _widgets_base {
 
         this.value = undefined
 
-        this.widget.find('.value').on('draginit',(e,dd)=>{
+        this.on('draginit',(e)=>{
+
             var index = 0,
-                node = e.target
+                node = e.changedTarget || e.target
 
             while ( (node = node.previousSibling) ) {
                 if (node.nodeType != 3 || !/^\s*$/.test(node.data)) {
@@ -79,7 +80,8 @@ module.exports = class Switch extends _widgets_base {
             var value = this.values[index]
 
             if (value!=this.value || this.value===undefined) this.setValue(value,{sync:true,send:true})
-        })
+
+        }, {element: this.widget[0]})
 
     }
 

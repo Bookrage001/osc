@@ -6,18 +6,18 @@ var {clip, mapToScale} = require('../utils'),
 
 
 var EncoderKnob = class extends Knob {
-    draginitHandle(e, data, traversing) {
+    draginitHandle(e) {
 
         this.percent = clip(this.percent,[0,100])
 
-        this.lastOffsetX = data.offsetX
-        this.lastOffsetY = data.offsetY
+        this.lastOffsetX = e.offsetX
+        this.lastOffsetY = e.offsetY
 
-        if (!(traversing || this.getProp('snap'))) return
+        if (!(e.traversing || this.getProp('snap'))) return
 
-        this.percent = this.angleToPercent(this.coordsToAngle(data.offsetX, data.offsetY))
+        this.percent = this.angleToPercent(this.coordsToAngle(e.offsetX, e.offsetY))
 
-        this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true, draginit:true})
+        this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true, draginit:!e.traversing})
 
     }
     mousewheelHandle(){}
@@ -87,7 +87,7 @@ module.exports = class Encoder extends _widgets_base {
             snap:true,
             range:{min:0,max:this.ticks},
             pips:false,
-        }})
+        }, parent: this})
 
         this.knob.noDraw = true
 
@@ -97,7 +97,7 @@ module.exports = class Encoder extends _widgets_base {
             range:{min:0,max:this.ticks},
             origin:this.ticks/2,
             pips:false,
-        }})
+        }, parent: this})
 
         this.wrapper.append(this.knob.widget.addClass('drag-knob'))
         this.wrapper.append(this.display.widget.addClass('display-knob'))
@@ -133,7 +133,7 @@ module.exports = class Encoder extends _widgets_base {
 
         })
 
-        this.wrapper.on('draginit', (e)=>{
+        this.knob.on('draginit', (e)=>{
             if (this.getProp('touchAddress') && this.getProp('touchAddress').length
                 && e.target == this.wrapper[0])
                 this.sendValue({
@@ -142,25 +142,28 @@ module.exports = class Encoder extends _widgets_base {
                 })
         })
 
-        this.wrapper.on('dragend', (e)=>{
+        this.knob.on('dragend', (e)=>{
             if (this.getProp('release') !== '' && this.value !== this.getProp('release')) {
                 this.knob.setValue(this.ticks/2)
                 this.display.setValue(this.ticks/2)
                 this.setValue(this.getProp('release'), {sync:true, send:true, dragged:false})
             }
-            if (this.getProp('touchAddress') && this.getProp('touchAddress').length
-                && e.target == this.wrapper[0])
+            if (
+                this.getProp('touchAddress') && this.getProp('touchAddress').length
+                && e.target == this.wrapper[0]
+            ) {
                 this.sendValue({
                     address:this.getProp('touchAddress'),
                     v:0
                 })
+            }
         })
 
         if (this.getProp('doubleTap')) {
 
             doubletab(this.wrapper, ()=>{
-                    this.knob.setValue(this.ticks/2)
-                    this.display.setValue(this.ticks/2)
+                this.knob.setValue(this.ticks/2)
+                this.display.setValue(this.ticks/2)
                 if (this.getProp('release') !== '' && this.value !== this.getProp('release')) {
                     this.setValue(this.getProp('release'), {sync:true, send:true, dragged:false})
                 }

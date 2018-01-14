@@ -47,11 +47,15 @@ module.exports = class Push extends _widgets_base {
         this.active = 0
         this.lastChanged = 'state'
 
-        this.widget.on('drag',function(e){e.stopPropagation()})
-        this.widget.on('draginit.push',()=>{
-            this.widget.off('draginit.push')
-            this.fakeclick()
-        })
+        this.on('draginit',()=>{
+            if (this.active) return
+            this.setValuePrivate(this.getProp('on'),{send:true,sync:true})
+        }, {element: this.widget[0]})
+
+        this.on('dragend',()=>{
+            this.setValuePrivate(this.getProp('off'),{send:true,sync:true})
+        }, {element: this.widget[0]})
+
         this.classHolders = this.widget.add(this.container)
 
         this.value = this.getProp('off')
@@ -65,20 +69,6 @@ module.exports = class Push extends _widgets_base {
         this.getProp('on') != null && this.getProp('on').value !== undefined ? this.getProp('on').value : this.getProp('on')
         :
         this.getProp('off') != null && this.getProp('off').value !== undefined ? this.getProp('off').value : this.getProp('off')
-
-    }
-
-    fakeclick(){
-
-        if (!this.active) this.setValuePrivate(this.getProp('on'),{send:true,sync:true})
-        this.widget.on('dragend.push',()=>{
-            this.setValuePrivate(this.getProp('off'),{send:true,sync:true})
-            this.widget.off('dragend.push')
-            this.widget.on('draginit.push',()=>{
-                this.widget.off('draginit.push')
-                this.fakeclick()
-            })
-        })
 
     }
 

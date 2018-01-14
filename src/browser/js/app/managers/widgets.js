@@ -1,4 +1,4 @@
-var EventEmitter = require('../event-emitter'),
+var EventEmitter = require('../events/event-emitter'),
     ipc = require('../ipc/')
 
 var WidgetManager = class WidgetManager extends EventEmitter {

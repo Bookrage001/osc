@@ -114,22 +114,25 @@ module.exports = class Xy extends _pads_base {
             e.stopPropagation = true
         })
 
-        this.wrapper.on('draginit',(e, data, traversing)=>{
-            this.faders.x.draginitHandleProxy(e, data, traversing)
-            this.faders.y.draginitHandleProxy(e, data, traversing)
+        this.on('draginit',(e)=>{
+            this.faders.x.trigger('draginit', [e])
+            this.faders.y.trigger('draginit', [e])
             this.dragHandle()
-        })
-        this.wrapper.on('drag',(e, data, traversing)=>{
-            this.faders.x.dragHandleProxy(e, data, traversing)
-            this.faders.y.dragHandleProxy(e, data, traversing)
-            this.dragHandle()
-        })
+        }, {element: this.wrapper[0]})
 
-        if (this.getProp('spring')) {
-            this.wrapper.on('dragend', ()=>{
+        this.on('drag',(e)=>{
+            this.faders.x.trigger('drag', [e])
+            this.faders.y.trigger('drag', [e])
+            this.dragHandle()
+        }, {element: this.wrapper[0]})
+
+        this.on('dragend', (e)=>{
+            this.faders.x.trigger('dragend', [e])
+            this.faders.y.trigger('dragend', [e])
+            if (this.getProp('spring')) {
                 this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true,fromLocal:true})
-            })
-        }
+            }
+        }, {element: this.wrapper[0]})
 
         if (this.getProp('doubleTap')) {
             doubletab(this.wrapper, ()=>{

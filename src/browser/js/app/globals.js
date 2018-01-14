@@ -26,10 +26,13 @@ window.DOUBLE_TAP_TIME = ARGV.doubletap ? ARGV.doubletap : 375
 
 window.JSON.parseFlex = require('json5').parse
 
+window.DOM = require('./dom')
+
 window.$ = require('jquery/dist/jquery.slim.min.js')
 
+require('./events/click')
+
 require('../libs/jquery.ui')
-require('../libs/jquery.drag')
 require('../libs/jquery.resize')
 
 require('cardinal-spline-js/curve.js')

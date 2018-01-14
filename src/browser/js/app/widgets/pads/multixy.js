@@ -75,9 +75,6 @@ module.exports = class MultiXy extends _pads_base {
                             })()
                         : false
 
-        this.handles = []
-        this.handlesPositions = []
-        this.handlesToPads = []
 
         this.pads = []
 
@@ -99,57 +96,66 @@ module.exports = class MultiXy extends _pads_base {
             this.pads[i].sendValue = ()=>{}
             this.wrapper.append(this.pads[i].widget)
 
-            this.handles[i] = $(`<div class="handle"></div>`)
-
-            this.wrapper.append(this.handles[i])
-
         }
 
 
         this.value = []
 
-        this.handles.forEach((handle, index)=>{
+        this.padsCoords = []
+        this.touchMap = {}
 
-            handle.on('draginit',(e, data, traversing)=>{
+        this.on('draginit',(e)=>{
 
-                if (!traversing) {
-                    handle.addClass('active')
-                }
+            var id
 
-                var id, ndiff, diff = -1
+            if (!this.touchMap[e.pointerId]) {
 
-                for (var i in this.handles) {
-                    if (this.handlesToPads.indexOf(i) != -1) continue
-                    ndiff = Math.abs(data.offsetX -  this.handlesPositions[i][0]) + Math.abs(data.offsetY - (this.handlesPositions[i][1] + this.height))
+                var ndiff, diff = -1
+
+                for (var i in this.pads) {
+
+                    if (Object.values(this.touchMap).indexOf(i) != -1) continue
+
+                    ndiff = Math.abs(e.offsetX -  this.padsCoords[i][0]) + Math.abs(e.offsetY - (this.padsCoords[i][1] + this.height))
+
                     if (diff == -1 || ndiff < diff) {
                         id = i
                         diff = ndiff
                     }
+
                 }
 
-                this.handlesToPads[index] = id
+                this.touchMap[e.pointerId] = id
 
-                if (this.pads[id]) this.pads[id].wrapper.trigger(e.type, [data, traversing])
 
-            })
+            } else if (e.traversing) {
 
-            handle.on('drag',(e, data, traversing)=>{
+                id = this.touchMap[e.pointerId]
 
-                var id = this.handlesToPads[index]
-                if (this.pads[id]) this.pads[id].wrapper.trigger(e.type, [data, traversing])
+            }
 
-            })
+            if (!id) return
 
-            handle.on('dragend',(e, data, traversing)=>{
+            this.pads[id].trigger('draginit', [e])
 
-                var id = this.handlesToPads[index]
-                if (this.pads[id]) this.pads[id].wrapper.trigger(e.type, [data, traversing])
-                handle.removeClass('active')
-                this.handlesToPads[index] = false
+        }, {element: this.wrapper[0], multitouch: true})
 
-            })
+        this.on('drag',(e)=>{
 
-        })
+            var i = this.touchMap[e.pointerId]
+            this.pads[i].trigger('drag', [e])
+
+        }, {element: this.wrapper[0], multitouch: true})
+
+        this.on('dragend',(e)=>{
+
+            var i = this.touchMap[e.pointerId]
+            this.pads[i].trigger('dragend', [e])
+            delete this.touchMap[e.pointerId]
+
+        }, {element: this.wrapper[0], multitouch: true})
+
+
 
         this.on('change',(e)=>{
             if (e.widget == this) return
@@ -178,7 +184,7 @@ module.exports = class MultiXy extends _pads_base {
 
         for (var i=0;i<this.npoints;i++) {
 
-            this.handlesPositions[i] = [clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
+            this.padsCoords[i] = [clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
                                         ,- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) - (this.pointSize + 1) * PXSCALE]
 
         }

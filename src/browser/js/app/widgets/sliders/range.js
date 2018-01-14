@@ -289,61 +289,63 @@ module.exports = class Range extends _widgets_base {
 
         })
 
-        this.handles = [
-            $(`<div class="handle"></div>`),
-            $(`<div class="handle"></div>`)
-        ]
-        this.wrapper.append(this.handles)
+        this.touchMap = {}
 
-        this.handlesToFaders = []
+        this.on('draginit',(e)=>{
 
-        this.handles.forEach((handle, index)=>{
+            var id
 
-            handle.on('draginit',(e, data, traversing)=>{
+            if (!this.touchMap[e.pointerId]) {
 
-                if (!traversing) {
-                    handle.addClass('active')
-                }
+                var ndiff, diff = -1
 
-                var id, ndiff, diff = -1
+                for (var i in this.faders) {
 
-                for (var i in this.handles) {
-                    if (this.handlesToFaders.indexOf(i) != -1) continue
+                    if (Object.values(this.touchMap).indexOf(i) != -1) continue
 
                     var coord = this.faders[i].percentToCoord(this.faders[i].valueToPercent(this.faders[i].value)) - (this.getProp('horizontal') ? -1 : 1) * (i == 0 ? -20 : 20)
 
                     ndiff = this.getProp('horizontal')?
-                                Math.abs(data.offsetX - coord) :
-                                Math.abs(data.offsetY - coord)
+                                Math.abs(e.offsetX - coord) :
+                                Math.abs(e.offsetY - coord)
+
                     if (diff == -1 || ndiff < diff) {
                         id = i
                         diff = ndiff
                     }
+
                 }
 
-                this.handlesToFaders[index] = id
+                this.touchMap[e.pointerId] = id
 
-                if (this.faders[id]) this.faders[id].wrapper.trigger(e.type, [data, traversing])
 
-            })
+            } else if (e.traversing) {
 
-            handle.on('drag',(e, data, traversing)=>{
+                id = this.touchMap[e.pointerId]
 
-                var id = this.handlesToFaders[index]
-                if (this.faders[id]) this.faders[id].wrapper.trigger(e.type, [data, traversing])
+            }
 
-            })
+            if (!id) return
 
-            handle.on('dragend',(e, data, traversing)=>{
+            this.faders[id].trigger('draginit', [e])
 
-                var id = this.handlesToFaders[index]
-                if (this.faders[id]) this.faders[id].wrapper.trigger(e.type, [data, traversing])
-                handle.removeClass('active')
-                this.handlesToFaders[index] = false
+        }, {element: this.wrapper[0], multitouch: true})
 
-            })
+        this.on('drag',(e)=>{
 
-        })
+            var i = this.touchMap[e.pointerId]
+            this.faders[i].trigger('drag', [e])
+
+        }, {element: this.wrapper[0], multitouch: true})
+
+        this.on('dragend',(e)=>{
+
+            var i = this.touchMap[e.pointerId]
+            this.faders[i].trigger('dragend', [e])
+            delete this.touchMap[e.pointerId]
+
+        }, {element: this.wrapper[0], multitouch: true})
+
 
         if (this.getProp('input')) {
 

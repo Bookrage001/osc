@@ -5,16 +5,18 @@ module.exports = (element, callback)=>{
         lastTapY,
         touchId
 
-    element.on('fake-click',(e, d)=>{
+    element[0].addEventListener('fake-click', (event)=>{
 
-        var tapTime = new Date().getTime()
-        var tapLength = tapTime - lastTapTime
+        var tapTime = new Date().getTime(),
+            tapLength = tapTime - lastTapTime,
+            eventData = event.detail
+
 
     	if (
-            
-            tapLength < DOUBLE_TAP_TIME && touchId == d.identifier &&
-            Math.abs(lastTapX - d.pageX) < 20 &&
-            Math.abs(lastTapY - d.pageY) < 20
+
+            tapLength < DOUBLE_TAP_TIME && touchId == eventData.pointerId &&
+            Math.abs(lastTapX - eventData.pageX) < 20 &&
+            Math.abs(lastTapY - eventData.pageY) < 20
 
         ) {
 
@@ -24,9 +26,9 @@ module.exports = (element, callback)=>{
         } else {
 
             lastTapTime = tapTime
-            touchId = d.identifier
-            lastTapX = d.pageX
-            lastTapY = d.pageY
+            touchId = eventData.pointerId
+            lastTapX = eventData.pageX
+            lastTapY = eventData.pageY
 
         }
 
