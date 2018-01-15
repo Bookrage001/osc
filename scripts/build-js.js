@@ -13,7 +13,7 @@ var browserify = require('browserify'),
 var ignoreList = ['**/mathjs/dist/math.min.js', '**/jquery.ui.js', '**/socket.io.slim.js'],
     ignoreWrapper = function(transform){
         return function(file, opts){
-            if (
+             if (
                 ignoreList.some(function(pattern) {
                     var match = minimatch(pattern)
                     return match.match(file)
@@ -28,7 +28,7 @@ var ignoreList = ['**/mathjs/dist/math.min.js', '**/jquery.ui.js', '**/socket.io
 
 if (prod) console.warn('\x1b[36m%s\x1b[0m', 'Building minified js bundle for production... This may take a while... ');
 
-b = browserify(path.resolve(__dirname + '/../src/browser/js/browser.js'), {debug:!fast, noParse: ignoreList})
+b = browserify(path.resolve(__dirname + '/../src/browser/js/browser.js'), {debug:!fast, insertGlobals:fast, noParse: ignoreList})
 
 b = b.transform(ignoreWrapper(babelify), {presets: ["env"]})
 
