@@ -6,10 +6,14 @@
   - plots now send their value to other widget for synchronization as expected
   - text widgets now apply their target widget's precision
   - property inheritance accepts targetting a parent widget by its id
+  - icons in context menu and modal widget are displayed correctly
 - widgets
   - inputs: **new** `keys` widget, for keyboard bindings
   - property inheritance: new special property name `_value` (retrieve the widget's value, and update when it changes)
   - switch: added `showValues` to display both values and labels in the buttons
+- misc
+  - event system rewritten
+  - js build size reduced
 
 ## 0.22.0
 
