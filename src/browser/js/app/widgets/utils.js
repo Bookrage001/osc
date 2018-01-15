@@ -71,7 +71,7 @@ module.exports = {
     },
 
     math: function(){
-        var math = require('mathjs').create({
+        var math = require('mathjs/dist/math.min.js').create({
             matrix: 'Array'
         })
         // set math's parser array index base to zero
