@@ -168,7 +168,7 @@ document.addEventListener('touchmove', (event)=>{
     }
 }, true)
 
-document.addEventListener('touchend', (event)=>{
+DOM.addEventListener(document, 'touchend touchcancel', (event)=>{
     for (var i in event.changedTouches) {
         if (isNaN(i) || !event.changedTouches[i]) continue
         var touchEvent = event.changedTouches[i]

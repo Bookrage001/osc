@@ -46,4 +46,4 @@ document.addEventListener('touchstart', (event)=>{
 })
 
 
-DOM.addEventListener(document, 'touchend touchmove', clearLongTouchTimer)
+DOM.addEventListener(document, 'touchend touchmove touchcancel', clearLongTouchTimer)
