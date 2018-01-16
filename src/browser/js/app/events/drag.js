@@ -1,4 +1,6 @@
-const {fix, normalizeEvent, resetEventOffset} = require('./utils')
+const {fix, normalizeEvent, resetEventOffset} = require('./utils'),
+    supportsPassive = require('./supports-passive')
+
 
 var targets = {},
     previousPointers = {}
@@ -200,10 +202,10 @@ module.exports = {
         element.classList.add('drag-event')
 
         if (multitouch) {
-            element.addEventListener('touchstart', touchMultiWrapper)
+            element.addEventListener('touchstart', touchMultiWrapper, supportsPassive ? { passive: true } : false)
             element.addEventListener('mousedown', mouseMultiWrapper)
         } else {
-            element.addEventListener('touchstart', touchDownHandler)
+            element.addEventListener('touchstart', touchDownHandler, supportsPassive ? { passive: true } : false)
             element.addEventListener('mousedown', mouseDownHandler)
         }
 

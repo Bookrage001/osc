@@ -1,4 +1,5 @@
-var {fix, getElementOffset} = require('./utils')
+var {fix, getElementOffset} = require('./utils'),
+    supportsPassive = require('./supports-passive')
 
 var longTouchTimer = false,
     clearLongTouchTimer = function() {
@@ -43,7 +44,7 @@ document.addEventListener('touchstart', (event)=>{
 
     }, 600)
 
-})
+}, supportsPassive ? { passive: true } : false)
 
 
 DOM.addEventListener(document, 'touchend touchmove touchcancel', clearLongTouchTimer)
