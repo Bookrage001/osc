@@ -21,15 +21,4 @@ $(document).on('keydown.resetzoom', function(e){
     }
 })
 
-// prevent mobile sleep
-var NoSleep = require('nosleep.js'),
-    noSleep = new NoSleep()
-
-function enableNoSleep() {
-  noSleep.enable()
-  document.removeEventListener('click', enableNoSleep, false)
-}
-
-document.addEventListener('click', enableNoSleep, false)
-
 require('./sidepanel')
