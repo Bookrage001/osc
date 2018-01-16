@@ -144,40 +144,75 @@ sidepanel.appendChild(options)
 sidepanel.appendChild(DOM.create('<div id="editor"></div>'))
 
 
-function toggleSidepanel() {
+// Fullscreen
 
-    var transitionLength = 275
+var fsToggle = DOM.get(sidepanel, '.fullscreenToggle')[0]
+
+if (fullscreen.enabled) {
+    fullscreen.off('change')
+    fullscreen.on('change', ()=>{
+        if (fullscreen.isFullScreen) {
+            fsToggle.classList.add('on')
+        } else {
+            fsToggle.classList.remove('on')
+        }
+    })
+} else {
+    fsToggle.classList.add('disabled')
+}
+
+
+// open / close / toggle
+
+function sidepanelOpen() {
 
     DOM.get('#open-toggle, #sidepanel, #container').forEach((el)=>{
-        el.classList.toggle('sidepanel-open')
+        el.classList.add('sidepanel-open')
     })
 
     setTimeout(function(){
         $(window).resize()
-    }, transitionLength)
+    }, 275)
 
 }
 
+function sidepanelClose() {
+
+    DOM.get('#open-toggle, #sidepanel, #container').forEach((el)=>{
+        el.classList.remove('sidepanel-open')
+    })
+
+    setTimeout(function(){
+        $(window).resize()
+    }, 25)
+
+}
+
+function sidepanelToggle() {
+
+    if (sidepanel.classList.contains('sidepanel-open')) {
+        sidepanelClose()
+    } else {
+        sidepanelOpen()
+    }
+
+}
+
+
 DOM.get('#container')[0].addEventListener('fake-click', function(e){
 
-    if (e.target.id == 'open-toggle') toggleSidepanel()
+    if (e.target.id == 'open-toggle') sidepanelToggle()
 
 })
 
 document.addEventListener('keydown', function(e){
     // F10
-    if (e.keyCode==121) toggleSidepanel()
+    if (e.keyCode==121) sidepanelToggle()
 })
 
-// Fullscreen
 
-var fsToggle = $('#sidepanel').find('.fullscreenToggle')
-
-if (fullscreen.enabled) {
-    fullscreen.off('change')
-    fullscreen.on('change', ()=>{
-        fsToggle.toggleClass('on', fullscreen.isFullScreen)
-    })
-} else {
-    fsToggle.addClass('disabled')
+module.exports = {
+    open: sidepanelOpen,
+    close: sidepanelClose,
+    toggle: sidepanelToggle
 }
