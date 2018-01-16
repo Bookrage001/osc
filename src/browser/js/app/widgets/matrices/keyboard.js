@@ -90,8 +90,6 @@ module.exports = class Keyboard extends _matrices_base {
 
         })
 
-        if (this.getProp('traversing')) this.widget.enableTraversingGestures()
-
     }
 
 }

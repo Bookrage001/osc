@@ -74,8 +74,6 @@ module.exports = class Multipush extends _matrices_base {
 
         }
 
-        if (this.getProp('traversing')) this.widget.enableTraversingGestures()
-
     }
 
 }

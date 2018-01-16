@@ -1,4 +1,6 @@
-var _widgets_base = require('../common/_widgets_base')
+var _widgets_base = require('../common/_widgets_base'),
+    {enableTraversingGestures} = require('../../events/drag')
+
 
 module.exports = class _matrices_base extends _widgets_base {
 
@@ -18,6 +20,8 @@ module.exports = class _matrices_base extends _widgets_base {
             this.changed(e.options)
 
         })
+
+        if (this.getProp('traversing')) enableTraversingGestures(this.widget[0])
 
     }
 

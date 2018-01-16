@@ -179,9 +179,6 @@ DOM.addEventListener(document, 'touchend touchcancel', (event)=>{
     }
 }, true)
 
-
-
-
 module.exports = {
 
     setup: function(options) {
@@ -234,37 +231,32 @@ module.exports = {
             element.removeEventListener('mousedown', mouseDownHandler)
         }
 
+    },
+
+    enableTraversingGestures: function(element) {
+
+        function makeEventTraversing(event) {
+            if (event.ctrlKey) return
+            event.traversing = true
+            if (!event.traversingContainer) event.traversingContainer = element
+        }
+
+        element.addEventListener('mousedown', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
+        element.addEventListener('touchstart', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
+
+        element.addEventListener('disableTraversingGestures', ()=>{
+
+            element.removeEventListener('mousedown', makeEventTraversing)
+            element.removeEventListener('touchstart', makeEventTraversing)
+
+        })
+
+    },
+
+    disableTraversingGestures: function(element) {
+
+        DOM.dispatchEvent(element, 'disableTraversingGestures')
+
     }
-
-}
-
-
-
-$.fn.enableTraversingGestures = function(options={}) {
-
-    var self = this[0]
-
-    var makeEventTraversing = function(e){
-        if (e.ctrlKey && options.ctrlKeyCancel) return
-        e.traversing=true
-        if (!e.traversingContainer) e.traversingContainer = self
-    }
-
-    self.addEventListener("mousedown", makeEventTraversing, true)
-    self.addEventListener("touchstart", makeEventTraversing, true)
-
-    this.on('disableTraversingGestures',()=>{
-        self.removeEventListener("mousedown", makeEventTraversing, true)
-        self.removeEventListener("touchstart", makeEventTraversing, true)
-    })
-
-
-    return this
-
-}
-
-$.fn.disableTraversingGestures = function() {
-
-    this.trigger('disableTraversingGestures')
 
 }
