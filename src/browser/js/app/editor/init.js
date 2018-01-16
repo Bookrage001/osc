@@ -20,7 +20,6 @@ var handleClick = function(event) {
     if (!widget) return
 
     var container = widget.container,
-        parent = widget.parentNode,
         index = container.index(),
         data = widget.props,
         type = widget.props.type == 'tab' ? 'tab' : 'widget'
@@ -44,19 +43,16 @@ var handleClick = function(event) {
         clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         clickY = Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
-    if (parent.hasClass('panel')) {
-        actions['<i class="fa fa-object-group"></i> Edit parent'] = function(){parent.trigger('fake-click')}
+    if (widget.parent != widgetManager) {
+        actions['<i class="fa fa-object-group"></i> Edit parent'] = function(){editObject(widget.parent)}
     }
 
     if (type=='widget') actions['<i class="fa fa-copy"></i> Copy'] = function(){CLIPBOARD=JSON.stringify(data)}
 
     if (type=='widget') actions['<i class="fa fa-cut"></i> Cut'] = function(){
         CLIPBOARD=JSON.stringify(data)
-        var parent = widget.parent,
-            parentData = parent.props
-
-        parentData.widgets.splice(index,1)
-        updateWidget(parent)
+        widget.parent.props.widgets.splice(index,1)
+        updateWidget(widget.parent)
     }
 
     if (((type=='widget' && widgets[data.type].defaults().widgets) || (type=='tab')) && (!data.tabs||!data.tabs.length)) {
@@ -134,17 +130,14 @@ var handleClick = function(event) {
         `)
         $('.confirm-delete').click(function(){
             popup.close()
-            var parent = widget.parent,
-                parentData = parent.props
-
 
             if (widget.props.type != 'tab') {
-                parentData.widgets.splice(index,1)
+                widget.parent.props.widgets.splice(index,1)
             } else {
-                parentData.tabs.splice(index,1)
+                widget.parent.props.tabs.splice(index,1)
             }
 
-            updateWidget(parent)
+            updateWidget(widget.parent)
         })
         $('.cancel-delete').click(function(){
             popup.close()
