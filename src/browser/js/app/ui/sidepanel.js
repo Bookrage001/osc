@@ -1,10 +1,11 @@
-var state = require('./managers/state'),
-    session = require('./managers/session'),
-    editor = require('./editor/'),
-    icon = require('./utils').icon,
-    fullscreen = require('screenfull')
+var state = require('../managers/state'),
+    session = require('../managers/session'),
+    editor = require('../editor/'),
+    icon = require('../utils').icon,
+    fullscreen = require('screenfull'),
+    {enableTraversingGestures, disableTraversingGestures} = require('../events/drag')
 
-var data = [
+var sidepanelData = [
     {
         actions: [
             {
@@ -24,7 +25,7 @@ var data = [
                 title:'Store',
                 action:()=>{
                     state.quickSave()
-                    $('.quickload').removeClass('disabled')
+                    DOM.get('.quickload').classList.remove('disabled')
                 }
             },
             {
@@ -52,16 +53,20 @@ var data = [
             {
                 title:'On',
                 action:()=>{
-                    $('.traversingEnable, .traversingDisable').toggleClass('on')
-                    $('#container').enableTraversingGestures()
+                    DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
+                        el.classList.toggle('on')
+                    })
+                    enableTraversingGestures(document.getElementById('container'))
                 },
                 class:'traversingEnable'
             },
             {
                 title:'Off',
                 action:()=>{
-                    $('.traversingEnable, .traversingDisable').toggleClass('on')
-                    $('#container').disableTraversingGestures()
+                    DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
+                        el.classList.toggle('on')
+                    })
+                    disableTraversingGestures(document.getElementById('container'))
                 },
                 class:'traversingDisable on'
             }
@@ -97,58 +102,71 @@ var data = [
     },
 ]
 
-var sidepanel = $('<ul id="options"></ul>')
+var options = DOM.create('<ul id="options"></ul>')
 
-for (let i in data) {
+for (let i in sidepanelData) {
 
-    let itemData = data[i],
-        item = $('<li></li>'),
-        inner = $(`<div class="${itemData.class || ''}"></div>`).appendTo(item),
-        wrapper = $('<div class="actions"></div>').appendTo(inner)
+    let data = sidepanelData[i],
+        item = DOM.create(`
+            <li>
+                <div class="${data.class || ''}">
+                    <div class="actions">
+                        ${data.title ? `<div class="title">${data.title}</div>` : ''}
+                    </div>
+                </div>
+            </li>
+        `),
+        wrapper = DOM.get(item, '.actions')[0]
 
-    if (itemData.title) $(`<div class="title">${itemData.title}</div>`).prependTo(wrapper)
+    for (let j in data.actions) {
 
-    for (let j in itemData.actions) {
+        let actionData = data.actions[j],
+            element = DOM.create(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`)
 
-        let actionData = itemData.actions[j],
-            element = $(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`).appendTo(wrapper)
+        if (actionData.action) element.addEventListener('fake-click', actionData.action)
 
-        if (actionData.action) element.click(actionData.action)
-
+        wrapper.appendChild(element)
     }
 
-    item.appendTo(sidepanel)
+    options.appendChild(item)
 
 }
 
 
-$('#sidepanel').empty()
-$('#sidepanel').append(`
+var sidepanel = document.getElementById('sidepanel')
+
+sidepanel.appendChild(DOM.create(`
     <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
-`)
-$('#sidepanel').append(sidepanel)
-$('#sidepanel').append('<div id="editor"></div>')
+`))
 
-$('#container').on('fake-click.sidepanel', function(e){
+sidepanel.appendChild(options)
 
-    if (e.target.id != 'open-toggle') return
+sidepanel.appendChild(DOM.create('<div id="editor"></div>'))
 
-    var t = (!$('#sidepanel').hasClass('sidepanel-open')) ? 250 : 0
 
+function toggleSidepanel() {
+
+    var transitionLength = 275
+
+    DOM.get('#open-toggle, #sidepanel, #container').forEach((el)=>{
+        el.classList.toggle('sidepanel-open')
+    })
 
     setTimeout(function(){
-        $('#open-toggle, #sidepanel').toggleClass('sidepanel-open')
-    }, 25)
-
-    setTimeout(function(){
-        $('#container').toggleClass('sidepanel-open')
         $(window).resize()
-    },t + 25)
+    }, transitionLength)
+
+}
+
+DOM.get('#container')[0].addEventListener('fake-click', function(e){
+
+    if (e.target.id == 'open-toggle') toggleSidepanel()
 
 })
 
-$(document).on('keydown.sidepanel', function(e){
-    if (e.keyCode==121) $('#open-toggle').trigger('fake-click')
+document.addEventListener('keydown', function(e){
+    // F10
+    if (e.keyCode==121) toggleSidepanel()
 })
 
 // Fullscreen
