@@ -1,17 +1,19 @@
-require('./app/globals')
-require('./app/sourcemap')
+document.addEventListener("DOMContentLoaded", function(event) {
 
-var ipc = require('./app/ipc/'),
-    osc = require('./app/osc'),
-    parser = require('./app/parser'),
-    {loading} = require('./app/utils')
+    require('./app/globals')
+    require('./app/sourcemap')
 
-ipc.init()
-osc.init()
-parser.init()
+    var ipc = require('./app/ipc/'),
+        osc = require('./app/osc'),
+        parser = require('./app/parser'),
+        {loading} = require('./app/utils')
 
-$(document).ready(function(){
+    ipc.init()
+    osc.init()
+    parser.init()
+
     LOADING = loading('Connecting server...')
     require('./app/ui')
     ipc.send('ready')
+
 })
