@@ -222,6 +222,18 @@ module.exports = {
             return
         }
 
+        element._widget = this
+        element.style.touchAction = ''
+        element.classList.remove('drag-event')
+
+        if (multitouch) {
+            element.removeEventListener('touchstart', touchMultiWrapper)
+            element.removeEventListener('mousedown', mouseMultiWrapper)
+        } else {
+            element.removeEventListener('touchstart', touchDownHandler)
+            element.removeEventListener('mousedown', mouseDownHandler)
+        }
+
     }
 
 }
