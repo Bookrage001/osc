@@ -9,6 +9,7 @@ module.exports = {
             this.enterKey = options.enterKey
             this.content = options.content
             this.title = options.title
+            this.state = 0
 
             this.html = DOM.create(`
                 <div class="popup show">
@@ -47,15 +48,19 @@ module.exports = {
 
 
         close() {
+            if (!this.state) return
             if (this.escKey) document.removeEventListener('keydown', this.escKeyHandler)
             if (this.enterKey) document.removeEventListener('keydown', this.enterKeyHandler)
             document.body.removeChild(this.html)
+            this.state = 0
         }
 
         open() {
+            if (this.state) return
             if (this.escKey) document.addEventListener('keydown', this.escKeyHandler)
             if (this.enterKey) document.addEventListener('keydown', this.enterKeyHandler)
             document.body.appendChild(this.html)
+            this.state = 1
         }
     },
 
