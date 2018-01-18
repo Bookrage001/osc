@@ -11,13 +11,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     setTimeout(()=>{
 
-        var ipc = require('./app/ipc/'),
-            osc = require('./app/osc'),
-            parser = require('./app/parser')
+        var ipc = require('./app/ipc/')
 
         ipc.init()
-        osc.init()
-        parser.init()
 
         require('./app/ui/init')
         ipc.send('ready')

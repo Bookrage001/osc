@@ -11,10 +11,6 @@ var Parser = class Parser {
 
     }
 
-    init() {
-        this.widgets = require('./widgets/').widgets
-    }
-
     getIterator(id) {
 
         this.iterators[id] = (this.iterators[id] || 0) + 1
@@ -169,3 +165,5 @@ var Parser = class Parser {
 var parser = new Parser()
 
 module.exports = parser
+
+parser.widgets = require('./widgets/').widgets

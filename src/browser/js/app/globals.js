@@ -30,8 +30,6 @@ window.DOM = require('./dom')
 
 window.$ = require('jquery/dist/jquery.slim.min.js')
 
-require('./events/click')
-
 require('../libs/jquery.ui')
 
 require('cardinal-spline-js/curve.js')

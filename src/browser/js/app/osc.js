@@ -10,10 +10,6 @@ var Osc = class Osc {
 
     }
 
-    init(data) {
-        this.remoteControl = require('./remote-control')
-    }
-
     send(data) {
 
         if (this.syncOnly) {
@@ -59,3 +55,5 @@ var Osc = class Osc {
 var osc = new Osc()
 
 module.exports = osc
+
+osc.remoteControl = require('./remote-control')
