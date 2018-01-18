@@ -1,5 +1,5 @@
 var _widgets_base = require('../common/_widgets_base'),
-    {iconify} = require('../../utils')
+    {iconify} = require('../../ui/utils')
 
 module.exports = class Dropdown extends _widgets_base {
 
@@ -42,24 +42,24 @@ module.exports = class Dropdown extends _widgets_base {
 
         super({...options, html: '<div class="select"></div>'})
 
-        this.select = $(`<select></select>`).appendTo(this.widget)
+        this.select = this.widget.appendChild(DOM.create(`<select></select>`))
 
         this.values = []
 
         var i = 0
         for (var k in this.getProp('values')) {
             this.values[i] = this.getProp('values')[k]
-            this.select.append(`<option value="${i}">${iconify(parseFloat(k) != k ? k : this.getProp("values")[k])}</option>`)
+            this.select.innerHTML += `<option value="${i}">${iconify(parseFloat(k) != k ? k : this.getProp("values")[k])}</option>`
             i++
         }
 
-        this.select.change(()=>{
-            this.setValue(this.values[this.select[0].selectedIndex], {sync:true, send:true, fromLocal:true})
+        this.select.addEventListener('change', ()=>{
+            this.setValue(this.values[this.select.selectedIndex], {sync:true, send:true, fromLocal:true})
         })
 
         this.value = undefined
-        this.select[0].selectedIndex = -1
-        this.container.addClass('noselect')
+        this.select.selectedIndex = -1
+        this.container.classList.add('noselect')
 
     }
 
@@ -72,12 +72,12 @@ module.exports = class Dropdown extends _widgets_base {
             if (!options.fromLocal) this.select[0].selectedIndex = i
             if (options.send) this.sendValue()
             if (options.sync) this.changed(options)
-            this.container.removeClass('noselect')
+            this.container.classList.remove('noselect')
         } else {
             this.value = undefined
             this.select[0].selectedIndex = -1
             if (options.sync) this.changed(options)
-            this.container.addClass('noselect')
+            this.container.classList.add('noselect')
         }
 
     }}

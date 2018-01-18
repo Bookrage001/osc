@@ -33,6 +33,5 @@ window.$ = require('jquery/dist/jquery.slim.min.js')
 require('./events/click')
 
 require('../libs/jquery.ui')
-require('../libs/jquery.resize')
 
 require('cardinal-spline-js/curve.js')

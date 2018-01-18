@@ -2,7 +2,8 @@ var _pads_base = require('./_pads_base'),
     Fader = require('./_fake_fader'),
     {clip} = require('../utils'),
     doubletab = require('../mixins/double_tap'),
-    Input = require('../inputs/input')
+    Input = require('../inputs/input'),
+    touchstate = require('../mixins/touch_state')
 
 var faderDefaults = Fader.defaults()
 
@@ -103,8 +104,8 @@ module.exports = class Xy extends _pads_base {
 
         this.value = [this.faders.x.value, this.faders.y.value]
 
-        this.wrapper.append(this.faders.x.widget)
-        this.wrapper.append(this.faders.y.widget)
+        this.wrapper.appendChild(this.faders.x.widget)
+        this.wrapper.appendChild(this.faders.y.widget)
 
         this.faders.x.on('change',(e)=>{
             e.stopPropagation = true
@@ -118,13 +119,13 @@ module.exports = class Xy extends _pads_base {
             this.faders.x.trigger('draginit', [e])
             this.faders.y.trigger('draginit', [e])
             this.dragHandle()
-        }, {element: this.wrapper[0]})
+        }, {element: this.wrapper})
 
         this.on('drag',(e)=>{
             this.faders.x.trigger('drag', [e])
             this.faders.y.trigger('drag', [e])
             this.dragHandle()
-        }, {element: this.wrapper[0]})
+        }, {element: this.wrapper})
 
         this.on('dragend', (e)=>{
             this.faders.x.trigger('dragend', [e])
@@ -132,7 +133,9 @@ module.exports = class Xy extends _pads_base {
             if (this.getProp('spring')) {
                 this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true,fromLocal:true})
             }
-        }, {element: this.wrapper[0]})
+        }, {element: this.wrapper})
+
+        touchstate(this, {element: this.wrapper})
 
         if (this.getProp('doubleTap')) {
             doubletab(this.wrapper, ()=>{
@@ -146,7 +149,7 @@ module.exports = class Xy extends _pads_base {
                 props:{...Input.defaults(), precision:this.getProp('precision'), unit:this.getProp('unit')},
                 parent:this, parentNode:this.widget
             })
-            this.widget.append(this.input.widget)
+            this.widget.appendChild(this.input.widget)
             this.input.on('change', (e)=>{
                 e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})

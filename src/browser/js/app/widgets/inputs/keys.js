@@ -1,7 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
     widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
-    {iconify} = require('../../utils'),
+    {iconify} = require('../../ui/utils'),
     keyboardJS = require('keyboardjs')
 
 module.exports = class Keys extends _widgets_base {
@@ -52,7 +52,7 @@ module.exports = class Keys extends _widgets_base {
 
         if (this.getProp('binding') && (this.keydownString || this.keyupString)) {
 
-            this.widget.append(`<span>${this.getProp('binding')}</span>`)
+            this.widget.appendChild(DOM.create(`<span>${this.getProp('binding')}</span>`))
 
             this.keydownHandler = this.keydownString ? this.keydown.bind(this) : this.showKeydown.bind(this)
             this.keyupHandler = this.keyupString ? this.keyup.bind(this) : this.showKeyup.bind(this)
@@ -110,7 +110,7 @@ module.exports = class Keys extends _widgets_base {
 
     showKeydown(){
 
-        this.widget[0].style.setProperty('--opacity', 1)
+        this.widget.style.setProperty('--opacity', 1)
 
     }
 
@@ -143,7 +143,7 @@ module.exports = class Keys extends _widgets_base {
 
     showKeyup(){
 
-        this.widget[0].style.setProperty('--opacity', 0.75)
+        this.widget.style.setProperty('--opacity', 0.75)
 
     }
 

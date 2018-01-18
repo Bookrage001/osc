@@ -5,6 +5,12 @@ var EventEmitter = require('../../events/event-emitter'),
     updateWidget = function(){ updateWidget = require('../../editor/data-workers').updateWidget; updateWidget(...arguments)}
 
 
+var fallbackContainer
+
+DOM.ready(()=>{
+    fallbackContainer = DOM.create('<div></div>')
+})
+
 module.exports = class _widgets_base extends EventEmitter {
 
     static defaults() {
@@ -22,16 +28,17 @@ module.exports = class _widgets_base extends EventEmitter {
 
         super()
 
-        this.container = options.container
-        this.widget = $(options.html)
+        this.container = options.container || fallbackContainer
+        this.widget = DOM.create(options.html)
         this.props = options.props
         this.parent = options.parent
         this.parentNode = options.parentNode
         this.hash = _widgets_base.createHash()
         this.childrenHashes = []
 
-        if (this.container) {
-            this.container.attr('data-widget', this.hash)
+        if (options.container) {
+            this.container.setAttribute('data-widget', this.hash)
+            this.container._widget_instance = this
         }
 
         // Turn preArgs into array

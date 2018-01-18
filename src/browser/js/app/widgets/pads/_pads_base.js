@@ -1,5 +1,4 @@
-var _canvas_base = require('../common/_canvas_base'),
-    touchstate = require('../mixins/touch_state')
+var _canvas_base = require('../common/_canvas_base')
 
 module.exports = class _pads_base extends _canvas_base {
 
@@ -15,12 +14,10 @@ module.exports = class _pads_base extends _canvas_base {
 
         super({...options, html: html})
 
-        this.wrapper = this.widget.find('.wrapper')
+        this.wrapper = DOM.get(this.widget, '.wrapper')[0]
 
         this.pointSize = parseInt(this.getProp('pointSize'))
-        this.widget[0].style.setProperty('--pointSize', this.pointSize + 'rem')
-
-        touchstate(this, this.wrapper)
+        this.widget.style.setProperty('--pointSize', this.pointSize + 'rem')
 
     }
 

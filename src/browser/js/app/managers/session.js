@@ -2,7 +2,9 @@ var ipc = require('../ipc/'),
     parser = require('../parser'),
     state = require('./state'),
     editor = require('../editor/'),
-    {loading, createPopup, icon} = require('../utils'),
+    Popup = require('../ui/popup'),
+    lobby = require('../ui/lobby'),
+    {loading, icon} = require('../ui/utils'),
     {saveAs} = require('file-saver')
 
 
@@ -16,9 +18,14 @@ var SessionManager = class SessionManager {
 
     load(session, callback) {
 
-        $('#lobby').hide()
-        $('#container').empty()
-        var p = loading('Loading session file...')
+        var container = DOM.get('#container')[0]
+
+        container.classList.remove('show')
+        container.innerHTML = ''
+
+        lobby.close()
+
+        var loader = loading('Loading session file...')
 
         setTimeout(()=>{
             try {
@@ -32,27 +39,25 @@ var SessionManager = class SessionManager {
                     throw 'Malformed session file'
                 }
 
-                parser.parse(this.session,$('#container'))
+                parser.parse(this.session, DOM.get('#container')[0])
             } catch (err) {
-                p.close()
-                $('#lobby').show()
-                createPopup(icon('warning')+'&nbsp; Parsing error', err,true)
+                loader.close()
+                lobby.open()
+                new Popup({title:icon('warning')+'&nbsp; Parsing error', content: err, closable:true})
                 throw err
             }
 
             state.set(state.get(), false)
-            $('#lobby').remove()
             editor.disable()
-            $(window).resize()
+            DOM.dispatchEvent(window, 'resize')
 
-            setTimeout(function(){
-                p.close()
-                if (!callback) return
-                setTimeout(function(){
-                    callback()
-                },25)
-            },25)
-        },25)
+            setTimeout(()=>{
+                loader.close()
+                container.classList.add('show')
+                if (callback) callback()
+            }, 25)
+
+        }, 25)
 
     }
 
@@ -69,82 +74,65 @@ var SessionManager = class SessionManager {
 
     list(data) {
 
-        var lobby = $(`
-            <div class="main">
-                <div class="header">
-                    ${PACKAGE.productName}
-                </div>
-                <div class="list"></div>
-                <div class="footer"></div>
-            </div>`),
-            list = lobby.find('.list'),
-            footer = lobby.find('.footer'),
-            self = this
-
         for (let i in data) {
 
             var max = 50
             var path = data[i],
                 file = path.split('\\').pop().split('/').pop(),
                 length = data[i].length
+
             path = path.replace(file,'')
 
             if (length > max - 3) {
                 path = path.substr(0,Math.floor((path.length)/2)-(length-max)/2) + '...' + path.substr(Math.ceil((path.length)/2)+(length-max)/2, path.length)
             }
 
-            if (!READ_ONLY) {
-            }
-            list.append(`
+            lobby.list.appendChild(DOM.create(`
                 <a href="#" tabIndex="0" class="btn load" data-session="${data[i]}">
                     ${file} <em style="opacity:0.45">(${path})</em>
                     ${READ_ONLY? '' : '<span>'+icon('times')+'</span>'}
                 </a>
-            `)
+            `))
 
         }
 
-        lobby.find('.load').click(function(e){
+        lobby.list.addEventListener('click', function(e){
             e.preventDefault()
             e.stopPropagation()
-            ipc.send('sessionOpen',{path:$(this).data('session')})
-        }).on('mousedown touchstart', function(e){
-            if (e.type == 'mousedown') e.preventDefault()
-            $(this).blur()
+            e.target.blur()
+            if (e.target.hasAttribute('data-session')) {
+                ipc.send('sessionOpen',{path:e.target.getAttribute('data-session')})
+            } else if (!READ_ONLY && e.target.tagName == 'span') {
+                ipc.send('sessionRemoveFromHistory',e.target.parentNode.getAttribute('data-session'))
+                lobby.list.removeChild(e.target.parentNode)
+            }
         })
 
         if (!READ_ONLY) {
 
-            lobby.find('a span').click(function(e){
+            var brw = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn browse">'+icon('folder-open')+' Browse</a>'))
+            var nws = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn new">'+icon('file')+' New</a>'))
+
+            brw.addEventListener('click', (e)=>{
                 e.stopPropagation()
-                ipc.send('sessionRemoveFromHistory',$(this).parent().data('session'))
-                $(this).parents('a').remove()
+                this.browse()
+            })
+            brw.addEventListener('mousedown touchstart', function(e){
+                if (e.type == 'mousedown') e.preventDefault()
+                e.target.blur()
             })
 
-            footer.append('<a href="#" tabindex="0" class="btn browse">'+icon('folder-open')+' Browse</a>')
-            footer.append('<a href="#" tabindex="0" class="btn new">'+icon('file')+' New</a>')
-
-            lobby.find('.browse').click((e)=>{
+            nws.addEventListener('click', (e)=>{
                 e.stopPropagation()
-                self.browse()
-            }).on('mousedown touchstart', function(e){
-                if (e.type == 'mousedown') e.preventDefault()
-                $(this).blur()
+                this.create()
             })
-            lobby.find('.new').click(function(e){
-                e.stopPropagation()
-                self.create()
-            }).on('mousedown touchstart', function(e){
+            nws.addEventListener('mousedown touchstart', (e)=>{
                 if (e.type == 'mousedown') e.preventDefault()
-                $(this).blur()
+                e.target.blur()
             })
         }
 
-        $('#lobby').append(lobby)
-
-        setTimeout(()=>{
-            lobby.addClass('loaded')
-        })
+        lobby.open()
 
     }
 
@@ -158,9 +146,10 @@ var SessionManager = class SessionManager {
 
     browse() {
 
-        var prompt = $('<input type="file" accept=".js, .json"/>')
+        var prompt = DOM.create('<input type="file" accept=".js, .json"/>')
+
         prompt.click()
-        prompt.on('change',function(e){
+        prompt.addEventListener('change',function(e){
             var reader = new FileReader(),
                 file = e.target.files[0]
 
@@ -177,9 +166,8 @@ var SessionManager = class SessionManager {
 
     create() {
         this.load([{}],function(){
-            $('.enable-editor').click()
-            $('#open-toggle').trigger('fake-click')
-            $('.editor-root').trigger('fake-click')
+            require('../ui/sidepanel').open()
+            editor.enable()
         })
     }
 

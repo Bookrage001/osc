@@ -59,21 +59,22 @@ module.exports = class Fader extends _sliders_base {
 
         super(options)
 
-        this.widget.addClass('fader')
+        this.widget.classList.add('fader')
         this.margin = 22
 
 
         if (this.getProp('horizontal')) {
-            this.widget.add(this.container).addClass('horizontal')
+            this.widget.classList.add('horizontal')
+            this.container.classList.add('horizontal')
         }
 
         if (this.getProp('compact')) {
-            this.widget.addClass('compact')
+            this.widget.classList.add('compact')
             this.margin = 0
         }
 
         if (this.getProp('alignRight') && !this.getProp('horizontal')) {
-            this.widget.addClass('align-right')
+            this.widget.classList.add('align-right')
         }
 
         if (this.getProp('meter')) {
@@ -91,16 +92,16 @@ module.exports = class Fader extends _sliders_base {
                 dashed:true
             }
             var meter = parser.parse([data],this.wrapper, this.parent)
-            meter.container[0].classList.add('not-editable')
+            meter.container.classList.add('not-editable')
 
-            this.widget[0].classList.add('has-meter')
+            this.widget.classList.add('has-meter')
         }
 
         if (this.getProp('pips')) {
 
-            this.widget.addClass('has-pips')
+            this.widget.classList.add('has-pips')
 
-            var pips = $('<div class="pips"></div>').appendTo(this.wrapper)
+            var pips = this.wrapper.appendChild(DOM.create('<div class="pips"></div>'))
             var pipTexts = {}
             for (var k in this.rangeKeys) {
                 pipTexts[this.rangeKeys[k]]=this.rangeLabels[k]
@@ -119,7 +120,7 @@ module.exports = class Fader extends _sliders_base {
                 `
                 pipsInner = pipsInner + add
             }
-            pips[0].innerHTML = pipsInner
+            pips.innerHTML = pipsInner
         }
 
 
@@ -165,19 +166,19 @@ module.exports = class Fader extends _sliders_base {
 
     }
 
-    resizeHandle(e, width, height, checkColors) {
+    resizeHandle(event) {
 
-            var ratio = CANVAS_SCALING * this.scaling
+            var {width, height, style} = event,
+                ratio = CANVAS_SCALING * this.scaling
 
             if (this.getProp('compact')) {
                 if (this.getProp('horizontal')) {
-                    super.resizeHandle(e, width, 1 / ratio, checkColors)
+                    event.height = 1 / ratio
                 } else {
-                    super.resizeHandle(e, 1 / ratio, height, checkColors)
                 }
-            } else {
-                super.resizeHandle(...arguments)
             }
+
+            super.resizeHandle(event)
 
             if (this.getProp('horizontal')){
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0)

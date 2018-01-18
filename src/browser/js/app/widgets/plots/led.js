@@ -78,7 +78,7 @@ module.exports = class Led extends _widgets_base {
 
         if (typeof v != 'number') return
         this.value = v
-        this.widget[0].style.setProperty('--opacity', mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
+        this.widget.style.setProperty('--opacity', mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
 
         if (options.sync) this.changed(options)
 

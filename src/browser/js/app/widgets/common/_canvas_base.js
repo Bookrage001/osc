@@ -65,8 +65,8 @@ module.exports = class _canvas_base extends _widgets_base {
 
         super(options)
 
-        this.canvas = this.widget.find('canvas')
-        this.ctx = this.canvas[0].getContext('2d')
+        this.canvas = DOM.get(this.widget, 'canvas')[0]
+        this.ctx = this.canvas.getContext('2d')
 
         this.height = undefined
         this.width = undefined
@@ -79,7 +79,7 @@ module.exports = class _canvas_base extends _widgets_base {
         this.colors = {}
         this.textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-fade')
 
-        this.canvas.on('resize',this.resizeHandleProxy.bind(this))
+        this.on('resize', this.resizeHandleProxy.bind(this), {element: this.canvas})
 
         this.ctx.arc = (x, y, r, s, e, c)=>{
 
@@ -95,19 +95,18 @@ module.exports = class _canvas_base extends _widgets_base {
 
     }
 
-    resizeHandle(e, width, height, checkColors){
+    resizeHandle(event){
 
-        var width = width,
-            height = height,
+        var {width, height, style, checkColors} = event,
             ratio = CANVAS_SCALING * this.scaling
 
         if (width && height) {
 
-            this.height=height
-            this.width=width
+            this.height = height
+            this.width = width
 
-            this.canvas[0].setAttribute('width',width * ratio)
-            this.canvas[0].setAttribute('height',height * ratio)
+            this.canvas.setAttribute('width', width * ratio)
+            this.canvas.setAttribute('height', height * ratio)
 
             this.clearRect = []
 
@@ -117,8 +116,6 @@ module.exports = class _canvas_base extends _widgets_base {
             }
 
         }
-
-        var style =  getComputedStyle(this.widget[0])
 
         if (!this.visible || checkColors) {
             this.visible = true

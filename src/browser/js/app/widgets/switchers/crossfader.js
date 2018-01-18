@@ -31,7 +31,7 @@ module.exports = class Crossfader extends Switcher {
 
         this.fader.sendValue = ()=>{}
 
-        this.widget.append($('<div class="fader-container"></div>').append(this.fader.widget))
+        this.widget.appendChild(DOM.create('<div class="fader-container"></div>')).appendChild(this.fader.widget)
 
         this.fader.on('change', (e)=>{
 

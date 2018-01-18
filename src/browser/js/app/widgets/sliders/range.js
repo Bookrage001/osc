@@ -1,7 +1,8 @@
 var {clip} = require('../utils'),
     _widgets_base = require('../common/_widgets_base'),
     Fader = require('./fader'),
-    Input = require('../inputs/input')
+    Input = require('../inputs/input'),
+    touchstate = require('../mixins/touch_state')
 
 var faderDefaults = Fader.defaults()
 
@@ -209,6 +210,7 @@ module.exports = class Range extends _widgets_base {
 
             precision:2,
             address:'auto',
+            touchAddress:'',
             preArgs:[],
             split:false,
             target:[]
@@ -232,7 +234,7 @@ module.exports = class Range extends _widgets_base {
                 : [this.getProp('address') + '/low', this.getProp('address') + '/high']
             : false
 
-        this.wrapper = this.widget.find('.wrapper')
+        this.wrapper = DOM.get(this.widget, '.wrapper')[0]
 
         this.faders = [
             new RangeFader({props:{
@@ -271,8 +273,8 @@ module.exports = class Range extends _widgets_base {
             }, cancelDraw: false, parent: this})
         ]
 
-        this.wrapper.append(this.faders[0].widget)
-        this.wrapper.append(this.faders[1].widget)
+        this.wrapper.appendChild(this.faders[0].widget)
+        this.wrapper.appendChild(this.faders[1].widget)
 
         this.on('change',(e)=>{
 
@@ -329,14 +331,14 @@ module.exports = class Range extends _widgets_base {
 
             this.faders[id].trigger('draginit', [e])
 
-        }, {element: this.wrapper[0], multitouch: true})
+        }, {element: this.wrapper, multitouch: true})
 
         this.on('drag',(e)=>{
 
             var i = this.touchMap[e.pointerId]
             this.faders[i].trigger('drag', [e])
 
-        }, {element: this.wrapper[0], multitouch: true})
+        }, {element: this.wrapper, multitouch: true})
 
         this.on('dragend',(e)=>{
 
@@ -344,8 +346,9 @@ module.exports = class Range extends _widgets_base {
             this.faders[i].trigger('dragend', [e])
             delete this.touchMap[e.pointerId]
 
-        }, {element: this.wrapper[0], multitouch: true})
+        }, {element: this.wrapper, multitouch: true})
 
+        touchstate(this, {element: this.wrapper, multitouch: true})
 
         if (this.getProp('input')) {
 
@@ -357,14 +360,14 @@ module.exports = class Range extends _widgets_base {
                 },
                 parent:this, parentNode:this.widget,
             })
-            this.widget.append(this.input.widget)
+            this.widget.appendChild(this.input.widget)
             this.input.on('change', (e)=>{
                 e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})
                 this.showValue()
             })
 
-            this.widget.on('fake-right-click',function(e){
+            this.widget.addEventListener('fake-right-click',function(e){
                 if (!EDITING) {
                     e.stopPropagation()
                     e.preventDefault()
@@ -376,16 +379,17 @@ module.exports = class Range extends _widgets_base {
 
 
         if (this.getProp('horizontal')) {
-            this.widget.add(this.container).addClass('horizontal')
+            this.widget.classList.add('horizontal')
+            this.container.classList.add('horizontal')
         }
         if (this.getProp('alignRight') && !this.getProp('horizontal')) {
-            this.widget.addClass('align-right')
+            this.widget.classList.add('align-right')
         }
         if (this.getProp('compact')) {
-            this.widget.addClass('compact')
+            this.widget.classList.add('compact')
         }
         if (this.getProp('pips')) {
-            this.widget.addClass('has-pips')
+            this.widget.classList.add('has-pips')
         }
 
         this.setValue([

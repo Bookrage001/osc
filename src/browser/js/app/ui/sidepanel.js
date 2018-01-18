@@ -1,7 +1,7 @@
 var state = require('../managers/state'),
     session = require('../managers/session'),
     editor = require('../editor/'),
-    icon = require('../utils').icon,
+    {icon} = require('./utils'),
     fullscreen = require('screenfull'),
     {enableTraversingGestures, disableTraversingGestures} = require('../events/drag')
 
@@ -123,7 +123,7 @@ for (let i in sidepanelData) {
         let actionData = data.actions[j],
             element = DOM.create(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`)
 
-        if (actionData.action) element.addEventListener('fake-click', actionData.action)
+        if (actionData.action) element.addEventListener('click', actionData.action)
 
         wrapper.appendChild(element)
     }
@@ -166,13 +166,16 @@ if (fullscreen.enabled) {
 
 function sidepanelOpen() {
 
-    DOM.get('#open-toggle, #sidepanel, #container').forEach((el)=>{
+    DOM.get('#open-toggle, #sidepanel').forEach((el)=>{
         el.classList.add('sidepanel-open')
     })
 
     setTimeout(function(){
-        $(window).resize()
-    }, 275)
+        DOM.get('#container')[0].classList.add('sidepanel-open')
+        setTimeout(function(){
+            DOM.dispatchEvent(window, 'resize')
+        }, 25)
+    }, 250)
 
 }
 
@@ -183,7 +186,7 @@ function sidepanelClose() {
     })
 
     setTimeout(function(){
-        $(window).resize()
+        DOM.dispatchEvent(window, 'resize')
     }, 25)
 
 }

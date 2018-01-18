@@ -78,7 +78,7 @@ module.exports = class Encoder extends _widgets_base {
         `
         super({...options, html: html})
 
-        this.wrapper = this.widget.find('.wrapper')
+        this.wrapper = DOM.get(this.widget, '.wrapper')[0]
         this.ticks = Math.abs(parseInt(this.getProp('ticks')))
 
         this.knob = new EncoderKnob({props:{
@@ -99,8 +99,11 @@ module.exports = class Encoder extends _widgets_base {
             pips:false,
         }, parent: this})
 
-        this.wrapper.append(this.knob.widget.addClass('drag-knob'))
-        this.wrapper.append(this.display.widget.addClass('display-knob'))
+        this.knob.widget.classList.add('drag-knob')
+        this.display.widget.classList.add('display-knob')
+
+        this.wrapper.appendChild(this.knob.widget)
+        this.wrapper.appendChild(this.display.widget)
 
         this.knob.setValue(this.ticks/2)
         this.display.setValue(this.ticks/2)
@@ -135,7 +138,7 @@ module.exports = class Encoder extends _widgets_base {
 
         this.knob.on('draginit', (e)=>{
             if (this.getProp('touchAddress') && this.getProp('touchAddress').length
-                && e.target == this.wrapper[0])
+                && e.target == this.wrapper)
                 this.sendValue({
                     address:this.getProp('touchAddress'),
                     v:1
@@ -150,7 +153,7 @@ module.exports = class Encoder extends _widgets_base {
             }
             if (
                 this.getProp('touchAddress') && this.getProp('touchAddress').length
-                && e.target == this.wrapper[0]
+                && e.target == this.wrapper
             ) {
                 this.sendValue({
                     address:this.getProp('touchAddress'),
@@ -171,7 +174,7 @@ module.exports = class Encoder extends _widgets_base {
 
         }
 
-        this.wrapper.on('mousewheel', (e)=>{
+        this.wrapper.addEventListener('mousewheel', (e)=>{
 
             if (e.originalEvent.wheelDeltaX || e.originalEvent.wheelDelta == 0) return
 

@@ -49,7 +49,7 @@ module.exports = class Toggle extends _widgets_base {
         this.state = 0
         this.active = false
 
-        if (this.getProp('led')) this.container.addClass('led')
+        if (this.getProp('led')) this.container.classList.add('led')
 
         if (this.getProp('doubleTap')) {
 
@@ -65,15 +65,13 @@ module.exports = class Toggle extends _widgets_base {
                 this.active = true
                 var newVal = this.state?this.getProp('off'):this.getProp('on')
                 this.setValue(newVal,{sync:true,send:true})
-            }, {element: this.widget[0]})
+            }, {element: this.widget})
 
             this.on('dragend',()=>{
                 this.active = false
-            }, {element: this.widget[0]})
+            }, {element: this.widget})
 
         }
-
-        this.classHolders = this.widget.add(this.container)
 
         this.value = this.getProp('off')
 
@@ -82,12 +80,14 @@ module.exports = class Toggle extends _widgets_base {
     setValue(v,options={}) {
 
         if (v===this.getProp('on') || (this.getProp('on') != null && v.value === this.getProp('on').value && v.value !== undefined)) {
-            this.classHolders.addClass('on')
+            this.widget.classList.add('on')
+            this.container.classList.add('on')
             this.state = 1
             this.value = this.getProp('on')
             if (options.send) this.sendValue()
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v.value === this.getProp('off').value && v.value !== undefined)) {
-            this.classHolders.removeClass('on')
+            this.widget.classList.remove('on')
+            this.container.classList.remove('on')
             this.state = 0
             this.value = this.getProp('off')
             if (options.send) this.sendValue()

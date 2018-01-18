@@ -45,7 +45,7 @@ module.exports = class Switcher extends _switchers_base {
 
         super({...options, html: '<div class="switcher"></div>'})
 
-        if (this.getProp('horizontal')) this.widget.addClass('horizontal')
+        if (this.getProp('horizontal')) this.widget.classList.add('horizontal')
 
         this.switch = new Switch({props:{
             ...switchDefaults,
@@ -57,7 +57,7 @@ module.exports = class Switcher extends _switchers_base {
 
         this.switch.sendValue = ()=>{}
 
-        this.widget.append(this.switch.widget)
+        this.widget.appendChild(this.switch.widget)
 
         this.switch.on('change', (e)=>{
 

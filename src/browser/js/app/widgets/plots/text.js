@@ -1,4 +1,4 @@
-var {iconify} = require('../../utils'),
+var {iconify} = require('../../ui/utils'),
     _widgets_base = require('../common/_widgets_base'),
     widgetManager = require('../../managers/widgets')
 
@@ -41,7 +41,7 @@ module.exports = class Text extends _widgets_base {
 
         super({...options, html: '<div class="text"></div>'})
 
-        if (this.getProp('vertical')) this.widget.addClass('vertical')
+        if (this.getProp('vertical')) this.widget.classList.add('vertical')
 
         this.defaultValue = this.getProp('value') || ( this.getProp('label')===false ?
                                 this.getProp('id'):
@@ -81,7 +81,7 @@ module.exports = class Text extends _widgets_base {
     setValue(v, options={}) {
 
         this.value = v==null ? this.defaultValue : v
-        this.widget.html(iconify(String(this.value).replace(/\n/g,'<br/>')))
+        this.widget.innerHTML = iconify(String(this.value).replace(/\n/g,'<br/>'))
 
         if (options.sync) this.changed(options)
 

@@ -52,10 +52,9 @@ module.exports = class Meter extends Fader {
 
         super(options)
 
-        this.widget.addClass('meter')
-                   .off('mousewheel')
+        this.widget.classList.add('meter')
 
-        this.canvas.off('draginit drag')
+        this.off(/drag(.*)?/)
 
         if (this.getProp('widgetId').length) widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
 

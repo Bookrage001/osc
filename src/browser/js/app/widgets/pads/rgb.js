@@ -2,7 +2,8 @@ var _pads_base = require('./_pads_base'),
     Xy = require('./xy'),
     Fader = require('./_fake_fader'),
     {clip, hsbToRgb, rgbToHsb} = require('../utils'),
-    Input = require('../inputs/input')
+    Input = require('../inputs/input'),
+    touchstate = require('../mixins/touch_state')
 
 var faderDefaults = Fader.defaults(),
     xyDefaults = Xy.defaults()
@@ -59,7 +60,7 @@ module.exports = class Rgb extends _pads_base {
                             : [this.getProp('address') + '/r', this.getProp('address') + '/g', this.getProp('address') + '/b']
                         : false
 
-        this.hueWrapper = $(`<div class="hue-wrapper"></div>`).appendTo(this.widget)
+        this.hueWrapper = this.widget.appendChild(DOM.create(`<div class="hue-wrapper"></div>`))
 
         this.hue = new Fader({props:{
             ...faderDefaults,
@@ -74,7 +75,7 @@ module.exports = class Rgb extends _pads_base {
         }, cancelDraw: false})
         this.hue.margin = this.pointSize
         this.hue.sendValue = ()=>{}
-        this.hueWrapper.append(this.hue.widget)
+        this.hueWrapper.appendChild(this.hue.widget)
 
         this.pad = new Xy({props:{
             ...xyDefaults,
@@ -88,7 +89,7 @@ module.exports = class Rgb extends _pads_base {
             input:false
         }})
         this.pad.sendValue = ()=>{}
-        this.wrapper.append(this.pad.widget)
+        this.wrapper.appendChild(this.pad.widget)
 
 
         this.value = []
@@ -103,6 +104,8 @@ module.exports = class Rgb extends _pads_base {
             e.stopPropagation = true
             this.dragHandle()
         })
+
+        touchstate(this, {element: this.wrapper, multitouch: true})
 
         if (this.getProp('input')) {
 
@@ -174,7 +177,7 @@ module.exports = class Rgb extends _pads_base {
         if (!options.nohue && !options.dragged) {
             var hue = hsbToRgb({h:this.hsb.h,s:100,b:100}),
                 hueStr = `rgb(${Math.round(hue.r)},${Math.round(hue.g)},${Math.round(hue.b)})`
-            this.canvas[0].setAttribute('style',`background-color:${hueStr}`)
+            this.canvas.setAttribute('style',`background-color:${hueStr}`)
             this.hue.setValue(this.hsb.h, {sync: false, send:false, dragged:false})
         }
 

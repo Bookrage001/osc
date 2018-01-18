@@ -101,7 +101,7 @@ module.exports = class Rbgled extends _widgets_base {
 
         this.value = v
 
-        this.widget[0].style.setProperty('--color-led', c)
+        this.widget.style.setProperty('--color-led', c)
 
         if (options.sync) this.changed(options)
 

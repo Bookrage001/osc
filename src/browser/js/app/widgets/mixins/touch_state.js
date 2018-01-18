@@ -1,11 +1,11 @@
-module.exports = (self, element)=>{
+module.exports = (self, options)=>{
 
     var sendTouchState = self.getProp('touchAddress') && self.getProp('touchAddress').length
 
     self.touched = 0
     self.setValueTouchedQueue = undefined
 
-    element.on('draginit',(e)=>{
+    self.on('draginit',(e)=>{
         self.touched += 1
         if (self.touched == 1 && sendTouchState)
             self.sendValue({
@@ -13,9 +13,9 @@ module.exports = (self, element)=>{
                 v:1,
                 split:false
             })
-    })
+    }, options)
 
-    element.on('dragend', (e, data, traversing)=>{
+    self.on('dragend', (e)=>{
         if (self.touched == 1) {
             self.touched = 0
 
@@ -34,8 +34,8 @@ module.exports = (self, element)=>{
 
         } else if (self.touched > 1){
             self.touched -= 1
-            if (traversing) self.touched = 1
+            if (e.traversing) self.touched = 1
         }
-    })
+    }, options)
 
 }

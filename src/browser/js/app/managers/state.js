@@ -72,11 +72,10 @@ var StateManager = class StateManager {
 
     load() {
 
-        var prompt = $('<input type="file" accept=".state"/>')
+        var prompt = DOM.create('<input type="file" accept=".state"/>')
 
         prompt.click()
-
-        prompt.on('change',(e)=>{
+        prompt.addEventListener('change',function(e){
 
             var reader = new FileReader()
 

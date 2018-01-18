@@ -1,14 +1,16 @@
 var editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments)},
     purgeStores = require('./purge'),
-    {iconify} = require('../utils'),
+    {iconify} = require('../ui/utils'),
     widgetManager = require('../managers/widgets'),
+    resize = require('../events/resize'),
     stateManager = require('../managers/state'),
     parser = require('../parser')
 
 var updateWidget = function(widget, options = {}) {
 
     // save state
-    var scroll = $('#sidepanel').scrollTop(),
+    var sidepanel = DOM.get('#sidepanel')[0],
+        scroll = sidepanel.scrollTop,
         oldWidgets = widget.childrenHashes.concat(widget.hash),
         wScroll = {}
 
@@ -32,13 +34,13 @@ var updateWidget = function(widget, options = {}) {
     // widget
     var newWidget = parser.parse([widget.props], widget.parentNode, widget.parent)
 
-    widget.container.replaceWith(newWidget.container)
+    widget.container.parentNode.replaceChild(newWidget.container, widget.container)
 
     if (newWidget.props.type == 'tab') newWidget.parent.trigger('tab-created', [{widget: widget}])
 
-    $('.editor-root').attr('data-widget', $('.root-container').attr('data-widget'))
+    DOM.get('.editor-root')[0].setAttribute('data-widget', DOM.get('.root-container')[0].getAttribute('data-widget'))
 
-    newWidget.container.trigger('resize')
+    resize.check(newWidget.container)
 
 
     // restore state
@@ -56,7 +58,7 @@ var updateWidget = function(widget, options = {}) {
         editObject(newWidget, {refresh: true})
     }
 
-    $('#sidepanel').scrollTop(scroll)
+    sidepanel.scrollTop = scroll
 
 
     // return updated node

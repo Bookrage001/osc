@@ -1,6 +1,6 @@
 var {updateWidget, incrementWidget} = require('./data-workers'),
     {editObject, editClean} = require('./edit-objects'),
-    createPopup = require('../utils').createPopup,
+    Popup = require('../ui/popup'),
     {widgets, categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
     ContextMenu = require('./context-menu')
@@ -20,7 +20,7 @@ var handleClick = function(event) {
     if (!widget) return
 
     var container = widget.container,
-        index = container.index(),
+        index = DOM.index(container),
         data = widget.props,
         type = widget.props.type == 'tab' ? 'tab' : 'widget'
 
@@ -28,7 +28,7 @@ var handleClick = function(event) {
 
     if (event.type!='fake-right-click') return
 
-    if (container.hasClass('root-container')) {
+    if (container.classList.contains('root-container')) {
         menu.open(eventData,{
             '<i class="fa fa-plus"></i> Add tab': function(){
                 data.tabs.push({})
@@ -64,7 +64,7 @@ var handleClick = function(event) {
                     var newData = incrementWidget(JSON.parse(CLIPBOARD))
 
 
-                    if (!$(eventData.target).hasClass('tablink')) {
+                    if (!eventData.target.classList.contains('tablink')) {
                         newData.top = clickY
                         newData.left= clickX
                     } else {
@@ -78,7 +78,7 @@ var handleClick = function(event) {
                 '<i class="fa fa-clone"></i> Clone':function(){
                     data.widgets = data.widgets || []
                     var newData = JSON.parse(CLIPBOARD)
-                    if (!$(eventData.target).hasClass('tablink')) {
+                    if (!eventData.target.classList.contains('tablink')) {
                         newData.top = clickY
                         newData.left= clickX
                     } else {
@@ -99,7 +99,7 @@ var handleClick = function(event) {
                 actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] =  function(){
                         data.widgets = data.widgets || []
                         var newData = {type:wtype}
-                        if (!$(eventData.target).hasClass('tablink')) {
+                        if (!eventData.target.classList.contains('tablink')) {
                             newData.top = clickY
                             newData.left= clickX
                         }
@@ -122,13 +122,19 @@ var handleClick = function(event) {
     }
 
     actions['<i class="fa fa-trash"></i> Delete'] = function(){
-        var popup = createPopup('Are you sure ?',`
-            <div class="actions">
-                <a class="btn warning confirm-delete">DELETE</a>
-                <a class="btn cancel-delete">CANCEL</a>
-            </div>
-        `)
-        $('.confirm-delete').click(function(){
+        var popup = new Popup({
+            title: 'Are you sure ?',
+            content:`
+                <div class="actions">
+                    <a class="btn warning confirm-delete">DELETE</a>
+                    <a class="btn cancel-delete">CANCEL</a>
+                </div>`,
+            closable: false,
+            escKey: true,
+            enterKey: function(){DOM.get(this.html, '.confirm-delete')[0].click()}
+        })
+
+        DOM.get(popup.html, '.confirm-delete')[0].addEventListener('click', function(){
             popup.close()
 
             if (widget.props.type != 'tab') {
@@ -139,13 +145,10 @@ var handleClick = function(event) {
 
             updateWidget(widget.parent)
         })
-        $('.cancel-delete').click(function(){
+
+        DOM.get(popup.html, '.cancel-delete')[0].addEventListener('click', function(){
             popup.close()
         })
-        $(document).on('keydown.popup', function(e){
-            if (e.keyCode==13) $('.confirm-delete').click()
-        })
-
 
     }
 

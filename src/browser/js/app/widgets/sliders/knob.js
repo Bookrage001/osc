@@ -53,9 +53,9 @@ module.exports = class Knob extends _sliders_base {
 
         super(options)
 
-        this.widget.addClass('knob')
+        this.widget.classList.add('knob')
 
-        this.widget.addClass('compact')
+        this.widget.classList.add('compact')
 
         this.lastOffsetX = 0
         this.lastOffsetY = 0
@@ -134,7 +134,7 @@ module.exports = class Knob extends _sliders_base {
 
         this.minDimension = Math.min(this.width, this.height)
 
-        this.wrapper[0].style.top = (this.minDimension) * this.lostHeightFactor - (this.getProp('label') === false ? 0 : this.gaugeWidth / 4) + 'px'
+        this.wrapper.style.top = (this.minDimension) * this.lostHeightFactor - (this.getProp('label') === false ? 0 : this.gaugeWidth / 4) + 'px'
 
     }
 

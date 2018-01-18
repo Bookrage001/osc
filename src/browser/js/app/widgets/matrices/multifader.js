@@ -65,11 +65,11 @@ module.exports = class Multifader extends _matrices_base {
         this.strips = parseInt(this.getProp('strips'))
 
         if (this.getProp('horizontal')) {
-            this.widget.addClass('horizontal')
+            this.widget.classList.add('horizontal')
         }
 
         if (this.getProp('compact')) {
-            this.widget.addClass('compact')
+            this.widget.classList.add('compact')
         }
 
         var strData = JSON.stringify(options.props)
@@ -88,9 +88,7 @@ module.exports = class Multifader extends _matrices_base {
             data.css = ''
 
             var fader = parser.parse([data], this.widget, this)
-            fader.container[0].classList.add('not-editable')
-
-            if (this.getProp('traversing')) fader.container.find('canvas').off('drag')
+            fader.container.classList.add('not-editable')
 
             this.value[i-this.start] = this.getProp('range').min
 

@@ -8,7 +8,7 @@ document.addEventListener('mousewheel', function(event) {
         PXSCALE = parseFloat(d)+parseFloat(PXSCALE)
         document.documentElement.style.setProperty('font-size', PXSCALE + 'px')
 
-        $(window).resize()
+        DOM.dispatchEvent(window, 'resize')
     }
 })
 
@@ -17,6 +17,6 @@ document.addEventListener('keydown', function(event){
         PXSCALE = INITIALZOOM
         document.documentElement.style.setProperty('font-size', PXSCALE + 'px')
 
-        $(window).resize()
+        DOM.dispatchEvent(window, 'resize')
     }
 })

@@ -73,18 +73,9 @@ function pointerUpHandler(event) {
 }
 
 
-function triggerWidgetEvent(target, name, event) {
-    if (target !== null && target._widget) {
-        target._widget.trigger(name, [event])
-    } else if (target !== null) {
-        triggerWidgetEvent(target.closest('.drag-event'), name, event)
-    }
-}
+// Move / Up Filter
 
-
-// Move / Up handlers
-
-function capturedMoveHandler(event) {
+function pointerMoveFilter(event) {
 
     if (targets[event.pointerId] !== undefined) {
         pointerMoveHandler.call(targets[event.pointerId], event)
@@ -92,7 +83,7 @@ function capturedMoveHandler(event) {
 
 }
 
-function capturedUpHandler(event) {
+function pointerUpFilter(event) {
 
     if (targets[event.pointerId] !== undefined) {
         pointerUpHandler.call(targets[event.pointerId], event)
@@ -114,20 +105,25 @@ function mouseMultiWrapper(event) {
     mouseDownHandler(event)
 }
 
-document.addEventListener('mousemove', (event)=>{
+function mouseMoveCapture(event) {
     event.pointerId = 'mouse'
     event.inertia = event.ctrlKey ? 10 : 1
-    capturedMoveHandler(event)
-}, true)
+    pointerMoveFilter(event)
+}
 
-document.addEventListener('mouseup', (event)=>{
+function mouseUpCapture(event){
     if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
     event.pointerId = 'mouse'
-    capturedUpHandler(event)
-}, true)
+    pointerUpFilter(event)
+}
 
 
 // Touch events wrappers
+
+function touchMultiWrapper(event) {
+    event.multitouch = true
+    touchDownHandler(event)
+}
 
 function touchDownHandler(event) {
     for (var i in event.changedTouches) {
@@ -144,12 +140,7 @@ function touchDownHandler(event) {
     }
 }
 
-function touchMultiWrapper(event) {
-    event.multitouch = true
-    touchDownHandler(event)
-}
-
-document.addEventListener('touchmove', (event)=>{
+function touchMoveCapture(event) {
     for (var i in event.changedTouches) {
         if (isNaN(i) || !event.changedTouches[i]) continue
         var touchEvent = event.changedTouches[i]
@@ -166,18 +157,39 @@ document.addEventListener('touchmove', (event)=>{
         }
 
         touchEvent.pointerId = touchEvent.identifier
-        capturedMoveHandler(touchEvent)
+        pointerMoveFilter(touchEvent)
     }
-}, true)
+}
 
-DOM.addEventListener(document, 'touchend touchcancel', (event)=>{
+function touchUpCapture(event) {
     for (var i in event.changedTouches) {
         if (isNaN(i) || !event.changedTouches[i]) continue
         var touchEvent = event.changedTouches[i]
         touchEvent.pointerId = touchEvent.identifier
-        capturedUpHandler(touchEvent)
+        pointerUpFilter(touchEvent)
     }
-}, true)
+}
+
+// Callback trigger
+
+function triggerWidgetEvent(target, name, event) {
+    if (target !== null && target._drag_widget) {
+        target._drag_widget.trigger(name, [event])
+    } else if (target !== null) {
+        triggerWidgetEvent(target.closest('.drag-event'), name, event)
+    }
+}
+
+// init
+
+DOM.ready(()=>{
+
+    document.addEventListener('mousemove', mouseMoveCapture, true)
+    document.addEventListener('mouseup', mouseUpCapture, true)
+    document.addEventListener('touchmove', touchMoveCapture, true)
+    DOM.addEventListener(document, 'touchend touchcancel', touchUpCapture, true)
+
+})
 
 module.exports = {
 
@@ -194,7 +206,7 @@ module.exports = {
 
         var {element, multitouch} = options
 
-        element._widget = this
+        element._drag_widget = this
         element.style.touchAction = 'none'
         element.classList.add('drag-event')
 
@@ -219,15 +231,15 @@ module.exports = {
             return
         }
 
-        element._widget = this
+        delete element._drag_widget
         element.style.touchAction = ''
         element.classList.remove('drag-event')
 
         if (multitouch) {
-            element.removeEventListener('touchstart', touchMultiWrapper)
+            element.removeEventListener('touchstart', touchMultiWrapper, supportsPassive ? { passive: true } : false)
             element.removeEventListener('mousedown', mouseMultiWrapper)
         } else {
-            element.removeEventListener('touchstart', touchDownHandler)
+            element.removeEventListener('touchstart', touchDownHandler, supportsPassive ? { passive: true } : false)
             element.removeEventListener('mousedown', mouseDownHandler)
         }
 
@@ -246,8 +258,8 @@ module.exports = {
 
         element.addEventListener('disableTraversingGestures', ()=>{
 
-            element.removeEventListener('mousedown', makeEventTraversing)
-            element.removeEventListener('touchstart', makeEventTraversing)
+            element.removeEventListener('mousedown', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
+            element.removeEventListener('touchstart', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
 
         })
 

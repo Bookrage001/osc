@@ -1,6 +1,8 @@
 var _pads_base = require('./_pads_base'),
     Xy = require('./xy'),
-    {clip} = require('../utils')
+    {clip} = require('../utils'),
+    touchstate = require('../mixins/touch_state')
+    
 
 var xyDefaults = Xy.defaults()
 
@@ -94,7 +96,7 @@ module.exports = class MultiXy extends _pads_base {
                 input:false
             }, parent: this})
             this.pads[i].sendValue = ()=>{}
-            this.wrapper.append(this.pads[i].widget)
+            this.wrapper.appendChild(this.pads[i].widget)
 
         }
 
@@ -138,7 +140,7 @@ module.exports = class MultiXy extends _pads_base {
 
             this.pads[id].trigger('draginit', [e])
 
-        }, {element: this.wrapper[0], multitouch: true})
+        }, {element: this.wrapper, multitouch: true})
 
         this.on('drag',(e)=>{
 
@@ -153,9 +155,9 @@ module.exports = class MultiXy extends _pads_base {
             this.pads[i].trigger('dragend', [e])
             delete this.touchMap[e.pointerId]
 
-        }, {element: this.wrapper[0], multitouch: true})
+        }, {element: this.wrapper, multitouch: true})
 
-
+        touchstate(this, {element: this.wrapper, multitouch: true})
 
         this.on('change',(e)=>{
             if (e.widget == this) return

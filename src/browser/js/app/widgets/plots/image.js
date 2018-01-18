@@ -48,11 +48,11 @@ module.exports = class Led extends _widgets_base {
 
         super({...options, html: html})
 
-        if (!this.getProp('border')) this.container.addClass('noborder')
+        if (!this.getProp('border')) this.container.classList.add('noborder')
 
-        this.widget[0].style.setProperty('background-size', this.getProp('size'))
-        this.widget[0].style.setProperty('background-position', this.getProp('position'))
-        this.widget[0].style.setProperty('background-repeat', this.getProp('repeat'))
+        this.widget.style.setProperty('background-size', this.getProp('size'))
+        this.widget.style.setProperty('background-position', this.getProp('position'))
+        this.widget.style.setProperty('background-repeat', this.getProp('repeat'))
 
 
     }
@@ -79,7 +79,7 @@ module.exports = class Led extends _widgets_base {
 
         }
 
-        this.widget[0].style.setProperty('background-image', `url(${this.value}${cache_query})`)
+        this.widget.style.setProperty('background-image', `url(${this.value}${cache_query})`)
 
         if (options.sync) this.changed(options)
 

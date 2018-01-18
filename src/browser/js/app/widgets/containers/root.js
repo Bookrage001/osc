@@ -1,5 +1,5 @@
 var Panel = require('./panel'),
-    {iconify} = require('../../utils'),
+    {iconify} = require('../../ui/utils'),
     Tab = require('./tab'),
     widgetManager = require('../../managers/widgets')
 
@@ -47,8 +47,11 @@ module.exports = class Root extends Panel {
         super(options)
 
         this.parent = widgetManager
-        this.widget.addClass('root')
-        this.widget.find('> .navigation').addClass('main')
+        this.widget.classList.add('root')
+
+        DOM.each(this.widget, '> .navigation', (el)=>{
+            el.classList.add('main')
+        })
 
     }
 
@@ -56,7 +59,11 @@ module.exports = class Root extends Panel {
 
         super.createNavigation()
 
-        this.navigation.append(`<li class="not-editable"><a id="open-toggle" class="${$('#sidepanel').hasClass('sidepanel-open')?'sidepanel-open':''}">${iconify('^bars')}</a></li>`)
+        this.navigation.appendChild(DOM.create(`
+            <li class="not-editable">
+                <a id="open-toggle" class="${DOM.get('#sidepanel')[0].classList.contains('sidepanel-open')?'sidepanel-open':''}">${iconify('^bars')}</a>
+            </li>
+        `))
 
     }
 

@@ -63,8 +63,8 @@ module.exports = class Clone extends _widgets_base {
 
         this.cloneLock = true
 
-        this.widget.empty()
-        this.container.removeClass(this.cloneClass)
+        this.widget.innerHTML = ''
+        if (this.cloneClass) this.container.classList.remove(this.cloneClass)
         purge(this.childrenHashes)
 
         var widgets = widget ? [widget] : widgetManager.getWidgetById(this.getProp('widgetId'))
@@ -75,12 +75,12 @@ module.exports = class Clone extends _widgets_base {
 
                 if (!(widgets[i].parent && widgets[i].parent.getProp('type') == 'clone')) {
 
-                    this.cloneClass = widgets[i].container.attr('class').match(/[^\s]*-container/)[0]
-                    this.container.addClass(this.cloneClass)
+                    this.cloneClass = widgets[i].container.getAttribute('class').match(/[^\s]*-container/)[0]
+                    this.container.classList.add(this.cloneClass)
 
                     parser.parse([{..._widgets_base.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
 
-                    this.widget.find('.widget').addClass('not-editable')
+                    DOM.each(this.widget, '.widget', (el)=>{el.classList.add('not-editable')})
 
                     widgets[i].once(`widget-created.${this.hash}`, (e)=>{
                         this.createClone()

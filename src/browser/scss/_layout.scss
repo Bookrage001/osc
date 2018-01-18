@@ -12,6 +12,10 @@ body {
     flex-direction: column;
     background:var(--color-bg);
     padding:2rem;
+    opacity: 0;
+    &.show {
+        opacity: 1;
+    }
     &.sidepanel-open {
         right:var(--sidepanel-size);
     }

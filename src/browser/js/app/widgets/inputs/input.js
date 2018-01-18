@@ -1,4 +1,4 @@
-var {iconify} = require('../../utils'),
+var {iconify} = require('../../ui/utils'),
     _widgets_base = require('../common/_widgets_base'),
     _canvas_base = require('../common/_canvas_base'),
     widgetManager = require('../../managers/widgets')
@@ -57,18 +57,20 @@ module.exports = class Input extends _canvas_base {
         this.stringValue = ''
 
         if (this.getProp('vertical')) {
-            this.widget.addClass('vertical')
+            this.widget.classList.add('vertical')
         }
 
         if (this.getProp('editable')) {
-            this.canvas.attr('tabindex', 0)
-            this.canvas.on('focus', this.focus.bind(this))
-            this.input = $('<input></input>')
-
-            this.input.on('change', (e)=>{
-                e.stopPropagation()
+            this.canvas.setAttribute('tabindex', 0)
+            this.canvas.addEventListener('focus', this.focus.bind(this))
+            this.input = DOM.create('<input></input>')
+            this.input.addEventListener('blur', (e)=>{
+                this.blur(false)
             })
-
+            this.input.addEventListener('keydown', (e)=>{
+                if (e.keyCode==13) this.blur()
+                if (e.keyCode==27) this.blur(false)
+            })
         }
 
         if (this.getProp('widgetId').length) {
@@ -79,26 +81,12 @@ module.exports = class Input extends _canvas_base {
 
     }
 
-    resizeHandle() {
-
-        super.resizeHandle(...arguments)
-
-    }
-
     focus() {
 
-        this.canvas.attr('tabindex','-1')
-        this.input
-            .val(this.stringValue)
-            .prependTo(this.widget)
-            .focus()
-            .on('blur', (e)=>{
-                this.blur(false)
-            })
-            .on('keydown', (e)=>{
-                if (e.keyCode==13) this.blur()
-                if (e.keyCode==27) this.blur(false)
-            })
+        this.canvas.setAttribute('tabindex','-1')
+        this.input.value = this.stringValue
+        this.widget.insertBefore(this.input, this.canvas)
+        this.input.focus()
 
     }
 
@@ -106,15 +94,14 @@ module.exports = class Input extends _canvas_base {
 
         if (change) this.inputChange()
 
-        this.input.off('blur keydown')
-        this.canvas.attr('tabindex','0')
-        this.input.detach()
+        this.canvas.setAttribute('tabindex','0')
+        if (this.input.parentNode == this.widget) this.widget.removeChild(input)
 
     }
 
     inputChange() {
 
-        this.setValue(this.input.val(), {sync:true, send:true})
+        this.setValue(this.input.value, {sync:true, send:true})
 
     }
 
@@ -133,9 +120,9 @@ module.exports = class Input extends _canvas_base {
 
     }
 
-    resizeHandle(){
+    resizeHandle(event){
 
-            super.resizeHandle(...arguments)
+            super.resizeHandle(event)
 
             if (this.getProp('vertical')){
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0)

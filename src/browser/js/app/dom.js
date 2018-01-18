@@ -1,7 +1,22 @@
-var DomParserFragment = document.createRange()
-    DomParserFragment.selectNode(document.body)
+var DomParserFragment,
+    readyCallbacks = []
 
 module.exports = {
+
+    init: function() {
+
+        DomParserFragment = document.createRange()
+        DomParserFragment.selectNode(document.body)
+
+        for (var i in readyCallbacks) {
+            readyCallbacks[i]()
+        }
+
+    },
+
+    ready: function(callback) {
+        readyCallbacks.push(callback)
+    },
 
     dispatchEvent: function(element, name, data) {
 
@@ -32,6 +47,8 @@ module.exports = {
         var context = b ? a : document,
             selector = b || a
 
+        if (selector.indexOf('>') == 0) selector = ':scope ' + selector
+
         var nodes = context.querySelectorAll(selector)
         return NodeList.prototype.forEach ? nodes : [...nodes]
 
@@ -45,8 +62,17 @@ module.exports = {
 
     each: function(context, selector, callback) {
 
-        return module.exports.get(context, selector).forEach(callback)
+        var nodes = module.exports.get(context, selector)
 
+        nodes.forEach(callback)
+
+        return nodes
+
+    },
+
+    index: function(element) {
+        var parent = element.parentNode
+        return parent ? Array.prototype.indexOf.call(parent.children, element) : -1
     }
 
 }

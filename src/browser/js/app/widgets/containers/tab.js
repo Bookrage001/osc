@@ -1,4 +1,5 @@
 var Panel = require('./panel'),
+    resize = require('../../events/resize'),
     editClean = function(){editClean = require('../../editor/edit-objects').editClean; editClean(...arguments)}
 
 
@@ -46,22 +47,27 @@ module.exports = class Tab extends Panel {
 
         super(options)
 
-        this.widget.addClass('tab')
+        this.container.classList.add('show')
+        this.widget.classList.add('tab')
 
         this.detached = false
 
     }
 
     hide() {
+        if (this.detached) return
         if (EDITING) editClean()
-        this.widget.detach()
-        this.container.hide()
+        this.container.removeChild(this.widget)
+        this.container.classList.remove('show')
         this.detached = true
 
     }
     show() {
-        this.container.show().append(this.widget)
+        if (!this.detached) return
+        this.container.appendChild(this.widget)
+        this.container.classList.add('show')
         this.detached = false
+        resize.check(this.widget)
     }
 
 }

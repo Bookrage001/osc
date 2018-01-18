@@ -1,7 +1,7 @@
-var utils = require('../utils'),
-    icon = utils.icon,
+var utils = require('../ui/utils'),
     osc = require('../osc'),
     session = require('../managers/session'),
+    widgetManager = require('../managers/widgets'),
     state = require('../managers/state'),
     editor = require('../editor/')
 
@@ -60,16 +60,17 @@ var callbacks = module.exports = {
     },
 
     error: function(data){
-       utils.createPopup(icon('warning') + '&nbsp;Error', data, true)
+       utils.createPopup(utils.icon('warning') + '&nbsp;Error', data, true)
     },
 
     reloadCss: function(){
         var queryString = '?reload=' + new Date().getTime()
-        $('link[rel="stylesheet"][hot-reload]').each(function () {
-            this.href = this.href.replace(/\?.*|$/, queryString)
+        DOM.each(document, 'link[rel="stylesheet"][hot-reload]', (el)=>{
+            el.href = el.href.replace(/\?.*|$/, queryString)
         })
+
         setTimeout(()=>{
-            $('canvas').trigger('resize',[0,0,true])
+            widgetManager.getWidgetById('root')[0].reCreateWidget()
         },100)
 
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")

@@ -50,13 +50,11 @@ module.exports = class Push extends _widgets_base {
         this.on('draginit',()=>{
             if (this.active) return
             this.setValuePrivate(this.getProp('on'),{send:true,sync:true})
-        }, {element: this.widget[0]})
+        }, {element: this.widget})
 
         this.on('dragend',()=>{
             this.setValuePrivate(this.getProp('off'),{send:true,sync:true})
-        }, {element: this.widget[0]})
-
-        this.classHolders = this.widget.add(this.container)
+        }, {element: this.widget})
 
         this.value = this.getProp('off')
 
@@ -76,14 +74,14 @@ module.exports = class Push extends _widgets_base {
 
         if (typeof v == 'object' && v !== null) v = v.value
         if (v===this.getProp('on') || (this.getProp('on') != null && v === this.getProp('on').value && v !== undefined)) {
-            this.widget.addClass('active')
+            this.widget.classList.add('active')
             this.active = 1
             this.lastChanged = 'active'
             this.updateValue()
             if (options.send) this.sendValue(v)
             if (options.sync) this.changed(options)
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
-            this.widget.removeClass('active')
+            this.widget.classList.remove('active')
             this.active = 0
             this.lastChanged = 'active'
             this.updateValue()
@@ -101,13 +99,15 @@ module.exports = class Push extends _widgets_base {
         }
         if (typeof v == 'object' && v !== null) v = v.value
         if (v===this.getProp('on') || (this.getProp('on') != null && v === this.getProp('on').value && v !== undefined)) {
-            this.classHolders.addClass('on')
+            this.widget.classList.add('on')
+            this.container.classList.add('on')
             this.state = 1
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'
             if (options.sync) this.changed(options)
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
-            this.classHolders.removeClass('on')
+            this.widget.classList.remove('on')
+            this.container.classList.remove('on')
             this.state = 0
             if (options.send) this.sendValue(v)
             this.lastChanged = 'state'

@@ -51,12 +51,15 @@ module.exports = class Keyboard extends _matrices_base {
 
         var strData = JSON.stringify(options.props),
             pattern = 'wbwbwwbwbwbw',
-            wCount = 0
+            whiteKeys = 0, whiteKeys2 = 0, i
 
-        for (var i = this.start; i < this.keys + this.start && i < 108; i++) {
+        for (i = this.start; i < this.keys + this.start && i < 108; i++) {
+            if (pattern[i % 12] == 'w') whiteKeys++
+        }
+
+        for (i = this.start; i < this.keys + this.start && i < 108; i++) {
 
             var data = JSON.parse(strData)
-
 
             data.top = data.left = data.height = data.width = 'auto'
             data.type = 'push'
@@ -67,28 +70,21 @@ module.exports = class Keyboard extends _matrices_base {
             data.css = ''
 
             var key = parser.parse([data], this.widget, this)
-            key.container[0].classList.add('not-editable')
+            key.container.classList.add('not-editable')
 
             if (pattern[i % 12] == 'w') {
-                key.container.addClass('white')
-                wCount++
+                key.container.classList.add('white')
+                key.container.style.width = `${100/whiteKeys}%`
+                whiteKeys2++
             } else {
-                key.container.addClass('black').data('wCount',wCount)
-
+                key.container.classList.add('black')
+                key.container.style.width = `${60 / whiteKeys}%`
+                key.container.style.left = `${100 / whiteKeys * (whiteKeys2 - 3/10)}%`
             }
 
             this.value[i-this.start] = this.getProp('off')
 
         }
-
-        this.widget.find('.widget.white').css('width',`${100/wCount}%`)
-        this.widget.find('.widget.black').each(function(){
-            $(this).css({
-                'width':`${100/wCount * 6/10}%`,
-                'left':`${100/wCount * ($(this).data('wCount') - 3/10)}%`
-            })
-
-        })
 
     }
 

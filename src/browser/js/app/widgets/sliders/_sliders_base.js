@@ -18,7 +18,7 @@ module.exports = class _sliders_base extends _canvas_base {
 
         super({...options, html: html})
 
-        this.wrapper = this.widget.find('.wrapper')
+        this.wrapper = DOM.get(this.widget, '.wrapper')[0]
 
         this.value = undefined
         this.percent = 0
@@ -60,13 +60,14 @@ module.exports = class _sliders_base extends _canvas_base {
 
         }
 
-        touchstate(this, this.wrapper)
 
-        this.wrapper.on('mousewheel',this.mousewheelHandleProxy.bind(this))
+        this.wrapper.addEventListener('mousewheel',this.mousewheelHandleProxy.bind(this))
 
-        this.on('draginit', this.draginitHandleProxy.bind(this), {element:this.wrapper[0]})
-        this.on('drag', this.dragHandleProxy.bind(this), {element:this.wrapper[0]})
-        this.on('dragend', this.dragendHandleProxy.bind(this), {element:this.wrapper[0]})
+        this.on('draginit', this.draginitHandleProxy.bind(this), {element:this.wrapper})
+        this.on('drag', this.dragHandleProxy.bind(this), {element:this.wrapper})
+        this.on('dragend', this.dragendHandleProxy.bind(this), {element:this.wrapper})
+
+        touchstate(this, {element: this.wrapper})
 
 
         if (this.getProp('input')) {
@@ -81,14 +82,14 @@ module.exports = class _sliders_base extends _canvas_base {
                 parent:this, parentNode:this.widget
             })
 
-            this.widget.append(this.input.widget)
+            this.widget.appendChild(this.input.widget)
             this.input.on('change', (e)=>{
                 e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})
                 this.showValue()
             })
 
-            this.widget.on('fake-right-click',function(e){
+            this.widget.addEventListener('fake-right-click',function(e){
                 if (!EDITING) {
                     e.stopPropagation()
                     e.preventDefault()
@@ -126,14 +127,14 @@ module.exports = class _sliders_base extends _canvas_base {
 
     }
 
-    mousewheelHandle(e, data, traversing) {
+    mousewheelHandle(e) {
 
-        if (e.originalEvent.wheelDeltaX) return
+        if (e.wheelDeltaX) return
 
         e.preventDefault()
         e.stopPropagation()
 
-        var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta),
+        var direction = e.wheelDelta / Math.abs(e.wheelDelta),
         increment = e.ctrlKey?0.25:1
 
         this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.precision + 1)) * direction, [0,100])
@@ -157,10 +158,11 @@ module.exports = class _sliders_base extends _canvas_base {
 
     }
 
-    resizeHandle(e, width, height, checkColors) {
+    resizeHandle(event) {
+
+        var {style, checkColors} = event
 
         if (!this.visible || checkColors) {
-            var style =  getComputedStyle(this.widget[0])
             this.colors.track = style.getPropertyValue('--color-track')
             this.colors.gauge = style.getPropertyValue('--color-gauge')
             this.colors.knob = style.getPropertyValue('--color-knob')

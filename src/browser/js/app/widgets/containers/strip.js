@@ -45,10 +45,10 @@ module.exports = class Strip extends Panel {
 
         super(options)
 
-        this.widget[0].style.setProperty('--spacing', this.getProp('spacing'))
+        this.widget.style.setProperty('--spacing', this.getProp('spacing'))
 
-        this.container.addClass(this.getProp('horizontal') ? 'horizontal' : 'vertical')
-        this.container.addClass(this.getProp('stretch') ? 'stretch' : '')
+        this.container.classList.add(this.getProp('horizontal') ? 'horizontal' : 'vertical')
+        if (this.getProp('stretch')) this.container.classList.add('stretch')
 
         this.setValue = undefined
         this.getValue = undefined

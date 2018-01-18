@@ -1,6 +1,6 @@
-var updateWidget = require('./data-workers').updateWidget,
+var {updateWidget} = require('./data-workers'),
     {widgets, categories} = require('../widgets/'),
-    {icon} = require('../utils'),
+    {icon} = require('../ui/utils'),
     defaults = {}
 
 for (var k in widgets) {
@@ -19,7 +19,7 @@ var editClean = function(){
 
 var editObject = function(widget, options = {}){
 
-    var container = widget.container,
+    var container = $(widget.container),
         data = widget.props
 
     if (!options.refresh && (container.hasClass('editing'))) return

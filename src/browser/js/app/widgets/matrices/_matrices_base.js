@@ -16,12 +16,12 @@ module.exports = class _matrices_base extends _widgets_base {
 
             if (e.widget == this) return
 
-            this.value[e.widget.container.index()] = e.widget.getValue()
+            this.value[DOM.index(e.widget.container)] = e.widget.getValue()
             this.changed(e.options)
 
         })
 
-        if (this.getProp('traversing')) enableTraversingGestures(this.widget[0])
+        if (this.getProp('traversing')) enableTraversingGestures(this.widget)
 
     }
 

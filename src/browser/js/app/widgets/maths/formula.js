@@ -67,7 +67,7 @@ module.exports = class Formula extends _widgets_base {
             parent:this, parentNode:this.widget
         })
 
-        this.widget.append(this.input.widget)
+        this.widget.appendChild(this.input.widget)
 
         this.linkedWidgets = []
 
@@ -93,10 +93,6 @@ module.exports = class Formula extends _widgets_base {
 
         widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
         this.updateValue({options:{}})
-
-        this.input.widget.on('change', (e)=>{
-            e.stopPropagation()
-        })
 
     }
 

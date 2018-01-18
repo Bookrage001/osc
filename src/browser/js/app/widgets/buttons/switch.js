@@ -1,6 +1,5 @@
 var _widgets_base = require('../common/_widgets_base'),
-    {iconify} = require('../../utils'),
-    $document = $(document)
+    {iconify} = require('../../ui/utils')
 
 module.exports = class Switch extends _widgets_base {
 
@@ -47,7 +46,7 @@ module.exports = class Switch extends _widgets_base {
         super({...options, html: '<div class="switch"></div>'})
 
 
-        if (this.getProp('horizontal')) this.widget.addClass('horizontal')
+        if (this.getProp('horizontal')) this.widget.classList.add('horizontal')
 
         this.values = []
 
@@ -60,7 +59,9 @@ module.exports = class Switch extends _widgets_base {
             var label = isArray ? this.getProp('values')[k]: k
             if (this.getProp('showValues') && !isArray) label = label + ': ' + this.getProp('values')[k]
 
-            $(`<div class="value"> ${iconify(label)}</div>`).data({value:this.getProp('values')[k]}).appendTo(this.widget)
+            this.widget.appendChild(DOM.create(`
+                <div class="value"> ${iconify(label)}</div>
+            `))
 
         }
 
@@ -69,10 +70,10 @@ module.exports = class Switch extends _widgets_base {
         this.on('draginit',(e)=>{
 
             var index = 0,
-                node = e.changedTarget || e.target
+                node = e.target
 
             while ( (node = node.previousSibling) ) {
-                if (node.nodeType != 3 || !/^\s*$/.test(node.data)) {
+                if (node.nodeType != 3) {
                     index++;
                 }
             }
@@ -81,21 +82,22 @@ module.exports = class Switch extends _widgets_base {
 
             if (value!=this.value || this.value===undefined) this.setValue(value,{sync:true,send:true})
 
-        }, {element: this.widget[0]})
+        }, {element: this.widget})
 
     }
 
     setValue(v,options={}) {
 
         var i = this.values.indexOf(v)
+
+        DOM.each(this.widget, '.on', (el)=>{el.classList.remove('on')})
+
         if (i!=-1) {
             this.value = this.values[i]
-            this.widget.find('.on').removeClass('on')
-            this.widget.find('.value').eq(i).addClass('on')
+            DOM.get(this.widget, '.value')[i].classList.add('on')
             if (options.send) this.sendValue(this.value)
             if (options.sync) this.changed(options)
         } else {
-            this.widget.find('.on').removeClass('on')
             this.value = undefined
             if (options.sync) this.changed(options)
         }

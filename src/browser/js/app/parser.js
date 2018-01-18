@@ -1,6 +1,6 @@
 var widgetManager = require('./managers/widgets'),
     stateManager = require('./managers/state'),
-    {iconify} = require('./utils')
+    {iconify} = require('./ui/utils')
 
 var Parser = class Parser {
 
@@ -68,20 +68,20 @@ var Parser = class Parser {
             }
 
             // create container
-            var widgetContainer = $(`
+            var widgetContainer = DOM.create(`
                 <div class="widget ${props.type}-container">
-                <div class="label"></div>
+                    <div class="label"></div>
                 </div>
-                `)
+            `)
 
             // create widget
             var widgetInner = new this.widgets[props.type]({props:props, container:widgetContainer, parent:parentWidget, parentNode:parentNode})
 
-            widgetContainer[0].appendChild(widgetInner.widget[0])
+            widgetContainer.appendChild(widgetInner.widget)
 
             widgetManager.addWidget(widgetInner)
 
-            widgetContainer[0].setAttribute('data-widget', widgetInner.hash)
+            widgetContainer.setAttribute('data-widget', widgetInner.hash)
 
             widgetInner.created()
 
@@ -107,18 +107,18 @@ var Parser = class Parser {
                 styleL = widgetInner.getProp('left') && widgetInner.getProp('left') != 'auto'|| widgetInner.getProp('left') == 0 ?`left: ${geometry.left};` : '',
                 styleT = widgetInner.getProp('top') && widgetInner.getProp('top') != 'auto'|| widgetInner.getProp('top') == 0 ? `top: ${geometry.top};` : ''
 
-            if (styleL.length || styleT.length) widgetContainer.addClass('absolute-position')
+            if (styleL.length || styleT.length) widgetContainer.classList.add('absolute-position')
 
             // Hide label if false
             if (widgetInner.getProp('label')===false) {
-                widgetContainer.addClass('nolabel')
+                widgetContainer.classList.add('nolabel')
             } else {
                 // Generate label, iconify if starting with "icon:"
                 var label = widgetInner.getProp('label') == 'auto'?
                                 widgetInner.getProp('id'):
                                 iconify(widgetInner.getProp('label'))
 
-                widgetContainer.find('> .label').html(label)
+                DOM.get(widgetContainer, '> .label')[0].innerHTML = label
             }
 
             // parse css
@@ -137,17 +137,17 @@ var Parser = class Parser {
             })
 
             // apply styles
-            widgetContainer[0].setAttribute('style', styleW + styleH + styleL + styleT + css)
+            widgetContainer.setAttribute('style', styleW + styleH + styleL + styleT + css)
 
             // apply scoped css
             if (scopedCss.length) {
-                widgetContainer.attr('id', 'widget-' + widgetInner.hash)
+                widgetContainer.setAttribute('id', 'widget-' + widgetInner.hash)
                 scopedCss = scopedCss.split('&').join('#widget-' + widgetInner.hash)
-                widgetContainer.prepend(`<style>${scopedCss}</style>`)
+                widgetContainer.insertBefore(DOM.create(`<style>${scopedCss}</style>`), widgetInner.widget)
             }
 
             // Set custom css color variable
-            if (widgetInner.getProp('color') && widgetInner.getProp('color')!='auto') widgetContainer[0].style.setProperty('--color-custom',widgetInner.getProp('color'))
+            if (widgetInner.getProp('color') && widgetInner.getProp('color')!='auto') widgetContainer.style.setProperty('--color-custom',widgetInner.getProp('color'))
 
             // set widget's initial state
             if (widgetInner.getProp('value') !== '' && widgetInner.setValue) {
@@ -156,7 +156,7 @@ var Parser = class Parser {
             }
 
             // Append the widget to its parent
-            parentNode[0].appendChild(widgetContainer[0])
+            parentNode.appendChild(widgetContainer)
         }
 
         // Editor needs to get the container object

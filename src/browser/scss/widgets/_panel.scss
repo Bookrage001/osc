@@ -270,6 +270,13 @@
     }
 }
 
+.tab-container {
+    display: none;
+    &.show {
+        display: flex;
+    }
+}
+
 .clone-container {
     width: 100rem;
     height: 100rem;
