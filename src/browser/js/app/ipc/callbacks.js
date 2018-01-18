@@ -60,7 +60,7 @@ var callbacks = module.exports = {
     },
 
     error: function(data){
-       utils.createPopup(utils.icon('warning') + '&nbsp;Error', data, true)
+       new utils.Poup({title: utils.icon('warning') + '&nbsp;Error', content: data, closable:true})
     },
 
     reloadCss: function(){

@@ -2,9 +2,8 @@ var ipc = require('../ipc/'),
     parser = require('../parser'),
     state = require('./state'),
     editor = require('../editor/'),
-    Popup = require('../ui/popup'),
     lobby = require('../ui/lobby'),
-    {loading, icon} = require('../ui/utils'),
+    {loading, icon, Popup} = require('../ui/utils'),
     {saveAs} = require('file-saver')
 
 

@@ -1,6 +1,6 @@
 var {updateWidget, incrementWidget} = require('./data-workers'),
     {editObject, editClean} = require('./edit-objects'),
-    Popup = require('../ui/popup'),
+    {Popup} = require('../ui/utils'),
     {widgets, categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
     ContextMenu = require('./context-menu')
