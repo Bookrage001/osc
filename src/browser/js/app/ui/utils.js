@@ -49,18 +49,20 @@ module.exports = {
 
         close() {
             if (!this.state) return
+            this.state = 0
+
             if (this.escKey) document.removeEventListener('keydown', this.escKeyHandler)
             if (this.enterKey) document.removeEventListener('keydown', this.enterKeyHandler)
             document.body.removeChild(this.html)
-            this.state = 0
         }
 
         open() {
             if (this.state) return
+            this.state = 1
+            
             if (this.escKey) document.addEventListener('keydown', this.escKeyHandler)
             if (this.enterKey) document.addEventListener('keydown', this.enterKeyHandler)
             document.body.appendChild(this.html)
-            this.state = 1
         }
     },
 

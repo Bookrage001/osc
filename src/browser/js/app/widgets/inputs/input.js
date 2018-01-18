@@ -55,6 +55,7 @@ module.exports = class Input extends _canvas_base {
 
         this.value = ''
         this.stringValue = ''
+        this.focused = false
 
         if (this.getProp('vertical')) {
             this.widget.classList.add('vertical')
@@ -83,6 +84,9 @@ module.exports = class Input extends _canvas_base {
 
     focus() {
 
+        if (this.focused) return
+        this.focused = true
+
         this.canvas.setAttribute('tabindex','-1')
         this.input.value = this.stringValue
         this.widget.insertBefore(this.input, this.canvas)
@@ -92,10 +96,13 @@ module.exports = class Input extends _canvas_base {
 
     blur(change=true) {
 
+        if (!this.focused) return
+        this.focused = false
+
         if (change) this.inputChange()
 
         this.canvas.setAttribute('tabindex','0')
-        if (this.input.parentNode == this.widget) this.widget.removeChild(input)
+        this.widget.removeChild(this.input)
 
     }
 
