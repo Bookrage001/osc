@@ -1,5 +1,6 @@
 var DomParserFragment,
-    readyCallbacks = []
+    readyCallbacks = [],
+    initState = false
 
 module.exports = {
 
@@ -12,10 +13,16 @@ module.exports = {
             readyCallbacks[i]()
         }
 
+        initState = true
+
     },
 
     ready: function(callback) {
-        readyCallbacks.push(callback)
+        if (initState) {
+            callback()
+        } else {
+            readyCallbacks.push(callback)
+        }
     },
 
     dispatchEvent: function(element, name, data) {
