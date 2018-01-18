@@ -1,3 +1,11 @@
+var math = require('mathjs/dist/math.min.js').create({
+    matrix: 'Array'
+})
+
+// set math's parser array index base to zero
+math.expression.mathWithTransform = Object.assign({}, math)
+
+
 module.exports = {
 
     clip: function(value,range) {
@@ -70,13 +78,5 @@ module.exports = {
         return hsb
     },
 
-    math: function(){
-        var math = require('mathjs/dist/math.min.js').create({
-            matrix: 'Array'
-        })
-        // set math's parser array index base to zero
-        math.expression.mathWithTransform = Object.assign({}, math)
-
-        return math
-    }()
+    math: math
 }
