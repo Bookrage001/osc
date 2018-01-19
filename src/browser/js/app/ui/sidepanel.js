@@ -204,7 +204,10 @@ function sidepanelToggle() {
 
 DOM.get('#container')[0].addEventListener('fake-click', function(e){
 
-    if (e.target.id == 'open-toggle') sidepanelToggle()
+    if (e.target.id == 'open-toggle') {
+        e.stopPropagation()
+        sidepanelToggle()
+    }
 
 })
 
