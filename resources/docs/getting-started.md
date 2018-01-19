@@ -59,7 +59,7 @@ Running the app from the sources slightly differs from using built binaries : in
 
 **1. Requirements**
 
-- [Node.js >= 4](https://nodejs.org/)
+- [Node.js >= 4](https://nodejs.org/en/download/package-manager/)
 - [npm](https://www.npmjs.com/)
 
 ```
@@ -90,7 +90,7 @@ $ npm start [ -- options]
 
 **1. Requirements**
 
-- [Node.js >= 4](https://nodejs.org/)
+- [Node.js >= 4](https://nodejs.org/en/download/package-manager/)
 - [npm](https://www.npmjs.com/)
 
 ```
@@ -138,7 +138,7 @@ $ xvfb-run open-stage-control -n
 
 ## Running without Electron
 
-It is possible to run the server in headless mode without Electron using [node](https://nodejs.org) (v6 or higher) :
+It is possible to run the server in headless mode without Electron using [node](https://nodejs.org/en/download/package-manager/) (v6 or higher) :
 
 ```
 $ node /path/to/packaged/open-stage-control/resources/app/ -n
