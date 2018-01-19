@@ -113,7 +113,7 @@ body {
         display: flex;
         flex-direction: column;
         opacity: 0;
-        transition: opacity .25s;
+        transition: opacity .1s;
         &.show {
             opacity: 1;
             overflow: auto;

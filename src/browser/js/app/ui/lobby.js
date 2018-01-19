@@ -7,7 +7,7 @@ class Lobby {
     }
 
     create() {
-        
+
         this.html = DOM.create(`
             <div id="lobby">
                 <div class="main">
@@ -39,7 +39,9 @@ class Lobby {
         if (!this.state) return
         this.state = 0
         this.main.classList.remove('show')
-        document.body.removeChild(this.html)
+        setTimeout(()=>{
+            document.body.removeChild(this.html)
+        }, 100)
     }
 
 }
