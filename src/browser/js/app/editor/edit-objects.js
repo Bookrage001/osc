@@ -7,7 +7,7 @@ for (var k in widgets) {
     defaults[k] = widgets[k].defaults()
 }
 
-var ev = 'fake-click'
+var ev = 'fast-click'
 
 var editClean = function(){
     $('.editing').removeClass('editing')

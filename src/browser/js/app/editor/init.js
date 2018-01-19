@@ -26,7 +26,7 @@ var handleClick = function(event) {
 
     editObject(widget)
 
-    if (event.type!='fake-right-click') return
+    if (event.type!='fast-right-click') return
 
     if (container.classList.contains('root-container')) {
         menu.open(eventData,{
@@ -156,5 +156,5 @@ var handleClick = function(event) {
 
 }
 
-document.addEventListener('fake-right-click', handleClick)
-document.addEventListener('fake-click', handleClick)
+document.addEventListener('fast-right-click', handleClick)
+document.addEventListener('fast-click', handleClick)

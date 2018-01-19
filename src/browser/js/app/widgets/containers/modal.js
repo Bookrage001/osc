@@ -75,7 +75,7 @@ module.exports = class Modal extends Panel {
         this.popup.style.setProperty('--width', width)
         this.popup.style.setProperty('--height', height)
 
-        DOM.get(this.popup, '.closer')[0].addEventListener('fake-click', (e)=>{
+        DOM.get(this.popup, '.closer')[0].addEventListener('fast-click', (e)=>{
             this.setValue(0, {sync:true, send:true})
         })
 
@@ -86,12 +86,12 @@ module.exports = class Modal extends Panel {
                 this.setValue(1, {sync:true, send:true})
             })
         } else {
-            this.light.addEventListener('fake-click',(e)=>{
+            this.light.addEventListener('fast-click',(e)=>{
                 this.setValue(1, {sync:true, send:true})
             })
         }
 
-        this.popup.addEventListener('fake-click',(e)=>{
+        this.popup.addEventListener('fast-click',(e)=>{
             if (e.target == this.popup && this.value == 1) {
                 this.setValue(0, {sync:true, send:true})
             }

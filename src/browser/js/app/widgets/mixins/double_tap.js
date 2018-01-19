@@ -5,7 +5,7 @@ module.exports = (element, callback)=>{
         lastTapY,
         touchId
 
-    element.addEventListener('fake-click', (event)=>{
+    element.addEventListener('fast-click', (event)=>{
 
         var tapTime = new Date().getTime(),
             tapLength = tapTime - lastTapTime,

@@ -76,7 +76,7 @@ module.exports = class Panel extends _widgets_base {
             parser.parse(this.getProp('tabs'), this.wrapper, this, true)
             this.createNavigation()
 
-            this.navigation.addEventListener('fake-click', (e)=>{
+            this.navigation.addEventListener('fast-click', (e)=>{
                 if (!e.target.hasAttribute('data-widget')) return
                 var index = DOM.index(e.target)
                 this.setValue(index, {sync: true, send:this.value != index})

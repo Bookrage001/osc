@@ -19,7 +19,7 @@ document.addEventListener('mousedown', (event)=>{
 
     var e = fix(event)
 
-    var name = event.button == 2 ? 'fake-right-click' : 'fake-click'
+    var name = event.button == 2 ? 'fast-right-click' : 'fast-click'
 
     DOM.dispatchEvent(e.target, name, e)
 
@@ -29,7 +29,7 @@ document.addEventListener('touchstart', (event)=>{
 
     var e = fix(event.changedTouches[0])
 
-    DOM.dispatchEvent(e.target, 'fake-click', e)
+    DOM.dispatchEvent(e.target, 'fast-click', e)
 
     longTouchTimer = setTimeout(()=>{
 
@@ -38,7 +38,7 @@ document.addEventListener('touchstart', (event)=>{
         e.offsetX = e.pageX - off.left
         e.offsetY = e.pageY - off.top
 
-        DOM.dispatchEvent(e.target, 'fake-right-click', e)
+        DOM.dispatchEvent(e.target, 'fast-right-click', e)
 
         clearLongTouchTimer()
 

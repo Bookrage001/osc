@@ -143,7 +143,7 @@ var callbacks = {
             let ws = widgetManager.getWidgetById(id)
             for (let w of ws) {
                 DOM.each(document, `.tablink[data-widget="${w.hash}"]`, (el)=>{
-                    DOM.dispatchEvent(el, 'fake-click')
+                    DOM.dispatchEvent(el, 'fast-click')
                 })
             }
         }

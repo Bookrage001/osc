@@ -23,7 +23,7 @@ module.exports = {
             `)
 
             if (this.closable) {
-                DOM.get(this.html, '.popup-title .closer')[0].addEventListener('fake-click', ()=>{
+                DOM.get(this.html, '.popup-title .closer')[0].addEventListener('fast-click', ()=>{
                     this.close()
                 })
             }

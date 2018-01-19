@@ -367,7 +367,7 @@ module.exports = class Range extends _widgets_base {
                 this.showValue()
             })
 
-            this.widget.addEventListener('fake-right-click',function(e){
+            this.widget.addEventListener('fast-right-click',function(e){
                 if (!EDITING) {
                     e.stopPropagation()
                     e.preventDefault()

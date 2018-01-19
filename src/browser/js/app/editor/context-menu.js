@@ -3,7 +3,7 @@ class ContextMenu {
     constructor(){
 
         this.menu = null
-        this.event = 'fake-click'
+        this.event = 'fast-click'
         this.root = 'body'
 
     }
