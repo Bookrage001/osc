@@ -1,6 +1,4 @@
-const {fix, normalizeEvent, resetEventOffset} = require('./utils'),
-    supportsPassive = require('./supports-passive')
-
+const {fix, normalizeEvent, resetEventOffset} = require('./utils')
 
 var targets = {},
     previousPointers = {}
@@ -126,6 +124,7 @@ function touchMultiWrapper(event) {
 }
 
 function touchDownHandler(event) {
+    event.preventDefault()
     for (var i in event.changedTouches) {
         if (isNaN(i) || !event.changedTouches[i]) continue
         var touchEvent = event.changedTouches[i]
@@ -211,10 +210,10 @@ module.exports = {
         element.classList.add('drag-event')
 
         if (multitouch) {
-            element.addEventListener('touchstart', touchMultiWrapper, supportsPassive ? { passive: true } : false)
+            element.addEventListener('touchstart', touchMultiWrapper, false)
             element.addEventListener('mousedown', mouseMultiWrapper)
         } else {
-            element.addEventListener('touchstart', touchDownHandler, supportsPassive ? { passive: true } : false)
+            element.addEventListener('touchstart', touchDownHandler, false)
             element.addEventListener('mousedown', mouseDownHandler)
         }
 
@@ -236,10 +235,10 @@ module.exports = {
         element.classList.remove('drag-event')
 
         if (multitouch) {
-            element.removeEventListener('touchstart', touchMultiWrapper, supportsPassive ? { passive: true } : false)
+            element.removeEventListener('touchstart', touchMultiWrapper, false)
             element.removeEventListener('mousedown', mouseMultiWrapper)
         } else {
-            element.removeEventListener('touchstart', touchDownHandler, supportsPassive ? { passive: true } : false)
+            element.removeEventListener('touchstart', touchDownHandler, false)
             element.removeEventListener('mousedown', mouseDownHandler)
         }
 
@@ -253,13 +252,13 @@ module.exports = {
             if (!event.traversingContainer) event.traversingContainer = element
         }
 
-        element.addEventListener('mousedown', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
-        element.addEventListener('touchstart', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
+        element.addEventListener('mousedown', makeEventTraversing, true)
+        element.addEventListener('touchstart', makeEventTraversing, true)
 
         element.addEventListener('disableTraversingGestures', ()=>{
 
-            element.removeEventListener('mousedown', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
-            element.removeEventListener('touchstart', makeEventTraversing, supportsPassive ? { passive: true, capture:true } : true)
+            element.removeEventListener('mousedown', makeEventTraversing, true)
+            element.removeEventListener('touchstart', makeEventTraversing, true)
 
         })
 
