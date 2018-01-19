@@ -63,6 +63,7 @@ var options = {
         }
     },
     'disable-vsync':{type:'boolean',describe:'disable gui\'s vertical synchronization', restart: true},
+    'disable-gpu':{type:'boolean',describe:'disable hardware acceleration', restart: true},
     'read-only':{type:'boolean',describe:'disable session editing and session history changes',
          check: (r, argv)=>{
              return (!r || !argv.b) ?
@@ -138,6 +139,7 @@ var makeDefaultConfig = function(argv){
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
         urlOptions: argv['url-options'] ? '?' + argv['url-options'].join('&') : '',
         noVsync: argv['disable-vsync'] || false,
+        noGpu: argv['disable-gpu'] || false,
         readOnly: argv['read-only'] || false,
         midi: argv.m,
         appAddresses:function(){

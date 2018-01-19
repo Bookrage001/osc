@@ -9,6 +9,9 @@ if (settings.read('noVsync') || (!settings.cli && settings.read('argv')['disabl
     app.commandLine.appendSwitch('--disable-gpu-vsync')
 }
 
+if (settings.read('noGpu') || (!settings.cli && settings.read('argv')['disable-gpu'])) {
+    app.disableHardwareAcceleration()
+}
 
 app.on('window-all-closed', function() {
     if (process.platform != 'darwin') {
