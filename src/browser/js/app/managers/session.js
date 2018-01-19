@@ -97,7 +97,6 @@ var SessionManager = class SessionManager {
 
         lobby.list.addEventListener('click', function(e){
             e.preventDefault()
-            e.target.blur()
             if (e.target.hasAttribute('data-session')) {
                 ipc.send('sessionOpen',{path:e.target.getAttribute('data-session')})
             } else if (!READ_ONLY && e.target.tagName == 'span') {
@@ -112,16 +111,19 @@ var SessionManager = class SessionManager {
             var nws = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn new">'+icon('file')+' New</a>'))
 
             brw.addEventListener('click', (e)=>{
-                e.preventDefault()
                 this.browse()
             })
 
             nws.addEventListener('click', (e)=>{
-                e.preventDefault()
                 this.create()
             })
 
         }
+
+        DOM.addEventListener(lobby.list, 'mousedown touchstart', function(e){
+            if (e.type == 'mousedown') e.preventDefault()
+            e.target.blur()
+        })
 
         lobby.open()
 

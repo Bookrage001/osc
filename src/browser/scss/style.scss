@@ -185,7 +185,9 @@ body {
         text-overflow: ellipsis;
         background: none;
         border-bottom:1rem solid var(--color-bg);
-
+        em {
+            pointer-events: none;
+        }
         &:last-child {
             border-bottom:0;
         }
