@@ -1,5 +1,6 @@
 var _widgets_base = require('../common/_widgets_base'),
     widgetManager = require('../../managers/widgets'),
+    resize = require('../../events/resize'),
     purge = require('../../editor/purge'),
     parser = require('../../parser')
 
@@ -52,6 +53,7 @@ module.exports = class Clone extends _widgets_base {
                 !(widget.parent && widget.parent.getProp('type') == 'clone')
             ) {
                 this.createClone(widget)
+                resize.check(this.container)
             }
         })
 
@@ -83,7 +85,8 @@ module.exports = class Clone extends _widgets_base {
                     DOM.each(this.widget, '.widget', (el)=>{el.classList.add('not-editable')})
 
                     widgets[i].once(`widget-created.${this.hash}`, (e)=>{
-                        this.createClone()
+                        this.createClone(widgets[i])
+                        resize.check(this.container)
                     })
 
                     break
@@ -93,6 +96,7 @@ module.exports = class Clone extends _widgets_base {
             }
 
         }
+
 
         this.cloneLock = false
 
