@@ -149,13 +149,8 @@ sidepanel.appendChild(DOM.create('<div id="editor"></div>'))
 var fsToggle = DOM.get(sidepanel, '.fullscreenToggle')[0]
 
 if (fullscreen.enabled) {
-    fullscreen.off('change')
     fullscreen.on('change', ()=>{
-        if (fullscreen.isFullScreen) {
-            fsToggle.classList.add('on')
-        } else {
-            fsToggle.classList.remove('on')
-        }
+        fsToggle.classList.toggle('on', fullscreen.isFullScreen)
     })
 } else {
     fsToggle.classList.add('disabled')
