@@ -19,6 +19,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         ipc.send('ready')
 
 
-    }, 50)
+    }, 100)
 
 })
