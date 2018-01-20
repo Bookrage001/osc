@@ -175,17 +175,11 @@ module.exports = class Panel extends _widgets_base {
     setValue(v, options={}) {
         if (this.tabs.length && typeof v == 'number' && v >= 0 && v < this.tabs.length) {
 
-            if (v != this.value) {
-
-                for (let i in this.tabs) {
-
-                    this.tabs[i].hide()
-                }
-
-
-                this.value = v
-
+            for (let i in this.tabs) {
+                this.tabs[i].hide()
             }
+
+            this.value = v
 
             this.tabs[v].show()
             DOM.each(this.navigation, 'li', (el)=>{el.classList.remove('on')})[v].classList.add('on')
