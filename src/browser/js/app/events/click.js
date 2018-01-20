@@ -9,8 +9,7 @@ var longTouchTimer = false,
         }
     }
 
-
-document.addEventListener('contextmenu', ()=>{return false})
+document.body.setAttribute('oncontextmenu', 'return false')
 
 document.addEventListener('mousedown', (event)=>{
 
