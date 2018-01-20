@@ -35,7 +35,7 @@ var SessionManager = class SessionManager {
                 } else if (session[0].type == 'root'){
                     this.session = session
                 } else {
-                    throw 'Malformed session file'
+                    throw new Error('Malformed session file')
                 }
 
                 parser.parse(this.session, DOM.get('#container')[0])

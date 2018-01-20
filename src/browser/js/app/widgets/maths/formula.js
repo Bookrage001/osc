@@ -144,7 +144,7 @@ module.exports = class Formula extends _widgets_base {
 
             } catch(err) {
 
-                throw 'Error parsing formula "' + this.condition + '" (' + err + ')'
+                throw new Error('Error parsing formula "' + this.condition + '" (' + err + ')')
 
             }
 
@@ -165,7 +165,7 @@ module.exports = class Formula extends _widgets_base {
 
         } catch(err) {
 
-            throw 'Error parsing formula "' + this.formula + '" (' + err + ')'
+            throw new Error('Error parsing formula "' + this.formula + '" (' + err + ')')
 
         }
 

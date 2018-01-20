@@ -143,7 +143,7 @@ module.exports = class Panel extends _widgets_base {
             }, {element: this.widget})
 
         } catch(err) {
-            throw `Visual Format Language error in ${this.getProp('id')}.layout: ${err.message} (line ${err.line})`
+            throw new Error(`Visual Format Language error in ${this.getProp('id')}.layout: ${err.message} (line ${err.line})`)
         }
 
     }

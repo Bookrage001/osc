@@ -165,7 +165,7 @@ module.exports = class _canvas_base extends _widgets_base {
     }
 
     draw(){
-        throw 'Calling unimplemented draw() method'
+        throw new Error('Calling unimplemented draw() method')
     }
 
 }

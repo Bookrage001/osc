@@ -15,7 +15,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
     static defaults() {
 
-        throw 'Calling unimplemented static defaults() method'
+        throw new Error('Calling unimplemented static defaults() method')
 
     }
 
