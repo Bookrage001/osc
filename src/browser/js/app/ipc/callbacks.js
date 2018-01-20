@@ -35,7 +35,7 @@ var callbacks = module.exports = {
 
     sessionNew: function(){
 
-        session.new()
+        session.create()
 
     },
 
