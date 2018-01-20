@@ -1,5 +1,6 @@
+require('./app/stacktrace')
+
 require('./app/globals')
-require('./app/sourcemap')
 
 var {loading} = require('./app/ui/utils')
 

@@ -41,7 +41,7 @@
     "screenfull": "3.3.2",
     "shortid": "2.2.8",
     "socket.io-client": "2.0.4",
-    "source-map": "^0.6.1",
+    "stacktrace-js": "^2.0.0",
     "uglifyify": "4.0.5",
     "wolfy87-eventemitter": "^5.2.4"
   },
