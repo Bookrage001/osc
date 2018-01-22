@@ -60,7 +60,7 @@ var callbacks = module.exports = {
     },
 
     error: function(data){
-       new utils.Poup({title: utils.icon('warning') + '&nbsp;Error', content: data, closable:true})
+       new utils.Popup({title: utils.icon('exclamation-triangle') + '&nbsp;Error', content: data, closable:true})
     },
 
     reloadCss: function(){

@@ -42,7 +42,7 @@ var SessionManager = class SessionManager {
             } catch (err) {
                 loader.close()
                 lobby.open()
-                new Popup({title:icon('warning')+'&nbsp; Parsing error', content: err, closable:true})
+                new Popup({title:icon('exclamation-triangle')+'&nbsp; Parsing error', content: err, closable:true})
                 throw err
             }
 
