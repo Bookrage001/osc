@@ -99,7 +99,7 @@ var SessionManager = class SessionManager {
             e.preventDefault()
             if (e.target.hasAttribute('data-session')) {
                 ipc.send('sessionOpen',{path:e.target.getAttribute('data-session')})
-            } else if (!READ_ONLY && e.target.tagName == 'span') {
+            } else if (!READ_ONLY && e.target.tagName == 'SPAN') {
                 ipc.send('sessionRemoveFromHistory',e.target.parentNode.getAttribute('data-session'))
                 lobby.list.removeChild(e.target.parentNode)
             }
