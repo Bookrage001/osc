@@ -13,11 +13,11 @@ function checkResizes(context){
             width = parseInt(style['width']) - parseInt(style['padding-left']) - parseInt(style['padding-right']),
             height = parseInt(style['height']) - parseInt(style['padding-top']) - parseInt(style['padding-bottom'])
 
-        if (!width) continue
+        if (!width || !height) continue
 
         // If element size has changed since the last time, update the element
         // data store and trigger the 'resize' event.
-        if ( width != elem.resizedataw || height != elem.resizedatah ) {
+        if (width != elem.resizedataw || height != elem.resizedatah) {
             elem.resizedataw = width
             elem.resizedatah = height
             resizedElems.push(elem)
