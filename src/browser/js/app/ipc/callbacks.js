@@ -70,7 +70,8 @@ var callbacks = module.exports = {
         })
 
         setTimeout(()=>{
-            widgetManager.getWidgetById('root')[0].reCreateWidget()
+            var root = widgetManager.getWidgetById('root')[0]
+            if (root) root.reCreateWidget()
         },100)
 
         GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
