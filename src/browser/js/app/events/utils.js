@@ -1,3 +1,5 @@
+const Touch = window.Touch || class Touch {}
+
 module.exports = {
 
     fix: function(e) {
@@ -87,7 +89,9 @@ module.exports = {
             left: offsetLeft,
             top: offsetTop
         }
-    }
+    },
+
+    Touch: Touch
 
 
 }

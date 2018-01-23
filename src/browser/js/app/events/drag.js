@@ -1,4 +1,4 @@
-const {fix, normalizeEvent, resetEventOffset} = require('./utils')
+const {fix, normalizeEvent, resetEventOffset, Touch} = require('./utils')
 
 var targets = {},
     previousPointers = {}
