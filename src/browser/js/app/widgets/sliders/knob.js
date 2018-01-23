@@ -140,8 +140,6 @@ module.exports = class Knob extends _sliders_base {
 
     draw() {
 
-        if (!this.width || !this.height) return
-
         var tiny = this.minDimension < 45 * PXSCALE,
             margin = tiny ? 0 : 3 * PXSCALE
 

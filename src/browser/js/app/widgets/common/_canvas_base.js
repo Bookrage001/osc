@@ -100,21 +100,17 @@ module.exports = class _canvas_base extends _widgets_base {
         var {width, height, style, checkColors} = event,
             ratio = CANVAS_SCALING * this.scaling
 
-        if (width && height) {
+        this.height = height
+        this.width = width
 
-            this.height = height
-            this.width = width
+        this.canvas.setAttribute('width', width * ratio)
+        this.canvas.setAttribute('height', height * ratio)
 
-            this.canvas.setAttribute('width', width * ratio)
-            this.canvas.setAttribute('height', height * ratio)
+        this.clearRect = []
 
-            this.clearRect = []
-
-            if (ratio != 1) {
-                this.ctx.setTransform(1, 0, 0, 1, 0, 0)
-                this.ctx.scale(ratio, ratio)
-            }
-
+        if (ratio != 1) {
+            this.ctx.setTransform(1, 0, 0, 1, 0, 0)
+            this.ctx.scale(ratio, ratio)
         }
 
         if (!this.visible || checkColors) {
@@ -160,7 +156,7 @@ module.exports = class _canvas_base extends _widgets_base {
 
     batchDraw() {
 
-        canvasQueue.push(this)
+        if (this.visible) canvasQueue.push(this)
 
     }
 
