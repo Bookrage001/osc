@@ -178,11 +178,11 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     reset() {
 
-        this.widgets = {}
+        this.removeWidgets(Object.keys(this.widgets))
 
-        this.addressRoute = {}
-        this.idRoute = {}
-        this.linkIdRoute = {}
+        this.removeEvent()
+
+        this.on('change', this.onChange, this)
 
     }
 
