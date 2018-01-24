@@ -433,4 +433,11 @@ module.exports = class Range extends _widgets_base {
 
     }
 
+    onRemove() {
+        this.faders[0].onRemove()
+        this.faders[1].onRemove()
+        if (this.input) this.input.onRemove()
+        super.onRemove()
+    }
+
 }

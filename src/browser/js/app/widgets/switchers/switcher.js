@@ -79,5 +79,9 @@ module.exports = class Switcher extends _switchers_base {
 
     }
 
+    onRemove() {
+        this.switch.onRemove()
+        super.onRemove()
+    }
 
 }

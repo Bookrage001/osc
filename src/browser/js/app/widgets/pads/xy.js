@@ -262,4 +262,11 @@ module.exports = class Xy extends _pads_base {
 
     }
 
+    onRemove() {
+        this.faders.x.onRemove()
+        this.faders.y.onRemove()
+        if (this.input) this.input.onRemove()
+        super.onRemove()
+    }
+
 }

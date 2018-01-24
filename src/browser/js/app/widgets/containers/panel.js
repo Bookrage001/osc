@@ -201,4 +201,9 @@ module.exports = class Panel extends _widgets_base {
 
     }
 
+    onRemove() {
+        this.off('resize')
+        super.onRemove()
+    }
+
 }

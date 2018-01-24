@@ -164,4 +164,9 @@ module.exports = class _canvas_base extends _widgets_base {
         throw new Error('Calling unimplemented draw() method')
     }
 
+    onRemove() {
+        this.off('resize')
+        super.onRemove()
+    }
+
 }

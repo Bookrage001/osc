@@ -175,4 +175,8 @@ module.exports = class Formula extends _widgets_base {
 
     }
 
+    onRemove() {
+        this.input.onRemove()
+        super.onRemove()
+    }
 }

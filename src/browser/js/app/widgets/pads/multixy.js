@@ -247,4 +247,11 @@ module.exports = class MultiXy extends _pads_base {
 
     }
 
+    onRemove() {
+        for (var i in this.pads) {
+            this.pads[i].onRemove()
+        }
+        super.onRemove()
+    }
+
 }

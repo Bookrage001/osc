@@ -111,4 +111,9 @@ module.exports = class Crossfader extends Switcher {
 
     }
 
+    onRemove() {
+        this.fader.onRemove()
+        super.onRemove()
+    }
+
 }

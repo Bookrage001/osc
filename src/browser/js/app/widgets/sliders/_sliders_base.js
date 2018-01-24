@@ -223,4 +223,9 @@ module.exports = class _sliders_base extends _canvas_base {
 
     }
 
+    onRemove() {
+        if (this.input) this.input.onRemove()
+        super.onRemove()
+    }
+
 }

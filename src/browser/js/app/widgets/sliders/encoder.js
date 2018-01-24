@@ -259,4 +259,10 @@ module.exports = class Encoder extends _widgets_base {
 
     }
 
+    onRemove() {
+        this.knob.onRemove()
+        this.display.onRemove()
+        super.onRemove()
+    }
+
 }

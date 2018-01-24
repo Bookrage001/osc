@@ -198,4 +198,11 @@ module.exports = class Rgb extends _pads_base {
 
     }
 
+    onRemove() {
+        this.hue.onRemove()
+        this.pad.onRemove()
+        if (this.input) this.input.onRemove()
+        super.onRemove()
+    }
+
 }
