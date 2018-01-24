@@ -48,7 +48,7 @@ module.exports = {
       }
 
   },
-  teardown: function() {
+  teardown: function(options) {
 
       if (!options) return
 
