@@ -40,7 +40,6 @@ module.exports = class Clone extends _widgets_base {
 
         super({...options, html: '<div class="clone"></div>'})
 
-        this.cloneHashes = []
         this.cloneLock = false
         this.cloneClass = ''
         this.createClone()
@@ -48,7 +47,7 @@ module.exports = class Clone extends _widgets_base {
         widgetManager.on(`widget-created.${this.hash}`, (e)=>{
             var {id, widget} = e
             if (
-                (id == this.getProp('widgetId') && this.cloneHashes.indexOf(widget.hash) == -1) &&
+                id == this.getProp('widgetId') &&
                 !(widget.parent && widget.parent.getProp('type') == 'clone')
             ) {
                 this.createClone(widget)
