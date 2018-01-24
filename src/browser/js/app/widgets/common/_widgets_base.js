@@ -19,11 +19,6 @@ module.exports = class _widgets_base extends EventEmitter {
 
     }
 
-    static createHash() {
-
-        return shortid.generate()
-    }
-
     constructor(options={}) {
 
         super()
@@ -33,7 +28,7 @@ module.exports = class _widgets_base extends EventEmitter {
         this.props = options.props
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
-        this.hash = _widgets_base.createHash()
+        this.hash = shortid.generate()
         this.childrenHashes = []
 
         if (options.container) {
