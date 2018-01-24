@@ -45,13 +45,6 @@ module.exports = class _plots_base extends _canvas_base {
 
     }
 
-    onRemove() {
-
-        widgetManager.off(`change.${this.hash}`)
-        super.onRemove()
-
-    }
-
     syncHandle(e) {
 
         if (this.linkedWidgets.indexOf(e.id)==-1 || !widgetManager.getWidgetById(e.id).length) return

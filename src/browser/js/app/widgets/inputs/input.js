@@ -112,13 +112,6 @@ module.exports = class Input extends _canvas_base {
 
     }
 
-    onRemove() {
-
-        widgetManager.off(`change.${this.hash}`)
-        super.onRemove()
-
-    }
-
     syncHandle(e) {
 
         if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length || !e.widget) return

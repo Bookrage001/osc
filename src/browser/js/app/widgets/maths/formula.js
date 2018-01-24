@@ -96,13 +96,6 @@ module.exports = class Formula extends _widgets_base {
 
     }
 
-    onRemove() {
-
-        widgetManager.off(`change.${this.hash}`)
-        super.onRemove()
-
-    }
-
     syncHandle(e) {
 
         if (this.linkedWidgets.indexOf(e.id)==-1 || !widgetManager.getWidgetById(e.id).length) return

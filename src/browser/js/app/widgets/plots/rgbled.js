@@ -52,13 +52,6 @@ module.exports = class Rbgled extends _widgets_base {
 
     }
 
-    onRemove() {
-
-        widgetManager.off(`change.${this.hash}`)
-        super.onRemove()
-
-    }
-
     syncHandle(e) {
 
         if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return

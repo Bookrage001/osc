@@ -36,14 +36,6 @@ module.exports = class _switchers_base extends _widgets_base {
 
     }
 
-
-    onRemove() {
-
-        widgetManager.off(`change.${this.hash}`)
-        super.onRemove()
-
-    }
-
     isWatching(id, widget) {
 
         if (this.linkedWidgets.indexOf(id) != -1) return true
