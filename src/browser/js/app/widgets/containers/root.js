@@ -40,13 +40,13 @@ module.exports = class Root extends Panel {
 
     constructor(options) {
 
+        options.root = true
         options.props.id = 'root'
         options.props.scroll = true
         options.props.label = false
 
         super(options)
 
-        this.parent = widgetManager
         this.widget.classList.add('root')
 
         DOM.each(this.widget, '> .navigation', (el)=>{

@@ -31,7 +31,7 @@ module.exports = class _widgets_base extends EventEmitter {
         this.container = options.container || fallbackContainer
         this.widget = DOM.create(options.html)
         this.props = options.props
-        this.parent = options.parent
+        this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = _widgets_base.createHash()
         this.childrenHashes = []
@@ -100,6 +100,8 @@ module.exports = class _widgets_base extends EventEmitter {
         if (this.props.precision != undefined) {
             this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
         }
+
+        if (this.getProp('id') == 'root' && !options.root) throw new Error('There can only be one root')
 
         this.on('widget-created', (e)=>{
 
