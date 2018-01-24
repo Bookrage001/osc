@@ -1,7 +1,6 @@
 var _widgets_base = require('../common/_widgets_base'),
     widgetManager = require('../../managers/widgets'),
     resize = require('../../events/resize'),
-    purge = require('../../editor/purge'),
     parser = require('../../parser')
 
 module.exports = class Clone extends _widgets_base {
@@ -67,7 +66,8 @@ module.exports = class Clone extends _widgets_base {
 
         this.widget.innerHTML = ''
         if (this.cloneClass) this.container.classList.remove(this.cloneClass)
-        purge(this.childrenHashes)
+
+        widgetManager.removeWidgets(this.childrenHashes)
 
         var widgets = widget ? [widget] : widgetManager.getWidgetById(this.getProp('widgetId'))
 

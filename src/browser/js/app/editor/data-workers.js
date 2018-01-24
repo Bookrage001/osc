@@ -1,5 +1,4 @@
 var editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments)},
-    purgeStores = require('./purge'),
     {iconify} = require('../ui/utils'),
     widgetManager = require('../managers/widgets'),
     resize = require('../events/resize'),
@@ -29,7 +28,7 @@ var updateWidget = function(widget, options = {}) {
         }
     }
 
-    purgeStores(oldWidgets)
+    widgetManager.removeWidgets(oldWidgets)
 
     // widget
     var newWidget = parser.parse([widget.props], widget.parentNode, widget.parent)

@@ -139,6 +139,22 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         if (scroll && this.scrollingWidgets.indexOf(hash) != -1) this.scrollingWidgets.splice(this.scrollingWidgets.indexOf(hash), 1)
     }
 
+    removeWidgets(hashes) {
+
+        for (let i in hashes) {
+
+            if (
+                this.widgets[hashes[i]]
+            ) {
+                this.removeWidget(hashes[i])
+            }
+
+        }
+
+        this.purge()
+
+    }
+
     purge() {
 
         for (let route of [this.addressRoute, this.idRoute, this.linkIdRoute]) {
