@@ -36,7 +36,7 @@ var updateWidget = function(widget, options = {}) {
     widget.container.parentNode.replaceChild(newWidget.container, widget.container)
 
     if (newWidget.getProp('type') == 'tab') newWidget.parent.trigger('tab-created', [{widget: widget}])
-    if (newWidget.getProp('id') == 'root') DOM.get('.editor-root')[0].setAttribute('data-widget', DOM.get('.root-container')[0].getAttribute('data-widget'))
+    if (newWidget.getProp('id') == 'root') DOM.get('.editor-root')[0].setAttribute('data-widget', newWidget.hash)
 
 
     resize.check(newWidget.container)
