@@ -51,9 +51,8 @@ module.exports = {
   teardown: function() {
 
       if (!options) return
-      elements.push(options.element)
 
-      if (elements.indexOf(options.element) == -1) {
+      if (elements.indexOf(options.element) != -1) {
           elements.splice(elements.indexOf(options.element), 1)
           delete options.element._resize_widget
       }
