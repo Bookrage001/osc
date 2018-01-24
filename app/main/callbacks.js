@@ -24,7 +24,7 @@ module.exports =  {
             return
         }
 
-        if (settings.read('sessionFile')) this.sessionOpen({path:settings.read('sessionFile')},clientId)
+        if (settings.read('sessionFile')) return this.sessionOpen({path:settings.read('sessionFile')},clientId)
 
         var recentSessions = settings.read('recentSessions')
 
