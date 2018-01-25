@@ -49,12 +49,19 @@ module.exports = class Switch extends _widgets_base {
         if (this.getProp('horizontal')) this.widget.classList.add('horizontal')
 
         this.values = []
+        this.stringValues = []
 
         var isArray = Array.isArray(this.getProp('values'))
 
         for (var k in this.getProp('values')) {
 
             this.values.push(this.getProp('values')[k])
+
+            if (typeof this.getProp('values')[k] == 'object') {
+                this.stringValues.push(JSON.stringify(this.getProp('values')[k]))
+            } else {
+                this.stringValues.push(-1)
+            }
 
             var label = isArray ? this.getProp('values')[k]: k
             if (this.getProp('showValues') && !isArray) label = label + ': ' + this.getProp('values')[k]
@@ -67,7 +74,7 @@ module.exports = class Switch extends _widgets_base {
 
         this.value = undefined
 
-        this.on('draginit',(e)=>{
+        this.on('draginit', (e)=>{
 
             var index = 0,
                 node = e.target
@@ -86,9 +93,11 @@ module.exports = class Switch extends _widgets_base {
 
     }
 
-    setValue(v,options={}) {
+    setValue(v, options={}) {
 
-        var i = this.values.indexOf(v)
+        var i = typeof v == 'object' ?
+                this.stringValues.indexOf(JSON.stringify(v)) :
+                this.values.indexOf(v)
 
         DOM.each(this.widget, '.on', (el)=>{el.classList.remove('on')})
 

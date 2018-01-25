@@ -11,7 +11,7 @@
 - widgets
   - inputs: **new** `keys` widget, for keyboard bindings
   - property inheritance: new special property name `_value` (retrieve the widget's value, and update when it changes)
-  - switch: added `showValues` to display both values and labels in the buttons
+  - switch: added `showValues` to display both values and labels in the buttons; array values can now be selected via osc
   - rgb: **removed** `touchAddress` option
   - labels/texts: multiple white spaces are no longer merged
 - misc
