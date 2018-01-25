@@ -69,7 +69,7 @@ module.exports = class Dropdown extends _widgets_base {
 
         if (i != -1) {
             this.value = this.values[i]
-            if (!options.fromLocal) this.select[0].selectedIndex = i
+            if (!options.fromLocal) this.select.selectedIndex = i
             if (options.send) this.sendValue()
             if (options.sync) this.changed(options)
             this.container.classList.remove('noselect')
