@@ -5,7 +5,7 @@ var Ipc = class Ipc {
 
     constructor() {
 
-        this.socket = io.connect('/')
+        this.socket = io.connect('/', {transports: ['websocket'], upgrade: false})
         this.socket.compress(false)
 
     }
