@@ -23,7 +23,7 @@ module.exports = {
 
     },
 
-    normalizeEvent: function(event, previousEvent) {
+    normalizeDragEvent: function(event, previousEvent) {
 
         if (event.movementX === undefined) {
 

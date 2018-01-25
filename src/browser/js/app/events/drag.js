@@ -1,4 +1,4 @@
-const {fix, normalizeEvent, resetEventOffset, Touch} = require('./utils')
+const {fix, normalizeDragEvent, resetEventOffset, Touch} = require('./utils')
 
 var targets = {},
     previousPointers = {}
@@ -13,7 +13,7 @@ function pointerDownHandler(event) {
 
     targets[event.pointerId] = event.target
 
-    normalizeEvent(event)
+    normalizeDragEvent(event)
 
     previousPointers[event.pointerId] = event
 
@@ -23,7 +23,7 @@ function pointerDownHandler(event) {
 
 function pointerMoveHandler(event) {
 
-    normalizeEvent(event, previousPointers[event.pointerId])
+    normalizeDragEvent(event, previousPointers[event.pointerId])
 
     if (event.traversing) {
 
@@ -61,7 +61,7 @@ function pointerMoveHandler(event) {
 
 function pointerUpHandler(event) {
 
-    normalizeEvent(event, previousPointers[event.pointerId])
+    normalizeDragEvent(event, previousPointers[event.pointerId])
 
     triggerWidgetEvent(targets[event.pointerId], 'dragend', event)
 
