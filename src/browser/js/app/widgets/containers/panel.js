@@ -176,7 +176,7 @@ module.exports = class Panel extends _widgets_base {
         if (this.tabs.length && typeof v == 'number' && v >= 0 && v < this.tabs.length) {
 
             for (let i in this.tabs) {
-                this.tabs[i].hide()
+                if (i != v) this.tabs[i].hide()
             }
 
             this.value = v
