@@ -182,15 +182,11 @@ module.exports = class Rgb extends _pads_base {
         }
 
 
-        this.batchDraw()
-
         this.showValue()
 
     }
 
-    draw() {
-
-    }
+    draw() {}
 
     showValue() {
 
