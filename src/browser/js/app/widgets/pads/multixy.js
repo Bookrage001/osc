@@ -106,6 +106,8 @@ module.exports = class MultiXy extends _pads_base {
         this.padsCoords = []
         this.touchMap = {}
 
+        touchstate(this, {element: this.wrapper, multitouch: true})
+
         this.on('draginit',(e)=>{
 
             var id
@@ -159,8 +161,6 @@ module.exports = class MultiXy extends _pads_base {
             delete this.touchMap[e.pointerId]
 
         }, {element: this.wrapper, multitouch: true})
-
-        touchstate(this, {element: this.wrapper, multitouch: true})
 
         this.on('change',(e)=>{
             if (e.widget == this) return

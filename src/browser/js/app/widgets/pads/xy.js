@@ -115,6 +115,8 @@ module.exports = class Xy extends _pads_base {
             e.stopPropagation = true
         })
 
+        touchstate(this, {element: this.wrapper})
+
         this.on('draginit',(e)=>{
             e.stopPropagation = true
             this.faders.x.trigger('draginit', [e])
@@ -136,8 +138,6 @@ module.exports = class Xy extends _pads_base {
                 this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true,fromLocal:true})
             }
         }, {element: this.wrapper})
-
-        touchstate(this, {element: this.wrapper})
 
         if (this.getProp('doubleTap')) {
             doubletab(this.wrapper, ()=>{

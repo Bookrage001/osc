@@ -293,6 +293,8 @@ module.exports = class Range extends _widgets_base {
 
         this.touchMap = {}
 
+        touchstate(this, {element: this.wrapper, multitouch: true})
+
         this.on('draginit',(e)=>{
 
             var id
@@ -349,8 +351,6 @@ module.exports = class Range extends _widgets_base {
             delete this.touchMap[e.pointerId]
 
         }, {element: this.wrapper, multitouch: true})
-
-        touchstate(this, {element: this.wrapper, multitouch: true})
 
         if (this.getProp('input')) {
 
