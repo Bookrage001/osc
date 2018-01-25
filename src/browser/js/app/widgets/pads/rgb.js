@@ -105,7 +105,7 @@ module.exports = class Rgb extends _pads_base {
             this.dragHandle()
         })
 
-        touchstate(this, {element: this.wrapper, multitouch: true})
+        touchstate(this)
 
         if (this.getProp('input')) {
 

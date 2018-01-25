@@ -329,6 +329,7 @@ module.exports = class Range extends _widgets_base {
 
             if (!id) return
 
+            e.stopPropagation = true
             this.faders[id].trigger('draginit', [e])
 
         }, {element: this.wrapper, multitouch: true})
@@ -343,6 +344,7 @@ module.exports = class Range extends _widgets_base {
         this.on('dragend',(e)=>{
 
             var i = this.touchMap[e.pointerId]
+            e.stopPropagation = true
             this.faders[i].trigger('dragend', [e])
             delete this.touchMap[e.pointerId]
 

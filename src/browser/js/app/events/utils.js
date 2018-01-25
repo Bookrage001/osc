@@ -56,8 +56,6 @@ module.exports = {
 
         }
 
-        event.stopPropagation = true
-
     },
 
     resetEventOffset: function(event, target) {

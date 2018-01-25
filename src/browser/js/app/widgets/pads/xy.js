@@ -116,6 +116,7 @@ module.exports = class Xy extends _pads_base {
         })
 
         this.on('draginit',(e)=>{
+            e.stopPropagation = true
             this.faders.x.trigger('draginit', [e])
             this.faders.y.trigger('draginit', [e])
             this.dragHandle()
@@ -128,6 +129,7 @@ module.exports = class Xy extends _pads_base {
         }, {element: this.wrapper})
 
         this.on('dragend', (e)=>{
+            e.stopPropagation = true
             this.faders.x.trigger('dragend', [e])
             this.faders.y.trigger('dragend', [e])
             if (this.getProp('spring')) {

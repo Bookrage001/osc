@@ -2,7 +2,7 @@ var _pads_base = require('./_pads_base'),
     Xy = require('./xy'),
     {clip} = require('../utils'),
     touchstate = require('../mixins/touch_state')
-    
+
 
 var xyDefaults = Xy.defaults()
 
@@ -130,13 +130,11 @@ module.exports = class MultiXy extends _pads_base {
                 this.touchMap[e.pointerId] = id
 
 
-            } else if (e.traversing) {
-
-                id = this.touchMap[e.pointerId]
-
             }
 
             if (!id) return
+
+            e.stopPropagation = true
 
             this.pads[id].trigger('draginit', [e])
 
@@ -145,6 +143,7 @@ module.exports = class MultiXy extends _pads_base {
         this.on('drag',(e)=>{
 
             var i = this.touchMap[e.pointerId]
+
             this.pads[i].trigger('drag', [e])
 
         }, {element: this.wrapper[0], multitouch: true})
@@ -152,7 +151,11 @@ module.exports = class MultiXy extends _pads_base {
         this.on('dragend',(e)=>{
 
             var i = this.touchMap[e.pointerId]
+
+            e.stopPropagation = true
+
             this.pads[i].trigger('dragend', [e])
+
             delete this.touchMap[e.pointerId]
 
         }, {element: this.wrapper, multitouch: true})

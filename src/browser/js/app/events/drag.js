@@ -25,6 +25,8 @@ function pointerMoveHandler(event) {
 
     normalizeDragEvent(event, previousPointers[event.pointerId])
 
+    event.stopPropagation = true
+
     if (event.traversing) {
 
         var previousTarget = targets[event.pointerId],
@@ -38,17 +40,18 @@ function pointerMoveHandler(event) {
             resetEventOffset(event, target)
         }
 
-        if (previousTarget !== -1 && previousTarget !== target) {
+        if (previousTarget !== target) {
             triggerWidgetEvent(previousTarget, 'dragend', event)
         }
 
-        targets[event.pointerId] = target
 
         if (target) {
             if (event.traversingContainer.contains(target)) {
-                triggerWidgetEvent(targets[event.pointerId], 'draginit', event)
+                triggerWidgetEvent(target, previousTarget !== target ? 'draginit' : 'drag', event)
             }
         }
+
+        targets[event.pointerId] = target
 
 
     } else {

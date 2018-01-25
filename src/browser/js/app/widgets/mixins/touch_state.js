@@ -34,7 +34,6 @@ module.exports = (self, options)=>{
 
         } else if (self.touched > 1){
             self.touched -= 1
-            if (e.traversing) self.touched = 1
         }
     }, options)
 
