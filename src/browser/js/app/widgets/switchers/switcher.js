@@ -30,7 +30,7 @@ module.exports = class Switcher extends _switchers_base {
             horizontal:false,
             linkedWidgets:'',
             values:['A', 'B'],
-            value:'A',
+            value:'',
 
             _osc:'osc',
 
@@ -73,7 +73,7 @@ module.exports = class Switcher extends _switchers_base {
 
     setValue(v, options={}) {
 
-        super.setValue(...arguments)
+        super.setValue(v, options)
 
         if (!options.fromSelf) this.switch.setValue(this.value._selected)
 

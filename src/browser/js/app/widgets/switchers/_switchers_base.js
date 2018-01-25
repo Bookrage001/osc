@@ -87,11 +87,9 @@ module.exports = class _switchers_base extends _widgets_base {
         for (var id in state) {
             var value = state[id],
                 widgets = widgetManager.getWidgetById(id)
-            if (widgets.length) {
-                for (var i=widgets.length-1;i>=0;i--) {
-                    if (widgets[i].setValue) {
-                        widgets[i].setValue(value,{sync:options.sync, send:options.send})
-                    }
+            for (var i = widgets.length - 1; i >= 0; i--) {
+                if (widgets[i].setValue) {
+                    widgets[i].setValue(value,{sync:options.sync, send:options.send})
                 }
             }
         }

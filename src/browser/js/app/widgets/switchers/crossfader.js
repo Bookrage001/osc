@@ -41,6 +41,8 @@ module.exports = class Crossfader extends Switcher {
 
         })
 
+        this.value._fader = 0
+
     }
 
     setValue(v, options={}) {
