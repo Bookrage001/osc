@@ -1,2 +1,20 @@
-body {overflow-y: scroll}
-.md-nav__title.md-nav__title--site {display: none;}
+.md-header, .md-tabs {
+    background:rgb(49, 63, 85)!important;
+}
+
+@media only screen and (max-width: 76.1875em) {
+.md-header, .md-nav__title--site {
+    background:rgb(49, 63, 85)!important;
+}
+}
+
+.md-header-nav__button.md-logo {
+    margin-right:-1rem!important;
+}
+
+.md-nav__title--site, .md-header-nav__title {
+    text-transform: uppercase;
+    font-size: 1.4rem!important;
+    font-weight:500!important;
+    letter-spacing:1px;
+}

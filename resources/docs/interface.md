@@ -31,5 +31,5 @@ See [Editing sessions](editing-sessions.md).
 | Double Click | Double Tap | Some widgets handle double click / tap events. |
 | Right-click | Long touch | Widgets that have only one value input will give focus to it when receiving this event. When the editor is enabled, Right-click / Long touch spawns the editor's context menu. |
 | Drag | Drag | The widgets respond to mouse and touch drag gestures with a 1:1 precision ratio. |
-| `Ctrl` + Drag | | Holding the `Ctrl` key while dragging with the mouse increases the gesture's precision by 8.|
-| | Multi-finger drag (single target) | Using two or more fingers on a single-touch target increases the gesture's precision by the squared number of fingers. |
+| `Ctrl` + Drag | | Holding the `Ctrl` key while dragging with the mouse increases the gesture's precision by 10.|
+| | Two-fingers drag (single target) | Using two on a single-touch target increases the gesture's precision by 10. |

@@ -1,20 +1,32 @@
 site_name: Open Stage Control
 repo_name: open-stage-control
 repo_url: https://github.com/jean-emmanuel/open-stage-control
+edit_uri: tree/master/resources/docs/
 copyright: "Open Stage Control is an <a href='http://ammd.net'>AMMD</a> software licensed under the <a href='https://github.com/jean-emmanuel/open-stage-control/blob/master/LICENSE'>GNU/GPLv3</a> License"
 site_description: "A libre desktop OSC bi-directionnal control surface application."
 
-theme_dir: mkdocs-material/material
 
-site_favicon: img/logo.png
-
-extra:
+theme:
+    name: 'material'
+    custom_dir: 'mkdocs-material/material'
     feature:
-      tabs: false
-    logo: img/logo-material.svg
+        tabs: true
+    favicon: 'img/logo.png'
+    language: 'en'
+    logo:
+        icon: null
+    palette:
+        primary: 'blue grey'
+        accent: 'light blue'
+    font:
+        text: 'Roboto'
+        code: 'Roboto Mono'
+
+extra_css:
+  - 'css/extra.css'
 
 pages:
-    - Open Stage Control: index.md
+    - OSC Control Surface: index.md
     - Getting started: getting-started.md
     - User interface: interface.md
     - Editing sessions: editing-sessions.md
