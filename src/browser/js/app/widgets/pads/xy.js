@@ -81,7 +81,7 @@ module.exports = class Xy extends _pads_base {
                 precision:this.precision,
                 logScale:this.getProp('logScaleX'),
                 input:false
-            }, cancelDraw: true}),
+            }, cancelDraw: true, parent: this}),
             y: new Fader({props:{
                 ...faderDefaults,
                 id:1,
@@ -97,7 +97,7 @@ module.exports = class Xy extends _pads_base {
                 precision:this.precision,
                 logScale:this.getProp('logScaleY'),
                 input:false
-            }, cancelDraw: true}),
+            }, cancelDraw: true, parent: this}),
         }
 
         this.faders.x.margin = this.faders.y.margin = this.pointSize + 1

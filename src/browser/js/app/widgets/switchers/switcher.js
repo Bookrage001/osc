@@ -53,7 +53,7 @@ module.exports = class Switcher extends _switchers_base {
             values:this.getProp('values'),
             value: this.getProp('value'),
             horizontal:this.getProp('horizontal')
-        }})
+        }, parent: this})
 
         this.switch.sendValue = ()=>{}
 

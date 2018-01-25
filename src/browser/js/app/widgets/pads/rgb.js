@@ -72,7 +72,7 @@ module.exports = class Rgb extends _pads_base {
             range:{min:0,max:360},
             input:false,
             precision:2
-        }, cancelDraw: false})
+        }, cancelDraw: false, parent: this})
         this.hue.margin = this.pointSize
         this.hue.sendValue = ()=>{}
         this.hueWrapper.appendChild(this.hue.widget)

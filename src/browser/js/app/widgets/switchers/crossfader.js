@@ -27,7 +27,7 @@ module.exports = class Crossfader extends Switcher {
             ...faderDefaults,
             horizontal: this.getProp('horizontal'),
             range: {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}}
-        }})
+        }, parent: this})
 
         this.fader.sendValue = ()=>{}
 
