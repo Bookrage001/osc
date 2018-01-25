@@ -147,7 +147,7 @@ var editObject = function(widget, options = {}){
                        .appendTo(list)
                        .click(editItem(i))
 
-            var remove = $('<span><i class="fa fa-remove"></i></span>')
+            var remove = $('<span><i class="fa fa-times"></i></span>')
                           .appendTo(item)
                           .click(function(e){
                               e.stopPropagation()
@@ -202,7 +202,7 @@ var editObject = function(widget, options = {}){
                         .appendTo(list)
                         .click(editItem(i))
 
-            var remove = $('<span><i class="fa fa-remove"></i></span>')
+            var remove = $('<span><i class="fa fa-times"></i></span>')
                           .appendTo(item)
                           .click(function(e){
                               e.stopPropagation()

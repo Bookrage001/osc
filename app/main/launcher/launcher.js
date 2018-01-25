@@ -100,7 +100,7 @@ $(document).ready(()=>{
             if (!stop) $('input').not(input).trigger('change',true)
         })
 
-        cancel = $(`<div class="btn clear"><i class="fa fa-remove fa-fw"></i></div>`)
+        cancel = $(`<div class="btn clear"><i class="fa fa-times fa-fw"></i></div>`)
         cancel.click((e)=>{
             e.preventDefault()
             if (option.type == 'boolean') {

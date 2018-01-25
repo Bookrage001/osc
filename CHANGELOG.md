@@ -6,7 +6,7 @@
   - plots now send their value to other widget for synchronization as expected
   - text widgets now apply their target widget's precision
   - property inheritance accepts targetting a parent widget by its id
-  - icons in context menu and modal widget are displayed correctly
+  - multiple icons not displayed correctly
   - broken `--blank` switch
 - widgets
   - inputs: **new** `keys` widget, for keyboard bindings
