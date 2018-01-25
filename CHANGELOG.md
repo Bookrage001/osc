@@ -13,6 +13,7 @@
   - property inheritance: new special property name `_value` (retrieve the widget's value, and update when it changes)
   - switch: added `showValues` to display both values and labels in the buttons
   - rgb: **removed** `touchAddress` option
+  - labels/texts: multiple white spaces are no longer merged
 - misc
   - event system rewritten
   - js build size reduced

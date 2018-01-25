@@ -53,7 +53,9 @@
         width: 100%;
         flex-shrink: 0;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+        white-space: pre;
+        // justify-content: space-around;
         align-items: center;
         &.accent {
             color:var(--color-accent);
