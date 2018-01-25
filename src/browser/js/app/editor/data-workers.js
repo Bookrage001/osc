@@ -11,13 +11,19 @@ var updateWidget = function(widget, options = {}) {
     var sidepanel = DOM.get('#sidepanel')[0],
         scroll = sidepanel.scrollTop,
         oldWidgets = widget.childrenHashes.concat(widget.hash),
+        oldValueProps = {},
         wScroll = {}
 
     stateManager.incrementQueue()
 
     for (let h of oldWidgets) {
-        if (widgetManager.widgets[h] && widgetManager.widgets[h].getValue) {
-            stateManager.push(widgetManager.widgets[h].getProp('id'), widgetManager.widgets[h].getValue())
+        if (widgetManager.widgets[h]) {
+            let id = widgetManager.widgets[h].getProp('id'),
+                value = widgetManager.widgets[h].getValue(),
+                valueProp = widgetManager.widgets[h].getProp('value')
+
+            stateManager.pushValueState(id, value)
+            if (valueProp !== '' && valueProp !== undefined) stateManager.pushValueOldProp(id, valueProp)
         }
     }
 

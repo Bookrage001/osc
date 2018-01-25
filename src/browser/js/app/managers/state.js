@@ -8,7 +8,9 @@ var StateManager = class StateManager {
 
         this.state = []
 
-        this.queue = {}
+        this.valueStateQueue = {}
+        this.valueOldPropQueue = {}
+        this.valueNewPropQueue = {}
         this.queueCounter = 0
 
     }
@@ -121,20 +123,39 @@ var StateManager = class StateManager {
 
     }
 
-    push(id, value, options) {
-        this.queue[id] = value
+    pushValueState(id, value) {
+        this.valueStateQueue[id] = value
+    }
+
+    pushValueOldProp(id, value) {
+        this.valueOldPropQueue[id] = value
+    }
+
+    pushValueNewProp(id, value) {
+        this.valueNewPropQueue[id] = value
         if (this.queueCounter == 0) this.flush()
     }
 
     flush(){
-        for (let id in this.queue) {
-            if (this.queue[id] !== undefined) {
+        for (let id in this.valueStateQueue) {
+            if (this.valueStateQueue[id] !== undefined) {
                 for (let w of widgetManager.getWidgetById(id)) {
-                    if (w.setValue) w.setValue(this.queue[id])
+                    if (w.setValue) w.setValue(this.valueStateQueue[id])
                 }
             }
         }
-        this.queue = {}
+
+        for (let id in this.valueNewPropQueue) {
+            if (this.valueNewPropQueue[id] != this.valueOldPropQueue[id]) {
+                for (let w of widgetManager.getWidgetById(id)) {
+                    if (w.setValue) w.setValue(this.valueNewPropQueue[id], {sync: true})
+                }
+            }
+        }
+
+        this.valueStateQueue = {}
+        this.valueOldPropQueue = {}
+        this.valueNewPropQueue = {}
     }
 
     incrementQueue() {

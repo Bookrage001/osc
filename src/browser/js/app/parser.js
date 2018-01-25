@@ -146,9 +146,8 @@ var Parser = class Parser {
             if (widgetInner.getProp('color') && widgetInner.getProp('color')!='auto') widgetContainer.style.setProperty('--color-custom',widgetInner.getProp('color'))
 
             // set widget's initial state
-            if (widgetInner.getProp('value') !== '' && widgetInner.setValue) {
-                widgetInner.setValue(widgetInner.getProp('value'), {sync:true})
-                stateManager.push(widgetInner.getProp('id'), undefined)
+            if (widgetInner.getProp('value') !== '') {
+                stateManager.pushValueNewProp(widgetInner.getProp('id'), widgetInner.getProp('value'))
             }
 
             // Append the widget to its parent
