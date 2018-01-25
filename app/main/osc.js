@@ -23,6 +23,8 @@ zeroconf.publish({
 	protocol: 'udp',
 	type: 'osc',
 	port: oscInPort
+}).on('error', (e)=>{
+    console.error(`Error: Zeroconf: ${e.message}`)
 })
 
 var parseType = function(type){
