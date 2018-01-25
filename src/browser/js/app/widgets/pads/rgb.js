@@ -87,7 +87,7 @@ module.exports = class Rgb extends _pads_base {
             pointSize: this.getProp('pointSize'),
             pips: false,
             input:false
-        }})
+        }, parent: this})
         this.pad.sendValue = ()=>{}
         this.wrapper.appendChild(this.pad.widget)
 
