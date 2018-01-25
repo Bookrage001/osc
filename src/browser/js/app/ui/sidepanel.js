@@ -25,7 +25,7 @@ var sidepanelData = [
                 title:'Store',
                 action:()=>{
                     state.quickSave()
-                    DOM.get('.quickload').classList.remove('disabled')
+                    DOM.get('.quickload')[0].classList.remove('disabled')
                 }
             },
             {
