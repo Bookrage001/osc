@@ -2,8 +2,7 @@ var _pads_base = require('./_pads_base'),
     Xy = require('./xy'),
     Fader = require('./_fake_fader'),
     {clip, hsbToRgb, rgbToHsb} = require('../utils'),
-    Input = require('../inputs/input'),
-    touchstate = require('../mixins/touch_state')
+    Input = require('../inputs/input')
 
 var faderDefaults = Fader.defaults(),
     xyDefaults = Xy.defaults()
@@ -40,7 +39,6 @@ module.exports = class Rgb extends _pads_base {
 
             precision:0,
             address:'auto',
-            touchAddress:'',
             preArgs:[],
             split:false,
             target:[]
@@ -104,8 +102,6 @@ module.exports = class Rgb extends _pads_base {
             e.stopPropagation = true
             this.dragHandle()
         })
-
-        touchstate(this)
 
         if (this.getProp('input')) {
 
