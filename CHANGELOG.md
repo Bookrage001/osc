@@ -14,6 +14,7 @@
   - switch: added `showValues` to display both values and labels in the buttons; array values can now be selected via osc
   - rgb: **removed** `touchAddress` option
   - labels/texts: multiple white spaces are no longer merged
+  - widgets' `precision` option allows setting a specific data type for numbers (sliders can send doubles !)
 - misc
   - event system rewritten
   - js build size reduced

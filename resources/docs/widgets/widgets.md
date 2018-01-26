@@ -66,9 +66,11 @@ All widgets share a set of generic properties described below.
 
 
 ### `precision`
-- type: `integer`
+- type: `integer|string`
 - default: `2`
-- usage: the `precision` property defines the number of decimals to display and to send. Set to `0` to send `integers` only.
+- usage: the `precision` property defines the number of decimals to display and to send.
+  - set to `0` to send `integers` only.
+  - a specific data type can be specified by appending a valid osc type tag to the precision value, for example : `3d` will make the widget send double precision numbers rounded to three decimals
 
 ### `target`
 - type: `array`
@@ -100,7 +102,7 @@ All widgets share a set of generic properties described below.
 - default: `[]`
 - usage:
     - each element of the `array` defines a constant value that will be prepended to the osc message
-    - values can be defined as objects if the type needs to be specified (ie different from the default implied by the `precision`)
+    - values can be defined as objects if the osc data type needs to be specified (ie different from the default implied by the `precision` option)
 - example:
 ```js
 preArgs: [

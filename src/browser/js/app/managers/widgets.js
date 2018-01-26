@@ -24,7 +24,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
                 ipc.send('addWidget', {
                     hash:hash,
                     data:{
-                        precision: this.widgets[hash].precision,
+                        precision: this.widgets[hash].getProp('precision'),
                         preArgs: this.widgets[hash].getProp('preArgs'),
                         split: this.widgets[hash].split,
                         target: this.widgets[hash].getProp('target'),
@@ -107,7 +107,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         ipc.send('addWidget', {
             hash:hash,
             data:{
-                precision: widget.precision,
+                precision: widget.getProp('precision'),
                 preArgs: widget.getProp('preArgs'),
                 split: widget.split,
                 target: widget.getProp('target'),

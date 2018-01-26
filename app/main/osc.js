@@ -38,11 +38,15 @@ var parseType = function(type){
 
 }
 
-var parseArg = function(arg,precision){
+var parseArg = function(arg, precision){
 	if (arg==null) return null
 	switch (typeof arg) {
 		case 'number':
-			return {type: precision == 0 ? 'i' : 'f', value: parseFloat(arg.toFixed(precision))}
+			var typeTagMatch = typeof precision == 'string' ? precision.match(/[0-9]+([a-zA-Z]{1})/) : null,
+				typeTag = typeTagMatch === null ? precision == 0 ? 'i' : 'f' : typeTagMatch[1],
+				precisionValue = parseFloat(precision) || 0
+
+			return {type: typeTag, value: parseFloat(arg.toFixed(precisionValue))}
 		case 'boolean':
 			return {type: arg ? 'T' : 'F', value: arg}
 		case 'object':
