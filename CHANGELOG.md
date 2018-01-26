@@ -9,7 +9,7 @@
   - multiple icons not displayed correctly
   - broken `--blank` option
 - main
-  - added `--disable-gpu` option for disabling hardware acceleration (reduces input lag on some systems)
+  - added `--disable-gpu` option for disabling hardware acceleration (fixes rendering glitches and reduces input lag on some systems)
 - widgets
   - inputs: **new** `keys` widget, for keyboard bindings
   - property inheritance: new special property name `_value` (retrieve the widget's value, and update when it changes)
