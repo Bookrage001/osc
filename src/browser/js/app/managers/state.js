@@ -128,11 +128,11 @@ var StateManager = class StateManager {
     }
 
     pushValueOldProp(id, value) {
-        this.valueOldPropQueue[id] = value
+        this.valueOldPropQueue[id] = typeof value == 'object' ? JSON.stringify(value) : value
     }
 
     pushValueNewProp(id, value) {
-        this.valueNewPropQueue[id] = value
+        this.valueNewPropQueue[id] = typeof value == 'object' ? JSON.stringify(value) : value
         if (this.queueCounter == 0) this.flush()
     }
 
