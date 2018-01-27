@@ -145,6 +145,8 @@ module.exports = class _widgets_base extends EventEmitter {
 
     }
 
+    setValue() {}
+
     getValue(withPrecision) {
 
         return _widgets_base.deepCopy(this.value, withPrecision ? this.precision : undefined)
