@@ -120,7 +120,7 @@ var SessionManager = class SessionManager {
 
         }
 
-        DOM.addEventListener(lobby.list, 'mousedown touchstart', function(e){
+        DOM.addEventListener(lobby.html, 'mousedown touchstart', function(e){
             if (e.type == 'mousedown') e.preventDefault()
             e.target.blur()
         })
