@@ -199,6 +199,13 @@
             line-height: 120%!important;
             text-transform: none;
             border-radius: inherit;
+
+            &:focus {
+                box-shadow: 0 0 0 1rem var(--color-light) inset,
+                            0 1rem 0 0 var(--color-light) inset,
+                            0 0 1rem 0 var(--color-custom) inset;
+
+            }
         }
         &:after{
             content:"\f107";
