@@ -50,10 +50,11 @@ module.exports = class Strip extends Panel {
         this.container.classList.add(this.getProp('horizontal') ? 'horizontal' : 'vertical')
         if (this.getProp('stretch')) this.container.classList.add('stretch')
 
-        this.setValue = undefined
-        this.getValue = undefined
-
     }
+
+    setValue(){}
+    getValue(){}
+    sendValue(){}
 
 
 }
