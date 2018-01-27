@@ -140,7 +140,7 @@ var StateManager = class StateManager {
         for (let id in this.valueStateQueue) {
             if (this.valueStateQueue[id] !== undefined) {
                 for (let w of widgetManager.getWidgetById(id)) {
-                    if (w.setValue) w.setValue(this.valueStateQueue[id])
+                    w.setValue(this.valueStateQueue[id])
                 }
             }
         }
@@ -148,7 +148,7 @@ var StateManager = class StateManager {
         for (let id in this.valueNewPropQueue) {
             if (this.valueNewPropQueue[id] != this.valueOldPropQueue[id]) {
                 for (let w of widgetManager.getWidgetById(id)) {
-                    if (w.setValue) w.setValue(this.valueNewPropQueue[id], {sync: true})
+                    w.setValue(w.getProp('value'), {sync: true})
                 }
             }
         }
