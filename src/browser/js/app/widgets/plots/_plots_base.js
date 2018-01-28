@@ -145,10 +145,19 @@ module.exports = class _plots_base extends _canvas_base {
 
     setValue(v, options={}) {
 
-        this.data = v
-        this.batchDraw()
+        if (typeof v == 'string' && v.indexOf('[') == 0) {
+            v = JSON.parseFlex(v)
+        }
 
-        if (options.sync) this.changed(options)
+        if (Array.isArray(v)) {
+
+            this.data = v
+            this.batchDraw()
+
+            if (options.sync) this.changed(options)
+
+        }
+
 
     }
 

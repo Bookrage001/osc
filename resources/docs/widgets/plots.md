@@ -38,7 +38,12 @@ This one is like the `led` except it takes either three arguments (red, green an
 
 ## Plot
 
-The plot receives an array of [x,y] coordinates and draws them on a chart with linear or logarithmic interpolation.
+The plot receives an array of coordinates and draws them on a chart. Coordinates can be :
+- `y` values evenly spaced on the `x` axis
+- `[x, y]` coordinates arrays
+
+!!! info
+    Coordinates also can be sent as a stringified array
 
 ```js
 {
@@ -51,10 +56,11 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
 - type: `array|string`
 - default: `[]`
 - usage:
-    - as a `string`: a widget's `id` whose multiple values will be displayed on the `y` axis, evenly spaced on the `x` axis (only *[matrices](matrices.md)* and *[pads](pads.md)* will work)
-    - as an `array`: each element must be an `array` of `[x,y]` coordinates, where `x` and `y` can either be a:
-        - `number`: constant values
-        - `string`: a widget's `id` whose value will be used
+    - as a `string`: a widget's `id` whose values will be used
+    - as an `array`: where items can be
+        - `number`
+        - `string` (widget's `id`)
+        - `[x, y]`: array of `number` or `string`
 
 ### `range`
 - type: `object`
@@ -78,7 +84,7 @@ The plot receives an array of [x,y] coordinates and draws them on a chart with 
 ### `smooth`
 - type: `boolean`
 - default: `false`
-- usage: set to true to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
+- usage: set to `true` to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
 
 ### `origin`
 - type: `number`
