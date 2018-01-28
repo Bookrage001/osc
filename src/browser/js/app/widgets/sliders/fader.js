@@ -183,7 +183,7 @@ module.exports = class Fader extends _sliders_base {
             if (this.getProp('horizontal')){
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0)
                 this.ctx.rotate(-Math.PI/2)
-                this.ctx.translate(-this.height, 0)
+                this.ctx.translate(-this.height * ratio, 0)
 
                 if (ratio != 1) this.ctx.scale(ratio, ratio)
             }
