@@ -10,17 +10,17 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 }
 ```
 
-### `widgetId`
+### `widgetId`
 - type: `string`
 - default: `empty`
 - usage: a widget's `id` whose value will be mapped to the led's color opacity
 
-### `range`
+### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: defines the `min` and `max` value the led's intensity will be mapped to
 
-### `logScale`
+### `logScale`
 - type: `boolean`
 - default: `false`
 - usage: set to true to use logarithmic scaling
@@ -52,7 +52,7 @@ The plot receives an array of coordinates and draws them on a chart. Coordinates
 }
 ```
 
-### `points`
+### `points`
 - type: `array|string`
 - default: `[]`
 - usage:
@@ -62,7 +62,7 @@ The plot receives an array of coordinates and draws them on a chart. Coordinates
         - `string` (widget's `id`)
         - `[x, y]`: array of `number` or `string`
 
-### `range`
+### `range`
 - type: `object`
 - default:
     `{
@@ -71,22 +71,22 @@ The plot receives an array of coordinates and draws them on a chart. Coordinates
     }`
 - usage: defines the `min` and `max` values for the `x` and `y` axis
 
-### `bars`
+### `bars`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use draw bars instead (disables `logScaleX` and forces `x-axis` even spacing)
 
-### `logScaleX`
+### `logScaleX`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
-### `logScaleY`
+### `logScaleY`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `y` axis (log10)
 
-### `smooth`
+### `smooth`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
@@ -107,7 +107,7 @@ The Eq receives an array of filter objects and draws their frequency response be
 }
 ```
 
-### `filters`
+### `filters`
 - type: `array`
 - default: `[]`
 - usage:
@@ -129,18 +129,18 @@ The Eq receives an array of filter objects and draws their frequency response be
 - default: `128`
 - usage: defines the number of points used to compute the frequency response
 
-### `rangeY`
+### `rangeY`
 - type: `object`
 - default:
     `{"min":-20,"max":20}`
 - usage: defines the `min` and `max` values for the `y` axis (dB level)
 
-### `logScaleX`
+### `logScaleX`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
-### `smooth`
+### `smooth`
 - type: `boolean`
 - default: `false`
 - usage: set to true to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
@@ -161,27 +161,27 @@ The visualizer displays the evolution in time of a received value (through osc) 
 }
 ```
 
-### `widgetId`
+### `widgetId`
 - type: `string`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed (thus bypassing the incoming osc)
 
-### `duration`
+### `duration`
 - type: `number`
 - default: `1`
 - usage: window size in seconds
 
-### `range`
+### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
 - usage: defines the `min` and `max` values for the `y` axis
 
-### `logScale`
+### `logScale`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` use logarithmic scaling (log10)
 
-### `smooth`
+### `smooth`
 - type: `boolean`
 - default: `false`
 - usage: set to true to make the line smooth. Float values are also acceptable (works fine between 0 and 0.5)
@@ -202,12 +202,12 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 }
 ```
 
-### `widgetId`
+### `widgetId`
 - type: `string`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed
 
-### `vertical`
+### `vertical`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` display vertically
@@ -223,20 +223,20 @@ Meter displays incoming numerical values (via osc) as a gauge level
 }
 ```
 
-### `widgetId`
+### `widgetId`
 - type: `object`
 - default: `empty`
 - usage: a widget's `id` whose value will be displayed
 
-### `horizontal`
+### `horizontal`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display the meter horizontally
 
-### `range`
+### `range`
 - see fader's [`range`](sliders/#fader)
 
-### `logScale`
+### `logScale`
 - see fader's [`logScale`](sliders/#fader)
 
 
@@ -251,35 +251,35 @@ Image displays an image from a file path/url or from a base64 encoded image stri
 }
 ```
 
-### `size`
+### `size`
 - type: `string`
 - default: `cover`
 - usage: css [background-size](https://www.w3schools.com/CSSref/css3_pr_background-size.asp)
 
 
-### `position`
+### `position`
 - type: `string`
 - default: `cover`
 - usage: css [background-position](https://www.w3schools.com/CSSref/pr_background-position.asp)
 
 
-### `repeat`
+### `repeat`
 - type: `string`
 - default: `no-repeat`
 - usage: css [background-repeat](https://www.w3schools.com/CSSref/pr_background-repeat.asp)
 
 
-### `border`
+### `border`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to disable the image's borders and background-color.
 
-### `cache`
+### `cache`
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to disable image caching (forces file reload when updating or editing the widget). When `true`, sending `'reload'` to the widget reloads its image without changing its value.
 
-### `value`
+### `value`
 - type: `string`
 - default: `empty`
 - usage : initial image
