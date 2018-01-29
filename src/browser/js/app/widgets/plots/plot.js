@@ -29,6 +29,7 @@ module.exports = class Plot extends _plots_base {
             rangeX: {min:0,max:1},
             rangeY: {min:0,max:1},
             origin: 'auto',
+            bars: false,
             logScaleX: false,
             logScaleY: false,
             smooth: false,

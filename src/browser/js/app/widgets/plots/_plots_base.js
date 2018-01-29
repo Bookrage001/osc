@@ -63,11 +63,69 @@ module.exports = class _plots_base extends _canvas_base {
     draw() {
 
         this.ctx.clearRect(0,0,this.width,this.height)
+
+        if (this.getProp('bars')) {
+            this.draw_bars()
+        } else {
+            this.draw_line()
+        }
+
+        if (this.getProp('pips')) this.draw_pips()
+
+    }
+
+    draw_pips() {
+
+        this.ctx.globalAlpha = 1
+        this.ctx.fillStyle = this.colors.text
+
+        if (this.pips.x) {
+
+            this.ctx.textBaseline = "bottom"
+            this.ctx.textAlign = 'left'
+            this.ctx.fillText(this.pips.x.min,(this.pips.y?12:2)*PXSCALE,this.height)
+            this.ctx.textAlign = 'right'
+            this.ctx.fillText(this.pips.x.max,this.width-2*PXSCALE,this.height)
+
+        }
+
+        if (this.pips.y) {
+
+            this.ctx.save()
+            this.ctx.translate(0, this.height)
+            this.ctx.rotate(-Math.PI/2)
+
+            this.ctx.textBaseline = "top"
+            this.ctx.textAlign = 'left'
+            this.ctx.fillText(this.pips.y.min,(this.pips.x?12:2)*PXSCALE,2*PXSCALE)
+            this.ctx.textAlign = 'right'
+            this.ctx.fillText(this.pips.y.max,this.height-2*PXSCALE,2*PXSCALE)
+            this.ctx.rotate(Math.PI/2)
+            this.ctx.restore()
+
+        }
+
+    }
+
+    draw_line() {
+
+        var points = []
+
+        for (let i in this.data) {
+
+            if (this.data[i].length) {
+                points.push(mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.logScaleX,true))
+                points.push(mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
+            } else {
+                points.push(mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.logScaleX,true))
+                points.push(mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
+            }
+
+        }
+
         this.ctx.beginPath()
 
-        if (!this.width) return
-
-        this.draw_data()
+        this.ctx.curve(points, this.smooth, Math.round(this.width/(points.length/2 - 1)))
 
         this.ctx.globalAlpha = 0.7
         this.ctx.lineWidth = 2 * PXSCALE
@@ -87,59 +145,27 @@ module.exports = class _plots_base extends _canvas_base {
 
         }
 
-
-        this.ctx.globalAlpha = 1
-        this.ctx.font = PXSCALE * 10 + 'px sans-serif'
-        this.ctx.fillStyle = this.colors.text
-
-        if (this.getProp('pips')) {
-
-            if (this.pips.x) {
-
-                this.ctx.textBaseline = "bottom"
-                this.ctx.textAlign = 'left'
-                this.ctx.fillText(this.pips.x.min,(this.pips.y?12:2)*PXSCALE,this.height)
-                this.ctx.textAlign = 'right'
-                this.ctx.fillText(this.pips.x.max,this.width-2*PXSCALE,this.height)
-
-            }
-
-            if (this.pips.y) {
-
-                this.ctx.save()
-                this.ctx.translate(0, this.height)
-                this.ctx.rotate(-Math.PI/2)
-
-                this.ctx.textBaseline = "top"
-                this.ctx.textAlign = 'left'
-                this.ctx.fillText(this.pips.y.min,(this.pips.x?12:2)*PXSCALE,2*PXSCALE)
-                this.ctx.textAlign = 'right'
-                this.ctx.fillText(this.pips.y.max,this.height-2*PXSCALE,2*PXSCALE)
-                this.ctx.rotate(Math.PI/2)
-                this.ctx.restore()
-
-            }
-
-        }
-
     }
 
-    draw_data() {
+    draw_bars() {
 
-        var points = []
+        var points = [],
+            barWidth = Math.round(this.width / this.data.length),
+            offset = Math.round((this.width - barWidth * this.data.length) / 2)
+
+        var origin = mapToScale(this.getProp('origin') || this.rangeY.min,[this.rangeY.min,this.rangeY.max],[this.height,0],0,this.getProp('logScaleY'),true)
+
+        this.ctx.beginPath()
+
         for (let i in this.data) {
-
-            if (this.data[i].length) {
-                points.push(mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.logScaleX,true))
-                points.push(mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
-            } else {
-                points.push(mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.logScaleX,true))
-                points.push(mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
-            }
+            var y = mapToScale(this.data[i].length ? this.data[i][1] : this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true)
+            this.ctx.rect(offset + i * barWidth, Math.min(y, origin), barWidth - PXSCALE, Math.abs(Math.min(y - origin)))
 
         }
 
-        this.ctx.curve(points, this.smooth, Math.round(this.width/(points.length/2 - 1)))
+        this.ctx.globalAlpha = 0.4
+        this.ctx.fillStyle = this.colors.custom
+        this.ctx.fill()
 
     }
 

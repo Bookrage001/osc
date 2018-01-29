@@ -71,6 +71,11 @@ The plot receives an array of coordinates and draws them on a chart. Coordinates
     }`
 - usage: defines the `min` and `max` values for the `x` and `y` axis
 
+### `bars`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to use draw bars instead (disables `logScaleX` and forces `x-axis` even spacing)
+
 ### `logScaleX`
 - type: `boolean`
 - default: `false`
