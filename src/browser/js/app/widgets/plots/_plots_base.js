@@ -171,13 +171,24 @@ module.exports = class _plots_base extends _canvas_base {
 
     setValue(v, options={}) {
 
-        if (typeof v == 'string' && v.indexOf('[') == 0) {
+        if (typeof v == 'string' && (v[0] == '[' || v[0] == '{' )) {
             v = JSON.parseFlex(v)
         }
 
-        if (Array.isArray(v)) {
+        if (typeof v == 'object') {
 
-            this.data = v
+            if (Array.isArray(v)) {
+
+                this.data = v
+
+            } else {
+
+                for (var i in v) {
+                    if (!isNaN(i)) this.data[i] = v[i]
+                }
+
+            }
+
             this.batchDraw()
 
             if (options.sync) this.changed(options)

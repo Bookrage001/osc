@@ -43,7 +43,7 @@ The plot receives an array of coordinates and draws them on a chart. Coordinates
 - `[x, y]` coordinates arrays
 
 !!! info
-    Coordinates also can be sent as a stringified array
+    Coordinates also can be sent as a stringified array (`[]`). A stringified object can also be sent to change specific points' coordinates (e.g. `{0:1, 4:0}` will change the 1st and 5th points' coordinates) .
 
 ```js
 {

@@ -16,7 +16,7 @@
   - switch: added `showValues` to display both values and labels in the buttons; array values can now be selected via osc
   - rgb: **removed** `touchAddress` option
   - labels/texts: multiple white spaces are no longer merged
-  - plot: can receive stringified arrays of coordinates; added `bars` option for drawing barcharts
+  - plot: can receive stringified arrays of coordinates or stringified objects for merging coordinates sets; added `bars` option for drawing barcharts;
   - widgets' `precision` option allows setting a specific data type for numbers (sliders can send doubles !)
 - misc
   - event system rewritten
