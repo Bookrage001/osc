@@ -13,35 +13,35 @@ Pads are multidimensional widgets that output multiple values.
 }
 ```
 
-### `input`
+### `input`
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to hide the built-in input
 
-### `rangeX`
+### `rangeX`
 - type: `object`
 - default:
     `{"min":0,"max":1}`
 - usage: defines the `min` and `max` values for the `x` axis. Same as fader's [`range`](sliders/#fader)
 
-### `rangeY`
+### `rangeY`
 - type: `object`
 - default:
     `{"min":0,"max":1}`
 - usage: defines the `min` and `max` values for the `y` axis. Same as fader's [`range`](sliders/#fader)
 
 
-### `logScaleX`
+### `logScaleX`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
-### `logScaleY`
+### `logScaleY`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `y` axis (log10)
 
-### `snap`
+### `snap`
 - type: `boolean`
 - default: `false`
 - usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position.
@@ -51,12 +51,12 @@ Pads are multidimensional widgets that output multiple values.
 - default: `false`
 - usage: when set to `true`, the widget will go back to its initial value when released.
 
-### `doubleTap`
+### `doubleTap`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to make the xy reset to its initial value when receiving a double tap
 
-### `split`
+### `split`
 - type: `boolean|object`
 - default: `false`
 - usage:
@@ -75,7 +75,7 @@ Pads are multidimensional widgets that output multiple values.
 }
 ```
 
-### `points`
+### `points`
 - type: `integer|array`
 - default: `2`
 - usage: defines the number of points on the pad. Can be an `array` of `strings` that will be used as labels for the points (ex: `['A', 'B']`)
@@ -85,30 +85,30 @@ Pads are multidimensional widgets that output multiple values.
 - default: `15`
 - usage: defines the points's size
 
-### `rangeX`
+### `rangeX`
 - type: `object`
 - default:
     `{"min":0,"max":1}`
 - usage: defines the `min` and `max` values for the `x` axis. Same as fader's [`range`](sliders/#fader)
 
-### `rangeY`
+### `rangeY`
 - type: `object`
 - default:
     `{"min":0,"max":1}`
 - usage: defines the `min` and `max` values for the `y` axis. Same as fader's [`range`](sliders/#fader)
 
 
-### `logScaleX`
+### `logScaleX`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `x` axis (log10)
 
-### `logScaleY`
+### `logScaleY`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to use logarithmic scale for the `y` axis (log10)
 
-### `split`
+### `split`
 - type: `boolean|object`
 - default: `false`
 - usage:
@@ -116,7 +116,7 @@ Pads are multidimensional widgets that output multiple values.
     - can be set as an object to specify a different `address` : `['/0/x', '/0/y', '/1/x', '/2/y']`
 - note: the widget will only respond to its original osc address, not to the splitted version
 
-### `snap`
+### `snap`
 - type: `boolean`
 - default: `false`
 - usage: by default, the points are dragged from their initial position; if set to `true`, touching anywhere on the widget's surface will make them snap to the touching coordinates (one per touch).
@@ -135,20 +135,20 @@ RGB is a variant of XY, it outputs rgb values between 0 and 255.
 }
 ```
 
-### `input`
+### `input`
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to hide the built-in input
 
-### `precision`
+### `precision`
 - default:`0`
 
-### `snap`
+### `snap`
 - type: `boolean`
 - default: `false`
 - usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to true will make it snap directly to the mouse/touch position.
 
-### `split`
+### `split`
 - type: `boolean|object`
 - default: `false`
 - usage:

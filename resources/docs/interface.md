@@ -12,7 +12,7 @@ The sidepanel can be opened by clicking the navigation icon in the upper right c
 - Export: save the state of all widgets to a `.preset` file
 - Import: load a state from a `.preset` file
 
-### Traversing gestures
+### Traversing gestures
 
 By default, a dragging gesture can only affect the widget it started on. Enabling traversing gesture does two things:
 

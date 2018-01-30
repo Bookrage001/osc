@@ -4,16 +4,16 @@ All widgets share a set of generic properties described below.
 
 ## Basics
 
-### `type`
+### `type`
 - type: `string`
 - default: `fader`
 
-### `id`
+### `id`
 - type: `string`
 - default: generated unique 'widget_n'
 - usage: widgets sharing the same `id` will act as clones and update each other's value(s) without sending extra osc messages.
 
-### `linkId`
+### `linkId`
 - type: `string`
 - default: `empty`
 - usage: widgets sharing the same `linkId` update each other's value(s) AND send their respective osc messages.
@@ -21,14 +21,14 @@ All widgets share a set of generic properties described below.
 
 ## Style
 
-### `label`
+### `label`
 - type: `string|false`
 - default: `auto`, which displays `id`
 - usage:
     - set to `false` to hide completely
     - insert icons from [FontAwesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free) using the prefix `^` followed by the icon's name : `made with ^heart`, etc
 
-### `top` / `left`
+### `top` / `left`
 - type: `number|percentage`
 - default: `auto`
 - usage:
@@ -36,11 +36,11 @@ All widgets share a set of generic properties described below.
     - otherwise, the widget will be absolutely positioned
 
 
-### `width` / `height`
+### `width` / `height`
 - type: `number|percentage`
 - default: `auto`
 
-### `color`
+### `color`
 - type: `string`
 - default: `auto`, inherited accent color
 - usage: any valid `css` color code is valid, this will change the default accent color for the widget and all its children

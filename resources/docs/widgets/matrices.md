@@ -13,7 +13,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 }
 ```
 
-### `strips`
+### `strips`
 - type: `integer`
 - default: `2`
 - usage: number of faders in the row, each fader will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
@@ -21,27 +21,27 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `address`: same as the widget's with `/i` appended to it
 
-### `start`
+### `start`
 - type: `integer`
 - default: `0`
 - usage: first faders's index
 
-### `traversing`
+### `traversing`
 - type: `boolean`
 - default: `true`
 - usage: enable traversing gestures
 
-### `split`
+### `split`
 - type: `boolean`
 - default: `false`
 - usage: if `true`, the fader's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
 
-### `color`
+### `color`
 - type: `string|array`
 - default: `auto`, inherited accent color
 - usage: can be an `array` of css color `strings`, which will be sequentially passed to the faders
 
-### `options`
+### `options`
 - see fader's [`options`](sliders/#fader)
 
 
@@ -56,7 +56,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 }
 ```
 
-### `matrix`
+### `matrix`
 - type: `array`
 - default: `[2,2]`
 - usage: defines the number of columns and and rows. Each cell will contain a toggle button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
@@ -64,34 +64,34 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `address`: same as the widget's with `/i` appended to it
 
-### `start`
+### `start`
 - type: `integer`
 - default: `0`
 - usage: first toggle's index
 
-### `spacing`
+### `spacing`
 - type: `integer`
 - default: `0`
 - usage: adds space between widgets
 
-### `traversing`
+### `traversing`
 - type: `boolean`
 - default: `true`
 - usage: enable traversing gestures
 
-### `split`
+### `split`
 - type: `boolean`
 - default: `false`
 - usage: if `true`, the toggle's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
 
-### `color`
+### `color`
 - type: `string|array`
 - default: `auto`, inherited accent color
 - usage: can be an `array` of css color `strings`, which will be sequentially passed to the toggles
 
 
 
-### `options`
+### `options`
 - see toggle's [`options`](buttons/#toggle)
 
 
@@ -104,7 +104,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 }
 ```
 
-### `matrix`
+### `matrix`
 - type: `array`
 - default: `[2,2]`
 - usage: defines the number of columns and and rows. Each cell will contain a push button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
@@ -112,32 +112,32 @@ Multifader creates a row of vertical faders that respond to the same gestures.
     - `label`: `i`
     - `address`: same as the widget's with `/i` appended to it
 
-### `start`
+### `start`
 - type: `integer`
 - default: `0`
 - usage: first push's index
 
-### `spacing`
+### `spacing`
 - type: `integer`
 - default: `0`
 - usage: adds space between widgets
 
-### `traversing`
+### `traversing`
 - type: `boolean`
 - default: `true`
 - usage: enable traversing gestures
 
-### `split`
+### `split`
 - type: `boolean`
 - default: `false`
 - usage: if `true`, the push's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
 
-### `color`
+### `color`
 - type: `string|array`
 - default: `auto`, inherited accent color
 - usage: can be an `array` of css color `strings`, which will be sequentially passed to the pushes
 
-### `options`
+### `options`
 - see push's [`options`](buttons/#push)
 
 
@@ -153,28 +153,28 @@ This one works pretty much like the multipush, excepts it looks like a piano key
 }
 ```
 
-### `keys`
+### `keys`
 - type: `integer`
 - default: `24`
 - usage: defines the number keys
 
-### `start`
+### `start`
 - type: `integer`
 - default: `60`
 - usage: MIDI note number to start with (default is C4)
 
 
-### `traversing`
+### `traversing`
 - type: `boolean`
 - default: `true`
 - usage: enable traversing gestures
 
-### `split`
+### `split`
 - type: `boolean`
 - default: `false`
 - usage: if `true`, the note's midi code will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
 
-### `options`
+### `options`
 - see push's [`options`](buttons/#push)
 
 ### `css`

@@ -2,7 +2,7 @@
 
 The session editor can be enabled from the sidepanel. Once enabled, clicking on a widget will make it the *selected widget*, adding a fancy dashed blue border to it.
 
-## Root panel
+## Root panel
 
 The root panel can be selected by clicking on the "Root" button in the sidepanel.
 
@@ -20,11 +20,11 @@ Right clicking / long touch on a widget or on a tab will also display a context 
 - `Add tab`: create a new tab in selected container
 - `Delete`: delete selected tab or widget
 
-## Save
+## Save
 
 Current session can be exported as a `.js` file. When overwriting a session file that's currently is use by other clients, they will reload it automatically.
 
-## Load
+## Load
 
 Loading a session file doesn't affect other clients.
 

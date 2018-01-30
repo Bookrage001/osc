@@ -15,28 +15,28 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 }
 ```
 
-### `scroll`
+### `scroll`
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to disable scrollbars
 
-### `border`
+### `border`
 - type: `boolean`
 - default: `true`
 - usage: by default, widgets in panels/strip have their border disabled, except for panels and strips. Set to `false` to apply this rule to the panel too.
 
-### `widgets`
+### `widgets`
 - type: `array`
 - default: `[]`
 - usage: each element of the `array` must be a widget `object`. A panel cannot contain widgets and tabs simultaneously.
 
-### `tabs`
+### `tabs`
 - type: `array`
 - default: `[]`
 - usage: each element of the `array` must be a tab `object`. A panel cannot contain widgets and tabs simultaneously.
 
 
-### `variables`
+### `variables`
 - type: `*`
 - default: `@{parent.variables}`
 - usage: defines one or more arbitrary variables that can be inherited by children widgets.
@@ -47,13 +47,13 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
   - `@{parent.variables}` useful when nesting containers
 
 
-### `layout`
+### `layout`
 - type: `string`
 - default: `''`
 - usage: `layout` must be a valid [Visual Format Language](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) expression. It accepts the [Extended Visual Format Language](https://github.com/IjzerenHein/autolayout.js#extended-visual-format-language-evfl) as well. Widgets are targeted using their `id` or their index prefixed with a `$` (`$0, $1, etc`), the latter method being incompatible with the [range spread operator](https://github.com/IjzerenHein/autolayout.js#view-ranges-spread-operator). Expressions can be tested and debugged with the online [Visual Format Editor](https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html).
 - note: this only applies when the panel contains widgets, not tabs
 
-### `spacing`
+### `spacing`
 - type: `integer|array`
 - default: `0`
 - usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
@@ -72,27 +72,27 @@ Unidirectionnal panel with stretching capability. By default, children widgets t
 }
 ```
 
-### `horizontal`
+### `horizontal`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to display widgets horizontally
 
-### `stretch`
+### `stretch`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to stretch widgets evenly
 
-### `spacing`
+### `spacing`
 - type: `integer`
 - default: `0`
 - usage: adds space between widgets
 
-### `border`
+### `border`
 - type: `boolean`
 - default: `true`
 - usage: by default, widgets in panels/strip have their border disabled, except for panels and strips. Set to `false` to apply this rule to the strip too.
 
-### `widgets`
+### `widgets`
 - type: `array`
 - default: `[]`
 - usage: each element of the `array` must be a widget `object`
@@ -111,22 +111,22 @@ Modals are buttons that turn into a centered popup panels when enabled. They can
 }
 ```
 
-### `doubleTap`
+### `doubleTap`
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to make the modal require a double tap to open instead of a single tap
 
-### `popupWidth` / `popupHeight`
+### `popupWidth` / `popupHeight`
 - type: `number|percentage`
 - default: `100%`
 - usage: sets the modal's size once opened
 
-### `popupLabel`
+### `popupLabel`
 - type: `string`
 - default: `empty`
 - usage: alternative label for the popup
 
-### `options`
+### `options`
 - see panel's [`options`](#panel)
 
 
@@ -139,12 +139,12 @@ Modals are buttons that turn into a centered popup panels when enabled. They can
 }
 ```
 
-### `widgetId`
+### `widgetId`
 - type: `string`
 - default: `empty`
 - usage: `id` of the widget to clone
 
-### `props`
+### `props`
 - type: `object`
 - default: `{}`
 - usage: cloned widget's properties to override

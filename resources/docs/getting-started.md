@@ -112,7 +112,7 @@ $ npm run build
 
 $ npm run deb32
 
-# or
+# or
 
 $ npm run deb64
 
