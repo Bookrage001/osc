@@ -1,13 +1,12 @@
 var {updateWidget} = require('./data-workers'),
     {widgets, categories} = require('../widgets/'),
+    widgetManager = require('../managers/widgets'),
     {icon} = require('../ui/utils'),
     defaults = {}
 
 for (var k in widgets) {
     defaults[k] = widgets[k].defaults()
 }
-
-var ev = 'fast-click'
 
 var editClean = function(){
     $('.editing').removeClass('editing')
@@ -136,7 +135,7 @@ var editObject = function(widget, options = {}){
 
         var editItem = function(i) {
             return function(){
-                container.find('.widget').first().siblings().addBack().eq(i).trigger(ev)
+                editObject(widgetManager.getWidgetByElement(container.find('.widget').first().siblings().addBack().eq(i)[0]))
             }
         }
 
@@ -193,7 +192,7 @@ var editObject = function(widget, options = {}){
 
         var editItem = function(i) {
             return function(){
-                container.find('.tablist li').first().siblings().addBack().eq(i).trigger(ev)
+                editObject(widgetManager.getWidgetByElement(container.find('.tablist li').first().siblings().addBack().eq(i)[0]))
             }
         }
 
