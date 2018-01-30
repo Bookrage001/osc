@@ -1,25 +1,30 @@
+
+$base: rgb(25, 31, 42);
+$accent: rgb(82, 168, 255);
+$tone: rgb(104, 174, 245);
+$text: white;
+
 :root {
 
     ////////////////////// COLOR SCHEME
 
-    --color-text:rgba(255, 255, 255, .6);
-    --color-text-fade:rgba(255, 255, 255, .4);
+    --color-text: transparentize($text, .4);
+    --color-text-fade: transparentize($text, .6);
 
-    --color-accent:rgba(82, 168, 255, 1);
-    --color-grid:  rgba(82, 168, 255, .1);
+    --color-accent: $accent;
+    --color-grid:  transparentize($accent, 0.90);
 
-    --color-bg: rgb(25, 31, 42);
-    --color-track: rgb(32, 41, 58);
-    --color-fg: rgb(40, 49, 67);
-    --color-raised: rgb(49, 63, 85);
-
-    --color-light:rgba(255, 255, 255, .06);
+    --color-bg: $base;
+    --color-track: desaturate(mix($base, $tone, 95), 2);
+    --color-fg: desaturate(mix($base, $tone, 88), 5);
+    --color-raised: desaturate(mix($base, $tone, 75), 5);
+    --color-light: desaturate(transparentize($tone, 0.90), 50);
 
     --color-white: white;
 
     ////////////////////// AUTO
 
-    --color-custom:var(--color-accent);
+    --color-custom: var(--color-accent);
 
     ////////////////////// MISC
 
