@@ -264,7 +264,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
     getWidgetByElement(e, filter = '') {
         var element = (e instanceof $ ? e[0] : e).closest('[data-widget]' + filter)
         if (element) {
-            return element._widget_instance ? 
+            return element._widget_instance ?
                 element._widget_instance :
                 this.widgets[element.getAttribute('data-widget')]
         }
