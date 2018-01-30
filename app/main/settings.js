@@ -128,7 +128,7 @@ var makeDefaultConfig = function(argv){
 
         appName: 'Open Stage Control',
         instanceName: argv['instance-name'] || false,
-        syncTargets: argv.s || argv.sync || false,
+        targets: argv.s || argv.sync || false,
         oscInPort: argv.o || 0,
         httpPort: argv.p || 8080,
         debug: argv.d || false,

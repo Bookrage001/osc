@@ -180,7 +180,7 @@ module.exports =  {
 
                 var targets = []
 
-                if (settings.read('syncTargets') && !data.nosync) Array.prototype.push.apply(targets, settings.read('syncTargets'))
+                if (settings.read('targets') && !shortdata.target) Array.prototype.push.apply(targets, settings.read('targets'))
                 if (data.target) Array.prototype.push.apply(targets, data.target)
 
 
