@@ -46,6 +46,6 @@ This program is a free software released under the GNU/GPL3 license, it relies o
 
 ----
 
-<a href="http://browserstack.com/"><img alt="BrowserStack" src="http://osc.ammd.net/img/logo-browserstack.svg" width="300" /></a>
+<a href="http://browserstack.com/"><img alt="BrowserStack" src="http://osc.ammd.net/img/logo-browserstack.png" width="300" /></a>
 
 BrowserStack helps debugging Open Stage Control by providing a complete suite of browser emulators for Android, iOS and Windows, how awesome is that ? *Quite very much indeed !*

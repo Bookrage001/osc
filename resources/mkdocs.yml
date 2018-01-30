@@ -11,10 +11,9 @@ theme:
     custom_dir: 'mkdocs-material/material'
     feature:
         tabs: true
-    favicon: 'img/logo.png'
+    favicon: 'img/logo-nobadge.png'
     language: 'en'
-    logo:
-        icon: null
+    logo: 'img/logo.svg'
     palette:
         primary: 'blue grey'
         accent: 'light blue'
