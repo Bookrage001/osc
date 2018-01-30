@@ -158,7 +158,7 @@ module.exports =  {
 
         data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
 
-        clients[clientId].broadcast.emit('receiveOsc', data)
+        if (!data.noSync) clients[clientId].broadcast.emit('receiveOsc', data)
 
     },
 
@@ -214,7 +214,7 @@ module.exports =  {
 
             }
 
-            if (!data.nosync) clients[clientId].broadcast.emit('receiveOsc', data)
+            if (!data.noSync) clients[clientId].broadcast.emit('receiveOsc', data)
 
     },
 

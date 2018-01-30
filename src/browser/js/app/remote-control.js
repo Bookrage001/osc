@@ -68,7 +68,7 @@ var callbacks = {
                 address: '/EDIT/GET',
                 preArgs: [idOrAddress, ...preArgs],
                 v: JSON.stringify(widgets[i].props),
-                nosync: true
+                noSync: true
             })
 
         }
@@ -97,7 +97,7 @@ var callbacks = {
                 target: [target],
                 address: '/GET',
                 preArgs: [idOrAddress, ...preArgs],
-                nosync: true
+                noSync: true
             })
 
         }
