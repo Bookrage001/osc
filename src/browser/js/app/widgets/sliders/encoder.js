@@ -176,9 +176,9 @@ module.exports = class Encoder extends _widgets_base {
 
         this.wrapper.addEventListener('mousewheel', (e)=>{
 
-            if (e.originalEvent.wheelDeltaX || e.originalEvent.wheelDelta == 0) return
+            if (e.wheelDeltaX || e.wheelDelta == 0) return
 
-            var direction = e.originalEvent.wheelDelta / Math.abs(e.originalEvent.wheelDelta)
+            var direction = e.wheelDelta / Math.abs(e.wheelDelta)
 
             this.display.setValue(this.display.value + direction)
             this.setValue(direction < 0 ? this.getProp('back') : this.getProp('forth'), {sync:true, send:true})
