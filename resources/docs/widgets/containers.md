@@ -59,7 +59,10 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
 - note: this only applies when the panel contains widgets, not tabs
 
-
+### `noSync`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to prevent tab changes from synchronizing between clients that share the same session file
 
 ## Strip
 
@@ -125,6 +128,11 @@ Modals are buttons that turn into a centered popup panels when enabled. They can
 - type: `string`
 - default: `empty`
 - usage: alternative label for the popup
+
+### `noSync`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to prevent modal's state changes from synchronizing between clients that share the same session file
 
 ### `options`
 - see panel's [`options`](#panel)

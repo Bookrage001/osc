@@ -40,6 +40,7 @@ module.exports = class Modal extends Panel {
             address:'auto',
             preArgs:[],
             target:[],
+            noSync:false,
 
             _chidlren:'children',
 

@@ -29,6 +29,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
                         split: this.widgets[hash].split,
                         target: this.widgets[hash].getProp('target'),
                         address: this.widgets[hash].getProp('address'),
+                        noSync: this.widgets[hash].getProp('noSync'),
                     }
                 })
             }
@@ -112,6 +113,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
                 split: widget.split,
                 target: widget.getProp('target'),
                 address: widget.getProp('address'),
+                noSync: widget.getProp('noSync'),
             }
         })
 

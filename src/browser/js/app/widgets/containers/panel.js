@@ -42,6 +42,7 @@ module.exports = class Panel extends _widgets_base {
             address:'auto',
             preArgs:[],
             target:[],
+            noSync:false,
 
             _children:'children',
 

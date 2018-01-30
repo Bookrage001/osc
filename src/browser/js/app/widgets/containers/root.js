@@ -28,6 +28,7 @@ module.exports = class Root extends Panel {
             address:'/root',
             preArgs:[],
             target:[],
+            noSync:false,
 
             _children:'children',
 
