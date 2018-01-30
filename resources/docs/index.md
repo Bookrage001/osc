@@ -24,7 +24,7 @@ Head over the github [issue tracker](https://github.com/jean-emmanuel/open-stage
 
 Copyleft © Jean-Emmanuel @ [AMMD](http://ammd.net) 2017
 
-This program is a free software released under the GNU/GPL3 license, it relies on the use of several other free softwares, including [Node.js](https://nodejs.org/), [Electron](http://electron.atom.io/), [osc.js](https://github.com/colinbdclark/osc.js), [socket.io](http://socket.io), [browserify](http://browserify.org), [exorcist](https://github.com/thlorenz/exorcist), [express](http://expressjs.com), [node-sass](https://github.com/sass/node-sass), [jQuery](http://jquery.com/), [jQuery-UI](http://jqueryui.com/), [Font Awesome](http://fontawesome.io/), [source-map](https://github.com/mozilla/source-map), [mathjs](http://mathjs.org/)
+This program is a free software released under the GNU/GPL3 license, it relies on the use of several other free softwares, including [Node.js](https://nodejs.org/), [Electron](http://electron.atom.io/), [osc.js](https://github.com/colinbdclark/osc.js), [socket.io](http://socket.io), [babel](http://babeljs.io/), [browserify](http://browserify.org), [exorcist](https://github.com/thlorenz/exorcist), [express](http://expressjs.com), [node-sass](https://github.com/sass/node-sass), [jQuery](http://jquery.com/), [jQuery-UI](http://jqueryui.com/), [Font Awesome](http://fontawesome.io/), [stacktracejs](stacktracejs.com), [mathjs](http://mathjs.org/)
 
 ----
 

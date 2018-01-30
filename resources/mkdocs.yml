@@ -46,6 +46,7 @@ pages:
         - Remote control: extras/remote-control.md
         - Custom module: extras/custom-module.md
         - Midi: extras/midi.md
+        - Examples: extras/examples.md
 
 markdown_extensions:
     - markdown.extensions.admonition
