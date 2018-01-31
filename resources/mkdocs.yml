@@ -11,9 +11,9 @@ theme:
     custom_dir: 'mkdocs-material/material'
     feature:
         tabs: true
-    favicon: 'img/logo-nobadge.png'
+    favicon: 'img/logo-nobadge.png?1'
     language: 'en'
-    logo: 'img/logo.svg'
+    logo: 'img/logo-nobadge.svg'
     palette:
         primary: 'blue grey'
         accent: 'light blue'
@@ -46,7 +46,7 @@ pages:
         - Remote control: extras/remote-control.md
         - Custom module: extras/custom-module.md
         - Midi: extras/midi.md
-        - Examples: extras/examples.md
+    - Examples: examples.md
 
 markdown_extensions:
     - markdown.extensions.admonition
