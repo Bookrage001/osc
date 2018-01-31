@@ -339,7 +339,12 @@ module.exports = class Range extends _widgets_base {
         this.on('drag',(e)=>{
 
             var i = this.touchMap[e.pointerId]
-            this.faders[i].trigger('drag', [e])
+            if (e.shiftKey) {
+                this.faders[0].trigger('drag', [e])
+                this.faders[1].trigger('drag', [e])
+            } else {
+                this.faders[i].trigger('drag', [e])
+            }
 
         }, {element: this.wrapper, multitouch: true})
 

@@ -249,7 +249,7 @@ An endless knob that only responds to rotative gestures.
 
 ## Range
 
-A range is a fader with two handles.
+A range is a fader with two handles. To move the range (both handles at once), hold the `shift` key or use two fingers.
 
 ```js
 {
