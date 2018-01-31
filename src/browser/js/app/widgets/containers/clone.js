@@ -57,8 +57,7 @@ module.exports = class Clone extends _widgets_base {
 
         this.on('widget-created', (e)=>{
             if (e.widget == this) return
-            widgetManager.off(`change.${e.widget.hash}`)
-            widgetManager.off(`widget-creates.${e.widget.hash}`)
+            e.widget.reCreateWidget = ()=>{}
         })
 
     }
