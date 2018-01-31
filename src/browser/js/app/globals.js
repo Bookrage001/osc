@@ -4,6 +4,7 @@ location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (s,k,v)=>{
 })
 
 window.PACKAGE = require('../../../../app/package.json')
+document.title = PACKAGE.productName + ' v' + PACKAGE.version
 
 window.LOADING = null
 
