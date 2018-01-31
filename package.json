@@ -51,7 +51,7 @@
     "electron-installer-debian": "0.8.0"
   },
   "scripts": {
-    "postinstall": "cp resources/images/logo.ico app/browser/favicon.ico && cd app && npm install && cd .. && npm run build-js && npm run build-css",
+    "postinstall": "cp resources/images/logo-nobadge.png app/browser/favicon.png && cd app && npm install && cd .. && npm run build-js && npm run build-css",
     "start": "cd app && npm start --",
     "build": "npm run build-js -- --prod && npm run build-css && electron-packager ./app open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/images/logo --overwrite --ignore \"(node_modules/serialport)\"",
     "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/ --icon resources/images/logo.png",
