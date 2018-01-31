@@ -53,7 +53,7 @@
   "scripts": {
     "postinstall": "cp resources/images/logo-nobadge.png app/browser/favicon.png && cd app && npm install && cd .. && npm run build-js && npm run build-css",
     "start": "cd app && npm start --",
-    "build": "npm run build-js -- --prod && npm run build-css && electron-packager ./app open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/images/logo --overwrite --ignore \"(node_modules/serialport)\"",
+    "build": "npm run build-js -- --prod && npm run build-css && electron-packager ./app open-stage-control --platform=$PLATFORM --arch=$ARCH --out dist/ --icon=resources/images/logo --overwrite --ignore \"(node_modules/serialport)\" --ignore \"(node_modules/uws)\"",
     "deb32": "electron-installer-debian --src dist/open-stage-control-linux-ia32/ --arch i386 --dest dist/open-stage-control-linux-ia32/ --icon resources/images/logo.png",
     "deb64": "electron-installer-debian --src dist/open-stage-control-linux-x64/ --arch amd64 --dest dist/open-stage-control-linux-x64/ --icon resources/images/logo.png",
     "debarm": "electron-installer-debian --src dist/open-stage-control-linux-armv7l/ --arch armv7l --dest dist/open-stage-control-linux-armv7l/ --icon resources/images/logo.png",
