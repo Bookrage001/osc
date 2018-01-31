@@ -74,6 +74,7 @@ $ sudo npm install -g npm   # update npm
 $ git clone https://github.com/jean-emmanuel/open-stage-control
 $ cd open-stage-control/
 $ npm install
+$ npm run build
 ```
 
 **3. Run !**
@@ -106,7 +107,7 @@ $ cd open-stage-control
 $ npm install
 $ export PLATFORM=TARGET_PLATFORM # TARGET_PLATFORM can be linux, win32 (windows) or darwin (os x)
 $ export ARCH=TARGET_ARCH         # TARGET_ARCH can be ia32, x64 or armv7l
-$ npm run build
+$ npm run package
 
 # Do the following if you want a deb package for debian/ubuntu
 
