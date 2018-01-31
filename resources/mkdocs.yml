@@ -47,6 +47,7 @@ pages:
         - Custom module: extras/custom-module.md
         - Midi: extras/midi.md
     - Examples: examples.md
+    - Credits: credits.md
 
 markdown_extensions:
     - markdown.extensions.admonition

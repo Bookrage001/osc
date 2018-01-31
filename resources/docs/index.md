@@ -1,15 +1,15 @@
-# Open Stage Control
+
+
+# <img style="margin:0 auto;display:inline-block;width:60px;float:left;margin-right:20px;margin-top:-7px;" src="img/logo.svg"/> Open Stage Control
 
 Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built on web technologies and run as an [Electron](http://electron.atom.io/) web server that accepts any number of clients.
 
-[Try the online demo (Chrome 50+ required)](http://demo.osc.ammd.net)
+<a class="button" href="http://demo.osc.ammd.net">Try the online demo (Chrome 50+ required)</a>
 
-[Download the latest release](https://github.com/jean-emmanuel/open-stage-control/releases)
+<a class="button" href="https://github.com/jean-emmanuel/open-stage-control/releases">Download the latest release</a>
 
 
- <div style="width:70%; box-shadow: 0 0 5px 0 rgba(0,0,0,.45); border-radius:2px;overflow:hidden">
-<a href="img/ardour-osc.png" title="Controlling Ardour"><img alt="Controlling Ardour" src="img/ardour-osc.png" style="display:block"/></a>
-</div>
+![](img/ardour-osc.png)
 
 ## Supported platforms
 
@@ -19,17 +19,3 @@ The only supported client browsers are the one provided with the server and Chro
 ## Need help ? Found a bug ?
 
 Head over the github [issue tracker](https://github.com/jean-emmanuel/open-stage-control/issues) :)
-
-## License & credits
-
-Copyleft © Jean-Emmanuel @ [AMMD](http://ammd.net) 2017
-
-This program is a free software released under the GNU/GPL3 license, it relies on the use of several other free softwares, including [Node.js](https://nodejs.org/), [Electron](http://electron.atom.io/), [osc.js](https://github.com/colinbdclark/osc.js), [socket.io](http://socket.io), [babel](http://babeljs.io/), [browserify](http://browserify.org), [exorcist](https://github.com/thlorenz/exorcist), [express](http://expressjs.com), [node-sass](https://github.com/sass/node-sass), [jQuery](http://jquery.com/), [jQuery-UI](http://jqueryui.com/), [Font Awesome](http://fontawesome.io/), [stacktracejs](stacktracejs.com), [mathjs](http://mathjs.org/)
-
-----
-
- <div style="width:300px">
-[![BrowserStack](img/logo-browserstack.png)](http://browserstack.com/)
-</div>
-
-BrowserStack helps debugging Open Stage Control by providing a complete suite of browser emulators for Android, iOS and Windows, how awesome is that ? *Quite very much indeed !*
