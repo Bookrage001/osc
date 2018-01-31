@@ -38,6 +38,7 @@ pages:
         - Switchers: widgets/switchers.md
         - Plots: widgets/plots.md
         - Matrices: widgets/matrices.md
+        - Inputs: widgets/inputs.md
         - Maths: widgets/maths.md
     - Extras:
         - Property inheritance: extras/property-inheritance.md
