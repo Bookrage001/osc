@@ -3,10 +3,16 @@
     height: 60rem;
     padding:1rem;
     .vertical  {
+        position: relative;
         input {
             transform: rotate(-90deg);
             vertical-align: middle;
             max-width: initial!important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+            margin-top: -2px;
         }
     }
 }
@@ -33,6 +39,7 @@
             border-radius: inherit;
             -webkit-appearance:none;
             text-align:inherit;
+            line-height: 50rem;
             vertical-align: top;
             letter-spacing: 1rem;
             &:focus {
