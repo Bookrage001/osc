@@ -3,4 +3,5 @@ dist
 app/browser/styles.css
 app/browser/scripts.js
 app/browser/scripts.js.map
-app/browser/favicon.ico
+app/browser/favicon.png
+app/main/logo.png
