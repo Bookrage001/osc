@@ -20,6 +20,8 @@ deploy:
     tags: true
 before_deploy:
   - export VERSION=$(sed -nE 's/^\s*"version":\ "(.*?)",$/\1/p' package.json)
+  - rm -rf app/node_modules/serialport
+  - rm -rf app/node_modules/uws
   - npm run package
   - npm run deb32
   - npm run deb64
