@@ -37,4 +37,15 @@ module.exports = (self, options)=>{
         }
     }, options)
 
+    self.onRemove = ()=>{
+        if (sendTouchState && self.touched > 0) {
+            self.sendValue({
+                address:self.getProp('touchAddress'),
+                v:0,
+                split:false
+            })
+        }
+        self.__proto__.onRemove.call(self)
+    }
+
 }

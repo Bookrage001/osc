@@ -4,7 +4,8 @@
 
 - bug fixes
   - regression breaking modal's position in scrolled tab containers
-  
+  - widget with a `touchAddress` set now send their touch-off message when removed or recreated while being interacted with 
+
 ## 0.23.0
 
 - bug fixes
