@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.23.1
+
+- bug fixes
+  - regression breaking modal's position in scrolled tab containers
+  
 ## 0.23.0
 
 - bug fixes

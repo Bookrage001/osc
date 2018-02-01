@@ -166,7 +166,7 @@ module.exports = class Modal extends Panel {
                     this.parentScroll = [parent.widget.scrollLeft, parent.widget.scrollTop]
                 }
                 parent.widget.scrollLeft = this.value ? 0 : this.parentScroll[0]
-                parent.widget.scrolTop =  this.value ? 0 : this.parentScroll[1]
+                parent.widget.scrollTop =  this.value ? 0 : this.parentScroll[1]
                 parent.widget.style.overflow = this.value ? 'hidden' : ''
                 scrollFixed = true
             }
