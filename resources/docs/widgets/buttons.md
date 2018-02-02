@@ -72,6 +72,7 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
 
 
 ## Switch
+
 ```js
 {
     type:'switch',
@@ -105,3 +106,8 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
 - usage:
     - `array` of possible values to switch between : `[1,2,3]`
     - `object` of `"label":value` pairs
+
+### `sendKey`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to make the dropdown send its selected value's key/index as value. Either way, the dropdown's value can be set using it's value or the associated key/index.

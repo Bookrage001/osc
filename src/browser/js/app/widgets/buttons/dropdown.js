@@ -26,6 +26,7 @@ module.exports = class Dropdown extends _widgets_base {
             _dropdown:'dropdown',
 
             values:{"Value 1":1,"Value 2":2},
+            sendKey: false,
             value:'',
 
             _osc:'osc',
@@ -80,7 +81,7 @@ module.exports = class Dropdown extends _widgets_base {
         if (i == -1 && typeof v == 'number' && v >= 0 && v < this.values.length) i = v
 
         if (i != -1) {
-            this.value = this.values[i]
+            this.value = this.getProp('sendKey') ? this.keys[i] : this.values[i]
             if (!options.fromLocal) this.select.selectedIndex = i
             if (options.send) this.sendValue()
             if (options.sync) this.changed(options)

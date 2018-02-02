@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.23.2
+
+- bug fixes
+  - regression preventing dropdown to display no option selected
+- widgets
+  - switch: wrap non-array `values` property in an array
+  - dropdown: wrap non-array `values` property in an array; allow setting value by its key/index; add `sendKey` option;
+
 ## 0.23.1
 
 - bug fixes
