@@ -45,11 +45,19 @@ module.exports = class Dropdown extends _widgets_base {
         this.select = this.widget.appendChild(DOM.create(`<select></select>`))
 
         this.values = []
+        this.keys = []
 
-        var i = 0
-        for (var k in this.getProp('values')) {
-            this.values[i] = this.getProp('values')[k]
-            this.select.innerHTML += `<option value="${i}">${iconify(parseFloat(k) != k ? k : this.getProp("values")[k])}</option>`
+        var i = 0,
+            values = this.getProp('values')
+
+        if (!Array.isArray(values) && !(typeof values === 'object' && values !== null)) {
+            values = [values]
+        }
+
+        for (var k in values) {
+            this.values.push(values[k])
+            this.keys.push(k)
+            this.select.innerHTML += `<option value="${i}">${iconify(parseFloat(k) != k ? k : values[k])}</option>`
             i++
         }
 
@@ -66,6 +74,10 @@ module.exports = class Dropdown extends _widgets_base {
     setValue(v,options={}) {
 
         var i = this.values.indexOf(v)
+
+        if (i == -1) i = this.keys.indexOf(v)
+
+        if (i == -1 && typeof v == 'number' && v >= 0 && v < this.values.length) i = v
 
         if (i != -1) {
             this.value = this.values[i]
