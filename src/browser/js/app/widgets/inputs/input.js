@@ -72,6 +72,8 @@ module.exports = class Input extends _canvas_base {
                 if (e.keyCode==13) this.blur()
                 if (e.keyCode==27) this.blur(false)
             })
+        } else {
+            this.widget.classList.add('not-editable')
         }
 
         if (this.getProp('widgetId').length) {

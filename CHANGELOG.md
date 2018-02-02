@@ -7,6 +7,7 @@
 - widgets
   - switch: wrap non-array `values` property in an array
   - dropdown: wrap non-array `values` property in an array; allow setting value by its key/index; add `sendKey` option;
+  - input: add glass effect when `editable` is `false`
 
 ## 0.23.1
 
