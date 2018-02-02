@@ -51,20 +51,26 @@ module.exports = class Switch extends _widgets_base {
         this.values = []
         this.stringValues = []
 
-        var isArray = Array.isArray(this.getProp('values'))
+        var values =  this.getProp('values')
 
-        for (var k in this.getProp('values')) {
+        if (!Array.isArray(values) && !(typeof values === 'object' && values !== null)) {
+            values = [values]
+        }
 
-            this.values.push(this.getProp('values')[k])
+        var isArray = Array.isArray(values)
+        
+        for (var k in values) {
 
-            if (typeof this.getProp('values')[k] == 'object') {
-                this.stringValues.push(JSON.stringify(this.getProp('values')[k]))
+            this.values.push(values[k])
+
+            if (typeof values[k] == 'object') {
+                this.stringValues.push(JSON.stringify(values[k]))
             } else {
                 this.stringValues.push(-1)
             }
 
-            var label = isArray ? this.getProp('values')[k]: k
-            if (this.getProp('showValues') && !isArray) label = label + ': ' + this.getProp('values')[k]
+            var label = isArray ? values[k]: k
+            if (this.getProp('showValues') && !isArray) label = label + ': ' + values[k]
 
             this.widget.appendChild(DOM.create(`
                 <div class="value"> ${iconify(label)}</div>
