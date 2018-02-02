@@ -75,7 +75,7 @@ module.exports = class Dropdown extends _widgets_base {
             this.container.classList.remove('noselect')
         } else {
             this.value = undefined
-            this.select[0].selectedIndex = -1
+            this.select.selectedIndex = -1
             if (options.sync) this.changed(options)
             this.container.classList.add('noselect')
         }
