@@ -213,7 +213,7 @@
 
 
 .widget.editing {
-    z-index: 11!important;
+    z-index: 9999!important;
     // overflow: visible;
 }
 .widget.editing:after, li.editing a:before, a.editing:before, .content.editing:before, #container.editing:before{
