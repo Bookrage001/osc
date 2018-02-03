@@ -12,10 +12,15 @@ var SessionManager = class SessionManager {
     constructor() {
 
         this.session = []
+        this.lock = false
 
     }
 
     load(session, callback) {
+
+        if (this.lock) return
+
+        this.lock = true
 
         var container = DOM.get('#container')[0]
 
@@ -35,6 +40,7 @@ var SessionManager = class SessionManager {
                 } else if (session[0].type == 'root'){
                     this.session = session
                 } else {
+                    this.lock = false
                     throw new Error('Malformed session file')
                 }
 
@@ -43,6 +49,7 @@ var SessionManager = class SessionManager {
                 loader.close()
                 lobby.open()
                 new Popup({title:icon('exclamation-triangle')+'&nbsp; Parsing error', content: err, closable:true})
+                this.lock = false
                 throw err
             }
 
@@ -53,6 +60,7 @@ var SessionManager = class SessionManager {
             setTimeout(()=>{
                 loader.close()
                 container.classList.add('show')
+                this.lock = false
                 if (callback) callback()
             }, 25)
 
