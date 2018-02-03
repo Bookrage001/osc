@@ -5,15 +5,14 @@ var Ipc = class Ipc {
 
     constructor() {
 
-        this.socket = io.connect('/', {transports: ['websocket'], upgrade: false})
-        this.socket.compress(false)
+        this.socket = io.connect('/')
 
     }
 
 
     send(event, data) {
 
-        this.socket.emit(event, data)
+        this.socket.compress(false).emit(event, data)
 
     }
 
