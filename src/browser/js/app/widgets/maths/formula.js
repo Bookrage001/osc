@@ -52,8 +52,8 @@ module.exports = class Formula extends _widgets_base {
         super({...options, html: html})
 
 
-        this.formula = String(this.getProp('formula'))
-        this.condition = String(this.getProp('condition'))
+        this.formulaString = String(this.getProp('formula'))
+        this.conditionString = String(this.getProp('condition'))
 
         this.split = typeof this.getProp('split') == 'object' && this.getProp('split').length ? this.getProp('split') : false
 
@@ -71,28 +71,29 @@ module.exports = class Formula extends _widgets_base {
 
         this.linkedWidgets = []
 
-        if (this.formula.length) {
+        if (this.formulaString.length) {
 
-            if (this.formula.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.formula.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
-
-        }
-
-        if (this.condition.length) {
-
-            if (this.condition.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.condition.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
+            if (this.formulaString.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.formulaString.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
 
         }
 
+        if (this.conditionString.length) {
 
-        this.formula = math.compile(this.formula.replace(/\$\{([^\}]*)\}/g, '_$1'))
+            if (this.conditionString.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.conditionString.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
 
-        this.condition = math.compile(this.condition.replace(/\$\{([^\}]*)\}/g, '_$1'))
+        }
+
+
+        this.formula = math.compile(this.formulaString.replace(/\$\{([^\}]*)\}/g, '_$1'))
+
+        this.condition = math.compile(this.conditionString.replace(/\$\{([^\}]*)\}/g, '_$1'))
 
         this.conditionState = true
 
 
         widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
-        this.updateValue({options:{}})
+
+        if (this.formulaString.length) this.updateValue({options:{}})
 
     }
 
@@ -110,6 +111,7 @@ module.exports = class Formula extends _widgets_base {
 
         for (let id of this.linkedWidgets) {
             if (id !== undefined) {
+                variables['_'+id] = 0
                 let widgets = widgetManager.getWidgetById(id)
                 for (let w of widgets) {
                     if (w.getValue) {
@@ -122,10 +124,7 @@ module.exports = class Formula extends _widgets_base {
             }
         }
 
-        if (!this.linkedWidgets.length || n < this.linkedWidgets.length) return
-
-
-        if (this.getProp('condition').length) {
+        if (this.conditionString.length) {
 
             try {
 
