@@ -4,6 +4,9 @@
 
 - bug fixes
   - regression preventing dropdown to display no option selected
+  - crossfaders display issue on iOS
+  - restored compatibility options for server-client communications  
+  - prevent client to load multiple sessions simultaneously 
 - widgets
   - switch: wrap non-array `values` property in an array
   - dropdown: wrap non-array `values` property in an array; allow setting value by its key/index; add `sendKey` option;
