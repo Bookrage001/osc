@@ -26,12 +26,20 @@ module.exports = class Crossfader extends Switcher {
         this.fader = new Fader({props:{
             ...faderDefaults,
             horizontal: this.getProp('horizontal'),
-            range: {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}}
+            range: {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}},
+            input: false
         }, parent: this})
 
         this.fader.sendValue = ()=>{}
 
-        this.widget.appendChild(DOM.create('<div class="fader-container"></div>')).appendChild(this.fader.widget)
+        this.widget.appendChild(this.fader.widget)
+
+        if (this.getProp('horizontal')) {
+            this.widget.classList.add('horizontal')
+        } else {
+            this.widget.classList.add('vertical')
+
+        }
 
         this.fader.on('change', (e)=>{
 

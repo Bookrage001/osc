@@ -119,28 +119,24 @@
         padding: 2rem;
         .switch {
             flex:2;
-            height: auto;
             border: 1rem solid var(--color-bg) !important;
+        }
+        .fader {
+            flex: 3;
+            --color-pips: var(--color-custom);
+            --color-gauge: var(--color-custom);
+            --color-knob: var(--color-custom);
+        }
+        &.vertical {
+            flex-direction: row;
+            .fader, .fader canvas {
+                height:auto;
+            }
         }
         &.horizontal {
             flex-direction: column;
-            .switch {
-                flex:2;
-                height: auto;
-            }
-            .fader-container {
-                width: 100%;
-                height: auto;
-            }
         }
     }
-   .fader-container {
-       height: 100%;
-       flex:3;
-       .input {
-           display: none;
-       }
-   }
 }
 .panel:not(.tab) > .crossfader-container {
     --color-border:var(--color-fg);
