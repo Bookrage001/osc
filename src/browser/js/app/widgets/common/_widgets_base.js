@@ -2,6 +2,7 @@ var EventEmitter = require('../../events/event-emitter'),
     osc = require('../../osc'),
     shortid = require('shortid'),
     widgetManager = require('../../managers/widgets'),
+    {math} = require('../utils'),
     updateWidget = function(){ updateWidget = require('../../editor/data-workers').updateWidget; updateWidget(...arguments)}
 
 
@@ -266,6 +267,13 @@ module.exports = class _widgets_base extends EventEmitter {
                 }
 
             })
+
+            try {
+                propValue = propValue.replace(/#\{([^\}]+)\}/g, (m)=>{
+                    let expression = m.substr(2, m.length - 3).trim()
+                    return math.eval(expression)
+                })
+            } catch (err) {}
 
             try {
                 propValue = JSON.parse(propValue)
