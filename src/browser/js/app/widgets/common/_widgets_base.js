@@ -288,6 +288,11 @@ module.exports = class _widgets_base extends EventEmitter {
 
     updateProps(propNames, options){
 
+        if (propNames.indexOf('value') > 0) {
+            propNames.splice(propNames.indexOf('value'), 1)
+            propNames.unshift('value')
+        }
+
         for (var propName of propNames) {
 
             let propValue = this.resolveProp(propName, undefined, false)
