@@ -74,7 +74,7 @@ module.exports = class _widgets_base extends EventEmitter {
             widgetManager.on(`widget-created.${this.hash}`, (e)=>{
                 var {id} = e
                 if (this.linkedProps[id] && id != this.getProp('id')) {
-                    this.checkPropsChanged(this.linkedProps[id])
+                    this.updateProps(this.linkedProps[id])
                 }
             })
 
@@ -83,13 +83,29 @@ module.exports = class _widgets_base extends EventEmitter {
         if (Object.keys(this.linkedPropsValue).length) {
 
             widgetManager.on(`change.${this.hash}`, (e)=>{
-                var {id} = e
+                var {id,  options} = e
                 if (this.linkedPropsValue[id] && id != this.getProp('id')) {
-                    this.checkPropsChanged(this.linkedPropsValue[id], e.options.send)
+                    this.updateProps(this.linkedPropsValue[id], options)
                 }
             })
 
         }
+
+        if (Object.keys(this.linkedProps).length || Object.keys(this.linkedPropsValue).length) {
+
+            widgetManager.on(`prop-changed.${this.hash}`, (e)=>{
+                var {id, prop, options} = e
+                if (
+                    ((this.linkedProps[id] && this.linkedProps[id].indexOf(prop) != -1) ||
+                    (this.linkedPropsValue[id] && this.linkedPropsValue[id].indexOf(prop) != -1))
+                    && id != this.getProp('id')
+                ) {
+                    this.updateProps([prop], options)
+                }
+            })
+
+        }
+
 
         // cache precision
         if (this.props.precision != undefined) {
@@ -270,28 +286,46 @@ module.exports = class _widgets_base extends EventEmitter {
         return this.cachedProps[propName]
     }
 
-    checkPropsChanged(propNames, send){
-
-        if (propNames.indexOf('value') != -1 && this.propHasChanged('value')) {
-            this.cachedProps['value'] = this.resolveProp('value', undefined, false)
-            this.setValue(this.getProp('value'), {sync:true, send: send})
-        }
+    updateProps(propNames, options){
 
         for (var propName of propNames) {
-            if (propName != 'value' && this.propHasChanged(propName)) {
-                return this.reCreateWidget()
+
+            let propValue = this.resolveProp(propName, undefined, false)
+
+            if (JSON.stringify(this.getProp(propName)) != JSON.stringify(propValue)) {
+
+                this.cachedProps[propName] = propValue
+
+                if (this.onPropChanged(propName, options)) return
+
+                widgetManager.trigger(/prop-changed(\..*)?/, [{
+                    id: this.getProp('id'),
+                    prop: propName,
+                    widget: this
+                }])
+
             }
         }
 
     }
 
-    propHasChanged(propName) {
+    onPropChanged(propName, options) {
 
-        return JSON.stringify(this.cachedProps[propName]) != JSON.stringify(this.resolveProp(propName, undefined, false))
+        switch(propName) {
+
+            case 'value':
+                this.setValue(this.getProp('value'), {sync:true, send: options && options.send})
+                return
+
+            default:
+                this.reCreateWidget()
+                return true
+
+        }
 
     }
 
-    reCreateWidget(valueChanged){
+    reCreateWidget(){
 
         updateWidget(this, {remote: true})
 
@@ -299,6 +333,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
     onRemove(){
         widgetManager.off(`widget-created.${this.hash}`)
+        widgetManager.off(`prop-changed.${this.hash}`)
         widgetManager.off(`change.${this.hash}`)
     }
 
