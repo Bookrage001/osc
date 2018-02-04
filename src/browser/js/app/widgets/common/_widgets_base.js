@@ -27,6 +27,7 @@ module.exports = class _widgets_base extends EventEmitter {
         this.container = options.container || fallbackContainer
         this.widget = DOM.create(options.html)
         this.props = options.props
+        this.dynamicProps = []
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = shortid.generate()
@@ -324,11 +325,15 @@ module.exports = class _widgets_base extends EventEmitter {
 
     onPropChanged(propName, options) {
 
+        if (this.dynamicProps.indexOf(propName) != -1) return
+
         switch(propName) {
 
             case 'value':
                 this.setValue(this.getProp('value'), {sync:true, send: options && options.send})
                 return
+
+
 
             default:
                 this.reCreateWidget()
