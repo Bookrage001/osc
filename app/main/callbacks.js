@@ -224,7 +224,10 @@ module.exports =  {
             widgetHashTable[clientId] = {}
         }
 
-        widgetHashTable[clientId][data.hash] = data.data
+        for (var k in data.data) {
+            widgetHashTable[clientId][data.hash][k] = data.data[k]
+        }
+
     },
 
     removeWidget(data, clientId) {

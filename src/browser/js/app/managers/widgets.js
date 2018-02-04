@@ -21,17 +21,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         ipc.on('reconnect', ()=>{
             for (var hash in this.widgets) {
-                ipc.send('addWidget', {
-                    hash:hash,
-                    data:{
-                        precision: this.widgets[hash].getProp('precision'),
-                        preArgs: this.widgets[hash].getProp('preArgs'),
-                        split: this.widgets[hash].split,
-                        target: this.widgets[hash].getProp('target'),
-                        address: this.widgets[hash].getProp('address'),
-                        noSync: this.widgets[hash].getProp('noSync'),
-                    }
-                })
+                this.registerWidget(this.widget[hash])
             }
         })
 
@@ -105,9 +95,15 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             this.scrollingWidgets.push(hash)
         }
 
+        this.registerWidget(widget)
+
+    }
+
+    registerWidget(widget, data) {
+
         ipc.send('addWidget', {
-            hash:hash,
-            data:{
+            hash: widget.hash,
+            data: data || {
                 precision: widget.getProp('precision'),
                 preArgs: widget.getProp('preArgs'),
                 split: widget.split,
