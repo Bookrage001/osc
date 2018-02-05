@@ -48,6 +48,8 @@ module.exports = class Toggle extends _widgets_base {
 
         this.state = 0
         this.active = false
+        
+        this.dynamicProps.push('on', 'off')
 
         if (this.getProp('led')) this.container.classList.add('led')
 

@@ -310,7 +310,9 @@ module.exports = class _widgets_base extends EventEmitter {
 
                 this.cachedProps[propName] = propValue
 
-                if (this.onPropChanged(propName, options)) return
+                if (this.onPropChanged(propName, options)) {
+                    return this.reCreateWidget()
+                }
 
                 widgetManager.trigger(/prop-changed(\..*)?/, [{
                     id: this.getProp('id'),
@@ -333,10 +335,22 @@ module.exports = class _widgets_base extends EventEmitter {
                 this.setValue(this.getProp('value'), {sync:true, send: options && options.send})
                 return
 
-
+            case 'color':
+                this.container.style.setProperty('--color-custom', this.getProp('color') != 'auto' ? this.getProp('color') : 'initial')
+                return
+                
+            case 'precision':
+            case 'address':
+            case 'preArgs':
+            case 'target':
+            case 'noSync':
+                if (propName == 'precision') this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
+                var data = {}
+                data[propName] = this.getProp(propName)
+                widgetManager.registerWidget(this, data)
+                return
 
             default:
-                this.reCreateWidget()
                 return true
 
         }

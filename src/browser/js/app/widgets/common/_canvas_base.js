@@ -115,24 +115,33 @@ module.exports = class _canvas_base extends _widgets_base {
 
         if (!this.visible || checkColors) {
             this.visible = true
-            this.colors.custom = style.getPropertyValue('--color-custom')
-            this.colors.text = style.getPropertyValue('--color-text')
-            this.colors.raised = style.getPropertyValue('--color-raised')
-            this.colors.bg = style.getPropertyValue('--color-bg')
-            this.colors.fg = style.getPropertyValue('--color-fg')
-            this.colors.faded = style.getPropertyValue('--color-faded')
-            this.colors.light = style.getPropertyValue('--color-light')
-            this.fontFamily = style.getPropertyValue("font-family")
-            this.textAlign = style.getPropertyValue("text-align")
+            this.cacheCanvasStyle()
         }
 
+        requestAnimationFrame(this.draw.bind(this))
+
+    }
+
+    cacheCanvasStyle(style){
+
+        var style = style || window.getComputedStyle(this.canvas)
+
+        this.colors.custom = style.getPropertyValue('--color-custom')
+        this.colors.text = style.getPropertyValue('--color-text')
+        this.colors.raised = style.getPropertyValue('--color-raised')
+        this.colors.bg = style.getPropertyValue('--color-bg')
+        this.colors.fg = style.getPropertyValue('--color-fg')
+        this.colors.faded = style.getPropertyValue('--color-faded')
+        this.colors.light = style.getPropertyValue('--color-light')
+
+        this.fontFamily = style.getPropertyValue("font-family")
+        this.textAlign = style.getPropertyValue("text-align")
         this.fontSize = parseFloat(style.getPropertyValue("font-size"))
         this.fontWeight = parseFloat(style.getPropertyValue("font-weight"))
+
         this.ctx.font = this.fontWeight + ' ' + this.fontSize + 'px ' + this.fontFamily
         this.ctx.textBaseline = "middle"
         this.ctx.textAlign = this.textAlign
-
-        requestAnimationFrame(this.draw.bind(this))
 
     }
 
@@ -162,6 +171,25 @@ module.exports = class _canvas_base extends _widgets_base {
 
     draw(){
         throw new Error('Calling unimplemented draw() method')
+    }
+
+    onPropChanged(propName, options) {
+
+        var ret = super.onPropChanged(...arguments)
+
+        switch (propName) {
+
+            case 'color':
+                this.cacheCanvasStyle()
+                this.batchDraw()
+                return
+
+            default:
+                return ret
+
+        }
+
+
     }
 
     onRemove() {

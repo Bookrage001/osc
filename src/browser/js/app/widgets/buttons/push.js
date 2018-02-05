@@ -47,6 +47,8 @@ module.exports = class Push extends _widgets_base {
         this.active = 0
         this.lastChanged = 'state'
 
+        this.dynamicProps.push('on', 'off', 'norelease')
+
         this.on('draginit',()=>{
             if (this.active) return
             this.setValuePrivate(this.getProp('on'),{send:true,sync:true})

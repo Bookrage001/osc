@@ -99,11 +99,11 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     }
 
-    registerWidget(widget, data) {
+    registerWidget(widget, updatedData) {
 
         ipc.send('addWidget', {
             hash: widget.hash,
-            data: data || {
+            data: updatedData || {
                 precision: widget.getProp('precision'),
                 preArgs: widget.getProp('preArgs'),
                 split: widget.split,
@@ -112,6 +112,16 @@ var WidgetManager = class WidgetManager extends EventEmitter {
                 noSync: widget.getProp('noSync'),
             }
         })
+
+        if (updatedData && updatedData.address) {
+            var address = updatedData.address,
+                hash = widget.hash
+
+            if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash), 1)
+
+            if (!this.addressRoute[address]) this.addressRoute[address] = []
+            this.addressRoute[address].push(hash)
+        }
 
     }
 

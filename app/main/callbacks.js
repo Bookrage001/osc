@@ -224,6 +224,10 @@ module.exports =  {
             widgetHashTable[clientId] = {}
         }
 
+        if (!widgetHashTable[clientId][data.hash])  {
+            widgetHashTable[clientId][data.hash] = {}
+        }
+
         for (var k in data.data) {
             widgetHashTable[clientId][data.hash][k] = data.data[k]
         }

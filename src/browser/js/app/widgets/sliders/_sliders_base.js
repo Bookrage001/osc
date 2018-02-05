@@ -158,18 +158,16 @@ module.exports = class _sliders_base extends _canvas_base {
 
     }
 
-    resizeHandle(event) {
+    cacheCanvasStyle(style) {
 
-        var {style, checkColors} = event
+        var style = style || window.getComputedStyle(this.canvas)
 
-        if (!this.visible || checkColors) {
-            this.colors.track = style.getPropertyValue('--color-track')
-            this.colors.gauge = style.getPropertyValue('--color-gauge')
-            this.colors.knob = style.getPropertyValue('--color-knob')
-            this.colors.pips = style.getPropertyValue('--color-pips')
-        }
+        this.colors.track = style.getPropertyValue('--color-track')
+        this.colors.gauge = style.getPropertyValue('--color-gauge')
+        this.colors.knob = style.getPropertyValue('--color-knob')
+        this.colors.pips = style.getPropertyValue('--color-pips')
 
-        super.resizeHandle(...arguments)
+        super.cacheCanvasStyle(style)
 
     }
 
