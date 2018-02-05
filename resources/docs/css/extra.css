@@ -41,3 +41,9 @@ a.button:hover {
 article img {
     border-radius: 3px;
 }
+
+code + i {
+    vertical-align:super;
+    font-size: 75%;
+    margin-left: -5px;
+}

@@ -6,7 +6,7 @@ Widgets can use each other's property values by using the following syntaxes:
 - `@{parent.propertyName}`
 - `@{widgetId.propertyName}` (where `widgetId` is the target widget's `id`)
 
-`propertyName` can be any of the target widget's properties. Additionally, the special property name `_value` refers to a widget's value, as opposed to its `value` property.
+`propertyName` can be any of the target widget's properties.
 
 It can be used to:
 
@@ -18,6 +18,18 @@ If the retreived property is an object (`[] / {}`), a subset can be defined by a
 !!! note ""
     The root panel's `id` is `root`.
 
+## Use dynamic value
 
-!!! warning "What about reverse inheritance ?"
-    Containers cannot inherit their children's properties but to define their `value` property.
+The special property name `_value`<i class="md-icon">flash_on</i> refers to a widget's value, as opposed to its `value` property.
+
+## Dynamic properties
+
+Some properties, when changed, trigger a complete widget recreation that ends any ongoing user interaction. Also, updating these properties continuously (e.g. when linked to a slider's dynamic value) can be very cpu expensive.
+
+Some properties have much cheaper update routines and can be considered as `dynamic`, as in performance safe. These properties are marked in the documentation with a ` `<i class="md-icon">flash_on</i>.
+
+
+## Circular references cases
+
+- container widgets can inherit their children's properties only to define `dynamic` properties
+- widgets can inherit their own `_value`<i class="md-icon">flash_on</i> property only to define `dynamic` properties
