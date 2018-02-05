@@ -1,15 +1,17 @@
 # Changelog
 
-## 0.23.2
+## 0.24.0
 
 - bug fixes
   - regression preventing dropdown to display no option selected
   - crossfaders display issue on iOS
   - restored compatibility options for server-client communications  
-  - prevent client to load multiple sessions simultaneously 
+  - prevent client to load multiple sessions simultaneously
 - widgets
   - switch: wrap non-array `values` property in an array
   - dropdown: wrap non-array `values` property in an array; allow setting value by its key/index; add `sendKey` option;
+  - property inheritance: added shorthand default to `_value` when no property is specified (`@{widgetId}`); some properties can now be dynamically changed without recreating the widget entirely
+  - property maths: added support for math expressions everywhere via `#{}`
   - input: add glass effect when `editable` is `false`
 
 ## 0.23.1

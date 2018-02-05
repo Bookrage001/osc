@@ -22,6 +22,8 @@ If the retreived property is an object (`[] / {}`), a subset can be defined by a
 
 The special property name `_value`<i class="md-icon">flash_on</i> refers to a widget's value, as opposed to its `value` property.
 
+When omitted, the property name defaults to `_value` : `@{widgetId}` => `@{widgetId._value}`
+
 ## Dynamic properties
 
 Some properties, when changed, trigger a complete widget recreation that ends any ongoing user interaction. Also, updating these properties continuously (e.g. when linked to a slider's dynamic value) can be very cpu expensive.

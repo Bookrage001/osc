@@ -208,15 +208,27 @@ module.exports = class _widgets_base extends EventEmitter {
         if (typeof propValue == 'string') {
             propValue = propValue.replace(/@\{([^\}]+)\}/g, (m)=>{
                 let id = m.substr(2, m.length - 3).split('.'),
-                    k = id.pop(),
-                    subk = undefined
+                    k, subk
 
                 if (id.length > 1) {
-                    subk = k
+
                     k = id.pop()
+                    subk = undefined
+
+                    if (id.length > 1) {
+                        subk = k
+                        k = id.pop()
+                    }
+
+                    id = id.join('.')
+
+                } else {
+
+                    id = id[0]
+                    k = '_value'
+
                 }
 
-                id = id.join('.')
 
                 var widgets = id == 'parent' && this.parent ?
                     [this.parent] : id == 'this' ? [this] :
