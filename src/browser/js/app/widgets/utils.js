@@ -1,6 +1,9 @@
 var math = require('mathjs/dist/math.min.js').create({
     matrix: 'Array'
 })
+math.import({
+    unpack: function(a) { return Array.isArray(a) ? a.toString() : a }
+})
 
 // set math's parser array index base to zero
 math.expression.mathWithTransform = Object.assign({}, math)

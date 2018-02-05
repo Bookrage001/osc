@@ -205,7 +205,7 @@ module.exports = class _widgets_base extends EventEmitter {
             originalPropName = originalPropName || propName,
             obj
 
-        if (typeof propValue == 'string' && propValue.indexOf('@{') != -1) {
+        if (typeof propValue == 'string') {
             propValue = propValue.replace(/@\{([^\}]+)\}/g, (m)=>{
                 let id = m.substr(2, m.length - 3).split('.'),
                     k = id.pop(),
@@ -279,8 +279,10 @@ module.exports = class _widgets_base extends EventEmitter {
 
             try {
                 propValue = propValue.replace(/#\{([^\}]+)\}/g, (m)=>{
-                    let expression = m.substr(2, m.length - 3).trim()
-                    return math.eval(expression)
+                    let expression = m.substr(2, m.length - 3).trim(),
+                        r = math.eval(expression)
+
+                    return typeof r != 'string' ? JSON.stringify(r) : r
                 })
             } catch (err) {}
 
