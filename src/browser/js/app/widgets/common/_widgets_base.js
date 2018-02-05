@@ -27,7 +27,7 @@ module.exports = class _widgets_base extends EventEmitter {
         this.container = options.container || fallbackContainer
         this.widget = DOM.create(options.html)
         this.props = options.props
-        this.dynamicProps = []
+        this.dynamicProps = ['value', 'color', 'precision', 'address', 'preArgs', 'target', 'noSync']
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = shortid.generate()
@@ -74,8 +74,10 @@ module.exports = class _widgets_base extends EventEmitter {
         if (Object.keys(this.linkedProps).length) {
 
             widgetManager.on(`widget-created.${this.hash}`, (e)=>{
-                var {id} = e
-                if (this.linkedProps[id] && id != this.getProp('id')) {
+                var {id, widget} = e
+                if (widget == this) id = 'this'
+                if (widget == this.parent) id = 'parent'
+                if (this.linkedProps[id]) {
                     this.updateProps(this.linkedProps[id])
                 }
             })
@@ -85,8 +87,10 @@ module.exports = class _widgets_base extends EventEmitter {
         if (Object.keys(this.linkedPropsValue).length) {
 
             widgetManager.on(`change.${this.hash}`, (e)=>{
-                var {id,  options} = e
-                if (this.linkedPropsValue[id] && id != this.getProp('id')) {
+                var {id, widget, options} = e
+                if (widget == this) id = 'this'
+                if (widget == this.parent) id = 'parent'
+                if (this.linkedPropsValue[id]) {
                     this.updateProps(this.linkedPropsValue[id], options)
                 }
             })
@@ -96,11 +100,12 @@ module.exports = class _widgets_base extends EventEmitter {
         if (Object.keys(this.linkedProps).length || Object.keys(this.linkedPropsValue).length) {
 
             widgetManager.on(`prop-changed.${this.hash}`, (e)=>{
-                var {id, prop, options} = e
+                var {id, widget, prop, options} = e
+                if (widget == this) id = 'this'
+                if (widget == this.parent) id = 'parent'
                 if (
-                    ((this.linkedProps[id] && this.linkedProps[id].indexOf(prop) != -1) ||
-                    (this.linkedPropsValue[id] && this.linkedPropsValue[id].indexOf(prop) != -1))
-                    && id != this.getProp('id')
+                    (this.linkedProps[id] && this.linkedProps[id].indexOf(prop) != -1) ||
+                    (this.linkedPropsValue[id] && this.linkedPropsValue[id].indexOf(prop) != -1)
                 ) {
                     this.updateProps([prop], options)
                 }
@@ -229,7 +234,10 @@ module.exports = class _widgets_base extends EventEmitter {
                     }
                 }
 
-                if (id != 'this' && id != 'parent' && storeLinks) {
+                var circularLoop = id == 'this' && this.dynamicProps.indexOf(propName) == -1 ||
+                                   id == 'parent' && this.parent != widgetManager && this.parent.dynamicProps.indexOf(propName) == -1
+
+                if (storeLinks && !circularLoop) {
 
                     if (k == '_value') {
 
@@ -327,8 +335,6 @@ module.exports = class _widgets_base extends EventEmitter {
 
     onPropChanged(propName, options) {
 
-        if (this.dynamicProps.indexOf(propName) != -1) return
-
         switch(propName) {
 
             case 'value':
@@ -338,7 +344,7 @@ module.exports = class _widgets_base extends EventEmitter {
             case 'color':
                 this.container.style.setProperty('--color-custom', this.getProp('color') != 'auto' ? this.getProp('color') : 'initial')
                 return
-                
+
             case 'precision':
             case 'address':
             case 'preArgs':
@@ -350,10 +356,10 @@ module.exports = class _widgets_base extends EventEmitter {
                 widgetManager.registerWidget(this, data)
                 return
 
-            default:
-                return true
-
         }
+
+        return this.dynamicProps.indexOf(propName) == -1
+
 
     }
 

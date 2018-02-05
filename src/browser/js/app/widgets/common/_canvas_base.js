@@ -184,10 +184,9 @@ module.exports = class _canvas_base extends _widgets_base {
                 this.batchDraw()
                 return
 
-            default:
-                return ret
-
         }
+
+        return ret
 
 
     }
