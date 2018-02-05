@@ -298,7 +298,7 @@
 
 .ui-resizable-handle {
     position: absolute;
-    z-index: 1000000;
+    z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -349,7 +349,7 @@
 }
 
 .ui-helper {
-    z-index: 12!important;
+    z-index: 10000!important;
     opacity: 1!important;
     &:before {
         content:"";
