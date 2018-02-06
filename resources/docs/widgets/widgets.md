@@ -40,7 +40,7 @@ All widgets share a set of generic properties described below.
 - type: `number|percentage`
 - default: `auto`
 
-### `color`<i class="md-icon">flash_on</i>
+### `color`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string`
 - default: `auto`, inherited accent color
 - usage: any valid `css` color code is valid, this will change the default accent color for the widget and all its children
@@ -58,21 +58,21 @@ All widgets share a set of generic properties described below.
 ## OSC
 
 
-### `value`<i class="md-icon">flash_on</i>
+### `value`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `*`
 - default: `empty`
 - usage: if set, the widget will be initialized with this `value`. This won't send any osc message unless it is changed because of a property inheritance update initiated by an action that should send osc (e.g. dragging a slider).
 - note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc).
 
 
-### `precision`<i class="md-icon">flash_on</i>
+### `precision`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `integer|string`
 - default: `2`
 - usage: the `precision` property defines the number of decimals to display and to send.
   - set to `0` to send `integers` only.
   - a specific data type can be specified by appending a valid osc type tag to the precision value, for example : `3d` will make the widget send double precision numbers rounded to three decimals
 
-### `target`<i class="md-icon">flash_on</i>
+### `target`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `array`
 - default: `[]`
 - usage:
@@ -84,7 +84,7 @@ All widgets share a set of generic properties described below.
     - if no target is set (empty array `[]`), messages can still be sent if the server has defaults targets (`-s / --send`)
     - to disable osc regardless of the previous point, set `target` to `[null]`
 
-### `address`<i class="md-icon">flash_on</i>
+### `address`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string`
 - default: `/widgets_id`
 - usage: this is the `address` of the osc messages sent by the widget, it must start with a `/`
@@ -97,7 +97,7 @@ All widgets share a set of generic properties described below.
     /touch/address [preArgs] 0/1
 ```
 
-### `preArgs`<i class="md-icon">flash_on</i>
+### `preArgs`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `array`
 - default: `[]`
 - usage:

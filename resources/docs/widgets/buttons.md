@@ -22,14 +22,14 @@ Buttons are exactly what you think they are.
 - default: `false`
 - usage: set to `true` to display the toggle's state with a led
 
-### `on`<i class="md-icon">flash_on</i>
+### `on`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent on `on` position
     - set to `null` to send send no argument in the osc message
     - can be an `object` if the type needs to be specified (see [preArgs](./widgets.md#preargs))
 
-### `off`<i class="md-icon">flash_on</i>
+### `off`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string|number|object`
 - default: `0`
 - usage: defines which value is sent on `off` position
@@ -47,14 +47,14 @@ Buttons are exactly what you think they are.
 }
 ```
 
-### `on`<i class="md-icon">flash_on</i>
+### `on`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string|number|object`
 - default: `1`
 - usage: defines which value is sent when pushing the button
     - set to `null` to send send no argument in the osc message
     - can be an `object` if the type needs to be specified (see [preArgs](./widgets.md#preargs))
 
-### `off`<i class="md-icon">flash_on</i>
+### `off`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string|number|object`
 - default: `0`
 - usage: defines which value is sent when releasing the button

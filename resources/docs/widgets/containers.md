@@ -36,7 +36,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - usage: each element of the `array` must be a tab `object`. A panel cannot contain widgets and tabs simultaneously.
 
 
-### `variables`<i class="md-icon">flash_on</i>
+### `variables`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `*`
 - default: `@{parent.variables}`
 - usage: defines one or more arbitrary variables that can be inherited by children widgets.
@@ -59,7 +59,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
 - note: this only applies when the panel contains widgets, not tabs
 
-### `noSync`<i class="md-icon">flash_on</i>
+### `noSync`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to prevent tab changes from synchronizing between clients that share the same session file
