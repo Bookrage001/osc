@@ -70,4 +70,20 @@ module.exports = class Tab extends Panel {
         resize.check(this.widget)
     }
 
+    onPropChanged(propName, options) {
+
+        var ret = super.onPropChanged(...arguments)
+
+        switch (propName) {
+
+            case 'color':
+                if (this.parent.createNavigation) this.parent.createNavigation()
+                return
+
+        }
+
+        return ret
+
+    }
+
 }
