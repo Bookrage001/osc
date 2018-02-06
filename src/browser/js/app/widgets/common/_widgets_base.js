@@ -78,7 +78,16 @@ module.exports = class _widgets_base extends EventEmitter {
                 if (widget == this) id = 'this'
                 if (widget == this.parent) id = 'parent'
                 if (this.linkedProps[id]) {
-                    this.updateProps(this.linkedProps[id])
+                    this.updateProps(this.linkedProps[id], widget)
+                }
+            })
+
+            widgetManager.on(`prop-changed.${this.hash}`, (e)=>{
+                let {id, widget, prop, options} = e
+                if (widget == this) id = 'this'
+                if (widget == this.parent) id = 'parent'
+                if (this.linkedProps[id]) {
+                    this.updateProps(this.linkedProps[id], widget, options)
                 }
             })
 
@@ -91,28 +100,11 @@ module.exports = class _widgets_base extends EventEmitter {
                 if (widget == this) id = 'this'
                 if (widget == this.parent) id = 'parent'
                 if (this.linkedPropsValue[id]) {
-                    this.updateProps(this.linkedPropsValue[id], options)
+                    this.updateProps(this.linkedPropsValue[id], widget, options, true)
                 }
             })
 
         }
-
-        if (Object.keys(this.linkedProps).length || Object.keys(this.linkedPropsValue).length) {
-
-            widgetManager.on(`prop-changed.${this.hash}`, (e)=>{
-                var {id, widget, prop, options} = e
-                if (widget == this) id = 'this'
-                if (widget == this.parent) id = 'parent'
-                if (
-                    (this.linkedProps[id] && this.linkedProps[id].indexOf(prop) != -1) ||
-                    (this.linkedPropsValue[id] && this.linkedPropsValue[id].indexOf(prop) != -1)
-                ) {
-                    this.updateProps([prop], options)
-                }
-            })
-
-        }
-
 
         // cache precision
         if (this.props.precision != undefined) {
@@ -133,7 +125,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
     created() {
 
-        this.trigger(/widget-created(\..*)?/, [{
+        this.trigger(/^widget-created(\..*)?/, [{
             id: this.getProp('id'),
             widget: this
         }])
@@ -142,7 +134,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
     changed(options) {
 
-        this.trigger(/change(\..*)?/, [{
+        this.trigger(/^change(\..*)?/, [{
             widget: this,
             options: options,
             id: this.getProp('id'),
@@ -246,21 +238,17 @@ module.exports = class _widgets_base extends EventEmitter {
                     }
                 }
 
-                var circularLoop = id == 'this' && this.dynamicProps.indexOf(propName) == -1 ||
-                                   id == 'parent' && this.parent != widgetManager && this.parent.dynamicProps.indexOf(propName) == -1
-
-                if (storeLinks && !circularLoop) {
+                if (storeLinks) {
 
                     if (k == '_value') {
 
                         if (!this.linkedPropsValue[id]) this.linkedPropsValue[id] = []
-                        this.linkedPropsValue[id].push(propName)
+                        if (this.linkedPropsValue[id].indexOf(propName) == -1) this.linkedPropsValue[id].push(propName)
 
                     } else {
 
-
                         if (!this.linkedProps[id]) this.linkedProps[id] = []
-                        this.linkedProps[id].push(propName)
+                        if (this.linkedProps[id].indexOf(propName) == -1) this.linkedProps[id].push(propName)
 
                     }
 
@@ -313,36 +301,54 @@ module.exports = class _widgets_base extends EventEmitter {
 
     }
 
-    getProp(propName){
+    getProp(propName) {
         return this.cachedProps[propName]
     }
 
-    updateProps(propNames, options){
+    updateProps(propNames, widget, options, _value) {
 
         if (propNames.indexOf('value') > 0) {
             propNames.splice(propNames.indexOf('value'), 1)
             propNames.unshift('value')
         }
 
+        var reCreate = false,
+            changedProps = []
+
         for (var propName of propNames) {
 
             let propValue = this.resolveProp(propName, undefined, false)
 
-            if (JSON.stringify(this.getProp(propName)) != JSON.stringify(propValue)) {
+            if (JSON.stringify(this.getProp(propName)) !== JSON.stringify(propValue)) {
 
                 this.cachedProps[propName] = propValue
 
                 if (this.onPropChanged(propName, options)) {
-                    return this.reCreateWidget()
+
+                    reCreate = true
+
+                } else {
+
+                    changedProps.push(propName)
+
                 }
 
-                widgetManager.trigger(/prop-changed(\..*)?/, [{
-                    id: this.getProp('id'),
-                    prop: propName,
-                    widget: this
-                }])
 
             }
+        }
+        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(_value && widget == this)) {
+
+            this.reCreateWidget()
+
+        } else if (changedProps.length) {
+
+            widgetManager.trigger(/^prop-changed(\..*)?/, [{
+                id: this.getProp('id'),
+                props: changedProps,
+                widget: this,
+                options: options
+            }])
+
         }
 
     }
@@ -352,7 +358,7 @@ module.exports = class _widgets_base extends EventEmitter {
         switch(propName) {
 
             case 'value':
-                this.setValue(this.getProp('value'), {sync:true, send: options && options.send})
+                this.setValue(this.getProp('value'), {sync: true, send: options && options.send})
                 return
 
             case 'color':
