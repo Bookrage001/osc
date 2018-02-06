@@ -121,6 +121,7 @@ var Parser = class Parser {
             var css = ';' + widgetInner.getProp('css'),
                 scopedCss = ''
 
+            css = css.replace('\n', ' ')
             // parse scoped css
             css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
                 m = m.replace(/^[;\}\s]*/,'')
