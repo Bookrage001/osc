@@ -1,7 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
     osc = require('../../osc')
 
-module.exports = class Push extends _widgets_base {
+class Push extends _widgets_base {
 
     static defaults() {
 
@@ -46,8 +46,6 @@ module.exports = class Push extends _widgets_base {
         this.state = 0
         this.active = 0
         this.lastChanged = 'state'
-
-        this.dynamicProps.push('on', 'off', 'norelease')
 
         this.on('draginit',()=>{
             if (this.active) return
@@ -136,3 +134,11 @@ module.exports = class Push extends _widgets_base {
     }
 
 }
+
+Push.dynamicProps = Push.prototype.dynamicProps.concat(
+    'on',
+    'off',
+    'norelease'
+)
+
+module.exports = Push

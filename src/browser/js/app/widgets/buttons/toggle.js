@@ -1,8 +1,7 @@
 var _widgets_base = require('../common/_widgets_base'),
     doubletab = require('../mixins/double_tap')
 
-
-module.exports = class Toggle extends _widgets_base {
+class Toggle extends _widgets_base {
 
     static defaults() {
 
@@ -48,8 +47,6 @@ module.exports = class Toggle extends _widgets_base {
 
         this.state = 0
         this.active = false
-        
-        this.dynamicProps.push('on', 'off')
 
         if (this.getProp('led')) this.container.classList.add('led')
 
@@ -100,3 +97,10 @@ module.exports = class Toggle extends _widgets_base {
     }
 
 }
+
+Toggle.dynamicProps = Toggle.prototype.dynamicProps.concat(
+    'on',
+    'off'
+)
+
+module.exports = Toggle

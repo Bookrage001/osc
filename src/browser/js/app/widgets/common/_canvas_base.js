@@ -59,7 +59,7 @@ class CanvasQueue {
 var canvasQueue = new CanvasQueue()
 
 
-module.exports = class _canvas_base extends _widgets_base {
+class _canvas_base extends _widgets_base {
 
     constructor(options) {
 
@@ -197,3 +197,10 @@ module.exports = class _canvas_base extends _widgets_base {
     }
 
 }
+
+_canvas_base.dynamicProps = _canvas_base.prototype.dynamicProps.concat(
+    'on',
+    'off'
+)
+
+module.exports = _canvas_base

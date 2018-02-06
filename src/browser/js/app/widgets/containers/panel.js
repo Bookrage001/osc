@@ -6,8 +6,7 @@ var _widgets_base = require('../common/_widgets_base'),
     parser = require('../../parser')
 
 
-
-module.exports = class Panel extends _widgets_base {
+class Panel extends _widgets_base {
 
     static defaults() {
 
@@ -62,7 +61,6 @@ module.exports = class Panel extends _widgets_base {
         if (this.getProp('scroll') === false) this.widget.classList.add('noscroll')
         if (this.getProp('border') === false) this.container.classList.add('noborder')
         if (this.getProp('tabs') && this.getProp('tabs').length) this.widget.classList.add('has-tabs')
-
 
         this.value = -1
         this.tabs = []
@@ -208,3 +206,9 @@ module.exports = class Panel extends _widgets_base {
     }
 
 }
+
+Panel.dynamicProps = Panel.prototype.dynamicProps.concat(
+    'variables'
+)
+
+module.exports = Panel

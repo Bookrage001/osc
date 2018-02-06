@@ -12,7 +12,7 @@ DOM.ready(()=>{
     fallbackContainer = DOM.create('<div></div>')
 })
 
-module.exports = class _widgets_base extends EventEmitter {
+class _widgets_base extends EventEmitter {
 
     static defaults() {
 
@@ -27,7 +27,6 @@ module.exports = class _widgets_base extends EventEmitter {
         this.container = options.container || fallbackContainer
         this.widget = DOM.create(options.html)
         this.props = options.props
-        this.dynamicProps = ['value', 'color', 'precision', 'address', 'preArgs', 'target', 'noSync']
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = shortid.generate()
@@ -377,7 +376,7 @@ module.exports = class _widgets_base extends EventEmitter {
 
         }
 
-        return this.dynamicProps.indexOf(propName) == -1
+        return this.constructor.dynamicProps.indexOf(propName) == -1
 
 
     }
@@ -395,3 +394,15 @@ module.exports = class _widgets_base extends EventEmitter {
     }
 
 }
+
+_widgets_base.dynamicProps = [
+    'value',
+    'color',
+    'precision',
+    'address',
+    'preArgs',
+    'target',
+    'noSync'
+]
+
+module.exports = _widgets_base
