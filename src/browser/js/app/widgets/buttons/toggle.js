@@ -98,7 +98,7 @@ class Toggle extends Widget {
 
 }
 
-Toggle.dynamicProps = Toggle.prototype.dynamicProps.concat(
+Toggle.dynamicProps = Toggle.prototype.constructor.dynamicProps.concat(
     'on',
     'off'
 )

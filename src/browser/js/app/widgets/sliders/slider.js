@@ -229,7 +229,7 @@ class Slider extends Canvas {
 
 }
 
-Slider.dynamicProps = Slider.prototype.dynamicProps.concat(
+Slider.dynamicProps = Slider.prototype.constructor.dynamicProps.concat(
     'on',
     'off'
 )

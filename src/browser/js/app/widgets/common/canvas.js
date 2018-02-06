@@ -198,7 +198,7 @@ class Canvas extends Widget {
 
 }
 
-Canvas.dynamicProps = Canvas.prototype.dynamicProps.concat(
+Canvas.dynamicProps = Canvas.prototype.constructor.dynamicProps.concat(
     'on',
     'off'
 )

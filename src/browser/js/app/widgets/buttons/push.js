@@ -135,7 +135,7 @@ class Push extends Widget {
 
 }
 
-Push.dynamicProps = Push.prototype.dynamicProps.concat(
+Push.dynamicProps = Push.prototype.constructor.dynamicProps.concat(
     'on',
     'off',
     'norelease'

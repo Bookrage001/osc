@@ -207,7 +207,7 @@ class Panel extends Widget {
 
 }
 
-Panel.dynamicProps = Panel.prototype.dynamicProps.concat(
+Panel.dynamicProps = Panel.prototype.constructor.dynamicProps.concat(
     'variables'
 )
 
