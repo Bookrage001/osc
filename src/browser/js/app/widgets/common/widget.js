@@ -12,7 +12,7 @@ DOM.ready(()=>{
     fallbackContainer = DOM.create('<div></div>')
 })
 
-class _widgets_base extends EventEmitter {
+class Widget extends EventEmitter {
 
     static defaults() {
 
@@ -163,7 +163,7 @@ class _widgets_base extends EventEmitter {
 
     getValue(withPrecision) {
 
-        return _widgets_base.deepCopy(this.value, withPrecision ? this.precision : undefined)
+        return Widget.deepCopy(this.value, withPrecision ? this.precision : undefined)
 
     }
 
@@ -179,7 +179,7 @@ class _widgets_base extends EventEmitter {
         if (typeof obj === 'object') {
             copy = Array.isArray(obj) ? [] : {}
             for (let key in obj) {
-                copy[key] = _widgets_base.deepCopy(obj[key], precision)
+                copy[key] = Widget.deepCopy(obj[key], precision)
             }
         } else if (typeof obj == 'number') {
             return precision === undefined ? copy : parseFloat(copy.toFixed(precision))
@@ -191,7 +191,7 @@ class _widgets_base extends EventEmitter {
 
     resolveProp(propName, propValue, storeLinks=true, originalWidget, originalPropName) {
 
-        var propValue = propValue !== undefined ? propValue : _widgets_base.deepCopy(this.props[propName]),
+        var propValue = propValue !== undefined ? propValue : Widget.deepCopy(this.props[propName]),
             originalWidget = originalWidget || this,
             originalPropName = originalPropName || propName,
             obj
@@ -395,7 +395,7 @@ class _widgets_base extends EventEmitter {
 
 }
 
-_widgets_base.dynamicProps = [
+Widget.dynamicProps = [
     'value',
     'color',
     'precision',
@@ -405,4 +405,4 @@ _widgets_base.dynamicProps = [
     'noSync'
 ]
 
-module.exports = _widgets_base
+module.exports = Widget

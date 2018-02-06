@@ -1,10 +1,10 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
     Input = require('../inputs/input')
 
 
-module.exports = class Formula extends _widgets_base {
+module.exports = class Formula extends Widget {
 
     static defaults() {
 

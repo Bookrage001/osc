@@ -1,6 +1,6 @@
 var {clip, mapToScale} = require('../utils'),
     Knob = require('./knob'),
-    _widgets_base = require('../common/_widgets_base'),
+    Widget = require('../common/widget'),
     doubletab = require('../mixins/double_tap')
 
 
@@ -26,7 +26,7 @@ var DisplayKnob = class extends Knob {
 
 }
 
-module.exports = class Encoder extends _widgets_base {
+module.exports = class Encoder extends Widget {
 
     static defaults() {
 

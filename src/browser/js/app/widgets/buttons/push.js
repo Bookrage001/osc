@@ -1,7 +1,7 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     osc = require('../../osc')
 
-class Push extends _widgets_base {
+class Push extends Widget {
 
     static defaults() {
 

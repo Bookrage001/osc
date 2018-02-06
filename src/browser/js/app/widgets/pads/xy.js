@@ -1,4 +1,4 @@
-var _pads_base = require('./_pads_base'),
+var Pad = require('./pad'),
     Fader = require('./_fake_fader'),
     {clip} = require('../utils'),
     doubletab = require('../mixins/double_tap'),
@@ -7,7 +7,7 @@ var _pads_base = require('./_pads_base'),
 
 var faderDefaults = Fader.defaults()
 
-module.exports = class Xy extends _pads_base {
+module.exports = class Xy extends Pad {
 
     static defaults() {
 

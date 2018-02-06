@@ -1,4 +1,4 @@
-var _widgets_base = require('./_widgets_base')
+var Widget = require('./widget')
 
 class CanvasQueue {
 
@@ -59,7 +59,7 @@ class CanvasQueue {
 var canvasQueue = new CanvasQueue()
 
 
-class _canvas_base extends _widgets_base {
+class Canvas extends Widget {
 
     constructor(options) {
 
@@ -198,9 +198,9 @@ class _canvas_base extends _widgets_base {
 
 }
 
-_canvas_base.dynamicProps = _canvas_base.prototype.dynamicProps.concat(
+Canvas.dynamicProps = Canvas.prototype.dynamicProps.concat(
     'on',
     'off'
 )
 
-module.exports = _canvas_base
+module.exports = Canvas

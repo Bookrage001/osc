@@ -1,7 +1,7 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     doubletab = require('../mixins/double_tap')
 
-class Toggle extends _widgets_base {
+class Toggle extends Widget {
 
     static defaults() {
 

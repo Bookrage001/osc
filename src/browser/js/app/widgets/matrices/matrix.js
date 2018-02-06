@@ -1,8 +1,8 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     {enableTraversingGestures} = require('../../events/drag')
 
 
-module.exports = class _matrices_base extends _widgets_base {
+module.exports = class Matrix extends Widget {
 
     constructor(options) {
 

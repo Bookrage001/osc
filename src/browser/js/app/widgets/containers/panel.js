@@ -1,4 +1,4 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     autolayout = require('autolayout/dist/autolayout.kiwi.js'),
     {iconify} = require('../../ui/utils'),
     editObject = function(){editObject = require('../../editor/edit-objects').editObject; editObject(...arguments)},
@@ -6,7 +6,7 @@ var _widgets_base = require('../common/_widgets_base'),
     parser = require('../../parser')
 
 
-class Panel extends _widgets_base {
+class Panel extends Widget {
 
     static defaults() {
 

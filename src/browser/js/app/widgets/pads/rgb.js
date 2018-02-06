@@ -1,4 +1,4 @@
-var _pads_base = require('./_pads_base'),
+var Pad = require('./pad'),
     Xy = require('./xy'),
     Fader = require('./_fake_fader'),
     {clip, hsbToRgb, rgbToHsb} = require('../utils'),
@@ -7,7 +7,7 @@ var _pads_base = require('./_pads_base'),
 var faderDefaults = Fader.defaults(),
     xyDefaults = Xy.defaults()
 
-module.exports = class Rgb extends _pads_base {
+module.exports = class Rgb extends Pad {
 
     static defaults() {
 

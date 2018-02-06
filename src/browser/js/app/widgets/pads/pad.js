@@ -1,6 +1,6 @@
-var _canvas_base = require('../common/_canvas_base')
+var Canvas = require('../common/canvas')
 
-module.exports = class _pads_base extends _canvas_base {
+module.exports = class Pad extends Canvas {
 
     constructor(options) {
 

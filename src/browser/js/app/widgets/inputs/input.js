@@ -1,9 +1,9 @@
 var {iconify} = require('../../ui/utils'),
-    _widgets_base = require('../common/_widgets_base'),
-    _canvas_base = require('../common/_canvas_base'),
+    Widget = require('../common/widget'),
+    Canvas = require('../common/canvas'),
     widgetManager = require('../../managers/widgets')
 
-module.exports = class Input extends _canvas_base {
+module.exports = class Input extends Canvas {
 
     static defaults() {
 
@@ -197,7 +197,7 @@ module.exports = class Input extends _canvas_base {
     getStringValue() {
         if (this.value === undefined) return ''
         return typeof this.value != 'string' ?
-            JSON.stringify(_widgets_base.deepCopy(this.value, this.precision)).replace(/,/g, ', ') :
+            JSON.stringify(Widget.deepCopy(this.value, this.precision)).replace(/,/g, ', ') :
             this.value
     }
 

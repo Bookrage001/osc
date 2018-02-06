@@ -1,9 +1,9 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     resize = require('../../events/resize'),
     parser = require('../../parser')
 
-module.exports = class Clone extends _widgets_base {
+module.exports = class Clone extends Widget {
 
     static defaults() {
 
@@ -84,7 +84,7 @@ module.exports = class Clone extends _widgets_base {
                     this.cloneClass = widgets[i].container.getAttribute('class').match(/[^\s]*-container/)[0]
                     this.container.classList.add(this.cloneClass)
 
-                    parser.parse([{..._widgets_base.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
+                    parser.parse([{...Widget.deepCopy(widgets[i].props), ...this.getProp('props')}], this.widget, this)
 
                     DOM.each(this.widget, '.widget', (el)=>{el.classList.add('not-editable')})
 

@@ -1,9 +1,9 @@
 var {clip, mapToScale} = require('../utils'),
-    _sliders_base = require('./_sliders_base'),
+    Slider = require('./slider'),
     parser = require('../../parser')
 
 
-module.exports = class Fader extends _sliders_base {
+module.exports = class Fader extends Slider {
 
     static defaults() {
 

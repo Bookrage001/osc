@@ -1,7 +1,7 @@
-var _matrices_base = require('./_matrices_base'),
+var Matrix = require('./matrix'),
     parser = require('../../parser')
 
-module.exports = class Multitoggle extends _matrices_base {
+module.exports = class Multitoggle extends Matrix {
 
     static defaults() {
 

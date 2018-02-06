@@ -1,10 +1,10 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
     {iconify} = require('../../ui/utils'),
     keyboardJS = require('keyboardjs')
 
-module.exports = class Keys extends _widgets_base {
+module.exports = class Keys extends Widget {
 
     static defaults() {
 

@@ -1,7 +1,7 @@
-var _widgets_base = require('../common/_widgets_base'),
+var Widget = require('../common/widget'),
     {iconify} = require('../../ui/utils')
 
-module.exports = class Dropdown extends _widgets_base {
+module.exports = class Dropdown extends Widget {
 
     static defaults() {
 

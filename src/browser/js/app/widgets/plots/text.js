@@ -1,8 +1,8 @@
 var {iconify} = require('../../ui/utils'),
-    _widgets_base = require('../common/_widgets_base'),
+    Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets')
 
-module.exports = class Text extends _widgets_base {
+module.exports = class Text extends Widget {
 
     static defaults() {
 

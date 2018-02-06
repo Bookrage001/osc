@@ -1,5 +1,5 @@
 var {clip} = require('../utils'),
-    _widgets_base = require('../common/_widgets_base'),
+    Widget = require('../common/widget'),
     Fader = require('./fader'),
     Input = require('../inputs/input'),
     touchstate = require('../mixins/touch_state')
@@ -171,7 +171,7 @@ var RangeFader = class RangeFader extends Fader {
 }
 
 
-module.exports = class Range extends _widgets_base {
+module.exports = class Range extends Widget {
 
     static defaults() {
 

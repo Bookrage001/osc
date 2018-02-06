@@ -1,4 +1,4 @@
-var _pads_base = require('./_pads_base'),
+var Pad = require('./pad'),
     Xy = require('./xy'),
     {clip} = require('../utils'),
     touchstate = require('../mixins/touch_state')
@@ -7,7 +7,7 @@ var _pads_base = require('./_pads_base'),
 var xyDefaults = Xy.defaults()
 
 
-module.exports = class MultiXy extends _pads_base {
+module.exports = class MultiXy extends Pad {
 
     static defaults() {
 

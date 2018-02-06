@@ -1,7 +1,7 @@
 var {clip, mapToScale} = require('../utils'),
-    _sliders_base = require('./_sliders_base')
+    Slider = require('./slider')
 
-module.exports = class Knob extends _sliders_base {
+module.exports = class Knob extends Slider {
 
     static defaults() {
 

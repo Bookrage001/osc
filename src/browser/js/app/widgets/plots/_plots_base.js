@@ -1,9 +1,9 @@
 var {mapToScale} = require('../utils'),
-    _widgets_base = require('../common/_widgets_base'),
-    _canvas_base = require('../common/_canvas_base'),
+    Widget = require('../common/widget'),
+    Canvas = require('../common/canvas'),
     widgetManager = require('../../managers/widgets')
 
-module.exports = class _plots_base extends _canvas_base {
+module.exports = class _plots_base extends Canvas {
 
     constructor(options) {
 
@@ -200,7 +200,7 @@ module.exports = class _plots_base extends _canvas_base {
 
     getValue() {
 
-        return _widgets_base.deepCopy(this.data)
+        return Widget.deepCopy(this.data)
 
     }
 

@@ -1,11 +1,11 @@
 var {clip, mapToScale} = require('../utils'),
-    _canvas_base = require('../common/_canvas_base'),
+    Canvas = require('../common/canvas'),
     touchstate = require('../mixins/touch_state'),
     doubletab = require('../mixins/double_tap'),
     Input = require('../inputs/input')
 
 
-class _sliders_base extends _canvas_base {
+class Slider extends Canvas {
 
     constructor(options) {
 
@@ -229,9 +229,9 @@ class _sliders_base extends _canvas_base {
 
 }
 
-_sliders_base.dynamicProps = _sliders_base.prototype.dynamicProps.concat(
+Slider.dynamicProps = Slider.prototype.dynamicProps.concat(
     'on',
     'off'
 )
 
-module.exports = _sliders_base
+module.exports = Slider
