@@ -257,7 +257,8 @@ class Widget extends EventEmitter {
                     if (widgets[i].props.hasOwnProperty(k) || k == '_value') {
 
                         if (originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
-                            throw new Error(`Circular property reference for ${originalWidget.props.id}.${originalPropName}`)
+                            // throw new Error(`Circular property reference for ${originalWidget.props.id}.${originalPropName}`)
+                            return 'undefined'
                         }
 
                         var r = k == '_value' ?
