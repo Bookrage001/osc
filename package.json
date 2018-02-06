@@ -1,6 +1,6 @@
 {
   "name": "open-stage-control-builder",
-  "description": "[Builder package] A libre desktop OSC bi-directionnal control surface application",
+  "description": "[Builder package] Libre and modular OSC / MIDI controller",
   "version": "0.23.1",
   "author": {
     "name": "Jean-Emmanuel Doucet / AMMD",
