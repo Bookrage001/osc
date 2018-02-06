@@ -10,7 +10,7 @@ The root panel can be selected by clicking on the "Root" button in the sidepanel
 
 Right clicking / long touch on a widget or on a tab will also display a context menu providing useful utilities :
 
-- `Edit parent`: selects the widget's parent for edition
+- `Edit parent`: select widget's parent for edition
 - `Copy`: copy widget's data
 - `Cut`: copy widget's data and delete selected widget
 - `Paste`: paste copied widget in selected container
@@ -22,7 +22,7 @@ Right clicking / long touch on a widget or on a tab will also display a context 
 
 ## Save
 
-Current session can be exported as a `.js` file. When overwriting a session file that's currently is use by other clients, they will reload it automatically.
+Current session can be exported as a `.json` file. When overwriting a session file that's currently is use by other clients, they will reload it automatically.
 
 ## Load
 
