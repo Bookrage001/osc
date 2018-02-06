@@ -80,14 +80,14 @@ module.exports = class Push extends _widgets_base {
             this.active = 1
             this.lastChanged = 'active'
             this.updateValue()
-            if (options.send) this.sendValue(v)
+            if (options.send) this.sendValue()
             if (options.sync) this.changed(options)
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.widget.classList.remove('active')
             this.active = 0
             this.lastChanged = 'active'
             this.updateValue()
-            if (options.send) this.sendValue(v, this.getProp('norelease'))
+            if (options.send) this.sendValue(null, this.getProp('norelease'))
             if (options.sync) this.changed(options)
         }
 
@@ -104,28 +104,25 @@ module.exports = class Push extends _widgets_base {
             this.widget.classList.add('on')
             this.container.classList.add('on')
             this.state = 1
-            if (options.send) this.sendValue(v)
+            if (options.send) this.sendValue()
             this.lastChanged = 'state'
             if (options.sync) this.changed(options)
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.widget.classList.remove('on')
             this.container.classList.remove('on')
             this.state = 0
-            if (options.send) this.sendValue(v)
+            if (options.send) this.sendValue()
             this.lastChanged = 'state'
             if (options.sync) this.changed(options)
         }
 
     }
 
-    sendValue(v, norelease) {
+    sendValue(overrides, norelease) {
 
         if (!norelease) {
 
-            osc.send({
-                h: this.hash,
-                v: this.value
-            })
+            super.sendValue(overrides)
 
         } else {
 
