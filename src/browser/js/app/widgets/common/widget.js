@@ -280,7 +280,10 @@ class Widget extends EventEmitter {
                 propValue = propValue.replace(/#\{([^\}]+)\}/g, (m)=>{
                     let expression = m.substr(2, m.length - 3).trim(),
                         r = math.eval(expression)
-
+                    if (r.valueOf) {
+                        r = r.valueOf()
+                        if (Array.isArray(r) && r.length == 1) r = r[0]
+                    }
                     return typeof r != 'string' ? JSON.stringify(r) : r
                 })
             } catch (err) {}
