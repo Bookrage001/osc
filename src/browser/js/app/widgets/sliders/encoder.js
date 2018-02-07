@@ -259,6 +259,23 @@ module.exports = class Encoder extends Widget {
 
     }
 
+
+    onPropChanged(propName, options) {
+
+        if (super.onPropChanged(propName, options)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of [this.knob, this.display]) {
+                    w.onPropChanged('color')
+                }
+                return
+
+        }
+
+    }
+
     onRemove() {
         this.knob.onRemove()
         this.display.onRemove()

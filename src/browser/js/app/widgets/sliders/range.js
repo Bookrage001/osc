@@ -440,6 +440,23 @@ module.exports = class Range extends Widget {
 
     }
 
+
+    onPropChanged(propName, options) {
+
+        if (super.onPropChanged(propName, options)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of this.faders) {
+                    w.onPropChanged('color')
+                }
+                return
+
+        }
+
+    }
+
     onRemove() {
         this.faders[0].onRemove()
         this.faders[1].onRemove()

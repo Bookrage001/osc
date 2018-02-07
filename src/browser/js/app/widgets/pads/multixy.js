@@ -250,6 +250,22 @@ module.exports = class MultiXy extends Pad {
 
     }
 
+    onPropChanged(propName, options) {
+
+        if (super.onPropChanged(propName, options)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of this.pads) {
+                    w.onPropChanged('color')
+                }
+                return
+
+        }
+
+    }
+
     onRemove() {
         for (var i in this.pads) {
             this.pads[i].onRemove()

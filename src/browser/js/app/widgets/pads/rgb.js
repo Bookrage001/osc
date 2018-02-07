@@ -190,6 +190,23 @@ module.exports = class Rgb extends Pad {
 
     }
 
+    onPropChanged(propName, options) {
+
+        if (super.onPropChanged(propName, options)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of [this.hue, this.pad]) {
+                    w.onPropChanged('color')
+                }
+                if (this.input) this.input.onPropChanged('color')
+                return
+
+        }
+
+    }
+
     onRemove() {
         this.hue.onRemove()
         this.pad.onRemove()

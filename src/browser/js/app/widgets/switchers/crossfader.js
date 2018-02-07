@@ -121,6 +121,22 @@ module.exports = class Crossfader extends Switcher {
 
     }
 
+    onPropChanged(propName, options) {
+
+        if (super.onPropChanged(propName, options)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of [this.fader]) {
+                    w.onPropChanged('color')
+                }
+                return
+
+        }
+
+    }
+
     onRemove() {
         this.fader.onRemove()
         super.onRemove()

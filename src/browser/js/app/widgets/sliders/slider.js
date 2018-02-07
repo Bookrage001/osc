@@ -223,6 +223,21 @@ class Slider extends Canvas {
 
     }
 
+
+    onPropChanged(propName, options) {
+
+        if (super.onPropChanged(propName, options)) return true
+
+        switch (propName) {
+
+            case 'color':
+                if (this.input) this.input.onPropChanged('color')
+                return
+
+        }
+
+    }
+
     onRemove() {
         if (this.input) this.input.onRemove()
         super.onRemove()

@@ -266,6 +266,24 @@ module.exports = class Xy extends Pad {
 
     }
 
+
+    onPropChanged(propName, options) {
+
+        if (super.onPropChanged(propName, options)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of [this.faders.x, this.faders.y]) {
+                    w.onPropChanged('color')
+                }
+                if (this.input) this.input.onPropChanged('color')
+                return
+
+        }
+
+    }
+
     onRemove() {
         this.faders.x.onRemove()
         this.faders.y.onRemove()

@@ -357,6 +357,9 @@ class Widget extends EventEmitter {
 
     onPropChanged(propName, options) {
 
+        if (!this.constructor.dynamicProps.includes(propName)) return true
+
+
         switch(propName) {
 
             case 'value':
@@ -379,9 +382,6 @@ class Widget extends EventEmitter {
                 return
 
         }
-
-        return this.constructor.dynamicProps.indexOf(propName) == -1
-
 
     }
 

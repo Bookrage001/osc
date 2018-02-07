@@ -1,8 +1,9 @@
 var Widget = require('../common/widget'),
+    widgetManager = require('../../managers/widgets'),
     {enableTraversingGestures} = require('../../events/drag')
 
 
-module.exports = class Matrix extends Widget {
+class Matrix extends Widget {
 
     constructor(options) {
 
@@ -26,3 +27,9 @@ module.exports = class Matrix extends Widget {
     }
 
 }
+
+Matrix.dynamicProps = Matrix.prototype.constructor.dynamicProps.filter(
+    item => !['address', 'preArgs', 'color'].includes(item)
+)
+
+module.exports = Matrix
