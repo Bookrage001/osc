@@ -6,7 +6,7 @@
   - regression preventing dropdown to display no option selected
   - crossfaders display issue on iOS
   - restored compatibility options for server-client communications  
-  - prevent client to load multiple sessions simultaneously
+  - prevent a client to load multiple sessions simultaneously
   - xy: `doubleTap` option
   - range: `spring` option
 - main
