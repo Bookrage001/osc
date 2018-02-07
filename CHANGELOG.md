@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.24.0
+## 0.24.0
 
 - bug fixes
   - regression preventing dropdown to display no option selected
@@ -18,7 +18,7 @@
   - property maths: added support for math expressions everywhere via `#{}`
   - input: add glass effect when `editable` is `false`
 
-## 0.23.1
+## 0.23.1
 
 - bug fixes
   - regression breaking modal's position in scrolled tab containers
