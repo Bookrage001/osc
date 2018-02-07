@@ -364,7 +364,7 @@ class Widget extends EventEmitter {
                 return
 
             case 'color':
-                this.container.style.setProperty('--color-custom', this.getProp('color') != 'auto' ? this.getProp('color') : 'initial')
+                this.container.style.setProperty('--color-custom', this.getProp('color') != 'auto' ? this.getProp('color') : '')
                 return
 
             case 'precision':

@@ -202,26 +202,24 @@ class Panel extends Widget {
 
     onPropChanged(propName, options) {
 
-        var ret = super.onPropChanged(...arguments)
+        var ret = super.onPropChanged(propName, options)
 
         switch (propName) {
 
             case 'color':
-                DOM.each(this.widget, 'canvas', (canvas)=>{
-                    var w = widgetManager.getWidgetByElement(canvas)
-                    if (w.cacheCanvasStyle) {
-                        w.cacheCanvasStyle()
-                        w.batchDraw()
+                for (var h of this.childrenHashes) {
+                    if (widgetManager.widgets[h]) {
+                        widgetManager.widgets[h].onPropChanged('color')
                     }
-                })
+                }
                 return
 
         }
 
         return ret
 
-
     }
+
 
     onRemove() {
         this.off('resize')
