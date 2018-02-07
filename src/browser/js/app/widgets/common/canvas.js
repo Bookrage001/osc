@@ -173,7 +173,7 @@ class Canvas extends Widget {
         throw new Error('Calling unimplemented draw() method')
     }
 
-    onPropChanged(propName, options) {
+    onPropChanged(propName, options, oldPropValue) {
 
         var ret = super.onPropChanged(...arguments)
 

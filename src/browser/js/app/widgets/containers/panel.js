@@ -200,9 +200,9 @@ class Panel extends Widget {
 
     }
 
-    onPropChanged(propName, options) {
+    onPropChanged(propName, options, oldPropValue) {
 
-        var ret = super.onPropChanged(propName, options)
+        if (super.onPropChanged(...arguments)) return true
 
         switch (propName) {
 
@@ -215,8 +215,6 @@ class Panel extends Widget {
                 return
 
         }
-
-        return ret
 
     }
 

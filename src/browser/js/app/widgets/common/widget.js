@@ -319,13 +319,14 @@ class Widget extends EventEmitter {
 
         for (var propName of propNames) {
 
-            let propValue = this.resolveProp(propName, undefined, false)
+            let propValue = this.resolveProp(propName, undefined, false),
+                oldPropValue = this.getProp(propName)
 
-            if (JSON.stringify(this.getProp(propName)) !== JSON.stringify(propValue)) {
+            if (JSON.stringify(oldPropValue) !== JSON.stringify(propValue)) {
 
                 this.cachedProps[propName] = propValue
 
-                if (this.onPropChanged(propName, options)) {
+                if (this.onPropChanged(propName, options, oldPropValue)) {
 
                     reCreate = true
 
@@ -355,7 +356,7 @@ class Widget extends EventEmitter {
 
     }
 
-    onPropChanged(propName, options) {
+    onPropChanged(propName, options, oldPropValue) {
 
         if (!this.constructor.dynamicProps.includes(propName)) return true
 
@@ -376,9 +377,13 @@ class Widget extends EventEmitter {
             case 'target':
             case 'noSync':
                 if (propName == 'precision') this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
-                var data = {}
+                var data = {},
+                    oldData = {
+                        preArgs: propName == 'preArgs' ? oldPropValue : this.getProp('preArgs'),
+                        address: propName == 'address' ? oldPropValue : this.getProp('address')
+                    }
                 data[propName] = this.getProp(propName)
-                widgetManager.registerWidget(this, data)
+                widgetManager.registerWidget(this, data, oldData)
                 return
 
         }

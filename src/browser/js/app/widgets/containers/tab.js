@@ -70,9 +70,9 @@ module.exports = class Tab extends Panel {
         resize.check(this.widget)
     }
 
-    onPropChanged(propName, options) {
+    onPropChanged(propName, options, oldPropValue) {
 
-        var ret = super.onPropChanged(...arguments)
+        if (super.onPropChanged(...arguments)) return true
 
         switch (propName) {
 
@@ -81,8 +81,6 @@ module.exports = class Tab extends Panel {
                 return
 
         }
-
-        return ret
 
     }
 

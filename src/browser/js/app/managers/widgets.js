@@ -99,7 +99,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     }
 
-    registerWidget(widget, updatedData) {
+    registerWidget(widget, updatedData, oldData) {
 
         ipc.send('addWidget', {
             hash: widget.hash,
@@ -113,14 +113,15 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             }
         })
 
-        if (updatedData && updatedData.address) {
-            var address = updatedData.address,
+        if (updatedData && oldData) {
+            var address = this.createAddressRef(null, oldData.preArgs, oldData.address),
+                newAddress = this.createAddressRef(widget),
                 hash = widget.hash
 
             if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash), 1)
 
-            if (!this.addressRoute[address]) this.addressRoute[address] = []
-            this.addressRoute[address].push(hash)
+            if (!this.addressRoute[newAddress]) this.addressRoute[newAddress] = []
+            this.addressRoute[newAddress].push(hash)
         }
 
     }

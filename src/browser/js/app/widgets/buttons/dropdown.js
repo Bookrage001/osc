@@ -96,7 +96,7 @@ class Dropdown extends Widget {
 
     }
 
-    onPropChanged(propName, options) {
+    onPropChanged(propName, options, oldPropValue) {
 
         var ret = super.onPropChanged(...arguments)
 

@@ -121,9 +121,9 @@ module.exports = class Crossfader extends Switcher {
 
     }
 
-    onPropChanged(propName, options) {
+    onPropChanged(propName, options, oldPropValue) {
 
-        if (super.onPropChanged(propName, options)) return true
+        if (super.onPropChanged(...arguments)) return true
 
         switch (propName) {
 
