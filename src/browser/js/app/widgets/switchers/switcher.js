@@ -79,6 +79,22 @@ module.exports = class Switcher extends _switchers_base {
 
     }
 
+    onPropChanged(propName, options, oldPropValue) {
+
+        if (super.onPropChanged(...arguments)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of [this.switch]) {
+                    w.onPropChanged('color')
+                }
+                return
+
+        }
+
+    }
+
     onRemove() {
         this.switch.onRemove()
         super.onRemove()
