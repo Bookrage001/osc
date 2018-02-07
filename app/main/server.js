@@ -17,7 +17,7 @@ express.get('*', function(req, res){
     if (req.path.indexOf('theme.css') != -1) {
         res.set('Content-Type', 'text/css');
         if (settings.read('theme')) {
-            res.send(new Buffer(settings.read('theme')))
+            res.send(new Buffer(settings.read('theme').join('\n')))
         } else {
             res.send('')
         }

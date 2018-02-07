@@ -4,7 +4,8 @@ if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
     configPath = require('path').join(baseDir, '.open-stage-control'),
     fs = require('fs'),
-    ifaces = require('os').networkInterfaces()
+    ifaces = require('os').networkInterfaces(),
+    chokidar = require('chokidar')
 
 var options = {
     's':{alias:'send',type:'array',describe:'default targets for all widgets (ip:port pairs)',
@@ -104,19 +105,50 @@ var configFile = function(){try {return JSON.parse(fs.readFileSync(configPath,'u
     config = JSON.parse(JSON.stringify(configFile)),
     defaultConfig
 
-var loadTheme = function(t){
-    if (!t) return
+
+var loadTheme = function(themes){
+    if (!themes) return
     var style = []
-    for (i in t) {
-        try {style.push(fs.readFileSync(__dirname + '/themes/' + t[i] + '.css','utf-8'))}
-        catch(err) {
-            try {style.push(fs.readFileSync(t[i],'utf-8'))}
-            catch(err) {
-                console.log('Theme "' + t[i] + '" not found.')
+
+    for (let i in themes) {
+        let path = themes[i]
+        if (!fs.existsSync(path)) {
+            path = __dirname + '/themes/' + themes[i] + '.css'
+            if (!fs.existsSync(path)) {
+                path = false
             }
         }
+
+        if (path) {
+
+            let updateStyle = (i)=>{
+                try {
+                    style[i] = fs.readFileSync(path,'utf-8')
+                } catch(err) {
+                    throw err
+                }
+            }
+            let watchFile = ()=>{
+                var watcher = chokidar.watch(path)
+                watcher.on('change',()=>{
+                    updateStyle(i)
+                    require('./callbacks').reloadCss()
+                    watcher.close()
+                    watchFile()
+                })
+            }
+
+            watchFile()
+            updateStyle(i)
+
+
+        } else {
+            console.error('Theme "' + themes[i] + '" not found.')
+        }
+
     }
-    return style.join('\n')
+
+    return style
 }
 
 var makeDefaultConfig = function(argv){
@@ -177,9 +209,6 @@ module.exports = {
         fs.writeFile(configPath,JSON.stringify(configFile,null,4), function (err, data) {
             if (err) throw err
         })
-    },
-    reloadTheme:function(){
-        module.exports.write('theme',loadTheme(argv.t),true)
     },
     cli: cli
 }
