@@ -151,17 +151,6 @@
     width:100rem;
     height: 60rem;
     padding:1rem;
-    &.noselect .select:before {
-        content:"...";
-        position: absolute;
-        padding-left:10rem;
-        left:0;
-        top:50%;
-        margin-top:-12rem;
-        height: 20rem;
-        line-height: 20rem;
-        pointer-events: none;
-    }
     &.nolabel {
         --color-border:var(--color-bg);
         padding: 0;

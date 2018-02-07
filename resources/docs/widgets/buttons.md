@@ -100,14 +100,10 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
 }
 ```
 
-### `values`
+### `values`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `array|object`
 - default: `{"Value 1":1,"Value 2":2}`
 - usage:
     - `array` of possible values to switch between : `[1,2,3]`
     - `object` of `"label":value` pairs
-
-### `sendKey`
-- type: `boolean`
-- default: `false`
-- usage: set to `true` to make the dropdown send its selected value's key/index as value. Either way, the dropdown's value can be set using it's value or the associated key/index.
+    - an empty option will always be prepended to `values` (sends an osc message without any value)

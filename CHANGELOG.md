@@ -9,7 +9,7 @@
   - prevent client to load multiple sessions simultaneously
 - widgets
   - switch: wrap non-array `values` property in an array
-  - dropdown: wrap non-array `values` property in an array; allow setting value by its key/index; add `sendKey` option;
+  - dropdown: wrap non-array `values` property in an array; always add a default empty value 
   - property inheritance: added shorthand default to `_value` when no property is specified (`@{widgetId}`); some properties can now be dynamically changed without recreating the widget entirely
   - property maths: added support for math expressions everywhere via `#{}`
   - input: add glass effect when `editable` is `false`
