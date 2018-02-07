@@ -62,9 +62,8 @@ module.exports = class Multitoggle extends Matrix {
             data.type = 'toggle'
             data.id = this.getProp('id') + '/' + i
             data.label = i
-            data.address = this.getProp('split') ? this.getProp('address') + '/' + i : this.getProp('address')
-            data.preArgs = this.getProp('split') ? this.getProp('preArgs') : [].concat(this.getProp('preArgs'), i)
-            data.color = typeof this.getProp('color') == 'object' ? '' + this.getProp('color')[i % this.getProp('color').length] : this.getProp('color')
+            data.address = this.getProp('split') ? '@{parent.address}/' + i : '@{parent.address}'
+            data.preArgs = this.getProp('split') ? '@{parent.preArg}' : '#{concat(@{parent.preArg}),' + i + '}'
             data.css = ''
 
             var toggle = parser.parse([data], this.widget, this)

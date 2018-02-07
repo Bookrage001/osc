@@ -28,8 +28,4 @@ class Matrix extends Widget {
 
 }
 
-Matrix.dynamicProps = Matrix.prototype.constructor.dynamicProps.filter(
-    item => !['address', 'preArgs', 'color'].includes(item)
-)
-
 module.exports = Matrix
