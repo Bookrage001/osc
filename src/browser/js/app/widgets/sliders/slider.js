@@ -154,8 +154,9 @@ class Slider extends Canvas {
 
     dragendHandle(e, data, traversing) {
 
-        if (this.getProp('spring'))
+        if (this.getProp('spring')) {
             this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
+        }
 
     }
 
