@@ -23,10 +23,10 @@ class Ipc extends EventEmitter {
 
                 var client = new Client(socket, id)
                 this.clients[id] = client
+                
                 this.emit('connection', client)
 
                 client.on('close', ()=>{
-                    console.log('client died for real')
                     delete this.clients[id]
                 })
 
