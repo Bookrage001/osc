@@ -11,6 +11,7 @@
 - main
   - theme files changes are automatically applied
   - server-client communication system rewritten -> HUGE latency reduction and stability improvement especially under stress conditions
+  - engine update (electron@1.8.2)
 - widgets
   - switch: wrap non-array `values` property in an array
   - dropdown: wrap non-array `values` property in an array; always add a default empty value
