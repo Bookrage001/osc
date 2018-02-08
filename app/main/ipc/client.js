@@ -38,7 +38,7 @@ class Socket extends EventEmitter {
             this.receive(e.data)
         }
 
-        this.socket.onclose = this.socket.onerror ()=>{
+        this.socket.onclose = this.socket.onerror = ()=>{
             this.close()
         }
 
