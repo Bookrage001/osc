@@ -7,7 +7,7 @@ var callbacks = {
         if (READ_ONLY) return
 
         var [id, json] = args,
-            newdata = JSON.parseFlex(json),
+            newdata = typeof json == 'string' ? JSON.parseFlex(json) : json,
             widgets = widgetManager.getWidgetById(id)
 
         if (!widgets.length) return
@@ -29,7 +29,7 @@ var callbacks = {
         if (READ_ONLY) return
 
         var [id, json] = args,
-            newdata = JSON.parseFlex(json),
+            newdata = typeof json == 'string' ? JSON.parseFlex(json) : json,
             widgets = widgetManager.getWidgetById(id)
 
         if (!widgets.length) return
