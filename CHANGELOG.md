@@ -6,11 +6,11 @@
   - regression preventing dropdown to display no option selected
   - crossfaders display issue on iOS
   - restored compatibility options for server-client communications  
-  - prevent a client to load multiple sessions simultaneously
   - xy: `doubleTap` option
   - range: `spring` option
 - main
   - theme files changes are automatically applied
+  - server-client communication system rewritten -> HUGE latency reduction and stability improvement especially under stress conditions
 - widgets
   - switch: wrap non-array `values` property in an array
   - dropdown: wrap non-array `values` property in an array; always add a default empty value

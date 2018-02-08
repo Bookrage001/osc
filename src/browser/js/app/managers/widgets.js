@@ -19,9 +19,9 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         this.on('change', this.onChange, this)
 
-        ipc.on('reconnect', ()=>{
+        ipc.on('connect', ()=>{
             for (var hash in this.widgets) {
-                this.registerWidget(this.widget[hash])
+                this.registerWidget(this.widgets[hash])
             }
         })
 

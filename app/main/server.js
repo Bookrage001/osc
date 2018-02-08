@@ -2,8 +2,8 @@ var express     = require('express')(),
     path        = require('path'),
     http        = require('http'),
     server      = http.createServer(express),
-    io          = require('socket.io')(server),
-    ipc 		= {},
+    Ipc         = require('./ipc/server')
+    ipc         = new Ipc(server),
 	settings	= require('./settings'),
     zeroconf = require('./zeroconf'),
     appAddresses = settings.read('appAddresses'),
@@ -36,34 +36,26 @@ zeroconf.publish({
 	port: settings.read('httpPort')
 }).on('error', (e)=>{
     console.error(`Error: Zeroconf: ${e.message}`)
- })
-
-ipc.send = function(name,data,clientId) {
-    if (clientId) {
-        io.to(clientId).emit(name,data)
-    } else {
-        io.emit(name,data)
-    }
-}
+})
 
 var bindCallbacks = function(callbacks) {
-    io.on('connection', function(socket) {
 
-        clients[socket.id] = socket
+    ipc.on('connection', function(client) {
 
         for (let name in callbacks) {
-            socket.on(name, (data)=>{
-                callbacks[name](data,socket.id)
+            client.on(name, (data)=>{
+                callbacks[name](data, client.id)
             })
         }
 
-        socket.on('disconnect', function() {
+        client.on('close', function() {
 
-            callbacks.removeClientWidgets(socket.id)
+            callbacks.removeClientWidgets(client.id)
 
         })
 
     })
+
 }
 
 

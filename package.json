@@ -41,7 +41,6 @@
     "nodemon": "1.14.11",
     "screenfull": "3.3.2",
     "shortid": "2.2.8",
-    "socket.io-client": "2.0.4",
     "stacktrace-js": "^2.0.0",
     "through": "^2.3.8",
     "uglifyify": "4.0.5",

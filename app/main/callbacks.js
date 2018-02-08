@@ -135,7 +135,7 @@ module.exports =  {
     },
 
     sessionOpened: function(data, clientId) {
-        clients[clientId].broadcast.emit('stateSend')
+        ipc.send('stateSend', null, null, clientId)
     },
 
     savingSession: function(data, clientId) {
@@ -158,7 +158,8 @@ module.exports =  {
 
         data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
 
-        if (!data.noSync) clients[clientId].broadcast.emit('receiveOsc', data)
+        if (!data.noSync) ipc.send('receiveOsc', data, null, clientId)
+
 
     },
 
@@ -214,7 +215,7 @@ module.exports =  {
 
             }
 
-            if (!data.noSync) clients[clientId].broadcast.emit('receiveOsc', data)
+            if (!data.noSync) ipc.send('receiveOsc', data, null, clientId)
 
     },
 
