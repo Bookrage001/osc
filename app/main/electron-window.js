@@ -17,7 +17,10 @@ module.exports = function(options={}) {
         title: options.title || settings.read('appName'),
         icon: path.resolve(__dirname + '/logo.png'),
         backgroundColor: options.color || bgColor,
-        type:options.type
+        type:options.type,
+        webPreferences: {
+            nodeIntegration: !!options.node
+        }
     })
 
     window.loadURL(options.address)
