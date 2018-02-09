@@ -1,6 +1,6 @@
 # Editing sessions
 
-The session editor can be enabled from the sidepanel. Once enabled, clicking on a widget will make it the *selected widget*, adding a fancy dashed blue border to it.
+The session editor can be enabled from the sidepanel. Once enabled, clicking on a widget will make it the *selected widget*.
 
 ## Root panel
 

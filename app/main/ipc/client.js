@@ -47,7 +47,7 @@ class Socket extends EventEmitter {
         this.hearbeat = setInterval(()=>{
             this.socket.send(`["ping"]`)
             this.hearbeatTimeout = setTimeout(()=>{
-                this.socket.close()
+                if (this.connected()) this.socket.close()
             }, hearbeatTimeout)
         }, hearbeatInterval)
 
@@ -56,6 +56,7 @@ class Socket extends EventEmitter {
     close() {
 
         this.hearbeat = clearInterval(this.hearbeat)
+        this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
 
         this.dieTimeout = setTimeout(()=>{
 

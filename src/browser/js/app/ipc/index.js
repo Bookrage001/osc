@@ -12,7 +12,6 @@ class Ipc extends EventEmitter {
         super()
 
         this.socket = null
-        this.connected = false
 
         this.queue = []
 
@@ -44,37 +43,18 @@ class Ipc extends EventEmitter {
 
     }
 
-    close() {
-
-        this.socket = null
-
-        this.connected = false
-
-        this.hearbeat = clearInterval(this.hearbeat)
-        this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
-
-        if (!this.reconnect) {
-            this.reconnect = setInterval(()=>{
-                this.open()
-            }, reconnectInterval)
-        }
-
-    }
-
     open() {
 
         this.socket = new WebSocket('ws://' + window.location.host + '/' + uuid)
 
         this.socket.onopen = (e)=>{
 
-            this.connected = true
-
             this.reconnect = clearInterval(this.reconnect)
 
             this.hearbeat = setInterval(()=>{
                 this.socket.send(`["ping"]`)
                 this.hearbeatTimeout = setTimeout(()=>{
-                    this.socket.close()
+                    if (this.connected()) this.socket.close()
                 }, hearbeatTimeout)
             }, hearbeatInterval)
 
@@ -87,13 +67,30 @@ class Ipc extends EventEmitter {
             this.receive(e.data)
         }
 
-        this.socket.onclose = (e)=>{
+        this.socket.onclose = this.socket.onerror = ()=>{
             this.close()
         }
 
-        this.socket.onerror = (e)=>{
-            this.close()
+    }
+
+    close() {
+
+        this.socket = null
+
+        this.hearbeat = clearInterval(this.hearbeat)
+        this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
+
+        if (!this.reconnect) {
+            this.reconnect = setInterval(()=>{
+                this.open()
+            }, reconnectInterval)
         }
+
+    }
+
+    connected() {
+
+        return this.socket.readyState == this.socket.OPEN
 
     }
 
@@ -117,7 +114,7 @@ class Ipc extends EventEmitter {
 
         var packet = JSON.stringify([event, data])
 
-        if (this.connected) {
+        if (this.connected()) {
             this.socket.send(packet)
         } else {
             this.queue.push(packet)
