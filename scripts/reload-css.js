@@ -1,5 +1,8 @@
-var socket = require('socket.io-client')
+var WS = require('../app/node_modules/ws')
 
-var ipc = socket.connect('http://127.0.0.1:8080', {transports:['websocket']})
-ipc.emit('reloadCss')
-setTimeout(process.exit,500)
+var ipc = new WS('ws://127.0.0.1:8080/dev')
+
+ipc.on('open', ()=>{
+    ipc.send('["reloadCss"]')
+    process.exit()
+})
