@@ -136,8 +136,7 @@ module.exports = class Formula extends Widget {
 
             } catch(err) {
 
-                throw new Error('Error parsing formula "' + this.condition + '" (' + err + ')')
-
+                this.conditionState = false
             }
 
         }
@@ -157,7 +156,7 @@ module.exports = class Formula extends Widget {
 
         } catch(err) {
 
-            throw new Error('Error parsing formula "' + this.formula + '" (' + err + ')')
+            this.value = undefined
 
         }
 
