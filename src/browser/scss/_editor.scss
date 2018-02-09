@@ -224,14 +224,18 @@
     left:0;
     right:0;
     bottom:0;
-    border:1rem dashed var(--color-accent);
+    border:1rem solid var(--color-accent);
+
+    --opa1: rgba(0,0,0, 1);
+    --opa2: rgba(0,0,0, 0.2);
+    --opa3: rgba(0,0,0, 0.8);
+    -webkit-mask: linear-gradient(to right, var(--opa1) 10rem, var(--opa1) 10rem, var(--opa2) 10rem, var(--opa2) calc(100% - 10rem), var(--opa1) calc(100% - 10rem), var(--opa1)),
+                    linear-gradient(to bottom, var(--opa2) 10rem, var(--opa2) 10rem, var(--opa3) 10rem, var(--opa3) calc(100% - 10rem), var(--opa2) calc(100% - 10rem), var(--opa2)) ;
+    -webkit-mask-composite: xor;
+
     pointer-events: none;
     box-shadow: none!important;
     opacity: 1!important;
-}
-.widget.editing:after {
-    // right:-1rem;
-    // bottom:-1rem;
 }
 
 .context-menu {
@@ -303,8 +307,10 @@
     justify-content: center;
     align-items: center;
     background: var(--color-accent);
-    width:10rem;
-    height:10rem;
+    width:8rem;
+    height:8rem;
+    padding: 1rem;
+    background-clip: content-box;
 
     &:after {
         content:"";
@@ -312,38 +318,38 @@
     }
     &.ui-resizable-se {
         content:"";
-        bottom: 0;
-        right: 0;
+        bottom: 1rem;
+        right: 1rem;
         cursor: se-resize;
         &:after {
             top:-5rem;
-            right:0;
+            right:-1rem;
             left:-5rem;
-            bottom:0em;
+            bottom:-1rem;
         }
     }
     &.ui-resizable-e {
         top: 50%;
-        margin-top:-5rem;
-        right: 0;
+        margin-top:-4rem;
+        right: 1rem;
         cursor: e-resize;
         &:after {
             top:-5rem;
-            right:0;
+            right:-1rem;
             left:-5rem;
             bottom:-5rem;
         }
     }
     &.ui-resizable-s {
-        bottom: 0;
+        bottom: 1rem;
         left: 50%;
-        margin-left:-5rem;
+        margin-left:-4rem;
         cursor: s-resize;
         &:after {
             top:-5rem;
             right:-5rem;
             left:-5rem;
-            bottom:0em;
+            bottom:-1rem;
         }
     }
 }
@@ -358,7 +364,14 @@
         left:1rem;
         right:0;
         bottom:0;
-        border:1rem dashed var(--color-accent);
+        border:1rem solid var(--color-accent);
+        --opa1: rgba(0,0,0, 1);
+        --opa2: rgba(0,0,0, 0.2);
+        --opa3: rgba(0,0,0, 0.8);
+        -webkit-mask: linear-gradient(to right, var(--opa1) 10rem, var(--opa1) 10rem, var(--opa2) 10rem, var(--opa2) calc(100% - 10rem), var(--opa1) calc(100% - 10rem), var(--opa1)),
+                        linear-gradient(to bottom, var(--opa2) 10rem, var(--opa2) 10rem, var(--opa3) 10rem, var(--opa3) calc(100% - 10rem), var(--opa2) calc(100% - 10rem), var(--opa2)) ;
+        -webkit-mask-composite: xor;
+
     }
     &:after {
         content:"";
@@ -374,21 +387,23 @@
 
 .ui-draggable-handle:not(.label) {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 1rem;
+    left: 1rem;
     z-index: 100000;
-    height:10rem;
-    width: 10rem;
+    height:8rem;
+    width: 8rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--color-accent);
+    padding: 1rem;
+    background-clip: content-box;
     &:after {
         content:"";
         position: absolute;
-        top:0;
+        top:-1rem;
         right:-5rem;
-        left:0;
+        left:-1rem;
         bottom:-5rem;
     }
 }

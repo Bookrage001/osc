@@ -12,7 +12,7 @@ $text: white;
     --color-text-fade: transparentize($text, .6);
 
     --color-accent: $accent;
-    --color-grid:  transparentize($accent, 0.90);
+    --color-grid:  transparentize($accent, 0.95);
 
     --color-bg: $base;
     --color-track: desaturate(mix($base, $tone, 95), 2);
