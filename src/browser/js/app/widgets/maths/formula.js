@@ -134,8 +134,11 @@ module.exports = class Formula extends Widget {
 
                 this.conditionState = s.data !== undefined ? s.data : s
 
+                delete this.errors.condition
+
             } catch(err) {
 
+                this.errors.condition = 'Error parsing formula "' + this.conditionString + '" (' + err + ')'
                 this.conditionState = false
             }
 
@@ -154,8 +157,11 @@ module.exports = class Formula extends Widget {
             if (e.options.sync && this.conditionState) this.changed(e.options)
             if (e.options.send && this.conditionState) this.sendValue()
 
+            delete this.errors.formula
+
         } catch(err) {
 
+            this.errors['formula'] = 'Error parsing formula "' + this.formulaString + '" (' + err + ')'
             this.value = undefined
 
         }

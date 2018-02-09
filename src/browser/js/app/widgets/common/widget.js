@@ -27,6 +27,7 @@ class Widget extends EventEmitter {
         this.container = options.container || fallbackContainer
         this.widget = DOM.create(options.html)
         this.props = options.props
+        this.errors = {}
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = shortid.generate()
@@ -70,6 +71,11 @@ class Widget extends EventEmitter {
             }
         }
 
+        if (this.getProp('id') == 'root' && !options.root) {
+            this.cachedProps.id = '_root'
+            this.errors.id = 'There can only be one root'
+        }
+
         if (Object.keys(this.linkedProps).length) {
 
             widgetManager.on(`widget-created.${this.hash}`, (e)=>{
@@ -109,8 +115,6 @@ class Widget extends EventEmitter {
         if (this.props.precision != undefined) {
             this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
         }
-
-        if (this.getProp('id') == 'root' && !options.root) throw new Error('There can only be one root')
 
         this.on('widget-created', (e)=>{
 

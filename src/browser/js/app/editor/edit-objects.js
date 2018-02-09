@@ -35,7 +35,7 @@ var editObject = function(widget, options = {}){
 
     $(`<div class="separator"><span>${data.type == 'tab' ? 'Tab' : data.type == 'root' ? 'Root' : 'Widget'}</span></div>`).appendTo(form)
 
-    for (var i in params) {
+    for (let i in params) {
 
         if (i.indexOf('_')==0) {
             $(`<div class="separator"><span>${params[i]}</span></div>`).appendTo(form)
@@ -114,12 +114,16 @@ var editObject = function(widget, options = {}){
 
                 try {
                     updateWidget(widget)
-                    wrapper.removeClass('error')
                 } catch (err) {
-                    wrapper.addClass('error')
                     throw err
                 }
             })
+
+
+            if (widget.errors[i]) {
+                wrapper.addClass('error')
+                label.attr('title', widget.errors[i])
+            }
 
         }
 

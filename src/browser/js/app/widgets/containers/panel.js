@@ -141,8 +141,11 @@ class Panel extends Widget {
                 this.applyLayout()
             }, {element: this.widget})
 
+            delete this.errors.layout
+
         } catch(err) {
-            throw new Error(`Visual Format Language error in ${this.getProp('id')}.layout: ${err.message} (line ${err.line})`)
+
+            this.errors.layout = `Visual Format Language error in ${this.getProp('id')}.layout: ${err.message} (line ${err.line})`
         }
 
     }
