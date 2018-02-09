@@ -21,17 +21,6 @@
 
 The documentation is located at [osc.ammd.net](http://osc.ammd.net)
 
-## Features
-
-- multiplatform desktop server application with built-in client interface
-- mouse & multitouch interfaces compatible with **Chrome 50** or later
-- all the widgets you need !
-- built-in live editor
-- clients synchronization
-- deep customization possibilities such as theming and messages filtering
-- *true* control over what the widgets send
-- midi inputs/outputs
-
 ## Supported platforms
 
 The server can run on all [platforms supported by Electron](https://electron.atom.io/docs/tutorial/supported-platforms/).
@@ -39,7 +28,7 @@ The only supported client browsers are the one provided with the server and Chro
 
 ## License & credits
 
-Copyleft © Jean-Emmanuel @ [AMMD](http://ammd.net) 2017
+Copyleft © Jean-Emmanuel @ [AMMD](http://ammd.net) 2018
 
 
 This program is a free software released under the GNU/GPL3 license, it relies on the use of several other free softwares, including [Node.js](https://nodejs.org/), [Electron](http://electron.atom.io/), [osc.js](https://github.com/colinbdclark/osc.js), [browserify](http://browserify.org), [exorcist](https://github.com/thlorenz/exorcist), [express](http://expressjs.com), [node-sass](https://github.com/sass/node-sass), [jQuery](http://jquery.com/), [jQuery-UI](http://jqueryui.com/), [Font Awesome](http://fontawesome.io/), [source-map](https://github.com/mozilla/source-map), [mathjs](http://mathjs.org/)
