@@ -92,7 +92,7 @@ var editObject = function(widget, options = {}){
                toggle.appendTo(wrapper)
 
                toggle.click(function(){
-                   input.val(!eval(input.val())).trigger('change')
+                   input.val(!widget.getProp(i)).trigger('change')
                })
 
            }
