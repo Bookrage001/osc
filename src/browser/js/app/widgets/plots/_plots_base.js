@@ -123,6 +123,8 @@ module.exports = class _plots_base extends Canvas {
 
         }
 
+        if (points.length < 4) return
+
         this.ctx.beginPath()
 
         this.ctx.curve(points, this.smooth, Math.round(this.width/(points.length/2 - 1)))
