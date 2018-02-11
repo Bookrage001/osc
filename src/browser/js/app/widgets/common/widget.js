@@ -28,6 +28,7 @@ class Widget extends EventEmitter {
         this.widget = DOM.create(options.html)
         this.props = options.props
         this.errors = {}
+        this.parsers = {}
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = shortid.generate()
@@ -200,6 +201,9 @@ class Widget extends EventEmitter {
             originalPropName = originalPropName || propName,
             obj
 
+        var variables = {},
+            varnumber = 0
+
         if (typeof propValue == 'string') {
             propValue = propValue.replace(/@\{([^\}]+)\}/g, (m)=>{
                 let id = m.substr(2, m.length - 3).split('.'),
@@ -261,8 +265,7 @@ class Widget extends EventEmitter {
                     if (widgets[i].props.hasOwnProperty(k) || k == '_value') {
 
                         if (originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
-                            // throw new Error(`Circular property reference for ${originalWidget.props.id}.${originalPropName}`)
-                            return 'undefined'
+                            return undefined
                         }
 
                         var r = k == '_value' ?
@@ -270,9 +273,13 @@ class Widget extends EventEmitter {
                                 widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalPropName)
 
                         if (subk !== undefined) r = r[subk]
-                        if (typeof r != 'string') r = JSON.stringify(r)
 
-                        return r
+                        var varname = 'VAR_' + i
+                        i++
+
+                        variables[varname] = r
+
+                        return varname
 
                     }
 
@@ -282,8 +289,10 @@ class Widget extends EventEmitter {
 
             try {
                 propValue = propValue.replace(/#\{([^\}]+)\}/g, (m)=>{
-                    let expression = m.substr(2, m.length - 3).trim(),
-                        r = math.eval(expression)
+                    if (!this.parsers[m]) this.parsers[m] = math.compile(m.substr(2, m.length - 3).trim())
+
+                    let r = this.parsers[m].eval(variables)
+
                     if (r.valueOf) {
                         r = r.valueOf()
                         if (Array.isArray(r) && r.length == 1) r = r[0]
@@ -291,6 +300,11 @@ class Widget extends EventEmitter {
                     return typeof r != 'string' ? JSON.stringify(r) : r
                 })
             } catch (err) {}
+
+            for (var k in variables) {
+                var v = typeof variables[k] == 'string' ? variables[k] : JSON.stringify(variables[k])
+                propValue = propValue.replace(new RegExp(k, 'g'), v)
+            }
 
             try {
                 propValue = JSON.parse(propValue)
