@@ -129,7 +129,7 @@ var Parser = class Parser {
 
             if (scopedCss.indexOf(prefix) > -1) {
 
-                if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '(\\s+[0-9]+%)', 'g'), '$1')
+                if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
                 if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
 
                 widgetContainer.setAttribute('id', widgetInner.hash)
