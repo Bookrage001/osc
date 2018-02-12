@@ -47,7 +47,7 @@ class Ipc extends EventEmitter {
 
         for (var k in clients) {
             if (!except || this.clients[k] != this.clients[except]) {
-                clients[k].send(event, data)
+                if (clients[k]) clients[k].send(event, data)
             }
         }
 
