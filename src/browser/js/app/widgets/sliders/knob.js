@@ -1,4 +1,4 @@
-var {clip, mapToScale} = require('../utils'),
+rep var {clip, mapToScale} = require('../utils'),
     Slider = require('./slider')
 
 module.exports = class Knob extends Slider {
@@ -239,9 +239,9 @@ module.exports = class Knob extends Slider {
         this.ctx.strokeStyle = this.colors.light
         this.ctx.stroke()
 
-        var g = this.ctx.createLinearGradient(this.width / 2, this.height / 2 - knobRadius / 2,this.width / 2,  this.height / 2 + knobRadius / 2);
-        g.addColorStop(0.5, 'transparent');
-        g.addColorStop(0, this.colors.light);
+        var g = this.ctx.createLinearGradient(this.width / 2, this.height / 2 - knobRadius / 2,this.width / 2,  this.height / 2 + knobRadius / 2)
+        g.addColorStop(0.5, 'transparent')
+        g.addColorStop(0, this.colors.light || 'transparent')
 
         this.ctx.strokeStyle = g
         this.ctx.stroke()
