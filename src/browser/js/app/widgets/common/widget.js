@@ -288,7 +288,9 @@ class Widget extends EventEmitter {
             })
 
             try {
-                propValue = propValue.replace(/#\{([^\}]+)\}/g, (m)=>{
+                propValue = propValue.replace(/#\{(?:[^\}\\]|\\.)+\}/g, (m)=>{
+                    m = m.replace(/\\(\{|\})/g, '$1')
+
                     if (!this.parsers[m]) this.parsers[m] = math.compile(m.substr(2, m.length - 3).trim())
 
                     let r = this.parsers[m].eval(variables)
