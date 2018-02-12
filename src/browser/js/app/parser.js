@@ -1,6 +1,7 @@
 var widgetManager = require('./managers/widgets'),
     stateManager = require('./managers/state'),
-    {iconify} = require('./ui/utils')
+    {iconify} = require('./ui/utils'),
+    scope = require('scope-css')
 
 var Parser = class Parser {
 
@@ -117,29 +118,21 @@ var Parser = class Parser {
                 DOM.get(widgetContainer, '> .label')[0].innerHTML = label
             }
 
-            // parse css
-            var css = ';' + widgetInner.getProp('css'),
-                scopedCss = ''
-
-            css = css.replace('\n', ' ')
-            // parse scoped css
-            css = css.replace(/[;\}\s]*([^;\{]*\{[^\}]*\})/g, (m)=>{
-                m = m.replace(/^[;\}\s]*/,'')
-                if (m[0]=='&') {
-                    scopedCss += m
-                } else {
-                    scopedCss += '& ' + m
-                }
-                return ''
-            })
-
             // apply styles
-            widgetContainer.setAttribute('style', styleW + styleH + styleL + styleT + css)
+            var css = widgetInner.getProp('css')
+
+            widgetContainer.setAttribute('style', styleW + styleH + styleL + styleT + css.replace(/;{[^\}]}/g),'')
 
             // apply scoped css
-            if (scopedCss.length) {
-                widgetContainer.setAttribute('id', 'widget-' + widgetInner.hash)
-                scopedCss = scopedCss.split('&').join('#widget-' + widgetInner.hash)
+            var prefix = '#' + widgetInner.hash,
+                scopedCss = scope(css, prefix)
+
+            if (scopedCss.indexOf(prefix) > -1) {
+
+                if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '(\\s+[0-9]+%)', 'g'), '$1')
+                if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
+
+                widgetContainer.setAttribute('id', widgetInner.hash)
                 widgetContainer.insertBefore(DOM.create(`<style>${scopedCss}</style>`), widgetInner.widget)
             }
 

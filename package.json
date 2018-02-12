@@ -39,6 +39,7 @@
     "minimatch": "^3.0.4",
     "node-sass": "4.7.2",
     "nodemon": "1.14.12",
+    "scope-css": "^1.0.5",
     "screenfull": "3.3.2",
     "shortid": "2.2.8",
     "stacktrace-js": "^2.0.0",
