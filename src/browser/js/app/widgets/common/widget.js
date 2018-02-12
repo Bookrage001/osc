@@ -274,8 +274,8 @@ class Widget extends EventEmitter {
 
                         if (subk !== undefined) r = r[subk]
 
-                        var varname = 'VAR_' + i
-                        i++
+                        var varname = 'VAR_' + varnumber
+                        varnumber++
 
                         variables[varname] = r
 
