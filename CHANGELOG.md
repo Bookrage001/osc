@@ -8,6 +8,8 @@
   - restored compatibility options for server-client communications  
   - xy: `doubleTap` option
   - range: `spring` option
+  - plot: crash when drawing only one point
+  - widget css: fixed @media queries @keyframes parsings
 - main
   - theme files changes are automatically applied
   - server-client communication system rewritten -> HUGE latency reduction and stability improvement especially under stress conditions
