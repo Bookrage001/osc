@@ -67,7 +67,10 @@ module.exports = class _plots_base extends Canvas {
         if (this.getProp('bars')) {
             this.draw_bars()
         } else {
-            this.draw_line()
+            var points = this.draw_line()
+            if (this.getProp('dots')) {
+                this.draw_dots(points)
+            }
         }
 
         if (this.getProp('pips')) this.draw_pips()
@@ -123,7 +126,7 @@ module.exports = class _plots_base extends Canvas {
 
         }
 
-        if (points.length < 4) return
+        if (points.length < 4) return points
 
         this.ctx.beginPath()
 
@@ -145,6 +148,23 @@ module.exports = class _plots_base extends Canvas {
             this.ctx.closePath()
             this.ctx.fill()
 
+        }
+
+        return points
+
+    }
+
+    draw_dots(points) {
+
+        this.ctx.globalAlpha = 1
+        this.ctx.fillStyle = this.colors.custom
+        this.ctx.strokeStyle = this.colors.track
+        this.ctx.lineWidth = 2 * PXSCALE
+        for (var i = 0; i < points.length; i += 2) {
+            this.ctx.beginPath()
+            this.ctx.arc(points[i], points[i + 1], 4 * PXSCALE, 0, 2*Math.PI)
+            this.ctx.fill()
+            this.ctx.stroke()
         }
 
     }

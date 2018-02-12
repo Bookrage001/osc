@@ -21,6 +21,7 @@
   - property maths: added support for math expressions everywhere via `#{}`
   - input: add glass effect when `editable` is `false`
   - `linkId` can now be set as an array of linkIds
+  - plot: added `dots` options
 
 ## 0.23.1
 
