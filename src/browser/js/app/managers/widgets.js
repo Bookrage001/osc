@@ -86,9 +86,12 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             this.addressRoute[address].push(hash)
         }
 
-        if (linkId) {
-            if (!this.linkIdRoute[linkId]) this.linkIdRoute[linkId] = []
-            this.linkIdRoute[linkId].push(hash)
+        if (!Array.isArray(linkId)) linkId = [linkId]
+        for (var i in linkId) {
+            if (linkId[i]) {
+                if (!this.linkIdRoute[linkId[i]]) this.linkIdRoute[linkId[i]] = []
+                this.linkIdRoute[linkId[i]].push(hash)
+            }
         }
 
         if (scroll) {
@@ -143,9 +146,14 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             })
         }
         if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)
-        if (linkId && this.linkIdRoute[linkId].indexOf(hash) != -1) this.linkIdRoute[linkId].splice(this.linkIdRoute[linkId].indexOf(hash), 1)
         if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash), 1)
         if (scroll && this.scrollingWidgets.indexOf(hash) != -1) this.scrollingWidgets.splice(this.scrollingWidgets.indexOf(hash), 1)
+
+        if (!Array.isArray(linkId)) linkId = [linkId]
+        for (var i in linkId) {
+            if (linkId[i] && this.linkIdRoute[linkId[i]].indexOf(hash) != -1) this.linkIdRoute[linkId[i]].splice(this.linkIdRoute[linkId[i]].indexOf(hash), 1)
+        }
+
     }
 
     removeWidgets(hashes) {
@@ -196,18 +204,27 @@ var WidgetManager = class WidgetManager extends EventEmitter {
     }
 
 
-    getWidgetBy(key, dict) {
+    getWidgetBy(key, dict, widgets) {
 
-        var widgets = [],
+        var widgets = widgets || [],
             hash, w
 
-        for (var i = dict[key] ? dict[key].length-1 : -1; i>=0; i--) {
-            hash = dict[key][i]
-            w = this.widgets[hash]
-            if (!w) {
-                dict[key].splice(i,1)
-            } else {
-                widgets.push(this.widgets[hash])
+        if (Array.isArray(key)) {
+            for (var i in key) {
+                this.getWidgetBy(key[i], dict, widgets)
+            }
+            return widgets
+        }
+
+        if (dict[key]) {
+            for (var i = dict[key].length-1; i>=0; i--) {
+                hash = dict[key][i]
+                w = this.widgets[hash]
+                if (!w) {
+                    dict[key].splice(i,1)
+                } else if (widgets.indexOf(w) == -1) {
+                    widgets.push(w)
+                }
             }
         }
 

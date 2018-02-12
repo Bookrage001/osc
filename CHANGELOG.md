@@ -20,6 +20,7 @@
   - property inheritance: added shorthand default to `_value` when no property is specified (`@{widgetId}`); some properties can now be dynamically changed without recreating the widget entirely
   - property maths: added support for math expressions everywhere via `#{}`
   - input: add glass effect when `editable` is `false`
+  - `linkId` can now be set as an array of linkIds
 
 ## 0.23.1
 
