@@ -1,4 +1,4 @@
-rep var {clip, mapToScale} = require('../utils'),
+var {clip, mapToScale} = require('../utils'),
     Slider = require('./slider')
 
 module.exports = class Knob extends Slider {
