@@ -114,16 +114,47 @@
     }
 }
 
+.svg-container {
+    width:100rem;
+    height:100rem;
+    padding:1rem;
+    .svg {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 100%;
+        background: var(--color-track);
+        border:1rem solid var(--color-bg);
+        @extend .glass-effect;
+        svg {
+            flex: 1 1 100%;
+        }
+    }
+    &.noborder {
+        --color-border:transparent;
+        --color-light:transparent;
+        --color-light:transparent;
+        background: transparent;
+        padding: 0!important;
+        .svg {
+            outline:transparent!important;
+            border:0!important;
+            box-shadow:none!important;
+            margin: 0!important;
+        }
+    }
+}
+
 .panel:not(.tab) > .led-container,
 .panel:not(.tab) > .rgbled-container,
 .panel:not(.tab) > .text-container,
 .panel:not(.tab) > .visualizer-container,
 .panel:not(.tab) > .eq-container,
 .panel:not(.tab) > .plot-container,
-.panel:not(.tab) > .image-container {
+.panel:not(.tab) > .image-container,
+.panel:not(.tab) > .svg-container {
     --color-border:transparent;
     padding: 0rem;
-    .plot, .text, .led, .image {
+    .plot, .text, .led, .image, .svg {
         padding: 0rem;
         margin: 1rem;
         background-clip: content-box;

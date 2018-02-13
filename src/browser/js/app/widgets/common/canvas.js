@@ -127,6 +127,7 @@ class Canvas extends Widget {
         var style = style || window.getComputedStyle(this.canvas)
 
         this.colors.custom = style.getPropertyValue('--color-custom')
+        this.colors.track = style.getPropertyValue('--color-track')
         this.colors.text = style.getPropertyValue('--color-text')
         this.colors.raised = style.getPropertyValue('--color-raised')
         this.colors.bg = style.getPropertyValue('--color-bg')

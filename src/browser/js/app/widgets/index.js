@@ -35,6 +35,7 @@ module.exports.widgets = {
     meter: require('./plots/meter'),
     text: require('./plots/text'),
     image: require('./plots/image'),
+    svg: require('./plots/svg'),
 
     // containers
     strip: require('./containers/strip'),
@@ -60,7 +61,7 @@ module.exports.categories = {
     'Buttons':['toggle','push','switch', 'dropdown'],
     'Pads':['xy','rgb','multixy'],
     'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
-    'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image'],
+    'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg'],
     'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['switcher','crossfader'],
     'Inputs':['input', 'keys'],
