@@ -63,6 +63,15 @@
             min-width: 29%;
             box-shadow: 1rem  0 0 0 var(--color-bg) inset;
             margin-top: 1rem;
+            &.dynamic:after {
+                content:"\f0e7";
+                font-family: FontAwesome;
+                vertical-align:super;
+                font-size: 75%;
+                opacity: 0.75!important;
+                position: absolute;
+                margin-top: -4rem;
+            }
         }
         .input {
             background: var(--color-bg);

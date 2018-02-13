@@ -49,10 +49,12 @@ var editObject = function(widget, options = {}){
 
             if (i=='type' && (data.type == 'tab' || data.type == 'root')) continue
 
+            let dynamic = widgets[data.type].dynamicProps.includes(i)
+
             let type = typeof data[i],
                 value = type != 'string'?JSON.stringify(data[i], null, '  ').replace(/\n\s\s\s\s/g, ' ').replace(/\n\s\s(\}|\])/g, ' $1'):data[i],
                 wrapper = $('<div class="input-wrapper"></div>').appendTo(form),
-                label = $(`<label>${i}</label>`).appendTo(wrapper),
+                label = $(`<label ${dynamic ? 'class="dynamic" title="dynamic"': ''}>${i}</label>`).appendTo(wrapper),
                 input
 
             if (i=='type') {
