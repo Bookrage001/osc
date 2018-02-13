@@ -2,7 +2,9 @@
 
 ## 0.24.0
 
-/!\ BREAKING CHANGES /!\
+**/!\ BREAKING CHANGES /!\**
+
+Read the changelog carefully, old sessions files are likely to need some adjustements to work as they used to. Plots and input widgets had their `widgetId` option removed because it was redundant with the generic `linkId` property.
 
 - bug fixes
   - regression preventing dropdown to display no option selected
@@ -27,6 +29,7 @@
   - eq:  **removed** `filters` options (use `value` and property inheritance instead)
   - plot/meter/led/rgbled/text: **removed** `widgetId` option
   - input: **removed** `widgetId` option
+  - math: **deprecated** `formula` widget
 
 ## 0.23.1
 

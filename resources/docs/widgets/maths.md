@@ -2,9 +2,10 @@
 
 Maths do the maths !
 
-
-
 ## Formula
+
+!!! warning "Deprecated"
+    Since `v0.24.0`, any widget property can be defined using math expressions. Formula widget is deprecated and will be removed in a future release.
 
 Formula evaluates mathematical expressions over other widgets' values each one of these widgets changes.
 
