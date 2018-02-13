@@ -174,8 +174,10 @@ module.exports = class _plots_base extends Canvas {
 
     setValue(v, options={}) {
 
-        if (typeof v == 'string' && (v[0] == '[' || v[0] == '{' )) {
-            v = JSON.parseFlex(v)
+        if (typeof v == 'string') {
+            try {
+                v = JSON.parseFlex(v)
+            } catch(err) {}
         }
 
         if (typeof v == 'object') {
