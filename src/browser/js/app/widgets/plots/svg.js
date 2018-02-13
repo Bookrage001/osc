@@ -60,8 +60,8 @@ class Svg extends Widget {
         var svg = this.getProp('svg')
 
         svg = svg.replace(/<\/svg>/gi, 'x')
-        svg = svg.replace(/([0-9\.]+%)[\s\n]*,/g, m => (parseFloat(m) * this.width / 100).toFixed(2) + ',')
-        svg = svg.replace(/,[\s\n]*([0-9\.]+%)/g, m => ',' + (parseFloat(m.slice(1)) * this.height / 100).toFixed(2))
+        svg = svg.replace(/([0-9\.]+%x)/gi, m => (parseFloat(m) * this.width / 100).toFixed(2))
+        svg = svg.replace(/([0-9\.]+%y)/gi, m => (parseFloat(m) * this.height / 100).toFixed(2))
 
 
         morph(this.widget, DOM.create('<div class="svg"><svg>' + svg + '</svg></div>'))

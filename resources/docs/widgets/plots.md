@@ -281,4 +281,4 @@ Image displays an image from a file path/url or from a base64 encoded image stri
 - default: `''`
 - usage : svg xml definition
   - will be wrapped in a `<svg></svg>` element
-  - `<path>` commands support percent notation
+  - `<path>` commands support a special percent notation (`%x` and `%y`)
