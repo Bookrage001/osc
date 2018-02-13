@@ -47,7 +47,10 @@ module.exports = class Eq extends _plots_base {
     constructor(options) {
 
         // backward compat
-        if (options.props.filters && options.props.filters.length) options.props.value = options.props.filters
+        if (options.props.filters && options.props.filters.length) {
+            options.props.value = options.props.filters
+            delete options.props.filters
+        }
 
         super(options)
 

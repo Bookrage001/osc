@@ -48,8 +48,10 @@ module.exports = class Meter extends Fader {
     constructor(options) {
 
         // backward compat
-        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
-
+        if (options.props.widgetId) {
+            options.props.value = '@{' + options.props.widgetId + '}'
+            delete options.props.widgetId
+        }
         options.props.compact = true
         options.props.input = false
 

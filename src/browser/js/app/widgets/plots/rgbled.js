@@ -40,8 +40,10 @@ module.exports = class Rbgled extends Widget {
     constructor(options) {
 
         // backward compat
-        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
-
+        if (options.props.widgetId) {
+            options.props.value = '@{' + options.props.widgetId + '}'
+            delete options.props.widgetId
+        }
 
         var html = `
             <div class="led">

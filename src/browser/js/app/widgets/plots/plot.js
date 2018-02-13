@@ -49,7 +49,10 @@ module.exports = class Plot extends _plots_base {
     constructor(options) {
 
         // backward compat
-        if (options.props.points && options.props.points.length) options.props.value = options.props.points
+        if (options.props.points && options.props.points.length) {
+            options.props.value = options.props.points
+            delete options.props.points
+        }
 
         super(options)
 

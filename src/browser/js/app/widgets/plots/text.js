@@ -40,8 +40,10 @@ module.exports = class Text extends Widget {
     constructor(options) {
 
         // backward compat
-        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
-
+        if (options.props.widgetId) {
+            options.props.value = '@{' + options.props.widgetId + '}'
+            delete options.props.widgetId
+        }
         super({...options, html: '<div class="text"></div>'})
 
         if (this.getProp('vertical')) this.widget.classList.add('vertical')

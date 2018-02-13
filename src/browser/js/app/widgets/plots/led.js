@@ -42,7 +42,10 @@ module.exports = class Led extends Widget {
     constructor(options) {
 
         // backward compat
-        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
+        if (options.props.widgetId) {
+            options.props.value = '@{' + options.props.widgetId + '}'
+            delete options.props.widgetId
+        }
 
         var html = `
             <div class="led">
@@ -58,7 +61,7 @@ module.exports = class Led extends Widget {
     setValue(v, options={}) {
 
         if (typeof v != 'number') return
-        
+
         this.value = v
         this.widget.style.setProperty('--opacity', mapToScale(v,[this.getProp('range').min,this.getProp('range').max],[0,1],false,this.getProp('logScale'),true))
 

@@ -45,8 +45,11 @@ module.exports = class Visualizer extends _plots_base {
     constructor(options) {
 
         // backward compat
-        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
-
+        if (options.props.widgetId) {
+            options.props.value = '@{' + options.props.widgetId + '}'
+            delete options.props.widgetId
+        }
+        
         super(options)
 
         this.fps = 30
