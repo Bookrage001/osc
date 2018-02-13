@@ -180,7 +180,7 @@ module.exports = class _plots_base extends Canvas {
             } catch(err) {}
         }
 
-        if (typeof v == 'object') {
+        if (typeof v == 'object' && v !== null) {
 
             if (Array.isArray(v)) {
 

@@ -64,32 +64,42 @@ module.exports = class Eq extends _plots_base {
 
     setValue(v, options={}) {
 
-        var filters = v,
-            eqResponse = []
-
-        for (let i in filters) {
-
-            var filterResponse
-
-            if (!filters[i].type) filters[i].type = "peak"
-
-            if (!filters[i].on) {
-                filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!this.getProp('logScaleX'), this.resolution)
-            } else {
-                filterResponse = _biquad_response(filters[i],!this.getProp('logScaleX'), this.resolution)
-            }
-
-            for (var k in filterResponse) {
-                if (eqResponse[k]===undefined) {
-                    eqResponse[k]=[0,0]
-                }
-
-                eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
-            }
-
+        if (typeof v == 'string') {
+            try {
+                v = JSON.parseFlex(v)
+            } catch(err) {}
         }
 
-        if (eqResponse.length) super.setValue(eqResponse, options)
+        if (typeof v == 'object' && v !== null) {
+
+            var filters = v,
+                eqResponse = []
+
+            for (let i in filters) {
+
+                var filterResponse
+
+                if (!filters[i].type) filters[i].type = "peak"
+
+                if (!filters[i].on) {
+                    filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!this.getProp('logScaleX'), this.resolution)
+                } else {
+                    filterResponse = _biquad_response(filters[i],!this.getProp('logScaleX'), this.resolution)
+                }
+
+                for (var k in filterResponse) {
+                    if (eqResponse[k]===undefined) {
+                        eqResponse[k]=[0,0]
+                    }
+
+                    eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
+                }
+
+            }
+
+            if (eqResponse.length) super.setValue(eqResponse, options)
+
+        }
 
     }
 
