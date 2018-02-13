@@ -2,7 +2,7 @@
 
 ## 0.24.0
 
-**/!\ BREAKING CHANGES /!\**
+:warning: **BREAKING CHANGES** :warning: 
 
 Read the changelog carefully, old sessions files are likely to need some adjustements to work as they used to. Plots and input widgets had their `widgetId` option removed because it was redundant with the generic `linkId` property.
 
