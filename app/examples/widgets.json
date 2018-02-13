@@ -1064,7 +1064,20 @@
                         "linkId": "",
                         "dots": true,
                         "bars": false,
-                        "value": "[\n  [ @{x1}, @{y1} ],\n  [ @{x2}, @{y2} ],\n  [ @{x3}, @{y3} ]\n]"
+                        "value": [
+                            [
+                                "@{x1}",
+                                "@{y1}"
+                            ],
+                            [
+                                "@{x2}",
+                                "@{y2}"
+                            ],
+                            [
+                                "@{x3}",
+                                "@{y3}"
+                            ]
+                        ]
                     },
                     {
                         "type": "eq",
@@ -1088,7 +1101,15 @@
                         "preArgs": [],
                         "resolution": 128,
                         "linkId": "",
-                        "value": "[\n  { \"type\": \"peak\", \"freq\": @{freq1}, \"q\": @{q1}, \"gain\": @{gain1}, \"on\": 1 }\n]"
+                        "value": [
+                            {
+                                "type": "peak",
+                                "freq": "@{freq1}",
+                                "q": "@{q1}",
+                                "gain": "@{gain1}",
+                                "on": 1
+                            }
+                        ]
                     },
                     {
                         "type": "visualizer",
