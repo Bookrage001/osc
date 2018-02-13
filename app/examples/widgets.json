@@ -344,7 +344,8 @@
                         "address": "/range_1",
                         "preArgs": [],
                         "split": false,
-                        "target": []
+                        "target": [],
+                        "touchAddress": ""
                     },
                     {
                         "type": "range",
@@ -374,7 +375,8 @@
                         "address": "/range_2",
                         "preArgs": [],
                         "split": false,
-                        "target": []
+                        "target": [],
+                        "touchAddress": ""
                     },
                     {
                         "type": "fader",
@@ -414,7 +416,8 @@
                     }
                 ],
                 "tabs": [],
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             },
             {
                 "type": "tab",
@@ -491,7 +494,8 @@
                         "precision": 2,
                         "address": "/switch_1",
                         "preArgs": [],
-                        "target": []
+                        "target": [],
+                        "showValues": false
                     },
                     {
                         "type": "dropdown",
@@ -555,11 +559,13 @@
                         "address": "/switch_2",
                         "preArgs": [],
                         "target": [],
-                        "linkId": ""
+                        "linkId": "",
+                        "showValues": false
                     }
                 ],
                 "tabs": [],
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             },
             {
                 "type": "tab",
@@ -669,7 +675,8 @@
                     }
                 ],
                 "tabs": [],
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             },
             {
                 "type": "tab",
@@ -1011,7 +1018,8 @@
                     }
                 ],
                 "tabs": [],
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             },
             {
                 "type": "tab",
@@ -1053,20 +1061,10 @@
                         "pips": true,
                         "address": "/plot_1",
                         "preArgs": [],
-                        "points": [
-                            [
-                                "x1",
-                                "y1"
-                            ],
-                            [
-                                "x2",
-                                "y2"
-                            ],
-                            [
-                                "x3",
-                                "y3"
-                            ]
-                        ]
+                        "linkId": "",
+                        "dots": true,
+                        "bars": false,
+                        "value": "[\n  [ @{x1}, @{y1} ],\n  [ @{x2}, @{y2} ],\n  [ @{x3}, @{y3} ]\n]"
                     },
                     {
                         "type": "eq",
@@ -1079,15 +1077,6 @@
                         "color": "auto",
                         "css": "",
                         "pips": true,
-                        "filters": [
-                            {
-                                "type": "peak",
-                                "freq": "freq1",
-                                "q": "q1",
-                                "gain": "gain1",
-                                "on": 1
-                            }
-                        ],
                         "rangeY": {
                             "min": -20,
                             "max": 20
@@ -1097,7 +1086,9 @@
                         "smooth": false,
                         "address": "/eq_1",
                         "preArgs": [],
-                        "resolution": 128
+                        "resolution": 128,
+                        "linkId": "",
+                        "value": "[\n  { \"type\": \"peak\", \"freq\": @{freq1}, \"q\": @{q1}, \"gain\": @{gain1}, \"on\": 1 }\n]"
                     },
                     {
                         "type": "visualizer",
@@ -1109,7 +1100,6 @@
                         "label": "auto",
                         "color": "auto",
                         "css": "",
-                        "widgetId": "viz_fad",
                         "duration": 1,
                         "range": {
                             "min": 0,
@@ -1119,9 +1109,10 @@
                         "logScale": false,
                         "smooth": false,
                         "pips": true,
-                        "value": "",
+                        "value": "@{viz_fad}",
                         "address": "/visualizer_1",
-                        "preArgs": []
+                        "preArgs": [],
+                        "linkId": ""
                     },
                     {
                         "type": "led",
@@ -1133,15 +1124,15 @@
                         "label": "auto",
                         "color": "auto",
                         "css": "",
-                        "widgetId": "led_fad",
                         "range": {
                             "min": 0,
                             "max": 1
                         },
                         "logScale": false,
-                        "value": "",
+                        "value": "@{led_fad}",
                         "preArgs": [],
-                        "address": "/led_1"
+                        "address": "/led_1",
+                        "linkId": ""
                     },
                     {
                         "type": "rgbled",
@@ -1152,10 +1143,10 @@
                         "height": 90,
                         "label": "auto",
                         "css": "",
-                        "widgetId": "led_rgb",
-                        "value": "",
+                        "value": "@{led_rgb}",
                         "preArgs": [],
-                        "address": "/rgbled_1"
+                        "address": "/rgbled_1",
+                        "linkId": ""
                     },
                     {
                         "type": "meter",
@@ -1167,7 +1158,6 @@
                         "label": "auto",
                         "color": "auto",
                         "css": "",
-                        "widgetId": "led_fad",
                         "range": {
                             "min": 0,
                             "max": 1
@@ -1179,11 +1169,12 @@
                         "horizontal": false,
                         "pips": false,
                         "dashed": false,
-                        "value": "",
+                        "value": "@{led_fad}",
                         "address": "/meter_1",
                         "preArgs": [],
                         "compact": true,
-                        "input": false
+                        "input": false,
+                        "linkId": ""
                     },
                     {
                         "type": "image",
@@ -1201,7 +1192,8 @@
                         "cache": true,
                         "value": "",
                         "preArgs": [],
-                        "address": "/image_1"
+                        "address": "/image_1",
+                        "linkId": ""
                     },
                     {
                         "type": "meter",
@@ -1213,7 +1205,6 @@
                         "label": "auto",
                         "color": "auto",
                         "css": "",
-                        "widgetId": "led_fad",
                         "range": {
                             "min": 0,
                             "max": 1
@@ -1225,11 +1216,12 @@
                         "horizontal": true,
                         "pips": false,
                         "dashed": false,
-                        "value": "",
+                        "value": "@{led_fad}",
                         "address": "/meter_2",
                         "preArgs": [],
                         "compact": true,
-                        "input": false
+                        "input": false,
+                        "linkId": ""
                     },
                     {
                         "type": "text",
@@ -1241,11 +1233,11 @@
                         "label": "auto",
                         "color": "auto",
                         "css": "",
-                        "widgetId": "text_input",
                         "vertical": false,
-                        "value": "",
+                        "value": "@{text_input}",
                         "preArgs": [],
-                        "address": "/text_1"
+                        "address": "/text_1",
+                        "linkId": ""
                     },
                     {
                         "type": "panel",
@@ -1366,10 +1358,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/strip_2",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "strip",
@@ -1452,10 +1446,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/strip_3",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "strip",
@@ -1538,10 +1534,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/strip_4",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     }
                                 ],
                                 "_style": "style",
@@ -1552,10 +1550,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/strip_1",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "strip",
@@ -1670,10 +1670,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/strip_5",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "fader",
@@ -1791,11 +1793,14 @@
                                 "target": []
                             }
                         ],
-                        "tabs": []
+                        "tabs": [],
+                        "linkId": "",
+                        "noSync": false
                     }
                 ],
                 "tabs": [],
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             }
         ],
         "color": "auto",
@@ -1808,6 +1813,8 @@
         "variables": {},
         "id": "root",
         "scroll": true,
-        "label": false
+        "label": false,
+        "linkId": "",
+        "noSync": false
     }
 ]

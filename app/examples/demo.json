@@ -43,7 +43,8 @@
                                 "widgetId": "",
                                 "value": 1,
                                 "preArgs": [],
-                                "address": "/text_1"
+                                "address": "/text_1",
+                                "linkId": ""
                             },
                             {
                                 "type": "strip",
@@ -122,10 +123,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/strip_5",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "strip",
@@ -208,10 +211,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/strip_6",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "strip",
@@ -235,19 +240,19 @@
                                         "dashed": true,
                                         "color": "auto",
                                         "css": "margin: 20rem 0 20rem 10rem;",
-                                        "widgetId": "knob_1",
                                         "range": {
                                             "min": 0,
                                             "max": 1
                                         },
                                         "logScale": false,
                                         "origin": "auto",
-                                        "value": "",
+                                        "value": "@{knob_1}",
                                         "address": "/meter_1",
                                         "preArgs": [],
                                         "width": 10,
                                         "compact": true,
-                                        "input": false
+                                        "input": false,
+                                        "linkId": ""
                                     },
                                     {
                                         "type": "meter",
@@ -260,19 +265,19 @@
                                         "dashed": true,
                                         "color": "auto",
                                         "css": "margin: 20rem 0",
-                                        "widgetId": "knob_2",
                                         "range": {
                                             "min": 0,
                                             "max": 1
                                         },
                                         "logScale": false,
                                         "origin": "auto",
-                                        "value": "",
+                                        "value": "@{knob_2}",
                                         "address": "/meter_1",
                                         "preArgs": [],
                                         "width": 10,
                                         "compact": true,
-                                        "input": false
+                                        "input": false,
+                                        "linkId": ""
                                     },
                                     {
                                         "type": "fader",
@@ -319,10 +324,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/strip_1",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "fader",
@@ -416,10 +423,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/strip_3",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             }
                         ],
                         "_style": "style",
@@ -432,10 +441,12 @@
                         "value": "",
                         "_osc": "osc",
                         "precision": 0,
-                        "address": "auto",
+                        "address": "/strip_4",
                         "preArgs": [],
                         "target": [],
-                        "tabs": []
+                        "tabs": [],
+                        "linkId": "",
+                        "noSync": false
                     },
                     {
                         "type": "panel",
@@ -519,7 +530,8 @@
                                     }
                                 ],
                                 "tabs": [],
-                                "scroll": true
+                                "scroll": true,
+                                "linkId": ""
                             },
                             {
                                 "type": "tab",
@@ -560,7 +572,8 @@
                                     }
                                 ],
                                 "tabs": [],
-                                "scroll": true
+                                "scroll": true,
+                                "linkId": ""
                             },
                             {
                                 "type": "tab",
@@ -624,35 +637,34 @@
                                     }
                                 ],
                                 "tabs": [],
-                                "scroll": true
+                                "scroll": true,
+                                "linkId": ""
                             }
                         ],
-                        "border": true
+                        "border": true,
+                        "linkId": "",
+                        "noSync": false
                     },
                     {
                         "type": "dropdown",
                         "top": 10,
                         "left": 480,
-                        "id": "dropdown_1",
+                        "id": "color_picker",
                         "linkId": "",
                         "label": "Color",
                         "width": 130,
-                        "height": "auto",
+                        "height": 60,
                         "color": "auto",
                         "css": "",
                         "precision": 2,
-                        "address": "/EDIT",
-                        "preArgs": [
-                            "root"
-                        ],
-                        "target": [
-                            "self"
-                        ],
-                        "value": "{ \"color\": \"auto\" }",
+                        "value": "auto",
                         "values": {
-                            "Default": "{ \"color\": \"auto\" }",
-                            "Orange": "{ \"color\": \"orange\" }"
-                        }
+                            "Default": "auto",
+                            "Orange": "orange"
+                        },
+                        "address": "/dropdown_1",
+                        "preArgs": [],
+                        "target": []
                     },
                     {
                         "type": "keyboard",
@@ -774,7 +786,6 @@
                         "label": "Plot (multifader)",
                         "color": "auto",
                         "css": "",
-                        "points": "multifader",
                         "rangeX": {
                             "min": 0,
                             "max": 1
@@ -789,14 +800,19 @@
                         "pips": false,
                         "address": "/plot_1",
                         "preArgs": [],
-                        "smooth": true
+                        "smooth": true,
+                        "linkId": "",
+                        "dots": true,
+                        "bars": false,
+                        "value": "@{multifader}"
                     }
                 ],
                 "tabs": [],
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             }
         ],
-        "color": "auto",
+        "color": "@{color_picker}",
         "css": "",
         "value": "",
         "precision": 0,
@@ -806,6 +822,8 @@
         "variables": {},
         "id": "root",
         "scroll": true,
-        "label": false
+        "label": false,
+        "linkId": "",
+        "noSync": false
     }
 ]

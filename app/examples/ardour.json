@@ -154,7 +154,8 @@
                                         "address": "/position/smpte",
                                         "widgetId": "",
                                         "width": 100,
-                                        "color": "auto"
+                                        "color": "auto",
+                                        "linkId": ""
                                     },
                                     {
                                         "type": "push",
@@ -210,10 +211,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/transport",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "text",
@@ -229,7 +232,8 @@
                                 "value": " ",
                                 "address": "/session_name",
                                 "widgetId": "",
-                                "color": "auto"
+                                "color": "auto",
+                                "linkId": ""
                             },
                             {
                                 "type": "panel",
@@ -260,7 +264,8 @@
                                                 "address": "/strip/name",
                                                 "widgetId": "",
                                                 "value": "@{parent.variables.n}",
-                                                "color": "auto"
+                                                "color": "auto",
+                                                "linkId": ""
                                             },
                                             {
                                                 "type": "strip",
@@ -298,7 +303,8 @@
                                                                 "address": "/trim_label_@{parent.variables.n}",
                                                                 "vertical": true,
                                                                 "width": "auto",
-                                                                "css": "line-height:12rem"
+                                                                "css": "line-height:12rem",
+                                                                "linkId": ""
                                                             },
                                                             {
                                                                 "type": "input",
@@ -307,7 +313,7 @@
                                                                 "color": "auto",
                                                                 "preArgs": [],
                                                                 "widgetId": "trim_knob_@{parent.variables.n}",
-                                                                "linkId": "",
+                                                                "linkId": "trim_knob_@{parent.variables.n}",
                                                                 "unit": "",
                                                                 "editable": true,
                                                                 "precision": 1,
@@ -329,15 +335,17 @@
                                                         "value": "",
                                                         "_osc": "osc",
                                                         "precision": 0,
-                                                        "address": "auto",
+                                                        "address": "/trim_meta_@{parent.variables.n}",
                                                         "preArgs": [],
                                                         "target": [],
-                                                        "tabs": []
+                                                        "tabs": [],
+                                                        "linkId": "",
+                                                        "noSync": false
                                                     },
                                                     {
                                                         "type": "knob",
                                                         "id": "trim_knob_@{parent.variables.n}",
-                                                        "linkId": "",
+                                                        "linkId": "trim_knob_@{parent.variables.n}",
                                                         "label": false,
                                                         "unit": "",
                                                         "range": {
@@ -375,10 +383,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/trim_@{parent.variables.n}",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "strip",
@@ -463,10 +473,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/top_buttons_@{parent.variables.n}",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "strip",
@@ -511,12 +523,13 @@
                                                         "css": "margin: 20rem 0 20rem 20rem;",
                                                         "width": 10,
                                                         "compact": true,
-                                                        "input": false
+                                                        "input": false,
+                                                        "linkId": ""
                                                     },
                                                     {
                                                         "type": "fader",
                                                         "id": "fader_@{parent.variables.n}",
-                                                        "linkId": "",
+                                                        "linkId": "fader_@{parent.variables.n}",
                                                         "label": false,
                                                         "unit": "dB",
                                                         "horizontal": false,
@@ -571,15 +584,17 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/fader_strip_@{parent.variables.n}",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "input",
                                                 "id": "fader_input_@{parent.variables.n}",
-                                                "linkId": "",
+                                                "linkId": "fader_@{parent.variables.n}",
                                                 "label": false,
                                                 "unit": "dB",
                                                 "height": 30,
@@ -692,10 +707,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/bottom_buttons_@{parent.variables.n}",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "strip",
@@ -758,10 +775,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/bottom_buttons_@{parent.variables.n}",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             }
                                         ],
                                         "color": "auto",
@@ -785,10 +804,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/channel_strip",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "clone",
@@ -897,7 +918,9 @@
                                 "address": "/strip_scroll_panel",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "strip",
@@ -917,7 +940,8 @@
                                         "address": "/master_label",
                                         "color": "auto",
                                         "widgetId": "",
-                                        "preArgs": []
+                                        "preArgs": [],
+                                        "linkId": ""
                                     },
                                     {
                                         "type": "strip",
@@ -955,7 +979,8 @@
                                                         "widgetId": "",
                                                         "address": "/mastertrim_label",
                                                         "vertical": true,
-                                                        "width": "auto"
+                                                        "width": "auto",
+                                                        "linkId": ""
                                                     },
                                                     {
                                                         "type": "input",
@@ -964,7 +989,7 @@
                                                         "color": "auto",
                                                         "preArgs": [],
                                                         "widgetId": "mastertrim",
-                                                        "linkId": "",
+                                                        "linkId": "mastertrim",
                                                         "unit": "",
                                                         "editable": true,
                                                         "precision": 1,
@@ -986,15 +1011,17 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/trim_meta_@{parent.variables.n}",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "knob",
                                                 "id": "mastertrim",
-                                                "linkId": "",
+                                                "linkId": "mastertrim",
                                                 "label": false,
                                                 "unit": "",
                                                 "range": {
@@ -1030,10 +1057,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/master_trim_strip",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "strip",
@@ -1076,10 +1105,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/master_mute_strip",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "strip",
@@ -1122,12 +1153,13 @@
                                                 "width": 10,
                                                 "widgetId": "",
                                                 "compact": true,
-                                                "input": false
+                                                "input": false,
+                                                "linkId": ""
                                             },
                                             {
                                                 "type": "fader",
                                                 "id": "Master",
-                                                "linkId": "",
+                                                "linkId": "Master",
                                                 "label": false,
                                                 "unit": "dB",
                                                 "horizontal": false,
@@ -1180,15 +1212,17 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/master_fader_strip",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "input",
                                         "id": "master_input",
-                                        "linkId": "",
+                                        "linkId": "Master",
                                         "label": false,
                                         "unit": "dB",
                                         "height": 30,
@@ -1399,10 +1433,12 @@
                                                                 "value": "",
                                                                 "_osc": "osc",
                                                                 "precision": 0,
-                                                                "address": "auto",
+                                                                "address": "/monitor_buttons",
                                                                 "preArgs": [],
                                                                 "target": [],
-                                                                "tabs": []
+                                                                "tabs": [],
+                                                                "linkId": "",
+                                                                "noSync": false
                                                             }
                                                         ],
                                                         "_style": "style",
@@ -1418,15 +1454,19 @@
                                                         "value": "",
                                                         "_osc": "osc",
                                                         "precision": 0,
-                                                        "address": "auto",
+                                                        "address": "/monitor_strip",
                                                         "preArgs": [],
                                                         "target": [],
-                                                        "tabs": []
+                                                        "tabs": [],
+                                                        "linkId": "",
+                                                        "noSync": false
                                                     }
                                                 ],
                                                 "popupLabel": "Monitor",
                                                 "tabs": [],
-                                                "scroll": true
+                                                "scroll": true,
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "modal",
@@ -1671,10 +1711,9 @@
                                                                                 "doubleTap": false
                                                                             },
                                                                             {
-                                                                                "type": "formula",
+                                                                                "type": "input",
                                                                                 "id": "trip_type_bitsum",
                                                                                 "linkId": "",
-                                                                                "formula": "${strip_type_1} + ${strip_type_2} + ${strip_type_3} + ${strip_type_4} + ${strip_type_5} + ${strip_type_6} + ${strip_type_7} + ${strip_type_8} + ${strip_type_9} + ${strip_type_10}",
                                                                                 "condition": "",
                                                                                 "label": false,
                                                                                 "color": "auto",
@@ -1685,7 +1724,11 @@
                                                                                 "preArgs": [],
                                                                                 "target": [],
                                                                                 "height": "auto",
-                                                                                "unit": ""
+                                                                                "unit": "",
+                                                                                "formula": "",
+                                                                                "vertical": false,
+                                                                                "editable": false,
+                                                                                "value": "#{\n@{strip_type_1} + \n@{strip_type_2} + \n@{strip_type_3} + \n@{strip_type_4} + \n@{strip_type_5} + \n@{strip_type_6} + \n@{strip_type_7} + \n@{strip_type_8} + \n@{strip_type_9} + \n@{strip_type_10}\n}"
                                                                             }
                                                                         ],
                                                                         "horizontal": false,
@@ -1702,26 +1745,33 @@
                                                                         "value": "",
                                                                         "_osc": "osc",
                                                                         "precision": 0,
-                                                                        "address": "auto",
+                                                                        "address": "/strip_types_select",
                                                                         "preArgs": [],
                                                                         "target": [],
-                                                                        "tabs": []
+                                                                        "tabs": [],
+                                                                        "linkId": "",
+                                                                        "noSync": false
                                                                     }
                                                                 ],
                                                                 "tabs": [],
-                                                                "scroll": true
+                                                                "scroll": true,
+                                                                "linkId": ""
                                                             }
                                                         ],
                                                         "top": 0,
                                                         "left": 0,
-                                                        "width": "100%"
+                                                        "width": "100%",
+                                                        "linkId": "",
+                                                        "noSync": false
                                                     }
                                                 ],
                                                 "popupWidth": "80%",
                                                 "address": "/settings_modal",
                                                 "popupLabel": "Settings",
                                                 "tabs": [],
-                                                "scroll": true
+                                                "scroll": true,
+                                                "linkId": "",
+                                                "noSync": false
                                             }
                                         ],
                                         "_style": "style",
@@ -1733,10 +1783,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/settings_modal_strip",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "strip",
@@ -1793,10 +1845,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/monitor_modal_strip",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     }
                                 ],
                                 "spacing": 0,
@@ -1817,10 +1871,12 @@
                                 "value": "",
                                 "_osc": "osc",
                                 "precision": 0,
-                                "address": "auto",
+                                "address": "/ch_master",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             }
                         ],
                         "tabs": [],
@@ -1829,7 +1885,9 @@
                         "address": "/mixer_main",
                         "preArgs": [],
                         "target": [],
-                        "border": true
+                        "border": true,
+                        "linkId": "",
+                        "noSync": false
                     }
                 ],
                 "id": "mixer_tab",
@@ -1845,7 +1903,8 @@
                 "tabs": [],
                 "color": "auto",
                 "address": "/mixer_tab",
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             },
             {
                 "type": "tab",
@@ -1901,7 +1960,8 @@
                                                 "widgetId": "",
                                                 "value": " sel",
                                                 "preArgs": [],
-                                                "color": "auto"
+                                                "color": "auto",
+                                                "linkId": ""
                                             },
                                             {
                                                 "type": "strip",
@@ -1939,7 +1999,8 @@
                                                                 "widgetId": "",
                                                                 "address": "/select_trim_label",
                                                                 "vertical": true,
-                                                                "width": "auto"
+                                                                "width": "auto",
+                                                                "linkId": ""
                                                             },
                                                             {
                                                                 "type": "input",
@@ -1949,7 +2010,7 @@
                                                                 "css": "",
                                                                 "preArgs": [],
                                                                 "widgetId": "select_trim_knob",
-                                                                "linkId": "",
+                                                                "linkId": "select_trim_knob",
                                                                 "unit": "",
                                                                 "editable": true,
                                                                 "precision": 1,
@@ -1970,15 +2031,17 @@
                                                         "value": "",
                                                         "_osc": "osc",
                                                         "precision": 0,
-                                                        "address": "auto",
+                                                        "address": "/trim_meta_select",
                                                         "preArgs": [],
                                                         "target": [],
-                                                        "tabs": []
+                                                        "tabs": [],
+                                                        "linkId": "",
+                                                        "noSync": false
                                                     },
                                                     {
                                                         "type": "knob",
                                                         "id": "select_trim_knob",
-                                                        "linkId": "",
+                                                        "linkId": "select_trim_knob",
                                                         "label": false,
                                                         "unit": "",
                                                         "range": {
@@ -2014,10 +2077,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/trim_select_strip",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "strip",
@@ -2096,10 +2161,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/top_buttons_select",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "strip",
@@ -2137,7 +2204,8 @@
                                                                 "widgetId": "",
                                                                 "vertical": false,
                                                                 "preArgs": [],
-                                                                "address": "/text_4"
+                                                                "address": "/text_4",
+                                                                "linkId": ""
                                                             }
                                                         ],
                                                         "popupWidth": "75%",
@@ -2152,7 +2220,9 @@
                                                         "height": "auto",
                                                         "popupLabel": "",
                                                         "tabs": [],
-                                                        "scroll": true
+                                                        "scroll": true,
+                                                        "linkId": "",
+                                                        "noSync": false
                                                     },
                                                     {
                                                         "type": "modal",
@@ -2177,7 +2247,8 @@
                                                                 "widgetId": "",
                                                                 "vertical": false,
                                                                 "preArgs": [],
-                                                                "address": "/text_3"
+                                                                "address": "/text_3",
+                                                                "linkId": ""
                                                             }
                                                         ],
                                                         "popupWidth": "75%",
@@ -2192,7 +2263,9 @@
                                                         "height": "auto",
                                                         "popupLabel": "",
                                                         "tabs": [],
-                                                        "scroll": true
+                                                        "scroll": true,
+                                                        "linkId": "",
+                                                        "noSync": false
                                                     }
                                                 ],
                                                 "_style": "style",
@@ -2204,10 +2277,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/sends_receive_buttons_select",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "strip",
@@ -2250,12 +2325,13 @@
                                                         "preArgs": [],
                                                         "widgetId": "",
                                                         "compact": true,
-                                                        "input": false
+                                                        "input": false,
+                                                        "linkId": ""
                                                     },
                                                     {
                                                         "type": "fader",
                                                         "id": "fader_select",
-                                                        "linkId": "",
+                                                        "linkId": "fader_select",
                                                         "label": false,
                                                         "unit": "dB",
                                                         "horizontal": false,
@@ -2308,15 +2384,17 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/fader_select_strip",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "input",
                                                 "id": "fader_input_select",
-                                                "linkId": "",
+                                                "linkId": "fader_select",
                                                 "label": false,
                                                 "unit": "dB",
                                                 "height": 30,
@@ -2423,10 +2501,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/bottom_buttons_select",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             },
                                             {
                                                 "type": "strip",
@@ -2469,10 +2549,12 @@
                                                 "value": "",
                                                 "_osc": "osc",
                                                 "precision": 0,
-                                                "address": "auto",
+                                                "address": "/bottom_buttons_select",
                                                 "preArgs": [],
                                                 "target": [],
-                                                "tabs": []
+                                                "tabs": [],
+                                                "linkId": "",
+                                                "noSync": false
                                             }
                                         ],
                                         "color": "auto",
@@ -2494,10 +2576,12 @@
                                         "value": "",
                                         "_osc": "osc",
                                         "precision": 0,
-                                        "address": "auto",
+                                        "address": "/select_chn",
                                         "preArgs": [],
                                         "target": [],
-                                        "tabs": []
+                                        "tabs": [],
+                                        "linkId": "",
+                                        "noSync": false
                                     },
                                     {
                                         "type": "panel",
@@ -2526,7 +2610,8 @@
                                                 "widgetId": "",
                                                 "vertical": false,
                                                 "preArgs": [],
-                                                "address": "/text_1"
+                                                "address": "/text_1",
+                                                "linkId": ""
                                             }
                                         ],
                                         "tabs": [],
@@ -2537,7 +2622,9 @@
                                         "address": "/plugins_panel",
                                         "preArgs": [],
                                         "target": [],
-                                        "border": true
+                                        "border": true,
+                                        "linkId": "",
+                                        "noSync": false
                                     }
                                 ],
                                 "left": 0,
@@ -2556,7 +2643,9 @@
                                 "address": "/strip_scroll_panel",
                                 "preArgs": [],
                                 "target": [],
-                                "tabs": []
+                                "tabs": [],
+                                "linkId": "",
+                                "noSync": false
                             },
                             {
                                 "type": "clone",
@@ -2608,12 +2697,15 @@
                         "address": "/mixer_main",
                         "preArgs": [],
                         "target": [],
-                        "border": true
+                        "border": true,
+                        "linkId": "",
+                        "noSync": false
                     }
                 ],
                 "tabs": [],
                 "address": "/track_tab",
-                "scroll": true
+                "scroll": true,
+                "linkId": ""
             }
         ],
         "value": "",
@@ -2626,6 +2718,8 @@
         "css": "",
         "id": "root",
         "scroll": true,
-        "label": false
+        "label": false,
+        "linkId": "",
+        "noSync": false
     }
 ]
