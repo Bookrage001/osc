@@ -35,7 +35,7 @@
     "keyboardjs": "jean-emmanuel/KeyboardJS",
     "kiwi.js": "1.0.1",
     "licensify": "3.1.3",
-    "mathjs": "3.20.2",
+    "mathjs": "^4.0.0-rc.1",
     "minimatch": "^3.0.4",
     "nanomorph": "^5.1.3",
     "node-sass": "4.7.2",

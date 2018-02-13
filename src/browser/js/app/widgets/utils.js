@@ -1,14 +1,3 @@
-var math = require('mathjs/dist/math.min.js').create({
-    matrix: 'Array'
-})
-math.import({
-    unpack: function(a) { return Array.isArray(a) ? a.toString() : a }
-})
-
-// set math's parser array index base to zero
-math.expression.mathWithTransform = Object.assign({}, math)
-
-
 module.exports = {
 
     clip: function(value,range) {
@@ -81,5 +70,25 @@ module.exports = {
         return hsb
     },
 
-    math: math
+    math: (()=>{
+        var math = require('mathjs/dist/math.min.js').create({
+            matrix: 'Array'
+        })
+        math.import({
+            unpack: function(a) { return Array.isArray(a) ? a.toString() : a },
+            // basic relationnal to keep alphabetical string comparison (v4 change)
+            equal:     function (a, b) { return a == b },
+            unequal:   function (a, b) { return a != b },
+            smaller:   function (a, b) { return a < b },
+            larger:    function (a, b) { return a > b },
+            smallerEq: function (a, b) { return a <= b },
+            largerEq:  function (a, b) { return a >= b }
+        }, {override:true})
+
+        // set math's parser array index base to zero
+        math.expression.mathWithTransform = Object.assign({}, math)
+
+        return math
+    })()
+
 }
