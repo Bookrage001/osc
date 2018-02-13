@@ -104,6 +104,7 @@ class Dropdown extends Widget {
 
             case 'values':
                 this.parseValues()
+                this.setValue(this.value)
                 return
 
         }
