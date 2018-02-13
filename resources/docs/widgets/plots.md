@@ -10,11 +10,6 @@ Plots are tools that display other widgets' state or incomming osc messages. The
 }
 ```
 
-### `widgetId`
-- type: `string`
-- default: `empty`
-- usage: a widget's `id` whose value will be mapped to the led's color opacity
-
 ### `range`
 - type: `object`
 - default: `{"min":0,"max":1}`
@@ -52,11 +47,10 @@ The plot receives an array of coordinates and draws them on a chart. Coordinates
 }
 ```
 
-### `points`
+### `value`
 - type: `array|string`
-- default: `[]`
+- default: `['']`
 - usage:
-    - as a `string`: a widget's `id` whose values will be used
     - as an `array`: where items can be
         - `number`
         - `string` (widget's `id`)
@@ -107,7 +101,7 @@ The Eq receives an array of filter objects and draws their frequency response be
 }
 ```
 
-### `filters`
+### `value`
 - type: `array`
 - default: `[]`
 - usage:
@@ -161,11 +155,6 @@ The visualizer displays the evolution in time of a received value (through osc) 
 }
 ```
 
-### `widgetId`
-- type: `string`
-- default: `empty`
-- usage: a widget's `id` whose value will be displayed (thus bypassing the incoming osc)
-
 ### `duration`
 - type: `number`
 - default: `1`
@@ -202,11 +191,6 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 }
 ```
 
-### `widgetId`
-- type: `string`
-- default: `empty`
-- usage: a widget's `id` whose value will be displayed
-
 ### `vertical`
 - type: `boolean`
 - default: `false`
@@ -223,10 +207,6 @@ Meter displays incoming numerical values (via osc) as a gauge level
 }
 ```
 
-### `widgetId`
-- type: `object`
-- default: `empty`
-- usage: a widget's `id` whose value will be displayed
 
 ### `horizontal`
 - type: `boolean`

@@ -13,6 +13,7 @@ class Panel extends Widget {
         return {
             type:'panel',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 

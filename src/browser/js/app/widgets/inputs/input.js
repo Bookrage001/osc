@@ -29,7 +29,6 @@ module.exports = class Input extends Canvas {
 
             vertical:false,
             unit: '',
-            widgetId:'',
             editable:true,
             value:'',
 
@@ -76,12 +75,6 @@ module.exports = class Input extends Canvas {
             this.widget.classList.add('not-editable')
         }
 
-        if (this.getProp('widgetId').length) {
-
-            widgetManager.on(`change.${this.hash}`, this.syncHandle.bind(this))
-
-        }
-
     }
 
     focus() {
@@ -114,14 +107,6 @@ module.exports = class Input extends Canvas {
 
     }
 
-    syncHandle(e) {
-
-        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length || !e.widget) return
-
-        this.setValue(e.widget.getValue(), {...e.options, internal:true})
-
-    }
-
     resizeHandle(event){
 
             super.resizeHandle(event)
@@ -148,19 +133,6 @@ module.exports = class Input extends Canvas {
         } catch (err) {
             this.value = v
         }
-
-        if (!options.internal && this.getProp('widgetId').length) {
-            var widget = widgetManager.getWidgetById(this.getProp('widgetId'))
-            for (var i=widget.length-1; i>=0; i--) {
-                if (widget[i].setValue) {
-                    widget[i].setValue(this.value, options)
-                    this.setValue(widget[i].getValue(), {...options, internal:true, sentOnce:options.send})
-                    return
-                }
-            }
-        }
-
-        if (options.sentOnce) options.send = false
 
         this.stringValue = this.getStringValue()
         this.batchDraw()

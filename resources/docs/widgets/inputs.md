@@ -10,11 +10,6 @@
 }
 ```
 
-### `widgetId`
-- type: `object`
-- default: `empty`
-- usage: a widget's `id` whose value will be linked to the input
-
 ### `editable`
 - type: `boolean`
 - default: `true`

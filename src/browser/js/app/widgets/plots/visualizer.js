@@ -9,6 +9,7 @@ module.exports = class Visualizer extends _plots_base {
         return {
             type:'visualizer',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 
@@ -25,7 +26,6 @@ module.exports = class Visualizer extends _plots_base {
 
             _visualizer:'visualizer',
 
-            widgetId:'',
             duration:1,
             range: {min:0,max:1},
             origin: 'auto',
@@ -44,6 +44,9 @@ module.exports = class Visualizer extends _plots_base {
 
     constructor(options) {
 
+        // backward compat
+        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
+
         super(options)
 
         this.fps = 30
@@ -61,13 +64,6 @@ module.exports = class Visualizer extends _plots_base {
         this.lastUpdate = 0
         this.watchDuration = 1000 * this.getProp('duration')
         this.ticks = 0
-
-    }
-
-    syncHandle(e) {
-
-        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length || !e.widget) return
-        this.setValue(e.widget.getValue(), {sync: e.options.sync})
 
     }
 

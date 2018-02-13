@@ -59,11 +59,6 @@ var Parser = class Parser {
             // Generate default address
             props.address = props.address == 'auto' ? '/' + props.id : props.address
 
-            // Delete unrecognized options
-            for (let i in props) {
-                if (defaults[i]===undefined && i!='type') {delete props[i]}
-            }
-
             // create container
             var widgetContainer = DOM.create(`
                 <div class="widget ${props.type}-container">

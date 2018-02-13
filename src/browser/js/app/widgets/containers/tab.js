@@ -11,6 +11,7 @@ module.exports = class Tab extends Panel {
         return {
             type:'tab',
             id:'auto',
+            linkId:'',
 
             _style:'style',
 

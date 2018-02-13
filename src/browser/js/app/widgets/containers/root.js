@@ -12,6 +12,7 @@ module.exports = class Root extends Panel {
         return {
 
             type:'root',
+            linkId:'',
 
             _style:'style',
 

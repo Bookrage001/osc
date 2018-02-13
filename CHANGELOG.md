@@ -2,6 +2,8 @@
 
 ## 0.24.0
 
+/!\ BREAKING CHANGES /!\
+
 - bug fixes
   - regression preventing dropdown to display no option selected
   - crossfaders display issue on iOS
@@ -21,7 +23,10 @@
   - property maths: added support for math expressions everywhere via `#{}`
   - input: add glass effect when `editable` is `false`
   - `linkId` can now be set as an array of linkIds
-  - plot: added `dots` options
+  - plot: added `dots` options; **removed** `points` options (use `value` and property inheritance instead)
+  - eq:  **removed** `filters` options (use `value` and property inheritance instead)
+  - plot/meter/led/rgbled/text: **removed** `widgetId` option
+  - input: **removed** `widgetId` option
 
 ## 0.23.1
 

@@ -23,7 +23,7 @@ class Ipc extends EventEmitter {
 
                 var client = new Client(socket, id)
                 this.clients[id] = client
-                
+
                 this.emit('connection', client)
 
                 client.on('close', ()=>{

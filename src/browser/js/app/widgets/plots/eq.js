@@ -10,6 +10,7 @@ module.exports = class Eq extends _plots_base {
         return {
             type:'eq',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 
@@ -27,12 +28,12 @@ module.exports = class Eq extends _plots_base {
             _eq:'eq',
 
             pips:true,
-            filters:[],
             resolution:128,
             rangeY: {min:-20,max:20},
             origin: 'auto',
             logScaleX: false,
             smooth: false,
+            value: '',
 
             _osc:'osc',
 
@@ -45,6 +46,9 @@ module.exports = class Eq extends _plots_base {
 
     constructor(options) {
 
+        // backward compat
+        if (options.props.filters && options.props.filters.length) options.props.value = options.props.filters
+
         super(options)
 
         this.rangeX = {min:20,max:22050}
@@ -53,45 +57,12 @@ module.exports = class Eq extends _plots_base {
 
         this.resolution = clip(this.getProp('resolution'),[64,1024])
 
-        for (let i in this.getProp('filters')) {
-
-            for (let j in this.getProp('filters')[i]) {
-                if (typeof this.getProp('filters')[i][j]=='string' && !(j=='type' && this.getProp('filters')[i][j].match(/peak|notch|highpass|highshelf|lowpass|lowshelf/))) {
-                    this.linkedWidgets.push(this.getProp('filters')[i][j])
-                }
-            }
-
-        }
-
     }
 
-    updateData() {
+    setValue(v, options={}) {
 
-        var filters = [],
-        eqResponse = []
-
-
-        for (let i in this.getProp('filters')) {
-            var filter = this.getProp('filters')[i]
-
-            filters[i] = {}
-
-            for (let j in filter) {
-                let widget = widgetManager.getWidgetById(filter[j])
-
-                if (typeof filter[j]=='string' && widget.length) {
-
-                    filters[i][j] = widget[widget.length-1].getValue()
-
-                } else {
-
-                    filters[i][j] = filter[j]
-
-                }
-
-            }
-
-        }
+        var filters = v,
+            eqResponse = []
 
         for (let i in filters) {
 
@@ -115,7 +86,7 @@ module.exports = class Eq extends _plots_base {
 
         }
 
-        if (eqResponse.length) this.data = eqResponse
+        if (eqResponse.length) super.setValue(eqResponse, options)
 
     }
 

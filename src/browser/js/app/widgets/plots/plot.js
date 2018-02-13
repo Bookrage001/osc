@@ -9,6 +9,7 @@ module.exports = class Plot extends _plots_base {
         return {
             type:'plot',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 
@@ -25,7 +26,6 @@ module.exports = class Plot extends _plots_base {
 
             _plot:'plot',
 
-            points:[],
             rangeX: {min:0,max:1},
             rangeY: {min:0,max:1},
             origin: 'auto',
@@ -35,6 +35,7 @@ module.exports = class Plot extends _plots_base {
             logScaleY: false,
             smooth: false,
             pips:true,
+            value: '',
 
             _osc:'osc',
 
@@ -47,55 +48,10 @@ module.exports = class Plot extends _plots_base {
 
     constructor(options) {
 
+        // backward compat
+        if (options.props.points && options.props.points.length) options.props.value = options.props.points
+
         super(options)
-
-        if (typeof this.getProp('points')=='string') {
-
-            this.linkedWidgets.push(this.getProp('points'))
-
-        } else if (typeof this.getProp('points')=='object') {
-
-            for (let i in this.getProp('points')) {
-                for (let j in this.getProp('points')[i]) {
-                    if (typeof this.getProp('points')[i][j] == 'string') {
-                        this.linkedWidgets.push(this.getProp('points')[i][j])
-                    }
-                }
-            }
-        }
-
-    }
-
-    updateData() {
-
-        var data = [],
-            points = this.getProp('points'),
-            widget = widgetManager.getWidgetById(points)
-
-        if (typeof points=='string' && widget.length) {
-
-            data = widget[widget.length-1].getValue()
-
-        } else if (typeof points=='object') {
-
-            for (let i in points) {
-
-                data[i] = []
-
-                for (var k in [0,1]) {
-                    let widget = widgetManager.getWidgetById(points[i][k])
-                    if (typeof points[i][k] == 'string' && widget.length) {
-                        data[i][k] = widget[widget.length-1].getValue()
-                    } else {
-                        data[i][k] = points[i][k]
-                    }
-                }
-
-            }
-
-        }
-
-        if (data.length) this.data = data
 
     }
 

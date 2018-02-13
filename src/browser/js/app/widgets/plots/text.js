@@ -9,6 +9,7 @@ module.exports = class Text extends Widget {
         return {
             type:'text',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 
@@ -25,7 +26,6 @@ module.exports = class Text extends Widget {
 
             _text: 'text',
 
-            widgetId:'',
             vertical:false,
             value:'',
 
@@ -39,6 +39,9 @@ module.exports = class Text extends Widget {
 
     constructor(options) {
 
+        // backward compat
+        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
+
         super({...options, html: '<div class="text"></div>'})
 
         if (this.getProp('vertical')) this.widget.classList.add('vertical')
@@ -51,25 +54,10 @@ module.exports = class Text extends Widget {
 
         this.value = this.defaultValue
 
-        if (this.getProp('widgetId').length) widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
-
         this.setValue(this.value)
 
     }
 
-    syncHandle(e) {
-
-        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
-        var widget = widgetManager.getWidgetById(e.id),
-            value
-        for (var i=widget.length-1; i>=0; i--) {
-            if (widget[i].getValue) {
-                this.setValue(widget[i].getValue(true), {sync: e.options.sync})
-                return
-            }
-        }
-
-    }
 
     setValue(v, options={}) {
 

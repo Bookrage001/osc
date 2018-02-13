@@ -8,6 +8,7 @@ module.exports = class Led extends Widget {
         return {
             type:'image',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 

@@ -59,7 +59,7 @@ module.exports = {
         open() {
             if (this.state) return
             this.state = 1
-            
+
             if (this.escKey) document.addEventListener('keydown', this.escKeyHandler)
             if (this.enterKey) document.addEventListener('keydown', this.enterKeyHandler)
             document.body.appendChild(this.html)

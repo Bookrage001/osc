@@ -7,6 +7,7 @@ module.exports = class Strip extends Panel {
         return  {
             type:'strip',
             id:'auto',
+            linkId:'',
 
             _style:'style',
 

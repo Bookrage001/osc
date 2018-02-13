@@ -11,6 +11,7 @@ module.exports = class Keys extends Widget {
         return {
             type:'led',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 
@@ -88,7 +89,6 @@ module.exports = class Keys extends Widget {
         var widget = this.getLinkedWidget()
 
         if (widget) {
-
             var v = this.keydownMath.eval({
                 value: widget.getValue(),
                 key: e.key,

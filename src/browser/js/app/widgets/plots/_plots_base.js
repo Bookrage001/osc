@@ -16,7 +16,6 @@ module.exports = class _plots_base extends Canvas {
         super({...options, html: html})
 
         this.data = []
-        this.linkedWidgets = []
         this.rangeX = this.getProp('rangeX') || {min:0,max:1}
         this.rangeY = this.getProp('rangeY') || {min:0,max:1}
         this.logScaleX = this.getProp('logScaleX')
@@ -32,24 +31,6 @@ module.exports = class _plots_base extends Canvas {
             }
         }
         this.smooth = this.getProp('smooth') === true ? 0.25 : this.getProp('smooth') === false ? 0 : parseFloat(this.getProp('smooth')) || 0
-
-
-
-        widgetManager.on(`change.${this.hash}`, this.syncHandleProxy.bind(this), this)
-
-    }
-
-    syncHandleProxy() {
-
-        this.syncHandle(...arguments)
-
-    }
-
-    syncHandle(e) {
-
-        if (this.linkedWidgets.indexOf(e.id)==-1 || !widgetManager.getWidgetById(e.id).length) return
-        this.updateData()
-        this.batchDraw()
 
     }
 

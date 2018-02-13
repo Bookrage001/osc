@@ -10,6 +10,7 @@ module.exports = class Modal extends Panel {
         return  {
             type:'modal',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 

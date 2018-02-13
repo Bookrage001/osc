@@ -9,6 +9,7 @@ module.exports = class Meter extends Fader {
         return {
             type:'fader',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 
@@ -26,7 +27,6 @@ module.exports = class Meter extends Fader {
 
             _meter:'meter',
 
-            widgetId:'',
             range:{min:0,max:1},
             logScale:false,
             origin:'auto',
@@ -47,6 +47,9 @@ module.exports = class Meter extends Fader {
 
     constructor(options) {
 
+        // backward compat
+        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
+
         options.props.compact = true
         options.props.input = false
 
@@ -55,23 +58,6 @@ module.exports = class Meter extends Fader {
         this.widget.classList.add('meter')
 
         this.off(/drag(.*)?/)
-
-        if (this.getProp('widgetId').length) widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
-
-
-    }
-
-    syncHandle(e) {
-
-        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
-        var widget = widgetManager.getWidgetById(e.id),
-            value
-        for (var i=widget.length-1; i>=0; i--) {
-            if (widget[i].getValue) {
-                this.setValue(widget[i].getValue(), {sync: e.options.sync})
-                return
-            }
-        }
 
     }
 

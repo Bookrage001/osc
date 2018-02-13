@@ -10,6 +10,7 @@ module.exports = class Rbgled extends Widget {
         return {
             type:'rgbled',
             id:'auto',
+            linkId:'',
 
             _geometry:'geometry',
 
@@ -25,7 +26,6 @@ module.exports = class Rbgled extends Widget {
 
             _rgbled:'rgbled',
 
-            widgetId:'',
             value:'',
 
             _osc:'osc',
@@ -39,6 +39,10 @@ module.exports = class Rbgled extends Widget {
 
     constructor(options) {
 
+        // backward compat
+        if (options.props.widgetId) options.props.value = '@{' + options.props.widgetId + '}'
+
+
         var html = `
             <div class="led">
             </div>
@@ -46,27 +50,11 @@ module.exports = class Rbgled extends Widget {
 
         super({...options, html: html})
 
-        if (this.getProp('widgetId').length) widgetManager.on(`change.${this.hash}`,this.syncHandle.bind(this))
-
         this.setValue([0,0,0,0])
 
     }
 
-    syncHandle(e) {
 
-        if (this.getProp('widgetId')!=e.id || !widgetManager.getWidgetById(e.id).length) return
-
-        var widget = widgetManager.getWidgetById(e.id),
-            value
-
-        for (var i=widget.length-1; i>=0; i--) {
-            if (widget[i].getValue) {
-                this.setValue(widget[i].getValue(), {sync: e.options.sync})
-                return
-            }
-        }
-
-    }
     setValue(v, options={}) {
 
         var c = ''
