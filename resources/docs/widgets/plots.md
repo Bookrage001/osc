@@ -261,7 +261,23 @@ Image displays an image from a file path/url or from a base64 encoded image stri
 
 ### `value`
 - type: `string`
-- default: `empty`
+- default: `''`
 - usage : initial image
   - file url or absolute path
   - [base64 encoded image](https://duckduckgo.com/?q=base64+encode+image&ia=web) : `data:image/...`
+
+
+## Svg
+
+```js
+{
+    type:'svg',
+    // etc
+}
+```
+
+### `svg`
+- type: `string`
+- default: `''`
+- usage : svg xml definition
+  - will be wrapped in a `<svg></svg>` element

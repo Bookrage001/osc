@@ -26,7 +26,6 @@ class Svg extends Widget {
             _svg:'svg',
 
             svg:'',
-            noborder: false,
 
             _osc:'osc',
 
