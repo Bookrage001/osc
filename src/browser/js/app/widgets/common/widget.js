@@ -228,6 +228,7 @@ class Widget extends EventEmitter {
 
                 }
 
+                if (id == this.getProp('id')) id = 'this'
 
                 var widgets = id == 'parent' && this.parent ?
                     [this.parent] : id == 'this' ? [this] :
