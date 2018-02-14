@@ -13,6 +13,7 @@ Where FORMULA is a valid [MathJS](http://mathjs.org/docs/expressions/syntax.html
 - [available constants](http://mathjs.org/docs/reference/constants.html)
 - property inheritance calls (`@{...}`) are always resolved before formulas
 - arrays / matrices indexes are **zero-based** (ie `['a','b'][0]` returns `'a'`)
+- strings can be multiline when enclosed in backticks instead of double quotes (``` ` `  ```)
 
 Additionnal functions:
 

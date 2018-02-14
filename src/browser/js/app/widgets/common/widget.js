@@ -289,7 +289,14 @@ class Widget extends EventEmitter {
 
             try {
                 propValue = propValue.replace(/#\{(?:[^\}\\]|\\.)+\}/g, (m)=>{
+
+                    // unescape brackets
                     m = m.replace(/\\(\{|\})/g, '$1')
+
+                    // espace multiline strings
+                    m = m.replace(/`([^`]*)`/g, (m)=>{
+                        return m.replace(/"/g,'\\"').replace(/\n/g,'\\n').replace(/`/g,'"')
+                    })
 
                     if (!this.parsers[m]) this.parsers[m] = math.compile(m.substr(2, m.length - 3).trim())
 
