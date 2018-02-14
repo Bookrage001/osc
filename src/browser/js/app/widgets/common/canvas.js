@@ -113,10 +113,9 @@ class Canvas extends Widget {
             this.ctx.scale(ratio, ratio)
         }
 
-        if (!this.visible || checkColors) {
-            this.visible = true
-            this.cacheCanvasStyle()
-        }
+        this.cacheCanvasStyle(style)
+
+        if (!this.visible) this.visible = true
 
         requestAnimationFrame(this.draw.bind(this))
 
