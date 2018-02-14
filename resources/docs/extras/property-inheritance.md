@@ -6,6 +6,9 @@ Widgets can use each other's property values by using the following syntaxes:
 - `@{parent.propertyName}`
 - `@{widgetId.propertyName}` (where `widgetId` is the target widget's `id`)
 
+!!! note
+    Don't use `widgetId` when targetting `this` or `parent`, it won't work.   
+
 `propertyName` can be any of the target widget's properties.
 
 It can be used to:
