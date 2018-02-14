@@ -12,6 +12,9 @@ var fallbackContainer
 
 DOM.ready(()=>{
     fallbackContainer = DOM.create('<div></div>')
+})
+
+setTimeout(()=>{
     updateWidget = require('../../editor/data-workers').updateWidget
 })
 
