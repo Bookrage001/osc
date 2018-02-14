@@ -418,7 +418,8 @@ class Widget extends EventEmitter {
                 return
 
             case 'css':
-                this.setContainerStyles(['css', 'color'])
+                this.setContainerStyles(['css'])
+                this.onPropChanged('color')
                 return
 
             case 'color':
