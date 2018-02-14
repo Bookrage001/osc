@@ -1,7 +1,5 @@
 var widgetManager = require('./managers/widgets'),
-    stateManager = require('./managers/state'),
-    {iconify} = require('./ui/utils'),
-    scope = require('scope-css')
+    stateManager = require('./managers/state')
 
 var Parser = class Parser {
 
@@ -59,92 +57,25 @@ var Parser = class Parser {
             // Generate default address
             props.address = props.address == 'auto' ? '/' + props.id : props.address
 
-            // create container
-            var widgetContainer = DOM.create(`
-                <div class="widget ${props.type}-container">
-                    <div class="label"></div>
-                </div>
-            `)
 
             // create widget
-            var widgetInner = new this.widgets[props.type]({props:props, container:widgetContainer, parent:parentWidget, parentNode:parentNode})
+            var widget = new this.widgets[props.type]({props:props, container:true, parent:parentWidget, parentNode:parentNode})
 
-            widgetContainer.appendChild(widgetInner.widget)
+            widgetManager.addWidget(widget)
 
-            widgetManager.addWidget(widgetInner)
-
-            widgetContainer.setAttribute('data-widget', widgetInner.hash)
-
-            widgetInner.created()
-
-            // dimensions / coordinates can't be < 0
-            for (let t of ['width', 'height', 'top', 'left']) {
-                if (props.hasOwnProperty(t))
-                props[t] = `${props[t]}`.indexOf('-')!=-1?0:props[t]
-            }
-
-            // convert dimensions / coordinates to rem
-            var geometry = {}
-            for (var d of ['width', 'height', 'left', 'top']){
-                let val = widgetInner.getProp(d)
-                if (val !== undefined)
-                    geometry[d] = `${val}`.indexOf('-') != -1 ? 0 :
-                        parseFloat(val) == val ?
-                        parseFloat(val)+'rem' : val
-            }
-
-            // dimensions / coordinates css
-            var styleW = widgetInner.getProp('width') && widgetInner.getProp('width') != 'auto' ? `width: ${geometry.width}; min-width:${geometry.width};` : '',
-                styleH = widgetInner.getProp('height') && widgetInner.getProp('height') != 'auto' ? `height: ${geometry.height}; min-height:${geometry.height};` : '',
-                styleL = widgetInner.getProp('left') && widgetInner.getProp('left') != 'auto'|| widgetInner.getProp('left') == 0 ?`left: ${geometry.left};` : '',
-                styleT = widgetInner.getProp('top') && widgetInner.getProp('top') != 'auto'|| widgetInner.getProp('top') == 0 ? `top: ${geometry.top};` : ''
-
-            if (styleL.length || styleT.length) widgetContainer.classList.add('absolute-position')
-
-            // Hide label if false
-            if (widgetInner.getProp('label')===false) {
-                widgetContainer.classList.add('nolabel')
-            } else {
-                // Generate label, iconify if starting with "icon:"
-                var label = widgetInner.getProp('label') == 'auto'?
-                                widgetInner.getProp('id'):
-                                iconify(widgetInner.getProp('label'))
-
-                DOM.get(widgetContainer, '> .label')[0].innerHTML = label
-            }
-
-            // apply styles
-            var css = widgetInner.getProp('css')
-
-            widgetContainer.setAttribute('style', styleW + styleH + styleL + styleT + css.replace(/;{[^\}]}/g),'')
-
-            // apply scoped css
-            var prefix = '#' + widgetInner.hash,
-                scopedCss = scope(css, prefix)
-
-            if (scopedCss.indexOf(prefix) > -1) {
-
-                if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
-                if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
-
-                widgetContainer.setAttribute('id', widgetInner.hash)
-                widgetContainer.insertBefore(DOM.create(`<style>${scopedCss}</style>`), widgetInner.widget)
-            }
-
-            // Set custom css color variable
-            if (widgetInner.getProp('color') && widgetInner.getProp('color')!='auto') widgetContainer.style.setProperty('--color-custom',widgetInner.getProp('color'))
+            widget.created()
 
             // set widget's initial state
-            if (widgetInner.getProp('value') !== '') {
-                stateManager.pushValueNewProp(widgetInner.getProp('id'), widgetInner.getProp('value'))
+            if (widget.getProp('value') !== '') {
+                stateManager.pushValueNewProp(widget.getProp('id'), widget.getProp('value'))
             }
 
             // Append the widget to its parent
-            parentNode.appendChild(widgetContainer)
+            parentNode.appendChild(widget.container)
         }
 
         // Editor needs to get the container object
-        if (data && data.length==1) return widgetInner
+        if (data && data.length==1) return widget
 
     }
 

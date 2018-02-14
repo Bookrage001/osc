@@ -3,13 +3,16 @@ var EventEmitter = require('../../events/event-emitter'),
     shortid = require('shortid'),
     widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
-    updateWidget = function(){ updateWidget = require('../../editor/data-workers').updateWidget; updateWidget(...arguments)}
+    scopeCss = require('scope-css'),
+    {iconify} = require('../../ui/utils'),
+    updateWidget = ()=>{}
 
 
 var fallbackContainer
 
 DOM.ready(()=>{
     fallbackContainer = DOM.create('<div></div>')
+    updateWidget = require('../../editor/data-workers').updateWidget
 })
 
 class Widget extends EventEmitter {
@@ -24,7 +27,6 @@ class Widget extends EventEmitter {
 
         super()
 
-        this.container = options.container || fallbackContainer
         this.widget = DOM.create(options.html)
         this.props = options.props
         this.errors = {}
@@ -33,11 +35,6 @@ class Widget extends EventEmitter {
         this.parentNode = options.parentNode
         this.hash = shortid.generate()
         this.childrenHashes = []
-
-        if (options.container) {
-            this.container.setAttribute('data-widget', this.hash)
-            this.container._widget_instance = this
-        }
 
         // Turn preArgs into array
         if (this.props.preArgs !== undefined && !Array.isArray(this.resolveProp('preArgs', undefined, false))) {
@@ -55,7 +52,6 @@ class Widget extends EventEmitter {
             delete this.props.left
             delete this.props[this.parent.getProp('horizontal') ? 'height' : 'width']
         }
-
 
         // @{props} links lists
         this.linkedProps = {}
@@ -124,6 +120,21 @@ class Widget extends EventEmitter {
             this.childrenHashes.push(e.widget.hash)
 
         })
+
+        if (options.container) {
+
+            this.container = DOM.create(`
+                <div class="widget ${options.props.type}-container"></div>
+            `)
+            this.label = DOM.create(`<div class="label"></div>`)
+            this.container.appendChild(this.label)
+            this.container.appendChild(this.widget)
+            this.container.setAttribute('data-widget', this.hash)
+            this.container._widget_instance = this
+            this.setContainerStyles()
+        } else {
+            this.container = fallbackContainer
+        }
 
     }
 
@@ -395,8 +406,23 @@ class Widget extends EventEmitter {
                 this.setValue(this.getProp('value'), {sync: true, send: options && options.send})
                 return
 
+            case 'top':
+            case 'left':
+            case 'height':
+            case 'width':
+                this.setContainerStyles(['geometry'])
+                return
+
+            case 'label':
+                this.setContainerStyles(['label'])
+                return
+
+            case 'css':
+                this.setContainerStyles(['css', 'color'])
+                return
+
             case 'color':
-                this.container.style.setProperty('--color-custom', this.getProp('color') != 'auto' ? this.getProp('color') : '')
+                this.setContainerStyles(['color'])
                 return
 
             case 'precision':
@@ -418,6 +444,80 @@ class Widget extends EventEmitter {
 
     }
 
+    setContainerStyles(styles = ['geometry', 'label', 'css', 'color']) {
+
+        if (styles.includes('geometry')) {
+
+            // geometry
+            for (let d of ['width', 'height', 'top', 'left']) {
+                let val = this.getProp(d),
+                    geometry
+
+                if (val !== undefined) {
+                    if (parseFloat(val) < 0) val = 0
+                    geometry = parseFloat(val) == val ? parseFloat(val)+'rem' : val
+                }
+
+                if (geometry && geometry != 'auto') {
+                    this.container.style[d] = geometry
+                    if (d == 'width') this.container.style.minWidth = geometry
+                    if (d == 'height') this.container.style.minHeight = geometry
+                    if (d == 'top' || d == 'left') this.container.classList.add('absolute-position')
+                }
+            }
+
+        }
+
+        if (styles.includes('label')) {
+
+            // label
+            if (this.getProp('label') === false) {
+                this.container.classList.add('nolabel')
+            } else {
+                var label = this.getProp('label') == 'auto'?
+                                this.getProp('id'):
+                                iconify(this.getProp('label'))
+
+                this.label.innerHTML = label
+            }
+
+        }
+
+        if (styles.includes('css')) {
+
+            // css
+            var prefix = '#' + this.hash,
+                scopedCss = scopeCss(this.getProp('css'), prefix),
+                unScopedCss = prefix + '{' + this.getProp('css').replace(/(^|\n)([^\{]*)\{([^\}]*)\}/g, '') + '}'
+
+            if (scopedCss.indexOf(prefix) > -1) {
+
+                if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
+                if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
+
+                this.container.setAttribute('id', this.hash)
+
+                var style = DOM.create(`<style>${unScopedCss}\n${scopedCss}</style>`),
+                    oldStyle = DOM.get(this.container, '> style')[0]
+                if (oldStyle) {
+                    this.container.replaceChild(style, oldStyle)
+                } else {
+                    this.container.insertBefore(style, this.widget)
+                }
+            }
+
+        }
+
+        if (styles.includes('color')) {
+
+            // color
+            if (this.getProp('color') && this.getProp('color')!='auto') this.container.style.setProperty('--color-custom',this.getProp('color'))
+
+        }
+
+
+    }
+
     reCreateWidget(){
 
         updateWidget(this, {remote: true})
@@ -433,6 +533,12 @@ class Widget extends EventEmitter {
 }
 
 Widget.dynamicProps = [
+    'top',
+    'left',
+    'height',
+    'width',
+    'label',
+    'css',
     'value',
     'color',
     'precision',
