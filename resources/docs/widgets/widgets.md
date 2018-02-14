@@ -21,14 +21,14 @@ All widgets share a set of generic properties described below.
 
 ## Style
 
-### `label`
+### `label`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string|false`
 - default: `auto`, which displays `id`
 - usage:
     - set to `false` to hide completely
     - insert icons from [FontAwesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free) using the prefix `^` followed by the icon's name : `made with ^heart`, etc
 
-### `top` / `left`
+### `top`<i class="md-icon" title="dynamic">flash_on</i> / `left`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `number|percentage`
 - default: `auto`
 - usage:
@@ -36,7 +36,7 @@ All widgets share a set of generic properties described below.
     - otherwise, the widget will be absolutely positioned
 
 
-### `width` / `height`
+### `width`<i class="md-icon" title="dynamic">flash_on</i> / `height`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `number|percentage`
 - default: `auto`
 
@@ -46,7 +46,7 @@ All widgets share a set of generic properties described below.
 - usage: any valid `css` color code is valid, this will change the default accent color for the widget and all its children
 
 
-### `css`
+### `css`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string`
 - default: *empty*
 - usage: the `css` property can be used to override inherited [theming](../extras/theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element through this property, `css` selectors can also be used apply custom styles to the widget's children.
