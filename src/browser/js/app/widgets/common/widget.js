@@ -124,12 +124,11 @@ class Widget extends EventEmitter {
         if (options.container) {
 
             this.container = DOM.create(`
-                <div class="widget ${options.props.type}-container"></div>
+                <div class="widget ${options.props.type}-container" id="${this.hash}" data-widget="${this.hash}"></div>
             `)
             this.label = DOM.create(`<div class="label"></div>`)
             this.container.appendChild(this.label)
             this.container.appendChild(this.widget)
-            this.container.setAttribute('data-widget', this.hash)
             this.container._widget_instance = this
             this.setContainerStyles()
         } else {
@@ -486,22 +485,20 @@ class Widget extends EventEmitter {
             // css
             var prefix = '#' + this.hash,
                 scopedCss = scopeCss(this.getProp('css'), prefix),
-                unScopedCss = prefix + '{' + this.getProp('css').replace(/(^|\n)([^\{]*)\{([^\}]*)\}/g, '') + '}'
+                unScopedCss = ''
 
-            if (scopedCss.indexOf(prefix) > -1) {
+            this.getProp('css').replace(/^[^\{\}]*/m, m => unScopedCss += m)
 
-                if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
-                if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
+            if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
+            if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
 
-                this.container.setAttribute('id', this.hash)
+            var style = DOM.create(`<style>${prefix + '{' + unScopedCss + '}'}\n${scopedCss}</style>`),
+                oldStyle = DOM.get(this.container, '> style')[0]
 
-                var style = DOM.create(`<style>${unScopedCss}\n${scopedCss}</style>`),
-                    oldStyle = DOM.get(this.container, '> style')[0]
-                if (oldStyle) {
-                    this.container.replaceChild(style, oldStyle)
-                } else {
-                    this.container.insertBefore(style, this.widget)
-                }
+            if (oldStyle) {
+                this.container.replaceChild(style, oldStyle)
+            } else if (scopedCss.length || unScopedCss.length){
+                this.container.insertBefore(style, this.widget)
             }
 
         }
@@ -509,7 +506,7 @@ class Widget extends EventEmitter {
         if (styles.includes('color')) {
 
             // color
-            if (this.getProp('color') && this.getProp('color')!='auto') this.container.style.setProperty('--color-custom',this.getProp('color'))
+            this.container.style.setProperty('--color-custom', this.getProp('color') != 'auto' ? this.getProp('color') : '')
 
         }
 
