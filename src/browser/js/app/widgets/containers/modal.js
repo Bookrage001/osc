@@ -1,5 +1,6 @@
 var Panel = require('./panel'),
     {icon, iconify} = require('../../ui/utils'),
+    resize = require('../../events/resize'),
     doubletab = require('../mixins/double_tap')
 
 
@@ -127,7 +128,7 @@ module.exports = class Modal extends Panel {
         this.bindEscKey(this.value)
 
         if (this.value) {
-            DOM.dispatchEvent(window, 'resize')
+            resize.check(this.widget, true)
         }
 
         if (this.init) this.fixParents()

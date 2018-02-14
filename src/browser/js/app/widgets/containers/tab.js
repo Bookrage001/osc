@@ -68,7 +68,7 @@ module.exports = class Tab extends Panel {
         this.container.appendChild(this.widget)
         this.container.classList.add('show')
         this.detached = false
-        resize.check(this.widget)
+        resize.check(this.widget, true)
     }
 
     onPropChanged(propName, options, oldPropValue) {

@@ -1,6 +1,6 @@
 var elements = []
 
-function checkResizes(context){
+function checkResizes(context, force){
     // Iterate over all elements to which the 'resize' event is bound.
     var resizedElems = [],
         cachedStyles = []
@@ -17,7 +17,7 @@ function checkResizes(context){
 
         // If element size has changed since the last time, update the element
         // data store and trigger the 'resize' event.
-        if (width != elem.resizedataw || height != elem.resizedatah) {
+        if (force || width != elem.resizedataw || height != elem.resizedatah) {
             elem.resizedataw = width
             elem.resizedatah = height
             resizedElems.push(elem)
