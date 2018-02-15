@@ -5,6 +5,7 @@ var EventEmitter = require('../../events/event-emitter'),
     {math} = require('../utils'),
     scopeCss = require('scope-css'),
     {iconify} = require('../../ui/utils'),
+    resize = require('../../events/resize'),
     updateWidget = ()=>{}
 
 
@@ -410,6 +411,7 @@ class Widget extends EventEmitter {
             case 'height':
             case 'width':
                 this.setContainerStyles(['geometry'])
+                resize.check(this.container)
                 return
 
             case 'label':
