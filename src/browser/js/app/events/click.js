@@ -1,4 +1,4 @@
-var {fix, getElementOffset} = require('./utils'),
+var {fix} = require('./utils'),
     supportsPassive = require('./supports-passive')
 
 var longTouchTimer = false,
@@ -32,7 +32,7 @@ document.addEventListener('touchstart', (event)=>{
 
     longTouchTimer = setTimeout(()=>{
 
-        var off = getElementOffset(e.target)
+        var off = DOM.offset(e.target)
 
         e.offsetX = e.pageX - off.left
         e.offsetY = e.pageY - off.top

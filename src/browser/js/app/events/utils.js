@@ -60,33 +60,11 @@ module.exports = {
 
     resetEventOffset: function(event, target) {
 
-        var off = module.exports.getElementOffset(target)
+        var off = DOM.offset(target)
 
         event.offsetX = event.pageX - off.left
         event.offsetY = event.pageY - off.top
 
-    },
-
-    getElementOffset: function(element) {
-
-        var offsetLeft = 0,
-            offsetTop = 0
-
-        if (element) {
-            do {
-                if (!isNaN(element.offsetLeft)) {
-                    offsetLeft += element.offsetLeft - element.scrollLeft
-                }
-                if (!isNaN(element.offsetTop)) {
-                    offsetTop += element.offsetTop - element.scrollTop
-                }
-            } while (element = element.offsetParent)
-        }
-
-        return {
-            left: offsetLeft,
-            top: offsetTop
-        }
     },
 
     Touch: Touch
