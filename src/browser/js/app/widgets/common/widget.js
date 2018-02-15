@@ -363,14 +363,13 @@ class Widget extends EventEmitter {
 
             if (JSON.stringify(oldPropValue) !== JSON.stringify(propValue)) {
 
-                this.cachedProps[propName] = propValue
-
                 if (this.onPropChanged(propName, options, oldPropValue)) {
 
                     reCreate = true
 
                 } else {
 
+                    this.cachedProps[propName] = propValue
                     changedProps.push(propName)
 
                 }
