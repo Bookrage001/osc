@@ -55,7 +55,5 @@ module.exports = class Strip extends Panel {
 
     setValue(){}
     getValue(){}
-    sendValue(){}
-
 
 }
