@@ -115,9 +115,8 @@ var editObject = function(widget, options = {}){
                 if (v==='') data[title] = JSON.parse(JSON.stringify(params[i]))
 
                 try {
-                    widget.updateProps([i], widget)
-                    editObject(widget, {refresh:true})
-                    // updateWidget(widget)
+                    var recreated = widget.updateProps([i], widget)
+                    if (!recreated) editObject(widget, {refresh:true})
                 } catch (err) {
                     throw err
                 }
@@ -257,9 +256,8 @@ var editObject = function(widget, options = {}){
             stop: function( event, ui ) {
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                // updateWidget(widget)
-                widget.updateProps(['width', 'height'])
-                editObject(widget, {refresh:true})
+                var recreated = widget.updateProps(['width', 'height'], widget)
+                if (!recreated) editObject(widget, {refresh:true})
             },
             grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
         })
@@ -277,9 +275,8 @@ var editObject = function(widget, options = {}){
                     data.top = (ui.helper.position().top + container.parent().scrollTop())/PXSCALE
                     data.left = (ui.helper.position().left + container.parent().scrollLeft())/PXSCALE
                     ui.helper.remove()
-                    widget.updateProps(['top', 'left'])
-                    editObject(widget, {refresh:true})
-                    // updateWidget(widget)
+                    var recreated = widget.updateProps(['top', 'left'], widget)
+                    if (!recreated) editObject(widget, {refresh:true})
                 },
                 handle:'.ui-draggable-handle, > .label',
                 grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],

@@ -382,6 +382,7 @@ class Widget extends EventEmitter {
         if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(_value && widget == this)) {
 
             this.reCreateWidget()
+            return true
 
         } else if (changedProps.length) {
 

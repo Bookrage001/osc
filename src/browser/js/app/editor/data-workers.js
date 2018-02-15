@@ -11,6 +11,7 @@ var updateWidget = function(widget, options = {}) {
     var sidepanel = DOM.get('#sidepanel')[0],
         scroll = sidepanel.scrollTop,
         oldWidgets = widget.childrenHashes.concat(widget.hash),
+        editing = widget.container.classList.contains('editing'),
         oldValueProps = {},
         wScroll = {}
 
@@ -59,7 +60,7 @@ var updateWidget = function(widget, options = {}) {
         }
     }
 
-    if (!options.remote) {
+    if (!options.remote || editing) {
         editObject(newWidget, {refresh: true})
     }
 
