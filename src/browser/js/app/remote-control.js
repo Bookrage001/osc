@@ -1,5 +1,6 @@
 var {updateWidget} = require('./editor/data-workers'),
-    widgetManager = require('./managers/widgets')
+    widgetManager = require('./managers/widgets'),
+    deepExtend = require('deep-extend')
 
 var callbacks = {
     '/EDIT': function(args) {
@@ -20,7 +21,12 @@ var callbacks = {
             for (var k in newdata) {
                 data[k] = newdata[k]
             }
-            updateWidget(widget, {remote: true})
+
+            if (newdata.widgets || newdata.tabs) {
+                updateWidget(widget, {remote: true})
+            } else {
+                widget.updateProps(Object.keys(newdata), widget)
+            }
 
         }
     },
@@ -39,9 +45,14 @@ var callbacks = {
             var widget = widgets[i],
                 data = widget.props
 
-            $.extend(true,data,newdata)
-            updateWidget(widget, {remote: true})
+            deepExtend(data, newdata)
 
+            if (newdata.widgets || newdata.tabs) {
+                updateWidget(widget, {remote: true})
+            } else {
+                widget.updateProps(Object.keys(newdata), widget)
+            }
+                
         }
     },
     '/EDIT/GET': function(args) {
