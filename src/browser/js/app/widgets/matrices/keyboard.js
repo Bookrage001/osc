@@ -66,7 +66,7 @@ module.exports = class Keyboard extends Matrix {
             data.id = this.getProp('id') + '/' + i
             data.label = false
             data.address = this.getProp('split') ? '@{parent.address}/' + i : '@{parent.address}'
-            data.preArgs = this.getProp('split') ? '@{parent.preArg}' : '#{concat(@{parent.preArg}),' + i + '}'
+            data.preArgs = this.getProp('split') ? '@{parent.preArgs}' : '#{concat(@{parent.preArgs},[' + i + '])}'
             data.css = ''
 
             var key = parser.parse([data], this.widget, this)

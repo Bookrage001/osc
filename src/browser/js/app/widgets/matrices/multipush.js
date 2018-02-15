@@ -63,7 +63,7 @@ module.exports = class Multipush extends Matrix {
             data.id = this.getProp('id') + '/' + i
             data.label = i
             data.address = this.getProp('split') ? '@{parent.address}/' + i : '@{parent.address}'
-            data.preArgs = this.getProp('split') ? '@{parent.preArg}' : '#{concat(@{parent.preArg}),' + i + '}'
+            data.preArgs = this.getProp('split') ? '@{parent.preArgs}' : '#{concat(@{parent.preArgs},[' + i + '])}'
             data.css = ''
 
             var push = parser.parse([data], this.widget, this)
