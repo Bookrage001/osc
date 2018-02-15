@@ -112,10 +112,12 @@ var editObject = function(widget, options = {}){
 
                 data[title] = v
 
-                if (v==='') delete data[title]
+                if (v==='') data[title] = JSON.parse(JSON.stringify(params[i]))
 
                 try {
-                    updateWidget(widget)
+                    widget.updateProps([i], widget)
+                    editObject(widget, {refresh:true})
+                    // updateWidget(widget)
                 } catch (err) {
                     throw err
                 }
@@ -255,7 +257,9 @@ var editObject = function(widget, options = {}){
             stop: function( event, ui ) {
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) data.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                 if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) data.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                updateWidget(widget)
+                // updateWidget(widget)
+                widget.updateProps(['width', 'height'])
+                editObject(widget, {refresh:true})
             },
             grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
         })
@@ -273,7 +277,9 @@ var editObject = function(widget, options = {}){
                     data.top = (ui.helper.position().top + container.parent().scrollTop())/PXSCALE
                     data.left = (ui.helper.position().left + container.parent().scrollLeft())/PXSCALE
                     ui.helper.remove()
-                    updateWidget(widget)
+                    widget.updateProps(['top', 'left'])
+                    editObject(widget, {refresh:true})
+                    // updateWidget(widget)
                 },
                 handle:'.ui-draggable-handle, > .label',
                 grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],
