@@ -104,7 +104,7 @@ class Socket extends EventEmitter {
 
         for (var i in this.queue) {
 
-            this.socket.send(this.queue[i])
+            if (this.connected()) this.socket.send(this.queue[i])
 
         }
 
