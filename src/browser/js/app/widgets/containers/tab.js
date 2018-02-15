@@ -77,6 +77,7 @@ module.exports = class Tab extends Panel {
 
         switch (propName) {
 
+            case 'label':
             case 'color':
                 if (this.parent.createNavigation) this.parent.createNavigation()
                 return
