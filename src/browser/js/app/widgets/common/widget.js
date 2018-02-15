@@ -363,13 +363,15 @@ class Widget extends EventEmitter {
 
             if (JSON.stringify(oldPropValue) !== JSON.stringify(propValue)) {
 
-                if (this.onPropChanged(propName, options, oldPropValue)) {
+
+                if (!this.constructor.dynamicProps.includes(propName)) {
 
                     reCreate = true
 
                 } else {
 
                     this.cachedProps[propName] = propValue
+                    this.onPropChanged(propName, options, oldPropValue)
                     changedProps.push(propName)
 
                 }
@@ -395,9 +397,6 @@ class Widget extends EventEmitter {
     }
 
     onPropChanged(propName, options, oldPropValue) {
-
-        if (!this.constructor.dynamicProps.includes(propName)) return true
-
 
         switch(propName) {
 
