@@ -1,5 +1,6 @@
 var Matrix = require('./matrix'),
-    parser = require('../../parser')
+    parser = require('../../parser'),
+    widgetManager = require('../../managers/widgets')
 
 module.exports = class Multifader extends Matrix {
 
@@ -90,6 +91,24 @@ module.exports = class Multifader extends Matrix {
             fader.container.classList.add('not-editable')
 
             this.value[i-this.start] = this.getProp('range').min
+
+        }
+
+    }
+
+    onPropChanged(propName, options, oldPropValue) {
+
+       if (super.onPropChanged(...arguments)) return true
+
+       switch (propName) {
+
+            case 'color':
+                for (var h of this.childrenHashes) {
+                    if (widgetManager.widgets[h]) {
+                        widgetManager.widgets[h].onPropChanged('color')
+                    }
+                }
+                return
 
         }
 
