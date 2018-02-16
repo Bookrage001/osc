@@ -82,7 +82,7 @@ module.exports = {
                 while (int.length < padding) {
                     int = '0' + int
                 }
-                return dec ? int + '.' + dec : int 
+                return dec ? int + '.' + dec : int
             },
             // basic relationnal to keep alphabetical string comparison (v4 change)
             equal:     function (a, b) { return a == b },
