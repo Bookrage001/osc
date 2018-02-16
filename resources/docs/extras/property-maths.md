@@ -11,6 +11,7 @@ Where FORMULA is a valid [MathJS](http://mathjs.org/docs/expressions/syntax.html
 - [syntax documentation](http://mathjs.org/docs/expressions/syntax.html)
 - [available functions](http://mathjs.org/docs/reference/functions.html)
 - [available constants](http://mathjs.org/docs/reference/constants.html)
+- formulas can be [multiline](http://mathjs.org/docs/expressions/syntax.html#multiline-expressions)
 - property inheritance calls (`@{...}`) are always resolved before formulas
 - arrays / matrices indexes are **zero-based** (ie `['a','b'][0]` returns `'a'`)
 - strings can be multiline when enclosed in backticks instead of double quotes (``` ` `  ```)
@@ -19,3 +20,6 @@ Where FORMULA is a valid [MathJS](http://mathjs.org/docs/expressions/syntax.html
 Additionnal functions:
 
 - `unpack`: remove an array's brackets (`unpack([1,2])` returns `'1, 2'`)
+
+!!! tip ""
+    A single widget property can contain multiple formulas. Variables and functions declared in a formula are available to subsequent formulas in the same property definition.
