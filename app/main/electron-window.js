@@ -29,21 +29,6 @@ module.exports = function(options={}) {
         window = null
     })
 
-    var template = [{
-        label: 'Edit',
-        submenu: [
-            {role: 'undo', accelerator: "CmdOrCtrl+Z"},
-            {role: 'redo', accelerator: "Shift+CmdOrCtrl+Z"},
-            {type: 'separator'},
-            {role: 'cut', accelerator: "CmdOrCtrl+X"},
-            {role: 'copy', accelerator: "CmdOrCtrl+C"},
-            {role: 'paste', accelerator: "CmdOrCtrl+V"}
-        ]
-    }]
-
-    var menu = Menu.buildFromTemplate(template)
-    Menu.setApplicationMenu(menu)
-
     window.setMenuBarVisibility(false)
 
     if (options.shortcuts) {
