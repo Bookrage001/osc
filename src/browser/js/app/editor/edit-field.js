@@ -90,12 +90,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             widget.props[propName] = v !== '' ? v : JSON.parse(JSON.stringify(defaultValue))
 
-            if (dynamic) {
-                widget.updateProps([propName], widget)
-                editor.select(widget, {refresh: true})
-            } else {
-                updateWidget(widget)
-            }
+            updateWidget(widget)
 
         }
 
@@ -148,12 +143,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             }
 
             if (change) {
-                if (dynamic) {
-                    widget.updateProps([propName], widget)
-                    editor.select(widget, {refresh: true})
-                } else {
-                    updateWidget(widget)
-                }
+                updateWidget(widget)
             }
 
         })
@@ -168,12 +158,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 var index  = $(ui.item).index()
 
                 widget.props[propName].splice(index, 0, widget.props[propName].splice(oldindex, 1)[0])
-                if (dynamic) {
-                    widget.updateProps([propName], widget)
-                    editor.select(widget, {refresh: true})
-                } else {
-                    updateWidget(widget)
-                }
+                updateWidget(widget)
             }
         })
 

@@ -1,5 +1,6 @@
 var {widgets} = require('../widgets/'),
-    editField = require('./edit-field')
+    editField = require('./edit-field'),
+    {updateWidget} = require('./data-workers')
 
 var Editor = class Editor {
 
@@ -165,8 +166,7 @@ var Editor = class Editor {
                 stop: (event, ui)=>{
                     if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) widget.props.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
                     if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) widget.props.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                    var recreated = widget.updateProps(['width', 'height'], widget)
-                    if (!recreated) this.select(widget, {refresh: true})
+                    updateWidget(widget)
                 },
                 grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
             })
@@ -187,8 +187,7 @@ var Editor = class Editor {
                     widget.props.top = (ui.helper.position().top + $container.parent().scrollTop())/PXSCALE
                     widget.props.left = (ui.helper.position().left + $container.parent().scrollLeft())/PXSCALE
                     ui.helper.remove()
-                    var recreated = widget.updateProps(['top', 'left'], widget)
-                    if (!recreated) this.select(widget, {refresh: true})
+                    updateWidget(widget)
                 },
                 handle:'.ui-draggable-handle, > .label',
                 grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],

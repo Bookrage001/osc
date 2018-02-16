@@ -22,11 +22,7 @@ var callbacks = {
                 data[k] = newdata[k]
             }
 
-            if (newdata.widgets || newdata.tabs) {
-                updateWidget(widget, {remote: true})
-            } else {
-                widget.updateProps(Object.keys(newdata), widget)
-            }
+            updateWidget(widget, {remote: true})
 
         }
     },
@@ -47,11 +43,7 @@ var callbacks = {
 
             deepExtend(data, newdata)
 
-            if (newdata.widgets || newdata.tabs) {
-                updateWidget(widget, {remote: true})
-            } else {
-                widget.updateProps(Object.keys(newdata), widget)
-            }
+            updateWidget(widget, {remote: true})
                 
         }
     },
