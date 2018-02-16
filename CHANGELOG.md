@@ -2,7 +2,7 @@
 
 ## 0.24.0
 
-:warning: **BREAKING CHANGES** :warning: 
+:warning: **BREAKING CHANGES** :warning:
 
 Read the changelog carefully, old sessions files are likely to need some adjustements to work as they used to. Plots and input widgets had their `widgetId` option removed because it was redundant with the generic `linkId` property.
 
@@ -19,6 +19,7 @@ Read the changelog carefully, old sessions files are likely to need some adjuste
   - server-client communication system rewritten -> HUGE latency reduction and stability improvement especially under stress conditions
   - engine update (electron@1.8.2)
 - widgets
+  - **new** svg plot widget
   - switch: wrap non-array `values` property in an array
   - dropdown: wrap non-array `values` property in an array; always add a default empty value
   - property inheritance: added shorthand default to `_value` when no property is specified (`@{widgetId}`); some properties can now be dynamically changed without recreating the widget entirely
