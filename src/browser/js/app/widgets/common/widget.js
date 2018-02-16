@@ -315,10 +315,13 @@ class Widget extends EventEmitter {
 
                     let r = this.parsers[m].eval(variables)
 
-                    if (r.valueOf) {
+                    if (r instanceof math.type.ResultSet && !r.entries.length) {
+                        r = ''
+                    } else if (r.valueOf) {
                         r = r.valueOf()
                         if (Array.isArray(r) && r.length == 1) r = r[0]
                     }
+
                     return typeof r != 'string' ? JSON.stringify(r) : r
                 })
             } catch (err) {}
