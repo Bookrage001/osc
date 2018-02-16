@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- main
+  - added some menu items on macOs (including "Quit" !)
+
 ## 0.24.0
 
 :warning: **BREAKING CHANGES** :warning:
