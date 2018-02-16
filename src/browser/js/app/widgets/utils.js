@@ -76,6 +76,14 @@ module.exports = {
         })
         math.import({
             unpack: function(a) { return Array.isArray(a) ? a.toString() : a },
+            pad: function(x, padding) {
+                var str = String(x),
+                    [int, dec] =  str.split('.')
+                while (int.length < padding) {
+                    int = '0' + int
+                }
+                return dec ? int + '.' + dec : int 
+            },
             // basic relationnal to keep alphabetical string comparison (v4 change)
             equal:     function (a, b) { return a == b },
             unequal:   function (a, b) { return a != b },
