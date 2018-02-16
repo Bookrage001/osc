@@ -1,10 +1,13 @@
 var Widget = require('../common/widget'),
     autolayout = require('autolayout/dist/autolayout.kiwi.js'),
     {iconify} = require('../../ui/utils'),
-    editObject = function(){editObject = require('../../editor/edit-objects').editObject; editObject(...arguments)},
     widgetManager = require('../../managers/widgets'),
-    parser = require('../../parser')
+    parser = require('../../parser'),
+    editor
 
+setTimeout(()=>{
+    editor = require('../../editor/')
+})
 
 class Panel extends Widget {
 
@@ -168,7 +171,7 @@ class Panel extends Widget {
                 widget.container.style[prop] = this.layout.subViews[id][prop] + 'px'
             }
 
-            if (widget.container.classList.contains('editing')) editObject(widget, {refresh:true})
+            if (widget.container.classList.contains('editing')) editor.select(widget, {refresh:true})
 
             DOM.dispatchEvent(window, 'resize')
 

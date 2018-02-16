@@ -1,8 +1,8 @@
 var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
-    {iconify} = require('../../ui/utils'),
-    keyboardJS = require('keyboardjs')
+    {iconify} = require('../../ui/utils')
+    // keyboardJS = require('keyboardjs')
 
 module.exports = class Keys extends Widget {
 

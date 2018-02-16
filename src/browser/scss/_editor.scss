@@ -82,9 +82,10 @@
             -webkit-appearance:none;
             cursor: initial;
         }
-        &.column {
+        .column {
+            padding: 2rem;
             ul {
-                padding: 1rem 2rem!important;
+                padding: 0!important;
                 overflow: auto;
                 li:not(:last-child) {
                     margin-bottom: 2rem!important;
@@ -95,6 +96,9 @@
                         content:"|";
                         color: transparent;
                     }
+                }
+                li i {
+                    pointer-events: none
                 }
             }
         }

@@ -1,9 +1,9 @@
-var editObject = function(){editObject = require('./edit-objects').editObject; editObject(...arguments)},
-    {iconify} = require('../ui/utils'),
+var {iconify} = require('../ui/utils'),
     widgetManager = require('../managers/widgets'),
     resize = require('../events/resize'),
     stateManager = require('../managers/state'),
-    parser = require('../parser')
+    parser = require('../parser'),
+    editor
 
 var updateWidget = function(widget, options = {}) {
 
@@ -61,7 +61,7 @@ var updateWidget = function(widget, options = {}) {
     }
 
     if (!options.remote || editing) {
-        editObject(newWidget, {refresh: true})
+        editor.select(newWidget)
     }
 
     sidepanel.scrollTop = scroll
@@ -150,3 +150,5 @@ module.exports = {
     updateWidget:updateWidget,
     incrementWidget:incrementWidget
 }
+
+editor = require('./')
