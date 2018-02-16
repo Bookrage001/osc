@@ -495,7 +495,7 @@ class Widget extends EventEmitter {
                 scopedCss = scopeCss(this.getProp('css'), prefix),
                 unScopedCss = ''
 
-            this.getProp('css').replace(/\{[^\}]*\}/g).replace(/^.*\:.*;/m, m => unScopedCss += m)
+            this.getProp('css').replace(/\{[^\}]*\}/g).replace(/^.*\:.*/gm, m => unScopedCss += m[m.lenght - 1] === ';' ? m : m + ';')
 
             if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
             if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
