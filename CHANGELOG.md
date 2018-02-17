@@ -1,7 +1,10 @@
 # Changelog
 
-## next
+## 0.24.1
 
+- bug fixes
+  - server/client communication errors
+  - prevent error windows from spawning
 - main
   - added some menu items on macOs (including "Quit" !)
 
