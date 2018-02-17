@@ -92,7 +92,7 @@ class Ipc extends EventEmitter {
 
     connected() {
 
-        return this.socket.readyState == this.socket.OPEN
+        return this.socket && this.socket.readyState == this.socket.OPEN
 
     }
 
