@@ -52,6 +52,7 @@ class Ipc extends EventEmitter {
             this.reconnect = clearInterval(this.reconnect)
 
             this.hearbeat = setInterval(()=>{
+                if (!this.connected()) return
                 this.socket.send(`["ping"]`)
                 this.hearbeatTimeout = setTimeout(()=>{
                     if (this.connected()) this.socket.close()
@@ -79,6 +80,7 @@ class Ipc extends EventEmitter {
 
         this.hearbeat = clearInterval(this.hearbeat)
         this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
+        this.dieTimeout = clearTimeout(this.dieTimeout)
 
         if (!this.reconnect) {
             this.reconnect = setInterval(()=>{
