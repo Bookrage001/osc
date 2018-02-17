@@ -2,6 +2,17 @@ var settings = require('./settings')
 
 var serverStarted
 
+if (process.title === 'node') {
+    process.on('uncaughtException', (err)=>{
+        console.error('A JavaScript error occurred in the main process:')
+        console.trace(err)
+    })
+} else {
+    require('electron').dialog.showErrorBox = (title, err)=>{
+        console.error(title + ': ' + err)
+    }
+}
+
 var start = function(readyApp) {
 
     if (!settings.read('guiOnly') && !serverStarted) {
@@ -38,17 +49,6 @@ var start = function(readyApp) {
                 })
             })
         }
-    }
-
-    try {
-        require('electron').dialog.showErrorBox = (title, err)=>{
-            console.error(title + ': ' + err)
-        }
-    } catch(e){
-        process.on('uncaughtException', (err)=>{
-            console.error('A JavaScript error occurred in the main process:')
-            console.trace(err)
-        })
     }
 
 }

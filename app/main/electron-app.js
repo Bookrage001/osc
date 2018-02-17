@@ -1,10 +1,9 @@
-var {app, Menu, shell} = require('electron'),
+var {app, Menu, shell, dialog} = require('electron'),
     settings = require('./settings'),
     path = require('path'),
     infos = require('../package.json')
 
 app.commandLine.appendSwitch('--touch-events')
-
 
 if (settings.read('noVsync') || (!settings.cli && settings.read('argv')['disable-vsync'])) {
     app.commandLine.appendSwitch('--disable-gpu-vsync')
