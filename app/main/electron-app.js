@@ -13,12 +13,6 @@ if (settings.read('noGpu') || (!settings.cli && settings.read('argv')['disable-
     app.disableHardwareAcceleration()
 }
 
-app.on('window-all-closed', function() {
-    if (process.platform != 'darwin') {
-        app.quit()
-    }
-})
-
 var template = [{
     label: 'Edit',
     submenu: [
@@ -60,8 +54,6 @@ if (process.platform === 'darwin') {
             }
         ]
     })
-
-    // Add Window menu (OS X)
     template.push(
         {
             label: 'Window',
@@ -101,9 +93,19 @@ if (process.platform === 'darwin') {
     )
 }
 
+app.on('before-quit',()=>{
+    process.exit()
+})
 
-var menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
+app.on('ready',()=>{
+    var menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
+})
 
+app.on('window-all-closed', function() {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})
 
 module.exports = app

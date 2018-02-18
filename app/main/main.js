@@ -37,16 +37,10 @@ var start = function(readyApp) {
         address += settings.read('urlOptions')
         if (app.isReady()) {
             var win = require('./electron-window')({address:address, shortcuts:true})
-            app.on('before-quit',()=>{
-                process.exit()
-            })
             return win
         } else {
             app.on('ready',function(){
                 var win = require('./electron-window')({address:address, shortcuts:true})
-                app.on('before-quit',()=>{
-                    process.exit()
-                })
             })
         }
     }

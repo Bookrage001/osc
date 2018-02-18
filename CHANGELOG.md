@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.24.2
+
+- bug fixes
+  - macOs app menu & shortcuts
+
 ## 0.24.1
 
 - bug fixes
