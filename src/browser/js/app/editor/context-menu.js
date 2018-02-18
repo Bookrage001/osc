@@ -24,9 +24,6 @@ class ContextMenu {
 
                 var item = DOM.create(`<div class="item has-sub" tabIndex="1">${label}</div>`)
                 menu.appendChild(item)
-                item.addEventListener(this.event, (e)=>{
-                    e.stopPropagation()
-                })
 
                 this.open(e,actions[label],item)
 
@@ -112,13 +109,13 @@ class ContextMenu {
 
 }
 
-var menu = new ContextMenu()
+var contextMenu = new ContextMenu()
 
 var handleClick = function(event) {
 
     if (!EDITING) return
 
-    menu.close()
+    if (contextMenu.menu && !contextMenu.menu.contains(event.target)) contextMenu.close()
 
     var eventData = event.detail,
         widget = widgetManager.getWidgetByElement(eventData.target, ':not(.not-editable)')
@@ -130,12 +127,20 @@ var handleClick = function(event) {
         data = widget.props,
         type = widget.props.type == 'tab' ? 'tab' : 'widget'
 
+
+    // if the widget is not already selected
+    if (!widget.container.classList.contains('editing')) {
+        // add a flag to the original event to prevent draginit
+        // and prevent any further fast-click (ie input focus)
+        eventData.preventInterraction = true
+    }
+
     editor.select(widget)
 
     if (event.type!='fast-right-click') return
 
     if (container.classList.contains('root-container')) {
-        menu.open(eventData,{
+        contextMenu.open(eventData,{
             '<i class="fa fa-plus"></i> Add tab': function(){
                 data.tabs.push({})
                 updateWidget(widget)
@@ -258,9 +263,9 @@ var handleClick = function(event) {
 
     }
 
-    menu.open(eventData, actions)
+    contextMenu.open(eventData, actions)
 
 }
 
-document.addEventListener('fast-right-click', handleClick)
-document.addEventListener('fast-click', handleClick)
+document.addEventListener('fast-right-click', handleClick, true)
+document.addEventListener('fast-click', handleClick, true)

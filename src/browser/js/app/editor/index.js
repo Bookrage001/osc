@@ -40,7 +40,6 @@ var Editor = class Editor {
         `)
 
         DOM.each(gridForm, '#grid-width-input', (input)=>{
-            console.log(input)
             DOM.addEventListener(input, 'keyup mouseup change mousewheel', (e)=>{
                 setTimeout(()=>{
                     var v = Math.max(Math.min(parseInt(input.value), 100), 1)

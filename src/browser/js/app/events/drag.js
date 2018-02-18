@@ -5,6 +5,8 @@ var targets = {},
 
 function pointerDownHandler(event) {
 
+    if (event.preventInterraction === true) return
+
     if (!event.multitouch) {
         for (var i in targets) {
             if (targets[i] == event.target) return
