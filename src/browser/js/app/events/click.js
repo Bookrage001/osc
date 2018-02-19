@@ -13,7 +13,7 @@ document.body.setAttribute('oncontextmenu', 'return false')
 
 document.addEventListener('mousedown', (event)=>{
 
-    if (event.touchPunch) return console.log('ignored')
+    if (event.touchPunch) return
     if (event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) return
     if (event.button == 2) event.preventDefault()
 
