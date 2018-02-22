@@ -85,15 +85,10 @@ var incrementWidget = function(data, root){
         }
     }
 
-    delete data.linkId
-
     var id = data.id,
         label = data.label,
         address = data.address
 
-    if (id && id==label) {
-        data.label = 'auto'
-    }
     if (id && address == '/'+id) {
 
         data.address = 'auto'
