@@ -1,11 +1,5 @@
 var Panel = require('./panel'),
-    resize = require('../../events/resize'),
-    editor
-
-setTimeout(()=>{
-    editor = require('../../editor/')
-})
-
+    resize = require('../../events/resize')
 
 module.exports = class Tab extends Panel {
 
@@ -60,7 +54,6 @@ module.exports = class Tab extends Panel {
 
     hide() {
         if (this.detached) return
-        if (EDITING) editor.unselect()
         this.container.removeChild(this.widget)
         this.container.classList.remove('show')
         this.detached = true

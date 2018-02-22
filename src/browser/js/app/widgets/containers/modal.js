@@ -90,6 +90,7 @@ module.exports = class Modal extends Panel {
             })
         } else {
             this.light.addEventListener('fast-click',(e)=>{
+                if (e.capturedByEditor === true) return 
                 this.setValue(1, {sync:true, send:true})
             })
         }

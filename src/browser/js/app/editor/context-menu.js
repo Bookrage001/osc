@@ -132,7 +132,8 @@ var handleClick = function(event) {
     if (!widget.container.classList.contains('editing')) {
         // add a flag to the original event to prevent draginit
         // and prevent any further fast-click (ie input focus)
-        eventData.preventInterraction = true
+        eventData.capturedByEditor = true
+        event.capturedByEditor = true
     }
 
     editor.select(widget)
