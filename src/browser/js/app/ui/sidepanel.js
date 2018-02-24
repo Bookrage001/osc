@@ -159,7 +159,11 @@ if (fullscreen.enabled) {
 
 // open / close / toggle
 
+var sidepaneLock = false
+
 function sidepanelOpen() {
+
+    sidepaneLock = true
 
     DOM.get('#open-toggle, #sidepanel').forEach((el)=>{
         el.classList.add('sidepanel-open')
@@ -169,12 +173,15 @@ function sidepanelOpen() {
         DOM.get('#container')[0].classList.add('sidepanel-open')
         setTimeout(function(){
             DOM.dispatchEvent(window, 'resize')
+            sidepaneLock = false
         }, 25)
     }, 250)
 
 }
 
 function sidepanelClose() {
+
+    if (sidepaneLock) return
 
     DOM.get('#open-toggle, #sidepanel, #container').forEach((el)=>{
         el.classList.remove('sidepanel-open')
