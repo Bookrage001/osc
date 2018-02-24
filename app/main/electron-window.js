@@ -15,7 +15,7 @@ module.exports = function(options={}) {
         width: options.width || 800,
         height: options.height || 600,
         title: options.title || settings.read('appName'),
-        icon: path.resolve(__dirname + '/logo.png'),
+        icon: path.resolve(__dirname + '/../browser/logo.png'),
         backgroundColor: options.color || bgColor,
         type:options.type,
         webPreferences: {
