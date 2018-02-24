@@ -216,6 +216,7 @@ class Widget extends EventEmitter {
             obj
 
         var variables = {},
+            mathscope = {},
             varnumber = 0
 
         if (typeof propValue == 'string') {
@@ -291,6 +292,7 @@ class Widget extends EventEmitter {
                         varnumber++
 
                         variables[varname] = r
+                        mathscope[varname] = r
 
                         return varname
 
@@ -313,7 +315,7 @@ class Widget extends EventEmitter {
 
                     if (!this.parsers[m]) this.parsers[m] = math.compile(m.substr(2, m.length - 3).trim())
 
-                    let r = this.parsers[m].eval(variables)
+                    let r = this.parsers[m].eval(mathscope)
 
                     if (r instanceof math.type.ResultSet && !r.entries.length) {
                         r = ''

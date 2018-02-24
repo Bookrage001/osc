@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- bug fixes
+  - property maths: variables names declared in a formula where replaced by their associated value if found in the formula's result
+
 ## 0.24.2
 
 - bug fixes
