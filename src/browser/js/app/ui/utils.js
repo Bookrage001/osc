@@ -1,8 +1,21 @@
+var popupSingleton = null
+
 module.exports = {
 
     Popup: class Popup {
 
         constructor(options) {
+
+            if (options.closable) {
+
+                if (popupSingleton) {
+                    popupSingleton.close()
+                    popupSingleton = null
+                }
+
+                popupSingleton = this
+
+            }
 
             this.closable = options.closable
             this.escKey = options.closable || options.escKey
