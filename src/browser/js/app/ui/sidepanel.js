@@ -2,7 +2,7 @@ var state = require('../managers/state'),
     session = require('../managers/session'),
     editor = require('../editor/'),
     {icon} = require('./utils'),
-    fullscreen = require('screenfull'),
+    fullscreen = require('./fullscreen'),
     {enableTraversingGestures, disableTraversingGestures} = require('../events/drag')
 
 var sidepanelData = [
