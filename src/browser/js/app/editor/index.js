@@ -13,11 +13,18 @@ var Editor = class Editor {
             this.defaults[k] = widgets[k].defaults()
         }
 
+        this.enabledOnce = false
+        window.onbeforeunload = ()=>{
+            if (this.enabledOnce) return true
+        }
+
     }
 
     enable() {
 
         EDITING = true
+
+        this.enabledOnce = true
 
         DOM.get('.editor-root')[0].setAttribute('data-widget', DOM.get('.root-container')[0].getAttribute('data-widget'))
         DOM.get('.editor-root')[0].classList.remove('disabled')

@@ -4,6 +4,10 @@
 
 - bug fixes
   - property maths: variables names declared in a formula where replaced by their associated value if found in the formula's result
+- ui
+  - add iOS fullscreen support via add-to-home feature
+- editor
+  - ask for confirmation when closing or refreshing a the page if the editor has been enabled at least once 
 
 ## 0.24.2
 

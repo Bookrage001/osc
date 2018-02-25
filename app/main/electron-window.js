@@ -1,5 +1,5 @@
 var path = require('path'),
-    {BrowserWindow, Menu} = require('electron'),
+    {BrowserWindow, Menu, dialog} = require('electron'),
     shortcut = require('electron-localshortcut'),
     settings = require('./settings')
 
@@ -23,11 +23,26 @@ module.exports = function(options={}) {
         }
     })
 
-    window.loadURL(options.address)
+    window.webContents.on('will-prevent-unload', (event) => {
+      var choice = dialog.showMessageBox(window, {
+          type: 'question',
+          buttons: ['Yes', 'No'],
+          title: 'Are you sure ?',
+          message: 'Unsaved data will be lost. Are you sure you want to quit?',
+          defaultId: 0,
+          cancelId: 1
+      })
+      if (choice === 0) {
+          event.preventDefault()
+      }
+    })
 
     window.on('closed', function() {
         window = null
     })
+
+    window.loadURL(options.address)
+
 
     window.setMenuBarVisibility(false)
 
