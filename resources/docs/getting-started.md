@@ -8,32 +8,33 @@
 
 Below are the available command-line options. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
 
-| Option | Description |
-|---|---|
-| -s, --send | default targets for all widgets (ip:port pairs)|
-| -l, --load | session file to load |
-| -b, --blank | load a blank session and start the editor |
-| -c, --custom-module | custom module file to load |
-| -p, --port | http port of the server (default to 8080) |
-| -o, --osc-port | osc input port (default to --port) |
-| -m, --midi | midi router settings (requires python-pyo) |
-| -d, --debug | log received osc messages in the console |
-| -n, --no-gui | disable default gui |
-| -g, --gui-only | app server's url. If true, local port (--port) is used |
-| -t, --theme | theme name or path (mutliple values allowed)    |
-| -e, --examples | list examples instead of recent sessions |
-| --url-options | [url options](extras/url-options) (opt=value pairs) |
-| --disable-vsync | disable gui's vertical synchronization |
-| --disable-gpu | disable hardware acceleration |
-| --read-only | disable session editing and session history changes |
-| --instance-name | used to differenciate multiple instances in a zeroconf network |
+
+|| Option | Description |
+|---||---|
+| `-s` | `--send` | default targets for all widgets (ip:port pairs)|
+| `-l` | `--load` | session file to load |
+| `-b` | `--blank` | load a blank session and start the editor |
+| `-c` | `--custom-module` | custom module file to load |
+| `-p` | `--port` | http port of the server (default to 8080) |
+| `-o` | `--osc-port` | osc input port (default to --port) |
+| `-m` | `--midi` | midi router settings (requires python-pyo) |
+| `-d` | `--debug` | log received osc messages in the console |
+| `-n` | `--no-gui` | disable default gui |
+| `-g` | `--gui-only` | app server's url. If true, local port (--port) is used |
+| `-t` | `--theme` | theme name or path (mutliple values allowed)    |
+| `-e` | `--examples` | list examples instead of recent sessions |
+| | `--url-options` | [url options](extras/url-options) (opt=value pairs) |
+| |`--disable-vsync` | disable gui's vertical synchronization |
+| |`--disable-gpu` | disable hardware acceleration |
+| |`--read-only` | disable session editing and session history changes |
+| |`--instance-name` | used to differenciate multiple instances in a zeroconf network |
 
 Command-line only :
 
-| Option | Description |
+|| Option | Description |
 |---|---|
-| -h, --help | print available options |
-| -v, --version | print version number |
+| `-h` | `--help` | print available options |
+| `-v` | `--version` | print version number |
 
 **Examples**
 
