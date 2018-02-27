@@ -2,7 +2,7 @@
   "name": "open-stage-control",
   "productName": "Open Stage Control",
   "description": "Libre and modular OSC / MIDI controller",
-  "version": "0.24.2",
+  "version": "0.24.3",
   "author": {
     "name": "Jean-Emmanuel Doucet / AMMD",
     "email": "jeannot@ammd.net"

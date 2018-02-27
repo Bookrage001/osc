@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.24.3
 
 - bug fixes
   - property maths: variables names declared in a formula were replaced by their associated value if found in the formula's result
