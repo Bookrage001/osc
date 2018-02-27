@@ -65,6 +65,15 @@ if (settings.cli) {
         launcher = require('./electron-window')({address:address, shortcuts:false, width:680, height:626, node:true, color:'#283143'})
     })
 
+    if (process.log) {
+        process.log = (function(write) {
+            return function(string, encoding, fd) {
+                write.apply(process, arguments)
+                launcher.webContents.send('stdout', string)
+            }
+        })(process.log)
+    }
+
     process.stdout.write = (function(write) {
         return function(string, encoding, fd) {
             write.apply(process.stdout, arguments)
