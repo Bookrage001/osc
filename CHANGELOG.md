@@ -8,6 +8,7 @@
   - add iOS fullscreen support via add-to-home feature
 - editor
   - ask for confirmation when closing or refreshing a the page if the editor has been enabled at least once
+  - prevent defualt widget interraction when selecting a widget for edition
 - widgets
   - knob: small design tweaks
 - misc
