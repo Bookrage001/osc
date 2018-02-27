@@ -3,16 +3,17 @@
 ## next
 
 - bug fixes
-  - property maths: variables names declared in a formula where replaced by their associated value if found in the formula's result
+  - property maths: variables names declared in a formula were replaced by their associated value if found in the formula's result
 - ui
   - add iOS fullscreen support via add-to-home feature
 - editor
-  - ask for confirmation when closing or refreshing a the page if the editor has been enabled at least once
-  - prevent defualt widget interraction when selecting a widget for edition
+  - ask for confirmation when closing or refreshing the page if the editor has been enabled at least once
+  - prevent default widget interaction when selecting a widget for edition
 - widgets
   - knob: small design tweaks
 - misc
   - remove proprietary ffmepg codec from package
+
 ## 0.24.2
 
 - bug fixes
