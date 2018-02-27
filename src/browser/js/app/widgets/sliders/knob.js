@@ -203,9 +203,9 @@ module.exports = class Knob extends Slider {
 
         }
 
-        if (dashed) this.ctx.setLineDash([1.5, 1.5])
+        if (dashed) this.ctx.setLineDash([1.5 * PXSCALE, 1.5 * PXSCALE])
 
-        this.ctx.strokeStyle = tiny ? this.colors.light : this.colors.track
+        this.ctx.strokeStyle = this.colors.track
         this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
         this.ctx.beginPath()
         this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min, max)
@@ -250,14 +250,14 @@ module.exports = class Knob extends Slider {
         this.ctx.globalAlpha = 1
 
         let r1 = knobRadius,
-            r2 = knobRadius / 2,
+            r2 = knobRadius / 4,
             a  = 2 * Math.PI - d
 
         this.ctx.beginPath()
         this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
         this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
 
-        this.ctx.lineWidth = tiny ? PXSCALE : 2 * PXSCALE
+        this.ctx.lineWidth = 2 * PXSCALE
         this.ctx.strokeStyle = this.colors.knob
         this.ctx.stroke()
 

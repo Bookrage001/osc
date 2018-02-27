@@ -8,9 +8,10 @@
   - add iOS fullscreen support via add-to-home feature
 - editor
   - ask for confirmation when closing or refreshing a the page if the editor has been enabled at least once
+- widgets
+  - knob: small design tweaks
 - misc
   - remove proprietary ffmepg codec from package
-
 ## 0.24.2
 
 - bug fixes
