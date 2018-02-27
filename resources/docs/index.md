@@ -15,8 +15,12 @@ Open Stage Control is a desktop OSC bi-directionnal control surface application.
 
 ## Supported platforms
 
-The server can run on all [platforms supported by Electron](https://electron.atom.io/docs/tutorial/supported-platforms/).
-The only supported client browsers are the one provided with the server and Chrome/Chromium version `50` or later. For iOS devices, the minimal version required is `9.3`.
+The server can run on all [platforms supported by Electron](https://electron.atom.io/docs/tutorial/supported-platforms/). Clients can be :
+- any system running Chrome/Chromium version `50` or later (Linux, MacOS, Windows, Android, etc)
+- iOS version `9.3` or later
+
+Firefox is *not* supported.
+
 
 ## Need help ? Found a bug ?
 
