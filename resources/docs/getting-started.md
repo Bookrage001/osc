@@ -32,7 +32,7 @@ Below are the available command-line options. Note that when running without any
 Command-line only :
 
 || Option | Description |
-|---|---|
+|---||---|
 | `-h` | `--help` | print available options |
 | `-v` | `--version` | print version number |
 
