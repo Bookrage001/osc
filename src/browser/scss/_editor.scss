@@ -216,6 +216,9 @@
             display: block;
             width:100%;
             text-align:center;
+            &.accent {
+                color: var(--color-accent);
+            }
         }
     }
     .separator + .input-wrapper .input {

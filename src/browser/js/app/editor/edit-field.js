@@ -88,9 +88,10 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 v = input.value
             }
 
-            widget.props[propName] = v !== '' ? v : JSON.parse(JSON.stringify(defaultValue))
-
-            updateWidget(widget)
+            for (var w of editor.selectedWidgets) {
+                w.props[propName] = v !== '' ? v : JSON.parse(JSON.stringify(defaultValue))
+                updateWidget(w)
+            }
 
         }
 
@@ -101,6 +102,8 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         (propName === 'widgets' && (!widget.props.tabs ||! widget.props.tabs.length)) ||
         (propName === 'tabs' && (!widget.props.widgets ||! widget.props.widgets.length))
     ) {
+
+        if (editor.selectedWidgets.length > 1) return
 
         var list = DOM.create('<ul></ul>')
 

@@ -136,7 +136,7 @@ var handleClick = function(event) {
         event.capturedByEditor = true
     }
 
-    editor.select(widget)
+    editor.select(widget, {multi: event.detail.ctrlKey})
 
     if (event.type!='fast-right-click') return
 

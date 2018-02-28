@@ -6,12 +6,23 @@ var Editor = class Editor {
 
     constructor() {
 
-        this.wrapper = DOM.create('<div class="editor-container"></div>')
+        this.wrapper = DOM.create(`
+            <div class="editor-container">
+                <div class="form" id="editor-form">
+                </div>
+            </div>
+        `)
+        this.form = DOM.get(this.wrapper, '#editor-form')[0]
 
         this.defaults = {}
         for (var k in widgets) {
             this.defaults[k] = widgets[k].defaults()
         }
+
+        this.selection = DOM.create('<div id="editor-selection"></div>')
+        document.body.appendChild(this.selection)
+
+        this.selectedWidgets = []
 
         this.enabledOnce = false
         window.onbeforeunload = ()=>{
@@ -75,6 +86,7 @@ var Editor = class Editor {
         }
 
         this.unselect()
+        this.selectedWidgets = []
         DOM.get('.editor-root')[0].classList.add('disabled')
         DOM.get('.disable-editor')[0].classList.add('on')
         DOM.get('.enable-editor')[0].classList.remove('on')
@@ -89,7 +101,7 @@ var Editor = class Editor {
 
         DOM.get('#editor')[0].innerHTML = ''
 
-        this.wrapper.innerHTML = ''
+        this.form.innerHTML = ''
 
         DOM.each(document, '.editing', (element)=>{
             element.classList.remove('editing')
@@ -98,29 +110,66 @@ var Editor = class Editor {
         $('.widget.ui-resizable').resizable('destroy')
         $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
 
+        this.selection.style.display = 'none'
+
     }
 
-    select(widget, options={}) {
+    select(widget, options={}){
 
-        if (!options.refresh && (widget.container.classList.contains('editing'))) return
+        if (options.multi) {
 
-        // unselect previous widget
+            if (!this.selectedWidgets.includes(widget)) {
+
+                var sameLevel = true
+                for (var w of this.selectedWidgets) {
+                    if (w.parent !== widget.parent) sameLevel = false
+                }
+
+
+                if (sameLevel) this.selectedWidgets.push(widget)
+
+            } else {
+
+                this.selectedWidgets.splice(this.selectedWidgets.indexOf(widget), 1)
+
+            }
+
+        } else {
+
+            this.selectedWidgets = [widget]
+
+            if (!options.refresh && (widget.container.classList.contains('editing'))) return
+
+        }
+
         this.unselect()
 
-        // select widget
-        DOM.each(document, `[data-widget="${widget.hash}"]`, (item)=>{
-            item.classList.add('editing')
-        })
+        if (this.selectedWidgets.length > 0) {
 
-        // build form
-        var form = DOM.create('<div class="form"></div>')
+            this.createEditForm()
+            this.createSelectionBlock()
 
-        var props = this.defaults[widget.props.type]
+        }
 
-        form.appendChild(DOM.create(`<div class="separator"><span>Widget</span></div>`))
+    }
+
+
+    createEditForm(){
+
+        var widget = this.selectedWidgets[0],
+            props = this.defaults[widget.props.type]
+
+        this.form.appendChild(DOM.create(`
+            <div class="separator">
+                ${this.selectedWidgets.length > 1 ?
+                    '<span class="accent">Multiple Widgets</span>' :
+                    '<span>Widget</span>'
+                }
+            </div>
+        `))
 
         if (widget.props.type === 'root') {
-            form.appendChild(DOM.create(`
+            this.form.appendChild(DOM.create(`
                 <div class="input-wrapper">
                     <label>id</label>
                     <input class="input" title="id" disabled value="root"/>
@@ -129,9 +178,19 @@ var Editor = class Editor {
         }
 
 
+
         for (let propName in props) {
 
-            let field
+            let field,
+                shared = true
+
+            for (var w of this.selectedWidgets) {
+                if (this.defaults[w.props.type][propName] === undefined) {
+                    shared = false
+                }
+            }
+
+            if (!shared) continue
 
             if (propName.indexOf('_') == 0) {
 
@@ -148,61 +207,80 @@ var Editor = class Editor {
 
             }
 
-            form.appendChild(field)
+            this.form.appendChild(field)
 
         }
 
-        this.wrapper.appendChild(form)
+        this.wrapper.appendChild(this.form)
         DOM.get('#editor')[0].appendChild(this.wrapper)
 
-        if (widget.props.height !== undefined || widget.props.width !== undefined) {
+    }
 
-            var handleTarget
-            var $container = $(widget.container)
-            $container.resizable({
-                handles: 's, e, se',
-                helper: "ui-helper",
-                start: (event, ui)=>{
-                    handleTarget = $(event.originalEvent.target)
-                },
-                resize: (event, ui)=>{
-                    ui.size.height = Math.round(ui.size.height / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                    ui.size.width = Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                },
-                stop: (event, ui)=>{
-                    if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) widget.props.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                    if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) widget.props.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                    updateWidget(widget)
-                },
-                grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
+    createSelectionBlock(){
+
+        DOM.each(document, '.editing', (element)=>{
+            element.classList.remove('editing')
+        })
+
+        for (var widget of this.selectedWidgets) {
+            DOM.each(document, `[data-widget="${widget.hash}"]`, (item)=>{
+                item.classList.add('editing')
             })
+        }
 
+        if (this.selectedWidgets.length == 1) {
+            var widget = this.selectedWidgets[0]
+            if (widget.props.height !== undefined || widget.props.width !== undefined) {
+
+                var handleTarget
+                var $container = $(widget.container)
+                $container.resizable({
+                    handles: 's, e, se',
+                    helper: "ui-helper",
+                    start: (event, ui)=>{
+                        handleTarget = $(event.originalEvent.target)
+                    },
+                    resize: (event, ui)=>{
+                        ui.size.height = Math.round(ui.size.height / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                        ui.size.width = Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                    },
+                    stop: (event, ui)=>{
+                        if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) widget.props.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                        if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) widget.props.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+                        updateWidget(widget)
+                    },
+                    grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
+                })
+
+            }
+
+
+            if (widget.props.top !== undefined) {
+                var $container = $(widget.container)
+                $container.draggable({
+                    cursor:'-webkit-grabbing',
+                    drag: (event, ui)=>{
+                        ui.position.top = Math.round(ui.position.top / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                        ui.position.left = Math.round(ui.position.left / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                    },
+                    stop: (event, ui)=>{
+                        event.preventDefault()
+                        widget.props.top = (ui.helper.position().top + $container.parent().scrollTop())/PXSCALE
+                        widget.props.left = (ui.helper.position().left + $container.parent().scrollLeft())/PXSCALE
+                        ui.helper.remove()
+                        updateWidget(widget)
+                    },
+                    handle:'.ui-draggable-handle, > .label',
+                    grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],
+                    helper:()=>{
+                        return $('<div class="ui-helper"></div>').css({height:$container.outerHeight(),width:$container.outerWidth()})
+                    }
+                }).append('<div class="ui-draggable-handle"></div>')
+
+            }
         }
 
 
-        if (widget.props.top !== undefined) {
-            var $container = $(widget.container)
-            $container.draggable({
-                cursor:'-webkit-grabbing',
-                drag: (event, ui)=>{
-                    ui.position.top = Math.round(ui.position.top / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                    ui.position.left = Math.round(ui.position.left / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                },
-                stop: (event, ui)=>{
-                    event.preventDefault()
-                    widget.props.top = (ui.helper.position().top + $container.parent().scrollTop())/PXSCALE
-                    widget.props.left = (ui.helper.position().left + $container.parent().scrollLeft())/PXSCALE
-                    ui.helper.remove()
-                    updateWidget(widget)
-                },
-                handle:'.ui-draggable-handle, > .label',
-                grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],
-                helper:()=>{
-                    return $('<div class="ui-helper"></div>').css({height:$container.outerHeight(),width:$container.outerWidth()})
-                }
-            }).append('<div class="ui-draggable-handle"></div>')
-
-        }
     }
 
 }
