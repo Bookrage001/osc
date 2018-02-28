@@ -35,12 +35,16 @@ var start = function(readyApp) {
         var app = require('./electron-app')
         var address = typeof settings.read('guiOnly')=='string'? 'http://' + settings.read('guiOnly') : settings.read('appAddresses')[0]
         address += settings.read('urlOptions')
-        if (app.isReady()) {
-            var win = require('./electron-window')({address:address, shortcuts:true})
+
+        var launch = ()=>{
+            var win = require('./electron-window')({address:address, shortcuts:true, fullscreen: settings.read('fullScreen')})
             return win
+        }
+        if (app.isReady()) {
+            return launch()
         } else {
             app.on('ready',function(){
-                var win = require('./electron-window')({address:address, shortcuts:true})
+                launch()
             })
         }
     }
@@ -62,7 +66,7 @@ if (settings.cli) {
         launcher
 
     app.on('ready',function(){
-        launcher = require('./electron-window')({address:address, shortcuts:false, width:680, height:626, node:true, color:'#283143'})
+        launcher = require('./electron-window')({address:address, shortcuts:false, width:680, height:655, node:true, color:'#283143'})
     })
 
     if (process.log) {

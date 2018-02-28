@@ -2,6 +2,8 @@
 
 ## next
 
+- main
+  - add `--fullscreen` switch (default gui only, bypasses the sidepanel fullscreen button)
 - widgets
   - knob: big knobs design tweaks
 

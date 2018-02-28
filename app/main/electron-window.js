@@ -17,7 +17,8 @@ module.exports = function(options={}) {
         title: options.title || settings.read('appName'),
         icon: path.resolve(__dirname + '/../browser/logo.png'),
         backgroundColor: options.color || bgColor,
-        type:options.type,
+        type: options.type,
+        fullscreen: options.fullscreen,
         webPreferences: {
             nodeIntegration: !!options.node
         }
@@ -36,6 +37,16 @@ module.exports = function(options={}) {
           event.preventDefault()
       }
     })
+
+    if (options.fullscreen) {
+        window.webContents.on('dom-ready', ()=>{
+            window.webContents.executeJavaScript(`
+                window.ELECTRON_FULLSCREEN = true
+            `)
+        })
+    }
+
+
 
     window.on('closed', function() {
         window = null

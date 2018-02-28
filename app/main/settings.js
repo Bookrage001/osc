@@ -71,8 +71,8 @@ var options = {
                 true : 'blank session can\'t be started in read-only mode'
          }
     },
-    'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'
-    },
+    'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'},
+    'fullscreen':{type:'boolean', describe:'launch the default client gui in fullscreen mode (F11 to exit)'}
 }
 
 
@@ -167,6 +167,7 @@ var makeDefaultConfig = function(argv){
         sessionFile:  argv.l || false,
         newSession:  argv.b || false,
         customModule: argv.c || false,
+        fullScreen: argv['fullscreen'] || false,
         noGui: argv.n || false,
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
         urlOptions: argv['url-options'] ? '?' + argv['url-options'].join('&') : '',

@@ -3,6 +3,8 @@ location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (s,k,v)=>{
     ARGV[k]=v
 })
 
+window.ELECTRON_FULLSCREEN = window.ELECTRON_FULLSCREEN || false
+
 window.PACKAGE = require('../../../../app/package.json')
 document.title = PACKAGE.productName + ' v' + PACKAGE.version
 
