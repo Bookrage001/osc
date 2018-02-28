@@ -25,4 +25,10 @@ Firefox is *not* supported.
 
 ## Need help ? Found a bug ?
 
-Head over the github [issue tracker](https://github.com/jean-emmanuel/open-stage-control/issues) :)
+Head over the [issue tracker](https://github.com/jean-emmanuel/open-stage-control/issues) :)
+
+## Free what ?
+
+Open Stage Control is a [free software](https://www.fsf.org/), as in *gratis* and — most importantly — **libre**. It always will be. If you want to support the project financially, consider using flattr :
+
+https://flattr.com/@jean-emmanuel

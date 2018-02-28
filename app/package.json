@@ -4,8 +4,8 @@
   "description": "Libre and modular OSC / MIDI controller",
   "version": "0.24.3",
   "author": {
-    "name": "Jean-Emmanuel Doucet / AMMD",
-    "email": "jeannot@ammd.net"
+    "name": "Jean-Emmanuel Doucet",
+    "email": "jean-emmanuel@ammd.net"
   },
   "keywords": [
     "osc",
