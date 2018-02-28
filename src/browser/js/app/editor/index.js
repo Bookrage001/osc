@@ -136,9 +136,10 @@ var Editor = class Editor {
 
         } else {
 
+            if (!options.refresh && (widget.container.classList.contains('editing'))) return
+
             this.selectedWidgets = [widget]
 
-            if (!options.refresh && (widget.container.classList.contains('editing'))) return
 
         }
 
