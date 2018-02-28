@@ -150,7 +150,7 @@ module.exports = class Knob extends Slider {
             dashed = this.getProp('dashed'),
             pipsWidth = this.getProp('pips') && !tiny ? 3 * PXSCALE : 0,
             pipsRadius =  this.minDimension / 2 - pipsWidth / 2 - margin,
-            gaugeWidth = 7 * PXSCALE,
+            gaugeWidth = Math.max(7 * PXSCALE, this.minDimension / 12),
             gaugeRadius = pipsRadius - gaugeWidth / 2 - pipsWidth * 1.5,
             knobRadius = gaugeRadius - gaugeWidth
 
@@ -257,7 +257,7 @@ module.exports = class Knob extends Slider {
         this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
         this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
 
-        this.ctx.lineWidth = 2 * PXSCALE
+        this.ctx.lineWidth = gaugeWidth / 3.5
         this.ctx.strokeStyle = this.colors.knob
         this.ctx.stroke()
 

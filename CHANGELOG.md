@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- widgets
+  - knob: big knobs design tweaks
+
 ## 0.24.3
 
 - bug fixes
