@@ -9,6 +9,7 @@
 
 - bug fixes
   - property maths: variables names declared in a formula were replaced by their associated value if found in the formula's result
+  - missing console logs on windows
 - ui
   - add iOS fullscreen support via add-to-home feature
 - editor
