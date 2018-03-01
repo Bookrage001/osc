@@ -191,6 +191,7 @@ $(document).ready(()=>{
         start.remove()
         save.remove()
         terminal.show()
+        document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
     })
 
     // Fake console
