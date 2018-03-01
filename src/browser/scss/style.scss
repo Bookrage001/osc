@@ -28,7 +28,6 @@ input {
 
 html, body {
     height:100%;
-    overflow:hidden;
     position:relative;
 
 }
@@ -52,6 +51,7 @@ body {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1rem;
+    overflow:hidden;
 }
 
 .btn {
@@ -211,10 +211,12 @@ body {
 
 #launcher {
     background: var(--color-fg);
-    padding:14rem;
-    display: flex;
-    flex-direction: column;
+    overflow: auto;
+
     .form {
+        padding:8rem;
+        padding-top:58rem;
+        position: relative;
         width: 100%;
         background: var(--color-fg);
         overflow: hidden;
@@ -292,6 +294,10 @@ body {
         }
     }
     .header {
+        position: fixed;
+        top:8rem;
+        left:8rem;
+        right:8rem;
         background: var(--color-fg);
         border: 1rem solid var(--color-bg);
         margin-bottom: -1rem;
@@ -299,7 +305,8 @@ body {
         cursor: default;
         z-index: 2;
         box-shadow: none;
-        box-shadow: 0 0 0 1rem var(--color-light) inset;
+        box-shadow: 0 0 0 1rem var(--color-light) inset,
+                    0 -8rem 0 0 var(--color-fg);
         padding: 16rem 15rem 14rem;
 
         #title {
@@ -324,7 +331,7 @@ body {
     .start {
         border: 1rem solid var(--color-bg);
         z-index: 1;
-        margin-top: 5rem;
+        margin-top: 8rem;
         &:after {
             content:"";
             position: absolute;
@@ -360,7 +367,7 @@ body {
     }
     .save {
         float:left;
-        width:90rem;
+        width:97rem;
         border-right: 0;
         &:before {
             transition: opacity .5s;
@@ -382,7 +389,7 @@ body {
     }
 
     .terminal {
-        margin-top: 5rem;
+        margin-top: 8rem;
         background: var(--color-bg);
         font-family: monospace;
         text-transform: none;
@@ -391,16 +398,8 @@ body {
         letter-spacing: normal;
         cursor: auto;
         flex:1;
-        height: 100%;
-        overflow: hidden;
-        overflow-y: scroll;
-        height: 50rem;
-        &::-webkit-scrollbar-button:decrement:start, &::-webkit-scrollbar-button:increment:end {
-            display:none;
-        }
-        &::-webkit-scrollbar {
-            width: 8rem;
-        }
+        height: auto;
+
         div {
             user-select:text;
             width: 100%;

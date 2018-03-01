@@ -194,16 +194,18 @@ $(document).ready(()=>{
     })
 
     // Fake console
-    var terminal = $(`<div class="terminal"></div>`).appendTo('#launcher').hide()
+    var terminal = $(`<div class="terminal"></div>`).appendTo(form).hide()
 
     ipcRenderer.on('stdout', function(e, msg){
+        var scroll = document.body.offsetHeight + document.body.scrollTop == document.body.scrollHeight
         terminal.append(`<div class="log">${msg}</div>`)
-        terminal.scrollTop(terminal.prop('scrollHeight'))
+        if (scroll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
     })
 
     ipcRenderer.on('stderr', function(e, msg){
+        var scroll = document.body.offsetHeight + document.body.scrollTop == document.body.scrollHeight
         terminal.append(`<div class="error">${msg}</div>`)
-        terminal.scrollTop(terminal.prop('scrollHeight'))
+        if (scroll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
     })
 
 
