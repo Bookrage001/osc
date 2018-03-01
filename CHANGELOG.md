@@ -3,7 +3,8 @@
 ## next
 
 - bug fixes
-  - launcher: parse array options correctly when an item contains spaces
+  - launcher: parse array options correctly when an item contains spaces,
+  - launcher: the terminal now grows and scrolls to bottom automatically 
 - main
   - add `--fullscreen` switch (default gui only, bypasses the sidepanel fullscreen button)
 - widgets
