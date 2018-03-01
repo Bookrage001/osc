@@ -9,7 +9,7 @@
 - widgets
   - knob: big knobs design tweaks
 - editor
-  - allow selecting multiple widgets (`ctrl + click`) if they share the same parent. Context-menu and sidepanel editing actions applies to all selected widgets
+  - allow selecting multiple widgets (`ctrl + click`) if they share the same parent. Context-menu and sidepanel editing actions apply to all selected widgets
 
 ## 0.24.3
 

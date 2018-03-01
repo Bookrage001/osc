@@ -43,7 +43,7 @@ Properties are written in JSON, with some flexibility brought by the [JSON5](htt
 
 Selected widget can be resized using its south, south-east and east handles. It can be dragged with its north-west handle.
 
-## Multiple selection
+## Bulk editing
 
 When holding the `ctrl` key, multiple widgets can be selected for edition:
 
