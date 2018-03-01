@@ -116,7 +116,11 @@ var Editor = class Editor {
 
     select(widget, options={}){
 
-        if (options.multi) {
+        if (Array.isArray(widget)) {
+
+            this.selectedWidgets = widget
+
+        } else if (options.multi) {
 
             if (!this.selectedWidgets.includes(widget)) {
 

@@ -122,12 +122,6 @@ var handleClick = function(event) {
 
     if (!widget) return
 
-    var container = widget.container,
-        index = DOM.index(container),
-        data = widget.props,
-        type = widget.props.type == 'tab' ? 'tab' : 'widget'
-
-
     // if the widget is not already selected
     if (!widget.container.classList.contains('editing')) {
         // add a flag to the original event to prevent draginit
@@ -138,9 +132,16 @@ var handleClick = function(event) {
 
     editor.select(widget, {multi: event.detail.ctrlKey})
 
-    if (event.type!='fast-right-click') return
+    // right-click menu
+    if (event.type!='fast-right-click' || !editor.selectedWidgets.length) return
 
-    if (container.classList.contains('root-container')) {
+    var index = editor.selectedWidgets.map((w) => DOM.index(w.container)).sort().reverse(),
+        data = editor.selectedWidgets.map((w) => w.props),
+        type = editor.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
+        parent = editor.selectedWidgets[0].parent
+
+    // case root: only "add tab" option
+    if (widget.props.type === 'root') {
         contextMenu.open(eventData,{
             '<i class="fa fa-plus"></i> Add tab': function(){
                 data.tabs.push({})
@@ -151,89 +152,123 @@ var handleClick = function(event) {
         return
     }
 
+    // case !root
+
     var actions = {},
         clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         clickY = Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
-    if (widget.parent != widgetManager) {
-        actions['<i class="fa fa-object-group"></i> Edit parent'] = function(){editor.select(widget.parent)}
+    actions['<i class="fa fa-object-group"></i> Edit parent'] = ()=>{
+        editor.select(parent)
     }
 
-    if (type=='widget') actions['<i class="fa fa-copy"></i> Copy'] = function(){CLIPBOARD=JSON.stringify(data)}
+    if (type === 'widget')  {
 
-    if (type=='widget') actions['<i class="fa fa-cut"></i> Cut'] = function(){
-        CLIPBOARD=JSON.stringify(data)
-        widget.parent.props.widgets.splice(index,1)
-        updateWidget(widget.parent)
+        actions['<i class="fa fa-copy"></i> Copy'] = ()=>{
+            CLIPBOARD = JSON.stringify(data)
+        }
+
+        actions['<i class="fa fa-cut"></i> Cut'] = ()=>{
+            CLIPBOARD = JSON.stringify(data)
+            for (var i of index) {
+                parent.props.widgets.splice(i,1)
+            }
+            updateWidget(parent)
+        }
+
     }
 
-    if (((type=='widget' && widgets[data.type].defaults().widgets) || (type=='tab')) && (!data.tabs||!data.tabs.length)) {
 
-        if (CLIPBOARD!=null) {
+    if (data.length == 1 && (!data[0].tabs || !data[0].tabs.length) && (data[0].widgets)) {
+
+        if (CLIPBOARD !== null) {
+
+            function paste(increment) {
+
+                var pastedData = JSON.parse(CLIPBOARD),
+                    minTop = Infinity,
+                    minLeft = Infinity
+
+                for (var i in pastedData) {
+                    pastedData[i] = incrementWidget(pastedData[i])
+                    if (!isNaN(pastedData[i]).top && pastedData[i].top < minTop) {
+                        minTop = pastedData[i].top
+                    }
+                    if (!isNaN(pastedData[i]).left && pastedData[i].left < minLeft) {
+                        minLeft = pastedData[i].left
+                    }
+                }
+
+                var keepPosition = eventData.target.classList.contains('tablink')
+                for (var i in pastedData) {
+
+                    if (!keepPosition) {
+                        if (!isNaN(pastedData[i].top)) pastedData[i].top  = pastedData[i].top - minTop + clickY
+                        if (!isNaN(pastedData[i].left)) pastedData[i].left = pastedData[i].left - minLeft + clickX
+                    }
+
+                }
+
+                data[0].widgets = data[0].widgets || []
+                data[0].widgets = data[0].widgets.concat(pastedData)
+
+                updateWidget(editor.selectedWidgets[0])
+
+            }
+
             actions['<i class="fa fa-paste"></i> Paste'] = {
-                '<i class="fa fa-plus-circle"></i> ID + 1':function(){
-                    data.widgets = data.widgets || []
-                    var newData = incrementWidget(JSON.parse(CLIPBOARD))
-
-
-                    if (!eventData.target.classList.contains('tablink')) {
-                        newData.top = clickY
-                        newData.left= clickX
-                    } else {
-                        delete newData.top
-                        delete newData.left
-                    }
-
-                    data.widgets.push(newData)
-                    updateWidget(widget)
+                '<i class="fa fa-plus-circle"></i> ID + 1': ()=>{
+                    paste(true)
                 },
-                '<i class="fa fa-clone"></i> Clone':function(){
-                    data.widgets = data.widgets || []
-                    var newData = JSON.parse(CLIPBOARD)
-                    if (!eventData.target.classList.contains('tablink')) {
-                        newData.top = clickY
-                        newData.left= clickX
-                    } else {
-                        delete newData.top
-                        delete newData.left
-                    }
-                    data.widgets.push(newData)
-                    updateWidget(widget)
+                '<i class="fa fa-clone"></i> Clone': ()=>{
+                    paste()
                 }
             }
+
         }
 
         actions['<i class="fa fa-plus"></i> Add widget'] = {}
+
         for (let category in categories) {
+
             actions['<i class="fa fa-plus"></i> Add widget'][category] = {}
+
             for (let t in categories[category]) {
-                let wtype = categories[category][t]
-                actions['<i class="fa fa-plus"></i> Add widget'][category][wtype] =  function(){
-                        data.widgets = data.widgets || []
-                        var newData = {type:wtype}
-                        if (!eventData.target.classList.contains('tablink')) {
-                            newData.top = clickY
-                            newData.left= clickX
-                        }
-                        data.widgets.push(newData)
-                        updateWidget(widget)
+
+                let type = categories[category][t]
+
+                actions['<i class="fa fa-plus"></i> Add widget'][category][type] = ()=>{
+
+                    var newData = {type: type}
+
+                    if (!eventData.target.classList.contains('tablink')) {
+                        newData.top = clickY
+                        newData.left= clickX
+                    }
+
+                    data[0].widgets = data[0].widgets || []
+                    data[0].widgets.push(newData)
+                    updateWidget(editor.selectedWidgets[0])
                 }
 
             }
-        }
 
-    }
-    if  (((type=='widget' && widgets[data.type].defaults().tabs) || (type=='tab')) && (!data.widgets||!data.widgets.length)) {
-
-        actions['<i class="fa fa-plus"></i> Add tab'] = function(){
-            data.tabs = data.tabs || []
-            data.tabs.push({})
-            updateWidget(widget)
         }
 
     }
 
-    actions['<i class="fa fa-trash"></i> Delete'] = function(){
+    if (data.length == 1 && (!data[0].widgets || !data[0].widgets.length) && (data[0].tabs)) {
+
+        actions['<i class="fa fa-plus"></i> Add tab'] = ()=>{
+            data[0].tabs = data[0].tabs || []
+            data[0].tabs.push({})
+            updateWidget(editor.selectedWidgets[0])
+        }
+
+    }
+
+    actions['<i class="fa fa-trash"></i> Delete'] = ()=>{
+
         var popup = new Popup({
             title: 'Are you sure ?',
             content:`
@@ -246,16 +281,21 @@ var handleClick = function(event) {
             enterKey: function(){DOM.get(this.html, '.confirm-delete')[0].click()}
         })
 
-        DOM.get(popup.html, '.confirm-delete')[0].addEventListener('click', function(){
+        DOM.get(popup.html, '.confirm-delete')[0].addEventListener('click', ()=>{
+
             popup.close()
 
-            if (widget.props.type != 'tab') {
-                widget.parent.props.widgets.splice(index,1)
+            if (type === 'widget') {
+                for (var i of index) {
+                    parent.props.widgets.splice(i,1)
+                }
             } else {
-                widget.parent.props.tabs.splice(index,1)
+                for (var i of index) {
+                    parent.props.tabs.splice(i,1)
+                }
             }
 
-            updateWidget(widget.parent)
+            updateWidget(parent)
         })
 
         DOM.get(popup.html, '.cancel-delete')[0].addEventListener('click', function(){
