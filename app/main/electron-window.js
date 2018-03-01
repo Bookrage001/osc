@@ -19,6 +19,8 @@ module.exports = function(options={}) {
         backgroundColor: options.color || bgColor,
         type: options.type,
         fullscreen: options.fullscreen,
+        useContentSize: true,
+        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: !!options.node
         }
@@ -54,8 +56,7 @@ module.exports = function(options={}) {
 
     window.loadURL(options.address)
 
-
-    window.setMenuBarVisibility(false)
+    window.setMenu(null)
 
     if (options.shortcuts) {
 
