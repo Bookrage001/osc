@@ -190,7 +190,7 @@ var handleClick = function(event) {
                     minLeft = Infinity
 
                 for (var i in pastedData) {
-                    pastedData[i] = incrementWidget(pastedData[i])
+                    if (increment) pastedData[i] = incrementWidget(pastedData[i])
                     if (!isNaN(pastedData[i]).top && pastedData[i].top < minTop) {
                         minTop = pastedData[i].top
                     }
