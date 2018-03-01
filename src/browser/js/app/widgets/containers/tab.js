@@ -20,7 +20,10 @@ module.exports = class Tab extends Panel {
 
             layout:'',
             spacing:0,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

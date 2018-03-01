@@ -31,7 +31,10 @@ module.exports = class Multitoggle extends Matrix {
             led: false,
             on:1,
             off:0,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc: 'osc',
 

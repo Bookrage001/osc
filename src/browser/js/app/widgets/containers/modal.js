@@ -3,7 +3,6 @@ var Panel = require('./panel'),
     resize = require('../../events/resize'),
     doubletab = require('../mixins/double_tap')
 
-
 module.exports = class Modal extends Panel {
 
     static defaults() {
@@ -34,7 +33,10 @@ module.exports = class Modal extends Panel {
             popupHeight:'80%',
             layout:'',
             spacing:0,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 
@@ -90,7 +92,7 @@ module.exports = class Modal extends Panel {
             })
         } else {
             this.light.addEventListener('fast-click',(e)=>{
-                if (e.capturedByEditor === true) return 
+                if (e.capturedByEditor === true) return
                 this.setValue(1, {sync:true, send:true})
             })
         }

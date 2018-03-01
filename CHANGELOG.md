@@ -9,6 +9,7 @@
   - add `--fullscreen` switch (default gui only, bypasses the sidepanel fullscreen button)
 - widgets
   - knob: big knobs design tweaks
+  - **new** `default` property that sets a widgets initial/doubleTap/spring value. The `value` property does no longer serve this purpose.
   - property inheritance: `@{widget_id.value}`, `@{widget_id}` and `@{widget_id._value}` now all refer to the widget's current value (the latter being kept for backward compatibility)
 - editor
   - allow selecting multiple widgets (`ctrl + click`) if they share the same parent. Context-menu and sidepanel editing actions apply to all selected widgets

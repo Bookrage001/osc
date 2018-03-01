@@ -33,7 +33,10 @@ module.exports = class Rgb extends Pad {
             input: true,
             snap:false,
             spring:false,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

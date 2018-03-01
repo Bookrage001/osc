@@ -55,15 +55,23 @@ All widgets share a set of generic properties described below.
     - `border-radius:5rem; > .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size (the `>` selector targets only the direct children of the widget element)
 
 
-## OSC
+## Value
+
+### `default`
+- type: `*`
+- default: `empty`
+- usage: if set, the widget will be initialized with this `value` when the session is loaded. Some widgets use recall this property under specific conditions (see fader's `doubleTap` for example).
+- note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc).
 
 
 ### `value`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `*`
 - default: `empty`
-- usage: if set, the widget will be initialized with this `value`. This won't send any osc message unless it is changed because of a property inheritance update initiated by an action that should send osc (e.g. dragging a slider).
+- usage: set `value` to define a widget's value depending on other widget's values / properties using [property inheritance](../extras/property-inheritance.md) and [property maths](../extras/property-maths.md). When updated by an osc-sending event (e.g. dragging a slider), the widget will send its own osc message as well.
 - note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc).
 
+
+## OSC
 
 ### `precision`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `integer|string`

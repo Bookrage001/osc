@@ -2,7 +2,6 @@ var {clip, mapToScale} = require('../utils'),
     Slider = require('./slider'),
     parser = require('../../parser')
 
-
 module.exports = class Fader extends Slider {
 
     static defaults() {
@@ -41,7 +40,10 @@ module.exports = class Fader extends Slider {
             logScale:false,
             unit:'',
             origin: 'auto',
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

@@ -31,8 +31,11 @@ module.exports = class Multipush extends Matrix {
             on:1,
             off:0,
             norelease:false,
-            value:'',
 
+            _value: 'value',
+            default: '',
+            value: '',
+            
             _osc:'osc',
 
             precision:2,

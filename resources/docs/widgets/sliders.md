@@ -82,13 +82,13 @@ range: {
 ### `spring`
 - type: `boolean`
 - default: `false`
-- usage: when set to `true`, the widget will go back to its initial value when released.
+- usage: when set to `true`, the widget will go back to its `default` value when released.
 
 
 ### `doubleTap`
 - type: `boolean`
 - default: `false`
-- usage: set to `true` to make the fader reset to its initial value when receiving a double tap
+- usage: set to `true` to make the fader reset to its `default` value when receiving a double tap
 
 ### `meter`
 - type: `boolean`
@@ -181,12 +181,12 @@ range: {
 ### `spring`
 - type: `boolean`
 - default: `false`
-- usage: when set to `true`, the widget will go back to its initial value when released.
+- usage: when set to `true`, the widget will go back to its `default` value when released.
 
 ### `doubleTap`
 - type: `boolean`
 - default: `false`
-- usage: set to `true` to make the knob reset to its initial value when receiving a double tap
+- usage: set to `true` to make the knob reset to its `default` value when receiving a double tap
 
 ### `css`
 ```

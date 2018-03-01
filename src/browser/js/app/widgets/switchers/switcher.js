@@ -30,7 +30,10 @@ module.exports = class Switcher extends _switchers_base {
             horizontal:false,
             linkedWidgets:'',
             values:['A', 'B'],
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

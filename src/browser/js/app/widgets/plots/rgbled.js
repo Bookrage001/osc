@@ -24,9 +24,9 @@ module.exports = class Rbgled extends Widget {
             label:'auto',
             css:'',
 
-            _rgbled:'rgbled',
-
-            value:'',
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

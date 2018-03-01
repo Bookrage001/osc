@@ -27,7 +27,10 @@ module.exports = class Text extends Widget {
             _text: 'text',
 
             vertical:false,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

@@ -40,7 +40,10 @@ module.exports = class MultiXy extends Pad {
             rangeY:{min:0,max:1},
             logScaleX:false,
             logScaleY:false,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 
@@ -85,7 +88,7 @@ module.exports = class MultiXy extends Pad {
                 ...xyDefaults,
                 snap:this.getProp('snap'),
                 spring:this.getProp('spring'),
-                value:this.getProp('value').length == this.getProp('points') * 2 ? [this.getProp('value')[i*2], this.getProp('value')[i*2 + 1]] : '',
+                default:this.getProp('default').length === this.getProp('points') * 2 ? [this.getProp('default')[i*2], this.getProp('default')[i*2 + 1]] : '',
                 rangeX:this.getProp('rangeX'),
                 rangeY:this.getProp('rangeY'),
                 precision:this.precision,

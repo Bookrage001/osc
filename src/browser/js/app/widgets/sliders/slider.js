@@ -4,7 +4,6 @@ var {clip, mapToScale} = require('../utils'),
     doubletab = require('../mixins/double_tap'),
     Input = require('../inputs/input')
 
-
 class Slider extends Canvas {
 
     constructor(options) {
@@ -51,7 +50,7 @@ class Slider extends Canvas {
                                 this.rangeValsMin:
                                 clip(this.getProp('origin'), [this.rangeValsMin,this.rangeValsMax])
 
-        this.springValue = this.getProp('value') !== '' ? this.getProp('value') :  this.originValue
+        this.springValue = this.getProp('default') !== '' ? this.getProp('default') :  this.originValue
 
         if (this.getProp('doubleTap')) {
 
@@ -100,7 +99,7 @@ class Slider extends Canvas {
 
         }
 
-        this.setValue(this.originValue)
+        this.setValue(this.springValue)
 
     }
 

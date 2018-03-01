@@ -29,8 +29,11 @@ module.exports = class Multifader extends Matrix {
             strips:2,
             start:0,
             traversing:true,
-            value:'',
 
+            _value: 'value',
+            default: '',
+            value: '',
+            
             _fader: 'fader',
 
             range:{min:0,max:1},

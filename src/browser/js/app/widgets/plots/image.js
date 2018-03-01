@@ -30,7 +30,10 @@ module.exports = class Led extends Widget {
             repeat: 'no-repeat',
             border: true,
             cache: true,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

@@ -37,7 +37,10 @@ class Panel extends Widget {
             border:true,
             layout:'',
             spacing:0,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 
@@ -98,7 +101,6 @@ class Panel extends Widget {
             if (this.getProp('layout') != '') this.parseLayout()
 
         }
-
 
     }
 

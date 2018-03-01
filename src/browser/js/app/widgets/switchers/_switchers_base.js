@@ -2,7 +2,6 @@ var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     osc = require('../../osc')
 
-
 module.exports = class _switchers_base extends Widget {
 
     constructor(options) {

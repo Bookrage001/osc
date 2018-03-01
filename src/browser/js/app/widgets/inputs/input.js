@@ -30,7 +30,10 @@ module.exports = class Input extends Canvas {
             vertical:false,
             unit: '',
             editable:true,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

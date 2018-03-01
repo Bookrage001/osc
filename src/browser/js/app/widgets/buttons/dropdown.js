@@ -26,7 +26,10 @@ class Dropdown extends Widget {
             _dropdown:'dropdown',
 
             values:{"Value 1":1,"Value 2":2},
-            value:'',
+
+            _value: 'value',
+            default:'',
+            value: '',
 
             _osc:'osc',
 

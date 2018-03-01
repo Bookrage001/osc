@@ -28,8 +28,10 @@ module.exports = class Switch extends Widget {
             horizontal:false,
             showValues:false,
             values:{"Value 1":1,"Value 2":2},
-            value:'',
 
+            _value: 'value',
+            default:'',
+            value: '',
 
             _osc:'osc',
 
@@ -58,7 +60,7 @@ module.exports = class Switch extends Widget {
         }
 
         var isArray = Array.isArray(values)
-        
+
         for (var k in values) {
 
             this.values.push(values[k])

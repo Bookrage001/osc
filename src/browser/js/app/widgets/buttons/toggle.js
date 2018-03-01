@@ -29,7 +29,10 @@ class Toggle extends Widget {
             led: false,
             on:1,
             off:0,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

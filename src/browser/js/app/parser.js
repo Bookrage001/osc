@@ -66,8 +66,17 @@ var Parser = class Parser {
             widget.created()
 
             // set widget's initial state
-            if (widget.getProp('value') !== '') {
-                stateManager.pushValueNewProp(widget.getProp('id'), widget.getProp('value'))
+            var defaultValue = widget.getProp('default'),
+                currentValue = widget.getProp('value')
+
+            if (currentValue !== '' && currentValue !== undefined) {
+
+                stateManager.pushValueNewProp(widget.getProp('id'), currentValue)
+
+            } else if (defaultValue !== '' && defaultValue !== undefined) {
+
+                widget.setValue(defaultValue)
+
             }
 
             // Append the widget to its parent

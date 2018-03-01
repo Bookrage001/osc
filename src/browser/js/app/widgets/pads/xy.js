@@ -41,7 +41,10 @@ module.exports = class Xy extends Pad {
             rangeY:{min:0,max:1},
             logScaleX:false,
             logScaleY:false,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 
@@ -74,7 +77,7 @@ module.exports = class Xy extends Pad {
                 horizontal:true,
                 height:'100%',
                 width:'100%',
-                value:this.getProp('value').length==2?this.getProp('value')[0]:'',
+                default:this.getProp('default').length === 2 ? this.getProp('default')[0] : '',
                 snap:this.getProp('snap'),
                 range:this.getProp('rangeX'),
                 origin:'auto',
@@ -90,7 +93,7 @@ module.exports = class Xy extends Pad {
                 horizontal:false,
                 height:'100%',
                 width:'100%',
-                value:this.getProp('value').length==2?this.getProp('value')[1]:'',
+                default:this.getProp('default').length === 2 ? this.getProp('default')[1] : '',
                 snap:this.getProp('snap'),
                 range:this.getProp('rangeY'),
                 origin:'auto',

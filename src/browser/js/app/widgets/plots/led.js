@@ -28,7 +28,10 @@ module.exports = class Led extends Widget {
 
             range:{min:0,max:1},
             logScale:false,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

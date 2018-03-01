@@ -33,6 +33,9 @@ module.exports = class Eq extends _plots_base {
             origin: 'auto',
             logScaleX: false,
             smooth: false,
+
+            _value: 'value',
+            default: '',
             value: '',
 
             _osc:'osc',

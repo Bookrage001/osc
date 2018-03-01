@@ -1,7 +1,6 @@
 var Fader = require('../sliders/fader'),
     widgetManager = require('../../managers/widgets')
-
-
+    
 module.exports = class Meter extends Fader {
 
     static defaults() {
@@ -35,7 +34,10 @@ module.exports = class Meter extends Fader {
             horizontal:false,
             pips:false,
             dashed:false,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

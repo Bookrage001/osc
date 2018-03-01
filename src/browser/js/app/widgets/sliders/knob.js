@@ -36,7 +36,10 @@ module.exports = class Knob extends Slider {
             logScale:false,
             unit:'',
             origin: 'auto',
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

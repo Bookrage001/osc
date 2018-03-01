@@ -3,8 +3,6 @@ var Panel = require('./panel'),
     Tab = require('./tab'),
     widgetManager = require('../../managers/widgets')
 
-
-
 module.exports = class Root extends Panel {
 
     static defaults() {
@@ -19,9 +17,9 @@ module.exports = class Root extends Panel {
             color:'auto',
             css:'',
 
-            _panel: 'panel',
-
-            value:'',
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 

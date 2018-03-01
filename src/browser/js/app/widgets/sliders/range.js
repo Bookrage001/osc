@@ -204,7 +204,10 @@ module.exports = class Range extends Widget {
             spring:false,
             range:{min:0,max:1},
             logScale:false,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 
@@ -245,7 +248,7 @@ module.exports = class Range extends Widget {
                 horizontal:this.getProp('horizontal'),
                 height:'100%',
                 width:'100%',
-                value:this.getProp('value').length==2?this.getProp('value')[0]:this.getProp('range').min,
+                default:this.getProp('default').length === 2 ? this.getProp('default')[0] : this.getProp('range').min,
                 snap:this.getProp('snap'),
                 spring:this.getProp('spring'),
                 range:this.getProp('range'),
@@ -262,7 +265,7 @@ module.exports = class Range extends Widget {
                 horizontal:this.getProp('horizontal'),
                 height:'100%',
                 width:'100%',
-                value:this.getProp('value').length==2?this.getProp('value')[1]:this.getProp('range').max,
+                default:this.getProp('default').length === 2 ? this.getProp('default')[1] : this.getProp('range').max,
                 snap:this.getProp('snap'),
                 spring:this.getProp('spring'),
                 range:this.getProp('range'),

@@ -32,7 +32,10 @@ module.exports = class Visualizer extends _plots_base {
             logScale: false,
             smooth: false,
             pips:true,
-            value:'',
+
+            _value: 'value',
+            default: '',
+            value: '',
 
             _osc:'osc',
 
@@ -49,7 +52,7 @@ module.exports = class Visualizer extends _plots_base {
             options.props.value = '@{' + options.props.widgetId + '}'
             delete options.props.widgetId
         }
-        
+
         super(options)
 
         this.fps = 30
