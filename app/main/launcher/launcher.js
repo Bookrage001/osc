@@ -6,7 +6,8 @@ var {remote, ipcRenderer, shell} = require('electron'),
     packageUrl = packageInfos.repository.url,
     argv_remote = settings.read('argv'),
     argv = {},
-    $ = require('jquery/dist/jquery.slim.min.js')
+    $ = require('jquery/dist/jquery.slim.min.js'),
+    SPACE_ESC = '__?SPACE'
 
 for (i in argv_remote) {
     argv[i] = argv_remote[i]
@@ -34,8 +35,15 @@ $(document).ready(()=>{
             cancel,
             value = argv[i] == undefined ? '' : argv[i]
 
+        var strValue
+        if (Array.isArray(value)) {
+            strValue = value.map(x => x.includes(' ') ? '"'+x+'"' : x).join(' ')
+        } else {
+            strValue = value
+        }
 
-        input = $(`<input class="input" name="${i}" data-type="${option.type}" value="${value}" placeholder="${option.describe}"/>`)
+        input = $(`<input class="input" name="${i}" data-type="${option.type}" placeholder="${option.describe}"/>`)
+        input.val(strValue)
 
         if (option.type == 'boolean') {
 
@@ -74,7 +82,14 @@ $(document).ready(()=>{
                 v = v == 'true' ? true : ''
                 input.val(v)
             } else if (v && option.type == 'array'){
-                v = v.trim().split(' ')
+                var quoted = []
+
+                v = v.replace(/("[^"]*"|'[^'*]*')/g, (m)=>{
+                    quoted.push(m.substr(1, m.length - 2))
+                    return SPACE_ESC + (quoted.length - 1)
+                })
+                v = v.split(' ')
+                v = v.map(x => x.indexOf(SPACE_ESC) === 0 ? quoted[x.split(SPACE_ESC)[1]] : x)
             } else if (v && option.type == 'number'){
                 v = parseFloat(v)
             }

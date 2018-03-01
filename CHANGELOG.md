@@ -2,6 +2,8 @@
 
 ## next
 
+- bug fixes
+  - launcher: parse array options correctly when an item contains spaces
 - main
   - add `--fullscreen` switch (default gui only, bypasses the sidepanel fullscreen button)
 - widgets
