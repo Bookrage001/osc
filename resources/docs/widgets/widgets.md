@@ -60,7 +60,7 @@ All widgets share a set of generic properties described below.
 ### `default`
 - type: `*`
 - default: `empty`
-- usage: if set, the widget will be initialized with this `value` when the session is loaded. Some widgets use recall this property under specific conditions (see fader's `doubleTap` for example).
+- usage: if set, the widget will be initialized with this `value` when the session is loaded. Some widgets use this property under specific conditions (see fader's `doubleTap` for example).
 - note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc).
 
 
