@@ -8,6 +8,8 @@
   - add `--fullscreen` switch (default gui only, bypasses the sidepanel fullscreen button)
 - widgets
   - knob: big knobs design tweaks
+- editor
+  - allow selecting multiple widgets (`ctrl + click`) if they share the same parent. Context-menu and sidepanel editing actions applies to all selected widgets
 
 ## 0.24.3
 
