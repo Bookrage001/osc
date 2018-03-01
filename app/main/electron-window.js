@@ -54,9 +54,9 @@ module.exports = function(options={}) {
         window = null
     })
 
-    window.loadURL(options.address)
-
     window.setMenu(null)
+
+    window.loadURL(options.address)
 
     if (options.shortcuts) {
 
