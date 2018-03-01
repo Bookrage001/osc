@@ -239,9 +239,12 @@ class Widget extends EventEmitter {
                 } else {
 
                     id = id[0]
-                    k = '_value'
+                    k = 'value'
 
                 }
+
+                // backward compat
+                if (k === '_value') k = 'value'
 
                 var widgets = id == 'parent' && this.parent ?
                     [this.parent] : id == 'this' ? [this] :
@@ -260,7 +263,7 @@ class Widget extends EventEmitter {
 
                 if (storeLinks) {
 
-                    if (k == '_value') {
+                    if (k == 'value') {
 
                         if (!this.linkedPropsValue[id]) this.linkedPropsValue[id] = []
                         if (this.linkedPropsValue[id].indexOf(propName) == -1) this.linkedPropsValue[id].push(propName)
@@ -276,13 +279,13 @@ class Widget extends EventEmitter {
 
                 for (var i in widgets) {
 
-                    if (widgets[i].props.hasOwnProperty(k) || k == '_value') {
+                    if (widgets[i].props.hasOwnProperty(k) || k == 'value') {
 
                         if (originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
                             return undefined
                         }
 
-                        var r = k == '_value' ?
+                        var r = k == 'value' ?
                                 widgets[i].getValue(true) :
                                 widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalPropName)
 
@@ -352,7 +355,7 @@ class Widget extends EventEmitter {
         return this.cachedProps[propName]
     }
 
-    updateProps(propNames, widget, options, _value) {
+    updateProps(propNames, widget, options, value) {
 
         if (propNames.indexOf('value') > 0) {
             propNames.splice(propNames.indexOf('value'), 1)
@@ -385,7 +388,7 @@ class Widget extends EventEmitter {
 
             }
         }
-        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(_value && widget == this)) {
+        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(value && widget == this)) {
 
             this.reCreateWidget()
             return true

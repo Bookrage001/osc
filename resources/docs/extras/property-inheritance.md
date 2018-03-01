@@ -21,11 +21,11 @@ If the retreived property is an object (`[] / {}`), a subset can be defined by a
 !!! note ""
     The root panel's `id` is `root`.
 
-## Use dynamic value
+## Using the value
 
-The special property name `_value`<i class="md-icon" title="dynamic">flash_on</i> refers to a widget's value, as opposed to its `value` property.
+The special property name `value`<i class="md-icon" title="dynamic">flash_on</i> refers to a widget's current value (which can be affected by its `value` *property*).
 
-When omitted, the property name defaults to `_value` : `@{widgetId}` => `@{widgetId._value}`
+When omitted, the property name defaults to `value` : `@{widgetId}` => `@{widgetId.value}`
 
 ## Dynamic properties
 
@@ -37,4 +37,4 @@ Some properties have much cheaper update routines and can be considered as `dyna
 ## Circular references cases
 
 - container widgets can inherit their children's properties only to define `dynamic` properties
-- widgets can inherit their own `_value`<i class="md-icon" title="dynamic">flash_on</i> property only to define `dynamic` properties
+- widgets can inherit their own `value`<i class="md-icon" title="dynamic">flash_on</i> property only to define `dynamic` properties
