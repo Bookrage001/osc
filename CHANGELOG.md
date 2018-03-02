@@ -5,6 +5,7 @@
 - bug fixes
   - launcher: parse array options correctly when an item contains spaces,
   - launcher: the terminal now grows and scrolls to bottom automatically
+  - editor: broken children reordering
 - main
   - add `--fullscreen` switch (default gui only, bypasses the sidepanel fullscreen button)
 - widgets

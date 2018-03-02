@@ -112,7 +112,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         for (var i in widget.props[propName]) {
 
             list.appendChild(DOM.create(`
-                <li class="sortables">
+                <li class="sortables" data-index="${i}">
                     <a class="btn small" data-action="select">${widget.props[propName][i].id}</a>
                     <span data-action="remove"><i class="fa fa-times"></i></span>
                 </li>
