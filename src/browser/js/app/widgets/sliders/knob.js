@@ -153,7 +153,7 @@ module.exports = class Knob extends Slider {
             dashed = this.getProp('dashed'),
             pipsWidth = this.getProp('pips') && !tiny ? 3 * PXSCALE : 0,
             pipsRadius =  this.minDimension / 2 - pipsWidth / 2 - margin,
-            gaugeWidth = Math.max(7 * PXSCALE, this.minDimension / 12),
+            gaugeWidth = Math.max(7 * PXSCALE, this.minDimension / 16),
             gaugeRadius = pipsRadius - gaugeWidth / 2 - pipsWidth * 1.5,
             knobRadius = gaugeRadius - gaugeWidth
 
@@ -167,18 +167,12 @@ module.exports = class Knob extends Slider {
 
             for (var pip of this.rangeKeys.concat(this.valueToPercent(this.originValue))) {
 
-                let a  = 2 * Math.PI - this.percentToAngle(pip)
+                let a = 2 * Math.PI - this.percentToAngle(pip),
+                    x = Math.round(pipsRadius * Math.cos(a) + this.width / 2) + 0.5,
+                    y = Math.round(this.height / 2 - pipsRadius * Math.sin(a)) + 0.5
 
                 this.ctx.beginPath()
-                this.ctx.arc(pipsRadius * Math.cos(a) + this.width / 2, this.height / 2 - pipsRadius * Math.sin(a), 1.25 * PXSCALE, 0, 2 * Math.PI)
-
-                this.ctx.lineWidth = PXSCALE * 4
-                this.ctx.strokeStyle = this.colors.light
-                this.ctx.stroke()
-
-                this.ctx.lineWidth = PXSCALE * 2
-                this.ctx.strokeStyle = this.colors.bg
-                this.ctx.stroke()
+                this.ctx.arc(x, y, 1.5 * PXSCALE, 0, 2 * Math.PI)
 
                 this.ctx.fillStyle = this.colors.pips
                 this.ctx.fill()
