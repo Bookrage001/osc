@@ -229,8 +229,18 @@
         left:0;
         right:0;
         bottom:0;
-        border:1rem dashed var(--color-accent);
+        border:1rem solid var(--color-accent);
+
+        --opa1: rgba(0,0,0, 1);
+        --opa2: rgba(0,0,0, 0.2);
+        --opa3: rgba(0,0,0, 0.8);
+        -webkit-mask: linear-gradient(to right, var(--opa1) 10rem, var(--opa1) 10rem, var(--opa2) 10rem, var(--opa2) calc(100% - 10rem), var(--opa1) calc(100% - 10rem), var(--opa1)),
+                        linear-gradient(to bottom, var(--opa2) 10rem, var(--opa2) 10rem, var(--opa3) 10rem, var(--opa3) calc(100% - 10rem), var(--opa2) calc(100% - 10rem), var(--opa2)) ;
+        -webkit-mask-composite: xor;
+
         pointer-events: none;
+        box-shadow: none!important;
+        opacity: 1!important;
     }
     &.on {
         z-index: initial;
