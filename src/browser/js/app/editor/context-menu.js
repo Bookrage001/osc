@@ -144,7 +144,7 @@ var handleClick = function(event) {
     if (widget.props.type === 'root') {
         contextMenu.open(eventData,{
             '<i class="fa fa-plus"></i> Add tab': function(){
-                data.tabs.push({})
+                data[0].tabs.push({})
                 updateWidget(widget)
             }
         })
