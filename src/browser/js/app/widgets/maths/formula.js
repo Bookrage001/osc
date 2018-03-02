@@ -84,9 +84,27 @@ module.exports = class Formula extends Widget {
         }
 
 
-        this.formula = math.compile(this.formulaString.replace(/\$\{([^\}]*)\}/g, '_$1'))
+        try {
 
-        this.condition = math.compile(this.conditionString.replace(/\$\{([^\}]*)\}/g, '_$1'))
+            this.condition = math.compile(this.conditionString.replace(/\$\{([^\}]*)\}/g, '_$1'))
+            delete this.errors.condition
+
+        } catch(err) {
+
+            this.errors.condition = 'Error parsing formula "' + this.conditionString + '" (' + err + ')'
+
+        }
+
+        try {
+
+            this.formula = math.compile(this.formulaString.replace(/\$\{([^\}]*)\}/g, '_$1'))
+            delete this.errors.formula
+
+        } catch(err) {
+
+            this.errors.formula = 'Error parsing formula "' + this.conditionString + '" (' + err + ')'
+
+        }
 
         this.conditionState = true
 
@@ -161,7 +179,7 @@ module.exports = class Formula extends Widget {
 
         } catch(err) {
 
-            this.errors['formula'] = 'Error parsing formula "' + this.formulaString + '" (' + err + ')'
+            this.errors.formula = 'Error parsing formula "' + this.formulaString + '" (' + err + ')'
             this.value = undefined
 
         }
