@@ -3,13 +3,15 @@ var path = require('path'),
     shortcut = require('electron-localshortcut'),
     settings = require('./settings')
 
-var bgColor = settings.read('theme') && settings.read('theme').indexOf('--color-bg:') != -1 ?
-                settings.read('theme').match(/--color-bg:([^;]*);/)[1].trim()
-                : '#191f2a'
 
 module.exports = function(options={}) {
 
     var window
+
+    var theme = settings.read('theme'),
+        bgColor = theme && theme.join('\n').indexOf('--color-bg:') != -1 ?
+                    theme.join('\n').match(/--color-bg:([^;]*);/)[1].trim()
+                    : '#191f2a'
 
     window = new BrowserWindow({
         width: options.width || 800,
