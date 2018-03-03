@@ -57,31 +57,27 @@ This will create a headless app available through http on port 9999 with session
 
 ## Run from sources
 
-Running the app from the sources slightly differs from using built binaries : instead of running a binary, we'll launch the app with npm.
+Running the app from the sources slightly differs from using built binaries : we'll build and launch the app with npm (node package manager).
 
 **1. Requirements**
 
-- [Node.js >= 4](https://nodejs.org/en/download/package-manager/)
-- [npm](https://www.npmjs.com/)
-
-```
-$ sudo apt-get install nodejs npm  # install nodejs & npm
-$ sudo npm install -g npm   # update npm
-```
-
+- [Node.js >= 4](https://nodejs.org/en/#download)
+- [git](https://git-scm.com/downloads)
 
 **2. Download sources**
 
-```
-$ git clone https://github.com/jean-emmanuel/open-stage-control
-$ cd open-stage-control/
-$ npm install
-$ npm run build
+```bash
+git clone https://github.com/jean-emmanuel/open-stage-control
+cd open-stage-control/
+# uncomment next line if you want the latest release
+# git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+npm install
+npm run build
 ```
 
 **3. Run !**
 
-```
+```bash
 $ npm start [ -- options]
 ```
 
@@ -93,35 +89,29 @@ $ npm start [ -- options]
 
 **1. Requirements**
 
-- [Node.js >= 4](https://nodejs.org/en/download/package-manager/)
-- [npm](https://www.npmjs.com/)
+- [Node.js >= 4](https://nodejs.org/en/#download)
+- [git](https://git-scm.com/downloads)
 
-```
-$ sudo apt-get install nodejs npm  # install nodejs & npm
-$ sudo npm install -g npm   # update npm
-```
+**2. Download sources & build package**
 
-**2. Build**
+```bash
+git clone https://github.com/jean-emmanuel/open-stage-control
+cd open-stage-control/
+# uncomment next line if you want the latest release
+# git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+npm install
 
-```
-$ git clone https://github.com/jean-emmanuel/open-stage-control
-$ cd open-stage-control
-$ npm install
-$ export PLATFORM=TARGET_PLATFORM # TARGET_PLATFORM can be linux, win32 (windows) or darwin (os x)
-$ export ARCH=TARGET_ARCH         # TARGET_ARCH can be ia32, x64 or armv7l
-$ npm run package
+# TARGET_PLATFORM can be linux, win32 (windows) or darwin (os x)
+export PLATFORM=TARGET_PLATFORM
+# TARGET_ARCH can be ia32, x64 or armv7l
+export ARCH=TARGET_ARCH
 
-# Do the following if you want a deb package for debian/ubuntu
+npm run package
 
-$ npm run deb32
-
-# or
-
-$ npm run deb64
-
-# or
-
-$ npm run debarm
+# Do one of the following if you want a deb package for debian/ubuntu
+npm run deb32
+npm run deb64
+npm run debarm
 ```
 
 This will build the app in `dist/open-stage-control-PLATFORM-ARCH`.
