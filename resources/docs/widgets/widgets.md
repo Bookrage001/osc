@@ -135,3 +135,8 @@ preArgs: [
     }
 ]
 ```
+
+### `bypass`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to prevent the widget from sending any osc message
