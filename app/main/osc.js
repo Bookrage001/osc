@@ -73,7 +73,7 @@ var sendOsc = function(data){
     } else {
 
 		if (typeof data.address !== 'string' || data.address[0] !== '/') {
-			console.error('OSC error: malformed address: ' + data.address)
+			console.error('OSC error: malformed address: "' + data.address + "")
 			return
 		}
 
