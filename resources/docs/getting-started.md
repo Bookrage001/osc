@@ -39,14 +39,14 @@ Command-line only :
 
 **Examples**
 
-```
-$ open-stage-control --send 127.0.0.1:5555 127.0.0.1:6666 --port 7777
+```bash
+open-stage-control --send 127.0.0.1:5555 127.0.0.1:6666 --port 7777
 ```
 
 This will create an app listening on port 7777 for synchronization messages, and sending its widgets state changes to ports 5555 and 6666.
 
-```
-$ open-stage-control --no-gui --load path/to/session.js --port 9999
+```bash
+open-stage-control --no-gui --load path/to/session.js --port 9999
 ```
 
 This will create a headless app available through http on port 9999 with session.js loaded automatically.
@@ -79,7 +79,7 @@ npm run build
 **3. Run !**
 
 ```bash
-$ npm start [ -- options]
+npm start [ -- options]
 ```
 
 !!! note ""
@@ -99,7 +99,7 @@ $ npm start [ -- options]
 git clone https://github.com/jean-emmanuel/open-stage-control
 cd open-stage-control/
 # uncomment next line if you want the latest release
-# instead of the current development version 
+# instead of the current development version
 # git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 npm install
 
@@ -128,7 +128,7 @@ Electron, Open Stage Control's engine, is based on chromium and can't run out of
 In short: install [xvfb](https://en.wikipedia.org/wiki/Xvfb) and prepend your command with `xvfb-run`:  
 
 ```bash
-$ xvfb-run open-stage-control -n
+xvfb-run open-stage-control -n
 ```
 
 ## Running without Electron
