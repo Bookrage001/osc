@@ -5,7 +5,8 @@ var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'
     configPath = require('path').join(baseDir, '.open-stage-control'),
     fs = require('fs'),
     ifaces = require('os').networkInterfaces(),
-    chokidar = require('chokidar')
+    chokidar = require('chokidar'),
+    path = require('path')
 
 var options = {
     's':{alias:'send',type:'array',describe:'default targets for all widgets (ip:port pairs)',
@@ -111,25 +112,25 @@ var loadTheme = function(themes){
     var style = []
 
     for (let i in themes) {
-        let path = themes[i]
-        if (!fs.existsSync(path)) {
-            path = __dirname + '/themes/' + themes[i] + '.css'
-            if (!fs.existsSync(path)) {
-                path = false
+        let file = themes[i]
+        if (!fs.existsSync(file)) {
+            file = path.resolve(__dirname + '/../browser/themes/' + themes[i] + '.css')
+            if (!fs.existsSync(file)) {
+                file = false
             }
         }
 
-        if (path) {
+        if (file) {
 
             let updateStyle = (i)=>{
                 try {
-                    style[i] = fs.readFileSync(path,'utf-8')
+                    style[i] = fs.readFileSync(file,'utf-8')
                 } catch(err) {
                     throw err
                 }
             }
             let watchFile = ()=>{
-                var watcher = chokidar.watch(path)
+                var watcher = chokidar.watch(file)
                 watcher.on('change',()=>{
                     updateStyle(i)
                     require('./callbacks').reloadCss()

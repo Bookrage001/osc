@@ -1,0 +1,49 @@
+$base: rgb(200, 200, 200);
+$accent: rgb(0, 200, 200);
+$tone: white;
+$text: black;
+
+
+:root {
+
+    ////////////////////// COLOR SCHEME
+
+    --color-text: transparentize($text, .4);
+    --color-text-fade: transparentize($text, .6);
+
+    --color-accent: $accent;
+    --color-grid:  transparentize($accent, 0.95);
+
+    --color-bg: $base;
+    --color-track: desaturate(mix($base, $tone, 40), 2);
+    --color-fg: desaturate(mix($base, $tone, 30), 5);
+    --color-raised: desaturate(mix($base, $tone, 20), 5);
+    --color-light: desaturate(transparentize($tone, 0.90), 50);
+
+    --color-white: white;
+
+    ////////////////////// AUTO
+
+    --color-custom: var(--color-accent);
+
+
+    ////////////////////// GLASS EFFET
+
+    --color-glass: white;
+    --glass-opacity: 0.55;
+
+
+    ////////////////////// MISC
+
+    --nav-height:40rem;
+    --sidepanel-size:300rem;
+    --scrollbar-size:20rem;
+
+    --grid-width:10;
+}
+
+
+.keyboard-container {
+    --color-black-key: #333;
+    --color-white-key: #fff;
+}

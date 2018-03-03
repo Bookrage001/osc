@@ -73,11 +73,11 @@
         left:0;
         right:0;
         bottom:0;
-        background: radial-gradient(ellipse farthest-side at center top, var(--color-custom), var(--color-track));
+        background: radial-gradient(ellipse farthest-side at center top, var(--color-glass), var(--color-track));
         background-size: 150% 150%;
         background-repeat: no-repeat;
         background-position: center top;
-        opacity: .15;
+        opacity: var(--glass-opacity);
         z-index: 3;
     }
 }
