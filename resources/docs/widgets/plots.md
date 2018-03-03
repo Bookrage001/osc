@@ -196,6 +196,16 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 - default: `false`
 - usage: set to `true` display vertically
 
+### `wrap`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to wrap long lines automatically
+
+### `align`
+- type: `string`
+- default: `''`
+- usage: set to `left` or `right` to change text alignment (otherwise `center`)
+
 ## Meter
 
 Meter displays incoming numerical values (via osc) as a gauge level

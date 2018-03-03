@@ -27,6 +27,8 @@ module.exports = class Text extends Widget {
             _text: 'text',
 
             vertical:false,
+            wrap:false,
+            align:'',
 
             _value: 'value',
             default: '',
@@ -50,6 +52,9 @@ module.exports = class Text extends Widget {
         super({...options, html: '<div class="text"></div>'})
 
         if (this.getProp('vertical')) this.widget.classList.add('vertical')
+        if (this.getProp('align') === 'left') this.widget.classList.add('left')
+        if (this.getProp('align') === 'right') this.widget.classList.add('right')
+        if (this.getProp('wrap')) this.widget.classList.add('wrap')
 
         this.defaultValue = this.getProp('value') || ( this.getProp('label')===false ?
                                 this.getProp('id'):

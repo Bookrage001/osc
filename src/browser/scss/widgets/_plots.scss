@@ -70,9 +70,19 @@
         display: flex;
         align-items: center;
         white-space: pre;
+        word-break: break-all;
         background: var(--color-track);
         color:var(--color-custom);
         border: 1rem solid var(--color-bg);
+        &.right {
+            justify-content: flex-end;
+        }
+        &.left {
+            justify-content: flex-start;
+        }
+        &.wrap {
+            white-space: pre-wrap;
+        }
         &.vertical {
             transform: rotate(180deg);
             text-overflow: ellipsis;
@@ -155,11 +165,15 @@
     --color-border:transparent;
     padding: 0rem;
     .plot, .text, .led, .image, .svg {
-        padding: 0rem;
         margin: 1rem;
-        background-clip: content-box;
         box-shadow: 0 0 0 1rem var(--color-fg);
         outline:1rem solid var(--color-light);
         border: 1rem solid var(--color-bg);
+    }
+}
+
+.panel:not(.tab) > .image-container {
+    .image {
+        background-clip: content-box;
     }
 }

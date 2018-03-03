@@ -28,6 +28,7 @@ module.exports = class Input extends Canvas {
             _input:'input',
 
             vertical:false,
+            align: '',
             unit: '',
             editable:true,
 
@@ -59,9 +60,10 @@ module.exports = class Input extends Canvas {
         this.stringValue = ''
         this.focused = false
 
-        if (this.getProp('vertical')) {
-            this.widget.classList.add('vertical')
-        }
+        if (this.getProp('vertical')) this.widget.classList.add('vertical')
+        if (this.getProp('align') === 'left') this.widget.classList.add('left')
+        if (this.getProp('align') === 'right') this.widget.classList.add('right')
+
 
         if (this.getProp('editable')) {
             this.canvas.setAttribute('tabindex', 0)

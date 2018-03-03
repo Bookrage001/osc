@@ -20,6 +20,11 @@
 - default: `false`
 - usage: set to `true` to display the input horizontally
 
+### `align`
+- type: `string`
+- default: `''`
+- usage: set to `left` or `right` to change text alignment (otherwise `center`)
+
 ### `unit`
 - type: `string`
 - default: `empty`

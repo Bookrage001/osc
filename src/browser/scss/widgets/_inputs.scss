@@ -30,6 +30,12 @@
         padding:1rem;
         border: 1rem solid var(--color-bg);
         background: var(--color-track);
+        &.right {
+            text-align: right;
+        }
+        &.left {
+            text-align: left;
+        }
         input {
             display: block;
             flex:1;
