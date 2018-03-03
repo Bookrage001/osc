@@ -137,7 +137,7 @@ preArgs: [
 ]
 ```
 
-### `bypass`
+### `bypass`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to prevent the widget from sending any osc message
