@@ -322,7 +322,7 @@ class Widget extends EventEmitter {
 
                     if (r instanceof math.type.ResultSet && !r.entries.length) {
                         r = ''
-                    } else if (r.valueOf) {
+                    } else if (typeof r === 'object' && r !== null && r.valueOf) {
                         r = r.valueOf()
                         if (Array.isArray(r) && r.length == 1) r = r[0]
                     }
