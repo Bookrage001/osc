@@ -53,7 +53,8 @@ module.exports = class Xy extends Pad {
             touchAddress:'',
             preArgs:[],
             split:false,
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

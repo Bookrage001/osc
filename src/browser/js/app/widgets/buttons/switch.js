@@ -38,7 +38,8 @@ module.exports = class Switch extends Widget {
             precision:2,
             address:'auto',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

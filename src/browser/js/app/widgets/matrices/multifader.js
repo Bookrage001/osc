@@ -33,7 +33,7 @@ module.exports = class Multifader extends Matrix {
             _value: 'value',
             default: '',
             value: '',
-            
+
             _fader: 'fader',
 
             range:{min:0,max:1},
@@ -57,7 +57,8 @@ module.exports = class Multifader extends Matrix {
             address:'auto',
             preArgs:[],
             split:false,
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

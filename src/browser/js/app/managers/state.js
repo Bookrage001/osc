@@ -66,10 +66,17 @@ var StateManager = class StateManager {
 
     }
 
-    send() {
+    send(options) {
 
-        this.set(this.get(),true)
+        for (let i in widgetManager.widgets) {
 
+            var widget = widgetManager.widgets[i]
+
+            if (widget.sendValue) {
+                widget.sendValue(null, options)
+            }
+        }
+        
     }
 
     load() {

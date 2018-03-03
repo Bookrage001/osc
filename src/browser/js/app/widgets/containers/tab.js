@@ -31,6 +31,7 @@ module.exports = class Tab extends Panel {
             address:'auto',
             preArgs:[],
             target:[],
+            bypass:false,
 
             _children:'children',
 

@@ -216,7 +216,8 @@ module.exports = class Range extends Widget {
             touchAddress:'',
             preArgs:[],
             split:false,
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

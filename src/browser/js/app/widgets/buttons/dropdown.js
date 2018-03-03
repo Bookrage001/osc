@@ -36,7 +36,8 @@ class Dropdown extends Widget {
             precision:2,
             address:'auto',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

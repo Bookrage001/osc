@@ -41,7 +41,8 @@ module.exports = class Input extends Canvas {
             precision:2,
             address:'auto',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

@@ -47,7 +47,8 @@ module.exports = class Knob extends Slider {
             address:'auto',
             touchAddress:'',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

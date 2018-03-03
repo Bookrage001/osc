@@ -63,7 +63,8 @@ module.exports = class Encoder extends Widget {
             address:'auto',
             touchAddress:'',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

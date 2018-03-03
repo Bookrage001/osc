@@ -38,7 +38,8 @@ module.exports = class Formula extends Widget {
             address:'auto',
             split:[],
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

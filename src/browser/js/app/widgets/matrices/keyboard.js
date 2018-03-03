@@ -38,7 +38,8 @@ module.exports = class Keyboard extends Matrix {
             address:'auto',
             preArgs:[],
             split:false,
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

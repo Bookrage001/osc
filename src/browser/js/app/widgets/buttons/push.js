@@ -34,7 +34,8 @@ class Push extends Widget {
             precision:2,
             address:'auto',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }
@@ -85,7 +86,7 @@ class Push extends Widget {
             this.active = 0
             this.lastChanged = 'active'
             this.updateValue()
-            if (options.send) this.sendValue(null, this.getProp('norelease'))
+            if (options.send) this.sendValue(null, {syncOnly: this.getProp('norelease')})
             if (options.sync) this.changed(options)
         }
 
@@ -116,11 +117,11 @@ class Push extends Widget {
 
     }
 
-    sendValue(overrides, norelease) {
+    sendValue(overrides, options={}) {
 
-        if (!norelease) {
+        if (!options.syncOnly) {
 
-            super.sendValue(overrides)
+            super.sendValue(overrides, options)
 
         } else {
 

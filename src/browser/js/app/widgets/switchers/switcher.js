@@ -39,7 +39,8 @@ module.exports = class Switcher extends _switchers_base {
 
             address:'auto',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

@@ -44,7 +44,8 @@ module.exports = class Rgb extends Pad {
             address:'auto',
             preArgs:[],
             split:false,
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

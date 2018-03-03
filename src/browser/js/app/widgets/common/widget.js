@@ -161,7 +161,9 @@ class Widget extends EventEmitter {
 
     }
 
-    sendValue(overrides) {
+    sendValue(overrides, options={}) {
+
+        if (this.getProp('bypass') && !options.force) return
 
         var data = {
             h:this.hash,
@@ -174,7 +176,15 @@ class Widget extends EventEmitter {
             }
         }
 
-        osc.send(data)
+        if (options.syncOnly) {
+
+            osc.sync(data)
+
+        } else {
+
+            osc.send(data)
+
+        }
 
     }
 
@@ -357,9 +367,9 @@ class Widget extends EventEmitter {
 
     updateProps(propNames, widget, options, value) {
 
-        if (propNames.indexOf('value') > 0) {
+        if (propNames.includes('value')) {
             propNames.splice(propNames.indexOf('value'), 1)
-            propNames.unshift('value')
+            propNames.push('value')
         }
 
         var reCreate = false,
@@ -553,7 +563,7 @@ Widget.dynamicProps = [
     'address',
     'preArgs',
     'target',
-    'noSync'
+    'bypass'
 ]
 
 module.exports = Widget

@@ -44,7 +44,7 @@ var callbacks = {
             deepExtend(data, newdata)
 
             updateWidget(widget, {remote: true})
-                
+
         }
     },
     '/EDIT/GET': function(args) {
@@ -72,7 +72,7 @@ var callbacks = {
                 preArgs: [idOrAddress, ...preArgs],
                 v: JSON.stringify(widgets[i].props),
                 noSync: true
-            })
+            }, {force: true})
 
         }
 
@@ -101,7 +101,7 @@ var callbacks = {
                 address: '/GET',
                 preArgs: [idOrAddress, ...preArgs],
                 noSync: true
-            })
+            }, {force: true})
 
         }
 

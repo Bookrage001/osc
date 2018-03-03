@@ -52,7 +52,8 @@ module.exports = class Fader extends Slider {
             touchAddress:'',
             meterAddress:'',
             preArgs:[],
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

@@ -42,7 +42,8 @@ module.exports = class Multitoggle extends Matrix {
             address:'auto',
             preArgs:[],
             split:false,
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }

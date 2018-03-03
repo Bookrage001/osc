@@ -48,7 +48,7 @@ class Panel extends Widget {
             address:'auto',
             preArgs:[],
             target:[],
-            noSync:false,
+            bypass:false,
 
             _children:'children',
 

@@ -52,7 +52,8 @@ module.exports = class MultiXy extends Pad {
             touchAddress:'',
             preArgs:[],
             split:false,
-            target:[]
+            target:[],
+            bypass:false
         }
 
     }
