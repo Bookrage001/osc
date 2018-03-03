@@ -72,12 +72,18 @@ var sendOsc = function(data){
 
     } else {
 
-        oscServer.send({
-            address: data.address,
-            args: data.args
-        }, data.host, data.port)
+		if (typeof data.address !== 'string' || data.address[0] !== '/') {
+			console.error('OSC error: malformed address: ' + data.address)
+			return
+		}
 
-        if (debug) console.log('OSC sent: ',{address:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
+		oscServer.send({
+			address: data.address,
+			args: data.args
+		}, data.host, data.port)
+
+		if (debug) console.log('OSC sent: ',{address:data.address, args: data.args}, 'To : ' + data.host + ':' + data.port)
+
     }
 
 
