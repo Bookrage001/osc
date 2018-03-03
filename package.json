@@ -64,7 +64,7 @@
     "watch-css": "nodemon --watch src/browser/scss -e scss -x \"npm run build-css && node scripts/reload-css.js\"",
     "watch-js": "nodemon --watch src/browser/js -e js -x \"npm run build-js\"",
     "watch-themes": "nodemon --watch app/main/themes -e css -x \"node scripts/reload-css.js\"",
-    "build-css": "node-sass --include-path src/browser/scss src/browser/scss/style.scss app/browser/styles.css --output-style compressed",
+    "build-css": "node scripts/build-css.js",
     "build-js": "node scripts/build-js.js > app/browser/scripts.js",
     "deploy-docs": "cd resources && mkdocs gh-deploy --clean && rm -rf site",
     "test": "npm run build"
