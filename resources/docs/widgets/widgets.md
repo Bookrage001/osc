@@ -61,14 +61,15 @@ All widgets share a set of generic properties described below.
 - type: `*`
 - default: `empty`
 - usage: if set, the widget will be initialized with this `value` when the session is loaded. Some widgets use this property under specific conditions (see fader's `doubleTap` for example).
-- note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc).
 
 
 ### `value`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `*`
 - default: `empty`
 - usage: set `value` to define a widget's value depending on other widget's values / properties using [property inheritance](../extras/property-inheritance.md) and [property maths](../extras/property-maths.md). When updated by an osc-sending event (e.g. dragging a slider), the widget will send its own osc message as well.
-- note: its `type` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc).
+
+!!! notes ""
+    `default` and `value` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc) and restrictions (equal to `on` or `off` for a push/toggle button)
 
 
 ## OSC
