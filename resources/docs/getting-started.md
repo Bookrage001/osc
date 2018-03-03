@@ -70,6 +70,7 @@ Running the app from the sources slightly differs from using built binaries : we
 git clone https://github.com/jean-emmanuel/open-stage-control
 cd open-stage-control/
 # uncomment next line if you want the latest release
+# instead of the current development version
 # git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 npm install
 npm run build
@@ -98,6 +99,7 @@ $ npm start [ -- options]
 git clone https://github.com/jean-emmanuel/open-stage-control
 cd open-stage-control/
 # uncomment next line if you want the latest release
+# instead of the current development version 
 # git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 npm install
 
