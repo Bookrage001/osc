@@ -125,7 +125,7 @@ Electron, Open Stage Control's engine, is based on chromium and can't run out of
 
 In short: install [xvfb](https://en.wikipedia.org/wiki/Xvfb) and prepend your command with `xvfb-run`:  
 
-```
+```bash
 $ xvfb-run open-stage-control -n
 ```
 
@@ -133,7 +133,7 @@ $ xvfb-run open-stage-control -n
 
 It is possible to run the server in headless mode without Electron using [node](https://nodejs.org/en/download/package-manager/) (v6 or higher) :
 
-```
-$ node /path/to/packaged/open-stage-control/resources/app/ -n
-$ node /path/to/sources/open-stage-control/app/ -n
+```bash
+node /path/to/packaged/open-stage-control/resources/app/ -n
+node /path/to/sources/open-stage-control/app/ -n
 ```
