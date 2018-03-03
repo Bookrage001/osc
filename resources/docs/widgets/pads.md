@@ -52,9 +52,10 @@ Pads are multidimensional widgets that output multiple values.
 - usage: when set to `true`, the widget will go back to its `default` value when released.
 
 ### `doubleTap`
-- type: `boolean`
+- type: `boolean|string`
 - default: `false`
-- usage: set to `true` to make the xy reset to its `default` value when receiving a double tap
+- usage: set to `true` to make the fader reset to its `default` value when receiving a double tap. `doubleTap` can also be an osc address, which case the widget will just send an osc message (`/<doubleTap> <preArgs>`), 
+
 
 ### `split`
 - type: `boolean|object`

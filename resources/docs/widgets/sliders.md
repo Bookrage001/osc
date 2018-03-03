@@ -86,9 +86,9 @@ range: {
 
 
 ### `doubleTap`
-- type: `boolean`
+- type: `boolean|string`
 - default: `false`
-- usage: set to `true` to make the fader reset to its `default` value when receiving a double tap
+- usage: set to `true` to make the fader reset to its `default` value when receiving a double tap. `doubleTap` can also be an osc address, which case the widget will just send an osc message (`/<doubleTap> <preArgs>`),
 
 ### `meter`
 - type: `boolean`

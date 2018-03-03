@@ -54,9 +54,19 @@ class Slider extends Canvas {
 
         if (this.getProp('doubleTap')) {
 
-            doubletab(this.widget, ()=>{
-                this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
-            })
+            if (typeof this.getProp('doubleTap') === 'string' && this.getProp('doubleTap')[0] === '/') {
+
+                doubletab(this.widget, ()=>{
+                    this.sendValue({v:null, address: this.getProp('doubleTap')})
+                })
+
+            } else {
+
+                doubletab(this.widget, ()=>{
+                    this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
+                })
+
+            }
 
         }
 

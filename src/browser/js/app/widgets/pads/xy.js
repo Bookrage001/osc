@@ -144,11 +144,23 @@ module.exports = class Xy extends Pad {
         }, {element: this.wrapper})
 
         if (this.getProp('doubleTap')) {
-            doubletab(this.wrapper, ()=>{
-                this.faders.x.setValue(this.faders.x.springValue, {sync: false, send:false, dragged:true})
-                this.faders.y.setValue(this.faders.y.springValue, {sync: false, send:false, dragged:true})
-                this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true, send:true})
-            })
+
+            if (typeof this.getProp('doubleTap') === 'string' && this.getProp('doubleTap')[0] === '/') {
+
+                doubletab(this.widget, ()=>{
+                    this.sendValue({v:null, address: this.getProp('doubleTap')})
+                })
+
+            } else {
+
+                doubletab(this.wrapper, ()=>{
+                    this.faders.x.setValue(this.faders.x.springValue, {sync: false, send:false, dragged:true})
+                    this.faders.y.setValue(this.faders.y.springValue, {sync: false, send:false, dragged:true})
+                    this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true, send:true})
+                })
+
+            }
+
         }
 
         if (this.getProp('input')) {

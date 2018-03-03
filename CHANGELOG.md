@@ -17,6 +17,7 @@
   - property inheritance: `@{widget_id.value}`, `@{widget_id}` and `@{widget_id._value}` now all refer to the widget's current value (the latter being kept for backward compatibility); If a property update triggers an osc message, it will now be sent after the other dynamic properties changes are resolved (such as osc `address`, `target`, etc)
   - text: added `align` and `wrap` properties
   - input: added `align` property
+  - sliders/xy: `doubleTap` can be an osc address to send a special message instead of resetting the widget's value
 - editor
   - allow selecting multiple widgets (`ctrl + click`) if they share the same parent. Context-menu and sidepanel editing actions apply to all selected widgets
 
