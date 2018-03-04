@@ -2,6 +2,8 @@
 
 ## next
 
+- bug fixes
+  - widgets: css: @media queries parsing 
 - themes
   - alt-buttons: modal font-weight & color fix
 
