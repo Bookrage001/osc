@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.25.0
 
 - bug fixes
   - launcher: parse array options correctly when an item contains spaces,
@@ -9,6 +9,7 @@
    list display bug with long `id`s
 - main
   - add `--fullscreen` switch (default gui only, bypasses the sidepanel fullscreen button)
+  - added/updated some themes: `orange`, `light`, `dark`, `alt-buttons` (the latter can be combined with other themes)
 - widgets
   - knob: big knobs design tweaks
   - **new** `default` property that sets a widgets initial/doubleTap/spring value. The `value` property does no longer serve this purpose.
