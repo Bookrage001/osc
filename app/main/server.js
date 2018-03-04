@@ -5,6 +5,7 @@ var express     = require('express')(),
     Ipc         = require('./ipc/server')
     ipc         = new Ipc(server),
 	settings	= require('./settings'),
+    theme       = require('./theme').init(),
     zeroconf = require('./zeroconf'),
     appAddresses = settings.read('appAddresses'),
     clients = {}
@@ -17,7 +18,7 @@ express.get('*', function(req, res){
     if (req.path.indexOf('theme.css') != -1) {
         res.set('Content-Type', 'text/css');
         if (settings.read('theme')) {
-            res.send(new Buffer(settings.read('theme').join('\n')))
+            res.send(new Buffer(theme.get()))
         } else {
             res.send('')
         }

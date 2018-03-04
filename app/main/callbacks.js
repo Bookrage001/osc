@@ -4,6 +4,7 @@ var vm = require('vm'),
     settings = require('./settings'),
     osc = require('./osc'),
     {ipc, clients} = require('./server'),
+    theme = require('./theme'),
     chokidar = require('chokidar')
 
 var openedSessions = {},
@@ -268,6 +269,7 @@ module.exports =  {
     },
 
     reloadCss:function(){
+        theme.load()
         ipc.send('reloadCss')
     },
 

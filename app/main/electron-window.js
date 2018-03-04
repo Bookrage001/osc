@@ -1,24 +1,20 @@
 var path = require('path'),
     {BrowserWindow, Menu, dialog} = require('electron'),
     shortcut = require('electron-localshortcut'),
-    settings = require('./settings')
+    settings = require('./settings'),
+    theme = require('./theme')
 
 
 module.exports = function(options={}) {
 
     var window
 
-    var theme = settings.read('theme'),
-        bgColor = theme && theme.join('\n').indexOf('--color-bg:') != -1 ?
-                    theme.join('\n').match(/--color-bg:([^;]*);/)[1].trim()
-                    : '#191f2a'
-
     window = new BrowserWindow({
         width: options.width || 800,
         height: options.height || 600,
         title: options.title || settings.read('appName'),
         icon: path.resolve(__dirname + '/../browser/logo.png'),
-        backgroundColor: options.color || bgColor,
+        backgroundColor: options.color || theme.backgroundColor,
         type: options.type,
         fullscreen: options.fullscreen,
         useContentSize: true,

@@ -4,9 +4,7 @@ if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
     configPath = require('path').join(baseDir, '.open-stage-control'),
     fs = require('fs'),
-    ifaces = require('os').networkInterfaces(),
-    chokidar = require('chokidar'),
-    path = require('path')
+    ifaces = require('os').networkInterfaces()
 
 var options = {
     's':{alias:'send',type:'array',describe:'default targets for all widgets (ip:port pairs)',
@@ -107,58 +105,12 @@ var configFile = function(){try {return JSON.parse(fs.readFileSync(configPath,'u
     defaultConfig
 
 
-var loadTheme = function(themes){
-    if (!themes) return
-    var style = []
-
-    for (let i in themes) {
-        let file = themes[i]
-        if (!fs.existsSync(file)) {
-            file = path.resolve(__dirname + '/../browser/themes/' + themes[i] + '.css')
-            if (!fs.existsSync(file)) {
-                file = false
-            }
-        }
-
-        if (file) {
-
-            let updateStyle = (i)=>{
-                try {
-                    style[i] = fs.readFileSync(file,'utf-8')
-                } catch(err) {
-                    throw err
-                }
-            }
-            let watchFile = ()=>{
-                var watcher = chokidar.watch(file)
-                watcher.on('change',()=>{
-                    updateStyle(i)
-                    require('./callbacks').reloadCss()
-                    watcher.close()
-                    watchFile()
-                })
-            }
-
-            watchFile()
-            updateStyle(i)
-
-
-        } else {
-            console.error('Theme "' + themes[i] + '" not found.')
-        }
-
-    }
-
-    return style
-}
-
 var makeDefaultConfig = function(argv){
     defaultConfig = {
         argv:argv,
         presetPath : process.cwd(),
         sessionPath: process.cwd(),
         recentSessions: [],
-
         appName: 'Open Stage Control',
         instanceName: argv['instance-name'] || false,
         targets: argv.s || argv.sync || false,
@@ -190,7 +142,7 @@ var makeDefaultConfig = function(argv){
             return appAddresses
         }(),
         examples: argv.e,
-        theme: loadTheme(argv.t)
+        theme: argv.t || []
     }
 }
 
