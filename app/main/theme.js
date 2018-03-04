@@ -27,7 +27,7 @@ class Theme {
             } else if (!theme.includes('.css') && fs.existsSync(path.resolve(__dirname + '/../browser/themes/' + theme + '.css'))) {
                 this.files.push(path.resolve(__dirname + '/../browser/themes/' + theme + '.css'))
             } else {
-                console.error('Theme error: "' + themes + '" not found.')
+                console.error('Theme error: "' + theme + '" not found.')
             }
         }
 

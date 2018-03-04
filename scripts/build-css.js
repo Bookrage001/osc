@@ -18,10 +18,9 @@ fs.readdirSync(indir + '/themes/').forEach(file => {
 
 })
 
-
 var result = sass.renderSync({
     file: indir + '/style.scss',
     outputStyle: 'compressed'
 })
 
-fs.writeFileSync(outdir + '/style.css', result.css)
+fs.writeFileSync(outdir + '/styles.css', result.css)

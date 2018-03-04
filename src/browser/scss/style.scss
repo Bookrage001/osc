@@ -1,5 +1,3 @@
-@import 'themes/default';
-
 @import 'reset';
 
 @import 'scrollbars';
@@ -557,3 +555,5 @@ body {
         }
     }
 }
+
+@import 'themes/default';
