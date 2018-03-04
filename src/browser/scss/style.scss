@@ -9,8 +9,16 @@
 @import 'widgets';
 
 
-input:focus::selection{
-    background:var(--color-accent);
+input,
+textarea,
+{
+    caret-color: var(--color-custom);
+}
+
+input:focus::selection,
+textarea:focus::selection,
+{
+    background:var(--color-custom);
     color:var(--color-text);
 }
 input {
