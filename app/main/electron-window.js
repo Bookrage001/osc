@@ -38,6 +38,9 @@ module.exports = function(options={}) {
       }
     })
 
+    window.webContents.on('will-navigate', (event) => event.preventDefault())
+    window.webContents.on('new-window', (event) => event.preventDefault())
+
     if (options.fullscreen) {
         window.webContents.on('dom-ready', ()=>{
             window.webContents.executeJavaScript(`
