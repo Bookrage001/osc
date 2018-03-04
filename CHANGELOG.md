@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- themes
+  - alt-buttons: modal font-weight & color fix
+
 ## 0.25.0
 
 - bug fixes
