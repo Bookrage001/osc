@@ -63,9 +63,8 @@
         z-index: 2;
     }
 
-    &.on > .label {
+    &.on {
         color: var(--color-custom);
-        opacity: 1;
     }
 
     &.led {

@@ -1,13 +1,11 @@
 .widget.push-container.on,
 .widget.modal-container.on,
+.widget.switch-container .value.on,
+.widget.switcher-container .value.on,
+.widget.crossfader-container .value.on,
 .widget.toggle-container.on:not(.led)
 {
 	background : var(--color-custom);
-}
-.widget.push-container.on > .label,
-.widget.modal-container.on > .label,
-.widget.toggle-container.on:not(.led) > .label
-{
 	color: var(--color-bg);
 	font-weight: bolder;
 }
