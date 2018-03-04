@@ -116,6 +116,8 @@ var Editor = class Editor {
 
     select(widget, options={}){
 
+        this.unselect()
+
         if (Array.isArray(widget)) {
 
             this.selectedWidgets = widget
@@ -146,8 +148,6 @@ var Editor = class Editor {
 
 
         }
-
-        this.unselect()
 
         if (this.selectedWidgets.length > 0) {
 
