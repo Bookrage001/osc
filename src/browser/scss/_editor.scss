@@ -165,7 +165,8 @@
         border-top:1rem solid var(--color-fg);
         resize: none;
         font-size: 12rem!important;
-
+        -webkit-user-select: text;
+        user-select: text;
     }
     .error label{
         color: red;

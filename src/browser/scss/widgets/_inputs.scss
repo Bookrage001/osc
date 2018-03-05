@@ -47,10 +47,13 @@
             color:var(--color-accent);
             border-radius: inherit;
             -webkit-appearance:none;
+            appearance: none;
             text-align:inherit;
             line-height: 50rem;
             vertical-align: top;
             letter-spacing: 1rem;
+            -webkit-user-select: text;
+            user-select: text;
             &:focus {
                 color:var(--color-custom);
             }

@@ -2,8 +2,10 @@
 
 ## 0.26.1
 
+- bug fixes
+  - ios: text input fields not editable 
 - editor
-  - mac: use `command` instead of `ctrl` for multi widget selection 
+  - mac: use `command` instead of `ctrl` for multi widget selection
 
 ## 0.26.0
 
