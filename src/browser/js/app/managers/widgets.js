@@ -58,8 +58,8 @@ var WidgetManager = class WidgetManager extends EventEmitter {
     }
 
     createAddressRef(widget, preArgs, address) {
-        var preArgs = preArgs || widget.getProp('preArgs'),
-            address = address || widget.getProp('address')
+        var preArgs = widget ? widget.getProp('preArgs') : preArgs,
+            address = widget ? widget.getProp('address') : address
 
         return preArgs && preArgs.length ?
                     address + this.preArgsSeparator + preArgs.join(this.preArgsSeparator)

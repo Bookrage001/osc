@@ -5,6 +5,7 @@
 - bug fixes
   - editor: when selecting another widget while editing a property, changes where applied to the newly selected widget
   - widgets: css: @media queries parsing
+  - prevent some errors when synchronizing clients
 - themes
   - alt-buttons: modal font-weight & color fix
 
