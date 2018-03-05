@@ -13,6 +13,8 @@
   - alt-buttons: modal font-weight & color fix
 - editor
   - allow multi widget resizing/dragging
+  - tweaked ctrl+click/right-click selection behaviors
+
 
 ## 0.25.0
 

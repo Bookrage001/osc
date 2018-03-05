@@ -135,10 +135,19 @@ var handleClick = function(event) {
         event.capturedByEditor = true
     }
 
-    editor.select(widget, {multi: event.detail.ctrlKey})
+
+    if (event.type !== 'fast-right-click') {
+        editor.select(widget, {multi: event.detail.ctrlKey})
+    }
 
     // right-click menu
-    if (event.type !== 'fast-right-click' || !editor.selectedWidgets.length) return
+    if (event.type !== 'fast-right-click') return
+
+    if (!event.detail.ctrlKey && editor.selectedWidgets.length <= 1) {
+        editor.select(widget, {multi: event.detail.ctrlKey})
+    }
+
+    if (!editor.selectedWidgets.length) return
 
     var index = editor.selectedWidgets.map((w) => DOM.index(w.container)).sort().reverse(),
         data = editor.selectedWidgets.map((w) => w.props),
@@ -146,7 +155,7 @@ var handleClick = function(event) {
         parent = editor.selectedWidgets[0].parent
 
     // case root: only "add tab" option
-    if (widget.props.type === 'root') {
+    if (parent === widgetManager) {
         contextMenu.open(eventData,{
             '<i class="fa fa-plus"></i> Add tab': function(){
                 data[0].tabs.push({})
