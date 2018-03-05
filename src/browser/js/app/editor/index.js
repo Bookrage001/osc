@@ -233,56 +233,74 @@ var Editor = class Editor {
             })
         }
 
-        if (this.selectedWidgets.length == 1) {
-            var widget = this.selectedWidgets[0]
-            if (widget.props.height !== undefined || widget.props.width !== undefined) {
+        var widget = this.selectedWidgets[0]
 
-                var handleTarget
-                var $container = $(widget.container)
-                $container.resizable({
-                    handles: 's, e, se',
-                    helper: "ui-helper",
-                    start: (event, ui)=>{
-                        handleTarget = $(event.originalEvent.target)
-                    },
-                    resize: (event, ui)=>{
-                        ui.size.height = Math.round(ui.size.height / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                        ui.size.width = Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                    },
-                    stop: (event, ui)=>{
-                        if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-s')) widget.props.height = Math.round((Math.max(ui.size.height,1)) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                        if (handleTarget.hasClass('ui-resizable-se') || handleTarget.hasClass('ui-resizable-e')) widget.props.width =  Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
-                        updateWidget(widget)
-                    },
-                    grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
-                })
+        if (widget.props.height !== undefined || widget.props.width !== undefined) {
 
-            }
+            var handleTarget
+            var $container = $(widget.container)
+            $container.resizable({
+                handles: 's, e, se',
+                helper: "ui-helper",
+                start: (event, ui)=>{
+                    handleTarget = $(event.originalEvent.target)
+                },
+                resize: (event, ui)=>{
+                    ui.size.height = Math.round(ui.size.height / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                    ui.size.width = Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                },
+                stop: (event, ui)=>{
 
+                    var deltaH = ui.size.height - ui.originalSize.height,
+                        deltaW = ui.size.width - ui.originalSize.width
 
-            if (widget.props.top !== undefined) {
-                var $container = $(widget.container)
-                $container.draggable({
-                    cursor:'-webkit-grabbing',
-                    drag: (event, ui)=>{
-                        ui.position.top = Math.round(ui.position.top / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                        ui.position.left = Math.round(ui.position.left / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
-                    },
-                    stop: (event, ui)=>{
-                        event.preventDefault()
-                        widget.props.top = (ui.helper.position().top + $container.parent().scrollTop())/PXSCALE
-                        widget.props.left = (ui.helper.position().left + $container.parent().scrollLeft())/PXSCALE
-                        ui.helper.remove()
-                        updateWidget(widget)
-                    },
-                    handle:'.ui-draggable-handle, > .label',
-                    grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],
-                    helper:()=>{
-                        return $('<div class="ui-helper"></div>').css({height:$container.outerHeight(),width:$container.outerWidth()})
+                    var newWidgets = []
+                    for (var w of this.selectedWidgets) {
+                        var originalW = w === widget ? ui.originalSize.width : w.container.offsetWidth,
+                            originalH = w === widget ? ui.originalSize.height : w.container.offsetHeight
+
+                        if (w.props.width !== undefined) w.props.width = Math.max((originalW + deltaW), GRIDWIDTH) / PXSCALE
+                        if (w.props.height !== undefined) w.props.height = Math.max((originalH + deltaH), GRIDWIDTH) / PXSCALE
+                        if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w))
                     }
-                }).append('<div class="ui-draggable-handle"></div>')
+                    if (newWidgets.length > 1) editor.select(newWidgets, {preventSelect: this.selectedWidgets.length > 1})
+                },
+                grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
+            })
 
-            }
+        }
+
+        if (widget.props.top !== undefined) {
+            var $container = $(widget.container)
+            $container.draggable({
+                cursor:'-webkit-grabbing',
+                drag: (event, ui)=>{
+                    ui.position.top = Math.round(ui.position.top / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                    ui.position.left = Math.round(ui.position.left / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
+                },
+                stop: (event, ui)=>{
+                    event.preventDefault()
+
+                    var deltaX = (ui.helper.position().left + $container.parent().scrollLeft()) / PXSCALE - widget.container.offsetLeft / PXSCALE,
+                        deltaY = (ui.helper.position().top + $container.parent().scrollTop()) / PXSCALE - widget.container.offsetTop / PXSCALE
+
+                    var newWidgets = []
+                    for (var w of this.selectedWidgets) {
+                        w.props.top = w.container.offsetTop / PXSCALE + deltaY
+                        w.props.left = w.container.offsetLeft / PXSCALE + deltaX
+                        newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
+                    }
+                    if (newWidgets.length > 1) editor.select(newWidgets)
+
+                    ui.helper.remove()
+                },
+                handle:'.ui-draggable-handle, > .label',
+                grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE],
+                helper:()=>{
+                    return $('<div class="ui-helper"></div>').css({height:$container.outerHeight(),width:$container.outerWidth()})
+                }
+            }).append('<div class="ui-draggable-handle"></div>')
+
         }
 
 

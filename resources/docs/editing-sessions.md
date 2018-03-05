@@ -41,7 +41,7 @@ Properties are written in JSON, with some flexibility brought by the [JSON5](htt
 
 ## Widget resizing / dragging
 
-Selected widget can be resized using its south, south-east and east handles. It can be dragged with its north-west handle.
+Selected widget can be resized using its south, south-east and east handles. It can be dragged with its north-west handle. Using this feature will convert position and size values to plain number values, thus breaking previously set percent or inherited values.
 
 ## Bulk editing
 
@@ -49,4 +49,4 @@ When holding the `ctrl` key, multiple widgets can be selected for edition:
 
 - they must share the same parent widget
 - context-menu actions and properties changes apply to all selected widgets
-- resizing / dragging will not be available
+- resizing / dragging will affect all selected widgets, relatively to the first selected widget

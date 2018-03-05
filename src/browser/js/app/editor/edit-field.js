@@ -91,7 +91,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             var newWidgets = []
             for (var w of editor.selectedWidgets) {
                 w.props[propName] = v !== '' ? v : JSON.parse(JSON.stringify(defaultValue))
-                newWidgets.push(updateWidget(w))
+                newWidgets.push(updateWidget(w, {preventSelect: editor.selectedWidgets.length > 1}))
             }
             if (newWidgets.length > 1) editor.select(newWidgets)
 

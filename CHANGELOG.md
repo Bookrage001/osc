@@ -11,6 +11,8 @@
   - mac: disabled unsupported pinch zoom
 - themes
   - alt-buttons: modal font-weight & color fix
+- editor
+  - allow multi widget resizing/dragging
 
 ## 0.25.0
 
