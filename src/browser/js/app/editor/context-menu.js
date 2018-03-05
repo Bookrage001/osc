@@ -117,6 +117,11 @@ var handleClick = function(event) {
 
     if (contextMenu.menu && !contextMenu.menu.contains(event.target)) contextMenu.close()
 
+    if (!event.detail.ctrlKey && event.type !== 'fast-right-click' && (
+        event.target.classList.contains('ui-resizable-handle') ||
+        event.target.classList.contains('ui-draggable-handle')
+    )) { return }
+
     var eventData = event.detail,
         widget = widgetManager.getWidgetByElement(eventData.target, ':not(.not-editable)')
 
@@ -133,7 +138,7 @@ var handleClick = function(event) {
     editor.select(widget, {multi: event.detail.ctrlKey})
 
     // right-click menu
-    if (event.type!='fast-right-click' || !editor.selectedWidgets.length) return
+    if (event.type !== 'fast-right-click' || !editor.selectedWidgets.length) return
 
     var index = editor.selectedWidgets.map((w) => DOM.index(w.container)).sort().reverse(),
         data = editor.selectedWidgets.map((w) => w.props),
