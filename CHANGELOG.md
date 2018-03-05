@@ -11,7 +11,8 @@
 - default client
   - mac: disabled unsupported pinch zoom
 - themes
-  - alt-buttons: modal font-weight & color fix
+  - alt-buttons: modal font-weight & color fix; push button active state colored border
+  - added "responsive-fonts" theme
 - editor
   - allow multi widget resizing/dragging
   - tweaked ctrl+click/right-click selection behaviors

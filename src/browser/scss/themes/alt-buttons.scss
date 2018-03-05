@@ -10,6 +10,12 @@
 	font-weight: 900;
 }
 
+.widget.push-container .active,
+{
+	border: 1rem solid var(--color-custom);
+}
+
+
 
 .widget.modal-container.on .popup {
 	color: var(--color-text);
