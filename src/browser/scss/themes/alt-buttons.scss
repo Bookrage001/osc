@@ -3,15 +3,13 @@
 .widget.switch-container .value.on,
 .widget.switcher-container .value.on,
 .widget.crossfader-container .value.on,
-.widget.toggle-container.on:not(.led)
-{
+.widget.toggle-container.on:not(.led) {
 	background : var(--color-custom);
 	color: var(--color-bg);
 	font-weight: 900;
 }
 
-.widget.push-container .active,
-{
+.widget.push-container .active {
 	border: 1rem solid var(--color-custom);
 }
 
