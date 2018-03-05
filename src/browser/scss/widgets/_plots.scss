@@ -74,6 +74,7 @@
         background: var(--color-track);
         color:var(--color-custom);
         border: 1rem solid var(--color-bg);
+        overflow: hidden;
         &.right {
             justify-content: flex-end;
         }
@@ -86,7 +87,6 @@
         &.vertical {
             transform: rotate(180deg);
             text-overflow: ellipsis;
-            overflow: hidden;
             -webkit-writing-mode:vertical-rl;
             writing-mode:vertical-rl;
             &:after {
