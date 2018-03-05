@@ -49,6 +49,9 @@ module.exports = function(options={}) {
         })
     }
 
+    if (options.zoom === false) {
+        window.webContents.setVisualZoomLevelLimits(1, 1)
+    }
 
 
     window.on('closed', function() {
