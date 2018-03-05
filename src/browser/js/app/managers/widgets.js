@@ -139,11 +139,15 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         if (this.widgets[hash]) {
             if (this.widgets[hash].onRemove) this.widgets[hash].onRemove()
+
             delete this.widgets[hash]
 
             ipc.send('removeWidget', {
                 hash:hash
             })
+
+            this.trigger(/^widget-removed(\..*)?/, [{widget: widget}])
+
         }
         if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)
         if (address && this.addressRoute[address].indexOf(hash) != -1) this.addressRoute[address].splice(this.addressRoute[address].indexOf(hash), 1)

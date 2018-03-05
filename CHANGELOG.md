@@ -7,6 +7,7 @@
   - widgets: css: @media queries parsing
   - prevent some errors when synchronizing clients
   - use command key instead of ctrl for zooming on mac
+  - clone: memory leak / freeze
 - default client
   - mac: disabled unsupported pinch zoom
 - themes

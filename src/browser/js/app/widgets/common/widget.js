@@ -141,6 +141,19 @@ class Widget extends EventEmitter {
 
     }
 
+    contains(widget) {
+
+        if (this.childrenHashes.includes(widget.hash)) {
+            return true
+        }
+
+        var parent = widget.parent
+        while (parent && parent !== widgetManager) {
+            if (parent === this) return true
+            parent = parent.parent
+        }
+    }
+
     created() {
 
         this.trigger(/^widget-created(\..*)?/, [{
