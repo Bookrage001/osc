@@ -190,6 +190,33 @@ var handleClick = function(event) {
             updateWidget(parent)
         }
 
+        actions['<i class="fa fa-box"></i> Wrap in'] = {}
+        for (let c of categories.Containers) {
+            if (c === 'clone') continue
+            actions['<i class="fa fa-box"></i> Wrap in'][c] = ()=>{
+                var wrap =  {type: c, widgets:[]}
+
+                wrap.widgets = data
+
+                var minTop = Math.min(...data.map(x => isNaN(x.top) ? x.top == 'auto' ? 0 : Infinity : x.top))
+                var minLeft = Math.min(...data.map(x => isNaN(x.left) ? x.left == 'auto' ? 0 : Infinity : x.left))
+
+                wrap.top = minTop === Infinity ? data[0].top : minTop
+                wrap.left= minLeft === Infinity ? data[0].left : minLeft
+
+                for (var w of wrap.widgets) {
+                    if (!isNaN(w.top)) w.top = Math.max(w.top - minTop, 0)
+                    if (!isNaN(w.left)) w.left = Math.max(w.left - minLeft, 0)
+                }
+
+                for (var i of index) {
+                    parent.props.widgets.splice(i,1)
+                }
+                parent.props.widgets.push(wrap)
+                updateWidget(parent)
+            }
+        }
+
     }
 
 

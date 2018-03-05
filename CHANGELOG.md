@@ -15,6 +15,7 @@
 - editor
   - allow multi widget resizing/dragging
   - tweaked ctrl+click/right-click selection behaviors
+  - **new** "Wrap in" context menu
 
 
 ## 0.25.0
