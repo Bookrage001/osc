@@ -13,6 +13,7 @@ Right clicking / long touch on a widget or on a tab will also display a context 
 - `Edit parent`: select widget's parent for edition
 - `Copy`: copy widget's data
 - `Cut`: copy widget's data and delete selected widget
+- `Wrap in`: wrap the widget in a new container
 - `Paste`: paste copied widget in selected container
   - `n+1` : increments the id of the copied widget (and all its children) before pasting
   - `Clone` : paste the exact same widget
@@ -45,7 +46,7 @@ Selected widget can be resized using its south, south-east and east handles. It 
 
 ## Bulk editing
 
-When holding the `ctrl` key, multiple widgets can be selected for edition:
+When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selected for edition:
 
 - they must share the same parent widget
 - context-menu actions and properties changes apply to all selected widgets

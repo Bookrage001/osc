@@ -4,6 +4,9 @@ var {updateWidget, incrementWidget} = require('./data-workers'),
     widgetManager = require('../managers/widgets'),
     editor = require('./')
 
+var mod = (navigator.platform || '').match('Mac') ? 'metaKey' : 'ctrlKey'
+
+
 class ContextMenu {
 
     constructor(){
@@ -137,14 +140,14 @@ var handleClick = function(event) {
 
 
     if (event.type !== 'fast-right-click') {
-        editor.select(widget, {multi: event.detail.ctrlKey})
+        editor.select(widget, {multi: event.detail[mod]})
     }
 
     // right-click menu
     if (event.type !== 'fast-right-click') return
 
     if (!event.detail.ctrlKey && editor.selectedWidgets.length <= 1) {
-        editor.select(widget, {multi: event.detail.ctrlKey})
+        editor.select(widget, {multi: event.detail[mod]})
     }
 
     if (!editor.selectedWidgets.length) return
