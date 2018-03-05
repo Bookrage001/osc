@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.26.0
 
 - bug fixes
   - editor: when selecting another widget while editing a property, changes where applied to the newly selected widget
