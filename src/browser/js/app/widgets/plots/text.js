@@ -56,7 +56,7 @@ module.exports = class Text extends Widget {
         if (this.getProp('align') === 'right') this.widget.classList.add('right')
         if (this.getProp('wrap')) this.widget.classList.add('wrap')
 
-        this.defaultValue = this.getProp('value') || ( this.getProp('label')===false ?
+        this.defaultValue = this.getProp('default') || ( this.getProp('label')===false ?
                                 this.getProp('id'):
                                 this.getProp('label')=='auto'?
                                     this.getProp('id'):
