@@ -190,7 +190,7 @@ var handleClick = function(event) {
             for (var i of index) {
                 parent.props.widgets.splice(i,1)
             }
-            updateWidget(parent)
+            editor.select(updateWidget(parent, {preventSelect: true}))
         }
 
         actions['<i class="fa fa-box"></i> Wrap in'] = {}
@@ -216,7 +216,7 @@ var handleClick = function(event) {
                     parent.props.widgets.splice(i,1)
                 }
                 parent.props.widgets.push(wrap)
-                updateWidget(parent)
+                editor.select(updateWidget(parent, {preventSelect: true}))
             }
         }
 
@@ -339,7 +339,8 @@ var handleClick = function(event) {
                 }
             }
 
-            updateWidget(parent)
+            editor.select(updateWidget(parent, {preventSelect: true}))
+
         })
 
         DOM.get(popup.html, '.cancel-delete')[0].addEventListener('click', function(){

@@ -11,7 +11,7 @@ var updateWidget = function(widget, options = {}) {
     var sidepanel = DOM.get('#sidepanel')[0],
         scroll = sidepanel.scrollTop,
         oldWidgets = widget.childrenHashes.concat(widget.hash),
-        editing = widget.container.classList.contains('editing'),
+        wasSelected = editor.selectedWidgets.includes(widget),
         oldValueProps = {},
         wScroll = {}
 
@@ -60,7 +60,7 @@ var updateWidget = function(widget, options = {}) {
         }
     }
 
-    if (!options.preventSelect || editing) {
+    if (wasSelected && !options.preventSelect) {
         editor.select(newWidget)
     }
 
