@@ -74,6 +74,7 @@
         background: var(--color-track);
         color:var(--color-custom);
         border: 1rem solid var(--color-bg);
+        line-height: 100%;
         overflow: hidden;
         &.right {
             justify-content: flex-end;
