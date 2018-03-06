@@ -21,6 +21,7 @@
     text-transform: uppercase;
     contain: style size layout;
     color: var(--color-text);
+    --color-glass: var(--color-custom);
 
     &.absolute-position {
         position: absolute;

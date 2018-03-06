@@ -29,7 +29,6 @@ $text: black;
 
     ////////////////////// GLASS EFFET
 
-    --color-glass: white;
     --glass-opacity: 0.55;
 
 
@@ -42,6 +41,9 @@ $text: black;
     --grid-width:10;
 }
 
+.widget {
+    --color-glass: white;
+}
 
 .keyboard-container {
     --color-black-key: #333;

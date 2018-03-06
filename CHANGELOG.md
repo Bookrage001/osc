@@ -1,9 +1,14 @@
 # Changelog
 
+## 0.26.2
+
+- bug fixes
+  - regression preventing glass effect from using the widget's color
+
 ## 0.26.1
 
 - bug fixes
-  - ios: text input fields not editable 
+  - ios: text input fields not editable
 - editor
   - mac: use `command` instead of `ctrl` for multi widget selection
 
