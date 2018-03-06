@@ -152,7 +152,7 @@ var handleClick = function(event) {
 
     if (!editor.selectedWidgets.length) return
 
-    var index = editor.selectedWidgets.map((w) => DOM.index(w.container)).sort().reverse(),
+    var index = editor.selectedWidgets.map((w) => DOM.index(w.container)).sort((a,b)=>{return b-a}),
         data = editor.selectedWidgets.map((w) => w.props),
         type = editor.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
         parent = editor.selectedWidgets[0].parent

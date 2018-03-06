@@ -7,6 +7,7 @@
   - missing last key in keyboard widget
   - editor: select parent widget after deleting a widget
   - regression letting user to scroll the main document
+  - editor: wrap/cut/delete multiple widget not working properly
 - widgets
   - text: set line-height relative to font size
 
