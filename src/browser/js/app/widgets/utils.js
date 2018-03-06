@@ -84,6 +84,7 @@ module.exports = {
                 }
                 return dec ? int + '.' + dec : int
             },
+            length: function(x) { return x.length },
             // basic relationnal to keep alphabetical string comparison (v4 change)
             equal:     function (a, b) { return a == b },
             unequal:   function (a, b) { return a != b },

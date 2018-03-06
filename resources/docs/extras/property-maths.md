@@ -21,6 +21,7 @@ Additionnal functions:
 
 - `unpack(x)`: remove an array's brackets (`unpack([1,2])` returns `"1, 2"`)
 - `pad(x, padding)`: add leading zeros if the length the integer part of `x` is smaller than `padding` (`pad(1,2)` returns `"01"`)
+- `length(x)`: returns the length of an array or string
 
 !!! tip ""
     A single widget property can contain multiple formulas. Variables and functions declared in a formula are available to subsequent formulas in the same property definition.
