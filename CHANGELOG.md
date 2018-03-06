@@ -6,6 +6,7 @@
   - regression preventing glass effect from using the widget's color
   - missing last key in keyboard widget
   - editor: select parent widget after deleting a widget
+  - regression letting user to scroll the main document
 - widgets
   - text: set line-height relative to font size
 
