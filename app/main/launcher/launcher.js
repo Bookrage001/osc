@@ -183,7 +183,7 @@ $(document).ready(()=>{
 
     })
 
-    form.appendTo('#launcher')
+    form.appendTo('body')
 
 
     // server started callback

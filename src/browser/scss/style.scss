@@ -35,7 +35,7 @@ input {
 html, body {
     height:100%;
     position:relative;
-
+    overflow:hidden;
 }
 
 html{
@@ -57,7 +57,6 @@ body {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1rem;
-    overflow:hidden;
 }
 
 .btn {
@@ -216,8 +215,12 @@ body {
 
 
 #launcher {
-    background: var(--color-fg);
-    overflow: auto;
+    overflow: initial;
+
+    body {
+        background: var(--color-fg);
+        overflow: auto;
+    }
 
     .form {
         padding:8rem;
