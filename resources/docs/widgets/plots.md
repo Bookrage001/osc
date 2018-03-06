@@ -229,6 +229,11 @@ Meter displays incoming numerical values (via osc) as a gauge level
 ### `logScale`
 - see fader's [`logScale`](sliders/#fader)
 
+### `gradient`
+- type: `array`
+- default: `[]`
+- usage: when set, the meter's gauge will be filled with a linear color gradient : each item must be a color string. Example: `["blue", "red"]`
+
 
 ## Image
 

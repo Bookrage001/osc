@@ -191,6 +191,21 @@ module.exports = class Fader extends Slider {
                 if (ratio != 1) this.ctx.scale(ratio, ratio)
             }
 
+            if (this.getProp('gradient')) {
+                var colors = this.getProp('gradient')
+                if (Array.isArray(colors) && colors.length > 1) {
+                    try {
+                        var grad = this.ctx.createLinearGradient(0,  this.getProp('horizontal') ? 0 : this.height, 0, this.getProp('horizontal') ? this.width : 0)
+                        for (var i in colors) {
+                            grad.addColorStop(i / (colors.length - 1), colors[i])
+                        }
+                        this.colors.gradient = grad
+                    } catch(err) {
+                        this.errors.gradient = err
+                    }
+                }
+            }
+
 
     }
 
@@ -211,7 +226,8 @@ module.exports = class Fader extends Slider {
         if (this.getProp('compact')) {
 
             this.ctx.globalAlpha = (dashed ? .3 : .2)  + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
-            this.ctx.strokeStyle = this.colors.gauge
+
+            this.ctx.strokeStyle = this.colors.gradient || this.colors.gauge
             this.ctx.beginPath()
             this.ctx.moveTo(m, o)
             this.ctx.lineTo(m, d)

@@ -34,6 +34,7 @@ module.exports = class Meter extends Fader {
             horizontal:false,
             pips:false,
             dashed:false,
+            gradient:[],
 
             _value: 'value',
             default: '',

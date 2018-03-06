@@ -10,6 +10,7 @@
   - editor: wrap/cut/delete multiple widget not working properly
 - widgets
   - text: set line-height relative to font size
+  - meter: added `gradient` feature
 
 ## 0.26.1
 
