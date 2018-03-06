@@ -163,6 +163,13 @@ This one works pretty much like the multipush, excepts it looks like a piano key
 - default: `60`
 - usage: MIDI note number to start with (default is C4)
 
+!!! note ""
+    Standard keyboards settings are:
+    25 keys - start 48
+    49 keys - start 36
+    61 keys - start 36
+    88 keys - start 21
+
 
 ### `traversing`
 - type: `boolean`

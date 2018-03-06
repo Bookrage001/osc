@@ -26,8 +26,8 @@ module.exports = class Keyboard extends Matrix {
 
             _matrix: 'Matrix',
 
-            keys: 24,
-            start:60,
+            keys:25,
+            start:48,
             traversing:true,
             on:1,
             off:0,
@@ -54,11 +54,11 @@ module.exports = class Keyboard extends Matrix {
             pattern = 'wbwbwwbwbwbw',
             whiteKeys = 0, whiteKeys2 = 0, i
 
-        for (i = this.start; i < this.keys + this.start && i < 108; i++) {
+        for (i = this.start; i < this.keys + this.start && i < 109; i++) {
             if (pattern[i % 12] == 'w') whiteKeys++
         }
 
-        for (i = this.start; i < this.keys + this.start && i < 108; i++) {
+        for (i = this.start; i < this.keys + this.start && i < 109; i++) {
 
             var data = JSON.parse(strData)
 
