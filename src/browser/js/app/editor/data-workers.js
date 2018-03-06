@@ -60,7 +60,7 @@ var updateWidget = function(widget, options = {}) {
         }
     }
 
-    if (!options.preventSelect && editing) {
+    if (!options.preventSelect || editing) {
         editor.select(newWidget)
     }
 

@@ -5,6 +5,7 @@
 - bug fixes
   - regression preventing glass effect from using the widget's color
   - missing last key in keyboard widget
+  - editor: select parent widget after deleting a widget
 - widgets
   - text: set line-height relative to font size
 
