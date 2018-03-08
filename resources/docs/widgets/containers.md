@@ -59,6 +59,11 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - usage: spacing size used in `layout` expression, can be set as a `[vertical,horizontal]` array.
 - note: this only applies when the panel contains widgets, not tabs
 
+### `css`
+```
+--nav-height: number[rem|%];
+```
+
 ## Strip
 
 Unidirectionnal panel with stretching capability. By default, children widgets that don't have an explicit `width`/`height` set will be shrinked to respect the sizes specified by others. Adding `flex:1;` to a children's `css` will give it the ability the fill the remaining space. Multiple children can have a `flex:x;` css property (`x` will ponderate their expansion).
