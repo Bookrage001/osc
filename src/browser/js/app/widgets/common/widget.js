@@ -547,7 +547,7 @@ class Widget extends EventEmitter {
         if (styles.includes('color')) {
 
             // color
-            this.container.style.setProperty('--color-custom', this.getProp('color') != 'auto' ? this.getProp('color') : '')
+            this.container.style.setProperty('--color-custom', this.getProp('color') && this.getProp('color') != 'auto' ? this.getProp('color') : '')
 
         }
 

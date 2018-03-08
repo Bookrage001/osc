@@ -2,6 +2,8 @@
 
 ## 0.26.3
 
+- bug fixes
+  - ios: broken default accent color in clone widgets  
 - widgets
   - strip: `spacing` now accepts percents
 
