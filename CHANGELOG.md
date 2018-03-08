@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.26.3
+
+- widgets
+  - strip: `spacing` now accepts percents
+
 ## 0.26.2
 
 - bug fixes

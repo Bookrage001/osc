@@ -132,11 +132,11 @@
             display: flex;
             flex-direction: column;
             align-items: stretch;
-            padding: calc(var(--spacing) / 2 * 1rem);
+            padding: calc(var(--spacing) / 2);
             > .widget {
                 width: auto!important;
                 max-width: 100%;
-                margin: calc(var(--spacing) / 2 * 1rem);
+                margin: calc(var(--spacing) / 2);
             }
         }
     }
@@ -145,11 +145,11 @@
             display: flex;
             flex-direction: row;
             align-items: stretch;
-            padding: calc(var(--spacing) / 2 * 1rem);
+            padding: calc(var(--spacing) / 2);
             > .widget {
                 height: auto!important;
                 max-height: 100%;
-                margin: calc(var(--spacing) / 2 * 1rem);
+                margin: calc(var(--spacing) / 2);
             }
         }
 

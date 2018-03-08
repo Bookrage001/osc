@@ -81,9 +81,9 @@ Unidirectionnal panel with stretching capability. By default, children widgets t
 - usage: set to `true` to stretch widgets evenly
 
 ### `spacing`
-- type: `integer`
+- type: `integer|percentage`
 - default: `0`
-- usage: adds space between widgets
+- usage: adds space between widgets. Percents are always relative to the strips width.
 
 ### `border`
 - type: `boolean`
