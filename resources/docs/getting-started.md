@@ -17,7 +17,7 @@ Below are the available command-line options. Note that when running without any
 | `-c` | `--custom-module` | custom module file to load |
 | `-p` | `--port` | http port of the server (default to 8080) |
 | `-o` | `--osc-port` | osc input port (default to --port) |
-| `-m` | `--midi` | midi router settings (requires python-pyo) |
+| `-m` | `--midi` | midi router settings |
 | `-d` | `--debug` | log received osc messages in the console |
 | `-n` | `--no-gui` | disable default gui |
 | `-g` | `--gui-only` | app server's url. If true, local port (--port) is used |
