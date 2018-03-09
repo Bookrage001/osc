@@ -3,7 +3,8 @@
 ## 0.26.3
 
 - bug fixes
-  - ios: broken default accent color in clone widgets  
+  - ios: broken default accent color in clone Widgets
+  - ios/android: closing the sidepanel opened the tab next to the menu button
 - widgets
   - strip: `spacing` now accepts percents
 
