@@ -35,7 +35,7 @@ var options = {
                  true : 'Port must be an integer >= 1024'
           }
      },
-    'm':{alias:'midi',type:'array',describe:'midi router settings (requires python-pyo)'},
+    'm':{alias:'midi',type:'array',describe:'midi router settings'},
     'd':{alias:'debug',type:'boolean',describe:'log received osc messages in the console'},
     'n':{alias:'no-gui',type:'boolean',describe:'disable default gui',
          check: (n,argv)=>{
