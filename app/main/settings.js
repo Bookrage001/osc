@@ -13,7 +13,7 @@ var options = {
                  true : 'Targets must be ip:port pairs & port must be >= 1024'
          }
     },
-    'sync':{type:'array',describe:false,launcher:false,
+    'sync':{type:'array',describe:false,launcher:false,hidden:true,
          check: (s)=>{
              if (s) console.error('Warning: --sync is deprecated, use --send instead.')
              return (s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$') != null) ?
