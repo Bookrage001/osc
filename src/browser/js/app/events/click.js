@@ -31,6 +31,8 @@ document.addEventListener('touchstart', (event)=>{
 
     DOM.dispatchEvent(e.target, 'fast-click', e)
 
+    if (e.preventDefault) event.preventDefault()
+
     longTouchTimer = setTimeout(()=>{
 
         var off = DOM.offset(e.target)
@@ -44,7 +46,7 @@ document.addEventListener('touchstart', (event)=>{
 
     }, 600)
 
-}, true)
+}, {passive: false, capture: true})
 
 
 DOM.addEventListener(document, 'touchend touchmove touchcancel', clearLongTouchTimer)
