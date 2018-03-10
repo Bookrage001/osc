@@ -4,7 +4,7 @@ var {updateWidget, incrementWidget} = require('./data-workers'),
     widgetManager = require('../managers/widgets'),
     editor = require('./')
 
-var mod = (navigator.platform || '').match('Mac') ? 'metaKey' : 'ctrlKey'
+var mod = (navigator.platform || '').match('Mac') ? 'shiftKey' : 'ctrlKey'
 
 
 class ContextMenu {

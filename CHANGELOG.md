@@ -5,6 +5,8 @@
 - bug fixes
   - ios: broken default accent color in clone Widgets
   - ios/android: closing the sidepanel opened the tab next to the menu button
+- editor
+  - mac: use `shift` instead of `command` for multi widget selection to match native behaviour and prevent unwanted zoom with trackpads
 - widgets
   - strip: `spacing` now accepts percents
 
