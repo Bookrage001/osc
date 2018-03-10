@@ -36,8 +36,10 @@ var Parser = class Parser {
             // Backward compatibility patches
             if (props.path) props.address = props.path
             if (props.noPip) props.pips = !props.noPip
-            if (props.noSync) props.bypass = props.noSync
-
+            if (props.noSync) {
+                props.bypass = props.noSync
+                delete props.noSync
+            }
             // Safe copy widget's options
             let defaults = this.widgets[props.type].defaults()
 
