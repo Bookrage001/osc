@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.26.4
+
+- bug fixes
+  - strip: nested strips were inheriting their parent's `spacing`
+
 ## 0.26.3
 
 - bug fixes

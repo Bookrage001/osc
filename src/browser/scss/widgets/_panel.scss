@@ -126,6 +126,10 @@
         height: 100rem;
     }
 
+    > .panel {
+        --spacing: 0;
+    }
+
     &.vertical {
         > .panel {
 
