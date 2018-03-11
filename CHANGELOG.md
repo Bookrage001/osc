@@ -4,6 +4,7 @@
 
 - bug fixes
   - strip: nested strips were inheriting their parent's `spacing`
+  - modal: prevent error when retrieving a child's property
 
 ## 0.26.3
 

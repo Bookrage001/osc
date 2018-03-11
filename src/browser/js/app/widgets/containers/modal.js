@@ -115,6 +115,8 @@ module.exports = class Modal extends Panel {
 
     setValue(v, options={}) {
 
+        if (this.init === undefined) return
+
         this.value = v ? 1 : 0
 
         if (!this.init && this.value) {
