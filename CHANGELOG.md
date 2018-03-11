@@ -5,6 +5,7 @@
 - bug fixes
   - strip: nested strips were inheriting their parent's `spacing`
   - modal: prevent error when retrieving a child's property
+  - text: vertical centering issues in narrow widgets
 
 ## 0.26.3
 
