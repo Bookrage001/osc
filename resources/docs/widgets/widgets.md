@@ -54,6 +54,8 @@ All widgets share a set of generic properties described below.
     - `border-radius:5rem; .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size and all its children's labels'
     - `border-radius:5rem; > .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size (the `>` selector targets only the direct children of the widget element)
 
+!!! tip "& { }"
+    The `&` selector can be used to target the widget container.
 
 ## Value
 
@@ -68,7 +70,7 @@ All widgets share a set of generic properties described below.
 - default: `empty`
 - usage: set `value` to define a widget's value depending on other widget's values / properties using [property inheritance](../extras/property-inheritance.md) and [property maths](../extras/property-maths.md). When updated by an osc-sending event (e.g. dragging a slider), the widget will send its own osc message as well.
 
-!!! notes ""
+!!! note ""
     `default` and `value` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc) and restrictions (equal to `on` or `off` for a push/toggle button)
 
 
