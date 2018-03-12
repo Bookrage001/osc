@@ -1,9 +1,12 @@
 var widgetManager = require('./managers/widgets'),
+    EventEmitter = require('./events/event-emitter'),
     ipc = require('./ipc/')
 
-var Osc = class Osc {
+var Osc = class Osc extends EventEmitter {
 
     constructor() {
+
+        super()
 
         this.syncOnly = false
         this.remoteControl = ()=>{console.error('remote-control module not loaded')}
@@ -46,6 +49,8 @@ var Osc = class Osc {
                 if (widgets[i] && widgets[i].setValue) widgets[i].setValue(restArgs,{send:false,sync:true,fromExternal:!data.target})
             }
         }
+
+        this.trigger(new RegExp('^' + data.address + '\\..*'), [data.args])
 
     }
 

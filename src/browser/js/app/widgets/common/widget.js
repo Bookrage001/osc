@@ -6,6 +6,7 @@ var EventEmitter = require('../../events/event-emitter'),
     scopeCss = require('scope-css'),
     {iconify} = require('../../ui/utils'),
     resize = require('../../events/resize'),
+    OscReceiver = require('./osc-receiver'),
     updateWidget = ()=>{}
 
 
@@ -60,6 +61,9 @@ class Widget extends EventEmitter {
         // @{props} links lists
         this.linkedProps = {}
         this.linkedPropsValue = {}
+
+        // OSC{/path} receivers
+        this.oscReceivers = {}
 
         // cache props (resolve @{props})
         this.cachedProps = {}
@@ -243,6 +247,27 @@ class Widget extends EventEmitter {
             varnumber = 0
 
         if (typeof propValue == 'string') {
+
+            propValue = propValue.replace(/OSC\{([^\}]+)\}/g, (m)=>{
+                let [address, value] = m.substr(4, m.length - 5).split(',')
+
+                address = address.trim()
+                value = value.trim()
+
+                if (!this.oscReceivers[address]) this.oscReceivers[address] = new OscReceiver(address, value, this, propName)
+
+                var r = this.oscReceivers[address].value
+                r = typeof r != 'string' ? JSON.stringify(r) : r
+
+                var varname = 'VAR_' + varnumber
+                varnumber++
+
+                variables[varname] = r
+                mathscope[varname] = r
+
+                return varname
+            })
+
             propValue = propValue.replace(/@\{([^\}]+)\}/g, (m)=>{
                 let id = m.substr(2, m.length - 3).split('.'),
                     k, subk
@@ -564,6 +589,7 @@ class Widget extends EventEmitter {
         widgetManager.off(`widget-created.${this.hash}`)
         widgetManager.off(`prop-changed.${this.hash}`)
         widgetManager.off(`change.${this.hash}`)
+        osc.off(new RegExp('.*\\.' + this.hash))
     }
 
 }
