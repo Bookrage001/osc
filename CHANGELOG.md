@@ -6,6 +6,9 @@
   - strip: nested strips were inheriting their parent's `spacing`
   - modal: prevent error when retrieving a child's property
   - text: vertical centering issues in narrow widgets
+- editor
+  - wrap in: insert wrapper at selected widget's index
+  - wrap in: set label to false by default when wrapping in a strip or a panel
 
 ## 0.26.3
 

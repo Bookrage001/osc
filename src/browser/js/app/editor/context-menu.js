@@ -198,7 +198,7 @@ var handleClick = function(event) {
         for (let c of categories.Containers) {
             if (c === 'clone') continue
             actions['<i class="fa fa-box"></i> Wrap in'][c] = ()=>{
-                var wrap =  {type: c, widgets:[]}
+                var wrap =  {type: c, widgets:[], label: c === 'modal' ? 'auto' : false}
 
                 wrap.widgets = data
 
@@ -213,10 +213,13 @@ var handleClick = function(event) {
                     if (!isNaN(w.left)) w.left = Math.max(w.left - minLeft, 0)
                 }
 
-                for (var i of index) {
+                var i
+                for (i of index) {
                     parent.props.widgets.splice(i,1)
                 }
-                parent.props.widgets.push(wrap)
+
+                parent.props.widgets = parent.props.widgets.slice(0, i - 1).concat(wrap, parent.props.widgets.slice(i, parent.props.widgets.length))
+
                 editor.select(updateWidget(parent, {preventSelect: true}))
             }
         }
