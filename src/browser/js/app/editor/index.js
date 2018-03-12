@@ -24,6 +24,10 @@ var Editor = class Editor {
 
         this.selectedWidgets = []
 
+        this.clipboard = null
+        this.idClipboard = null
+
+
         this.enabledOnce = false
         window.onbeforeunload = ()=>{
             if (this.enabledOnce) return true

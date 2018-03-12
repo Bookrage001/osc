@@ -183,11 +183,22 @@ var handleClick = function(event) {
     if (type === 'widget')  {
 
         actions['<i class="fa fa-copy"></i> Copy'] = ()=>{
-            CLIPBOARD = JSON.stringify(data)
+            editor.clipboard = JSON.stringify(data)
+            if (data.length == 1) {
+                editor.idClipboard = editor.selectedWidgets[0].getProp('id')
+            } else {
+                editor.idClipboard =null
+            }
         }
 
         actions['<i class="fa fa-cut"></i> Cut'] = ()=>{
-            CLIPBOARD = JSON.stringify(data)
+            editor.clipboard = JSON.stringify(data)
+            if (data.length == 1) {
+                editor.idClipboard = editor.selectedWidgets[0].getProp('id')
+            } else {
+                editor.idClipboard =null
+            }
+
             for (var i of index) {
                 parent.props.widgets.splice(i,1)
             }
@@ -229,11 +240,11 @@ var handleClick = function(event) {
 
     if (data.length == 1 && (!data[0].tabs || !data[0].tabs.length) && (data[0].widgets)) {
 
-        if (CLIPBOARD !== null) {
+        if (editor.clipboard !== null) {
 
             function paste(increment) {
 
-                var pastedData = JSON.parse(CLIPBOARD),
+                var pastedData = JSON.parse(editor.clipboard),
                     minTop = Infinity,
                     minLeft = Infinity
 
@@ -265,11 +276,32 @@ var handleClick = function(event) {
             }
 
             actions['<i class="fa fa-paste"></i> Paste'] = {
-                '<i class="fa fa-plus-circle"></i> ID + 1': ()=>{
-                    paste(true)
-                },
-                '<i class="fa fa-clone"></i> Clone': ()=>{
+                '<i class="fa fa-paste"></i> Paste': ()=>{
                     paste()
+                },
+                '<i class="fa fa-plus-square"></i> ID + 1': ()=>{
+                    paste(true)
+                }
+            }
+
+            if (editor.idClipboard && widgetManager.getWidgetById(editor.idClipboard).length) {
+                actions['<i class="fa fa-paste"></i> Paste']['<i class="fa fa-clone"></i> Clone'] = ()=>{
+                    var clone = {type: 'clone', widgetId: editor.idClipboard},
+                        pastedData = JSON.parse(editor.clipboard)
+
+                    clone.width = pastedData.width
+                    clone.height = pastedData.width
+                    clone.css = pastedData.css
+
+                    if (!eventData.target.classList.contains('tablink')) {
+                        clone.top  = clickY
+                        clone.left = clickX
+                    }
+
+                    data[0].widgets = data[0].widgets || []
+                    data[0].widgets.push(clone)
+
+                    updateWidget(editor.selectedWidgets[0])
                 }
             }
 
