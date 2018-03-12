@@ -15,8 +15,9 @@ Right clicking / long touch on a widget or on a tab will also display a context 
 - `Cut`: copy widget's data and delete selected widget
 - `Wrap in`: wrap the widget in a new container
 - `Paste`: paste copied widget in selected container
-  - `n+1` : increments the id of the copied widget (and all its children) before pasting
-  - `Clone` : paste the exact same widget
+  - `Paste`: paste the widget as is
+  - `ID + 1` : increments the id of the copied widget (and all its children) before pasting
+  - `Clone` : create a clone widget targetting the copied widget
 - `Add widget`: create a new widget in selected container
 - `Add tab`: create a new tab in selected container
 - `Delete`: delete selected tab or widget
