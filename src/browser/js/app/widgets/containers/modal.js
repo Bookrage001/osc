@@ -81,6 +81,7 @@ module.exports = class Modal extends Panel {
         this.popup.style.setProperty('--height', height)
 
         DOM.get(this.popup, '.closer')[0].addEventListener('fast-click', (e)=>{
+            e.detail.preventDefault = true
             this.setValue(0, {sync:true, send:true})
         })
 
@@ -99,6 +100,7 @@ module.exports = class Modal extends Panel {
 
         this.popup.addEventListener('fast-click',(e)=>{
             if (e.target == this.popup && this.value == 1) {
+                e.detail.preventDefault = true
                 this.setValue(0, {sync:true, send:true})
             }
         })

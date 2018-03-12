@@ -5,6 +5,7 @@
 - bug fixes
   - strip: nested strips were inheriting their parent's `spacing`
   - modal: prevent error when retrieving a child's property
+  - modal: prevent touch event from affecting elements behind the popup when closing it
   - text: vertical centering issues in narrow widgets
 - editor
   - wrap in: insert wrapper at selected widget's index
