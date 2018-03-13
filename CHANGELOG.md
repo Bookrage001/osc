@@ -11,6 +11,7 @@
 - editor
   - wrap in: insert wrapper at selected widget's index
   - wrap in: set label to false by default when wrapping in a strip or a panel
+  - css property `pointer-events:none;` is now ignored when the editor is enabled
 - widgets
   - **new** `OSC{/address, default_value}` syntax
 
