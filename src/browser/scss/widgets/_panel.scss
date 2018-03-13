@@ -292,11 +292,16 @@
 }
 
 .clone-container {
-    width: 100rem;
-    height: 100rem;
+
+    &.empty {
+        width: 100rem;
+        height: 100rem;
+    }
+
     > .label {
         display: none;
     }
+
     .clone {
         position: relative;
         height: 100%;

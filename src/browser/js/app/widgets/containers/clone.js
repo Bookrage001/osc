@@ -42,8 +42,10 @@ module.exports = class Clone extends Widget {
 
         this.cloneLock = false
         this.cloneTarget = null
-        this.cloneClass = '_'
+        this.cloneClass = []
 
+        this.container.classList.add('empty')
+        
         this.getCloneTarget()
         if (this.cloneTarget) this.createClone()
 
@@ -102,7 +104,9 @@ module.exports = class Clone extends Widget {
         widgetManager.removeWidgets(this.childrenHashes)
         this.widget.innerHTML = ''
         this.childrenHashes = []
-        this.container.classList.remove(this.cloneClass)
+        this.container.classList.remove(...this.cloneClass)
+        this.container.classList.add('clone-container', 'empty')
+        this.cloneClass = []
 
     }
 
@@ -113,8 +117,9 @@ module.exports = class Clone extends Widget {
 
         this.cleanClone()
 
-        this.cloneClass = this.cloneTarget.container.getAttribute('class').match(/[^\s]*-container/)[0]
-        this.container.classList.add(this.cloneClass)
+        this.cloneClass = this.cloneTarget.container.classList
+        this.container.classList.remove('empty')
+        this.container.classList.add(...this.cloneClass)
 
         parser.parse([{...Widget.deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
 

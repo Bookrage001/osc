@@ -6,6 +6,7 @@
   - strip: nested strips were inheriting their parent's `spacing`
   - modal: prevent error when retrieving a child's property
   - modal: prevent touch event from affecting elements behind the popup when closing it
+  - clone: some properies in target widget were not applied to the clone  
   - text: vertical centering issues in narrow widgets
 - editor
   - wrap in: insert wrapper at selected widget's index
