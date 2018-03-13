@@ -176,7 +176,7 @@ var handleClick = function(event) {
         clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         clickY = Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
-    actions['<i class="fa fa-object-group"></i> Edit parent'] = ()=>{
+    actions['<i class="fa fa-expand"></i> Edit parent'] = ()=>{
         editor.select(parent)
     }
 
