@@ -40,8 +40,7 @@ pages:
         - Inputs: widgets/inputs.md
         - Maths: widgets/maths.md
     - Extras:
-        - Property inheritance: extras/property-inheritance.md
-        - Property maths: extras/property-maths.md
+        - Advanced property syntax: extras/advanced-property-syntax.md
         - Theming: extras/theming.md
         - URL options: extras/url-options.md
         - Remote control: extras/remote-control.md

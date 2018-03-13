@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.26.4
+## 0.27.0
 
 - bug fixes
   - strip: nested strips were inheriting their parent's `spacing`
@@ -11,6 +11,8 @@
 - editor
   - wrap in: insert wrapper at selected widget's index
   - wrap in: set label to false by default when wrapping in a strip or a panel
+- widgets
+  - **new** `OSC{/address, default_value}` syntax
 
 ## 0.26.3
 
