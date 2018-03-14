@@ -263,8 +263,24 @@ var Editor = class Editor {
                         var originalW = w === widget ? ui.originalSize.width : w.container.offsetWidth,
                             originalH = w === widget ? ui.originalSize.height : w.container.offsetHeight
 
-                        if (w.props.width !== undefined) w.props.width = Math.max((originalW + deltaW), GRIDWIDTH) / PXSCALE
-                        if (w.props.height !== undefined) w.props.height = Math.max((originalH + deltaH), GRIDWIDTH) / PXSCALE
+                        if (w.props.width !== undefined) {
+                            var newWidth = Math.max((originalW + deltaW), GRIDWIDTH) / PXSCALE
+                            if (typeof w.props.width === 'string' && w.props.width.indexOf('%') > -1) {
+                                w.props.width = (100 * PXSCALE * newWidth / w.container.parentNode.offsetWidth).toFixed(2) + '%'
+                            } else {
+                                w.props.width = newWidth
+                            }
+                        }
+
+                        if (w.props.height !== undefined) {
+                            var newHeight = Math.max((originalH + deltaH), GRIDWIDTH) / PXSCALE
+                            if (typeof w.props.height === 'string' && w.props.height.indexOf('%') > -1) {
+                                w.props.height = (100 * PXSCALE * newHeight / w.container.parentNode.offsetHeight).toFixed(2) + '%'
+                            } else {
+                                w.props.height = newHeight
+                            }
+                        }
+
                         if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w))
                     }
                     if (newWidgets.length > 1) editor.select(newWidgets, {preventSelect: this.selectedWidgets.length > 1})
@@ -290,8 +306,20 @@ var Editor = class Editor {
 
                     var newWidgets = []
                     for (var w of this.selectedWidgets) {
-                        w.props.top = w.container.offsetTop / PXSCALE + deltaY
-                        w.props.left = w.container.offsetLeft / PXSCALE + deltaX
+
+                        var newTop = w.container.offsetTop / PXSCALE + deltaY
+                        if (typeof w.props.top === 'string' && w.props.top.indexOf('%') > -1) {
+                            w.props.top = (100 * PXSCALE * newTop / w.container.parentNode.offsetHeight).toFixed(2) + '%'
+                        } else {
+                            w.props.top = newTop
+                        }
+                        var newLeft = w.container.offsetLeft / PXSCALE + deltaX
+                        if (typeof w.props.left === 'string' && w.props.left.indexOf('%') > -1) {
+                            w.props.left = (100 * PXSCALE * newLeft / w.container.parentNode.offsetWidth).toFixed(2) + '%'
+                        } else {
+                            w.props.left = newLeft
+                        }
+
                         newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
                     }
                     if (newWidgets.length > 1) editor.select(newWidgets)

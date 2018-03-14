@@ -12,6 +12,7 @@
   - wrap in: insert wrapper at selected widget's index
   - wrap in: set label to false by default when wrapping in a strip or a panel
   - css property `pointer-events:none;` is now ignored when the editor is enabled
+  - preverve pecentages when dragging/resizing a widget that has its position/size written in percents
 - widgets
   - **new** `OSC{/address, default_value}` syntax
 - ui
