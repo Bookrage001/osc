@@ -16,7 +16,7 @@
 - widgets
   - **new** `OSC{/address, default_value}` syntax
 - ui
-  - sidanel is now resizable
+  - sidepanel is now resizable
 
 ## 0.26.3
 
