@@ -3,6 +3,8 @@
     position:absolute;
     z-index: 999999;
     width:var(--sidepanel-size);
+    max-width: calc(100% - 45rem);
+    min-width: 300rem;
     border-top: 2rem solid var(--color-bg);
     border-bottom: 2rem solid var(--color-bg);
     border-right: 2rem solid var(--color-bg);
@@ -123,4 +125,30 @@
         }
 
     }
+}
+
+#sidepanel-handle {
+    position: absolute;
+    top: 12rem!important;
+    left: 10rem!important;
+    height: auto;
+    width: auto;
+    background: transparent;
+    color: var(--color-bg);
+    opacity: 0.5;
+    cursor: col-resize;
+    font-size: 20rem;
+    &:after {
+        content:none;
+    }
+    i {
+        transform: rotate(90deg);
+        pointer-events: none;
+        font-size:13rem;
+        display: block
+    }
+}
+
+#sidepanel.resizing {
+    transition: none;
 }

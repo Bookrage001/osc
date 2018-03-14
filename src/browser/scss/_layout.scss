@@ -14,6 +14,7 @@ body {
     padding:2rem;
     opacity: 0;
     transition: opacity .1s;
+    min-width: 45rem;
     &.show {
         opacity: 1;
     }

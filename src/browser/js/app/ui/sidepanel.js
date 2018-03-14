@@ -217,6 +217,34 @@ document.addEventListener('keydown', function(e){
 })
 
 
+// Sidepanel resize
+
+var resizeHandle = DOM.create('<div id="sidepanel-handle">'+icon('bars')+'</div>'),
+    sidepanelWidth
+
+
+sidepanel.appendChild(resizeHandle)
+
+$(resizeHandle).draggable({
+    cursor:'col-resize',
+    start: ()=>{
+        sidepanelWidth = parseInt(sidepanel.offsetWidth) / PXSCALE
+        sidepanel.classList.add('resizing')
+    },
+    drag: (event, ui)=>{
+        var delta = (ui.originalPosition.left - ui.position.left) / PXSCALE,
+            newWidth = Math.max(sidepanelWidth + delta, 300)
+        if (!isNaN(sidepanelWidth)) {
+            document.documentElement.style.setProperty('--sidepanel-size', newWidth + 'rem')
+        }
+    },
+    stop: ()=>{
+        sidepanel.classList.remove('resizing')
+    }
+})
+
+
+
 module.exports = {
     open: sidepanelOpen,
     close: sidepanelClose,

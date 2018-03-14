@@ -14,6 +14,8 @@
   - css property `pointer-events:none;` is now ignored when the editor is enabled
 - widgets
   - **new** `OSC{/address, default_value}` syntax
+- ui
+  - sidanel is now resizable
 
 ## 0.26.3
 
