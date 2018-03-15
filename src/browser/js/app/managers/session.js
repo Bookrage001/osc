@@ -4,7 +4,8 @@ var ipc = require('../ipc/'),
     editor = require('../editor/'),
     lobby = require('../ui/lobby'),
     {loading, icon, Popup} = require('../ui/utils'),
-    {saveAs} = require('file-saver')
+    {saveAs} = require('file-saver'),
+    widgetManager = require('./widgets')
 
 
 var SessionManager = class SessionManager {
@@ -53,7 +54,17 @@ var SessionManager = class SessionManager {
                 throw err
             }
 
-            state.set(state.get(), false)
+            for (var h in widgetManager.widgets) {
+                if (widgetManager.widgets[h].value !== undefined) {
+                    widgetManager.trigger('change', [{
+                        widget: widgetManager.widgets[h],
+                        id: widgetManager.widgets[h].getProp('id'),
+                        linkId: widgetManager.widgets[h].getProp('linkId'),
+                        options: {}
+                    }])
+                }
+            }
+
             if (editor.enabled) editor.disable()
 
             DOM.dispatchEvent(window, 'resize')
