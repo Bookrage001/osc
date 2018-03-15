@@ -27,7 +27,7 @@ var Editor = class Editor {
         this.clipboard = null
         this.idClipboard = null
 
-
+        this.enabled = false
         this.enabledOnce = false
         window.onbeforeunload = ()=>{
             if (this.enabledOnce) return true
@@ -38,6 +38,7 @@ var Editor = class Editor {
     enable() {
 
         EDITING = true
+        this.enabled = true
 
         this.enabledOnce = true
 
@@ -81,6 +82,7 @@ var Editor = class Editor {
     disable() {
 
         EDITING = false
+        this.enabled = false
 
         if (READ_ONLY) {
             this.enable = ()=>{}

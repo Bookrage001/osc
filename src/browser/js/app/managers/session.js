@@ -54,7 +54,8 @@ var SessionManager = class SessionManager {
             }
 
             state.set(state.get(), false)
-            editor.disable()
+            if (editor.enabled) editor.disable()
+
             DOM.dispatchEvent(window, 'resize')
 
             setTimeout(()=>{
