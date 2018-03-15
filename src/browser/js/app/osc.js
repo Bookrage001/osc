@@ -50,7 +50,7 @@ var Osc = class Osc extends EventEmitter {
             }
         }
 
-        this.trigger(data.address + '.*'), [data.args])
+        this.trigger(data.address + '.*', [data.args])
 
     }
 
