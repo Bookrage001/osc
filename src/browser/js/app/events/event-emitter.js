@@ -34,6 +34,31 @@ module.exports = class EventEmitter extends WolfyEventEmitter {
 
     }
 
+    getListeners(evt) {
+
+        if (!(evt instanceof RegExp) && evt.indexOf('.*') > -1) {
+
+            var events = this._getEvents(),
+                evtName = evt.substr(0, evt.indexOf('.')),
+                evtNameCheck = evtName + '.',
+                response = {}
+
+            for (var key in events) {
+                if (key === evtName || key.indexOf(evtNameCheck) > -1) {
+                    response[key] = events[key]
+                }
+            }
+
+            return response
+
+        } else {
+
+            return super.getListeners(evt)
+
+        }
+
+    }
+
     addListener(evt, listener, options) {
 
         // Custom event setup

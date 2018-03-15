@@ -146,7 +146,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
                 hash:hash
             })
 
-            this.trigger(/^widget-removed(\..*)?/, [{widget: widget}])
+            this.trigger('widget-removed.*', [{widget: widget}])
 
         }
         if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)

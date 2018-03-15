@@ -160,7 +160,7 @@ class Widget extends EventEmitter {
 
     created() {
 
-        this.trigger(/^widget-created(\..*)?/, [{
+        this.trigger('widget-created.*', [{
             id: this.getProp('id'),
             widget: this
         }])
@@ -169,7 +169,7 @@ class Widget extends EventEmitter {
 
     changed(options) {
 
-        this.trigger(/^change(\..*)?/, [{
+        this.trigger('change.*', [{
             widget: this,
             options: options,
             id: this.getProp('id'),
@@ -443,7 +443,7 @@ class Widget extends EventEmitter {
 
         } else if (changedProps.length) {
 
-            widgetManager.trigger(/^prop-changed(\..*)?/, [{
+            widgetManager.trigger('prop-changed.*', [{
                 id: this.getProp('id'),
                 props: changedProps,
                 widget: this,
