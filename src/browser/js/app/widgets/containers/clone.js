@@ -101,6 +101,8 @@ module.exports = class Clone extends Widget {
 
     cleanClone() {
 
+        if (!this.childrenHashes.length) return
+
         widgetManager.removeWidgets(this.childrenHashes)
         this.widget.innerHTML = ''
         this.childrenHashes = []
