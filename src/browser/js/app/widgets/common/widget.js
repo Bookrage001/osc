@@ -85,8 +85,8 @@ class Widget extends EventEmitter {
 
             widgetManager.on(`widget-created.${this.hash}`, (e)=>{
                 var {id, widget} = e
+                if (widget == this.parent) return
                 if (widget == this) id = 'this'
-                if (widget == this.parent) id = 'parent'
                 if (this.linkedProps[id]) {
                     this.updateProps(this.linkedProps[id], widget)
                 }
