@@ -137,3 +137,6 @@ preArgs: [
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to prevent the widget from sending any osc message
+
+!!! note ""
+    Changing OSC properties dynamically using advanced property syntax is likely to break synchronisation between multiple clients. 

@@ -10,6 +10,14 @@ var EventEmitter = require('../../events/event-emitter'),
     updateWidget = ()=>{}
 
 
+var OSCProps = [
+    'precision',
+    'address',
+    'preArgs',
+    'target',
+    'bypass'
+]
+
 var fallbackContainer
 
 DOM.ready(()=>{
@@ -116,6 +124,9 @@ class Widget extends EventEmitter {
 
         }
 
+        var selfLinkedOSCProps = (this.linkedPropsValue['this'] || []).filter(i => OSCProps.indexOf(i) > -1)
+        this.selfLinkedOSCProps = selfLinkedOSCProps.length ? selfLinkedOSCProps : false
+
         // cache precision
         if (this.props.precision != undefined) {
             this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
@@ -179,6 +190,10 @@ class Widget extends EventEmitter {
     }
 
     sendValue(overrides, options={}) {
+
+        if (this.selfLinkedOSCProps) {
+            this.updateProps(this.selfLinkedOSCProps, this)
+        }
 
         if (this.getProp('bypass') && !options.force) return
 
