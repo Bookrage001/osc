@@ -76,7 +76,7 @@ module.exports = class Led extends Widget {
 
         }
 
-        if (this.value.length) {
+        if (typeof this.value === 'string' && this.value.length) {
 
             cache_query = this.getProp('cache') || this.value.indexOf('base64') != -1 ?
                             '' : (this.value.indexOf('?') != -1 ? '&' : '?') + Date.now()
