@@ -17,11 +17,11 @@ module.exports = class Root extends Panel {
             color:'auto',
             css:'',
 
-            _value: 'value',
+            _value: 'value (tab selection)',
             default: '',
             value: '',
 
-            _osc:'osc',
+            _osc:'osc (tab selection)',
 
             precision:0,
             address:'/root',

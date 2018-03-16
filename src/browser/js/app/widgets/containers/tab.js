@@ -21,11 +21,12 @@ module.exports = class Tab extends Panel {
             layout:'',
             spacing:0,
 
-            _value: 'value',
+            _value: 'value (tab selection)',
+            
             default: '',
             value: '',
 
-            _osc:'osc',
+            _osc:'osc (tab selection)',
 
             precision:0,
             address:'auto',
