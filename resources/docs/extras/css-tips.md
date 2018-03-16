@@ -2,7 +2,7 @@
 
 ## Inline syntax
 
-For simple use cases, the `css` property can be written as a HTML inline styles (without any CSS selector). CSS rules will apply to the widget container element.
+For simple use cases, the `css` property can be written as a HTML inline styles (without any CSS selector). CSS rules will apply to the widget element.
 
 ```css
 opacity: 0.5; /* make the widget's transparent */
@@ -16,7 +16,7 @@ CSS selectors can be used to apply styles to specific elements:
 
 ```css
 :host {
-    /* style for the widget container
+    /* style for the widget element
        & { } also works (deprecated)
     */
 }
@@ -32,7 +32,7 @@ CSS selectors can be used to apply styles to specific elements:
 ```
 
 !!! tip ""
-    Mixing Inline and Selector syntaxes doesn't work, once you use selectors, you have to use the `:host` selector to target the widget's container element.
+    Mixing Inline and Selector syntaxes doesn't work, once you use selectors, you have to use the `:host` selector to target the widget element.
 
 ## Layering: `z-index`
 
@@ -64,7 +64,7 @@ Media queries can also be used:
 
     :host {
 
-        /* style the container if the screen is bigger than 768px */
+        /* style the widget if the screen is bigger than 768px */
 
     }
 
@@ -76,3 +76,8 @@ Media queries can also be used:
 
 - use `rem` instead of `px` (`px` values will not scale when zooming)
 - use `%` for font-size
+
+
+## CSS Variables
+
+CSS Variables declared in the  [default theme](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/browser/scss/themes/default.scss) can be overriden. Some widgets also use specific CSS variables (mostly to define colors) documented on their respective pages.
