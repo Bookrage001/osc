@@ -49,13 +49,7 @@ All widgets share a set of generic properties described below.
 ### `css`<i class="md-icon" title="dynamic">flash_on</i>
 - type: `string`
 - default: *empty*
-- usage: the `css` property can be used to override inherited [theming](../extras/theming.md) variables. Also, some widgets expose specific theming variables that allow a finer customization. Standard `css` properties can be applied to the widget's root element through this property, `css` selectors can also be used apply custom styles to the widget's children.
-- examples:
-    - `border-radius:5rem; .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size and all its children's labels'
-    - `border-radius:5rem; > .label {font-size: 20rem}` will round the widget's corners and increase its label's font-size (the `>` selector targets only the direct children of the widget element)
-
-!!! tip "& { }"
-    The `&` selector can be used to target the widget container.
+- usage: applies CSS rules to widget. See [css tips](../extras/css-tips.md).
 
 ## Value
 

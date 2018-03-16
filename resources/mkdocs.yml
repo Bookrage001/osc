@@ -41,6 +41,7 @@ pages:
         - Maths: widgets/maths.md
     - Extras:
         - Advanced property syntax: extras/advanced-property-syntax.md
+        - CSS Tips: extras/css-tips.md
         - Theming: extras/theming.md
         - URL options: extras/url-options.md
         - Remote control: extras/remote-control.md
