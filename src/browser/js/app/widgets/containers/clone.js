@@ -3,7 +3,7 @@ var Widget = require('../common/widget'),
     resize = require('../../events/resize'),
     parser = require('../../parser')
 
-module.exports = class Clone extends Widget {
+class Clone extends Widget {
 
     static defaults() {
 
@@ -45,7 +45,7 @@ module.exports = class Clone extends Widget {
         this.cloneClass = []
 
         this.container.classList.add('empty')
-        
+
         this.getCloneTarget()
         if (this.cloneTarget) this.createClone()
 
@@ -109,6 +109,7 @@ module.exports = class Clone extends Widget {
         this.container.classList.remove(...this.cloneClass)
         this.container.classList.add('clone-container', 'empty')
         this.cloneClass = []
+        if (this.cloneTarget) this.cloneTarget.off(`widget-created.${this.hash}`)
 
     }
 
@@ -119,11 +120,21 @@ module.exports = class Clone extends Widget {
 
         this.cleanClone()
 
-        this.cloneClass = this.cloneTarget.container.classList
+        this.cloneClass = [...this.cloneTarget.container.classList].filter(i => i !== 'absolute-position' && i !== 'widget')
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
 
-        parser.parse([{...Widget.deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
+        var clone = parser.parse([{...Widget.deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
+
+        if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
+            widgetManager.trigger('change.*', [{
+                widget: this.cloneTarget,
+                id: this.cloneTarget.getProp('id'),
+                linkId: this.cloneTarget.getProp('linkId'),
+                options: {}
+            }])
+        }
+
 
         DOM.each(this.widget, '.widget', (el)=>{el.classList.add('not-editable')})
 
@@ -136,6 +147,23 @@ module.exports = class Clone extends Widget {
 
     }
 
+    onPropChanged(propName, options, oldPropValue) {
+
+        if (super.onPropChanged(...arguments)) return true
+
+        switch (propName) {
+
+            case 'widgetId':
+                this.cleanClone()
+                this.cloneTarget = null
+                this.getCloneTarget()
+                if (this.cloneTarget) this.createClone()
+                return
+
+        }
+
+    }
+
     onRemove(){
 
         if (this.cloneTarget) this.cloneTarget.off(`widget-created.${this.hash}`)
@@ -145,3 +173,9 @@ module.exports = class Clone extends Widget {
     }
 
 }
+
+Clone.dynamicProps = Clone.prototype.constructor.dynamicProps.concat(
+    'widgetId'
+)
+
+module.exports = Clone

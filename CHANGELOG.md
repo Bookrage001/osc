@@ -6,7 +6,8 @@
   - strip: nested strips were inheriting their parent's `spacing`
   - modal: prevent error when retrieving a child's property
   - modal: prevent touch event from affecting elements behind the popup when closing it
-  - clone: some properies in target widget were not applied to the clone  
+  - clone: some properies in target widget were not applied to the clone
+  - clone: prevent clone from resetting its target value when created
   - text: vertical centering issues in narrow widgets
   - dynamic properties: when using a widget's own value to determine its osc settings, these are checked and updated if needed before sending the message
 - editor
