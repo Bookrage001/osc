@@ -22,7 +22,6 @@ The server can run on all [platforms supported by Electron](https://electron.ato
 
 Firefox is *not* supported.
 
-
 ## Need help ? Found a bug ?
 
 Head over the [issue tracker](https://github.com/jean-emmanuel/open-stage-control/issues) :)
@@ -32,3 +31,32 @@ Head over the [issue tracker](https://github.com/jean-emmanuel/open-stage-contro
 Open Stage Control is a [free software](https://www.fsf.org/), as in *gratis* and — most importantly — **libre**. It always will be. If you want to support the project financially, consider using flattr :
 
 https://flattr.com/@jean-emmanuel
+
+----
+
+## Table of contents
+
+- [Getting started](getting-started)
+- [User interface](interface)
+- [Editing sessions](editing-sessions)
+- Widgets reference:
+    - [Widget properties](widgets/widgets)
+    - [Containers](widgets/containers)
+    - [Sliders](widgets/sliders)
+    - [Pads](widgets/pads)
+    - [Buttons](widgets/buttons)
+    - [Switchers](widgets/switchers)
+    - [Plots](widgets/plots)
+    - [Matrices](widgets/matrices)
+    - [Inputs](widgets/inputs)
+    - [Maths](widgets/maths)
+- Extras:
+    - [Advanced property syntax](extras/advanced-property-syntax)
+    - [CSS Tips](extras/css-tips)
+    - [Theming](extras/theming)
+    - [URL options](extras/url-options)
+    - [Remote control](extras/remote-control)
+    - [Custom module](extras/custom-module)
+    - [Midi](extras/midi)
+- [Examples](examples)
+- [Credits](credits)
