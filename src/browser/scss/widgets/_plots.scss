@@ -76,10 +76,13 @@
         border: 1rem solid var(--color-bg);
         line-height: 100%;
         overflow: hidden;
+        text-align: center;
         &.right {
+            text-align: right;
             justify-content: flex-end;
         }
         &.left {
+            text-align: left;
             justify-content: flex-start;
         }
         &.wrap {
