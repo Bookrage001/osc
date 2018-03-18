@@ -62,7 +62,7 @@ All widgets share a set of generic properties described below.
 ### `value`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `*`
 - default: `empty`
-- usage: set `value` to define a widget's value depending on other widget's values / properties using [property inheritance](../extras/property-inheritance.md) and [property maths](../extras/property-maths.md). When updated by an osc-sending event (e.g. dragging a slider), the widget will send its own osc message as well.
+- usage: set `value` to define a widget's value depending on other widget's values / properties using [property inheritance and property maths](../extras/advanced-property-syntax.md). When updated by an osc-sending event (e.g. dragging a slider), the widget will send its own osc message as well.
 
 !!! note ""
     `default` and `value` must match the widget's value type (ie a `number` for sliders, an `array` for pads, etc) and restrictions (equal to `on` or `off` for a push/toggle button)
@@ -139,4 +139,4 @@ preArgs: [
 - usage: set to `true` to prevent the widget from sending any osc message
 
 !!! note ""
-    Changing OSC properties dynamically using advanced property syntax is likely to break synchronisation between multiple clients. 
+    Changing OSC properties dynamically using advanced property syntax is likely to break synchronisation between multiple clients.
