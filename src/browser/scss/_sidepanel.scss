@@ -134,10 +134,8 @@
     height: auto;
     width: auto;
     background: transparent;
-    color: var(--color-bg);
-    opacity: 0.5;
+    color: var(--color-fg);
     cursor: col-resize;
-    font-size: 20rem;
     &:after {
         content:none;
     }
