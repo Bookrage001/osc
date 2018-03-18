@@ -25,7 +25,7 @@ If the retreived property is an object (`[] / {}`), a subset can be defined by a
 
 ### Using the value
 
-The special property name `value`<i class="md-icon" title="dynamic">flash_on</i> refers to a widget's current value (which can be affected by its `value` *property*).
+The special property name `value`<i class="dynamic-prop-icon" title="dynamic"></i> refers to a widget's current value (which can be affected by its `value` *property*).
 
 When omitted, the property name defaults to `value` : `@{widgetId}` => `@{widgetId.value}`
 
@@ -33,13 +33,13 @@ When omitted, the property name defaults to `value` : `@{widgetId}` => `@{widget
 
 Some properties, when changed, trigger a complete widget recreation that ends any ongoing user interaction. Also, updating these properties continuously (e.g. when linked to a slider's dynamic value) can be very cpu expensive.
 
-Some properties have much cheaper update routines and can be considered as `dynamic`, as in performance safe. These properties are marked in the documentation with a ` `<i class="md-icon" title="dynamic">flash_on</i>.
+Some properties have much cheaper update routines and can be considered as `dynamic`, as in performance safe. These properties are marked in the documentation with a ` `<i class="dynamic-prop-icon" title="dynamic"></i>.
 
 
 ### Circular references cases
 
 - container widgets can inherit their children's properties only to define `dynamic` properties
-- widgets can inherit their own `value`<i class="md-icon" title="dynamic">flash_on</i> property only to define `dynamic` properties
+- widgets can inherit their own `value`<i class="dynamic-prop-icon" title="dynamic"></i> property only to define `dynamic` properties
 
 ----
 

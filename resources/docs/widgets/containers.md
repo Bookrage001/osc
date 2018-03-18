@@ -36,7 +36,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - usage: each element of the `array` must be a tab `object`. A panel cannot contain widgets and tabs simultaneously.
 
 
-### `variables`<i class="md-icon" title="dynamic">flash_on</i>
+### `variables`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `*`
 - default: `@{parent.variables}`
 - usage: defines one or more arbitrary variables that can be inherited by children widgets.

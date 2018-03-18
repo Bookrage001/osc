@@ -21,14 +21,14 @@ All widgets share a set of generic properties described below.
 
 ## Style
 
-### `label`<i class="md-icon" title="dynamic">flash_on</i>
+### `label`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `string|false`
 - default: `auto`, which displays `id`
 - usage:
     - set to `false` to hide completely
     - insert icons from [FontAwesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free) using the prefix `^` followed by the icon's name : `made with ^heart`, etc
 
-### `top`<i class="md-icon" title="dynamic">flash_on</i> / `left`<i class="md-icon" title="dynamic">flash_on</i>
+### `top`<i class="dynamic-prop-icon" title="dynamic"></i> / `left`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `number|percentage`
 - default: `auto`
 - usage:
@@ -36,17 +36,17 @@ All widgets share a set of generic properties described below.
     - otherwise, the widget will be absolutely positioned
 
 
-### `width`<i class="md-icon" title="dynamic">flash_on</i> / `height`<i class="md-icon" title="dynamic">flash_on</i>
+### `width`<i class="dynamic-prop-icon" title="dynamic"></i> / `height`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `number|percentage`
 - default: `auto`
 
-### `color`<i class="md-icon" title="dynamic">flash_on</i>
+### `color`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `string`
 - default: `auto`, inherited accent color
 - usage: any valid `css` color code is valid, this will change the default accent color for the widget and all its children
 
 
-### `css`<i class="md-icon" title="dynamic">flash_on</i>
+### `css`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `string`
 - default: *empty*
 - usage: applies CSS rules to widget. See [css tips](../extras/css-tips.md).
@@ -59,7 +59,7 @@ All widgets share a set of generic properties described below.
 - usage: if set, the widget will be initialized with this `value` when the session is loaded. Some widgets use this property under specific conditions (see fader's `doubleTap` for example).
 
 
-### `value`<i class="md-icon" title="dynamic">flash_on</i>
+### `value`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `*`
 - default: `empty`
 - usage: set `value` to define a widget's value depending on other widget's values / properties using [property inheritance](../extras/property-inheritance.md) and [property maths](../extras/property-maths.md). When updated by an osc-sending event (e.g. dragging a slider), the widget will send its own osc message as well.
@@ -70,14 +70,14 @@ All widgets share a set of generic properties described below.
 
 ## OSC
 
-### `precision`<i class="md-icon" title="dynamic">flash_on</i>
+### `precision`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `integer|string`
 - default: `2`
 - usage: the `precision` property defines the number of decimals to display and to send.
   - set to `0` to send `integers` only.
   - a specific data type can be specified by appending a valid osc type tag to the precision value, for example : `3d` will make the widget send double precision numbers rounded to three decimals
 
-### `target`<i class="md-icon" title="dynamic">flash_on</i>
+### `target`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `array`
 - default: `[]`
 - usage:
@@ -89,7 +89,7 @@ All widgets share a set of generic properties described below.
     - if no target is set (empty array `[]`), messages can still be sent if the server has defaults targets (`-s / --send`)
     - to disable osc regardless of the previous point, set `target` to `[null]`
 
-### `address`<i class="md-icon" title="dynamic">flash_on</i>
+### `address`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `string`
 - default: `/widgets_id`
 - usage: this is the `address` of the osc messages sent by the widget, it must start with a `/`
@@ -102,7 +102,7 @@ All widgets share a set of generic properties described below.
     /touch/address [preArgs] 0/1
 ```
 
-### `preArgs`<i class="md-icon" title="dynamic">flash_on</i>
+### `preArgs`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `array`
 - default: `[]`
 - usage:
@@ -133,7 +133,7 @@ preArgs: [
 ]
 ```
 
-### `bypass`<i class="md-icon" title="dynamic">flash_on</i>
+### `bypass`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `boolean`
 - default: `false`
 - usage: set to `true` to prevent the widget from sending any osc message
