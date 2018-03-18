@@ -11,6 +11,7 @@
   - text: vertical centering issues in narrow widgets
   - dynamic properties: when using a widget's own value to determine its osc settings, these are checked and updated if needed before sending the message
   - prevent error when loading a session containing invalid property inheritance calls
+  - broken build for iOS 9.3
 - editor
   - wrap in: insert wrapper at selected widget's index
   - wrap in: set label to false by default when wrapping in a strip or a panel
@@ -20,6 +21,8 @@
   - **new** `OSC{/address, default_value}` syntax
 - ui
   - sidepanel is now resizable
+- build
+  - dropped support for node < 4.8
 
 ## 0.26.3
 

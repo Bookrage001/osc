@@ -24,12 +24,12 @@
     "bonjour": "^3.5.0",
     "chokidar": "2.0.2",
     "electron-localshortcut": "3.1.0",
-    "express": "4.16.2",
+    "express": "4.16.3",
     "jquery": "3.3.1",
     "osc": "2.2.0",
     "python-shell": "0.5.0",
     "vmodule": "1.0.1",
-    "ws": "^4.1.0",
+    "ws": "^5.0.0",
     "yargs": "11.0.0"
   },
   "scripts": {

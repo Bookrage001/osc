@@ -61,7 +61,7 @@ Running the app from the sources slightly differs from using built binaries : we
 
 **1. Requirements**
 
-- [Node.js >= 4](https://nodejs.org/en/#download)
+- [Node.js >= 4.8](https://nodejs.org/en/#download)
 - [git](https://git-scm.com/downloads)
 
 **2. Download sources**
@@ -90,7 +90,7 @@ npm start [ -- options]
 
 **1. Requirements**
 
-- [Node.js >= 4](https://nodejs.org/en/#download)
+- [Node.js >= 4.8](https://nodejs.org/en/#download)
 - [git](https://git-scm.com/downloads)
 
 **2. Download sources & build package**
