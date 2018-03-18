@@ -342,7 +342,7 @@ class Widget extends EventEmitter {
 
                 for (var i in widgets) {
 
-                    if (widgets[i].props.hasOwnProperty(k) || k === 'value') {
+                    if (widgets[i].props[k] !== undefined || k === 'value') {
 
                         if (k !== 'value' && originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
                             return undefined
@@ -352,7 +352,7 @@ class Widget extends EventEmitter {
                                 widgets[i].getValue(true) :
                                 widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalPropName)
 
-                        if (subk !== undefined) r = r[subk]
+                        if (subk !== undefined && r !== undefined) r = r[subk]
 
                         var varname = 'VAR_' + varnumber
                         varnumber++

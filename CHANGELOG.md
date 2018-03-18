@@ -10,6 +10,7 @@
   - clone: prevent clone from resetting its target value when created
   - text: vertical centering issues in narrow widgets
   - dynamic properties: when using a widget's own value to determine its osc settings, these are checked and updated if needed before sending the message
+  - prevent error when loading a session containing invalid property inheritance calls
 - editor
   - wrap in: insert wrapper at selected widget's index
   - wrap in: set label to false by default when wrapping in a strip or a panel
