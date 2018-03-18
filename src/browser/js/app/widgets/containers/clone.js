@@ -3,6 +3,8 @@ var Widget = require('../common/widget'),
     resize = require('../../events/resize'),
     parser = require('../../parser')
 
+var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable']
+
 class Clone extends Widget {
 
     static defaults() {
@@ -120,7 +122,7 @@ class Clone extends Widget {
 
         this.cleanClone()
 
-        this.cloneClass = [...this.cloneTarget.container.classList].filter(i => i !== 'absolute-position' && i !== 'widget')
+        this.cloneClass = [...this.cloneTarget.container.classList].filter(i => excludedCloneClasses.indexOf(i) === -1)
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
 

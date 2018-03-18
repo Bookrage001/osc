@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.27.1
+
+- bug fixes
+  - prevent error when resizing a widget and its clone(s) at the same time
+
 ## 0.27.0
 
 - bug fixes
