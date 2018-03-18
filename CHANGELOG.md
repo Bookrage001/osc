@@ -21,6 +21,8 @@
   - **new** `OSC{/address, default_value}` syntax
 - ui
   - sidepanel is now resizable
+- themes
+  - `responsive-fonts`: increase size for big screens
 - build
   - dropped support for node < 4.8
 
