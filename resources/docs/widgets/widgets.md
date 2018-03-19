@@ -14,7 +14,7 @@ All widgets share a set of generic properties described below.
 - usage: widgets sharing the same `id` will act as clones and update each other's value(s) without sending extra osc messages.
 
 ### `linkId`
-- type: `string`
+- type: `string|array`
 - default: `empty`
 - usage: widgets sharing the same `linkId` update each other's value(s) AND send their respective osc messages.
 
