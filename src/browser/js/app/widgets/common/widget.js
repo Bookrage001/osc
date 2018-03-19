@@ -18,10 +18,10 @@ var OSCProps = [
     'bypass'
 ]
 
-var fallbackContainer
+var dummyDOM
 
 DOM.ready(()=>{
-    fallbackContainer = DOM.create('<div></div>')
+    dummyDOM = DOM.create('<div></div>')
 })
 
 setTimeout(()=>{
@@ -151,7 +151,7 @@ class Widget extends EventEmitter {
             this.container._widget_instance = this
             this.setContainerStyles()
         } else {
-            this.container = fallbackContainer
+            this.container = dummyDOM
         }
 
     }
@@ -559,16 +559,13 @@ class Widget extends EventEmitter {
         if (styles.includes('css')) {
 
             // css
-            var prefix = '#' + this.hash,
-                scopedCss = scopeCss(this.getProp('css'), prefix),
+            var css = String(this.getProp('css')),
+                prefix = '#' + this.hash,
+                scopedCss = scopeCss(css, prefix),
                 unScopedCss = ''
 
-            this.getProp('css')
-                .replace(/\{[^\}]*\}/g, '')
-                .replace(/^@media.*/gm,'')
-                .replace(/^.*\:.*/gm, (m) => {
-                    unScopedCss += m[m.length - 1] === ';' ? m : m + ';'
-                })
+            dummyDOM.style = css
+            unScopedCss = dummyDOM.getAttribute('style') || ''
 
             if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
             if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)

@@ -3,7 +3,8 @@
 ## 0.27.1
 
 - bug fixes
-  - prevent error when resizing a widget and its clone(s) at the same time
+  - error when resizing a widget and its clone(s) at the same time
+  - error with non string css property
 
 ## 0.27.0
 
