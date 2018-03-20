@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.27.2
+
+- bug fixes
+  - session/state file upload sometimes failing silently
+
 ## 0.27.1
 
 - bug fixes

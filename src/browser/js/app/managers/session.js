@@ -166,7 +166,6 @@ var SessionManager = class SessionManager {
 
         var prompt = DOM.create('<input type="file" accept=".js, .json"/>')
 
-        prompt.click()
         prompt.addEventListener('change',function(e){
             var reader = new FileReader(),
                 file = e.target.files[0],
@@ -185,6 +184,8 @@ var SessionManager = class SessionManager {
             reader.readAsText(file, 'utf-8')
 
         })
+
+        prompt.click()
 
     }
 

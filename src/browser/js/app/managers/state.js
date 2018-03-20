@@ -84,7 +84,6 @@ var StateManager = class StateManager {
 
         var prompt = DOM.create('<input type="file" accept=".state"/>')
 
-        prompt.click()
         prompt.addEventListener('change',(e)=>{
 
             var reader = new FileReader(),
@@ -105,6 +104,8 @@ var StateManager = class StateManager {
             reader.readAsText(e.target.files[0],'utf-8')
 
         })
+
+        prompt.click()
 
     }
 
