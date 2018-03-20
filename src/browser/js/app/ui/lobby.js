@@ -39,9 +39,7 @@ class Lobby {
         if (!this.state) return
         this.state = 0
         this.main.classList.remove('show')
-        setTimeout(()=>{
-            document.body.removeChild(this.html)
-        }, 100)
+        document.body.removeChild(this.html)
     }
 
 }

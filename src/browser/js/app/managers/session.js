@@ -36,13 +36,18 @@ var SessionManager = class SessionManager {
             try {
                 parser.reset()
 
-                if (session[0].type != 'root') {
-                    this.session = [{type:'root', tabs:session}]
-                } else if (session[0].type == 'root'){
-                    this.session = session
-                } else {
-                    this.lock = false
+                try {
+
+                    if (session[0].type != 'root') {
+                        this.session = [{type:'root', tabs:session}]
+                    } else if (session[0].type == 'root'){
+                        this.session = session
+                    }
+
+                } catch(err) {
+
                     throw new Error('Malformed session file')
+
                 }
 
                 parser.parse(this.session, DOM.get('#container')[0])
