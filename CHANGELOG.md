@@ -6,7 +6,9 @@
   - error when resizing a widget and its clone(s) at the same time
   - error with non string css property
   - session list not reappearing when failing to load
-  
+- misc
+  - added a loading indicator when uploading a session file or a state file
+
 ## 0.27.0
 
 - bug fixes

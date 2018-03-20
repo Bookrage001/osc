@@ -169,11 +169,17 @@ var SessionManager = class SessionManager {
         prompt.click()
         prompt.addEventListener('change',function(e){
             var reader = new FileReader(),
-                file = e.target.files[0]
+                file = e.target.files[0],
+                loader = loading('Uploading file...')
 
-            reader.onloadend = function(e) {
-                var session = e.target.result
-                ipc.send('sessionOpen',{file:session,path:file.path})
+            reader.onerror = reader.onabort = function(e) {
+                loader.close()
+                new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload session file.', closable:true})
+            }
+
+            reader.onload = function(e) {
+                loader.close()
+                ipc.send('sessionOpen',{file:e.target.result,path:file.path})
             }
 
             reader.readAsText(file, 'utf-8')
