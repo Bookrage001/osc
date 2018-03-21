@@ -4,6 +4,7 @@
 
 - bug fixes
   - session/state file upload sometimes failing silently
+  - regression breaking the app for iOS
 
 ## 0.27.1
 
