@@ -199,7 +199,7 @@ Text displays incoming values (via osc) as text. Sending a message with no argum
 ### `wrap`
 - type: `boolean`
 - default: `false`
-- usage: set to `true` to wrap long lines automatically
+- usage: set to `true` to wrap long lines automatically. This will not break overflowing words by default, word-breaking can be enabled by adding `word-break: break-all;` to the `css` property.
 
 ### `align`
 - type: `string`
