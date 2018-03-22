@@ -1,5 +1,6 @@
 var {remote, ipcRenderer, shell} = require('electron'),
-    {dialog, webContents} = remote.require('electron'),
+    {dialog, webContents, Menu, MenuItem} = remote.require('electron'),
+    menu = new Menu(),
     settings = remote.require('./main/settings'),
     packageInfos = remote.require('./package.json')
     packageVersion = packageInfos.version,
@@ -195,19 +196,48 @@ $(document).ready(()=>{
     })
 
     // Fake console
-    var terminal = $(`<div class="terminal"></div>`).appendTo(form).hide()
+    var terminal = $(`<div class="terminal"></div>`).appendTo(form).hide(),
+        autoscoll = true
 
     ipcRenderer.on('stdout', function(e, msg){
-        var scroll = document.body.offsetHeight + document.body.scrollTop == document.body.scrollHeight
         terminal.append(`<div class="log">${msg}</div>`)
-        if (scroll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
+        if (autoscoll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
     })
+        var scroll = document.body.offsetHeight + document.body.scrollTop == document.body.scrollHeight
 
     ipcRenderer.on('stderr', function(e, msg){
-        var scroll = document.body.offsetHeight + document.body.scrollTop == document.body.scrollHeight
         terminal.append(`<div class="error">${msg}</div>`)
-        if (scroll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
+        if (autoscoll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
     })
+
+
+    // context-menu
+
+    menu.append(new MenuItem({role: 'copy'}))
+    menu.append(new MenuItem({role: 'paste'}))
+    menu.append(new MenuItem({type: 'submenu' , label: 'Console', submenu: [
+        new MenuItem({
+            label: 'Clear',
+            click: ()=>{
+                terminal.empty()
+            }
+        }),
+        new MenuItem({
+            label: 'Autoscroll',
+            type: 'checkbox',
+            checked: true,
+            click: function(e){
+                autoscoll = e.checked
+            }
+        })
+    ]}))
+
+
+    window.addEventListener('contextmenu', function (e) {
+        menu.items[0].enabled = !!window.getSelection().toString()
+        menu.items[1].enabled = $(e.target).is('input:not([disabled])')
+        menu.popup({ window: remote.getCurrentWindow(), x: e.pageX, y: e.pageY - document.body.scrollTop})
+    }, false)
 
 
     // ready
