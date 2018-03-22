@@ -33,6 +33,7 @@ module.exports = class Rgb extends Pad {
             input: true,
             snap:false,
             spring:false,
+            range: {min:0,max:255},
 
             _value: 'value',
             default: '',
@@ -122,7 +123,7 @@ module.exports = class Rgb extends Pad {
 
         }
 
-        this.setValue([0,0,0])
+        this.setValue([this.getProp('range').min, this.getProp('range').min, this.getProp('range').min])
 
     }
 
@@ -139,7 +140,15 @@ module.exports = class Rgb extends Pad {
 
             this.update({nohue:!hue})
 
-            var rgb = hsbToRgb(this.hsb)
+            var rgb = hsbToRgb(this.hsb),
+                {min, max} = this.getProp('range')
+
+            if (min !== 0 || max !== 255) {
+                for (var k in rgb) {
+                    rgb[k] = min + max * rgb[k] / 255
+                }
+            }
+
             if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
                 this.setValue([rgb.r, rgb.g, rgb.b],{send:true,sync:true,dragged:true,nohue:!hue})
             }
@@ -153,10 +162,19 @@ module.exports = class Rgb extends Pad {
         if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
         for (let i in [0,1,2]) {
-            v[i] = clip(v[i],[0,255])
+            v[i] = clip(v[i],[this.getProp('range').min, this.getProp('range').max])
         }
 
-        var hsb = rgbToHsb({r:v[0],g:v[1],b:v[2]})
+        var rgb = {r:v[0],g:v[1],b:v[2]},
+            {min, max} = this.getProp('range')
+
+        if (min !== 0 || max !== 255) {
+            for (var k in rgb) {
+                rgb[k] = (rgb[k] - min ) * 255 / max
+            }
+        }
+
+        var hsb = rgbToHsb(rgb)
 
         if (!options.dragged) {
             this.pad.setValue([hsb.s, hsb.b], {sync: false, send:false, dragged:false})

@@ -54,7 +54,7 @@ Pads are multidimensional widgets that output multiple values.
 ### `doubleTap`
 - type: `boolean|string`
 - default: `false`
-- usage: set to `true` to make the fader reset to its `default` value when receiving a double tap. `doubleTap` can also be an osc address, which case the widget will just send an osc message (`/<doubleTap> <preArgs>`), 
+- usage: set to `true` to make the fader reset to its `default` value when receiving a double tap. `doubleTap` can also be an osc address, which case the widget will just send an osc message (`/<doubleTap> <preArgs>`),
 
 
 ### `split`
@@ -149,9 +149,15 @@ RGB is a variant of XY, it outputs rgb values between 0 and 255.
 - default: `false`
 - usage: by default, dragging the widget will modify it's value starting from its last value. Setting this to true will make it snap directly to the mouse/touch position.
 
+### `range`
+- type: `object`
+- default: `{"min":0,"max":255}`
+- usage: `range` defines the widget's output scale.
+
 ### `split`
 - type: `boolean|object`
 - default: `false`
 - usage:
     - set to `true` to send separate osc messages for `r` and `g` & `b`. The `address` will be the same as the widget's with `/r`, `/g` or `/b` appended to it
     - can be set as an object to specify a different `address` : `['/r', '/b', '/b']`
+- note: the widget will only respond to its original osc address, not to the splitted version

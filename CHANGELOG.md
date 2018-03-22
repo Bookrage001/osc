@@ -5,7 +5,8 @@
 - widgets
   - matrices: support setting `split` property as a string to allow using children's indexes in their address (`$` is replaced with the index number)
   - text: `wrap` property doesn't break words by default anymore
-  
+  - rgb: added `range` property
+
 ## 0.27.2
 
 - bug fixes
