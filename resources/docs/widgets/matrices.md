@@ -39,11 +39,6 @@ Multifader creates a row of vertical faders that respond to the same gestures.
   - `false`: it will be prepended to the widget's `preArgs`
   - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
-### `color`
-- type: `string|array`
-- default: `auto`, inherited accent color
-- usage: can be an `array` of css color `strings`, which will be sequentially passed to the faders
-
 ### `options`
 - see fader's [`options`](sliders/#fader)
 
@@ -90,12 +85,6 @@ Multifader creates a row of vertical faders that respond to the same gestures.
   - `false`: it will be prepended to the widget's `preArgs`
   - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
-### `color`
-- type: `string|array`
-- default: `auto`, inherited accent color
-- usage: can be an `array` of css color `strings`, which will be sequentially passed to the toggles
-
-
 
 ### `options`
 - see toggle's [`options`](buttons/#toggle)
@@ -140,11 +129,6 @@ Multifader creates a row of vertical faders that respond to the same gestures.
   - `true`: the widget's index will be appended to the matrice's osc `address`
   - `false`: it will be prepended to the widget's `preArgs`
   - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
-
-### `color`
-- type: `string|array`
-- default: `auto`, inherited accent color
-- usage: can be an `array` of css color `strings`, which will be sequentially passed to the pushes
 
 ### `options`
 - see push's [`options`](buttons/#push)
