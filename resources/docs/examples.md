@@ -24,6 +24,7 @@ Feel free to submitt you own by [opening an issue](https://github.com/jean-emman
 - [Open Stage Control Bitwig](https://github.com/kdejaeger/open-stage-control-bitwig)
 ![](https://raw.githubusercontent.com/kdejaeger/open-stage-control-bitwig/master/img/mixer_nexus_9.png)
 
+
 - [OpenStageControl4Bitwig](http://www.mossgrabers.de/Software/Bitwig/Bitwig.html)
   - https://www.youtube.com/watch?v=u-fgArpsHQQ
   - https://www.youtube.com/watch?v=RvEMlo72ynQ
