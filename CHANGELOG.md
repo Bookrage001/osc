@@ -7,7 +7,7 @@
   - text: `wrap` property doesn't break words by default anymore
   - rgb: added `range` property
 - launcher
-  - right-click context menu (copy, paste, clear console, toggle console autoscoll)
+  - right-click context menu (copy, paste, clear console, toggle console autoscoll, relaunch app)
   - better font for the console
 
 ## 0.27.2

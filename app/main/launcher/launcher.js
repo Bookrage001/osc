@@ -1,5 +1,5 @@
 var {remote, ipcRenderer, shell} = require('electron'),
-    {dialog, webContents, Menu, MenuItem} = remote.require('electron'),
+    {dialog, webContents, Menu, MenuItem, app} = remote.require('electron'),
     menu = new Menu(),
     settings = remote.require('./main/settings'),
     packageInfos = remote.require('./package.json')
@@ -230,6 +230,15 @@ $(document).ready(()=>{
                 autoscoll = e.checked
             }
         })
+    ]}))
+    menu.append(new MenuItem({type: 'submenu' , label: 'App', submenu: [
+        new MenuItem({
+            label: 'Relaunch',
+            click: ()=>{
+                app.relaunch()
+                app.exit(0)
+            }
+        }),
     ]}))
 
 
