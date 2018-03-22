@@ -8,6 +8,7 @@
   - rgb: added `range` property
 - launcher
   - right-click context menu (copy, paste, clear console, toggle console autoscoll)
+  - better font for the console
 
 ## 0.27.2
 

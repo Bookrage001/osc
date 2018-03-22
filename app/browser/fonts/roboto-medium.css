@@ -4,3 +4,10 @@
   font-weight: 500;
   src: url('roboto-medium.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'RobotoMono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('roboto-mono.woff') format('woff');
+}
