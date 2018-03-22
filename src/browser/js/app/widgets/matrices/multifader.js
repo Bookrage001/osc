@@ -87,9 +87,18 @@ module.exports = class Multifader extends Matrix {
             data.type = 'fader'
             data.id = this.getProp('id') + '/' + i
             data.label = i
-            data.address = this.getProp('split') ? '@{parent.address}/' + i : '@{parent.address}'
-            data.preArgs = this.getProp('split') ? '@{parent.preArgs}' : '#{concat(@{parent.preArgs},[' + i + '])}'
             data.css = ''
+
+            if (!this.getProp('split')) {
+                data.address = '@{parent.address}'
+                data.preArgs = '#{concat(@{parent.preArgs},[' + i + '])}'
+            } else if (typeof this.getProp('split') === 'string' && this.getProp('split')[0] === '/' && /[^\\]\$/.test(this.getProp('split'))) {
+                data.address = this.getProp('split').replace(/([^\\])(\$)/g,'$1' + i).replace(/\\\$/g, '$')
+                data.preArgs = '@{parent.preArgs}'
+            } else if (this.getProp('split')) {
+                data.address = '@{parent.address}/' + i
+                data.preArgs = '@{parent.preArgs}'
+            }
 
             var fader = parser.parse([data], this.widget, this)
             fader.container.classList.add('not-editable')

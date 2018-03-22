@@ -19,7 +19,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: number of faders in the row, each fader will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
     - `id`: same as the widget's with `/i` appended to it
     - `label`: `i`
-    - `address`: same as the widget's with `/i` appended to it
+    - `address`: see `split`
 
 ### `start`
 - type: `integer`
@@ -32,9 +32,12 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: enable traversing gestures
 
 ### `split`
-- type: `boolean`
+- type: `boolean|string`
 - default: `false`
-- usage: if `true`, the fader's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+- usage:
+  - `true`: the widget's index will be appended to the matrice's osc `address`
+  - `false`: it will be prepended to the widget's `preArgs`
+  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 ### `color`
 - type: `string|array`
@@ -62,7 +65,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: defines the number of columns and and rows. Each cell will contain a toggle button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
     - `id`: same as the widget's with `/i` appended to it
     - `label`: `i`
-    - `address`: same as the widget's with `/i` appended to it
+    - `address`: see `split`
 
 ### `start`
 - type: `integer`
@@ -80,9 +83,12 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: enable traversing gestures
 
 ### `split`
-- type: `boolean`
+- type: `boolean|string`
 - default: `false`
-- usage: if `true`, the toggle's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+- usage:
+  - `true`: the widget's index will be appended to the matrice's osc `address`
+  - `false`: it will be prepended to the widget's `preArgs`
+  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 ### `color`
 - type: `string|array`
@@ -110,7 +116,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: defines the number of columns and and rows. Each cell will contain a push button that will inherit its parent's properties and the following ones (where `i` is the fader's index in the row)
     - `id`: same as the widget's with `/i` appended to it
     - `label`: `i`
-    - `address`: same as the widget's with `/i` appended to it
+    - `address`: see `split`
 
 ### `start`
 - type: `integer`
@@ -128,9 +134,12 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - usage: enable traversing gestures
 
 ### `split`
-- type: `boolean`
+- type: `boolean|string`
 - default: `false`
-- usage: if `true`, the push's index will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+- usage:
+  - `true`: the widget's index will be appended to the matrice's osc `address`
+  - `false`: it will be prepended to the widget's `preArgs`
+  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 ### `color`
 - type: `string|array`
@@ -144,7 +153,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 
 ## Keyboard
 
-This one works pretty much like the multipush, excepts it looks like a piano keyboard ad
+This one works pretty much like the multipush, excepts it looks like a piano keyboard.
 
 ```js
 {
@@ -177,9 +186,12 @@ This one works pretty much like the multipush, excepts it looks like a piano key
 - usage: enable traversing gestures
 
 ### `split`
-- type: `boolean`
+- type: `boolean|string`
 - default: `false`
-- usage: if `true`, the note's midi code will be appended to the widget's osc `address`; if `false` it will be prepended to the widget's `preArgs`
+- usage:
+  - `true`: the widget's index will be appended to the matrice's osc `address`
+  - `false`: it will be prepended to the widget's `preArgs`
+  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 ### `options`
 - see push's [`options`](buttons/#push)

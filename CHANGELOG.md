@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.28.0
+
+- widgets
+  - matrices: support setting `split` property as a string to allow using children's indexes in their address (`$` is replaced with the index number)
+
 ## 0.27.2
 
 - bug fixes
