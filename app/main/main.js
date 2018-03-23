@@ -61,7 +61,7 @@ if (settings.cli) {
 
     var app = require('./electron-app'),
         path = require('path'),
-        address = 'file://' + path.resolve(__dirname + '/launcher/' + 'index.html'),
+        address = 'file://' + path.resolve(__dirname + '/../launcher/' + 'index.html'),
         {ipcMain} = require('electron'),
         launcher
 

@@ -28,7 +28,7 @@ var ignoreList = ['**/mathjs/dist/math.min.js', '**/jquery.slim.min.js', '**/jqu
 
 if (prod) console.warn('\x1b[36m%s\x1b[0m', 'Building minified js bundle for production... This may take a while... ');
 
-b = browserify(path.resolve(__dirname + '/../src/browser/js/browser.js'), {debug:!fast, insertGlobals:fast, noParse: ignoreList})
+b = browserify(path.resolve(__dirname + '/../src/browser/js/index.js'), {debug:!fast, insertGlobals:fast, noParse: ignoreList})
 
 b = b.transform(ignoreWrapper(babelify), {presets: ["env"]})
 
