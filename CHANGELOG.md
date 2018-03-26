@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.28.1
+
+- bug fixes
+  - regression in nested clones structures handling
+
+
 ## 0.28.0
 
 - widgets

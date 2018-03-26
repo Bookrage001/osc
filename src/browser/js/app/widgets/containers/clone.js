@@ -90,15 +90,8 @@ class Clone extends Widget {
 
     isValidCloneTarget(widget) {
 
-        if (widget.contains(this) || this.contains(widget)) return false
+        return !(widget.contains(this) || this.contains(widget))
 
-        var parent = widget.parent
-        while (parent && parent !== widgetManager) {
-            if (parent.getProp('type') === 'clone') return false
-            parent = parent.parent
-        }
-
-        return true
     }
 
     cleanClone() {
