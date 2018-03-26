@@ -42,6 +42,7 @@
     "nanomorph": "^5.1.3",
     "node-sass": "4.7.2",
     "nodemon": "1.17.2",
+    "rtsp-ffmpeg": "0.0.12",
     "scope-css": "^1.0.5",
     "screenfull": "3.3.2",
     "shortid": "2.2.8",
