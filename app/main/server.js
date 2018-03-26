@@ -59,37 +59,7 @@ var bindCallbacks = function(callbacks) {
 
 }
 
-// video streams
 
-var rtsp = require('rtsp-ffmpeg'),
-    urls = settings.read('videoStreams'),
-    streams = {},
-    framerate = 10,
-    resolution = undefined
-
-for (var i in urls) {
-    if (/framerate\s*=\s*[0-9]+/.test(urls[i])) {
-        framerate = Math.max(Math.min(parseInt(urls[i].split('=').pop()), 60), 0)
-    }
-    if (/resolution\s*=\s*[0-9]+x[0-9]+/.test(urls[i])) {
-        resolution = urls[i].split('=').pop().trim()
-    }
-}
-
-urls = urls.filter(item => item.indexOf('rtsp://') > -1)
-
-for (let i = 0; i < urls.length; i++) {
-    streams[i] = new rtsp.FFMpeg({
-        input: urls[i],
-        rate: framerate,
-        resolution: resolution,
-    })
-    streams[i].on('data', (data)=>{
-        ipc.send('video', [i, data.toString('base64')])
-    })
-}
-
-///
 
 console.log('App available at ' + appAddresses.join(' & '))
 
