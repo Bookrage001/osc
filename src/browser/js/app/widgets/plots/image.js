@@ -1,5 +1,6 @@
 var {mapToScale} = require('../utils'),
-    Widget = require('../common/widget')
+    Widget = require('../common/widget'),
+    ipc = require('../../ipc')
 
 module.exports = class Led extends Widget {
 
@@ -30,6 +31,7 @@ module.exports = class Led extends Widget {
             repeat: 'no-repeat',
             border: true,
             cache: true,
+            stream: '',
 
             _value: 'value',
             default: '',
@@ -58,6 +60,10 @@ module.exports = class Led extends Widget {
         this.widget.style.setProperty('background-position', this.getProp('position'))
         this.widget.style.setProperty('background-repeat', this.getProp('repeat'))
 
+        if (this.getProp('stream') !== '') {
+            this.bindedOnStreamUpdate = this.onStreamUpdate.bind(this)
+            ipc.on('video', this.bindedOnStreamUpdate)
+        }
 
     }
 
@@ -86,6 +92,22 @@ module.exports = class Led extends Widget {
         this.widget.style.setProperty('background-image', `url(${this.value}${cache_query})`)
 
         if (options.sync) this.changed(options)
+
+    }
+
+    onStreamUpdate(event) {
+        console.log(event)
+        var [stream, data] = event
+        if (stream === this.getProp('stream')) {
+            this.setValue('data:image/jpeg;base64,' + data)
+        }
+
+    }
+
+    onRemove() {
+
+        if (this.bindedOnStreamUpdate) ipc.off('video', this.bindedOnStreamUpdate)
+        super.onRemove()
 
     }
 
