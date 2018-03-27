@@ -56,7 +56,6 @@ var options = {
                 true : 'examples can\'t be listed if --load is set'
          }
     },
-    'video-streams':{type:'array',describe:'video stream urls (rtsp://)'},
     'url-options':{type:'array',describe:'url options (opt=value pairs)',
         check: (u, argv)=>{
             return (!u || !argv.n) ?
@@ -121,7 +120,6 @@ var makeDefaultConfig = function(argv){
         sessionFile:  argv.l || false,
         newSession:  argv.b || false,
         customModule: argv.c || false,
-        videoStreams: argv['video-streams'] || [],
         fullScreen: argv['fullscreen'] || false,
         noGui: argv.n || false,
         guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
