@@ -4,6 +4,7 @@
 
 - custom module
   - expose `setInterval`
+  - prevent errors when failing to run the module    
 
 
 ## 0.28.1

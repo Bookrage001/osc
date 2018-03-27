@@ -145,6 +145,7 @@ var customModule = (function(){
 		mod = vm.runInContext(file, vm.createContext(context))
 	} catch(err) {
 		console.log(err)
+		return false
 	}
 
 	return mod
