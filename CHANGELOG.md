@@ -1,5 +1,11 @@
 # Changelog
 
+## next
+
+- custom module
+  - expose `setInterval`
+
+
 ## 0.28.1
 
 - bug fixes

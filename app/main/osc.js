@@ -136,7 +136,8 @@ var customModule = (function(){
 			console: console,
 			sendOsc: sendOsc,
 			receiveOsc: receiveOsc,
-            setTimeout: setTimeout,
+			setTimeout: setTimeout,
+            setInterval: setInterval,
             settings: settings
 		}
 
