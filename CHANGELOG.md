@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.28.2
 
 - bug fixes
   - session list: fix "remove from history" always removing the first item in the list
