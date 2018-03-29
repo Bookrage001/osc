@@ -51,7 +51,9 @@ The module is executed in a restricted context, only a few globals are available
 - `sendOsc`: `function({address, args, host, port})`
 - `receiveOsc`: `function({address, args, host, port})`
 - `setTimeout`: `function(function, delay)`
+- `clearTimeout`: `function(timeout)`
 - `setInterval`: `function(function, delay)`
+- `clearInterval`: `function(interval)`
 
 
 `sendOsc` and `receiveOsc` expect arguments formatted as follow:
