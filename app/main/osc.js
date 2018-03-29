@@ -133,12 +133,14 @@ var customModule = (function(){
 		})(),
 		mod,
 		context = {
-			console: console,
-			sendOsc: sendOsc,
-			receiveOsc: receiveOsc,
-			setTimeout: setTimeout,
-            setInterval: setInterval,
-            settings: settings
+			console,
+			sendOsc,
+			receiveOsc,
+			setTimeout,
+			clearTimeout,
+			setInterval,
+            clearInterval,
+            settings
 		}
 
 	try {

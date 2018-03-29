@@ -6,6 +6,7 @@
   - session list: fix "remove from history" always removing the first item in the list
 - custom module
   - expose `setInterval`
+  - expose `clearTimeout` and `clearInterval`
   - prevent errors when failing to run the module    
 
 
