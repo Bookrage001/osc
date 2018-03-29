@@ -59,8 +59,10 @@ module.exports =  {
 
     sessionRemoveFromHistory: function(data) {
         var sessionlist = settings.read('recentSessions')
-        sessionlist.splice(data,1)
-        settings.write('recentSessions',sessionlist)
+        if (sessionlist.indexOf(data) > -1) {
+            sessionlist.splice(sessionlist.indexOf(data),1)
+            settings.write('recentSessions',sessionlist)
+        }
     },
 
     sessionOpen: function(data,clientId) {

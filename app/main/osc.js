@@ -136,7 +136,8 @@ var customModule = (function(){
 			console: console,
 			sendOsc: sendOsc,
 			receiveOsc: receiveOsc,
-            setTimeout: setTimeout,
+			setTimeout: setTimeout,
+            setInterval: setInterval,
             settings: settings
 		}
 
@@ -144,6 +145,7 @@ var customModule = (function(){
 		mod = vm.runInContext(file, vm.createContext(context))
 	} catch(err) {
 		console.log(err)
+		return false
 	}
 
 	return mod

@@ -1,5 +1,20 @@
 # Changelog
 
+## next
+
+- bug fixes
+  - session list: fix "remove from history" always removing the first item in the list
+- custom module
+  - expose `setInterval`
+  - prevent errors when failing to run the module    
+
+
+## 0.28.1
+
+- bug fixes
+  - regression in nested clones structures handling
+
+
 ## 0.28.0
 
 - widgets
