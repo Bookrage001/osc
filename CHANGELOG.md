@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- bug fixes
+  - widgets not correctly drawn when hidden/shown with dynamic css
+
 ## 0.28.2
 
 - bug fixes
