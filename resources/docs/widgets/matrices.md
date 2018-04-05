@@ -35,9 +35,9 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - type: `boolean|string`
 - default: `false`
 - usage:
-  - `true`: the widget's index will be appended to the matrice's osc `address`
-  - `false`: it will be prepended to the widget's `preArgs`
-  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
+    - `true`: the widget's index will be appended to the matrice's osc `address`
+    - `false`: it will be prepended to the widget's `preArgs`
+    - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 ### `options`
 - see fader's [`options`](sliders/#fader)
@@ -81,9 +81,9 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - type: `boolean|string`
 - default: `false`
 - usage:
-  - `true`: the widget's index will be appended to the matrice's osc `address`
-  - `false`: it will be prepended to the widget's `preArgs`
-  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
+    - `true`: the widget's index will be appended to the matrice's osc `address`
+    - `false`: it will be prepended to the widget's `preArgs`
+    - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 
 ### `options`
@@ -126,9 +126,9 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - type: `boolean|string`
 - default: `false`
 - usage:
-  - `true`: the widget's index will be appended to the matrice's osc `address`
-  - `false`: it will be prepended to the widget's `preArgs`
-  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
+    - `true`: the widget's index will be appended to the matrice's osc `address`
+    - `false`: it will be prepended to the widget's `preArgs`
+    - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 ### `options`
 - see push's [`options`](buttons/#push)
@@ -173,9 +173,9 @@ This one works pretty much like the multipush, excepts it looks like a piano key
 - type: `boolean|string`
 - default: `false`
 - usage:
-  - `true`: the widget's index will be appended to the matrice's osc `address`
-  - `false`: it will be prepended to the widget's `preArgs`
-  - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
+    - `true`: the widget's index will be appended to the matrice's osc `address`
+    - `false`: it will be prepended to the widget's `preArgs`
+    - `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with  their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)).
 
 ### `options`
 - see push's [`options`](buttons/#push)
