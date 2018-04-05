@@ -1,4 +1,5 @@
-var popupSingleton = null
+var popupSingleton = null,
+    uploadSingleton = null
 
 module.exports = {
 
@@ -92,6 +93,37 @@ module.exports = {
     },
     iconify:function(string){
         return String(string).replace(/\^[^\s]*/g,(x)=>{return module.exports.icon(x.substring(1))})
+    },
+    upload: function(types, ok, error) {
+
+        if (uploadSingleton) document.body.removeChild(uploadSingleton)
+
+        uploadSingleton = DOM.create('<input type="file" accept="' + types + '" style="position:absolute;opacity:0;pointer-events:none;"/>')
+        document.body.appendChild(uploadSingleton)
+
+        uploadSingleton.addEventListener('change',function(e){
+
+
+            var reader = new FileReader(),
+                file = e.target.files[0],
+                loader = module.exports.loading('Uploading file...')
+
+            reader.onerror = reader.onabort = function() {
+                loader.close()
+                error()
+            }
+
+            reader.onload = function(e) {
+                loader.close()
+                ok(file.path, e.target.result)
+            }
+
+            reader.readAsText(file, 'utf-8')
+
+        })
+
+        uploadSingleton.click()
+
     }
 
 }

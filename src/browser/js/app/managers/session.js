@@ -3,7 +3,7 @@ var ipc = require('../ipc/'),
     state = require('./state'),
     editor = require('../editor/'),
     lobby = require('../ui/lobby'),
-    {loading, icon, Popup} = require('../ui/utils'),
+    {loading, icon, Popup, upload} = require('../ui/utils'),
     {saveAs} = require('file-saver'),
     widgetManager = require('./widgets')
 
@@ -164,28 +164,11 @@ var SessionManager = class SessionManager {
 
     browse() {
 
-        var prompt = DOM.create('<input type="file" accept=".js, .json"/>')
-
-        prompt.addEventListener('change',function(e){
-            var reader = new FileReader(),
-                file = e.target.files[0],
-                loader = loading('Uploading file...')
-
-            reader.onerror = reader.onabort = function(e) {
-                loader.close()
-                new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload session file.', closable:true})
-            }
-
-            reader.onload = function(e) {
-                loader.close()
-                ipc.send('sessionOpen',{file:e.target.result,path:file.path})
-            }
-
-            reader.readAsText(file, 'utf-8')
-
+        upload('.json, .js', (path, result)=>{
+            ipc.send('sessionOpen',{file:result,path:path})
+        }, ()=>{
+            new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload session file.', closable:true})
         })
-
-        prompt.click()
 
     }
 

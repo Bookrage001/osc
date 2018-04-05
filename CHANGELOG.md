@@ -1,9 +1,10 @@
 # Changelog
 
-## next
+## 0.28.3
 
 - bug fixes
   - widgets not correctly drawn when hidden/shown with dynamic css
+  - iOS: file upload failing sometimes   
 
 ## 0.28.2
 

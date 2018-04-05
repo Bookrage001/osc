@@ -1,5 +1,5 @@
 var widgetManager = require('./widgets'),
-    {loading, icon, Popup} = require('../ui/utils'),
+    {loading, icon, Popup, upload} = require('../ui/utils'),
     {saveAs} = require('file-saver')
 
 
@@ -82,30 +82,12 @@ var StateManager = class StateManager {
 
     load() {
 
-        var prompt = DOM.create('<input type="file" accept=".state"/>')
-
-        prompt.addEventListener('change',(e)=>{
-
-            var reader = new FileReader(),
-                loader = loading('Uploading file...')
-
-            reader.onerror = reader.onabort = function(e) {
-                loader.close()
-                new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload state file.', closable:true})
-            }
-
-            reader.onload = (e)=>{
-                loader.close()
-                this.set(JSON.parse(e.target.result),true)
-                this.state = e.target.result
-
-            }
-
-            reader.readAsText(e.target.files[0],'utf-8')
-
+        upload('.state', (path, result)=>{
+            this.set(JSON.parse(result),true)
+            this.state = result
+        }, (e)=>{
+            new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload state file.', closable:true})
         })
-
-        prompt.click()
 
     }
 
