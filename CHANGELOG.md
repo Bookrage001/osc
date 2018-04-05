@@ -4,7 +4,9 @@
 
 - bug fixes
   - widgets not correctly drawn when hidden/shown with dynamic css
-  - iOS: file upload failing sometimes   
+  - iOS: file upload failing sometimes
+- widgets
+  - knob: small design improvement (pips don't take extra space anymore)   
 
 ## 0.28.2
 
