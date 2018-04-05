@@ -19,9 +19,6 @@ var Editor = class Editor {
             this.defaults[k] = widgets[k].defaults()
         }
 
-        this.selection = DOM.create('<div id="editor-selection"></div>')
-        document.body.appendChild(this.selection)
-
         this.selectedWidgets = []
 
         this.clipboard = null
@@ -115,8 +112,6 @@ var Editor = class Editor {
 
         $('.widget.ui-resizable').resizable('destroy')
         $('.widget.ui-draggable').draggable('destroy').find('.ui-draggable-handle').remove()
-
-        this.selection.style.display = 'none'
 
     }
 
