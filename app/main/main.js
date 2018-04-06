@@ -19,13 +19,15 @@ var start = function(readyApp) {
 
         var server = require('./server'),
             osc = require('./osc'),
-            callbacks = require('./callbacks')
+            callbacks = require('./callbacks'),
+            zeroconf = require('./zeroconf')
 
         server.bindCallbacks(callbacks)
 
         serverStarted = true
         process.on('exit',()=>{
             if (osc.midi) osc.midi.stop()
+            zeroconf.unpublishAll()
         })
 
     }
