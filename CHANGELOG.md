@@ -6,6 +6,9 @@
   - dropped supported for `.js` sessions (deprecated in 0.20.0)
 - bug fixes
   - zeroconf: unpublish when shutting down
+- widgets
+  - modal: added `popupLeft` and `popupTop` properties
+
 
 ## 0.28.3
 

@@ -31,6 +31,8 @@ module.exports = class Modal extends Panel {
             popupLabel:'',
             popupWidth:'80%',
             popupHeight:'80%',
+            popupLeft:'auto',
+            popupTop:'auto',
             layout:'',
             spacing:0,
 
@@ -74,11 +76,23 @@ module.exports = class Modal extends Panel {
         this.container.appendChild(this.popup)
 
         // convert dimensions / coordinates to rem
-        var width = parseFloat(this.getProp('popupWidth'))==this.getProp('popupWidth')?parseFloat(this.getProp('popupWidth'))+'rem' : this.getProp('popupWidth'),
-            height = parseFloat(this.getProp('popupHeight'))==this.getProp('popupHeight')?parseFloat(this.getProp('popupHeight'))+'rem' : this.getProp('popupHeight')
+        var geometry = {}
+        for (var g of ['Width', 'Height', 'Left', 'Top']) {
+          geometry[g] = parseFloat(this.getProp('popup' + g)) == this.getProp('popup' + g) ? parseFloat(this.getProp('popup' + g)) + 'rem' : this.getProp('popup' + g)
+        }
 
-        this.popup.style.setProperty('--width', width)
-        this.popup.style.setProperty('--height', height)
+        this.popup.style.setProperty('--width', geometry.Width)
+        this.popup.style.setProperty('--height', geometry.Height)
+
+        if (geometry.Left !== 'auto') {
+            this.popup.style.setProperty('--left', geometry.Left)
+            this.popup.classList.add('x-positionned')
+        }
+
+        if (geometry.Top !== 'auto') {
+            this.popup.style.setProperty('--top', geometry.Top)
+            this.popup.classList.add('y-positionned')
+        }
 
         DOM.get(this.popup, '.closer')[0].addEventListener('fast-click', (e)=>{
             e.detail.preventDefault = true

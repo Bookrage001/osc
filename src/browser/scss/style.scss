@@ -496,7 +496,8 @@ body {
     right:0;
     bottom:0;
     padding:10%;
-    align-items: center;
+    align-items:center;
+    justify-content: center;
     z-index:1000000;
     transform: translate3d(0,0,0);
     display: none;
@@ -506,10 +507,10 @@ body {
     &:before {
         content: "";
         position: absolute;
-        top:-40rem;
-        left:-40rem;
-        right:-40rem;
-        bottom:-40rem;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
         background:var(--color-bg);
         opacity: .5;
     }
@@ -544,7 +545,6 @@ body {
         align-items: stretch;
         width:auto;
         max-width:600rem;
-        margin:0 auto;
         position: relative;
         overflow: hidden;
         box-shadow: 1rem 0 0 0 var(--color-bg),
