@@ -197,7 +197,11 @@ if (customModule.init) {
     customModule.init()
 }
 
-if (midi) midi.init(receiveOsc)
+if (midi) midi.init((data)=>{
+    var data = oscInFilter({address: data.address, args: data.args, host: data.host, port: data.port})
+        if (!data) return
+    receiveOsc(data)
+})
 
 module.exports = {
 

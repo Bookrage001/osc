@@ -8,6 +8,8 @@
   - zeroconf: unpublish when shutting down
 - widgets
   - modal: added `popupLeft` and `popupTop` properties
+- custom module
+  - messages converted from midi inputs can be filtered
 
 
 ## 0.28.3
