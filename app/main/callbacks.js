@@ -68,15 +68,11 @@ module.exports =  {
     sessionOpen: function(data,clientId) {
 
         var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
-            error = file===false&&data.path?'Session file "' + data.path + '" not found.':false,
+            error = file === false && data.path ? 'Session file "' + data.path + '" not found.' : false,
             session
 
-        if (data.path && data.path.split('.').pop() == 'js') {
-            console.warn(`Warning: support for .js session files is deprecated, please use the .json extension instead`)
-        }
-
         try {
-            session = vm.runInNewContext(file)
+            session = JSON.parse(file)
         } catch(err) {
             error = err
         }

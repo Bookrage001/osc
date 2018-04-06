@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.29.0
+
+- beaking changes
+  - dropped supported for `.js` sessions (deprecated in 0.20.0)
+- bug fixes
+  - zeroconf: unpublish when shutting down
+
 ## 0.28.3
 
 - bug fixes

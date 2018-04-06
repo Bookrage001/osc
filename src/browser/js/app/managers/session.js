@@ -164,7 +164,7 @@ var SessionManager = class SessionManager {
 
     browse() {
 
-        upload('.json, .js', (path, result)=>{
+        upload('.json', (path, result)=>{
             ipc.send('sessionOpen',{file:result,path:path})
         }, ()=>{
             new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload session file.', closable:true})
