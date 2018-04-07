@@ -44,7 +44,7 @@ var RangeFader = class RangeFader extends Fader {
 
         if (this.getProp('compact')) {
 
-            this.ctx.globalAlpha = (dashed ? .3 : .2)  + 0.2 * Math.abs(d-d2) / height
+            this.ctx.globalAlpha = this.colors.gaugeOpacity || (dashed ? .3 : .2)  + 0.2 * Math.abs(d-d2) / height
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
             this.ctx.moveTo(m, d2)

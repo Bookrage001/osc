@@ -234,6 +234,13 @@ Meter displays incoming numerical values (via osc) as a gauge level
 - default: `[]`
 - usage: when set, the meter's gauge will be filled with a linear color gradient : each item must be a color string. Example: `["blue", "red"]`
 
+### `css`
+```css
+--color-gauge:color;
+--color-knob:color; /* transparent by default */
+--color-pips:color;
+--gauge-opacity:number;
+```
 
 ## Image
 

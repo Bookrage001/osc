@@ -181,7 +181,7 @@ This one works pretty much like the multipush, excepts it looks like a piano key
 - see push's [`options`](buttons/#push)
 
 ### `css`
-```
+```css
 --color-white:color; /* white keys color */
 --color-black:color; /* black keys color */
 ```

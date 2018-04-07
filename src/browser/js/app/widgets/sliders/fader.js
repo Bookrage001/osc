@@ -225,7 +225,7 @@ module.exports = class Fader extends Slider {
 
         if (this.getProp('compact')) {
 
-            this.ctx.globalAlpha = (dashed ? .3 : .2)  + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
+            this.ctx.globalAlpha = this.colors.gaugeOpacity || (dashed ? .3 : .2)  + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
 
             this.ctx.strokeStyle = this.colors.gradient || this.colors.gauge
             this.ctx.beginPath()

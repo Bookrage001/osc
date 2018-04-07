@@ -60,7 +60,7 @@ Panels can contains tabs or widgets. These can be absolutely positioned and can 
 - note: this only applies when the panel contains widgets, not tabs
 
 ### `css`
-```
+```css
 --nav-height: number[rem|%];
 ```
 

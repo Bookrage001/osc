@@ -103,10 +103,11 @@ range: {
 - usage: overrides the `meter`'s osc address
 
 ### `css`
-```
+```css
 --color-gauge:color;
 --color-knob:color;
 --color-pips:color;
+--gauge-opacity:number; /* compact mode only */
 ```
 
 
@@ -265,3 +266,12 @@ A range is a fader with two handles. To move the range (both handles at once), h
     - set to `true` to send separate osc messages for `low` and `high` handles. The `address` will be the same as the widget's with `/low` or `/high` appended to it
     - can be set as an object to specify a different `address` : `['/osc_address_low', '/osc_address_high']`
 - note: the widget will only respond to its original osc address, not to the splitted version
+
+
+### `css`
+```css
+--color-gauge:color;
+--color-knob:color;
+--color-pips:color;
+--gauge-opacity:number; /* compact mode only */
+```

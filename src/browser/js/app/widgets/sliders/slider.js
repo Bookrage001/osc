@@ -177,6 +177,7 @@ class Slider extends Canvas {
         this.colors.gauge = style.getPropertyValue('--color-gauge')
         this.colors.knob = style.getPropertyValue('--color-knob')
         this.colors.pips = style.getPropertyValue('--color-pips')
+        this.colors.gaugeOpacity = style.getPropertyValue('--gauge-opacity')
 
         super.cacheCanvasStyle(style)
 

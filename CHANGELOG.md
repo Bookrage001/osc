@@ -8,6 +8,7 @@
   - zeroconf: unpublish when shutting down
 - widgets
   - modal: added `popupLeft` and `popupTop` properties
+  - faders/meter: add css variable `--gauge-opacity` to allow setting a fixed gauge opacity for meters and compact faders
 - custom module
   - messages converted from midi inputs can be filtered
 
