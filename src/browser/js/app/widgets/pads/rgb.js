@@ -114,7 +114,7 @@ module.exports = class Rgb extends Pad {
                 props:{...Input.defaults(), precision:this.getProp('precision'), unit:this.getProp('unit')},
                 parent:this, parentNode:this.widget
             })
-            this.widget.append(this.input.widget)
+            this.widget.appendChild(this.input.widget)
             this.input.on('change', (e)=>{
                 e.stopPropagation = true
                 this.setValue(this.input.getValue(), {sync:true, send:true})

@@ -4,6 +4,7 @@
 
 - beaking changes
   - dropped supported for `.js` sessions (deprecated in 0.20.0)
+  - function mispelling in rgb widget
 - bug fixes
   - zeroconf: unpublish when shutting down
 - widgets
