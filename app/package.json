@@ -29,7 +29,7 @@
     "python-shell": "0.5.0",
     "rtsp-ffmpeg": "0.0.12",
     "vmodule": "1.0.1",
-    "ws": "^5.0.0",
+    "ws": "^5.1.1",
     "yargs": "11.0.0"
   },
   "scripts": {
