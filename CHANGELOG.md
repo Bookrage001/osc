@@ -4,10 +4,10 @@
 
 - beaking changes
   - dropped supported for `.js` sessions (deprecated in 0.20.0)
-  - function mispelling in rgb widget
 - bug fixes
   - zeroconf: unpublish when shutting down
   - ios 9.3 compatibility issue
+  - function mispelling in rgb widget
 - widgets
   - modal: added `popupLeft` and `popupTop` properties
   - faders/meter: add css variable `--gauge-opacity` to allow setting a fixed gauge opacity for meters and compact faders
