@@ -97,7 +97,7 @@ function pointerUpFilter(event) {
 
 // Mouse events wrappers
 
-function mouseDownHandler(event) {
+function mouseDownCapture(event) {
     if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
     event.pointerId = 'mouse'
     pointerDownHandler(event)
@@ -105,7 +105,7 @@ function mouseDownHandler(event) {
 
 function mouseMultiWrapper(event) {
     event.multitouch = true
-    mouseDownHandler(event)
+    mouseDownCapture(event)
 }
 
 function mouseMoveCapture(event) {
@@ -125,10 +125,10 @@ function mouseUpCapture(event){
 
 function touchMultiWrapper(event) {
     event.multitouch = true
-    touchDownHandler(event)
+    touchDownCapture(event)
 }
 
-function touchDownHandler(event) {
+function touchDownCapture(event) {
     event.preventDefault()
     for (var i in event.changedTouches) {
         if (isNaN(i) || !event.changedTouches[i]) continue
@@ -218,8 +218,8 @@ module.exports = {
             element.addEventListener('touchstart', touchMultiWrapper, false)
             element.addEventListener('mousedown', mouseMultiWrapper)
         } else {
-            element.addEventListener('touchstart', touchDownHandler, false)
-            element.addEventListener('mousedown', mouseDownHandler)
+            element.addEventListener('touchstart', touchDownCapture, false)
+            element.addEventListener('mousedown', mouseDownCapture)
         }
 
     },
@@ -243,8 +243,8 @@ module.exports = {
             element.removeEventListener('touchstart', touchMultiWrapper, false)
             element.removeEventListener('mousedown', mouseMultiWrapper)
         } else {
-            element.removeEventListener('touchstart', touchDownHandler, false)
-            element.removeEventListener('mousedown', mouseDownHandler)
+            element.removeEventListener('touchstart', touchDownCapture, false)
+            element.removeEventListener('mousedown', mouseDownCapture)
         }
 
     },
