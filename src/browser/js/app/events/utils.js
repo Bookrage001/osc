@@ -25,6 +25,8 @@ module.exports = {
 
     normalizeDragEvent: function(event, previousEvent) {
 
+        event = module.exports.fix(event)
+
         if (event.movementX === undefined) {
 
             event.movementX = previousEvent ? event.pageX - previousEvent.pageX : 0
@@ -55,6 +57,8 @@ module.exports = {
             event.traversingContainer = previousEvent.traversingContainer
 
         }
+
+        return event
 
     },
 
