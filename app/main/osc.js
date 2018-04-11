@@ -15,7 +15,8 @@ var osc = require('osc'),
 var oscServer = new osc.UDPPort({
     localAddress: "0.0.0.0",
     localPort: oscInPort,
-	metadata: true
+	metadata: true,
+	broadcast: true
 })
 
 zeroconf.publish({

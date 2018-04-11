@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.29.1
+
+- server
+  - allow sending osc to broadcast ip addresses 
+
 ## 0.29.0
 
 - beaking changes
