@@ -3,7 +3,10 @@
 ## 0.29.1
 
 - server
-  - allow sending osc to broadcast ip addresses 
+  - allow sending osc to broadcast ip addresses
+- widgets
+  - limited support for property inheritance nesting (`@{id_@{id_2}}`)
+  - support using property inheritance syntax in osc listeners' addresses
 
 ## 0.29.0
 

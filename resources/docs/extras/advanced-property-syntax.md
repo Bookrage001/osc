@@ -43,6 +43,11 @@ Some properties have much cheaper update routines and can be considered as `dyna
 
 ----
 
+### Nesting
+
+The inheritance syntax supports nesting with a limitation: nested calls are not updated when the target's property/value updates are only resolved once at the host widget's initialization.
+
+
 ## OSC listeners: `OSC{}`
 
 The following syntax allows listening on an osc address to define a property, with an optionnal default value :
