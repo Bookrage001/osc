@@ -263,27 +263,12 @@ class Widget extends EventEmitter {
 
         if (typeof propValue == 'string') {
 
-            propValue = propValue.replace(/OSC\{([^\}]+)\}/g, (m)=>{
-                let [address, value] = m.substr(4, m.length - 5).split(',')
+            propValue = propValue.replace(/@\{[^\{]*?(@\{.*?\})?[^\{]*?\}/g, (m, nested)=>{
 
-                address = address.trim()
-                value = value.trim()
+                if (nested) {
+                    m = m.replace(nested, this.resolveProp(propName, nested, false, this))
+                }
 
-                if (!this.oscReceivers[address]) this.oscReceivers[address] = new OscReceiver(address, value, this, propName)
-
-                var r = this.oscReceivers[address].value
-                r = typeof r != 'string' ? JSON.stringify(r) : r
-
-                var varname = 'VAR_' + varnumber
-                varnumber++
-
-                variables[varname] = r
-                mathscope[varname] = r
-
-                return varname
-            })
-
-            propValue = propValue.replace(/@\{([^\}]+)\}/g, (m)=>{
                 let id = m.substr(2, m.length - 3).split('.'),
                     k, subk
 
@@ -368,6 +353,30 @@ class Widget extends EventEmitter {
 
             })
 
+            propValue = propValue.replace(/OSC\{([^\}]+)\}/g, (m)=>{
+                let [address, value] = m.substr(4, m.length - 5).split(',').map(x => x.trim()),
+                    resolvedAddress = address.replace(/VAR_[0-9]+/g, (m)=>{
+                        return typeof variables[m] === 'string' ? variables[m] : JSON.stringify(variables[m])
+                    })
+
+                if (!this.oscReceivers[address]) {
+                    this.oscReceivers[address] = new OscReceiver(resolvedAddress, value, this, propName)
+                } else {
+                    this.oscReceivers[address].setAddress(resolvedAddress)
+                }
+
+                var r = this.oscReceivers[address].value
+                r = typeof r != 'string' ? JSON.stringify(r) : r
+
+                var varname = 'VAR_' + varnumber
+                varnumber++
+
+                variables[varname] = r
+                mathscope[varname] = r
+
+                return varname
+            })
+
             try {
                 propValue = propValue.replace(/#\{(?:[^\}\\]|\\.)+\}/g, (m)=>{
 
@@ -395,7 +404,7 @@ class Widget extends EventEmitter {
             } catch (err) {}
 
             for (var k in variables) {
-                var v = typeof variables[k] == 'string' ? variables[k] : JSON.stringify(variables[k])
+                var v = typeof variables[k] === 'string' ? variables[k] : JSON.stringify(variables[k])
                 propValue = propValue.replace(new RegExp(k, 'g'), v)
             }
 
