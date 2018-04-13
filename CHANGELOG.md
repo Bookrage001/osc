@@ -2,6 +2,8 @@
 
 ## 0.29.1
 
+- bug fixes
+  - regression breaking traversing gestures (0.29.0)
 - server
   - allow sending osc to broadcast ip addresses
 - widgets

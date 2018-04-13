@@ -17,7 +17,9 @@ module.exports = {
             pointerType: e.pointerType,
             button: e.button,
             ctrlKey: e.ctrlKey,
-            shiftKey: e.shiftKey
+            shiftKey: e.shiftKey,
+            traversing: e.traversing,
+            traversingContainer: e.traversingContainer
 
         }
 
