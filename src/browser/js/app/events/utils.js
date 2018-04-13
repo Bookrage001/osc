@@ -18,6 +18,7 @@ module.exports = {
             button: e.button,
             ctrlKey: e.ctrlKey,
             shiftKey: e.shiftKey,
+            inertia: e.inertia,
             traversing: e.traversing,
             traversingContainer: e.traversingContainer
 
