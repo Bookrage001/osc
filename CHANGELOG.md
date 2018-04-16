@@ -3,6 +3,7 @@
 ## 0.29.1
 
 - bug fixes
+  - editor: "wrap" deleting the widget just before the one being wrapped
   - regression breaking traversing gestures and high precision gestures (0.29.0)
 - server
   - allow sending osc to broadcast ip addresses

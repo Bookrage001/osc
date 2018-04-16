@@ -229,7 +229,7 @@ var handleClick = function(event) {
                     parent.props.widgets.splice(i,1)
                 }
 
-                parent.props.widgets = parent.props.widgets.slice(0, i - 1).concat(wrap, parent.props.widgets.slice(i, parent.props.widgets.length))
+                parent.props.widgets = parent.props.widgets.slice(0, i).concat(wrap, parent.props.widgets.slice(i, parent.props.widgets.length))
 
                 editor.select(updateWidget(parent, {preventSelect: true}))
             }
