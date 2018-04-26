@@ -8,6 +8,8 @@
 
 Below are the available command-line options. Note that when running without any command-line switch (ie from a file browser), a launcher window will spawn to help setting them.
 
+!!! tip ""
+    Preferences are stored in the user's home folder in a file named `.open-stage-control` (hidden under Linux / macOS)
 
 || Option | Description |
 |---||---|
