@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.29.2
+
+- bug fixes
+  - launcher: parsing errors are not fatal anymore
+
 ## 0.29.1
 
 - bug fixes

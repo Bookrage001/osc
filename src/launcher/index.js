@@ -7,8 +7,7 @@ var {remote, ipcRenderer, shell} = eval("require('electron')"),
     packageUrl = packageInfos.repository.url,
     argv_remote = settings.read('argv'),
     argv = {},
-    $ = require('jquery/dist/jquery.slim.min.js'),
-    SPACE_ESC = '__?SPACE'
+    $ = require('jquery/dist/jquery.slim.min.js')
 
 for (i in argv_remote) {
     argv[i] = argv_remote[i]
@@ -78,27 +77,31 @@ $(document).ready(()=>{
         input.appendTo(item)
 
         input.on('change',function(e,stop){
-            var v = $(this).val()
-            if (option.type == 'boolean') {
-                v = v == 'true' ? true : ''
-                input.val(v)
-            } else if (v && option.type == 'array'){
-                var quoted = []
 
-                v = v.replace(/("[^"]*"|'[^'*]*')/g, (m)=>{
-                    quoted.push(m.substr(1, m.length - 2))
-                    return SPACE_ESC + (quoted.length - 1)
-                })
-                v = v.split(' ')
-                v = v.map(x => x.indexOf(SPACE_ESC) === 0 ? quoted[x.split(SPACE_ESC)[1]] : x)
-            } else if (v && option.type == 'number'){
-                v = parseFloat(v)
+            var v = $(this).val().trim(),
+                fail = false
+
+            try {
+                if (option.type == 'boolean') {
+                    v = v == 'true' ? true : ''
+                    input.val(v)
+                } else if (v && option.type == 'array'){
+                    v = v.replace(/("[^"]*"|'[^'*]*')/g, (m)=>{
+                        return m.replace(/\s/, '_SPÂCE_').substr(1, m.length - 2)
+                    })
+                    v = v.split(' ')
+                    v = v.map(x => x.replace(new RegExp('_SPÂCE_', 'g'), ' '))
+                } else if (v && option.type == 'number'){
+                    v = parseFloat(v)
+                }
+            } catch (err) {
+                fail = err
             }
 
-            if (v != '' && option.check && option.check(v, argv) !== true) {
+            if (fail || v !== '' && option.check && option.check(v, argv) !== true) {
                 wrapper.addClass('error')
                 wrapper.find('.error-msg').remove()
-                wrapper.append(`<div class="error-msg">${option.check(v, argv   )}</div>`)
+                wrapper.append(`<div class="error-msg">${fail || option.check(v, argv   )}</div>`)
             } else {
                 wrapper.removeClass('error')
                 wrapper.find('.error-msg').remove()

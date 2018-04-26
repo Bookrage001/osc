@@ -9,15 +9,15 @@ var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'
 var options = {
     's':{alias:'send',type:'array',describe:'default targets for all widgets (ip:port pairs)',
          check: (s)=>{
-             return (s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$') != null) ?
-                 true : 'Targets must be ip:port pairs & port must be >= 1024'
+             return s.some(item => !item.match('^[^:\s\"\']*:[0-9]{4,5}[\s\"\']*$')) ?
+                 'Targets must be ip:port pairs & port must be >= 1024' : true
          }
     },
     'sync':{type:'array',describe:false,launcher:false,hidden:true,
          check: (s)=>{
              if (s) console.error('Warning: --sync is deprecated, use --send instead.')
-             return (s.join(' ').match('^([^:\s]*:[0-9]{4,5}[\s]*)*$') != null) ?
-                 true : 'Targets must be ip:port pairs & port must be >= 1024'
+             return s.some(item => !item.match('^[^:\s\"\']*:[0-9]{4,5}[\s\"\']*$')) ?
+                 'Targets must be ip:port pairs & port must be >= 1024' : true
          }
     },
     'l':{alias:'load',type:'string',file:{name:'OSC Session (.json)', extensions: ['json', 'js']},describe:'session file to load'},
