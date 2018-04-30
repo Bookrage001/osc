@@ -4,6 +4,7 @@
 
 - bug fixes
   - launcher: parsing errors are not fatal anymore
+  - css parsing error on iOS
 
 ## 0.29.1
 

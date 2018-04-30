@@ -585,7 +585,7 @@ class Widget extends EventEmitter {
             } catch(err) {
 
                 // fallback for browser that don't allow assigning "style" property
-                this.getProp('css')
+                css
                 .replace(/\{[^\}]*\}/g, '')
                 .replace(/^[^@#\.]*\:.*/gm, (m) => {
                     unScopedCss += m[m.length - 1] === ';' ? m : m + ';'
