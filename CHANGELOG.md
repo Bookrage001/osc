@@ -3,7 +3,8 @@
 ## next
 
 - widgets
-  - `target` properties are no longer coerced to arrays and can be simple strings when there's only one value to set 
+  - `target` and `preArgs` properties are no longer coerced to arrays and can be written as single string values
+  - `linkId` supports master and slave mode with `>>` and `>>` prefixes 
 
 ## 0.29.2
 

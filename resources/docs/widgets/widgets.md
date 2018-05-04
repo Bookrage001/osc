@@ -16,8 +16,10 @@ All widgets share a set of generic properties described below.
 ### `linkId`
 - type: `string|array`
 - default: `empty`
-- usage: widgets sharing the same `linkId` update each other's value(s) AND send their respective osc messages.
-
+- usage:
+    - widgets sharing the same `linkId` update each other's value(s) AND send their respective osc messages.
+    - when prefixed with `>>`, the linkId will make the widget act as a master (sending but not receiving)
+    - when prefixed with `<<`, the linkId will make the widget act as a slave (receiving but not sending)
 
 ## Style
 

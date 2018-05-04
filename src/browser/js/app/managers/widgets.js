@@ -29,8 +29,14 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     onChange(e) {
 
-        var {id, widget, linkId, options} = e,
-            widgetsById = this.getWidgetById(id),
+        var {id, widget, linkId, options} = e
+
+        if (linkId) {
+            if (!Array.isArray(linkId)) linkId = [linkId]
+            linkId = linkId.map(x => x.replace(/^>>\s*/, '')).filter(x => x.indexOf('<<') < 0)
+        }
+
+        var widgetsById = this.getWidgetById(id),
             widgetsByLinkId = linkId ? this.getWidgetByLinkId(linkId) : []
 
         // Widget that share the same id will update each other
@@ -89,8 +95,9 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         }
 
         if (!Array.isArray(linkId)) linkId = [linkId]
+        linkId = linkId.map(x => x.replace(/^<<\s*/, ''))
         for (var i in linkId) {
-            if (linkId[i]) {
+            if (linkId[i] && linkId[i].indexOf('>>') < 0) {
                 if (!this.linkIdRoute[linkId[i]]) this.linkIdRoute[linkId[i]] = []
                 this.linkIdRoute[linkId[i]].push(hash)
             }
@@ -157,7 +164,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         if (!Array.isArray(linkId)) linkId = [linkId]
         for (var i in linkId) {
-            if (linkId[i] && this.linkIdRoute[linkId[i]].indexOf(hash) != -1) this.linkIdRoute[linkId[i]].splice(this.linkIdRoute[linkId[i]].indexOf(hash), 1)
+            if (linkId[i] && this.linkIdRoute[linkId[i]] && this.linkIdRoute[linkId[i]].indexOf(hash) != -1) this.linkIdRoute[linkId[i]].splice(this.linkIdRoute[linkId[i]].indexOf(hash), 1)
         }
 
     }
