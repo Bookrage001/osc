@@ -90,7 +90,7 @@ All widgets share a set of generic properties described below.
     - if [`midi`](../extras/midi.md) is enabled, targets can be `"midi:device_name"`
     - special item `"self"` can be used to refer to the emitting client directly
     - if no target is set (empty array `[]`), messages can still be sent if the server has defaults targets (`-s / --send`)
-    - to disable osc regardless of the previous point, set `target` to `[null]`
+    - to disable the default global osc targets (set via the app's `--send` option), set one of the array's item as `null` (unquoted).
 
 ### `address`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `string`

@@ -4,7 +4,8 @@
 
 - widgets
   - `target` and `preArgs` properties are no longer coerced to arrays and can be written as single string values
-  - `linkId` supports master and slave mode with `>>` and `>>` prefixes 
+  - `linkId` supports master and slave mode with `>>` and `>>` prefixes
+  - the special `target` token `null` can now be used in conjunction with regular targets, it disables the default global targets set via the `--send` option 
 
 ## 0.29.2
 

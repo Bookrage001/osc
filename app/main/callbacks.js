@@ -176,17 +176,19 @@ module.exports =  {
 
             data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
 
-            if (!data.target || data.target.indexOf(null) == -1) {
+            if (data.target) {
 
                 var targets = []
 
-                if (settings.read('targets') && !shortdata.target) Array.prototype.push.apply(targets, settings.read('targets'))
+                if (data.target.indexOf(null) === -1 && settings.read('targets') && !shortdata.target) Array.prototype.push.apply(targets, settings.read('targets'))
                 if (data.target) Array.prototype.push.apply(targets, data.target)
 
                 for (var i in targets) {
 
-                    if (targets[i] == 'self') {
+                    if (targets[i] === 'self') {
                         ipc.send('receiveOsc',data,clientId)
+                        continue
+                    } else if (targets[i] === null) {
                         continue
                     }
 
