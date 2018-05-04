@@ -183,7 +183,6 @@ module.exports =  {
                 if (settings.read('targets') && !shortdata.target) Array.prototype.push.apply(targets, settings.read('targets'))
                 if (data.target) Array.prototype.push.apply(targets, data.target)
 
-
                 for (var i in targets) {
 
                     if (targets[i] == 'self') {
@@ -228,8 +227,15 @@ module.exports =  {
             widgetHashTable[clientId][data.hash] = {}
         }
 
-        for (var k in data.data) {
-            widgetHashTable[clientId][data.hash][k] = data.data[k]
+        var cache = widgetHashTable[clientId][data.hash],
+            widgetData = data.data
+
+        for (var k in widgetData) {
+            if ((k === 'target' || k === 'preArgs')) {
+                cache[k] = Array.isArray(widgetData[k]) ? widgetData[k] : [widgetData[k]]
+            } else {
+                cache[k] = widgetData[k]
+            }
         }
 
     },

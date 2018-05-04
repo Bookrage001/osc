@@ -78,12 +78,13 @@ All widgets share a set of generic properties described below.
   - a specific data type can be specified by appending a valid osc type tag to the precision value, for example : `3d` will make the widget send double precision numbers rounded to three decimals
 
 ### `target`<i class="dynamic-prop-icon" title="dynamic"></i>
-- type: `array`
+- type: `array|string`
 - default: `[]`
 - usage:
     - this defines the targets of the widget's osc messages
     - each element of the `array` must be a string formatted as follows : `"ip:port"`
     - multiple targets can be specified : `["ip1:port1","ip2:port2"]`
+    - a single target can be set : `ip:port`
     - if [`midi`](../extras/midi.md) is enabled, targets can be `"midi:device_name"`
     - special item `"self"` can be used to refer to the emitting client directly
     - if no target is set (empty array `[]`), messages can still be sent if the server has defaults targets (`-s / --send`)
@@ -103,11 +104,12 @@ All widgets share a set of generic properties described below.
 ```
 
 ### `preArgs`<i class="dynamic-prop-icon" title="dynamic"></i>
-- type: `array`
+- type: `array|*`
 - default: `[]`
 - usage:
     - each element of the `array` defines a constant value that will be prepended to the osc message
     - values can be defined as objects if the osc data type needs to be specified (ie different from the default implied by the `precision` option)
+    - a single non-array value can be set
 - example:
 ```js
 preArgs: [

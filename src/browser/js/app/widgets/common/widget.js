@@ -54,11 +54,6 @@ class Widget extends EventEmitter {
             this.props.preArgs = [this.props.preArgs]
         }
 
-        // Turn preArgs into array
-        if (this.props.target !== undefined && !Array.isArray(this.resolveProp('target', undefined, false))) {
-            this.props.target = [this.props.target]
-        }
-
         // strip parent ? no position
         if (this.parent && this.parent.props && this.parent.props.type == 'strip') {
             delete this.props.top

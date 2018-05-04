@@ -29,6 +29,7 @@ module.exports = class OscReceiver {
 
         if (typeof args !== 'object') args = [args]
         var preArgs = this.parent.getProp('preArgs') || []
+        if (!isArray(preArgs) && preArgs !== '') preArgs = [preArgs]
         if (args.length >= preArgs.length) {
             for (var i in preArgs) {
                 if (preArgs[i] !== args[i]) return

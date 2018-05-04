@@ -43,8 +43,7 @@ var Osc = class Osc extends EventEmitter {
             let widgetTarget = widgets[i].getProp('target')
             // if the message target is provided (when message comes from another client connected to the same server)
             // then we only update the widgets that have the same target
-            // compare arrays using > and < operators (both false = equality)
-            if (!data.target || !widgetTarget || !(widgetTarget < data.target || widgetTarget > data.target || widgetTarget.length !== data.target.length)) {
+            if (!data.target || !widgetTarget || String(widgetTarget) === String(data.target)) {
                 // update matching widgets
                 if (widgets[i] && widgets[i].setValue) widgets[i].setValue(restArgs,{send:false,sync:true,fromExternal:!data.target})
             }

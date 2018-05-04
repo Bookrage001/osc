@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- widgets
+  - `target` properties are no longer coerced to arrays and can be simple strings when there's only one value to set 
+
 ## 0.29.2
 
 - bug fixes
