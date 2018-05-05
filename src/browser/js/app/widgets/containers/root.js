@@ -10,6 +10,7 @@ module.exports = class Root extends Panel {
         return {
 
             type:'root',
+            id: 'root',
             linkId:'',
 
             _style:'style',
@@ -48,6 +49,8 @@ module.exports = class Root extends Panel {
         super(options)
 
         this.widget.classList.add('root')
+
+        this.disabledProps.push('id')
 
         DOM.each(this.widget, '> .navigation', (el)=>{
             el.classList.add('main')

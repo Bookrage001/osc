@@ -102,6 +102,20 @@ class Panel extends Widget {
 
         }
 
+        if (this.getProp('tabs') && !this.getProp('tabs').length) {
+            this.disabledProps.push(
+                'precision', 'address', 'preArgs', 'address', 'bypass',
+                'value', 'default'
+            )
+        }
+        if (this.getProp('widgets') && !this.getProp('widgets').length) {
+            this.disabledProps.push(
+                'layout', 'spacing', 'scroll'
+            )
+        }
+
+
+
     }
 
     createNavigation() {

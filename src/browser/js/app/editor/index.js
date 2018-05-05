@@ -174,17 +174,6 @@ var Editor = class Editor {
             </div>
         `))
 
-        if (widget.props.type === 'root') {
-            this.form.appendChild(DOM.create(`
-                <div class="input-wrapper">
-                    <label>id</label>
-                    <input class="input" title="id" disabled value="root"/>
-                </div>
-            `))
-        }
-
-
-
         for (let propName in props) {
 
             let field,

@@ -54,6 +54,15 @@
         &:last-child {
             margin-bottom:0;
         }
+        &.disabled {
+            label {
+                color: var(--color-text-fade);
+            }
+            label + * {
+                pointer-events: none;
+                opacity: .75;
+            }
+        }
         label {
             background: var(--color-fg);
             flex-shrink: 0;

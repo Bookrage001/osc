@@ -122,6 +122,9 @@ class Widget extends EventEmitter {
         var selfLinkedOSCProps = (this.linkedPropsValue['this'] || []).filter(i => OSCProps.indexOf(i) > -1)
         this.selfLinkedOSCProps = selfLinkedOSCProps.length ? selfLinkedOSCProps : false
 
+
+        this.disabledProps = []
+
         // cache precision
         if (this.props.precision != undefined) {
             this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))

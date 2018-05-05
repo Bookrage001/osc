@@ -5,10 +5,11 @@ var widgetCategories = require('../widgets/').categories,
 
 module.exports = function editField(editor, widget, propName, defaultValue){
 
-    let dynamic = widget.constructor.dynamicProps.includes(propName)
+    let dynamic = widget.constructor.dynamicProps.includes(propName),
+        disabled = widget.disabledProps.indexOf(propName) > -1
 
     let field = DOM.create(`
-        <div class="input-wrapper ${widget.errors[propName] ? 'error' : ''}">
+        <div class="input-wrapper ${widget.errors[propName] ? 'error' : ''} ${disabled ? 'disabled' : ''}">
             <label ${dynamic ? 'class="dynamic"': ''} title="${widget.errors[propName] || (dynamic ? 'dynamic' : '')}">${propName}</label>
         </div>
     `)
@@ -21,7 +22,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             if (widget.props.type == 'tab' || widget.props.type == 'root') return
 
-            input = DOM.create(`<select class="input" title="${propName}"/>`)
+            input = DOM.create(`<select class="input" title="${propName}" ${disabled ? 'disabled' : ''}/>`)
 
             for (let category in widgetCategories) {
                 input.innerHTML += `<optgroup label="> ${category}">`
@@ -41,7 +42,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             var value = typeof widget.props[propName] !== 'string' ?
                     JSON.stringify(widget.props[propName], null, '  ').replace(/\n\s\s\s\s/g, ' ').replace(/\n\s\s(\}|\])/g, ' $1') : widget.props[propName]
 
-            input = DOM.create(`<textarea class="input" title="${propName}" rows="${value.split('\n').length}">${value}</textarea>`)
+            input = DOM.create(`<textarea class="input" title="${propName}" rows="${value.split('\n').length}" ${disabled ? 'disabled' : ''}>${value}</textarea>`)
 
             DOM.addEventListener(input, ['input', 'focus'], ()=>{
                 input.setAttribute('rows',0)
