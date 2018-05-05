@@ -104,7 +104,7 @@ class Panel extends Widget {
 
         if (this.getProp('tabs') && !this.getProp('tabs').length) {
             this.disabledProps.push(
-                'precision', 'address', 'preArgs', 'address', 'bypass',
+                'precision', 'address', 'preArgs', 'target', 'bypass',
                 'value', 'default'
             )
         }
