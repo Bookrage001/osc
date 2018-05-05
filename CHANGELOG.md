@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.30.1
+
+- midi
+  - prevent the main process from exiting when MIDI setup fails
+
 ## 0.30.0
 
 - widgets

@@ -12,8 +12,8 @@ try:
     import rtmidi
     API = rtmidi.RtMidiIn.UNIX_JACK if 'jack' in argv else rtmidi.RtMidiIn.UNSPECIFIED
     JACK = API == rtmidi.RtMidiIn.UNIX_JACK
-    in_dev = rtmidi.RtMidiIn(API, 'Midi->OSC probe')
-    out_dev = rtmidi.RtMidiOut(API, 'OSC->Midi probe')
+    in_dev = rtmidi.RtMidiIn(API, 'MIDI->OSC probe')
+    out_dev = rtmidi.RtMidiOut(API, 'OSC->MIDI probe')
 except:
     ipcSend('error', 'pyrtmidi not found (or wrong version)')
 

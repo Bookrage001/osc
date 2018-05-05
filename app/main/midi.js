@@ -31,13 +31,16 @@ init = (receiveOsc)=>{
             // console.log(err)
         }
         if (name == 'log') {
-            console.log(data)
+            if (data.indexOf('ERROR') === 0) {
+                console.error(data)
+            } else {
+                console.log(data)
+            }
         } else if (name ==  'osc') {
             receiveOsc(data)
         } else if (name == 'error') {
-            console.log('ERROR: Midi: ' + data)
+            console.error('ERROR: MIDI: ' + data)
             stop()
-            process.exit()
         }
     })
 }
