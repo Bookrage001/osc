@@ -41,10 +41,10 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         // Widget that share the same id will update each other
         // without sending any extra osc message
-        if (widgetsById.length>1) {
+        if (widgetsById.length > 1) {
             var v = widget.getValue()
             for (let i in widgetsById) {
-                if (widgetsById[i].hash != widget.hash && widgetsById[i].setValue) {
+                if (widgetsById[i] !== widget) {
                     widgetsById[i].setValue(v,{send:false,sync:false})
                 }
             }
@@ -52,10 +52,10 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         // widgets that share the same linkId will update each other.
         // Updated widgets will send osc messages normally
-        if (widgetsByLinkId.length>1) {
+        if (widgetsByLinkId.length > 0) {
             var v = widget.getValue()
             for (let i in widgetsByLinkId) {
-                if (widgetsByLinkId[i].hash != widget.hash && widgetsByLinkId[i].setValue) {
+                if (widgetsByLinkId[i] !== widget) {
                     widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
                 }
             }
@@ -94,12 +94,14 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             this.addressRoute[address].push(hash)
         }
 
-        if (!Array.isArray(linkId)) linkId = [linkId]
-        linkId = linkId.map(x => x.replace(/^<<\s*/, ''))
-        for (var i in linkId) {
-            if (linkId[i] && linkId[i].indexOf('>>') < 0) {
-                if (!this.linkIdRoute[linkId[i]]) this.linkIdRoute[linkId[i]] = []
-                this.linkIdRoute[linkId[i]].push(hash)
+        if (linkId) {
+            if (!Array.isArray(linkId)) linkId = [linkId]
+            linkId = linkId.map(x => x.replace(/^<<\s*/, '')).filter(x => x.indexOf('>>') < 0)
+            for (var i in linkId) {
+                if (linkId[i]) {
+                    if (!this.linkIdRoute[linkId[i]]) this.linkIdRoute[linkId[i]] = []
+                    this.linkIdRoute[linkId[i]].push(hash)
+                }
             }
         }
 
