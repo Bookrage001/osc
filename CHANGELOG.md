@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.30.2
+
+- bug fixes
+  - broken remote-control /TABS command
+
 ## 0.30.1
 
 - midi
