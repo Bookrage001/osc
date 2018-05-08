@@ -4,6 +4,7 @@
 
 - bug fixes
   - broken remote-control /TABS command
+  - disabled `spacing` property in strips
 
 ## 0.30.1
 

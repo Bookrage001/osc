@@ -46,6 +46,8 @@ module.exports = class Strip extends Panel {
 
         super(options)
 
+        this.disabledProps = []
+
         if (this.getProp('spacing')) {
             var spacing = this.getProp('spacing')
             if (!isNaN(spacing)) spacing += 'rem'
