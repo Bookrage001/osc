@@ -59,10 +59,11 @@ module.exports = class Modal extends Panel {
 
     constructor(options) {
 
-        options.props.tabs = []
         options.props.scroll = true
 
         super(options)
+
+        this.disabledProps = []
 
         this.popup = DOM.create(`
             <div class="popup">
