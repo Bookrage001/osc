@@ -81,3 +81,15 @@ Media queries can also be used:
 ## CSS Variables
 
 CSS Variables declared in the  [default theme](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/browser/scss/themes/default.scss) can be overriden. Some widgets also use specific CSS variables (mostly to define colors) documented on their respective pages.
+
+## Other tips
+
+### Panel's background-color
+
+This works for panel, strip and tabs:
+
+```css
+> .panel {
+    background-color: red;
+}
+```
