@@ -3,7 +3,7 @@ var Widget = require('../common/widget'),
     resize = require('../../events/resize'),
     parser = require('../../parser')
 
-var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable']
+var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable', 'not-editable']
 
 class Clone extends Widget {
 

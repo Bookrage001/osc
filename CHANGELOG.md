@@ -4,6 +4,7 @@
 
 - bug fixes
   - regression breaking touch traversing gestures
+  - clone widgets becomming unselectable for edition
 
 ## 0.30.3
 
