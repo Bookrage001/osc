@@ -1,7 +1,7 @@
 {
   "name": "open-stage-control-builder",
   "description": "[Builder package] Libre and modular OSC / MIDI controller",
-  "version": "0.30.3",
+  "version": "0.30.4",
   "author": {
     "name": "Jean-Emmanuel Doucet",
     "email": "jean-emmanuel@ammd.net"
