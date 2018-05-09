@@ -5,7 +5,8 @@
 - bug fixes
   - regression breaking touch traversing gestures
   - clone widgets becomming unselectable for edition
-
+  - `preArgs` property still being coerced to an array
+  
 ## 0.30.3
 
 - bug fixes

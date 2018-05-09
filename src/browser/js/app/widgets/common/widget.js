@@ -49,11 +49,6 @@ class Widget extends EventEmitter {
         this.hash = shortid.generate()
         this.childrenHashes = []
 
-        // Turn preArgs into array
-        if (this.props.preArgs !== undefined && !Array.isArray(this.resolveProp('preArgs', undefined, false))) {
-            this.props.preArgs = [this.props.preArgs]
-        }
-
         // strip parent ? no position
         if (this.parent && this.parent.props && this.parent.props.type == 'strip') {
             delete this.props.top
