@@ -6,6 +6,7 @@
   - broken remote-control /TABS command
   - disabled `spacing` property in strips
   - disabled properties in modals
+  - broken arm build 
 
 
 ## 0.30.1
