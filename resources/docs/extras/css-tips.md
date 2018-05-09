@@ -84,6 +84,10 @@ CSS Variables declared in the  [default theme](https://github.com/jean-emmanuel/
 
 ## Other tips
 
+## Use the inspector
+
+Hit `F12` to open the developers tools panel. The html/css inspector helps retreiving the class names needed to style specific parts of the widgets.
+
 ### Panel's background-color
 
 This works for panel, strip and tabs:
