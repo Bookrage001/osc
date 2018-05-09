@@ -1,4 +1,4 @@
-const {fix, normalizeDragEvent, resetEventOffset, Touch} = require('./utils')
+const {fix, normalizeDragEvent, resetEventOffset} = require('./utils')
 
 var targets = {},
     previousPointers = {}
@@ -32,13 +32,13 @@ function pointerMoveHandler(event) {
     if (event.traversing) {
 
         var previousTarget = targets[event.pointerId],
-            target = event instanceof Touch ?
+            target = event.isTouch ?
                 document.elementFromPoint(event.clientX, event.clientY)
                 : event.target
 
         if (target) target = target.closest('.drag-event')
 
-        if (target && event instanceof Touch) {
+        if (target && event.isTouch) {
             resetEventOffset(event, target)
         }
 

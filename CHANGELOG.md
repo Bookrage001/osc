@@ -1,12 +1,17 @@
 # Changelog
 
+## 0.30.3
+
+- bug fixes
+  - big regression breaking many touch gestures
+
 ## 0.30.2
 
 - bug fixes
   - broken remote-control /TABS command
   - disabled `spacing` property in strips
   - disabled properties in modals
-  - broken arm build 
+  - broken arm build
 
 
 ## 0.30.1

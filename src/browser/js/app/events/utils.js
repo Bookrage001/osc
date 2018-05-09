@@ -20,10 +20,9 @@ module.exports = {
             shiftKey: e.shiftKey,
             inertia: e.inertia,
             traversing: e.traversing,
-            traversingContainer: e.traversingContainer
-
+            traversingContainer: e.traversingContainer,
+            isTouch: e instanceof Touch
         }
-
     },
 
     normalizeDragEvent: function(event, previousEvent) {
@@ -37,11 +36,11 @@ module.exports = {
 
         }
 
-        if (event instanceof Touch && !previousEvent) {
+        if (event.isTouch && !previousEvent) {
 
             module.exports.resetEventOffset(event, event.target)
 
-        } else if (event instanceof Touch && previousEvent) {
+        } else if (event.isTouch && previousEvent) {
 
             event.offsetX = previousEvent.offsetX + event.movementX
             event.offsetY = previousEvent.offsetY + event.movementY
@@ -72,9 +71,6 @@ module.exports = {
         event.offsetX = event.pageX - off.left
         event.offsetY = event.pageY - off.top
 
-    },
-
-    Touch: Touch
-
+    }
 
 }
