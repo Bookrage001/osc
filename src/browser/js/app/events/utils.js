@@ -11,6 +11,8 @@ module.exports = {
             offsetY: e.offsetY,
             pageX: e.pageX,
             pageY: e.pageY,
+            clientX: e.clientX,
+            clientY: e.clientY,
             movementX: e.movementX,
             movementY: e.movementY,
             pointerId: e.pointerId,

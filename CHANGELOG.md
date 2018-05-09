@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.30.4
+
+- bug fixes
+  - regression breaking touch traversing gestures
+
 ## 0.30.3
 
 - bug fixes
