@@ -82,13 +82,14 @@ class Toggle extends Widget {
 
     setValue(v,options={}) {
 
-        if (v===this.getProp('on') || (this.getProp('on') != null && v.value === this.getProp('on').value && v.value !== undefined)) {
+        if (typeof v == 'object' && v !== null) v = v.value
+        if (v===this.getProp('on') || (this.getProp('on') != null && v === this.getProp('on').value && v !== undefined)) {
             this.widget.classList.add('on')
             this.container.classList.add('on')
             this.state = 1
             this.value = this.getProp('on')
             if (options.send) this.sendValue()
-        } else if (v===this.getProp('off') || (this.getProp('off') != null && v.value === this.getProp('off').value && v.value !== undefined)) {
+        } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.widget.classList.remove('on')
             this.container.classList.remove('on')
             this.state = 0
