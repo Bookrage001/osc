@@ -28,7 +28,9 @@ Head over the [issue tracker](https://github.com/jean-emmanuel/open-stage-contro
 
 ## Free what ?
 
-Open Stage Control is a [free software](https://www.fsf.org/), as in *gratis* and — most importantly — **libre**. It always will be. If you want to support the project financially, consider using flattr :
+Open Stage Control is a [free software](https://www.fsf.org/), as in *gratis* and — most importantly — **libre**. It always will be. If you want to support the project financially, consider using liberapay or flattr :
+
+https://liberapay.com/jean-emmanuel/
 
 https://flattr.com/@jean-emmanuel
 
