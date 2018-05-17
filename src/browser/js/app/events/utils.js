@@ -20,9 +20,10 @@ module.exports = {
             button: e.button,
             ctrlKey: e.ctrlKey,
             shiftKey: e.shiftKey,
-            inertia: e.inertia,
+            inertia: e.multitouch ? 1 : e.inertia,
             traversing: e.traversing,
             traversingContainer: e.traversingContainer,
+            multitouch: e.multitouch,
             isTouch: e instanceof Touch
         }
     },
@@ -55,12 +56,21 @@ module.exports = {
 
         }
 
-        if (previousEvent && previousEvent.traversing) {
+        if (previousEvent) {
 
-            event.traversing = previousEvent.traversing
-            event.traversingContainer = previousEvent.traversingContainer
+            if (previousEvent.traversing) {
+                event.traversing = previousEvent.traversing
+                event.traversingContainer = previousEvent.traversingContainer
+            }
+
+            if (previousEvent.multitouch) {
+                event.multitouch = previousEvent.multitouch
+                event.inertia = 1
+            }
 
         }
+
+
 
         return event
 
