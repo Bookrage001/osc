@@ -35,7 +35,7 @@ Sliders are unidimensional widgets that output one value at a time.
 ### `compact`
 - type: `boolean`
 - default: `false`
-- usage: set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display (right-click/long-touch still triggers it).
+- usage: set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display.
 
 ### `dashed`
 - type: `boolean`
@@ -131,11 +131,6 @@ range: {
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to hide the built-in input
-
-### `compact`
-- type: `boolean`
-- default: `false`
-- usage: set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display (right-click/long-touch still triggers it).
 
 ### `angle`
 - type: `number`
