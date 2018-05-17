@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.30.5
+## 0.31.0
 
 - bug fixes
   - regression breaking multitouch widgets
