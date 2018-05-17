@@ -378,14 +378,6 @@ module.exports = class Range extends Widget {
                 this.showValue()
             })
 
-            this.widget.addEventListener('fast-right-click',function(e){
-                if (!EDITING) {
-                    e.stopPropagation()
-                    e.preventDefault()
-                    this.input.canvas.focus()
-                }
-            }.bind(this))
-
         }
 
 

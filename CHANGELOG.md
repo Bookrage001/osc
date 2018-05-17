@@ -4,6 +4,8 @@
 
 - bug fixes
   - regression breaking multitouch widgets
+- widgets
+  - fader/knob/pad: right-click / long tap doesn't give focus to the input anymore
 
 ## 0.30.4
 
