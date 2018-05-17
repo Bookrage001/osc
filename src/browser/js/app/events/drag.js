@@ -97,15 +97,15 @@ function pointerUpFilter(event) {
 
 // Mouse events wrappers
 
-function mouseDownCapture(event) {
-    if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
-    event.pointerId = 'mouse'
-    pointerDownHandler(event)
+function mouseMultiWrapper(event) {
+    mouseDownCapture(event, true)
 }
 
-function mouseMultiWrapper(event) {
-    event.multitouch = true
-    mouseDownCapture(event)
+function mouseDownCapture(event, multitouch) {
+    if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
+    event.pointerId = 'mouse'
+    event.multitouch = multitouch
+    pointerDownHandler(event)
 }
 
 function mouseMoveCapture(event) {
@@ -124,11 +124,10 @@ function mouseUpCapture(event){
 // Touch events wrappers
 
 function touchMultiWrapper(event) {
-    event.multitouch = true
-    touchDownCapture(event)
+    touchDownCapture(event, true)
 }
 
-function touchDownCapture(event) {
+function touchDownCapture(event, multitouch) {
     event.preventDefault()
     for (var i in event.changedTouches) {
         if (isNaN(i) || !event.changedTouches[i]) continue
@@ -140,6 +139,8 @@ function touchDownCapture(event) {
         }
 
         touchEvent.pointerId = touchEvent.identifier
+        touchEvent.multitouch = multitouch
+
         pointerDownHandler(touchEvent)
     }
 }
