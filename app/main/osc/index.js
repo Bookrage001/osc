@@ -190,15 +190,12 @@ class OscServer {
         })
 
 		oscUDPServer.on('message', this.oscInHandlerWrapper.bind(this))
-		oscTCPServer.on('message', this.oscInHandlerWrapper.bind(this))
-
-		oscUDPServer.on('error', function(error) {
-			console.error(error)
-		})
-
 		oscUDPServer.open()
 
-		if (settings.read('tcpInPort')) oscTCPServer.open()
+		if (settings.read('tcpInPort')) {
+			oscTCPServer.on('message', this.oscInHandlerWrapper.bind(this))
+			oscTCPServer.open()
+		}
 
 		if (this.customModule.init) {
 			this.customModule.init()
