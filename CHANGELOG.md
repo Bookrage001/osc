@@ -4,8 +4,6 @@
 
 - main
   - add tcp support
-- engine
-  - electron v2 / chromium 61
 
 ## 0.31.0
 
