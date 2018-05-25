@@ -112,8 +112,8 @@ class OscServer {
     			args: data.args
     		}, data.host, data.port)
 
-			if (tcpInPort && oscTCPServer.clients[data.host + ':' + data.port]) {
-				oscTCPServer.clients[data.host + ':' + data.port].send({
+			if (tcpInPort && oscTCPServer.clients[data.host] && oscTCPServer.clients[data.host][data.port]) {
+				oscTCPServer.clients[data.host][data.port].send({
 					address: data.address,
 					args: data.args
 				})

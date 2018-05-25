@@ -15,7 +15,6 @@ class OscTCPClient extends EventEmitter {
         this.options = options
         this.remoteAddress = options.address
         this.remotePort = options.port
-        this.name = this.remoteAddress + ':' + this.remotePort
 
         this.open()
 
@@ -86,14 +85,15 @@ class OscTCPServer extends EventEmitter {
 
     addClient(client) {
 
-        this.clients[client.name] = client
+        this.clients[client.remoteAddress] = this.clients[client.remoteAddress] || {}
+        this.clients[client.remoteAddress][client.remotePort] = client
 
         client.on('message', (msg, timetag, info)=>{
             this.emit('message', msg, timetag, info)
         })
 
         client.on('die', (hadError)=>{
-            delete this.clients[client.name]
+            if (this.clients[client.remoteAddress]) delete this.clients[client.remoteAddress][client.remotePort]
         })
 
     }
