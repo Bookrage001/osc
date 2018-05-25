@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.32.0
+
+- main
+  - add tcp support
+
 ## 0.31.0
 
 - bug fixes

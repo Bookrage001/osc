@@ -35,6 +35,21 @@ var options = {
                  true : 'Port must be an integer >= 1024'
           }
      },
+     'tcp-port':{type:'number', describe:'TCP server input port',
+         check: (t, argv)=>{
+             var h = argv.p || 8080
+             if (t===h) return 'TCP input port must different from --port'
+             return (!isNaN(t) && t > 1023 && parseInt(t)===t) ?
+                true : 'Port must be an integer >= 1024'
+         }
+     },
+     'tcp-targets':{type:'array',describe:'TCP servers to connect to (ip:port pairs), does not susbtitute for --send',
+          check: (s, argv)=>{
+              if (!argv['tcp-port']) return '--tcp-port must be set'
+              return s.some(item => !item.match('^[^:\s\"\']*:[0-9]{4,5}[\s\"\']*$')) ?
+                  'Targets must be ip:port pairs & port must be >= 1024' : true
+          }
+     },
     'm':{alias:'midi',type:'array',describe:'midi router settings'},
     'd':{alias:'debug',type:'boolean',describe:'log received osc messages in the console'},
     'n':{alias:'no-gui',type:'boolean',describe:'disable default gui',
@@ -116,6 +131,9 @@ var makeDefaultConfig = function(argv){
         targets: argv.s || argv.sync || false,
         oscInPort: argv.o || 0,
         httpPort: argv.p || 8080,
+        httpPort: argv.p || 8080,
+        tcpInPort: argv['tcp-port'] || false,
+        tcpTargets: argv['tcp-targets'] || [],
         debug: argv.d || false,
         sessionFile:  argv.l || false,
         newSession:  argv.b || false,
