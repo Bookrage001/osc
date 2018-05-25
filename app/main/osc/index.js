@@ -46,7 +46,7 @@ class OscServer {
 			try {
 				mod = vm.runInContext(file, vm.createContext(context))
 			} catch(err) {
-				console.log(err)
+				console.error(err)
 				return false
 			}
 
