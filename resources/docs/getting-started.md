@@ -20,7 +20,7 @@ Below are the available command-line options. Note that when running without any
 | `-p` | `--port` | http port of the server (default to 8080) |
 | `-o` | `--osc-port` | osc input port (default to --port) |
 | | `--tcp-port` | tcp server input port |
-| | `--osc-targets` | tcp servers to connect to (ip:port pairs), does not susbtitute for --send |
+| | `--tcp-targets` | tcp servers to connect to (ip:port pairs), does not susbtitute for --send |
 | `-m` | `--midi` | midi router settings |
 | `-d` | `--debug` | log received osc messages in the console |
 | `-n` | `--no-gui` | disable default gui |
