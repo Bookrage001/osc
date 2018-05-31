@@ -1,10 +1,11 @@
 var osc = require('osc'),
     EventEmitter = require('events').EventEmitter
-	settings = require('../settings'),
-	zeroconf = require('../zeroconf'),
-	tcpInPort = settings.read('tcpInPort'),
+    settings = require('../settings'),
+    debug = settings.read('debug'),
+    zeroconf = require('../zeroconf'),
+    tcpInPort = settings.read('tcpInPort'),
     tcpTargets = settings.read('tcpTargets'),
-	net = require('net')
+    net = require('net')
 
 class OscTCPClient extends EventEmitter {
 
@@ -25,11 +26,13 @@ class OscTCPClient extends EventEmitter {
         this.port = new osc.TCPSocketPort(this.options)
 
         this.port.on('error', (err)=>{
-            console.error(err)
+            console.error(`TCP: Error: ${err.message}`)
         })
 
         this.port.on('close', (hadErr)=>{
+            console.log(`TCP: connection closed (${this.remoteAddress}:${this.remotePort})`)
             if (!this.options.socket) {
+                console.log(`TCP: attempting reconnection in 5s (${this.remoteAddress}:${this.remotePort})`)
                 this.reconnect()
             } else {
                 this.emit('die')
@@ -40,7 +43,19 @@ class OscTCPClient extends EventEmitter {
             this.emit('message', msg, timetag, {address: this.remoteAddress, port: this.remotePort})
         })
 
-        if (!this.options.socket) this.port.open()
+        this.port.on('ready', ()=>{
+            console.log(`TCP: connection established (${this.remoteAddress}:${this.remotePort})`)
+        })
+
+        if (!this.options.socket) {
+
+            this.port.open()
+
+        } else {
+
+            this.port.emit('ready')
+
+        }
 
     }
 
