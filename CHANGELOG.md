@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.32.1
+
+- bug fixes
+  - error in osc receivers
+
 ## 0.32.0
 
 - main
