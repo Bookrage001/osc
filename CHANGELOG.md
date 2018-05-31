@@ -3,7 +3,9 @@
 ## 0.32.2
 
 - widgets
-  - xy: tiny knob style change 
+  - xy: tiny knob style change
+- editor
+  - reallow editing disabled properties
 
 ## 0.32.1
 
