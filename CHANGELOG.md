@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.32.2
+
+- widgets
+  - xy: tiny knob style change 
+
 ## 0.32.1
 
 - bug fixes
