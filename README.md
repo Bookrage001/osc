@@ -45,8 +45,6 @@ https://github.com/jean-emmanuel/open-stage-control/graphs/contributors
 
 ----
 
- <div style="width:240px">
-[![BrowserStack](https://osc.ammd.net/img/logo-browserstack.png)](http://browserstack.com/)
-</div>
+<a href="http://browserstack.com/"><img alt="BrowserStack" src="http://osc.ammd.net/img/logo-browserstack.png" width="240" /></a>
 
 BrowserStack supports Open Stage Control by providing a complete suite of browser emulators for Android, iOS and Windows.
