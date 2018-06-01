@@ -2,6 +2,8 @@
 
 ## 0.32.2
 
+- bug fixes
+  - sliders colors not displayed correctly on iOS
 - widgets
   - xy: tiny knob style change
 - editor
