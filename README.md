@@ -32,13 +32,21 @@ Firefox is *not* supported.
 
 ## License & credits
 
-Copyleft © Jean-Emmanuel @ [AMMD](http://ammd.net) 2018
+Copyleft © Jean-Emmanuel Doucet @ [AMMD](http://ammd.net) 2018.
+This program is a free software released under the [GNU/GPL3](ttps://github.com/jean-emmanuel/open-stage-control/blob/master/LICENSE) license.
 
+### Dependencies
 
-This program is a free software released under the GNU/GPL3 license, it relies on the use of several other free softwares, including [Node.js](https://nodejs.org/), [Electron](http://electron.atom.io/), [osc.js](https://github.com/colinbdclark/osc.js), [browserify](http://browserify.org), [exorcist](https://github.com/thlorenz/exorcist), [express](http://expressjs.com), [node-sass](https://github.com/sass/node-sass), [jQuery](http://jquery.com/), [jQuery-UI](http://jqueryui.com/), [Font Awesome](http://fontawesome.io/), [source-map](https://github.com/mozilla/source-map), [mathjs](http://mathjs.org/)
+Open Stage Control relies on several other free softwares, including [Node.js](https://nodejs.org/), [Electron](http://electron.atom.io/), [osc.js](https://github.com/colinbdclark/osc.js), [babel](http://babeljs.io/), [browserify](http://browserify.org), [exorcist](https://github.com/thlorenz/exorcist), [express](http://expressjs.com), [node-sass](https://github.com/sass/node-sass), [jQuery](http://jquery.com/), [jQuery-UI](http://jqueryui.com/), [Font Awesome](http://fontawesome.io/), [stacktracejs](stacktracejs.com), [mathjs](http://mathjs.org/). A comprehensive and up-to-date list can be found [here](https://github.com/jean-emmanuel/open-stage-control/network/dependencies).
+
+### Contributors
+
+https://github.com/jean-emmanuel/open-stage-control/graphs/contributors
 
 ----
 
-<a href="http://browserstack.com/"><img alt="BrowserStack" src="http://osc.ammd.net/img/logo-browserstack.png" width="240" /></a>
+ <div style="width:240px">
+[![BrowserStack](img/logo-browserstack.png)](http://browserstack.com/)
+</div>
 
 BrowserStack supports Open Stage Control by providing a complete suite of browser emulators for Android, iOS and Windows.
