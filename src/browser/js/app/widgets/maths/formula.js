@@ -134,7 +134,6 @@ module.exports = class Formula extends Widget {
                 for (let w of widgets) {
                     if (w.getValue) {
                         variables['_'+id] = w.getValue()
-                        n++
                         break
                     }
                 }

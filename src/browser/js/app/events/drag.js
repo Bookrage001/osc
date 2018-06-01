@@ -236,6 +236,8 @@ module.exports = {
             return
         }
 
+        var {element, multitouch} = options
+
         delete element._drag_widget
         element.style.touchAction = ''
         element.classList.remove('drag-event')
