@@ -165,13 +165,13 @@ class Slider extends Canvas {
 
         style = style || window.getComputedStyle(this.canvas)
 
-        this.colors.track = style.getPropertyValue('--color-track')
-        this.colors.gauge = style.getPropertyValue('--color-gauge')
-        this.colors.knob = style.getPropertyValue('--color-knob')
-        this.colors.pips = style.getPropertyValue('--color-pips')
+        super.cacheCanvasStyle(style)
+
+        this.colors.gauge = style.getPropertyValue('--color-gauge') || this.colors.custom
+        this.colors.knob = style.getPropertyValue('--color-knob') || this.colors.custom
+        this.colors.pips = style.getPropertyValue('--color-pips') || this.colors.custom
         this.colors.gaugeOpacity = style.getPropertyValue('--gauge-opacity')
 
-        super.cacheCanvasStyle(style)
 
     }
 
