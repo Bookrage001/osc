@@ -2,13 +2,13 @@ var express     = require('express')(),
     path        = require('path'),
     http        = require('http'),
     server      = http.createServer(express),
-    Ipc         = require('./ipc/server')
-ipc         = new Ipc(server),
-settings     = require('./settings'),
-theme       = require('./theme').init(),
-zeroconf = require('./zeroconf'),
-appAddresses = settings.read('appAddresses'),
-clients = {}
+    Ipc         = require('./ipc/server'),
+    ipc         = new Ipc(server),
+    settings     = require('./settings'),
+    theme       = require('./theme').init(),
+    zeroconf = require('./zeroconf'),
+    appAddresses = settings.read('appAddresses'),
+    clients = {}
 
 express.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser/index.html'))

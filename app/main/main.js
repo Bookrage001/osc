@@ -1,4 +1,3 @@
-
 var dev = process.argv[1] === '.',
     settings = require('./settings')
 
