@@ -13,7 +13,7 @@ class Ipc extends EventEmitter {
 
         this.server = new WebSocketServer({server: server})
 
-        this.server.on('connection', (socket, req) => {
+        this.server.on('connection', (socket, req)=>{
 
             var id = req.url.split('/').pop()
 

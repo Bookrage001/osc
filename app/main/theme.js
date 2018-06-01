@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 class Theme {
 
-    constructor() {
+    constructor() {
 
         this.themes = []
         this.files = []
@@ -15,7 +15,7 @@ class Theme {
 
     }
 
-    init() {
+    init() {
 
         this.themes = settings.read('theme')
         this.files = []

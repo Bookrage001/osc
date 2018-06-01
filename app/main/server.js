@@ -3,12 +3,12 @@ var express     = require('express')(),
     http        = require('http'),
     server      = http.createServer(express),
     Ipc         = require('./ipc/server')
-    ipc         = new Ipc(server),
-	settings	= require('./settings'),
-    theme       = require('./theme').init(),
-    zeroconf = require('./zeroconf'),
-    appAddresses = settings.read('appAddresses'),
-    clients = {}
+ipc         = new Ipc(server),
+settings     = require('./settings'),
+theme       = require('./theme').init(),
+zeroconf = require('./zeroconf'),
+appAddresses = settings.read('appAddresses'),
+clients = {}
 
 express.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../browser/index.html'))
@@ -16,8 +16,8 @@ express.get('/', function(req, res){
 
 express.get('*', function(req, res){
     if (req.path.indexOf('theme.css') != -1) {
-        res.set('Content-Type', 'text/css');
-        if (settings.read('theme')) {
+        res.set('Content-Type', 'text/css')
+        if (settings.read('theme')) {
             res.send(new Buffer(theme.get()))
         } else {
             res.send('')
@@ -32,9 +32,9 @@ express.get('*', function(req, res){
 server.listen(settings.read('httpPort'))
 
 zeroconf.publish({
-	name: settings.read('appName') + (settings.read('instanceName') ? ' (' + settings.read('instanceName') + ')' : ''),
-	type: 'http',
-	port: settings.read('httpPort')
+    name: settings.read('appName') + (settings.read('instanceName') ? ' (' + settings.read('instanceName') + ')' : ''),
+    type: 'http',
+    port: settings.read('httpPort')
 }).on('error', (e)=>{
     console.error(`Error: Zeroconf: ${e.message}`)
 })
@@ -62,7 +62,7 @@ var bindCallbacks = function(callbacks) {
 console.log('App available at ' + appAddresses.join(' & '))
 
 module.exports =  {
-	ipc:ipc,
-	bindCallbacks:bindCallbacks,
+    ipc:ipc,
+    bindCallbacks:bindCallbacks,
     clients:clients
 }

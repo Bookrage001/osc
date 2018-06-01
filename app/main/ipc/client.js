@@ -6,7 +6,7 @@ var hearbeatInterval = 25000,
 
 class Socket extends EventEmitter {
 
-    constructor(ws, id) {
+    constructor(ws, id) {
 
         super()
 
@@ -21,7 +21,7 @@ class Socket extends EventEmitter {
             this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
         })
         this.on('ping', ()=>{
-            this.socket.send(`["pong"]`)
+            this.socket.send('["pong"]')
         })
 
         this.dieTimeout = undefined
@@ -30,7 +30,7 @@ class Socket extends EventEmitter {
 
     }
 
-    open(ws) {
+    open(ws) {
 
         this.socket = ws
 
@@ -46,7 +46,7 @@ class Socket extends EventEmitter {
 
         this.hearbeat = setInterval(()=>{
             if (!this.connected()) return
-            this.socket.send(`["ping"]`)
+            this.socket.send('["ping"]')
             this.hearbeatTimeout = setTimeout(()=>{
                 if (this.connected()) this.socket.close()
             }, hearbeatTimeout)
@@ -68,7 +68,7 @@ class Socket extends EventEmitter {
 
     }
 
-    connected() {
+    connected() {
 
         return this.socket.readyState == this.socket.OPEN
 
@@ -80,7 +80,7 @@ class Socket extends EventEmitter {
 
             var packet = JSON.parse(message)
 
-            if (Array.isArray(packet) && typeof packet[0] == "string") {
+            if (Array.isArray(packet) && typeof packet[0] == 'string') {
 
                 this.emit(packet[0], packet[1])
 

@@ -1,9 +1,8 @@
-var vm = require('vm'),
-    path = require('path'),
+var path = require('path'),
     fs = require('fs'),
     settings = require('./settings'),
     osc = require('./osc'),
-    {ipc, clients} = require('./server'),
+    {ipc} = require('./server'),
     theme = require('./theme'),
     chokidar = require('chokidar')
 
@@ -67,7 +66,7 @@ module.exports =  {
 
     sessionOpen: function(data,clientId) {
 
-        var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
+        var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
             error = file === false && data.path ? 'Session file "' + data.path + '" not found.' : false,
             session
 
@@ -128,7 +127,7 @@ module.exports =  {
 
         } else {
 
-            ipc.send('error', `Invalid session file (${error})`)
+            ipc.send('error', `Invalid session file (${error})`)
 
         }
     },
@@ -155,7 +154,7 @@ module.exports =  {
             data[k] = shortdata[k]
         }
 
-        data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
+        data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
 
         if (!data.noSync) ipc.send('receiveOsc', data, null, clientId)
 
@@ -164,50 +163,48 @@ module.exports =  {
 
     sendOsc: function(shortdata, clientId) {
 
-            if (!(widgetHashTable[clientId] && widgetHashTable[clientId][shortdata.h])) return
+        if (!(widgetHashTable[clientId] && widgetHashTable[clientId][shortdata.h])) return
 
-            var value = shortdata.v,
-                data = widgetHashTable[clientId][shortdata.h]
+        var value = shortdata.v,
+            data = widgetHashTable[clientId][shortdata.h]
 
-            data = JSON.parse(JSON.stringify(data))
-            for (var k in shortdata) {
-                data[k] = shortdata[k]
-            }
+        data = JSON.parse(JSON.stringify(data))
+        for (var k in shortdata) {
+            data[k] = shortdata[k]
+        }
 
-            data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
+        data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
 
-            if (data.target) {
+        if (data.target) {
 
-                var targets = []
+            var targets = []
 
-                if (data.target.indexOf(null) === -1 && settings.read('targets') && !shortdata.target) Array.prototype.push.apply(targets, settings.read('targets'))
-                if (data.target) Array.prototype.push.apply(targets, data.target)
+            if (data.target.indexOf(null) === -1 && settings.read('targets') && !shortdata.target) Array.prototype.push.apply(targets, settings.read('targets'))
+            if (data.target) Array.prototype.push.apply(targets, data.target)
 
-                for (var i in targets) {
+            for (var i in targets) {
 
-                    if (targets[i] === 'self') {
-                        ipc.send('receiveOsc',data,clientId)
-                        continue
-                    } else if (targets[i] === null) {
-                        continue
-                    }
+                if (targets[i] === 'self') {
+                    ipc.send('receiveOsc',data,clientId)
+                    continue
+                } else if (targets[i] === null) {
+                    continue
+                }
 
-                    var host = targets[i].split(':')[0],
-                        port = targets[i].split(':')[1]
+                var host = targets[i].split(':')[0],
+                    port = targets[i].split(':')[1]
 
-                    if (port) {
+                if (port) {
 
-                        if (data.split) {
+                    if (data.split) {
 
-                            for (var j in data.split) {
-                                osc.send(host,port,data.split[j],data.args[j],data.precision)
-                            }
-
-                        } else {
-
-                            osc.send(host,port,data.address,data.args,data.precision)
-
+                        for (var j in data.split) {
+                            osc.send(host,port,data.split[j],data.args[j],data.precision)
                         }
+
+                    } else {
+
+                        osc.send(host,port,data.address,data.args,data.precision)
 
                     }
 
@@ -215,18 +212,20 @@ module.exports =  {
 
             }
 
-            if (!data.noSync) ipc.send('receiveOsc', data, null, clientId)
+        }
+
+        if (!data.noSync) ipc.send('receiveOsc', data, null, clientId)
 
     },
 
     addWidget(data, clientId) {
 
         if (!widgetHashTable[clientId])  {
-            widgetHashTable[clientId] = {}
+            widgetHashTable[clientId] = {}
         }
 
         if (!widgetHashTable[clientId][data.hash])  {
-            widgetHashTable[clientId][data.hash] = {}
+            widgetHashTable[clientId][data.hash] = {}
         }
 
         var cache = widgetHashTable[clientId][data.hash],
@@ -263,7 +262,7 @@ module.exports =  {
             settings.write('presetPath',file)
 
             if (file.indexOf('.preset')==-1){file+='.preset'}
-            fs.writeFile(file,data, function (err, data) {
+            fs.writeFile(file,data, function(err, data) {
                 if (err) throw err
                 console.log('The current state was saved in '+file)
             })

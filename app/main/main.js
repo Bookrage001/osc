@@ -70,7 +70,7 @@ if (settings.cli) {
         launcher
 
     app.on('ready',function(){
-        launcher = require('./electron-window')({address:address, shortcuts:dev, width:680, height:(100 + 8*3 + 29 * Object.keys(settings.options).filter(x => settings.options[x].launcher !== false).length), node:true, color:'#253040'})
+        launcher = require('./electron-window')({address:address, shortcuts:dev, width:680, height:(100 + 8*3 + 29 * Object.keys(settings.options).filter(x=>settings.options[x].launcher !== false).length), node:true, color:'#253040'})
     })
 
     if (process.log) {

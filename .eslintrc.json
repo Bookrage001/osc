@@ -12,7 +12,9 @@
     }
   },
   "rules": {
+    "no-console": "off",
     "no-undef": "off",
+    "no-useless-escape": "warn",
     "no-empty": [
       "error",
       {

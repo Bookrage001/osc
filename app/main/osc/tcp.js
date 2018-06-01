@@ -1,7 +1,6 @@
 var osc = require('osc'),
-    EventEmitter = require('events').EventEmitter
+    EventEmitter = require('events').EventEmitter,
     settings = require('../settings'),
-    debug = settings.read('debug'),
     zeroconf = require('../zeroconf'),
     tcpInPort = settings.read('tcpInPort'),
     tcpTargets = settings.read('tcpTargets'),
@@ -9,7 +8,7 @@ var osc = require('osc'),
 
 class OscTCPClient extends EventEmitter {
 
-    constructor(options) {
+    constructor(options) {
 
         super()
 
@@ -47,7 +46,7 @@ class OscTCPClient extends EventEmitter {
             console.log(`TCP: connection established (${this.remoteAddress}:${this.remotePort})`)
         })
 
-        if (!this.options.socket) {
+        if (!this.options.socket) {
 
             this.port.open()
 
@@ -67,7 +66,7 @@ class OscTCPClient extends EventEmitter {
 
     }
 
-    send(msg) {
+    send(msg) {
 
         this.port.send(msg)
 
@@ -79,7 +78,7 @@ class OscTCPClient extends EventEmitter {
 
 class OscTCPServer extends EventEmitter {
 
-    constructor() {
+    constructor() {
 
         super()
 
@@ -100,7 +99,7 @@ class OscTCPServer extends EventEmitter {
 
     addClient(client) {
 
-        this.clients[client.remoteAddress] = this.clients[client.remoteAddress] || {}
+        this.clients[client.remoteAddress] = this.clients[client.remoteAddress] || {}
         this.clients[client.remoteAddress][client.remotePort] = client
 
         client.on('message', (msg, timetag, info)=>{
@@ -130,10 +129,10 @@ class OscTCPServer extends EventEmitter {
         }
 
         zeroconf.publish({
-        	name: settings.read('appName') + (settings.read('instanceName') ? ' (' + settings.read('instanceName') + ')' : ''),
-        	protocol: 'tcp',
-        	type: 'osc',
-        	port: tcpInPort
+            name: settings.read('appName') + (settings.read('instanceName') ? ' (' + settings.read('instanceName') + ')' : ''),
+            protocol: 'tcp',
+            type: 'osc',
+            port: tcpInPort
         }).on('error', (e)=>{
             console.error(`Error: Zeroconf: ${e.message}`)
         })

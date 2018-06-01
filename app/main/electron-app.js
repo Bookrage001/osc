@@ -1,27 +1,26 @@
-var {app, Menu, shell, dialog} = require('electron'),
+var {app, Menu, shell} = require('electron'),
     settings = require('./settings'),
-    path = require('path'),
     infos = require('../package.json')
 
 app.commandLine.appendSwitch('--touch-events')
 
-if (settings.read('noVsync') || (!settings.cli && settings.read('argv')['disable-vsync'])) {
+if (settings.read('noVsync') || (!settings.cli && settings.read('argv')['disable-vsync'])) {
     app.commandLine.appendSwitch('--disable-gpu-vsync')
 }
 
-if (settings.read('noGpu') || (!settings.cli && settings.read('argv')['disable-gpu'])) {
+if (settings.read('noGpu') || (!settings.cli && settings.read('argv')['disable-gpu'])) {
     app.disableHardwareAcceleration()
 }
 
 var template = [{
     label: 'Edit',
     submenu: [
-        {role: 'undo', accelerator: "CmdOrCtrl+Z"},
-        {role: 'redo', accelerator: "Shift+CmdOrCtrl+Z"},
+        {role: 'undo', accelerator: 'CmdOrCtrl+Z'},
+        {role: 'redo', accelerator: 'Shift+CmdOrCtrl+Z'},
         {type: 'separator'},
-        {role: 'cut', accelerator: "CmdOrCtrl+X"},
-        {role: 'copy', accelerator: "CmdOrCtrl+C"},
-        {role: 'paste', accelerator: "CmdOrCtrl+V"}
+        {role: 'cut', accelerator: 'CmdOrCtrl+X'},
+        {role: 'copy', accelerator: 'CmdOrCtrl+C'},
+        {role: 'paste', accelerator: 'CmdOrCtrl+V'}
     ]
 }]
 
@@ -50,7 +49,7 @@ if (process.platform === 'darwin') {
             {
                 label: 'Quit',
                 accelerator: 'Command+Q',
-                click: () => app.quit()
+                click: ()=>app.quit()
             }
         ]
     })
@@ -79,14 +78,14 @@ if (process.platform === 'darwin') {
             submenu: [
                 {
                     label: 'Documentation',
-                    click: () => shell.openExternal(infos.homepage)
+                    click: ()=>shell.openExternal(infos.homepage)
                 },
                 {
                     type: 'separator'
                 },
                 {
                     label: 'Report an Issue',
-                    click: () => shell.openExternal(infos.repository.url + '/issues')
+                    click: ()=>shell.openExternal(infos.repository.url + '/issues')
                 }
             ]
         }

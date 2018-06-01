@@ -1,54 +1,64 @@
 var PythonShell = require('python-shell'),
-    path = require('path'),
     settings = require('./settings')
 
-var py = new PythonShell('midi.py', {scriptPath:__dirname, mode:'text', args: [
-    settings.read('debug') ? 'debug' : '',
-    ...settings.read('midi')
-    ]
-})
+class Midi {
 
+    constructor() {
 
-oscToMidi = (data)=>{
-    var args = []
-    for (i in data.args) {
-        args.push(data.args[i].value)
+        this.py = new PythonShell('midi.py', {
+            scriptPath:__dirname,
+            mode:'text',
+            args: [
+                settings.read('debug') ? 'debug' : '',
+                ...settings.read('midi')
+            ]
+        })
+
     }
-    py.send(JSON.stringify([data.port, data.address, ...args]))
-}
 
-stop = ()=>{
-    py.childProcess.kill()
-}
+    send(data) {
 
-init = (receiveOsc)=>{
-    py.on('message', function (message) {
-        // console.log(message)
-        var name, data
-        try {
-            [name, data] = JSON.parse(message)
-        } catch (err) {
-            // console.log(err)
+        var args = []
+        for (i in data.args) {
+            args.push(data.args[i].value)
         }
-        if (name == 'log') {
-            if (data.indexOf('ERROR') === 0) {
-                console.error(data)
-            } else {
-                console.log(data)
+
+        this.py.send(JSON.stringify([data.port, data.address, ...args]))
+
+    }
+
+    stop() {
+
+        this.py.childProcess.kill()
+
+    }
+
+    init(receiveOsc) {
+        this.py.on('message', function(message) {
+            // console.log(message)
+            var name, data
+            try {
+                [name, data] = JSON.parse(message)
+            } catch (err) {
+                // console.log(err)
             }
-        } else if (name ==  'osc') {
-            receiveOsc(data)
-        } else if (name == 'error') {
-            console.error('ERROR: MIDI: ' + data)
-            stop()
-        }
-    })
+            if (name == 'log') {
+                if (data.indexOf('ERROR') === 0) {
+                    console.error(data)
+                } else {
+                    console.log(data)
+                }
+            } else if (name ==  'osc') {
+                receiveOsc(data)
+            } else if (name == 'error') {
+                console.error('ERROR: MIDI: ' + data)
+                this.stop()
+            }
+        })
+    }
+
 }
 
+var midi = new Midi()
 
-
-module.exports = {
-    send: oscToMidi,
-    init: init,
-    stop: stop
-}
+module.exports = midi

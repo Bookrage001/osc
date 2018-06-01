@@ -1,5 +1,5 @@
 var path = require('path'),
-    {BrowserWindow, Menu, dialog} = require('electron'),
+    {BrowserWindow, dialog} = require('electron'),
     shortcut = require('electron-localshortcut'),
     settings = require('./settings'),
     theme = require('./theme')
@@ -10,8 +10,8 @@ module.exports = function(options={}) {
     var window
 
     window = new BrowserWindow({
-        width: options.width || 800,
-        height: options.height || 600,
+        width: options.width || 800,
+        height: options.height || 600,
         title: options.title || settings.read('appName'),
         icon: path.resolve(__dirname + '/../browser/logo.png'),
         backgroundColor: options.color || theme.backgroundColor,
@@ -24,24 +24,24 @@ module.exports = function(options={}) {
         }
     })
 
-    window.webContents.on('will-prevent-unload', (event) => {
-      var choice = dialog.showMessageBox(window, {
-          type: 'question',
-          buttons: ['Yes', 'No'],
-          title: 'Are you sure ?',
-          message: 'Unsaved data will be lost. Are you sure you want to quit?',
-          defaultId: 0,
-          cancelId: 1
-      })
-      if (choice === 0) {
-          event.preventDefault()
-      }
+    window.webContents.on('will-prevent-unload', (event)=>{
+        var choice = dialog.showMessageBox(window, {
+            type: 'question',
+            buttons: ['Yes', 'No'],
+            title: 'Are you sure ?',
+            message: 'Unsaved data will be lost. Are you sure you want to quit?',
+            defaultId: 0,
+            cancelId: 1
+        })
+        if (choice === 0) {
+            event.preventDefault()
+        }
     })
 
-    window.webContents.on('will-navigate', (event) => event.preventDefault())
-    window.webContents.on('new-window', (event) => event.preventDefault())
+    window.webContents.on('will-navigate', (event)=>event.preventDefault())
+    window.webContents.on('new-window', (event)=>event.preventDefault())
 
-    if (options.fullscreen) {
+    if (options.fullscreen) {
         window.webContents.on('dom-ready', ()=>{
             window.webContents.executeJavaScript(`
                 window.ELECTRON_FULLSCREEN = true
