@@ -1,4 +1,4 @@
-var {clip, mapToScale} = require('../utils'),
+var {clip} = require('../utils'),
     Slider = require('./slider'),
     parser = require('../../parser')
 
@@ -88,7 +88,7 @@ module.exports = class Fader extends Slider {
                 horizontal:this.getProp('horizontal'),
                 range:this.getProp('range'),
                 logScale:this.getProp('logScale'),
-                address:this.getProp('meterAddress') || this.getProp('address') + '/meter',
+                address:this.getProp('meterAddress') || this.getProp('address') + '/meter',
                 preArgs:this.getProp('preArgs'),
                 color:this.getProp('color'),
                 pips:false,
@@ -114,7 +114,7 @@ module.exports = class Fader extends Slider {
             for (var i=0;i<=100;i++) {
                 if (pipTexts[i]==undefined) continue
 
-                var pos = this.getProp('horizontal')?'left':'bottom';
+                var pos = this.getProp('horizontal')?'left':'bottom'
 
                 var piptext = `<span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>`
 
@@ -135,11 +135,11 @@ module.exports = class Fader extends Slider {
 
         this.percent = clip(this.percent,[0,100])
 
-        if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
+        if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
 
         this.percent = this.getProp('horizontal')?
-        (e.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)) * 100:
-        (this.height - e.offsetY - this.margin * PXSCALE) / (this.height - (this.margin * PXSCALE * 2)) * 100
+            (e.offsetX - this.margin * PXSCALE) / (this.width - (this.margin * PXSCALE * 2)) * 100:
+            (this.height - e.offsetY - this.margin * PXSCALE) / (this.height - (this.margin * PXSCALE * 2)) * 100
 
         // this.percent = clip(this.percent,[0,100])
 
@@ -171,40 +171,36 @@ module.exports = class Fader extends Slider {
 
     resizeHandle(event) {
 
-            var {width, height, style} = event,
-                ratio = CANVAS_SCALING * this.scaling
+        var ratio = CANVAS_SCALING * this.scaling
 
-            if (this.getProp('compact')) {
-                if (this.getProp('horizontal')) {
-                    event.height = 1 / ratio
-                } else {
-                }
-            }
+        if (this.getProp('compact') && this.getProp('horizontal')) {
+            event.height = 1 / ratio
+        }
 
-            super.resizeHandle(event)
+        super.resizeHandle(event)
 
-            if (this.getProp('horizontal')){
-                this.ctx.setTransform(1, 0, 0, 1, 0, 0)
-                this.ctx.rotate(-Math.PI/2)
-                this.ctx.translate(-this.height * ratio, 0)
+        if (this.getProp('horizontal')){
+            this.ctx.setTransform(1, 0, 0, 1, 0, 0)
+            this.ctx.rotate(-Math.PI/2)
+            this.ctx.translate(-this.height * ratio, 0)
 
-                if (ratio != 1) this.ctx.scale(ratio, ratio)
-            }
+            if (ratio != 1) this.ctx.scale(ratio, ratio)
+        }
 
-            if (this.getProp('gradient')) {
-                var colors = this.getProp('gradient')
-                if (Array.isArray(colors) && colors.length > 1) {
-                    try {
-                        var grad = this.ctx.createLinearGradient(0,  this.getProp('horizontal') ? 0 : this.height, 0, this.getProp('horizontal') ? this.width : 0)
-                        for (var i in colors) {
-                            grad.addColorStop(i / (colors.length - 1), colors[i])
-                        }
-                        this.colors.gradient = grad
-                    } catch(err) {
-                        this.errors.gradient = err
+        if (this.getProp('gradient')) {
+            var colors = this.getProp('gradient')
+            if (Array.isArray(colors) && colors.length > 1) {
+                try {
+                    var grad = this.ctx.createLinearGradient(0,  this.getProp('horizontal') ? 0 : this.height, 0, this.getProp('horizontal') ? this.width : 0)
+                    for (var i in colors) {
+                        grad.addColorStop(i / (colors.length - 1), colors[i])
                     }
+                    this.colors.gradient = grad
+                } catch(err) {
+                    this.errors.gradient = err
                 }
             }
+        }
 
 
     }
@@ -223,11 +219,11 @@ module.exports = class Fader extends Slider {
 
         this.clear()
 
-        if (this.getProp('compact')) {
+        if (this.getProp('compact')) {
 
-            this.ctx.globalAlpha = this.colors.gaugeOpacity || (dashed ? .3 : .2)  + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
+            this.ctx.globalAlpha = this.colors.gaugeOpacity || (dashed ? .3 : .2)  + 0.2 * Math.abs(d-o) / (d<o?o:height-o)
 
-            this.ctx.strokeStyle = this.colors.gradient || this.colors.gauge
+            this.ctx.strokeStyle = this.colors.gradient || this.colors.gauge
             this.ctx.beginPath()
             this.ctx.moveTo(m, o)
             this.ctx.lineTo(m, d)

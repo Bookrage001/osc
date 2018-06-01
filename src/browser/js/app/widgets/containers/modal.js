@@ -79,7 +79,7 @@ module.exports = class Modal extends Panel {
         // convert dimensions / coordinates to rem
         var geometry = {}
         for (var g of ['Width', 'Height', 'Left', 'Top']) {
-          geometry[g] = parseFloat(this.getProp('popup' + g)) == this.getProp('popup' + g) ? parseFloat(this.getProp('popup' + g)) + 'rem' : this.getProp('popup' + g)
+            geometry[g] = parseFloat(this.getProp('popup' + g)) == this.getProp('popup' + g) ? parseFloat(this.getProp('popup' + g)) + 'rem' : this.getProp('popup' + g)
         }
 
         this.popup.style.setProperty('--width', geometry.Width)
@@ -161,7 +161,7 @@ module.exports = class Modal extends Panel {
 
     }
 
-    bindEscKey(set) {
+    bindEscKey(set) {
 
         if (set) {
             document.addEventListener('keydown', this.escapeKeyHandler)

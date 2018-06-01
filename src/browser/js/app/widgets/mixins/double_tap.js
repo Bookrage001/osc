@@ -12,7 +12,7 @@ module.exports = (element, callback)=>{
             eventData = event.detail
 
 
-    	if (
+        if (
 
             tapLength < DOUBLE_TAP_TIME && touchId == eventData.pointerId &&
             Math.abs(lastTapX - eventData.pageX) < 20 &&

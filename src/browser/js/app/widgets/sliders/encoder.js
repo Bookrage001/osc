@@ -1,4 +1,4 @@
-var {clip, mapToScale} = require('../utils'),
+var {clip} = require('../utils'),
     Knob = require('./knob'),
     Widget = require('../common/widget'),
     doubletab = require('../mixins/double_tap')
@@ -13,7 +13,7 @@ var EncoderKnob = class extends Knob {
         this.lastOffsetX = e.offsetX
         this.lastOffsetY = e.offsetY
 
-        if (!(e.traversing || this.getProp('snap'))) return
+        if (!(e.traversing || this.getProp('snap'))) return
 
         this.percent = this.angleToPercent(this.coordsToAngle(e.offsetX, e.offsetY))
 
@@ -177,7 +177,7 @@ module.exports = class Encoder extends Widget {
 
         this.wrapper.addEventListener('mousewheel', (e)=>{
 
-            if (e.wheelDeltaX || e.wheelDelta == 0) return
+            if (e.wheelDeltaX || e.wheelDelta == 0) return
 
             var direction = e.wheelDelta / Math.abs(e.wheelDelta)
 
@@ -196,7 +196,7 @@ module.exports = class Encoder extends Widget {
 
     setValue(v,options={}) {
 
-        if (this.getProp('snap') || (!this.getProp('snap') && !options.draginit)) {
+        if (this.getProp('snap') || (!this.getProp('snap') && !options.draginit)) {
 
             var match = true
 
@@ -215,13 +215,13 @@ module.exports = class Encoder extends Widget {
         if (options.sync && match) this.changed(options)
         if (options.send && match && !(!this.getProp('snap') && options.draginit)) this.sendValue()
 
-        if (options.dragged || options.draginit) this.updateDisplay(options.draginit)
+        if (options.dragged || options.draginit) this.updateDisplay(options.draginit)
 
     }
 
     updateDisplay(init){
 
-        if (this.getProp('snap')) {
+        if (this.getProp('snap')) {
             this.display.setValue(this.knob.value)
             return
         }

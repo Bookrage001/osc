@@ -1,7 +1,6 @@
-var {mapToScale, clip} = require('../utils'),
+var {clip} = require('../utils'),
     _biquad_response = require('./_biquad_response'),
-    _plots_base = require('./_plots_base'),
-    widgetManager = require('../../managers/widgets')
+    _plots_base = require('./_plots_base')
 
 module.exports = class Eq extends _plots_base {
 
@@ -82,10 +81,10 @@ module.exports = class Eq extends _plots_base {
 
                 var filterResponse
 
-                if (!filters[i].type) filters[i].type = "peak"
+                if (!filters[i].type) filters[i].type = 'peak'
 
                 if (!filters[i].on) {
-                    filterResponse = _biquad_response({type:"peak",freq:1,gain:0,q:1},!this.getProp('logScaleX'), this.resolution)
+                    filterResponse = _biquad_response({type:'peak',freq:1,gain:0,q:1},!this.getProp('logScaleX'), this.resolution)
                 } else {
                     filterResponse = _biquad_response(filters[i],!this.getProp('logScaleX'), this.resolution)
                 }

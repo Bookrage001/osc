@@ -9,7 +9,7 @@ var Osc = class Osc extends EventEmitter {
         super()
 
         this.syncOnly = false
-        this.remoteControl = ()=>{console.error('remote-control module not loaded')}
+        this.remoteControl = {}
 
     }
 
@@ -43,7 +43,7 @@ var Osc = class Osc extends EventEmitter {
             let widgetTarget = widgets[i].getProp('target')
             // if the message target is provided (when message comes from another client connected to the same server)
             // then we only update the widgets that have the same target
-            if (!data.target || !widgetTarget || String(widgetTarget) === String(data.target)) {
+            if (!data.target || !widgetTarget || String(widgetTarget) === String(data.target)) {
                 // update matching widgets
                 if (widgets[i] && widgets[i].setValue) widgets[i].setValue(restArgs,{send:false,sync:true,fromExternal:!data.target})
             }

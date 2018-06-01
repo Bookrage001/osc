@@ -30,7 +30,7 @@ setTimeout(()=>{
 
 class Widget extends EventEmitter {
 
-    static defaults() {
+    static defaults() {
 
         throw new Error('Calling unimplemented static defaults() method')
 
@@ -42,7 +42,7 @@ class Widget extends EventEmitter {
 
         this.widget = DOM.create(options.html)
         this.props = options.props
-        this.errors = {}
+        this.errors = {}
         this.parsers = {}
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
@@ -91,7 +91,7 @@ class Widget extends EventEmitter {
             })
 
             widgetManager.on(`prop-changed.${this.hash}`, (e)=>{
-                let {id, widget, prop, options} = e
+                let {id, widget, options} = e
                 if (widget == this) id = 'this'
                 if (widget == this.parent) id = 'parent'
                 if (this.linkedProps[id]) {
@@ -114,7 +114,7 @@ class Widget extends EventEmitter {
 
         }
 
-        var selfLinkedOSCProps = (this.linkedPropsValue['this'] || []).filter(i => OSCProps.indexOf(i) > -1)
+        var selfLinkedOSCProps = (this.linkedPropsValue['this'] || []).filter(i=>OSCProps.indexOf(i) > -1)
         this.selfLinkedOSCProps = selfLinkedOSCProps.length ? selfLinkedOSCProps : false
 
 
@@ -138,7 +138,7 @@ class Widget extends EventEmitter {
             this.container = DOM.create(`
                 <div class="widget ${options.props.type}-container" id="${this.hash}" data-widget="${this.hash}"></div>
             `)
-            this.label = DOM.create(`<div class="label"></div>`)
+            this.label = DOM.create('<div class="label"></div>')
             this.container.appendChild(this.label)
             this.container.appendChild(this.widget)
             this.container._widget_instance = this
@@ -162,7 +162,7 @@ class Widget extends EventEmitter {
         }
     }
 
-    created() {
+    created() {
 
         this.trigger('widget-created.*', [{
             id: this.getProp('id'),
@@ -223,8 +223,7 @@ class Widget extends EventEmitter {
 
     static deepCopy(obj, precision){
 
-        var copy = obj,
-            key
+        var copy = obj
 
         if (obj === null) {
             return obj
@@ -245,10 +244,9 @@ class Widget extends EventEmitter {
 
     resolveProp(propName, propValue, storeLinks=true, originalWidget, originalPropName) {
 
-        var propValue = propValue !== undefined ? propValue : Widget.deepCopy(this.props[propName]),
-            originalWidget = originalWidget || this,
-            originalPropName = originalPropName || propName,
-            obj
+        propValue = propValue !== undefined ? propValue : Widget.deepCopy(this.props[propName])
+        originalWidget = originalWidget || this
+        originalPropName = originalPropName || propName
 
         var variables = {},
             mathscope = {},
@@ -256,7 +254,7 @@ class Widget extends EventEmitter {
 
         if (typeof propValue == 'string') {
 
-            propValue = propValue.replace(/@\{[^\{]*?(@\{.*?\})?[^\{]*?\}/g, (m, nested)=>{
+            propValue = propValue.replace(/@\{[^{]*?(@\{.*?\})?[^{]*?\}/g, (m, nested)=>{
 
                 if (nested) {
                     m = m.replace(nested, this.resolveProp(propName, nested, false, this))
@@ -288,7 +286,7 @@ class Widget extends EventEmitter {
                 if (k === '_value') k = 'value'
 
                 var widgets = id == 'parent' && this.parent ?
-                    [this.parent] : id == 'this' ? [this] :
+                    [this.parent] : id == 'this' ? [this] :
                         widgetManager.getWidgetById(id)
 
                 if (!widgets.length) {
@@ -320,15 +318,15 @@ class Widget extends EventEmitter {
 
                 for (var i in widgets) {
 
-                    if (widgets[i].props[k] !== undefined || k === 'value') {
+                    if (widgets[i].props[k] !== undefined || k === 'value') {
 
                         if (k !== 'value' && originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
                             return undefined
                         }
 
                         var r = k == 'value' ?
-                                widgets[i].getValue(true) :
-                                widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalPropName)
+                            widgets[i].getValue(true) :
+                            widgets[i].resolveProp(k, undefined, storeLinks, originalWidget, originalPropName)
 
                         if (subk !== undefined && r !== undefined) r = r[subk]
 
@@ -346,8 +344,8 @@ class Widget extends EventEmitter {
 
             })
 
-            propValue = propValue.replace(/OSC\{([^\}]+)\}/g, (m)=>{
-                let [address, value] = m.substr(4, m.length - 5).split(',').map(x => x.trim()),
+            propValue = propValue.replace(/OSC\{([^}]+)\}/g, (m)=>{
+                let [address, value] = m.substr(4, m.length - 5).split(',').map(x=>x.trim()),
                     resolvedAddress = address.replace(/VAR_[0-9]+/g, (m)=>{
                         return typeof variables[m] === 'string' ? variables[m] : JSON.stringify(variables[m])
                     })
@@ -371,7 +369,7 @@ class Widget extends EventEmitter {
             })
 
             try {
-                propValue = propValue.replace(/#\{(?:[^\}\\]|\\.)+\}/g, (m)=>{
+                propValue = propValue.replace(/#\{(?:[^}\\]|\\.)+\}/g, (m)=>{
 
                     // unescape brackets
                     m = m.replace(/\\(\{|\})/g, '$1')
@@ -396,7 +394,7 @@ class Widget extends EventEmitter {
                 })
             } catch (err) {}
 
-            for (var k in variables) {
+            for (let k in variables) {
                 var v = typeof variables[k] === 'string' ? variables[k] : JSON.stringify(variables[k])
                 propValue = propValue.replace(new RegExp(k, 'g'), v)
             }
@@ -406,7 +404,7 @@ class Widget extends EventEmitter {
             } catch (err) {}
 
         } else if (propValue != null && typeof propValue == 'object') {
-            for (var k in propValue) {
+            for (let k in propValue) {
                 propValue[k] = this.resolveProp(propName, propValue[k], storeLinks, originalWidget, originalPropName)
             }
         }
@@ -495,7 +493,7 @@ class Widget extends EventEmitter {
                 this.setContainerStyles(['css'])
                 this.onPropChanged('color')
                 var re = /width|height|display/
-                if (re.test(oldPropValue) || re.test(this.getProp('css'))) {
+                if (re.test(oldPropValue) || re.test(this.getProp('css'))) {
                     resize.check(this.container)
                 }
                 return
@@ -541,7 +539,7 @@ class Widget extends EventEmitter {
                     this.container.style[d] = geometry
                     if (d == 'width') this.container.style.minWidth = geometry
                     if (d == 'height') this.container.style.minHeight = geometry
-                    if (d == 'top' || d == 'left') this.container.classList.add('absolute-position')
+                    if (d == 'top' || d == 'left') this.container.classList.add('absolute-position')
                 }
             }
 
@@ -554,8 +552,8 @@ class Widget extends EventEmitter {
                 this.container.classList.add('nolabel')
             } else {
                 var label = this.getProp('label') == 'auto'?
-                                this.getProp('id'):
-                                iconify(this.getProp('label'))
+                    this.getProp('id'):
+                    iconify(this.getProp('label'))
 
                 this.label.innerHTML = label
             }
@@ -579,10 +577,10 @@ class Widget extends EventEmitter {
 
                 // fallback for browser that don't allow assigning "style" property
                 css
-                .replace(/\{[^\}]*\}/g, '')
-                .replace(/^[^@#\.]*\:.*/gm, (m) => {
-                    unScopedCss += m[m.length - 1] === ';' ? m : m + ';'
-                })
+                    .replace(/\{[^}]*\}/g, '')
+                    .replace(/^[^@#.]*:.*/gm, (m)=>{
+                        unScopedCss += m[m.length - 1] === ';' ? m : m + ';'
+                    })
 
             }
 
@@ -596,7 +594,7 @@ class Widget extends EventEmitter {
 
             if (oldStyle) {
                 this.container.replaceChild(style, oldStyle)
-            } else if (scopedCss.length || unScopedCss.length){
+            } else if (scopedCss.length || unScopedCss.length){
                 this.container.insertBefore(style, this.widget)
             }
 

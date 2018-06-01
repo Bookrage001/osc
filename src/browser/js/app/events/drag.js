@@ -1,4 +1,4 @@
-const {fix, normalizeDragEvent, resetEventOffset} = require('./utils')
+const {normalizeDragEvent, resetEventOffset} = require('./utils')
 
 var targets = {},
     previousPointers = {}
@@ -102,7 +102,7 @@ function mouseMultiWrapper(event) {
 }
 
 function mouseDownCapture(event, multitouch) {
-    if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
+    if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
     event.pointerId = 'mouse'
     event.multitouch = multitouch
     pointerDownHandler(event)
@@ -115,7 +115,7 @@ function mouseMoveCapture(event) {
 }
 
 function mouseUpCapture(event){
-    if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
+    if ((event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) || event.button == 2) return
     event.pointerId = 'mouse'
     pointerUpFilter(event)
 }

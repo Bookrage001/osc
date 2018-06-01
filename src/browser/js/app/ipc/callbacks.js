@@ -5,7 +5,7 @@ var utils = require('../ui/utils'),
     state = require('../managers/state'),
     editor = require('../editor/')
 
-var callbacks = module.exports = {
+module.exports = {
 
     bundle: function(data) {
         for (let i in data) {
@@ -60,7 +60,7 @@ var callbacks = module.exports = {
     },
 
     error: function(data){
-       new utils.Popup({title: utils.icon('exclamation-triangle') + '&nbsp;Error', content: data, closable:true})
+        new utils.Popup({title: utils.icon('exclamation-triangle') + '&nbsp;Error', content: data, closable:true})
     },
 
     reloadCss: function(){
@@ -74,7 +74,7 @@ var callbacks = module.exports = {
             if (root) root.reCreateWidget()
         },100)
 
-        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        GRIDWIDTH =  getComputedStyle(document.documentElement).getPropertyValue('--grid-width')
     },
 
     readOnly: function(){

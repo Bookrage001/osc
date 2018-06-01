@@ -3,7 +3,7 @@ var Widget = require('../common/widget'),
 
 module.exports = class Switch extends Widget {
 
-    static defaults() {
+    static defaults() {
 
         return {
             type:'switch',
@@ -27,7 +27,7 @@ module.exports = class Switch extends Widget {
 
             horizontal:false,
             showValues:false,
-            values:{"Value 1":1,"Value 2":2},
+            values:{'Value 1':1,'Value 2':2},
 
             _value: 'value',
             default:'',
@@ -90,7 +90,7 @@ module.exports = class Switch extends Widget {
 
             while ( (node = node.previousSibling) ) {
                 if (node.nodeType != 3) {
-                    index++;
+                    index++
                 }
             }
 
@@ -105,8 +105,8 @@ module.exports = class Switch extends Widget {
     setValue(v, options={}) {
 
         var i = typeof v == 'object' ?
-                this.stringValues.indexOf(JSON.stringify(v)) :
-                this.values.indexOf(v)
+            this.stringValues.indexOf(JSON.stringify(v)) :
+            this.values.indexOf(v)
 
         DOM.each(this.widget, '.on', (el)=>{el.classList.remove('on')})
 

@@ -65,9 +65,9 @@ class Push extends Widget {
     updateValue(){
 
         this.value = this[this.lastChanged] ?
-        this.getProp('on') != null && this.getProp('on').value !== undefined ? this.getProp('on').value : this.getProp('on')
-        :
-        this.getProp('off') != null && this.getProp('off').value !== undefined ? this.getProp('off').value : this.getProp('off')
+            this.getProp('on') != null && this.getProp('on').value !== undefined ? this.getProp('on').value : this.getProp('on')
+            :
+            this.getProp('off') != null && this.getProp('off').value !== undefined ? this.getProp('off').value : this.getProp('off')
 
     }
 

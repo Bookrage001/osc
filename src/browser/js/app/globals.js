@@ -3,7 +3,7 @@ location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (s,k,v)=>{
     ARGV[k]=v
 })
 
-window.ELECTRON_FULLSCREEN = window.ELECTRON_FULLSCREEN || false
+window.ELECTRON_FULLSCREEN = window.ELECTRON_FULLSCREEN || false
 
 window.PACKAGE = require('../../../../app/package.json')
 document.title = PACKAGE.productName + ' v' + PACKAGE.version
@@ -18,7 +18,7 @@ window.EDITING = false
 window.GRIDWIDTH = 10
 
 
-window.CANVAS_FRAMERATE = parseFloat(ARGV.framerate || 60)
+window.CANVAS_FRAMERATE = parseFloat(ARGV.framerate || 60)
 window.CANVAS_SCALING = parseFloat(ARGV.forceHdpi) || ( ARGV.hdpi ? window.devicePixelRatio : 1 )
 window.INITIALZOOM = ARGV.zoom ? ARGV.zoom : 1
 window.PXSCALE = INITIALZOOM

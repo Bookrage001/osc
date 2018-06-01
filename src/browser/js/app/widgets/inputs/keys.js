@@ -51,7 +51,7 @@ module.exports = class Keys extends Widget {
         this.keydownString = String(this.getProp('keydown'))
         this.keyupString = String(this.getProp('keyup'))
 
-        if (this.getProp('binding') && (this.keydownString || this.keyupString)) {
+        if (this.getProp('binding') && (this.keydownString || this.keyupString)) {
 
             this.widget.appendChild(DOM.create(`<span>${this.getProp('binding')}</span>`))
 
@@ -72,7 +72,7 @@ module.exports = class Keys extends Widget {
 
         super.onRemove()
 
-        if (this.getProp('binding') && (this.getProp('keydown') || this.getProp('keyup'))) {
+        if (this.getProp('binding') && (this.getProp('keydown') || this.getProp('keyup'))) {
 
             keyboardJS.unbind(this.getProp('binding'), this.keydownHandler, this.keyupHandler)
 
@@ -151,7 +151,7 @@ module.exports = class Keys extends Widget {
 
         if (this.getProp('widgetId')) {
 
-            return widgetManager.getWidgetById(this.getProp('widgetId')).pop() || null
+            return widgetManager.getWidgetById(this.getProp('widgetId')).pop() || null
 
         }
 

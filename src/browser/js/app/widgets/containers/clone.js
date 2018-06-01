@@ -115,7 +115,7 @@ class Clone extends Widget {
 
         this.cleanClone()
 
-        this.cloneClass = [...this.cloneTarget.container.classList].filter(i => excludedCloneClasses.indexOf(i) === -1)
+        this.cloneClass = [...this.cloneTarget.container.classList].filter(i=>excludedCloneClasses.indexOf(i) === -1)
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
 

@@ -1,6 +1,5 @@
 var Pad = require('./pad'),
     Fader = require('./_fake_fader'),
-    {clip} = require('../utils'),
     doubletab = require('../mixins/double_tap'),
     Input = require('../inputs/input'),
     touchstate = require('../mixins/touch_state')
@@ -106,7 +105,7 @@ module.exports = class Xy extends Pad {
 
         this.faders.x.margin = this.faders.y.margin = this.pointSize + 1
 
-        this.value = [this.faders.x.value, this.faders.y.value]
+        this.value = [this.faders.x.value, this.faders.y.value]
 
         this.wrapper.appendChild(this.faders.x.widget)
         this.wrapper.appendChild(this.faders.y.widget)

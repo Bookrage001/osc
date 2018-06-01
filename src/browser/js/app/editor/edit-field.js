@@ -29,10 +29,10 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 for (let type of widgetCategories[category]) {
                     input.innerHTML += `<option ${type == widget.props.type ? 'selected' : ''} value="${type}">${type}</option>`
                 }
-                input.innerHTML += `</optgroup>`
+                input.innerHTML += '</optgroup>'
             }
 
-            var wrapper = DOM.create(`<div class="select-wrapper"></div>`)
+            var wrapper = DOM.create('<div class="select-wrapper"></div>')
             wrapper.appendChild(input)
             field.appendChild(wrapper)
 
@@ -40,7 +40,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         } else {
 
             var value = typeof widget.props[propName] !== 'string' ?
-                    JSON.stringify(widget.props[propName], null, '  ').replace(/\n\s\s\s\s/g, ' ').replace(/\n\s\s(\}|\])/g, ' $1') : widget.props[propName]
+                JSON.stringify(widget.props[propName], null, '  ').replace(/\n\s\s\s\s/g, ' ').replace(/\n\s\s(\}|\])/g, ' $1') : widget.props[propName]
 
             input = DOM.create(`<textarea class="input" title="${propName}" rows="${value.split('\n').length}">${value}</textarea>`)
 
@@ -58,22 +58,22 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             if (typeof defaultValue === 'boolean') {
 
-               var toggle = DOM.create(`
+                var toggle = DOM.create(`
                    <span class="checkbox ${widget.props[propName] ? 'on' : ''}">
                        ${icon('check')}
                    </span>
                `)
 
-               toggle.addEventListener('click', ()=>{
-                   input.value = !widget.getProp(propName)
-                   DOM.dispatchEvent(input, 'change')
-               })
+                toggle.addEventListener('click', ()=>{
+                    input.value = !widget.getProp(propName)
+                    DOM.dispatchEvent(input, 'change')
+                })
 
-               field.appendChild(toggle)
+                field.appendChild(toggle)
 
-           }
+            }
 
-           field.appendChild(input)
+            field.appendChild(input)
 
         }
 
@@ -89,7 +89,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 v = input.value
             }
 
-            var newWidgets = []
+            var newWidgets = []
             for (var w of editor.selectedWidgets) {
                 w.props[propName] = v !== '' ? v : JSON.parse(JSON.stringify(defaultValue))
                 newWidgets.push(updateWidget(w, {preventSelect: editor.selectedWidgets.length > 1}))
@@ -102,7 +102,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
 
     } else if (
-        (propName === 'widgets' && (!widget.props.tabs ||! widget.props.tabs.length)) ||
+        (propName === 'widgets' && (!widget.props.tabs ||! widget.props.tabs.length)) ||
         (propName === 'tabs' && (!widget.props.widgets ||! widget.props.widgets.length))
     ) {
 
@@ -141,7 +141,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                     break
 
                 case 'add':
-                    widget.props[propName] = widget.props[propName] || []
+                    widget.props[propName] = widget.props[propName] || []
                     widget.props[propName].push({})
                     change = true
                     break
@@ -157,8 +157,8 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         var $list = $(list)
         $list.sortable({
             items: '.sortables',
-            placeholder: "sortable-placeholder btn small",
-            start:function(){$(this).sortable( "refreshPositions" )},
+            placeholder: 'sortable-placeholder btn small',
+            start:function(){$(this).sortable( 'refreshPositions' )},
             update: function(e,ui){
                 var oldindex = $(ui.item).attr('data-index')
                 var index  = $(ui.item).index()

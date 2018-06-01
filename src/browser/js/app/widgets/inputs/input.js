@@ -1,7 +1,5 @@
-var {iconify} = require('../../ui/utils'),
-    Widget = require('../common/widget'),
-    Canvas = require('../common/canvas'),
-    widgetManager = require('../../managers/widgets')
+var Widget = require('../common/widget'),
+    Canvas = require('../common/canvas')
 
 module.exports = class Input extends Canvas {
 
@@ -115,19 +113,19 @@ module.exports = class Input extends Canvas {
 
     resizeHandle(event){
 
-            super.resizeHandle(event)
+        super.resizeHandle(event)
 
-            if (this.getProp('vertical')){
+        if (this.getProp('vertical')){
 
-                var ratio = CANVAS_SCALING * this.scaling
+            var ratio = CANVAS_SCALING * this.scaling
 
-                this.ctx.setTransform(1, 0, 0, 1, 0, 0)
-                this.ctx.rotate(-Math.PI/2)
-                this.ctx.translate(-this.height * ratio, 0)
+            this.ctx.setTransform(1, 0, 0, 1, 0, 0)
+            this.ctx.rotate(-Math.PI/2)
+            this.ctx.translate(-this.height * ratio, 0)
 
 
-                if (ratio != 1) this.ctx.scale(ratio, ratio)
-            }
+            if (ratio != 1) this.ctx.scale(ratio, ratio)
+        }
 
 
     }
@@ -160,7 +158,7 @@ module.exports = class Input extends Canvas {
 
         this.ctx.fillStyle = this.colors.text
 
-        if (this.textAlign == 'center') {
+        if (this.textAlign == 'center') {
             this.ctx.fillText(v, Math.round(width/2), Math.round(height/2))
         } else if (this.textAlign == 'right') {
             this.ctx.fillText(v, width, Math.round(height/2))

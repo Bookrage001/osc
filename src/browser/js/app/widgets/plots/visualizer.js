@@ -1,6 +1,5 @@
-var {mapToScale, clip} = require('../utils'),
-    _plots_base = require('./_plots_base'),
-    widgetManager = require('../../managers/widgets')
+var {clip} = require('../utils'),
+    _plots_base = require('./_plots_base')
 
 module.exports = class Visualizer extends _plots_base {
 

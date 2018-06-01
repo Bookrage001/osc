@@ -33,11 +33,11 @@ class Slider extends Canvas {
         for (var k in this.getProp('range')) {
             var key = k=='min'?0:k=='max'?100:parseInt(k),
                 val = typeof this.getProp('range')[k] == 'object'?
-                            this.getProp('range')[k][Object.keys(this.getProp('range')[k])[0]]:
-                            this.getProp('range')[k],
+                    this.getProp('range')[k][Object.keys(this.getProp('range')[k])[0]]:
+                    this.getProp('range')[k],
                 label = typeof this.getProp('range')[k] == 'object'?
-                            Object.keys(this.getProp('range')[k])[0]:
-                            val
+                    Object.keys(this.getProp('range')[k])[0]:
+                    val
 
             this.rangeKeys.push(key)
             this.rangeVals.push(val)
@@ -47,10 +47,10 @@ class Slider extends Canvas {
         this.rangeValsMin = Math.min(...this.rangeVals)
 
         this.originValue = this.getProp('origin')=='auto'?
-                                this.rangeValsMin:
-                                clip(this.getProp('origin'), [this.rangeValsMin,this.rangeValsMax])
+            this.rangeValsMin:
+            clip(this.getProp('origin'), [this.rangeValsMin,this.rangeValsMax])
 
-        this.springValue = this.getProp('default') !== '' ? this.getProp('default') :  this.originValue
+        this.springValue = this.getProp('default') !== '' ? this.getProp('default') :  this.originValue
 
         if (this.getProp('doubleTap')) {
 
@@ -105,25 +105,25 @@ class Slider extends Canvas {
 
     }
 
-    mousewheelHandleProxy() {
+    mousewheelHandleProxy() {
 
         this.mousewheelHandle(...arguments)
 
     }
 
-    draginitHandleProxy() {
+    draginitHandleProxy() {
 
         this.draginitHandle(...arguments)
 
     }
 
-    dragHandleProxy() {
+    dragHandleProxy() {
 
         this.dragHandle(...arguments)
 
     }
 
-    dragendHandleProxy() {
+    dragendHandleProxy() {
 
         this.dragendHandle(...arguments)
 
@@ -137,7 +137,7 @@ class Slider extends Canvas {
         e.stopPropagation()
 
         var direction = e.wheelDelta / Math.abs(e.wheelDelta),
-        increment = e.ctrlKey?0.25:1
+            increment = e.ctrlKey?0.25:1
 
         this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.precision + 1)) * direction, [0,100])
 
@@ -163,7 +163,7 @@ class Slider extends Canvas {
 
     cacheCanvasStyle(style) {
 
-        var style = style || window.getComputedStyle(this.canvas)
+        style = style || window.getComputedStyle(this.canvas)
 
         this.colors.track = style.getPropertyValue('--color-track')
         this.colors.gauge = style.getPropertyValue('--color-gauge')
@@ -204,7 +204,7 @@ class Slider extends Canvas {
 
         var value = clip(v,[this.rangeValsMin,this.rangeValsMax])
 
-        if ((options.dragged || options.fromLocal) && this.value.toFixed(this.precision) == value.toFixed(this.precision)) options.send = false
+        if ((options.dragged || options.fromLocal) && this.value.toFixed(this.precision) == value.toFixed(this.precision)) options.send = false
 
         this.value = value
 

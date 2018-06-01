@@ -1,9 +1,9 @@
 var widgetManager = require('./widgets'),
-    {loading, icon, Popup, upload} = require('../ui/utils'),
+    {icon, Popup, upload} = require('../ui/utils'),
     {saveAs} = require('file-saver')
 
 
-var StateManager = class StateManager {
+var StateManager = class StateManager {
 
     constructor() {
 

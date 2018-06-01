@@ -8,13 +8,13 @@ module.exports = function(options,linear,resolution) {
     var {type, freq, q, gain} = options,
         Fs = 44100,
         a0,a1,a2,b1,b2,norm,
-        ymin, ymax, minVal, maxVal,
+        minVal, maxVal,
         len = resolution
 
     var V = Math.pow(10, Math.abs(gain) / 20)
     var K = Math.tan(Math.PI * freq / Fs)
     switch (type) {
-        case "lowpass":
+        case 'lowpass':
             norm = 1 / (1 + K / q + K * K)
             a0 = K * K * norm
             a1 = 2 * a0
@@ -23,7 +23,7 @@ module.exports = function(options,linear,resolution) {
             b2 = (1 - K / q + K * K) * norm
             break
 
-        case "highpass":
+        case 'highpass':
             norm = 1 / (1 + K / q + K * K)
             a0 = 1 * norm
             a1 = -2 * a0
@@ -32,7 +32,7 @@ module.exports = function(options,linear,resolution) {
             b2 = (1 - K / q + K * K) * norm
             break
 
-        case "bandpass":
+        case 'bandpass':
             norm = 1 / (1 + K / q + K * K)
             a0 = K / q * norm
             a1 = 0
@@ -41,7 +41,7 @@ module.exports = function(options,linear,resolution) {
             b2 = (1 - K / q + K * K) * norm
             break
 
-        case "notch":
+        case 'notch':
             norm = 1 / (1 + K / q + K * K)
             a0 = (1 + K * K) * norm
             a1 = 2 * (K * K - 1) * norm
@@ -50,7 +50,7 @@ module.exports = function(options,linear,resolution) {
             b2 = (1 - K / q + K * K) * norm
             break
 
-        case "peak":
+        case 'peak':
             if (gain >= 0) {
                 norm = 1 / (1 + 1/q * K + K * K)
                 a0 = (1 + V/q * K + K * K) * norm
@@ -68,7 +68,7 @@ module.exports = function(options,linear,resolution) {
                 b2 = (1 - V/q * K + K * K) * norm
             }
             break
-        case "lowshelf":
+        case 'lowshelf':
             if (gain >= 0) {
                 norm = 1 / (1 + Math.SQRT2 * K + K * K)
                 a0 = (1 + Math.sqrt(2*V) * K + V * K * K) * norm
@@ -86,7 +86,7 @@ module.exports = function(options,linear,resolution) {
                 b2 = (1 - Math.sqrt(2*V) * K + V * K * K) * norm
             }
             break
-        case "highshelf":
+        case 'highshelf':
             if (gain >= 0) {
                 norm = 1 / (1 + Math.SQRT2 * K + K * K)
                 a0 = (V + Math.sqrt(2*V) * K + K * K) * norm
@@ -110,9 +110,9 @@ module.exports = function(options,linear,resolution) {
     for (var i = 0; i < len; i++) {
         var w, phi, y
         if (linear)
-            w = i / (len - 1) * Math.PI;    // 0 to pi, linear scale
+            w = i / (len - 1) * Math.PI    // 0 to pi, linear scale
         else
-            w = Math.exp(Math.log(1 / 0.001) * i / (len - 1)) * 0.001 * Math.PI;    // 0.001 to 1, times pi, log scale
+            w = Math.exp(Math.log(1 / 0.001) * i / (len - 1)) * 0.001 * Math.PI    // 0.001 to 1, times pi, log scale
 
         phi = Math.pow(Math.sin(w/2), 2)
 

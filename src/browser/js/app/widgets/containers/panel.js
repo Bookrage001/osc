@@ -1,6 +1,5 @@
 var Widget = require('../common/widget'),
     autolayout = require('autolayout/dist/autolayout.kiwi.js'),
-    {iconify} = require('../../ui/utils'),
     widgetManager = require('../../managers/widgets'),
     parser = require('../../parser'),
     editor
@@ -93,7 +92,7 @@ class Panel extends Widget {
                 e.stopPropagation = true
             })
 
-            this.setValue(this.getProp('value') || 0)
+            this.setValue(this.getProp('value') || 0)
 
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
@@ -171,9 +170,10 @@ class Panel extends Widget {
     }
 
     applyLayout() {
-        DOM.each(this.widget, '> .widget', (widget)=>{
+        
+        DOM.each(this.widget, '> .widget', (widgetContainer)=>{
 
-            var widget = widgetManager.getWidgetByElement(widget),
+            var widget = widgetManager.getWidgetByElement(widgetContainer),
                 id = widget.getProp('id')
 
             if (!this.layout.subViews[id]) return

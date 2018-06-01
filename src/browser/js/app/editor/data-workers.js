@@ -1,5 +1,4 @@
-var {iconify} = require('../ui/utils'),
-    widgetManager = require('../managers/widgets'),
+var widgetManager = require('../managers/widgets'),
     resize = require('../events/resize'),
     stateManager = require('../managers/state'),
     parser = require('../parser'),
@@ -12,7 +11,6 @@ var updateWidget = function(widget, options = {}) {
         scroll = sidepanel.scrollTop,
         oldWidgets = widget.childrenHashes.concat(widget.hash),
         wasSelected = editor.selectedWidgets.includes(widget),
-        oldValueProps = {},
         wScroll = {}
 
     stateManager.incrementQueue()
@@ -72,7 +70,7 @@ var updateWidget = function(widget, options = {}) {
 
 }
 
-var fakeStore = {}
+var fakeStore = {}
 
 var incrementWidget = function(data, root){
 
@@ -86,7 +84,6 @@ var incrementWidget = function(data, root){
     }
 
     var id = data.id,
-        label = data.label,
         address = data.address
 
     if (id && address == '/'+id) {

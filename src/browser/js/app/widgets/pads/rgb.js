@@ -58,12 +58,12 @@ module.exports = class Rgb extends Pad {
         super(options)
 
         this.split = this.getProp('split')?
-                        typeof this.getProp('split') == 'object' && this.getProp('split').length == 3 ?
-                            this.getProp('split')
-                            : [this.getProp('address') + '/r', this.getProp('address') + '/g', this.getProp('address') + '/b']
-                        : false
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 3 ?
+                this.getProp('split')
+                : [this.getProp('address') + '/r', this.getProp('address') + '/g', this.getProp('address') + '/b']
+            : false
 
-        this.hueWrapper = this.widget.appendChild(DOM.create(`<div class="hue-wrapper"></div>`))
+        this.hueWrapper = this.widget.appendChild(DOM.create('<div class="hue-wrapper"></div>'))
 
         this.hue = new Fader({props:{
             ...faderDefaults,
@@ -95,8 +95,8 @@ module.exports = class Rgb extends Pad {
         this.wrapper.appendChild(this.pad.widget)
 
 
-        this.value = []
-        this.hsb = {h:0,s:0,b:0}
+        this.value = []
+        this.hsb = {h:0,s:0,b:0}
 
         this.hue.on('change',(e)=>{
             e.stopPropagation = true
@@ -186,7 +186,7 @@ module.exports = class Rgb extends Pad {
         if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
 
-        this.update({dragged:options.dragged, nohue:options.nohue || (v[0]==v[1]&&v[1]==v[2])})
+        this.update({dragged:options.dragged, nohue:options.nohue || (v[0]==v[1]&&v[1]==v[2])})
 
     }
 

@@ -3,7 +3,7 @@ var Widget = require('../common/widget'),
 
 class Toggle extends Widget {
 
-    static defaults() {
+    static defaults() {
 
         return {
             type:'toggle',

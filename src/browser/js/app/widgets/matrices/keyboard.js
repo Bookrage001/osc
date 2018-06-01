@@ -4,7 +4,7 @@ var Matrix = require('./matrix'),
 
 module.exports = class Keyboard extends Matrix {
 
-    static defaults() {
+    static defaults() {
 
         return {
             type:'keyboard',

@@ -1,7 +1,5 @@
 var Panel = require('./panel'),
-    {iconify} = require('../../ui/utils'),
-    Tab = require('./tab'),
-    widgetManager = require('../../managers/widgets')
+    {iconify} = require('../../ui/utils')
 
 module.exports = class Root extends Panel {
 

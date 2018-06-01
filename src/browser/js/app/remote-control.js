@@ -3,7 +3,7 @@ var {updateWidget} = require('./editor/data-workers'),
     deepExtend = require('deep-extend')
 
 var callbacks = {
-    '/EDIT': function(args) {
+    '/EDIT': function(args) {
 
         if (READ_ONLY) return
 
@@ -26,7 +26,7 @@ var callbacks = {
 
         }
     },
-    '/EDIT/MERGE': function(args) {
+    '/EDIT/MERGE': function(args) {
 
         if (READ_ONLY) return
 
@@ -47,7 +47,7 @@ var callbacks = {
 
         }
     },
-    '/EDIT/GET': function(args) {
+    '/EDIT/GET': function(args) {
 
         var [target, idOrAddress, ...preArgs] = args,
             widgets = []
@@ -142,7 +142,7 @@ var callbacks = {
 
         if (!Array.isArray(args)) args = [args]
 
-        for (let id of args) {
+        for (let id of args) {
             let ws = widgetManager.getWidgetById(id)
             for (let w of ws) {
                 DOM.each(document, `.tablink[data-widget="${w.hash}"]`, (el)=>{

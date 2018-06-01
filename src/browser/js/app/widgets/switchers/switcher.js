@@ -5,7 +5,7 @@ var switchDefaults = Switch.defaults()
 
 module.exports = class Switcher extends _switchers_base {
 
-    static defaults() {
+    static defaults() {
 
         return {
             type:'switcher',

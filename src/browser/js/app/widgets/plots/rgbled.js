@@ -1,6 +1,4 @@
-var {mapToScale} = require('../utils'),
-    Widget = require('../common/widget'),
-    widgetManager = require('../../managers/widgets'),
+var Widget = require('../common/widget'),
     {clip} = require('../utils')
 
 module.exports = class Rbgled extends Widget {
@@ -67,7 +65,7 @@ module.exports = class Rbgled extends Widget {
                 v[i] = parseInt(clip(v[i],[0,255]))
             }
 
-            v[3] = clip(v[3] != undefined ? v[3] : 1,[0,1])
+            v[3] = clip(v[3] != undefined ? v[3] : 1,[0,1])
 
             c = `rgba(${v[0]}, ${v[1]}, ${v[2]}, ${v[3]})`
 

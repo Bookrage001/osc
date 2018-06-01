@@ -3,7 +3,7 @@ var Widget = require('../common/widget'),
 
 class Dropdown extends Widget {
 
-    static defaults() {
+    static defaults() {
 
         return {
             type:'dropdown',
@@ -25,7 +25,7 @@ class Dropdown extends Widget {
 
             _dropdown:'dropdown',
 
-            values:{"Value 1":1,"Value 2":2},
+            values:{'Value 1':1,'Value 2':2},
 
             _value: 'value',
             default:'',
@@ -46,7 +46,7 @@ class Dropdown extends Widget {
 
         super({...options, html: '<div class="select"></div>'})
 
-        this.select = this.widget.appendChild(DOM.create(`<select></select>`))
+        this.select = this.widget.appendChild(DOM.create('<select></select>'))
 
         this.values = []
         this.keys = []
@@ -73,7 +73,7 @@ class Dropdown extends Widget {
             values = values !== '' ? [values] : []
         }
 
-        html += `<option value=""></option>`
+        html += '<option value=""></option>'
 
         this.values = []
 

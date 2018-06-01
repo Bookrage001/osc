@@ -29,7 +29,7 @@ var RangeFader = class RangeFader extends Fader {
 
     draw() {
 
-        if (this.cancelDraw || !this.parent.faders) return
+        if (this.cancelDraw || !this.parent.faders) return
 
         var width = this.getProp('horizontal') ? this.height : this.width,
             height = !this.getProp('horizontal') ? this.height : this.width
@@ -42,9 +42,9 @@ var RangeFader = class RangeFader extends Fader {
 
         this.clear()
 
-        if (this.getProp('compact')) {
+        if (this.getProp('compact')) {
 
-            this.ctx.globalAlpha = this.colors.gaugeOpacity || (dashed ? .3 : .2)  + 0.2 * Math.abs(d-d2) / height
+            this.ctx.globalAlpha = this.colors.gaugeOpacity || (dashed ? .3 : .2)  + 0.2 * Math.abs(d-d2) / height
             this.ctx.strokeStyle = this.colors.gauge
             this.ctx.beginPath()
             this.ctx.moveTo(m, d2)
@@ -314,8 +314,8 @@ module.exports = class Range extends Widget {
                     var coord = this.faders[i].percentToCoord(this.faders[i].valueToPercent(this.faders[i].value)) - (this.getProp('horizontal') ? -1 : 1) * (i == 0 ? -20 : 20)
 
                     ndiff = this.getProp('horizontal')?
-                                Math.abs(e.offsetX - coord) :
-                                Math.abs(e.offsetY - coord)
+                        Math.abs(e.offsetX - coord) :
+                        Math.abs(e.offsetY - coord)
 
                     if (diff == -1 || ndiff < diff) {
                         id = i

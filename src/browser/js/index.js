@@ -4,7 +4,7 @@ require('./app/globals')
 
 var {loading} = require('./app/ui/utils')
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', function(event) {
 
     DOM.init()
 

@@ -67,24 +67,24 @@ module.exports = class MultiXy extends Pad {
         this.pointSize = parseInt(this.getProp('pointSize'))
 
         this.split = this.getProp('split')?
-                        typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 * this.npoints ?
-                            this.getProp('split')
-                            : (()=>{
-                                var s={},
-                                    t
-                                for (var i=0; i<this.npoints * 2;i=i+2) {
-                                    t = this.labels ? this.getProp('points')[i/2] : i/2
-                                    s[i]=this.getProp('address') + '/' + t + '/x'
-                                    s[i+1]=this.getProp('address') + '/' + t + '/y'
-                                };
-                                return s
-                            })()
-                        : false
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 * this.npoints ?
+                this.getProp('split')
+                : (()=>{
+                    var s={},
+                        t
+                    for (var i=0; i<this.npoints * 2;i=i+2) {
+                        t = this.labels ? this.getProp('points')[i/2] : i/2
+                        s[i]=this.getProp('address') + '/' + t + '/x'
+                        s[i+1]=this.getProp('address') + '/' + t + '/y'
+                    }
+                    return s
+                })()
+            : false
 
 
         this.pads = []
 
-        for (var i=this.npoints-1;i>=0;i--) {
+        for (let i=this.npoints-1;i>=0;i--) {
             this.pads[i] = new Xy({props:{
                 ...xyDefaults,
                 snap:this.getProp('snap'),
@@ -174,7 +174,7 @@ module.exports = class MultiXy extends Pad {
 
 
         var v = []
-        for (var i=0;i<this.npoints * 2;i=i+2) {
+        for (let i = 0; i < this.npoints * 2; i = i + 2) {
             [v[i],v[i+1]]  = this.pads[i/2].getValue()
         }
 
@@ -194,7 +194,7 @@ module.exports = class MultiXy extends Pad {
         for (var i=0;i<this.npoints;i++) {
 
             this.padsCoords[i] = [clip(this.pads[i].faders.x.percent,[0,100]) / 100 * (this.width - (this.pointSize * 2 + 2) * PXSCALE) + (this.pointSize + 1) * PXSCALE
-                                        ,- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) - (this.pointSize + 1) * PXSCALE]
+                ,- clip(this.pads[i].faders.y.percent,[0,100]) / 100 * (this.height - (this.pointSize * 2 + 2) * PXSCALE) - (this.pointSize + 1) * PXSCALE]
 
         }
 
@@ -236,7 +236,7 @@ module.exports = class MultiXy extends Pad {
         if (!v || !v.length || v.length!=this.npoints * 2) return
         if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
-        for (var i=0;i<this.npoints;i++) {
+        for (let i=0;i<this.npoints;i++) {
             if (!options.dragged) {
                 this.pads[i].setValue([v[i*2],v[i*2+1]])
             }
@@ -245,7 +245,7 @@ module.exports = class MultiXy extends Pad {
         this.updateHandlesPosition()
         this.batchDraw()
 
-        for (var i=0;i<this.npoints * 2;i=i+2) {
+        for (let i=0;i<this.npoints * 2;i=i+2) {
             [this.value[i],this.value[i+1]]  = this.pads[i/2].getValue()
         }
 

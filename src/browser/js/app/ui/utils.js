@@ -19,7 +19,7 @@ module.exports = {
             }
 
             this.closable = options.closable
-            this.escKey = options.closable || options.escKey
+            this.escKey = options.closable || options.escKey
             this.enterKey = options.enterKey
             this.content = options.content
             this.title = options.title
@@ -108,7 +108,7 @@ module.exports = {
                 file = e.target.files[0],
                 loader = module.exports.loading('Uploading file...')
 
-            reader.onerror = reader.onabort = function() {
+            reader.onerror = reader.onabort = function() {
                 loader.close()
                 error()
             }

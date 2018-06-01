@@ -1,6 +1,6 @@
 var Switcher = require('./switcher'),
     Fader = require('../sliders/fader'),
-    {mapToScale, clip} = require('../utils')
+    {mapToScale} = require('../utils')
 
 var faderDefaults = Fader.defaults()
 
@@ -26,7 +26,7 @@ module.exports = class Crossfader extends Switcher {
         this.fader = new Fader({props:{
             ...faderDefaults,
             horizontal: this.getProp('horizontal'),
-            range: {min:{'A':0}, '50%':{" ":0.5},max:{'B':1}},
+            range: {min:{'A':0}, '50%':{' ':0.5},max:{'B':1}},
             input: false
         }, parent: this})
 
@@ -55,11 +55,11 @@ module.exports = class Crossfader extends Switcher {
 
     setValue(v, options={}) {
 
-        var v = v <= 0 || v == 'A' ?
-                    'A' :
-                    v >= 1 || v == 'B' ?
-                        'B' :
-                        v
+        v = v <= 0 || v == 'A' ?
+            'A' :
+            v >= 1 || v == 'B' ?
+                'B' :
+                v
 
         super.setValue(v, options)
 
@@ -103,7 +103,7 @@ module.exports = class Crossfader extends Switcher {
 
                         if (!isNaN(s['A'][i][k])) {
 
-                            a[i][k] = mapToScale(v, [0,1], [s['A'][i][k], s['B'][i][k]], false)
+                            a[i][k] = mapToScale(v, [0,1], [s['A'][i][k], s['B'][i][k]], false)
 
                         }
 
@@ -111,7 +111,7 @@ module.exports = class Crossfader extends Switcher {
 
                 } else if (!isNaN(s['A'][i])) {
 
-                    a[i] = mapToScale(v, [0,1], [s['A'][i], s['B'][i]], false)
+                    a[i] = mapToScale(v, [0,1], [s['A'][i], s['B'][i]], false)
                 }
             }
 

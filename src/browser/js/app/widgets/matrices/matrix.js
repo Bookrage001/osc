@@ -1,5 +1,4 @@
 var Widget = require('../common/widget'),
-    widgetManager = require('../../managers/widgets'),
     {enableTraversingGestures} = require('../../events/drag')
 
 

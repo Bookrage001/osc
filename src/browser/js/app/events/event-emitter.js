@@ -1,5 +1,5 @@
 var WolfyEventEmitter = require('wolfy87-eventemitter'),
-    customEvents = {}
+    customEvents = {}
 
 customEvents['draginit'] = customEvents['drag'] = customEvents['dragend']  = require('./drag')
 customEvents['resize']  = require('./resize')
@@ -44,7 +44,7 @@ module.exports = class EventEmitter extends WolfyEventEmitter {
                 response = {}
 
             for (var key in events) {
-                if (key === evtName || key.indexOf(evtNameCheck) > -1) {
+                if (key === evtName || key.indexOf(evtNameCheck) > -1) {
                     response[key] = events[key]
                 }
             }

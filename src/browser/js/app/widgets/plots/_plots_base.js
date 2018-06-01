@@ -1,7 +1,6 @@
 var {mapToScale} = require('../utils'),
     Widget = require('../common/widget'),
-    Canvas = require('../common/canvas'),
-    widgetManager = require('../../managers/widgets')
+    Canvas = require('../common/canvas')
 
 module.exports = class _plots_base extends Canvas {
 
@@ -30,7 +29,7 @@ module.exports = class _plots_base extends Canvas {
                 max: Math.abs(this.rangeY.max)>=1000?this.rangeY.max/1000+'k':this.rangeY.max
             }
         }
-        this.smooth = this.getProp('smooth') === true ? 0.25 : this.getProp('smooth') === false ? 0 : parseFloat(this.getProp('smooth')) || 0
+        this.smooth = this.getProp('smooth') === true ? 0.25 : this.getProp('smooth') === false ? 0 : parseFloat(this.getProp('smooth')) || 0
 
     }
 
@@ -41,7 +40,7 @@ module.exports = class _plots_base extends Canvas {
 
     }
 
-    draw() {
+    draw() {
 
         this.ctx.clearRect(0,0,this.width,this.height)
 
@@ -65,7 +64,7 @@ module.exports = class _plots_base extends Canvas {
 
         if (this.pips.x) {
 
-            this.ctx.textBaseline = "bottom"
+            this.ctx.textBaseline = 'bottom'
             this.ctx.textAlign = 'left'
             this.ctx.fillText(this.pips.x.min,(this.pips.y?12:2)*PXSCALE,this.height)
             this.ctx.textAlign = 'right'
@@ -79,7 +78,7 @@ module.exports = class _plots_base extends Canvas {
             this.ctx.translate(0, this.height)
             this.ctx.rotate(-Math.PI/2)
 
-            this.ctx.textBaseline = "top"
+            this.ctx.textBaseline = 'top'
             this.ctx.textAlign = 'left'
             this.ctx.fillText(this.pips.y.min,(this.pips.x?12:2)*PXSCALE,2*PXSCALE)
             this.ctx.textAlign = 'right'
@@ -91,7 +90,7 @@ module.exports = class _plots_base extends Canvas {
 
     }
 
-    draw_line() {
+    draw_line() {
 
         var points = []
 
@@ -150,10 +149,9 @@ module.exports = class _plots_base extends Canvas {
 
     }
 
-    draw_bars() {
+    draw_bars() {
 
-        var points = [],
-            barWidth = Math.round(this.width / this.data.length),
+        var barWidth = Math.round(this.width / this.data.length),
             offset = Math.round((this.width - barWidth * this.data.length) / 2)
 
         var origin = mapToScale(this.getProp('origin') || this.rangeY.min,[this.rangeY.min,this.rangeY.max],[this.height,0],0,this.getProp('logScaleY'),true)

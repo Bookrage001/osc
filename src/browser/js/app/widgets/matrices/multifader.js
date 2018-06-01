@@ -111,9 +111,9 @@ module.exports = class Multifader extends Matrix {
 
     onPropChanged(propName, options, oldPropValue) {
 
-       if (super.onPropChanged(...arguments)) return true
+        if (super.onPropChanged(...arguments)) return true
 
-       switch (propName) {
+        switch (propName) {
 
             case 'color':
                 for (var h of this.childrenHashes) {

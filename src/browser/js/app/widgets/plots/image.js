@@ -1,5 +1,4 @@
-var {mapToScale} = require('../utils'),
-    Widget = require('../common/widget'),
+var Widget = require('../common/widget'),
     ipc = require('../../ipc')
 
 module.exports = class Led extends Widget {
@@ -84,8 +83,8 @@ module.exports = class Led extends Widget {
 
         if (typeof this.value === 'string' && this.value.length) {
 
-            cache_query = this.getProp('cache') || this.value.indexOf('base64') != -1 ?
-                            '' : (this.value.indexOf('?') != -1 ? '&' : '?') + Date.now()
+            cache_query = this.getProp('cache') || this.value.indexOf('base64') != -1 ?
+                '' : (this.value.indexOf('?') != -1 ? '&' : '?') + Date.now()
 
         }
 
@@ -96,7 +95,7 @@ module.exports = class Led extends Widget {
     }
 
     onStreamUpdate(event) {
-        console.log(event)
+
         var [stream, data] = event
         if (stream === this.getProp('stream')) {
             this.setValue('data:image/jpeg;base64,' + data)

@@ -12,7 +12,7 @@ var Parser = class Parser {
 
     getIterator(id) {
 
-        this.iterators[id] = (this.iterators[id] || 0) + 1
+        this.iterators[id] = (this.iterators[id] || 0) + 1
         return this.iterators[id]
 
     }
@@ -51,7 +51,7 @@ var Parser = class Parser {
             // Genrate widget's id, based on its type
             if (props.id=='auto' || !props.id ) {
                 var id
-                while (!id || widgetManager.getWidgetById(id).length) {
+                while (!id || widgetManager.getWidgetById(id).length) {
                     id=props.type+'_'+this.getIterator(props.type)
                 }
                 props.id = id

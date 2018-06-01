@@ -6,7 +6,7 @@ var Widget = require('../common/widget'),
 
 module.exports = class Formula extends Widget {
 
-    static defaults() {
+    static defaults() {
 
         return {
             type:'formula',
@@ -74,20 +74,20 @@ module.exports = class Formula extends Widget {
 
         if (this.formulaString.length) {
 
-            if (this.formulaString.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.formulaString.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
+            if (this.formulaString.match(/\$\{([^}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.formulaString.match(/\$\{([^}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
 
         }
 
         if (this.conditionString.length) {
 
-            if (this.conditionString.match(/\$\{([^\}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.conditionString.match(/\$\{([^\}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
+            if (this.conditionString.match(/\$\{([^}]*)\}/g) != null) this.linkedWidgets = this.linkedWidgets.concat(this.conditionString.match(/\$\{([^}]*)\}/g).map((a)=>{return a.substr(2, a.length - 3)}))
 
         }
 
 
         try {
 
-            this.condition = math.compile(this.conditionString.replace(/\$\{([^\}]*)\}/g, '_$1'))
+            this.condition = math.compile(this.conditionString.replace(/\$\{([^}]*)\}/g, '_$1'))
             delete this.errors.condition
 
         } catch(err) {
@@ -98,7 +98,7 @@ module.exports = class Formula extends Widget {
 
         try {
 
-            this.formula = math.compile(this.formulaString.replace(/\$\{([^\}]*)\}/g, '_$1'))
+            this.formula = math.compile(this.formulaString.replace(/\$\{([^}]*)\}/g, '_$1'))
             delete this.errors.formula
 
         } catch(err) {
@@ -125,8 +125,7 @@ module.exports = class Formula extends Widget {
 
     updateValue(e){
 
-        var variables = {},
-            id, n = 0
+        var variables = {}
 
         for (let id of this.linkedWidgets) {
             if (id !== undefined) {

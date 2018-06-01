@@ -4,7 +4,7 @@ var Widget = require('../common/widget'),
 
 module.exports = class _switchers_base extends Widget {
 
-    constructor(options) {
+    constructor(options) {
 
         super(options)
 
@@ -82,7 +82,7 @@ module.exports = class _switchers_base extends Widget {
     }
 
 
-    applyState(state, options) {
+    applyState(state, options) {
         for (var id in state) {
             var value = state[id],
                 widgets = widgetManager.getWidgetById(id)

@@ -1,5 +1,5 @@
-var Widget = require('../common/widget')
-var morph = require('nanomorph')
+var Widget = require('../common/widget'),
+    morph = require('nanomorph')
 
 class Svg extends Widget {
 
@@ -55,13 +55,13 @@ class Svg extends Widget {
 
     updateSvg(){
 
-        if (!this.width || !this.height) return
+        if (!this.width || !this.height) return
 
         var svg = this.getProp('svg')
 
         svg = svg.replace(/<\/svg>/gi, 'x')
-        svg = svg.replace(/([0-9\.]+%x)/gi, m => (parseFloat(m) * this.width / 100).toFixed(2))
-        svg = svg.replace(/([0-9\.]+%y)/gi, m => (parseFloat(m) * this.height / 100).toFixed(2))
+        svg = svg.replace(/([0-9.]+%x)/gi, m=>(parseFloat(m) * this.width / 100).toFixed(2))
+        svg = svg.replace(/([0-9.]+%y)/gi, m=>(parseFloat(m) * this.height / 100).toFixed(2))
 
 
         morph(this.widget, DOM.create('<div class="svg"><svg>' + svg + '</svg></div>'))
@@ -76,8 +76,7 @@ class Svg extends Widget {
 
     resizeHandle(event){
 
-        var {width, height, style} = event,
-            ratio = CANVAS_SCALING * this.scaling
+        var {width, height} = event
 
         this.height = height
         this.width = width

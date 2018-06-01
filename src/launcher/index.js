@@ -1,8 +1,8 @@
-var {remote, ipcRenderer, shell} = eval("require('electron')"),
-    {dialog, webContents, Menu, MenuItem, app} = remote.require('electron'),
+var {remote, ipcRenderer, shell} = eval('require(\'electron\')'),
+    {dialog, Menu, MenuItem, app} = remote.require('electron'),
     menu = new Menu(),
     settings = remote.require('./main/settings'),
-    packageInfos = remote.require('./package.json')
+    packageInfos = remote.require('./package.json'),
     packageVersion = packageInfos.version,
     packageUrl = packageInfos.repository.url,
     argv_remote = settings.read('argv'),
@@ -25,7 +25,7 @@ $(document).ready(()=>{
 
         if (option.launcher === false) return
 
-        var wrapper = $(`<div class="item-wrapper"></div>`),
+        var wrapper = $('<div class="item-wrapper"></div>'),
             item = $(`
             <div class="input-wrapper">
                 <label>${option.alias || i}</label>
@@ -37,7 +37,7 @@ $(document).ready(()=>{
 
         var strValue
         if (Array.isArray(value)) {
-            strValue = value.map(x => x.includes(' ') ? '"'+x+'"' : x).join(' ')
+            strValue = value.map(x=>x.includes(' ') ? '"'+x+'"' : x).join(' ')
         } else {
             strValue = value
         }
@@ -47,30 +47,30 @@ $(document).ready(()=>{
 
         if (option.type == 'boolean') {
 
-           var toggle = $(`<span class="checkbox ${value?'on':''}"><i class="fa fa-fw fa-check"></i></span>`)
-           toggle.appendTo(item)
+            var toggle = $(`<span class="checkbox ${value?'on':''}"><i class="fa fa-fw fa-check"></i></span>`)
+            toggle.appendTo(item)
 
-           toggle.click(function(e){
-               e.preventDefault()
-               input.val(!eval(input.val())).trigger('change')
-               toggle.toggleClass('on')
-           })
+            toggle.click(function(e){
+                e.preventDefault()
+                input.val(!eval(input.val())).trigger('change')
+                toggle.toggleClass('on')
+            })
 
-       }
+        }
 
-       if (option.file) {
+        if (option.file) {
 
-          var browse = $(`<span class="checkbox">...</span>`)
-          browse.appendTo(item)
+            var browse = $('<span class="checkbox">...</span>')
+            browse.appendTo(item)
 
-          browse.click(function(e){
-              e.preventDefault()
-              dialog.showOpenDialog({filters:[{name:option.file.name,extensions:option.file.extensions}]},function(file){
-                  input.val(file).change()
-              })
-          })
+            browse.click(function(e){
+                e.preventDefault()
+                dialog.showOpenDialog({filters:[{name:option.file.name,extensions:option.file.extensions}]},function(file){
+                    input.val(file).change()
+                })
+            })
 
-      }
+        }
 
 
 
@@ -90,7 +90,7 @@ $(document).ready(()=>{
                         return m.replace(/\s/, '_SPÂCE_').substr(1, m.length - 2)
                     })
                     v = v.split(' ')
-                    v = v.map(x => x.replace(new RegExp('_SPÂCE_', 'g'), ' '))
+                    v = v.map(x=>x.replace(new RegExp('_SPÂCE_', 'g'), ' '))
                 } else if (v && option.type == 'number'){
                     v = parseFloat(v)
                 }
@@ -110,7 +110,7 @@ $(document).ready(()=>{
 
             if (option.restart && v!=value && !wrapper.hasClass('restart')) {
                 wrapper.addClass('restart')
-                wrapper.append(`<div class="restart-msg">The app must be restarted for this change to take effect.</div>`)
+                wrapper.append('<div class="restart-msg">The app must be restarted for this change to take effect.</div>')
             } else if (option.restart && wrapper.hasClass('restart')) {
                 wrapper.removeClass('restart')
                 wrapper.find('.restart-msg').remove()
@@ -119,7 +119,7 @@ $(document).ready(()=>{
             if (!stop) $('input').not(input).trigger('change',true)
         })
 
-        cancel = $(`<div class="btn clear"><i class="fa fa-times fa-fw"></i></div>`)
+        cancel = $('<div class="btn clear"><i class="fa fa-times fa-fw"></i></div>')
         cancel.click((e)=>{
             e.preventDefault()
             if (option.type == 'boolean') {
@@ -136,7 +136,7 @@ $(document).ready(()=>{
     })
 
 
-    var save = $(`<div class="btn start save">Save</div>`).appendTo(form),
+    var save = $('<div class="btn start save">Save</div>').appendTo(form),
         saveWithCallback = function(callback) {
             $('input').change()
             if (form.find('.error').length) return
@@ -172,7 +172,7 @@ $(document).ready(()=>{
 
     // Starter (oneshot)
 
-    var start = $(`<div class="btn start">Start</div>`).appendTo(form)
+    var start = $('<div class="btn start">Start</div>').appendTo(form)
     start.click((e)=>{
 
         e.preventDefault()
@@ -199,14 +199,13 @@ $(document).ready(()=>{
     })
 
     // Fake console
-    var terminal = $(`<div class="terminal"></div>`).appendTo(form).hide(),
+    var terminal = $('<div class="terminal"></div>').appendTo(form).hide(),
         autoscoll = true
 
     ipcRenderer.on('stdout', function(e, msg){
         terminal.append(`<div class="log">${msg}</div>`)
         if (autoscoll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
     })
-        var scroll = document.body.offsetHeight + document.body.scrollTop == document.body.scrollHeight
 
     ipcRenderer.on('stderr', function(e, msg){
         terminal.append(`<div class="error">${msg}</div>`)
@@ -245,7 +244,7 @@ $(document).ready(()=>{
     ]}))
 
 
-    window.addEventListener('contextmenu', function (e) {
+    window.addEventListener('contextmenu', function(e) {
         menu.items[0].enabled = !!window.getSelection().toString()
         menu.items[1].enabled = $(e.target).is('input:not([disabled])')
         menu.popup({ window: remote.getCurrentWindow(), x: e.pageX, y: e.pageY - document.body.scrollTop})
@@ -264,7 +263,7 @@ $(document).ready(()=>{
 
 
     // open links in system's browser
-    $(document).click((e,url)=>{
+    $(document).click((e)=>{
         var url = $(e.target).attr('href')
         if (url) {
             e.preventDefault()
@@ -275,21 +274,21 @@ $(document).ready(()=>{
     // New version info
     if (navigator.onLine) {
 
-        var request = new XMLHttpRequest();
-        request.open('GET', 'https://api.github.com/repos/jean-emmanuel/open-stage-control/tags', true);
+        var request = new XMLHttpRequest()
+        request.open('GET', 'https://api.github.com/repos/jean-emmanuel/open-stage-control/tags', true)
 
         request.onload = function() {
-          if (request.status >= 200 && request.status < 400) {
-            var data = JSON.parse(request.responseText);
+            if (request.status >= 200 && request.status < 400) {
+                var data = JSON.parse(request.responseText)
 
-            if (data[0].name != 'v' + packageVersion) {
-                $('#new-version').html(` [<a href="${packageUrl}/releases" target="_blank">${data[0].name} is available</a>]`)
+                if (data[0].name != 'v' + packageVersion) {
+                    $('#new-version').html(` [<a href="${packageUrl}/releases" target="_blank">${data[0].name} is available</a>]`)
+                }
+
             }
+        }
 
-          }
-        };
-
-        request.send();
+        request.send()
 
     }
 

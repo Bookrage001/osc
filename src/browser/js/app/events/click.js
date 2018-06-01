@@ -1,6 +1,3 @@
-var {fix} = require('./utils'),
-    supportsPassive = require('./supports-passive')
-
 var longTouchTimer = false,
     clearLongTouchTimer = function() {
         if (longTouchTimer) {
@@ -14,7 +11,7 @@ document.body.setAttribute('oncontextmenu', 'return false')
 document.addEventListener('mousedown', (event)=>{
 
     if (event.touchPunch) return
-    if (event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) return
+    if (event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) return
     if (event.button == 2) event.preventDefault()
 
     var e = event

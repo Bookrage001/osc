@@ -1,6 +1,5 @@
 var ipc = require('../ipc/'),
     parser = require('../parser'),
-    state = require('./state'),
     editor = require('../editor/'),
     lobby = require('../ui/lobby'),
     {loading, icon, Popup, upload} = require('../ui/utils'),

@@ -1,6 +1,6 @@
 var {updateWidget, incrementWidget} = require('./data-workers'),
     {Popup} = require('../ui/utils'),
-    {widgets, categories} = require('../widgets/'),
+    {categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
     editor = require('./')
 
@@ -25,7 +25,7 @@ class ContextMenu {
 
             if (typeof actions[label] == 'object') {
 
-                var item = DOM.create(`<div class="item has-sub" tabIndex="1">${label}</div>`)
+                let item = DOM.create(`<div class="item has-sub" tabIndex="1">${label}</div>`)
                 menu.appendChild(item)
 
                 this.open(e,actions[label],item)
@@ -33,7 +33,7 @@ class ContextMenu {
 
             } else {
 
-                var item = DOM.create(`<div class="item">${label}</div>`)
+                let item = DOM.create(`<div class="item">${label}</div>`)
                 menu.appendChild(item)
                 item.addEventListener(this.event, (e)=>{
                     e.detail.preventDefault = true
@@ -79,7 +79,7 @@ class ContextMenu {
 
     }
 
-    close() {
+    close() {
 
         if (this.menu) {
 
@@ -147,14 +147,14 @@ var handleClick = function(event) {
     // right-click menu
     if (event.type !== 'fast-right-click') return
 
-    if (!event.detail.ctrlKey && editor.selectedWidgets.length <= 1) {
+    if (!event.detail.ctrlKey && editor.selectedWidgets.length <= 1) {
         editor.select(widget, {multi: event.detail[mod]})
     }
 
     if (!editor.selectedWidgets.length) return
 
-    var index = editor.selectedWidgets.map((w) => DOM.index(w.container)).sort((a,b)=>{return b-a}),
-        data = editor.selectedWidgets.map((w) => w.props),
+    var index = editor.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
+        data = editor.selectedWidgets.map((w)=>w.props),
         type = editor.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
         parent = editor.selectedWidgets[0].parent
 
@@ -213,8 +213,8 @@ var handleClick = function(event) {
 
                 wrap.widgets = data
 
-                var minTop = Math.min(...data.map(x => isNaN(x.top) ? x.top == 'auto' ? 0 : Infinity : x.top))
-                var minLeft = Math.min(...data.map(x => isNaN(x.left) ? x.left == 'auto' ? 0 : Infinity : x.left))
+                var minTop = Math.min(...data.map(x=>isNaN(x.top) ? x.top == 'auto' ? 0 : Infinity : x.top))
+                var minLeft = Math.min(...data.map(x=>isNaN(x.left) ? x.left == 'auto' ? 0 : Infinity : x.left))
 
                 wrap.top = minTop === Infinity ? data[0].top : minTop
                 wrap.left= minLeft === Infinity ? data[0].left : minLeft
@@ -242,7 +242,7 @@ var handleClick = function(event) {
 
         if (editor.clipboard !== null) {
 
-            function paste(increment) {
+            var paste = function(increment) {
 
                 var pastedData = JSON.parse(editor.clipboard),
                     minTop = Infinity,
@@ -259,7 +259,7 @@ var handleClick = function(event) {
                 }
 
                 var keepPosition = eventData.target.classList.contains('tablink')
-                for (var i in pastedData) {
+                for (let i in pastedData) {
 
                     if (!keepPosition) {
                         if (!isNaN(pastedData[i].top)) pastedData[i].top  = pastedData[i].top - minTop + clickY
@@ -268,7 +268,7 @@ var handleClick = function(event) {
 
                 }
 
-                data[0].widgets = data[0].widgets || []
+                data[0].widgets = data[0].widgets || []
                 data[0].widgets = data[0].widgets.concat(pastedData)
 
                 updateWidget(editor.selectedWidgets[0])
@@ -298,7 +298,7 @@ var handleClick = function(event) {
                         clone.left = clickX
                     }
 
-                    data[0].widgets = data[0].widgets || []
+                    data[0].widgets = data[0].widgets || []
                     data[0].widgets.push(clone)
 
                     updateWidget(editor.selectedWidgets[0])
@@ -326,7 +326,7 @@ var handleClick = function(event) {
                         newData.left= clickX
                     }
 
-                    data[0].widgets = data[0].widgets || []
+                    data[0].widgets = data[0].widgets || []
                     data[0].widgets.push(newData)
                     updateWidget(editor.selectedWidgets[0])
                 }
@@ -340,7 +340,7 @@ var handleClick = function(event) {
     if (data.length == 1 && (!data[0].widgets || !data[0].widgets.length) && (data[0].tabs)) {
 
         actions['<i class="fa fa-plus"></i> Add tab'] = ()=>{
-            data[0].tabs = data[0].tabs || []
+            data[0].tabs = data[0].tabs || []
             data[0].tabs.push({})
             updateWidget(editor.selectedWidgets[0])
         }
@@ -366,11 +366,11 @@ var handleClick = function(event) {
             popup.close()
 
             if (type === 'widget') {
-                for (var i of index) {
+                for (let i of index) {
                     parent.props.widgets.splice(i,1)
                 }
             } else {
-                for (var i of index) {
+                for (let i of index) {
                     parent.props.tabs.splice(i,1)
                 }
             }

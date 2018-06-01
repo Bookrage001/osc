@@ -1,7 +1,8 @@
 module.exports = {
 
     clip: function(value,range) {
-        var value = parseFloat(value)
+
+        value = parseFloat(value)
 
         if (isNaN(value)) value = range[0]
         return Math.max(Math.min(range[0],range[1]),Math.min(value,Math.max(range[0],range[1])))
@@ -11,24 +12,24 @@ module.exports = {
     // map a value from a scale to another input and output must be range arrays
     mapToScale: function(value,rangeIn,rangeOut,precision,log,revertlog) {
 
-        var value = module.exports.clip(value,[rangeIn[0],rangeIn[1]])
+        value = module.exports.clip(value,[rangeIn[0],rangeIn[1]])
 
-        value =  log?
-                    revertlog?
-                        (Math.pow(10,((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])))/9-1/9) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
-                        :Math.log10(((value-rangeIn[0])/(rangeIn[1]-rangeIn[0]))*9+1) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
-                    :((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+        value =  log ?
+            revertlog ?
+                (Math.pow(10,((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])))/9-1/9) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+                :Math.log10(((value-rangeIn[0])/(rangeIn[1]-rangeIn[0]))*9+1) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+            :((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
 
         value = Math.max(Math.min(rangeOut[0],rangeOut[1]),Math.min(value,Math.max(rangeOut[0],rangeOut[1])))
 
-        if (precision!==false) value = parseFloat(value.toFixed(precision))
+        if (precision !== false) value = parseFloat(value.toFixed(precision))
 
 
         return value
 
     },
 
-    hsbToRgb: function (hsb) {
+    hsbToRgb: function(hsb) {
         var rgb = {}
         var h = hsb.h
         var s = hsb.s*255/100
@@ -51,7 +52,7 @@ module.exports = {
         return rgb
     },
 
-    rgbToHsb: function (rgb) {
+    rgbToHsb: function(rgb) {
         var hsb = {h: 0, s: 0, b: 0}
         var min = Math.min(rgb.r, rgb.g, rgb.b)
         var max = Math.max(rgb.r, rgb.g, rgb.b)
@@ -86,12 +87,12 @@ module.exports = {
             },
             length: function(x) { return x.length },
             // basic relationnal to keep alphabetical string comparison (v4 change)
-            equal:     function (a, b) { return a == b },
-            unequal:   function (a, b) { return a != b },
-            smaller:   function (a, b) { return a < b },
-            larger:    function (a, b) { return a > b },
-            smallerEq: function (a, b) { return a <= b },
-            largerEq:  function (a, b) { return a >= b }
+            equal:     function(a, b) { return a == b },
+            unequal:   function(a, b) { return a != b },
+            smaller:   function(a, b) { return a < b },
+            larger:    function(a, b) { return a > b },
+            smallerEq: function(a, b) { return a <= b },
+            largerEq:  function(a, b) { return a >= b }
         }, {override:true})
 
         // set math's parser array index base to zero

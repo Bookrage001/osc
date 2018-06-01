@@ -52,7 +52,7 @@ module.exports = {
     get: function(a, b) {
 
         var context = b ? a : document,
-            selector = b || a
+            selector = b || a
 
         if (selector.indexOf('>') == 0) selector = ':scope ' + selector
 
@@ -95,7 +95,7 @@ module.exports = {
                 if (!isNaN(element.offsetTop)) {
                     offsetTop += element.offsetTop - element.scrollTop
                 }
-            } while (element = element.offsetParent)
+            } while ((element = element.offsetParent))
         }
 
         return {

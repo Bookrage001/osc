@@ -33,7 +33,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         if (linkId) {
             if (!Array.isArray(linkId)) linkId = [linkId]
-            linkId = linkId.map(x => x.replace(/^>>\s*/, '')).filter(x => x.indexOf('<<') < 0)
+            linkId = linkId.map(x=>x.replace(/^>>\s*/, '')).filter(x=>x.indexOf('<<') < 0)
         }
 
         var widgetsById = this.getWidgetById(id),
@@ -42,7 +42,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         // Widget that share the same id will update each other
         // without sending any extra osc message
         if (widgetsById.length > 1) {
-            var v = widget.getValue()
+            let v = widget.getValue()
             for (let i in widgetsById) {
                 if (widgetsById[i] !== widget) {
                     widgetsById[i].setValue(v,{send:false,sync:false})
@@ -53,7 +53,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         // widgets that share the same linkId will update each other.
         // Updated widgets will send osc messages normally
         if (widgetsByLinkId.length > 0) {
-            var v = widget.getValue()
+            let v = widget.getValue()
             for (let i in widgetsByLinkId) {
                 if (widgetsByLinkId[i] !== widget) {
                     widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
@@ -64,14 +64,15 @@ var WidgetManager = class WidgetManager extends EventEmitter {
     }
 
     createAddressRef(widget, preArgs, address) {
-        var preArgs = widget ? widget.getProp('preArgs') : preArgs,
-            address = widget ? widget.getProp('address') : address
+
+        preArgs = widget ? widget.getProp('preArgs') : preArgs
+        address = widget ? widget.getProp('address') : address
 
         if (!Array.isArray(preArgs) && preArgs !== '') preArgs = [preArgs]
 
         return preArgs && preArgs.length ?
-                    address + this.preArgsSeparator + preArgs.join(this.preArgsSeparator)
-                    : address
+            address + this.preArgsSeparator + preArgs.join(this.preArgsSeparator)
+            : address
 
     }
 
@@ -96,7 +97,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         if (linkId) {
             if (!Array.isArray(linkId)) linkId = [linkId]
-            linkId = linkId.map(x => x.replace(/^<<\s*/, '')).filter(x => x.indexOf('>>') < 0)
+            linkId = linkId.map(x=>x.replace(/^<<\s*/, '')).filter(x=>x.indexOf('>>') < 0)
             for (var i in linkId) {
                 if (linkId[i]) {
                     if (!this.linkIdRoute[linkId[i]]) this.linkIdRoute[linkId[i]] = []
@@ -219,20 +220,19 @@ var WidgetManager = class WidgetManager extends EventEmitter {
     }
 
 
-    getWidgetBy(key, dict, widgets) {
+    getWidgetBy(key, dict, widgets = []) {
 
-        var widgets = widgets || [],
-            hash, w
+        var hash, w
 
         if (Array.isArray(key)) {
-            for (var i in key) {
+            for (let i in key) {
                 this.getWidgetBy(key[i], dict, widgets)
             }
             return widgets
         }
 
         if (dict[key]) {
-            for (var i = dict[key].length-1; i>=0; i--) {
+            for (let i = dict[key].length-1; i>=0; i--) {
                 hash = dict[key][i]
                 w = this.widgets[hash]
                 if (!w) {

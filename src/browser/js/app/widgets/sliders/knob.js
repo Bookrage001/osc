@@ -1,4 +1,4 @@
-var {clip, mapToScale} = require('../utils'),
+var {clip} = require('../utils'),
     Slider = require('./slider')
 
 module.exports = class Knob extends Slider {
@@ -80,7 +80,7 @@ module.exports = class Knob extends Slider {
         this.lastOffsetX = e.offsetX
         this.lastOffsetY = e.offsetY
 
-        if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
+        if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
 
         this.percent = this.angleToPercent(this.coordsToAngle(e.offsetX, e.offsetY))
 
@@ -90,7 +90,7 @@ module.exports = class Knob extends Slider {
 
     dragHandle(e) {
 
-        if (!(e.traversing || this.getProp('snap')) || e.ctrlKey) {
+        if (!(e.traversing || this.getProp('snap')) || e.ctrlKey) {
 
             this.percent = -100 * (e.movementY / e.inertia) / this.height + this.percent
 
@@ -125,14 +125,15 @@ module.exports = class Knob extends Slider {
 
     percentToAngle(percent) {
 
-        var percent = clip(percent, [0, 100])
+        percent = clip(percent, [0, 100])
+
         return  2 * Math.PI * percent / 100 * (this.maxAngle / 360) // angle relative to maxAngle
                 + Math.PI / 2                                       // quarter circle offset
                 + Math.PI * (1 - this.maxAngle / 360)               // centering offset depending on maxAngle
 
     }
 
-    resizeHandle() {
+    resizeHandle() {
 
         super.resizeHandle(...arguments)
 
@@ -236,7 +237,7 @@ module.exports = class Knob extends Slider {
 
         var g = this.ctx.createLinearGradient(this.width / 2, this.height / 2 - knobRadius / 2,this.width / 2,  this.height / 2 + knobRadius / 2)
         g.addColorStop(0.5, 'transparent')
-        g.addColorStop(0, this.colors.light || 'transparent')
+        g.addColorStop(0, this.colors.light || 'transparent')
 
         this.ctx.strokeStyle = g
         this.ctx.stroke()

@@ -47,7 +47,7 @@ var Editor = class Editor {
         document.body.classList.toggle('no-grid', GRIDWIDTH == 1)
 
 
-        GRIDWIDTH = getComputedStyle(document.documentElement).getPropertyValue("--grid-width")
+        GRIDWIDTH = getComputedStyle(document.documentElement).getPropertyValue('--grid-width')
 
         var gridForm = DOM.create(`
             <div class="form" id="grid-width-form">
@@ -67,7 +67,7 @@ var Editor = class Editor {
                     input.value = v
                     GRIDWIDTH = v
                     document.body.classList.toggle('no-grid', GRIDWIDTH == 1)
-                    document.documentElement.style.setProperty("--grid-width", GRIDWIDTH)
+                    document.documentElement.style.setProperty('--grid-width', GRIDWIDTH)
                 })
             })
         })
@@ -168,9 +168,9 @@ var Editor = class Editor {
         this.form.appendChild(DOM.create(`
             <div class="separator">
                 ${this.selectedWidgets.length > 1 ?
-                    '<span class="accent">Multiple Widgets</span>' :
-                    '<span>Widget</span>'
-                }
+        '<span class="accent">Multiple Widgets</span>' :
+        '<span>Widget</span>'
+}
             </div>
         `))
 
@@ -217,7 +217,7 @@ var Editor = class Editor {
             element.classList.remove('editing')
         })
 
-        for (var widget of this.selectedWidgets) {
+        for (let widget of this.selectedWidgets) {
             DOM.each(document, `[data-widget="${widget.hash}"]`, (item)=>{
                 item.classList.add('editing')
             })
@@ -227,11 +227,10 @@ var Editor = class Editor {
 
         if (widget.props.height !== undefined || widget.props.width !== undefined) {
 
-            var handleTarget
-            var $container = $(widget.container)
+            let $container = $(widget.container)
             $container.resizable({
                 handles: 's, e, se',
-                helper: "ui-helper",
+                helper: 'ui-helper',
                 start: (event, ui)=>{
                     handleTarget = $(event.originalEvent.target)
                 },
@@ -244,7 +243,7 @@ var Editor = class Editor {
                     var deltaH = ui.size.height - ui.originalSize.height,
                         deltaW = ui.size.width - ui.originalSize.width
 
-                    var newWidgets = []
+                    var newWidgets = []
                     for (var w of this.selectedWidgets) {
                         var originalW = w === widget ? ui.originalSize.width : w.container.offsetWidth,
                             originalH = w === widget ? ui.originalSize.height : w.container.offsetHeight
@@ -267,7 +266,7 @@ var Editor = class Editor {
                             }
                         }
 
-                        if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w))
+                        if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w))
                     }
                     if (newWidgets.length > 1) editor.select(newWidgets, {preventSelect: this.selectedWidgets.length > 1})
                 },
@@ -277,7 +276,7 @@ var Editor = class Editor {
         }
 
         if (widget.props.top !== undefined) {
-            var $container = $(widget.container)
+            let $container = $(widget.container)
             $container.draggable({
                 cursor:'-webkit-grabbing',
                 drag: (event, ui)=>{
@@ -290,7 +289,7 @@ var Editor = class Editor {
                     var deltaX = (ui.helper.position().left + $container.parent().scrollLeft()) / PXSCALE - widget.container.offsetLeft / PXSCALE,
                         deltaY = (ui.helper.position().top + $container.parent().scrollTop()) / PXSCALE - widget.container.offsetTop / PXSCALE
 
-                    var newWidgets = []
+                    var newWidgets = []
                     for (var w of this.selectedWidgets) {
 
                         var newTop = w.container.offsetTop / PXSCALE + deltaY

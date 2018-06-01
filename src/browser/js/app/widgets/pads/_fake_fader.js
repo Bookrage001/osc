@@ -9,7 +9,7 @@ module.exports = class _fake_fader extends Fader {
         if (arguments.cancelDraw) this.noDraw = true
     }
 
-    sendValue() {
+    sendValue() {
         // disabled
     }
 

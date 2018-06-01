@@ -1,4 +1,4 @@
-const Touch = window.Touch || class Touch {}
+const Touch = window.Touch || class Touch {}
 
 module.exports = {
 

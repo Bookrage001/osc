@@ -7,7 +7,7 @@ var reconnectInterval = 5000,
 
 class Ipc extends EventEmitter {
 
-    constructor() {
+    constructor() {
 
         super()
 
@@ -23,7 +23,7 @@ class Ipc extends EventEmitter {
             this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
         })
         this.on('ping', ()=>{
-            this.socket.send(`["pong"]`)
+            this.socket.send('["pong"]')
         })
 
         this.open()
@@ -43,7 +43,7 @@ class Ipc extends EventEmitter {
 
     }
 
-    open() {
+    open() {
 
         this.socket = new WebSocket('ws://' + window.location.host + '/' + uuid)
 
@@ -53,7 +53,7 @@ class Ipc extends EventEmitter {
 
             this.hearbeat = setInterval(()=>{
                 if (!this.connected()) return
-                this.socket.send(`["ping"]`)
+                this.socket.send('["ping"]')
                 this.hearbeatTimeout = setTimeout(()=>{
                     if (this.connected()) this.socket.close()
                 }, hearbeatTimeout)
@@ -90,7 +90,7 @@ class Ipc extends EventEmitter {
 
     }
 
-    connected() {
+    connected() {
 
         return this.socket && this.socket.readyState == this.socket.OPEN
 
@@ -100,9 +100,9 @@ class Ipc extends EventEmitter {
 
         if (typeof message == 'string') {
 
-            var packet = JSON.parse(message);
+            var packet = JSON.parse(message)
 
-            if (Array.isArray(packet) && typeof packet[0] == "string") {
+            if (Array.isArray(packet) && typeof packet[0] == 'string') {
 
                 this.emit(packet[0], packet[1])
 

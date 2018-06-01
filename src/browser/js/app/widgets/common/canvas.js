@@ -97,7 +97,7 @@ class Canvas extends Widget {
 
     resizeHandle(event){
 
-        var {width, height, style, checkColors} = event,
+        var {width, height, style} = event,
             ratio = CANVAS_SCALING * this.scaling
 
         this.height = height
@@ -123,7 +123,7 @@ class Canvas extends Widget {
 
     cacheCanvasStyle(style){
 
-        var style = style || window.getComputedStyle(this.canvas)
+        style = style || window.getComputedStyle(this.canvas)
 
         this.colors.custom = style.getPropertyValue('--color-custom')
         this.colors.track = style.getPropertyValue('--color-track')
@@ -134,13 +134,13 @@ class Canvas extends Widget {
         this.colors.faded = style.getPropertyValue('--color-faded')
         this.colors.light = style.getPropertyValue('--color-light')
 
-        this.fontFamily = style.getPropertyValue("font-family")
-        this.textAlign = style.getPropertyValue("text-align")
-        this.fontSize = parseFloat(style.getPropertyValue("font-size"))
-        this.fontWeight = parseFloat(style.getPropertyValue("font-weight"))
+        this.fontFamily = style.getPropertyValue('font-family')
+        this.textAlign = style.getPropertyValue('text-align')
+        this.fontSize = parseFloat(style.getPropertyValue('font-size'))
+        this.fontWeight = parseFloat(style.getPropertyValue('font-weight'))
 
         this.ctx.font = this.fontWeight + ' ' + this.fontSize + 'px ' + this.fontFamily
-        this.ctx.textBaseline = "middle"
+        this.ctx.textBaseline = 'middle'
         this.ctx.textAlign = this.textAlign
 
     }
