@@ -231,9 +231,6 @@ var Editor = class Editor {
             $container.resizable({
                 handles: 's, e, se',
                 helper: 'ui-helper',
-                start: (event, ui)=>{
-                    handleTarget = $(event.originalEvent.target)
-                },
                 resize: (event, ui)=>{
                     ui.size.height = Math.round(ui.size.height / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
                     ui.size.width = Math.round(ui.size.width / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH * PXSCALE
