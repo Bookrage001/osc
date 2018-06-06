@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.32.3
+
+- bug fixes
+  - regression in editor/resize function
+
 ## 0.32.2
 
 - bug fixes
