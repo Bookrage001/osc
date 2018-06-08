@@ -78,7 +78,7 @@ class OscServer {
                 return {type: arg ? 'T' : 'F', value: arg}
             case 'object':
                 if (arg.type) {
-                    return {type: parseType(arg.type), value: arg.value}
+                    return {type: this.parseType(arg.type), value: arg.value}
                 } else {
                     return {type: 's', value:JSON.stringify(arg)}
                 }
