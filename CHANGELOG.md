@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.32.4
+
+- bug fixes
+  - regression breaking typed osc args
+
+
 ## 0.32.3
 
 - bug fixes
