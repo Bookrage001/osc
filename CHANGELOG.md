@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.32.5
+
+- bug fixes
+  - missing feedback support for widgets with typed preArgs
+
 ## 0.32.4
 
 - bug fixes
