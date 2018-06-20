@@ -9,8 +9,8 @@
 	font-weight: 900;
 }
 
-.widget.push-container .active {
-	border: 1rem solid var(--color-custom);
+.widget.push-container.active > .label {
+	color: var(--color-custom);
 }
 
 
