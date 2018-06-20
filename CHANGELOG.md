@@ -4,6 +4,9 @@
 
 - bug fixes
   - missing feedback support for widgets with typed preArgs
+- themes
+  - improved `dark` theme
+  - added `flat`
 
 ## 0.32.4
 
