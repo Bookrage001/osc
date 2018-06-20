@@ -1,0 +1,23 @@
+.toggle-container,
+.push-container,
+.modal-container {
+    > .toggle:before {
+        box-shadow: 0 0 0 1rem var(--color-light) inset!important;
+    }
+}
+
+.switch-container .switch .value,
+.dropdown-container .select select {
+    box-shadow: 0 0 0 1rem var(--color-light) inset!important;
+}
+
+.toggle-container .toggle.on:after,
+.push-container .toggle.active:after,
+.switch-container .switch .value.on:after {
+    background: var(--color-bg)
+}
+
+.widget {
+    --color-glass-1: var(--color-custom);
+    --color-glass-2: var(--color-custom);
+}
