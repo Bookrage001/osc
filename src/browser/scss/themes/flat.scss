@@ -1,7 +1,7 @@
 .toggle-container,
 .push-container,
 .modal-container {
-    > .toggle:before {
+    > .toggle:not(.on):before {
         box-shadow: 0 0 0 1rem var(--color-light) inset!important;
     }
 }
