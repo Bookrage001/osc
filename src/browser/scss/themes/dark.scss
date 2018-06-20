@@ -1,4 +1,4 @@
-$base: #000;
+$base: #0e1215;
 $accent: #1585f6;
 $tone: #799;
 $text: white;
@@ -13,10 +13,10 @@ $text: white;
     --color-accent: #{$accent};
     --color-grid:  #{transparentize($accent, 0.95)};
 
-    --color-bg: $base;
+    --color-bg: #{$base};
     --color-track: #{desaturate(mix($base, $tone, 95), 2)};
-    --color-fg: #{desaturate(mix($base, $tone, 88), 5)};
-    --color-raised: #{desaturate(mix($base, $tone, 80), 5)};
+    --color-fg: #161a1d;
+    --color-raised: #171c20;
     --color-light: #{desaturate(transparentize($tone, 0.95), 50)};
 
     --color-white: white;
@@ -29,7 +29,7 @@ $text: white;
     ////////////////////// GLASS EFFET
 
     --color-glass: var(--color-accent);
-    --glass-opacity: 0.1;
+    --glass-opacity: 0.03;
 
 
     ////////////////////// MISC
