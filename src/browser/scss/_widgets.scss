@@ -21,7 +21,8 @@
     text-transform: uppercase;
     contain: style size layout;
     color: var(--color-text);
-    --color-glass: var(--color-custom);
+    --color-glass-1: var(--color-custom);
+    --color-glass-2: var(--color-track);
 
     &.absolute-position {
         position: absolute;
@@ -74,7 +75,7 @@
         left:0;
         right:0;
         bottom:0;
-        background: radial-gradient(ellipse farthest-side at center top, var(--color-glass), var(--color-track));
+        background: radial-gradient(ellipse farthest-side at center top, var(--color-glass-1), var(--color-glass-2));
         background-size: 150% 150%;
         background-repeat: no-repeat;
         background-position: center top;
