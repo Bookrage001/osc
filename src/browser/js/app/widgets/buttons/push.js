@@ -76,6 +76,7 @@ class Push extends Widget {
         if (typeof v == 'object' && v !== null) v = v.value
         if (v===this.getProp('on') || (this.getProp('on') != null && v === this.getProp('on').value && v !== undefined)) {
             this.widget.classList.add('active')
+            this.container.classList.add('active')
             this.active = 1
             this.lastChanged = 'active'
             this.updateValue()
@@ -83,6 +84,7 @@ class Push extends Widget {
             if (options.sync) this.changed(options)
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.widget.classList.remove('active')
+            this.container.classList.remove('active')
             this.active = 0
             this.lastChanged = 'active'
             this.updateValue()
