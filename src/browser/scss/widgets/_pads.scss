@@ -72,13 +72,13 @@
       padding: 1rem;
     }
     > .pad > .wrapper {
-        outline:1rem solid var(--color-light);
-        box-shadow: 0 0 0 1rem var(--color-fg);
+        box-shadow: 0 0 0 1rem var(--color-light),
+                    0 0 0 1rem var(--color-fg);
         border: 1rem solid var(--color-bg);
     }
     .hue-wrapper {
-        outline:1rem solid var(--color-light);
-        box-shadow: 0 0 0 1rem var(--color-fg);
+        box-shadow: 0 0 0 1rem var(--color-light),
+                    0 0 0 1rem var(--color-fg);
     }
 }
 

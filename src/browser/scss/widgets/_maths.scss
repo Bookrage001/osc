@@ -22,8 +22,8 @@
     padding: 0rem;
     .formula {
         margin: 1rem;
-        box-shadow: 0 0 0 1rem var(--color-fg);
-        outline:1rem solid var(--color-light);
+        box-shadow: 0 0 0 1rem var(--color-light),
+                    0 0 0 1rem var(--color-fg);
         border: 1rem solid var(--color-bg);
     }
 }

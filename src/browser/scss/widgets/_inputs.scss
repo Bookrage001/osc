@@ -75,9 +75,9 @@
 .panel:not(.tab) > .input-container {
     padding: 0rem;
     > .input {
-        box-shadow: 0 0 0 1rem var(--color-fg);
+        box-shadow: 0 0 0 1rem var(--color-light),
+                    0 0 0 1rem var(--color-fg);
         margin:1rem;
-        outline: 1rem solid var(--color-light);
         border: 1rem solid var(--color-bg);
     }
 }
@@ -116,8 +116,8 @@
     padding: 0rem;
     .keys {
         margin: 1rem;
-        box-shadow: 0 0 0 1rem var(--color-fg);
-        outline:1rem solid var(--color-light);
+        box-shadow: 0 0 0 1rem var(--color-light),
+                    0 0 0 1rem var(--color-fg);
         border: 1rem solid var(--color-bg);
     }
 }
