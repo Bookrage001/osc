@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.32.6
+
+- bug fixes
+  - css border-radius not applying correctly for some widgets
+- themes
+  - multiple adjustments
+
 ## 0.32.5
 
 - bug fixes
