@@ -1,3 +1,13 @@
+.widget.push-container.on .toggle:before,
+.widget.modal-container.on .toggle:before,
+.widget.switch-container .value.on:before,
+.widget.switcher-container .value.on:before,
+.widget.crossfader-container .value.on:before,
+.widget.toggle-container.on:not(.led) .toggle:before {
+	z-index: 1;
+	opacity: .5;
+}
+
 .widget.push-container.on,
 .widget.modal-container.on,
 .widget.switch-container .value.on,
@@ -9,7 +19,7 @@
 	font-weight: 900;
 }
 
-.widget.push-container.active > .label {
+.widget.push-container.active:not(.on) > .label {
 	color: var(--color-custom);
 }
 
