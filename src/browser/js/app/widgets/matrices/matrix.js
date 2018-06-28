@@ -95,10 +95,10 @@ class Matrix extends _matrix_base {
                 var hashes = [...this.childrenHashes]
                 this.childrenHashes = []
 
-                for (var i in hashes) {
+                for (var i = 0; i < hashes.length; i++) {
 
                     let widget = widgetManager.widgets[hashes[i]],
-                        data = this.resolveProp('props', undefined, false, false, false, {'i':i})
+                        data = this.resolveProp('props', undefined, false, false, false, {'$':i})
 
                     Object.assign(widget.props, data)
                     widget.updateProps(Object.keys(data), this)

@@ -37,7 +37,7 @@ Creates grid of widgets of a given type
 ### `props`<i class="dynamic-prop-icon" title="dynamic"></i>
 - type: `object`
 - default: `{}`
-- usage: define a set of property to override the widgets' defaults. [Formulas](../extras/advanced-property-syntax/#formulas) in this field are resolved with an extra variable `i` representing each widget's index
+- usage: define a set of property to override the widgets' defaults. [Formulas](../extras/advanced-property-syntax/#formulas) in this field are resolved with an extra variable `$` representing each widget's index
 
 
 
