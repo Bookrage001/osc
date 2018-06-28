@@ -6,3 +6,4 @@ app/browser/scripts.js.map
 app/browser/favicon.png
 app/browser/logo.png
 app/launcher/scripts.js
+package-lock.json
