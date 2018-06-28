@@ -249,7 +249,7 @@ class Widget extends EventEmitter {
         originalPropName = originalPropName || propName
 
         var variables = {},
-            mathscope = context || {},
+            mathscope = context || {},
             varnumber = 0
 
         if (typeof propValue == 'string') {
