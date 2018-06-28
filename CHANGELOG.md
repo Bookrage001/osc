@@ -4,6 +4,7 @@
 
 - widgets
   - **new** generic `matrix` widget
+  - fader: restore right-click focusing the input in compact mode (mouse only)
 
 ## 0.32.6
 

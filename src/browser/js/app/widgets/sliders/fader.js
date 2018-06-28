@@ -74,6 +74,14 @@ module.exports = class Fader extends Slider {
         if (this.getProp('compact')) {
             this.widget.classList.add('compact')
             this.margin = 0
+            if (this.getProp('input')) {
+                this.widget.addEventListener('fast-right-click', (e)=>{
+                    if (e.detail.button == 2 && !EDITING) {
+                        // Mouse only
+                        this.input.focus()
+                    }
+                })
+            }
         }
 
         if (this.getProp('alignRight') && !this.getProp('horizontal')) {
