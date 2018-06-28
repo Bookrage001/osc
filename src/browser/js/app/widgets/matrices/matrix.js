@@ -67,7 +67,7 @@ class Matrix extends _matrix_base {
                     left: 'auto',
                     height: 'auto',
                     width: 'auto',
-                    ...this.resolveProp('props', undefined, false, false, false, {'i':i})
+                    ...this.resolveProp('props', undefined, false, false, false, {'$':i})
                 }
 
                 var widget = parser.parse([data], this.widget, this)
