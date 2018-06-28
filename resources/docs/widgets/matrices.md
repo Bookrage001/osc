@@ -22,7 +22,7 @@ Creates grid of widgets of a given type
 ### `matrix`
 - type: `array`
 - default: `[2,2]`
-- usage: defines the number of columns and and rows in the matrix.
+- usage: defines the number of columns and and rows in the matrix
 
 ### `start`
 - type: `integer`
