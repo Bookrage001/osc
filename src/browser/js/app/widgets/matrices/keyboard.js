@@ -1,8 +1,8 @@
-var Matrix = require('./matrix'),
+var _matrix_base = require('./_matrix_base'),
     parser = require('../../parser')
 
 
-module.exports = class Keyboard extends Matrix {
+module.exports = class Keyboard extends _matrix_base {
 
     static defaults() {
 

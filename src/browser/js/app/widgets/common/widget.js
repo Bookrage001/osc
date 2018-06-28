@@ -242,14 +242,14 @@ class Widget extends EventEmitter {
 
     }
 
-    resolveProp(propName, propValue, storeLinks=true, originalWidget, originalPropName) {
+    resolveProp(propName, propValue, storeLinks=true, originalWidget, originalPropName, context) {
 
         propValue = propValue !== undefined ? propValue : Widget.deepCopy(this.props[propName])
         originalWidget = originalWidget || this
         originalPropName = originalPropName || propName
 
         var variables = {},
-            mathscope = {},
+            mathscope = context || {},
             varnumber = 0
 
         if (typeof propValue == 'string') {
@@ -405,7 +405,7 @@ class Widget extends EventEmitter {
 
         } else if (propValue != null && typeof propValue == 'object') {
             for (let k in propValue) {
-                propValue[k] = this.resolveProp(propName, propValue[k], storeLinks, originalWidget, originalPropName)
+                propValue[k] = this.resolveProp(propName, propValue[k], storeLinks, originalWidget, originalPropName, context)
             }
         }
 

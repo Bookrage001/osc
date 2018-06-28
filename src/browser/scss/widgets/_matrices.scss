@@ -1,5 +1,8 @@
 /* Multiple widgets (push|toggle|fader) matrix */
-.multitoggle-container, .multipush-container, .multifader-container {
+.matrix-container,
+.multitoggle-container,
+.multipush-container,
+.multifader-container {
     &.editing {
         overflow: hidden;
     }

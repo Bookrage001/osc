@@ -21,6 +21,7 @@ module.exports.widgets = {
     multixy: require('./pads/multixy'),
 
     // matrices
+    matrix: require('./matrices/matrix'),
     multitoggle: require('./matrices/multitoggle'),
     multipush: require('./matrices/multipush'),
     multifader: require('./matrices/multifader'),
@@ -60,7 +61,7 @@ module.exports.categories = {
     'Sliders':['fader','knob', 'encoder', 'range'],
     'Buttons':['toggle','push','switch', 'dropdown'],
     'Pads':['xy','rgb','multixy'],
-    'Matrices':['multifader','multitoggle','multipush', 'keyboard'],
+    'Matrices':['matrix', 'multifader','multitoggle','multipush', 'keyboard'],
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg'],
     'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['switcher','crossfader'],
