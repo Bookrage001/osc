@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.33.0
+
+- widgets
+  - **new** generic `matrix` widget
+
 ## 0.32.6
 
 - bug fixes
