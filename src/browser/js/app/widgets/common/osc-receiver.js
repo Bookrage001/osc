@@ -4,7 +4,12 @@ module.exports = class OscReceiver {
 
     constructor(address, value, parent, propName) {
 
-        this.value = value
+        try {
+            this.value = JSON.parse(value)
+        } catch (err) {
+            this.value = value
+        }
+        
         this.parent = parent
         this.propName = propName
         this.bindedCallback = this.callback.bind(this)
@@ -37,7 +42,12 @@ module.exports = class OscReceiver {
             var val = args.slice(preArgs.length)
             if (val.length < 2) val = val[0]
             if (val !== this.value) {
-                this.value = val
+                try {
+                    this.value = JSON.parse(val)
+                } catch (err) {
+                    this.value = val
+                }
+                console.log(this.value)
                 this.parent.updateProps([this.propName], this.parent)
             }
         }

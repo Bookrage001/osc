@@ -3,7 +3,7 @@
 ## 0.33.0
 
 - bug fixes
- - osc receivers not properly unregistered when widgets are recreated (memory leak)
+ - osc receivers: not properly unregistered when widgets are recreated (memory leak); allow non-string values (eg. objects)
 - widgets
   - **new** generic `matrix` widget
   - fader: restore right-click focusing the input in compact mode (mouse only)

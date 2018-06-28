@@ -357,7 +357,6 @@ class Widget extends EventEmitter {
                 }
 
                 var r = this.oscReceivers[address].value
-                r = typeof r != 'string' ? JSON.stringify(r) : r
 
                 var varname = 'VAR_' + varnumber
                 varnumber++
