@@ -2,6 +2,46 @@
 
 Matrices are special containers that only contain one type of widget. All contained widgets will be traversed by single dragging gestures.
 
+## Matrix
+
+Creates grid of widgets of a given type
+
+```js
+{
+    type:'matrix',
+    // etc
+}
+```
+
+### `widgetType`
+- type: `string`
+- default: `toggle`
+- usage: set the type of the widgets in the matrix
+
+
+### `matrix`
+- type: `array`
+- default: `[2,2]`
+- usage: defines the number of columns and and rows in the matrix.
+
+### `start`
+- type: `integer`
+- default: `0`
+- usage: first widget's index
+
+### `traversing`
+- type: `boolean`
+- default: `true`
+- usage: set to false to disable traversing gestures
+
+### `props`<i class="dynamic-prop-icon" title="dynamic"></i>
+- type: `object`
+- default: `{}`
+- usage: define a set of property to override the widgets' defaults. [Formulas](../extras/advanced-property-syntax/#formulas) in this field are resolved with an extra variable `i` representing each widget's index
+
+
+
+
 ## Multifader
 
 Multifader creates a row of vertical faders that respond to the same gestures.
@@ -29,7 +69,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 ### `traversing`
 - type: `boolean`
 - default: `true`
-- usage: enable traversing gestures
+- usage: set to false to disable traversing gestures
 
 ### `split`
 - type: `boolean|string`
@@ -75,7 +115,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 ### `traversing`
 - type: `boolean`
 - default: `true`
-- usage: enable traversing gestures
+- usage: set to false to disable traversing gestures
 
 ### `split`
 - type: `boolean|string`
@@ -120,7 +160,7 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 ### `traversing`
 - type: `boolean`
 - default: `true`
-- usage: enable traversing gestures
+- usage: set to false to disable traversing gestures
 
 ### `split`
 - type: `boolean|string`
@@ -167,7 +207,7 @@ This one works pretty much like the multipush, excepts it looks like a piano key
 ### `traversing`
 - type: `boolean`
 - default: `true`
-- usage: enable traversing gestures
+- usage: set to false to disable traversing gestures
 
 ### `split`
 - type: `boolean|string`
