@@ -7,7 +7,7 @@ class Matrix extends _matrix_base {
     static defaults() {
 
         return {
-            type:'multiwidget',
+            type:'matrix',
             id:'auto',
 
             _geometry:'geometry',
@@ -41,7 +41,6 @@ class Matrix extends _matrix_base {
             precision:2,
             address:'auto',
             preArgs:[],
-            split:false,
             target:[],
             bypass:false
         }
