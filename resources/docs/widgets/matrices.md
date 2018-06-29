@@ -71,6 +71,12 @@ Multifader creates a row of vertical faders that respond to the same gestures.
 - default: `true`
 - usage: set to false to disable traversing gestures
 
+### `borders`
+- type: `boolean`
+- default: `true`
+- usage: set to false to disable widgets borders
+
+
 ### `split`
 - type: `boolean|string`
 - default: `false`

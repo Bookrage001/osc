@@ -30,6 +30,7 @@ class Matrix extends _matrix_base {
             start:0,
             spacing:0,
             traversing:true,
+            borders:true,
             props:{},
 
             _value: 'value',
@@ -54,6 +55,8 @@ class Matrix extends _matrix_base {
         this.widget.style.setProperty('--columns', this.getProp('matrix')[0])
         this.widget.style.setProperty('--rows', this.getProp('matrix')[1])
         this.widget.style.setProperty('--spacing', this.getProp('spacing') + 'rem')
+
+        if (this.getProp('borders') === false) this.widget.classList.add('noborders')
 
         if (parser.widgets[this.getProp('widgetType')]) {
 

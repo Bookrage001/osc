@@ -22,6 +22,7 @@
     flex-direction: row;
     padding:1rem 2rem 2rem 1rem;
     touch-action: none;
+    --color-border:var(--color-bg);
 
     > .widget {
         min-height: 0;
@@ -32,6 +33,13 @@
         .label {
             background:none;
             border:0;
+        }
+    }
+
+    &.noborders {
+        .widget{
+            border: none;
+            box-shadow:none;
         }
     }
 }
