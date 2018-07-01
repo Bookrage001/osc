@@ -9,7 +9,7 @@ module.exports = class OscReceiver {
         } catch (err) {
             this.value = value
         }
-        
+
         this.parent = parent
         this.propName = propName
         this.bindedCallback = this.callback.bind(this)
@@ -47,7 +47,6 @@ module.exports = class OscReceiver {
                 } catch (err) {
                     this.value = val
                 }
-                console.log(this.value)
                 this.parent.updateProps([this.propName], this.parent)
             }
         }

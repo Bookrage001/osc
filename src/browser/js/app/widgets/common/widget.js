@@ -95,7 +95,7 @@ class Widget extends EventEmitter {
                 if (widget == this) id = 'this'
                 if (widget == this.parent) id = 'parent'
                 if (this.linkedProps[id]) {
-                    this.updateProps(this.linkedProps[id], widget, options)
+                    this.updateProps(this.linkedProps[id], widget, options, e.props)
                 }
             })
 
@@ -108,7 +108,7 @@ class Widget extends EventEmitter {
                 if (widget == this) id = 'this'
                 if (widget == this.parent) id = 'parent'
                 if (this.linkedPropsValue[id]) {
-                    this.updateProps(this.linkedPropsValue[id], widget, options, true)
+                    this.updateProps(this.linkedPropsValue[id], widget, options, ['value'])
                 }
             })
 
@@ -417,7 +417,7 @@ class Widget extends EventEmitter {
         return this.cachedProps[propName]
     }
 
-    updateProps(propNames, widget, options, value) {
+    updateProps(propNames, widget, options, updatedProps = []) {
 
         if (propNames.includes('value')) {
             propNames.splice(propNames.indexOf('value'), 1)
@@ -428,6 +428,8 @@ class Widget extends EventEmitter {
             changedProps = []
 
         for (var propName of propNames) {
+
+            if (widget === this && updatedProps.includes(propName)) continue
 
             let propValue = this.resolveProp(propName, undefined, false),
                 oldPropValue = this.getProp(propName)
@@ -450,7 +452,7 @@ class Widget extends EventEmitter {
 
             }
         }
-        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(value && widget == this)) {
+        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1) {
 
             this.reCreateWidget()
             return true

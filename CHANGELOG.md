@@ -4,6 +4,7 @@
 
 - bug fixes
  - osc receivers: unregister properly when widgets are recreated (memory leak); allow non-string values (eg. objects)
+ - circular property update issues 
 - widgets
   - **new** generic `matrix` widget
   - fader: restore right-click focusing the input in compact mode (mouse only)
