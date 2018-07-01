@@ -452,7 +452,7 @@ class Widget extends EventEmitter {
 
             }
         }
-        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1) {
+        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
 
             this.reCreateWidget()
             return true
