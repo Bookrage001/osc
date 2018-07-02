@@ -12,6 +12,7 @@ Available themes (full color scheme):
 
 Available extensions (alternative visual settings)
 
+- `flat`: remove 3d effects
 - `alt-buttons`: colorful active buttons
 - `responsive-fonts`: bigger texts for bigger screens
 

@@ -25,7 +25,7 @@ Below are the available command-line options. Note that when running without any
 | `-d` | `--debug` | log received osc messages in the console |
 | `-n` | `--no-gui` | disable default gui |
 | `-g` | `--gui-only` | app server's url. If true, local port (--port) is used |
-| `-t` | `--theme` | theme name or path (mutliple values allowed)    |
+| `-t` | `--theme` | theme name or path (mutliple values allowed) see [theming](extras/theming/) |
 | `-e` | `--examples` | list examples instead of recent sessions |
 | | `--url-options` | [url options](extras/url-options) (opt=value pairs) |
 | |`--disable-vsync` | disable gui's vertical synchronization |
