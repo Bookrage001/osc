@@ -26,3 +26,9 @@ Feel free to submitt you own by [opening an issue](https://github.com/jean-emman
 - [OpenStageControl4Bitwig](http://www.mossgrabers.de/Software/Bitwig/Bitwig.html)
   - https://www.youtube.com/watch?v=u-fgArpsHQQ
   - https://www.youtube.com/watch?v=RvEMlo72ynQ
+
+
+## Others
+
+- [Manaberry's UI](https://vi-control.net/community/threads/open-stage-control-tutorial-an-alternative-to-lemur-and-touchosc.72643/)
+![](https://i.imgur.com/4CPbtAz.jpg)
