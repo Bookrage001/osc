@@ -77,6 +77,8 @@ class Matrix extends _matrix_base {
 
                 widget.container.classList.add('not-editable')
 
+                this.value[i-this.start] = widget.getValue()
+
             }
 
         } else {

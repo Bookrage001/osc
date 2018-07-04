@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.33.2
+
+- bug fixes
+  - matrix: set initial value at widget's creation 
+
 ## 0.33.1
 
 - bug fixes
