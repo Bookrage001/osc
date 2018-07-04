@@ -14,10 +14,8 @@ Feel free to submitt you own by [opening an issue](https://github.com/jean-emman
 
 ## QLab
 
-- [Lighting Fixture Profiles](https://qlabcookbook.com/1962/02/21/lighting-fixture-profiles/)
+- [QLab Cook Book / Open Stage Control](https://qlabcookbook.com/tag/open-stage-control/)
 ![](https://user-images.githubusercontent.com/36141834/37744217-be4b5f7e-2d65-11e8-9b83-64ca245417d4.jpg)
-
-- [Custom Control QLab Lighting & Visualize Output](https://qlabcookbook.com/1965/02/18/2672/)
 
 ## Bitwig
 
