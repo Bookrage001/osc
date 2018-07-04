@@ -1,10 +1,15 @@
 # Changelog
 
+## 0.33.1
+
+- bug fixes
+  - widgets: remove unnused properties to avoid having hidden properties laying around when the type changes (especially dangerous when those properties where linked to other widgets)
+
 ## 0.33.0
 
 - bug fixes
  - osc receivers: unregister properly when widgets are recreated (memory leak); allow non-string values (eg. objects)
- - circular property update issues 
+ - circular property update issues
 - widgets
   - **new** generic `matrix` widget
   - fader: restore right-click focusing the input in compact mode (mouse only)

@@ -48,6 +48,10 @@ var Parser = class Parser {
                 if (i.indexOf('_')!=0 && props[i]===undefined) props[i] = defaults[i]
             }
 
+            for (let j in props) {
+                if (defaults[j] === undefined || j[0] === '_') delete props[j]
+            }
+
             // Genrate widget's id, based on its type
             if (props.id=='auto' || !props.id ) {
                 var id
