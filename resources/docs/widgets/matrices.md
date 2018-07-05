@@ -3,7 +3,7 @@
 Matrices are special containers that only contain one type of widget. All contained widgets will be traversed by single dragging gestures.
 
 !!! note ""
-    When using the [property inheritance syntax](../extra/advanced-property-syntax) to retreive a matrix' value, the returned value is an array containing all it's children's values.
+    When using the [property inheritance syntax](../extras/advanced-property-syntax) to retreive a matrix' value, the returned value is an array containing all it's children's values.
 
 ## Matrix
 
