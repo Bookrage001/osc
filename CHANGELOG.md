@@ -3,7 +3,9 @@
 ## 0.33.2
 
 - bug fixes
-  - matrix: set initial value at widget's creation 
+  - matrix: set initial value at widget's creation; missing border under widget's label
+- widgets
+  - property math syntax: add `values()` and `keys()` functions
 
 ## 0.33.1
 
