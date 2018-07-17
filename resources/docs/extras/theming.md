@@ -35,3 +35,12 @@ This will change the default accent color to red. Variables can also be overridd
 ```
 
 This will change the default text color to blue for all elements in panel widgets.
+
+## Scss / autoreload
+
+When running the app [from sources](../getting-started), custom themes can be written in scss:
+
+- the scss file must be located in `src/browser/scss/themes/`
+- run `npm run watch-css`
+
+The theme will be watched and compiled automatically to a css file located in app/browser/themes/ (css files in this directory can be selected from the theme option by their name, without .css suffix). If the app is running on default http port, clients will reload the theme automatically.
