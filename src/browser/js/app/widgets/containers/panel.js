@@ -230,10 +230,13 @@ class Panel extends Widget {
         switch (propName) {
 
             case 'color':
-                for (var h of this.childrenHashes) {
-                    if (widgetManager.widgets[h]) {
-                        widgetManager.widgets[h].onPropChanged('color')
+                for (var i = this.childrenHashes.length - 1; i >= 0; i--) {
+                    let widget = widgetManager.widgets[this.childrenHashes[i]]
+                    if (!widget) {
+                        this.childrenHashes.splice(i, 1)
+                        continue
                     }
+                    widget.onPropChanged('color')
                 }
                 return
 
