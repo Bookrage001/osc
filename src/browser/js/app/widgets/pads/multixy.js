@@ -215,7 +215,7 @@ module.exports = class MultiXy extends Pad {
             this.ctx.fillStyle = this.colors.text
             this.ctx.fillText(t, x + 0.5 * PXSCALE, y + 0.5 * PXSCALE)
 
-            this.clearRect[i] = [x - length / 2, y - this.fontSize / 2, length, this.fontSize]
+            this.clearRect[i] = [x - length / 2, y - this.fontSize / 2, length, this.fontSize + 2 * PXSCALE]
 
         }
 

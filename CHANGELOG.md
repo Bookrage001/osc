@@ -4,6 +4,7 @@
 
 - bug fixes
   - matrix: recreation loop issue with matrices of clones
+  - multixy: glitch when some letters are used in the points' labels
 
 ## 0.33.2
 
