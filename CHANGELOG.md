@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.33.3
+
+- bug fixes
+  - matrix: recreation loop issue with matrices of clones
+
 ## 0.33.2
 
 - bug fixes
