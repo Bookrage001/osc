@@ -444,8 +444,7 @@ class Widget extends EventEmitter {
                 } else {
 
                     this.cachedProps[propName] = propValue
-                    this.onPropChanged(propName, options, oldPropValue)
-                    changedProps.push(propName)
+                    changedProps.push({propName, oldPropValue})
 
                 }
 
@@ -458,6 +457,10 @@ class Widget extends EventEmitter {
             return true
 
         } else if (changedProps.length) {
+
+            for (var i in changedProps) {
+                this.onPropChanged(changedProps[i].propName, options, changedProps[i].oldPropValue)
+            }
 
             widgetManager.trigger('prop-changed.*', [{
                 id: this.getProp('id'),
