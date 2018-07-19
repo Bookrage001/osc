@@ -49,7 +49,7 @@ var Parser = class Parser {
             }
 
             for (let j in props) {
-                if (defaults[j] === undefined || j[0] === '_') delete props[j]
+                if (defaults[j] === undefined || j[0] === '_') delete props[j]
             }
 
             // Genrate widget's id, based on its type
