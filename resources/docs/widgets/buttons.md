@@ -84,7 +84,7 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
 - default: `{"Value 1":1,"Value 2":2}`
 - usage:
     - `array` of possible values to switch between : `[1,2,3]`
-    - `object` of `"label":value` pairs
+    - `object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won't be kept.
 
 ### `showValues`
 - type: `boolean`
@@ -105,5 +105,5 @@ Setting the `push`'s value externally (via osc) will toggle it's inner light.
 - default: `{"Value 1":1,"Value 2":2}`
 - usage:
     - `array` of possible values to switch between : `[1,2,3]`
-    - `object` of `"label":value` pairs
-    - an empty option will always be prepended to `values` (sends an osc message without any value)
+    - `object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won't be kept.
+    - an empty option will always be prepended to `values` (sends an osc message without any value); it can be hidden by adding `option:first-child{display:none}` to the widget's `css`
