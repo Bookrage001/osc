@@ -69,11 +69,11 @@ module.exports = class Switch extends Widget {
             if (typeof values[k] == 'object') {
                 this.stringValues.push(JSON.stringify(values[k]))
             } else {
-                this.stringValues.push(-1)
+                this.stringValues.push(0)
             }
 
             var label = isArray ? values[k]: k
-            if (this.getProp('showValues') && !isArray) label = label + ': ' + values[k]
+            if (this.getProp('showValues') && !isArray) label = label + ': ' + (this.stringValues[this.stringValues.length - 1] || values[k])
 
             this.widget.appendChild(DOM.create(`
                 <div class="value"> ${iconify(label)}</div>
