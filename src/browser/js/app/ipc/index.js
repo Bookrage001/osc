@@ -1,5 +1,5 @@
 var EventEmitter = require('wolfy87-eventemitter'),
-    uuid = require('shortid').generate()
+    uuid = require('nanoid')()
 
 var reconnectInterval = 5000,
     hearbeatInterval = 25000,
