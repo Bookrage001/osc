@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.33.4
+## 0.34.0
 
 - bug fixes
   - switch: display object-values properly when `showValues` is set to `true`
