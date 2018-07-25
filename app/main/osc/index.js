@@ -10,12 +10,15 @@ var ipc = require('../server').ipc,
     fs = require('fs'),
     midi = settings.read('midi') ? require('../midi') : false,
     oscUDPServer = require('./udp'),
-    oscTCPServer = require('./tcp')
+    oscTCPServer = require('./tcp'),
+    EventEmitter = require('events').EventEmitter
+
 
 class OscServer {
 
     constructor(){
 
+        this.customModuleEventEmitter = new EventEmitter()
         this.customModule = (()=>{
 
             if (!settings.read('customModule')) return false
@@ -33,6 +36,7 @@ class OscServer {
                     console,
                     sendOsc: this.sendOsc.bind(this),
                     receiveOsc: this.receiveOsc.bind(this),
+                    app: this.customModuleEventEmitter,
                     setTimeout,
                     clearTimeout,
                     setInterval,
@@ -208,7 +212,7 @@ var oscServer = new OscServer()
 oscServer.init()
 
 module.exports = {
-
+    server: oscServer,
     send: function(host,port,address,args,precision) {
 
         var message = []
