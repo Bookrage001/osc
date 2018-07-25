@@ -53,6 +53,7 @@ module.exports.widgets = {
     keys: require('./inputs/keys'),
 
     // maths
+    // deprecated / hidden
     formula: require('./maths/formula')
 
 }
@@ -65,6 +66,5 @@ module.exports.categories = {
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg'],
     'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['switcher','crossfader'],
-    'Inputs':['input', 'keys'],
-    'Maths':['formula']
+    'Inputs':['input', 'keys']
 }

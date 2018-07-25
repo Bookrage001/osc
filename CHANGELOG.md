@@ -5,6 +5,8 @@
 - bug fixes
   - switch: display object-values properly when `showValues` is set to `true`
   - prevent non-dynamic properties updates from breaking an osc sending event chain
+- deprecations
+  - `formula` has been removed from the editor's context menu
 - custom module
   - expose `app` to the custom module's scope: an event emitter for monitoring the events sent by the different clients
 
