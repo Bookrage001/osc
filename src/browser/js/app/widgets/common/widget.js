@@ -48,6 +48,7 @@ class Widget extends EventEmitter {
         this.parentNode = options.parentNode
         this.hash = shortid.generate()
         this.childrenHashes = []
+        this.reCreateOptions = options.reCreateOptions
 
         // strip parent ? no position
         if (this.parent && this.parent.props && this.parent.props.type == 'strip') {
@@ -82,11 +83,11 @@ class Widget extends EventEmitter {
         if (Object.keys(this.linkedProps).length) {
 
             widgetManager.on(`widget-created.${this.hash}`, (e)=>{
-                var {id, widget} = e
+                var {id, widget, options} = e
                 if (widget == this.parent) return
                 if (widget == this) id = 'this'
                 if (this.linkedProps[id]) {
-                    this.updateProps(this.linkedProps[id], widget)
+                    this.updateProps(this.linkedProps[id], widget, options)
                 }
             })
 
@@ -166,7 +167,8 @@ class Widget extends EventEmitter {
 
         this.trigger('widget-created.*', [{
             id: this.getProp('id'),
-            widget: this
+            widget: this,
+            options: this.reCreateOptions
         }])
 
     }
@@ -453,7 +455,7 @@ class Widget extends EventEmitter {
         }
         if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
 
-            this.reCreateWidget()
+            this.reCreateWidget(options)
             return true
 
         } else if (changedProps.length) {
@@ -614,9 +616,9 @@ class Widget extends EventEmitter {
 
     }
 
-    reCreateWidget(){
+    reCreateWidget(options){
 
-        updateWidget(this, {remote: true})
+        updateWidget(this, {remote: true, reCreateOptions:options})
 
     }
 

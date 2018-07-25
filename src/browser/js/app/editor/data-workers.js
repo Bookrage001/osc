@@ -36,7 +36,7 @@ var updateWidget = function(widget, options = {}) {
     widgetManager.removeWidgets(oldWidgets)
 
     // widget
-    var newWidget = parser.parse([widget.props], widget.parentNode, widget.parent)
+    var newWidget = parser.parse([widget.props], widget.parentNode, widget.parent, false, options.reCreateOptions)
 
     widget.container.parentNode.replaceChild(newWidget.container, widget.container)
 

@@ -24,7 +24,7 @@ var Parser = class Parser {
 
     }
 
-    parse(data, parentNode, parentWidget, tab) {
+    parse(data, parentNode, parentWidget, tab, reCreateOptions) {
 
         for (let i in data) {
 
@@ -66,7 +66,7 @@ var Parser = class Parser {
 
 
             // create widget
-            var widget = new this.widgets[props.type]({props:props, container:true, parent:parentWidget, parentNode:parentNode})
+            var widget = new this.widgets[props.type]({props:props, container:true, parent:parentWidget, parentNode:parentNode, reCreateOptions})
 
             widgetManager.addWidget(widget)
 

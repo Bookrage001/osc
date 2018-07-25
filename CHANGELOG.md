@@ -4,6 +4,7 @@
 
 - bug fixes
   - switch: display object-values properly when `showValues` is set to `true`
+  - prevent non-dynamic properties updates from breaking an osc sending event chain
 
 
 ## 0.33.3
