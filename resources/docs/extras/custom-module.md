@@ -54,6 +54,7 @@ The module is executed in a restricted context, only a few globals are available
 - `clearTimeout`: `function(timeout)`
 - `setInterval`: `function(function, delay)`
 - `clearInterval`: `function(interval)`
+- `settings.read`: `function(name)`, see [settings.js](https://github.com/jean-emmanuel/open-stage-control/blob/master/app/main/settings.js#L125-L162) for available options
 - `app`: an [event emitter](https://nodejs.org/api/events.html#events_class_eventemitter) for monitoring the events sent by the different clients. Event names can be found in [callbacks.js](https://github.com/jean-emmanuel/open-stage-control/blob/master/app/main/callbacks.js), callbacks are called with 2 arguments: `data` (object) and `clientId` (string)
 
 
