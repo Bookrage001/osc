@@ -128,23 +128,23 @@ var makeDefaultConfig = function(argv){
         recentSessions: [],
         appName: 'Open Stage Control',
         instanceName: argv['instance-name'] || false,
-        targets: argv.s || argv.sync || false,
-        oscInPort: argv.o || 0,
-        httpPort: argv.p || 8080,
+        targets: argv['send'] || argv.sync || false,
+        oscInPort: argv['osc-port'] || 0,
+        httpPort: argv['port'] || 8080,
         tcpInPort: argv['tcp-port'] || false,
         tcpTargets: argv['tcp-targets'] || [],
-        debug: argv.d || false,
-        sessionFile:  argv.l || false,
-        newSession:  argv.b || false,
-        customModule: argv.c || false,
+        debug: argv['debug'] || false,
+        sessionFile: argv['load'] || false,
+        newSession: argv['blank'] || false,
+        customModule: argv['custom-module'] || false,
         fullScreen: argv['fullscreen'] || false,
-        noGui: argv.n || false,
-        guiOnly: typeof argv.g == 'string' ? argv.g.length ? argv.g : true : false,
+        noGui: argv['no-gui'] || false,
+        guiOnly: typeof argv['gui-only'] == 'string' ? argv['gui-only'].length ? argv['gui-only'] : true : false,
         urlOptions: argv['url-options'] ? '?' + argv['url-options'].join('&') : '',
         noVsync: argv['disable-vsync'] || false,
         noGpu: argv['disable-gpu'] || false,
         readOnly: argv['read-only'] || false,
-        midi: argv.m,
+        midi: argv['midi'],
         appAddresses:function(){
             var appAddresses = []
 
@@ -158,8 +158,8 @@ var makeDefaultConfig = function(argv){
 
             return appAddresses
         }(),
-        examples: argv.e,
-        theme: argv.t || []
+        examples: argv['examples'],
+        theme: argv['theme'] || []
     }
 }
 
