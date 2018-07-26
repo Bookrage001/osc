@@ -9,8 +9,9 @@
   - `formula` has been removed from the editor's context menu
 - custom module
   - expose `app` to the custom module's scope: an event emitter for monitoring the events sent by the different clients
-
-
+- misc
+  - fixed rpi build
+  
 ## 0.33.3
 
 - bug fixes
