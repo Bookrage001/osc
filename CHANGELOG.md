@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.34.2
+
+- bug fixes
+  - matrices: spacing issue when wrapped in strips
+
 ## 0.34.1
 
 - bug fixes
