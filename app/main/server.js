@@ -8,7 +8,7 @@ var express     = require('express')(),
     theme       = require('./theme').init(),
     zeroconf = require('./zeroconf'),
     appAddresses = settings.read('appAddresses'),
-    osc = require('./osc').server,
+    osc = {},
     clients = {}
 
 express.get('/', function(req, res){
@@ -70,3 +70,5 @@ module.exports =  {
     bindCallbacks:bindCallbacks,
     clients:clients
 }
+
+osc = require('./osc').server

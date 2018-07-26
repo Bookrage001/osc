@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.34.0
+## 0.34.1
 
 - bug fixes
   - switch: display object-values properly when `showValues` is set to `true`
@@ -11,7 +11,7 @@
   - expose `app` to the custom module's scope: an event emitter for monitoring the events sent by the different clients
 - misc
   - fixed rpi build
-  
+
 ## 0.33.3
 
 - bug fixes
