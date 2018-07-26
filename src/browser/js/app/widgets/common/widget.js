@@ -1,6 +1,6 @@
 var EventEmitter = require('../../events/event-emitter'),
     osc = require('../../osc'),
-    nanoid = require('nanoid'),
+    nanoid = require('nanoid/generate'),
     widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
     scopeCss = require('scope-css'),
@@ -46,7 +46,7 @@ class Widget extends EventEmitter {
         this.parsers = {}
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
-        this.hash = nanoid(10)
+        this.hash = nanoid('abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10)
         this.childrenHashes = []
         this.reCreateOptions = options.reCreateOptions
 
