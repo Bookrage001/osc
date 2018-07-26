@@ -80,6 +80,13 @@ npm install
 npm run build
 ```
 
+!!! note "Updating from sources"
+    ```bash
+    git pull
+    npm install
+    npm run build
+    ```
+
 **3. Run !**
 
 ```bash
