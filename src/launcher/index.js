@@ -25,15 +25,18 @@ $(document).ready(()=>{
 
         if (option.launcher === false) return
 
-        var wrapper = $('<div class="item-wrapper"></div>'),
+        var name = option.alias || i,
+            value = (argv[name] == undefined ? '' : argv[name]) || (argv[i] == undefined ? '' : argv[i]) // compat fix for 0.34.2 ,
+            wrapper = $('<div class="item-wrapper"></div>'),
             item = $(`
             <div class="input-wrapper">
-                <label>${option.alias || i}</label>
+                <label>${name}</label>
             </div>
             `).appendTo(wrapper),
             input,
-            cancel,
-            value = argv[i] == undefined ? '' : argv[i]
+            cancel
+
+        delete argv[i] // compat fix for 0.34.2
 
         var strValue
         if (Array.isArray(value)) {
@@ -42,7 +45,7 @@ $(document).ready(()=>{
             strValue = value
         }
 
-        input = $(`<input class="input" name="${i}" data-type="${option.type}" placeholder="${option.describe}"/>`)
+        input = $(`<input class="input" name="${name}" data-type="${option.type}" placeholder="${option.describe}"/>`)
         input.val(strValue)
 
         if (option.type == 'boolean') {
@@ -105,7 +108,7 @@ $(document).ready(()=>{
             } else {
                 wrapper.removeClass('error')
                 wrapper.find('.error-msg').remove()
-                argv[i] = v
+                argv[name] = v
             }
 
             if (option.restart && v!=value && !wrapper.hasClass('restart')) {

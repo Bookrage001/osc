@@ -4,6 +4,7 @@
 
 - bug fixes
   - matrices: spacing issue when wrapped in strips
+  - launcher: regression preventing options to be applied
 
 ## 0.34.1
 
