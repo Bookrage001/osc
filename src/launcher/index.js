@@ -26,7 +26,7 @@ $(document).ready(()=>{
         if (option.launcher === false) return
 
         var name = option.alias || i,
-            value = (argv[name] == undefined ? '' : argv[name]) || (argv[i] == undefined ? '' : argv[i]) // compat fix for 0.34.2 ,
+            value = (argv[name] == undefined ? '' : argv[name]) || (argv[i] == undefined ? '' : argv[i]), // compat fix for 0.34.2 ,
             wrapper = $('<div class="item-wrapper"></div>'),
             item = $(`
             <div class="input-wrapper">
