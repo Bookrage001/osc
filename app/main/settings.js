@@ -37,7 +37,7 @@ var options = {
     },
     'tcp-port':{type:'number', describe:'TCP server input port',
         check: (t, argv)=>{
-            var h = argv.p || 8080
+            var h = argv['port'] || 8080
             if (t===h) return 'TCP input port must different from --port'
             return (!isNaN(t) && t > 1023 && parseInt(t)===t) ?
                 true : 'Port must be an integer >= 1024'
@@ -151,7 +151,7 @@ var makeDefaultConfig = function(argv){
             Object.keys(ifaces).forEach(function(ifname) {
                 for (i=0;i<ifaces[ifname].length;i++) {
                     if (ifaces[ifname][i].family == 'IPv4') {
-                        appAddresses.push('http://' + ifaces[ifname][i].address + ':' + (argv.p || 8080))
+                        appAddresses.push('http://' + ifaces[ifname][i].address + ':' + (argv['port'] || 8080))
                     }
                 }
             })

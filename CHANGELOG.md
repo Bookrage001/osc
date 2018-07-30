@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.34.3
+
+- bug fixes
+  - launcher: regression breaking the `port` option
+
 ## 0.34.2
 
 - bug fixes
