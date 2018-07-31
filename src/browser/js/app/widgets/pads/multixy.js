@@ -66,22 +66,6 @@ module.exports = class MultiXy extends Pad {
         this.labels = typeof this.getProp('points') == 'object'
         this.pointSize = parseInt(this.getProp('pointSize'))
 
-        this.split = this.getProp('split')?
-            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 * this.npoints ?
-                this.getProp('split')
-                : (()=>{
-                    var s={},
-                        t
-                    for (var i=0; i<this.npoints * 2;i=i+2) {
-                        t = this.labels ? this.getProp('points')[i/2] : i/2
-                        s[i]=this.getProp('address') + '/' + t + '/x'
-                        s[i+1]=this.getProp('address') + '/' + t + '/y'
-                    }
-                    return s
-                })()
-            : false
-
-
         this.pads = []
 
         for (let i=this.npoints-1;i>=0;i--) {
@@ -251,6 +235,25 @@ module.exports = class MultiXy extends Pad {
 
         if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
+
+    }
+
+    getSplit() {
+        
+        return this.getProp('split')?
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 * this.npoints ?
+                this.getProp('split')
+                : (()=>{
+                    var s={},
+                        t
+                    for (var i=0; i<this.npoints * 2;i=i+2) {
+                        t = this.labels ? this.getProp('points')[i/2] : i/2
+                        s[i]=this.getProp('address') + '/' + t + '/x'
+                        s[i+1]=this.getProp('address') + '/' + t + '/y'
+                    }
+                    return s
+                })()
+            : false
 
     }
 

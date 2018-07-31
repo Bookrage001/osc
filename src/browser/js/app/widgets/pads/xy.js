@@ -62,12 +62,6 @@ module.exports = class Xy extends Pad {
 
         super(options)
 
-        this.split = this.getProp('split')?
-            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
-                this.getProp('split')
-                : [this.getProp('address') + '/x', this.getProp('address') + '/y']
-            : false
-
         this.faders = {
             x: new Fader({props:{
                 ...faderDefaults,
@@ -278,6 +272,16 @@ module.exports = class Xy extends Pad {
     showValue() {
 
         if (this.getProp('input')) this.input.setValue(this.value)
+
+    }
+
+    getSplit() {
+        
+        return this.getProp('split')?
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
+                this.getProp('split')
+                : [this.getProp('address') + '/x', this.getProp('address') + '/y']
+            : false
 
     }
 

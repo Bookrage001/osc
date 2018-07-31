@@ -223,6 +223,8 @@ class Widget extends EventEmitter {
 
     }
 
+    getSplit() {}
+
     static deepCopy(obj, precision){
 
         var copy = obj
@@ -520,6 +522,9 @@ class Widget extends EventEmitter {
                         address: propName == 'address' ? oldPropValue : this.getProp('address')
                     }
                 data[propName] = this.getProp(propName)
+                if (propName === 'address' && this.getSplit()) {
+                    data['split'] = this.getSplit()
+                }
                 widgetManager.registerWidget(this, data, oldData)
                 return
 

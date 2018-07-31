@@ -56,8 +56,6 @@ module.exports = class Formula extends Widget {
         this.formulaString = String(this.getProp('formula'))
         this.conditionString = String(this.getProp('condition'))
 
-        this.split = typeof this.getProp('split') == 'object' && this.getProp('split').length ? this.getProp('split') : false
-
         this.input = new Input({
             props:{
                 ...Input.defaults(),
@@ -193,6 +191,12 @@ module.exports = class Formula extends Widget {
             this.input.stringValue = '* ' + this.input.stringValue
             this.input.batchDraw()
         }
+
+    }
+
+    getSplit() {
+
+        return typeof this.getProp('split') == 'object' && this.getProp('split').length ? this.getProp('split') : false
 
     }
 

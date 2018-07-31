@@ -123,7 +123,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             data: updatedData || {
                 precision: widget.getProp('precision'),
                 preArgs: widget.getProp('preArgs'),
-                split: widget.split,
+                split: widget.getSplit(),
                 target: widget.getProp('target'),
                 address: widget.getProp('address'),
                 noSync: widget.getProp('noSync'),

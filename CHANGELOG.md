@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.34.4
+
+- bug fixes
+  - widgets: dynamic `address` when `split` is `true`
+
 ## 0.34.3
 
 - bug fixes

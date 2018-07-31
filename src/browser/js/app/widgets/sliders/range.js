@@ -232,12 +232,6 @@ module.exports = class Range extends Widget {
 
         super({...options, html: html})
 
-        this.split = this.getProp('split')?
-            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
-                this.getProp('split')
-                : [this.getProp('address') + '/low', this.getProp('address') + '/high']
-            : false
-
         this.wrapper = DOM.get(this.widget, '.wrapper')[0]
 
         this.faders = [
@@ -436,6 +430,15 @@ module.exports = class Range extends Widget {
 
     }
 
+    getSplit() {
+
+        return this.getProp('split')?
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
+                this.getProp('split')
+                : [this.getProp('address') + '/low', this.getProp('address') + '/high']
+            : false
+        
+    }
 
     onPropChanged(propName, options, oldPropValue) {
 

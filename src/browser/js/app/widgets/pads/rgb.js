@@ -57,12 +57,6 @@ module.exports = class Rgb extends Pad {
 
         super(options)
 
-        this.split = this.getProp('split')?
-            typeof this.getProp('split') == 'object' && this.getProp('split').length == 3 ?
-                this.getProp('split')
-                : [this.getProp('address') + '/r', this.getProp('address') + '/g', this.getProp('address') + '/b']
-            : false
-
         this.hueWrapper = this.widget.appendChild(DOM.create('<div class="hue-wrapper"></div>'))
 
         this.hue = new Fader({props:{
@@ -209,6 +203,16 @@ module.exports = class Rgb extends Pad {
     showValue() {
 
         if (this.getProp('input')) this.input.setValue(this.value)
+
+    }
+
+    getSplit() {
+
+        return this.getProp('split')?
+            typeof this.getProp('split') == 'object' && this.getProp('split').length == 3 ?
+                this.getProp('split')
+                : [this.getProp('address') + '/r', this.getProp('address') + '/g', this.getProp('address') + '/b']
+            : false
 
     }
 
