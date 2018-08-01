@@ -430,14 +430,14 @@ module.exports = class Range extends Widget {
 
     }
 
-    getSplit() {
+    getSplit() {
 
         return this.getProp('split')?
             typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
                 this.getProp('split')
                 : [this.getProp('address') + '/low', this.getProp('address') + '/high']
             : false
-        
+
     }
 
     onPropChanged(propName, options, oldPropValue) {

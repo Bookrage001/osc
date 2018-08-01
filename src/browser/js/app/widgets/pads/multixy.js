@@ -238,8 +238,8 @@ module.exports = class MultiXy extends Pad {
 
     }
 
-    getSplit() {
-        
+    getSplit() {
+
         return this.getProp('split')?
             typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 * this.npoints ?
                 this.getProp('split')
