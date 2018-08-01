@@ -4,13 +4,14 @@
 
 - bug fixes
   - widgets: dynamic `address` when `split` is `true`
+  - strip: missing osc properties (`address` and `preArgs`) for remote control
+  - switcher: update linked widgets' osc properties before sending if they depend on the switcher's value
 
 ## 0.34.3
 
 - bug fixes
   - launcher: regression breaking the `port` option
-  - strip: missing osc properties (`address` and `preArgs`) for remote control
-  
+
 ## 0.34.2
 
 - bug fixes

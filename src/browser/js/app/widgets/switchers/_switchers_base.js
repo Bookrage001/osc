@@ -83,6 +83,11 @@ module.exports = class _switchers_base extends Widget {
 
 
     applyState(state, options) {
+
+        // extra sync routine to ensure linked widgets' props update before osc is sent
+        if (options.sync) this.changed({...options, send:false, sync:false})
+        //
+
         for (var id in state) {
             var value = state[id],
                 widgets = widgetManager.getWidgetById(id)
