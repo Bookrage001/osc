@@ -27,6 +27,11 @@ module.exports = class Strip extends Panel {
             border:true,
             spacing:0,
 
+            _osc:'osc',
+
+            address:'auto',
+            preArgs:[],
+
             _children:'children',
 
             variables:'@{parent.variables}',
