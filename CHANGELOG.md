@@ -9,7 +9,8 @@
 
 - bug fixes
   - launcher: regression breaking the `port` option
-
+  - strip: missing osc properties (`address` and `preArgs`) for remote control
+  
 ## 0.34.2
 
 - bug fixes
