@@ -19,7 +19,9 @@ express.get('*', function(req, res){
     if (req.path.indexOf('theme.css') != -1) {
         res.set('Content-Type', 'text/css')
         if (settings.read('theme')) {
-            res.send(new Buffer(theme.get()))
+            var str = theme.get(),
+                buf = Buffer.from && Buffer.from !== Uint8Array.from ? Buffer.from(str) : new Buffer(str)
+            res.send(buf)
         } else {
             res.send('')
         }
