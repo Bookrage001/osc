@@ -151,6 +151,7 @@ var makeDefaultConfig = function(argv){
             try {
                 return JSON.parse(fs.readFileSync(argv['state'], 'utf8'))
             } catch(err) {
+                console.error(err)
                 return false
             }
         })(),
