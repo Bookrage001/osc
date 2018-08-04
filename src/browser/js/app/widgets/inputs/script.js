@@ -50,7 +50,7 @@ class Script extends Widget {
     }
 
 
-    static scriptSet(id, args) {
+    static scriptSet(id, value) {
 
         var widgets = widgetManager.getWidgetById(id)
 
