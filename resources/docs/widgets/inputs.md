@@ -96,6 +96,7 @@
 - `address` (`string`): a valid osc address
 - `arg`: one or several osc arguments to be sent. The script's `preArgs` property is ignored
 
-#### `set(id, value)`
+#### `set(id, value, send)`
 - `id` (`string`): a widget's id
 - `value`: the widget's new value
+- `send` (`boolean`): `true` by default, set to `false` to prevent osc sendings

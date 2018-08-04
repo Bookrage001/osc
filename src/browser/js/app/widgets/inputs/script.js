@@ -50,7 +50,7 @@ class Script extends Widget {
     }
 
 
-    static scriptSet(id, value) {
+    static scriptSet(id, value, send = true) {
 
         var widgets = widgetManager.getWidgetById(id)
 
@@ -58,7 +58,7 @@ class Script extends Widget {
 
             return widgets[i].setValue(value, {
                 sync: true,
-                send: true
+                send: send
             })
 
         }
