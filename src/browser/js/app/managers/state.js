@@ -7,7 +7,7 @@ var StateManager = class StateManager {
 
     constructor() {
 
-        this.state = []
+        this.quickState = []
 
         this.valueStateQueue = {}
         this.valueOldPropQueue = {}
@@ -84,7 +84,7 @@ var StateManager = class StateManager {
 
         upload('.state', (path, result)=>{
             this.set(JSON.parse(result),true)
-            this.state = result
+            this.quickState = result
         }, (e)=>{
             new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload state file.', closable:true})
         })
@@ -103,11 +103,11 @@ var StateManager = class StateManager {
 
         if (state) {
 
-            this.state = state
+            this.quickState = state
 
         } else {
 
-            this.state = this.get()
+            this.quickState = this.get()
 
         }
 
@@ -115,7 +115,7 @@ var StateManager = class StateManager {
 
     quickLoad() {
 
-        this.set(this.state,true)
+        this.set(this.quickState,true)
 
     }
 
