@@ -71,3 +71,31 @@
 - type: `boolean`
 - default: `true`
 - usage: set to `false` to prevent `keydown` repeats when holding the key combo pressed.
+
+
+## Script
+
+
+```js
+{
+    type:'script',
+    // etc
+}
+```
+
+### `script`
+- type: `string`
+- default: `''`
+- usage: this property is evaluated each time the widgets receives a non-falsy value. [Formulas](../extras/advanced-property-syntax/#formulas) are given extras variables in this context:
+  - `value`: the value received by the widget
+  - `send`: `function` for sending osc messages
+  - `set`: `function` for setting a widget's value (triggers osc sendings)
+
+#### `send(target, address, arg1, arg2, ...)`
+- `target` (`string` or `array` or `false`): one or several osc targets. Default targets (`--send` and the script's `target` property) are ignored unless `target` is `false`
+- `address` (`string`): a valid osc address
+- `arg`: one or several osc arguments to be sent. The script's `preArgs` property is ignored
+
+#### `set(id, value)`
+- `id` (`string`): a widget's id
+- `value`: the widget's new value
