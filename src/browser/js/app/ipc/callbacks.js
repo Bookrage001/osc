@@ -39,6 +39,12 @@ module.exports = {
 
     },
 
+    stateLoad: function(data){
+
+        state.set(data.state, data.send)
+        
+    },
+
     stateSend:function(){
         var p = utils.loading('New client connecting...')
 

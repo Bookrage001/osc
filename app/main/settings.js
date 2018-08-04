@@ -21,6 +21,7 @@ var options = {
         }
     },
     'l':{alias:'load',type:'string',file:{name:'OSC Session (.json)', extensions: ['json', 'js']},describe:'session file to load'},
+    'state':{type:'string',file:{name:'OSC State (.state)', extensions: ['state']},describe:'state file to load'},
     'b':{alias:'blank',type:'boolean',describe:'load a blank session and start the editor'},
     'c':{alias:'custom-module',type:'string',file:{name:'OSC Custom module (.js)', extensions: ['js']},describe:'custom module file to load'},
     'p':{alias:'port',type:'number',describe:'http port of the server (default to 8080)',
@@ -145,6 +146,14 @@ var makeDefaultConfig = function(argv){
         noGpu: argv['disable-gpu'] || false,
         readOnly: argv['read-only'] || false,
         midi: argv['midi'],
+        stateFile: (function(){
+            if (!argv['state']) return false
+            try {
+                return JSON.parse(fs.readFileSync(argv['state'], 'utf8'))
+            } catch(err) {
+                return false
+            }
+        })(),
         appAddresses:function(){
             var appAddresses = []
 

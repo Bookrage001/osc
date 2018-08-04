@@ -133,7 +133,24 @@ module.exports =  {
     },
 
     sessionOpened: function(data, clientId) {
+
+        if (settings.read('stateFile')) {
+            var send = true
+            for (var id in ipc.clients) {
+                // only make the client send its osc state if there are no other active clients
+                if (id !== clientId && ipc.clients[id].connected()) {
+                    send = false
+                }
+            }
+            var state = {
+                state: settings.read('stateFile'),
+                send: send
+            }
+            ipc.send('stateLoad', state, clientId)
+        }
+
         ipc.send('stateSend', null, null, clientId)
+
     },
 
     savingSession: function(data, clientId) {

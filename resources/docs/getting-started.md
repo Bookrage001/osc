@@ -15,6 +15,7 @@ Below are the available command-line options. Note that when running without any
 |---||---|
 | `-s` | `--send` | default targets for all widgets (ip:port pairs)|
 | `-l` | `--load` | session file to load |
+| | `--state` | state file to load (osc messages will be sent, unless there are other clients connected) |
 | `-b` | `--blank` | load a blank session and start the editor |
 | `-c` | `--custom-module` | custom module file to load |
 | `-p` | `--port` | http port of the server (default to 8080) |

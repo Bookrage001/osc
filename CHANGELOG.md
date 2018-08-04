@@ -2,6 +2,8 @@
 
 ## 0.35.0
 
+- main
+  - added `--state` option for loading a state file with a session file
 - state
   - loading a state file doesn't replace the quick save slot anymore
 - widgets
