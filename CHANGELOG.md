@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.35.0
+
+- state
+  - loading a state file doesn't replace the quick save slot anymore
+- widgets
+  - **new** `script` widget
+
 ## 0.34.4
 
 - bug fixes

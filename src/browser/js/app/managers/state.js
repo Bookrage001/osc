@@ -84,7 +84,6 @@ var StateManager = class StateManager {
 
         upload('.state', (path, result)=>{
             this.set(JSON.parse(result),true)
-            this.quickState = result
         }, (e)=>{
             new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload state file.', closable:true})
         })
