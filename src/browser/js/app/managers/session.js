@@ -86,7 +86,7 @@ var SessionManager = class SessionManager {
 
     save() {
 
-        var sessionfile = JSON.stringify(this.session,null,'    '),
+        var sessionfile = JSON.stringify(this.session,null,'  '),
             blob = new Blob([sessionfile],{type : 'application/json'})
 
         saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.json')

@@ -8,6 +8,8 @@
   - loading a state file doesn't replace the quick save slot anymore
 - widgets
   - **new** `script` widget
+- misc
+  - reduced session file size (indentation set to 2 instead of 4)
 
 ## 0.34.4
 

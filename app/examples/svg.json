@@ -1,89 +1,89 @@
 [
-    {
-        "type": "root",
-        "tabs": [
-            {
-                "type": "tab",
-                "id": "tab_1",
-                "linkId": "",
-                "label": "Rgb Levels",
-                "color": "auto",
-                "css": "",
-                "layout": "",
-                "spacing": 0,
-                "default": "",
-                "value": "",
-                "precision": 0,
-                "address": "/tab_1",
-                "preArgs": [],
-                "target": [],
-                "bypass": false,
-                "variables": "@{parent.variables}",
-                "widgets": [
-                    {
-                        "type": "svg",
-                        "top": 150,
-                        "left": 0,
-                        "id": "rgb_svg",
-                        "linkId": "",
-                        "width": "100%",
-                        "height": 190,
-                        "label": "auto",
-                        "color": "auto",
-                        "css": "path {\n  fill:none;\n  stroke-width:3rem\n}",
-                        "svg": "#{\n\n# build the data array\n# [ [r,g,b], [r,g,b], [r,g,b], etc ]\ndata = @{rgb_matrix};\n\n# extract channels and convert to relative y-axis coordinates\n# assuming the y-range is 0-255\n# 96 - val * 94 for padding and y-axis reversal\n# we add a small offset to make sure the 3 lines are always visible\n\nred = 96 - flatten(data[0:end,0]) / 255 * 94 + 2;\ngreen = 96 - flatten(data[0:end,1]) / 255 * 94;\nblue = 96 - flatten(data[0:end,2]) / 255 * 94 - 2;\n\n# build the x-axis relative coordinates array\n\nlength = size(red)[0]\nxaxis = (0:length) / (length-1) * 100;\n\n\n# convert coords to svg path string\nsvgCoords(color) = map(color, f(c,i)=print(\"L$0%x $1%y\", [xaxis[i], c]));\n\n# svg path first command must be \"M\", not \"L\" \nsvgString(color) = concat(\"M\", unpack(svgCoords(color))[1:end]);\n\n}\n\n\n<path stroke=\"red\" d=\"#{svgString(red)}\" />\n<path stroke=\"lime\" d=\"#{svgString(green)}\" />\n<path stroke=\"blue\" d=\"#{svgString(blue)}\" />",
-                        "preArgs": [],
-                        "address": "/rgb_svg"
-                    },
-                    {
-                        "type": "matrix",
-                        "top": 0,
-                        "left": 0,
-                        "id": "rgb_matrix",
-                        "width": "100.60%",
-                        "height": 150,
-                        "label": "auto",
-                        "color": "auto",
-                        "css": "",
-                        "widgetType": "rgb",
-                        "matrix": [
-                            8,
-                            1
-                        ],
-                        "start": 0,
-                        "spacing": 0,
-                        "traversing": false,
-                        "borders": false,
-                        "props": {
-                            "input": false,
-                            "label": false
-                        },
-                        "default": "",
-                        "value": "",
-                        "precision": 2,
-                        "address": "/matrix_1",
-                        "preArgs": [],
-                        "target": [],
-                        "bypass": false
-                    }
-                ],
-                "tabs": [],
-                "scroll": true
-            }
-        ],
-        "id": "root",
+  {
+    "type": "root",
+    "tabs": [
+      {
+        "type": "tab",
+        "id": "tab_1",
         "linkId": "",
+        "label": "Rgb Levels",
         "color": "auto",
         "css": "",
+        "layout": "",
+        "spacing": 0,
         "default": "",
         "value": "",
         "precision": 0,
-        "address": "/root",
+        "address": "/tab_1",
         "preArgs": [],
         "target": [],
         "bypass": false,
-        "variables": {},
-        "scroll": true,
-        "label": false
-    }
+        "variables": "@{parent.variables}",
+        "widgets": [
+          {
+            "type": "svg",
+            "top": 150,
+            "left": 0,
+            "id": "rgb_svg",
+            "linkId": "",
+            "width": "100%",
+            "height": 190,
+            "label": "auto",
+            "color": "auto",
+            "css": "path {\n  fill:none;\n  stroke-width:3rem\n}",
+            "svg": "#{\n\n# build the data array\n# [ [r,g,b], [r,g,b], [r,g,b], etc ]\ndata = @{rgb_matrix};\n\n# extract channels and convert to relative y-axis coordinates\n# assuming the y-range is 0-255\n# 96 - val * 94 for padding and y-axis reversal\n# we add a small offset to make sure the 3 lines are always visible\n\nred = 96 - flatten(data[0:end,0]) / 255 * 94 + 2;\ngreen = 96 - flatten(data[0:end,1]) / 255 * 94;\nblue = 96 - flatten(data[0:end,2]) / 255 * 94 - 2;\n\n# build the x-axis relative coordinates array\n\nlength = size(red)[0]\nxaxis = (0:length) / (length-1) * 100;\n\n\n# convert coords to svg path string\nsvgCoords(color) = map(color, f(c,i)=print(\"L$0%x $1%y\", [xaxis[i], c]));\n\n# svg path first command must be \"M\", not \"L\" \nsvgString(color) = concat(\"M\", unpack(svgCoords(color))[1:end]);\n\n}\n\n\n<path stroke=\"red\" d=\"#{svgString(red)}\" />\n<path stroke=\"lime\" d=\"#{svgString(green)}\" />\n<path stroke=\"blue\" d=\"#{svgString(blue)}\" />",
+            "preArgs": [],
+            "address": "/rgb_svg"
+          },
+          {
+            "type": "matrix",
+            "top": 0,
+            "left": 0,
+            "id": "rgb_matrix",
+            "width": "100.60%",
+            "height": 150,
+            "label": "auto",
+            "color": "auto",
+            "css": "",
+            "widgetType": "rgb",
+            "matrix": [
+              8,
+              1
+            ],
+            "start": 0,
+            "spacing": 0,
+            "traversing": false,
+            "borders": false,
+            "props": {
+              "input": false,
+              "label": false
+            },
+            "default": "",
+            "value": "",
+            "precision": 2,
+            "address": "/matrix_1",
+            "preArgs": [],
+            "target": [],
+            "bypass": false
+          }
+        ],
+        "tabs": [],
+        "scroll": true
+      }
+    ],
+    "id": "root",
+    "linkId": "",
+    "color": "auto",
+    "css": "",
+    "default": "",
+    "value": "",
+    "precision": 0,
+    "address": "/root",
+    "preArgs": [],
+    "target": [],
+    "bypass": false,
+    "variables": {},
+    "scroll": true,
+    "label": false
+  }
 ]
