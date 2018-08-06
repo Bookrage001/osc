@@ -50,16 +50,13 @@ class Script extends Widget {
     }
 
 
-    static scriptSet(id, value, send = true) {
+    static scriptSet(id, value, options) {
 
         var widgets = widgetManager.getWidgetById(id)
 
         for (var i = widgets.length - 1; i >= 0; i--) {
 
-            return widgets[i].setValue(value, {
-                sync: true,
-                send: send
-            })
+            return widgets[i].setValue(value, options)
 
         }
 
@@ -82,7 +79,14 @@ class Script extends Widget {
 
     setValue(v, options={} ) {
 
-        if (v) this.resolveProp('script', undefined, false, false, false, {value: v, send: this.scriptSend.bind(this), set: Script.scriptSet, log: console.log})
+        var context = {
+            value: v,
+            send: options.send ? this.scriptSend.bind(this) : ()=>{},
+            set: (id, value)=>{Script.scriptSet(id, value, options)},
+            log: console.log
+        }
+
+        if (v) this.resolveProp('script', undefined, false, false, false, context)
 
         // if (options.send) this.sendValue()
         if (options.sync) this.changed(options)

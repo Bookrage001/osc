@@ -89,7 +89,7 @@
 - usage: this property is evaluated each time the widgets receives a non-falsy value. [Formulas](../extras/advanced-property-syntax/#formulas) are given extras variables in this context:
   - `value`: the value received by the widget
   - `send`: `function` for sending osc messages
-  - `set`: `function` for setting a widget's value (triggers osc sendings)
+  - `set`: `function` for setting a widget's value
 
 #### `send(target, address, arg1, arg2, ...)`
 - `target` (`string` or `array` or `false`): one or several osc targets. Default targets (`--send` and the script's `target` property) are ignored unless `target` is `false`
@@ -99,4 +99,3 @@
 #### `set(id, value, send)`
 - `id` (`string`): a widget's id
 - `value`: the widget's new value
-- `send` (`boolean`): `true` by default, set to `false` to prevent osc sendings
