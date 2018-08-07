@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.36.0
+
+- bug fixes
+  - `linkId` synchronizations now correctly trigger property updates
+  - widgets with multiple `linkId` are now properly handled
+
 ## 0.35.0
 
 - main

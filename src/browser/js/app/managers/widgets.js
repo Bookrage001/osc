@@ -13,6 +13,9 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         this.idRoute = {}
         this.linkIdRoute = {}
 
+        this.linkIdLock = []
+        this.linkIdLockDepth = 0
+
         this.scrollingWidgets = []
 
         this.preArgsSeparator = '||||'
@@ -34,6 +37,9 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         if (linkId) {
             if (!Array.isArray(linkId)) linkId = [linkId]
             linkId = linkId.map(x=>x.replace(/^>>\s*/, '')).filter(x=>x.indexOf('<<') < 0)
+            linkId = linkId.filter(x=>this.linkIdLock.indexOf(x)<0)
+            this.linkIdLock = this.linkIdLock.concat(linkId)
+            this.linkIdLockDepth++
         }
 
         var widgetsById = this.getWidgetById(id),
@@ -56,8 +62,15 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             let v = widget.getValue()
             for (let i in widgetsByLinkId) {
                 if (widgetsByLinkId[i] !== widget) {
-                    widgetsByLinkId[i].setValue(v,{send:options.send,sync:false})
+                    widgetsByLinkId[i].setValue(v,{send: options.send,sync: true})
                 }
+            }
+        }
+
+        if (linkId && this.linkIdLockDepth) {
+            this.linkIdLockDepth--
+            if (!this.linkIdLockDepth) {
+                this.linkIdLock = []
             }
         }
 
