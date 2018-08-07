@@ -41,11 +41,6 @@
 }
 ```
 
-### `widgetId`
-- type: `object`
-- default: `empty`
-- usage: a widget's `id` whose value will be linked to the Keys
-
 ### `binding`
 - type: `string|array`
 - default: `''`
@@ -54,8 +49,7 @@
 ### `keydown`
 - type: `string`
 - default: `''`
-- usage: [MathJS](http://mathjs.org/docs/expressions/syntax.html) expression whose output will be sent to the linked widget. This will be evaluated when the key combo is pressed. Available variables are ;
-  - `value`: widget's value
+- usage: this property is evaluated each time the key combo is pressed. [Formulas](../extras/advanced-property-syntax/#formulas) are given extras variables in this context:
   - `key`: pressed key name (usefull for handling multiple keys with a single `keys` widget)
   - `ctrl`: control key state
   - `alt`: alt key state    

@@ -4,12 +4,12 @@ var Widget = require('../common/widget'),
     {iconify} = require('../../ui/utils'),
     keyboardJS = require('keyboardjs')
 
-module.exports = class Keys extends Widget {
+class Keys extends Widget {
 
     static defaults() {
 
         return {
-            type:'led',
+            type:'keys',
             id:'auto',
             linkId:'',
 
@@ -28,7 +28,6 @@ module.exports = class Keys extends Widget {
 
             _keys:'keys',
 
-            widgetId:'',
             binding:'',
             keydown:'',
             keyup:'',
@@ -48,63 +47,76 @@ module.exports = class Keys extends Widget {
 
         super({...options, html: html})
 
-        this.keydownString = String(this.getProp('keydown'))
-        this.keyupString = String(this.getProp('keyup'))
-
-        if (this.getProp('binding') && (this.keydownString || this.keyupString)) {
+        if (this.getProp('binding')) {
 
             this.widget.appendChild(DOM.create(`<span>${this.getProp('binding')}</span>`))
 
-            this.keydownHandler = this.keydownString ? this.keydown.bind(this) : this.showKeydown.bind(this)
-            this.keyupHandler = this.keyupString ? this.keyup.bind(this) : this.showKeyup.bind(this)
+            this.keyDownHandler = this.keyDown.bind(this)
+            this.keyUpHandler = this.keyUp.bind(this)
 
-            this.keydownMath = math.compile(this.keydownString)
-            this.keyupMath = math.compile(this.keyupString)
-
-            keyboardJS.bind(this.getProp('binding'), this.keydownHandler, this.keyupHandler)
+            keyboardJS.bind(this.getProp('binding'), this.keyDownHandler, this.keyUpHandler)
 
         }
 
-        this.linkedWidget = null
     }
 
     onRemove() {
 
         super.onRemove()
 
-        if (this.getProp('binding') && (this.getProp('keydown') || this.getProp('keyup'))) {
+        if (this.getProp('binding')) {
 
-            keyboardJS.unbind(this.getProp('binding'), this.keydownHandler, this.keyupHandler)
+            keyboardJS.unbind(this.getProp('binding'), this.keyDownHandler, this.keyUpHandler)
 
         }
 
     }
 
-    keydown(e) {
+    keyDown(e) {
 
         if (e.target.classList.contains('input')) return
 
         if (!this.getProp('repeat') && e) e.preventRepeat()
 
-        var widget = this.getLinkedWidget()
+        if (this.getProp('keydown') !== '') {
 
-        if (widget) {
-            var v = this.keydownMath.eval({
-                value: widget.getValue(),
+            var context = {
                 key: e.key,
                 ctrl: e.ctrlKey,
                 shift: e.shiftKey,
                 alt: e.altKey,
                 meta: e.metaKey
-            }).valueOf()
+            }
 
-            if (Array.isArray(v) && v.length == 1) v = v[0]
-
-            widget.setValue(v, {send:true, sync:true, fromExternal:false})
+            this.setValue(this.resolveProp('keydown', undefined, false, false, false, context), {sync: true, send: true})
 
         }
 
+
         this.showKeydown()
+
+    }
+
+
+    keyUp(e) {
+
+        if (e.target.classList.contains('input')) return
+
+        if (this.getProp('keyup') !== '') {
+
+            var context = {
+                key: e.key,
+                ctrl: e.ctrlKey,
+                shift: e.shiftKey,
+                alt: e.altKey,
+                meta: e.metaKey
+            }
+
+            this.setValue(this.resolveProp('keyup', undefined, false, false, false, context), {sync: true, send: true})
+
+        }
+
+        this.showKeyup()
 
     }
 
@@ -114,49 +126,27 @@ module.exports = class Keys extends Widget {
 
     }
 
-    keyup(e) {
-
-        if (e.target.classList.contains('input')) return
-
-        var widget = this.getLinkedWidget()
-
-        if (widget) {
-
-            var v = this.keyupMath.eval({
-                value: widget.getValue(),
-                key: e.key,
-                ctrl: e.ctrlKey,
-                shift: e.shiftKey,
-                alt: e.altKey,
-                meta: e.metaKey
-            }).valueOf()
-
-            if (Array.isArray(v) && v.length == 1) v = v[0]
-
-            widget.setValue(v, {send:true, sync:true, fromExternal:false})
-
-        }
-
-        this.showKeyup()
-
-    }
-
     showKeyup(){
 
         this.widget.style.setProperty('--opacity', 0.75)
 
     }
 
-    getLinkedWidget() {
+    setValue(v, options = {}) {
 
-        if (this.getProp('widgetId')) {
+        this.value = v
 
-            return widgetManager.getWidgetById(this.getProp('widgetId')).pop() || null
-
-        }
+        // if (options.send) this.sendValue()
+        if (options.sync) this.changed(options)
 
     }
 
-    setValue() {}
-
 }
+
+Keys.dynamicProps = Keys.prototype.constructor.dynamicProps.concat(
+    'keydown',
+    'keyup',
+    'repeat'
+)
+
+module.exports = Keys
