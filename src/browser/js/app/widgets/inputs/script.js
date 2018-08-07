@@ -26,6 +26,7 @@ class Script extends Widget {
 
             _script:'script',
 
+            condition: 1,
             script:'',
 
             _osc:'osc',
@@ -86,7 +87,9 @@ class Script extends Widget {
             log: console.log
         }
 
-        if (v) this.resolveProp('script', undefined, false, false, false, context)
+        var condition = this.resolveProp('condition', undefined, false, false, false, {value: v})
+
+        if (condition) this.resolveProp('script', undefined, false, false, false, context)
 
         // if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
@@ -97,7 +100,8 @@ class Script extends Widget {
 }
 
 Script.dynamicProps = Script.prototype.constructor.dynamicProps.concat(
-    'script'
+    'condition',
+    'script',
 )
 
 module.exports = Script

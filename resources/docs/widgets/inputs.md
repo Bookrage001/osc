@@ -83,10 +83,16 @@
 }
 ```
 
+### `condition`
+- type: `string`
+- default: `''`
+- usage: when the widget receives a value, if this property return a falsy value, the `script` property won't be evaluated. If it's non-falsy, it will be evaluated normally. [Formulas](../extras/advanced-property-syntax/#formulas) are given 1 extra variable in this context:
+  - `value`: the value received by the widget
+
 ### `script`
 - type: `string`
 - default: `''`
-- usage: this property is evaluated each time the widgets receives a non-falsy value. [Formulas](../extras/advanced-property-syntax/#formulas) are given extras variables in this context:
+- usage: this property is evaluated each time the widget receives a value if `condition` is non-falsy. [Formulas](../extras/advanced-property-syntax/#formulas) are given extras variables in this context:
   - `value`: the value received by the widget
   - `send`: `function` for sending osc messages
   - `set`: `function` for setting a widget's value
@@ -95,6 +101,7 @@
 - `target` (`string` or `array` or `false`): one or several osc targets. Default targets (`--send` and the script's `target` property) are ignored unless `target` is `false`
 - `address` (`string`): a valid osc address
 - `arg`: one or several osc arguments to be sent. The script's `preArgs` property is ignored
+
 
 #### `set(id, value)`
 - `id` (`string`): a widget's id
