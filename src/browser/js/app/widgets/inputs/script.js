@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    widgetManager = require('../../managers/widgets')
+    widgetManager = require('../../managers/widgets'),
+    {iconify} = require('../../ui/utils')
 
 
 class Script extends Widget {
@@ -43,6 +44,7 @@ class Script extends Widget {
 
         var html = `
             <div class="script">
+                ${iconify('^code')}
             </div>
         `
 
