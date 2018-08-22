@@ -1,5 +1,4 @@
 var {updateWidget, incrementWidget} = require('./data-workers'),
-    {Popup} = require('../ui/utils'),
     {categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
     editor = require('./')
@@ -182,28 +181,9 @@ var handleClick = function(event) {
 
     if (type === 'widget')  {
 
-        actions['<i class="fa fa-copy"></i> Copy'] = ()=>{
-            editor.clipboard = JSON.stringify(data)
-            if (data.length == 1) {
-                editor.idClipboard = editor.selectedWidgets[0].getProp('id')
-            } else {
-                editor.idClipboard =null
-            }
-        }
+        actions['<i class="fa fa-copy"></i> Copy'] = editor.copyWidget.bind(editor)
 
-        actions['<i class="fa fa-cut"></i> Cut'] = ()=>{
-            editor.clipboard = JSON.stringify(data)
-            if (data.length == 1) {
-                editor.idClipboard = editor.selectedWidgets[0].getProp('id')
-            } else {
-                editor.idClipboard =null
-            }
-
-            for (var i of index) {
-                parent.props.widgets.splice(i,1)
-            }
-            editor.select(updateWidget(parent, {preventSelect: true}))
-        }
+        actions['<i class="fa fa-cut"></i> Cut'] = editor.cutWidget.bind(editor)
 
         actions['<i class="fa fa-box"></i> Wrap in'] = {}
         for (let c of categories.Containers) {
@@ -242,66 +222,18 @@ var handleClick = function(event) {
 
         if (editor.clipboard !== null) {
 
-            var paste = function(increment) {
-
-                var pastedData = JSON.parse(editor.clipboard),
-                    minTop = Infinity,
-                    minLeft = Infinity
-
-                for (var i in pastedData) {
-                    if (increment) pastedData[i] = incrementWidget(pastedData[i])
-                    if (!isNaN(pastedData[i]).top && pastedData[i].top < minTop) {
-                        minTop = pastedData[i].top
-                    }
-                    if (!isNaN(pastedData[i]).left && pastedData[i].left < minLeft) {
-                        minLeft = pastedData[i].left
-                    }
-                }
-
-                var keepPosition = eventData.target.classList.contains('tablink')
-                for (let i in pastedData) {
-
-                    if (!keepPosition) {
-                        if (!isNaN(pastedData[i].top)) pastedData[i].top  = pastedData[i].top - minTop + clickY
-                        if (!isNaN(pastedData[i].left)) pastedData[i].left = pastedData[i].left - minLeft + clickX
-                    }
-
-                }
-
-                data[0].widgets = data[0].widgets || []
-                data[0].widgets = data[0].widgets.concat(pastedData)
-
-                updateWidget(editor.selectedWidgets[0])
-
-            }
-
             actions['<i class="fa fa-paste"></i> Paste'] = {
                 '<i class="fa fa-paste"></i> Paste': ()=>{
-                    paste()
+                    editor.pasteWidget(eventData)
                 },
                 '<i class="fa fa-plus-square"></i> ID + 1': ()=>{
-                    paste(true)
+                    editor.pasteWidget(eventData, true)
                 }
             }
 
             if (editor.idClipboard && widgetManager.getWidgetById(editor.idClipboard).length) {
                 actions['<i class="fa fa-paste"></i> Paste']['<i class="fa fa-clone"></i> Clone'] = ()=>{
-                    var clone = {type: 'clone', widgetId: editor.idClipboard},
-                        pastedData = JSON.parse(editor.clipboard)
-
-                    clone.width = pastedData.width
-                    clone.height = pastedData.width
-                    clone.css = pastedData.css
-
-                    if (!eventData.target.classList.contains('tablink')) {
-                        clone.top  = clickY
-                        clone.left = clickX
-                    }
-
-                    data[0].widgets = data[0].widgets || []
-                    data[0].widgets.push(clone)
-
-                    updateWidget(editor.selectedWidgets[0])
+                    editor.pasteWidgetAsClone(eventData)
                 }
             }
 
@@ -347,43 +279,7 @@ var handleClick = function(event) {
 
     }
 
-    actions['<i class="fa fa-trash"></i> Delete'] = ()=>{
-
-        var popup = new Popup({
-            title: 'Are you sure ?',
-            content:`
-                <div class="actions">
-                    <a class="btn warning confirm-delete">DELETE</a>
-                    <a class="btn cancel-delete">CANCEL</a>
-                </div>`,
-            closable: false,
-            escKey: true,
-            enterKey: function(){DOM.get(this.html, '.confirm-delete')[0].click()}
-        })
-
-        DOM.get(popup.html, '.confirm-delete')[0].addEventListener('click', ()=>{
-
-            popup.close()
-
-            if (type === 'widget') {
-                for (let i of index) {
-                    parent.props.widgets.splice(i,1)
-                }
-            } else {
-                for (let i of index) {
-                    parent.props.tabs.splice(i,1)
-                }
-            }
-
-            editor.select(updateWidget(parent, {preventSelect: true}))
-
-        })
-
-        DOM.get(popup.html, '.cancel-delete')[0].addEventListener('click', function(){
-            popup.close()
-        })
-
-    }
+    actions['<i class="fa fa-trash"></i> Delete'] = editor.deleteWidget.bind(editor)
 
     contextMenu.open(eventData, actions)
 

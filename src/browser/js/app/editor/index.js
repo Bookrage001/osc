@@ -1,6 +1,8 @@
 var {widgets} = require('../widgets/'),
+    {Popup} = require('../ui/utils'),
     editField = require('./edit-field'),
-    {updateWidget} = require('./data-workers')
+    {updateWidget, incrementWidget} = require('./data-workers'),
+    keyboardJS = require('keyboardjs')
 
 var Editor = class Editor {
 
@@ -30,6 +32,57 @@ var Editor = class Editor {
             if (this.enabledOnce) return true
         }
 
+        keyboardJS.withContext('editing', ()=>{
+            keyboardJS.bind('mod + c', (e)=>{
+                if (e.target.classList.contains('input')) return
+                this.copyWidget()
+            })
+            keyboardJS.bind('mod + x', (e)=>{
+                if (e.target.classList.contains('input')) return
+                this.cutWidget()
+            })
+            keyboardJS.bind('mod + v', (e)=>{
+                if (e.target.classList.contains('input')) return
+                this.pasteWidget(undefined, false)
+            })
+            keyboardJS.bind('mod + shift + v', ()=>{
+                if (e.target.classList.contains('input')) return
+                this.pasteWidget(undefined, true)
+            })
+            keyboardJS.bind('delete', (e)=>{
+                if (e.target.classList.contains('input')) return
+                this.deleteWidget()
+            })
+            keyboardJS.bind(['alt + up', 'alt + down', 'alt + right', 'alt + left'], (e)=>{
+                if (e.target.classList.contains('input')) return
+
+                var deltaW = e.key === 'ArrowLeft' ? -GRIDWIDTH : e.key === 'ArrowRight' ? GRIDWIDTH : 0,
+                    deltaH = e.key === 'ArrowUp' ? -GRIDWIDTH : e.key === 'ArrowDown' ? GRIDWIDTH : 0
+
+                if (e.shiftKey) {
+                    deltaW *= 5
+                    deltaH *= 5
+                }
+
+                this.resizeWidget(deltaW, deltaH)
+            })
+            keyboardJS.bind(['up', 'down', 'right', 'left'], (e)=>{
+                if (e.target.classList.contains('input')) return
+
+                var deltaX = e.key === 'ArrowLeft' ? -GRIDWIDTH : e.key === 'ArrowRight' ? GRIDWIDTH : 0,
+                    deltaY = e.key === 'ArrowUp' ? -GRIDWIDTH : e.key === 'ArrowDown' ? GRIDWIDTH : 0
+
+                if (e.shiftKey) {
+                    deltaX *= 5
+                    deltaY *= 5
+                }
+
+                this.moveWidget(deltaX, deltaY)
+            })
+
+
+        })
+
     }
 
     enable() {
@@ -47,7 +100,7 @@ var Editor = class Editor {
         document.body.classList.toggle('no-grid', GRIDWIDTH == 1)
 
 
-        GRIDWIDTH = getComputedStyle(document.documentElement).getPropertyValue('--grid-width')
+        GRIDWIDTH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-width'))
 
         var gridForm = DOM.create(`
             <div class="form" id="grid-width-form">
@@ -74,6 +127,8 @@ var Editor = class Editor {
 
         DOM.get(document, '.editor-menu')[0].appendChild(gridForm)
 
+        keyboardJS.setContext('editing')
+
     }
 
     disable() {
@@ -97,6 +152,8 @@ var Editor = class Editor {
 
         var gridForm = DOM.get('#grid-width-form')[0]
         if (gridForm) gridForm.parentNode.removeChild(gridForm)
+
+        keyboardJS.setContext('global')
 
     }
 
@@ -240,32 +297,8 @@ var Editor = class Editor {
                     var deltaH = ui.size.height - ui.originalSize.height,
                         deltaW = ui.size.width - ui.originalSize.width
 
-                    var newWidgets = []
-                    for (var w of this.selectedWidgets) {
-                        var originalW = w === widget ? ui.originalSize.width : w.container.offsetWidth,
-                            originalH = w === widget ? ui.originalSize.height : w.container.offsetHeight
+                    this.resizeWidget(deltaW, deltaH, ui)
 
-                        if (w.props.width !== undefined) {
-                            var newWidth = Math.max((originalW + deltaW), GRIDWIDTH) / PXSCALE
-                            if (typeof w.props.width === 'string' && w.props.width.indexOf('%') > -1) {
-                                w.props.width = (100 * PXSCALE * newWidth / w.container.parentNode.offsetWidth).toFixed(2) + '%'
-                            } else {
-                                w.props.width = newWidth
-                            }
-                        }
-
-                        if (w.props.height !== undefined) {
-                            var newHeight = Math.max((originalH + deltaH), GRIDWIDTH) / PXSCALE
-                            if (typeof w.props.height === 'string' && w.props.height.indexOf('%') > -1) {
-                                w.props.height = (100 * PXSCALE * newHeight / w.container.parentNode.offsetHeight).toFixed(2) + '%'
-                            } else {
-                                w.props.height = newHeight
-                            }
-                        }
-
-                        if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w))
-                    }
-                    if (newWidgets.length > 1) editor.select(newWidgets, {preventSelect: this.selectedWidgets.length > 1})
                 },
                 grid: [GRIDWIDTH * PXSCALE, GRIDWIDTH * PXSCALE]
             })
@@ -286,25 +319,7 @@ var Editor = class Editor {
                     var deltaX = (ui.helper.position().left + $container.parent().scrollLeft()) / PXSCALE - widget.container.offsetLeft / PXSCALE,
                         deltaY = (ui.helper.position().top + $container.parent().scrollTop()) / PXSCALE - widget.container.offsetTop / PXSCALE
 
-                    var newWidgets = []
-                    for (var w of this.selectedWidgets) {
-
-                        var newTop = w.container.offsetTop / PXSCALE + deltaY
-                        if (typeof w.props.top === 'string' && w.props.top.indexOf('%') > -1) {
-                            w.props.top = (100 * PXSCALE * newTop / w.container.parentNode.offsetHeight).toFixed(2) + '%'
-                        } else {
-                            w.props.top = newTop
-                        }
-                        var newLeft = w.container.offsetLeft / PXSCALE + deltaX
-                        if (typeof w.props.left === 'string' && w.props.left.indexOf('%') > -1) {
-                            w.props.left = (100 * PXSCALE * newLeft / w.container.parentNode.offsetWidth).toFixed(2) + '%'
-                        } else {
-                            w.props.left = newLeft
-                        }
-
-                        newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
-                    }
-                    if (newWidgets.length > 1) editor.select(newWidgets)
+                    this.moveWidget(deltaX, deltaY)
 
                     ui.helper.remove()
                 },
@@ -317,6 +332,231 @@ var Editor = class Editor {
 
         }
 
+
+    }
+
+    copyWidget() {
+
+        var data = this.selectedWidgets.map((w)=>w.props),
+            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget'
+
+
+        if (type !== 'widget') return
+
+        this.clipboard = JSON.stringify(data)
+
+        if (data.length == 1) {
+            this.idClipboard = this.selectedWidgets[0].getProp('id')
+        } else {
+            this.idClipboard =null
+        }
+
+    }
+
+    cutWidget() {
+
+        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
+            data = this.selectedWidgets.map((w)=>w.props),
+            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
+            parent = editor.selectedWidgets[0].parent
+
+        if (type !== 'widget') return
+
+        this.clipboard = JSON.stringify(data)
+
+        if (data.length == 1) {
+            this.idClipboard = this.selectedWidgets[0].getProp('id')
+        } else {
+            this.idClipboard =null
+        }
+
+        for (var i of index) {
+            parent.props.widgets.splice(i,1)
+        }
+
+        this.select(updateWidget(parent, {preventSelect: true}))
+
+    }
+
+    pasteWidget(eventData, increment) {
+
+        if (this.clipboard === null) return
+
+        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
+            data = this.selectedWidgets.map((w)=>w.props),
+            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
+            parent = this.selectedWidgets[0].parent
+
+        var pastedData = JSON.parse(editor.clipboard),
+            minTop = Infinity,
+            minLeft = Infinity
+
+        for (var i in pastedData) {
+            if (increment) pastedData[i] = incrementWidget(pastedData[i])
+            if (!isNaN(pastedData[i]).top && pastedData[i].top < minTop) {
+                minTop = pastedData[i].top
+            }
+            if (!isNaN(pastedData[i]).left && pastedData[i].left < minLeft) {
+                minLeft = pastedData[i].left
+            }
+        }
+
+        var clickX = eventData ? Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : NaN,
+            clickY = eventData ? Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : NaN
+
+        for (let i in pastedData) {
+
+            if (!isNaN(pastedData[i].top)) pastedData[i].top  = pastedData[i].top - minTop + clickY
+            if (!isNaN(pastedData[i].left)) pastedData[i].left = pastedData[i].left - minLeft + clickX
+
+        }
+
+        data[0].widgets = data[0].widgets || []
+        data[0].widgets = data[0].widgets.concat(pastedData)
+
+        updateWidget(this.selectedWidgets[0])
+
+    }
+
+    pasteWidgetAsClone(eventData) {
+
+        if (this.clipboard === null || !(this.idClipboard && widgetManager.getWidgetById(this.idClipboard).length)) return
+
+        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
+            data = this.selectedWidgets.map((w)=>w.props),
+            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
+            parent = this.selectedWidgets[0].parent
+
+        var clone = {type: 'clone', widgetId: this.idClipboard},
+            pastedData = JSON.parse(this.clipboard)
+
+        clone.width = pastedData.width
+        clone.height = pastedData.width
+        clone.css = pastedData.css
+
+
+        var clickX = eventData ? Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : 0,
+            clickY = eventData ? Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : 0
+
+        clone.top  = clickY
+        clone.left = clickX
+
+        data[0].widgets = data[0].widgets || []
+        data[0].widgets.push(clone)
+
+        updateWidget(this.selectedWidgets[0])
+
+    }
+
+
+    deleteWidget() {
+
+        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
+            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
+            parent = this.selectedWidgets[0].parent
+
+        var popup = new Popup({
+            title: 'Are you sure ?',
+            content:`
+                <div class="actions">
+                    <a class="btn warning confirm-delete">DELETE</a>
+                    <a class="btn cancel-delete">CANCEL</a>
+                </div>`,
+            closable: false,
+            escKey: true,
+            enterKey: function(){DOM.get(this.html, '.confirm-delete')[0].click()}
+        })
+
+        DOM.get(popup.html, '.confirm-delete')[0].addEventListener('click', ()=>{
+
+            popup.close()
+
+            if (type === 'widget') {
+                for (let i of index) {
+                    parent.props.widgets.splice(i,1)
+                }
+            } else {
+                for (let i of index) {
+                    parent.props.tabs.splice(i,1)
+                }
+            }
+
+            this.select(updateWidget(parent, {preventSelect: true}))
+
+        })
+
+        DOM.get(popup.html, '.cancel-delete')[0].addEventListener('click', function(){
+            popup.close()
+        })
+
+    }
+
+    resizeWidget(deltaW, deltaH, ui) {
+
+        var newWidgets = []
+
+        for (var i = 0; i < this.selectedWidgets.length; i++) {
+
+            let w = this.selectedWidgets[i],
+                nW, nH
+
+            if (i === 0 && ui) {
+                nW = ui.originalSize.width + deltaW
+                nH = ui.originalSize.height + deltaH
+
+            } else {
+                nW = w.container.offsetWidth + deltaW
+                nH = w.container.offsetHeight + deltaH
+            }
+
+            if (w.props.width !== undefined) {
+                var newWidth = Math.max(nW, GRIDWIDTH) / PXSCALE
+                if (typeof w.props.width === 'string' && w.props.width.indexOf('%') > -1) {
+                    w.props.width = (100 * PXSCALE * newWidth / w.container.parentNode.offsetWidth).toFixed(2) + '%'
+                } else {
+                    w.props.width = newWidth
+                }
+            }
+
+            if (w.props.height !== undefined) {
+                var newHeight = Math.max(nH, GRIDWIDTH) / PXSCALE
+                if (typeof w.props.height === 'string' && w.props.height.indexOf('%') > -1) {
+                    w.props.height = (100 * PXSCALE * newHeight / w.container.parentNode.offsetHeight).toFixed(2) + '%'
+                } else {
+                    w.props.height = newHeight
+                }
+            }
+
+            if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
+        }
+
+        if (newWidgets.length > 1) this.select(newWidgets, {preventSelect: this.selectedWidgets.length > 1})
+
+    }
+
+    moveWidget(deltaX, deltaY) {
+
+        var newWidgets = []
+
+        for (var w of this.selectedWidgets) {
+
+            var newTop = w.container.offsetTop / PXSCALE + deltaY
+            if (typeof w.props.top === 'string' && w.props.top.indexOf('%') > -1) {
+                w.props.top = (100 * PXSCALE * newTop / w.container.parentNode.offsetHeight).toFixed(2) + '%'
+            } else {
+                w.props.top = newTop
+            }
+            var newLeft = w.container.offsetLeft / PXSCALE + deltaX
+            if (typeof w.props.left === 'string' && w.props.left.indexOf('%') > -1) {
+                w.props.left = (100 * PXSCALE * newLeft / w.container.parentNode.offsetWidth).toFixed(2) + '%'
+            } else {
+                w.props.left = newLeft
+            }
+
+            newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
+        }
+
+        if (newWidgets.length > 1) this.select(newWidgets)
 
     }
 
