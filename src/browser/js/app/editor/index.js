@@ -544,9 +544,10 @@ var Editor = class Editor {
             }
 
             if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
-            this.pushHistory()
 
         }
+
+        this.pushHistory()
 
         if (newWidgets.length > 1) this.select(newWidgets, {preventSelect: this.selectedWidgets.length > 1})
 
@@ -572,9 +573,10 @@ var Editor = class Editor {
             }
 
             newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
-            this.pushHistory()
 
         }
+
+        this.pushHistory()
 
         if (newWidgets.length > 1) this.select(newWidgets)
 
@@ -625,6 +627,23 @@ var Editor = class Editor {
             if (!path || path.length > d1[i].path.length) path = d1[i].path
         }
 
+        if (d1.length > 1) {
+            // path intersection
+            var stop, j, k, n
+            for (j = 0; j < path.length; j++) {
+                for (k = 0; k < d1.length; k++) {
+                    if (d1[k].path[j] !== path[j]) {
+                        stop = true
+                        break
+                    }
+                }
+                if (stop) break
+            }
+            n = stop ? j : j - 1
+            path.splice(n, path.length - n)
+        }
+
+
         this.updateWidgetByPath(path)
 
     }
@@ -641,6 +660,22 @@ var Editor = class Editor {
             diff.applyChange(this.historySession, true, d1[i])
             diff.applyChange(sessionManager.session, true, d2[i])
             if (!path || path.length > d1[i].path.length) path = d1[i].path
+        }
+
+        if (d1.length > 1) {
+            // path intersection
+            var stop, j, k, n
+            for (j = 0; j < path.length; j++) {
+                for (k = 0; k < d1.length; k++) {
+                    if (d1[k].path[j] !== path[j]) {
+                        stop = true
+                        break
+                    }
+                }
+                if (stop) break
+            }
+            n = stop ? j : j - 1
+            path.splice(n, path.length - n)
         }
 
         this.updateWidgetByPath(path)
