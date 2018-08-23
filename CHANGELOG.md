@@ -1,10 +1,5 @@
 # Changelog
 
-## 0.37.0
-
-- editor
-  - **new** keyboard shortcuts (undo, redo, copy, paste, etc)
-
 ## 0.36.0
 
 - bug fixes
@@ -12,6 +7,8 @@
   - widgets with multiple `linkId` are now properly handled
 - widgets
   - `keys` (**breaking changes**): formulas in `keydown` and `keyup` must be explicitely written using the `#{}` syntax; variable `value` got removed from these formulas context (use `@{this}` instead); removed `widgetId` property, the value emitted by the widget on keypress events can be linked with other widgets via the `linkId` property or the property inheritance syntax;
+- editor
+  - **new** keyboard shortcuts (undo, redo, copy, paste, etc)
 
 ## 0.35.0
 
