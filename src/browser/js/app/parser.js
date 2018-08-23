@@ -48,10 +48,6 @@ var Parser = class Parser {
                 if (i.indexOf('_')!=0 && props[i]===undefined) props[i] = defaults[i]
             }
 
-            for (let j in props) {
-                if (defaults[j] === undefined || j[0] === '_') delete props[j]
-            }
-
             // Genrate widget's id, based on its type
             if (props.id=='auto' || !props.id ) {
                 var id
@@ -64,6 +60,9 @@ var Parser = class Parser {
             // Generate default address
             props.address = props.address == 'auto' ? '/' + props.id : props.address
 
+            for (let j in props) {
+                if (defaults[j] === undefined || j[0] === '_') delete props[j]
+            }
 
             // create widget
             var widget = new this.widgets[props.type]({props:props, container:true, parent:parentWidget, parentNode:parentNode, reCreateOptions})
