@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.37.0
+
+- editor
+  - **new** keyboard shortcuts (undo, redo, copy, paste, etc)
+
 ## 0.36.0
 
 - bug fixes

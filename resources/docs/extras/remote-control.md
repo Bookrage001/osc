@@ -28,6 +28,14 @@ Apply a set of options to an existing widget by merging them to the widget's opt
 !!! warning ""
     Editing a widget can be cpu expensive, hence updating the UI continuously is not a good idea
 
+## `/EDIT/UNDO`
+
+Undo editing action
+
+## `/EDIT/REDO`
+
+Redo editing action
+
 ## `/EDIT/GET target id`
 
 Sends back a widget's data (JSON stringified object), including its children, to specified target.

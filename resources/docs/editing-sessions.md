@@ -52,3 +52,19 @@ When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selec
 - they must share the same parent widget
 - context-menu actions and properties changes apply to all selected widgets
 - resizing / dragging will affect all selected widgets, relatively to the first selected widget
+
+## Keyboard shortcuts
+
+| Shortcut | Description |
+|---|---|
+| `mod + z` | undo |
+| `mod + y / mod + shift + z` | redo |
+| `delete` | delete selected widgets |
+| `mod + c` | copy selected widgets |
+| `mod + x` | cut selected widgets |
+| `mod + v` | paste clipboard in selected widget |
+| `mod + shift + v` | paste and increment id |
+| `up, down, left, right` | move selected widgets (1 grid unit, hold `mod` for 5 grid units) |
+| `alt + [up, down, left, right]` | resize selected widgets (1 grid unit, hold `mod` for 5 grid units) |
+
+Where `mod` is `ctrl` except on MacOs (`command`)

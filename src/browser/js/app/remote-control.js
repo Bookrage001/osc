@@ -1,4 +1,5 @@
 var {updateWidget} = require('./editor/data-workers'),
+    editor = require('./editor'),
     widgetManager = require('./managers/widgets'),
     deepExtend = require('deep-extend')
 
@@ -25,6 +26,9 @@ var callbacks = {
             updateWidget(widget, {remote: true})
 
         }
+
+        editor.pushHistory()
+
     },
     '/EDIT/MERGE': function(args) {
 
@@ -46,6 +50,23 @@ var callbacks = {
             updateWidget(widget, {remote: true})
 
         }
+
+        editor.pushHistory()
+
+    },
+    '/EDIT/UNDO': function(args) {
+
+        if (READ_ONLY) return
+
+        editor.undo()
+
+    },
+    '/EDIT/REDO': function(args) {
+
+        if (READ_ONLY) return
+
+        editor.redo()
+
     },
     '/EDIT/GET': function(args) {
 

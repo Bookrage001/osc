@@ -26,6 +26,7 @@
     "babelify": "8.0.0",
     "browserify": "16.2.2",
     "cardinal-spline-js": "2.3.9",
+    "deep-diff": "^1.0.2",
     "deep-extend": "^0.6.0",
     "electron": "~1.8.7",
     "electron-packager": "12.1.0",

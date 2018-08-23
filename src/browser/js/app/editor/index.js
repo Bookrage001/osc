@@ -2,7 +2,12 @@ var {widgets} = require('../widgets/'),
     {Popup} = require('../ui/utils'),
     editField = require('./edit-field'),
     {updateWidget, incrementWidget} = require('./data-workers'),
-    keyboardJS = require('keyboardjs')
+    keyboardJS = require('keyboardjs'),
+    diff = require('deep-diff'),
+    widgetManager = require('../managers/widgets'),
+    sessionManager
+
+const HISTORY_SIZE = 50
 
 var Editor = class Editor {
 
@@ -32,7 +37,20 @@ var Editor = class Editor {
             if (this.enabledOnce) return true
         }
 
+
+        this.history = []
+        this.historyState = -1
+        this.historySession = null
+
         keyboardJS.withContext('editing', ()=>{
+            keyboardJS.bind('mod + z', (e)=>{
+                if (e.target.classList.contains('input')) return
+                this.undo()
+            })
+            keyboardJS.bind('mod + y, mod + shift + z', (e)=>{
+                if (e.target.classList.contains('input')) return
+                this.redo()
+            })
             keyboardJS.bind('mod + c', (e)=>{
                 if (e.target.classList.contains('input')) return
                 this.copyWidget()
@@ -375,6 +393,7 @@ var Editor = class Editor {
         }
 
         this.select(updateWidget(parent, {preventSelect: true}))
+        this.pushHistory()
 
     }
 
@@ -415,6 +434,7 @@ var Editor = class Editor {
         data[0].widgets = data[0].widgets.concat(pastedData)
 
         updateWidget(this.selectedWidgets[0])
+        this.pushHistory()
 
     }
 
@@ -445,6 +465,7 @@ var Editor = class Editor {
         data[0].widgets.push(clone)
 
         updateWidget(this.selectedWidgets[0])
+        this.pushHistory()
 
     }
 
@@ -482,6 +503,7 @@ var Editor = class Editor {
             }
 
             this.select(updateWidget(parent, {preventSelect: true}))
+            this.pushHistory()
 
         })
 
@@ -528,6 +550,8 @@ var Editor = class Editor {
             }
 
             if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
+            this.pushHistory()
+
         }
 
         if (newWidgets.length > 1) this.select(newWidgets, {preventSelect: this.selectedWidgets.length > 1})
@@ -554,11 +578,115 @@ var Editor = class Editor {
             }
 
             newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
+            this.pushHistory()
+
         }
 
         if (newWidgets.length > 1) this.select(newWidgets)
 
     }
+
+
+
+    pushHistory() {
+
+        if (this.historyState > -1) {
+            this.history.splice(0, this.historyState + 1)
+            this.historyState = -1
+        }
+
+        var d = diff.diff(this.historySession, sessionManager.session)
+
+        if (d) {
+            for (var c of JSON.parse(JSON.stringify(d))) {
+                diff.applyChange(this.historySession, null, c)
+            }
+            this.history.unshift(JSON.parse(JSON.stringify(d)))
+            if (this.history.length > HISTORY_SIZE) this.history.pop()
+        }
+
+    }
+
+    clearHistory() {
+
+        this.history = []
+        this.historyState = -1
+        this.historySession = JSON.parse(JSON.stringify(sessionManager.session))
+
+    }
+
+    undo() {
+
+        if (this.historyState === this.history.length - 1) return
+
+        this.historyState += 1
+
+        var d1 = JSON.parse(JSON.stringify(this.history[this.historyState])),
+            d2 = JSON.parse(JSON.stringify(this.history[this.historyState])),
+            path, pathLength
+
+        for (var i = d1.length - 1; i > -1; i--) {
+            diff.revertChange(this.historySession, true, d1[i])
+            diff.revertChange(sessionManager.session, true, d2[i])
+            if (!path || path.length > d1[i].path.length) path = d1[i].path
+        }
+
+        this.updateWidgetByPath(path)
+
+    }
+
+    redo() {
+
+        if (this.historyState === -1) return
+
+        var d1 = JSON.parse(JSON.stringify(this.history[this.historyState])),
+            d2 = JSON.parse(JSON.stringify(this.history[this.historyState])),
+            path, pathLength
+
+        for (var i = d1.length - 1; i > -1; i--) {
+            diff.applyChange(this.historySession, true, d1[i])
+            diff.applyChange(sessionManager.session, true, d2[i])
+            if (!path || path.length > d1[i].path.length) path = d1[i].path
+        }
+
+        this.updateWidgetByPath(path)
+
+        this.historyState -= 1
+
+    }
+
+    updateWidgetByPath(path) {
+
+        var req = '.root-container'
+        for (var j = 1; j < path.length; j++) {
+            var item = path[j]
+            if (item === 'widgets' && j + 1 < path.length) {
+                req += ' > .panel'
+            } else if (item === 'tabs' && j + 1 < path.length) {
+                req += ' > .panel > .tabs-wrapper'
+            } else if (!isNaN(item)) {
+                req += ' > .widget:nth-child(' + (item + 1) + ')'
+            } else {
+                break
+            }
+        }
+
+        var e = DOM.get(req),
+            w
+
+        if (e.length) {
+            w = widgetManager.getWidgetByElement(e[0])
+        } else {
+            // in case the elements are in a hidden tab (detached dom)
+            w = widgetManager.getWidgetById('root')[0]
+        }
+
+        updateWidget(w)
+
+    }
+
+
+
 
 }
 
@@ -567,3 +695,4 @@ var editor = new Editor()
 module.exports = editor
 
 require('./context-menu')
+sessionManager = require('../managers/session')

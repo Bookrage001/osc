@@ -50,6 +50,8 @@ var SessionManager = class SessionManager {
                 }
 
                 parser.parse(this.session, DOM.get('#container')[0])
+                editor.clearHistory()
+
             } catch (err) {
                 loader.close()
                 lobby.open()

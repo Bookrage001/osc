@@ -163,6 +163,7 @@ var handleClick = function(event) {
             '<i class="fa fa-plus"></i> Add tab': function(){
                 data[0].tabs.push({})
                 updateWidget(widget)
+                editor.pushHistory()
             }
         })
 
@@ -212,6 +213,8 @@ var handleClick = function(event) {
                 parent.props.widgets = parent.props.widgets.slice(0, i).concat(wrap, parent.props.widgets.slice(i, parent.props.widgets.length))
 
                 editor.select(updateWidget(parent, {preventSelect: true}))
+                editor.pushHistory()
+
             }
         }
 
@@ -261,6 +264,8 @@ var handleClick = function(event) {
                     data[0].widgets = data[0].widgets || []
                     data[0].widgets.push(newData)
                     updateWidget(editor.selectedWidgets[0])
+                    editor.pushHistory()
+
                 }
 
             }
@@ -275,6 +280,8 @@ var handleClick = function(event) {
             data[0].tabs = data[0].tabs || []
             data[0].tabs.push({})
             updateWidget(editor.selectedWidgets[0])
+            editor.pushHistory()
+
         }
 
     }

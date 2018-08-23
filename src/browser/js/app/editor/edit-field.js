@@ -93,6 +93,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             for (var w of editor.selectedWidgets) {
                 w.props[propName] = v !== '' ? v : JSON.parse(JSON.stringify(defaultValue))
                 newWidgets.push(updateWidget(w, {preventSelect: editor.selectedWidgets.length > 1}))
+                editor.pushHistory()
             }
             if (newWidgets.length > 1) editor.select(newWidgets)
 
@@ -150,6 +151,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             if (change) {
                 updateWidget(widget)
+                editor.pushHistory()
             }
 
         })
@@ -165,6 +167,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
                 widget.props[propName].splice(index, 0, widget.props[propName].splice(oldindex, 1)[0])
                 updateWidget(widget)
+                editor.pushHistory()
             }
         })
 
