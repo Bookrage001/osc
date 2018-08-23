@@ -656,7 +656,7 @@ var Editor = class Editor {
             d2 = JSON.parse(JSON.stringify(this.history[this.historyState])),
             path
 
-        for (var i = d1.length - 1; i > -1; i--) {
+        for (var i = 0; i < d1.length; i++) {
             diff.applyChange(this.historySession, true, d1[i])
             diff.applyChange(sessionManager.session, true, d2[i])
             if (!path || path.length > d1[i].path.length) path = d1[i].path
