@@ -42,6 +42,9 @@ var Editor = class Editor {
         this.historyState = -1
         this.historySession = null
 
+        this.mousePosition = {x:0, y:0}
+        this.mouveMoveHandler = this.mouseMove.bind(this)
+
         keyboardJS.withContext('editing', ()=>{
             keyboardJS.bind('mod + z', (e)=>{
                 if (e.target.classList.contains('input')) return
@@ -61,11 +64,11 @@ var Editor = class Editor {
             })
             keyboardJS.bind('mod + v', (e)=>{
                 if (e.target.classList.contains('input')) return
-                this.pasteWidget(undefined, false)
+                this.pasteWidget(this.mousePosition.x, this.mousePosition.y, false)
             })
             keyboardJS.bind('mod + shift + v', ()=>{
                 if (e.target.classList.contains('input')) return
-                this.pasteWidget(undefined, true)
+                this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
             })
             keyboardJS.bind('delete', (e)=>{
                 if (e.target.classList.contains('input')) return
@@ -147,6 +150,8 @@ var Editor = class Editor {
 
         keyboardJS.setContext('editing')
 
+        document.body.addEventListener('mousemove', this.mouveMoveHandler)
+
     }
 
     disable() {
@@ -172,6 +177,8 @@ var Editor = class Editor {
         if (gridForm) gridForm.parentNode.removeChild(gridForm)
 
         keyboardJS.setContext('global')
+
+        document.body.removeEventListener('mousemove', this.mouveMoveHandler)
 
     }
 
@@ -353,6 +360,13 @@ var Editor = class Editor {
 
     }
 
+    mouseMove(e) {
+
+        this.mousePosition.x = Math.round((e.offsetX + e.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
+        this.mousePosition.y = Math.round((e.offsetY + e.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
+
+    }
+
     copyWidget() {
 
         var data = this.selectedWidgets.map((w)=>w.props),
@@ -397,7 +411,7 @@ var Editor = class Editor {
 
     }
 
-    pasteWidget(eventData, increment) {
+    pasteWidget(x, y, increment) {
 
         if (this.clipboard === null) return
 
@@ -417,13 +431,10 @@ var Editor = class Editor {
             }
         }
 
-        var clickX = eventData ? Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : NaN,
-            clickY = eventData ? Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : NaN
-
         for (let i in pastedData) {
 
-            if (!isNaN(pastedData[i].top)) pastedData[i].top  = pastedData[i].top - minTop + clickY
-            if (!isNaN(pastedData[i].left)) pastedData[i].left = pastedData[i].left - minLeft + clickX
+            if (!isNaN(pastedData[i].left)) pastedData[i].left = pastedData[i].left - minLeft + x
+            if (!isNaN(pastedData[i].top)) pastedData[i].top  = pastedData[i].top - minTop + y
 
         }
 
@@ -435,7 +446,7 @@ var Editor = class Editor {
 
     }
 
-    pasteWidgetAsClone(eventData) {
+    pasteWidgetAsClone(x, y) {
 
         if (this.clipboard === null || !(this.idClipboard && widgetManager.getWidgetById(this.idClipboard).length)) return
 
@@ -449,11 +460,8 @@ var Editor = class Editor {
         clone.css = pastedData.css
 
 
-        var clickX = eventData ? Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : 0,
-            clickY = eventData ? Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH : 0
-
-        clone.top  = clickY
-        clone.left = clickX
+        clone.left = x
+        clone.top  = y
 
         data[0].widgets = data[0].widgets || []
         data[0].widgets.push(clone)

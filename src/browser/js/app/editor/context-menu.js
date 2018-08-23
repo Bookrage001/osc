@@ -227,16 +227,16 @@ var handleClick = function(event) {
 
             actions['<i class="fa fa-paste"></i> Paste'] = {
                 '<i class="fa fa-paste"></i> Paste': ()=>{
-                    editor.pasteWidget(eventData)
+                    editor.pasteWidget(clickX, clickY)
                 },
                 '<i class="fa fa-plus-square"></i> ID + 1': ()=>{
-                    editor.pasteWidget(eventData, true)
+                    editor.pasteWidget(clickX, clickY, true)
                 }
             }
 
             if (editor.idClipboard && widgetManager.getWidgetById(editor.idClipboard).length) {
                 actions['<i class="fa fa-paste"></i> Paste']['<i class="fa fa-clone"></i> Clone'] = ()=>{
-                    editor.pasteWidgetAsClone(eventData)
+                    editor.pasteWidgetAsClone(clickX, clickY)
                 }
             }
 
