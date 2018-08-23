@@ -47,7 +47,7 @@ var Editor = class Editor {
                 if (e.target.classList.contains('input')) return
                 this.undo()
             })
-            keyboardJS.bind('mod + y, mod + shift + z', (e)=>{
+            keyboardJS.bind(['mod + y', 'mod + shift + z'], (e)=>{
                 if (e.target.classList.contains('input')) return
                 this.redo()
             })
