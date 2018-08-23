@@ -7,6 +7,7 @@ var EventEmitter = require('../../events/event-emitter'),
     {iconify} = require('../../ui/utils'),
     resize = require('../../events/resize'),
     OscReceiver = require('./osc-receiver'),
+    {deepCopy} = require('../../utils'),
     updateWidget = ()=>{}
 
 
@@ -219,36 +220,15 @@ class Widget extends EventEmitter {
 
     getValue(withPrecision) {
 
-        return Widget.deepCopy(this.value, withPrecision ? this.precision : undefined)
+        return deepCopy(this.value, withPrecision ? this.precision : undefined)
 
     }
 
     getSplit() {}
 
-    static deepCopy(obj, precision){
-
-        var copy = obj
-
-        if (obj === null) {
-            return obj
-        }
-
-        if (typeof obj === 'object') {
-            copy = Array.isArray(obj) ? [] : {}
-            for (let key in obj) {
-                copy[key] = Widget.deepCopy(obj[key], precision)
-            }
-        } else if (typeof obj == 'number') {
-            return precision === undefined ? copy : parseFloat(copy.toFixed(precision))
-        }
-
-        return copy
-
-    }
-
     resolveProp(propName, propValue, storeLinks=true, originalWidget, originalPropName, context) {
 
-        propValue = propValue !== undefined ? propValue : Widget.deepCopy(this.props[propName])
+        propValue = propValue !== undefined ? propValue : deepCopy(this.props[propName])
         originalWidget = originalWidget || this
         originalPropName = originalPropName || propName
 

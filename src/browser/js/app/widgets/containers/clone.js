@@ -1,7 +1,8 @@
 var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     resize = require('../../events/resize'),
-    parser = require('../../parser')
+    parser = require('../../parser'),
+    {deepCopy} = require('../../utils')
 
 var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable', 'not-editable']
 
@@ -119,7 +120,7 @@ class Clone extends Widget {
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
 
-        var clone = parser.parse([{...Widget.deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
+        var clone = parser.parse([{...deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
 
         if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
             widgetManager.trigger('change.*', [{

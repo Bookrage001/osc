@@ -5,6 +5,7 @@ var {widgets} = require('../widgets/'),
     keyboardJS = require('keyboardjs'),
     diff = require('deep-diff'),
     widgetManager = require('../managers/widgets'),
+    {deepCopy} = require('../utils'),
     sessionManager
 
 const HISTORY_SIZE = 50
@@ -602,10 +603,10 @@ var Editor = class Editor {
         var d = diff.diff(this.historySession, sessionManager.session)
 
         if (d) {
-            for (var c of JSON.parse(JSON.stringify(d))) {
+            for (var c of deepCopy(d)) {
                 diff.applyChange(this.historySession, null, c)
             }
-            this.history.unshift(JSON.parse(JSON.stringify(d)))
+            this.history.unshift(deepCopy(d))
             if (this.history.length > HISTORY_SIZE) this.history.pop()
         }
 
@@ -615,7 +616,7 @@ var Editor = class Editor {
 
         this.history = []
         this.historyState = -1
-        this.historySession = JSON.parse(JSON.stringify(sessionManager.session))
+        this.historySession = deepCopy(sessionManager.session)
 
     }
 
@@ -625,8 +626,8 @@ var Editor = class Editor {
 
         this.historyState += 1
 
-        var d1 = JSON.parse(JSON.stringify(this.history[this.historyState])),
-            d2 = JSON.parse(JSON.stringify(this.history[this.historyState])),
+        var d1 = deepCopy(this.history[this.historyState]),
+            d2 = deepCopy(this.history[this.historyState]),
             path
 
         for (var i = d1.length - 1; i > -1; i--) {
@@ -660,8 +661,8 @@ var Editor = class Editor {
 
         if (this.historyState === -1) return
 
-        var d1 = JSON.parse(JSON.stringify(this.history[this.historyState])),
-            d2 = JSON.parse(JSON.stringify(this.history[this.historyState])),
+        var d1 = deepCopy(this.history[this.historyState]),
+            d2 = deepCopy(this.history[this.historyState]),
             path
 
         for (var i = 0; i < d1.length; i++) {

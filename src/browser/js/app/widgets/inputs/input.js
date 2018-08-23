@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    Canvas = require('../common/canvas')
+    Canvas = require('../common/canvas'),
+    {deepCopy} = require('../../utils')
 
 module.exports = class Input extends Canvas {
 
@@ -173,7 +174,7 @@ module.exports = class Input extends Canvas {
     getStringValue() {
         if (this.value === undefined) return ''
         return typeof this.value != 'string' ?
-            JSON.stringify(Widget.deepCopy(this.value, this.precision)).replace(/,/g, ', ') :
+            JSON.stringify(deepCopy(this.value, this.precision)).replace(/,/g, ', ') :
             this.value
     }
 
