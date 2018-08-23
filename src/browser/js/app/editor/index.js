@@ -401,10 +401,7 @@ var Editor = class Editor {
 
         if (this.clipboard === null) return
 
-        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
-            data = this.selectedWidgets.map((w)=>w.props),
-            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
-            parent = this.selectedWidgets[0].parent
+        var data = this.selectedWidgets.map((w)=>w.props)
 
         var pastedData = JSON.parse(editor.clipboard),
             minTop = Infinity,
@@ -440,12 +437,9 @@ var Editor = class Editor {
 
     pasteWidgetAsClone(eventData) {
 
-        if (this.clipboard === null || !(this.idClipboard && widgetManager.getWidgetById(this.idClipboard).length)) return
+        if (this.clipboard === null || !(this.idClipboard && widgetManager.getWidgetById(this.idClipboard).length)) return
 
-        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
-            data = this.selectedWidgets.map((w)=>w.props),
-            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
-            parent = this.selectedWidgets[0].parent
+        var data = this.selectedWidgets.map((w)=>w.props)
 
         var clone = {type: 'clone', widgetId: this.idClipboard},
             pastedData = JSON.parse(this.clipboard)
@@ -588,7 +582,7 @@ var Editor = class Editor {
 
 
 
-    pushHistory() {
+    pushHistory() {
 
         if (this.historyState > -1) {
             this.history.splice(0, this.historyState + 1)
@@ -607,7 +601,7 @@ var Editor = class Editor {
 
     }
 
-    clearHistory() {
+    clearHistory() {
 
         this.history = []
         this.historyState = -1
@@ -615,7 +609,7 @@ var Editor = class Editor {
 
     }
 
-    undo() {
+    undo() {
 
         if (this.historyState === this.history.length - 1) return
 
@@ -623,12 +617,12 @@ var Editor = class Editor {
 
         var d1 = JSON.parse(JSON.stringify(this.history[this.historyState])),
             d2 = JSON.parse(JSON.stringify(this.history[this.historyState])),
-            path, pathLength
+            path
 
         for (var i = d1.length - 1; i > -1; i--) {
             diff.revertChange(this.historySession, true, d1[i])
             diff.revertChange(sessionManager.session, true, d2[i])
-            if (!path || path.length > d1[i].path.length) path = d1[i].path
+            if (!path || path.length > d1[i].path.length) path = d1[i].path
         }
 
         this.updateWidgetByPath(path)
@@ -641,12 +635,12 @@ var Editor = class Editor {
 
         var d1 = JSON.parse(JSON.stringify(this.history[this.historyState])),
             d2 = JSON.parse(JSON.stringify(this.history[this.historyState])),
-            path, pathLength
+            path
 
         for (var i = d1.length - 1; i > -1; i--) {
             diff.applyChange(this.historySession, true, d1[i])
             diff.applyChange(sessionManager.session, true, d2[i])
-            if (!path || path.length > d1[i].path.length) path = d1[i].path
+            if (!path || path.length > d1[i].path.length) path = d1[i].path
         }
 
         this.updateWidgetByPath(path)

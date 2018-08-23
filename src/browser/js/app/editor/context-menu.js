@@ -1,4 +1,4 @@
-var {updateWidget, incrementWidget} = require('./data-workers'),
+var {updateWidget} = require('./data-workers'),
     {categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
     editor = require('./')
