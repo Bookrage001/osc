@@ -1,5 +1,4 @@
-var Widget = require('../common/widget'),
-    Canvas = require('../common/canvas'),
+var Canvas = require('../common/canvas'),
     {deepCopy} = require('../../utils')
 
 module.exports = class Input extends Canvas {

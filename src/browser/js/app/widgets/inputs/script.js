@@ -103,7 +103,7 @@ class Script extends Widget {
 
 Script.dynamicProps = Script.prototype.constructor.dynamicProps.concat(
     'condition',
-    'script',
+    'script'
 )
 
 module.exports = Script

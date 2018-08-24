@@ -1,5 +1,4 @@
 var {mapToScale} = require('../utils'),
-    Widget = require('../common/widget'),
     Canvas = require('../common/canvas'),
     {deepCopy} = require('../../utils')
 
