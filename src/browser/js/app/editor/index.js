@@ -48,35 +48,35 @@ var Editor = class Editor {
 
         keyboardJS.withContext('editing', ()=>{
             keyboardJS.bind('mod + z', (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
                 this.undo()
             })
             keyboardJS.bind(['mod + y', 'mod + shift + z'], (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
                 this.redo()
             })
             keyboardJS.bind('mod + c', (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
                 this.copyWidget()
             })
             keyboardJS.bind('mod + x', (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
                 this.cutWidget()
             })
             keyboardJS.bind('mod + v', (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, false)
             })
             keyboardJS.bind('mod + shift + v', ()=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
             })
             keyboardJS.bind('delete', (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
                 this.deleteWidget()
             })
             keyboardJS.bind(['alt + up', 'alt + down', 'alt + right', 'alt + left'], (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
 
                 var deltaW = e.key === 'ArrowLeft' ? -GRIDWIDTH : e.key === 'ArrowRight' ? GRIDWIDTH : 0,
                     deltaH = e.key === 'ArrowUp' ? -GRIDWIDTH : e.key === 'ArrowDown' ? GRIDWIDTH : 0
@@ -89,7 +89,7 @@ var Editor = class Editor {
                 this.resizeWidget(deltaW, deltaH)
             })
             keyboardJS.bind(['up', 'down', 'right', 'left'], (e)=>{
-                if (e.target.classList.contains('input')) return
+                if (e.target.classList.contains('no-keybinding')) return
 
                 var deltaX = e.key === 'ArrowLeft' ? -GRIDWIDTH : e.key === 'ArrowRight' ? GRIDWIDTH : 0,
                     deltaY = e.key === 'ArrowUp' ? -GRIDWIDTH : e.key === 'ArrowDown' ? GRIDWIDTH : 0
@@ -361,7 +361,7 @@ var Editor = class Editor {
 
     }
 
-    mouseMove(e) {
+    mouseMove(e) {
 
         this.mousePosition.x = Math.round((e.offsetX + e.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         this.mousePosition.y = Math.round((e.offsetY + e.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH

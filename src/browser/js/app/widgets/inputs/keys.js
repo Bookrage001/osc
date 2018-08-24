@@ -72,7 +72,7 @@ class Keys extends Widget {
 
     keyDown(e) {
 
-        if (e.target.classList.contains('input')) return
+        if (e.target.classList.contains('no-keybinding')) return
 
         if (!this.getProp('repeat') && e) e.preventRepeat()
 
@@ -98,7 +98,7 @@ class Keys extends Widget {
 
     keyUp(e) {
 
-        if (e.target.classList.contains('input')) return
+        if (e.target.classList.contains('no-keybinding')) return
 
         if (this.getProp('keyup') !== '') {
 
