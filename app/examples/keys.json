@@ -31,18 +31,17 @@
               "r",
               "f"
             ],
-            "keydown": "# this is a comment\nx = key == \"r\" ?  0.1 : -0.1;\nvalue + x",
+            "keydown": "#{\nx = key == \"r\" ?  0.1 : -0.1;\n@{fader_1} + x\n}",
             "repeat": true,
-            "widgetId": "fader_1",
             "keyup": "",
-            "linkId": ""
+            "linkId": ">> A"
           },
           {
             "type": "fader",
             "top": 0,
             "left": 0,
             "id": "fader_1",
-            "linkId": "",
+            "linkId": "<< A",
             "width": "auto",
             "height": "auto",
             "label": "auto",
@@ -80,7 +79,7 @@
             "top": 50,
             "left": 170,
             "id": "xy_1",
-            "linkId": "",
+            "linkId": "<< B",
             "width": 210,
             "height": 220,
             "label": "auto",
@@ -126,11 +125,10 @@
               "g",
               "t"
             ],
-            "widgetId": "xy_1",
-            "keydown": "x = key == \"t\" ? 0.1 : -0.1;\nvalue[0] + x\nvalue[1] + x\n# value + 0.1 works too",
+            "keydown": "#{\nx = key == \"t\" ? 0.1 : -0.1;\n@{xy_1}[0] + x\n@{xy_1}[1] + x\n}",
             "keyup": "",
             "repeat": false,
-            "linkId": ""
+            "linkId": ">> B"
           }
         ],
         "tabs": [],
