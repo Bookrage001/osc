@@ -67,7 +67,7 @@ var Editor = class Editor {
                 if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, false)
             })
-            keyboardJS.bind('mod + shift + v', ()=>{
+            keyboardJS.bind('mod + shift + v', (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
             })
