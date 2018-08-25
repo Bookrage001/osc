@@ -54,7 +54,7 @@ module.exports = class Visualizer extends _plots_base {
 
         super(options)
 
-        this.fps = 30
+        this.fps = CANVAS_FRAMERATE
         this.pips.y.min = Math.abs(this.getProp('range').min) >= 1000? this.getProp('range').min/1000+'k' : this.getProp('range').min
         this.pips.y.max = Math.abs(this.getProp('range').max) >= 1000? this.getProp('range').max/1000+'k' : this.getProp('range').max
         this.pips.x = false
