@@ -5,8 +5,10 @@
 - bug fixes
   - `linkId` synchronizations now correctly trigger property updates
   - widgets with multiple `linkId` are now properly handled
+  -  synchronization issue between `visualizer` widgets
 - widgets
   - `keys` (**breaking changes**): formulas in `keydown` and `keyup` must be explicitely written using the `#{}` syntax; variable `value` got removed from these formulas context (use `@{this}` instead); removed `widgetId` property, the value emitted by the widget on keypress events can be linked with other widgets via the `linkId` property or the property inheritance syntax;
+  - `visualizer`: update rate set to default canvas framerate
 - editor
   - **new** keyboard shortcuts (undo, redo, copy, paste, etc)
 
