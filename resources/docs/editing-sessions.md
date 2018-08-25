@@ -64,7 +64,7 @@ When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selec
 | `mod + x` | cut selected widgets |
 | `mod + v` | paste clipboard in selected widget |
 | `mod + shift + v` | paste and increment id |
-| `up, down, left, right` | move selected widgets (1 grid unit, hold `mod` for 5 grid units) |
-| `alt + [up, down, left, right]` | resize selected widgets (1 grid unit, hold `mod` for 5 grid units) |
+| `up, down, left, right` | move selected widgets (1 grid unit, hold `shift` for 5 grid units) |
+| `alt + [up, down, left, right]` | resize selected widgets (1 grid unit, hold `shift` for 5 grid units) |
 
 Where `mod` is `ctrl` except on MacOs (`command`)
