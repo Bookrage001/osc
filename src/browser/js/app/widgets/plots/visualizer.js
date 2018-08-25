@@ -61,8 +61,7 @@ module.exports = class Visualizer extends _plots_base {
         this.rangeY = this.getProp('range') || {min:0,max:1}
         this.logScaleY = this.getProp('logScale')
         this.length = Math.round(clip(this.fps * this.getProp('duration'), [8, 4096]))
-        this.data = new Array(this.length).fill(this.rangeY.min)
-        this.value = this.getProp('range').min
+        this.value = new Array(this.length).fill(this.rangeY.min)
         this.cancel = false
         this.looping = false
         this.clock = 0
@@ -112,9 +111,15 @@ module.exports = class Visualizer extends _plots_base {
     shiftData(n) {
 
         for (var i=0; i<n; i++) {
-            this.data.push(this.value)
-            this.data.splice(0,1)
+            this.value.push(this.value[this.length - 1])
+            this.value.splice(0,1)
         }
+
+    }
+
+    getValue() {
+
+        return this.value[this.length - 1]
 
     }
 
@@ -122,8 +127,7 @@ module.exports = class Visualizer extends _plots_base {
 
         if (Array.isArray(v) && v.length == this.length) {
 
-            this.data = v
-            this.value = v[v.length - 1]
+            this.value = v
             this.startLoop()
 
             if (options.sync) this.changed(options)
@@ -131,7 +135,7 @@ module.exports = class Visualizer extends _plots_base {
 
         } else if (typeof(v) == 'number'){
 
-            this.value = v
+            this.value[this.length - 1] = v
             this.startLoop()
 
             if (options.sync) this.changed(options)

@@ -72,29 +72,37 @@ module.exports = class Eq extends _plots_base {
             } catch(err) {}
         }
 
-        if (typeof v == 'object' && v !== null) {
+        if (Array.isArray(v)) {
 
             var filters = v,
                 eqResponse = []
 
-            for (let i in filters) {
+            if (v.length === this.resolution) {
 
-                var filterResponse
+                eqResponse = v
 
-                if (!filters[i].type) filters[i].type = 'peak'
+            } else {
 
-                if (!filters[i].on) {
-                    filterResponse = _biquad_response({type:'peak',freq:1,gain:0,q:1},!this.getProp('logScaleX'), this.resolution)
-                } else {
-                    filterResponse = _biquad_response(filters[i],!this.getProp('logScaleX'), this.resolution)
-                }
+                for (let i in filters) {
 
-                for (var k in filterResponse) {
-                    if (eqResponse[k]===undefined) {
-                        eqResponse[k]=[0,0]
+                    var filterResponse
+
+                    if (!filters[i].type) filters[i].type = 'peak'
+
+                    if (!filters[i].on) {
+                        filterResponse = _biquad_response({type:'peak',freq:1,gain:0,q:1},!this.getProp('logScaleX'), this.resolution)
+                    } else {
+                        filterResponse = _biquad_response(filters[i],!this.getProp('logScaleX'), this.resolution)
                     }
 
-                    eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
+                    for (var k in filterResponse) {
+                        if (eqResponse[k]===undefined) {
+                            eqResponse[k]=[0,0]
+                        }
+
+                        eqResponse[k] = [filterResponse[k][0], eqResponse[k][1]+filterResponse[k][1]]
+                    }
+
                 }
 
             }

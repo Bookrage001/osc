@@ -14,7 +14,7 @@ module.exports = class _plots_base extends Canvas {
 
         super({...options, html: html})
 
-        this.data = []
+        this.value = []
         this.rangeX = this.getProp('rangeX') || {min:0,max:1}
         this.rangeY = this.getProp('rangeY') || {min:0,max:1}
         this.logScaleX = this.getProp('logScaleX')
@@ -94,14 +94,14 @@ module.exports = class _plots_base extends Canvas {
 
         var points = []
 
-        for (let i in this.data) {
+        for (let i in this.value) {
 
-            if (this.data[i].length) {
-                points.push(mapToScale(this.data[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.logScaleX,true))
-                points.push(mapToScale(this.data[i][1],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
+            if (this.value[i].length) {
+                points.push(mapToScale(this.value[i][0],[this.rangeX.min,this.rangeX.max],[0,this.width],0,this.logScaleX,true))
+                points.push(mapToScale(this.value[i][1],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
             } else {
-                points.push(mapToScale(i,[0,this.data.length-1],[0,this.width],0,this.logScaleX,true))
-                points.push(mapToScale(this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
+                points.push(mapToScale(i,[0,this.value.length-1],[0,this.width],0,this.logScaleX,true))
+                points.push(mapToScale(this.value[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true))
             }
 
         }
@@ -151,15 +151,15 @@ module.exports = class _plots_base extends Canvas {
 
     draw_bars() {
 
-        var barWidth = Math.round(this.width / this.data.length),
-            offset = Math.round((this.width - barWidth * this.data.length) / 2)
+        var barWidth = Math.round(this.width / this.value.length),
+            offset = Math.round((this.width - barWidth * this.value.length) / 2)
 
         var origin = mapToScale(this.getProp('origin') || this.rangeY.min,[this.rangeY.min,this.rangeY.max],[this.height,0],0,this.getProp('logScaleY'),true)
 
         this.ctx.beginPath()
 
-        for (let i in this.data) {
-            var y = mapToScale(this.data[i].length ? this.data[i][1] : this.data[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true)
+        for (let i in this.value) {
+            var y = mapToScale(this.value[i].length ? this.value[i][1] : this.value[i],[this.rangeY.min,this.rangeY.max],[this.height-2*PXSCALE,2*PXSCALE],0,this.logScaleY,true)
             this.ctx.rect(offset + i * barWidth, Math.min(y, origin), barWidth - PXSCALE, Math.abs(Math.min(y - origin)))
 
         }
@@ -182,12 +182,12 @@ module.exports = class _plots_base extends Canvas {
 
             if (Array.isArray(v)) {
 
-                this.data = v
+                this.value = v
 
             } else {
 
                 for (var i in v) {
-                    if (!isNaN(i)) this.data[i] = v[i]
+                    if (!isNaN(i)) this.value[i] = v[i]
                 }
 
             }
@@ -198,12 +198,6 @@ module.exports = class _plots_base extends Canvas {
 
         }
 
-
-    }
-
-    getValue() {
-
-        return deepCopy(this.data)
 
     }
 
