@@ -1,6 +1,7 @@
 var widgetCategories = require('../widgets/').categories,
     {updateWidget} = require('./data-workers'),
     widgetManager = require('../managers/widgets'),
+    {deepCopy} = require('../../utils'),
     {icon} = require('../ui/utils')
 
 module.exports = function editField(editor, widget, propName, defaultValue){
@@ -91,7 +92,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             var newWidgets = []
             for (var w of editor.selectedWidgets) {
-                w.props[propName] = v !== '' ? v : JSON.parse(JSON.stringify(defaultValue))
+                w.props[propName] = v !== '' ? v : deepCopy(defaultValue)
                 newWidgets.push(updateWidget(w, {preventSelect: editor.selectedWidgets.length > 1}))
             }
             editor.pushHistory()
