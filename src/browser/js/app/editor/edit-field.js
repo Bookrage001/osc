@@ -1,7 +1,7 @@
 var widgetCategories = require('../widgets/').categories,
     {updateWidget} = require('./data-workers'),
     widgetManager = require('../managers/widgets'),
-    {deepCopy} = require('../../utils'),
+    {deepCopy} = require('../utils'),
     {icon} = require('../ui/utils')
 
 module.exports = function editField(editor, widget, propName, defaultValue){
