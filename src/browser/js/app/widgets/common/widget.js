@@ -7,7 +7,7 @@ var EventEmitter = require('../../events/event-emitter'),
     {iconify} = require('../../ui/utils'),
     resize = require('../../events/resize'),
     OscReceiver = require('./osc-receiver'),
-    {deepCopy} = require('../../utils'),
+    {deepCopy, deepEqual} = require('../../utils'),
     updateWidget = ()=>{}
 
 
@@ -418,7 +418,7 @@ class Widget extends EventEmitter {
             let propValue = this.resolveProp(propName, undefined, false),
                 oldPropValue = this.getProp(propName)
 
-            if (JSON.stringify(oldPropValue) !== JSON.stringify(propValue)) {
+            if (!deepEqual(oldPropValue, propValue)) {
 
 
                 if (!this.constructor.dynamicProps.includes(propName)) {
