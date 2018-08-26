@@ -79,7 +79,7 @@ module.exports =  {
 
         if (!error) {
 
-            ipc.send('sessionOpen',JSON.stringify(session),clientId)
+            ipc.send('sessionOpen', session,clientId)
 
 
             for (var i in openedSessions) {

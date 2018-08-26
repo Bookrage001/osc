@@ -156,8 +156,8 @@ var SessionManager = class SessionManager {
     }
 
     open(data) {
-        var session = JSON.parse(data)
-        this.load(session,function(){
+
+        this.load(data,function(){
             ipc.send('sessionOpened')
         })
 
