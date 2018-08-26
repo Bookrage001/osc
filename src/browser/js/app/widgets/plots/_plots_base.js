@@ -1,6 +1,5 @@
 var {mapToScale} = require('../utils'),
-    Canvas = require('../common/canvas'),
-    {deepCopy} = require('../../utils')
+    Canvas = require('../common/canvas')
 
 module.exports = class _plots_base extends Canvas {
 
