@@ -3,6 +3,7 @@ var path = require('path'),
     settings = require('./settings'),
     osc = require('./osc'),
     {ipc} = require('./server'),
+    {deepCopy} = require('./utils'),
     theme = require('./theme'),
     chokidar = require('chokidar')
 
@@ -103,7 +104,7 @@ module.exports =  {
                         var watchFile = ()=>{
                             var watcher = chokidar.watch(data.path)
                             watcher.on('change',()=>{
-                                var openedSessionsClone = JSON.parse(JSON.stringify(openedSessions[data.path]))
+                                var openedSessionsClone = deepCopy(openedSessions[data.path])
                                 for (var k in openedSessionsClone) {
                                     if (openedSessionsClone[k] != lastSavingClient) {
                                         module.exports.sessionOpen({path:data.path}, openedSessionsClone[k])
@@ -166,7 +167,7 @@ module.exports =  {
         var value = shortdata.v,
             data = widgetHashTable[clientId][shortdata.h]
 
-        data = JSON.parse(JSON.stringify(data))
+        data = deepCopy(data)
         for (var k in shortdata) {
             data[k] = shortdata[k]
         }
@@ -185,7 +186,7 @@ module.exports =  {
         var value = shortdata.v,
             data = widgetHashTable[clientId][shortdata.h]
 
-        data = JSON.parse(JSON.stringify(data))
+        data = deepCopy(data)
         for (var k in shortdata) {
             data[k] = shortdata[k]
         }
