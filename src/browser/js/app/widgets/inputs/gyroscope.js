@@ -30,8 +30,8 @@ class Gyroscope extends Widget {
             frequency: 30,
             normalize: true,
             compass: false,
-            screenAdjusted: false
-            precision: 2,
+            screenAdjusted: false,
+            precision: 2
 
         }
 
