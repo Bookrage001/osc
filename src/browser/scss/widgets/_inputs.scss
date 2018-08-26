@@ -160,3 +160,43 @@
         border: 1rem solid var(--color-bg);
     }
 }
+
+
+.gyroscope-container {
+    width: 100rem;
+    height:60rem;
+    flex-shrink: 0;
+    padding:1rem;
+    --opacity: .75;
+    .gyroscope {
+        flex: 1 1 100%;
+        height:35rem;
+        padding: 10rem;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        background: var(--color-track);
+        color:var(--color-custom);
+        border: 1rem solid var(--color-bg);
+        @extend .glass-effect;
+        i {
+            opacity: var(--opacity);
+        }
+        span {
+            font-family: monospace;
+            letter-spacing: 0;
+            margin-left: 4rem;
+        }
+    }
+}
+
+.panel:not(.tab) > .gyroscope-container {
+    --color-border:transparent;
+    padding: 0rem;
+    .gyroscope {
+        margin: 1rem;
+        box-shadow: 0 0 0 1rem var(--color-light),
+                    0 0 0 1rem var(--color-fg);
+        border: 1rem solid var(--color-bg);
+    }
+}
