@@ -29,10 +29,10 @@ module.exports = {
     fs_addtohome: 'Vous devez ajouter cette page à votre écran d\'accueil pour pouvoir l\'ouvrir en plein écran.',
 
     // session
-    session_browse: 'Parcourir',
-    session_new: 'Nouveau',
-    session_malformed: 'Fichier de session mal formé',
-    session_parsingerror: 'Erreur à l\'ouverture de la session',
+    session_browse: 'Parcourir...',
+    session_new: 'Nouvelle session',
+    session_malformed: 'Fichier de session mal formé.',
+    session_parsingerror: 'Erreur à l\'ouverture de la session.',
     session_uploaderror: 'Echec à l\'envoi du fichier de session.',
 
     // sidepanel

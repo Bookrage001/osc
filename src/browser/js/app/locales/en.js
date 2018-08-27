@@ -29,10 +29,10 @@ module.exports = {
     fs_addtohome: 'You must add this page to your home screen to launch it in fullscreen',
 
     // session
-    session_browse: 'Browse',
-    session_new: 'New',
-    session_malformed: 'Malformed session file',
-    session_parsingerror: 'Parsing error',
+    session_browse: 'Browse...',
+    session_new: 'New session',
+    session_malformed: 'Malformed session file.',
+    session_parsingerror: 'Parsing error.',
     session_uploaderror: 'Failed to upload session file.',
 
     // sidepanel
