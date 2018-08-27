@@ -5,7 +5,7 @@ location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (s,k,v)=>{
 
 window.ELECTRON_FULLSCREEN = window.ELECTRON_FULLSCREEN || false
 
-window.LANG = (ARGV.lang || (()=>{ try { return navigator.language } catch (e) {} })() || 'en').toLowerCase()
+window.LANG = (ARGV.lang || (()=>{ try { return navigator.language } catch (e) {} })() || 'en').toLowerCase()
 
 window.PACKAGE = require('../../../../app/package.json')
 document.title = PACKAGE.productName + ' v' + PACKAGE.version
