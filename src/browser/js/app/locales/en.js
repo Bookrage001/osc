@@ -9,12 +9,13 @@ module.exports = {
     editor_editparent: 'Edit parent',
     editor_copy: 'Copy',
     editor_cut: 'Cut',
-    editor_wrap: 'Wrap',
+    editor_wrap: 'Wrap in',
     editor_paste: 'Paste',
     editor_pasteindent: 'ID + 1',
     editor_clone: 'Clone',
     editor_addwidget: 'Add widget',
     editor_addtab: 'Add tab',
+    editor_delete: 'Delete',
 
     // loadings
     loading_upload: 'Uploading file...',

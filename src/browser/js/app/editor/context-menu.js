@@ -157,25 +157,24 @@ var handleClick = function(event) {
     var index = editor.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
         data = editor.selectedWidgets.map((w)=>w.props),
         type = editor.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
-        parent = editor.selectedWidgets[0].parent
+        parent = editor.selectedWidgets[0].parent,
+        actions = {}
 
     // case root: only "add tab" option
     if (parent === widgetManager) {
-        contextMenu.open(eventData,{
-            '<i class="fa fa-plus"></i> Add tab': function(){
-                data[0].tabs.push({})
-                updateWidget(widget)
-                editor.pushHistory()
-            }
-        })
+        actions['<i class="fa fa-plus"></i> ' + locales('editor_addtab')] = ()=>{
+            data[0].tabs.push({})
+            updateWidget(widget)
+            editor.pushHistory()
+        }
+        contextMenu.open(eventData, actions)
 
         return
     }
 
     // case !root
 
-    var actions = {},
-        clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
+    var clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         clickY = Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
     actions['<i class="fa fa-expand"></i> ' + locales('editor_editparent')] = ()=>{
