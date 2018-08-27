@@ -1,5 +1,12 @@
 # Changelog
 
+## next
+
+- widgets
+  - **new** `gyroscope` widget
+- misc
+  - the client app can be translated (https://github.com/jean-emmanuel/open-stage-control/issues/302)
+
 ## 0.36.0
 
 - bug fixes
