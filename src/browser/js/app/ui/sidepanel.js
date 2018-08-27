@@ -52,7 +52,7 @@ var sidepanelData = [
         title: icon('magic') + '&nbsp; ' + locales('sidepanel_traversing'),
         actions: [
             {
-                title: locales('on'),
+                title: locales('traversing_on'),
                 action:()=>{
                     DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
                         el.classList.toggle('on')
@@ -62,7 +62,7 @@ var sidepanelData = [
                 class:'traversingEnable'
             },
             {
-                title: locales('off'),
+                title: locales('traversing_off'),
                 action:()=>{
                     DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
                         el.classList.toggle('on')
@@ -78,12 +78,12 @@ var sidepanelData = [
         class:'editor-menu',
         actions: [
             {
-                title: locales('on'),
+                title: locales('editor_on'),
                 action:editor.enable.bind(editor),
                 class:'enable-editor'
             },
             {
-                title: locales('off'),
+                title: locales('editor_off'),
                 action:editor.disable.bind(editor),
                 class:'on disable-editor'
             },

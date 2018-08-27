@@ -1,5 +1,6 @@
 var locales = {
-    en: require('./en')
+    en: require('./en'),
+    fr: require('./fr')
 }
 
 var lang = locales[LANG] ? LANG : 'en'

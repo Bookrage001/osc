@@ -1,6 +1,8 @@
 module.exports = {
 
     // editor
+    editor_on: 'On',
+    editor_off: 'Off',
     editor_root: 'Root',
     editor_load: 'Load',
     editor_save: 'Save',
@@ -47,9 +49,11 @@ module.exports = {
     state_export: 'Export',
     state_uploaderror: 'Failed to upload state file.',
 
+    // traversing
+    traversing_on: 'On',
+    traversing_off: 'Off',
+
     // misc
-    on: 'On',
-    off: 'Off',
     error: 'Error'
 
 
