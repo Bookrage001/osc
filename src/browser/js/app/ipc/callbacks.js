@@ -3,7 +3,8 @@ var utils = require('../ui/utils'),
     session = require('../managers/session'),
     widgetManager = require('../managers/widgets'),
     state = require('../managers/state'),
-    editor = require('../editor/')
+    editor = require('../editor/'),
+    locales = require('../locales')
 
 module.exports = {
 
@@ -42,11 +43,11 @@ module.exports = {
     stateLoad: function(data){
 
         state.set(data.state, data.send)
-        
+
     },
 
     stateSend:function(){
-        var p = utils.loading('New client connecting...')
+        var p = utils.loading(locales('loading_newclient'))
 
         setTimeout(function(){
 
@@ -66,7 +67,7 @@ module.exports = {
     },
 
     error: function(data){
-        new utils.Popup({title: utils.icon('exclamation-triangle') + '&nbsp;Error', content: data, closable:true})
+        new utils.Popup({title: utils.icon('exclamation-triangle') + '&nbsp; ' + locales('error'), content: data, closable:true})
     },
 
     reloadCss: function(){

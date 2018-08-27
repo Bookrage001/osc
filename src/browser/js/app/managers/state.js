@@ -1,6 +1,7 @@
 var widgetManager = require('./widgets'),
     {icon, Popup, upload} = require('../ui/utils'),
-    {saveAs} = require('file-saver')
+    {saveAs} = require('file-saver'),
+    locales = require('../locales')
 
 
 var StateManager = class StateManager {
@@ -85,7 +86,7 @@ var StateManager = class StateManager {
         upload('.state', (path, result)=>{
             this.set(JSON.parse(result),true)
         }, (e)=>{
-            new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload state file.', closable:true})
+            new Popup({title:icon('exclamation-triangle')+'&nbsp; ' + locales('error'), content: locales('state_uploaderror'), closable:true})
         })
 
     }

@@ -1,7 +1,9 @@
 var {updateWidget} = require('./data-workers'),
     {categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
-    editor = require('./')
+    editor = require('./'),
+    locales = require('../locales')
+
 
 var mod = (navigator.platform || '').match('Mac') ? 'shiftKey' : 'ctrlKey'
 
@@ -176,20 +178,20 @@ var handleClick = function(event) {
         clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         clickY = Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
-    actions['<i class="fa fa-expand"></i> Edit parent'] = ()=>{
+    actions['<i class="fa fa-expand"></i> ' + locales('editor_editparent')] = ()=>{
         editor.select(parent)
     }
 
     if (type === 'widget')  {
 
-        actions['<i class="fa fa-copy"></i> Copy'] = editor.copyWidget.bind(editor)
+        actions['<i class="fa fa-copy"></i> ' + locales('editor_copy')] = editor.copyWidget.bind(editor)
 
-        actions['<i class="fa fa-cut"></i> Cut'] = editor.cutWidget.bind(editor)
+        actions['<i class="fa fa-cut"></i> ' + locales('editor_cut')] = editor.cutWidget.bind(editor)
 
-        actions['<i class="fa fa-box"></i> Wrap in'] = {}
+        actions['<i class="fa fa-box"></i> ' + locales('editor_wrap')] = {}
         for (let c of categories.Containers) {
             if (c === 'clone') continue
-            actions['<i class="fa fa-box"></i> Wrap in'][c] = ()=>{
+            actions['<i class="fa fa-box"></i> ' + locales('editor_wrap')][c] = ()=>{
                 var wrap =  {type: c, widgets:[], label: c === 'modal' ? 'auto' : false}
 
                 wrap.widgets = data
@@ -225,34 +227,35 @@ var handleClick = function(event) {
 
         if (editor.clipboard !== null) {
 
-            actions['<i class="fa fa-paste"></i> Paste'] = {
-                '<i class="fa fa-paste"></i> Paste': ()=>{
-                    editor.pasteWidget(clickX, clickY)
-                },
-                '<i class="fa fa-plus-square"></i> ID + 1': ()=>{
-                    editor.pasteWidget(clickX, clickY, true)
-                }
+            let paste = actions['<i class="fa fa-paste"></i> ' + locales('editor_paste')] = {}
+
+            paste['<i class="fa fa-paste"></i> ' + locales('editor_paste')] = ()=>{
+                editor.pasteWidget(clickX, clickY)
+            }
+
+            paste['<i class="fa fa-plus-square"></i> ' + locales('editor_pasteindent')] = ()=>{
+                editor.pasteWidget(clickX, clickY, true)
             }
 
             if (editor.idClipboard && widgetManager.getWidgetById(editor.idClipboard).length) {
-                actions['<i class="fa fa-paste"></i> Paste']['<i class="fa fa-clone"></i> Clone'] = ()=>{
+                paste['<i class="fa fa-clone"></i> ' + locales('editor_clone')] = ()=>{
                     editor.pasteWidgetAsClone(clickX, clickY)
                 }
             }
 
         }
 
-        actions['<i class="fa fa-plus"></i> Add widget'] = {}
+        actions['<i class="fa fa-plus"></i> ' + locales('editor_addwidget')] = {}
 
         for (let category in categories) {
 
-            actions['<i class="fa fa-plus"></i> Add widget'][category] = {}
+            actions['<i class="fa fa-plus"></i> ' + locales('editor_addwidget')][category] = {}
 
             for (let t in categories[category]) {
 
                 let type = categories[category][t]
 
-                actions['<i class="fa fa-plus"></i> Add widget'][category][type] = ()=>{
+                actions['<i class="fa fa-plus"></i> ' + locales('editor_addwidget')][category][type] = ()=>{
 
                     var newData = {type: type}
 
@@ -276,7 +279,7 @@ var handleClick = function(event) {
 
     if (data.length == 1 && (!data[0].widgets || !data[0].widgets.length) && (data[0].tabs)) {
 
-        actions['<i class="fa fa-plus"></i> Add tab'] = ()=>{
+        actions['<i class="fa fa-plus"></i> ' + locales('editor_addtab')] = ()=>{
             data[0].tabs = data[0].tabs || []
             data[0].tabs.push({})
             updateWidget(editor.selectedWidgets[0])
@@ -286,7 +289,7 @@ var handleClick = function(event) {
 
     }
 
-    actions['<i class="fa fa-trash"></i> Delete'] = editor.deleteWidget.bind(editor)
+    actions['<i class="fa fa-trash"></i> ' + locales('editor_delete')] = editor.deleteWidget.bind(editor)
 
     contextMenu.open(eventData, actions)
 

@@ -1,5 +1,6 @@
 var screenfull = require('screenfull'),
-    {Popup} = require('./utils')
+    {Popup} = require('./utils'),
+    locales = require('../locales')
 
 var fullscreen
 
@@ -21,8 +22,8 @@ if (screenfull.enabled) {
         toggle(){
 
             new Popup({
-                title: 'Fullscreen not available',
-                content: 'You must add this page to your home screen to launch it in fullscreen',
+                title: locales('fs_unnavailable'),
+                content: locales('fs_addtohome'),
                 closable: true
             })
 

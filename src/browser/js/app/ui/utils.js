@@ -1,5 +1,6 @@
 var popupSingleton = null,
-    uploadSingleton = null
+    uploadSingleton = null,
+    locales = require('../locales')
 
 module.exports = {
 
@@ -106,7 +107,7 @@ module.exports = {
 
             var reader = new FileReader(),
                 file = e.target.files[0],
-                loader = module.exports.loading('Uploading file...')
+                loader = module.exports.loading(locales('loading_upload'))
 
             reader.onerror = reader.onabort = function() {
                 loader.close()

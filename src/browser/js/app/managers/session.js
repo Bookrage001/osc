@@ -4,7 +4,8 @@ var ipc = require('../ipc/'),
     lobby = require('../ui/lobby'),
     {loading, icon, Popup, upload} = require('../ui/utils'),
     {saveAs} = require('file-saver'),
-    widgetManager = require('./widgets')
+    widgetManager = require('./widgets'),
+    locales = require('../locales')
 
 
 var SessionManager = class SessionManager {
@@ -45,7 +46,7 @@ var SessionManager = class SessionManager {
 
                 } catch(err) {
 
-                    throw new Error('Malformed session file')
+                    throw new Error(locales('session_malformed'))
 
                 }
 
@@ -55,7 +56,7 @@ var SessionManager = class SessionManager {
             } catch (err) {
                 loader.close()
                 lobby.open()
-                new Popup({title:icon('exclamation-triangle')+'&nbsp; Parsing error', content: err, closable:true})
+                new Popup({title:icon('exclamation-triangle')+'&nbsp; ' + locales('session_parsingerror'), content: err, closable:true})
                 this.lock = false
                 throw err
             }
@@ -133,8 +134,8 @@ var SessionManager = class SessionManager {
 
         if (!READ_ONLY) {
 
-            var brw = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn browse">'+icon('folder-open')+' Browse</a>'))
-            var nws = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn new">'+icon('file')+' New</a>'))
+            var brw = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn browse">'+icon('folder-open')+' ' + locales('session_browse') +'</a>'))
+            var nws = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn new">'+icon('file')+' ' + locales('session_new') +'</a>'))
 
             brw.addEventListener('click', (e)=>{
                 this.browse()
@@ -168,7 +169,7 @@ var SessionManager = class SessionManager {
         upload('.json', (path, result)=>{
             ipc.send('sessionOpen',{file:result,path:path})
         }, ()=>{
-            new Popup({title:icon('exclamation-triangle')+'&nbsp; Error', content: 'Failed to upload session file.', closable:true})
+            new Popup({title:icon('exclamation-triangle')+'&nbsp; ' + locales('error'), content: locales('session_uploaderror'), closable:true})
         })
 
     }

@@ -3,13 +3,14 @@ var state = require('../managers/state'),
     editor = require('../editor/'),
     {icon} = require('./utils'),
     fullscreen = require('./fullscreen'),
-    {enableTraversingGestures, disableTraversingGestures} = require('../events/drag')
+    {enableTraversingGestures, disableTraversingGestures} = require('../events/drag'),
+    locales = require('../locales')
 
 var sidepanelData = [
     {
         actions: [
             {
-                title:'Fullscreen' + (ELECTRON_FULLSCREEN ? ' (F11)' : ''),
+                title: locales('sidepanel_fs') + (ELECTRON_FULLSCREEN ? ' (F11)' : ''),
                 action:()=>{
                     if (fullscreen.enabled) fullscreen.toggle()
                 },
@@ -19,39 +20,39 @@ var sidepanelData = [
         ]
     },
     {
-        title: icon('sliders-h') + '&nbsp; State',
+        title: icon('sliders-h') + '&nbsp; ' + locales('sidepanel_state'),
         actions: [
             {
-                title:'Store',
+                title: locales('state_store'),
                 action:()=>{
                     state.quickSave()
                     DOM.get('.quickload')[0].classList.remove('disabled')
                 }
             },
             {
-                title:'Recall',
+                title: locales('state_recall'),
                 action:state.quickLoad.bind(state),
                 class:'disabled quickload'
             },
             {
-                title:'Send All',
+                title: locales('state_send'),
                 action:state.send.bind(state)
             },
             {
-                title:'Import',
+                title: locales('state_import'),
                 action:state.load.bind(state)
             },
             {
-                title:'Export',
+                title: locales('state_export'),
                 action:state.save.bind(state)
             }
         ]
     },
     {
-        title: icon('magic') + '&nbsp; Traversing gestures',
+        title: icon('magic') + '&nbsp; ' + locales('sidepanel_traversing'),
         actions: [
             {
-                title:'On',
+                title: locales('on'),
                 action:()=>{
                     DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
                         el.classList.toggle('on')
@@ -61,7 +62,7 @@ var sidepanelData = [
                 class:'traversingEnable'
             },
             {
-                title:'Off',
+                title: locales('off'),
                 action:()=>{
                     DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
                         el.classList.toggle('on')
@@ -73,29 +74,29 @@ var sidepanelData = [
         ]
     },
     {
-        title: icon('edit') + '&nbsp; Editor',
+        title: icon('edit') + '&nbsp; ' + locales('sidepanel_editor'),
         class:'editor-menu',
         actions: [
             {
-                title:'On',
+                title: locales('on'),
                 action:editor.enable.bind(editor),
                 class:'enable-editor'
             },
             {
-                title:'Off',
+                title: locales('off'),
                 action:editor.disable.bind(editor),
                 class:'on disable-editor'
             },
             {
-                title:'Root',
+                title: locales('editor_root'),
                 class:'editor-root disabled'
             },
             {
-                title:'Load',
+                title: locales('editor_load'),
                 action:session.browse.bind(session)
             },
             {
-                title:'Save',
+                title: locales('editor_save'),
                 action:session.save.bind(session)
             }
         ]

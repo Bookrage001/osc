@@ -2,13 +2,14 @@ require('./app/stacktrace')
 
 require('./app/globals')
 
-var {loading} = require('./app/ui/utils')
+var {loading} = require('./app/ui/utils'),
+    locales = require('./app/locales')
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
     DOM.init()
 
-    LOADING = loading('Connecting server...')
+    LOADING = loading(locales('loading_server'))
 
     setTimeout(()=>{
 
