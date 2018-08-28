@@ -4,6 +4,7 @@
 
 - bug fixes
   - editor: opening the sidepanel doesn't select the root widget anymore
+  - ios: overscroll and pull-to-refresh are now prevented
 - widgets
   - **new** `gyroscope` widget
 - misc
