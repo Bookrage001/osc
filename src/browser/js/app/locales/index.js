@@ -1,4 +1,5 @@
 var locales = {
+    debug: {/* empty */}, 
     en: require('./en'),
     fr: require('./fr')
 }
