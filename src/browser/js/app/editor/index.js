@@ -6,6 +6,7 @@ var {widgets} = require('../widgets/'),
     diff = require('deep-diff'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
+    locales = require('../locales'),
     sessionManager
 
 const HISTORY_SIZE = 50
@@ -480,11 +481,11 @@ var Editor = class Editor {
             parent = this.selectedWidgets[0].parent
 
         var popup = new Popup({
-            title: 'Are you sure ?',
+            title: locales('editor_delete_prompt'),
             content:`
                 <div class="actions">
-                    <a class="btn warning confirm-delete">DELETE</a>
-                    <a class="btn cancel-delete">CANCEL</a>
+                    <a class="btn warning confirm-delete">${locales('editor_delete_yes')}</a>
+                    <a class="btn cancel-delete">${locales('editor_delete_no')}</a>
                 </div>`,
             closable: false,
             escKey: true,
