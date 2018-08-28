@@ -308,3 +308,23 @@ Image displays an image from a file path/url or from a base64 encoded image stri
 
 !!! tip ""
     An exemple session called `svg.json` is shipped with the app.
+
+
+## Frame
+
+Frame loads and diplays an external web page, using its own value as URL. Only local URLs are allowed (starting with `http://127.0.0.1/`, `http://10.x.x.x/`, `http://192.168.x.x/`, etc).
+
+```js
+{
+    type:'frame',
+    // etc
+}
+```
+
+### `border`
+- type: `boolean`
+- default: `false`
+- usage: set to `true` to disable the frame's borders and background-color.
+
+!!! note ""
+    If `label` is set to `false`, all pointer-events will be disabled on the frame as long as the editor is enabled to ensure it can be selected.

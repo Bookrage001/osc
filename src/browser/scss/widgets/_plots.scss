@@ -158,6 +158,53 @@
     }
 }
 
+.frame-container {
+    width:100rem;
+    height:100rem;
+    padding:1rem;
+    .frame {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex: 1 1 100%;
+        background-size:cover;
+        border:1rem solid var(--color-bg);
+        background-repeat: no-repeat;
+        iframe {
+            flex: 1 1 100%;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            display: block;
+        }
+        iframe[src=""] {
+            pointer-events: none;
+        }
+        &.error {
+            iframe {
+                display: none;
+            }
+        }
+    }
+    &.noborder {
+        --color-border:transparent;
+        --color-light:transparent;
+        --color-light:transparent;
+        background: transparent;
+        padding: 0!important;
+        .frame {
+            outline:transparent!important;
+            border:0!important;
+            box-shadow:none!important;
+            margin: 0!important;
+        }
+    }
+}
+.editor-enabled .frame-container.nolabel iframe {
+    pointer-events: none;
+}
+
 .panel:not(.tab) > .led-container,
 .panel:not(.tab) > .rgbled-container,
 .panel:not(.tab) > .text-container,
@@ -165,10 +212,11 @@
 .panel:not(.tab) > .eq-container,
 .panel:not(.tab) > .plot-container,
 .panel:not(.tab) > .image-container,
+.panel:not(.tab) > .frame-container,
 .panel:not(.tab) > .svg-container {
     --color-border:transparent;
     padding: 0rem;
-    .plot, .text, .led, .image, .svg {
+    .plot, .text, .led, .image, .svg, .frame {
         margin: 1rem;
         box-shadow: 0 0 0 1rem var(--color-light),
                     0 0 0 1rem var(--color-fg);

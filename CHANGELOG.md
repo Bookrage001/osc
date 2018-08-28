@@ -7,6 +7,7 @@
   - ios: overscroll and pull-to-refresh are now prevented
 - widgets
   - **new** `gyroscope` widget
+  - **new** `frame` widget
 - misc
   - the client app can be translated (https://github.com/jean-emmanuel/open-stage-control/issues/302)
 
