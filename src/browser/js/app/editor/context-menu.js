@@ -124,7 +124,8 @@ var handleClick = function(event) {
 
     if (!event.detail.ctrlKey && event.type !== 'fast-right-click' && (
         event.target.classList.contains('ui-resizable-handle') ||
-        event.target.classList.contains('ui-draggable-handle')
+        event.target.classList.contains('ui-draggable-handle') ||
+        event.target.id === 'open-toggle'
     )) { return }
 
     var eventData = event.detail,

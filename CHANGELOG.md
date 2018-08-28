@@ -2,6 +2,8 @@
 
 ## next
 
+- bug fixes
+  - editor: opening the sidepanel doesn't select the root widget anymore
 - widgets
   - **new** `gyroscope` widget
 - misc

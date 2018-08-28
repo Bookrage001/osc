@@ -178,6 +178,7 @@ var SessionManager = class SessionManager {
         this.load([{}],function(){
             require('../ui/sidepanel').open()
             editor.enable()
+            editor.select(widgetManager.getWidgetById('root'))
         })
     }
 
