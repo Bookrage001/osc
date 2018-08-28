@@ -23,6 +23,7 @@ module.exports = {
     loading_upload: 'Téléversement...',
     loading_newclient: 'Connexion d\'un nouveau client...',
     loading_server: 'Connexion au serveur...',
+    loading_session: 'Chargement de la session...',
 
     // fullscreen error
     fs_unnavailable: 'Plein écran non disponible',

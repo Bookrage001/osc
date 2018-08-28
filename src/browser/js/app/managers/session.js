@@ -30,7 +30,7 @@ var SessionManager = class SessionManager {
 
         lobby.close()
 
-        var loader = loading('Loading session file...')
+        var loader = loading(locales('loading_session'))
 
         setTimeout(()=>{
             try {
