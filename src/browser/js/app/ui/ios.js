@@ -1,6 +1,6 @@
 // Prevent iOS Pull-To-Refresh
 
-if (!!navigator.platform.match(/iPhone|iPod|iPad/)) {
+if (navigator.platform.match(/iPhone|iPod|iPad/)) {
 
     var preventNextMove = false
 
