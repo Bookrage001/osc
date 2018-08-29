@@ -373,6 +373,8 @@ var Editor = class Editor {
 
     copyWidget() {
 
+        if (!this.selectedWidgets.length) return
+
         var data = this.selectedWidgets.map((w)=>w.props),
             type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget'
 
@@ -390,6 +392,8 @@ var Editor = class Editor {
     }
 
     cutWidget() {
+
+        if (!this.selectedWidgets.length) return
 
         var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
             data = this.selectedWidgets.map((w)=>w.props),
@@ -417,7 +421,7 @@ var Editor = class Editor {
 
     pasteWidget(x, y, increment) {
 
-        if (this.clipboard === null) return
+        if (!this.selectedWidgets.length || this.clipboard === null) return
 
         var data = this.selectedWidgets.map((w)=>w.props)
 
@@ -452,6 +456,8 @@ var Editor = class Editor {
 
     pasteWidgetAsClone(x, y) {
 
+        if (!this.selectedWidgets.length) return
+
         if (this.clipboard === null || !(this.idClipboard && widgetManager.getWidgetById(this.idClipboard).length)) return
 
         var data = this.selectedWidgets.map((w)=>w.props)
@@ -478,13 +484,15 @@ var Editor = class Editor {
 
     deleteWidget() {
 
-        if (this.deleting) return
-
-        this.deleting = true
+        if (!this.selectedWidgets.length) return
 
         var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
             type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
             parent = this.selectedWidgets[0].parent
+
+        if (this.deleting || this.selectedWidgets[0].getProp('id') === 'root') return
+
+        this.deleting = true
 
         var popup = new Popup({
             title: locales('editor_delete_prompt'),
@@ -527,6 +535,8 @@ var Editor = class Editor {
     }
 
     resizeWidget(deltaW, deltaH, ui) {
+
+        if (!this.selectedWidgets.length) return
 
         var newWidgets = []
 
@@ -573,6 +583,8 @@ var Editor = class Editor {
     }
 
     moveWidget(deltaX, deltaY) {
+
+        if (!this.selectedWidgets.length) return
 
         var newWidgets = []
 
