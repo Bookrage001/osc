@@ -130,7 +130,7 @@ var Editor = class Editor {
                 <div class="separator"><span>Grid</span></div>
                 <div class="input-wrapper">
                     <label>Width</label>
-                    <input class="input" type="number" id="grid-width-input" step="1" min="1" max="100" value="${GRIDWIDTH}"/>
+                    <input class="input no-keybinding" type="number" id="grid-width-input" step="1" min="1" max="100" value="${GRIDWIDTH}"/>
                 </div>
             </div>
         `)
