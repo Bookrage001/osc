@@ -6,23 +6,7 @@ module.exports = class Fader extends Slider {
 
     static defaults() {
 
-        return {
-            type:'fader',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _fader:'fader',
 
@@ -39,22 +23,14 @@ module.exports = class Fader extends Slider {
             range:{min:0,max:1},
             logScale:false,
             unit:'',
-            origin: 'auto',
+            origin: 'auto'
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, [], {
 
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
             touchAddress:'',
-            meterAddress:'',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+            meterAddress:''
+
+        })
 
     }
 

@@ -11,50 +11,39 @@ module.exports = class MultiXy extends Pad {
 
     static defaults() {
 
-        return {
-            type:'xy',
-            id:'auto',
-            linkId:'',
+        return super.defaults({
 
-            _geometry:'geometry',
+            _mutlixy: 'multi xy',
 
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
+            points: {type: 'integer|array', value: 2, help: [
+                'Defines the number of points on the pad',
+                'Can be an array of strings that will be used as labels for the points (ex: `[\'A\', \'B\']`)'
+            ]},
 
-            _style:'style',
 
-            label:'auto',
-            color:'auto',
-            css:'',
+            _xy: 'xy',
 
-            _mutlixy:'multi xy',
+            pointSize: {type: 'integer', value: 20, help: 'Defines the points\' size'},
+            snap: {type: 'boolean', value: false, help: [
+                'By default, the points are dragged from their initial position.',
+                'If set to `true`, touching anywhere on the widget\'s surface will make them snap to the touching coordinates',
+            ]},
+            spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
+            pips: {type: 'boolean', value: true, help: 'Set to `false` to hide the scale'},
+            rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis'},
+            rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
+            logScaleX: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (log10)'},
+            logScaleY: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (log10)'}
 
-            points: 2,
-            pointSize: 20,
-            snap:false,
-            spring:false,
-            pips: true,
-            rangeX:{min:0,max:1},
-            rangeY:{min:0,max:1},
-            logScaleX:false,
-            logScaleY:false,
+        }, [], {
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            touchAddress:'',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+            touchAddress: {type: 'string', value:'', help: 'OSC address for touched state messages: `/touchAddress [preArgs] 0/1`'},
+            split: {type: 'boolean|object', value: false, help: [
+                'Set to `true` to send separate osc messages for each point\'s x and y axis. The address will be the same as the widget\'s with `/N/x` or `/N/y` appended to it, where N is the point\'s id (or the point\'s label if points is an array)',
+                'Can be set as an `object` to specify a different address : `[\'/0/x\', \'/0/y\', \'/1/x\', \'/2/y\']`',
+                'Note: the widget will only respond to its original osc address, not to the splitted version'
+            ]}
+        })
 
     }
 

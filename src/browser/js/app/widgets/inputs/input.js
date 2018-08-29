@@ -5,43 +5,16 @@ module.exports = class Input extends Canvas {
 
     static defaults() {
 
-        return {
-            type:'input',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _input:'input',
 
-            vertical:false,
-            align: '',
-            unit: '',
-            editable:true,
+            vertical: {type: 'boolean', value: false, help: 'Set to `true` to display the text vertically'},
+            align: {type: 'string', value: '', help: 'Set to `left` or `right` to change text alignment (otherwise center)'},
+            unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
+            editable: {type: 'boolean', value: true, help: 'Set to `false` to make the input non-editable'}
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

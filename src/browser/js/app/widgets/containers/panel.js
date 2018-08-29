@@ -1,5 +1,4 @@
 var Widget = require('../common/widget'),
-    autolayout = require('autolayout/dist/autolayout.kiwi.js'),
     widgetManager = require('../../managers/widgets'),
     parser = require('../../parser'),
     editor
@@ -12,50 +11,26 @@ class Panel extends Widget {
 
     static defaults() {
 
-        return {
-            type:'panel',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _panel:'panel',
 
-            scroll:true,
-            border:true,
-            layout:'',
-            spacing:0,
+            scroll: {type: 'boolean', value: true, help: 'Set to `false` to disable scrollbars'},
+            border: {type: 'boolean', value: true, help: 'By default, widgets in panels/strip have their border disabled, except for panels and strips. Set to `false` to apply this rule to the panel too'},
 
-            _value: 'value (tab selection)',
-            default: '',
-            value: '',
-
-            _osc:'osc (tab selection)',
-
-            precision:0,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false,
+        }, [], {
 
             _children:'children',
 
-            variables:'@{parent.variables}',
+            variables: {type: '*', value: '@{parent.variables}', help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
+            widgets: {type: 'array', value: [], help: 'Each element of the array must be a widget object. A panel cannot contain widgets and tabs simultaneously.'},
+            tabs: {type: 'array', value: [], help: 'Each element of the array must be a tab object. A panel cannot contain widgets and tabs simultaneously'},
 
-            widgets:[],
-            tabs:[]
-        }
+            _value: 'value (tab selection)',
+            _osc:'osc (tab selection)'
+
+        })
+
 
     }
 
@@ -97,7 +72,6 @@ class Panel extends Widget {
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
             parser.parse(this.getProp('widgets'), this.widget, this)
-            if (this.getProp('layout') != '') this.parseLayout()
 
         }
 
@@ -109,7 +83,7 @@ class Panel extends Widget {
         }
         if (this.getProp('widgets') && !this.getProp('widgets').length) {
             this.disabledProps.push(
-                'layout', 'spacing', 'scroll'
+                'scroll'
             )
         }
 
@@ -137,61 +111,6 @@ class Panel extends Widget {
 
         this.setValue(this.value)
 
-    }
-
-    parseLayout() {
-
-        var children = DOM.get(this.widget, '> .widget')
-
-        try {
-
-            var layout = this.getProp('layout').replace(/\$([0-9])+/g, (m)=>{
-                return widgetManager.getWidgetByElement(children[m.replace('$','')]).getProp('id')
-            })
-
-            this.layout = new autolayout.View({
-                constraints: autolayout.VisualFormat.parse(layout.split('\\n').join('\n').split(' ').join(''), {extended: true}),
-                spacing: this.getProp('spacing')
-            })
-
-            this.on('resize',(event)=>{
-                if (!event.width) return
-                this.layout.setSize(event.width, event.height)
-                this.applyLayout()
-            }, {element: this.widget})
-
-            delete this.errors.layout
-
-        } catch(err) {
-
-            this.errors.layout = `Visual Format Language error in ${this.getProp('id')}.layout: ${err.message} (line ${err.line})`
-        }
-
-    }
-
-    applyLayout() {
-        
-        DOM.each(this.widget, '> .widget', (widgetContainer)=>{
-
-            var widget = widgetManager.getWidgetByElement(widgetContainer),
-                id = widget.getProp('id')
-
-            if (!this.layout.subViews[id]) return
-
-            widget.container.classList.add('absolute-position')
-            widget.container.style.minHeight = 'auto'
-            widget.container.style.minWidth = 'auto'
-
-            for (var prop of ['height', 'width', 'top', 'left']) {
-                delete widget.props[prop]
-                widget.container.style[prop] = this.layout.subViews[id][prop] + 'px'
-            }
-
-            if (widget.container.classList.contains('editing')) editor.select(widget, {refresh:true})
-
-            DOM.dispatchEvent(window, 'resize')
-
-        })
     }
 
     setValue(v, options={}) {

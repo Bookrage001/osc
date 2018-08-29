@@ -7,41 +7,20 @@ module.exports = class Switcher extends _switchers_base {
 
     static defaults() {
 
-        return {
-            type:'switcher',
-            id:'auto',
-            linkId:'',
+        return super.defaults({
 
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
-
-            _switcher:'Switcher',
+            _switcher:'switcher',
 
             horizontal:false,
             linkedWidgets:'',
             values:['A', 'B'],
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, [], {
 
-            _osc:'osc',
+            touchAddress:'',
+            split:false
 
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

@@ -490,7 +490,7 @@ var Editor = class Editor {
             type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
             parent = this.selectedWidgets[0].parent
 
-        if (this.deleting || this.selectedWidgets[0].getProp('id') === 'root') return
+        if (this.deleting || this.selectedWidgets[0].getProp('id') === 'root') return
 
         this.deleting = true
 

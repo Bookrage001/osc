@@ -7,36 +7,22 @@ class Script extends Widget {
 
     static defaults() {
 
-        return {
-            type:'script',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _script:'script',
 
-            condition: 1,
-            script:'',
+            condition: {type: 'string', value: 1, help: [
+                'When the widget receives a value, if this property return a falsy value, the script property won\'t be evaluated. If it\'s non-falsy, it will be evaluated normally. Formulas are given one extra variable in this context:',
+                '- `value`: the value received by the widget'
+            ]},
+            script: {type: 'string', value: '', help: [
+                'This property is evaluated each time the widget receives a value if condition is non-falsy. Formulas are given extras variables in this context:',
+                '- `value`: the value received by the widget',
+                '- `send(target, address, arg1, arg2, ...)`: function for sending osc messages (ignores the script\'s targets and the server\'s defaults unless `target` is `false`; ignores the script\'s `preArgs`)',
+                '- `set(id, value)`: function for setting a widget\'s value'
+            ]}
 
-            _osc:'osc',
-
-            address:'auto',
-            preArgs:[],
-            target: []
-
-        }
+        })
 
     }
 

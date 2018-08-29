@@ -10,29 +10,17 @@ class Clone extends Widget {
 
     static defaults() {
 
-        return {
-            type:'clone',
-            id:'auto',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            css:'',
+        return super.defaults({
 
             _clone:'clone',
 
-            widgetId:'',
+            widgetId: {type: 'string', value: '', help: '`id` of the widget to clone'},
 
             _overrides:'overrides',
 
-            props:{},
-        }
+            props: {type: 'object', value: {}, help: 'Cloned widget\'s properties to override'},
+
+        }, ['label', 'color', 'linkId', '_value', 'default', 'value', '_osc', 'precison', 'address', 'preArgs', 'target', 'bypass'])
 
     }
 

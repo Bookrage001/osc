@@ -5,39 +5,14 @@ module.exports = class Led extends Widget {
 
     static defaults() {
 
-        return {
-            type:'led',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _led:'led',
 
-            range:{min:0,max:1},
-            logScale:false,
+            range: {type: 'object', value: {min:0,max:1}, help: 'Value to led intensity mapping range'},
+            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use a logarithmic mapping scale)'},
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            preArgs:[],
-            address:'auto'
-
-        }
+        }, ['target', 'precision', 'bypass'], {})
 
     }
 

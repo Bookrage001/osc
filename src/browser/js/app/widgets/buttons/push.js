@@ -5,38 +5,22 @@ class Push extends Widget {
 
     static defaults() {
 
-        return {
-            type:'push',
-            id:'auto',
-            linkId:'',
 
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _push: 'push',
 
-            on:1,
-            off:0,
-            norelease:false,
+            on: {type: '*', value: 1, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
+            off: {type: '*', value: 0, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
+            norelease: {type: 'boolean', value: false, help: 'Set to `true` to prevent sending any osc message when releasing the button'},
 
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        }, ['_value', 'default', 'value'])
 
     }
 

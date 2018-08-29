@@ -5,23 +5,7 @@ module.exports = class Visualizer extends _plots_base {
 
     static defaults() {
 
-        return {
-            type:'visualizer',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _visualizer:'visualizer',
 
@@ -32,15 +16,7 @@ module.exports = class Visualizer extends _plots_base {
             smooth: false,
             pips:true,
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            address:'auto',
-            preArgs:[],
-        }
+        }, ['target', 'precision', 'bypass'], {})
 
     }
 

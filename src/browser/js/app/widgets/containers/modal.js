@@ -1,4 +1,5 @@
 var Panel = require('./panel'),
+    Widget = require('../common/widget'),
     {icon, iconify} = require('../../ui/utils'),
     resize = require('../../events/resize'),
     doubletab = require('../mixins/double_tap')
@@ -7,53 +8,25 @@ module.exports = class Modal extends Panel {
 
     static defaults() {
 
-        return  {
-            type:'modal',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return Widget.defaults({
 
             _modal:'modal',
 
-            doubleTap: false,
-            popupLabel:'',
-            popupWidth:'80%',
-            popupHeight:'80%',
-            popupLeft:'auto',
-            popupTop:'auto',
-            layout:'',
-            spacing:0,
+            doubleTap: {type: 'boolean', value: false, help: 'Set to `true` to make the modal require a double tap to open instead of a single tap'},
+            popupLabel: {type: 'string', value: '', help: 'Alternative label for the modal popup'},
+            popupWidth: {type: 'number|percentage', value: '80%', help: 'Modal popup\'s size'},
+            popupHeight: {type: 'number|percentage', value: '80%', help: 'Modal popup\'s size'},
+            popupLeft: {type: 'number|percentage', value: 'auto', help: 'Modal popup\'s position'},
+            popupTop: {type: 'number|percentage', value: 'auto', help: 'Modal popup\'s position'},
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            precision:0,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false,
+        }, [], {
 
             _chidlren:'children',
 
-            variables:'@{parent.variables}',
+            variables: {type: '*', value: '@{parent.variables}', help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
+            widgets: {type: 'array', value: [], help: 'Each element of the array must be a widget object'}
 
-            widgets:[],
-        }
+        })
 
     }
 

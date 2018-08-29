@@ -8,6 +8,7 @@
 - widgets
   - **new** `gyroscope` widget
   - **new** `frame` widget
+  - **breaking change** in `panel`: dropped Visual Format Language support (`layout` and `spacing` properties)
 - misc
   - the client app can be translated (https://github.com/jean-emmanuel/open-stage-control/issues/302)
 

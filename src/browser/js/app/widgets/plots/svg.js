@@ -5,34 +5,13 @@ class Svg extends Widget {
 
     static defaults() {
 
-        return {
-            type:'svg',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _svg:'svg',
 
             svg:'',
 
-            _osc:'osc',
-
-            preArgs:[],
-            address:'auto'
-
-        }
+        }, ['color', 'target', 'precision', 'bypass'], {})
 
     }
 

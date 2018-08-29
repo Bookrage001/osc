@@ -6,45 +6,22 @@ class Matrix extends _matrix_base {
 
     static defaults() {
 
-        return {
-            type:'matrix',
-            id:'auto',
+        return super.defaults({
 
-            _geometry:'geometry',
+            _matrix: 'matrix',
 
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
+            widgetType: {type: 'string', value: 'toggle', help: 'Defines the type of the widgets in the matrix'},
+            matrix: {type: 'array', value: [2,2], help: 'Defines the number of columns and and rows in the matrix'},
+            start: {type: 'integer', value: 0, help: 'First widget\'s index'},
+            spacing: {type: 'integer', value: 0, help: 'Adds space between widgets'},
+            traversing: {type: 'boolean', value: true, help: 'Set to `false` to disable traversing gestures'},
+            border: {type: 'boolean', value: true, help: 'Set to `false` to disables the widgets\' borders'},
+            props: {type: 'object', value: {}, help: [
+                'Defines a set of property to override the widgets\' defaults.',
+                'Formulas in this field are resolved with an extra variable representing each widget\'s index: `$`'
+            ]}
 
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
-
-            _matrix: 'Matrix',
-
-            widgetType: 'toggle',
-            matrix: [2,2],
-            start:0,
-            spacing:0,
-            traversing:true,
-            borders:true,
-            props:{},
-
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        }, [], {})
 
     }
 

@@ -5,42 +5,18 @@ module.exports = class Switch extends Widget {
 
     static defaults() {
 
-        return {
-            type:'switch',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _switch:'switch',
 
-            horizontal:false,
-            showValues:false,
-            values:{'Value 1':1,'Value 2':2},
+            horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display values horizontally'},
+            showValues: {type: 'boolean', value: false, help: 'If values is an object, set to `true` to display both values and labels instead of labels only'},
+            values: {type: 'array|object', value: {'Value 1':1,'Value 2':2}, help: [
+                '`Array` of possible values to switch between : `[1,2,3]`',
+                '`Object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won\'t be kept',
+            ]}
 
-            _value: 'value',
-            default:'',
-            value: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

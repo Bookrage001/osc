@@ -5,23 +5,7 @@ module.exports = class Text extends Widget {
 
     static defaults() {
 
-        return {
-            type:'text',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _text: 'text',
 
@@ -29,15 +13,7 @@ module.exports = class Text extends Widget {
             wrap:false,
             align:'',
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            preArgs:[],
-            address:'auto',
-        }
+        }, ['color', 'target', 'precision', 'bypass'], {})
 
     }
 

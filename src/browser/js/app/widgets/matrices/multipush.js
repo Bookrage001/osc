@@ -5,46 +5,41 @@ module.exports = class Multipush extends _matrix_base {
 
     static defaults() {
 
-        return {
-            type:'multipush',
-            id:'auto',
+        return super.defaults({
 
-            _geometry:'geometry',
+            _matrix: 'matrix',
 
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
+            matrix: {type: 'array', value: [2,2], help: [
+                'Defines the number of columns and and rows in the matrix. Each cell will contain a push button that will inherit its parent\'s properties and the following ones (where i is the push\'s index)',
+                '- `id`: same as the widget\'s with /i appended to it',
+                '- `label`: i',
+                '- `address`: see split'
+            ]},
+            start: {type: 'integer', value: 0, help: 'First widget\'s index'},
+            traversing: {type: 'boolean', value: true, help: 'Set to `false` to disable traversing gestures'},
+            spacing: {type: 'integer', value: 0, help: 'Adds space between widgets'},
 
-            _style:'style',
+            _push: 'push',
 
-            label:'auto',
-            color:'auto',
-            css:'',
+            on: {type: '*', value: 1, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
+            off: {type: '*', value: 0, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
+            norelease: {type: 'boolean', value: false, help: 'Set to `true` to prevent sending any osc message when releasing the button'},
 
-            _matrix: 'Matrix',
+        }, ['_value', 'default', 'value'], {
 
-            matrix: [2,2],
-            start:0,
-            spacing:0,
-            traversing:true,
-            on:1,
-            off:0,
-            norelease:false,
+            split: {type: 'boolean|string', value: false, help: [
+                '`true`: the widget\'s index will be appended to the matrice\'s osc address',
+                '`false`: it will be prepended to the widget\'s preArgs',
+                '`string`: will be used to define the widgets\' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\\$`))'
+            ]}
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

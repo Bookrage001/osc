@@ -6,32 +6,24 @@ class Keys extends Widget {
 
     static defaults() {
 
-        return {
-            type:'keys',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _keys:'keys',
 
-            binding:'',
-            keydown:'',
-            keyup:'',
-            repeat:true,
+            binding: {type: 'string|array', value: '', help: 'Key combo `string` or `array` of strings (see <a href="https://github.com/RobertWHurst/KeyboardJS">KeyboardJS</a> documentation)'},
+            keydown: {type: 'string', value: '', help: [
+                'This property is evaluated each time the key combo is pressed. Formulas are given extras variables in this context:',
+                '- `key`: pressed key name (usefull for handling multiple keys with a single keys widget)',
+                '- `ctrl`: control key state',
+                '- `alt`: alt key state',
+                '- `shift`: shift key state',
+                '- `super`: command/windows key state'
+            ]},
+            keyup: {type: 'string', value: '', help: 'Same as `keydown`, but evaluated when releasing the key combo'},
+            repeat: {type: 'boolean', value: true, help: 'Set to `false` to prevent keydown repeats when holding the key combo pressed'},
 
-        }
+        })
+
 
     }
 

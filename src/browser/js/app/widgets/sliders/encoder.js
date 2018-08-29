@@ -30,23 +30,7 @@ module.exports = class Encoder extends Widget {
 
     static defaults() {
 
-        return {
-            type:'encoder',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _encoder: 'encoder',
 
@@ -57,15 +41,11 @@ module.exports = class Encoder extends Widget {
             snap:false,
             doubleTap:false,
 
-            _osc:'osc',
+        }, [], {
 
-            precision:2,
-            address:'auto',
-            touchAddress:'',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+            touchAddress:''
+
+        })
 
     }
 

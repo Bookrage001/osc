@@ -6,33 +6,19 @@ module.exports = class Multifader extends _matrix_base {
 
     static defaults() {
 
-        return {
-            type:'multifader',
-            id:'auto',
 
+        return super.defaults({
 
-            _geometry:'geometry',
+            _matrix:'matrix',
 
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
-
-            _matrix:'Matrix',
-
-            strips:2,
-            start:0,
-            traversing:true,
-
-            _value: 'value',
-            default: '',
-            value: '',
+            strips: {type: 'integer', value: 2, help: [
+                'Number of faders in the row, each fader will inherit its parent\'s properties and the following ones (where i is the fader\'s index in the row)',
+                '- `id`: same as the widget\'s with /i appended to it',
+                '- `label`: i',
+                '- `address`: see split',
+            ]},
+            start: {type: 'integer', value: 0, help: 'First widget\'s index'},
+            traversing: {type: 'boolean', value: true, help: 'Set to `false` to disable traversing gestures'},
 
             _fader: 'fader',
 
@@ -41,7 +27,6 @@ module.exports = class Multifader extends _matrix_base {
             unit:'',
             origin: 'auto',
             snap:true,
-
             meter:false,
             alignRight:false,
             horizontal:false,
@@ -50,16 +35,15 @@ module.exports = class Multifader extends _matrix_base {
             compact:false,
             dashed:false,
 
+        }, [], {
 
-            _osc:'osc',
+            split: {type: 'boolean|string', value: false, help: [
+                '- `true`: the widget\'s index will be appended to the matrice\'s osc address',
+                '- `false`: it will be prepended to the widget\'s preArgs',
+                '- `string`: will be used to define the widgets\' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\\$`))'
+            ]}
 
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

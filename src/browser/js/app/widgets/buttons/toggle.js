@@ -5,43 +5,22 @@ class Toggle extends Widget {
 
     static defaults() {
 
-        return {
-            type:'toggle',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _toggle: 'toggle',
 
-            doubleTap: false,
-            led: false,
-            on:1,
-            off:0,
+            doubleTap: {type: 'boolean', value: false, help: 'Set to `true` to make the button require a double tap to be toggled instead of a single tap'},
+            led: {type: 'boolean', value: false, help: 'Set to `true` to display the toggle\'s state with a led'},
+            on: {type: '*', value: 1, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
+            off: {type: '*', value: 0, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]}
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

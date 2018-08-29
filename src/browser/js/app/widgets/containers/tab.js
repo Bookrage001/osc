@@ -1,46 +1,24 @@
 var Panel = require('./panel'),
+    Widget = require('../common/widget'),
     resize = require('../../events/resize')
 
 module.exports = class Tab extends Panel {
 
     static defaults() {
 
-        return {
-            type:'tab',
-            id:'auto',
-            linkId:'',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
-
-            _panel:'panel',
-
-            layout:'',
-            spacing:0,
-
-            _value: 'value (tab selection)',
-            
-            default: '',
-            value: '',
-
-            _osc:'osc (tab selection)',
-
-            precision:0,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false,
+        return Widget.defaults({}, ['_geometry', 'left', 'top', 'width', 'height'], {
 
             _children:'children',
 
-            variables:'@{parent.variables}',
+            variables: {type: '*', value: '@{parent.variables}', help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
+            widgets: {type: 'array', value: [], help: 'Each element of the array must be a widget object. A tab cannot contain widgets and tabs simultaneously'},
+            tabs: {type: 'array', value: [], help: 'Each element of the array must be a tab object. A tab cannot contain widgets and tabs simultaneously'},
 
-            widgets:[],
-            tabs:[]
-        }
+
+            _value: 'value (tab selection)',
+            _osc:'osc (tab selection)'
+
+        })
 
     }
 

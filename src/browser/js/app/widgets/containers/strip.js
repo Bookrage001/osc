@@ -1,43 +1,28 @@
-var Panel = require('./panel')
+var Panel = require('./panel'),
+    Widget = require('../common/widget')
 
 module.exports = class Strip extends Panel {
 
     static defaults() {
 
-        return  {
-            type:'strip',
-            id:'auto',
-            linkId:'',
-
-            _style:'style',
-
-            label:'auto',
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-            color:'auto',
-            css:'',
+        return Widget.defaults({
 
             _strip: 'strip',
 
-            scroll:true,
-            horizontal:false,
-            stretch:false,
-            border:true,
-            spacing:0,
+            scroll: {type: 'boolean', value: true, help: 'Set to `false` to disable scrollbars'},
+            horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display widgets horizontally'},
+            stretch: {type: 'boolean', value: true, help: 'Set to `true` to stretch widgets evenly'},
+            border: {type: 'boolean', value: true, help: 'By default, widgets in panels/strip have their border disabled, except for panels and strips. Set to `false` to apply this rule to the panel too'},
+            spacing: {type: 'integer|percentage', value: 0, help: 'Adds space between widgets. Percents are always relative to the strips width'}
 
-            _osc:'osc',
-
-            address:'auto',
-            preArgs:[],
+        }, [], {
 
             _children:'children',
 
-            variables:'@{parent.variables}',
+            variables: {type: '*', value: '@{parent.variables}', help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
+            widgets: {type: 'array', value: [], help: 'Each element of the array must be a widget object'}
 
-            widgets:[]
-        }
+        })
 
     }
 

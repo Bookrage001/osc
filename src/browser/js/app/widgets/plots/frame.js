@@ -6,34 +6,13 @@ class Frame extends Widget {
 
     static defaults() {
 
-        return {
-            type:'frame',
-            id:'auto',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-            label:'auto',
-            css:'',
+        return super.defaults({
 
             _frame: 'frame',
-            border: true,
 
-            _value: 'value',
-            default: '',
-            value: '',
+            border: {type: 'boolean', value: true, help: 'Set to `false` to disable the borders and background-color'},
 
-            _osc:'osc',
-
-            address:'auto',
-            preArgs:[],
-
-        }
+        }, ['color', 'target', 'precision', 'bypass'], {})
 
     }
 

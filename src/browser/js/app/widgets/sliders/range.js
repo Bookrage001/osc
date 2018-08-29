@@ -175,25 +175,9 @@ module.exports = class Range extends Widget {
 
     static defaults() {
 
-        return {
-            type:'range',
-            id:'auto',
-            linkId:'',
+        return super.defaults({
 
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
-
-            _fader:'fader',
+            _range:'range',
 
             horizontal:false,
             alignRight:false,
@@ -205,20 +189,12 @@ module.exports = class Range extends Widget {
             range:{min:0,max:1},
             logScale:false,
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, [], {
 
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
             touchAddress:'',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+            split:false
+
+        })
 
     }
 

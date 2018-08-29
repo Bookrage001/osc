@@ -6,41 +6,34 @@ module.exports = class Keyboard extends _matrix_base {
 
     static defaults() {
 
-        return {
-            type:'keyboard',
-            id:'auto',
+        return super.defaults({
 
+            _matrix: 'matrix',
 
-            _geometry:'geometry',
+            keys: {type: 'number', value: 25, help: 'Defines the number keys'},
+            start: {type: 'number', value: 48, help: [
+                'MIDI note number to start with (default is C4)',
+                'Standard keyboards settings are: `[25, 48]`, `[49, 36]`, `[61, 36]`, `[88, 21]`'
+            ]},
+            traversing: {type: 'boolean', value: true, help: 'Set to `false` to disable traversing gestures'},
+            on: {type: '*', value: 1, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
+            off: {type: '*', value: 0, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
 
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
+        }, ['_value', 'default', 'value'], {
 
-            _style:'style',
+            split: {type: 'boolean|string', value: false, help: [
+                '`true`: the widget\'s index will be appended to the matrice\'s osc address',
+                '`false`: it will be prepended to the widget\'s preArgs',
+                '`string`: will be used to define the widgets\' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\\$`))'
+            ]},
 
-            label:'auto',
-            color:'auto',
-            css:'',
-
-            _matrix: 'Matrix',
-
-            keys:25,
-            start:48,
-            traversing:true,
-            on:1,
-            off:0,
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

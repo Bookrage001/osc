@@ -7,33 +7,16 @@ class Gyroscope extends Widget {
 
     static defaults() {
 
-        return {
-            type:'gyroscope',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _gyroscope: 'gyroscope',
 
-            frequency: 30,
-            normalize: true,
-            compass: false,
-            screenAdjusted: false,
-            precision: 2
+            frequency: {type: 'number', value: 30, help: 'Value update frequency (updates per seconds)'},
+            normalize: {type: 'boolean', value: true, help: 'Normalize gravity related values'},
+            compass: {type: 'boolean', value: false, help: 'Set to `true` to return the orientation values with respect to the actual north direction of the world instead of the head direction of the device'},
+            screenAdjusted: {type: 'boolean', value: false, help: 'Set to `true` to return screen adjusted values'}
 
-        }
+        })
 
     }
 

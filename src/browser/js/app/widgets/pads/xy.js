@@ -10,51 +10,37 @@ module.exports = class Xy extends Pad {
 
     static defaults() {
 
-        return {
-            type:'xy',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _xy:'xy',
 
-            input: true,
-            pips: true,
-            pointSize: 20,
-            snap:false,
-            spring:false,
-            doubleTap:false,
-            rangeX:{min:0,max:1},
-            rangeY:{min:0,max:1},
-            logScaleX:false,
-            logScaleY:false,
+            pointSize: {type: 'integer', value: 20, help: 'Defines the points\' size'},
+            snap: {type: 'boolean', value: false, help: [
+                'By default, the points are dragged from their initial position.',
+                'If set to `true`, touching anywhere on the widget\'s surface will make them snap to the touching coordinates',
+            ]},
+            spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
+            pips: {type: 'boolean', value: true, help: 'Set to `false` to hide the scale'},
+            rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis'},
+            rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
+            logScaleX: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (log10)'},
+            logScaleY: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (log10)'},
+            input: {type: 'boolean', value: true, help: 'Set to false to hide the built-in input widget'},
+            doubleTap: {type: 'boolean|string', value: false, help: [
+                'Set to `true` to make the fader reset to its default value when receiving a double tap.',
+                'Can also be an osc address, which case the widget will just send an osc message: `/<doubleTap> <preArgs>`'
+            ]},
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, [], {
 
-            _osc:'osc',
+            touchAddress: {type: 'string', value:'', help: 'OSC address for touched state messages: `/touchAddress [preArgs] 0/1`)'},
+            split: {type: 'boolean|object', value: false, help: [
+                'Set to `true` to send separate osc messages for each point\'s x and y axis. The address will be the same as the widget\'s with `/x` or `/y` appended to it',
+                'Can be set as an `object` to specify a different address : [\'/osc_address_x\', \'/osc_address_y\']',
+                'Note: the widget will only respond to its original osc address, not to the splitted version'
+            ]}
 
-            precision:2,
-            address:'auto',
-            touchAddress:'',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 
@@ -276,7 +262,7 @@ module.exports = class Xy extends Pad {
     }
 
     getSplit() {
-        
+
         return this.getProp('split')?
             typeof this.getProp('split') == 'object' && this.getProp('split').length == 2 ?
                 this.getProp('split')

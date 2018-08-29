@@ -5,40 +5,17 @@ class Dropdown extends Widget {
 
     static defaults() {
 
-        return {
-            type:'dropdown',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style: 'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _dropdown:'dropdown',
 
-            values:{'Value 1':1,'Value 2':2},
+            values: {type: 'array|object', value: {'Value 1':1,'Value 2':2}, help: [
+                '`Array` of possible values to switch between : `[1,2,3]`',
+                '`Object` of label:value pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won\'t be kept',
+                'An empty option will always be prepended to values (sends an osc message without any value); it can be hidden by adding `option:first-child{display:none}` to the widget\'s `css`'
+            ]}
 
-            _value: 'value',
-            default:'',
-            value: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

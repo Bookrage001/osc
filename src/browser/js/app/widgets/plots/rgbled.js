@@ -5,33 +5,7 @@ module.exports = class Rbgled extends Widget {
 
     static defaults() {
 
-        return {
-            type:'rgbled',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            css:'',
-
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            preArgs:[],
-            address:'auto'
-
-        }
+        return super.defaults({}, ['color', 'target', 'precision', 'bypass'], {})
 
     }
 

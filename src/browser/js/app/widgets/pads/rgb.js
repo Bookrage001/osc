@@ -11,43 +11,26 @@ module.exports = class Rgb extends Pad {
 
     static defaults() {
 
-        return {
-            type:'rgb',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            css:'',
+        return super.defaults({
 
             _rgb:'rgb',
 
-            input: true,
-            snap:false,
-            spring:false,
-            range: {min:0,max:255},
+            snap: {type: 'boolean', value: false, help: [
+                'By default, the points are dragged from their initial position.',
+                'If set to `true`, touching anywhere on the widget\'s surface will make them snap to the touching coordinates',
+            ]},
+            spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
+            range: {type: 'object', value: {min: 0, max: 255}, help: 'Defines the widget\'s output scale.'},
+            input: {type: 'boolean', value: true, help: 'Set to `false` to hide the built-in input widget'},
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, ['color'], {
 
-            _osc:'osc',
-
-            precision:0,
-            address:'auto',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+            split: {type: 'boolean|object', value: false, help: [
+                'Set to `true` to send separate osc messages for for r and g & b. The address will be the same as the widget\'s with `/r`, `/g` or `/b` appended to it',
+                'Can be set as an `object` to specify a different address : `[\'/r\', \'/g\', \'b\']`',
+                'Note: the widget will only respond to its original osc address, not to the splitted version'
+            ]}
+        })
 
     }
 

@@ -5,43 +5,27 @@ module.exports = class Led extends Widget {
 
     static defaults() {
 
-        return {
-            type:'image',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            // color:'auto',
-            css:'',
+        return super.defaults({
 
             _image:'image',
 
             size: 'cover',
             position: 'center',
             repeat: 'no-repeat',
-            border: true,
-            cache: true,
-            stream: '',
+            border: {type: 'boolean', value: true, help: 'Set to `false` to disable the borders and background-color'},
+            cache: {type: 'boolean', value: true, help: [
+                'Set to false to disable image caching (forces file reload when updating or editing the widget).',
+                'When true, sending `reload` to the widget reloads its image without changing its value'
+            ]}
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, ['color', 'target', 'precision', 'bypass'], {
 
-            _osc:'osc',
+            value: {type: 'string', value: '', help: [
+                '- File `url` or `absolute path`',
+                '- Base64 encoded image : `data:image/...`'
+            ]}
 
-            preArgs:[],
-            address:'auto'
-
-        }
+        })
 
     }
 

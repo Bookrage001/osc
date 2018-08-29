@@ -5,23 +5,7 @@ module.exports = class Knob extends Slider {
 
     static defaults() {
 
-        return {
-            type:'knob',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _knob:'knob',
 
@@ -35,21 +19,13 @@ module.exports = class Knob extends Slider {
             range:{min:0,max:1},
             logScale:false,
             unit:'',
-            origin: 'auto',
+            origin: 'auto'
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, [], {
 
-            _osc:'osc',
+            touchAddress:''
 
-            precision:2,
-            address:'auto',
-            touchAddress:'',
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 

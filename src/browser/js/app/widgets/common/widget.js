@@ -31,9 +31,86 @@ setTimeout(()=>{
 
 class Widget extends EventEmitter {
 
-    static defaults() {
+    static defaults(insert={}, except=[], push={}) {
 
-        throw new Error('Calling unimplemented static defaults() method')
+        var defaults = {
+
+            type: {type: 'string', value: 'auto', help: ''},
+            id: {type: 'string', value: 'auto', help: 'Widgets sharing the same `id` will act as clones and update each other\'s value(s) without sending extra osc messages.' },
+            linkId: {type: 'string|array', value: '', help: [
+                'Widgets sharing the same `linkId` update each other\'s value(s) AND send their respective osc messages.',
+                'When prefixed with >>, the `linkId` will make the widget act as a master (sending but not receiving)',
+                'When prefixed with <<, the `linkId` will make the widget act as a slave (receiving but not sending)'
+            ]},
+
+            _geometry:'geometry',
+
+            left: {type: 'number|string', value: 'auto', help: [
+                'When both top and left are set to auto, the widget is positioned according to the normal flow of the page (from left to right, by order of creation).',
+                'Otherwise, the widget will be absolutely positioned'
+            ]},
+            top: {type: 'number|percentage', value: 'auto', help: [
+                'When both top and left are set to auto, the widget is positioned according to the normal flow of the page (from left to right, by order of creation).',
+                'Otherwise, the widget will be absolutely positioned'
+            ]},
+            width: {type: 'number|percentage', value: 'auto', help: ''},
+            height: {type: 'number|percentage', value: 'auto', help: ''},
+
+            _style:'style',
+
+            label: {type: 'string|boolean', value: 'auto', help: [
+                'Set to `false` to hide completely',
+                'Insert icons using the prefix ^ followed by the icon\'s name : ^play, ^pause, etc'
+            ]},
+            color: {type: 'string', value: 'auto', help: 'CSS color code. Set to "auto" to inherit from parent widget.'},
+            css: {type: 'string', value: '', help: 'CSS rules'},
+
+            _value: 'value',
+
+            default: {type: '*', value: '', help: 'If set, the widget will be initialized with this value when the session is loaded.'},
+            value: {type: '*', value: '', help: 'Define the widget\'s value depending on other widget\'s values / properties using property inheritance and property maths'},
+
+            _osc: 'osc',
+
+            precision: {type: 'integer|string', value: 2, help: [
+                'Defines the number of decimals to display and to send.',
+                'Set to `0` to send integers only.',
+                'Data type can be specified by appending a valid osc type tag to the precision value, for example : `3d` will make the widget send double precision numbers rounded to three decimals'
+            ]},
+            address: {type: 'string', value: 'auto', help: 'OSC address for sending messages, it must start with a /'},
+            preArgs: {type: '*|array', value: '', help: [
+                'A value or array of values that will be prepended to the OSC messages.',
+                'Values can be defined as objects if the osc type tag needs to be specified: `{type: "i", value: 1}`'
+            ]},
+            target: {type: 'string|array|null', value: '', help: [
+                'An string or or array of strings formatted as follow: `ip:port` or `["ip:port"]`.',
+                'If midi is enabled, targets can be `midi:device_name`.',
+                'The special item `"self"` can be used to refer to the emitting client directly.',
+                'If no target is set, messages can still be sent if the server has default targets',
+                'The server\'s default targets can be bypassed by setting of the items to `null`'
+            ]},
+            bypass:  {type: 'boolean', value: false, help: 'Set to `true` to prevent the widget from sending any osc message'}
+
+        }
+
+        // okay that's bad, but keys happen to be ordered anyway...
+
+        var alterDefaults = {}
+
+        for (var k in defaults) {
+            if (k === '_value') {
+                for (var l in insert) {
+                    alterDefaults[l] = insert[l]
+                }
+            }
+            if (except.indexOf(k) < 0) alterDefaults[k] = defaults[k]
+        }
+
+        for (var m in push) {
+            alterDefaults[m] = push[m]
+        }
+
+        return alterDefaults
 
     }
 

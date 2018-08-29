@@ -4,46 +4,31 @@ module.exports = class Meter extends Fader {
 
     static defaults() {
 
-        return {
-            type:'fader',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
-
+        return super.defaults({
 
             _meter:'meter',
 
-            range:{min:0,max:1},
-            logScale:false,
-            origin:'auto',
-            unit:'',
-            alignRight:false,
-            horizontal:false,
-            pips:false,
-            dashed:false,
-            gradient:[],
+            range: {type: 'object', value: {min:0,max:1}, help: 'See fader\'s `range`'},
+            logScale: {type: 'boolean', value: false, help: 'See fader\'s `logScale`'},
+            origin: {type: 'number', value: 'auto', help: 'See fader\'s `origin`'},
+            unit: {type: 'string', value: 'auto', help: 'See fader\'s `unit`'},
+            alignRight: {type: 'boolean', value: false, help: 'See fader\'s `alignRight`'},
+            horizontal: {type: 'boolean', value: false, help: 'See fader\'s `horizontal`'},
+            pips: {type: 'boolean', value: false, help: 'See fader\'s `pips`'},
+            dashed: {type: 'boolean', value: false, help: 'See fader\'s `dashed`'},
+            gradient: {type: 'array', value: [], help: 'When set, the meter\'s gauge will be filled with a linear color gradient : each item must be a CSS color string. Example: `["blue", "red"]`'},
 
-            _value: 'value',
-            default: '',
-            value: '',
+        }, ['target', 'precision', 'bypass'], {
 
-            _osc:'osc',
+            css: {type: 'string', value: '', help: [
+                'Available CSS variables:'
+                `- '--color-gauge: color;'`,
+                '- `--color-knob: color;`',
+                `- '--color-pips: color;'`,
+                `- '--gauge-opacity: number;'`
+            ]},
 
-            address:'auto',
-            preArgs:[]
-        }
+        })
 
     }
 

@@ -1,39 +1,23 @@
 var Panel = require('./panel'),
+    Widget = require('../common/widget'),
     {iconify} = require('../../ui/utils')
 
 module.exports = class Root extends Panel {
 
     static defaults() {
 
-        return {
-
-            type:'root',
-            id: 'root',
-            linkId:'',
-
-            _style:'style',
-
-            color:'auto',
-            css:'',
-
-            _value: 'value (tab selection)',
-            default: '',
-            value: '',
-
-            _osc:'osc (tab selection)',
-
-            precision:0,
-            address:'/root',
-            preArgs:[],
-            target:[],
-            bypass:false,
+        return Widget.defaults({}, ['label', '_geometry', 'left', 'top', 'width', 'height'], {
 
             _children:'children',
 
-            variables:{},
+            variables: {type: '*', value: '@{parent.variables}', help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
+            tabs: {type: 'array', value: [], help: 'Each element of the array must be a tab object'},
+            id: {type: 'string', value: 'root', help: 'Widgets sharing the same id will act as clones and update each other\'s value(s) without sending extra osc messages' },
 
-            tabs:[]
-        }
+            _value: 'value (tab selection)',
+            _osc:'osc (tab selection)'
+
+        })
 
     }
 

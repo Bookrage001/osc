@@ -6,43 +6,18 @@ module.exports = class Eq extends _plots_base {
 
     static defaults() {
 
-        return {
-            type:'eq',
-            id:'auto',
-            linkId:'',
-
-            _geometry:'geometry',
-
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
-
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
+        return super.defaults({
 
             _eq:'eq',
 
-            pips:true,
-            resolution:128,
-            rangeY: {min:-20,max:20},
-            origin: 'auto',
-            logScaleX: false,
-            smooth: false,
+            pips: {type: 'boolean', value: true, help: 'Set to false to hide the scale'},
+            resolution: {type: 'number', value: 128, help: 'Defines the number of points used to compute the frequency response'},
+            rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
+            origin: {type: 'number|boolean', value: 'auto', help: 'Defines the y axis origin. Set to `false` to disable it'},
+            logScaleX: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (log10)'},
+            smooth: {type: 'boolean|number', value: false, help: 'Set to `true` to make the line smooth. Float values are also acceptable (works fine between `0` and `0.5`)'},
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc:'osc',
-
-            address:'auto',
-            preArgs:[],
-
-        }
+        }, ['target', 'precision', 'bypass'], {})
 
     }
 

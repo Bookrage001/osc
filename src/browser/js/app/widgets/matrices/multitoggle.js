@@ -5,46 +5,41 @@ module.exports = class Multitoggle extends _matrix_base {
 
     static defaults() {
 
-        return {
-            type:'multitoggle',
-            id:'auto',
+        return super.defaults({
 
-            _geometry:'geometry',
+            _matrix:'matrix',
 
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
+            matrix: {type: 'array', value: [2,2], help: [
+                'Defines the number of columns and and rows in the matrix. Each cell will contain a toggle button that will inherit its parent\'s properties and the following ones (where i is the toggle\'s index)',
+                '- `id`: same as the widget\'s with /i appended to it',
+                '- `label`: i',
+                '- `address`: see split'
+            ]},
+            start: {type: 'integer', value: 0, help: 'First widget\'s index'},
+            spacing: {type: 'integer', value: 0, help: 'Adds space between widgets'},
+            traversing: {type: 'boolean', value: true, help: 'Set to `false` to disable traversing gestures'},
 
-            _style:'style',
+            _toggle: 'toggle',
 
-            label:'auto',
-            color:'auto',
-            css:'',
+            led: {type: 'boolean', value: false, help: 'Set to `true` to display the toggle\'s state with a led'},
+            on: {type: '*', value: 1, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see preArgs)'
+            ]},
+            off: {type: '*', value: 0, help: [
+                'Set to `null` to send send no argument in the osc message',
+                'Can be an `object` if the type needs to be specified (see `preArgs`)'
+            ]},
 
-            _matrix: 'Matrix',
+        }, [], {
 
-            matrix: [2,2],
-            start:0,
-            spacing:0,
-            traversing:true,
-            led: false,
-            on:1,
-            off:0,
+            split: {type: 'boolean|string', value: false, help: [
+                '`true`: the widget\'s index will be appended to the matrice\'s osc address',
+                '`false`: it will be prepended to the widget\'s `preArgs`',
+                '`string`: will be used to define the widgets\' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\\$`))'
+            ]}
 
-            _value: 'value',
-            default: '',
-            value: '',
-
-            _osc: 'osc',
-
-            precision:2,
-            address:'auto',
-            preArgs:[],
-            split:false,
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 
