@@ -44,6 +44,8 @@ var Editor = class Editor {
         this.historyState = -1
         this.historySession = null
 
+        this.deleting = false
+
         this.mousePosition = {x:0, y:0}
         this.mouveMoveHandler = this.mouseMove.bind(this)
 
@@ -476,6 +478,10 @@ var Editor = class Editor {
 
     deleteWidget() {
 
+        if (this.deleting) return
+
+        this.deleting = true
+
         var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
             type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
             parent = this.selectedWidgets[0].parent
@@ -509,10 +515,13 @@ var Editor = class Editor {
             this.select(updateWidget(parent, {preventSelect: true}))
             this.pushHistory()
 
+            this.deleting = false
+
         })
 
         DOM.get(popup.html, '.cancel-delete')[0].addEventListener('click', function(){
             popup.close()
+            this.deleting = false
         })
 
     }
