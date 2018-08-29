@@ -41,7 +41,7 @@ class Gyroscope extends Widget {
 
         var html = `
             <div class="gyroscope">
-                ${iconify('^arrows-alt')}
+                ${iconify('^compass')}
             </div>
         `
 
