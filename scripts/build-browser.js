@@ -10,7 +10,7 @@ var browserify = require('browserify'),
     fast = process.argv.indexOf('--fast') != -1,
     b
 
-var ignoreList = ['**/mathjs/dist/math.min.js', '**/jquery.slim.min.js', '**/jquery.ui.js', '**/socket.io.slim.js'],
+var ignoreList = ['**/*.min.js', '**/jquery.ui.js', '**/socket.io.slim.js'],
     ignoreWrapper = function(transform){
         return function(file, opts){
              if (

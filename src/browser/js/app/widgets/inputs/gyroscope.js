@@ -1,5 +1,5 @@
 var Widget = require('../common/widget'),
-    GyroNorm = require('gyronorm/dist/gyronorm.complete.js'),
+    GyroNorm = require('gyronorm/dist/gyronorm.complete.min.js'),
     {iconify} = require('../../ui/utils'),
     {clip} = require('../utils')
 
