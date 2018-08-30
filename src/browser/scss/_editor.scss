@@ -99,6 +99,17 @@
                     pointer-events: none
                 }
             }
+            .btn + span {
+                position: absolute;
+                right:0rem;
+                top:0rem;
+                padding:8rem;
+                opacity: 0.6;
+                cursor: pointer;
+                &:hover {
+                    opacity: 1;
+                }
+            }
         }
         .checkbox {
             line-height: 18rem;
