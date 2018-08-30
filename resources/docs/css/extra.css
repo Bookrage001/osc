@@ -62,3 +62,7 @@ article img {
     word-wrap: normal;
     direction: ltr;
 }
+
+table code {
+    white-space: nowrap;
+}

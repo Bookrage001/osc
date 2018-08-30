@@ -87,7 +87,7 @@ class Widget extends EventEmitter {
                 '- If midi is enabled, targets can be `midi:device_name`',
                 '- The special item `"self"` can be used to refer to the emitting client directly.',
                 '- If no target is set, messages can still be sent if the server has default targets',
-                '- The server\'s default targets can be bypassed by setting of the items to `null`'
+                '- The server\'s default targets can be bypassed by setting one of the items to `null`'
             ]},
             bypass: {type: 'boolean', value: false, help: 'Set to `true` to prevent the widget from sending any osc message'}
 

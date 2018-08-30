@@ -28,17 +28,17 @@ pages:
     - Getting started: getting-started.md
     - User interface: interface.md
     - Editing sessions: editing-sessions.md
-    - Widgets reference:
-        - Widget properties: widgets/widgets.md
-        - Containers: widgets/containers.md
-        - Sliders: widgets/sliders.md
-        - Pads: widgets/pads.md
-        - Buttons: widgets/buttons.md
-        - Switchers: widgets/switchers.md
-        - Plots: widgets/plots.md
-        - Matrices: widgets/matrices.md
-        - Inputs: widgets/inputs.md
-        - Maths: widgets/maths.md
+    - Widgets reference: widgets-reference.md
+        # - Widget properties: widgets/widgets.md
+        # - Containers: widgets/containers.md
+        # - Sliders: widgets/sliders.md
+        # - Pads: widgets/pads.md
+        # - Buttons: widgets/buttons.md
+        # - Switchers: widgets/switchers.md
+        # - Plots: widgets/plots.md
+        # - Matrices: widgets/matrices.md
+        # - Inputs: widgets/inputs.md
+        # - Maths: widgets/maths.md
     - Extras:
         - Advanced property syntax: extras/advanced-property-syntax.md
         - CSS Tips: extras/css-tips.md
