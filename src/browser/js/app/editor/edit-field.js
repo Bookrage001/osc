@@ -188,7 +188,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
         var htmlError = error ? `<p class="error">${error}</p>` : ''
 
-        new Popup({closable: true, title: propName, content: `
+        new Popup({closable: true, title: `<span class="editor-help-title">${propName}</span>`, content: `
             <div class="editor-help">
 
                 <p>Type: <code>${defaultValue.type}</code></p>
