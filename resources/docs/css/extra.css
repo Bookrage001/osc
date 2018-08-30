@@ -66,7 +66,19 @@ article img {
 table code {
     white-space: nowrap;
 }
+
 table .thead2 {
     background: rgba(0,0,0,0.05);
-    /* color:white; */
+    color: #555;
+    text-transform: capitalize;
+}
+
+table thead {
+    text-transform: capitalize;
+}
+
+table h4 {
+    margin:0!important;
+    font-size: 1.28rem!important;
+    font-weight: normal!important;
 }

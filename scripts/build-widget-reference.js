@@ -41,6 +41,7 @@ var widgets = require('../src/browser/js/app/widgets'),
 
 
 doc.push(`
+
     ## Generic properties
 
     | property | type |default | description |
