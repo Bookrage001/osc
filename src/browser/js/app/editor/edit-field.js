@@ -12,7 +12,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
     let field = DOM.create(`
         <div class="input-wrapper ${widget.errors[propName] ? 'error' : ''} ${disabled ? 'disabled' : ''}">
-            <label class="${error ? 'error' : ''}">${propName}</label>
+            <label class="btn ${error ? 'error' : ''}">${propName}</label>
         </div>
     `)
 
