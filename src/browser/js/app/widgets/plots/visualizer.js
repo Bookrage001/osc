@@ -9,12 +9,12 @@ module.exports = class Visualizer extends _plots_base {
 
             _visualizer:'visualizer',
 
-            duration:1,
-            range: {min:0,max:1},
-            origin: 'auto',
-            logScale: false,
-            smooth: false,
-            pips:true,
+            duration: {type: 'number', value: 1, help: 'Defines visualization duration in seconds'},
+            range: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
+            origin: {type: 'number', value: 'auto', help: 'Defines the y axis origin. Set to `false` to disable it'},
+            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis'},
+            smooth: {type: 'boolean|number', value: false, help: 'Set to `true` to make the line smooth. Float values are also acceptable (works fine between `0` and `0.5`)'},
+            pips:{type: 'boolean', value: true, help: 'Set to `false` to hide the scale'},
 
         }, ['target', 'precision', 'bypass'], {})
 

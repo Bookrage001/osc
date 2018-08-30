@@ -9,9 +9,12 @@ module.exports = class Text extends Widget {
 
             _text: 'text',
 
-            vertical:false,
-            wrap:false,
-            align:'',
+            vertical: {type: 'boolean', value: false, help: 'Set to `true` to display the text vertically'},
+            wrap: {type: 'boolean', value: false, help: [
+                'Set to `true` to wrap long lines automatically.',
+                'This will not break overflowing words by default, word-breaking can be enabled by adding `word-break: break-all;` to the `css` property'},
+            ]},
+            align: {type: 'string', value: '', help: 'Set to `left` or `right` to change text alignment (otherwise center)'},
 
         }, ['color', 'target', 'precision', 'bypass'], {})
 

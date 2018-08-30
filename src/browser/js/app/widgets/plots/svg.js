@@ -9,7 +9,11 @@ class Svg extends Widget {
 
             _svg:'svg',
 
-            svg:'',
+            svg: {type: 'string', value: '', help: [
+                'Svg xml definition:',
+                '- will be wrapped in a `<svg></svg>` element',
+                '- `<path>` commands support a special percent notation (`%x` and `%y`)'
+            ]}
 
         }, ['color', 'target', 'precision', 'bypass'], {})
 
