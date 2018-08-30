@@ -22,18 +22,18 @@ module.exports = class Multifader extends _matrix_base {
 
             _fader: 'fader',
 
-            range:{min:0,max:1},
-            logScale:false,
-            unit:'',
-            origin: 'auto',
-            snap:true,
-            meter:false,
-            alignRight:false,
-            horizontal:false,
-            pips:false,
-            input:true,
-            compact:false,
-            dashed:false,
+            range: {type: 'object', value: {min:0,max:1}, help: 'See fader\'s `range`'},
+            logScale: {type: 'boolean', value: false, help: 'See fader\'s `logScale`'},
+            origin: {type: 'number', value: 'auto', help: 'See fader\'s `origin`'},
+            unit: {type: 'string', value: 'auto', help: 'See fader\'s `unit`'},
+            alignRight: {type: 'boolean', value: false, help: 'See fader\'s `alignRight`'},
+            horizontal: {type: 'boolean', value: false, help: 'See fader\'s `horizontal`'},
+            pips: {type: 'boolean', value: false, help: 'See fader\'s `pips`'},
+            dashed: {type: 'boolean', value: false, help: 'See fader\'s `dashed`'},
+            snap: {type: 'boolean', value: true, help: 'See fader\'s `snap`'},
+            meter: {type: 'boolean', value: false, help: 'See fader\'s `meter`'},
+            input: {type: 'boolean', value: true, help: 'See fader\'s `input`'},
+            compact: {type: 'boolean', value: false, help: 'See fader\'s `compact`'},
 
         }, [], {
 
