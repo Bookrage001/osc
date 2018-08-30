@@ -23,9 +23,9 @@ class Panel extends Widget {
 
             value: {type: 'integer', value: '', help: [
                 'Defines currently opened tab in the widget',
-                'A a tab can be opened by setting its parent\'s value'
+                'A tab can be opened only by setting its parent\'s value'
             ]},
-            
+
         })
 
 
