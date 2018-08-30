@@ -55,7 +55,7 @@ for (var propName in base) {
 
     if (propName[0] === '_' && propName !== '_props') {
         doc.push(`
-            | <span class="thead2">${prop}</span> ||||`
+            | <h4 class="thead2" id="${prop}">${prop}<a class="headerlink" href="#${prop}" title="Permanent link">¶</a></h4> ||||`
         )
     }
 
@@ -100,7 +100,7 @@ for (var k in widgets.categories) {
             if (propName[0] === '_' && propName !== '_props') {
                 if (separator) doc.pop()
                 doc.push(`
-                    | <span class="thead2">${prop}</span> ||||`
+                    | <h4 class="thead2" id="${type + '_' + prop}">${prop}<a class="headerlink" href="#${type + '_' + prop}" title="Permanent link">¶</a></h4> ||||`
                 )
                 separator = true
             }
