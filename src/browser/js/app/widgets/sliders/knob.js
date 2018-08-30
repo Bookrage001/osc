@@ -12,7 +12,7 @@ module.exports = class Knob extends Slider {
             pips: {type: 'boolean', value: true, help: 'Set to `false` to hide the scale'},
             input: {type: 'boolean', value: true, help: 'Set to `false` to hide the built-in input'},
             dashed: {type: 'boolean', value: false, help: 'Set to `true` to display a dashed gauge'},
-            angle:270,
+            angle: {type: 'number', value: 270, help: 'Defines the angle\'s width of the knob, in degrees'},
             snap: {type: 'boolean', value: false, help: 'By default, dragging the widget will modify it\'s value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position'},
             spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its `default` value when released'},
             doubleTap: {type: 'boolean', value: false, help: [
