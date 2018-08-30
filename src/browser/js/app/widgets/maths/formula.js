@@ -8,39 +8,15 @@ module.exports = class Formula extends Widget {
 
     static defaults() {
 
-        return {
-            type:'formula',
-            id:'auto',
-            linkId:'',
+        return super.defaults({
 
-            _geometry:'geometry',
+            _formula: 'formula',
 
-            left:'auto',
-            top:'auto',
-            width:'auto',
-            height:'auto',
+            formula: {type: 'string', value: '', help: ''},
+            condition: {type: 'string', value: '', help: ''},
+            unit: {type: 'string', value: '', help: ''},
 
-            _style:'style',
-
-            label:'auto',
-            color:'auto',
-            css:'',
-
-            _math: 'math',
-
-            formula: '',
-            condition: '',
-            unit: '',
-
-            _osc:'osc',
-
-            precision:2,
-            address:'auto',
-            split:[],
-            preArgs:[],
-            target:[],
-            bypass:false
-        }
+        })
 
     }
 
