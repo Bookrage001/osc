@@ -1,11 +1,6 @@
 var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
-    parser = require('../../parser'),
-    editor
-
-setTimeout(()=>{
-    editor = require('../../editor/')
-})
+    parser = require('../../parser')
 
 class Panel extends Widget {
 

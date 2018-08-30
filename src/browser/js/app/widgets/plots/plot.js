@@ -21,7 +21,7 @@ module.exports = class Plot extends _plots_base {
 
         }, ['target', 'precision', 'bypass'], {
 
-            value: {type: 'array|string', help: [
+            value: {type: 'array|string', help: [
                 '- `Array` of `y` values',
                 '- `Array` of `[x, y]` `array` values',
                 '- `String` `array`',

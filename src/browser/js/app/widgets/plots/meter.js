@@ -16,12 +16,12 @@ module.exports = class Meter extends Fader {
             horizontal: {type: 'boolean', value: false, help: 'See fader\'s `horizontal`'},
             pips: {type: 'boolean', value: false, help: 'See fader\'s `pips`'},
             dashed: {type: 'boolean', value: false, help: 'See fader\'s `dashed`'},
-            gradient: {type: 'array', value: [], help: 'When set, the meter\'s gauge will be filled with a linear color gradient : each item must be a CSS color string. Example: `["blue", "red"]`'},
+            gradient: {type: 'array', value: [], help: 'When set, the meter\'s gauge will be filled with a linear color gradient : each item must be a CSS color string. Example: `[\'blue\', \'red\']`'},
 
         }, ['target', 'precision', 'bypass'], {
 
             css: {type: 'string', value: '', help: [
-                'Available CSS variables:'
+                'Available CSS variables:',
                 `- '--color-gauge: color;'`,
                 '- `--color-knob: color;`',
                 `- '--color-pips: color;'`,

@@ -179,20 +179,31 @@ module.exports = class Range extends Widget {
 
             _range:'range',
 
-            horizontal:false,
-            alignRight:false,
-            input: true,
-            compact:false,
-            pips:true,
-            snap:false,
-            spring:false,
-            range:{min:0,max:1},
-            logScale:false,
+            range: {type: 'object', value: {min:0,max:1}, help: 'See fader\'s `range`'},
+            horizontal: {type: 'boolean', value: false, help: 'See fader\'s `horizontal`'},
+            alignRight: {type: 'boolean', value: false, help: 'See fader\'s `alignRight`'},
+            input: {type: 'boolean', value: true, help: 'See fader\'s `input`'},
+            compact: {type: 'boolean', value: false, help: 'See fader\'s `compact`'},
+            pips: {type: 'boolean', value: true, help: 'See fader\'s `pips`'},
+            snap: {type: 'boolean', value: false, help: 'See fader\'s `snap`'},
+            spring: {type: 'boolean', value: false, help: 'See fader\'s `spring`'},
+            logScale: {type: 'boolean', value: false, help: 'See fader\'s `logScale`'},
 
         }, [], {
 
-            touchAddress:'',
-            split:false
+            touchAddress: {type: 'string', value: '', help: 'See fader\'s `touchAddress`'},
+            split: {type: 'boolean|object', value: false, help: [
+                'Set to `true` to send separate osc messages for `low` and `high` handles. The `address` will be the same as the widget\'s with `/low` or `/high` appended to it',
+                'Can be set as an object to specify a different `address` : `[\'/osc_address_low\', \'/osc_address_high\']`',
+                'Note: the widget will only respond to its original osc address, not to the splitted version'
+            ]},
+            css: {type: 'string', value: '', help: [
+                'Available CSS variables:',
+                '- --color-gauge:color;',
+                '- --color-knob:color;',
+                '- --color-pips:color;',
+                '- --gauge-opacity:number;'
+            ]}
 
         })
 

@@ -9,21 +9,35 @@ module.exports = class Knob extends Slider {
 
             _knob:'knob',
 
-            pips:true,
-            input: true,
-            dashed:false,
+            pips: {type: 'boolean', value: true, help: 'Set to `false` to hide the scale'},
+            input: {type: 'boolean', value: true, help: 'Set to `false` to hide the built-in input'},
+            dashed: {type: 'boolean', value: false, help: 'Set to `true` to display a dashed gauge'},
             angle:270,
-            snap:false,
-            spring:false,
-            doubleTap:false,
-            range:{min:0,max:1},
-            logScale:false,
-            unit:'',
-            origin: 'auto'
+            snap: {type: 'boolean', value: false, help: 'By default, dragging the widget will modify it\'s value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position'},
+            spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its `default` value when released'},
+            doubleTap: {type: 'boolean', value: false, help: [
+                'Set to `true` to make the knob reset to its `default` value when receiving a double tap.',
+                'Can also be an osc address, in which case the widget will just send an osc message (`/<doubleTap> <preArgs>`)'
+            ]},
+            range: {type: 'object', value: {min:0,max:1}, help: [
+                'Defines the breakpoints of the fader\'s scale:',
+                '- keys can be percentages and/or `min` / `max`',
+                '- values can be `number` or `object` if a custom label is needed',
+                'Example: (`{min:{"-inf": 0}, "50%": 0.25, max: {"+inf": 1}}`)'
+            ]},
+            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis'},
+            unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
+            origin: {type: 'number', value: 'auto', help: 'Defines the starting point\'s value of the knob\'s gauge'},
 
         }, [], {
 
-            touchAddress:''
+            touchAddress: {type: 'string', value:'', help: 'OSC address for touched state messages: `/touchAddress [preArgs] 0/1`'},
+            css: {type: 'string', value: '', help: [
+                'Available CSS variables:',
+                '- --color-gauge:color;',
+                '- --color-knob:color;',
+                '- --color-pips:color;'
+            ]}
 
         })
 
