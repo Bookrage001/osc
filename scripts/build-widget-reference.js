@@ -59,14 +59,15 @@ for (var k in widgets.categories) {
 
         for (var propName in defaults) {
 
-            var prop = defaults[propName]
+            var prop = defaults[propName],
+                permalink = type + '_' + propName
 
             if (propName === '_props' || propName === 'type' || propName[0] === '_') continue
 
             var help = Array.isArray(prop.help) ? prop.help.join('<br/>') : prop.help || ''
 
             doc += '\n'
-            doc += `| ${propName} | \`${prop.type.replace(/\|/g,'\`\\|<br/>\`')}\` |\`${JSON.stringify(prop.value)}\` | ${help} |`
+            doc += `| <h4 id="${permalink}">${propName}<a class="headerlink" href="#${permalink}" title="Permanent link">¶</a></h4> | \`${prop.type.replace(/\|/g,'\`\\|<br/>\`')}\` | <code>${(JSON.stringify(prop.value, null, '  ') || '').replace(/\n/g,'<br/>')}</code> | ${help} |`
 
         }
 
