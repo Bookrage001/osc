@@ -390,6 +390,8 @@ class Widget extends EventEmitter {
 
                 for (var i in widgets) {
 
+                    if (widget[i] === widgetManager) continue
+
                     if (widgets[i].props[k] !== undefined || k === 'value') {
 
                         if (k !== 'value' && originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
