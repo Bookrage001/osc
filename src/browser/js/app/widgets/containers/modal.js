@@ -68,11 +68,6 @@ module.exports = class Modal extends Panel {
             this.popup.classList.add('y-positionned')
         }
 
-        DOM.get(this.popup, '.closer')[0].addEventListener('fast-click', (e)=>{
-            e.detail.preventDefault = true
-            this.setValue(0, {sync:true, send:true})
-        })
-
         this.light = this.container.appendChild(DOM.create('<div class="toggle"></div>'))
 
         if (this.getProp('doubleTap')) {
@@ -86,8 +81,9 @@ module.exports = class Modal extends Panel {
             })
         }
 
+        var closer = DOM.get(this.popup, '.closer')[0]
         this.popup.addEventListener('fast-click',(e)=>{
-            if (e.target == this.popup && this.value == 1) {
+            if ((e.target === this.popup || e.target === closer) && this.value == 1) {
                 e.detail.preventDefault = true
                 this.setValue(0, {sync:true, send:true})
             }
