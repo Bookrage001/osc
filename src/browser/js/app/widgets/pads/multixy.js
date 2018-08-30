@@ -4,7 +4,7 @@ var Pad = require('./pad'),
     touchstate = require('../mixins/touch_state')
 
 
-var xyDefaults = Xy.defaults()
+var xyDefaults = Xy.defaults()._props()
 
 
 module.exports = class MultiXy extends Pad {

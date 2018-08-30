@@ -4,7 +4,7 @@ var Pad = require('./pad'),
     Input = require('../inputs/input'),
     touchstate = require('../mixins/touch_state')
 
-var faderDefaults = Fader.defaults()
+var faderDefaults = Fader.defaults()._props()
 
 module.exports = class Xy extends Pad {
 
@@ -145,7 +145,7 @@ module.exports = class Xy extends Pad {
         if (this.getProp('input')) {
 
             this.input = new Input({
-                props:{...Input.defaults(), precision:this.getProp('precision'), unit:this.getProp('unit')},
+                props:{...Input.defaults()._props(), precision:this.getProp('precision'), unit:this.getProp('unit')},
                 parent:this, parentNode:this.widget
             })
             this.widget.appendChild(this.input.widget)

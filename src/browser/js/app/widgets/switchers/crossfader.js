@@ -1,15 +1,16 @@
 var Switcher = require('./switcher'),
+    Widget = require('../common/widget'),
     Fader = require('../sliders/fader'),
     {mapToScale} = require('../utils')
 
-var faderDefaults = Fader.defaults()
+var faderDefaults = Fader.defaults()._props()
 
 
 module.exports = class Crossfader extends Switcher {
 
     static defaults(){
 
-        return super.defaults({
+        return Widget.defaults({
 
             _crossfader: 'crossfader',
 

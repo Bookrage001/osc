@@ -58,7 +58,7 @@ module.exports = class Formula extends Widget {
 
         this.input = new Input({
             props:{
-                ...Input.defaults(),
+                ...Input.defaults()._props(),
                 editable:false,
                 precision:this.getProp('precision'),
                 unit: this.getProp('unit')

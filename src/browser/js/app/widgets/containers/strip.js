@@ -28,7 +28,7 @@ module.exports = class Strip extends Panel {
 
     constructor(options) {
 
-        var defaults = Panel.defaults()
+        var defaults = Panel.defaults()._props()
         for (var k in defaults) {
             if (!options.props.hasOwnProperty(k))
                 options.props[k] = defaults[k]

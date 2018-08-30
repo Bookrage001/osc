@@ -1,7 +1,7 @@
 var _switchers_base = require('./_switchers_base'),
     Switch = require('../buttons/switch')
 
-var switchDefaults = Switch.defaults()
+var switchDefaults = Switch.defaults()._props()
 
 module.exports = class Switcher extends _switchers_base {
 

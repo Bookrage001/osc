@@ -25,7 +25,7 @@ var Editor = class Editor {
 
         this.defaults = {}
         for (var k in widgets) {
-            this.defaults[k] = widgets[k].defaults()
+            this.defaults[k] = widgets[k].defaults()._props()
         }
 
         this.selectedWidgets = []

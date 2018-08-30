@@ -84,7 +84,7 @@ class Slider extends Canvas {
 
             this.input = new Input({
                 props:{
-                    ...Input.defaults(),
+                    ...Input.defaults()._props(),
                     precision:this.getProp('precision'),
                     unit:this.getProp('unit'),
                     vertical: this.getProp('type') == 'fader' && this.getProp('compact') && !this.getProp('horizontal')

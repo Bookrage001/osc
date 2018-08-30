@@ -83,13 +83,13 @@ class Widget extends EventEmitter {
                 'Values can be defined as objects if the osc type tag needs to be specified: `{type: "i", value: 1}`'
             ]},
             target: {type: 'string|array|null', value: '', help: [
-                'An string or or array of strings formatted as follow: `ip:port` or `["ip:port"]`.',
-                'If midi is enabled, targets can be `midi:device_name`.',
-                'The special item `"self"` can be used to refer to the emitting client directly.',
-                'If no target is set, messages can still be sent if the server has default targets',
-                'The server\'s default targets can be bypassed by setting of the items to `null`'
+                '- A `string` or `array` of strings formatted as follow: `ip:port` or `["ip:port"]`',
+                '- If midi is enabled, targets can be `midi:device_name`',
+                '- The special item `"self"` can be used to refer to the emitting client directly.',
+                '- If no target is set, messages can still be sent if the server has default targets',
+                '- The server\'s default targets can be bypassed by setting of the items to `null`'
             ]},
-            bypass:  {type: 'boolean', value: false, help: 'Set to `true` to prevent the widget from sending any osc message'}
+            bypass: {type: 'boolean', value: false, help: 'Set to `true` to prevent the widget from sending any osc message'}
 
         }
 
@@ -109,6 +109,17 @@ class Widget extends EventEmitter {
         for (var m in push) {
             alterDefaults[m] = push[m]
         }
+
+        alterDefaults._props = function() {
+            var props = {}
+            for (var k in this) {
+                if (k[0] !== '_') {
+                    props[k] = this[k].value
+                }
+            }
+            return props
+        }
+
 
         return alterDefaults
 

@@ -4,7 +4,7 @@ var {clip} = require('../utils'),
     Input = require('../inputs/input'),
     touchstate = require('../mixins/touch_state')
 
-var faderDefaults = Fader.defaults()
+var faderDefaults = Fader.defaults()._props()
 
 var RangeFader = class RangeFader extends Fader {
 
@@ -345,7 +345,7 @@ module.exports = class Range extends Widget {
         if (this.getProp('input')) {
 
             this.input = new Input({
-                props:{...Input.defaults(),
+                props:{...Input.defaults()._props(),
                     precision:this.getProp('precision'),
                     unit:this.getProp('unit'),
                     vertical: this.getProp('compact') && !this.getProp('horizontal')

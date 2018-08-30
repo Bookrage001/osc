@@ -41,7 +41,7 @@ var Parser = class Parser {
                 delete props.noSync
             }
             // Safe copy widget's options
-            let defaults = this.widgets[props.type].defaults()
+            let defaults = this.widgets[props.type].defaults()._props()
 
             // Set widget's undefined options to default
             for (let i in defaults) {

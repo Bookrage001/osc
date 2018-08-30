@@ -10,7 +10,7 @@ module.exports = class Root extends Panel {
 
             _children:'children',
 
-            variables: {type: '*', value: '@{parent.variables}', help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
+            variables: {type: '*', value: {}, help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
             tabs: {type: 'array', value: [], help: 'Each element of the array must be a tab object'},
             id: {type: 'string', value: 'root', help: 'Widgets sharing the same id will act as clones and update each other\'s value(s) without sending extra osc messages' },
 

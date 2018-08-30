@@ -4,8 +4,8 @@ var Pad = require('./pad'),
     {clip, hsbToRgb, rgbToHsb} = require('../utils'),
     Input = require('../inputs/input')
 
-var faderDefaults = Fader.defaults(),
-    xyDefaults = Xy.defaults()
+var faderDefaults = Fader.defaults()._props(),
+    xyDefaults = Xy.defaults()._props()
 
 module.exports = class Rgb extends Pad {
 
@@ -88,7 +88,7 @@ module.exports = class Rgb extends Pad {
         if (this.getProp('input')) {
 
             this.input = new Input({
-                props:{...Input.defaults(), precision:this.getProp('precision'), unit:this.getProp('unit')},
+                props:{...Input.defaults()._props(), precision:this.getProp('precision'), unit:this.getProp('unit')},
                 parent:this, parentNode:this.widget
             })
             this.widget.appendChild(this.input.widget)

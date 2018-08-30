@@ -57,7 +57,7 @@ module.exports.widgets = {
 
     // maths
     // deprecated / hidden
-    formula: require('./maths/formula')
+    // formula: require('./maths/formula')
 
 }
 

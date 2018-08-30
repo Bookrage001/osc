@@ -82,6 +82,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         address = widget ? widget.getProp('address') : address
 
         if (!Array.isArray(preArgs) && preArgs !== '') preArgs = [preArgs]
+        if (preArgs === '') preArgs = []
 
         preArgs = preArgs.map(x=>typeof x === 'object' && x !== null && x.value !== undefined ? x.value : x)
 
