@@ -41,14 +41,12 @@ module.exports = class OscReceiver {
             }
             var val = args.slice(preArgs.length)
             if (val.length < 2) val = val[0]
-            if (val !== this.value) {
-                try {
-                    this.value = JSON.parse(val)
-                } catch (err) {
-                    this.value = val
-                }
-                this.parent.updateProps([this.propName], this.parent)
+            try {
+                this.value = JSON.parse(val)
+            } catch (err) {
+                this.value = val
             }
+            this.parent.updateProps([this.propName], this.parent)
         }
 
     }
