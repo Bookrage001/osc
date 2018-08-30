@@ -110,7 +110,7 @@ class Widget extends EventEmitter {
             alterDefaults[m] = push[m]
         }
 
-        alterDefaults._props = function() {
+        alterDefaults._props = function() {
             var props = {}
             for (var k in this) {
                 if (k[0] !== '_') {

@@ -21,9 +21,11 @@ class Panel extends Widget {
             widgets: {type: 'array', value: [], help: 'Each element of the array must be a widget object. A panel cannot contain widgets and tabs simultaneously.'},
             tabs: {type: 'array', value: [], help: 'Each element of the array must be a tab object. A panel cannot contain widgets and tabs simultaneously'},
 
-            _value: 'value (tab selection)',
-            _osc:'osc (tab selection)'
-
+            value: {type: 'integer', value: '', help: [
+                'Defines currently opened tab in the widget',
+                'A a tab can be opened by setting its parent\'s value'
+            ]},
+            
         })
 
 

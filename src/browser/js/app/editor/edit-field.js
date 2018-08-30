@@ -183,20 +183,21 @@ module.exports = function editField(editor, widget, propName, defaultValue){
     label.addEventListener('fast-click', ()=>{
 
         var htmlHelp = Array.isArray(defaultValue.help) ? defaultValue.help.join('<br/>') : defaultValue.help
-        htmlHelp = htmlHelp.replace(/`([^`]*)`/g, '<pre>$1</pre>')
+        htmlHelp = htmlHelp ? '<p class="help">' + htmlHelp.replace(/`([^`]*)`/g, '<code>$1</code>') + '</p>' : ''
 
-        var htmlError = error ? `<p class="error">${error}</p><br/></br>` : ''
+
+        var htmlError = error ? `<p class="error">${error}</p>` : ''
 
         new Popup({closable: true, title: propName, content: `
             <div class="editor-help">
 
-                Type: <pre>${defaultValue.type}</pre><br/>
-                Default: <pre>${defaultValue.value}</pre><br/><br/>
-                Dynamic: <pre>${dynamic ? 'true' : 'false'}</pre><br/><br/>
+                <p>Type: <code>${defaultValue.type}</code></p>
+                <p>Default: <code>${JSON.stringify(defaultValue.value)}</code></p>
+                <p>Dynamic: <code>${dynamic ? 'true' : 'false'}</code></p>
 
                 ${htmlError}
 
-                <div class="usage">${htmlHelp}</div>
+                ${htmlHelp}
             </div>
         `})
     })

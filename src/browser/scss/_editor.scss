@@ -463,17 +463,22 @@
 
 .editor-help {
     .error {
-        color: red
+        color: red;
+        margin-top: 10rem;
     }
     em {
         font-style: italic;
     }
-    pre {
+    code {
         color: var(--color-accent);
         padding: 2rem 3rem;
         background: rgba(black, 0.2);
         display: inline-block;
+        user-select: auto;
+        cursor: auto;
+        ::selection{/* reset */}
     }
-    .usage {
+    .help {
+        margin-top: 10rem;
     }
 }

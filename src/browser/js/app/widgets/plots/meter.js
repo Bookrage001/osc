@@ -25,7 +25,7 @@ module.exports = class Meter extends Fader {
                 '- `--color-gauge: color;`',
                 '- `--color-knob: color;`',
                 '- `--color-pips: color;`',
-                `- '--gauge-opacity: number;'`
+                '- `--gauge-opacity: number;`'
             ]},
 
         })
