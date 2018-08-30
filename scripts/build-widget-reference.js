@@ -37,28 +37,34 @@ LANG = 'en'
 
 var widgets = require('../src/browser/js/app/widgets'),
     base = require('../src/browser/js/app/widgets/common/widget').defaults(),
-    doc = ''
+    doc = []
 
 
-doc += '\n\n'
-doc += '## Generic properties'
-doc += '\n\n'
+doc.push(`
+    ## Generic properties
 
-doc += '| property | type |default | description |'
-doc += '\n'
-doc += '| --- | --- | --- | --- |'
+    | property | type |default | description |
+    | --- | --- | --- | --- |`
+)
 
 for (var propName in base) {
 
     var prop = base[propName],
         permalink = propName
 
+    if (propName[0] === '_' && propName !== '_props') {
+        doc.push(`
+            | <span class="thead2">${prop}</span> ||||`
+        )
+    }
+
     if (propName === '_props' || propName[0] === '_') continue
 
     var help = Array.isArray(prop.help) ? prop.help.join('<br/><br/>').replace(/<br\/>-/g, '-') : prop.help || ''
 
-    doc += '\n'
-    doc += `| <h4 id="${permalink}">${propName}<a class="headerlink" href="#${permalink}" title="Permanent link">¶</a></h4> | \`${prop.type.replace(/\|/g,'\`\\|<br/>\`')}\` | <code>${(JSON.stringify(prop.value, null, '&nbsp;') || '').replace(/\n/g,'<br/>')}</code> | ${help} |`
+    doc.push(`
+        | <h4 id="${permalink}">${propName}<a class="headerlink" href="#${permalink}" title="Permanent link">¶</a></h4> | \`${prop.type.replace(/\|/g,'\`\\|<br/>\`')}\` | <code>${(JSON.stringify(prop.value, null, '&nbsp;') || '').replace(/\n/g,'<br/>')}</code> | ${help} |`
+    )
 
 }
 
@@ -66,36 +72,60 @@ for (var propName in base) {
 for (var k in widgets.categories) {
     var category = widgets.categories[k]
 
-    doc += '\n\n'
-    doc += '## ' + k
+    doc.push(`
+
+        ## ${k}`
+    )
 
     for (var kk in category) {
         var type = category[kk],
-            defaults = widgets.widgets[type].defaults()
+            defaults = widgets.widgets[type].defaults(),
+            separator = false
 
-        doc += '\n\n'
-        doc += '### ' + type
-        doc += '\n\n'
 
-        doc += '| property | type |default | description |'
-        doc += '\n'
-        doc += '| --- | --- | --- | --- |'
+        doc.push(`
+
+            ### ${type}
+
+            | property | type |default | description |
+            | --- | --- | --- | --- |`
+        )
 
         for (var propName in defaults) {
 
             var prop = defaults[propName],
                 permalink = type + '_' + propName
 
+            if (propName[0] === '_' && propName !== '_props') {
+                if (separator) doc.pop()
+                doc.push(`
+                    | <span class="thead2">${prop}</span> ||||`
+                )
+                separator = true
+            }
+
             if (propName === '_props' || propName[0] === '_' || JSON.stringify(prop) == JSON.stringify(base[propName])) continue
 
             var help = Array.isArray(prop.help) ? prop.help.join('<br/><br/>').replace(/<br\/>-/g, '-') : prop.help || ''
 
-            doc += '\n'
-            doc += `| <h4 id="${permalink}">${propName}<a class="headerlink" href="#${permalink}" title="Permanent link">¶</a></h4> | \`${prop.type.replace(/\|/g,'\`\\|<br/>\`')}\` | <code>${(JSON.stringify(prop.value, null, '&nbsp;') || '').replace(/\n/g,'<br/>')}</code> | ${help} |`
-
+            doc.push(`
+                | <h4 id="${permalink}">${propName}<a class="headerlink" href="#${permalink}" title="Permanent link">¶</a></h4> | \`${prop.type.replace(/\|/g,'\`\\|<br/>\`')}\` | <code>${(JSON.stringify(prop.value, null, '&nbsp;') || '').replace(/\n/g,'<br/>')}</code> | ${help} |`
+            )
+            separator = false
         }
+
+        if (separator) doc.pop()
 
     }
 }
 
-console.log(doc)
+doc.push(`\n\n
+    <script>
+    document.querySelectorAll('.thead2').forEach(function(item){
+        item.classList.remove('thead2')
+        item.closest('tr').classList.add('thead2')
+    })
+    </script>
+`)
+
+console.log(doc.map(x=>x.replace(/^ +/gm,'')).join(''))

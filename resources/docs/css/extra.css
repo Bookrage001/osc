@@ -66,3 +66,7 @@ article img {
 table code {
     white-space: nowrap;
 }
+table .thead2 {
+    background: rgba(0,0,0,0.05);
+    /* color:white; */
+}
