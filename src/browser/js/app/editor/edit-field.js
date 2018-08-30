@@ -2,16 +2,17 @@ var widgetCategories = require('../widgets/').categories,
     {updateWidget} = require('./data-workers'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
-    {icon} = require('../ui/utils')
+    {icon, Popup} = require('../ui/utils')
 
 module.exports = function editField(editor, widget, propName, defaultValue){
 
     let dynamic = widget.constructor.dynamicProps.includes(propName),
-        disabled = widget.disabledProps.indexOf(propName) > -1
+        disabled = widget.disabledProps.indexOf(propName) > -1,
+        error = widget.errors[propName]
 
     let field = DOM.create(`
         <div class="input-wrapper ${widget.errors[propName] ? 'error' : ''} ${disabled ? 'disabled' : ''}">
-            <label ${dynamic ? 'class="dynamic"': ''} title="${widget.errors[propName] || (dynamic ? 'dynamic' : '')}">${propName}</label>
+            <label class="${error ? 'error' : ''}">${propName}</label>
         </div>
     `)
 
@@ -57,7 +58,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 }
             })
 
-            if (typeof defaultValue === 'boolean') {
+            if (defaultValue.type.includes('boolean')) {
 
                 var toggle = DOM.create(`
                    <span class="checkbox ${widget.props[propName] ? 'on' : ''}">
@@ -92,7 +93,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             var newWidgets = []
             for (var w of editor.selectedWidgets) {
-                w.props[propName] = v !== '' ? v : deepCopy(defaultValue)
+                w.props[propName] = v !== '' ? v : deepCopy(defaultValue.value)
                 newWidgets.push(updateWidget(w, {preventSelect: editor.selectedWidgets.length > 1}))
             }
             editor.pushHistory()
@@ -178,8 +179,31 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
     }
 
+    var label = DOM.get(field, 'label')[0]
+    label.addEventListener('fast-click', ()=>{
+
+        var htmlHelp = Array.isArray(defaultValue.help) ? defaultValue.help.join('<br/>') : defaultValue.help
+        htmlHelp = htmlHelp.replace(/`([^`]*)`/g, '<pre>$1</pre>')
+
+        var htmlError = error ? `<p class="error">${error}</p><br/></br>` : ''
+
+        new Popup({closable: true, title: propName, content: `
+            <div class="editor-help">
+
+                Type: <pre>${defaultValue.type}</pre><br/>
+                Default: <pre>${defaultValue.value}</pre><br/><br/>
+                Dynamic: <pre>${dynamic ? 'true' : 'false'}</pre><br/><br/>
+
+                ${htmlError}
+
+                <div class="usage">${htmlHelp}</div>
+            </div>
+        `})
+    })
+
     if (input) {
         return field
     }
+
 
 }

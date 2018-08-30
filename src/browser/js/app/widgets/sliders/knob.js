@@ -34,9 +34,9 @@ module.exports = class Knob extends Slider {
             touchAddress: {type: 'string', value:'', help: 'OSC address for touched state messages: `/touchAddress [preArgs] 0/1`'},
             css: {type: 'string', value: '', help: [
                 'Available CSS variables:',
-                '- --color-gauge:color;',
-                '- --color-knob:color;',
-                '- --color-pips:color;'
+                '- `--color-gauge: color;`',
+                '- `--color-knob: color;`',
+                '- `--color-pips: color;`'
             ]}
 
         })

@@ -199,10 +199,10 @@ module.exports = class Range extends Widget {
             ]},
             css: {type: 'string', value: '', help: [
                 'Available CSS variables:',
-                '- --color-gauge:color;',
-                '- --color-knob:color;',
-                '- --color-pips:color;',
-                '- --gauge-opacity:number;'
+                '- `--color-gauge: color;`',
+                '- `--color-knob: color;`',
+                '- `--color-pips: color;`',
+                '- `--gauge-opacity: number;`'
             ]}
 
         })

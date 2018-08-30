@@ -25,7 +25,7 @@ var Editor = class Editor {
 
         this.defaults = {}
         for (var k in widgets) {
-            this.defaults[k] = widgets[k].defaults()._props()
+            this.defaults[k] = widgets[k].defaults()
         }
 
         this.selectedWidgets = []
@@ -273,7 +273,7 @@ var Editor = class Editor {
 
             if (!shared) continue
 
-            if (propName.indexOf('_') == 0) {
+            if (propName.indexOf('_') === 0 && propName !== '_props') {
 
                 field = DOM.create(`<div class="separator"><span>${props[propName]}</span></div>`)
 

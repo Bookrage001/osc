@@ -9,9 +9,9 @@ module.exports = class Led extends Widget {
 
             _image:'image',
 
-            size: 'cover',
-            position: 'center',
-            repeat: 'no-repeat',
+            size: {type: 'string', value: 'cover', help: 'CSS background-size'},
+            position: {type: 'string', value: 'center', help: 'CSS background-position'},
+            repeat: {type: 'string', value: 'no-repear', help: 'CSS background-repeat'},
             border: {type: 'boolean', value: true, help: 'Set to `false` to disable the borders and background-color'},
             cache: {type: 'boolean', value: true, help: [
                 'Set to false to disable image caching (forces file reload when updating or editing the widget).',

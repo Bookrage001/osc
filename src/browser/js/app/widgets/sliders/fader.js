@@ -43,10 +43,10 @@ module.exports = class Fader extends Slider {
             meterAddress: {type: 'string', value:'', help: 'OSC address for the built-in meter'},
             css: {type: 'string', value: '', help: [
                 'Available CSS variables:',
-                '- --color-gauge:color;',
-                '- --color-knob:color;',
-                '- --color-pips:color;',
-                '- --gauge-opacity:number;'
+                '- `--color-gauge: color;`',
+                '- `--color-knob: color;`',
+                '- `--color-pips: color;`',
+                '- `--gauge-opacity: number;`'
             ]}
         })
 

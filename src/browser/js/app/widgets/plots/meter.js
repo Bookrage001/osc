@@ -22,9 +22,9 @@ module.exports = class Meter extends Fader {
 
             css: {type: 'string', value: '', help: [
                 'Available CSS variables:',
-                `- '--color-gauge: color;'`,
+                '- `--color-gauge: color;`',
                 '- `--color-knob: color;`',
-                `- '--color-pips: color;'`,
+                '- `--color-pips: color;`',
                 `- '--gauge-opacity: number;'`
             ]},
 

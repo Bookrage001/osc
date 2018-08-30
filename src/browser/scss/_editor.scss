@@ -458,3 +458,22 @@
     }
 
 }
+
+// Help popup
+
+.editor-help {
+    .error {
+        color: red
+    }
+    em {
+        font-style: italic;
+    }
+    pre {
+        color: var(--color-accent);
+        padding: 2rem 3rem;
+        background: rgba(black, 0.2);
+        display: inline-block;
+    }
+    .usage {
+    }
+}

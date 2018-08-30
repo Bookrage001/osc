@@ -34,16 +34,23 @@ module.exports = class Encoder extends Widget {
 
             _encoder: 'encoder',
 
-            ticks:360,
-            back:-1,
-            forth:1,
-            release:'',
-            snap:false,
-            doubleTap:false,
+            ticks: {type: 'number', value: 'auto', help: 'defines the granularity / verbosity of the encoder (number of step for a 360° arc)'},
+            back: {type: '*', value: -1, help: 'Defines which value is sent when rotating the encoder anticlockwise'},
+            forth: {type: '*', value: 1, help: 'Defines which value is sent when rotating the encoder clockwise'},
+            release: {type: 'number', value: 'auto', help: [
+                'Defines which value is sent when releasing the encoder:',
+                '- Set to `null` to send send no argument in the osc message',
+                '- Can be an `object` if the type needs to be specified'
+            ]},
+            snap: {type: 'boolean', value: false, help: 'By default, dragging the widget will modify it\'s value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position'},
+            doubleTap: {type: 'boolean', value: false, help: [
+                'Set to `true` to make the fader reset to its `default` value when receiving a double tap.',
+                'Can also be an osc address, in which case the widget will just send an osc message (`/<doubleTap> <preArgs>`)'
+            ]},
 
         }, [], {
 
-            touchAddress:''
+            touchAddress: {type: 'string', value:'', help: 'OSC address for touched state messages: `/touchAddress [preArgs] 0/1`'},
 
         })
 
