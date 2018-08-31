@@ -9,8 +9,9 @@
   - **new** `gyroscope` widget
   - **new** `frame` widget
   - **breaking change** in `panel`: dropped Visual Format Language support (`layout` and `spacing` properties)
+  - maths: added `timestamp()` function
 - editor
-  - widget property names can be clicked to show documentation 
+  - widget property names can be clicked to show documentation
 - misc
   - the client app can be translated (https://github.com/jean-emmanuel/open-stage-control/issues/302)
 
