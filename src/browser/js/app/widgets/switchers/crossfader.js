@@ -18,12 +18,10 @@ module.exports = class Crossfader extends Switcher {
                 '- `String`: a widget\'s `id` whose state changes will be stored',
                 '- `Array`: a list of widget `id` string'
             ]},
-            horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display values horizontally'},
-            values: {type: 'array|object', value: {'Value 1':1,'Value 2':2}, help: [
-                '`Array` of possible values to switch between : `[1,2,3]`',
-                '`Object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won\'t be kept',
-            ]}
+            horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display values horizontally'}
+
         })
+        
     }
 
     constructor(options) {

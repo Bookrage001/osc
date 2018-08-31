@@ -16,6 +16,25 @@ class Gyroscope extends Widget {
             compass: {type: 'boolean', value: false, help: 'Set to `true` to return the orientation values with respect to the actual north direction of the world instead of the head direction of the device'},
             screenAdjusted: {type: 'boolean', value: false, help: 'Set to `true` to return screen adjusted values'}
 
+        }, [], {
+
+            value: {type: 'object', value: '', help: [
+                'The gyroscope\'s value is an object containing multiple values, which can be used by other widgets via the property maths syntax',
+                '- `value.do.alpha`: deviceorientation event alpha',
+                '- `value.do.beta`: deviceorientation event beta',
+                '- `value.do.gamma`: deviceorientation event gamma',
+                '- `value.do.absolute`: deviceorientation event absolute',
+                '- `value.dm.x`: devicemotion event acceleration x',
+                '- `value.dm.y`: devicemotion event acceleration y',
+                '- `value.dm.z`: devicemotion event acceleration z',
+                '- `value.dm.gx`: devicemotion event accelerationIncludingGravity x',
+                '- `value.dm.gy`: devicemotion event accelerationIncludingGravity y',
+                '- `value.dm.gz`: devicemotion event accelerationIncludingGravity z',
+                '- `value.dm.alpha`: devicemotion event rotationRate alpha',
+                '- `value.dm.beta`: devicemotion event rotationRate beta',
+                '- `value.dm.gamma`: devicemotion event rotationRate gamma'
+            ]},
+
         })
 
     }

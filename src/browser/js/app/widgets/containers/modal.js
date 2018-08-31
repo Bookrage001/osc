@@ -24,7 +24,10 @@ module.exports = class Modal extends Panel {
             _chidlren:'children',
 
             variables: {type: '*', value: '@{parent.variables}', help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
-            widgets: {type: 'array', value: [], help: 'Each element of the array must be a widget object'}
+            widgets: {type: 'array', value: [], help: 'Each element of the array must be a widget object'},
+            value: {type: 'integer', value: '', help: [
+                'Defines the modal\'s state:`0` for closed, `1` for opened'
+            ]},
 
         })
 

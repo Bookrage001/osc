@@ -17,8 +17,9 @@ module.exports = class Switcher extends _switchers_base {
             ]},
             horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display values horizontally'},
             values: {type: 'array|object', value: {'Value 1':1,'Value 2':2}, help: [
-                '`Array` of possible values to switch between : `[1,2,3]`',
-                '`Object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won\'t be kept',
+                'Each item represents a bank that stores the values from the widgets listed in `linkedWidgets`',
+                '- `Array` of possible values to switch between : `[1,2,3]`',
+                '- `Object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won\'t be kept',
             ]}
         })
 

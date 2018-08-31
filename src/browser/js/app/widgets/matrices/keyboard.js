@@ -32,6 +32,11 @@ module.exports = class Keyboard extends _matrix_base {
                 '`false`: it will be prepended to the widget\'s preArgs',
                 '`string`: will be used to define the widgets\' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\\$`))'
             ]},
+            css: {type: 'string', value: '', help: [
+                'Available CSS variables:',
+                '- `--color-white:color;` (white keys color)',
+                '- `--color-black:color;` (black keys color)'
+            ]}
 
         })
 
