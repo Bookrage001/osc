@@ -40,17 +40,7 @@ Open Stage Control is a [free software](https://www.fsf.org/), as in *gratis* an
 - [Getting started](getting-started)
 - [User interface](interface)
 - [Editing sessions](editing-sessions)
-- Widgets reference:
-    - [Widget properties](widgets/widgets)
-    - [Containers](widgets/containers)
-    - [Sliders](widgets/sliders)
-    - [Pads](widgets/pads)
-    - [Buttons](widgets/buttons)
-    - [Switchers](widgets/switchers)
-    - [Plots](widgets/plots)
-    - [Matrices](widgets/matrices)
-    - [Inputs](widgets/inputs)
-    - [Maths](widgets/maths)
+- [Widgets reference](widgets-reference)
 - Extras:
     - [Advanced property syntax](extras/advanced-property-syntax)
     - [CSS Tips](extras/css-tips)
