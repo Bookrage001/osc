@@ -25,14 +25,16 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             if (widget.props.type == 'tab' || widget.props.type == 'root') return
 
             input = DOM.create(`<select class="input no-keybinding" title="${propName}"/>`)
+            var innerHTML = ''
 
             for (let category in widgetCategories) {
-                input.innerHTML += `<optgroup label="> ${category}">`
+                innerHTML += `<optgroup label="> ${category}">`
                 for (let type of widgetCategories[category]) {
-                    input.innerHTML += `<option ${type == widget.props.type ? 'selected' : ''} value="${type}">${type}</option>`
+                    innerHTML += `<option ${type == widget.props.type ? 'selected' : ''} value="${type}">${type}</option>`
                 }
-                input.innerHTML += '</optgroup>'
+                innerHTML += '</optgroup>'
             }
+            input.innerHTML = innerHTML
 
             var wrapper = DOM.create('<div class="select-wrapper"></div>')
             wrapper.appendChild(input)
