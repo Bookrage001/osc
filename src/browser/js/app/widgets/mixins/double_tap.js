@@ -2,8 +2,7 @@ module.exports = (element, callback)=>{
 
     var lastTapTime = 0,
         lastTapX,
-        lastTapY,
-        touchId
+        lastTapY
 
     element.addEventListener('fast-click', (event)=>{
 
@@ -14,7 +13,7 @@ module.exports = (element, callback)=>{
 
         if (
 
-            tapLength < DOUBLE_TAP_TIME && touchId == eventData.pointerId &&
+            tapLength < DOUBLE_TAP_TIME &&
             Math.abs(lastTapX - eventData.pageX) < 20 &&
             Math.abs(lastTapY - eventData.pageY) < 20
 
@@ -26,7 +25,6 @@ module.exports = (element, callback)=>{
         } else {
 
             lastTapTime = tapTime
-            touchId = eventData.pointerId
             lastTapX = eventData.pageX
             lastTapY = eventData.pageY
 
