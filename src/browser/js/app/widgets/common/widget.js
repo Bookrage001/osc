@@ -83,6 +83,7 @@ class Widget extends EventEmitter {
                 'Values can be defined as objects if the osc type tag needs to be specified: `{type: "i", value: 1}`'
             ]},
             target: {type: 'string|array|null', value: '', help: [
+                'This defines the targets of the widget\'s OSC messages',
                 '- A `string` or `array` of strings formatted as follow: `ip:port` or `["ip:port"]`',
                 '- If midi is enabled, targets can be `midi:device_name`',
                 '- The special item `"self"` can be used to refer to the emitting client directly.',
