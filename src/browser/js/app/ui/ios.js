@@ -6,7 +6,7 @@ if (navigator.platform.match(/iPhone|iPod|iPad/)) {
 
     document.addEventListener('touchstart', (e)=>{
         e.preventDefault()
-        if (e.touches.length === 1 && !e.target._drag_widget) preventNextMove = (window.pageYOffset === 0)
+        if (e.touches.length === 1 && !e.target._drag_widget) preventNextMove = true
     }, false)
 
     document.addEventListener('touchmove', (e)=>{
