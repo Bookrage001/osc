@@ -184,7 +184,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
     var label = DOM.get(field, 'label')[0]
     label.addEventListener('fast-click', ()=>{
 
-        var htmlHelp = Array.isArray(defaultValue.help) ? defaultValue.help.join('<br/>') : defaultValue.help
+        var htmlHelp = Array.isArray(defaultValue.help) ? defaultValue.help.join('<br/><br/>').replace(/<br\/>-/g, '-') : defaultValue.help
         htmlHelp = htmlHelp ? '<p class="help">' + htmlHelp.replace(/`([^`]*)`/g, '<code>$1</code>') + '</p>' : ''
 
 

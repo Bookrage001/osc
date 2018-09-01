@@ -7,7 +7,7 @@ module.exports = class Rbgled extends Widget {
 
         return super.defaults({}, ['color', 'target', 'precision', 'bypass'], {
 
-            value: {type: 'array|string', help: [
+            value: {type: 'array|string', value: '', help: [
                 '- `Array`: `[r, g, b]` (`r`, `g` and `b` between `0` and `255`)',
                 '- `Array`: `[r, g, b, alpha]` (`alpha` between `0` and `255`)',
                 '- `String`: CSS color',

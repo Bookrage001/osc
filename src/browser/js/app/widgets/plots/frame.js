@@ -12,7 +12,18 @@ class Frame extends Widget {
 
             border: {type: 'boolean', value: true, help: 'Set to `false` to disable the borders and background-color'},
 
-        }, ['color', 'target', 'precision', 'bypass'], {})
+        }, ['color', 'target', 'precision', 'bypass'], {
+
+            label: {type: 'string|boolean', value: 'auto', help: [
+                'Set to `false` to hide completely',
+                'Insert icons using the prefix ^ followed by the icon\'s name : ^play, ^pause, etc',
+                'If set to `false`, all pointer-events will be disabled on the frame as long as the editor is enabled to ensure it can be selected'
+            ]},
+            value: {type: 'string', value: '', help: [
+                'External web page URL. Only local URLs are allowed (starting with `http://127.0.0.1/`, `http://10.x.x.x/`, `http://192.168.x.x/`, etc)',
+            ]}
+
+        })
 
     }
 
