@@ -28,7 +28,7 @@ document.addEventListener('touchstart', (event)=>{
 
     DOM.dispatchEvent(e.target, 'fast-click', e)
 
-    event.preventDefault()
+    if (e.preventDefault) event.preventDefault()
 
     longTouchTimer = setTimeout(()=>{
 
