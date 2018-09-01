@@ -131,4 +131,4 @@ doc.push(`\n\n
     </script>
 `)
 
-console.log(doc.map(x=>x.replace(/^ +/gm,'')).join(''))
+console.log(doc.join('').replace(/^ +/gm,''))
