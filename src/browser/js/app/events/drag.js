@@ -5,7 +5,7 @@ var targets = {},
 
 function pointerDownHandler(event) {
 
-    if (event.capturedByEditor === true) return
+    if (event.capturedByEditor || event.touchPunch) return
 
     if (!event.multitouch) {
         for (var i in targets) {
