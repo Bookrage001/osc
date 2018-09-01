@@ -71,7 +71,7 @@ module.exports = {
     },
 
     reloadCss: function(){
-        var queryString = '?reload=' + new Date().getTime()
+        var queryString = '?reload=' + Date.now()
         DOM.each(document, 'link[rel="stylesheet"][hot-reload]', (el)=>{
             el.href = el.href.replace(/\?.*|$/, queryString)
         })

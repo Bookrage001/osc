@@ -49,9 +49,9 @@ module.exports = class Visualizer extends _plots_base {
 
     startLoop() {
 
-        this.clock = new Date().getTime()
+        this.clock = Date.now()
         if (!this.looping) {
-            this.lastUpdate = new Date().getTime()
+            this.lastUpdate = Date.now()
             this.looping = true
             this.ticks = 0
             this.loop()
@@ -60,7 +60,7 @@ module.exports = class Visualizer extends _plots_base {
 
     loop() {
 
-        var t = new Date().getTime()
+        var t = Date.now()
 
         if (t -this.clock >= this.watchDuration) {
             this.looping = false

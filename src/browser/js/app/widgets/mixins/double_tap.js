@@ -6,7 +6,7 @@ module.exports = (element, callback)=>{
 
     element.addEventListener('fast-click', (event)=>{
 
-        var tapTime = new Date().getTime(),
+        var tapTime = Date.now(),
             tapLength = tapTime - lastTapTime,
             eventData = event.detail
 
