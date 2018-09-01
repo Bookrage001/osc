@@ -1,6 +1,10 @@
 // Prevent iOS Pull-To-Refresh
 
+var iOS
+
 if (navigator.platform.match(/iPhone|iPod|iPad/)) {
+
+    iOS = true
 
     var preventNextMove = false
 
@@ -17,3 +21,5 @@ if (navigator.platform.match(/iPhone|iPod|iPad/)) {
     }, false)
 
 }
+
+module.exports = iOS

@@ -1,3 +1,5 @@
+const iOS = require('../ui/ios')
+
 var longTouchTimer = false,
     clearLongTouchTimer = function() {
         if (longTouchTimer) {
@@ -8,7 +10,7 @@ var longTouchTimer = false,
 
 document.body.setAttribute('oncontextmenu', 'return false')
 
-document.addEventListener('mousedown', (event)=>{
+function mouseToFastClick(event) {
 
     if (event.touchPunch) return
     if (event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) return
@@ -20,9 +22,9 @@ document.addEventListener('mousedown', (event)=>{
 
     DOM.dispatchEvent(e.target, name, e)
 
-}, true)
+}
 
-document.addEventListener('touchstart', (event)=>{
+function touchToFastClick(event) {
 
     var e = event.changedTouches[0]
 
@@ -43,7 +45,10 @@ document.addEventListener('touchstart', (event)=>{
 
     }, 600)
 
-}, {passive: false, capture: true})
+}
+
+if (!iOS) document.addEventListener('mousedown', mouseToFastClick, true)
+document.addEventListener('touchstart', touchToFastClick, {passive: false, capture: true})
 
 
 DOM.addEventListener(document, 'touchend touchmove touchcancel', clearLongTouchTimer)

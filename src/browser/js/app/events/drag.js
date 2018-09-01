@@ -1,4 +1,5 @@
 const {normalizeDragEvent, resetEventOffset} = require('./utils')
+const iOS = require('../ui/ios')
 
 var targets = {},
     previousPointers = {}
@@ -189,8 +190,8 @@ function triggerWidgetEvent(target, name, event) {
 
 DOM.ready(()=>{
 
-    document.addEventListener('mousemove', mouseMoveCapture, true)
-    document.addEventListener('mouseup', mouseUpCapture, true)
+    if (!iOS) document.addEventListener('mousemove', mouseMoveCapture, true)
+    if (!iOS) document.addEventListener('mouseup', mouseUpCapture, true)
     document.addEventListener('touchmove', touchMoveCapture, true)
     DOM.addEventListener(document, 'touchend touchcancel', touchUpCapture, true)
 
@@ -217,10 +218,10 @@ module.exports = {
 
         if (multitouch) {
             element.addEventListener('touchstart', touchMultiWrapper, false)
-            element.addEventListener('mousedown', mouseMultiWrapper)
+            if (!iOS) element.addEventListener('mousedown', mouseMultiWrapper)
         } else {
             element.addEventListener('touchstart', touchDownCapture, false)
-            element.addEventListener('mousedown', mouseDownCapture)
+            if (!iOS) element.addEventListener('mousedown', mouseDownCapture)
         }
 
     },
@@ -244,10 +245,10 @@ module.exports = {
 
         if (multitouch) {
             element.removeEventListener('touchstart', touchMultiWrapper, false)
-            element.removeEventListener('mousedown', mouseMultiWrapper)
+            if (!iOS) element.removeEventListener('mousedown', mouseMultiWrapper)
         } else {
             element.removeEventListener('touchstart', touchDownCapture, false)
-            element.removeEventListener('mousedown', mouseDownCapture)
+            if (!iOS) element.removeEventListener('mousedown', mouseDownCapture)
         }
 
     },
@@ -260,12 +261,12 @@ module.exports = {
             if (!event.traversingContainer) event.traversingContainer = element
         }
 
-        element.addEventListener('mousedown', makeEventTraversing, true)
+        if (!iOS) element.addEventListener('mousedown', makeEventTraversing, true)
         element.addEventListener('touchstart', makeEventTraversing, true)
 
         element.addEventListener('disableTraversingGestures', ()=>{
 
-            element.removeEventListener('mousedown', makeEventTraversing, true)
+            if (!iOS) element.removeEventListener('mousedown', makeEventTraversing, true)
             element.removeEventListener('touchstart', makeEventTraversing, true)
 
         })
