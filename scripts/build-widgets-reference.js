@@ -19,7 +19,9 @@ window = {
     addEventListener: ()=>{},
     location: {},
     document: document,
-    navigator: {},
+    navigator: {
+        platform:''
+    },
     NodeList: Array,
     WebSocket: Object
 }
