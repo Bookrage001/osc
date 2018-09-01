@@ -16,7 +16,7 @@ module.exports = class Text extends Widget {
             ]},
             align: {type: 'string', value: '', help: 'Set to `left` or `right` to change text alignment (otherwise center)'},
 
-        }, ['color', 'target', 'precision', 'bypass'], {})
+        }, ['target', 'precision', 'bypass'], {})
 
     }
 
