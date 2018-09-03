@@ -8,7 +8,7 @@ module.exports = {
     editor_save: 'Sauver',
 
     // editor context-menu
-    editor_editparent: 'Editer parent',
+    editor_editparent: 'Éditer parent',
     editor_copy: 'Copier',
     editor_cut: 'Couper',
     editor_wrap: 'Grouper dans',
@@ -29,7 +29,7 @@ module.exports = {
     loading_session: 'Chargement de la session...',
 
     // fullscreen error
-    fs_unnavailable: 'Plein écran non disponible',
+    fs_unnavailable: 'Plein écran indisponible',
     fs_addtohome: 'Vous devez ajouter cette page à votre écran d\'accueil pour pouvoir l\'ouvrir en plein écran.',
 
     // session
@@ -37,7 +37,7 @@ module.exports = {
     session_new: 'Nouvelle session',
     session_malformed: 'Fichier de session mal formé.',
     session_parsingerror: 'Erreur à l\'ouverture de la session.',
-    session_uploaderror: 'Echec à l\'envoi du fichier de session.',
+    session_uploaderror: 'Échec à l\'envoi du fichier de session.',
 
     // sidepanel
     sidepanel_fs: 'Plein Écran',
@@ -51,7 +51,7 @@ module.exports = {
     state_send: 'Envoyer',
     state_import: 'Importer',
     state_export: 'Exporter',
-    state_uploaderror: 'Echec à l\'envoi du fichier d\'état.',
+    state_uploaderror: 'Échec à l\'envoi du fichier d\'état.',
 
     // traversing
     traversing_on: 'On',
