@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.37.0
 
 - bug fixes
   - editor: opening the sidepanel doesn't select the root widget anymore
