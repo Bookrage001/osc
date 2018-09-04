@@ -10,7 +10,7 @@ Client specific options can be set by adding query parameters to the server's ur
 | doubletab | number | 375 | sets the double tap/click time thershold in milliseconds |
 | zoom | number | 1 | sets the initial zoom |
 | framerate | number | 60 | limit canvas drawing framerate |
-| lang | string | *system_default* | use a different language than the default if available (2-letters code such as "en") |
+| lang | string | *system_default* | use a different language than the default if available (available languages: en, fr, ru) |
 
 Example:
 

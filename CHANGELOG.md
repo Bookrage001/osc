@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.37.1
+
+- translations
+  - fr: corrections
+  - ru: added russian translation
+
 ## 0.37.0
 
 - bug fixes
