@@ -2,6 +2,8 @@
 
 ## 0.37.1
 
+- bug fixes
+  - closing popups when clicking precisely on the "x"
 - translations
   - fr: corrections
   - ru: added russian translation

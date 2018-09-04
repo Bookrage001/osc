@@ -538,6 +538,9 @@ body {
             align-items: center;
             color:var(--color-text-fade);
             cursor: pointer;
+            i {
+                pointer-events: none;
+            }
         }
     }
     .popup-wrapper {
