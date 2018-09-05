@@ -3,7 +3,7 @@
 ## 0.37.2
 
 - bug fixes
-  - osc: regressing making empty `preArgs` count as one empty string argument 
+  - osc: regression making empty `preArgs` count as one empty string argument 
 
 ## 0.37.1
 
