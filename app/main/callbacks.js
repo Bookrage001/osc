@@ -251,7 +251,11 @@ module.exports =  {
 
         for (var k in widgetData) {
             if ((k === 'target' || k === 'preArgs')) {
-                cache[k] = Array.isArray(widgetData[k]) ? widgetData[k] : [widgetData[k]]
+                if (widgetData[k] !== '') {
+                    cache[k] = Array.isArray(widgetData[k]) ? widgetData[k] : [widgetData[k]]
+                } else {
+                    cache[k] = []
+                }
             } else {
                 cache[k] = widgetData[k]
             }
