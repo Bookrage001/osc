@@ -63,7 +63,7 @@ class Gyroscope extends Widget {
 
             this.sensor.start((data)=>{
 
-                this.setValue(data, {sync: true})
+                this.setValue(data, {sync: true, send: true})
 
                 // data.do.alpha       ( deviceorientation event alpha value )
                 // data.do.beta        ( deviceorientation event beta value )

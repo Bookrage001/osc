@@ -1,9 +1,15 @@
 # Changelog
 
+## 0.37.3
+
+- bug fixes
+  - gyroscope: osc sendings not properly triggered on value updates
+
+
 ## 0.37.2
 
 - bug fixes
-  - osc: regression making empty `preArgs` count as one empty string argument 
+  - osc: regression making empty `preArgs` count as one empty string argument
 
 ## 0.37.1
 
