@@ -98,7 +98,7 @@ var callbacks = {
         }
 
     },
-    '/GET':function(args) {
+    '/GET': function(args, transparentReply) {
 
         var [target, idOrAddress, ...preArgs] = args,
             widgets = []
@@ -117,17 +117,29 @@ var callbacks = {
 
         for (var i = widgets.length - 1; i >= 0; i--) {
 
-            return widgets[i].sendValue({
+            let overrides = {
                 target: [target],
-                address: '/GET',
-                preArgs: [idOrAddress, ...preArgs],
                 noSync: true
-            }, {force: true})
+            }
+
+            if (!transparentReply) {
+
+                overrides.address = '/GET'
+                overrides.preArgs = [idOrAddress, ...preArgs]
+
+            }
+
+            return widgets[i].sendValue(overrides, {force: true})
 
         }
 
     },
-    '/SET':function(args) {
+    '/GET/#': function(args) {
+
+        callbacks['/GET'](args, true)
+
+    },
+    '/SET': function(args) {
 
         var [idOrAddress, ...preArgsOrValue] = args,
             widgets = [],

@@ -89,6 +89,9 @@ Returns `/GET address preArg1 preArg2 ... value`
 - `preArg[1...]`: `*`, widget's `preArgs`
 - `value`: `*`
 
+## `/GET/#`
+
+Same as `/GET` but uses the widget's address instead of `/GET` to reply.
 
 ## `/SET target id value`
 

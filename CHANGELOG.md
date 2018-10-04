@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.37.4
+
+- remote control
+  - added `/GET/#` to get a widget's value without using `/GET` as reply address
+
 ## 0.37.3
 
 - bug fixes
