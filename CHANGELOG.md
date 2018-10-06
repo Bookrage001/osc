@@ -2,6 +2,8 @@
 
 ## 0.37.4
 
+- bug fixes
+  - osc receivers (`OSC{}`) not working in non-dynamic properties
 - remote control
   - added `/GET/#` to get a widget's value without using `/GET` as reply address
 

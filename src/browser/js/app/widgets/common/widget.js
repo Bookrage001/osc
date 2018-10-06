@@ -10,6 +10,7 @@ var EventEmitter = require('../../events/event-emitter'),
     {deepCopy, deepEqual} = require('../../utils'),
     updateWidget = ()=>{}
 
+var oscReceiverState = {}
 
 var OSCProps = [
     'precision',
@@ -427,6 +428,10 @@ class Widget extends EventEmitter {
 
                 if (!this.oscReceivers[address]) {
                     this.oscReceivers[address] = new OscReceiver(resolvedAddress, value, this, propName)
+                    if (oscReceiverState[address]) {
+                        this.oscReceivers[address].value = oscReceiverState[address]
+                        delete oscReceiverState[address]
+                    }
                 } else {
                     this.oscReceivers[address].setAddress(resolvedAddress)
                 }
@@ -703,6 +708,9 @@ class Widget extends EventEmitter {
         widgetManager.off(`prop-changed.${this.hash}`)
         widgetManager.off(`change.${this.hash}`)
         osc.off(new RegExp('.*\\.' + this.hash))
+        for (var i in this.oscReceivers) {
+            oscReceiverState[i] = this.oscReceivers[i].value
+        }
     }
 
 }
