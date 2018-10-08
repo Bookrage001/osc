@@ -46,6 +46,7 @@
         &.disabled {
             label {
                 color: var(--color-text-fade);
+                opacity: .8;
             }
         }
         label {
