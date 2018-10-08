@@ -21,7 +21,7 @@ var Editor = class Editor {
                 </div>
             </div>
         `)
-        
+
         this.form = DOM.get(this.wrapper, '#editor-form')[0]
         this.form.addEventListener('fast-click', (e)=>{
             if (e.target.classList.contains('separator')) {
@@ -119,7 +119,15 @@ var Editor = class Editor {
 
                 this.moveWidget(deltaX, deltaY)
             })
-
+            keyboardJS.bind('f2', (e)=>{
+                var input = DOM.get(this.form, 'textarea[title="label"]')[0]
+                if (input) {
+                    var folded = input.closest('.category.folded')
+                    if (folded) DOM.dispatchEvent(DOM.get(folded, '.separator'), 'fast-click')
+                    input.focus()
+                    input.setSelectionRange(0, input.value.length)
+                }
+            })
 
         })
 

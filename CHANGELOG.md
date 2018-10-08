@@ -5,6 +5,7 @@
 - editor
   - removed widget deletion confirmation popup
   - properties categories can now be folded
+  - added keyboard shortcut `F2` for editing the label quickly
 
 ## 0.37.4
 
