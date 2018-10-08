@@ -21,7 +21,22 @@ var Editor = class Editor {
                 </div>
             </div>
         `)
+        
         this.form = DOM.get(this.wrapper, '#editor-form')[0]
+        this.form.addEventListener('fast-click', (e)=>{
+            if (e.target.classList.contains('separator')) {
+                var name = e.target.getAttribute('data-name'),
+                    foldedIndex = this.foldedCategories.indexOf(name)
+                e.target.parentNode.classList.toggle('folded', foldedIndex < 0)
+                if (foldedIndex > -1) {
+                    this.foldedCategories.splice(foldedIndex, 1)
+                } else {
+                    this.foldedCategories.push(name)
+                }
+
+            }
+        })
+
 
         this.defaults = {}
         for (var k in widgets) {
@@ -44,7 +59,7 @@ var Editor = class Editor {
         this.historyState = -1
         this.historySession = null
 
-        this.deleting = false
+        this.foldedCategories = []
 
         this.mousePosition = {x:0, y:0}
         this.mouveMoveHandler = this.mouseMove.bind(this)
@@ -254,11 +269,13 @@ var Editor = class Editor {
         this.form.appendChild(DOM.create(`
             <div class="separator">
                 ${this.selectedWidgets.length > 1 ?
-        '<span class="accent">Multiple Widgets</span>' :
-        '<span>Widget</span>'
-}
+                    '<span class="accent">Multiple Widgets</span>' :
+                    '<span>Widget</span>'
+                }
             </div>
         `))
+
+        let category
 
         for (let propName in props) {
 
@@ -275,7 +292,10 @@ var Editor = class Editor {
 
             if (propName.indexOf('_') === 0 && propName !== '_props') {
 
-                field = DOM.create(`<div class="separator"><span>${props[propName]}</span></div>`)
+                if (category) this.form.appendChild(category)
+                category = DOM.create(`<div class="category ${this.foldedCategories.indexOf(props[propName]) > -1 ? "folded" : ""}"></div>`)
+
+                field = DOM.create(`<div class="separator" data-name="${props[propName]}"><span>${props[propName]}</span></div>`)
 
             } else if (widget.props[propName] === undefined) {
 
@@ -288,9 +308,15 @@ var Editor = class Editor {
 
             }
 
-            this.form.appendChild(field)
+            if (category) {
+                category.appendChild(field)
+            } else {
+                this.form.appendChild(field)
+            }
 
         }
+
+        if (category) this.form.appendChild(category)
 
         this.wrapper.appendChild(this.form)
         DOM.get('#editor')[0].appendChild(this.wrapper)

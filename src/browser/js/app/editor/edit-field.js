@@ -22,7 +22,11 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
         if (propName == 'type') {
 
-            if (widget.props.type == 'tab' || widget.props.type == 'root') return
+            if (widget.props.type == 'tab' || widget.props.type == 'root') {
+                field.classList.add('disabled')
+                field.appendChild(DOM.create(`<textarea class="input no-keybinding" title="${propName}" rows="1" disabled>${widget.props[propName]}</textarea>`))
+                return field
+            }
 
             input = DOM.create(`<select class="input no-keybinding" title="${propName}"/>`)
             var innerHTML = ''

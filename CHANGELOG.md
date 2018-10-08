@@ -4,6 +4,7 @@
 
 - editor
   - removed widget deletion confirmation popup
+  - properties categories can now be folded
 
 ## 0.37.4
 

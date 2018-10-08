@@ -228,6 +228,7 @@
             display: block;
             width:100%;
             text-align:center;
+            pointer-events: none;
             &.accent {
                 color: var(--color-accent);
             }
@@ -235,6 +236,28 @@
     }
     .separator + .input-wrapper .input {
         border-top-color:transparent;
+    }
+    .category {
+        .separator {
+            cursor: pointer;
+        }
+        .separator:before {
+            font-family: FontAwesome;
+            content: "\f0d7";
+            line-height: 30rem;
+            width:30rem;
+            text-align: center;
+            position: absolute;
+            opacity: 0.6;
+        }
+        &.folded {
+            .separator:before {
+                content: "\f0da";
+            }
+            .input-wrapper {
+                display: none;
+            }
+        }
     }
 }
 
