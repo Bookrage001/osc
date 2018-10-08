@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.38.0
+
+- editor
+  - removed widget deletion confirmation popup
+
 ## 0.37.4
 
 - bug fixes

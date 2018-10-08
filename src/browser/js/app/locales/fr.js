@@ -18,9 +18,6 @@ module.exports = {
     editor_addwidget: 'Nouveau widget',
     editor_addtab: 'Nouvel onglet',
     editor_delete: 'Supprimer',
-    editor_delete_prompt: 'Êtes-vous sûr ?',
-    editor_delete_yes: 'Supprimer',
-    editor_delete_no: 'Annuler',
 
     // loadings
     loading_upload: 'Téléversement...',

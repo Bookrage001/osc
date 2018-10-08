@@ -18,10 +18,6 @@ module.exports = {
     editor_addwidget: 'Add widget',
     editor_addtab: 'Add tab',
     editor_delete: 'Delete',
-    editor_delete_prompt: 'Are you sure ?',
-    editor_delete_yes: 'Delete',
-    editor_delete_no: 'Cancel',
-
 
     // loadings
     loading_upload: 'Uploading file...',

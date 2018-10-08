@@ -490,47 +490,20 @@ var Editor = class Editor {
             type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
             parent = this.selectedWidgets[0].parent
 
-        if (this.deleting || this.selectedWidgets[0].getProp('id') === 'root') return
+        if (this.selectedWidgets[0].getProp('id') === 'root') return
 
-        this.deleting = true
-
-        var popup = new Popup({
-            title: locales('editor_delete_prompt'),
-            content:`
-                <div class="actions">
-                    <a class="btn warning confirm-delete">${locales('editor_delete_yes')}</a>
-                    <a class="btn cancel-delete">${locales('editor_delete_no')}</a>
-                </div>`,
-            closable: false,
-            escKey: true,
-            enterKey: function(){DOM.get(this.html, '.confirm-delete')[0].click()}
-        })
-
-        DOM.get(popup.html, '.confirm-delete')[0].addEventListener('click', ()=>{
-
-            popup.close()
-
-            if (type === 'widget') {
-                for (let i of index) {
-                    parent.props.widgets.splice(i,1)
-                }
-            } else {
-                for (let i of index) {
-                    parent.props.tabs.splice(i,1)
-                }
+        if (type === 'widget') {
+            for (let i of index) {
+                parent.props.widgets.splice(i,1)
             }
+        } else {
+            for (let i of index) {
+                parent.props.tabs.splice(i,1)
+            }
+        }
 
-            this.select(updateWidget(parent, {preventSelect: true}))
-            this.pushHistory()
-
-            this.deleting = false
-
-        })
-
-        DOM.get(popup.html, '.cancel-delete')[0].addEventListener('click', function(){
-            popup.close()
-            this.deleting = false
-        })
+        this.select(updateWidget(parent, {preventSelect: true}))
+        this.pushHistory()
 
     }
 

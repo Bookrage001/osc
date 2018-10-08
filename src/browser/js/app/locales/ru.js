@@ -18,9 +18,6 @@ module.exports = { // @https://github.com/suhr
     editor_addwidget: 'Добавить виджет',
     editor_addtab: 'Добавить вкладку',
     editor_delete: 'Удалить',
-    editor_delete_prompt: 'Вы уверены?',
-    editor_delete_yes: 'Удалить',
-    editor_delete_no: 'Отмена',
 
     // loadings
     loading_upload: 'Загрузка файла...',
