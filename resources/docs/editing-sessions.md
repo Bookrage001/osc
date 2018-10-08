@@ -57,6 +57,8 @@ When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selec
 
 | Shortcut | Description |
 |---|---|
+| `mod + s` | save session as... |
+| `f2` | edit selected widget's label |
 | `mod + z` | undo |
 | `mod + y / mod + shift + z` | redo |
 | `delete` | delete selected widgets |

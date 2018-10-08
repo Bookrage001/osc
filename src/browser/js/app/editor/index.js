@@ -131,6 +131,11 @@ var Editor = class Editor {
 
         })
 
+        keyboardJS.bind('mod + s', (e)=>{
+            sessionManager.save()
+        })
+
+
     }
 
     enable() {

@@ -6,6 +6,7 @@
   - removed widget deletion confirmation popup
   - properties categories can now be folded
   - added keyboard shortcut `F2` for editing the label quickly
+  - added keyboard shortcut `mod + s` for saving the session
 
 ## 0.37.4
 
