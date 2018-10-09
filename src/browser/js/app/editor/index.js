@@ -132,6 +132,7 @@ var Editor = class Editor {
         })
 
         keyboardJS.bind('mod + s', (e)=>{
+            e.preventDefault()
             sessionManager.save()
         })
 
