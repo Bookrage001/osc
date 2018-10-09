@@ -374,6 +374,10 @@ class Widget extends EventEmitter {
                     }
                 }
 
+
+                // ignore clone wrapper in @parent stack (https://github.com/jean-emmanuel/open-stage-control/issues/379)
+                if (widgets[0] === this.parent && this.parent.getProp('type') === 'clone') widgets = [this.parent.parent]
+
                 if (storeLinks) {
 
                     if (k == 'value') {
