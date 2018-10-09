@@ -20,7 +20,7 @@ class Clone extends Widget {
 
             props: {type: 'object', value: {}, help: 'Cloned widget\'s properties to override'},
 
-        }, ['label', 'color', 'linkId', '_value', 'default', 'value', '_osc', 'precison', 'address', 'preArgs', 'target', 'bypass'])
+        }, ['label', 'color', 'linkId', '_value', 'default', 'value', '_osc', 'precision', 'address', 'preArgs', 'target', 'bypass'])
 
     }
 
