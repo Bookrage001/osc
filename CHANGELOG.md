@@ -2,6 +2,8 @@
 
 ## 0.38.0
 
+- bug fixes
+  - `@{parent}` calls not working consistently in clone widgets
 - editor
   - removed widget deletion confirmation popup
   - properties categories can now be folded
