@@ -18,6 +18,7 @@ module.exports = {
     editor_addwidget: 'Add widget',
     editor_addtab: 'Add tab',
     editor_delete: 'Delete',
+    editor_click_for_help: 'Click on the property name to display help',
 
     // loadings
     loading_upload: 'Uploading file...',

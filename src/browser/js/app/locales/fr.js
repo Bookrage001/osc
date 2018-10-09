@@ -18,6 +18,7 @@ module.exports = {
     editor_addwidget: 'Nouveau widget',
     editor_addtab: 'Nouvel onglet',
     editor_delete: 'Supprimer',
+    editor_click_for_help: 'Cliquer sur le nom de la propriété pour afficher l\'aide',
 
     // loadings
     loading_upload: 'Téléversement...',

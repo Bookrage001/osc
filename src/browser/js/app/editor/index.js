@@ -6,7 +6,6 @@ var {widgets} = require('../widgets/'),
     diff = require('deep-diff'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
-    locales = require('../locales'),
     sessionManager
 
 const HISTORY_SIZE = 50
@@ -120,7 +119,7 @@ var Editor = class Editor {
                 this.moveWidget(deltaX, deltaY)
             })
             keyboardJS.bind('f2', (e)=>{
-                var input = DOM.get(this.form, 'textarea[title="label"]')[0]
+                var input = DOM.get(this.form, 'textarea[name="label"]')[0]
                 if (input) {
                     var folded = input.closest('.category.folded')
                     if (folded) DOM.dispatchEvent(DOM.get(folded, '.separator'), 'fast-click')

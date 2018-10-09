@@ -2,7 +2,8 @@ var widgetCategories = require('../widgets/').categories,
     {updateWidget} = require('./data-workers'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
-    {icon, Popup} = require('../ui/utils')
+    {icon, Popup} = require('../ui/utils'),
+    locales = require('../locales')
 
 module.exports = function editField(editor, widget, propName, defaultValue){
 
@@ -11,7 +12,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         error = widget.errors[propName]
 
     let field = DOM.create(`
-        <div class="input-wrapper ${widget.errors[propName] ? 'error' : ''} ${disabled ? 'disabled' : ''}">
+        <div class="input-wrapper ${widget.errors[propName] ? 'error' : ''} ${disabled ? 'disabled' : ''}" title="${locales('editor_click_for_help')}">
             <label class="btn ${error ? 'error' : ''}">${propName}</label>
         </div>
     `)
@@ -24,11 +25,11 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             if (widget.props.type == 'tab' || widget.props.type == 'root') {
                 field.classList.add('disabled')
-                field.appendChild(DOM.create(`<textarea class="input no-keybinding" title="${propName}" rows="1" disabled>${widget.props[propName]}</textarea>`))
+                field.appendChild(DOM.create(`<textarea class="input no-keybinding" name="${propName}" rows="1" disabled>${widget.props[propName]}</textarea>`))
                 return field
             }
 
-            input = DOM.create(`<select class="input no-keybinding" title="${propName}"/>`)
+            input = DOM.create(`<select class="input no-keybinding"/>`)
             var innerHTML = ''
 
             for (let category in widgetCategories) {
@@ -50,7 +51,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             var value = typeof widget.props[propName] !== 'string' ?
                 JSON.stringify(widget.props[propName], null, '  ').replace(/\n\s\s\s\s/g, ' ').replace(/\n\s\s(\}|\])/g, ' $1') : widget.props[propName]
 
-            input = DOM.create(`<textarea class="input no-keybinding" title="${propName}" rows="${value.split('\n').length}">${value}</textarea>`)
+            input = DOM.create(`<textarea class="input no-keybinding" name="${propName}" rows="${value.split('\n').length}">${value}</textarea>`)
 
             DOM.addEventListener(input, ['input', 'focus'], ()=>{
                 input.setAttribute('rows',0)
