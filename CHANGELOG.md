@@ -4,6 +4,7 @@
 
 - bug fixes
   - `@{parent}` calls not working consistently in clone widgets
+  - `slider/pads`: inteverted ranges not working
 - editor
   - removed widget deletion confirmation popup
   - properties categories can now be folded

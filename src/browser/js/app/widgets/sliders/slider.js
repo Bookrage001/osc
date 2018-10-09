@@ -190,7 +190,10 @@ class Slider extends Canvas {
     valueToPercent(value) {
 
         for (var i=0;i<this.rangeVals.length-1;i++) {
-            if (value <= this.rangeVals[i+1] && value >= this.rangeVals[i]) {
+            if (
+                (this.rangeVals[i+1] > this.rangeVals[i] && value <= this.rangeVals[i+1] && value >= this.rangeVals[i]) ||
+                (this.rangeVals[i+1] < this.rangeVals[i] && value >= this.rangeVals[i+1] && value <= this.rangeVals[i])
+            ) {
                 return mapToScale(value,[this.rangeVals[i],this.rangeVals[i+1]],[this.rangeKeys[i],this.rangeKeys[i+1]],false,this.getProp('logScale'),true)
             }
         }
