@@ -41,40 +41,56 @@ class Clone extends Widget {
         if (this.cloneTarget) this.createClone()
 
         widgetManager.on(`widget-created.${this.hash}`, (e)=>{
-            var {id, widget} = e
+            var {id, widget, reCreate} = e
+            function hasParentId(ob,tid){
+                let parent = ob
+                while(parent && parent.getProp && parent.parent !== widgetManager){
+                    if( parent.getProp('id')===tid){return parent}
+                    parent = parent.parent
+                }
+            }
+            const potentialTarget = hasParentId(widget,this.getProp('widgetId'))
             if (
                 this.cloneTarget === null &&
-                id === this.getProp('widgetId') &&
-                this.isValidCloneTarget(widget)
+                ! this.contains(widget) && 
+                potentialTarget
             ) {
-                this.cloneTarget = widget
+                this.cloneTarget = potentialTarget
                 this.createClone()
                 resize.check(this.container)
             }
         })
-
-        widgetManager.on(`widget-removed.${this.hash}`, (e)=>{
-            if (this.cloneTarget === e.widget) {
-                this.cloneTarget = null
-                this.cleanClone()
-            }
-        })
-
     }
 
     getCloneTarget() {
 
         var widgets = widgetManager.getWidgetById(this.getProp('widgetId'))
-        for (var i in widgets) {
-            if (
-                this.isValidCloneTarget(widgets[i])
-            ) {
+        if(widgets.length==1){
+            this.cloneTarget = widgets[0];
+             return;
+         }
 
+        // when duplicating clones pointing to an object with a static id,
+        // each clone will recreate an object with the same id
+        // we try to get the original one if there is more than 2
+        let foundDedupedClone = null;
+        function isInsideClone(wi){
+            let parent = wi.parent;
+            return parent && parent.cachedProps.type==="clone"
+        }
+        for (var i in widgets) {
+            if (this.isValidCloneTarget(widgets[i])) {
                 this.cloneTarget = widgets[i]
-                break
+                if(!isInsideClone(widgets[i]) ){
+                    foundDedupedClone = widgets[i]
+                    break;
+                }
             }
         }
-
+        this.cloneTarget = foundDedupedClone || this.cloneTarget
+        if(this.cloneTarget && !foundDedupedClone ){
+            console.warn('no deduped clone found : ',this.getProp('widgetId'))
+        }
     }
 
     isValidCloneTarget(widget) {
@@ -93,7 +109,7 @@ class Clone extends Widget {
         this.container.classList.remove(...this.cloneClass)
         this.container.classList.add('clone-container', 'empty')
         this.cloneClass = []
-        if (this.cloneTarget) this.cloneTarget.off(`widget-created.${this.hash}`)
+        if (this.cloneTarget) widgetManager.off(`widget-removed.${this.hash}`)
 
     }
 
@@ -107,8 +123,8 @@ class Clone extends Widget {
         this.cloneClass = [...this.cloneTarget.container.classList].filter(i=>excludedCloneClasses.indexOf(i) === -1)
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
-
-        var clone = parser.parse([{...deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
+        const propsCopy = deepCopy(this.cloneTarget.props)
+        var clone = parser.parse([{...propsCopy, ...this.getProp('props')}], this.widget, this,null,null,true)
 
         if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
             widgetManager.trigger('change.*', [{
@@ -122,9 +138,13 @@ class Clone extends Widget {
 
         DOM.each(this.widget, '.widget', (el)=>{el.classList.add('not-editable')})
 
-        this.cloneTarget.once(`widget-created.${this.hash}`, (e)=>{
-            this.createClone(this.cloneTarget)
-            resize.check(this.container)
+        // will react to any of childs deletion
+        widgetManager.on(`widget-removed.${this.hash}`, (e)=>{
+            var { widget} = e
+            if(this.cloneTarget && this.cloneTarget.contains(widget)){
+            this.cleanClone()
+            this.cloneTarget = null
+        }
         })
 
         this.cloneLock = false
