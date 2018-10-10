@@ -515,10 +515,11 @@
 
 // selectable
 
-.ui-selectable-helper {
-    position:absolute;
+.select-area {
+    position:fixed;
     z-index:999999;
     border: 1rem solid var(--color-accent);
+    pointer-events: none;
     &:after {
         content:"";
         position: absolute;
@@ -526,5 +527,8 @@
         right:0;bottom:0;
         background: var(--color-accent);
         opacity: 0.2;
+    }
+    &.hidden {
+        display: none;
     }
 }
