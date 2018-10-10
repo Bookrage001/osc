@@ -5,7 +5,7 @@ var {updateWidget} = require('./data-workers'),
     locales = require('../locales')
 
 
-var multiSelectKey = (navigator.platform || '').match('Mac') ? 'shiftKey' : 'ctrlKey'
+var multiSelectKey = (navigator.platform || '').match('Mac') ? 'metaKey' : 'ctrlKey'
 
 
 class ContextMenu {
@@ -122,7 +122,7 @@ var handleClick = function(event) {
 
     if (contextMenu.menu && !contextMenu.menu.contains(event.target)) contextMenu.close()
 
-    if (!event.detail.ctrlKey && event.type !== 'fast-right-click' && (
+    if (!event.detail.shiftKey && event.type !== 'fast-right-click' && (
         event.target.classList.contains('ui-resizable-handle') ||
         event.target.classList.contains('ui-draggable-handle') ||
         event.target.id === 'open-toggle'
@@ -149,7 +149,7 @@ var handleClick = function(event) {
     // right-click menu
     if (event.type !== 'fast-right-click') return
 
-    if (!event.detail.ctrlKey && editor.selectedWidgets.length <= 1) {
+    if (!event.detail.shiftKey && editor.selectedWidgets.length <= 1) {
         editor.select(widget, {multi: event.detail[multiSelectKey]})
     }
 

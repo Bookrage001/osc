@@ -47,7 +47,7 @@ Selected widget can be resized using its south, south-east and east handles. It 
 
 ## Bulk editing
 
-When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selected for edition by dragging the mouse or clicking on each widget individually.
+When holding `shift`, the mouse can be used to select multiple widgets in a *click & drag* gesture. When holding `ctrl` (or `command` on Mac), multiple widgets can be selected for edition.
 
 - they must share the same parent widget
 - context-menu actions and properties changes apply to all selected widgets
