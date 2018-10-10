@@ -134,7 +134,6 @@ var Editor = class Editor {
                     .filter(w=>w.parent==curWidget)
                     
                     if(toSelectList && toSelectList.length){
-                        // multiple objects can have the same id, need to check we're getting the child one
                             toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
                             toSelect = toSelectList[0]
                     }
