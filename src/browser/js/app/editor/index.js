@@ -137,8 +137,11 @@ var Editor = class Editor {
 
         keyboardJS.bind('mod + e', (e)=>{
             e.preventDefault()
-            if(EDITING){editor.disable()}
-            else{editor.enable()}
+            if (this.enabled) {
+                this.disable()
+            } else {
+                this.enable()
+            }
         })
 
 
