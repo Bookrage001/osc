@@ -76,5 +76,11 @@ The following shortcuts are available only when the editor is enabled:
 | `mod + shift + v` | paste and increment id |
 | `up, down, left, right` | move selected widgets (1 grid unit, hold `shift` for 5 grid units) |
 | `alt + [up, down, left, right]` | resize selected widgets (1 grid unit, hold `shift` for 5 grid units) |
+| `ctrl + up` | select current widget's parent |
+| `ctrl + down` | select current widget's first child |
+| `ctrl + right` | select current widget's next sibling |
+| `ctrl + left` | select current widget's previous sibling |
+
+
 
 Where `mod` is `ctrl` except on MacOs (`command`)
