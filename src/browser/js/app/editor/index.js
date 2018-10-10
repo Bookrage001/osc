@@ -209,7 +209,7 @@ var Editor = class Editor {
         })
 
 
-        this.selectarea = new SelectArea((elements)=>{
+        this.selectarea = new SelectArea('.widget:not(.not-editable), .tablink', (elements)=>{
 
             elements = elements.map(e => widgetManager.getWidgetByElement(e, ':not(.not-editable)')).filter(e => e)
 
