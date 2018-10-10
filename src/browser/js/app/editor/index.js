@@ -135,6 +135,12 @@ var Editor = class Editor {
             sessionManager.save()
         })
 
+        keyboardJS.bind('mod + e', (e)=>{
+            e.preventDefault()
+            if(EDITING){editor.disable()}
+            else{editor.enable()}
+        })
+
 
     }
 
