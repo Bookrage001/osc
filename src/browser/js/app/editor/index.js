@@ -118,6 +118,64 @@ var Editor = class Editor {
 
                 this.moveWidget(deltaX, deltaY)
             })
+
+            keyboardJS.bind(['mod + up','mod + down','mod + left' , 'mod + right'], (e)=>{
+                if (e.target.classList.contains('no-keybinding')) return
+                if(!this.selectedWidgets || (this.selectedWidgets.length==0)) return
+
+                const curWidget = this.selectedWidgets[0]
+                let toSelect = null;
+                if(e.key == 'ArrowUp' && curWidget.parent!==widgetManager){
+                    toSelect = curWidget.parent
+                }
+                else if(e.key == 'ArrowDown' ){
+                    const widgetList =  curWidget.getProp('widgets')
+                    if(widgetList && widgetList.length){
+                        // multiple objects can have the same id, need to check we're getting the child one
+                        const toSelectList = widgetManager.getWidgetById(widgetList[0].id)
+                        .filter(el=>el.hash!=curWidget.hash && el.parent===curWidget)
+                        if(toSelectList){
+                            toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
+                            toSelect = toSelectList[0]
+                        }
+
+                    }
+
+                }
+                else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
+                    const objectWidgetList = curWidget.parent.getProp('widgets')
+                    if(objectWidgetList && objectWidgetList.length){
+                        // multiple objects can have the same id, need to check we're getting the right one
+                        // would be cleaner if widgets returned by getProp('widgets') had the hash inside...
+                        const equal_fields = ['id','left','top','width','height']
+                        const widgetList = objectWidgetList.map(objectW=>{
+                            const widgetsWithSameIds = widgetManager.getWidgetById(objectW.id)
+                            .filter(el=>el.parent===curWidget.parent)
+                            return widgetsWithSameIds.find(otherW=>
+                                {
+                                    for (const el of equal_fields){
+                                        if(otherW.cachedProps[el]!==objectW[el]){
+                                            return false
+                                        }
+                                    }
+                                    return true
+                                })
+                            })
+                        widgetList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
+                        const idx = widgetList.findIndex(e=>e.hash===curWidget.hash)
+                        if(idx>=0){
+                            const nextIdx = (idx + (e.key == 'ArrowLeft'?-1:1)+widgetList.length) % widgetList.length
+                            toSelect = widgetList[nextIdx]
+                        }
+                    }
+                }
+
+                if(toSelect){
+                    this.select(toSelect)
+                }
+
+            })
+
             keyboardJS.bind('f2', (e)=>{
                 var input = DOM.get(this.form, 'textarea[name="label"]')[0]
                 if (input) {
