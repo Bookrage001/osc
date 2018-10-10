@@ -447,7 +447,7 @@ var Editor = class Editor {
         var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
             data = this.selectedWidgets.map((w)=>w.props),
             type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
-            parent = editor.selectedWidgets[0].parent
+            parent = this.selectedWidgets[0].parent
 
         if (type !== 'widget') return
 
@@ -474,7 +474,7 @@ var Editor = class Editor {
 
         var data = this.selectedWidgets.map((w)=>w.props)
 
-        var pastedData = JSON.parse(editor.clipboard),
+        var pastedData = JSON.parse(this.clipboard),
             minTop = Infinity,
             minLeft = Infinity
 
