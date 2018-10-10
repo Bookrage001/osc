@@ -234,6 +234,30 @@ var Editor = class Editor {
 
         document.body.addEventListener('mousemove', this.mouveMoveHandler)
 
+
+        var tmpSelection = []
+        $('#container').selectable({
+            filter: '.widget:not(.not-editable)',
+            appendTo: '#container',
+            autoRefresh: false,
+            tolerance: 'touch',
+            distance:1,
+            start: ()=>{
+                tmpSelection = []
+            },
+            selected: (ev, ui)=>{
+                var widget = widgetManager.getWidgetByElement(ui.selected)
+                if (widget) tmpSelection.unshift(widget)
+            },
+            stop: ()=>{
+                for (var i in tmpSelection) {
+                    this.select(tmpSelection[i], {multi:true, fromLasso:true})
+                }
+                this.select(this.selectedWidgets)
+            }
+
+        })
+
     }
 
     disable() {
@@ -261,6 +285,8 @@ var Editor = class Editor {
         keyboardJS.setContext('global')
 
         document.body.removeEventListener('mousemove', this.mouveMoveHandler)
+
+        $('#container').selectable('destroy')
 
     }
 
@@ -304,7 +330,7 @@ var Editor = class Editor {
 
                 this.selectedWidgets.push(widget)
 
-            } else if (sameLevel){
+            } else if (sameLevel && !options.fromLasso){
 
                 this.selectedWidgets.splice(this.selectedWidgets.indexOf(widget), 1)
 
@@ -319,12 +345,14 @@ var Editor = class Editor {
 
         }
 
-        if (this.selectedWidgets.length > 0) {
+        if (this.selectedWidgets.length > 0 && !options.fromLasso) {
 
             this.createEditForm()
             this.createSelectionBlock()
 
         }
+
+        $('#container').selectable('refresh')
 
     }
 

@@ -12,6 +12,8 @@
   - added keyboard shortcut `mod + s` for saving the session
   - use `backspace` instead of `delete` for deleting widgets on MacOs
   - added keyboard shortcut `mod + e` for enabling / disabling the editor
+  - added keyboard shortcuts `mod + arrows` for selecting widgets
+  - added multi widget selection with mouse
 
 ## 0.37.4
 

@@ -30,7 +30,7 @@ function touchToFastClick(event) {
 
     DOM.dispatchEvent(e.target, 'fast-click', e)
 
-    if (e.preventDefault) event.preventDefault()
+    if (e.preventOriginalEvent) event.preventDefault()
 
     longTouchTimer = setTimeout(()=>{
 
