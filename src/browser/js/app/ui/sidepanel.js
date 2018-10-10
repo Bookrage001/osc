@@ -206,7 +206,7 @@ DOM.get('#container')[0].addEventListener('fast-click', function(e){
 
     if (e.target.id == 'open-toggle') {
         e.stopPropagation()
-        e.detail.preventDefault = true
+        e.detail.preventOriginalEvent = true
         sidepanelToggle()
     }
 

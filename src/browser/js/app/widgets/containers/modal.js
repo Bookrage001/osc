@@ -87,7 +87,7 @@ module.exports = class Modal extends Panel {
         var closer = DOM.get(this.popup, '.closer')[0]
         this.popup.addEventListener('fast-click',(e)=>{
             if ((e.target === this.popup || e.target === closer) && this.value == 1) {
-                e.detail.preventDefault = true
+                e.detail.preventOriginalEvent = true
                 this.setValue(0, {sync:true, send:true})
             }
         })

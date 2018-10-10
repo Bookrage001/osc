@@ -41,7 +41,7 @@ module.exports = {
                 var closer = DOM.get(this.html, '.popup-title .closer')[0]
                 this.html.addEventListener('fast-click',(e)=>{
                     if (e.target === this.html || e.target === closer) {
-                        e.detail.preventDefault = true
+                        e.detail.preventOriginalEvent = true
                         this.close()
                     }
                 })

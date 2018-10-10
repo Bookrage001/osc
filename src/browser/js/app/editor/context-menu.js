@@ -37,7 +37,7 @@ class ContextMenu {
                 let item = DOM.create(`<div class="item">${label}</div>`)
                 menu.appendChild(item)
                 item.addEventListener(this.event, (e)=>{
-                    e.detail.preventDefault = true
+                    e.detail.preventOriginalEvent = true
                     actions[label]()
                     this.close()
                 })
