@@ -129,11 +129,11 @@ var Editor = class Editor {
                     toSelect = curWidget.parent
                 }
                 else if(e.key == 'ArrowDown' ){
-                    const widgetList =  curWidget.getProp('widgets')
-                    if(widgetList && widgetList.length){
+                    const objectWidgetList =  curWidget.getProp('widgets')
+                    if(objectWidgetList && objectWidgetList.length){
                         // multiple objects can have the same id, need to check we're getting the child one
-                        const toSelectList = widgetManager.getWidgetById(widgetList[0].id)
-                        .filter(el=>el.hash!=curWidget.hash && el.parent===curWidget)
+                        const toSelectList = widgetManager.getWidgetById(objectWidgetList[0].id)
+                        .filter(el=> el.parent===curWidget)
                         if(toSelectList){
                             toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
                             toSelect = toSelectList[0]
