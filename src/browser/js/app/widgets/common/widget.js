@@ -432,7 +432,7 @@ class Widget extends EventEmitter {
 
                 if (!this.oscReceivers[address]) {
                     this.oscReceivers[address] = new OscReceiver(resolvedAddress, value, this, propName)
-                    if (oscReceiverState[address]) {
+                    if (oscReceiverState[address]) {
                         this.oscReceivers[address].value = oscReceiverState[address]
                         delete oscReceiverState[address]
                     }

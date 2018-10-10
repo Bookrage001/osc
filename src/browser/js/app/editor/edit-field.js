@@ -29,7 +29,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 return field
             }
 
-            input = DOM.create(`<select class="input no-keybinding"/>`)
+            input = DOM.create('<select class="input no-keybinding"/>')
             var innerHTML = ''
 
             for (let category in widgetCategories) {

@@ -1,5 +1,4 @@
 var {widgets} = require('../widgets/'),
-    {Popup} = require('../ui/utils'),
     editField = require('./edit-field'),
     {updateWidget, incrementWidget} = require('./data-workers'),
     keyboardJS = require('keyboardjs'),
@@ -291,10 +290,7 @@ var Editor = class Editor {
 
         this.form.appendChild(DOM.create(`
             <div class="separator">
-                ${this.selectedWidgets.length > 1 ?
-                    '<span class="accent">Multiple Widgets</span>' :
-                    '<span>Widget</span>'
-                }
+                ${this.selectedWidgets.length > 1 ? '<span class="accent">Multiple Widgets</span>' : '<span>Widget</span>' }
             </div>
         `))
 
@@ -316,7 +312,7 @@ var Editor = class Editor {
             if (propName.indexOf('_') === 0 && propName !== '_props') {
 
                 if (category) this.form.appendChild(category)
-                category = DOM.create(`<div class="category ${this.foldedCategories.indexOf(props[propName]) > -1 ? "folded" : ""}"></div>`)
+                category = DOM.create(`<div class="category ${this.foldedCategories.indexOf(props[propName]) > -1 ? 'folded' : ''}"></div>`)
 
                 field = DOM.create(`<div class="separator" data-name="${props[propName]}"><span>${props[propName]}</span></div>`)
 
