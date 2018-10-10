@@ -289,22 +289,22 @@ var Editor = class Editor {
 
         } else if (options.multi) {
 
-            if (!this.selectedWidgets.includes(widget)) {
+            var sameLevel = false
 
-                var sameLevel = false
-
-                while (!sameLevel && widget.parent !== widgetManager) {
-                    let test = true
-                    for (var w of this.selectedWidgets) {
-                        if (w.parent !== widget.parent) test = false
-                    }
-                    sameLevel = test
-                    if (!sameLevel) widget = widget.parent
+            while (!sameLevel && widget.parent !== widgetManager) {
+                let test = true
+                for (var w of this.selectedWidgets) {
+                    if (w.parent !== widget.parent) test = false
                 }
+                sameLevel = test
+                if (!sameLevel) widget = widget.parent
+            }
 
-                if (sameLevel) this.selectedWidgets.push(widget)
+            if (!this.selectedWidgets.includes(widget) && sameLevel) {
 
-            } else {
+                this.selectedWidgets.push(widget)
+
+            } else if (sameLevel){
 
                 this.selectedWidgets.splice(this.selectedWidgets.indexOf(widget), 1)
 
