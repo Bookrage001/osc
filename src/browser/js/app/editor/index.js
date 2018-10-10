@@ -118,10 +118,23 @@ var Editor = class Editor {
 
                 this.moveWidget(deltaX, deltaY)
             })
-
+            keyboardJS.bind('mod + a', (e)=>{
+                if (e.target.classList.contains('no-keybinding')) return
+                var curWidget = this.selectedWidgets[0],
+                    toSelect
+                if (curWidget.parent !== widgetManager) {
+                    toSelect = curWidget.parent.childrenHashes
+                        .map(h=>widgetManager.widgets[h])
+                        .filter(w=>w && w.parent === curWidget.parent && w !== curWidget)
+                    toSelect.unshift(curWidget)
+                }
+                if (toSelect) {
+                    this.select(toSelect)
+                }
+            })
             keyboardJS.bind(['mod + up','mod + down','mod + left' , 'mod + right'], (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
-                if(!this.selectedWidgets || (this.selectedWidgets.length==0)) return
+                if (!this.selectedWidgets.length) return
 
                 const curWidget = this.selectedWidgets[0]
                 let toSelect = null
@@ -153,7 +166,7 @@ var Editor = class Editor {
                     }
                 }
 
-                if(toSelect){
+                if (toSelect) {
                     this.select(toSelect)
                 }
 
