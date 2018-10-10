@@ -88,7 +88,7 @@ var Editor = class Editor {
                 if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
             })
-            keyboardJS.bind('delete', (e)=>{
+            keyboardJS.bind(['delete','backspace'], (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
                 this.deleteWidget()
             })
