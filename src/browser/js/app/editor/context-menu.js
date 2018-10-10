@@ -5,7 +5,7 @@ var {updateWidget} = require('./data-workers'),
     locales = require('../locales')
 
 
-var mod = (navigator.platform || '').match('Mac') ? 'shiftKey' : 'ctrlKey'
+var multiSelectKey = (navigator.platform || '').match('Mac') ? 'shiftKey' : 'ctrlKey'
 
 
 class ContextMenu {
@@ -143,14 +143,14 @@ var handleClick = function(event) {
 
 
     if (event.type !== 'fast-right-click') {
-        editor.select(widget, {multi: event.detail[mod]})
+        editor.select(widget, {multi: event.detail[multiSelectKey]})
     }
 
     // right-click menu
     if (event.type !== 'fast-right-click') return
 
     if (!event.detail.ctrlKey && editor.selectedWidgets.length <= 1) {
-        editor.select(widget, {multi: event.detail[mod]})
+        editor.select(widget, {multi: event.detail[multiSelectKey]})
     }
 
     if (!editor.selectedWidgets.length) return

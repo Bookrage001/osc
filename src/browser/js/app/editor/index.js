@@ -6,6 +6,7 @@ var {widgets} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
     macOs = (navigator.platform || '').match('Mac'),
+    modKey = macOs ? 'metaKey' : 'ctrlKey',
     sessionManager
 
 const HISTORY_SIZE = 50
@@ -255,7 +256,8 @@ var Editor = class Editor {
             autoRefresh: false,
             tolerance: 'touch',
             distance:1,
-            start: ()=>{
+            disabled: true,
+            start: (e)=>{
                 tmpSelection = []
             },
             selected: (ev, ui)=>{
