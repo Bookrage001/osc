@@ -6,7 +6,7 @@ var {widgets} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
     macOs = (navigator.platform || '').match('Mac'),
-    modKey = macOs ? 'metaKey' : 'ctrlKey',
+    modKey = macOs ? 'command' : 'ctrl',
     sessionManager
 
 const HISTORY_SIZE = 50
@@ -43,6 +43,7 @@ var Editor = class Editor {
             this.defaults[k] = widgets[k].defaults()
         }
 
+        this.selecting = false
         this.selectedWidgets = []
 
         this.clipboard = null
@@ -88,6 +89,12 @@ var Editor = class Editor {
             keyboardJS.bind('mod + shift + v', (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
+            })
+            keyboardJS.bind(modKey, (e)=>{
+                if (e.target.classList.contains('no-keybinding')) return
+                $('#container').selectable('enable')
+            }, (e)=>{
+                if (!this.selecting) $('#container').selectable('disable')
             })
             keyboardJS.bind(macOs ? 'backspace' : 'delete', (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
@@ -259,6 +266,7 @@ var Editor = class Editor {
             disabled: true,
             start: (e)=>{
                 tmpSelection = []
+                this.selecting = true
             },
             selected: (ev, ui)=>{
                 var widget = widgetManager.getWidgetByElement(ui.selected)
@@ -269,6 +277,8 @@ var Editor = class Editor {
                     this.select(tmpSelection[i], {multi:true, fromLasso:true})
                 }
                 this.select(this.selectedWidgets)
+                this.selecting = false
+                $('#container').selectable('disable')
             }
 
         })
