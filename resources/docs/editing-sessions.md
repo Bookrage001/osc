@@ -47,7 +47,7 @@ Selected widget can be resized using its south, south-east and east handles. It 
 
 ## Bulk editing
 
-When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selected for edition:
+When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selected for edition by dragging the mouse or clicking on each widget individually.
 
 - they must share the same parent widget
 - context-menu actions and properties changes apply to all selected widgets
@@ -77,6 +77,7 @@ The following shortcuts are available only when the editor is enabled:
 | `up, down, left, right` | move selected widgets (1 grid unit, hold `shift` for 5 grid units) |
 | `alt + [up, down, left, right]` | resize selected widgets (1 grid unit, hold `shift` for 5 grid units) |
 | `mod + a` | select current widget's siblings and itself |
+| `mod + shift + a` | cancel current widget selection |
 | `mod + up` | select current widget's parent |
 | `mod + down` | select current widget's first child |
 | `mod + right` | select current widget's next sibling |

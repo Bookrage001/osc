@@ -94,7 +94,7 @@ var Editor = class Editor {
                 if (e.target.classList.contains('no-keybinding')) return
                 $('#container').selectable('enable')
             }, (e)=>{
-                if (!this.selecting) $('#container').selectable('disable')
+                if (!this.selecting && this.enabled) $('#container').selectable('disable')
             })
             keyboardJS.bind(macOs ? 'backspace' : 'delete', (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
@@ -126,8 +126,15 @@ var Editor = class Editor {
 
                 this.moveWidget(deltaX, deltaY)
             })
+            keyboardJS.bind('mod + shift + a', (e)=>{
+                if (e.target.classList.contains('no-keybinding')) return
+                this.unselect()
+                this.selectedWidgets = []
+            })
             keyboardJS.bind('mod + a', (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
+                if (!this.selectedWidgets.length) return
+
                 var curWidget = this.selectedWidgets[0],
                     toSelect
                 if (curWidget.parent !== widgetManager) {
@@ -161,6 +168,7 @@ var Editor = class Editor {
 
                 }
                 else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
+                    if (curWidget.parent === widgetManager) return
                     const toSelectList =  curWidget.parent.childrenHashes
                         .map(h=>widgetManager.widgets[h])
                         .filter(w=>w && w.parent==curWidget.parent)
@@ -200,9 +208,11 @@ var Editor = class Editor {
         keyboardJS.bind('mod + e', (e)=>{
             e.preventDefault()
             if (this.enabled) {
-                this.disable()
+                if (!this.selecting) {
+                    this.disable()
+                }
             } else {
-                this.enable()
+                if (sessionManager.session.length) this.enable()
             }
         })
 
@@ -258,7 +268,7 @@ var Editor = class Editor {
 
         var tmpSelection = []
         $('#container').selectable({
-            filter: '.widget:not(.not-editable)',
+            filter: '.widget:not(.not-editable), li.tablink',
             appendTo: '#container',
             autoRefresh: false,
             tolerance: 'touch',
