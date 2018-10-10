@@ -131,7 +131,7 @@ var Editor = class Editor {
                 else if(e.key == 'ArrowDown' ){
                     const toSelectList =  curWidget.childrenHashes
                     .map(h=>widgetManager.widgets[h])
-                    .filter(w && w=>w.parent==curWidget)
+                    .filter(w=>w && w.parent==curWidget)
                     
                     if(toSelectList && toSelectList.length){
                             toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
@@ -142,7 +142,7 @@ var Editor = class Editor {
                 else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
                     const toSelectList =  curWidget.parent.childrenHashes
                     .map(h=>widgetManager.widgets[h])
-                    .filter(w && w=>w.parent==curWidget.parent)
+                    .filter(w=>w && w.parent==curWidget.parent)
                     if(toSelectList && toSelectList.length){
                         toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
                         const idx = toSelectList.findIndex(e=>e.hash===curWidget.hash)
