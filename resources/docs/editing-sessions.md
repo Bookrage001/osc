@@ -55,13 +55,21 @@ When holding the `ctrl` key (or `command` on Mac), multiple widgets can be selec
 
 ## Keyboard shortcuts
 
+The following shortcuts are always available:
+
 | Shortcut | Description |
 |---|---|
+| `mod + e` | enable/disable editor |
 | `mod + s` | save session as... |
+
+The following shortcuts are available only when the editor is enabled:
+
+| Shortcut | Description |
+|---|---|
 | `f2` | edit selected widget's label |
 | `mod + z` | undo |
 | `mod + y / mod + shift + z` | redo |
-| `delete` | delete selected widgets |
+| `delete` (`backspace` on Mac) | delete selected widgets |
 | `mod + c` | copy selected widgets |
 | `mod + x` | cut selected widgets |
 | `mod + v` | paste clipboard in selected widget |
