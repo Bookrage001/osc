@@ -129,43 +129,27 @@ var Editor = class Editor {
                     toSelect = curWidget.parent
                 }
                 else if(e.key == 'ArrowDown' ){
-                    const objectWidgetList =  curWidget.getProp('widgets')
-                    if(objectWidgetList && objectWidgetList.length){
+                    const toSelectList =  curWidget.childrenHashes
+                    .map(h=>widgetManager.widgets[h])
+                    .filter(w=>w.parent==curWidget)
+                    
+                    if(toSelectList && toSelectList.length){
                         // multiple objects can have the same id, need to check we're getting the child one
-                        const toSelectList = widgetManager.getWidgetById(objectWidgetList[0].id)
-                        .filter(el=> el.parent===curWidget)
-                        if(toSelectList){
                             toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
                             toSelect = toSelectList[0]
-                        }
-
                     }
 
                 }
                 else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
-                    const objectWidgetList = curWidget.parent.getProp('widgets')
-                    if(objectWidgetList && objectWidgetList.length){
-                        // multiple objects can have the same id, need to check we're getting the right one
-                        // would be cleaner if widgets returned by getProp('widgets') had the hash inside...
-                        const equal_fields = ['id','left','top','width','height']
-                        const widgetList = objectWidgetList.map(objectW=>{
-                            const widgetsWithSameIds = widgetManager.getWidgetById(objectW.id)
-                            .filter(el=>el.parent===curWidget.parent)
-                            return widgetsWithSameIds.find(otherW=>
-                                {
-                                    for (const el of equal_fields){
-                                        if(otherW.cachedProps[el]!==objectW[el]){
-                                            return false
-                                        }
-                                    }
-                                    return true
-                                })
-                            })
-                        widgetList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
-                        const idx = widgetList.findIndex(e=>e.hash===curWidget.hash)
+                    const toSelectList =  curWidget.parent.childrenHashes
+                    .map(h=>widgetManager.widgets[h])
+                    .filter(w=>w.parent==curWidget.parent)
+                    if(toSelectList && toSelectList.length){
+                        toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
+                        const idx = toSelectList.findIndex(e=>e.hash===curWidget.hash)
                         if(idx>=0){
-                            const nextIdx = (idx + (e.key == 'ArrowLeft'?-1:1)+widgetList.length) % widgetList.length
-                            toSelect = widgetList[nextIdx]
+                            const nextIdx = (idx + (e.key == 'ArrowLeft'?-1:1)+toSelectList.length) % toSelectList.length
+                            toSelect = toSelectList[nextIdx]
                         }
                     }
                 }
