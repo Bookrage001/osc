@@ -6,6 +6,7 @@ var {widgets} = require('../widgets/'),
     diff = require('deep-diff'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
+    macOs = (navigator.platform || '').match('Mac'),
     sessionManager
 
 const HISTORY_SIZE = 50
@@ -88,7 +89,7 @@ var Editor = class Editor {
                 if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
             })
-            keyboardJS.bind(['delete','backspace'], (e)=>{
+            keyboardJS.bind(macOs ? 'backspace' : 'delete', (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
                 this.deleteWidget()
             })
