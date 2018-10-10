@@ -291,11 +291,16 @@ var Editor = class Editor {
 
             if (!this.selectedWidgets.includes(widget)) {
 
-                var sameLevel = true
-                for (var w of this.selectedWidgets) {
-                    if (w.parent !== widget.parent) sameLevel = false
-                }
+                var sameLevel = false
 
+                while (!sameLevel && widget.parent !== widgetManager) {
+                    let test = true
+                    for (var w of this.selectedWidgets) {
+                        if (w.parent !== widget.parent) test = false
+                    }
+                    sameLevel = test
+                    if (!sameLevel) widget = widget.parent
+                }
 
                 if (sameLevel) this.selectedWidgets.push(widget)
 
