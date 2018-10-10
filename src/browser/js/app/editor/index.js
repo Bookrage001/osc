@@ -1,11 +1,11 @@
 var {widgets} = require('../widgets/'),
-    {Popup} = require('../ui/utils'),
     editField = require('./edit-field'),
     {updateWidget, incrementWidget} = require('./data-workers'),
     keyboardJS = require('keyboardjs'),
     diff = require('deep-diff'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
+    macOs = (navigator.platform || '').match('Mac'),
     sessionManager
 
 const HISTORY_SIZE = 50
@@ -88,7 +88,7 @@ var Editor = class Editor {
                 if (e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
             })
-            keyboardJS.bind(['delete','backspace'], (e)=>{
+            keyboardJS.bind(macOs ? 'backspace' : 'delete', (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
                 this.deleteWidget()
             })
@@ -137,8 +137,11 @@ var Editor = class Editor {
 
         keyboardJS.bind('mod + e', (e)=>{
             e.preventDefault()
-            if(EDITING){editor.disable()}
-            else{editor.enable()}
+            if (this.enabled) {
+                this.disable()
+            } else {
+                this.enable()
+            }
         })
 
 
@@ -287,10 +290,7 @@ var Editor = class Editor {
 
         this.form.appendChild(DOM.create(`
             <div class="separator">
-                ${this.selectedWidgets.length > 1 ?
-                    '<span class="accent">Multiple Widgets</span>' :
-                    '<span>Widget</span>'
-                }
+                ${this.selectedWidgets.length > 1 ? '<span class="accent">Multiple Widgets</span>' : '<span>Widget</span>' }
             </div>
         `))
 
@@ -312,7 +312,7 @@ var Editor = class Editor {
             if (propName.indexOf('_') === 0 && propName !== '_props') {
 
                 if (category) this.form.appendChild(category)
-                category = DOM.create(`<div class="category ${this.foldedCategories.indexOf(props[propName]) > -1 ? "folded" : ""}"></div>`)
+                category = DOM.create(`<div class="category ${this.foldedCategories.indexOf(props[propName]) > -1 ? 'folded' : ''}"></div>`)
 
                 field = DOM.create(`<div class="separator" data-name="${props[propName]}"><span>${props[propName]}</span></div>`)
 
@@ -443,7 +443,7 @@ var Editor = class Editor {
         var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
             data = this.selectedWidgets.map((w)=>w.props),
             type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
-            parent = editor.selectedWidgets[0].parent
+            parent = this.selectedWidgets[0].parent
 
         if (type !== 'widget') return
 
@@ -470,7 +470,7 @@ var Editor = class Editor {
 
         var data = this.selectedWidgets.map((w)=>w.props)
 
-        var pastedData = JSON.parse(editor.clipboard),
+        var pastedData = JSON.parse(this.clipboard),
             minTop = Infinity,
             minLeft = Infinity
 
