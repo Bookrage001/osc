@@ -118,6 +118,47 @@ var Editor = class Editor {
 
                 this.moveWidget(deltaX, deltaY)
             })
+
+            keyboardJS.bind(['mod + up','mod + down','mod + left' , 'mod + right'], (e)=>{
+                if (e.target.classList.contains('no-keybinding')) return
+                if(!this.selectedWidgets || (this.selectedWidgets.length==0)) return
+
+                const curWidget = this.selectedWidgets[0]
+                let toSelect = null;
+                if(e.key == 'ArrowUp' && curWidget.parent!==widgetManager){
+                    toSelect = curWidget.parent
+                }
+                else if(e.key == 'ArrowDown' ){
+                    const toSelectList =  curWidget.childrenHashes
+                    .map(h=>widgetManager.widgets[h])
+                    .filter(w=>w && w.parent==curWidget)
+                    
+                    if(toSelectList && toSelectList.length){
+                            toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
+                            toSelect = toSelectList[0]
+                    }
+
+                }
+                else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
+                    const toSelectList =  curWidget.parent.childrenHashes
+                    .map(h=>widgetManager.widgets[h])
+                    .filter(w=>w && w.parent==curWidget.parent)
+                    if(toSelectList && toSelectList.length){
+                        toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
+                        const idx = toSelectList.findIndex(e=>e.hash===curWidget.hash)
+                        if(idx>=0){
+                            const nextIdx = (idx + (e.key == 'ArrowLeft'?-1:1)+toSelectList.length) % toSelectList.length
+                            toSelect = toSelectList[nextIdx]
+                        }
+                    }
+                }
+
+                if(toSelect){
+                    this.select(toSelect)
+                }
+
+            })
+
             keyboardJS.bind('f2', (e)=>{
                 var input = DOM.get(this.form, 'textarea[name="label"]')[0]
                 if (input) {
