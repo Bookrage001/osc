@@ -59,7 +59,7 @@ The following shortcuts are available only when the editor is enabled:
 | Shortcut | Description |
 |---|---|
 | `mod + click`* | Multi-widget selection. Widgets can be toggled from selection by clicking on them individually.|
-| `shift + click + drag`* | Draw a selection rectangle and attempt to select widgets in it Enable multi-widget selection. Widgets can be toggled from selection by clicking on them individually.|
+| `shift + click + drag`* | Draw a selection rectangle and attempt to select widgets in it (starts by selecting the widget under the cursor). If `mod` is pressed too, current selection is kept and will be merged with the new one if possible. |
 | `f2` | Edit selected widget's label |
 | `mod + z` | Undo |
 | `mod + y / mod + shift + z` | Redo |
