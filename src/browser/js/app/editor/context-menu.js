@@ -149,8 +149,8 @@ var handleClick = function(event) {
     // right-click menu
     if (event.type !== 'fast-right-click') return
 
-    if (!event.detail.shiftKey && editor.selectedWidgets.length <= 1) {
-        editor.select(widget, {multi: event.detail[multiSelectKey]})
+    if (!event.detail.shiftKey && !event.detail[multiSelectKey] && editor.selectedWidgets.length <= 1) {
+        editor.select(widget)
     }
 
     if (!editor.selectedWidgets.length) return
