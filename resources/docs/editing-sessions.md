@@ -45,14 +45,6 @@ Properties are written in JSON, with some flexibility brought by the [JSON5](htt
 
 Selected widget can be resized using its south, south-east and east handles. It can be dragged with its north-west handle. Using this feature will convert position and size values to plain number values, thus breaking previously set percent or inherited values.
 
-## Bulk editing
-
-When holding `shift`, the mouse can be used to select multiple widgets in a *click & drag* gesture. When holding `ctrl` (or `command` on Mac), multiple widgets can be selected for edition.
-
-- they must share the same parent widget
-- context-menu actions and properties changes apply to all selected widgets
-- resizing / dragging will affect all selected widgets, relatively to the first selected widget
-
 ## Keyboard shortcuts
 
 The following shortcuts are always available:
@@ -66,23 +58,30 @@ The following shortcuts are available only when the editor is enabled:
 
 | Shortcut | Description |
 |---|---|
-| `f2` | edit selected widget's label |
-| `mod + z` | undo |
-| `mod + y / mod + shift + z` | redo |
-| `delete` (`backspace` on Mac) | delete selected widgets |
-| `mod + c` | copy selected widgets |
-| `mod + x` | cut selected widgets |
-| `mod + v` | paste clipboard in selected widget |
-| `mod + shift + v` | paste and increment id |
-| `up, down, left, right` | move selected widgets (1 grid unit, hold `shift` for 5 grid units) |
-| `alt + [up, down, left, right]` | resize selected widgets (1 grid unit, hold `shift` for 5 grid units) |
-| `mod + a` | select current widget's siblings and itself |
-| `mod + shift + a` | cancel current widget selection |
-| `mod + up` | select current widget's parent |
-| `mod + down` | select current widget's first child |
-| `mod + right` | select current widget's next sibling |
-| `mod + left` | select current widget's previous sibling |
-
+| `mod + click`* | Multi-widget selection. Widgets can be toggled from selection by clicking on them individually.|
+| `shift + click + drag`* | Draw a selection rectangle and attempt to select widgets in it Enable multi-widget selection. Widgets can be toggled from selection by clicking on them individually.|
+| `f2` | Edit selected widget's label |
+| `mod + z` | Undo |
+| `mod + y / mod + shift + z` | Redo |
+| `delete` (`backspace` on Mac) | Delete selected widgets |
+| `mod + c` | Copy selected widgets |
+| `mod + x` | Cut selected widgets |
+| `mod + v` | Paste clipboard in selected widget |
+| `mod + shift + v` | Paste and increment id |
+| `up, down, left, right` | Move selected widgets (1 grid unit, hold `shift` for 5 grid units) |
+| `alt + [up, down, left, right]` | Resize selected widgets (1 grid unit, hold `shift` for 5 grid units) |
+| `mod + a` | Select current widget's siblings and itself |
+| `mod + shift + a` | Cancel current widget selection |
+| `mod + up` | Select current widget's parent |
+| `mod + down` | Select current widget's first child |
+| `mod + right` | Select current widget's next sibling |
+| `mod + left` | Select current widget's previous sibling |
 
 
 Where `mod` is `ctrl` except on MacOs (`command`)
+
+
+!!! note "* Multi-widgets editing"
+    - selection can only contain sibling widgets (same direct parent)
+    - context-menu actions and properties changes apply to all selected widgets
+    - resizing / dragging will affect all selected widgets, relatively to the first selected widget
