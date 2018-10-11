@@ -123,8 +123,8 @@ class Clone extends Widget {
         this.cloneClass = [...this.cloneTarget.container.classList].filter(i=>excludedCloneClasses.indexOf(i) === -1)
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
-        const propsCopy = deepCopy(this.cloneTarget.props)
-        var clone = parser.parse([{...propsCopy, ...this.getProp('props')}], this.widget, this,null,null,true)
+        
+        var clone = parser.parse([{...deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
 
         if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
             widgetManager.trigger('change.*', [{
