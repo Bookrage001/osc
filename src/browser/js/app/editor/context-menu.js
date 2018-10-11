@@ -122,7 +122,7 @@ var handleClick = function(event) {
 
     if (contextMenu.menu && !contextMenu.menu.contains(event.target)) contextMenu.close()
 
-    if (!event.detail.shiftKey && event.type !== 'fast-right-click' && (
+    if (!event.detail[multiSelectKey] && event.type !== 'fast-right-click' && (
         event.target.classList.contains('ui-resizable-handle') ||
         event.target.classList.contains('ui-draggable-handle') ||
         event.target.id === 'open-toggle'
