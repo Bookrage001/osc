@@ -24,7 +24,7 @@ class SelectArea {
     }
 
     mousedown(e) {
-        if (!e.shiftKey) return
+        if (!e.shiftKey || event.button === 2) return
         this.startX = this.curX = e.clientX
         this.startY = this.curY = e.clientY
         this.down = true
