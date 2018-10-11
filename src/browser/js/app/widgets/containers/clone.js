@@ -129,8 +129,16 @@ class Clone extends Widget {
         this.cloneClass = [...this.cloneTarget.container.classList].filter(i=>excludedCloneClasses.indexOf(i) === -1)
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
-        
-        var clone = parser.parse([{...deepCopy(this.cloneTarget.props), ...this.getProp('props')}], this.widget, this)
+        let clonedProps = deepCopy(this.cloneTarget.props)
+        function resetAutoIds(ob){
+            if(ob.widgets)
+                for (const o of ob.widgets){resetAutoIds(o)}
+            if( ob.id && ob.id.startsWith(ob.type+'_')){
+                ob.id = "auto"
+            }
+        }
+        resetAutoIds(clonedProps)
+        var clone = parser.parse([{...clonedProps, ...this.getProp('props')}], this.widget, this)
 
         if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
             widgetManager.trigger('change.*', [{
