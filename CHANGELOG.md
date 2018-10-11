@@ -15,7 +15,8 @@
   - added keyboard shortcuts `mod + arrows` for selecting widgets
   - added keyboard shortcut `mod + a` for selecting a widget's siblings and itself
   - added keyboard shortcut `mod + shift + a` for cancelling selection
-  - added multi widget selection with mouse when holding `mod` pressed
+  - added multi widget selection with mouse when `shift` is pressed
+  - right-click doesn't modify current selection when `mod` or `shift` is pressed
 
 ## 0.37.4
 
