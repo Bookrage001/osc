@@ -130,14 +130,6 @@ class Clone extends Widget {
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
         let clonedProps = deepCopy(this.cloneTarget.props)
-        function resetAutoIds(ob){
-            if(ob.widgets)
-                for (const o of ob.widgets){resetAutoIds(o)}
-            if( ob.id && ob.id.startsWith(ob.type+'_')){
-                ob.id = "auto"
-            }
-        }
-        resetAutoIds(clonedProps)
         var clone = parser.parse([{...clonedProps, ...this.getProp('props')}], this.widget, this)
 
         if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
