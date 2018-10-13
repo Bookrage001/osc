@@ -188,8 +188,7 @@ class Clone extends Widget {
     }
 
     onRemove(){
-        this.cleanClone();
-        this.cloneTarget = null;
+
         widgetManager.off(`widget-removed.${this.hash}`)
         super.onRemove()
 
