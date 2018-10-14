@@ -9,17 +9,17 @@ var updateWidget = function(widget, options = {}) {
     // save state
     var sidepanel = DOM.get('#sidepanel')[0],
         scroll = sidepanel.scrollTop,
-        oldWidgets = widget.childrenHashes.concat(widget.hash),
+        oldWidgets = widget.getAllChildren().concat(widget),
         wasSelected = editor.selectedWidgets.includes(widget),
         wScroll = {}
 
     stateManager.incrementQueue()
 
-    for (let h of oldWidgets) {
-        if (widgetManager.widgets[h]) {
-            let id = widgetManager.widgets[h].getProp('id'),
-                value = widgetManager.widgets[h].getValue(),
-                valueProp = widgetManager.widgets[h].getProp('value')
+    for (let widget of oldWidgets) {
+        if (widgetManager.widgets[widget.hash]) {
+            let id = widget.getProp('id'),
+                value = widget.getValue(),
+                valueProp = widget.getProp('value')
 
             stateManager.pushValueState(id, value)
             if (valueProp !== '' && valueProp !== undefined) stateManager.pushValueOldProp(id, valueProp)

@@ -1,4 +1,4 @@
-var Widget = require('../common/widget'),
+var Container = require('../common/container'),
     widgetManager = require('../../managers/widgets'),
     resize = require('../../events/resize'),
     parser = require('../../parser'),
@@ -6,7 +6,7 @@ var Widget = require('../common/widget'),
 
 var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable', 'not-editable']
 
-class Clone extends Widget {
+class Clone extends Container {
 
     static defaults() {
 

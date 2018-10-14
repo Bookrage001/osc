@@ -100,10 +100,8 @@ module.exports = class Multifader extends _matrix_base {
         switch (propName) {
 
             case 'color':
-                for (var h of this.childrenHashes) {
-                    if (widgetManager.widgets[h]) {
-                        widgetManager.widgets[h].onPropChanged('color')
-                    }
+                for (var w of this.children) {
+                    w.onPropChanged('color')
                 }
                 return
 

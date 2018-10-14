@@ -74,38 +74,22 @@ class Matrix extends _matrix_base {
 
             case 'props':
 
-                var hashes = [...this.childrenHashes]
-                this.childrenHashes = []
+                var children = [...this.children]
 
-                for (let i = hashes.length - 1; i >= 0; i--) {
+                for (let i = children.length - 1; i >= 0; i--) {
 
-                    let widget = widgetManager.widgets[hashes[i]],
+                    let widget = children[i],
                         data = this.resolveProp('props', undefined, false, false, false, {'$':i})
-
-                    if (!widget) {
-                        hashes.splice(i, 1)
-                        continue
-                    }
 
                     Object.assign(widget.props, data)
                     widget.updateProps(Object.keys(data), this)
 
                 }
 
-                if (!this.childrenHashes.length) {
-                    // only dynamic props updated
-                    this.childrenHashes = hashes
-                } else {
-                    // widgets recreated
 
-                    for (let i = this.childrenHashes.length - 1; i >= 0; i--) {
-                        let widget = widgetManager.widgets[this.childrenHashes[i]]
-                        if (!widget) {
-                            this.childrenHashes.splice(i, 1)
-                            continue
-                        }
-                        widget.container.classList.add('not-editable')
-                    }
+                for (let i = this.children - 1; i >= 0; i--) {
+                    let widget = children[i]
+                    widget.container.classList.add('not-editable')
                 }
 
                 return

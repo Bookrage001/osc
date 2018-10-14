@@ -138,7 +138,7 @@ class Widget extends EventEmitter {
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = nanoid('abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10)
-        this.childrenHashes = []
+        this.children = []
         this.reCreateOptions = options.reCreateOptions
 
         // strip parent ? no position
@@ -217,14 +217,6 @@ class Widget extends EventEmitter {
             this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
         }
 
-        this.on('widget-created', (e)=>{
-
-            if (e.widget == this) return
-
-            this.childrenHashes.push(e.widget.hash)
-
-        })
-
         if (options.container) {
 
             this.container = DOM.create(`
@@ -243,15 +235,27 @@ class Widget extends EventEmitter {
 
     contains(widget) {
 
-        if (this.childrenHashes.includes(widget.hash)) {
-            return true
-        }
+        if (this.children.indexOf(widget) > 0) return true
 
         var parent = widget.parent
         while (parent && parent !== widgetManager) {
             if (parent === this) return true
             parent = parent.parent
         }
+        return false
+
+    }
+
+    getAllChildren() {
+
+        var children = []
+        for (var i = 0; i < this.children.length; i++) {
+            children.push(this.children[i])
+            children = children.concat(this.children[i].getAllChildren())
+        }
+        return children
+
+
     }
 
     created() {
@@ -535,7 +539,7 @@ class Widget extends EventEmitter {
 
             }
         }
-        if (reCreate && this.childrenHashes.indexOf(widget.hash) == -1 && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
+        if (reCreate && !this.contains(widget) && widget !== this && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
 
             this.reCreateWidget(options)
             return true

@@ -1,8 +1,8 @@
-var Widget = require('../common/widget'),
+var Container = require('../common/container'),
     widgetManager = require('../../managers/widgets'),
     parser = require('../../parser')
 
-class Panel extends Widget {
+class Panel extends Container {
 
     static defaults() {
 
@@ -146,13 +146,8 @@ class Panel extends Widget {
         switch (propName) {
 
             case 'color':
-                for (var i = this.childrenHashes.length - 1; i >= 0; i--) {
-                    let widget = widgetManager.widgets[this.childrenHashes[i]]
-                    if (!widget) {
-                        this.childrenHashes.splice(i, 1)
-                        continue
-                    }
-                    widget.onPropChanged('color')
+                for (var w of this.children) {
+                    w.onPropChanged('color')
                 }
                 return
 

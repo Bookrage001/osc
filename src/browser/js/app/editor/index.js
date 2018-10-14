@@ -132,13 +132,7 @@ var Editor = class Editor {
                 var curWidget = this.selectedWidgets[0],
                     toSelect
                 if (curWidget.parent !== widgetManager) {
-                    toSelect = curWidget.parent.childrenHashes
-                        .map(h=>widgetManager.widgets[h])
-                        .filter(w=>w && w.parent === curWidget.parent && w !== curWidget)
-                    toSelect.unshift(curWidget)
-                }
-                if (toSelect) {
-                    this.select(toSelect)
+                    this.select(curWidget.parent.children)
                 }
             })
             keyboardJS.bind(['mod + up','mod + down','mod + left' , 'mod + right'], (e)=>{
@@ -151,9 +145,7 @@ var Editor = class Editor {
                     toSelect = curWidget.parent
                 }
                 else if(e.key == 'ArrowDown' ){
-                    const toSelectList =  curWidget.childrenHashes
-                        .map(h=>widgetManager.widgets[h])
-                        .filter(w=>w && w.parent==curWidget)
+                    const toSelectList = curWidget.children
 
                     if(toSelectList && toSelectList.length){
                         toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
@@ -163,12 +155,10 @@ var Editor = class Editor {
                 }
                 else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
                     if (curWidget.parent === widgetManager) return
-                    const toSelectList =  curWidget.parent.childrenHashes
-                        .map(h=>widgetManager.widgets[h])
-                        .filter(w=>w && w.parent==curWidget.parent)
+                    const toSelectList = curWidget.parent.children
                     if(toSelectList && toSelectList.length){
                         toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
-                        const idx = toSelectList.findIndex(e=>e.hash===curWidget.hash)
+                        const idx = toSelectList.indexOf(curWidget)
                         if(idx>=0){
                             const nextIdx = (idx + (e.key == 'ArrowLeft'?-1:1)+toSelectList.length) % toSelectList.length
                             toSelect = toSelectList[nextIdx]

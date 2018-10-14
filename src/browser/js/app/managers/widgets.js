@@ -157,9 +157,9 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     }
 
-    removeWidget(hash) {
+    removeWidget(widget) {
 
-        var widget = this.widgets[hash],
+        var hash = widget.hash,
             address = this.createAddressRef(widget),
             linkId =  widget.getProp('linkId'),
             id = widget.getProp('id'),
@@ -174,7 +174,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
                 hash:hash
             })
 
-            this.trigger('widget-removed.*', [{widget: widget}])
+            widget.trigger('widget-removed.*', [{widget: widget}])
 
         }
         if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)
@@ -188,14 +188,14 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     }
 
-    removeWidgets(hashes) {
+    removeWidgets(widgets) {
 
-        for (let i in hashes) {
+        for (let i in widgets) {
 
             if (
-                this.widgets[hashes[i]]
+                this.widgets[widgets[i].hash]
             ) {
-                this.removeWidget(hashes[i])
+                this.removeWidget(widgets[i])
             }
 
         }
@@ -227,7 +227,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     reset() {
 
-        this.removeWidgets(Object.keys(this.widgets))
+        this.removeWidgets(Object.values(this.widgets))
 
         this.removeEvent()
 

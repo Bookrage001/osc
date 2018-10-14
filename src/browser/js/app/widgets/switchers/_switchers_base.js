@@ -45,7 +45,7 @@ module.exports = class _switchers_base extends Widget {
 
             for (var i in widgets) {
 
-                if (widgets[i].childrenHashes.indexOf(widget.hash) != -1) return true
+                if (widgets[i].contains(widget) || widgets[i] === widget) return true
 
             }
 
