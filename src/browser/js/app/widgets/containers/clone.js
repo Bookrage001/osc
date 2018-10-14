@@ -158,7 +158,9 @@ class Clone extends Container {
         }
 
 
-        DOM.each(this.widget, '.widget', (el)=>{el.classList.add('not-editable')})
+        for (var i = 0; i < this.children.length; i++) {
+            this.children[i].container.classList.add('not-editable')
+        }
 
         // listen for cloneTarget's deletion
         // if it is just edited, its recreation will be catched by the global 'widget-created' event handler
