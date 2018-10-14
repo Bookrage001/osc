@@ -103,15 +103,14 @@ class Clone extends Container {
 
     cleanClone() {
 
-        if (!this.childrenHashes.length) return
+        if (!this.children.length) return
         //console.log('clear clone',this.getProp('id'))
-        widgetManager.removeWidgets(this.childrenHashes)
+        widgetManager.removeWidgets(this.children)
         this.widget.innerHTML = ''
-        this.childrenHashes = []
+        this.children = []
         this.container.classList.remove(...this.cloneClass)
         this.container.classList.add('clone-container', 'empty')
         this.cloneClass = []
-        if (this.cloneTarget) widgetManager.off(`widget-removed.${this.hash}`)
 
     }
 
@@ -189,7 +188,6 @@ class Clone extends Container {
 
     onRemove(){
 
-        widgetManager.off(`widget-removed.${this.hash}`)
         super.onRemove()
 
     }
