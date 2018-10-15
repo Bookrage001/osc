@@ -181,7 +181,7 @@ class Clone extends Container {
                 // if updated widget is in a nested clone, ignore it:
                 // it will be handled by the nested clone that targets it
                 if (parent.getProp('type') === 'clone') return
-                parent = widget.parent
+                parent = parent.parent
             }
 
             this.createClone()
