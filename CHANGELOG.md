@@ -18,6 +18,8 @@
   - added keyboard shortcut `mod + shift + a` for cancelling selection
   - added multi widget selection with mouse when `shift` is pressed
   - right-click doesn't modify current selection when `mod` or `shift` is pressed
+- formulas
+  - added `extend(x, y)` function for merging two objects
 
 ## 0.37.4
 

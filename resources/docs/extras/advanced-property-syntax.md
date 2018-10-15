@@ -85,6 +85,7 @@ Additionnal functions:
 - `length(x)`: returns the length of an array or string
 - `keys(x)`: returns an array of a given object's property names (from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys))
 - `values(x)`: returns an array of a given object's own enumerable property values (from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values))
+- `extend(x, y)`: merges two objects into one
 
 !!! tip ""
     A single widget property can contain multiple formulas. Variables and functions declared in a formula are available to subsequent formulas in the same property definition.
