@@ -173,36 +173,36 @@ class Widget extends EventEmitter {
 
         if (Object.keys(this.linkedProps).length) {
 
-            widgetManager.on(`widget-created.${this.hash}`, (e)=>{
+            widgetManager.on('widget-created', (e)=>{
                 var {id, widget, options} = e
                 if (widget == this.parent) return
                 if (widget == this) id = 'this'
                 if (this.linkedProps[id]) {
                     this.updateProps(this.linkedProps[id], widget, options)
                 }
-            })
+            }, {context: this})
 
-            widgetManager.on(`prop-changed.${this.hash}`, (e)=>{
+            widgetManager.on('prop-changed', (e)=>{
                 let {id, widget, options} = e
                 if (widget == this) id = 'this'
                 if (widget == this.parent) id = 'parent'
                 if (this.linkedProps[id]) {
                     this.updateProps(this.linkedProps[id], widget, options, e.props)
                 }
-            })
+            }, {context: this})
 
         }
 
         if (Object.keys(this.linkedPropsValue).length) {
 
-            widgetManager.on(`change.${this.hash}`, (e)=>{
+            widgetManager.on('change', (e)=>{
                 var {id, widget, options} = e
                 if (widget == this) id = 'this'
                 if (widget == this.parent) id = 'parent'
                 if (this.linkedPropsValue[id]) {
                     this.updateProps(this.linkedPropsValue[id], widget, options, ['value'])
                 }
-            })
+            }, {context: this})
 
         }
 
@@ -260,7 +260,7 @@ class Widget extends EventEmitter {
 
     created() {
 
-        this.trigger('widget-created.*', [{
+        this.trigger('widget-created', [{
             id: this.getProp('id'),
             widget: this,
             options: this.reCreateOptions
@@ -270,7 +270,7 @@ class Widget extends EventEmitter {
 
     changed(options) {
 
-        this.trigger('change.*', [{
+        this.trigger('change', [{
             widget: this,
             options: options,
             id: this.getProp('id'),
@@ -550,7 +550,7 @@ class Widget extends EventEmitter {
                 this.onPropChanged(changedProps[i].propName, options, changedProps[i].oldPropValue)
             }
 
-            widgetManager.trigger('prop-changed.*', [{
+            widgetManager.trigger('prop-changed', [{
                 id: this.getProp('id'),
                 props: changedProps,
                 widget: this,
@@ -712,13 +712,13 @@ class Widget extends EventEmitter {
     }
 
     onRemove(){
-        widgetManager.off(`widget-created.${this.hash}`)
-        widgetManager.off(`prop-changed.${this.hash}`)
-        widgetManager.off(`change.${this.hash}`)
-        osc.off(new RegExp('.*\\.' + this.hash))
+
+        widgetManager.removeEventContext(this)
+        osc.removeEventContext(this)
         for (var i in this.oscReceivers) {
             oscReceiverState[i] = this.oscReceivers[i].value
         }
+
     }
 
 }

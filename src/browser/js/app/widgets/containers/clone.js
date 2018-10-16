@@ -41,7 +41,7 @@ class Clone extends Container {
         if (this.cloneTarget) this.createClone()
 
         // global listenner to catch cloneTarget's creation if no target is locked
-        widgetManager.on(`widget-created.${this.hash}`, (e)=>{
+        widgetManager.on('widget-created', (e)=>{
 
             if (this.cloneTarget === null) {
 
@@ -57,7 +57,7 @@ class Clone extends Container {
 
             }
 
-        })
+        }, {context: this})
 
     }
 
@@ -124,8 +124,7 @@ class Clone extends Container {
 
         // clear event listeners on target
         if (this.cloneTarget) {
-            this.cloneTarget.off(`widget-removed.${this.hash}`)
-            this.cloneTarget.off(`widget-created.${this.hash}`)
+            this.cloneTarget.removeEventContext(this)
         }
 
     }
@@ -149,7 +148,7 @@ class Clone extends Container {
         var clone = parser.parse([{...clonedProps, ...this.getProp('props')}], this.widget, this)
 
         if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
-            widgetManager.trigger('change.*', [{
+            widgetManager.trigger('change', [{
                 widget: this.cloneTarget,
                 id: this.cloneTarget.getProp('id'),
                 linkId: this.cloneTarget.getProp('linkId'),
@@ -164,15 +163,15 @@ class Clone extends Container {
 
         // listen for cloneTarget's deletion
         // if it is just edited, its recreation will be catched by the global 'widget-created' event handler
-        this.cloneTarget.on(`widget-removed.${this.hash}`, (e)=>{
+        this.cloneTarget.on('widget-removed', (e)=>{
             if (this.cloneTarget === e.widget) {
                 this.cloneTarget = null
                 this.cleanClone()
             }
-        })
+        }, {context: this})
 
         // listen for cloneTarget's content updates
-        this.cloneTarget.on(`widget-created.${this.hash}`, (e)=>{
+        this.cloneTarget.on('widget-created', (e)=>{
 
             var {widget} = e,
                 parent = widget.parent
@@ -187,7 +186,7 @@ class Clone extends Container {
             this.createClone()
             resize.check(this.container)
 
-        })
+        }, {context: this})
 
         this.cloneLock = false
 
@@ -213,8 +212,7 @@ class Clone extends Container {
     onRemove(){
 
         if (this.cloneTarget) {
-            this.cloneTarget.off(`widget-removed.${this.hash}`)
-            this.cloneTarget.off(`widget-created.${this.hash}`)
+            this.cloneTarget.removeEventContext(this)
         }
 
         super.onRemove()
