@@ -145,8 +145,11 @@ class Clone extends Container {
         this.container.classList.remove('empty')
         this.container.classList.add(...this.cloneClass)
         let clonedProps = deepCopy(this.cloneTarget.props)
-        var clone = parser.parse([{...clonedProps, ...this.getProp('props')}], this.widget, this)
-
+        var clone = parser.parse({
+            data: {...clonedProps, ...this.getProp('props')},
+            parentNode: this.widget,
+            parent: this
+        })
         if (clone.getProp('id') === this.cloneTarget.getProp('id')) {
             widgetManager.trigger('change', [{
                 widget: this.cloneTarget,

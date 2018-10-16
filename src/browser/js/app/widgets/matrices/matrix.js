@@ -50,7 +50,11 @@ class Matrix extends _matrix_base {
                     ...this.resolveProp('props', undefined, false, false, false, {'$':i})
                 }
 
-                var widget = parser.parse([data], this.widget, this)
+                var widget = parser.parse({
+                    data: data,
+                    parentNode: this.widget,
+                    parent: this
+                })
 
                 widget.container.classList.add('not-editable')
 

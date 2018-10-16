@@ -24,7 +24,11 @@ var Parser = class Parser {
 
     }
 
-    parse(data, parentNode, parentWidget, tab, reCreateOptions) {
+    parse(options) {
+
+        var {data, parentNode, parent, tab, reCreateOptions, children} = options
+
+        if (!Array.isArray(data)) data = [data]
 
         for (let i in data) {
 
@@ -65,7 +69,14 @@ var Parser = class Parser {
             }
 
             // create widget
-            var widget = new this.widgets[props.type]({props:props, container:true, parent:parentWidget, parentNode:parentNode, reCreateOptions})
+            var widget = new this.widgets[props.type]({
+                container:true,
+                props,
+                parent,
+                parentNode,
+                reCreateOptions,
+                children
+            })
 
             widgetManager.addWidget(widget)
 

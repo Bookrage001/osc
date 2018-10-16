@@ -50,7 +50,25 @@ class Panel extends Container {
 
             this.wrapper = this.widget.appendChild(DOM.create('<div class="tabs-wrapper"></div>'))
 
-            parser.parse(this.getProp('tabs'), this.wrapper, this, true)
+            if (options.children && options.children.length) {
+                // reuse old children
+                this.children = options.children
+                for (let i = 0; i < this.children.length; i++) {
+                    this.wrapper.appendChild(this.children[i].container)
+                    this.children[i].parent = this
+                    this.children[i].parentNode = this.wrapper
+                }
+            }
+            if (this.getProp('tabs').length > this.children.length) {
+                // parse new children
+                parser.parse({
+                    data: this.getProp('tabs').slice(this.children.length),
+                    parentNode: this.wrapper,
+                    parent: this,
+                    tab: true
+                })
+            }
+
             this.createNavigation()
 
             this.navigation.addEventListener('fast-click', (e)=>{
@@ -68,7 +86,23 @@ class Panel extends Container {
 
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
-            parser.parse(this.getProp('widgets'), this.widget, this)
+            if (options.children && options.children.length) {
+                // reuse old children
+                this.children = options.children
+                for (let i = 0; i < this.children.length; i++) {
+                    this.widget.appendChild(this.children[i].container)
+                    this.children[i].parent = this
+                    this.children[i].parentNode = this.widget
+                }
+            }
+            if (this.getProp('widgets').length > this.children.length) {
+                // parse new children
+                parser.parse({
+                    data: this.getProp('widgets').slice(this.children.length),
+                    parentNode: this.widget,
+                    parent: this
+                })
+            }
 
         }
 

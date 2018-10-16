@@ -515,10 +515,11 @@ var Editor = class Editor {
 
         if (!this.selectedWidgets.length) return
 
-        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
+        var type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
+            parent = this.selectedWidgets[0].parent,
+            index = this.selectedWidgets.map(w => parent.children.indexOf(w)).sort((a,b)=>{return b-a}),
             data = this.selectedWidgets.map((w)=>w.props),
-            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
-            parent = this.selectedWidgets[0].parent
+            removedChildren = []
 
         if (type !== 'widget') return
 
@@ -531,10 +532,14 @@ var Editor = class Editor {
         }
 
         for (var i of index) {
+            removedChildren.push(parent.children.splice(i,1)[0])
             parent.props.widgets.splice(i,1)
         }
 
-        this.select(updateWidget(parent, {preventSelect: true}))
+        this.select(updateWidget(parent, {
+            preventSelect: true,
+            removedChildren
+        }))
         this.pushHistory()
 
     }
@@ -606,23 +611,29 @@ var Editor = class Editor {
 
         if (!this.selectedWidgets.length) return
 
-        var index = this.selectedWidgets.map((w)=>DOM.index(w.container)).sort((a,b)=>{return b-a}),
-            type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
-            parent = this.selectedWidgets[0].parent
+        var type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
+            parent = this.selectedWidgets[0].parent,
+            index = this.selectedWidgets.map(w => parent.children.indexOf(w)).sort((a,b)=>{return b-a}),
+            removedChildren = []
 
         if (this.selectedWidgets[0].getProp('id') === 'root') return
 
         if (type === 'widget') {
             for (let i of index) {
+                removedChildren.push(parent.children.splice(i,1)[0])
                 parent.props.widgets.splice(i,1)
             }
         } else {
             for (let i of index) {
+                removedChildren.push(parent.children.splice(i,1)[0])
                 parent.props.tabs.splice(i,1)
             }
         }
 
-        this.select(updateWidget(parent, {preventSelect: true}))
+        this.select(updateWidget(parent, {
+            preventSelect: true,
+            removedChildren
+        }))
         this.pushHistory()
 
     }
@@ -708,7 +719,7 @@ var Editor = class Editor {
 
 
 
-    pushHistory() {
+    pushHistory(infos) {
 
         if (this.historyState > -1) {
             this.history.splice(0, this.historyState + 1)
@@ -721,7 +732,7 @@ var Editor = class Editor {
             for (var c of deepCopy(d)) {
                 diff.applyChange(this.historySession, null, c)
             }
-            this.history.unshift(deepCopy(d))
+            this.history.unshift([deepCopy(d), infos])
             if (this.history.length > HISTORY_SIZE) this.history.pop()
         }
 
@@ -741,8 +752,9 @@ var Editor = class Editor {
 
         this.historyState += 1
 
-        var d1 = deepCopy(this.history[this.historyState]),
-            d2 = deepCopy(this.history[this.historyState]),
+        var [patch, infos] = this.history[this.historyState],
+            d1 = deepCopy(patch),
+            d2 = deepCopy(patch),
             path
 
         for (var i = d1.length - 1; i > -1; i--) {
@@ -776,8 +788,9 @@ var Editor = class Editor {
 
         if (this.historyState === -1) return
 
-        var d1 = deepCopy(this.history[this.historyState]),
-            d2 = deepCopy(this.history[this.historyState]),
+        var [patch, infos] = this.history[this.historyState],
+            d1 = deepCopy(patch),
+            d2 = deepCopy(patch),
             path
 
         for (var i = 0; i < d1.length; i++) {
@@ -802,6 +815,7 @@ var Editor = class Editor {
             path.splice(n, path.length - n)
         }
 
+
         this.updateWidgetByPath(path)
 
         this.historyState -= 1
@@ -809,6 +823,8 @@ var Editor = class Editor {
     }
 
     updateWidgetByPath(path) {
+
+        //TODO traverse widget.children instead of querying the dom
 
         var req = '.root-container'
         for (var j = 1; j < path.length; j++) {
@@ -834,7 +850,9 @@ var Editor = class Editor {
             w = widgetManager.getWidgetById('root')[0]
         }
 
-        updateWidget(w)
+        updateWidget(w, {
+            reuseChildren: false
+        })
 
     }
 

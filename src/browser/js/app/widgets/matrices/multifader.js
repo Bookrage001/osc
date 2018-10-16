@@ -84,7 +84,11 @@ module.exports = class Multifader extends _matrix_base {
                 data.preArgs = '@{parent.preArgs}'
             }
 
-            var fader = parser.parse([data], this.widget, this)
+            var fader = parser.parse({
+                data: data,
+                parentNode: this.widget,
+                parent: this
+            })
             fader.container.classList.add('not-editable')
 
             this.value[i-this.start] = this.getProp('range').min

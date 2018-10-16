@@ -50,7 +50,10 @@ var SessionManager = class SessionManager {
 
                 }
 
-                parser.parse(this.session, DOM.get('#container')[0])
+                parser.parse({
+                    data: this.session,
+                    parentNode: DOM.get('#container')[0]
+                })
                 editor.clearHistory()
 
             } catch (err) {

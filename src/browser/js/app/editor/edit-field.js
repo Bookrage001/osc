@@ -146,6 +146,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                     break
 
                 case 'remove':
+                    widget.children.splice(DOM.index(e.target.closest('li')),1)
                     widget.props[propName].splice(DOM.index(e.target.closest('li')),1)
                     change = true
                     break
@@ -175,6 +176,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 var index  = $(ui.item).index()
 
                 widget.props[propName].splice(index, 0, widget.props[propName].splice(oldindex, 1)[0])
+                widget.children.splice(index, 0, widget.children.splice(oldindex, 1)[0])
                 updateWidget(widget)
                 editor.pushHistory()
             }

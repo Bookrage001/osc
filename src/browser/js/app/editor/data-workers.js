@@ -2,13 +2,102 @@ var widgetManager = require('../managers/widgets'),
     resize = require('../events/resize'),
     stateManager = require('../managers/state'),
     parser = require('../parser'),
+    Panel,
+    sidepanel,
     editor
 
-var updateWidget = function(widget, options = {}) {
+DOM.ready(()=>{
+    sidepanel = DOM.get('#sidepanel')[0]
+})
+
+function updateWidget(widget, options={}) {
 
     // save state
-    var sidepanel = DOM.get('#sidepanel')[0],
-        scroll = sidepanel.scrollTop,
+    stateManager.incrementQueue()
+    var toSave = [widget],
+        sidepanelScroll = sidepanel.scrollTop,
+        scrollState = {}
+    if (options.reuseChildren === false) {
+        toSave = toSave.concat(widget.getAllChildren())
+    }
+    for (let w of toSave) {
+        if (widgetManager.widgets[w.hash]) {
+            let id = w.getProp('id'),
+                value = w.getValue(),
+                valueProp = w.getProp('value')
+
+            stateManager.pushValueState(id, value)
+            if (valueProp !== '' && valueProp !== undefined) stateManager.pushValueOldProp(id, valueProp)
+        }
+        if (widgetManager.scrollingWidgets.indexOf(w.hash) > -1 && w.scroll) {
+            scrollState[w.getProp('id')] = w.scroll()
+        }
+    }
+
+    // remove old widgets
+    var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
+    var removedWidgets = reuseChildren ?
+            (options.removedChildren || []).map(x => x.getAllChildren()).concat(widget) :
+            widget.getAllChildren().concat(widget)
+
+    widgetManager.removeWidgets(removedWidgets)
+
+
+    // create new widget
+    var newWidget = parser.parse({
+        data: widget.props,
+        parent: widget.parent,
+        parentNode: widget.parentNode,
+        reCreateOptions: options.reCreateOptions,
+        children: reuseChildren ? widget.children : undefined
+    })
+
+    widget.container.parentNode.replaceChild(newWidget.container, widget.container)
+
+    if (newWidget.getProp('type') == 'tab') newWidget.parent.trigger('tab-created', [{widget: widget}])
+    if (newWidget.getProp('id') == 'root') DOM.get('.editor-root')[0].setAttribute('data-widget', newWidget.hash)
+
+
+    if (reuseChildren && !(newWidget instanceof Panel)) {
+        // remove remaining children if widget is not a container anymore
+        widgetManager.removeWidgets(widget.getAllChildren())
+    }
+
+    if (reuseChildren) {
+        // children don't listen to their parent's 'widget-created' event
+        // so we have to let them know it's been updated
+        widgetManager.trigger('prop-changed', [{
+            id: newWidget.getProp('id'),
+            props: [],
+            widget: newWidget,
+            options: {}
+        }])
+    }
+
+    resize.check(newWidget.container)
+
+    // restore state
+    stateManager.decrementQueue()
+    for (let id in scrollState) {
+        for (let w of widgetManager.getWidgetById(id)) {
+            if (w.scroll) w.scroll(scrollState[id])
+        }
+    }
+    sidepanel.scrollTop = sidepanelScroll
+
+    if (editor.selectedWidgets.includes(widget) && !options.preventSelect) {
+        editor.select(newWidget)
+    }
+
+    return newWidget
+
+}
+
+
+var updateWidgetOld = function(widget, options = {}) {
+
+    // save state
+    var scroll = sidepanel.scrollTop,
         oldWidgets = widget.getAllChildren().concat(widget),
         wasSelected = editor.selectedWidgets.includes(widget),
         wScroll = {}
@@ -144,3 +233,4 @@ module.exports = {
 }
 
 editor = require('./')
+Panel = require('../widgets/containers/panel')

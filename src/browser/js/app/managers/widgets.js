@@ -188,19 +188,23 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
     }
 
-    removeWidgets(widgets) {
+    removeWidgets(widgets, nested) {
 
         for (let i in widgets) {
 
-            if (
-                this.widgets[widgets[i].hash]
-            ) {
+            if (Array.isArray(widgets[i])) {
+
+                this.removeWidgets(widgets[i], true)
+
+            } else if (this.widgets[widgets[i].hash]) {
+
                 this.removeWidget(widgets[i])
+
             }
 
         }
 
-        this.purge()
+        if (!nested) this.purge()
 
     }
 
