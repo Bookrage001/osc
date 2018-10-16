@@ -20,6 +20,7 @@
   - right-click doesn't modify current selection when `mod` or `shift` is pressed
 - formulas
   - added `extend(x, y)` function for merging two objects
+  - objects' closing brackets (`}`) don't need to be escaped with a backslash anymore
 
 ## 0.37.4
 

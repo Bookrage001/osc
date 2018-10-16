@@ -76,7 +76,6 @@ Where FORMULA is a valid [MathJS](http://mathjs.org/docs/expressions/syntax.html
 - property inheritance calls (`@{...}`) are always resolved before formulas
 - arrays / matrices indexes are **zero-based** (ie `["a","b"][0]` returns `"a"`)
 - strings can be multiline when enclosed in backticks instead of double quotes (``` ` `  ```)
-- inner closing brackets (`}`) must be escaped with a backslash (`\}`) except for `@{}` and `OSC{}` calls which are always resolved before formulas
 
 Additionnal functions:
 

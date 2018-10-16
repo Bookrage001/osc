@@ -456,9 +456,10 @@ class Widget extends EventEmitter {
             })
 
             try {
-                propValue = propValue.replace(/#\{(?:[^}\\]|\\.)+\}/g, (m)=>{
+                propValue = propValue.replace(/#\{(?:[^{}]|\{[^{}]*\})*\}/g, (m)=>{
+                    // one bracket nesting allowed, if we need two: #\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}
 
-                    // unescape brackets
+                    // unescape brackets (not needed anymore, just here for backward compatibility)
                     m = m.replace(/\\(\{|\})/g, '$1')
 
                     // espace multiline strings
