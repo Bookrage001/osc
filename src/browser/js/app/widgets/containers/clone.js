@@ -157,8 +157,8 @@ class Clone extends Container {
         }
 
 
-        for (var i = 0; i < this.children.length; i++) {
-            this.children[i].container.classList.add('not-editable')
+        for (var w of this.getAllChildren()) {
+            w.container.classList.add('not-editable')
         }
 
         // listen for cloneTarget's deletion
