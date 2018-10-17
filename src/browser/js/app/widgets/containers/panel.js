@@ -56,6 +56,7 @@ class Panel extends Container {
                     this.wrapper.appendChild(this.children[i].container)
                     this.children[i].parent = this
                     this.children[i].parentNode = this.wrapper
+                    this.children[i].props = this.getProp('tabs')[i]
                 } else {
                     parser.parse({
                         data: this.getProp('tabs')[i],
@@ -90,6 +91,7 @@ class Panel extends Container {
                     this.widget.appendChild(this.children[i].container)
                     this.children[i].parent = this
                     this.children[i].parentNode = this.widget
+                    this.children[i].props = this.getProp('widgets')[i]
                 } else {
                     parser.parse({
                         data: this.getProp('widgets')[i],

@@ -66,13 +66,9 @@ function updateWidget(widget, options={}) {
 
     widgetManager.removeWidgets(removedWidgets)
 
-    // retreive widget's data from it's parent if possible
-    var parentProps = widget.getProp('type') === 'root' ? false : widget.parent.props[widget.getProp('type') == 'tab' ? 'tabs' : 'widgets'],
-        data =  parentProps ? parentProps[index] : widget.props
-
     // create new widget
     var newWidget = parser.parse({
-        data: data,
+        data: widget.props,
         parent: widget.parent,
         parentNode: widget.parentNode,
         reCreateOptions: options.reCreateOptions,
