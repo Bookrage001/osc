@@ -121,13 +121,14 @@ var Editor = class Editor {
                 this.moveWidget(deltaX, deltaY)
             })
             keyboardJS.bind('mod + shift + a', (e)=>{
+                if (!this.selectedWidgets.length) return
                 if (e.target.classList.contains('no-keybinding')) return
                 this.unselect()
                 this.selectedWidgets = []
             })
             keyboardJS.bind('mod + a', (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
                 if (!this.selectedWidgets.length) return
+                if (e.target.classList.contains('no-keybinding')) return
 
                 var curWidget = this.selectedWidgets[0],
                     toSelect
@@ -136,19 +137,23 @@ var Editor = class Editor {
                 }
             })
             keyboardJS.bind(['mod + up','mod + down','mod + left' , 'mod + right'], (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+
                 if (!this.selectedWidgets.length) return
+                if (e.target.classList.contains('no-keybinding')) return
 
-                const curWidget = this.selectedWidgets[0]
-                let toSelect = null
-                if(e.key == 'ArrowUp' && curWidget.parent!==widgetManager){
+                var curWidget = this.selectedWidgets[0],
+                    toSelect = null
+
+                if (e.key === 'ArrowUp' && curWidget.parent !== widgetManager) {
+
                     toSelect = curWidget.parent
-                }
-                else if(e.key == 'ArrowDown' ){
-                    const toSelectList = curWidget.children
 
-                    if(toSelectList && toSelectList.length){
-                        toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
+                } else if (e.key === 'ArrowDown') {
+
+                    var toSelectList = [...curWidget.parent.children]
+
+                    if (toSelectList && toSelectList.length) {
+                        toSelectList.sort((a,b) => a.container.offsetLeft>b.container.offsetLeft)
                         toSelect = toSelectList[0]
                         if (toSelect.container.classList.contains('not-editable')) {
                             toSelect = null
@@ -158,12 +163,12 @@ var Editor = class Editor {
                 }
                 else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
                     if (curWidget.parent === widgetManager) return
-                    const toSelectList = curWidget.parent.children
-                    if(toSelectList && toSelectList.length){
-                        toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
-                        const idx = toSelectList.indexOf(curWidget)
-                        if(idx>=0){
-                            const nextIdx = (idx + (e.key == 'ArrowLeft'?-1:1)+toSelectList.length) % toSelectList.length
+                    var toSelectList = [...curWidget.parent.children]
+                    if (toSelectList && toSelectList.length) {
+                        toSelectList.sort((a,b) => a.container.offsetLeft > b.container.offsetLeft)
+                        var idx = toSelectList.indexOf(curWidget)
+                        if (idx >= 0) {
+                            var nextIdx = (idx + (e.key === 'ArrowLeft' ? -1 : 1 ) + toSelectList.length) % toSelectList.length
                             toSelect = toSelectList[nextIdx]
                         }
                     }
