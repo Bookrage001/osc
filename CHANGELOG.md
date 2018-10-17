@@ -7,7 +7,7 @@
   - `slider/pads`: inteverted ranges not working
   - fix `doubleTap` for sliders with `snap` set to `true`
 - editor
-  - major performance improvements (widgets' children are reused whenever possible instead of being recreated)
+  - major performance improvements (containers' children are reused whenever possible instead of being recreated)
   - removed widget deletion confirmation popup
   - properties categories can now be folded
   - added keyboard shortcut `F2` for editing the label quickly
