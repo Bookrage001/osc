@@ -40,7 +40,7 @@ function updateWidget(widget, options={}) {
         removedChildren = []
 
     if (reuseChildren) {
-        children = widget.children
+        children = [...widget.children]
         if (options.removedIndexes) {
             options.removedIndexes = options.removedIndexes.sort((a, b) => b - a)
             for (let i of options.removedIndexes) {
