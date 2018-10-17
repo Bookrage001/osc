@@ -158,7 +158,6 @@ class Clone extends Container {
             }])
         }
 
-
         for (var w of this.getAllChildren()) {
             w.container.classList.add('not-editable')
         }

@@ -519,7 +519,7 @@ var Editor = class Editor {
             parent = this.selectedWidgets[0].parent,
             index = this.selectedWidgets.map(w => parent.children.indexOf(w)).sort((a,b)=>{return b-a}),
             data = this.selectedWidgets.map((w)=>w.props),
-            removedChildren = []
+            removedIndexes = []
 
         if (type !== 'widget') return
 
@@ -532,15 +532,15 @@ var Editor = class Editor {
         }
 
         for (var i of index) {
-            removedChildren.push(parent.children.splice(i,1)[0])
+            removedIndexes.push(i)
             parent.props.widgets.splice(i,1)
         }
 
         this.select(updateWidget(parent, {
             preventSelect: true,
-            removedChildren
+            removedIndexes
         }))
-        this.pushHistory()
+        this.pushHistory({removedIndexes})
 
     }
 
@@ -574,8 +574,9 @@ var Editor = class Editor {
         data[0].widgets = data[0].widgets || []
         data[0].widgets = data[0].widgets.concat(pastedData)
 
-        updateWidget(this.selectedWidgets[0])
-        this.pushHistory()
+        var indexes = {addedIndexes: [data[0].widgets.length -1]}
+        updateWidget(this.selectedWidgets[0], indexes)
+        this.pushHistory(indexes)
 
     }
 
@@ -601,8 +602,9 @@ var Editor = class Editor {
         data[0].widgets = data[0].widgets || []
         data[0].widgets.push(clone)
 
-        updateWidget(this.selectedWidgets[0])
-        this.pushHistory()
+        var indexes = {addedIndexes: [data[0].widgets.length -1]}
+        updateWidget(this.selectedWidgets[0], indexes)
+        this.pushHistory(indexes)
 
     }
 
@@ -614,27 +616,27 @@ var Editor = class Editor {
         var type = this.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
             parent = this.selectedWidgets[0].parent,
             index = this.selectedWidgets.map(w => parent.children.indexOf(w)).sort((a,b)=>{return b-a}),
-            removedChildren = []
+            removedIndexes = []
 
         if (this.selectedWidgets[0].getProp('id') === 'root') return
 
         if (type === 'widget') {
             for (let i of index) {
-                removedChildren.push(parent.children.splice(i,1)[0])
+                removedIndexes.push(i)
                 parent.props.widgets.splice(i,1)
             }
         } else {
             for (let i of index) {
-                removedChildren.push(parent.children.splice(i,1)[0])
+                removedIndexes.push(i)
                 parent.props.tabs.splice(i,1)
             }
         }
 
         this.select(updateWidget(parent, {
             preventSelect: true,
-            removedChildren
+            removedIndexes
         }))
-        this.pushHistory()
+        this.pushHistory({removedIndexes})
 
     }
 
@@ -719,7 +721,7 @@ var Editor = class Editor {
 
 
 
-    pushHistory(infos) {
+    pushHistory(indexes) {
 
         if (this.historyState > -1) {
             this.history.splice(0, this.historyState + 1)
@@ -732,7 +734,7 @@ var Editor = class Editor {
             for (var c of deepCopy(d)) {
                 diff.applyChange(this.historySession, null, c)
             }
-            this.history.unshift([deepCopy(d), infos])
+            this.history.unshift([deepCopy(d), indexes])
             if (this.history.length > HISTORY_SIZE) this.history.pop()
         }
 
@@ -752,7 +754,7 @@ var Editor = class Editor {
 
         this.historyState += 1
 
-        var [patch, infos] = this.history[this.historyState],
+        var [patch, indexes] = this.history[this.historyState],
             d1 = deepCopy(patch),
             d2 = deepCopy(patch),
             path
@@ -779,8 +781,10 @@ var Editor = class Editor {
             path.splice(n, path.length - n)
         }
 
-
-        this.updateWidgetByPath(path)
+        this.updateWidgetByPath(path, indexes ? {
+            addedIndexes: deepCopy(indexes.removedIndexes),
+            removedIndexes: deepCopy(indexes.addedIndexes),
+        } : {})
 
     }
 
@@ -788,7 +792,7 @@ var Editor = class Editor {
 
         if (this.historyState === -1) return
 
-        var [patch, infos] = this.history[this.historyState],
+        var [patch, indexes] = this.history[this.historyState],
             d1 = deepCopy(patch),
             d2 = deepCopy(patch),
             path
@@ -816,13 +820,16 @@ var Editor = class Editor {
         }
 
 
-        this.updateWidgetByPath(path)
+        this.updateWidgetByPath(path, indexes ? {
+            addedIndexes: deepCopy(indexes.addedIndexes),
+            removedIndexes: deepCopy(indexes.removedIndexes),
+        } : {})
 
         this.historyState -= 1
 
     }
 
-    updateWidgetByPath(path) {
+    updateWidgetByPath(path, indexes) {
 
         //TODO traverse widget.children instead of querying the dom
 
@@ -850,9 +857,7 @@ var Editor = class Editor {
             w = widgetManager.getWidgetById('root')[0]
         }
 
-        updateWidget(w, {
-            reuseChildren: false
-        })
+        updateWidget(w, indexes)
 
     }
 

@@ -11,7 +11,17 @@ class Container extends Widget {
         this.on('widget-created', (e)=>{
 
             if (e.widget.parent === this) {
-                this.children.push(e.widget)
+
+                var index = e.index
+                if (index !== undefined) {
+                    if (!this.children[index]) {
+                        this.children[index] = e.widget
+                    } else {
+                        this.children.splice(index, 0, e.widget)
+                    }
+                } else {
+                    this.children.push(e.widget)
+                }
             }
 
         })

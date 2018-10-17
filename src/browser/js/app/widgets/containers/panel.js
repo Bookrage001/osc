@@ -50,23 +50,21 @@ class Panel extends Container {
 
             this.wrapper = this.widget.appendChild(DOM.create('<div class="tabs-wrapper"></div>'))
 
-            if (options.children && options.children.length) {
-                // reuse old children
-                this.children = options.children
-                for (let i = 0; i < this.children.length; i++) {
+            this.children = options.children || new Array(this.getProp('tabs').length)
+            for (let i = 0; i < this.children.length; i++) {
+                if (this.children[i]) {
                     this.wrapper.appendChild(this.children[i].container)
                     this.children[i].parent = this
                     this.children[i].parentNode = this.wrapper
+                } else {
+                    parser.parse({
+                        data: this.getProp('tabs')[i],
+                        parentNode: this.wrapper,
+                        parent: this,
+                        tab: true,
+                        index: i
+                    })
                 }
-            }
-            if (this.getProp('tabs').length > this.children.length) {
-                // parse new children
-                parser.parse({
-                    data: this.getProp('tabs').slice(this.children.length),
-                    parentNode: this.wrapper,
-                    parent: this,
-                    tab: true
-                })
             }
 
             this.createNavigation()
@@ -86,22 +84,20 @@ class Panel extends Container {
 
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
-            if (options.children && options.children.length) {
-                // reuse old children
-                this.children = options.children
-                for (let i = 0; i < this.children.length; i++) {
+            this.children = options.children || new Array(this.getProp('widgets').length)
+            for (let i = 0; i < this.children.length; i++) {
+                if (this.children[i]) {
                     this.widget.appendChild(this.children[i].container)
                     this.children[i].parent = this
                     this.children[i].parentNode = this.widget
+                } else {
+                    parser.parse({
+                        data: this.getProp('widgets')[i],
+                        parentNode: this.widget,
+                        parent: this,
+                        index: i
+                    })
                 }
-            }
-            if (this.getProp('widgets').length > this.children.length) {
-                // parse new children
-                parser.parse({
-                    data: this.getProp('widgets').slice(this.children.length),
-                    parentNode: this.widget,
-                    parent: this
-                })
             }
 
         }

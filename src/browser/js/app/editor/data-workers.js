@@ -12,6 +12,7 @@ DOM.ready(()=>{
 
 function updateWidget(widget, options={}) {
 
+
     // save state
     stateManager.incrementQueue()
     var toSave = [widget],
@@ -34,28 +35,56 @@ function updateWidget(widget, options={}) {
         }
     }
 
+    var reuseChildren = options.reuseChildren !== false && widget instanceof Panel,
+        children = undefined,
+        removedChildren = []
+
+    if (reuseChildren) {
+        children = widget.children
+        if (options.removedIndexes) {
+            options.removedIndexes = options.removedIndexes.sort((a, b) => b - a)
+            for (let i of options.removedIndexes) {
+                removedChildren.push(children.splice(i, 1)[0])
+            }
+        }
+        if (options.addedIndexes) {
+            options.addedIndexes = options.addedIndexes.sort((a, b) => a - b)
+            for (let i of options.addedIndexes) {
+                children.splice(i, 0, null)
+            }
+        }
+
+    }
+
+    // get widget's index
+    var index = widget.parent.children.indexOf(widget)
+
     // remove old widgets
-    var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
     var removedWidgets = reuseChildren ?
-            (options.removedChildren || []).map(x => x.getAllChildren()).concat(widget) :
+            removedChildren.map(x => x.getAllChildren()).concat(widget) :
             widget.getAllChildren().concat(widget)
 
     widgetManager.removeWidgets(removedWidgets)
 
+    // retreive widget's data from it's parent if possible
+    var parentProps = widget.parent.props[widget.getProp('type') == 'tab' ? 'tabs' : 'widgets'],
+        data = parentProps ? parentProps[index] : widget.props
 
     // create new widget
     var newWidget = parser.parse({
-        data: widget.props,
+        data: data,
         parent: widget.parent,
         parentNode: widget.parentNode,
         reCreateOptions: options.reCreateOptions,
-        children: reuseChildren ? widget.children : undefined
+        children: children,
+        index: index
     })
 
-    widget.container.parentNode.replaceChild(newWidget.container, widget.container)
 
-    if (newWidget.getProp('type') == 'tab') newWidget.parent.trigger('tab-created', [{widget: widget}])
-    if (newWidget.getProp('id') == 'root') DOM.get('.editor-root')[0].setAttribute('data-widget', newWidget.hash)
+    newWidget.container.parentNode.replaceChild(newWidget.container, widget.container)
+
+    if (newWidget.getProp('type') === 'tab') newWidget.parent.trigger('tab-created', [{widget: widget}])
+    if (newWidget.getProp('id') === 'root') DOM.get('.editor-root')[0].setAttribute('data-widget', newWidget.hash)
 
 
     if (reuseChildren && !(newWidget instanceof Panel)) {

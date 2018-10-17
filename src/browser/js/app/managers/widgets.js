@@ -8,6 +8,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
         super()
 
         this.widgets = {}
+        this.children = []
 
         this.addressRoute = {}
         this.idRoute = {}

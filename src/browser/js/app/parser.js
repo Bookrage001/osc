@@ -26,7 +26,15 @@ var Parser = class Parser {
 
     parse(options) {
 
-        var {data, parentNode, parent, tab, reCreateOptions, children} = options
+        var {
+            data,
+            parentNode,
+            parent,
+            tab,
+            reCreateOptions,
+            children,
+            index
+            } = options
 
         if (!Array.isArray(data)) data = [data]
 
@@ -80,7 +88,7 @@ var Parser = class Parser {
 
             widgetManager.addWidget(widget)
 
-            widget.created()
+            widget.created(index)
 
             // set widget's initial state
             var defaultValue = widget.getProp('default'),
@@ -96,8 +104,9 @@ var Parser = class Parser {
 
             }
 
-            // Append the widget to its parent
+
             parentNode.appendChild(widget.container)
+
         }
 
         // Editor needs to get the container object

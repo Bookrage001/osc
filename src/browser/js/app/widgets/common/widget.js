@@ -250,6 +250,7 @@ class Widget extends EventEmitter {
 
         var children = []
         for (var i = 0; i < this.children.length; i++) {
+            if (!this.children[i]) continue
             children.push(this.children[i])
             children = children.concat(this.children[i].getAllChildren())
         }
@@ -258,12 +259,13 @@ class Widget extends EventEmitter {
 
     }
 
-    created() {
+    created(index) {
 
         this.trigger('widget-created', [{
             id: this.getProp('id'),
             widget: this,
-            options: this.reCreateOptions
+            options: this.reCreateOptions,
+            index: index
         }])
 
     }
