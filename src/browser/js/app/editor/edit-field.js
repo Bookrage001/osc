@@ -147,7 +147,6 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
                 case 'remove':
                     var index = DOM.index(e.target.closest('li'))
-                    widget.children.splice(index,1)
                     widget.props[propName].splice(index,1)
                     updateWidget(widget, {removedIndexes: [index] })
                     editor.pushHistory({removedIndexes: [index] })
