@@ -12,13 +12,14 @@ DOM.ready(()=>{
 
 function updateWidget(widget, options={}) {
 
+    var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
 
     // save state
     stateManager.incrementQueue()
     var toSave = [widget],
         sidepanelScroll = sidepanel.scrollTop,
         scrollState = {}
-    if (options.reuseChildren === false) {
+    if (!reuseChildren) {
         toSave = toSave.concat(widget.getAllChildren())
     }
     for (let w of toSave) {
@@ -35,8 +36,7 @@ function updateWidget(widget, options={}) {
         }
     }
 
-    var reuseChildren = options.reuseChildren !== false && widget instanceof Panel,
-        children = undefined,
+    var children = undefined,
         removedChildren = []
 
     if (reuseChildren) {
