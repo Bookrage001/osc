@@ -61,7 +61,7 @@ function updateWidget(widget, options={}) {
 
     // remove old widgets
     var removedWidgets = reuseChildren ?
-            removedChildren.map(x => x.getAllChildren()).concat(widget) :
+            removedChildren.map(x => x.getAllChildren().concat(x)).concat(widget) :
             widget.getAllChildren().concat(widget)
 
     widgetManager.removeWidgets(removedWidgets)
