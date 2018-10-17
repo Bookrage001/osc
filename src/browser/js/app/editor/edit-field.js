@@ -192,7 +192,16 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         htmlHelp = htmlHelp ? '<p class="help">' + htmlHelp.replace(/`([^`]*)`/g, '<code>$1</code>') + '</p>' : ''
 
 
-        var htmlError = error ? `<p class="error">${error}</p>` : ''
+        var htmlError = error ? `<p class="error">${error}</p>` : '',
+            computedValue = propName !== 'tabs' && propName !== 'widgets' ? widget.getProp(propName) : ['...']
+
+        if (typeof computedValue === 'string') {
+            try {
+                computedValue = JSON.stringify(JSON.parse(computedValue), null, ' ')
+            } catch(e) {}
+        } else {
+            computedValue = JSON.stringify(computedValue, null, ' ')
+        }
 
         new Popup({closable: true, title: `<span class="editor-help-title">${propName}</span>`, content: `
             <div class="editor-help">
@@ -200,7 +209,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 <p>Type: <code>${defaultValue.type}</code></p>
                 <p>Default: <code>${JSON.stringify(defaultValue.value)}</code></p>
                 <p>Dynamic: <code>${dynamic ? 'true' : 'false'}</code></p>
-                <p>Computed: <code>${widget.cachedProps[propName]}</code></p>
+                <p>Computed: <code class="pre">${computedValue}</code></p>
 
                 ${htmlError}
 
