@@ -150,6 +150,9 @@ var Editor = class Editor {
                     if(toSelectList && toSelectList.length){
                         toSelectList.sort((a,b)=>a.container.offsetLeft>b.container.offsetLeft)
                         toSelect = toSelectList[0]
+                        if (toSelect.container.classList.contains('not-editable')) {
+                            toSelect = null
+                        }
                     }
 
                 }
