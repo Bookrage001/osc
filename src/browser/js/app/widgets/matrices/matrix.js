@@ -81,24 +81,18 @@ class Matrix extends _matrix_base {
 
             case 'props':
 
-                var children = [...this.children]
 
-                for (let i = children.length - 1; i >= 0; i--) {
+                for (let i = this.children.length - 1; i >= 0; i--) {
 
-                    let widget = children[i],
-                        data = this.resolveProp('props', undefined, false, false, false, {'$':i})
+                    let data = this.resolveProp('props', undefined, false, false, false, {'$':i})
 
                     if (typeof data === 'object' && data !== null) {
-                        Object.assign(widget.props, data)
+                        Object.assign(this.children[i].props, data)
                     }
-                    widget.updateProps(Object.keys(data), this)
+                    this.children[i].updateProps(Object.keys(data), this)
+                    // this.children[i] might have been recreated
+                    this.children[i].container.classList.add('not-editable')
 
-                }
-
-
-                for (let i = this.children - 1; i >= 0; i--) {
-                    let widget = children[i]
-                    widget.container.classList.add('not-editable')
                 }
 
                 return
