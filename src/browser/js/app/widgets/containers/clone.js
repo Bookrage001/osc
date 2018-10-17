@@ -113,8 +113,7 @@ class Clone extends Container {
         //console.log('clear clone',this.getProp('id'))
 
         // unregister cloned content
-        widgetManager.removeWidgets(this.children)
-        this.children = []
+        widgetManager.removeWidgets(this.getAllChildren())
 
         // clean inner html
         this.widget.innerHTML = ''
