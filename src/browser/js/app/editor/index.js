@@ -773,7 +773,7 @@ var Editor = class Editor {
         this.updateWidgetFromPatch(patch, indexes ? {
             addedIndexes: deepCopy(indexes.removedIndexes),
             removedIndexes: deepCopy(indexes.addedIndexes),
-        } : {})
+        } : undefined)
 
     }
 
@@ -791,7 +791,7 @@ var Editor = class Editor {
         this.updateWidgetFromPatch(patch, indexes ? {
             addedIndexes: deepCopy(indexes.addedIndexes),
             removedIndexes: deepCopy(indexes.removedIndexes),
-        } : {})
+        } : undefined)
 
         this.historyState -= 1
 
@@ -799,9 +799,9 @@ var Editor = class Editor {
 
     updateWidgetFromPatch(patch, indexes) {
 
-        var widget = widgetManager.getWidgetById('root')[0],
-            pointer = patch[0],
-            nextKey
+        // get object path from patch
+        var pointer = patch[0],
+            path = []
 
         while(true) {
 
@@ -810,18 +810,30 @@ var Editor = class Editor {
 
             if (
                 keys.filter(x => typeof x === 'string' && x.match(/_[0-9]+/)).length ||
-                !potentialPointers.length
+                potentialPointers.length !== 1
             ) {
                 break
             }
 
-            nextKey = potentialPointers[0]
-            if (!isNaN(nextKey)) widget = widget.children[parseInt(nextKey)]
-            pointer = pointer[nextKey]
+            path.push(potentialPointers[0])
+            pointer = pointer[potentialPointers[0]]
 
         }
 
-        updateWidget(widget, indexes)
+        if (!isNaN(path[path.length - 1]) && !isNaN(path[path.length - 2])) {
+            path.pop()
+            path.pop()
+        }
+
+        // get widget from path
+        var widget = widgetManager.getWidgetById('root')[0]
+        pointer = patch[0]
+        for (var i in path) {
+            if (!isNaN(path[i])) widget = widget.children[parseInt(path[i])]
+            pointer = pointer[path[i]]
+        }
+
+        updateWidget(widget, indexes || {reuseChildren: false})
 
     }
 
