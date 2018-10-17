@@ -577,7 +577,10 @@ var Editor = class Editor {
         data[0].widgets = data[0].widgets || []
         data[0].widgets = data[0].widgets.concat(pastedData)
 
-        var indexes = {addedIndexes: [data[0].widgets.length -1]}
+        var indexes = {addedIndexes: []}
+        for (var i = 0; i < pastedData.length; i++) {
+            indexes.addedIndexes.push(data[0].widgets.length - 1 - i )
+        }
         updateWidget(this.selectedWidgets[0], indexes)
         this.pushHistory(indexes)
 
