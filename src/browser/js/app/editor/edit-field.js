@@ -146,22 +146,19 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                     break
 
                 case 'remove':
-                    widget.children.splice(DOM.index(e.target.closest('li')),1)
-                    widget.props[propName].splice(DOM.index(e.target.closest('li')),1)
-                    change = true
+                    var index = DOM.index(e.target.closest('li'))
+                    widget.props[propName].splice(index,1)
+                    updateWidget(widget, {removedIndexes: [index] })
+                    editor.pushHistory({removedIndexes: [index] })
                     break
 
                 case 'add':
                     widget.props[propName] = widget.props[propName] || []
                     widget.props[propName].push({})
-                    change = true
+                    updateWidget(widget, {addedIndexes: [widget.props[propName].length -1] })
+                    editor.pushHistory({addedIndexes: [widget.props[propName].length -1] })
                     break
 
-            }
-
-            if (change) {
-                updateWidget(widget)
-                editor.pushHistory()
             }
 
         })

@@ -855,12 +855,13 @@ var Editor = class Editor {
 
         if (e.length) {
             w = widgetManager.getWidgetByElement(e[0])
+            updateWidget(w, indexes)
         } else {
             // in case the elements are in a hidden tab (detached dom)
             w = widgetManager.getWidgetById('root')[0]
+            updateWidget(w, {reuseChildren: false})
         }
 
-        updateWidget(w, indexes)
 
     }
 

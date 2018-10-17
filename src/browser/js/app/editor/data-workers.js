@@ -40,7 +40,7 @@ function updateWidget(widget, options={}) {
         removedChildren = []
 
     if (reuseChildren) {
-        children = widget.children
+        children = [...widget.children]
         if (options.removedIndexes) {
             options.removedIndexes = options.removedIndexes.sort((a, b) => b - a)
             for (let i of options.removedIndexes) {
@@ -61,18 +61,14 @@ function updateWidget(widget, options={}) {
 
     // remove old widgets
     var removedWidgets = reuseChildren ?
-            removedChildren.map(x => x.getAllChildren()).concat(widget) :
+            removedChildren.map(x => x.getAllChildren().concat(x)).concat(widget) :
             widget.getAllChildren().concat(widget)
 
     widgetManager.removeWidgets(removedWidgets)
 
-    // retreive widget's data from it's parent if possible
-    var parentProps = widget.parent.props[widget.getProp('type') == 'tab' ? 'tabs' : 'widgets'],
-        data = parentProps ? parentProps[index] : widget.props
-
     // create new widget
     var newWidget = parser.parse({
-        data: data,
+        data: widget.props,
         parent: widget.parent,
         parentNode: widget.parentNode,
         reCreateOptions: options.reCreateOptions,
