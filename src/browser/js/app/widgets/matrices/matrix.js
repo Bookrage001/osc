@@ -39,6 +39,7 @@ class Matrix extends _matrix_base {
 
             for (var i = this.start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + this.start; i++) {
 
+                var props = this.resolveProp('props', undefined, false, false, false, {'$':i})
                 var data = {
                     type: this.getProp('widgetType'),
                     id: this.getProp('id') + '/' + i,
@@ -46,8 +47,10 @@ class Matrix extends _matrix_base {
                     top: 'auto',
                     left: 'auto',
                     height: 'auto',
-                    width: 'auto',
-                    ...this.resolveProp('props', undefined, false, false, false, {'$':i})
+                    width: 'auto'
+                }
+                if (typeof props === 'object' && props !== null) {
+                    Object.assign(data, props)
                 }
 
                 var widget = parser.parse({
@@ -85,7 +88,9 @@ class Matrix extends _matrix_base {
                     let widget = children[i],
                         data = this.resolveProp('props', undefined, false, false, false, {'$':i})
 
-                    Object.assign(widget.props, data)
+                    if (typeof data === 'object' && data !== null) {
+                        Object.assign(widget.props, data)
+                    }
                     widget.updateProps(Object.keys(data), this)
 
                 }
