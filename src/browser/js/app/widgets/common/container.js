@@ -36,6 +36,33 @@ class Container extends Widget {
 
     }
 
+    alignChildrenProps() {
+
+        // this is needed after editor.undo to fix data shifting:
+        // say we have children [a, b, c] bound with session data [a, b, c]
+        // we delete one widget [   b, c] the data changes too:   [   b, c]
+        // undo first only mutates the data:                      [a, b, c]
+        // so children have their data mutated too, child 'b' gets data 'a' and so on
+        // each child has to get the data corresponding to its index again.
+        // ...right ? :)
+        var tabs = this.getProp('tabs'),
+            widgets= this.getProp('widgets'),
+            type = tabs && tabs.length ? 'tabs' : widgets && widgets.length ? 'widgets' : null
+
+        if (!type) return
+
+        for (let i in this.children) {
+            if (this.children[i]) {
+                this.children[i].props = this.getProp(type)[i]
+                this.children[i].cachedProps[type] = this.children[i].props[type]
+                if (this.children[i].alignChildrenProps) {
+                    this.children[i].alignChildrenProps()
+                }
+            }
+        }
+
+    }
+
     onRemove() {
 
         super.onRemove()
