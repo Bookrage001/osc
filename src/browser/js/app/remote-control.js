@@ -24,7 +24,6 @@ var callbacks = {
             }
 
             updateWidget(widget, {
-                remote: true,
                 reuseChildren: !(newdata.widgets || newdata.tabs)
             })
 
@@ -51,7 +50,6 @@ var callbacks = {
             deepExtend(data, newdata)
 
             updateWidget(widget, {
-                remote: true,
                 reuseChildren: !(newdata.widgets || newdata.tabs)
             })
 

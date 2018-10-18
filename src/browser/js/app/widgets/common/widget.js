@@ -716,7 +716,7 @@ class Widget extends EventEmitter {
 
     reCreateWidget(options){
 
-        updateWidget(this, {remote: true, reCreateOptions:options})
+        updateWidget(this, {reCreateOptions:options})
 
     }
 
