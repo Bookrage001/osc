@@ -267,10 +267,7 @@ class Clone extends Container {
 
     onRemove(){
 
-        if (this.cloneTarget) {
-            this.cloneTarget.removeEventContext(this)
-        }
-
+        this.unbindTarget()
         super.onRemove()
 
     }
