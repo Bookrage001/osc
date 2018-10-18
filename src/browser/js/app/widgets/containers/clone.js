@@ -39,7 +39,7 @@ class Clone extends Container {
         this.container.classList.add('empty')
 
         this.bindTarget(this.getCloneTarget())
-        if (this.cloneTarget) this.createClone()
+        if (this.cloneTarget) this.createClone(true)
 
         // global listenner to catch cloneTarget's creation if no target is locked
         widgetManager.on('widget-created', (e)=>{
@@ -51,15 +51,16 @@ class Clone extends Container {
                 var clone = this.children[0]
 
                 this.unbindTarget()
-                this.bindTarget(widget)
 
                 if (!clone) {
 
-                    this.updateContainer()
+                    this.updateContainer(false)
+                    this.bindTarget(widget)
                     this.createClone()
 
                 } else {
 
+                    this.bindTarget(widget)
                     this.updateClone()
 
                 }
@@ -115,7 +116,7 @@ class Clone extends Container {
 
     }
 
-    createClone() {
+    createClone(init) {
 
         if (this.cloneLock) return
 
@@ -128,7 +129,7 @@ class Clone extends Container {
                 parent: this
             })
 
-        this.updateContainer()
+        this.updateContainer(!init)
 
         this.cloneLock = false
 
@@ -195,20 +196,21 @@ class Clone extends Container {
         if (changedProps.some(x => !clone.constructor.dynamicProps.includes(x))) {
 
             clone.reCreateWidget({reuseChildren: false})
+            this.updateContainer(false)
 
         } else {
 
             clone.updateProps(changedProps, this)
+            this.updateContainer(true)
 
         }
 
-        this.updateContainer()
 
         this.cloneLock = false
 
     }
 
-    updateContainer() {
+    updateContainer(checkResize) {
 
 
         if (this.cloneTarget) {
@@ -227,7 +229,7 @@ class Clone extends Container {
                 w.container.classList.add('not-editable')
             }
 
-            resize.check(this.widget)
+            if (checkResize) resize.check(this.widget)
 
         } else if (this.cloneClass.length) {
 
@@ -249,7 +251,7 @@ class Clone extends Container {
 
             case 'widgetId':
                 this.unbindTarget()
-                this.updateContainer()
+                this.updateContainer(false)
                 this.bindTarget(this.getCloneTarget())
                 if (this.cloneTarget) this.createClone()
                 return
