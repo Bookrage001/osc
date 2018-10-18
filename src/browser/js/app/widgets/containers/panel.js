@@ -56,7 +56,6 @@ class Panel extends Container {
                     this.wrapper.appendChild(this.children[i].container)
                     this.children[i].parent = this
                     this.children[i].parentNode = this.wrapper
-                    this.children[i].props = this.getProp('tabs')[i]
                 } else {
                     parser.parse({
                         data: this.getProp('tabs')[i],
@@ -67,6 +66,8 @@ class Panel extends Container {
                     })
                 }
             }
+
+            if (options.children) this.alignChildrenProps()
 
             this.createNavigation()
 
@@ -85,13 +86,12 @@ class Panel extends Container {
 
         } else if (this.getProp('widgets') && this.getProp('widgets').length) {
 
-            this.children = options.children || new Array(this.getProp('widgets').length)
+            this.children = options.children || new Array(this.getProp('widgets').length)
             for (let i = 0; i < this.children.length; i++) {
                 if (this.children[i]) {
                     this.widget.appendChild(this.children[i].container)
                     this.children[i].parent = this
                     this.children[i].parentNode = this.widget
-                    this.children[i].props = this.getProp('widgets')[i]
                 } else {
                     parser.parse({
                         data: this.getProp('widgets')[i],
@@ -101,6 +101,9 @@ class Panel extends Container {
                     })
                 }
             }
+
+            if (options.children) this.alignChildrenProps()
+
 
         }
 
