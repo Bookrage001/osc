@@ -150,7 +150,7 @@ var Editor = class Editor {
 
                 } else if (e.key === 'ArrowDown') {
 
-                    var toSelectList = [...curWidget.parent.children]
+                    var toSelectList = [...curWidget.children]
 
                     if (toSelectList && toSelectList.length) {
                         toSelectList.sort((a,b) => a.container.offsetLeft>b.container.offsetLeft)
