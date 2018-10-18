@@ -11,7 +11,7 @@ module.exports = class OscReceiver {
         }
 
         this.parent = parent
-        this.propName = propName
+        this.propNames = [propName]
         this.bindedCallback = this.callback.bind(this)
         this.setAddress(address)
 
@@ -28,6 +28,10 @@ module.exports = class OscReceiver {
 
         }
 
+    }
+    
+    addProp(propName){
+        if(!this.propNames.includes(propName))this.propNames.push(propName)
     }
 
     callback(args) {
@@ -46,7 +50,7 @@ module.exports = class OscReceiver {
             } catch (err) {
                 this.value = val
             }
-            this.parent.updateProps([this.propName], this.parent)
+            this.parent.updateProps(this.propNames, this.parent)
         }
 
     }
