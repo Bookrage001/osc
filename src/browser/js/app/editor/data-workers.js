@@ -4,7 +4,9 @@ var widgetManager = require('../managers/widgets'),
     parser = require('../parser'),
     Panel,
     sidepanel,
-    editor
+    editor,
+    scrollState = {},
+    sidepanelScroll
 
 DOM.ready(()=>{
     sidepanel = DOM.get('#sidepanel')[0]
@@ -15,10 +17,12 @@ function updateWidget(widget, options={}) {
     var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
 
     // save state
-    stateManager.incrementQueue()
-    var toSave = [widget],
-        sidepanelScroll = sidepanel.scrollTop,
+    if (stateManager.queueCounter === 0) {
+        sidepanelScroll = sidepanel.scrollTop
         scrollState = {}
+    }
+    stateManager.incrementQueue()
+    var toSave = [widget]
     if (!reuseChildren) {
         toSave = toSave.concat(widget.getAllChildren())
     }
@@ -106,12 +110,14 @@ function updateWidget(widget, options={}) {
 
     // restore state
     stateManager.decrementQueue()
-    for (let id in scrollState) {
-        for (let w of widgetManager.getWidgetById(id)) {
-            if (w.scroll) w.scroll(scrollState[id])
+    if (stateManager.queueCounter === 0) {
+        sidepanel.scrollTop = sidepanelScroll
+        for (let id in scrollState) {
+            for (let w of widgetManager.getWidgetById(id)) {
+                if (w.scroll) w.scroll(scrollState[id])
+            }
         }
     }
-    sidepanel.scrollTop = sidepanelScroll
 
     if (editor.selectedWidgets.includes(widget) && !options.preventSelect) {
         editor.select(newWidget)
