@@ -198,7 +198,7 @@ class Clone extends Container {
 
         } else {
 
-            clone.updateProps(changedProp, this)
+            clone.updateProps(changedProps, this)
 
         }
 
