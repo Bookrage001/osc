@@ -550,7 +550,7 @@ class Widget extends EventEmitter {
         }
         if (reCreate && !this.contains(widget) && widget !== this && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
 
-            this.reCreateWidget(options)
+            this.reCreateWidget({reCreateOptions: options})
             return true
 
         } else if (changedProps.length) {
@@ -714,9 +714,9 @@ class Widget extends EventEmitter {
 
     }
 
-    reCreateWidget(options){
+    reCreateWidget(options={}){
 
-        updateWidget(this, {reCreateOptions:options})
+        updateWidget(this, options)
 
     }
 
