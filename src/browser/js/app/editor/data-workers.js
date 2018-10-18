@@ -32,7 +32,10 @@ function updateWidget(widget, options={}) {
             if (valueProp !== '' && valueProp !== undefined) stateManager.pushValueOldProp(id, valueProp)
         }
         if (widgetManager.scrollingWidgets.indexOf(w.hash) > -1 && w.scroll) {
-            scrollState[w.getProp('id')] = w.scroll()
+            var s = w.scroll()
+            if (s[0] !== 0 || s[1] !== 0) {
+                scrollState[w.getProp('id')] = s
+            }
         }
     }
 
