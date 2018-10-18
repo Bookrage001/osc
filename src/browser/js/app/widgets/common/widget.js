@@ -490,8 +490,10 @@ class Widget extends EventEmitter {
             }
 
             // heuristic to avoid using JSON when unnecessary
-            // if the string starts with one of these chars it's going to fail
-            if ('/@#.'.indexOf(propValue[0]) === -1) {
+            // if the string doesn't starts with one of these chars
+            // it's going to fail
+            // ref in source: https://github.com/douglascrockford/JSON-js
+            if (' +-eE{([0123456789tfn"'.indexOf(propValue[0]) !== -1) {
                 try {
                     propValue = JSON.parse(propValue)
                 } catch (err) {}
