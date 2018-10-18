@@ -11,7 +11,6 @@ var browserify = require('browserify'),
     fast = process.argv.indexOf('--fast') != -1,
     watch = process.argv.indexOf('--watch') != -1,
     autoRefresh = process.argv.indexOf('--auto-refresh') != -1,
-    WebSocket = require('ws'),
     b
 
 var inputPath = path.resolve(__dirname + '/../src/browser/js/index.js'),
