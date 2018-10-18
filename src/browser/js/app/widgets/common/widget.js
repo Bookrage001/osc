@@ -489,9 +489,13 @@ class Widget extends EventEmitter {
                 propValue = propValue.replace(new RegExp(k, 'g'), v)
             }
 
-            try {
-                propValue = JSON.parse(propValue)
-            } catch (err) {}
+            // heuristic to avoid using JSON when unnecessary
+            // if the string starts with one of these chars it's going to fail
+            if ('/@#.'.indexOf(propValue[0]) === -1) {
+                try {
+                    propValue = JSON.parse(propValue)
+                } catch (err) {}
+            }
 
         } else if (propValue != null && typeof propValue == 'object') {
             for (let k in propValue) {
