@@ -25,4 +25,20 @@ module.exports = class _matrix_base extends Container {
 
     }
 
+    onPropChanged(propName, options, oldPropValue) {
+
+        if (super.onPropChanged(...arguments)) return true
+
+        switch (propName) {
+
+            case 'color':
+                for (var w of this.children) {
+                    w.onPropChanged('color')
+                }
+                return
+
+        }
+
+    }
+
 }

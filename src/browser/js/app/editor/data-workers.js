@@ -14,6 +14,43 @@ DOM.ready(()=>{
 
 function updateWidget(widget, options={}) {
 
+    if (options.changedProps) {
+        // alternate routine for small edits
+        var propNames = options.changedProps,
+            propValues = propNames.map(x => widget.props[x]),
+            linkedProps = []
+
+        Object.values(widget.linkedProps).forEach(l => linkedProps = linkedProps.concat(l))
+        Object.values(widget.linkedPropsValue).forEach(l => linkedProps = linkedProps.concat(l))
+        Object.values(widget.oscReceivers).forEach(r => linkedProps = linkedProps.concat(r.propNames))
+
+        if (
+            // if non dynamic props have changed, skip this and use rebuild routine
+            !propNames.some(n => !widget.constructor.dynamicProps.includes(n))
+        ) {
+
+            var edited = widget.updateProps(options.changedProps, null) || widget
+
+            if (
+                // if prop/osc listeners have changed (@{} / OSC{})
+                // refresh the widget's props cache and update linked props bindings
+                !propValues.some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
+            &&  !propNames.some(n => linkedProps.includes(n))
+            ) {
+                widget.createPropsCache()
+            }
+
+            if (editor.selectedWidgets.includes(widget) && !options.preventSelect) {
+                editor.select(edited)
+            }
+
+            return edited
+
+        }
+
+    }
+
+
     var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
 
     // save state

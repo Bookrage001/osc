@@ -21,7 +21,7 @@ module.exports = class OscReceiver {
 
         if (this.address !== address) {
 
-            if (this.address) osc.off(this.address, this.bindedCallback)
+            if (this.address) osc.removeEventContext(this.parent, this.address, this.bindedCallback)
 
             this.address = address
             osc.on(this.address, this.bindedCallback, {context: this.parent})
