@@ -589,6 +589,9 @@ class Widget extends EventEmitter {
 
             case 'label':
                 this.setContainerStyles(['label'])
+                if (oldPropValue === false || this.getProp('label') === false) {
+                    resize.check(this.container)
+                }
                 return
 
             case 'css':
@@ -656,6 +659,7 @@ class Widget extends EventEmitter {
             if (this.getProp('label') === false) {
                 this.container.classList.add('nolabel')
             } else {
+                this.container.classList.remove('nolabel')
                 var label = this.getProp('label') == 'auto'?
                     this.getProp('id'):
                     iconify(this.getProp('label'))
