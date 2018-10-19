@@ -581,6 +581,9 @@ class Widget extends EventEmitter {
 
             case 'top':
             case 'left':
+                this.setContainerStyles(['geometry'])
+                return
+
             case 'height':
             case 'width':
                 this.setContainerStyles(['geometry'])
