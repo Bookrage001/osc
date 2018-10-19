@@ -17,7 +17,14 @@ function updateWidget(widget, options={}) {
     if (options.changedProps) {
         // alternate routine for small edits
         // if props/osc-listeners are modified -> full rebuild instead
-        if (!options.changedProps.map(x => widget.props[x]).some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))) {
+        var propNames = options.changedProps,
+            propValues = propNames.map(x => widget.props[x])
+        if (
+            !propValues.some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
+        &&  !Object.values(widget.oscReceivers).some(r => propNames.includes(r.propName))
+        &&  !Object.values(widget.linkedProps).some(l => l.some(n => propNames.includes(n)))
+        &&  !Object.values(widget.linkedPropsValue).some(l => l.some(n => propNames.includes(n)))
+        ) {
             var edited = widget.updateProps(options.changedProps, null) || widget
             if (editor.selectedWidgets.includes(widget) && !options.preventSelect) {
                 editor.select(edited)
