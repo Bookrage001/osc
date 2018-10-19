@@ -69,6 +69,18 @@ class Clone extends Container {
 
         }, {context: this})
 
+        widgetManager.on('prop-changed', (e)=>{
+
+            if (!this.cloneTarget) return
+
+            if (e.widget === this.cloneTarget || this.cloneTarget.contains(e.widget)) {
+
+                this.updateClone()
+
+            }
+
+        }, {context: this})
+
     }
 
     getCloneTarget() {
