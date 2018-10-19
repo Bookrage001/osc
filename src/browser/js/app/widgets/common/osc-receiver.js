@@ -29,9 +29,11 @@ module.exports = class OscReceiver {
         }
 
     }
-    
+
     addProp(propName){
-        if(!this.propNames.includes(propName))this.propNames.push(propName)
+
+        if (!this.propNames.includes(propName)) this.propNames.push(propName)
+
     }
 
     callback(args) {
