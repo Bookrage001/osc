@@ -10,6 +10,7 @@ var browserify = require('browserify'),
     prod = process.argv.indexOf('--prod') != -1,
     fast = process.argv.indexOf('--fast') != -1,
     watch = process.argv.indexOf('--watch') != -1,
+    autoRefresh = process.argv.indexOf('--auto-refresh') != -1,
     b
 
 var inputPath = path.resolve(__dirname + '/../src/browser/js/index.js'),
@@ -59,12 +60,56 @@ if (watch) {
 }
 
 bundle()
+var pendingSocket
+const wsAddress = 'ws://127.0.0.1:8080/dev'
+if(autoRefresh){
+    var WS = require('../app/node_modules/ws')
+    pendingSocket = new WS(wsAddress)
+    pendingSocket.on('error', (err)=>{console.error(err)})
+    pendingSocket.on('open', ()=>{})
+    pendingSocket.on('close', ()=>{pendingSocket = null;})
+}
 
+var hasError = false
 function bundle() {
 
     var output =  b.bundle()
-    output.on('error', function(err) {console.error(new Error(err))})
+    output.on('end', (err)=> {
+        console.log('build successful',pendingSocket?'sending refresh':'')
+        if(autoRefresh && pendingSocket && hasError){
+            pendingSocket.send('["refresh"]')
+            hasError = false
+            //pendingSocket.close();
+        }
+    })
+    output.on('error', (err)=> {
+        console.error(err.stack)
+        var Convert = require('ansi-to-html');
+        var convert = new Convert(
+            {fg: '#0F0',
+            bg: '#000'});
+        const errFilePath = err.stack.split(':')?'file://'+err.stack.split(':')[1].trim()+':'+err.loc.line:''
+        let formattedStack = err.stack.replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.');
+        // let stackWithoutAnsi = formattedStack.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g,'')// escape ANSI codes
+        
+        
+        fs.createWriteStream(outputPath).write(`
+        window.onload = ()=>{
+            document.write(\`<body> <div>${convert.toHtml(formattedStack)}</div><button onclick="refresh()"></button></body>\`)
+            document.body.style['color']='#0F0'
+            document.body.style['white-space']='pre-wrap'
+            console.error(\`${errFilePath}\`)
+        }
+        `)
 
+        if(autoRefresh ){
+            if(pendingSocket){
+                pendingSocket.send('["refresh"]')
+            }
+        }
+  })
+    
+    
     if (!fast) output.pipe(exorcist(outputPath + '.map'))
 
     output.pipe(fs.createWriteStream(outputPath))

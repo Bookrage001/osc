@@ -5,7 +5,8 @@ var path = require('path'),
     {ipc} = require('./server'),
     {deepCopy} = require('./utils'),
     theme = require('./theme'),
-    chokidar = require('chokidar')
+    chokidar = require('chokidar'),
+    {BrowserWindow} = require('electron')
 
 var openedSessions = {},
     widgetHashTable = {},
@@ -293,6 +294,12 @@ module.exports =  {
 
     fullscreen: function(data) {
         window.setFullScreen(!window.isFullScreen())
+    },
+    
+    refresh: function(data) {
+        for (var w of BrowserWindow.getAllWindows()){
+            w.reload()
+        }
     },
 
     reloadCss:function(){
