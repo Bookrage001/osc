@@ -13,6 +13,7 @@
   - properties categories can now be folded
   - added keyboard shortcut `F2` for editing the label quickly
   - added keyboard shortcut `mod + s` for saving the session
+  - added keyboard shortcut `mod + o` for opening a session
   - use `backspace` instead of `delete` for deleting widgets on MacOs
   - added keyboard shortcut `mod + e` for enabling / disabling the editor
   - added keyboard shortcuts `mod + arrows` for selecting widgets

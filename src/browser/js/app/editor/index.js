@@ -205,6 +205,11 @@ var Editor = class Editor {
             sessionManager.save()
         })
 
+        keyboardJS.bind('mod + o', (e)=>{
+            e.preventDefault()
+            sessionManager.browse()
+        })
+
         keyboardJS.bind('mod + e', (e)=>{
             e.preventDefault()
             if (this.enabled) {

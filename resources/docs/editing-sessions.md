@@ -53,6 +53,7 @@ The following shortcuts are always available:
 |---|---|
 | `mod + e` | enable/disable editor |
 | `mod + s` | save session as... |
+| `mod + o` | open a session file |
 
 The following shortcuts are available only when the editor is enabled:
 
