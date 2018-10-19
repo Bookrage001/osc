@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         ipc.init()
 
         require('./app/ui/init')
-        ipc.send('ready')
+
+        ipc.send('ready', {backupId: ARGV.backupId})
 
 
     }, 100)

@@ -38,7 +38,7 @@ module.exports = function(options={}) {
         }
     })
 
-    window.webContents.on('will-navigate', (event)=>event.preventDefault())
+    // window.webContents.on('will-navigate', (event)=>event.preventDefault())
     window.webContents.on('new-window', (event)=>event.preventDefault())
 
     if (options.fullscreen) {

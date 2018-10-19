@@ -60,56 +60,43 @@ if (watch) {
 }
 
 bundle()
-var pendingSocket
-const wsAddress = 'ws://127.0.0.1:8080/dev'
-if(autoRefresh){
+
+if (autoRefresh) {
+    var Convert = require('ansi-to-html')
+    var convert = new Convert()
     var WS = require('../app/node_modules/ws')
-    pendingSocket = new WS(wsAddress)
-    pendingSocket.on('error', (err)=>{console.error(err)})
-    pendingSocket.on('open', ()=>{})
-    pendingSocket.on('close', ()=>{pendingSocket = null;})
+    function send(msg, data){
+        var ipc = new WS('ws://127.0.0.1:8080/dev')
+        ipc.on('error', ()=>{})
+        ipc.on('open', ()=>{
+            ipc.send(JSON.stringify([msg, data]))
+            ipc.close()
+        })
+    }
 }
 
-var hasError = false
+
 function bundle() {
 
     var output =  b.bundle()
-    output.on('end', (err)=> {
-        console.log('build successful',pendingSocket?'sending refresh':'')
-        if(autoRefresh && pendingSocket && hasError){
-            pendingSocket.send('["refresh"]')
-            hasError = false
-            //pendingSocket.close();
-        }
-    })
-    output.on('error', (err)=> {
-        console.error(err.stack)
-        var Convert = require('ansi-to-html');
-        var convert = new Convert(
-            {fg: '#0F0',
-            bg: '#000'});
-        const errFilePath = err.stack.split(':')?'file://'+err.stack.split(':')[1].trim()+':'+err.loc.line:''
-        let formattedStack = err.stack.replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.');
-        // let stackWithoutAnsi = formattedStack.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g,'')// escape ANSI codes
-        
-        
-        fs.createWriteStream(outputPath).write(`
-        window.onload = ()=>{
-            document.write(\`<body> <div>${convert.toHtml(formattedStack)}</div><button onclick="refresh()"></button></body>\`)
-            document.body.style['color']='#0F0'
-            document.body.style['white-space']='pre-wrap'
-            console.error(\`${errFilePath}\`)
-        }
-        `)
 
-        if(autoRefresh ){
-            if(pendingSocket){
-                pendingSocket.send('["refresh"]')
-            }
-        }
-  })
-    
-    
+    output.on('end', (err)=> {
+        console.log('Build successful', autoRefresh ? 'reloading...' : '')
+        if (autoRefresh) send('reload')
+    })
+
+    output.on('error', (err)=> {
+
+        console.error(err.stack)
+        send('errorPopup', convert.toHtml(
+            '<div style="white-space:pre">' +
+            err.stack.replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.').trim().replace('\n','\n\n') +
+            '</div>'
+        ))
+
+    })
+
+
     if (!fast) output.pipe(exorcist(outputPath + '.map'))
 
     output.pipe(fs.createWriteStream(outputPath))

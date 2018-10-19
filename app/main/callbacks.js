@@ -10,7 +10,8 @@ var path = require('path'),
 
 var openedSessions = {},
     widgetHashTable = {},
-    lastSavingClient
+    lastSavingClient,
+    sessionBackups = {}
 
 module.exports =  {
 
@@ -19,6 +20,12 @@ module.exports =  {
 
         if (settings.read('readOnly')) {
             ipc.send('readOnly')
+        }
+
+        if (data.backupId && sessionBackups[data.backupId]) {
+            ipc.send('loadBackup', sessionBackups[data.backupId])
+            delete sessionBackups[data.backupId]
+            return
         }
 
         if (settings.read('newSession')) {
@@ -295,11 +302,17 @@ module.exports =  {
     fullscreen: function(data) {
         window.setFullScreen(!window.isFullScreen())
     },
-    
-    refresh: function(data) {
-        for (var w of BrowserWindow.getAllWindows()){
-            w.reload()
-        }
+
+    reload: function(data) {
+
+        ipc.send('reload')
+
+    },
+
+    storeBackup: function(data) {
+
+        sessionBackups[data.backupId] = data
+
     },
 
     reloadCss:function(){
@@ -317,5 +330,10 @@ module.exports =  {
 
     errorLog: function(data) {
         console.error(data)
+    },
+
+    errorPopup: function(data) {
+        ipc.send('error', data)
     }
+
 }
