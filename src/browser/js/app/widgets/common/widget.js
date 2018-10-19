@@ -444,6 +444,7 @@ class Widget extends EventEmitter {
                     }
                 } else {
                     this.oscReceivers[address].setAddress(resolvedAddress)
+                    this.oscReceivers[address].addProp(propName)
                 }
 
                 var r = this.oscReceivers[address].value
