@@ -26,15 +26,24 @@ function updateWidget(widget, options={}) {
         Object.values(widget.oscReceivers).forEach(r => linkedProps = linkedProps.concat(r.propNames))
 
         if (
-            !propValues.some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
-        &&  !propNames.some(n => linkedProps.includes(n))
+            !propNames.some(n => !widget.constructor.dynamicProps.includes(n))
         ) {
+
             var edited = widget.updateProps(options.changedProps, null) || widget
+
+            if (
+                !propValues.some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
+            &&  !propNames.some(n => linkedProps.includes(n))
+            ) {
+                widget.createPropsCache()
+            }
+
             if (editor.selectedWidgets.includes(widget) && !options.preventSelect) {
                 editor.select(edited)
             }
             return edited
         }
+
     }
 
 
