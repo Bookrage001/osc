@@ -14,6 +14,19 @@ DOM.ready(()=>{
 
 function updateWidget(widget, options={}) {
 
+    if (options.changedProps) {
+        // alternate routine for small edits
+        // if props/osc-listeners are modified -> full rebuild instead
+        if (!options.changedProps.map(x => widget.props[x]).some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))) {
+            var edited = widget.updateProps(options.changedProps, null) || widget
+            if (editor.selectedWidgets.includes(widget) && !options.preventSelect) {
+                editor.select(edited)
+            }
+            return edited
+        }
+    }
+
+
     var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
 
     // save state

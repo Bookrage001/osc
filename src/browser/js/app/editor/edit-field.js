@@ -67,14 +67,15 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             if (defaultValue.type.includes('boolean')) {
 
-                var toggle = DOM.create(`
-                   <span class="checkbox ${widget.props[propName] ? 'on' : ''}">
+                let toggle = DOM.create(`
+                   <span class="checkbox ${widget.getProp(propName) ? 'on' : ''}">
                        ${icon('check')}
                    </span>
                `)
 
                 toggle.addEventListener('click', ()=>{
                     input.value = !widget.getProp(propName)
+                    toggle.classList.toggle('on', widget.getProp(propName)  )
                     DOM.dispatchEvent(input, 'change')
                 })
 
@@ -85,10 +86,13 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             field.appendChild(input)
 
         }
-
+        var lock
         var onChange = ()=>{
 
-            input.removeEventListener('change', onChange)
+            if (lock) return
+            lock = true
+
+            input.blur()
 
             var v
 
@@ -101,10 +105,12 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             var newWidgets = []
             for (var w of editor.selectedWidgets) {
                 w.props[propName] = v !== '' ? v : deepCopy(defaultValue.value)
-                newWidgets.push(updateWidget(w, {preventSelect: editor.selectedWidgets.length > 1}))
+                newWidgets.push(updateWidget(w, {changedProps: [propName], preventSelect: editor.selectedWidgets.length > 1}))
             }
             editor.pushHistory()
             if (newWidgets.length > 1) editor.select(newWidgets)
+
+            lock = false
 
         }
 

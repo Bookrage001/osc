@@ -689,7 +689,7 @@ var Editor = class Editor {
                 }
             }
 
-            if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
+            if (w.props.width !== undefined || w.props.height !== undefined) newWidgets.push(updateWidget(w, {changedProps: ['width', 'height'], preventSelect: this.selectedWidgets.length > 1}))
 
         }
 
@@ -720,7 +720,7 @@ var Editor = class Editor {
                 w.props.left = newLeft
             }
 
-            newWidgets.push(updateWidget(w, {preventSelect: this.selectedWidgets.length > 1}))
+            newWidgets.push(updateWidget(w, {changedProps: ['top', 'left'], preventSelect: this.selectedWidgets.length > 1}))
 
         }
 

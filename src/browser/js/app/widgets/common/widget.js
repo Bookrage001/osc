@@ -548,14 +548,15 @@ class Widget extends EventEmitter {
 
             }
         }
-        if (reCreate && !this.contains(widget) && widget !== this && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
 
-            this.reCreateWidget({reCreateOptions: options})
-            return true
+        if (reCreate && (!widget || !this.contains(widget)) && widget !== this && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
+
+            return this.reCreateWidget({reCreateOptions: options})
 
         } else if (changedProps.length) {
 
             for (var i in changedProps) {
+
                 this.onPropChanged(changedProps[i].propName, options, changedProps[i].oldPropValue)
             }
 
@@ -716,7 +717,7 @@ class Widget extends EventEmitter {
 
     reCreateWidget(options={}){
 
-        updateWidget(this, options)
+        return updateWidget(this, options)
 
     }
 
