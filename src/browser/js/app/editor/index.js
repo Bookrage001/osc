@@ -96,6 +96,10 @@ var Editor = class Editor {
             })
             keyboardJS.bind(['alt + up', 'alt + down', 'alt + right', 'alt + left'], (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
+                if (!this.selectedWidgets.length) return
+
+                if (this.selectedWidgets[0].props.height === undefined && e.key.match(/Arrow(Up|Down)/)) return
+                if (this.selectedWidgets[0].props.width === undefined && e.key.match(/Arrow(Left|Right)/)) return
 
                 var deltaW = e.key === 'ArrowLeft' ? -GRIDWIDTH : e.key === 'ArrowRight' ? GRIDWIDTH : 0,
                     deltaH = e.key === 'ArrowUp' ? -GRIDWIDTH : e.key === 'ArrowDown' ? GRIDWIDTH : 0
@@ -109,6 +113,10 @@ var Editor = class Editor {
             })
             keyboardJS.bind(['up', 'down', 'right', 'left'], (e)=>{
                 if (e.target.classList.contains('no-keybinding')) return
+                if (!this.selectedWidgets.length) return
+
+                if (this.selectedWidgets[0].props.top === undefined && e.key.match(/Arrow(Up|Down)/)) return
+                if (this.selectedWidgets[0].props.left === undefined && e.key.match(/Arrow(Left|Right)/)) return
 
                 var deltaX = e.key === 'ArrowLeft' ? -GRIDWIDTH : e.key === 'ArrowRight' ? GRIDWIDTH : 0,
                     deltaY = e.key === 'ArrowUp' ? -GRIDWIDTH : e.key === 'ArrowDown' ? GRIDWIDTH : 0
