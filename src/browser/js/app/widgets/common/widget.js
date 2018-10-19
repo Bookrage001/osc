@@ -148,67 +148,14 @@ class Widget extends EventEmitter {
             delete this.props[this.parent.getProp('horizontal') ? 'height' : 'width']
         }
 
-        // @{props} links lists
-        this.linkedProps = {}
-        this.linkedPropsValue = {}
-
-        // OSC{/path} receivers
-        this.oscReceivers = {}
-
-        // cache props (resolve @{props})
-        this.cachedProps = {}
-
-        for (var k in this.props) {
-            if (k != 'widgets' && k != 'tabs') {
-                this.cachedProps[k] = this.resolveProp(k, undefined, true)
-            } else {
-                this.cachedProps[k] = this.props[k]
-            }
-        }
+        this.createPropsCache()
 
         if (this.getProp('id') == 'root' && !options.root) {
             this.cachedProps.id = '_root'
             this.errors.id = 'There can only be one root'
         }
 
-        if (Object.keys(this.linkedProps).length) {
-
-            widgetManager.on('widget-created', (e)=>{
-                var {id, widget, options} = e
-                if (widget == this.parent) return
-                if (widget == this) id = 'this'
-                if (this.linkedProps[id]) {
-                    this.updateProps(this.linkedProps[id], widget, options)
-                }
-            }, {context: this})
-
-            widgetManager.on('prop-changed', (e)=>{
-                let {id, widget, options} = e
-                if (widget == this) id = 'this'
-                if (widget == this.parent) id = 'parent'
-                if (this.linkedProps[id]) {
-                    this.updateProps(this.linkedProps[id], widget, options, e.props)
-                }
-            }, {context: this})
-
-        }
-
-        if (Object.keys(this.linkedPropsValue).length) {
-
-            widgetManager.on('change', (e)=>{
-                var {id, widget, options} = e
-                if (widget == this) id = 'this'
-                if (widget == this.parent) id = 'parent'
-                if (this.linkedPropsValue[id]) {
-                    this.updateProps(this.linkedPropsValue[id], widget, options, ['value'])
-                }
-            }, {context: this})
-
-        }
-
-        var selfLinkedOSCProps = (this.linkedPropsValue['this'] || []).filter(i=>OSCProps.indexOf(i) > -1)
-        this.selfLinkedOSCProps = selfLinkedOSCProps.length ? selfLinkedOSCProps : false
-
+        this.createLinkedPropsBindings()
 
         this.disabledProps = []
 
@@ -321,6 +268,99 @@ class Widget extends EventEmitter {
     }
 
     getSplit() {}
+
+    createPropsCache() {
+
+        // @{props} links lists
+        this.linkedProps = {}
+        this.linkedPropsValue = {}
+
+        // OSC{/path} receivers
+        if (this.oscReceivers) {
+            this.removeOscReceivers()
+        }
+        this.oscReceivers = {}
+
+        // Cache resolved props
+        this.cachedProps = {}
+
+        for (var k in this.props) {
+            if (k != 'widgets' && k != 'tabs') {
+                this.cachedProps[k] = this.resolveProp(k, undefined, true)
+            } else {
+                this.cachedProps[k] = this.props[k]
+            }
+        }
+
+        this.createLinkedPropsBindings()
+
+    }
+
+    createLinkedPropsBindings() {
+
+        if (!this.linkedCreatedCallback && Object.keys(this.linkedProps).length) {
+
+            this.linkedCreatedCallback = (e)=>{
+                this.onLinkedPropsChanged(e, 'widget-created')
+            }
+
+            this.linkedPropChangedCallback = (e)=>{
+                this.onLinkedPropsChanged(e, 'prop-changed')
+            }
+
+            widgetManager.on('widget-created', this.linkedCreatedCallback, {context: this})
+            widgetManager.on('prop-changed', this.linkedPropChangedCallback, {context: this})
+
+        } else if (this.linkedCreatedCallback && !Object.keys(this.linkedPropsValue).length) {
+
+            widgetManager.removeEventContext('widget-created', this.linkedCreatedCallback, {context: this})
+            widgetManager.removeEventContext('prop-changed', this.linkedPropChangedCallback, {context: this})
+
+        }
+
+        if (!this.linkedValueChangedCallback && Object.keys(this.linkedPropsValue).length) {
+
+            this.linkedValueChangedCallback = (e)=>{
+                this.onLinkedPropsChanged(e, 'change')
+            }
+
+            widgetManager.on('change', this.linkedValueChangedCallback, {context: this})
+
+        } else if (this.linkedPropsValueCallback && !Object.keys(this.linkedPropsValue).length) {
+
+            widgetManager.removeEventContext('change', this.linkedValueChangedCallback, {context: this})
+
+        }
+
+        var selfLinkedOSCProps = (this.linkedPropsValue['this'] || []).filter(i=>OSCProps.indexOf(i) > -1)
+        this.selfLinkedOSCProps = selfLinkedOSCProps.length ? selfLinkedOSCProps : false
+
+    }
+
+    onLinkedPropsChanged(e, type) {
+
+        var {id, widget, options} = e,
+            changedProps = type === 'prop-changed' ? e.props : type === 'change' ? ['value'] : undefined,
+            linkedProps = type === 'change' ? this.linkedPropsValue : this.linkedProps
+
+        if (widget === this.parent) return
+        if (widget === this) id = 'this'
+
+        if (linkedProps[id]) {
+            this.updateProps(linkedProps[id], widget, options, changedProps)
+        }
+
+    }
+
+    removeOscReceivers() {
+
+        osc.removeEventContext(this)
+        for (var i in this.oscReceivers) {
+            oscReceiverState[i] = this.oscReceivers[i].value
+        }
+        this.oscReceivers = {}
+
+    }
 
     resolveProp(propName, propValue, storeLinks=true, originalWidget, originalPropName, context) {
 
@@ -732,10 +772,7 @@ class Widget extends EventEmitter {
     onRemove(){
 
         widgetManager.removeEventContext(this)
-        osc.removeEventContext(this)
-        for (var i in this.oscReceivers) {
-            oscReceiverState[i] = this.oscReceivers[i].value
-        }
+        this.removeOscReceivers()
 
     }
 
