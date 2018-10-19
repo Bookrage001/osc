@@ -75,7 +75,6 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
                 toggle.addEventListener('click', ()=>{
                     input.value = !widget.getProp(propName)
-                    toggle.classList.toggle('on', widget.getProp(propName)  )
                     DOM.dispatchEvent(input, 'change')
                 })
 
