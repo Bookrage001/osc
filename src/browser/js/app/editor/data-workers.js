@@ -18,12 +18,16 @@ function updateWidget(widget, options={}) {
         // alternate routine for small edits
         // if props/osc-listeners are modified -> full rebuild instead
         var propNames = options.changedProps,
-            propValues = propNames.map(x => widget.props[x])
+            propValues = propNames.map(x => widget.props[x]),
+            linkedProps = []
+
+        Object.values(widget.linkedProps).forEach(l => linkedProps = linkedProps.concat(l))
+        Object.values(widget.linkedPropsValue).forEach(l => linkedProps = linkedProps.concat(l))
+        Object.values(widget.oscReceivers).forEach(r => linkedProps = linkedProps.concat(r.propNames))
+
         if (
             !propValues.some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
-        &&  !Object.values(widget.oscReceivers).some(r => propNames.includes(r.propName))
-        &&  !Object.values(widget.linkedProps).some(l => l.some(n => propNames.includes(n)))
-        &&  !Object.values(widget.linkedPropsValue).some(l => l.some(n => propNames.includes(n)))
+        &&  !propNames.some(n => linkedProps.includes(n))
         ) {
             var edited = widget.updateProps(options.changedProps, null) || widget
             if (editor.selectedWidgets.includes(widget) && !options.preventSelect) {
