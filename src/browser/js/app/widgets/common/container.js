@@ -47,13 +47,15 @@ class Container extends Widget {
         // ...right ? :)
         var tabs = this.getProp('tabs'),
             widgets= this.getProp('widgets'),
-            type = tabs && tabs.length ? 'tabs' : widgets && widgets.length ? 'widgets' : null
+            type = tabs && tabs.length ? 'tabs' : widgets && widgets.length ? 'widgets' : null,
+            data = type ? this.getProp(type) : null
 
         if (!type) return
 
+
         for (let i in this.children) {
-            if (this.children[i]) {
-                this.children[i].props = this.getProp(type)[i]
+            if (this.children[i] && data[i]) {
+                this.children[i].props = data[i]
                 this.children[i].cachedProps[type] = this.children[i].props[type]
                 if (this.children[i].alignChildrenProps) {
                     this.children[i].alignChildrenProps()
