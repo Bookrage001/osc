@@ -5,6 +5,8 @@ var utils = require('../ui/utils'),
     state = require('../managers/state'),
     editor = require('../editor/'),
     locales = require('../locales'),
+    {deepCopy} = require('../utils'),
+    sidepanel = require('../ui/sidepanel'),
     ipc = require('./')
 
 module.exports = {
@@ -110,7 +112,11 @@ module.exports = {
             ipc.send('storeBackup', {
                 backupId: id,
                 session: session.session,
-                state: state.get()
+                state: state.get(),
+                history: editor.history,
+                historyState: editor.historyState,
+                editorEnabled: editor.enabled,
+                sidepanelOpened: document.getElementById('sidepanel').classList.contains('sidepanel-open')
             })
 
             // reload page and hold backup id
@@ -135,6 +141,11 @@ module.exports = {
 
         session.load(data.session, ()=>{
             state.set(data.state, false)
+            editor.historySession = deepCopy(data.session)
+            editor.history = data.history
+            editor.historyState = data.historyState
+            if (data.sidepanelOpened) sidepanel.open()
+            if (data.editorEnabled) editor.enable()
         })
 
     }
