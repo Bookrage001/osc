@@ -140,12 +140,19 @@ module.exports = {
     loadBackup: function(data) {
 
         session.load(data.session, ()=>{
+
             state.set(data.state, false)
+
             editor.historySession = deepCopy(data.session)
             editor.history = data.history
             editor.historyState = data.historyState
-            if (data.sidepanelOpened) sidepanel.open()
             if (data.editorEnabled) editor.enable()
+
+            if (data.sidepanelOpened) sidepanel.open()
+
+
+            ipc.send('deleteBackup', data.backupId)
+
         })
 
     }

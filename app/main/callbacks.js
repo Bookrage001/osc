@@ -24,7 +24,6 @@ module.exports =  {
 
         if (data.backupId && sessionBackups[data.backupId]) {
             ipc.send('loadBackup', sessionBackups[data.backupId])
-            delete sessionBackups[data.backupId]
             return
         }
 
@@ -312,6 +311,12 @@ module.exports =  {
     storeBackup: function(data) {
 
         sessionBackups[data.backupId] = data
+
+    },
+
+    deleteBackup: function(data) {
+
+        delete sessionBackups[data]
 
     },
 
