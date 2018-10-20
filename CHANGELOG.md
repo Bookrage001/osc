@@ -1,10 +1,5 @@
 # Changelog
 
-# 0.38.1
-
-- bug fixes
-  - regression with `@{parent}` calls
-
 ## 0.38.0
 
 - bug fixes

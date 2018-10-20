@@ -44,6 +44,8 @@ class Clone extends Container {
         // global listenner to catch cloneTarget's creation if no target is locked
         widgetManager.on('widget-created', (e)=>{
 
+            if (this.cloneTarget) return
+
             var {id, widget} = e
 
             if (id === this.getProp('widgetId') && this.isValidCloneTarget(widget)) {
