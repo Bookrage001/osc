@@ -1,4 +1,4 @@
-var PythonShell = require('python-shell'),
+var {PythonShell} = require('python-shell'),
     settings = require('./settings')
 
 class Midi {
