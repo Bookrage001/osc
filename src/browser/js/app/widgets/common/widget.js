@@ -343,7 +343,11 @@ class Widget extends EventEmitter {
             changedProps = type === 'prop-changed' ? e.props : type === 'change' ? ['value'] : undefined,
             linkedProps = type === 'change' ? this.linkedPropsValue : this.linkedProps
 
-        if (widget === this.parent) return
+        if (widget === this.parent) {
+            if (type === 'widget-created') return
+            id = 'parent'
+        }
+        
         if (widget === this) id = 'this'
 
         if (linkedProps[id]) {
