@@ -88,11 +88,18 @@ function bundle() {
     output.on('error', (err)=> {
 
         console.error(err.stack)
-        send('errorPopup', convert.toHtml(
-            '<div style="white-space:pre">' +
-            err.stack.replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.').trim().replace('\n','\n\n') +
+        send('errorPopup',
+            '<div class="error-stack">' +
+            convert.toHtml(
+                err.stack
+                .replace(/\n\s*at Parser.*/g, '') // remove useless stack
+                .replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.') // shorten file path
+                .trim()
+                .replace('\n','\n\n') // add 1 new line after 1st line
+            ) +
             '</div>'
-        ))
+
+        )
 
     })
 
