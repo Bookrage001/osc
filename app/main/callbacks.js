@@ -5,11 +5,13 @@ var path = require('path'),
     {ipc} = require('./server'),
     {deepCopy} = require('./utils'),
     theme = require('./theme'),
-    chokidar = require('chokidar')
+    chokidar = require('chokidar'),
+    {BrowserWindow} = require('electron')
 
 var openedSessions = {},
     widgetHashTable = {},
-    lastSavingClient
+    lastSavingClient,
+    sessionBackups = {}
 
 module.exports =  {
 
@@ -18,6 +20,11 @@ module.exports =  {
 
         if (settings.read('readOnly')) {
             ipc.send('readOnly')
+        }
+
+        if (data.backupId && sessionBackups[data.backupId]) {
+            ipc.send('loadBackup', sessionBackups[data.backupId])
+            return
         }
 
         if (settings.read('newSession')) {
@@ -295,6 +302,24 @@ module.exports =  {
         window.setFullScreen(!window.isFullScreen())
     },
 
+    reload: function(data) {
+
+        ipc.send('reload')
+
+    },
+
+    storeBackup: function(data) {
+
+        sessionBackups[data.backupId] = data
+
+    },
+
+    deleteBackup: function(data) {
+
+        delete sessionBackups[data]
+
+    },
+
     reloadCss:function(){
         theme.load()
         ipc.send('reloadCss')
@@ -310,5 +335,10 @@ module.exports =  {
 
     errorLog: function(data) {
         console.error(data)
+    },
+
+    errorPopup: function(data) {
+        ipc.send('error', data)
     }
+
 }

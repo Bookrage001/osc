@@ -10,6 +10,7 @@ var browserify = require('browserify'),
     prod = process.argv.indexOf('--prod') != -1,
     fast = process.argv.indexOf('--fast') != -1,
     watch = process.argv.indexOf('--watch') != -1,
+    autoRefresh = process.argv.indexOf('--auto-refresh') != -1,
     b
 
 var inputPath = path.resolve(__dirname + '/../src/browser/js/index.js'),
@@ -60,10 +61,48 @@ if (watch) {
 
 bundle()
 
+if (autoRefresh) {
+    var Convert = require('ansi-to-html')
+    var convert = new Convert()
+    var WS = require('../app/node_modules/ws')
+    function send(msg, data){
+        var ipc = new WS('ws://127.0.0.1:8080/dev')
+        ipc.on('error', ()=>{})
+        ipc.on('open', ()=>{
+            ipc.send(JSON.stringify([msg, data]))
+            ipc.close()
+        })
+    }
+}
+
+
 function bundle() {
 
     var output =  b.bundle()
-    output.on('error', function(err) {console.error(new Error(err))})
+
+    output.on('end', (err)=> {
+        console.log('Build successful', autoRefresh ? 'reloading...' : '')
+        if (autoRefresh) send('reload')
+    })
+
+    output.on('error', (err)=> {
+
+        console.error(err.stack)
+        send('errorPopup',
+            '<div class="error-stack">' +
+            convert.toHtml(
+                err.stack
+                .replace(/\n\s*at Parser.*/g, '') // remove useless stack
+                .replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.') // shorten file path
+                .trim()
+                .replace('\n','\n\n') // add 1 new line after 1st line
+            ) +
+            '</div>'
+
+        )
+
+    })
+
 
     if (!fast) output.pipe(exorcist(outputPath + '.map'))
 

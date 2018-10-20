@@ -572,6 +572,21 @@ body {
     }
 }
 
+.error-stack {
+    padding:10rem;
+    user-select:initial;
+    cursor: initial;
+    * {
+        user-select:initial;
+        cursor: initial;
+    }
+    overflow:auto;
+    background: var(--color-bg);
+    white-space:pre;
+    font-family: monospace;
+    font-weight:bold;
+}
+
 .translation-missing {
     color: #ff00ff;
 }

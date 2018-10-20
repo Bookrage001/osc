@@ -76,6 +76,7 @@
     "node": ">=6"
   },
   "devDependencies": {
+    "ansi-to-html": "^0.6.6",
     "watchify": "^3.11.0"
   }
 }
