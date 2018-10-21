@@ -9,7 +9,7 @@
   - fix `doubleTap` for sliders with `snap` set to `true`
   - undo/redo errors
 - widgets
-  - 1-level property inheritance nesting (`@{id_@{id_2}}`) are now updated dynamically
+  - 1-level nested property inheritance calls (`@{id_@{id_2}}`) are now updated dynamically
 - editor
   - major performance improvements (containers' children are reused whenever possible instead of being recreated)
   - removed widget deletion confirmation popup
