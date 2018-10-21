@@ -45,8 +45,7 @@ Some properties have much cheaper update routines and can be considered as `dyna
 
 ### Nesting
 
-The inheritance syntax supports nesting with a limitation: nested calls are not updated when the target's property/value updates, they are only resolved once at the host widget's initialization.
-
+The inheritance syntax supports 1-level nesting : `@{fader_@{toggle_1}}`
 
 ## OSC listeners: `OSC{}`
 

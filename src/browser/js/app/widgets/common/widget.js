@@ -273,6 +273,7 @@ class Widget extends EventEmitter {
 
         // @{props} links lists
         this.linkedProps = {}
+        this.nestedLinkedProps = {}
         this.linkedPropsValue = {}
 
         // OSC{/path} receivers
@@ -347,9 +348,13 @@ class Widget extends EventEmitter {
             if (type === 'widget-created') return
             id = 'parent'
         }
-        
+
         if (widget === this) id = 'this'
 
+        if (this.nestedLinkedProps[id]) {
+            this.updateLinkedPropsWithNesting(id)
+        }
+        
         if (linkedProps[id]) {
             this.updateProps(linkedProps[id], widget, options, changedProps)
         }
@@ -363,6 +368,30 @@ class Widget extends EventEmitter {
             oscReceiverState[i] = this.oscReceivers[i].value
         }
         this.oscReceivers = {}
+
+    }
+
+    updateLinkedPropsWithNesting(i) {
+
+        // 1. remove all linked props found in properties bound to the nested link
+        // 2. resolve these props again and recreate links (3rd arg to true)
+
+        for (var prop of this.nestedLinkedProps[i]) {
+
+            for (var linksStores of [this.linkedPropsValue, this.linkedProps]) {
+                for (let id in linksStores) {
+                    if (linksStores[id].includes(prop)) {
+                        linksStores[id].splice(linksStores[id].indexOf(prop), 1)
+                        if (!linksStores[id].length) delete linksStores[id]
+                    }
+                }
+            }
+
+
+            this.resolveProp(prop, undefined, true, this)
+
+        }
+
 
     }
 
@@ -381,7 +410,7 @@ class Widget extends EventEmitter {
             propValue = propValue.replace(/@\{(?:[^{}]|(@\{[^{}]*\}))*\}/g, (m, nested)=>{
 
                 if (nested) {
-                    m = m.replace(nested, this.resolveProp(propName, nested, storeLinks, this))
+                    m = m.replace(nested, this.resolveProp(propName, nested, storeLinks ? 'nested' : false, this))
                 }
 
                 let id = m.substr(2, m.length - 3).split('.'),
@@ -440,6 +469,11 @@ class Widget extends EventEmitter {
                         if (!this.linkedProps[id]) this.linkedProps[id] = []
                         if (this.linkedProps[id].indexOf(propName) == -1) this.linkedProps[id].push(propName)
 
+                    }
+
+                    if (storeLinks === 'nested') {
+                        if (!this.nestedLinkedProps[id]) this.nestedLinkedProps[id] = []
+                        if (this.nestedLinkedProps[id].indexOf(propName) == -1) this.nestedLinkedProps[id].push(propName)
                     }
 
                 }
