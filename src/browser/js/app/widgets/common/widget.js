@@ -381,7 +381,7 @@ class Widget extends EventEmitter {
             propValue = propValue.replace(/@\{(?:[^{}]|(@\{[^{}]*\}))*\}/g, (m, nested)=>{
 
                 if (nested) {
-                    m = m.replace(nested, this.resolveProp(propName, nested, false, this))
+                    m = m.replace(nested, this.resolveProp(propName, nested, storeLinks, this))
                 }
 
                 let id = m.substr(2, m.length - 3).split('.'),
