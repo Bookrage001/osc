@@ -407,7 +407,7 @@ class Widget extends EventEmitter {
 
         if (typeof propValue == 'string') {
 
-            propValue = propValue.replace(/@\{(?:[^{}]|(@\{[^{}]*\}))*\}/g, (m, nested)=>{
+            propValue = propValue.replace(/@\{(?:[^{}]|[^{]*(@\{[^{}]*\})[^}]*)*\}/g, (m, nested)=>{
 
                 if (nested) {
                     m = m.replace(nested, this.resolveProp(propName, nested, storeLinks ? 'nested' : false, this))
