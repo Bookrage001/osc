@@ -16,8 +16,8 @@ module.exports = {
             !children ||
             Array.isArray(children) ||
             deletedChildren.length ||
-            changedChildren.length !== 1
-
+            changedChildren.length !== 1 ||
+            Array.isArray(children[changedChildren[0]])
         ) {
             return [widget, diff]
         }
