@@ -138,8 +138,8 @@ var Editor = class Editor {
                 if (!this.selectedWidgets.length) return
                 if (e.target.classList.contains('no-keybinding')) return
 
-                var curWidget = this.selectedWidgets[0],
-                    toSelect
+                var curWidget = this.selectedWidgets[0]
+
                 if (curWidget.parent !== widgetManager) {
                     this.select(curWidget.parent.children)
                 }
@@ -158,7 +158,7 @@ var Editor = class Editor {
 
                 } else if (e.key === 'ArrowDown') {
 
-                    var toSelectList = [...curWidget.children]
+                    let toSelectList = [...curWidget.children]
 
                     if (toSelectList && toSelectList.length) {
                         toSelectList.sort((a,b) => a.container.offsetLeft>b.container.offsetLeft)
@@ -170,8 +170,11 @@ var Editor = class Editor {
 
                 }
                 else if((e.key == 'ArrowLeft') || (e.key == 'ArrowRight')){
+
                     if (curWidget.parent === widgetManager) return
-                    var toSelectList = [...curWidget.parent.children]
+
+                    let toSelectList = [...curWidget.parent.children]
+
                     if (toSelectList && toSelectList.length) {
                         toSelectList.sort((a,b) => a.container.offsetLeft > b.container.offsetLeft)
                         var idx = toSelectList.indexOf(curWidget)
@@ -575,7 +578,7 @@ var Editor = class Editor {
             minTop = Infinity,
             minLeft = Infinity
 
-        for (var i in pastedData) {
+        for (let i in pastedData) {
             if (increment) pastedData[i] = incrementWidget(pastedData[i])
             if (!isNaN(pastedData[i]).top && pastedData[i].top < minTop) {
                 minTop = pastedData[i].top
@@ -596,7 +599,7 @@ var Editor = class Editor {
         data[0].widgets = data[0].widgets.concat(pastedData)
 
         var indexes = {addedIndexes: []}
-        for (var i = 0; i < pastedData.length; i++) {
+        for (let i = 0; i < pastedData.length; i++) {
             indexes.addedIndexes.push(data[0].widgets.length - 1 - i )
         }
         updateWidget(this.selectedWidgets[0], indexes)
@@ -812,13 +815,13 @@ var Editor = class Editor {
 
     updateWidgetFromPatch(patch, indexes) {
 
-        var [widget, patch] = diffToWidget(widgetManager.getWidgetById('root')[0], patch[0]),
+        var [widget, subpatch] = diffToWidget(widgetManager.getWidgetById('root')[0], patch[0]),
             options = {}
 
         if (indexes) {
             options = {...indexes}
         } else {
-            options.changedProps = Object.keys(patch)
+            options.changedProps = Object.keys(subpatch)
             options.reuseChildren = false
         }
 

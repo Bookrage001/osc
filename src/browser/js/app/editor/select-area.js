@@ -7,8 +7,8 @@ class SelectArea {
         this.curX = 0
         this.curY = 0
 
-        this.rectCoords = [0, 0, 0, 0]
-        this.rectSize = [0, 0]
+        this.rectCoords = [0, 0, 0, 0]
+        this.rectSize = [0, 0]
         this.elements = []
 
         this.rect = DOM.create('<div class="select-area hidden"></div>')
@@ -44,7 +44,7 @@ class SelectArea {
         if (!this.down) return
         this.down = false
 
-        if (this.rectSize[0] > 0 && this.rectSize[1] > 0) {
+        if (this.rectSize[0] > 0 && this.rectSize[1] > 0) {
             this.callback(this.getElements())
             this.rect.classList.add('hidden')
         }
@@ -62,7 +62,7 @@ class SelectArea {
             w = x1 - x0,
             h = y1 - y0
 
-        if (w < 1 || h < 1) {
+        if (w < 1 || h < 1) {
             this.rect.classList.add('hidden')
         } else {
             this.rect.classList.remove('hidden')
@@ -95,8 +95,8 @@ class SelectArea {
         })
 
         // slower implementation...
-        // for (var x = x0; x <= x1; x += 10) {
-        //     for (var y = y0; y <= y1; y += 10) {
+        // for (var x = x0; x <= x1; x += 10) {
+        //     for (var y = y0; y <= y1; y += 10) {
         //         var el = document.elementFromPoint(x, y)
         //         if (elements.indexOf(el) < 0) elements.push(el)
         //     }

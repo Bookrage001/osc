@@ -142,8 +142,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
 
         list.addEventListener('click', (e)=>{
-            // e.stopPropagation()
-            var change
+
             switch (e.target.getAttribute('data-action')) {
 
                 case 'select':

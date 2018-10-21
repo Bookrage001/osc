@@ -1,6 +1,4 @@
-var Widget = require('./widget'),
-    widgetManager = require('../../managers/widgets')
-
+var Widget = require('./widget')
 
 class Container extends Widget {
 

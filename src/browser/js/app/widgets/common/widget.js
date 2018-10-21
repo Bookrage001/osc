@@ -193,7 +193,7 @@ class Widget extends EventEmitter {
 
     }
 
-    getAllChildren() {
+    getAllChildren() {
 
         var children = []
         for (var i = 0; i < this.children.length; i++) {
@@ -312,7 +312,7 @@ class Widget extends EventEmitter {
             widgetManager.on('widget-created', this.linkedCreatedCallback, {context: this})
             widgetManager.on('prop-changed', this.linkedPropChangedCallback, {context: this})
 
-        } else if (this.linkedCreatedCallback && !Object.keys(this.linkedPropsValue).length) {
+        } else if (this.linkedCreatedCallback && !Object.keys(this.linkedPropsValue).length) {
 
             widgetManager.removeEventContext('widget-created', this.linkedCreatedCallback, {context: this})
             widgetManager.removeEventContext('prop-changed', this.linkedPropChangedCallback, {context: this})
@@ -327,7 +327,7 @@ class Widget extends EventEmitter {
 
             widgetManager.on('change', this.linkedValueChangedCallback, {context: this})
 
-        } else if (this.linkedPropsValueCallback && !Object.keys(this.linkedPropsValue).length) {
+        } else if (this.linkedPropsValueCallback && !Object.keys(this.linkedPropsValue).length) {
 
             widgetManager.removeEventContext('change', this.linkedValueChangedCallback, {context: this})
 
@@ -354,7 +354,7 @@ class Widget extends EventEmitter {
         if (this.nestedLinkedProps[id]) {
             this.updateLinkedPropsWithNesting(id)
         }
-        
+
         if (linkedProps[id]) {
             this.updateProps(linkedProps[id], widget, options, changedProps)
         }
@@ -380,7 +380,7 @@ class Widget extends EventEmitter {
 
             for (var linksStores of [this.linkedPropsValue, this.linkedProps]) {
                 for (let id in linksStores) {
-                    if (linksStores[id].includes(prop)) {
+                    if (linksStores[id].includes(prop)) {
                         linksStores[id].splice(linksStores[id].indexOf(prop), 1)
                         if (!linksStores[id].length) delete linksStores[id]
                     }
@@ -671,7 +671,7 @@ class Widget extends EventEmitter {
 
             case 'label':
                 this.setContainerStyles(['label'])
-                if (oldPropValue === false || this.getProp('label') === false) {
+                if (oldPropValue === false || this.getProp('label') === false) {
                     resize.check(this.container)
                 }
                 return

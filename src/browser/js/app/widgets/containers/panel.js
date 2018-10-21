@@ -50,7 +50,7 @@ class Panel extends Container {
 
             this.wrapper = this.widget.appendChild(DOM.create('<div class="tabs-wrapper"></div>'))
 
-            this.children = options.children || new Array(this.getProp('tabs').length)
+            this.children = options.children || new Array(this.getProp('tabs').length)
             for (let i = 0; i < this.children.length; i++) {
                 if (this.children[i]) {
                     this.wrapper.appendChild(this.children[i].container)

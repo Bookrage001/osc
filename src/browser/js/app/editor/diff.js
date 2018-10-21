@@ -2,12 +2,12 @@ module.exports = {
 
     diff: require('jsondiffpatch'),
 
-    diffToWidget: function(widget, diff) {
+    diffToWidget: function(widget, diff) {
 
         // traverse a diff patch and the associated widget
         // to return the first node (widget and sub-patch) with actual changes
 
-        var children = diff.tabs ||diff.widgets
+        var children = diff.tabs || diff.widgets
 
         if (children) {
             var childrenKeys = Object.keys(children),

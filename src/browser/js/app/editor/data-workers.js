@@ -30,7 +30,7 @@ function updateWidget(widget, options={}) {
             !propNames.some(n => !widget.constructor.dynamicProps.includes(n))
         ) {
 
-            var edited = widget.updateProps(options.changedProps, null) || widget
+            var edited = widget.updateProps(options.changedProps, null) || widget
 
             if (
                 // if prop/osc listeners have changed (@{} / OSC{})

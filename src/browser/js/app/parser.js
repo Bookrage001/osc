@@ -34,7 +34,7 @@ var Parser = class Parser {
             reCreateOptions,
             children,
             index
-            } = options
+        } = options
 
         if (!Array.isArray(data)) data = [data]
 

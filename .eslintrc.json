@@ -27,13 +27,6 @@
         "args": "none"
       }
     ],
-    "arrow-spacing": [
-      "error",
-      {
-        "before": false,
-        "after": false
-      }
-    ],
     "space-before-function-paren": [
       "error",
       "never"
@@ -45,7 +38,8 @@
         "SwitchCase": 1,
         "ObjectExpression": 1,
         "ArrayExpression": 1,
-        "MemberExpression": 1
+        "MemberExpression": "off",
+        "ignoredNodes": ["ConditionalExpression"]
       }
     ],
     "linebreak-style": [

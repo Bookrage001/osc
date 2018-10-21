@@ -1,6 +1,5 @@
 var _matrix_base = require('./_matrix_base'),
-    parser = require('../../parser'),
-    widgetManager = require('../../managers/widgets')
+    parser = require('../../parser')
 
 module.exports = class Multifader extends _matrix_base {
 

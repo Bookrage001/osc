@@ -75,7 +75,7 @@ class Clone extends Container {
 
             if (!this.cloneTarget) return
 
-            if (e.widget === this.cloneTarget || this.cloneTarget.contains(e.widget)) {
+            if (e.widget === this.cloneTarget || this.cloneTarget.contains(e.widget)) {
 
                 this.updateClone()
 
@@ -90,35 +90,30 @@ class Clone extends Container {
         // attempt to acquire a cloneTarget if 'widget-created' event has not been catched
         // (the target might have been created before the clone itself)
 
-        const widgets = widgetManager.getWidgetById(this.getProp('widgetId'))
+        var widgets = widgetManager.getWidgetById(this.getProp('widgetId'))
                                    .filter(el=>this.isValidCloneTarget(el))
 
         if (widgets.length === 0) return null
         if (widgets.length === 1) {
             return widgets[0]
-         }
+        }
 
         // when duplicating clones pointing to an object with a static id,
         // each clone will recreate an object with the same id internally
         // we try to get the original one if there is more than 2 clone pointing to the same id (avoiding cloning the clone)
 
         function isCreatedByAClone(wi){
-            const parent = wi.parent
+            var parent = wi.parent
             return parent && parent.getProp('type') === 'clone'
         }
 
         var target = widgets[0]
-        for (const w of widgets) {
+        for (var w of widgets) {
             if (!isCreatedByAClone(w)) {
                 target = w
                 break
             }
         }
-
-        // we may want to remove this warning
-        // if (isCreatedByAClone(this.cloneTarget)) {
-        //     console.warn('no deduped clone found : ',this.getProp('widgetId'))
-        // }
 
         return target
 
@@ -136,12 +131,13 @@ class Clone extends Container {
 
         this.cloneLock = true
 
-        var data = {...deepCopy(this.cloneTarget.props), ...this.getProp('props')},
-            clone = parser.parse({
-                data: data,
-                parentNode: this.widget,
-                parent: this
-            })
+        var data = {...deepCopy(this.cloneTarget.props), ...this.getProp('props')}
+
+        parser.parse({
+            data: data,
+            parentNode: this.widget,
+            parent: this
+        })
 
         this.updateContainer(!init)
 
@@ -201,7 +197,7 @@ class Clone extends Container {
         var data = {...deepCopy(this.cloneTarget.props), ...this.getProp('props')},
             clone = this.children[0]
 
-        var delta = diff.diff(clone.props, data) || {},
+        var delta = diff.diff(clone.props, data) || {},
             [widget, patch] = diffToWidget(clone, delta),
             changedProps = Object.keys(patch)
 

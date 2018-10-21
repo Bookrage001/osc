@@ -129,7 +129,7 @@ module.exports = {
 
             window.location.search = search
 
-        } catch(e) {
+        } catch(e) {
 
             window.location.href = window.location.href
 
