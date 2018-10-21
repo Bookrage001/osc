@@ -2,7 +2,7 @@ var {widgets} = require('../widgets/'),
     editField = require('./edit-field'),
     {updateWidget, incrementWidget} = require('./data-workers'),
     keyboardJS = require('keyboardjs'),
-    diff = require('jsondiffpatch'),
+    {diff, diffToWidget} = require('./diff'),
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
     macOs = (navigator.platform || '').match('Mac'),
@@ -812,41 +812,17 @@ var Editor = class Editor {
 
     updateWidgetFromPatch(patch, indexes) {
 
-        // get object path from patch
-        var pointer = patch[0],
-            path = []
+        var [widget, props] = diffToWidget(widgetManager.getWidgetById('root')[0], patch[0]),
+            options = {}
 
-        while(true) {
-
-            var keys = Object.keys(pointer),
-                potentialPointers = keys.filter(x => !isNaN(x) || x === 'tabs' || x === 'widgets')
-
-            if (
-                keys.filter(x => typeof x === 'string' && x.match(/_[0-9]+/)).length ||
-                potentialPointers.length !== 1
-            ) {
-                break
-            }
-
-            path.push(potentialPointers[0])
-            pointer = pointer[potentialPointers[0]]
-
+        if (indexes) {
+            options = {...indexes}
+        } else {
+            options.changedProps = props
+            options.reuseChildren = false
         }
 
-        if (!isNaN(path[path.length - 1]) && !isNaN(path[path.length - 2])) {
-            path.pop()
-            path.pop()
-        }
-
-        // get widget from path
-        var widget = widgetManager.getWidgetById('root')[0]
-        pointer = patch[0]
-        for (var i in path) {
-            if (!isNaN(path[i])) widget = widget.children[parseInt(path[i])]
-            pointer = pointer[path[i]]
-        }
-
-        updateWidget(widget, indexes || {reuseChildren: false})
+        updateWidget(widget, options)
 
     }
 
