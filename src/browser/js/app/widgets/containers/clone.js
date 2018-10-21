@@ -199,8 +199,7 @@ class Clone extends Container {
         this.cloneLock = true
 
         var data = {...deepCopy(this.cloneTarget.props), ...this.getProp('props')},
-            clone = this.children[0],
-            childrenChanged = false
+            clone = this.children[0]
 
         var delta = diff.diff(clone.props, data) || {},
             [widget, patch] = diffToWidget(clone, delta),
