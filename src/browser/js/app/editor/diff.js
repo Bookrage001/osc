@@ -4,6 +4,9 @@ module.exports = {
 
     diffToWidget: function(widget, diff) {
 
+        // traverse a diff patch and the associated widget
+        // to return the first node (widget and sub-patch) with actual changes
+
         var children = diff.tabs ||diff.widgets
 
         if (children) {
@@ -14,10 +17,10 @@ module.exports = {
 
         if (
             !children ||
-            Array.isArray(children) ||
-            deletedChildren.length ||
-            changedChildren.length !== 1 ||
-            Array.isArray(children[changedChildren[0]])
+            Array.isArray(children) || // 'tabs' or 'widgets' property created
+            deletedChildren.length ||  // 'tabs' or 'widgets' property created
+            changedChildren.length !== 1 || // children reordered (or same property edited in multiple widgets, but case ignored)
+            Array.isArray(children[changedChildren[0]]) // child item created
         ) {
             return [widget, diff]
         }
