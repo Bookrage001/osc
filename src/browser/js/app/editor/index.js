@@ -812,13 +812,13 @@ var Editor = class Editor {
 
     updateWidgetFromPatch(patch, indexes) {
 
-        var [widget, props] = diffToWidget(widgetManager.getWidgetById('root')[0], patch[0]),
+        var [widget, patch] = diffToWidget(widgetManager.getWidgetById('root')[0], patch[0]),
             options = {}
 
         if (indexes) {
             options = {...indexes}
         } else {
-            options.changedProps = props
+            options.changedProps = Object.keys(patch)
             options.reuseChildren = false
         }
 

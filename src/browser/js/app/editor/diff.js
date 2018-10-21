@@ -4,8 +4,7 @@ module.exports = {
 
     diffToWidget: function(widget, diff) {
 
-        var props = Object.keys(diff),
-            children = diff.tabs ||diff.widgets
+        var children = diff.tabs ||diff.widgets
 
         if (children) {
             var childrenKeys = Object.keys(children),
@@ -20,7 +19,7 @@ module.exports = {
             changedChildren.length !== 1
 
         ) {
-            return [widget, props]
+            return [widget, diff]
         }
 
         return module.exports.diffToWidget(widget.children[changedChildren[0]], children[changedChildren[0]])

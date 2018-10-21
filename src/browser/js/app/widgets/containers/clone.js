@@ -3,7 +3,7 @@ var Container = require('../common/container'),
     resize = require('../../events/resize'),
     parser = require('../../parser'),
     {deepCopy, deepEqual} = require('../../utils'),
-    diff = require('jsondiffpatch')
+    {diff, diffToWidget} = require('../../editor/diff')
 
 var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable', 'not-editable']
 
@@ -41,7 +41,7 @@ class Clone extends Container {
         this.bindTarget(this.getCloneTarget())
         if (this.cloneTarget) this.createClone(true)
 
-        // global listenner to catch cloneTarget's creation if no target is locked
+        // global listener to catch cloneTarget's creation if no target is locked
         widgetManager.on('widget-created', (e)=>{
 
             if (this.cloneTarget) return
@@ -203,21 +203,24 @@ class Clone extends Container {
             childrenChanged = false
 
         var delta = diff.diff(clone.props, data) || {},
+            [widget, props] = diffToWidget(clone, delta),
             changedProps = Object.keys(delta)
 
-        clone.props = data
 
-        if (changedProps.some(x => !clone.constructor.dynamicProps.includes(x))) {
+        clone.props = data
+        console.log(widget, props)
+        if (props.some(x => !widget.constructor.dynamicProps.includes(x))) {
 
             clone.reCreateWidget({reuseChildren: false})
             this.updateContainer(false)
 
         } else {
 
-            clone.updateProps(changedProps, this)
+            widget.updateProps(props, this)
             this.updateContainer(true)
 
         }
+
 
 
         this.cloneLock = false
