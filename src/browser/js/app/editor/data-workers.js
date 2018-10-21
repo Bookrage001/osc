@@ -20,6 +20,7 @@ function updateWidget(widget, options={}) {
             propValues = propNames.map(x => widget.props[x]),
             linkedProps = []
 
+        Object.values(widget.nestedLinkedProps).forEach(l => linkedProps = linkedProps.concat(l))
         Object.values(widget.linkedProps).forEach(l => linkedProps = linkedProps.concat(l))
         Object.values(widget.linkedPropsValue).forEach(l => linkedProps = linkedProps.concat(l))
         Object.values(widget.oscReceivers).forEach(r => linkedProps = linkedProps.concat(r.propNames))
