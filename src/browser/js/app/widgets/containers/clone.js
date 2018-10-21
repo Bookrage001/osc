@@ -203,21 +203,25 @@ class Clone extends Container {
             childrenChanged = false
 
         var delta = diff.diff(clone.props, data) || {},
-            [widget, props] = diffToWidget(clone, delta),
-            changedProps = Object.keys(delta)
+            [widget, patch] = diffToWidget(clone, delta),
+            changedProps = Object.keys(patch)
+
+        if (changedProps.length) {
+
+            diff.patch(widget.props, patch)
 
 
-        clone.props = data
-        console.log(widget, props)
-        if (props.some(x => !widget.constructor.dynamicProps.includes(x))) {
+            if (changedProps.some(x => !widget.constructor.dynamicProps.includes(x))) {
 
-            clone.reCreateWidget({reuseChildren: false})
-            this.updateContainer(false)
+                clone.reCreateWidget({reuseChildren: false})
+                this.updateContainer(false)
 
-        } else {
+            } else {
 
-            widget.updateProps(props, this)
-            this.updateContainer(true)
+                widget.updateProps(changedProps, this)
+                this.updateContainer(true)
+
+            }
 
         }
 
