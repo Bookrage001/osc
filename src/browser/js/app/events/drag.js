@@ -1,5 +1,6 @@
 const {normalizeDragEvent, resetEventOffset} = require('./utils')
 const iOS = require('../ui/ios')
+const TRAVERSING_SAMEWIDGET = 1
 
 var targets = {},
     previousPointers = {}
@@ -17,6 +18,11 @@ function pointerDownHandler(event) {
     event = normalizeDragEvent(event)
 
     targets[event.pointerId] = event.target
+
+    if (event.traversing === TRAVERSING_SAMEWIDGET) {
+        event.traversingType = event.target.closest('.drag-event')._drag_widget.getProp('type')
+        console.log(event.traversingType)
+    }
 
     previousPointers[event.pointerId] = event
 
@@ -38,6 +44,14 @@ function pointerMoveHandler(event) {
                 : event.target
 
         if (target) target = target.closest('.drag-event')
+
+        if (
+            target && event.traversing === TRAVERSING_SAMEWIDGET
+        &&  event.traversingType !== target._drag_widget.getProp('type')
+        ) {
+            console.log(event.traversingType,  target._drag_widget.getProp('type'))
+            target = null
+        }
 
         if (target && event.isTouch) {
             resetEventOffset(event, target)
@@ -253,11 +267,13 @@ module.exports = {
 
     },
 
-    enableTraversingGestures: function(element) {
+    enableTraversingGestures: function(element, options={}) {
+
+        var traversing = options.smart ? TRAVERSING_SAMEWIDGET : true
 
         function makeEventTraversing(event) {
             if (event.ctrlKey) return
-            event.traversing = true
+            event.traversing = traversing
             if (!event.traversingContainer) event.traversingContainer = element
         }
 

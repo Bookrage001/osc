@@ -53,20 +53,33 @@ var sidepanelData = [
         actions: [
             {
                 title: locales('traversing_on'),
-                action:()=>{
-                    DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
-                        el.classList.toggle('on')
+                action:(el)=>{
+                    DOM.each(el.parentNode, 'a', (el)=>{
+                        el.classList.remove('on')
                     })
+                    el.classList.add('on')
                     enableTraversingGestures(document.getElementById('container'))
                 },
                 class:'traversingEnable'
             },
             {
-                title: locales('traversing_off'),
-                action:()=>{
-                    DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
-                        el.classList.toggle('on')
+                title: locales('traversing_smart'),
+                action:(el)=>{
+                    DOM.each(el.parentNode, 'a', (el)=>{
+                        el.classList.remove('on')
                     })
+                    el.classList.add('on')
+                    enableTraversingGestures(document.getElementById('container'), {smart: true})
+                },
+                class:'traversingEnable'
+            },
+            {
+                title: locales('traversing_off'),
+                action:(el)=>{
+                    DOM.each(el.parentNode, 'a', (el)=>{
+                        el.classList.remove('on')
+                    })
+                    el.classList.add('on')
                     disableTraversingGestures(document.getElementById('container'))
                 },
                 class:'traversingDisable on'
@@ -124,7 +137,7 @@ for (let i in sidepanelData) {
         let actionData = data.actions[j],
             element = DOM.create(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`)
 
-        if (actionData.action) element.addEventListener('click', actionData.action)
+        if (actionData.action) element.addEventListener('click', ()=>{actionData.action(element)})
 
         wrapper.appendChild(element)
     }
