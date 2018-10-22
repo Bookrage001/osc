@@ -42,7 +42,7 @@ Multiple classes can be added (one per `class` statement).
 !!! warning ""
     Using class names that are already used in the app can be hazardous. In order to avoid that, custom class names should be prefixed with something uncommon and preferably cool, such as `xxx-myclass` or `crispy-bacon-myclass`.
 
-## Layering: `z-index`
+## Layering: `z-index`
 
 Z-Axis ordering can be set using the `z-index` rule. Absolutely positionned widgets (when `top` or `left` is different from `auto`) have `z-index:10;` by default.
 
