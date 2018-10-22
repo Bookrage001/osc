@@ -124,7 +124,7 @@ for (let i in sidepanelData) {
         let actionData = data.actions[j],
             element = DOM.create(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`)
 
-        if (actionData.action) element.addEventListener('click', actionData.action)
+        if (actionData.action) element.addEventListener('click', ()=>{actionData.action(element)})
 
         wrapper.appendChild(element)
     }
