@@ -53,6 +53,7 @@ module.exports = { // @https://github.com/suhr
 
     // traversing
     traversing_on: 'Вкл',
+    traversing_smart: 'Умный',
     traversing_off: 'Выкл',
 
     // misc

@@ -53,6 +53,7 @@ module.exports = {
 
     // traversing
     traversing_on: 'On',
+    traversing_smart: 'Auto',
     traversing_off: 'Off',
 
     // misc

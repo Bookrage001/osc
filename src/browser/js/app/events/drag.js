@@ -1,10 +1,9 @@
 const {normalizeDragEvent, resetEventOffset} = require('./utils')
 const iOS = require('../ui/ios')
+const TRAVERSING_SAMEWIDGET = 1
 
 var targets = {},
-    previousPointers = {},
-    startDraggedClass ='',
-    sameWidgetPolicy = false
+    previousPointers = {}
 
 function pointerDownHandler(event) {
 
@@ -19,6 +18,11 @@ function pointerDownHandler(event) {
     event = normalizeDragEvent(event)
 
     targets[event.pointerId] = event.target
+
+    if (event.traversing === TRAVERSING_SAMEWIDGET) {
+        event.traversingType = event.target.closest('.drag-event')._drag_widget.getProp('type')
+        console.log(event.traversingType)
+    }
 
     previousPointers[event.pointerId] = event
 
@@ -38,23 +42,17 @@ function pointerMoveHandler(event) {
             target = event.isTouch ?
                 document.elementFromPoint(event.clientX, event.clientY)
                 : event.target
-                ,updateTarget=true
 
         if (target) target = target.closest('.drag-event')
 
-        if(sameWidgetPolicy && target ){
-            console.log(startDraggedClass)
-            if(!startDraggedClass){
-                startDraggedClass = target._drag_widget.getProp('type')
-            }
-            else{
-                if(target._drag_widget.getProp('type')!= startDraggedClass){
-                    target = null
-                    updateTarget = false
-                }
-            }
-
+        if (
+            target && event.traversing === TRAVERSING_SAMEWIDGET
+        &&  event.traversingType !== target._drag_widget.getProp('type')
+        ) {
+            console.log(event.traversingType,  target._drag_widget.getProp('type'))
+            target = null
         }
+
         if (target && event.isTouch) {
             resetEventOffset(event, target)
         }
@@ -66,14 +64,11 @@ function pointerMoveHandler(event) {
 
         if (target) {
             if (event.traversingContainer.contains(target)) {
-                var init = previousTarget !== target 
-                // console.log(startDraggedClass,previousTarget?previousTarget._drag_widget:'null',target?target._drag_widget:'null',init)
-                triggerWidgetEvent(target, init? 'draginit' : 'drag', event)
+                triggerWidgetEvent(target, previousTarget !== target ? 'draginit' : 'drag', event)
             }
         }
-        if(updateTarget)
-            targets[event.pointerId] = target
-        
+
+        targets[event.pointerId] = target
 
 
     } else {
@@ -92,7 +87,7 @@ function pointerUpHandler(event) {
 
     delete targets[event.pointerId]
     delete previousPointers[event.pointerId]
-    startDraggedClass = ''
+
 }
 
 
@@ -272,12 +267,13 @@ module.exports = {
 
     },
 
-    enableTraversingGestures: function(element,options) {
-        sameWidgetPolicy = options?options.sameWidgetPolicy:false
+    enableTraversingGestures: function(element, options={}) {
+
+        var traversing = options.smart ? TRAVERSING_SAMEWIDGET : true
 
         function makeEventTraversing(event) {
             if (event.ctrlKey) return
-            event.traversing = true
+            event.traversing = traversing
             if (!event.traversingContainer) event.traversingContainer = element
         }
 

@@ -53,41 +53,33 @@ var sidepanelData = [
         actions: [
             {
                 title: locales('traversing_on'),
-                action:()=>{
-                    DOM.each(document, '.traversingDisable, .traversingSame', (el)=>{
+                action:(el)=>{
+                    DOM.each(el.parentNode, 'a', (el)=>{
                         el.classList.remove('on')
                     })
-                    DOM.each(document, '.traversingEnable', (el)=>{
-                        el.classList.add('on')
-                    })
-                    // disableTraversingGestures(document.getElementById('container'))
+                    el.classList.add('on')
                     enableTraversingGestures(document.getElementById('container'))
                 },
                 class:'traversingEnable'
             },
             {
-                title: locales('traversing_same'),
-                action:()=>{
-                    DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
+                title: locales('traversing_smart'),
+                action:(el)=>{
+                    DOM.each(el.parentNode, 'a', (el)=>{
                         el.classList.remove('on')
                     })
-                    DOM.each(document, '.traversingSame', (el)=>{
-                        el.classList.add('on')
-                    })
-                    // disableTraversingGestures(document.getElementById('container'))
-                    enableTraversingGestures(document.getElementById('container'),{sameWidgetPolicy:true})
+                    el.classList.add('on')
+                    enableTraversingGestures(document.getElementById('container'), {smart: true})
                 },
-                class:'traversingSame'
+                class:'traversingEnable'
             },
             {
                 title: locales('traversing_off'),
-                action:()=>{
-                    DOM.each(document, '.traversingEnable, .traversingSame', (el)=>{
+                action:(el)=>{
+                    DOM.each(el.parentNode, 'a', (el)=>{
                         el.classList.remove('on')
                     })
-                    DOM.each(document, '.traversingDisable', (el)=>{
-                        el.classList.add('on')
-                    })
+                    el.classList.add('on')
                     disableTraversingGestures(document.getElementById('container'))
                 },
                 class:'traversingDisable on'
