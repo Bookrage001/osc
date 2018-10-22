@@ -19,6 +19,8 @@ By default, a dragging gesture can only affect the widget it started on. Enablin
 - make gestures affect every widgets no matter where they started
 - make sliders-like widgets respond as if their `snap` option is enabled
 
+When traversing gestures are set to "Smart", these will only affect widgets that have the same type as the first touched widget.
+
 ### Editor
 
 See [Editing sessions](editing-sessions.md).

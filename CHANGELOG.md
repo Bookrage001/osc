@@ -1,5 +1,9 @@
 # Changelog
 
+## next
+
+- widgets
+  - added "smart" traversing gestures mode that limits affected widgets by the type of the first touched widget
 
 ## 0.38.4
 
