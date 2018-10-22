@@ -54,18 +54,39 @@ var sidepanelData = [
             {
                 title: locales('traversing_on'),
                 action:()=>{
-                    DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
-                        el.classList.toggle('on')
+                    DOM.each(document, '.traversingDisable, .traversingSame', (el)=>{
+                        el.classList.remove('on')
                     })
+                    DOM.each(document, '.traversingEnable', (el)=>{
+                        el.classList.add('on')
+                    })
+                    // disableTraversingGestures(document.getElementById('container'))
                     enableTraversingGestures(document.getElementById('container'))
                 },
                 class:'traversingEnable'
             },
             {
-                title: locales('traversing_off'),
+                title: locales('traversing_same'),
                 action:()=>{
                     DOM.each(document, '.traversingEnable, .traversingDisable', (el)=>{
-                        el.classList.toggle('on')
+                        el.classList.remove('on')
+                    })
+                    DOM.each(document, '.traversingSame', (el)=>{
+                        el.classList.add('on')
+                    })
+                    // disableTraversingGestures(document.getElementById('container'))
+                    enableTraversingGestures(document.getElementById('container'),{sameWidgetPolicy:true})
+                },
+                class:'traversingSame'
+            },
+            {
+                title: locales('traversing_off'),
+                action:()=>{
+                    DOM.each(document, '.traversingEnable, .traversingSame', (el)=>{
+                        el.classList.remove('on')
+                    })
+                    DOM.each(document, '.traversingDisable', (el)=>{
+                        el.classList.add('on')
                     })
                     disableTraversingGestures(document.getElementById('container'))
                 },
