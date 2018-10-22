@@ -40,7 +40,7 @@ This non-standard css property can be used to add custom css classes to the widg
 Multiple classes can be added (one per `class` statement).
 
 !!! warning ""
-    Using class names that are already used in the app can be hazardous. In order to avoid that, custom class names should be prefixed with something uncommon and preferably cool, such as `xxx-myclass` or `crispy-bacon-myclass`.
+    Using class names that are already used in the app can be hazardous. In order to avoid that, custom class names should be prefixed with something uncommon and preferably cool, such as `xxx-myclass` or `crispy-seitan-myclass`.
 
 ## Layering: `z-index`
 
