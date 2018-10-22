@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 0.38.3
+## 0.38.4
 
 - bug fixes
   - `@{parent}` calls not working consistently in clone widgets
@@ -10,6 +10,7 @@
   - undo/redo errors
 - widgets
   - 1-level nested property inheritance calls (`@{id_@{id_2}}`) are now updated dynamically
+  - support special css property `class` for adding custom classes to widgets
 - editor
   - major performance improvements (containers' children are reused whenever possible instead of being recreated)
   - removed widget deletion confirmation popup

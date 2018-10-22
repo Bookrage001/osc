@@ -767,7 +767,15 @@ class Widget extends EventEmitter {
             var css = String(this.getProp('css')),
                 prefix = '#' + this.hash,
                 scopedCss = scopeCss(css, prefix),
-                unScopedCss = ''
+                unScopedCss = '',
+                extraCssClasses = []
+
+
+            // extra css "class" property
+            css = css.replace(/^[^\S\n]*class[^\S\n]*:[^\S\n]*([^;\n\s]+);?/igm, (m, c)=>{
+                if (c === 'widget' || c.includes('-container')) return
+                extraCssClasses.push(c.replace(/"'/g,''))
+            })
 
             try {
 
@@ -797,6 +805,19 @@ class Widget extends EventEmitter {
                 this.container.replaceChild(style, oldStyle)
             } else if (scopedCss.length || unScopedCss.length){
                 this.container.insertBefore(style, this.widget)
+            }
+
+
+            // apply extra css classes
+
+            if (this.extraCssClasses && this.extraCssClasses.length) {
+                this.container.classList.remove(...this.extraCssClasses)
+                this.extraCssClasses = []
+            }
+
+            if (extraCssClasses.length) {
+                this.container.classList.add(...extraCssClasses)
+                this.extraCssClasses = extraCssClasses
             }
 
         }
