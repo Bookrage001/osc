@@ -3,7 +3,7 @@ var Panel = require('./panel'),
     {iconify} = require('../../ui/utils'),
     {enableTraversingGestures, disableTraversingGestures} = require('../../events/drag')
 
-module.exports = class Root extends Panel {
+class Root extends Panel {
 
     static defaults() {
 
@@ -85,3 +85,9 @@ module.exports = class Root extends Panel {
     }
 
 }
+
+Root.dynamicProps = Root.prototype.constructor.dynamicProps.concat(
+    'traversing'
+)
+
+module.exports = Root
