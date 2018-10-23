@@ -1,6 +1,7 @@
 var Panel = require('./panel'),
     Widget = require('../common/widget'),
-    {iconify} = require('../../ui/utils')
+    {iconify} = require('../../ui/utils'),
+    {enableTraversingGestures, disableTraversingGestures} = require('../../events/drag')
 
 module.exports = class Root extends Panel {
 
@@ -10,6 +11,7 @@ module.exports = class Root extends Panel {
 
             _children:'children',
 
+            traversing: {type: 'boolean', value: false, help: 'Set to `true` to enable traversing gestures in this widget. Set to `smart` or `auto` to limit affected widgets by the type of the first touched widget'},
             variables: {type: '*', value: {}, help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
             tabs: {type: 'array', value: [], help: 'Each element of the array must be a tab object'},
             id: {type: 'string', value: 'root', help: 'Widgets sharing the same id will act as clones and update each other\'s value(s) without sending extra osc messages' },
@@ -40,6 +42,8 @@ module.exports = class Root extends Panel {
             el.classList.add('main')
         })
 
+        this.setTraversing()
+
     }
 
     createNavigation() {
@@ -51,6 +55,36 @@ module.exports = class Root extends Panel {
                 <a id="open-toggle" class="${DOM.get('#sidepanel')[0].classList.contains('sidepanel-open')?'sidepanel-open':''}">${iconify('^bars')}</a>
             </li>
         `))
+
+    }
+
+    setTraversing(update) {
+
+        var traversing = this.getProp('traversing')
+
+        if (this._traversing) {
+            disableTraversingGestures(this.widget)
+            this._traversing = false
+        }
+
+        if (traversing && !this._traversing) {
+            this._traversing = true
+            enableTraversingGestures(this.widget, {smart: typeof traversing === 'string' && traversing.match(/smart|auto/)})
+        }
+
+    }
+
+    onPropChanged(propName, options, oldPropValue) {
+
+        if (super.onPropChanged(...arguments)) return true
+
+        switch (propName) {
+
+            case 'traversing':
+                this.setTraversing()
+                return
+
+        }
 
     }
 
