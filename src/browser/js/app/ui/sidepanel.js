@@ -58,7 +58,9 @@ var sidepanelData = [
                         el.classList.remove('on')
                     })
                     el.classList.add('on')
-                    enableTraversingGestures(document.getElementById('container'))
+                    var container = document.getElementById('container')
+                    disableTraversingGestures(container)
+                    enableTraversingGestures(container)
                 },
                 class:'traversingEnable'
             },
@@ -69,7 +71,9 @@ var sidepanelData = [
                         el.classList.remove('on')
                     })
                     el.classList.add('on')
-                    enableTraversingGestures(document.getElementById('container'), {smart: true})
+                    var container = document.getElementById('container')
+                    disableTraversingGestures(container)
+                    enableTraversingGestures(container, {smart: true})
                 },
                 class:'traversingEnable'
             },
