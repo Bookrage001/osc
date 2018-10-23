@@ -7,6 +7,8 @@ var utils = require('../ui/utils'),
     locales = require('../locales'),
     {deepCopy} = require('../utils'),
     sidepanel = require('../ui/sidepanel'),
+    {TRAVERSING_SAMEWIDGET} = require('../events/utils'),
+    {enableTraversingGestures} = require('../events/drag'),
     ipc = require('./')
 
 module.exports = {
@@ -116,7 +118,8 @@ module.exports = {
                 history: editor.history,
                 historyState: editor.historyState,
                 editorEnabled: editor.enabled,
-                sidepanelOpened: document.getElementById('sidepanel').classList.contains('sidepanel-open')
+                sidepanelOpened: document.getElementById('sidepanel').classList.contains('sidepanel-open'),
+                traversing: document.getElementById('container')._traversing
             })
 
             // reload page and hold backup id
@@ -150,6 +153,11 @@ module.exports = {
 
             if (data.sidepanelOpened) sidepanel.open()
 
+            if (data.traversing === TRAVERSING_SAMEWIDGET) {
+                DOM.get('.traversingSmart')[0].click()
+            } else if (data.traversing) {
+                DOM.get('.traversingEnable')[0].click()
+            }
 
             ipc.send('deleteBackup', data.backupId)
 

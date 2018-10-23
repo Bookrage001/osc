@@ -75,7 +75,7 @@ var sidepanelData = [
                     disableTraversingGestures(container)
                     enableTraversingGestures(container, {smart: true})
                 },
-                class:'traversingEnable'
+                class:'traversingSmart'
             },
             {
                 title: locales('traversing_off'),
