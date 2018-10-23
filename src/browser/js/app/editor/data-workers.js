@@ -35,8 +35,8 @@ function updateWidget(widget, options={}) {
             if (
                 // if prop/osc listeners have changed (@{} / OSC{})
                 // refresh the widget's props cache and update linked props bindings
-                !propValues.some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
-            &&  !propNames.some(n => linkedProps.includes(n))
+                propValues.some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
+            ||  propNames.some(n => linkedProps.includes(n))
             ) {
                 widget.createPropsCache()
             }
