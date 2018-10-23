@@ -1,10 +1,5 @@
 # Changelog
 
-## next
-
-- widgets
-  - added "smart" traversing gestures mode that limits affected widgets by the type of the first touched widget
-
 ## 0.38.4
 
 - bug fixes
@@ -15,6 +10,8 @@
 - widgets
   - 1-level nested property inheritance calls (`@{id_@{id_2}}`) are now updated dynamically
   - support special css property `class` for adding custom classes to widgets
+  - added "smart" traversing gestures mode that limits affected widgets by the type of the first touched widget
+  - root: added `traversing` property
 - editor
   - major performance improvements (containers' children are reused whenever possible instead of being recreated)
   - removed widget deletion confirmation popup
