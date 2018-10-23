@@ -62,13 +62,9 @@ module.exports = class Root extends Panel {
 
         var traversing = this.getProp('traversing')
 
-        if (this._traversing) {
-            disableTraversingGestures(this.widget)
-            this._traversing = false
-        }
+        disableTraversingGestures(this.widget)
 
-        if (traversing && !this._traversing) {
-            this._traversing = true
+        if (traversing) {
             enableTraversingGestures(this.widget, {smart: typeof traversing === 'string' && traversing.match(/smart|auto/)})
         }
 

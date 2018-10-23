@@ -269,6 +269,10 @@ module.exports = {
 
     enableTraversingGestures: function(element, options={}) {
 
+        if (element._traversing) return
+
+        element._traversing = true
+
         var traversing = options.smart ? TRAVERSING_SAMEWIDGET : true
 
         function makeEventTraversing(event) {
@@ -290,6 +294,10 @@ module.exports = {
     },
 
     disableTraversingGestures: function(element) {
+
+        if (!element._traversing) return
+
+        delete element._traversing
 
         DOM.dispatchEvent(element, 'disableTraversingGestures')
 
