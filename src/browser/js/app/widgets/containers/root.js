@@ -42,7 +42,7 @@ class Root extends Panel {
             el.classList.add('main')
         })
 
-        this.setTraversing()
+        if (this.getProp('traversing')) this.setTraversing()
 
     }
 
