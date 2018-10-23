@@ -270,9 +270,9 @@ module.exports = {
 
         if (element._traversing) return
 
-        element._traversing = true
-
         var traversing = options.smart ? TRAVERSING_SAMEWIDGET : true
+
+        element._traversing = traversing
 
         function makeEventTraversing(event) {
             if (event.ctrlKey) return
