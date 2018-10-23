@@ -1,6 +1,5 @@
-const {normalizeDragEvent, resetEventOffset} = require('./utils')
+const {normalizeDragEvent, resetEventOffset, TRAVERSING_SAMEWIDGET} = require('./utils')
 const iOS = require('../ui/ios')
-const TRAVERSING_SAMEWIDGET = 1
 
 var targets = {},
     previousPointers = {}

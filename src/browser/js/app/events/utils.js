@@ -85,6 +85,8 @@ module.exports = {
         event.offsetX = event.pageX - off.left
         event.offsetY = event.pageY - off.top
 
-    }
+    },
+
+    TRAVERSING_SAMEWIDGET: 1
 
 }
