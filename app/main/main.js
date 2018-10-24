@@ -3,7 +3,7 @@ var dev = process.argv[1] === '.',
 
 var serverStarted
 
-if (process.title === 'node') {
+if (process.title === 'node' || process.title === 'node.exe') {
     process.on('uncaughtException', (err)=>{
         console.error('A JavaScript error occurred in the main process:')
         console.trace(err)
