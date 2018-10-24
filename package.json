@@ -27,7 +27,6 @@
     "cardinal-spline-js": "2.3.9",
     "cp": "^0.2.0",
     "deep-extend": "^0.6.0",
-    "electron": "1.8.8",
     "electron-packager": "12.2.0",
     "electron-packager-plugin-non-proprietary-codecs-ffmpeg": "^1.0.2",
     "exorcist": "1.0.1",
@@ -52,6 +51,7 @@
     "wolfy87-eventemitter": "^5.2.4"
   },
   "optionalDependencies": {
+    "electron": "1.8.8",
     "electron-installer-debian": "1.0.0"
   },
   "scripts": {
