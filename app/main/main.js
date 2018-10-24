@@ -4,6 +4,12 @@ var dev = process.argv[1] === '.',
 var serverStarted
 
 if (process.title === 'node' || process.title === 'node.exe') {
+    if (!settings.read('noGui')) {
+        settings.cli = true
+        settings.write('noGui', true, true)
+        console.warn('Running with node: headless mode (--no-gui) enabled automatically')
+    }
+
     process.on('uncaughtException', (err)=>{
         console.error('A JavaScript error occurred in the main process:')
         console.trace(err)
