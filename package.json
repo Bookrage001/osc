@@ -56,7 +56,7 @@
   },
   "scripts": {
     "postinstall": "node scripts/copy-assets.js && cd app && npm install",
-    "start": "cd app && npm start --",
+    "start": "electron app/",
     "build": "npm run build-css && npm run build-js && echo 'JS and CSS assets built. To build the binary package, run \"npm run package\".'",
     "package": "npm run build-css && npm run build-launcher-js && npm run build-browser-js -- --prod && node scripts/package.js",
     "package-rpi": "npm run build-css && npm run build-launcher-js && npm run build-browser-js -- --prod && node scripts/package.js --rpi",
