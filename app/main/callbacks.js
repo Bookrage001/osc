@@ -5,9 +5,8 @@ var path = require('path'),
     {ipc} = require('./server'),
     {deepCopy} = require('./utils'),
     theme = require('./theme'),
-    chokidar = require('chokidar'),
-    {BrowserWindow} = require('electron')
-
+    chokidar = require('chokidar')
+    
 var openedSessions = {},
     widgetHashTable = {},
     lastSavingClient,
