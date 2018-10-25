@@ -5,10 +5,13 @@ var serverStarted
 
 function nodeMode() {
 
+    console.warn('Running with node')
+
+
     if (!settings.read('noGui')) {
         settings.cli = true
         settings.write('noGui', true, true)
-        console.warn('Running with node: headless mode (--no-gui) enabled automatically')
+        console.warn('Headless mode (--no-gui) enabled automatically')
     }
 
     process.on('uncaughtException', (err)=>{
