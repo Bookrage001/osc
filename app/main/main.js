@@ -3,7 +3,8 @@ var dev = process.argv[1] === '.',
 
 var serverStarted
 
-if (process.title === 'node' || process.title === 'node.exe') {
+function nodeMode() {
+
     if (!settings.read('noGui')) {
         settings.cli = true
         settings.write('noGui', true, true)
@@ -14,10 +15,27 @@ if (process.title === 'node' || process.title === 'node.exe') {
         console.error('A JavaScript error occurred in the main process:')
         console.trace(err)
     })
+
+}
+
+if (process.title === 'node' || process.title === 'node.exe') {
+
+    nodeMode()
+
 } else {
-    require('electron').dialog.showErrorBox = (title, err)=>{
-        console.error(title + ': ' + err)
+
+    try {
+
+        require('electron').dialog.showErrorBox = (title, err)=>{
+            console.error(title + ': ' + err)
+        }
+
+    } catch(e) {
+
+        nodeMode()
+
     }
+
 }
 
 var start = function(readyApp) {
