@@ -1,4 +1,4 @@
-var cp = require('cp'),
+var cpr = require('cpr'),
     path = require('path'),
     files = [
         ['../resources/images/logo-nobadge.png', '../app/browser/favicon.png'],
@@ -6,5 +6,5 @@ var cp = require('cp'),
     ]
 
 for (var i in files) {
-    cp.sync(...files[i].map(f => path.resolve(__dirname + '/' + f)))
+    cpr(...files[i].map(f => path.resolve(__dirname + '/' + f)), {})
 }

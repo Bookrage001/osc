@@ -25,7 +25,7 @@
     "babelify": "8.0.0",
     "browserify": "16.2.3",
     "cardinal-spline-js": "2.3.9",
-    "cp": "^0.2.0",
+    "cpr": "^3.0.1",
     "deep-extend": "^0.6.0",
     "electron-packager": "12.2.0",
     "electron-packager-plugin-non-proprietary-codecs-ffmpeg": "^1.0.2",
