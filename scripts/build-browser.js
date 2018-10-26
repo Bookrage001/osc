@@ -105,7 +105,7 @@ function bundle() {
     })
 
 
-    if (!fast) output.pipe(exorcist(outputPath + '.map'))
+    if (!fast) output = output.pipe(exorcist(outputPath + '.map'))
 
     output.pipe(fs.createWriteStream(outputPath))
 
