@@ -20,9 +20,9 @@ deploy:
     tags: true
 before_deploy:
   - export VERSION=$(sed -nE 's/^\s*"version":\ "(.*?)",$/\1/p' package.json)
-  - npm run package
-  - npm run package-node
-  - npm run package-rpi
+  - npm run package -- --all
+  - node scripts/package-node.js
+  - node scripts/package.js --rpi
   - npm run deb32
   - npm run deb64
   - npm run debarm
