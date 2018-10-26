@@ -4,7 +4,7 @@
 
 - packaging
   - regression causing the client js bundle to be much bigger than needed
-  - added `npm run package-node` to build the app without electron
+  - added node-only package built without electron for unsupported platforms (armv6, etc)
 
 ## 0.38.4
 
