@@ -12,7 +12,7 @@ packager({
     all: all ? true : undefined,
     platform: rpi ? 'linux' : process.env.PLATFORM,
     arch: rpi ? 'armv7l' : process.env.ARCH,
-    electronVersion:  rpi ? '1.7.11' : undefined,
+    electronVersion:  rpi ? '1.7.11' : require('../package.json').optionalDependencies.electron,
     overwrite: true,
     out: path.resolve(__dirname + '/../dist'),
     icon: path.resolve(__dirname + '/../resources/images/logo'),
