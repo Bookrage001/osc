@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.38.5
+
+- packaging
+  - regression causing the client js bundle to be much bigger than needed
+  - added `npm run package-node` to build the app without electron
+
 ## 0.38.4
 
 - bug fixes
