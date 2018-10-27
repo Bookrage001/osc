@@ -1,7 +1,7 @@
 var {remote, ipcRenderer, shell} = eval('require(\'electron\')'),
     {dialog, Menu, MenuItem, app} = remote.require('electron'),
     menu = new Menu(),
-    settings = remote.require('./main/settings'),
+    settings = remote.getGlobal('settings'),
     packageInfos = remote.require('./package.json'),
     packageVersion = packageInfos.version,
     packageUrl = packageInfos.repository.url,

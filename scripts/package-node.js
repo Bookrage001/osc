@@ -10,7 +10,6 @@ var browserify = require('browserify'),
         ['../app/launcher', '../dist/open-stage-control-node/launcher'],
         ['../app/browser', '../dist/open-stage-control-node/browser'],
         ['../app/main/midi.py', '../dist/open-stage-control-node/main/midi.py'],
-        ['../app/main/settings.js', '../dist/open-stage-control-node/main/settings.js'],
         ['../app/examples', '../dist/open-stage-control-node/examples'],
         ['../app/LICENSE', '../dist/open-stage-control-node/LICENSE']
     ]
@@ -21,12 +20,12 @@ for (let i in files) {
         filter: /node_modules\/(serialport|uws)/,
         overwrite: true
     }, ()=>{
-        if (i == files.length - 1) bundle()
+        if (i == files.length - 1) bundleMain()
     })
 
 }
 
-function bundle() {
+function bundleMain() {
 
     var tmp = path.resolve(__dirname + '/../app/main/index-node.js'),
         index = fs.readFileSync(path.resolve(__dirname + '/../app/main/index.js'))
@@ -55,8 +54,6 @@ function bundle() {
     })
     .ignore('serialport')
     .exclude('electron')
-    .exclude(path.resolve(__dirname + '/../app/main/settings.js'))
-
 
     var output =  b.bundle()
 
@@ -67,8 +64,6 @@ function bundle() {
 
     writer.once('finish', ()=>{
         fs.unlinkSync(tmp)
-        var outputFile = fs.readFileSync(outputPath)
-        fs.writeFileSync(outputPath, outputFile.toString().replace(/require\('\.\.\/settings'\)/g, `require('./settings')`))
     })
 
 
