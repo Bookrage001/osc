@@ -16,7 +16,7 @@ function nodeMode() {
 
     process.on('uncaughtException', (err)=>{
         console.error('A JavaScript error occurred in the main process:')
-        console.trace(err)
+        console.error(err.stack)
     })
 
 }
