@@ -5,6 +5,7 @@ var browserify = require('browserify'),
     cpr = require('cpr'),
     path = require('path'),
     files = [
+        ['../app/package.json', '../dist/open-stage-control-node/package.json'],
         ['../app/index.js', '../dist/open-stage-control-node/index.js'],
         ['../app/browser', '../dist/open-stage-control-node/browser'],
         ['../app/main/midi.py', '../dist/open-stage-control-node/main/midi.py'],
