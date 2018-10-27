@@ -18,7 +18,8 @@ var browserify = require('browserify'),
 for (let i in files) {
 
     cpr(...files[i].map(f => path.resolve(__dirname + '/' + f)), {
-        filter: /node_modules\/(serialport|uws)/
+        filter: /node_modules\/(serialport|uws)/,
+        overwrite: true
     }, ()=>{
         if (i == files.length - 1) bundle()
     })
