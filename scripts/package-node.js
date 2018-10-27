@@ -7,8 +7,10 @@ var browserify = require('browserify'),
     files = [
         ['../app/package.json', '../dist/open-stage-control-node/package.json'],
         ['../app/index.js', '../dist/open-stage-control-node/index.js'],
+        ['../app/launcher', '../dist/open-stage-control-node/launcher'],
         ['../app/browser', '../dist/open-stage-control-node/browser'],
         ['../app/main/midi.py', '../dist/open-stage-control-node/main/midi.py'],
+        ['../app/main/settings.js', '../dist/open-stage-control-node/main/settings.js'],
         ['../app/examples', '../dist/open-stage-control-node/examples'],
         ['../app/LICENSE', '../dist/open-stage-control-node/LICENSE']
     ]
@@ -44,10 +46,15 @@ function bundle() {
         insertGlobalVars: {
             __filename: true,
             __dirname: true,
-            process: true
+            process: true,
+            electron: true,
+            global: true
         },
         browserField: false,
-    }).ignore('serialport')
+    })
+    .ignore('serialport')
+    .exclude('electron')
+    .exclude('settings.js')
 
 
     var output =  b.bundle()
