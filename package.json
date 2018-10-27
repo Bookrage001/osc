@@ -45,6 +45,7 @@
     "nodemon": "1.18.4",
     "scope-css": "^1.1.0",
     "screenfull": "3.3.3",
+    "source-map-support": "^0.5.9",
     "stacktrace-js": "^2.0.0",
     "through": "^2.3.8",
     "uglifyify": "5.0.1",
