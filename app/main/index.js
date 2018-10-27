@@ -1,4 +1,4 @@
-var dev = process.argv[1] === '.',
+var dev = process.argv[0].includes('node_modules'),
     settings = require('./settings')
 
 var serverStarted
