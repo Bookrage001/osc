@@ -6,6 +6,7 @@ var {remote, ipcRenderer, shell} = eval('require(\'electron\')'),
     packageVersion = packageInfos.version,
     packageUrl = packageInfos.repository.url,
     argv_remote = settings.read('argv'),
+    ansiHTML = require('ansi-html'),
     argv = {},
     $ = require('jquery/dist/jquery.slim.min.js')
 
@@ -193,12 +194,18 @@ $(document).ready(()=>{
     form.appendTo('body')
 
 
+    // scroll to bottom for multiple electron versions
+    function scrollBottom() {
+        document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
+        document.documentElement.scrollTop = document.documentElement.offsetHeight + document.documentElement.scrollHeight
+    }
+
     // server started callback
     ipcRenderer.on('started',function(){
         start.remove()
         save.remove()
         terminal.show()
-        document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
+        scrollBottom()
     })
 
     // Fake console
@@ -206,13 +213,13 @@ $(document).ready(()=>{
         autoscoll = true
 
     ipcRenderer.on('stdout', function(e, msg){
-        terminal.append(`<div class="log">${msg}</div>`)
-        if (autoscoll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
+        terminal.append(`<div class="log">${ansiHTML(msg)}</div>`)
+        if (autoscoll) scrollBottom()
     })
 
     ipcRenderer.on('stderr', function(e, msg){
-        terminal.append(`<div class="error">${msg}</div>`)
-        if (autoscoll) document.body.scrollTop = document.body.offsetHeight + document.body.scrollHeight
+        terminal.append(`<div class="error">${ansiHTML(msg)}</div>`)
+        if (autoscoll) scrollBottom()
     })
 
 
@@ -250,7 +257,7 @@ $(document).ready(()=>{
     window.addEventListener('contextmenu', function(e) {
         menu.items[0].enabled = !!window.getSelection().toString()
         menu.items[1].enabled = $(e.target).is('input:not([disabled])')
-        menu.popup({ window: remote.getCurrentWindow(), x: e.pageX, y: e.pageY - document.body.scrollTop})
+        menu.popup({ window: remote.getCurrentWindow(), x: e.pageX, y: e.pageY - (document.body.scrollTop || document.documentElement.scrollTop) })
     }, false)
 
 
