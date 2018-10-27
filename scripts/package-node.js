@@ -55,7 +55,7 @@ function bundle() {
     })
     .ignore('serialport')
     .exclude('electron')
-    .exclude('settings.js')
+    .exclude(path.resolve(__dirname + '/../app/main/settings.js'))
 
 
     var output =  b.bundle()
@@ -67,6 +67,8 @@ function bundle() {
 
     writer.once('finish', ()=>{
         fs.unlinkSync(tmp)
+        var outputFile = fs.readFileSync(outputPath)
+        fs.writeFileSync(outputPath, outputFile.toString().replace(/require\('\.\.\/settings'\)/g, `require('./settings')`))
     })
 
 
