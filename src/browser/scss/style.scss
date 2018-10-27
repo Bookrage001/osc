@@ -573,6 +573,10 @@ body {
 }
 
 .error-stack {
+    > span {
+        background: none!important;
+        color: inherit!important;
+    }
     padding:10rem;
     user-select:initial;
     cursor: initial;

@@ -20,6 +20,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "ansi-html": "0.0.7",
+    "ansi-to-html": "^0.6.8",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-preset-env": "^1.7.0",

@@ -92,7 +92,7 @@ function bundle() {
                 '<div class="error-stack">' +
                     ansiHTML(
                         err.stack
-                        .replace(/\n\s*at Parser.*/g, '') // remove useless stack
+                        .replace(/^    at .*/gm, '') // remove useless stack
                         .replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.') // shorten file path
                         .trim()
                         .replace('\n','\n\n') // add 1 new line after 1st line
