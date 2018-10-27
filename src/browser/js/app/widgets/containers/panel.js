@@ -182,7 +182,7 @@ class Panel extends Container {
 
             case 'color':
                 for (var w of this.children) {
-                    w.onPropChanged('color')
+                    if (w) w.onPropChanged('color')
                 }
                 return
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.38.6
+
+- bug fixes
+  - regression with dynamic property `color` in panels and matrices
+- packaging
+  - node-only package can be run with electron too
+
 ## 0.38.5
 
 - packaging

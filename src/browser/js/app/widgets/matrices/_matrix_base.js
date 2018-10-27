@@ -33,7 +33,7 @@ module.exports = class _matrix_base extends Container {
 
             case 'color':
                 for (var w of this.children) {
-                    w.onPropChanged('color')
+                    if (w) w.onPropChanged('color')
                 }
                 return
 
