@@ -19,6 +19,7 @@
   "homepage": "http://osc.ammd.net/",
   "license": "GPL-3.0",
   "dependencies": {
+    "ansi-html": "0.0.7",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -79,7 +80,6 @@
     "node": ">=6"
   },
   "devDependencies": {
-    "ansi-to-html": "^0.6.6",
     "watchify": "^3.11.0"
   }
 }

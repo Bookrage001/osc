@@ -62,8 +62,7 @@ if (watch) {
 bundle()
 
 if (autoRefresh) {
-    var Convert = require('ansi-to-html')
-    var convert = new Convert()
+    var ansiHTML = require('ansi-html')
     var WS = require('../app/node_modules/ws')
     function send(msg, data){
         var ipc = new WS('ws://127.0.0.1:8080/dev')
@@ -91,7 +90,7 @@ function bundle() {
         if (autoRefresh) {
             send('errorPopup',
                 '<div class="error-stack">' +
-                    convert.toHtml(
+                    ansiHTML(
                         err.stack
                         .replace(/\n\s*at Parser.*/g, '') // remove useless stack
                         .replace(new RegExp(path.resolve(__dirname + '/..'), 'g'),'.') // shorten file path

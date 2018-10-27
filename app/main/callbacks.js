@@ -6,7 +6,7 @@ var path = require('path'),
     {deepCopy} = require('./utils'),
     theme = require('./theme'),
     chokidar = require('chokidar')
-    
+
 var openedSessions = {},
     widgetHashTable = {},
     lastSavingClient,
