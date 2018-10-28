@@ -1,3 +1,5 @@
+require('source-map-support').install({handleUncaughtExceptions: false})
+
 var dev = process.argv[0].includes('node_modules'),
     settings = require('./settings')
 
@@ -6,8 +8,6 @@ var serverStarted
 function nodeMode() {
 
     console.warn('Running with node')
-
-    require('source-map-support').install({handleUncaughtExceptions: false})
 
     if (!settings.read('noGui')) {
         settings.cli = true
