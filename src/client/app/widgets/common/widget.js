@@ -494,7 +494,7 @@ class Widget extends EventEmitter {
 
                     if (widgets[i].props[k] !== undefined || k === 'value') {
 
-                        if (k !== 'value' && originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
+                        if (k !== 'value' && originalPropName == k && widgets[i].cachedProps.id == originalWidget.cachedProps.id) {
                             return undefined
                         }
 
