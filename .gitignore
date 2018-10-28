@@ -6,4 +6,5 @@ app/assets/*.png
 app/client/*.js*
 app/launcher/*.js*
 app/server/*.js*
+app/package.json
 package-lock.json
