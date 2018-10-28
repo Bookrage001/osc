@@ -1,8 +1,8 @@
 var cpr = require('cpr'),
     path = require('path'),
     files = [
-        ['../resources/images/logo-nobadge.png', '../app/browser/favicon.png'],
-        ['../resources/images/logo.png', '../app/browser/logo.png'],
+        ['../resources/images/logo-nobadge.png', '../app/assets/favicon.png'],
+        ['../resources/images/logo.png', '../app/assets/logo.png'],
         ['../LICENSE', '../app/LICENSE'],
     ]
 

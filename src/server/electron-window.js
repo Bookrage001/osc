@@ -13,7 +13,7 @@ module.exports = function(options={}) {
         width: options.width || 800,
         height: options.height || 600,
         title: options.title || settings.read('appName'),
-        icon: path.resolve(__dirname + '/../client/logo.png'),
+        icon: path.resolve(__dirname + '/../assets/logo.png'),
         backgroundColor: options.color || theme.backgroundColor,
         type: options.type,
         fullscreen: options.fullscreen,

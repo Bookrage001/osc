@@ -25,7 +25,7 @@ express.get('*', function(req, res){
         } else {
             res.send('')
         }
-    } else if (req.path.indexOf('client/') != -1){
+    } else if (req.path.indexOf('assets/') != -1){
         res.sendFile(path.resolve(__dirname + '/..' + req.path))
     } else {
         res.sendFile(path.resolve(req.path))

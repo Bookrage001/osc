@@ -1,8 +1,8 @@
 node_modules
 dist
 app/LICENSE
-app/client/*.css*
-app/client/*.png
+app/assets/*.css*
+app/assets/*.png
 app/client/*.js*
 app/launcher/*.js*
 app/server/*.js*

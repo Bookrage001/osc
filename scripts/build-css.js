@@ -3,7 +3,7 @@ var sass = require('node-sass'),
     fs = require('fs')
 
 var indir = path.resolve(__dirname + '/../src/scss/'),
-    outdir= path.resolve(__dirname + '/../app/client/')
+    outdir= path.resolve(__dirname + '/../app/assets/')
 
 fs.readdirSync(indir + '/themes/').forEach(file => {
 
