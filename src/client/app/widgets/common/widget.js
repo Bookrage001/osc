@@ -494,8 +494,8 @@ class Widget extends EventEmitter {
 
                     if (widgets[i].props[k] !== undefined || k === 'value') {
 
-                        if (k !== 'value' && originalPropName == k && widgets[i].props.id == originalWidget.props.id) {
-                            return undefined
+                        if (k !== 'value' && originalPropName === k && widgets[i] === originalWidget) {
+                            return 'ERR_CIRCULAR_REF'
                         }
 
                         var r = k == 'value' ?
