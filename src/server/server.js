@@ -12,7 +12,7 @@ var express     = require('express')(),
     clients = {}
 
 express.get('/', function(req, res){
-    res.sendFile(path.resolve(__dirname + '/../browser/index.html'))
+    res.sendFile(path.resolve(__dirname + '/../client/index.html'))
 })
 
 express.get('*', function(req, res){
