@@ -19,4 +19,8 @@ packager({
     ignore: /node_modules\/(serialport|uws)/,
     afterExtract: [safeFFMPEG],
     prune: false
-}).then(()=>{})
+}).then(()=>{
+
+    console.warn('\x1b[36m%s\x1b[0m', '=> Build artifacts created in ' + path.resolve(__dirname + '/../dist'))
+
+})

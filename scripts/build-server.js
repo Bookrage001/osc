@@ -1,8 +1,8 @@
 var build = require('./build')
 
 build({
-    input: '../src/main/index.js',
-    output: '../app/main/open-stage-control-server.js',
+    input: '../src/server/index.js',
+    output: '../app/server/open-stage-control-server.js',
     options: {
         commonDir: false,
         ignoreMissing: true,
