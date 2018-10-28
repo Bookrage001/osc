@@ -1,1 +1,1 @@
-require('./open-stage-control-server')
+require('./main/open-stage-control-server')

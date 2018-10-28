@@ -27,7 +27,7 @@ if (prod) {
 }
 
 var bundle = build({
-    input: '../src/browser/js/index.js',
+    input: '../src/browser/index.js',
     output: '../app/browser/open-stage-control-client.js',
     options: {
         debug: true,

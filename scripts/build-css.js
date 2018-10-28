@@ -27,3 +27,18 @@ var result = sass.renderSync({
 
 fs.writeFileSync(outdir + '/open-stage-control.css', result.css)
 fs.writeFileSync(outdir + '/open-stage-control.css.map', result.map)
+
+
+if (process.argv.includes('--reload')) {
+
+    var WS = require('../app/node_modules/ws')
+
+    var ipc = new WS('ws://127.0.0.1:8080/dev')
+
+    ipc.on('error', ()=>{})
+    ipc.on('open', ()=>{
+        ipc.send('["reloadCss"]')
+        process.exit()
+    })
+
+}
