@@ -1,7 +1,3 @@
-// destroy serialport module
-// (electron-rebuild breaks it for node-only mode)
-require('vmodule')('serialport', {}, {global: true})
-
 var ipc = require('../server').ipc,
     settings = require('../settings'),
     tcpInPort = settings.read('tcpInPort'),
