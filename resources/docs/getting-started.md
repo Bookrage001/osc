@@ -154,3 +154,9 @@ It is possible to run the server in headless mode without Electron using [node](
 node /path/to/packaged/open-stage-control/resources/app/ -n
 node /path/to/sources/open-stage-control/app/ -n
 ```
+
+Or using the precompilled binaries for node:
+
+```bash
+node /path/to/packaged/open-stage-control-node/ -n
+```
