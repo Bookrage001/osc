@@ -1,4 +1,5 @@
 var build = require('./build'),
+    path = require('path'),
     babelify = require('babelify'),
     watch = process.argv.includes('--watch'),
     prod = process.argv.includes('--prod'),
