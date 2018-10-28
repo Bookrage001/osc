@@ -1,9 +1,9 @@
 node_modules
 dist
 app/LICENSE
-app/browser/*.css*
-app/browser/*.png
-app/browser/*.js*
+app/client/*.css*
+app/client/*.png
+app/client/*.js*
 app/launcher/*.js*
-app/main/*.js*
+app/server/*.js*
 package-lock.json

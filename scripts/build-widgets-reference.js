@@ -33,7 +33,7 @@ Object.assign(global, window)
 
 // Required globals
 
-DOM = require('../src/browser/app/dom')
+DOM = require('../src/client/app/dom')
 DOM.get = x=>[{addEventListener:()=>{}}]
 DOM.init()
 CANVAS_FRAMERATE = 1
@@ -41,8 +41,8 @@ LANG = 'en'
 
 // Here we go
 
-var widgets = require('../src/browser/app/widgets'),
-    baseClass = require('../src/browser/app/widgets/common/widget'),
+var widgets = require('../src/client/app/widgets'),
+    baseClass = require('../src/client/app/widgets/common/widget'),
     base = baseClass.defaults(),
     doc = []
 
