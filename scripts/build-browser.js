@@ -1,31 +1,15 @@
-var browserify = require('browserify'),
-    uglifyify = require('uglifyify'),
-    through = require('through'),
-    minimatch = require('minimatch').Minimatch,
-    licensify = require('licensify'),
-    exorcist = require('exorcist'),
-    path = require('path'),
-    fs = require('fs'),
+var build = require('./build'),
     babelify = require('babelify'),
-    prod = process.argv.indexOf('--prod') != -1,
-    fast = process.argv.indexOf('--fast') != -1,
-    watch = process.argv.indexOf('--watch') != -1,
-    autoRefresh = process.argv.indexOf('--auto-refresh') != -1,
-    b
-
-var inputPath = path.resolve(__dirname + '/../src/browser/js/index.js'),
-    outputPath = path.resolve(__dirname + '/../app/browser/scripts.js')
+    watch = process.argv.includes('--watch'),
+    prod = process.argv.includes('--prod'),
+    through = require('through'),
+    minimatch = require('minimatch').Minimatch
 
 
-var ignoreList = ['**/*.min.js', '**/jquery.ui.js'],
-    ignoreWrapper = function(transform){
+var ignores = ['**/*.min.js', '**/jquery.ui.js', 'gyronorm.complete.min.js'],
+    transformWrapper = function(transform){
         return function(file, opts){
-             if (
-                ignoreList.some(function(pattern) {
-                    var match = minimatch(pattern)
-                    return match.match(file)
-                })
-            ) {
+             if (ignores.some(pattern => minimatch(pattern).match(file))) {
                 return through()
             } else {
                 return transform(file, opts)
@@ -33,37 +17,34 @@ var ignoreList = ['**/*.min.js', '**/jquery.ui.js'],
         }
     }
 
-if (prod) console.warn('\x1b[36m%s\x1b[0m', 'Building minified js bundle for production... This may take a while... ')
+var transforms = [
+    [transformWrapper(babelify), {presets: ['env']}]
+]
 
-
-var plugins = [licensify]
-
-if (watch) plugins.push(require('watchify'))
-
-b = browserify(inputPath, {
-    debug:!fast,
-    insertGlobals:fast,
-    noParse: ignoreList,
-    cache: {},// needed by watchify
-    packageCache: {},// needed by watchify
-    plugin: plugins
- })
-
-b = b.transform(ignoreWrapper(babelify), {presets: ["env"]})
-
-if (prod) b = b.transform(ignoreWrapper(uglifyify), {global: true})
-
-
-if (watch) {
-    b.on('update', bundle)
-    b.on('log', function(msg) {console.warn('\x1b[36m%s\x1b[0m', msg)})
+if (prod) {
+    console.warn('\x1b[36m%s\x1b[0m', 'Building minified js bundle for production... This may take a while... ')
+    transforms.push([transformWrapper(require('uglifyify')), {global: true}])
 }
 
-bundle()
+var bundle = build({
+    input: '../src/browser/js/index.js',
+    output: '../app/browser/open-stage-control-client.js',
+    options: {
+        debug: true,
+        insertGlobals: false,
+        noParse: ['**/*.min.js', '**/jquery.ui.js'],
+        cache: {},
+        packageCache: {}
+    },
+    plugins: watch ? [require('watchify')] : [],
+    transforms: transforms
+})
 
-if (autoRefresh) {
-    var ansiHTML = require('ansi-html')
-    var WS = require('../app/node_modules/ws')
+if (watch) {
+
+    var ansiHTML = require('ansi-html'),
+        WS = require('../node_modules/ws')
+
     function send(msg, data){
         var ipc = new WS('ws://127.0.0.1:8080/dev')
         ipc.on('error', ()=>{})
@@ -72,22 +53,22 @@ if (autoRefresh) {
             ipc.close()
         })
     }
-}
 
+    bundle.b.on('update', hotBundle)
+    bundle.b.on('log', function(msg) {console.warn('\x1b[36m%s\x1b[0m', msg)})
 
-function bundle() {
+    function hotBundle() {
 
-    var output =  b.bundle()
+        var output = bundle()
 
-    output.on('end', (err)=> {
-        console.log('Build successful', autoRefresh ? 'reloading...' : '')
-        if (autoRefresh) send('reload')
-    })
+        output.on('end', (err)=> {
+            console.log('Build successful reloading...')
+            send('reload')
+        })
 
-    output.on('error', (err)=> {
+        output.on('error', (err)=> {
 
-        console.error(err.stack)
-        if (autoRefresh) {
+            console.error(err.stack)
             send('errorPopup',
                 '<div class="error-stack">' +
                     ansiHTML(
@@ -99,13 +80,16 @@ function bundle() {
                     ) +
                 '</div>'
             )
-        }
 
-    })
+        })
+
+    }
 
 
-    if (!fast) output = output.pipe(exorcist(outputPath + '.map'))
+    hotBundle()
 
-    output.pipe(fs.createWriteStream(outputPath))
+} else {
+
+    bundle()
 
 }

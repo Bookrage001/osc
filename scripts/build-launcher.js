@@ -1,16 +1,13 @@
-var browserify = require('browserify'),
-    licensify = require('licensify'),
-    path = require('path'),
-    ignoreList = ['**/mathjs/dist/math.min.js']
+var build = require('./build')
 
-
-browserify(path.resolve(__dirname + '/../src/launcher/index.js'), {
-    debug: true,
-    ignoreMissing: false    ,
-    detectGlobals: false,
-    bare: true,
-    noParse: ignoreList
-})
-.plugin(licensify)
-.bundle()
-.pipe(process.stdout)
+build({
+    input: '../src/launcher/index.js',
+    output: '../app/launcher/open-stage-control-launcher.js',
+    options: {
+        debug: true,
+        ignoreMissing: false,
+        detectGlobals: false,
+        bare: true,
+        noParse: ['**/mathjs/dist/math.min.js']
+    }
+})()

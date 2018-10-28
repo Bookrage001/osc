@@ -1,9 +1,8 @@
 node_modules
 dist
-app/browser/styles.css
-app/browser/scripts.js
-app/browser/scripts.js.map
-app/browser/favicon.png
-app/browser/logo.png
-app/launcher/scripts.js
+app/browser/*.css*
+app/browser/*.png
+app/browser/*.js*
+app/launcher/*.js*
+app/main/*.js*
 package-lock.json

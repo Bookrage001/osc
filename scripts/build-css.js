@@ -2,7 +2,7 @@ var sass = require('node-sass'),
     path = require('path'),
     fs = require('fs')
 
-var indir = path.resolve(__dirname + '/../src/browser/scss/'),
+var indir = path.resolve(__dirname + '/../src/scss/'),
     outdir= path.resolve(__dirname + '/../app/browser/')
 
 fs.readdirSync(indir + '/themes/').forEach(file => {
@@ -19,8 +19,11 @@ fs.readdirSync(indir + '/themes/').forEach(file => {
 })
 
 var result = sass.renderSync({
-    file: indir + '/style.scss',
-    outputStyle: 'compressed'
+    file: indir + '/index.scss',
+    outFile: outdir + '/open-stage-control.css',
+    outputStyle: 'compressed',
+    sourceMap: true
 })
 
-fs.writeFileSync(outdir + '/styles.css', result.css)
+fs.writeFileSync(outdir + '/open-stage-control.css', result.css)
+fs.writeFileSync(outdir + '/open-stage-control.css.map', result.map)

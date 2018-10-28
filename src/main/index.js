@@ -7,6 +7,7 @@ function nodeMode() {
 
     console.warn('Running with node')
 
+    require('source-map-support').install({handleUncaughtExceptions: false})
 
     if (!settings.read('noGui')) {
         settings.cli = true
