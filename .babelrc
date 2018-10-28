@@ -1,11 +1,11 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/env", {
       "targets": {
         "ios": "9.3",
         "chrome": "50"
       }
     }]
   ],
-  "plugins": ["transform-object-rest-spread"]
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
 }

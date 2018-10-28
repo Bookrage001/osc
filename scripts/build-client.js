@@ -18,7 +18,7 @@ var ignores = ['**/*.min.js', '**/jquery.ui.js', 'gyronorm.complete.min.js'],
     }
 
 var transforms = [
-    [transformWrapper(babelify), {presets: ['env']}]
+    [transformWrapper(babelify)]
 ]
 
 if (prod) {
