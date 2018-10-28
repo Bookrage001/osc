@@ -120,6 +120,8 @@ export PLATFORM=TARGET_PLATFORM
 # TARGET_ARCH can be ia32, x64 or armv7l
 export ARCH=TARGET_ARCH
 
+npm run build
+
 npm run package
 
 # For raspberry-pi / armv7l, run this instead
