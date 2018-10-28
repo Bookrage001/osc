@@ -35,7 +35,7 @@ module.exports = (opt) => {
 
         var output =  b.bundle()
 
-        output = output.pipe(exorcist(outputPath + '.map'))
+        output.pipe(exorcist(outputPath + '.map'))
         output.pipe(fs.createWriteStream(outputPath))
 
         return output
