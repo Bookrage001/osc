@@ -1,3 +1,5 @@
+var html = require('nanohtml')
+
 class SelectArea {
 
     constructor(selector, callback){
@@ -11,7 +13,7 @@ class SelectArea {
         this.rectSize = [0, 0]
         this.elements = []
 
-        this.rect = DOM.create('<div class="select-area hidden"></div>')
+        this.rect = html`<div class="select-area hidden"></div>`
         document.body.appendChild(this.rect)
 
         this.selector = selector

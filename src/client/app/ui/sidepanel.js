@@ -4,7 +4,9 @@ var state = require('../managers/state'),
     {icon} = require('./utils'),
     fullscreen = require('./fullscreen'),
     {enableTraversingGestures, disableTraversingGestures} = require('../events/drag'),
-    locales = require('../locales')
+    locales = require('../locales'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 var sidepanelData = [
     {
@@ -120,26 +122,26 @@ var sidepanelData = [
     },
 ]
 
-var options = DOM.create('<ul id="options"></ul>')
+var options = html`<ul id="options"></ul>`
 
 for (let i in sidepanelData) {
 
     let data = sidepanelData[i],
-        item = DOM.create(`
+        item = html`
             <li>
                 <div class="${data.class || ''}">
                     <div class="actions">
-                        ${data.title ? `<div class="title">${data.title}</div>` : ''}
+                        ${data.title ? html`<div class="title">${raw(data.title)}</div>` : ''}
                     </div>
                 </div>
             </li>
-        `),
+        `,
         wrapper = DOM.get(item, '.actions')[0]
 
     for (let j in data.actions) {
 
         let actionData = data.actions[j],
-            element = DOM.create(`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`)
+            element = html`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`
 
         if (actionData.action) element.addEventListener('click', ()=>{actionData.action(element)})
 
@@ -153,13 +155,13 @@ for (let i in sidepanelData) {
 
 var sidepanel = document.getElementById('sidepanel')
 
-sidepanel.appendChild(DOM.create(`
+sidepanel.appendChild(html`
     <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
-`))
+`)
 
 sidepanel.appendChild(options)
 
-sidepanel.appendChild(DOM.create('<div id="editor"></div>'))
+sidepanel.appendChild(html`<div id="editor"></div>`)
 
 
 // Fullscreen
@@ -237,7 +239,7 @@ document.addEventListener('keydown', function(e){
 
 // Sidepanel resize
 
-var resizeHandle = DOM.create('<div id="sidepanel-handle">'+icon('bars')+'</div>'),
+var resizeHandle = html`<div id="sidepanel-handle">${raw(icon('bars'))}</div>`,
     sidepanelWidth
 
 

@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    {iconify} = require('../../ui/utils')
+    {iconify} = require('../../ui/utils'),
+    html = require('nanohtml')
 
 class Dropdown extends Widget {
 
@@ -23,7 +24,7 @@ class Dropdown extends Widget {
 
         super({...options, html: '<div class="select"></div>'})
 
-        this.select = this.widget.appendChild(DOM.create('<select class="no-keybinding"></select>'))
+        this.select = this.widget.appendChild(html`<select class="no-keybinding"></select>`)
 
         this.values = []
         this.keys = []

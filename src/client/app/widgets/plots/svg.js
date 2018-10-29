@@ -1,5 +1,8 @@
 var Widget = require('../common/widget'),
-    morph = require('nanomorph')
+    morph = require('nanomorph'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
+
 
 class Svg extends Widget {
 
@@ -47,8 +50,8 @@ class Svg extends Widget {
         svg = svg.replace(/([0-9.]+%y)/gi, m=>(parseFloat(m) * this.height / 100).toFixed(2))
 
 
-        morph(this.widget, DOM.create('<div class="svg"><svg>' + svg + '</svg></div>'))
 
+        morph(this.widget, html`<div class="svg"><svg>${raw(svg)}</svg></div>`)
     }
 
     resizeHandleProxy() {

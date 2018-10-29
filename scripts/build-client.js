@@ -1,6 +1,7 @@
 var build = require('./build'),
     path = require('path'),
     babelify = require('babelify'),
+    nanohtml = require('nanohtml'),
     watch = process.argv.includes('--watch'),
     prod = process.argv.includes('--prod'),
     through = require('through'),
@@ -19,7 +20,8 @@ var ignores = ['**/*.min.js', '**/jquery.ui.js', 'gyronorm.complete.min.js'],
     }
 
 var transforms = [
-    [transformWrapper(babelify)]
+    [transformWrapper(babelify)],
+    [transformWrapper(nanohtml)]
 ]
 
 if (prod) {

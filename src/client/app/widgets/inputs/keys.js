@@ -1,6 +1,7 @@
 var Widget = require('../common/widget'),
     {iconify} = require('../../ui/utils'),
-    keyboardJS = require('keyboardjs')
+    keyboardJS = require('keyboardjs'),
+    html = require('nanohtml')
 
 class Keys extends Widget {
 
@@ -39,7 +40,7 @@ class Keys extends Widget {
 
         if (this.getProp('binding')) {
 
-            this.widget.appendChild(DOM.create(`<span>${this.getProp('binding')}</span>`))
+            this.widget.appendChild(html`<span>${this.getProp('binding')}</span>`)
 
             this.keyDownHandler = this.keyDown.bind(this)
             this.keyUpHandler = this.keyUp.bind(this)

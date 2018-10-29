@@ -9,6 +9,7 @@ var utils = require('../ui/utils'),
     sidepanel = require('../ui/sidepanel'),
     {TRAVERSING_SAMEWIDGET} = require('../events/utils'),
     {enableTraversingGestures} = require('../events/drag'),
+    raw = require('nanohtml/raw'),
     ipc = require('./')
 
 module.exports = {
@@ -72,7 +73,7 @@ module.exports = {
     },
 
     error: function(data){
-        new utils.Popup({title: utils.icon('exclamation-triangle') + '&nbsp; ' + locales('error'), content: data, closable:true})
+        new utils.Popup({title: raw(utils.icon('exclamation-triangle') + '&nbsp; ' + locales('error')), content: raw(data), closable:true})
     },
 
     reloadCss: function(){
@@ -95,7 +96,7 @@ module.exports = {
     },
 
     reload: function(){
-
+        console.log('reload?')
         var id = Math.random(),
             search = location.search,
             query = 'backupId=' + id
@@ -125,7 +126,11 @@ module.exports = {
             // reload page and hold backup id
 
             if (search) {
-                search = search.replace(/backupId=[^&]*/, query)
+                if (search.includes('backupId=')) {
+                    search = search.replace(/backupId=[^&]*/, query)
+                } else {
+                    search += '&' + query
+                }
             } else {
                 search += '?' + query
             }

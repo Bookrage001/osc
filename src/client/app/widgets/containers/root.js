@@ -1,7 +1,9 @@
 var Panel = require('./panel'),
     Widget = require('../common/widget'),
-    {iconify} = require('../../ui/utils'),
-    {enableTraversingGestures, disableTraversingGestures} = require('../../events/drag')
+    {icon} = require('../../ui/utils'),
+    {enableTraversingGestures, disableTraversingGestures} = require('../../events/drag'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 class Root extends Panel {
 
@@ -50,11 +52,11 @@ class Root extends Panel {
 
         super.createNavigation()
 
-        this.navigation.appendChild(DOM.create(`
+        this.navigation.appendChild(html`
             <li class="not-editable">
-                <a id="open-toggle" class="${DOM.get('#sidepanel')[0].classList.contains('sidepanel-open')?'sidepanel-open':''}">${iconify('^bars')}</a>
+                <a id="open-toggle" class="${DOM.get('#sidepanel')[0].classList.contains('sidepanel-open')?'sidepanel-open':''}">${raw(icon('bars'))}</a>
             </li>
-        `))
+        `)
 
     }
 

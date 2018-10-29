@@ -1,3 +1,5 @@
+var html = require('nanohtml')
+
 class Lobby {
 
     constructor() {
@@ -8,7 +10,7 @@ class Lobby {
 
     create() {
 
-        this.html = DOM.create(`
+        this.html = html`
             <div id="lobby">
                 <div class="main">
                     <div class="header">
@@ -18,7 +20,7 @@ class Lobby {
                     <div class="footer"></div>
                 </div>
             </div>
-        `)
+        `
 
         this.main = DOM.get(this.html, '.main')[0]
         this.list = DOM.get(this.html, '.list')[0]

@@ -1,6 +1,7 @@
 var Container = require('../common/container'),
     widgetManager = require('../../managers/widgets'),
-    parser = require('../../parser')
+    parser = require('../../parser'),
+    html = require('nanohtml')
 
 class Panel extends Container {
 
@@ -45,10 +46,10 @@ class Panel extends Container {
 
         if (this.getProp('tabs') && this.getProp('tabs').length) {
 
-            this.widget.appendChild(DOM.create('<div class="navigation"><ul class="tablist"></ul></div>'))
+            this.widget.appendChild(html`<div class="navigation"><ul class="tablist"></ul></div>`)
             this.navigation = DOM.get(this.widget, '.tablist')[0]
 
-            this.wrapper = this.widget.appendChild(DOM.create('<div class="tabs-wrapper"></div>'))
+            this.wrapper = this.widget.appendChild(html`<div class="tabs-wrapper"></div>`)
 
             this.children = options.children || new Array(this.getProp('tabs').length)
             for (let i = 0; i < this.children.length; i++) {

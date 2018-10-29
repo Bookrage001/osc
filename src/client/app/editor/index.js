@@ -7,6 +7,7 @@ var {widgets} = require('../widgets/'),
     {deepCopy} = require('../utils'),
     macOs = (navigator.platform || '').match('Mac'),
     SelectArea = require('./select-area'),
+    html = require('nanohtml'),
     sessionManager
 
 
@@ -16,12 +17,12 @@ var Editor = class Editor {
 
     constructor() {
 
-        this.wrapper = DOM.create(`
+        this.wrapper = html`
             <div class="editor-container">
                 <div class="form" id="editor-form">
                 </div>
             </div>
-        `)
+        `
 
         this.form = DOM.get(this.wrapper, '#editor-form')[0]
         this.form.addEventListener('fast-click', (e)=>{
@@ -254,7 +255,7 @@ var Editor = class Editor {
 
         GRIDWIDTH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-width'))
 
-        var gridForm = DOM.create(`
+        var gridForm = html`
             <div class="form" id="grid-width-form">
                 <div class="separator"><span>Grid</span></div>
                 <div class="input-wrapper">
@@ -262,7 +263,7 @@ var Editor = class Editor {
                     <input class="input no-keybinding" type="number" id="grid-width-input" step="1" min="1" max="100" value="${GRIDWIDTH}"/>
                 </div>
             </div>
-        `)
+        `
 
         DOM.each(gridForm, '#grid-width-input', (input)=>{
             DOM.addEventListener(input, 'keyup mouseup change mousewheel', (e)=>{
@@ -387,11 +388,13 @@ var Editor = class Editor {
         var widget = this.selectedWidgets[0],
             props = this.defaults[widget.props.type]
 
-        this.form.appendChild(DOM.create(`
+        this.form.appendChild(html`
             <div class="separator">
-                ${this.selectedWidgets.length > 1 ? '<span class="accent">Multiple Widgets</span>' : '<span>Widget</span>' }
+                <span class="${this.selectedWidgets.length > 1 ? 'accent' : ''}">
+                    ${this.selectedWidgets.length > 1 ? 'Multiple Widgets' : 'Widget'}
+                </span>
             </div>
-        `))
+        `)
 
         let category
 
@@ -411,9 +414,9 @@ var Editor = class Editor {
             if (propName.indexOf('_') === 0 && propName !== '_props') {
 
                 if (category) this.form.appendChild(category)
-                category = DOM.create(`<div class="category ${this.foldedCategories.indexOf(props[propName]) > -1 ? 'folded' : ''}"></div>`)
+                category = html`<div class="category ${this.foldedCategories.indexOf(props[propName]) > -1 ? 'folded' : ''}"></div>`
 
-                field = DOM.create(`<div class="separator" data-name="${props[propName]}"><span>${props[propName]}</span></div>`)
+                field = html`<div class="separator" data-name="${props[propName]}"><span>${props[propName]}</span></div>`
 
             } else if (widget.props[propName] === undefined) {
 

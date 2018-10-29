@@ -1,4 +1,5 @@
 var Widget = require('../common/widget'),
+    html = require('nanohtml'),
     locales = require('../../locales'),
     localUrlRe = /(^127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.1[6-9]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.2[0-9]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.3[0-1]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^192\.168\.[0-9]{1,3}\.[0-9]{1,3}$)/
 
@@ -34,7 +35,7 @@ class Frame extends Widget {
         if (!this.getProp('border')) this.container.classList.add('noborder')
 
         this.frame = DOM.get(this.widget, 'iframe')[0]
-        this.errorText = DOM.create('<span>' + locales('iframe_unauthorized') + '<span>')
+        this.errorText = html`<span>${locales('iframe_unauthorized')}<span>`
         this.errorTextMounted = false
 
 

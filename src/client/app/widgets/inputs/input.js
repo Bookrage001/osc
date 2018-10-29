@@ -1,5 +1,6 @@
 var Canvas = require('../common/canvas'),
-    {deepCopy} = require('../../utils')
+    {deepCopy} = require('../../utils'),
+    html = require('nanohtml')
 
 module.exports = class Input extends Canvas {
 
@@ -20,13 +21,13 @@ module.exports = class Input extends Canvas {
 
     constructor(options) {
 
-        var html = `
+        var htmlx = `
             <div class="input">
                 <canvas></canvas>
             </div>
         `
 
-        super({...options, html: html})
+        super({...options, html: htmlx})
 
         this.value = ''
         this.stringValue = ''
@@ -40,7 +41,7 @@ module.exports = class Input extends Canvas {
         if (this.getProp('editable')) {
             this.canvas.setAttribute('tabindex', 0)
             this.canvas.addEventListener('focus', this.focus.bind(this))
-            this.input = DOM.create('<input class="no-keybinding"></input>')
+            this.input = html`<input class="no-keybinding"></input>`
             this.input.addEventListener('blur', (e)=>{
                 this.blur(false)
             })

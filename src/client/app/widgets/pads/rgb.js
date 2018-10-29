@@ -2,7 +2,8 @@ var Pad = require('./pad'),
     Xy = require('./xy'),
     Fader = require('./_fake_fader'),
     {clip, hsbToRgb, rgbToHsb} = require('../utils'),
-    Input = require('../inputs/input')
+    Input = require('../inputs/input'),
+    html = require('nanohtml')
 
 var faderDefaults = Fader.defaults()._props(),
     xyDefaults = Xy.defaults()._props()
@@ -40,7 +41,7 @@ module.exports = class Rgb extends Pad {
 
         super(options)
 
-        this.hueWrapper = this.widget.appendChild(DOM.create('<div class="hue-wrapper"></div>'))
+        this.hueWrapper = this.widget.appendChild(html`<div class="hue-wrapper"></div>`)
 
         this.hue = new Fader({props:{
             ...faderDefaults,

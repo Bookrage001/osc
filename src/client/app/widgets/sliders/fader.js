@@ -1,6 +1,7 @@
 var {clip} = require('../utils'),
     Slider = require('./slider'),
-    parser = require('../../parser')
+    parser = require('../../parser'),
+    html = require('nanohtml')
 
 module.exports = class Fader extends Slider {
 
@@ -111,7 +112,7 @@ module.exports = class Fader extends Slider {
 
             this.widget.classList.add('has-pips')
 
-            var pips = this.wrapper.appendChild(DOM.create('<div class="pips"></div>'))
+            var pips = this.wrapper.appendChild(html`<div class="pips"></div>`)
             var pipTexts = {}
             for (var k in this.rangeKeys) {
                 pipTexts[this.rangeKeys[k]]=this.rangeLabels[k]

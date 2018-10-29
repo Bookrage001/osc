@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    {iconify} = require('../../ui/utils')
+    {iconify} = require('../../ui/utils'),
+    html = require('nanohtml')
 
 module.exports = class Switch extends Widget {
 
@@ -51,9 +52,9 @@ module.exports = class Switch extends Widget {
             var label = isArray ? values[k]: k
             if (this.getProp('showValues') && !isArray) label = label + ': ' + (this.stringValues[this.stringValues.length - 1] || values[k])
 
-            this.widget.appendChild(DOM.create(`
+            this.widget.appendChild(html`
                 <div class="value"> ${iconify(label)}</div>
-            `))
+            `)
 
         }
 

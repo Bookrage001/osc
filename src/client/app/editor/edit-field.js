@@ -3,7 +3,8 @@ var widgetCategories = require('../widgets/').categories,
     widgetManager = require('../managers/widgets'),
     {deepCopy} = require('../utils'),
     {icon, Popup} = require('../ui/utils'),
-    locales = require('../locales')
+    locales = require('../locales'),
+    html = require('nanohtml')
 
 module.exports = function editField(editor, widget, propName, defaultValue){
 
@@ -11,11 +12,11 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         disabled = widget.disabledProps.indexOf(propName) > -1,
         error = widget.errors[propName]
 
-    let field = DOM.create(`
+    let field = html`
         <div class="input-wrapper ${widget.errors[propName] ? 'error' : ''} ${disabled ? 'disabled' : ''}" title="${locales('editor_click_for_help')}">
             <label class="btn ${error ? 'error' : ''}">${propName}</label>
         </div>
-    `)
+    `
 
     let input
 
@@ -25,11 +26,11 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             if (widget.props.type == 'tab' || widget.props.type == 'root') {
                 field.classList.add('disabled')
-                field.appendChild(DOM.create(`<textarea class="input no-keybinding" name="${propName}" rows="1" disabled>${widget.props[propName]}</textarea>`))
+                field.appendChild(html`<textarea class="input no-keybinding" name="${propName}" rows="1" disabled>${widget.props[propName]}</textarea>`)
                 return field
             }
 
-            input = DOM.create('<select class="input no-keybinding"/>')
+            input = html`<select class="input no-keybinding"/>`
             var innerHTML = ''
 
             for (let category in widgetCategories) {
@@ -41,7 +42,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             }
             input.innerHTML = innerHTML
 
-            var wrapper = DOM.create('<div class="select-wrapper"></div>')
+            var wrapper = html`<div class="select-wrapper"></div>`
             wrapper.appendChild(input)
             field.appendChild(wrapper)
 
@@ -51,7 +52,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             var value = typeof widget.props[propName] !== 'string' ?
                 JSON.stringify(widget.props[propName], null, '  ').replace(/\n\s\s\s\s/g, ' ').replace(/\n\s\s(\}|\])/g, ' $1') : widget.props[propName]
 
-            input = DOM.create(`<textarea class="input no-keybinding" name="${propName}" rows="${value.split('\n').length}">${value}</textarea>`)
+            input = html`<textarea class="input no-keybinding" name="${propName}" rows="${value.split('\n').length}">${value}</textarea>`
 
             DOM.addEventListener(input, ['input', 'focus'], ()=>{
                 input.setAttribute('rows',0)
@@ -67,11 +68,11 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             if (defaultValue.type.includes('boolean')) {
 
-                let toggle = DOM.create(`
+                let toggle = html`
                    <span class="checkbox ${widget.getProp(propName) ? 'on' : ''}">
                        ${icon('check')}
                    </span>
-               `)
+               `
 
                 toggle.addEventListener('click', ()=>{
                     input.value = !widget.getProp(propName)
@@ -123,22 +124,22 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
         if (editor.selectedWidgets.length > 1) return
 
-        var list = DOM.create('<ul></ul>')
+        var list = html`<ul></ul>`
 
         for (var i in widget.props[propName]) {
 
-            list.appendChild(DOM.create(`
+            list.appendChild(html`
                 <li class="sortables" data-index="${i}">
                     <a class="btn small" data-action="select">${widget.props[propName][i].id}</a>
                     <span data-action="remove"><i class="fa fa-times"></i></span>
                 </li>
-            `))
+            `)
 
         }
 
-        list.appendChild(DOM.create(`
+        list.appendChild(html`
             <li><a class="btn small" data-action="add">${icon('plus')}</a></li>
-        `))
+        `)
 
 
         list.addEventListener('click', (e)=>{
@@ -182,7 +183,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             }
         })
 
-        input = DOM.create('<div class="input column"></div>')
+        input = html`<div class="input column"></div>`
         input.appendChild(list)
         field.appendChild(input)
 

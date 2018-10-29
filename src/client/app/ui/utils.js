@@ -1,6 +1,8 @@
 var popupSingleton = null,
     uploadSingleton = null,
-    locales = require('../locales')
+    locales = require('../locales'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 module.exports = {
 
@@ -26,16 +28,16 @@ module.exports = {
             this.title = options.title
             this.state = 0
 
-            this.html = DOM.create(`
+            this.html = html`
                 <div class="popup show">
                     <div class="popup-wrapper">
-                        <div class="popup-title ${this.closable? 'closable' : ''}">${this.title}${this.closable? `<span class="closer">${module.exports.icon('times')}</span>` : ''}</div>
+                        <div class="popup-title ${this.closable? 'closable' : ''}">${this.title}${this.closable? html`<span class="closer">${raw(module.exports.icon('times'))}</span>` : ''}</div>
                         <div class="popup-content">
                             ${this.content}
                         </div>
                     </div>
                 </div>
-            `)
+            `
 
             if (this.closable) {
                 var closer = DOM.get(this.html, '.popup-title .closer')[0]
@@ -88,7 +90,7 @@ module.exports = {
     loading: function(title){
         return new module.exports.Popup({
             title: title,
-            content: '<p><div class="spinner"></div></p>',
+            content: html`<p><div class="spinner"></div></p>`,
             closable: false
         })
     },
@@ -102,7 +104,7 @@ module.exports = {
 
         if (uploadSingleton) document.body.removeChild(uploadSingleton)
 
-        uploadSingleton = DOM.create('<input type="file" accept="' + types + '" style="position:absolute;opacity:0;pointer-events:none;"/>')
+        uploadSingleton = html`<input type="file" accept="${types}" style="position:absolute;opacity:0;pointer-events:none;"/>`
         document.body.appendChild(uploadSingleton)
 
         uploadSingleton.addEventListener('change',function(e){

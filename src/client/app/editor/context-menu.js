@@ -1,6 +1,9 @@
 var {updateWidget} = require('./data-workers'),
     {categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw'),
+    {icon} = require('../ui/utils'),
     editor = require('./'),
     locales = require('../locales')
 
@@ -20,25 +23,28 @@ class ContextMenu {
 
     open(e, actions, parent) {
 
-        var menu = DOM.create('<div class="context-menu"></div>')
+        var menu = html`<div class="context-menu"></div>`
 
-        for (let label in actions) {
+        for (let action of actions) {
 
-            if (typeof actions[label] == 'object') {
+            if (Array.isArray(action.action)) {
 
-                let item = DOM.create(`<div class="item has-sub" tabIndex="1">${label}</div>`)
+                let item = html`<div class="item has-sub" tabIndex="1">${raw(action.label)}</div>`
+
                 menu.appendChild(item)
 
-                this.open(e,actions[label],item)
+                this.open(e, action.action, item)
 
 
             } else {
 
-                let item = DOM.create(`<div class="item">${label}</div>`)
+                let item = html`<div class="item">${raw(action.label)}</div>`
+
                 menu.appendChild(item)
+
                 item.addEventListener(this.event, (e)=>{
                     e.detail.preventOriginalEvent = true
-                    actions[label]()
+                    action.action()
                     this.close()
                 })
 
@@ -159,17 +165,20 @@ var handleClick = function(event) {
         data = editor.selectedWidgets.map((w)=>w.props),
         type = editor.selectedWidgets[0].props.type == 'tab' ? 'tab' : 'widget',
         parent = editor.selectedWidgets[0].parent,
-        actions = {}
+        actions = []
 
     // case root: only "add tab" option
     if (parent === widgetManager) {
-        actions['<i class="fa fa-plus"></i> ' + locales('editor_addtab')] = ()=>{
-            data[0].tabs.push({})
+        actions.push({
+            label: icon('plus') + ' ' + locales('editor_addtab'),
+            action: ()=>{
+                data[0].tabs.push({})
 
-            var indexes = {addedIndexes: [data[0].tabs.length -1]}
-            updateWidget(widget, indexes)
-            editor.pushHistory(indexes)
-        }
+                var indexes = {addedIndexes: [data[0].tabs.length -1]}
+                updateWidget(widget, indexes)
+                editor.pushHistory(indexes)
+            }
+        })
         contextMenu.open(eventData, actions)
 
         return
@@ -180,47 +189,61 @@ var handleClick = function(event) {
     var clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         clickY = Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
-    actions['<i class="fa fa-expand"></i> ' + locales('editor_editparent')] = ()=>{
+    actions[icon('expand') + ' ' + locales('editor_editparent')] = ()=>{
         editor.select(parent)
     }
 
     if (type === 'widget')  {
 
-        actions['<i class="fa fa-copy"></i> ' + locales('editor_copy')] = editor.copyWidget.bind(editor)
+        actions.push({
+            label: icon('copy') + ' ' + locales('editor_copy'),
+            action: editor.copyWidget.bind(editor)
+        })
 
-        actions['<i class="fa fa-cut"></i> ' + locales('editor_cut')] = editor.cutWidget.bind(editor)
+        actions.push({
+            label: icon('cut') + ' ' + locales('editor_cut'),
+            action: editor.cutWidget.bind(editor)
+        })
 
-        actions['<i class="fa fa-box"></i> ' + locales('editor_wrap')] = {}
+        var wrapActions = []
         for (let c of categories.Containers) {
             if (c === 'clone') continue
-            actions['<i class="fa fa-box"></i> ' + locales('editor_wrap')][c] = ()=>{
-                var wrap =  {type: c, widgets:[], label: c === 'modal' ? 'auto' : false}
+            wrapActions.push({
+                label: c,
+                action: ()=>{
+                    var wrap =  {type: c, widgets:[], label: c === 'modal' ? 'auto' : false}
 
-                wrap.widgets = data
+                    wrap.widgets = data
 
-                var minTop = Math.min(...data.map(x=>isNaN(x.top) ? x.top == 'auto' ? 0 : Infinity : x.top))
-                var minLeft = Math.min(...data.map(x=>isNaN(x.left) ? x.left == 'auto' ? 0 : Infinity : x.left))
+                    var minTop = Math.min(...data.map(x=>isNaN(x.top) ? x.top == 'auto' ? 0 : Infinity : x.top))
+                    var minLeft = Math.min(...data.map(x=>isNaN(x.left) ? x.left == 'auto' ? 0 : Infinity : x.left))
 
-                wrap.top = minTop === Infinity ? data[0].top : minTop
-                wrap.left= minLeft === Infinity ? data[0].left : minLeft
+                    wrap.top = minTop === Infinity ? data[0].top : minTop
+                    wrap.left= minLeft === Infinity ? data[0].left : minLeft
 
-                for (var w of wrap.widgets) {
-                    if (!isNaN(w.top)) w.top = Math.max(w.top - minTop, 0)
-                    if (!isNaN(w.left)) w.left = Math.max(w.left - minLeft, 0)
+                    for (var w of wrap.widgets) {
+                        if (!isNaN(w.top)) w.top = Math.max(w.top - minTop, 0)
+                        if (!isNaN(w.left)) w.left = Math.max(w.left - minLeft, 0)
+                    }
+
+                    var i
+                    for (i of index) {
+                        parent.props.widgets.splice(i,1)
+                    }
+
+                    parent.props.widgets = parent.props.widgets.slice(0, i).concat(wrap, parent.props.widgets.slice(i, parent.props.widgets.length))
+
+                    editor.select(updateWidget(parent, {preventSelect: true, removedIndexes: index, addedIndexes: [i]}))
+                    editor.pushHistory({removedIndexes: index, addedIndexes: [i]})
+
                 }
-
-                var i
-                for (i of index) {
-                    parent.props.widgets.splice(i,1)
-                }
-
-                parent.props.widgets = parent.props.widgets.slice(0, i).concat(wrap, parent.props.widgets.slice(i, parent.props.widgets.length))
-
-                editor.select(updateWidget(parent, {preventSelect: true, removedIndexes: index, addedIndexes: [i]}))
-                editor.pushHistory({removedIndexes: index, addedIndexes: [i]})
-
-            }
+            })
         }
+
+        actions.push({
+            label: icon('box') + ' ' + locales('editor_wrap'),
+            action: wrapActions
+        })
 
     }
 
@@ -229,73 +252,107 @@ var handleClick = function(event) {
 
         if (editor.clipboard !== null) {
 
-            let paste = actions['<i class="fa fa-paste"></i> ' + locales('editor_paste')] = {}
+            var pasteActions = []
 
-            paste['<i class="fa fa-paste"></i> ' + locales('editor_paste')] = ()=>{
-                editor.pasteWidget(clickX, clickY)
-            }
-
-            paste['<i class="fa fa-plus-square"></i> ' + locales('editor_pasteindent')] = ()=>{
-                editor.pasteWidget(clickX, clickY, true)
-            }
+            pasteActions.push({
+                label: icon('paste') + ' ' + locales('editor_paste'),
+                action: ()=>{
+                    editor.pasteWidget(clickX, clickY)
+                }
+            })
+            pasteActions.push({
+                label: icon('plus-square') + ' ' + locales('editor_pasteindent'),
+                action: ()=>{
+                    editor.pasteWidget(clickX, clickY, true)
+                }
+            })
 
             if (editor.idClipboard && widgetManager.getWidgetById(editor.idClipboard).length) {
-                paste['<i class="fa fa-clone"></i> ' + locales('editor_clone')] = ()=>{
-                    editor.pasteWidgetAsClone(clickX, clickY)
-                }
+                pasteActions.push({
+                    label: icon('clone') + ' ' + locales('editor_clone'),
+                    action: ()=>{
+                        editor.pasteWidgetAsClone(clickX, clickY)
+                    }
+                })
             }
+
+            actions.push({
+                label: icon('paste') + ' ' + locales('editor_paste'),
+                action: pasteActions
+            })
 
         }
 
-        actions['<i class="fa fa-plus"></i> ' + locales('editor_addwidget')] = {}
+
+        var addActions = []
 
         for (let category in categories) {
 
-            actions['<i class="fa fa-plus"></i> ' + locales('editor_addwidget')][category] = {}
+            var catActions = []
 
             for (let t in categories[category]) {
 
                 let type = categories[category][t]
 
-                actions['<i class="fa fa-plus"></i> ' + locales('editor_addwidget')][category][type] = ()=>{
+                catActions.push({
 
-                    var newData = {type: type}
+                    label: type,
+                    action: ()=>{
 
-                    if (!eventData.target.classList.contains('tablink')) {
-                        newData.top = clickY
-                        newData.left= clickX
+                        var newData = {type: type}
+
+                        if (!eventData.target.classList.contains('tablink')) {
+                            newData.top = clickY
+                            newData.left= clickX
+                        }
+
+                        data[0].widgets = data[0].widgets || []
+                        data[0].widgets.push(newData)
+
+                        var indexes = {addedIndexes: [data[0].widgets.length -1]}
+                        updateWidget(editor.selectedWidgets[0], indexes)
+                        editor.pushHistory(indexes)
+
                     }
-
-                    data[0].widgets = data[0].widgets || []
-                    data[0].widgets.push(newData)
-
-                    var indexes = {addedIndexes: [data[0].widgets.length -1]}
-                    updateWidget(editor.selectedWidgets[0], indexes)
-                    editor.pushHistory(indexes)
-
-                }
+                })
 
             }
 
+            addActions.push({
+                label: category,
+                action: catActions
+            })
+
         }
+
+        actions.push({
+            label: icon('plus') + ' ' + locales('editor_addwidget'),
+            action: addActions
+        })
 
     }
 
     if (data.length == 1 && (!data[0].widgets || !data[0].widgets.length) && (data[0].tabs)) {
 
-        actions['<i class="fa fa-plus"></i> ' + locales('editor_addtab')] = ()=>{
-            data[0].tabs = data[0].tabs || []
-            data[0].tabs.push({})
+        actions.push({
+            label: icon('plus') + ' ' + locales('editor_addtab'),
+            action: ()=>{
+                data[0].tabs = data[0].tabs || []
+                data[0].tabs.push({})
 
-            var indexes = {addedIndexes: [data[0].tabs.length -1]}
-            updateWidget(editor.selectedWidgets[0], indexes)
-            editor.pushHistory(indexes)
+                var indexes = {addedIndexes: [data[0].tabs.length -1]}
+                updateWidget(editor.selectedWidgets[0], indexes)
+                editor.pushHistory(indexes)
 
-        }
+            }
+        })
 
     }
 
-    actions['<i class="fa fa-trash"></i> ' + locales('editor_delete')] = editor.deleteWidget.bind(editor)
+    actions.push({
+        label: icon('trash') + ' ' + locales('editor_delete'),
+        action: editor.deleteWidget.bind(editor)
+    })
 
     contextMenu.open(eventData, actions)
 

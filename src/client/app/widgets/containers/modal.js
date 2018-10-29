@@ -2,7 +2,9 @@ var Panel = require('./panel'),
     Widget = require('../common/widget'),
     {icon, iconify} = require('../../ui/utils'),
     resize = require('../../events/resize'),
-    doubletab = require('../mixins/double_tap')
+    doubletab = require('../mixins/double_tap'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 module.exports = class Modal extends Panel {
 
@@ -41,14 +43,14 @@ module.exports = class Modal extends Panel {
 
         this.disabledProps = []
 
-        this.popup = DOM.create(`
+        this.popup = html`
             <div class="popup">
                 <div class="popup-wrapper">
-                    <div class="popup-title closable"><span class="popup-label"></span><span class="closer">${icon('times')}</span></div>
+                    <div class="popup-title closable"><span class="popup-label"></span><span class="closer">${raw(icon('times'))}</span></div>
                     <div class="popup-content"></div>
                 </div>
             </div>
-        `)
+        `
 
         this.container.appendChild(this.popup)
 
@@ -71,7 +73,7 @@ module.exports = class Modal extends Panel {
             this.popup.classList.add('y-positionned')
         }
 
-        this.light = this.container.appendChild(DOM.create('<div class="toggle"></div>'))
+        this.light = this.container.appendChild(html`<div class="toggle"></div>`)
 
         if (this.getProp('doubleTap')) {
             doubletab(this.light, ()=>{

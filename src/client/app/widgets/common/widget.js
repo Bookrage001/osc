@@ -8,6 +8,7 @@ var EventEmitter = require('../../events/event-emitter'),
     resize = require('../../events/resize'),
     OscReceiver = require('./osc-receiver'),
     {deepCopy, deepEqual} = require('../../utils'),
+    html = require('nanohtml'),
     updateWidget = ()=>{}
 
 var oscReceiverState = {}
@@ -23,7 +24,7 @@ var OSCProps = [
 var dummyDOM
 
 DOM.ready(()=>{
-    dummyDOM = DOM.create('<div></div>')
+    dummyDOM = html`<div></div>`
 })
 
 setTimeout(()=>{
@@ -166,10 +167,10 @@ class Widget extends EventEmitter {
 
         if (options.container) {
 
-            this.container = DOM.create(`
+            this.container = html`
                 <div class="widget ${options.props.type}-container" id="${this.hash}" data-widget="${this.hash}"></div>
-            `)
-            this.label = DOM.create('<div class="label"></div>')
+            `
+            this.label = html`<div class="label"></div>`
             this.container.appendChild(this.label)
             this.container.appendChild(this.widget)
             this.container._widget_instance = this
@@ -798,7 +799,7 @@ class Widget extends EventEmitter {
             if (scopedCss.indexOf('@keyframes') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s+([0-9]+%|to|from)', 'g'), ' $1')
             if (scopedCss.indexOf('&') > -1) scopedCss = scopedCss.replace(new RegExp(prefix + '\\s&', 'g'), prefix)
 
-            var style = DOM.create(`<style>${unScopedCss ? prefix + '{' + unScopedCss + '}\n' : ''}${scopedCss}</style>`),
+            var style = html`<style>${unScopedCss ? prefix + '{' + unScopedCss + '}\n' : ''}${scopedCss}</style>`,
                 oldStyle = DOM.get(this.container, '> style')[0]
 
             if (oldStyle) {

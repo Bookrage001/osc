@@ -5,6 +5,8 @@ var ipc = require('../ipc/'),
     {loading, icon, Popup, upload} = require('../ui/utils'),
     {saveAs} = require('file-saver'),
     widgetManager = require('./widgets'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw'),
     locales = require('../locales')
 
 
@@ -116,12 +118,12 @@ var SessionManager = class SessionManager {
                 path = path.substr(0,Math.floor((path.length)/2)-(length-max)/2) + '...' + path.substr(Math.ceil((path.length)/2)+(length-max)/2, path.length)
             }
 
-            lobby.list.appendChild(DOM.create(`
+            lobby.list.appendChild(html`
                 <a href="#" tabIndex="0" class="btn load" data-session="${data[i]}">
                     ${file} <em style="opacity:0.45">(${path})</em>
-                    ${READ_ONLY? '' : '<span>'+icon('times')+'</span>'}
+                    ${READ_ONLY? '' : html`<span>${raw(icon('times'))}</span>`}
                 </a>
-            `))
+            `)
 
         }
 
@@ -137,8 +139,8 @@ var SessionManager = class SessionManager {
 
         if (!READ_ONLY) {
 
-            var brw = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn browse">'+icon('folder-open')+' ' + locales('session_browse') +'</a>'))
-            var nws = lobby.footer.appendChild(DOM.create('<a href="#" tabindex="0" class="btn new">'+icon('file')+' ' + locales('session_new') +'</a>'))
+            var brw = lobby.footer.appendChild(html`<a href="#" tabindex="0" class="btn browse">${raw(icon('folder-open'))} ${locales('session_browse')}</a>`)
+            var nws = lobby.footer.appendChild(html`<a href="#" tabindex="0" class="btn new">${raw(icon('file'))} ${locales('session_new')}</a>`)
 
             brw.addEventListener('click', (e)=>{
                 this.browse()
