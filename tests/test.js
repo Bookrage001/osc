@@ -20,7 +20,7 @@ fs.writeFileSync(sessionPath, JSON.stringify(session))
 
 var {spawn} = require('child_process')
 
-var proc = spawn('npx', `xvfb-run npm start -- -l ${sessionPath}`.split(' '), {detached: true})
+var proc = spawn('xvfb-run', `npm start -- -l ${sessionPath}`.split(' '), {detached: true})
 
 proc.stdout.on('data', std)
 proc.stderr.on('data', std)
