@@ -134,14 +134,14 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             list.appendChild(html`
                 <li class="sortables" data-index="${i}">
                     <a class="btn small" data-action="select">${widget.props[propName][i].id}</a>
-                    <span data-action="remove"><i class="fa fa-times"></i></span>
+                    <span data-action="remove">${raw(icon('times'))}</span>
                 </li>
             `)
 
         }
 
         list.appendChild(html`
-            <li><a class="btn small" data-action="add">${icon('plus')}</a></li>
+            <li><a class="btn small" data-action="add">${raw(icon('plus'))}</a></li>
         `)
 
 
