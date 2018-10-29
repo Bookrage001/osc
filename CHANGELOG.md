@@ -1,10 +1,17 @@
 # Changelog
 
-## 0.36.7
+## 0.39.0
+
+- engine
+  - electron v3
+- misc
+  - rendering speed improved (session loading time reduced by about 30%)
+
+## 0.38.7
 
 - bug fixes
   - launcher compatibility issues with electron v3
-  
+
 ## 0.38.6
 
 - bug fixes
