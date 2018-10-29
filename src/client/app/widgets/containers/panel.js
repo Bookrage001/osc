@@ -1,7 +1,8 @@
 var Container = require('../common/container'),
     widgetManager = require('../../managers/widgets'),
     parser = require('../../parser'),
-    html = require('nanohtml')
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 class Panel extends Container {
 
@@ -137,7 +138,7 @@ class Panel extends Container {
             this.tabs.push(widget)
             this.navigation.appendChild(html`
                 <li class="tablink" data-widget="${widget.hash}" ${style}>
-                    <a><span>${DOM.get(tab, '> .label')[0].innerHTML}</span></a>
+                    <a><span>${raw(DOM.get(tab, '> .label')[0].innerHTML)}</span></a>
                 </li>
             `)
 
