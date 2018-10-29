@@ -1,7 +1,8 @@
 var Widget = require('../common/widget'),
     {icon} = require('../../ui/utils'),
     keyboardJS = require('keyboardjs'),
-    html = require('nanohtml')
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 class Keys extends Widget {
 
