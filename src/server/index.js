@@ -22,7 +22,7 @@ function nodeMode() {
 
 }
 
-if (process.title === 'node' || process.title === 'node.exe') {
+if (process.title === 'node' || process.title === 'node.exe') {
 
     nodeMode()
 

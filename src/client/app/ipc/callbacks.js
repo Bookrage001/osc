@@ -8,7 +8,6 @@ var utils = require('../ui/utils'),
     {deepCopy} = require('../utils'),
     sidepanel = require('../ui/sidepanel'),
     {TRAVERSING_SAMEWIDGET} = require('../events/utils'),
-    {enableTraversingGestures} = require('../events/drag'),
     raw = require('nanohtml/raw'),
     ipc = require('./')
 

@@ -44,13 +44,11 @@ class Gyroscope extends Widget {
 
     constructor(options) {
 
-        var html = html`
+        super({...options, html: html`
             <div class="gyroscope">
                 ${raw(icon('compass'))}
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         this.sensor = new GyroNorm()
         this.sensor.init({

@@ -774,7 +774,7 @@ class Widget extends EventEmitter {
 
             // extra css "class" property
             css = css.replace(/^[^\S\n]*class[^\S\n]*:[^\S\n]*([^;\n\s]+);?/igm, (m, c)=>{
-                if (c === 'widget' || c.includes('-container')) return
+                if (c === 'widget' || c.includes('-container')) return
                 extraCssClasses.push(c.replace(/"'/g,''))
             })
 
