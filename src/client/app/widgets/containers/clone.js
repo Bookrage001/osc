@@ -3,7 +3,8 @@ var Container = require('../common/container'),
     resize = require('../../events/resize'),
     parser = require('../../parser'),
     {deepCopy, deepEqual} = require('../../utils'),
-    {diff, diffToWidget} = require('../../editor/diff')
+    {diff, diffToWidget} = require('../../editor/diff'),
+    html = require('nanohtml')
 
 var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable', 'not-editable']
 
@@ -30,7 +31,7 @@ class Clone extends Container {
         options.props.label = ''
         options.props.variables = '@{parent.variables}'
 
-        super({...options, html: '<div class="clone"></div>'})
+        super({...options, html: html`<div class="clone"></div>`})
 
         this.cloneLock = false
         this.cloneTarget = null

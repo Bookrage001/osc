@@ -1,7 +1,8 @@
 var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     {math} = require('../utils'),
-    Input = require('../inputs/input')
+    Input = require('../inputs/input'),
+    html = require('nanohtml')
 
 
 module.exports = class Formula extends Widget {
@@ -22,11 +23,10 @@ module.exports = class Formula extends Widget {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="formula">
             </div>
-        `
-        super({...options, html: html})
+        `})
 
 
         this.formulaString = String(this.getProp('formula'))

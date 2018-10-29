@@ -1,7 +1,8 @@
 var {clip} = require('../utils'),
     Knob = require('./knob'),
     Widget = require('../common/widget'),
-    doubletab = require('../mixins/double_tap')
+    doubletab = require('../mixins/double_tap'),
+    html = require('nanohtml')
 
 
 
@@ -58,13 +59,12 @@ module.exports = class Encoder extends Widget {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="encoder">
                 <div class="wrapper">
                 </div>
             </div>
-        `
-        super({...options, html: html})
+        `})
 
         this.wrapper = DOM.get(this.widget, '.wrapper')[0]
         this.ticks = Math.abs(parseInt(this.getProp('ticks')))

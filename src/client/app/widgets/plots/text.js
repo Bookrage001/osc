@@ -1,5 +1,6 @@
 var {iconify} = require('../../ui/utils'),
-    Widget = require('../common/widget')
+    Widget = require('../common/widget'),
+    html = require('nanohtml')
 
 module.exports = class Text extends Widget {
 
@@ -27,7 +28,7 @@ module.exports = class Text extends Widget {
             options.props.value = '@{' + options.props.widgetId + '}'
             delete options.props.widgetId
         }
-        super({...options, html: '<div class="text"></div>'})
+        super({...options, html: html`<div class="text"></div>`})
 
         if (this.getProp('vertical')) this.widget.classList.add('vertical')
         if (this.getProp('align') === 'left') this.widget.classList.add('left')

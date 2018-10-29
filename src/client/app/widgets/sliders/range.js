@@ -2,7 +2,8 @@ var {clip} = require('../utils'),
     Widget = require('../common/widget'),
     Fader = require('./fader'),
     Input = require('../inputs/input'),
-    touchstate = require('../mixins/touch_state')
+    touchstate = require('../mixins/touch_state'),
+    html = require('nanohtml')
 
 var faderDefaults = Fader.defaults()._props()
 
@@ -211,13 +212,11 @@ module.exports = class Range extends Widget {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="range">
                 <div class="wrapper"></div>
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         this.wrapper = DOM.get(this.widget, '.wrapper')[0]
 

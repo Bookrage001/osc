@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    ipc = require('../../ipc')
+    ipc = require('../../ipc'),
+    html = require('nanohtml')
 
 module.exports = class Led extends Widget {
 
@@ -31,11 +32,7 @@ module.exports = class Led extends Widget {
 
     constructor(options) {
 
-        var html = `
-            <div class="image"></div>
-        `
-
-        super({...options, html: html})
+        super({...options, html: html`<div class="image"></div>`})
 
         if (!this.getProp('border')) this.container.classList.add('noborder')
 

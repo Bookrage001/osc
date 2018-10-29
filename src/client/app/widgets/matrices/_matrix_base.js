@@ -1,12 +1,13 @@
 var Container = require('../common/container'),
-    {enableTraversingGestures} = require('../../events/drag')
+    {enableTraversingGestures} = require('../../events/drag'),
+    html = require('nanohtml')
 
 
 module.exports = class _matrix_base extends Container {
 
     constructor(options) {
 
-        super({...options, html: '<div class="matrix"></div>'})
+        super({...options, html: html`<div class="matrix"></div>`})
 
         this.value = []
 

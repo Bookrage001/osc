@@ -2,21 +2,20 @@ var {clip, mapToScale} = require('../utils'),
     Canvas = require('../common/canvas'),
     touchstate = require('../mixins/touch_state'),
     doubletab = require('../mixins/double_tap'),
-    Input = require('../inputs/input')
+    Input = require('../inputs/input'),
+    html = require('nanohtml')
 
 class Slider extends Canvas {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="slider">
                 <div class="wrapper">
                     <canvas></canvas>
                 </div>
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         this.wrapper = DOM.get(this.widget, '.wrapper')[0]
 

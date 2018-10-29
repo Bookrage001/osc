@@ -24,13 +24,11 @@ class Svg extends Widget {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="svg">
                 <svg></svg>
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         this.height = undefined
         this.width = undefined

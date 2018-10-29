@@ -35,7 +35,7 @@ class Panel extends Container {
     constructor(options) {
 
 
-        super({...options, html: '<div class="panel"></div>'})
+        super({...options, html: html`<div class="panel"></div>`})
 
         if (this.getProp('scroll') === false) this.widget.classList.add('noscroll')
         if (this.getProp('border') === false) this.container.classList.add('noborder')

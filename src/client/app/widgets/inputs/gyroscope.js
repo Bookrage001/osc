@@ -1,6 +1,6 @@
 var Widget = require('../common/widget'),
     GyroNorm = require('gyronorm/dist/gyronorm.complete.min.js'),
-    {iconify} = require('../../ui/utils'),
+    {icon} = require('../../ui/utils'),
     {clip} = require('../utils')
 
 class Gyroscope extends Widget {
@@ -41,9 +41,9 @@ class Gyroscope extends Widget {
 
     constructor(options) {
 
-        var html = `
+        var html = html`
             <div class="gyroscope">
-                ${iconify('^compass')}
+                ${raw(icon('compass'))}
             </div>
         `
 

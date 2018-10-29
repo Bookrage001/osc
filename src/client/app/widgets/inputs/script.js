@@ -1,6 +1,7 @@
 var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
-    {iconify} = require('../../ui/utils')
+    {icon} = require('../../ui/utils'),
+    html = require('nanohtml')
 
 
 class Script extends Widget {
@@ -28,13 +29,11 @@ class Script extends Widget {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="script">
-                ${iconify('^code')}
+                ${raw(icon('code'))}
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
     }
 

@@ -1,17 +1,16 @@
 var {mapToScale} = require('../utils'),
-    Canvas = require('../common/canvas')
+    Canvas = require('../common/canvas'),
+    html = require('nanohtml')
 
 module.exports = class _plots_base extends Canvas {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="plot">
                 <canvas></canvas>
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         this.value = []
         this.rangeX = this.getProp('rangeX') || {min:0,max:1}

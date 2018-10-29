@@ -22,7 +22,7 @@ class Dropdown extends Widget {
 
     constructor(options) {
 
-        super({...options, html: '<div class="select"></div>'})
+        super({...options, html: html`<div class="select"></div>`})
 
         this.select = this.widget.appendChild(html`<select class="no-keybinding"></select>`)
 

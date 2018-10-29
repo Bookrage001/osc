@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    doubletab = require('../mixins/double_tap')
+    doubletab = require('../mixins/double_tap'),
+    html = require('nanohtml')
 
 class Toggle extends Widget {
 
@@ -26,7 +27,7 @@ class Toggle extends Widget {
 
     constructor(options) {
 
-        super({...options, html: '<div class="toggle"></div>'})
+        super({...options, html: html`<div class="toggle"></div>`})
 
         this.state = 0
         this.active = false

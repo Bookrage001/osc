@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    {clip} = require('../utils')
+    {clip} = require('../utils'),
+    html = require('nanohtml')
 
 module.exports = class Rbgled extends Widget {
 
@@ -25,12 +26,10 @@ module.exports = class Rbgled extends Widget {
             delete options.props.widgetId
         }
 
-        var html = `
+        super({...options, html: html`
             <div class="led">
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         this.setValue([0,0,0,0])
 

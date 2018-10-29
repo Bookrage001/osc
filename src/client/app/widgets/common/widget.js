@@ -132,7 +132,7 @@ class Widget extends EventEmitter {
 
         super()
 
-        this.widget = DOM.create(options.html)
+        this.widget = options.html
         this.props = options.props
         this.errors = {}
         this.parsers = {}

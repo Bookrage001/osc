@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
-    osc = require('../../osc')
+    osc = require('../../osc'),
+    html = require('nanohtml')
 
 class Push extends Widget {
 
@@ -26,7 +27,7 @@ class Push extends Widget {
 
     constructor(options) {
 
-        super({...options, html: '<div class="toggle"></div>'})
+        super({...options, html: html`<div class="toggle"></div>`})
 
         this.state = 0
         this.active = 0

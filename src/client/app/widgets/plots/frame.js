@@ -30,7 +30,7 @@ class Frame extends Widget {
 
     constructor(options) {
 
-        super({...options, html: '<div class="frame"><iframe src=""></iframe></div>'})
+        super({...options, html: html`<div class="frame"><iframe src=""></iframe></div>`})
 
         if (!this.getProp('border')) this.container.classList.add('noborder')
 

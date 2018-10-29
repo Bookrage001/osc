@@ -112,26 +112,28 @@ module.exports = class Fader extends Slider {
 
             this.widget.classList.add('has-pips')
 
-            var pips = this.wrapper.appendChild(html`<div class="pips"></div>`)
+
             var pipTexts = {}
             for (var k in this.rangeKeys) {
                 pipTexts[this.rangeKeys[k]]=this.rangeLabels[k]
             }
 
-            var pipsInner = ''
+            var pips = html`<div class="pips"></div>`
             for (var i=0;i<=100;i++) {
                 if (pipTexts[i]==undefined) continue
 
                 var pos = this.getProp('horizontal')?'left':'bottom'
 
-                var piptext = `<span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>`
+                pips.appendChild(html`
+                    <div class="pip val" style="${pos}:${i}%">
+                        <span>${Math.abs(pipTexts[i])>=1000?pipTexts[i]/1000+'k':pipTexts[i]}</span>
+                    </div>
+                `)
 
-                var add = `
-                <div class="pip val" style="${pos}:${i}%">${piptext}</div>
-                `
-                pipsInner = pipsInner + add
             }
-            pips.innerHTML = pipsInner
+
+            this.wrapper.appendChild(pips)
+
         }
 
 

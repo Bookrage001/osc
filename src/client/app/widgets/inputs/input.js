@@ -21,13 +21,11 @@ module.exports = class Input extends Canvas {
 
     constructor(options) {
 
-        var htmlx = `
+        super({...options, html: html`
             <div class="input">
                 <canvas></canvas>
             </div>
-        `
-
-        super({...options, html: htmlx})
+        `})
 
         this.value = ''
         this.stringValue = ''

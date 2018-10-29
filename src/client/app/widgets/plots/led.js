@@ -1,5 +1,6 @@
 var {mapToScale} = require('../utils'),
-    Widget = require('../common/widget')
+    Widget = require('../common/widget'),
+    html = require('nanohtml')
 
 module.exports = class Led extends Widget {
 
@@ -24,12 +25,7 @@ module.exports = class Led extends Widget {
             delete options.props.widgetId
         }
 
-        var html = `
-            <div class="led">
-            </div>
-        `
-
-        super({...options, html: html})
+        super({...options, html: html`<div class="led"></div>`})
 
         this.setValue(this.getProp('range').min)
 

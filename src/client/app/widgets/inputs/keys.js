@@ -1,5 +1,5 @@
 var Widget = require('../common/widget'),
-    {iconify} = require('../../ui/utils'),
+    {icon} = require('../../ui/utils'),
     keyboardJS = require('keyboardjs'),
     html = require('nanohtml')
 
@@ -30,13 +30,11 @@ class Keys extends Widget {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="keys">
-                ${iconify('^keyboard')}
+                ${raw(icon('keyboard'))}
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         if (this.getProp('binding')) {
 

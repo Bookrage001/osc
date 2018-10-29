@@ -1,18 +1,17 @@
-var Canvas = require('../common/canvas')
+var Canvas = require('../common/canvas'),
+    html = require('nanohtml')
 
 module.exports = class Pad extends Canvas {
 
     constructor(options) {
 
-        var html = `
+        super({...options, html: html`
             <div class="pad">
                 <div class="wrapper">
                     <canvas></canvas>
                 </div>
             </div>
-        `
-
-        super({...options, html: html})
+        `})
 
         this.wrapper = DOM.get(this.widget, '.wrapper')[0]
 

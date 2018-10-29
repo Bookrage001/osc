@@ -1,5 +1,6 @@
 var _switchers_base = require('./_switchers_base'),
-    Switch = require('../buttons/switch')
+    Switch = require('../buttons/switch'),
+    html = require('nanohtml')
 
 var switchDefaults = Switch.defaults()._props()
 
@@ -27,7 +28,7 @@ module.exports = class Switcher extends _switchers_base {
 
     constructor(options) {
 
-        super({...options, html: '<div class="switcher"></div>'})
+        super({...options, html: html`<div class="switcher"></div>`})
 
         if (this.getProp('horizontal')) this.widget.classList.add('horizontal')
 
