@@ -24,7 +24,7 @@ var Editor = class Editor {
             </div>
         `
 
-        this.form = DOM.get(this.wrapper, '#editor-form')[0]
+        this.form = DOM.get(this.wrapper, '.form')[0]
         this.form.addEventListener('fast-click', (e)=>{
             if (e.target.classList.contains('separator')) {
                 var name = e.target.getAttribute('data-name'),

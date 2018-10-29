@@ -1,13 +1,9 @@
-var DomParserFragment,
-    readyCallbacks = [],
+var readyCallbacks = [],
     initState = false
 
 module.exports = {
 
     init: function() {
-
-        DomParserFragment = document.createRange()
-        DomParserFragment.selectNode(document.body)
 
         for (var i in readyCallbacks) {
             readyCallbacks[i]()
@@ -52,18 +48,22 @@ module.exports = {
     get: function(a, b) {
 
         var context = b ? a : document,
-            selector = b || a
+            selector = b || a,
+            nodes
 
-        if (selector.indexOf('>') == 0) selector = ':scope ' + selector
+        if (selector.indexOf('>') === 0) selector = ':scope ' + selector
 
-        var nodes = context.querySelectorAll(selector)
-        return NodeList.prototype.forEach ? nodes : [...nodes]
+        if (selector.indexOf(' ') === -1 && selector.indexOf(',') === -1) {
+            if (selector.indexOf('#') === 0 && context === document) {
+                nodes = [document.getElementById(selector.substr(1, selector.length - 1))]
+            } else if (selector.indexOf('.') === 0)  {
+                nodes = context.getElementsByClassName(selector.substr(1, selector.length - 1))
+            }
+        }
 
-    },
+        if (!nodes) nodes = context.querySelectorAll(selector)
 
-    create: function(html) {
-
-        return DomParserFragment.createContextualFragment(html.trim()).firstChild
+        return nodes.forEach ? nodes : [...nodes]
 
     },
 
