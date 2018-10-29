@@ -6,7 +6,7 @@ node_js:
 before_install:
   - sudo dpkg --add-architecture i386
   - sudo apt-get update -qq
-  - sudo apt-get install -qq wine fakeroot
+  - sudo apt-get install -qq wine fakeroot xvfb
 install: npm install
 before_deploy:
 deploy:

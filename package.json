@@ -34,6 +34,7 @@
     "electron-localshortcut": "3.1.0",
     "electron-packager": "12.2.0",
     "electron-packager-plugin-non-proprietary-codecs-ffmpeg": "^1.0.2",
+    "eslint": "^5.8.0",
     "exorcist": "1.0.1",
     "express": "4.16.4",
     "file-saver": "2.0.0-rc.4",
@@ -85,7 +86,7 @@
     "watch-browser": "npm run build-client-js -- --watch",
     "watch-css": "nodemon --watch src/scss -e scss -x \"npm run build-css -- --reload",
     "deploy-docs": "node scripts/build-widgets-reference.js > resources/docs/widgets-reference.md && cd resources && mkdocs gh-deploy --clean && rm -rf site",
-    "test": "npm run build"
+    "test": "eslint src && npm run build && node tests/test.js"
   },
   "engines": {
     "node": ">=6"
