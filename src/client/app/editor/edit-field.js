@@ -4,7 +4,8 @@ var widgetCategories = require('../widgets/').categories,
     {deepCopy} = require('../utils'),
     {icon, Popup} = require('../ui/utils'),
     locales = require('../locales'),
-    html = require('nanohtml')
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 module.exports = function editField(editor, widget, propName, defaultValue){
 
@@ -31,16 +32,18 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             }
 
             input = html`<select class="input no-keybinding"/>`
-            var innerHTML = ''
 
             for (let category in widgetCategories) {
-                innerHTML += `<optgroup label="> ${category}">`
+                var optGroup = html`<optgroup label="> ${category}"></optgroups>`
                 for (let type of widgetCategories[category]) {
-                    innerHTML += `<option ${type == widget.props.type ? 'selected' : ''} value="${type}">${type}</option>`
+                    optGroup.appendChild(html`
+                        <option ${type == widget.props.type ? 'selected' : ''} value="${type}">
+                            ${type}
+                        </option>
+                    `)
                 }
-                innerHTML += '</optgroup>'
+                input.appendChild(optGroup)
             }
-            input.innerHTML = innerHTML
 
             var wrapper = html`<div class="select-wrapper"></div>`
             wrapper.appendChild(input)
@@ -70,7 +73,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
                 let toggle = html`
                    <span class="checkbox ${widget.getProp(propName) ? 'on' : ''}">
-                       ${icon('check')}
+                       ${raw(icon('check'))}
                    </span>
                `
 
@@ -193,10 +196,10 @@ module.exports = function editField(editor, widget, propName, defaultValue){
     label.addEventListener('fast-click', ()=>{
 
         var htmlHelp = Array.isArray(defaultValue.help) ? defaultValue.help.join('<br/><br/>').replace(/<br\/>-/g, '-') : defaultValue.help
-        htmlHelp = htmlHelp ? '<p class="help">' + htmlHelp.replace(/`([^`]*)`/g, '<code>$1</code>') + '</p>' : ''
+        htmlHelp = htmlHelp ? html`<p class="help">${raw(htmlHelp.replace(/`([^`]*)`/g, '<code>$1</code>'))}</p>` : ''
 
 
-        var htmlError = error ? `<p class="error">${error}</p>` : '',
+        var htmlError = error ? html`<p class="error">${error}</p>` : '',
             computedValue = propName !== 'tabs' && propName !== 'widgets' ? widget.getProp(propName) : ['...']
 
         if (typeof computedValue === 'string') {
@@ -207,7 +210,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             computedValue = JSON.stringify(computedValue, null, ' ')
         }
 
-        new Popup({closable: true, title: `<span class="editor-help-title">${propName}</span>`, content: `
+        new Popup({closable: true, title: html`<span class="editor-help-title">${propName}</span>`, content: html`
             <div class="editor-help">
 
                 <p>Type: <code>${defaultValue.type}</code></p>

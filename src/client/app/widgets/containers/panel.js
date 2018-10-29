@@ -129,18 +129,20 @@ class Panel extends Container {
         this.navigation.innerHTML = ''
         this.tabs = []
 
-        var html = ''
         DOM.each(this.wrapper, '> .widget', (tab)=>{
 
             let widget = widgetManager.getWidgetByElement(tab),
                 style = widget.getProp('color') == 'auto' ? '' : `style="--color-custom:${widget.getProp('color')}"`
 
             this.tabs.push(widget)
-            html += `<li class="tablink" data-widget="${widget.hash}" ${style}><a><span>${DOM.get(tab, '> .label')[0].innerHTML}</span></a></li>`
+            this.navigation.appendChild(html`
+                <li class="tablink" data-widget="${widget.hash}" ${style}>
+                    <a><span>${DOM.get(tab, '> .label')[0].innerHTML}</span></a>
+                </li>
+            `)
 
         })
 
-        this.navigation.innerHTML = html
 
         this.setValue(this.value)
 

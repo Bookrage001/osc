@@ -1,6 +1,7 @@
 var Widget = require('../common/widget'),
     {iconify} = require('../../ui/utils'),
-    html = require('nanohtml')
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 class Dropdown extends Widget {
 
@@ -44,24 +45,26 @@ class Dropdown extends Widget {
     parseValues() {
 
         var i = 0,
-            values = this.getProp('values'),
-            html = ''
+            values = this.getProp('values')
 
         if (!Array.isArray(values) && !(typeof values === 'object' && values !== null)) {
             values = values !== '' ? [values] : []
         }
 
-        html += '<option value=""></option>'
+        this.select.innerHTML = ''
+        this.select.appendChild(html`<option value=""></option>`)
 
         this.values = []
 
         for (var k in values) {
             this.values.push(values[k])
-            html += `<option value="${i}">${iconify(parseFloat(k) != k ? k : values[k])}</option>`
+            this.select.appendChild(html`
+                <option value="${i}">
+                    ${raw(iconify(parseFloat(k) != k ? k : values[k]))}
+                </option>
+            `)
             i++
         }
-
-        this.select.innerHTML = html
 
     }
 
