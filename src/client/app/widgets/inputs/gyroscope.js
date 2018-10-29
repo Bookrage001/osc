@@ -1,7 +1,10 @@
 var Widget = require('../common/widget'),
     GyroNorm = require('gyronorm/dist/gyronorm.complete.min.js'),
     {icon} = require('../../ui/utils'),
-    {clip} = require('../utils')
+    {clip} = require('../utils'),
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
+
 
 class Gyroscope extends Widget {
 

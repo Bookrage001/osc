@@ -1,7 +1,8 @@
 var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     {icon} = require('../../ui/utils'),
-    html = require('nanohtml')
+    html = require('nanohtml'),
+    raw = require('nanohtml/raw')
 
 
 class Script extends Widget {
