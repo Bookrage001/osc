@@ -90,7 +90,7 @@ module.exports = class EventEmitter {
                     listeners.splice(index, 1)
 
                     // Custom event teardown
-                    if (has.call(customEvents, evt)) {
+                    if (has.call(customEvents, evt)) {
 
                         if (this._customBindings[evt] !== 0) {
                             this._customBindings[evt]--
