@@ -213,9 +213,9 @@ module.exports = {
     setup: function(options) {
 
         if (
-            this._customBindings['drag'].bindings !== 0 ||
-            this._customBindings['draginit'].bindings !== 0 ||
-            this._customBindings['dragend'].bindings !== 0 ||
+            this._customBindings['drag'] !== 0 ||
+            this._customBindings['draginit'] !== 0 ||
+            this._customBindings['dragend'] !== 0 ||
             !options
         ) {
             return
@@ -240,9 +240,9 @@ module.exports = {
     teardown: function(options) {
 
         if (
-            this._customBindings['drag'].bindings !== 0 ||
-            this._customBindings['draginit'].bindings !== 0 ||
-            this._customBindings['dragend'].bindings !== 0 ||
+            this._customBindings['drag'] !== 0 ||
+            this._customBindings['draginit'] !== 0 ||
+            this._customBindings['dragend'] !== 0 ||
             !options
         ) {
             return

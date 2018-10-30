@@ -21,7 +21,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         this.preArgsSeparator = '||||'
 
-        this.on('change', this.onChange, this)
+        this.on('change', this.onChange.bind(this))
 
         ipc.on('connect', ()=>{
             for (var hash in this.widgets) {
@@ -234,9 +234,9 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         this.removeWidgets(Object.values(this.widgets))
 
-        this.removeEvent()
+        this.off()
 
-        this.on('change', this.onChange, this)
+        this.on('change', this.onChange.bind(this))
 
     }
 

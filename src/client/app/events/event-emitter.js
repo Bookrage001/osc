@@ -1,146 +1,130 @@
-var WolfyEventEmitter = require('wolfy87-eventemitter'),
-    customEvents = {}
+var customEvents = {}
+setTimeout(()=>{
+    customEvents['draginit'] = customEvents['drag'] = customEvents['dragend']  = require('./drag')
+    customEvents['resize']  = require('./resize')
+})
 
-customEvents['draginit'] = customEvents['drag'] = customEvents['dragend']  = require('./drag')
-customEvents['resize']  = require('./resize')
+// micro optimisation from eventemitter3
+var has = Object.prototype.hasOwnProperty
 
-module.exports = class EventEmitter extends WolfyEventEmitter {
+module.exports = class EventEmitter {
 
     constructor() {
 
-        super()
-
         this._customBindings = {}
-        this._contextEvents = {}
+        this._listeners = {}
 
         for (var evt in customEvents) {
-            this._customBindings[evt] = {
-                bindings: 0
-            }
+            this._customBindings[evt] = 0
         }
 
     }
 
-    emitEvent(evt, args) {
+    trigger(evt, data) {
 
-        // super.emitEvent(evt, args)
-        // Patched emitEvent method
-        var listenersMap = this.getListenersAsObject(evt),
-            listeners,
-            listener,
-            i,
-            key,
-            response
-
-        for (key in listenersMap) {
-            // patch: .hasOwnProperty(key) appeared to be slower
-            if (listenersMap.key) {
-                // patch: don't copy the array, reverse loop instead
-                listeners = listenersMap[key]
-
-                for (i = listeners.length - 1; i >= 0; i--) {
-
-                    listener = listeners[i]
-
-                    if (listener.once === true) {
-                        this.removeListener(evt, listener.listener)
-                    }
-
-                    // patch: call instead of apply -> no array wrapper on event data
-                    response = listener.listener.call(this, args)
-
-                    if (response === this._getOnceReturnValue()) {
-                        this.removeListener(evt, listener.listener)
-                    }
-                }
+        if (has.call(this._listeners, evt)) {
+            var listeners = this._listeners[evt]
+            for (var i = 0, len = listeners.length; i !== len; ++i) {
+                listeners[i](data)
             }
         }
 
         // Event bubbling
-        if (args && !args.stopPropagation) {
-            if (this.parent) this.parent.emitEvent(evt, args)
+        if (!data || !data.stopPropagation) {
+            if (this.parent) this.parent.trigger(evt, data)
         }
 
         return this
 
     }
 
-    addListener(evt, listener, options) {
+    on(evt, listener, options) {
 
-        // Custom event setup
+        if (options) {
 
-        if (
-            customEvents.hasOwnProperty(evt) &&
-            typeof customEvents[evt].setup === 'function'
-        ) {
-            if (this._customBindings[evt].bindings === 0) {
-                this._customBindings[evt].options = options
-                customEvents[evt].setup.call(this, options)
+            // Custom event setup
+            if (has.call(customEvents, evt)) {
+                this._customBindings[evt]
+                if (this._customBindings[evt] === 0) {
+                    listener._options = options
+                    customEvents[evt].setup.call(this, options)
+                }
+                this._customBindings[evt]++
             }
-            this._customBindings[evt].bindings += 1
-        }
 
-        if (options && options.context) {
-            var hash = options.context.hash
-            if (!this._contextEvents[hash]) this._contextEvents[hash] = []
-            this._contextEvents[hash].push([evt, listener])
-        }
-
-        super.addListener(evt, listener)
-
-        return this
-
-    }
-
-    removeListener(evt, listener) {
-
-        // Custom event teardown
-
-        if (
-            customEvents.hasOwnProperty(evt) &&
-            typeof customEvents[evt].teardown === 'function' &&
-            this._customBindings[evt].bindings !== 0
-        ) {
-            this._customBindings[evt].bindings -= 1
-            if (this._customBindings[evt].bindings === 0 || !listener) {
-                var options = this._customBindings[evt].options
-                customEvents[evt].teardown.call(this, options)
+            // Context storing
+            if (options.context) {
+                listener._context = options.context
             }
+
         }
 
-        // Remove all listeners is none specified
+        // Add listener
+        if (!has.call(this._listeners, evt)) {
+            this._listeners[evt] = []
+        }
 
-        if (listener) {
+        var listeners = this._listeners[evt]
 
-            super.removeListener(evt, listener)
-
-        } else {
-
-            this.removeEvent(evt)
-
+        if (listeners.indexOf(listener) === -1) {
+            listeners.push(listener)
         }
 
         return this
 
     }
 
-    removeEventContext(context, evt, listener) {
+    off(evt, listener, context) {
 
-        var events = this._contextEvents[context.hash]
+        // Remove listener
+        if (evt && has.call(this._listeners, evt)) {
 
-        if (events) {
+            var listeners = this._listeners[evt]
 
-            for (var i = 0; i < events.length; i++) {
+            if (listener) {
 
-                if (evt && evt !== events[i][0]) continue
-                if (listener && listener !== events[i][1]) continue
+                var index = listeners.indexOf(listener)
 
-                this.removeListener(events[i][0], events[i][1])
+                if (index !== -1) {
+
+                    listeners.splice(index, 1)
+
+                    // Custom event teardown
+                    if (has.call(customEvents, evt)) {
+
+                        if (this._customBindings[evt] !== 0) {
+                            this._customBindings[evt]--
+                            if (this._customBindings[evt] === 0) {
+                                customEvents[evt].teardown.call(this, listener._options)
+                                delete listener._options
+                            }
+                        }
+
+                    }
+
+                }
+
+            } else {
+
+                for (var i = listeners.length - 1; i !== -1; --i) {
+
+                    if (context && context !== listeners[i]._context) continue
+
+                    this.off(evt, listeners[i])
+
+                }
+
             }
 
-            if (!this._contextEvents[context.hash].length) delete this._contextEvents[context.hash]
+        } else if (!evt) {
+
+            for (var k in this._listeners) {
+                this.off(k, undefined, context)
+            }
 
         }
+
+        return this
 
     }
 
