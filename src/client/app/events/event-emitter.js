@@ -87,6 +87,8 @@ module.exports = class EventEmitter {
 
                 if (index !== -1) {
 
+                    if (context && context !== listener._context) return this
+
                     listeners.splice(index, 1)
 
                     // Custom event teardown
@@ -108,9 +110,7 @@ module.exports = class EventEmitter {
 
                 for (var i = listeners.length - 1; i !== -1; --i) {
 
-                    if (context && context !== listeners[i]._context) continue
-
-                    this.off(evt, listeners[i])
+                    this.off(evt, listeners[i], context)
 
                 }
 
