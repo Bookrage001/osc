@@ -23,11 +23,41 @@ module.exports = class EventEmitter extends WolfyEventEmitter {
 
     emitEvent(evt, args) {
 
+        // super.emitEvent(evt, args)
+        // Patched emitEvent method
+        var listenersMap = this.getListenersAsObject(evt),
+            listeners,
+            listener,
+            i,
+            key,
+            response
+
+        for (key in listenersMap) {
+            // patch: .hasOwnProperty(key) appeared to be slower
+            if (listenersMap.key) {
+                // patch: don't copy the array, reverse loop instead
+                listeners = listenersMap[key]
+
+                for (i = listeners.length - 1; i >= 0; i--) {
+
+                    listener = listeners[i]
+
+                    if (listener.once === true) {
+                        this.removeListener(evt, listener.listener)
+                    }
+
+                    // patch: call instead of apply -> no array wrapper on event data
+                    response = listener.listener.call(this, args)
+
+                    if (response === this._getOnceReturnValue()) {
+                        this.removeListener(evt, listener.listener)
+                    }
+                }
+            }
+        }
+
         // Event bubbling
-
-        super.emitEvent(evt, args)
-
-        if (args[0] && !args[0].stopPropagation) {
+        if (args && !args.stopPropagation) {
             if (this.parent) this.parent.emitEvent(evt, args)
         }
 
@@ -99,7 +129,7 @@ module.exports = class EventEmitter extends WolfyEventEmitter {
         var events = this._contextEvents[context.hash]
 
         if (events) {
-            
+
             for (var i = 0; i < events.length; i++) {
 
                 if (evt && evt !== events[i][0]) continue

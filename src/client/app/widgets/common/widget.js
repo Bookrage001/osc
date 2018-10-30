@@ -209,23 +209,23 @@ class Widget extends EventEmitter {
 
     created(index) {
 
-        this.trigger('widget-created', [{
+        this.trigger('widget-created', {
             id: this.getProp('id'),
             widget: this,
             options: this.reCreateOptions,
             index: index
-        }])
+        })
 
     }
 
     changed(options) {
 
-        this.trigger('change', [{
+        this.trigger('change', {
             widget: this,
             options: options,
             id: this.getProp('id'),
             linkId: this.getProp('linkId')
-        }])
+        })
 
     }
 
@@ -650,12 +650,12 @@ class Widget extends EventEmitter {
                 this.onPropChanged(changedProps[i].propName, options, changedProps[i].oldPropValue)
             }
 
-            widgetManager.trigger('prop-changed', [{
+            widgetManager.trigger('prop-changed', {
                 id: this.getProp('id'),
                 props: changedProps,
                 widget: this,
                 options: options
-            }])
+            })
 
         }
 
