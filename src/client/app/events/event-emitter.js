@@ -53,22 +53,16 @@ module.exports = class EventEmitter {
             }
 
             // Context storing
-            if (options.context) {
-                listener._context = options.context
-            }
+            if (options.context) listener._context = options.context
 
         }
 
         // Add listener
-        if (!has.call(this._listeners, evt)) {
-            this._listeners[evt] = []
-        }
+        if (!has.call(this._listeners, evt)) this._listeners[evt] = []
 
         var listeners = this._listeners[evt]
 
-        if (listeners.indexOf(listener) === -1) {
-            listeners.push(listener)
-        }
+        if (listeners.indexOf(listener) === -1) listeners.push(listener)
 
         return this
 
@@ -108,9 +102,11 @@ module.exports = class EventEmitter {
 
             } else {
 
-                for (var i = listeners.length - 1; i !== -1; --i) {
+                for (var i = listeners.length - 1; i !== -1; i--) {
 
-                    this.off(evt, listeners[i], context)
+                    if (!context || context == listeners[i]._context) {
+                        this.off(evt, listeners[i], context)
+                    }
 
                 }
 
