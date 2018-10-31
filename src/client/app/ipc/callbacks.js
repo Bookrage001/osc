@@ -103,7 +103,7 @@ module.exports = {
         // disable editor's warning
         window.onbeforeunload = null
 
-        if (!session.session.length) {
+        if (!session.session.type) {
             window.location.href = window.location.href
             return
         }

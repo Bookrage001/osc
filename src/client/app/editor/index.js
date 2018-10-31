@@ -219,7 +219,7 @@ var Editor = class Editor {
             if (this.enabled) {
                 this.disable()
             } else {
-                if (sessionManager.session.length) this.enable()
+                if (sessionManager.session.type) this.enable()
             }
         })
 
