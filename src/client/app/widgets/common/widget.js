@@ -156,8 +156,6 @@ class Widget extends EventEmitter {
             this.errors.id = 'There can only be one root'
         }
 
-        this.createLinkedPropsBindings()
-
         this.disabledProps = []
 
         // cache precision
@@ -313,10 +311,10 @@ class Widget extends EventEmitter {
             widgetManager.on('widget-created', this.linkedCreatedCallback, {context: this})
             widgetManager.on('prop-changed', this.linkedPropChangedCallback, {context: this})
 
-        } else if (this.linkedCreatedCallback && !Object.keys(this.linkedPropsValue).length) {
+        } else if (this.linkedCreatedCallback && !Object.keys(this.linkedProps).length) {
 
-            widgetManager.off('widget-created', this.linkedCreatedCallback, this)
-            widgetManager.off('prop-changed', this.linkedPropChangedCallback, this)
+            widgetManager.off('widget-created', this.linkedCreatedCallback)
+            widgetManager.off('prop-changed', this.linkedPropChangedCallback)
 
         }
 
@@ -330,7 +328,7 @@ class Widget extends EventEmitter {
 
         } else if (this.linkedPropsValueCallback && !Object.keys(this.linkedPropsValue).length) {
 
-            widgetManager.off('change', this.linkedValueChangedCallback, this)
+            widgetManager.off('change', this.linkedValueChangedCallback)
 
         }
 
