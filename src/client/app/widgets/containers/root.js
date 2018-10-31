@@ -15,7 +15,7 @@ class Root extends Panel {
 
             traversing: {type: 'boolean', value: false, help: 'Set to `true` to enable traversing gestures in this widget. Set to `smart` or `auto` to limit affected widgets by the type of the first touched widget'},
             variables: {type: '*', value: {}, help: 'Defines one or more arbitrary variables that can be inherited by children widgets'},
-            tabs: {type: 'array', value: [], help: 'Each element of the array must be a tab object'},
+            tabs: {type: 'array', value: [{}], help: 'Each element of the array must be a tab object'},
             id: {type: 'string', value: 'root', help: 'Widgets sharing the same id will act as clones and update each other\'s value(s) without sending extra osc messages' },
 
             value: {type: 'integer', value: '', help: [

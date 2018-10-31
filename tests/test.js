@@ -3,14 +3,14 @@ var fs = require('fs')
 
 // create tmp session file
 
-var session = [{tabs:[{widgets:[]}]}],
+var session = {type: 'root', tabs:[{widgets:[]}]},
     sessionPath = 'test-session.json'
 
 require('../scripts/client-shim')
 
 var {widgets} = require('../src/client/app/widgets')
 for (let type in widgets) {
-    session[0].tabs[0].widgets.push({type: type})
+    session.tabs[0].widgets.push({type: type})
 }
 
 fs.writeFileSync(sessionPath, JSON.stringify(session))

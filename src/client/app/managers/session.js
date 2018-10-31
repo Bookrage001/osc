@@ -40,11 +40,9 @@ var SessionManager = class SessionManager {
 
                 try {
 
-                    if (session[0].type != 'root') {
-                        this.session = [{type:'root', tabs:session}]
-                    } else if (session[0].type == 'root'){
-                        this.session = session
-                    }
+                    if (Array.isArray(session)) session = session[0]
+                    if (session.type !== 'root') throw ''
+                    this.session = session
 
                 } catch(err) {
 
@@ -180,7 +178,7 @@ var SessionManager = class SessionManager {
     }
 
     create() {
-        this.load([{}],function(){
+        this.load({type: 'root'},function(){
             require('../ui/sidepanel').open()
             editor.enable()
             editor.select(widgetManager.getWidgetById('root'))

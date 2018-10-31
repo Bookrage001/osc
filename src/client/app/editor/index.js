@@ -818,7 +818,7 @@ var Editor = class Editor {
 
     updateWidgetFromPatch(patch, indexes) {
 
-        var [widget, subpatch] = diffToWidget(widgetManager.getWidgetById('root')[0], patch[0]),
+        var [widget, subpatch] = diffToWidget(widgetManager.getWidgetById('root')[0], patch),
             options = {}
 
         if (indexes) {

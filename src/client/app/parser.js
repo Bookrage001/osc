@@ -36,74 +36,68 @@ var Parser = class Parser {
             index
         } = options
 
-        if (!Array.isArray(data)) data = [data]
+        var props = data
 
-        for (let i in data) {
+        // Set default widget type
+        props.type =  tab ? 'tab' : props.type || 'fader'
 
-            var props = data[i]
+        // Safe copy widget's options
+        let defaults = this.widgets[props.type].defaults()._props()
 
-            // Set default widget type
-            props.type =  tab ? 'tab' : props.type || 'fader'
+        // Set widget's undefined options to default
+        for (let i in defaults) {
+            if (i.indexOf('_')!=0 && props[i]===undefined) props[i] = defaults[i]
+        }
 
-            // Safe copy widget's options
-            let defaults = this.widgets[props.type].defaults()._props()
-
-            // Set widget's undefined options to default
-            for (let i in defaults) {
-                if (i.indexOf('_')!=0 && props[i]===undefined) props[i] = defaults[i]
+        // Genrate widget's id, based on its type
+        if (props.id=='auto' || !props.id ) {
+            var id
+            while (!id || widgetManager.getWidgetById(id).length) {
+                id=props.type+'_'+this.getIterator(props.type)
             }
+            props.id = id
+        }
 
-            // Genrate widget's id, based on its type
-            if (props.id=='auto' || !props.id ) {
-                var id
-                while (!id || widgetManager.getWidgetById(id).length) {
-                    id=props.type+'_'+this.getIterator(props.type)
-                }
-                props.id = id
-            }
+        // Generate default address
+        props.address = props.address == 'auto' ? '/' + props.id : props.address
 
-            // Generate default address
-            props.address = props.address == 'auto' ? '/' + props.id : props.address
+        for (let j in props) {
+            if (defaults[j] === undefined || j[0] === '_') delete props[j]
+        }
 
-            for (let j in props) {
-                if (defaults[j] === undefined || j[0] === '_') delete props[j]
-            }
+        // create widget
+        var widget = new this.widgets[props.type]({
+            container:true,
+            props,
+            parent,
+            parentNode,
+            reCreateOptions,
+            children
+        })
 
-            // create widget
-            var widget = new this.widgets[props.type]({
-                container:true,
-                props,
-                parent,
-                parentNode,
-                reCreateOptions,
-                children
-            })
+        widgetManager.addWidget(widget)
 
-            widgetManager.addWidget(widget)
+        widget.created(index)
 
-            widget.created(index)
+        // set widget's initial state
+        var defaultValue = widget.getProp('default'),
+            currentValue = widget.getProp('value')
 
-            // set widget's initial state
-            var defaultValue = widget.getProp('default'),
-                currentValue = widget.getProp('value')
+        if (currentValue !== '' && currentValue !== undefined) {
 
-            if (currentValue !== '' && currentValue !== undefined) {
+            stateManager.pushValueNewProp(widget.getProp('id'), currentValue)
 
-                stateManager.pushValueNewProp(widget.getProp('id'), currentValue)
+        } else if (defaultValue !== '' && defaultValue !== undefined) {
 
-            } else if (defaultValue !== '' && defaultValue !== undefined) {
-
-                widget.setValue(defaultValue)
-
-            }
-
-
-            parentNode.appendChild(widget.container)
+            widget.setValue(defaultValue)
 
         }
 
+
+        parentNode.appendChild(widget.container)
+
         // Editor needs to get the container object
-        if (data && data.length==1) return widget
+        return widget
 
     }
 
