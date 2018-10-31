@@ -315,6 +315,8 @@ class Widget extends EventEmitter {
 
             widgetManager.off('widget-created', this.linkedCreatedCallback)
             widgetManager.off('prop-changed', this.linkedPropChangedCallback)
+            delete this.linkedCreatedCallback
+            delete this.linkedPropChangedCallback
 
         }
 
@@ -329,6 +331,7 @@ class Widget extends EventEmitter {
         } else if (this.linkedPropsValueCallback && !Object.keys(this.linkedPropsValue).length) {
 
             widgetManager.off('change', this.linkedValueChangedCallback)
+            delete this.linkedValueChangedCallback
 
         }
 
@@ -372,11 +375,9 @@ class Widget extends EventEmitter {
 
     updateLinkedPropsWithNesting(i) {
 
-        // 1. remove all linked props found in properties bound to the nested link
-        // 2. resolve these props again and recreate links (3rd arg to true)
-
         for (var prop of this.nestedLinkedProps[i]) {
 
+            // 1. remove all linked props found in properties bound to the nested link
             for (var linksStores of [this.linkedPropsValue, this.linkedProps]) {
                 for (let id in linksStores) {
                     if (linksStores[id].includes(prop)) {
@@ -387,6 +388,7 @@ class Widget extends EventEmitter {
             }
 
 
+            // 2. resolve these props again and recreate links (3rd arg to true)
             this.resolveProp(prop, undefined, true, this)
 
         }
