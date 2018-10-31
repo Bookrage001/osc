@@ -111,7 +111,7 @@ class Slider extends Canvas {
     }
 
     draginitHandleProxy() {
-        console.log('init')
+
         this.draginitHandle(...arguments)
 
     }
