@@ -6,7 +6,7 @@
   - electron v3
 - misc
   - rendering speed improved (session loading time reduced by about 30%)
-
+  - remove support for deprecated properties `path`, `noPip` and `noSync` 
 ## 0.38.7
 
 - bug fixes
