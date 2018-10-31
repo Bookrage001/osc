@@ -23,8 +23,9 @@ module.exports = class EventEmitter {
     trigger(evt, data) {
 
         if (has.call(this._listeners, evt)) {
-            var listeners = this._listeners[evt]
-            for (var i = 0, len = listeners.length; i !== len; ++i) {
+            // shallow copy in case a listener gets added/removed while looping
+            var listeners = this._listeners[evt].slice(0)
+            for (var i = 0, len = listeners.length; i !== len; i++) {
                 listeners[i](data)
             }
         }
