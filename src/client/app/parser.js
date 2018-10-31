@@ -1,5 +1,6 @@
 var widgetManager = require('./managers/widgets'),
-    stateManager = require('./managers/state')
+    stateManager = require('./managers/state'),
+    {deepCopy} = require('./utils')
 
 var Parser = class Parser {
 
@@ -7,6 +8,7 @@ var Parser = class Parser {
 
         this.iterators = {}
         this.widgets = {}
+        this.defaults = {}
 
     }
 
@@ -41,26 +43,28 @@ var Parser = class Parser {
         // Set default widget type
         props.type =  tab ? 'tab' : props.type || 'fader'
 
-        // Safe copy widget's options
-        let defaults = this.widgets[props.type].defaults()._props()
+        // Get widget's defaults
+        var defaults = this.defaults[props.type]
 
         // Set widget's undefined options to default
         for (let i in defaults) {
-            if (i.indexOf('_')!=0 && props[i]===undefined) props[i] = defaults[i]
+            if (i.indexOf('_') !== 0 && props[i] === undefined) props[i] = deepCopy(defaults[i])
         }
 
         // Genrate widget's id, based on its type
-        if (props.id=='auto' || !props.id ) {
+        if (props.id === 'auto' || !props.id) {
             var id
             while (!id || widgetManager.getWidgetById(id).length) {
-                id=props.type+'_'+this.getIterator(props.type)
+                id = props.type + '_' + this.getIterator(props.type)
             }
             props.id = id
         }
 
         // Generate default address
-        props.address = props.address == 'auto' ? '/' + props.id : props.address
+        props.address = props.address === 'auto' ? '/' + props.id : props.address
 
+
+        // Remove props that don't apply
         for (let j in props) {
             if (defaults[j] === undefined || j[0] === '_') delete props[j]
         }
@@ -108,3 +112,6 @@ var parser = new Parser()
 module.exports = parser
 
 parser.widgets = require('./widgets/').widgets
+for (var k in parser.widgets) {
+    parser.defaults[k] = parser.widgets[k].defaults()._props()
+}
