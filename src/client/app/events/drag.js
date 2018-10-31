@@ -20,7 +20,6 @@ function pointerDownHandler(event) {
 
     if (event.traversing === TRAVERSING_SAMEWIDGET) {
         event.traversingType = event.target.closest('.drag-event')._drag_widget.getProp('type')
-        console.log(event.traversingType)
     }
 
     previousPointers[event.pointerId] = event
@@ -48,7 +47,6 @@ function pointerMoveHandler(event) {
             target && event.traversing === TRAVERSING_SAMEWIDGET
         &&  event.traversingType !== target._drag_widget.getProp('type')
         ) {
-            console.log(event.traversingType,  target._drag_widget.getProp('type'))
             target = null
         }
 
@@ -193,7 +191,7 @@ function touchUpCapture(event) {
 
 function triggerWidgetEvent(target, name, event) {
     if (target !== null && target._drag_widget) {
-        target._drag_widget.trigger(name, [event])
+        target._drag_widget.trigger(name, event)
     } else if (target !== null) {
         triggerWidgetEvent(target.closest('.drag-event'), name, event)
     }
@@ -215,9 +213,9 @@ module.exports = {
     setup: function(options) {
 
         if (
-            this._customBindings['drag'].bindings !== 0 ||
-            this._customBindings['draginit'].bindings !== 0 ||
-            this._customBindings['dragend'].bindings !== 0 ||
+            this._customBindings['drag'] !== 0 ||
+            this._customBindings['draginit'] !== 0 ||
+            this._customBindings['dragend'] !== 0 ||
             !options
         ) {
             return
@@ -242,9 +240,9 @@ module.exports = {
     teardown: function(options) {
 
         if (
-            this._customBindings['drag'].bindings !== 0 ||
-            this._customBindings['draginit'].bindings !== 0 ||
-            this._customBindings['dragend'].bindings !== 0 ||
+            this._customBindings['drag'] !== 0 ||
+            this._customBindings['draginit'] !== 0 ||
+            this._customBindings['dragend'] !== 0 ||
             !options
         ) {
             return

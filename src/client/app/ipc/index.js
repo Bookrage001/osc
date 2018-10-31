@@ -1,4 +1,4 @@
-var EventEmitter = require('wolfy87-eventemitter'),
+var EventEmitter = require('../events/event-emitter'),
     uuid = require('nanoid/generate')('0123456789abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10)
 
 var reconnectInterval = 5000,
@@ -104,7 +104,7 @@ class Ipc extends EventEmitter {
 
             if (Array.isArray(packet) && typeof packet[0] == 'string') {
 
-                this.emit(packet[0], packet[1])
+                this.trigger(packet[0], packet[1])
 
             }
 

@@ -21,7 +21,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         this.preArgsSeparator = '||||'
 
-        this.on('change', this.onChange, this)
+        this.on('change', this.onChange.bind(this))
 
         ipc.on('connect', ()=>{
             for (var hash in this.widgets) {
@@ -175,7 +175,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
                 hash:hash
             })
 
-            widget.trigger('widget-removed', [{widget: widget}])
+            widget.trigger('widget-removed', {widget: widget})
 
         }
         if (id && this.idRoute[id].indexOf(hash) != -1) this.idRoute[id].splice(this.idRoute[id].indexOf(hash), 1)
@@ -234,9 +234,9 @@ var WidgetManager = class WidgetManager extends EventEmitter {
 
         this.removeWidgets(Object.values(this.widgets))
 
-        this.removeEvent()
+        this.off()
 
-        this.on('change', this.onChange, this)
+        this.on('change', this.onChange.bind(this))
 
     }
 

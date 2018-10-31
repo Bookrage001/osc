@@ -150,7 +150,7 @@ class Clone extends Container {
 
         if (!this.cloneTarget) return
 
-        this.cloneTarget.removeEventContext(this)
+        this.cloneTarget.off(undefined, undefined, this)
 
         this.cloneTarget = null
 

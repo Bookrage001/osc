@@ -156,8 +156,6 @@ class Widget extends EventEmitter {
             this.errors.id = 'There can only be one root'
         }
 
-        this.createLinkedPropsBindings()
-
         this.disabledProps = []
 
         // cache precision
@@ -209,23 +207,23 @@ class Widget extends EventEmitter {
 
     created(index) {
 
-        this.trigger('widget-created', [{
+        this.trigger('widget-created', {
             id: this.getProp('id'),
             widget: this,
             options: this.reCreateOptions,
             index: index
-        }])
+        })
 
     }
 
     changed(options) {
 
-        this.trigger('change', [{
+        this.trigger('change', {
             widget: this,
             options: options,
             id: this.getProp('id'),
             linkId: this.getProp('linkId')
-        }])
+        })
 
     }
 
@@ -313,10 +311,10 @@ class Widget extends EventEmitter {
             widgetManager.on('widget-created', this.linkedCreatedCallback, {context: this})
             widgetManager.on('prop-changed', this.linkedPropChangedCallback, {context: this})
 
-        } else if (this.linkedCreatedCallback && !Object.keys(this.linkedPropsValue).length) {
+        } else if (this.linkedCreatedCallback && !Object.keys(this.linkedProps).length) {
 
-            widgetManager.removeEventContext('widget-created', this.linkedCreatedCallback, {context: this})
-            widgetManager.removeEventContext('prop-changed', this.linkedPropChangedCallback, {context: this})
+            widgetManager.off('widget-created', this.linkedCreatedCallback)
+            widgetManager.off('prop-changed', this.linkedPropChangedCallback)
 
         }
 
@@ -330,7 +328,7 @@ class Widget extends EventEmitter {
 
         } else if (this.linkedPropsValueCallback && !Object.keys(this.linkedPropsValue).length) {
 
-            widgetManager.removeEventContext('change', this.linkedValueChangedCallback, {context: this})
+            widgetManager.off('change', this.linkedValueChangedCallback)
 
         }
 
@@ -364,7 +362,7 @@ class Widget extends EventEmitter {
 
     removeOscReceivers() {
 
-        osc.removeEventContext(this)
+        osc.off(undefined, undefined, this)
         for (var i in this.oscReceivers) {
             oscReceiverState[i] = this.oscReceivers[i].value
         }
@@ -650,12 +648,12 @@ class Widget extends EventEmitter {
                 this.onPropChanged(changedProps[i].propName, options, changedProps[i].oldPropValue)
             }
 
-            widgetManager.trigger('prop-changed', [{
+            widgetManager.trigger('prop-changed', {
                 id: this.getProp('id'),
                 props: changedProps,
                 widget: this,
                 options: options
-            }])
+            })
 
         }
 
@@ -841,7 +839,7 @@ class Widget extends EventEmitter {
 
     onRemove(){
 
-        widgetManager.removeEventContext(this)
+        widgetManager.off(undefined, undefined, this)
         this.removeOscReceivers()
 
     }

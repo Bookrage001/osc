@@ -1,116 +1,127 @@
-var WolfyEventEmitter = require('wolfy87-eventemitter'),
-    customEvents = {}
+var customEvents = {}
+setTimeout(()=>{
+    customEvents['draginit'] = customEvents['drag'] = customEvents['dragend']  = require('./drag')
+    customEvents['resize']  = require('./resize')
+})
 
-customEvents['draginit'] = customEvents['drag'] = customEvents['dragend']  = require('./drag')
-customEvents['resize']  = require('./resize')
+// micro optimisation from eventemitter3
+var has = Object.prototype.hasOwnProperty
 
-module.exports = class EventEmitter extends WolfyEventEmitter {
+module.exports = class EventEmitter {
 
     constructor() {
 
-        super()
-
         this._customBindings = {}
-        this._contextEvents = {}
+        this._listeners = {}
 
         for (var evt in customEvents) {
-            this._customBindings[evt] = {
-                bindings: 0
-            }
+            this._customBindings[evt] = 0
         }
 
     }
 
-    emitEvent(evt, args) {
+    trigger(evt, data) {
+
+        if (has.call(this._listeners, evt)) {
+            // shallow copy in case a listener gets added/removed while looping
+            var listeners = this._listeners[evt].slice(0)
+            for (var i = 0, len = listeners.length; i !== len; i++) {
+                listeners[i](data)
+            }
+        }
 
         // Event bubbling
-
-        super.emitEvent(evt, args)
-
-        if (args[0] && !args[0].stopPropagation) {
-            if (this.parent) this.parent.emitEvent(evt, args)
+        if (!data || !data.stopPropagation) {
+            if (this.parent) this.parent.trigger(evt, data)
         }
 
         return this
 
     }
 
-    addListener(evt, listener, options) {
+    on(evt, listener, options) {
 
-        // Custom event setup
+        if (options) {
 
-        if (
-            customEvents.hasOwnProperty(evt) &&
-            typeof customEvents[evt].setup === 'function'
-        ) {
-            if (this._customBindings[evt].bindings === 0) {
-                this._customBindings[evt].options = options
-                customEvents[evt].setup.call(this, options)
+            // Custom event setup
+            if (has.call(customEvents, evt)) {
+                this._customBindings[evt]
+                if (this._customBindings[evt] === 0) {
+                    listener._options = options
+                    customEvents[evt].setup.call(this, options)
+                }
+                this._customBindings[evt]++
             }
-            this._customBindings[evt].bindings += 1
+
+            // Context storing
+            if (options.context) listener._context = options.context
+
         }
 
-        if (options && options.context) {
-            var hash = options.context.hash
-            if (!this._contextEvents[hash]) this._contextEvents[hash] = []
-            this._contextEvents[hash].push([evt, listener])
-        }
+        // Add listener
+        if (!has.call(this._listeners, evt)) this._listeners[evt] = []
 
-        super.addListener(evt, listener)
+        var listeners = this._listeners[evt]
+
+        if (listeners.indexOf(listener) === -1) listeners.push(listener)
 
         return this
 
     }
 
-    removeListener(evt, listener) {
+    off(evt, listener, context) {
 
-        // Custom event teardown
+        // Remove listener
+        if (evt && has.call(this._listeners, evt)) {
 
-        if (
-            customEvents.hasOwnProperty(evt) &&
-            typeof customEvents[evt].teardown === 'function' &&
-            this._customBindings[evt].bindings !== 0
-        ) {
-            this._customBindings[evt].bindings -= 1
-            if (this._customBindings[evt].bindings === 0 || !listener) {
-                var options = this._customBindings[evt].options
-                customEvents[evt].teardown.call(this, options)
+            var listeners = this._listeners[evt]
+
+            if (listener) {
+
+                var index = listeners.indexOf(listener)
+
+                if (index !== -1) {
+
+                    if (context && context !== listener._context) return this
+
+                    listeners.splice(index, 1)
+
+                    // Custom event teardown
+                    if (has.call(customEvents, evt)) {
+
+                        if (this._customBindings[evt] !== 0) {
+                            this._customBindings[evt]--
+                            if (this._customBindings[evt] === 0) {
+                                customEvents[evt].teardown.call(this, listener._options)
+                                delete listener._options
+                            }
+                        }
+
+                    }
+
+                }
+
+            } else {
+
+                for (var i = listeners.length - 1; i !== -1; i--) {
+
+                    if (!context || context == listeners[i]._context) {
+                        this.off(evt, listeners[i], context)
+                    }
+
+                }
+
             }
-        }
 
-        // Remove all listeners is none specified
+        } else if (!evt) {
 
-        if (listener) {
-
-            super.removeListener(evt, listener)
-
-        } else {
-
-            this.removeEvent(evt)
+            for (var k in this._listeners) {
+                this.off(k, undefined, context)
+            }
 
         }
 
         return this
-
-    }
-
-    removeEventContext(context, evt, listener) {
-
-        var events = this._contextEvents[context.hash]
-
-        if (events) {
-            
-            for (var i = 0; i < events.length; i++) {
-
-                if (evt && evt !== events[i][0]) continue
-                if (listener && listener !== events[i][1]) continue
-
-                this.removeListener(events[i][0], events[i][1])
-            }
-
-            if (!this._contextEvents[context.hash].length) delete this._contextEvents[context.hash]
-
-        }
 
     }
 
