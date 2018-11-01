@@ -189,9 +189,12 @@ var handleClick = function(event) {
     var clickX = Math.round((eventData.offsetX + eventData.target.scrollLeft) / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH,
         clickY = Math.round((eventData.offsetY + eventData.target.scrollTop)  / (GRIDWIDTH * PXSCALE)) * GRIDWIDTH
 
-    actions[icon('expand') + ' ' + locales('editor_editparent')] = ()=>{
-        editor.select(parent)
-    }
+    actions.push({
+        label: icon('expand') + ' ' + locales('editor_editparent'),
+        action: ()=>{
+            editor.select(parent)
+        }
+    })
 
     if (type === 'widget')  {
 
