@@ -2,11 +2,12 @@
 
 ## 0.39.0
 
-- engine
-  - electron v3
-- misc
+- performance
   - rendering speed improved (session loading time reduced by about 30%)
-  - remove support for deprecated properties `path`, `noPip` and `noSync` 
+- widgets
+  - remove support for deprecated properties `path`, `noPip` and `noSync`
+  - sliders/pads: `precision` is no longer a dynamic property
+     
 ## 0.38.7
 
 - bug fixes
