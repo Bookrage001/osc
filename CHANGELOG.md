@@ -3,6 +3,7 @@
 ## 0.39.2
 
 - bug fixes
+  - regresssion: broken --theme option
   - regression: missing 'edit parent' action in editor's context menu
 
 ## 0.39.1
