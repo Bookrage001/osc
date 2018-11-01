@@ -24,13 +24,8 @@
         &.horizontal {
             flex-direction:row;
             .value {
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
                 border-top:0;
                 border-right:1rem solid var(--color-bg);
-                flex: 1 1 100%;
                 height:auto;
                 margin-bottom:0;
                 &:last-child {
@@ -53,7 +48,8 @@
             word-break: break-all;
             overflow: hidden;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
             justify-content: center;
             box-shadow: 0 0 0 1rem var(--color-light) inset,
                         0 1rem 0 0 var(--color-light) inset;

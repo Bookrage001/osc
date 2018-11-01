@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.39.1
+
+- bug fixes
+  - regressions breaking icons in switches' labels
+
 ## 0.39.0
 
 - performance
@@ -7,7 +12,7 @@
 - widgets
   - remove support for deprecated properties `path`, `noPip` and `noSync`
   - sliders/pads: `precision` is no longer a dynamic property
-     
+
 ## 0.38.7
 
 - bug fixes
