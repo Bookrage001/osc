@@ -83,7 +83,7 @@
     "build-server-js": "node scripts/build-server.js",
     "watch-client": "npm run build-client-js -- --watch",
     "watch-browser": "npm run build-client-js -- --watch",
-    "watch-css": "nodemon --watch src/scss -e scss -x \"npm run build-css -- --reload",
+    "watch-css": "nodemon --watch src/scss -e scss -x \"npm run build-css -- --reload\"",
     "deploy-docs": "node scripts/build-widgets-reference.js > resources/docs/widgets-reference.md && cd resources && mkdocs gh-deploy --clean && rm -rf site",
     "test": "eslint src && npm run build && node tests/test.js"
   },
