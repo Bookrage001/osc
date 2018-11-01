@@ -207,7 +207,7 @@ class Clone extends Container {
             diff.patch(widget.props, patch)
 
 
-            if (changedProps.some(x => !widget.constructor.dynamicProps.includes(x))) {
+            if (changedProps.some(x => !widget.isDynamicProp(x))) {
 
                 clone.reCreateWidget({reuseChildren: false})
                 this.updateContainer(false)

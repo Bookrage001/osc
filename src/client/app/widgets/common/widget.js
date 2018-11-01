@@ -604,6 +604,13 @@ class Widget extends EventEmitter {
         return this.cachedProps[propName]
     }
 
+
+    isDynamicProp(propName) {
+
+        return this.constructor.dynamicProps.indexOf(propName) !== -1
+
+    }
+
     updateProps(propNames, widget, options, updatedProps = []) {
 
         if (propNames.includes('value')) {
@@ -623,8 +630,7 @@ class Widget extends EventEmitter {
 
             if (!deepEqual(oldPropValue, propValue)) {
 
-
-                if (!this.constructor.dynamicProps.includes(propName)) {
+                if (!this.isDynamicProp(propName)) {
 
                     reCreate = true
 

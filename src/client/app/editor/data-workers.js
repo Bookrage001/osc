@@ -27,7 +27,7 @@ function updateWidget(widget, options={}) {
 
         if (
             // if non dynamic props have changed, skip this and use rebuild routine
-            !propNames.some(n => !widget.constructor.dynamicProps.includes(n))
+            !propNames.some(n => !widget.isDynamicProp(n))
         ) {
 
             var edited = widget.updateProps(options.changedProps, null) || widget

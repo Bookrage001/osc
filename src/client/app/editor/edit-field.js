@@ -9,7 +9,7 @@ var widgetCategories = require('../widgets/').categories,
 
 module.exports = function editField(editor, widget, propName, defaultValue){
 
-    let dynamic = widget.constructor.dynamicProps.includes(propName),
+    let dynamic = widget.isDynamicProp(propName),
         disabled = widget.disabledProps.indexOf(propName) > -1,
         error = widget.errors[propName]
 
