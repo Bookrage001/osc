@@ -37,6 +37,8 @@ appJson.scripts = {
   "start-node": "node index.js"
 }
 
-appJson.optionalDependencies.electron = packageJson.optionalDependencies.electron
+appJson.optionalDependencies = {
+    electron: packageJson.optionalDependencies.electron
+}
 
 fs.writeFileSync(path.resolve(__dirname + '/../app/package.json'), JSON.stringify(appJson, null, '  '))
