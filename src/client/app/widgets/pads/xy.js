@@ -61,7 +61,7 @@ module.exports = class Xy extends Pad {
                 snap:this.getProp('snap'),
                 range:this.getProp('rangeX'),
                 origin:'auto',
-                precision:this.precision,
+                precision:this.getProp('precision'),
                 logScale:this.getProp('logScaleX'),
                 input:false
             }, cancelDraw: true, parent: this}),
@@ -77,7 +77,7 @@ module.exports = class Xy extends Pad {
                 snap:this.getProp('snap'),
                 range:this.getProp('rangeY'),
                 origin:'auto',
-                precision:this.precision,
+                precision:this.getProp('precision'),
                 logScale:this.getProp('logScaleY'),
                 input:false
             }, cancelDraw: true, parent: this}),

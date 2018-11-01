@@ -234,7 +234,7 @@ module.exports = class Range extends Widget {
                 spring:this.getProp('spring'),
                 range:this.getProp('range'),
                 origin:'auto',
-                precision:this.precision,
+                precision:this.getProp('precision'),
                 logScale:this.getProp('logScale'),
                 input:false
             }, cancelDraw: true, parent: this}),
@@ -251,7 +251,7 @@ module.exports = class Range extends Widget {
                 spring:this.getProp('spring'),
                 range:this.getProp('range'),
                 origin:'auto',
-                precision:this.precision,
+                precision:this.getProp('precision'),
                 logScale:this.getProp('logScale'),
                 input:false
             }, cancelDraw: false, parent: this})
