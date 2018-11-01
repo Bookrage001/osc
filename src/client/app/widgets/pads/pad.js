@@ -1,7 +1,7 @@
 var Canvas = require('../common/canvas'),
     html = require('nanohtml')
 
-module.exports = class Pad extends Canvas {
+class Pad extends Canvas {
 
     constructor(options) {
 
@@ -21,3 +21,7 @@ module.exports = class Pad extends Canvas {
     }
 
 }
+
+Pad.dynamicProps = Pad.prototype.constructor.dynamicProps.filter(n => n !== 'precision')
+
+module.exports = Pad

@@ -172,7 +172,7 @@ var RangeFader = class RangeFader extends Fader {
 }
 
 
-module.exports = class Range extends Widget {
+class Range extends Widget {
 
     static defaults() {
 
@@ -450,3 +450,8 @@ module.exports = class Range extends Widget {
     }
 
 }
+
+
+Range.dynamicProps = Range.prototype.constructor.dynamicProps.filter(n => n !== 'precision')
+
+module.exports = Range

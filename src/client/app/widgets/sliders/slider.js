@@ -249,9 +249,6 @@ class Slider extends Canvas {
 
 }
 
-Slider.dynamicProps = Slider.prototype.constructor.dynamicProps.concat(
-    'on',
-    'off'
-)
+Slider.dynamicProps = Slider.prototype.constructor.dynamicProps.filter(n => n !== 'precision')
 
 module.exports = Slider
