@@ -3,7 +3,7 @@
 ## 0.39.1
 
 - bug fixes
-  - regressions breaking icons in switches' labels
+  - regression breaking icons in switches' labels
 
 ## 0.39.0
 
