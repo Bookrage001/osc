@@ -1,10 +1,16 @@
 # Changelog
 
-## 0.39.2
+## 0.39.3
 
 - bug fixes
   - broken tabs color property
   - broken `/TABS` command; this command doesn't makes panels send osc messages anymore 
+
+## 0.39.2
+
+- bug fixes
+  - regresssion: broken --theme option
+  - regression: missing 'edit parent' action in editor's context menu
 
 ## 0.39.1
 

@@ -24,8 +24,8 @@ class Theme {
 
             if (theme.includes('.css') && fs.existsSync(theme)) {
                 this.files.push(theme)
-            } else if (!theme.includes('.css') && fs.existsSync(path.resolve(__dirname + '/../browser/themes/' + theme + '.css'))) {
-                this.files.push(path.resolve(__dirname + '/../browser/themes/' + theme + '.css'))
+            } else if (!theme.includes('.css') && fs.existsSync(path.resolve(__dirname + '/../assets/themes/' + theme + '.css'))) {
+                this.files.push(path.resolve(__dirname + '/../assets/themes/' + theme + '.css'))
             } else {
                 console.error('Theme error: "' + theme + '" not found.')
             }
