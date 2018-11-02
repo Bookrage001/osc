@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.39.2
+
+- bug fixes
+  - regression breaking tabs color property
+
 ## 0.39.1
 
 - bug fixes
