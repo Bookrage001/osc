@@ -3,7 +3,8 @@
 ## 0.39.2
 
 - bug fixes
-  - regression breaking tabs color property
+  - broken tabs color property
+  - broken `/TABS` command; this command doesn't makes panels send osc messages anymore 
 
 ## 0.39.1
 

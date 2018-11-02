@@ -182,9 +182,10 @@ var callbacks = {
         for (let id of args) {
             let ws = widgetManager.getWidgetById(id)
             for (let w of ws) {
-                DOM.each(document, `.tablink[data-widget="${w.hash}"]`, (el)=>{
-                    DOM.dispatchEvent(el, 'fast-click', {})
-                })
+                if (w.getProp('type') === 'tab') {
+                    var index = w.parent.children.indexOf(w)
+                    w.parent.setValue(index, {sync: true, send: false})
+                }
             }
         }
 
