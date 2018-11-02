@@ -175,7 +175,7 @@ var handleClick = function(event) {
                 data[0].tabs.push({})
 
                 var indexes = {addedIndexes: [data[0].tabs.length -1]}
-                updateWidget(widget, indexes)
+                updateWidget(editor.selectedWidgets[0], indexes)
                 editor.pushHistory(indexes)
             }
         })
