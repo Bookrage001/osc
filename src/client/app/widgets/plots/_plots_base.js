@@ -140,7 +140,7 @@ module.exports = class _plots_base extends Canvas {
         this.ctx.lineWidth = 2 * PXSCALE
         for (var i = 0; i < points.length; i += 2) {
             this.ctx.beginPath()
-            this.ctx.arc(points[i], points[i + 1], 4 * PXSCALE, 0, 2*Math.PI)
+            this.ctx.arc(points[i], points[i + 1], 3 * PXSCALE, 0, 2*Math.PI)
             this.ctx.fill()
             this.ctx.stroke()
         }
