@@ -1,7 +1,7 @@
 var Pad = require('./pad'),
     Xy = require('./xy'),
     Fader = require('./_fake_fader'),
-    {clip, hsbToRgb, rgbToHsb} = require('../utils'),
+    {mapToScale, hsbToRgb, rgbToHsb} = require('../utils'),
     Input = require('../inputs/input'),
     html = require('nanohtml')
 
@@ -23,6 +23,7 @@ module.exports = class Rgb extends Pad {
             spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
             range: {type: 'object', value: {min: 0, max: 255}, help: 'Defines the widget\'s output scale.'},
             input: {type: 'boolean', value: true, help: 'Set to `false` to hide the built-in input widget'},
+            alphaChannel:{type:'boolean',value:true,help:'add alpha channel'}
 
         }, ['color'], {
 
@@ -54,7 +55,6 @@ module.exports = class Rgb extends Pad {
             input:false,
             precision:2
         }, cancelDraw: false, parent: this})
-        this.hue.margin = this.pointSize
         this.hue.sendValue = ()=>{}
         this.hueWrapper.appendChild(this.hue.widget)
 
@@ -86,6 +86,28 @@ module.exports = class Rgb extends Pad {
             this.dragHandle()
         })
 
+        if (this.getProp('alphaChannel')) {
+            this.alphaWrapper = this.widget.appendChild(html`<div class="alpha-wrapper"></div>`)
+            this.alpha = new Fader({props:{
+                ...faderDefaults,
+                id:'a',
+                compact:true,
+                pips:false,
+                horizontal:true,
+                snap:this.getProp('snap'),
+                range:{min:0,max:255},
+                default: 255,
+                input:false,
+                precision:2
+            }, cancelDraw: false, parent: this})
+            this.alpha.sendValue = ()=>{}
+            this.alphaWrapper.appendChild(this.alpha.widget)
+            this.alpha.on('change',(e)=>{
+                e.stopPropagation = true
+                this.dragAlphaHandle()
+            })
+        }
+
         if (this.getProp('input')) {
 
             this.input = new Input({
@@ -100,6 +122,7 @@ module.exports = class Rgb extends Pad {
             })
 
         }
+
 
         this.setValue([this.getProp('range').min, this.getProp('range').min, this.getProp('range').min])
 
@@ -134,32 +157,40 @@ module.exports = class Rgb extends Pad {
 
     }
 
+    dragAlphaHandle() {
+
+        var alpha = this.alpha.value
+        if (alpha !== this.value[3]) {
+            this.setValue([this.value[0], this.value[1], this.value[2], alpha],{send:true,sync:true,dragged:true,nohue:true})
+        }
+
+
+    }
+
     setValue(v, options={}) {
 
-        if (!v || !v.length || v.length!=3) return
+        if (!v || v.length < 3) return
         if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
-        for (let i in [0,1,2]) {
-            v[i] = clip(v[i],[this.getProp('range').min, this.getProp('range').max])
+        var value = Array(this.getProp('alphaChannel') ? 4 : 3)
+        for (var i = 0; i < value.length; i++) {
+            value[i] = mapToScale(v[i], [0, 255], [this.getProp('range').min, this.getProp('range').max])
         }
 
-        var rgb = {r:v[0],g:v[1],b:v[2]},
-            {min, max} = this.getProp('range')
-
-        if (min !== 0 || max !== 255) {
-            for (var k in rgb) {
-                rgb[k] = (rgb[k] - min ) * 255 / max
-            }
-        }
-
-        var hsb = rgbToHsb(rgb)
+        var hsb = rgbToHsb({
+            r: value[0],
+            g: value[1],
+            b: value[2]
+        })
 
         if (!options.dragged) {
             this.pad.setValue([hsb.s, hsb.b], {sync: false, send:false, dragged:false})
+            if (value.length === 4) this.alpha.setValue(value[3], {sync: false, send:false, dragged:false})
         }
 
         this.hsb = hsb
-        this.value = v
+        this.value = value
+
 
         if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
