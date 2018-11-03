@@ -34,9 +34,9 @@ module.exports = class Fader extends Slider {
                 '- values can be `number` or `object` if a custom label is needed',
                 'Example: (`{min:{"-inf": 0}, "50%": 0.25, max: {"+inf": 1}}`)'
             ]},
-            steps: {type: 'boolean|number|array', value: '', help: [
+            steps: {type: 'string|number|array', value: '', help: [
                 'Restricts the widget\'s value:',
-                '- `true`: use values defined in `range`',
+                '- `auto`: use values defined in `range`',
                 '- `number`: define a number of evenly spaced steps',
                 '- `array`: use arbitrary values',
             ]},
