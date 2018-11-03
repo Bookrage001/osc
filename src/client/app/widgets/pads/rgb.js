@@ -23,7 +23,7 @@ module.exports = class Rgb extends Pad {
             spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
             range: {type: 'object', value: {min: 0, max: 255}, help: 'Defines the widget\'s output scale.'},
             input: {type: 'boolean', value: true, help: 'Set to `false` to hide the built-in input widget'},
-            alpha:{type:'boolean',value:true,help:'add alpha channel'}
+            alpha:{type: 'boolean', value: true, help: 'Set to `true` to enable alpha channel'}
 
         }, ['color'], {
 
