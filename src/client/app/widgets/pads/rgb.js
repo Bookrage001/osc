@@ -240,6 +240,7 @@ module.exports = class Rgb extends Pad {
                     w.onPropChanged('color')
                 }
                 if (this.input) this.input.onPropChanged('color')
+                if (this.alpha) this.alpha.onPropChanged('color')
                 return
 
         }
@@ -250,6 +251,7 @@ module.exports = class Rgb extends Pad {
         this.hue.onRemove()
         this.pad.onRemove()
         if (this.input) this.input.onRemove()
+        if (this.alpha) this.alpha.onRemove()
         super.onRemove()
     }
 
