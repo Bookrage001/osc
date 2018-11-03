@@ -42,6 +42,12 @@ module.exports = class MultiXy extends Pad {
                 'Set to `true` to send separate osc messages for each point\'s x and y axis. The address will be the same as the widget\'s with `/N/x` or `/N/y` appended to it, where N is the point\'s id (or the point\'s label if points is an array)',
                 'Can be set as an `object` to specify a different address : `[\'/0/x\', \'/0/y\', \'/1/x\', \'/2/y\']`',
                 'Note: the widget will only respond to its original osc address, not to the splitted version'
+            ]},
+            css: {type: 'string', value: '', help: [
+                'Available CSS variables:',
+                '- `--background: background;`: sets the dragging area\'s background',
+                '- `--pips-color: color;`',
+                '- `--pips-opacity: number;`',
             ]}
         })
 

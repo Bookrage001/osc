@@ -3,9 +3,26 @@
     height:230rem;
     padding:1rem;
 
+    --background: var(--color-track);
+    --pips-opacity: 0.1;
+
     .label {
         flex-shrink: 0;
         z-index: 1;
+    }
+
+    > .pad > .wrapper:after {
+        content:"";
+        position: absolute;
+        pointer-events: none;
+        top:var(--pointSize);
+        left:var(--pointSize);
+        height:calc(100% - 2 * var(--pointSize));
+        width:calc(100% - 2 * var(--pointSize));
+        background: var(--background);
+        box-shadow: 0 0 0 1rem var(--color-light),
+                    0 0 0 1rem var(--color-bg) inset;
+
     }
 
     .pad {
@@ -25,8 +42,6 @@
         > .wrapper {
             position: relative;
             flex:1;
-            background:var(--color-track);
-            border: 1rem solid var(--color-bg);
             touch-action: none;
 
             > canvas {
@@ -36,7 +51,7 @@
                 pointer-events: none;
                 z-index: 1;
             }
-            .fader {
+            > .fader {
                 pointer-events: none;
                 position: absolute;
                 width:100%;
@@ -63,29 +78,13 @@
 
 }
 
-.panel:not(.tab) > .xy-container,
-.panel:not(.tab) > .rgb-container,
-.panel:not(.tab) > .multixy-container {
-    --color-border:transparent;
-    padding: 0;
-    > .pad {
-      padding: 1rem;
-    }
-    > .pad > .wrapper {
-        box-shadow: 0 0 0 1rem var(--color-light),
-                    0 0 0 1rem var(--color-fg);
-        border: 1rem solid var(--color-bg);
-    }
-    .hue-wrapper {
-        box-shadow: 0 0 0 1rem var(--color-light),
-                    0 0 0 1rem var(--color-fg);
-    }
-}
-
 .rgb-container {
     > .pad {
+
         > .wrapper {
-            // background: none!important;
+
+            display: flex;
+            flex-direction: column;
 
             image-rendering:pixelated;
             > .pad {
@@ -98,6 +97,7 @@
                 canvas {
                     border:0;
                     left:0;
+                    background: transparent;
                 }
                 .input {
                     display: none;
@@ -112,36 +112,48 @@
                 background-color: red;
                 background-clip: content-box;
                 background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%), linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-                opacity: 0.7;
+                border: 1rem solid var(--color-bg);
+            }
+
+            background: transparent;
+            border: none;
+            box-shadow: none;
+
+        }
+        .alpha-wrapper, .hue-wrapper {
+            flex-shrink: 0;
+            padding: calc(var(--pointSize) / 2) var(--pointSize);
+            .fader {
+                box-shadow: 0 0 0 1rem var(--color-light);
+                height: calc(2 * var(--pointSize));
             }
         }
         .hue-wrapper {
+            padding-top: 0;
             --color-gauge:transparent;
-            --color-knob:var(--color-white);
-            margin-top: -1rem;
-            height: calc(2 * var(--pointSize) + 8rem);
+            --color-knob: var(--color-white);
             .wrapper {
                 &:after {
                     content:"";
                     display: block;
                     position: absolute;
-                    top:50%;
-                    margin-top: -2rem;
-                    left:var(--pointSize);
-                    right:var(--pointSize);
-                    height: 4rem;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
                     background: linear-gradient(to left, #F00, #FF0080, #F0F, #8000FF, #00F, #0080FF, #0FF, #00FF80, #0F0, #80FF00, #FF0, #FF8000, #F00) repeat scroll 0% 0%;
                     box-shadow: 0 0 0 4rem var(--color-track);
-                    z-index: 1;
+                    // z-index: 1;
+                    opacity: 0.7;
                 }
-                background:var(--color-track);
-            }
-            canvas {
-                background:transparent;
-                opacity: 0.7;
-                margin: 2rem 0;
+                canvas {
+                    background: transparent;
+                    -webkit-background-blend-mode: color-burn;
+
+                }
             }
         }
+
     }
 }
 

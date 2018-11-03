@@ -20,6 +20,17 @@ class Pad extends Canvas {
 
     }
 
+    cacheCanvasStyle(style) {
+
+        style = style || window.getComputedStyle(this.canvas)
+
+        super.cacheCanvasStyle(style)
+
+        this.colors.pips = style.getPropertyValue('--color-pips') || this.colors.custom
+        this.colors.pipsOpacity = style.getPropertyValue('--pips-opacity')
+
+    }
+
 }
 
 Pad.dynamicProps = Pad.prototype.constructor.dynamicProps.filter(n => n !== 'precision')

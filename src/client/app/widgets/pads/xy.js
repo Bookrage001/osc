@@ -38,6 +38,12 @@ module.exports = class Xy extends Pad {
                 'Set to `true` to send separate osc messages for each point\'s x and y axis. The address will be the same as the widget\'s with `/x` or `/y` appended to it',
                 'Can be set as an `object` to specify a different address : [\'/osc_address_x\', \'/osc_address_y\']',
                 'Note: the widget will only respond to its original osc address, not to the splitted version'
+            ]},
+            css: {type: 'string', value: '', help: [
+                'Available CSS variables:',
+                '- `--background: background;`: sets the dragging area\'s background',
+                '- `--pips-color: color;`',
+                '- `--pips-opacity: number;`',
             ]}
 
         })
@@ -209,11 +215,11 @@ module.exports = class Xy extends Pad {
 
         this.ctx.lineWidth = PXSCALE
         this.ctx.fillStyle = this.colors.custom
-        this.ctx.strokeStyle = this.colors.custom
 
 
         if (this.getProp('pips')) {
-            this.ctx.globalAlpha = 0.1
+            this.ctx.strokeStyle = this.colors.pips
+            this.ctx.globalAlpha = this.colors.pipsOpacity
             this.ctx.beginPath()
             this.ctx.rect(margin + 0.5, margin + 0.5, this.width - margin * 2 - 1, this.height - margin * 2 - 1)
             this.ctx.stroke()
@@ -240,6 +246,7 @@ module.exports = class Xy extends Pad {
         }
 
 
+        this.ctx.strokeStyle = this.colors.custom
         this.ctx.globalAlpha = 0.7
 
         this.ctx.beginPath()
