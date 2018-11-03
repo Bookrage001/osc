@@ -23,7 +23,7 @@ module.exports = class Rgb extends Pad {
             spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
             range: {type: 'object', value: {min: 0, max: 255}, help: 'Defines the widget\'s output scale.'},
             input: {type: 'boolean', value: true, help: 'Set to `false` to hide the built-in input widget'},
-            alphaChannel:{type:'boolean',value:true,help:'add alpha channel'}
+            alpha:{type:'boolean',value:true,help:'add alpha channel'}
 
         }, ['color'], {
 
@@ -86,7 +86,7 @@ module.exports = class Rgb extends Pad {
             this.dragHandle()
         })
 
-        if (this.getProp('alphaChannel')) {
+        if (this.getProp('alpha')) {
             this.alphaWrapper = this.widget.appendChild(html`<div class="alpha-wrapper"></div>`)
             this.alpha = new Fader({props:{
                 ...faderDefaults,
@@ -172,7 +172,7 @@ module.exports = class Rgb extends Pad {
         if (!v || v.length < 3) return
         if (this.touched && !options.dragged) return this.setValueTouchedQueue = [v, options]
 
-        var value = Array(this.getProp('alphaChannel') ? 4 : 3)
+        var value = Array(this.getProp('alpha') ? 4 : 3)
         for (var i = 0; i < value.length; i++) {
             value[i] = mapToScale(v[i], [0, 255], [this.getProp('range').min, this.getProp('range').max])
         }
