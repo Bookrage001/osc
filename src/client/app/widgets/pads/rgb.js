@@ -1,7 +1,7 @@
 var Pad = require('./pad'),
     Xy = require('./xy'),
     Fader = require('./_fake_fader'),
-    {mapToScale, hsbToRgb, rgbToHsb} = require('../utils'),
+    {clip, mapToScale, hsbToRgb, rgbToHsb} = require('../utils'),
     Input = require('../inputs/input'),
     html = require('nanohtml')
 
@@ -141,17 +141,13 @@ module.exports = class Rgb extends Pad {
 
             this.update({nohue:!hue})
 
-            var rgb = hsbToRgb(this.hsb),
-                {min, max} = this.getProp('range')
-
-            if (min !== 0 || max !== 255) {
-                for (var k in rgb) {
-                    rgb[k] = min + max * rgb[k] / 255
-                }
+            var rgb = hsbToRgb(this.hsb)
+            for (var k in rgb) {
+                rgb[k] = mapToScale(rgb[k], [0, 255], [this.getProp('range').min, this.getProp('range').max])
             }
 
             if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
-                this.setValue([rgb.r, rgb.g, rgb.b],{send:true,sync:true,dragged:true,nohue:!hue})
+                this.setValue([rgb.r, rgb.g, rgb.b, this.alpha.value],{send:true,sync:true,dragged:true,nohue:!hue})
             }
         }
 
@@ -174,7 +170,7 @@ module.exports = class Rgb extends Pad {
 
         var value = Array(this.getProp('alpha') ? 4 : 3)
         for (var i = 0; i < value.length; i++) {
-            value[i] = mapToScale(v[i], [0, 255], [this.getProp('range').min, this.getProp('range').max])
+            value[i] = clip(v[i], [this.getProp('range').min, this.getProp('range').max])
         }
 
         var hsb = rgbToHsb({
