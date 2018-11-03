@@ -147,9 +147,7 @@ module.exports = class Rgb extends Pad {
             }
 
             if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
-                var value = [rgb.r, rgb.g, rgb.b]
-                if (this.getProp('alpha')) value.push(this.alpha.value)
-                this.setValue(value, {send:true,sync:true,dragged:true,nohue:!hue})
+                this.setValue([rgb.r, rgb.g, rgb.b], {send:true,sync:true,dragged:true,nohue:!hue})
             }
         }
 
@@ -174,6 +172,8 @@ module.exports = class Rgb extends Pad {
         for (var i = 0; i < value.length; i++) {
             value[i] = clip(v[i], [this.getProp('range').min, this.getProp('range').max])
         }
+
+        if (value.length === 4 && value[3] === undefined) value[3] = this.alpha.value
 
         var hsb = rgbToHsb({
             r: value[0],
