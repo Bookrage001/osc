@@ -227,11 +227,6 @@ module.exports = class Xy extends Pad {
 
         if (this.getProp('pips')) {
             this.ctx.strokeStyle = this.colors.pips
-            this.ctx.globalAlpha = 0.1
-            this.ctx.beginPath()
-            this.ctx.rect(margin + 0.5, margin + 0.5, this.width - margin * 2 - 1, this.height - margin * 2 - 1)
-            this.ctx.stroke()
-
             this.ctx.globalAlpha = this.colors.pipsOpacity
             this.ctx.beginPath()
             for (var pip of this.faders.x.rangeKeys.concat(this.faders.x.valueToPercent(this.faders.x.originValue))) {
