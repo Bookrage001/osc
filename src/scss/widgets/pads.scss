@@ -1,10 +1,11 @@
 .xy-container, .rgb-container, .multixy-container {
     width:200rem;
     height:230rem;
-    padding:1rem;
+    padding:2rem;
 
     --background: var(--color-track);
-    --pips-opacity: 0.1;
+    --pips-opacity: 0.2;
+    --point-opacity: 0.3;
 
     .label {
         flex-shrink: 0;

@@ -44,6 +44,7 @@ module.exports = class Xy extends Pad {
                 '- `--background: background;`: sets the dragging area\'s background',
                 '- `--pips-color: color;`',
                 '- `--pips-opacity: number;`',
+                '- `--point-opacity: number;`',
             ]}
 
         })
@@ -105,9 +106,11 @@ module.exports = class Xy extends Pad {
         })
 
         touchstate(this, {element: this.wrapper})
+        this.active = false
 
         this.on('draginit',(e)=>{
             e.stopPropagation = true
+            this.active = true
             this.faders.x.trigger('draginit', e)
             this.faders.y.trigger('draginit', e)
             this.dragHandle()
@@ -121,10 +124,13 @@ module.exports = class Xy extends Pad {
 
         this.on('dragend', (e)=>{
             e.stopPropagation = true
+            this.active = false
             this.faders.x.trigger('dragend', e)
             this.faders.y.trigger('dragend', e)
             if (this.getProp('spring')) {
                 this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true})
+            } else {
+                this.batchDraw()
             }
         }, {element: this.wrapper})
 
@@ -175,6 +181,8 @@ module.exports = class Xy extends Pad {
 
         if (x != this.value[0] || y != this.value[1]) {
             this.setValue([x, y],{send:true,sync:true,dragged:true})
+        } else {
+            this.batchDraw()
         }
 
     }
@@ -219,11 +227,12 @@ module.exports = class Xy extends Pad {
 
         if (this.getProp('pips')) {
             this.ctx.strokeStyle = this.colors.pips
-            this.ctx.globalAlpha = this.colors.pipsOpacity
+            this.ctx.globalAlpha = 0.1
             this.ctx.beginPath()
             this.ctx.rect(margin + 0.5, margin + 0.5, this.width - margin * 2 - 1, this.height - margin * 2 - 1)
             this.ctx.stroke()
 
+            this.ctx.globalAlpha = this.colors.pipsOpacity
             this.ctx.beginPath()
             for (var pip of this.faders.x.rangeKeys.concat(this.faders.x.valueToPercent(this.faders.x.originValue))) {
                 if (pip == 0 || pip == 100) continue
@@ -241,24 +250,26 @@ module.exports = class Xy extends Pad {
 
         } else {
 
-            this.clearRect = [x - margin, y - margin, margin * 2, margin * 2]
+            this.clearRect = [x - margin - PXSCALE, y - margin - PXSCALE, (margin + PXSCALE) * 2, (margin + PXSCALE) * 2]
 
         }
 
 
         this.ctx.strokeStyle = this.colors.custom
-        this.ctx.globalAlpha = 0.7
-
+        this.ctx.globalAlpha = this.active ? 1 : 0.7
+        this.ctx.lineWidth = 2 * PXSCALE
         this.ctx.beginPath()
         this.ctx.arc(x, y, pointSize, Math.PI * 2, false)
         this.ctx.stroke()
 
-        this.ctx.globalAlpha = 1
-        this.ctx.lineWidth = 1.5 * PXSCALE
 
+
+        this.ctx.fillStyle = this.colors.custom
+        this.ctx.globalAlpha = this.colors.pointOpacity
         this.ctx.beginPath()
         this.ctx.arc(x, y, pointSize / 1.5, Math.PI * 2, false)
-        this.ctx.stroke()
+        this.ctx.fill()
+
 
     }
 

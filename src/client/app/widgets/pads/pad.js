@@ -28,6 +28,7 @@ class Pad extends Canvas {
 
         this.colors.pips = style.getPropertyValue('--color-pips') || this.colors.custom
         this.colors.pipsOpacity = style.getPropertyValue('--pips-opacity')
+        this.colors.pointOpacity = style.getPropertyValue('--point-opacity')
 
     }
 

@@ -57,6 +57,10 @@ module.exports = class Rgb extends Pad {
         }, cancelDraw: false, parent: this})
         this.hue.sendValue = ()=>{}
         this.hueWrapper.appendChild(this.hue.widget)
+        this.hue.on('change',(e)=>{
+            e.stopPropagation = true
+            this.dragHandle(true)
+        })
 
         this.pad = new Xy({props:{
             ...xyDefaults,
@@ -71,16 +75,6 @@ module.exports = class Rgb extends Pad {
         }, parent: this})
         this.pad.sendValue = ()=>{}
         this.wrapper.appendChild(this.pad.widget)
-
-
-        this.value = []
-        this.hsb = {h:0,s:0,b:0}
-
-        this.hue.on('change',(e)=>{
-            e.stopPropagation = true
-            this.dragHandle(true)
-        })
-
         this.pad.on('change',(e)=>{
             e.stopPropagation = true
             this.dragHandle()
@@ -124,6 +118,10 @@ module.exports = class Rgb extends Pad {
         }
 
 
+        this.value = []
+
+        this.hsb = {h:0,s:0,b:0}
+
         this.setValue([this.getProp('range').min, this.getProp('range').min, this.getProp('range').min])
 
     }
@@ -147,7 +145,12 @@ module.exports = class Rgb extends Pad {
             }
 
             if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
-                this.setValue([rgb.r, rgb.g, rgb.b], {send:true,sync:true,dragged:true,nohue:!hue})
+                this.setValue([rgb.r, rgb.g, rgb.b], {
+                    send: true,
+                    sync: true,
+                    dragged: true,
+                    nohue: !hue
+                })
             }
         }
 
@@ -157,7 +160,12 @@ module.exports = class Rgb extends Pad {
 
         var alpha = this.alpha.value
         if (alpha !== this.value[3]) {
-            this.setValue([this.value[0], this.value[1], this.value[2], alpha],{send:true,sync:true,dragged:true,nohue:true})
+            this.setValue([this.value[0], this.value[1], this.value[2], alpha], {
+                send: true,
+                sync: true,
+                dragged: true,
+                nohue: true
+            })
         }
 
 
@@ -182,8 +190,8 @@ module.exports = class Rgb extends Pad {
         })
 
         if (!options.dragged) {
-            this.pad.setValue([hsb.s, hsb.b], {sync: false, send:false, dragged:false})
-            if (value.length === 4) this.alpha.setValue(value[3], {sync: false, send:false, dragged:false})
+            this.pad.setValue([hsb.s, hsb.b])
+            if (value.length === 4) this.alpha.setValue(value[3])
         }
 
         this.hsb = hsb
