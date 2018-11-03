@@ -147,7 +147,9 @@ module.exports = class Rgb extends Pad {
             }
 
             if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
-                this.setValue([rgb.r, rgb.g, rgb.b, this.alpha.value],{send:true,sync:true,dragged:true,nohue:!hue})
+                var value = [rgb.r, rgb.g, rgb.b]
+                if (this.getProp('alpha')) value.push(this.alpha.value)
+                this.setValue(value, {send:true,sync:true,dragged:true,nohue:!hue})
             }
         }
 
