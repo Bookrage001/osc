@@ -237,14 +237,16 @@ module.exports = class Xy extends Pad {
             for (var pip of this.faders.x.rangeKeys.concat(this.faders.x.valueToPercent(this.faders.x.originValue))) {
                 if (pip == 0 || pip == 100) continue
                 var xpip = Math.round(2 * this.faders.x.percentToCoord(pip)) / 2
-                this.ctx.moveTo(xpip, margin + 0.5)
-                this.ctx.lineTo(xpip, this.height - margin - 0.5)
+                if (xpip === parseInt(xpip)) xpip -= 0.5
+                this.ctx.moveTo(xpip, margin)
+                this.ctx.lineTo(xpip, this.height - margin)
             }
             for (pip of this.faders.y.rangeKeys.concat(this.faders.y.valueToPercent(this.faders.y.originValue))) {
                 if (pip == 0 || pip == 100) continue
                 var ypip = Math.round(2 * this.faders.y.percentToCoord(pip)) / 2
-                this.ctx.moveTo(margin + 0.5, ypip)
-                this.ctx.lineTo(this.width - margin - 0.5, ypip)
+                if (ypip === parseInt(ypip)) ypip -= 0.5
+                this.ctx.moveTo(margin, ypip)
+                this.ctx.lineTo(this.width - margin, ypip)
             }
             this.ctx.stroke()
 
