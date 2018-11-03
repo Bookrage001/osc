@@ -48,6 +48,8 @@ module.exports = class MultiXy extends Pad {
                 '- `--background: background;`: sets the dragging area\'s background',
                 '- `--pips-color: color;`',
                 '- `--pips-opacity: number;`',
+                '- `--color-text: point-color;`',
+                'Pads can be targetted individually with the .pad-X selector (where X is the pad\'s index)',
             ]}
         })
 
