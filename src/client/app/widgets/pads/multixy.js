@@ -57,7 +57,7 @@ module.exports = class MultiXy extends Pad {
 
         this.pads = []
 
-        for (let i=this.npoints-1;i>=0;i--) {
+        for (let i = 0; i < this.npoints; i++) {
             this.pads[i] = new Xy({props:{
                 ...xyDefaults,
                 snap:this.getProp('snap'),
@@ -73,6 +73,7 @@ module.exports = class MultiXy extends Pad {
                 input:false
             }, parent: this})
             this.pads[i].sendValue = ()=>{}
+            this.pads[i].widget.classList.add('pad-' + i)
             this.wrapper.appendChild(this.pads[i].widget)
 
         }

@@ -1,10 +1,15 @@
 # Changelog
 
+## 0.39.4
+
+- widgets
+  - multixy: added `.pad-N` class to inner xy pads to help with css customization
+
 ## 0.39.3
 
 - bug fixes
   - broken tabs color property
-  - broken `/TABS` command; this command doesn't makes panels send osc messages anymore 
+  - broken `/TABS` command; this command doesn't makes panels send osc messages anymore
 
 ## 0.39.2
 
