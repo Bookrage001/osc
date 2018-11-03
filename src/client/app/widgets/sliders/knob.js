@@ -25,7 +25,13 @@ module.exports = class Knob extends Slider {
                 '- values can be `number` or `object` if a custom label is needed',
                 'Example: (`{min:{"-inf": 0}, "50%": 0.25, max: {"+inf": 1}}`)'
             ]},
-            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis'},
+            steps: {type: 'boolean|array', value: false, help: [
+                'Restricts the widget\'s value:',
+                '- `true`: use values defined in `range`',
+                '- `number`: define a number of evenly spaced steps',
+                '- `array`: use arbitrary values',
+            ]},
+            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale'},
             unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
             origin: {type: 'number', value: 'auto', help: 'Defines the starting point\'s value of the knob\'s gauge'},
 
@@ -135,8 +141,9 @@ module.exports = class Knob extends Slider {
 
     draw() {
 
-        var o = this.percentToAngle(this.valueToPercent(this.originValue)),
-            d = this.percentToAngle(this.percent),
+        var percent = this.getProp('steps') ? this.valueToPercent(this.value) : this.percent,
+            o = this.percentToAngle(this.valueToPercent(this.originValue)),
+            d = this.percentToAngle(percent),
             min = this.percentToAngle(0),
             max = this.percentToAngle(100),
             dashed = this.getProp('dashed'),

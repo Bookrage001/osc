@@ -100,6 +100,15 @@ class Slider extends Canvas {
 
         }
 
+        if (this.getProp('steps')) {
+            var steps = this.getProp('steps')
+            this.steps = Array.isArray(steps) ?
+                steps : typeof steps === 'number' ?
+                    Array(steps).fill(0).map((x, i) => i / (steps - 1) * this.rangeValsMax + this.rangeValsMin)
+                    : this.rangeVals
+        }
+
+
         this.setValue(this.springValue)
 
     }
@@ -209,6 +218,16 @@ class Slider extends Canvas {
         if ((options.dragged || options.fromLocal) && this.value.toFixed(this.precision) == value.toFixed(this.precision)) options.send = false
 
         this.value = value
+
+        if (this.getProp('steps')) {
+
+            var diff = this.steps.map(x => Math.abs(x - this.value)),
+                index = diff.indexOf(Math.min(...diff)),
+                val = this.steps[index]
+
+            if (!isNaN(val)) this.value = clip(val, [this.rangeValsMin,this.rangeValsMax])
+
+        }
 
         if (!options.dragged) this.percent = this.valueToPercent(this.value)
 

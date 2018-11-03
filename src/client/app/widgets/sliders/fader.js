@@ -34,7 +34,13 @@ module.exports = class Fader extends Slider {
                 '- values can be `number` or `object` if a custom label is needed',
                 'Example: (`{min:{"-inf": 0}, "50%": 0.25, max: {"+inf": 1}}`)'
             ]},
-            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis'},
+            steps: {type: 'boolean|number|array', value: '', help: [
+                'Restricts the widget\'s value:',
+                '- `true`: use values defined in `range`',
+                '- `number`: define a number of evenly spaced steps',
+                '- `array`: use arbitrary values',
+            ]},
+            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale'},
             unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
             origin: {type: 'number', value: 'auto', help: 'Defines the starting point\'s value of the fader\'s gauge'},
 
@@ -221,7 +227,8 @@ module.exports = class Fader extends Slider {
         var width = this.getProp('horizontal') ? this.height : this.width,
             height = !this.getProp('horizontal') ? this.height : this.width
 
-        var d = Math.round(this.percentToCoord(this.percent)),
+        var percent = this.getProp('steps') ? this.valueToPercent(this.value) : this.percent,
+            d = Math.round(this.percentToCoord(percent)),
             o = Math.round(this.percentToCoord(this.valueToPercent(this.originValue))),
             m = Math.round(this.getProp('horizontal') ? this.height / 2 : this.width / 2)
 

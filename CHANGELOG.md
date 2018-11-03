@@ -4,6 +4,7 @@
 
 - widgets
   - multixy: added `.pad-N` class to inner xy pads to help with css customization
+  - sliders: new `steps` option
 
 ## 0.39.3
 
