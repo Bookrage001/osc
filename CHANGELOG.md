@@ -5,8 +5,8 @@
 - widgets
   - multiXy: added `.pad-N` class to inner xy pads to help with css customization
   - xy/multiXy: added css variables `--background`, `--color-pips`, `--pips-opacity` and `--point-opacity`
-  - rgb: added `alphaChannel` option
-  - xy/multiXy/rgb: design impovements; 
+  - rgb: added `alpha` option
+  - xy/multiXy/rgb: design impovements;
   - sliders: new `steps` option
 
 ## 0.39.3
