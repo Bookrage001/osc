@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.39.4
+## 0.39.4
 
 - widgets
   - multiXy: added `.pad-N` class to inner xy pads to help with css customization
@@ -26,7 +26,7 @@
 - bug fixes
   - regression breaking icons in switches' labels
 
-## 0.39.0
+## 0.39.0
 
 - performance
   - rendering speed improved (session loading time reduced by about 30%)
@@ -109,7 +109,7 @@
   - fr: corrections
   - ru: added russian translation
 
-## 0.37.0
+## 0.37.0
 
 - bug fixes
   - editor: opening the sidepanel doesn't select the root widget anymore
@@ -177,7 +177,7 @@
 - misc
   - fixed rpi build
 
-## 0.33.3
+## 0.33.3
 
 - bug fixes
   - matrix: recreation loop issue with matrices of clones
@@ -195,7 +195,7 @@
 - bug fixes
   - widgets: remove unnused properties to avoid having hidden properties laying around when the type changes (especially dangerous when those properties where linked to other widgets)
 
-## 0.33.0
+## 0.33.0
 
 - bug fixes
  - osc receivers: unregister properly when widgets are recreated (memory leak); allow non-string values (eg. objects)
@@ -204,7 +204,7 @@
   - **new** generic `matrix` widget
   - fader: restore right-click focusing the input in compact mode (mouse only)
 
-## 0.32.6
+## 0.32.6
 
 - bug fixes
   - css border-radius not applying correctly for some widgets
@@ -244,7 +244,7 @@
 - bug fixes
   - error in osc receivers
 
-## 0.32.0
+## 0.32.0
 
 - main
   - add tcp support
@@ -268,7 +268,7 @@
 - bug fixes
   - big regression breaking many touch gestures
 
-## 0.30.2
+## 0.30.2
 
 - bug fixes
   - broken remote-control /TABS command
@@ -291,7 +291,7 @@
 - editor
   - disabled widget properties are now greyed out
 
-## 0.29.2
+## 0.29.2
 
 - bug fixes
   - launcher: parsing errors are not fatal anymore
@@ -363,7 +363,7 @@
   - session/state file upload sometimes failing silently
   - regression breaking the app for iOS
 
-## 0.27.1
+## 0.27.1
 
 - bug fixes
   - error when resizing a widget and its clone(s) at the same time
@@ -713,7 +713,7 @@ Read the changelog carefully, old sessions files are likely to need some adjuste
 - widgets
   - fader: added `dashed` option; added `input` option;
   - meter: added `alignRight` option; added `dashed` option;
-  - knob: removed `compact` option; added `dashed` option; added `input` option;
+  - knob: removed `compact` option; added `dashed` option; added `input` option;
   - xy/rgb: added `input` option; added `pips` option:
   - panel/strip: removed inner widgets dark borders; added `border` option;
   - buttons: new `dropdown` widget;
@@ -979,17 +979,17 @@ Dependencies updates.
 - misc
   - one example session added
 
-## 0.11.5
+## 0.11.5
 
 - bug fixes
   - [regression] broken horizontal fader and pads
 
-## 0.11.4
+## 0.11.4
 
 - bug fixes
   - fader: default `height/width` not set when `top/left` is `auto`
 
-## 0.11.3
+## 0.11.3
 
 - widgets
   - knob: gesture's precision is proportionnal to the widget's size
@@ -1230,7 +1230,7 @@ Dependencies updates.
   - electron 1.0.2
 
 
-## 0.4.8
+## 0.4.8
 
 - bug fixes
   - regression preventing newly created widgets from using the pointer's coordinates as position
@@ -1280,7 +1280,7 @@ Dependencies updates.
   - refining the fader's pip scale that looked choppy on mobile devices. All pips are now evenly spaced, not relatively to the fader's height.
   - [desktop mode] saved sessions are added to history
 
-## 0.4.3
+## 0.4.3
 
 - features
   - text widget can be `vertical`
