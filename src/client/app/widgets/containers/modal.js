@@ -171,9 +171,13 @@ module.exports = class Modal extends Panel {
 
             // stacking
             parent.container.style.zIndex = this.value ? 'initial' : ''
+            parent.container.style.contain = this.value ? 'style size' : ''
 
             parent = parent.parent
         }
+
+        this.container.style.contain = this.value ? 'style size' : ''
+
 
     }
 
