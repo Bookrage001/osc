@@ -87,7 +87,7 @@ var options = {
         }
     },
     'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'},
-    'fullscreen':{type:'boolean', describe:'launch the default client gui in fullscreen mode (F11 to exit)'}
+    'fullscreen':{type:'boolean', describe:'launch in fullscreen mode (only affects the default gui, F11 to exit)'}
 }
 
 

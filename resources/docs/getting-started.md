@@ -33,7 +33,7 @@ Below are the available command-line options. Note that when running without any
 | |`--disable-gpu` | disable hardware acceleration |
 | |`--read-only` | disable session editing and session history changes |
 | |`--instance-name` | used to differenciate multiple instances in a zeroconf network |
-| |`--fullscreen` | launch the default client gui in fullscreen mode (F11 to exit) |
+| |`--fullscreen` | launch in fullscreen mode (only affects the default gui, F11 to exit) |
 
 Command-line only :
 
