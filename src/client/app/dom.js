@@ -63,7 +63,7 @@ module.exports = {
 
         if (!nodes) nodes = context.querySelectorAll(selector)
 
-        return nodes.forEach ? nodes : [...nodes]
+        return nodes
 
     },
 
