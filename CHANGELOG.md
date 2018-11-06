@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.39.5
+
+- bug fixes
+  - sliders: `steps` option not working when `range.min` is not `0`
+
 ## 0.39.4
 
 - widgets

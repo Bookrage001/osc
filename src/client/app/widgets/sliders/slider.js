@@ -104,7 +104,7 @@ class Slider extends Canvas {
             var steps = this.getProp('steps')
             this.steps = Array.isArray(steps) ?
                 steps : typeof steps === 'number' ?
-                    Array(steps).fill(0).map((x, i) => i / (steps - 1) * this.rangeValsMax + this.rangeValsMin)
+                    Array(steps).fill(0).map((x, i) => i / (steps - 1) * (this.rangeValsMax - this.rangeValsMin) + this.rangeValsMin)
                     : this.rangeVals
         }
 
