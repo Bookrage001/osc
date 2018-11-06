@@ -10,7 +10,10 @@ require('../scripts/client-shim')
 
 var {widgets} = require('../src/client/app/widgets')
 for (let type in widgets) {
-    session.tabs[0].widgets.push({type: type})
+    if (type !== 'tab' && type !== 'root') {
+        console.log(type)
+        session.tabs[0].widgets.push({type: type})
+    }
 }
 
 fs.writeFileSync(sessionPath, JSON.stringify(session))
