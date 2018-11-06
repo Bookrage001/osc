@@ -1,11 +1,16 @@
 # Changelog
 
+## 0.39.6
+
+- bug fixes
+  - `modal` widgets not working since chrome v70
+
 ## 0.39.5
 
 - bug fixes
   - sliders: `steps` option not working when `range.min` is not `0`
   - regression breaking the app for iOS 9.3
-  
+
 ## 0.39.4
 
 - widgets
