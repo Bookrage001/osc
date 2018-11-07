@@ -100,14 +100,7 @@ class Slider extends Canvas {
 
         }
 
-        if (this.getProp('steps')) {
-            var steps = this.getProp('steps')
-            this.steps = Array.isArray(steps) ?
-                steps : typeof steps === 'number' ?
-                    Array(steps).fill(0).map((x, i) => i / (steps - 1) * (this.rangeValsMax - this.rangeValsMin) + this.rangeValsMin)
-                    : this.rangeVals
-        }
-
+        this.setSteps()
 
         this.setValue(this.springValue)
 
@@ -246,6 +239,17 @@ class Slider extends Canvas {
 
     }
 
+    setSteps() {
+
+        if (this.getProp('steps')) {
+            var steps = this.getProp('steps')
+            this.steps = Array.isArray(steps) ?
+                steps : typeof steps === 'number' ?
+                    Array(steps).fill(0).map((x, i) => i / (steps - 1) * (this.rangeValsMax - this.rangeValsMin) + this.rangeValsMin)
+                    : this.rangeVals
+        }
+
+    }
 
     onPropChanged(propName, options, oldPropValue) {
 
@@ -255,6 +259,9 @@ class Slider extends Canvas {
 
             case 'color':
                 if (this.input) this.input.onPropChanged('color')
+                return
+            case 'steps':
+                this.setSteps()
                 return
 
         }
@@ -268,6 +275,10 @@ class Slider extends Canvas {
 
 }
 
-Slider.dynamicProps = Slider.prototype.constructor.dynamicProps.filter(n => n !== 'precision')
+Slider.dynamicProps = Slider.prototype.constructor.dynamicProps
+    .filter(n => n !== 'precision')
+    .concat([
+        'steps'
+    ])
 
 module.exports = Slider
