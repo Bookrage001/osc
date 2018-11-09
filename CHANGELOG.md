@@ -4,6 +4,8 @@
 
 - bug fixes
   - iOS 9.3 compatibility
+- widgets
+  - sliders: `steps` property is now dynamic
 
 ## 0.39.6
 
