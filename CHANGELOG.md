@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.39.7
+
+- bug fixes
+  - iOS 9.3 compatibility
+
 ## 0.39.6
 
 - bug fixes

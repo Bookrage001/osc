@@ -4,7 +4,8 @@
       "targets": {
         "ios": "9.3",
         "chrome": "50"
-      }
+      },
+      "useBuiltIns": "usage"
     }]
   ],
   "plugins": ["@babel/plugin-proposal-object-rest-spread"]
