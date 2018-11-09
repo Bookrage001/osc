@@ -162,3 +162,17 @@ Or using the precompilled binaries for node:
 ```bash
 node /path/to/packaged/open-stage-control-node/ -n
 ```
+
+To build the app for node only from sources:
+
+```bash
+
+# git clone, etc...
+
+npm install
+
+npm run build
+
+npm run package-node
+
+```
