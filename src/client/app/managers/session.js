@@ -59,7 +59,7 @@ var SessionManager = class SessionManager {
             } catch (err) {
                 loader.close()
                 lobby.open()
-                new Popup({title:icon('exclamation-triangle')+'&nbsp; ' + locales('session_parsingerror'), content: err, closable:true})
+                new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('session_parsingerror'), content: err, closable:true})
                 this.lock = false
                 throw err
             }
@@ -172,7 +172,7 @@ var SessionManager = class SessionManager {
         upload('.json', (path, result)=>{
             ipc.send('sessionOpen',{file:result,path:path})
         }, ()=>{
-            new Popup({title:icon('exclamation-triangle')+'&nbsp; ' + locales('error'), content: locales('session_uploaderror'), closable:true})
+            new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('error'), content: locales('session_uploaderror'), closable:true})
         })
 
     }
