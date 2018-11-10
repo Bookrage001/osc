@@ -39,6 +39,7 @@ module.exports = {
 
     // sidepanel
     sidepanel_fs: 'Fullscreen',
+    sidepanel_nosleep: 'Stay awake',
     sidepanel_state: 'State',
     sidepanel_traversing: 'Traversing gestures',
     sidepanel_editor: 'Editor',

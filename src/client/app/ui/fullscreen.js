@@ -1,7 +1,6 @@
 var screenfull = require('screenfull'),
     {Popup} = require('./utils'),
-    locales = require('../locales'),
-    NoSleep = require('nosleep.js')
+    locales = require('../locales')
 
 var fullscreen
 
@@ -38,16 +37,5 @@ if (screenfull.enabled) {
 
 }
 
-
-fullscreen.on('change', () => {
-    var noSleep = new NoSleep()
-
-    if(screenfull.isFullscreen){
-        noSleep.enable()
-    }
-    else{
-        noSleep.disable()
-    }
-})
 
 module.exports = fullscreen
