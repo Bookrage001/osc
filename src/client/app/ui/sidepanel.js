@@ -123,7 +123,7 @@ var sidepanelData = [
 ]
 
 
-if (true || navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
+if (navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
 
     var NoSleep = require('nosleep.js'),
         noSleep = new NoSleep(),
