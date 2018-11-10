@@ -43,10 +43,10 @@ fullscreen.on('change', () => {
     var noSleep = new NoSleep()
 
     if(screenfull.isFullscreen){
-      noSleep.enable()
+        noSleep.enable()
     }
     else{
-      noSleep.disable()
+        noSleep.disable()
     }
 })
 
