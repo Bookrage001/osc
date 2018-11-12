@@ -4,7 +4,7 @@
 
 
 <p>
-    Open Stage Control is a libre desktop OSC bi-directionnal control surface application. It's built with HTML, JavaScript & CSS and run as a Node / <a href="http://electron.atom.io/">Electron</a> web server that accepts any number of Chrome / Chromium / Electron clients.
+    Open Stage Control is a libre desktop OSC bi-directional control surface application. It's built with HTML, JavaScript & CSS and run as a Node / <a href="http://electron.atom.io/">Electron</a> web server that accepts any number of Chrome / Chromium / Electron clients.
 </p>
 
 <p><a href="https://github.com/jean-emmanuel/open-stage-control/releases">Download the latest release (prebuilt binaries for Linux, OS X and Windows)</a></p>
