@@ -92,6 +92,9 @@ module.exports = {
 
     readOnly: function(){
         READ_ONLY = true
+        $('.editor-menu .btn').remove()
+        $('.editor-menu .title').addClass('disabled')
+        if (editor.enabled) editor.disable()
     },
 
     reload: function(){

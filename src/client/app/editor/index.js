@@ -240,6 +240,8 @@ var Editor = class Editor {
 
     enable() {
 
+        if (READ_ONLY) return
+
         EDITING = true
         this.enabled = true
 
@@ -293,13 +295,6 @@ var Editor = class Editor {
         EDITING = false
         this.enabled = false
 
-        if (READ_ONLY) {
-            this.enable = ()=>{}
-            $('.editor-menu .btn').remove()
-            $('.editor-menu .title').html($('.editor-menu .title').html() + ' (disabled)').addClass('disabled')
-            return
-        }
-
         this.unselect()
         this.selectedWidgets = []
         DOM.get('.editor-root')[0].classList.add('disabled')
@@ -317,6 +312,7 @@ var Editor = class Editor {
         this.selectarea.disable()
 
     }
+
 
     unselect() {
 
