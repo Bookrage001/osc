@@ -4,6 +4,8 @@
 
 - bug fixes
   - meter's properties not accessible (overridden with fader's properties)
+- mobile
+  - button for preventing device sleep
 
 ## 0.39.7
 
