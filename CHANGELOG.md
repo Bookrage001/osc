@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.39.8
+
+- bug fixes
+  - meter's properties not accessible (overridden with fader's properties)
+
 ## 0.39.7
 
 - bug fixes

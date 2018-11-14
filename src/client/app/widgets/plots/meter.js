@@ -1,10 +1,11 @@
-var Fader = require('../sliders/fader')
+var Fader = require('../sliders/fader'),
+    Widget = require('../common/widget')
 
 module.exports = class Meter extends Fader {
 
     static defaults() {
 
-        return super.defaults({
+        return Widget.defaults({
 
             _meter:'meter',
 
