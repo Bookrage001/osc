@@ -16,7 +16,7 @@ var sidepanelData = [
                 action:()=>{
                     if (fullscreen.enabled) fullscreen.toggle()
                 },
-                class:'fullscreenToggle' + (!fullscreen.enabled ||  ELECTRON_FULLSCREEN ? ' disabled' : '')
+                class:'toggle fullscreenToggle' + (!fullscreen.enabled ||  ELECTRON_FULLSCREEN ? ' disabled' : '')
             }
 
         ]
@@ -121,6 +121,30 @@ var sidepanelData = [
         ]
     },
 ]
+
+
+if (navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
+
+    var NoSleep = require('nosleep.js'),
+        noSleep = new NoSleep(),
+        noSleepState = false
+
+    sidepanelData[0].actions.push({
+        title: locales('sidepanel_nosleep'),
+        class: 'toggle',
+        action:(el)=>{
+            noSleepState = el.classList.toggle('on')
+            if (noSleepState) {
+                noSleep.enable()
+            } else {
+                noSleep.disable()
+            }
+        }
+    })
+
+}
+
+
 
 var options = html`<ul id="options"></ul>`
 

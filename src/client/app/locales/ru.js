@@ -39,6 +39,7 @@ module.exports = { // @https://github.com/suhr
 
     // sidepanel
     sidepanel_fs: 'Полный экран',
+    sidepanel_nosleep: 'бодрствовать',
     sidepanel_state: 'Состояние',
     sidepanel_traversing: 'Скользящие жесты',
     sidepanel_editor: 'Редактор',

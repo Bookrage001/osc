@@ -39,6 +39,7 @@ module.exports = {
 
     // sidepanel
     sidepanel_fs: 'Plein Écran',
+    sidepanel_nosleep: 'Rester allumé',
     sidepanel_state: 'État',
     sidepanel_traversing: 'Gestes traversants',
     sidepanel_editor: 'Éditeur',

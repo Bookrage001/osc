@@ -98,7 +98,7 @@
         &.on {
             z-index: 0;
             color: var(--color-custom);
-            &:not(.fullscreenToggle) {
+            &:not(.toggle) {
                 pointer-events: none;
             }
             &:after {

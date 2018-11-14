@@ -37,4 +37,5 @@ if (screenfull.enabled) {
 
 }
 
+
 module.exports = fullscreen
