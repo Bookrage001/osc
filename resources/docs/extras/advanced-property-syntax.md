@@ -78,6 +78,7 @@ Where FORMULA is a valid [MathJS](http://mathjs.org/docs/expressions/syntax.html
 
 Additionnal functions:
 
+- `indexOf(a, x)`: returns index of item `x` in array `a`
 - `unpack(x)`: remove an array's brackets (`unpack([1,2])` returns `"1, 2"`)
 - `pad(x, padding)`: add leading zeros if the length the integer part of `x` is smaller than `padding` (`pad(1,2)` returns `"01"`)
 - `length(x)`: returns the length of an array or string

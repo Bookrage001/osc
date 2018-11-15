@@ -5,6 +5,8 @@
 - bug fixes
   - meter's properties not accessible (overridden with fader's properties)
   - `--read-only` option not properly working
+- widgets
+  - formulas: added `indexOf` function
 - mobile
   - button for preventing device sleep
 

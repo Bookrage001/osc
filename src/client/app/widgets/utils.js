@@ -77,6 +77,7 @@ module.exports = {
         })
         math.import({
             unpack: function(a) { return Array.isArray(a) ? a.toString() : a },
+            indexOf: function(a, x) { return a.indexOf(x) },
             pad: function(x, padding) {
                 var str = String(x),
                     [int, dec] =  str.split('.')
