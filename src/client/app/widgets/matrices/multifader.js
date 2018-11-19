@@ -1,4 +1,5 @@
 var _matrix_base = require('./_matrix_base'),
+    ipc = require('../../ipc'),
     parser = require('../../parser')
 
 module.exports = class Multifader extends _matrix_base {
@@ -50,6 +51,8 @@ module.exports = class Multifader extends _matrix_base {
 
         super(options)
 
+        ipc.send('errorLog', `[Warning]\n"${this.getProp('type')}" is deprecated and will be removed in the future, please use "matrix" instead.`)
+
         this.strips = parseInt(this.getProp('strips'))
 
         if (this.getProp('horizontal')) {
@@ -61,8 +64,9 @@ module.exports = class Multifader extends _matrix_base {
         }
 
         var strData = JSON.stringify(options.props)
+        var start = parseInt(this.getProp('start'))
 
-        for (var i = this.start; i < this.strips + this.start; i++) {
+        for (var i = start; i < this.strips + start; i++) {
 
             var data = JSON.parse(strData)
 
@@ -90,7 +94,7 @@ module.exports = class Multifader extends _matrix_base {
             })
             fader.container.classList.add('not-editable')
 
-            this.value[i-this.start] = this.getProp('range').min
+            this.value[i-start] = this.getProp('range').min
 
         }
 

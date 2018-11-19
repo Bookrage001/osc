@@ -7,7 +7,8 @@
   - `--read-only` option not properly working
 - widgets
   - formulas: added `indexOf` function
-- mobile
+  - **deprecated** `multifader` / `multipush` / `multitoggle` in favor of the generic `matrix` widget
+ - mobile
   - button for preventing device sleep
 
 ## 0.39.7

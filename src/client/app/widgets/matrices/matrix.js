@@ -1,4 +1,6 @@
 var _matrix_base = require('./_matrix_base'),
+    {enableTraversingGestures} = require('../../events/drag'),
+    html = require('nanohtml'),
     parser = require('../../parser')
 
 class Matrix extends _matrix_base {
@@ -34,9 +36,11 @@ class Matrix extends _matrix_base {
 
         if (this.getProp('borders') === false) this.widget.classList.add('noborders')
 
+        var start = parseInt(this.getProp('start'))
+
         if (parser.widgets[this.getProp('widgetType')]) {
 
-            for (var i = this.start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + this.start; i++) {
+            for (var i = start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + start; i++) {
 
                 var props = this.resolveProp('props', undefined, false, false, false, {'$':i})
                 var data = {
@@ -58,9 +62,10 @@ class Matrix extends _matrix_base {
                     parent: this
                 })
 
+                widget._index = i - start
                 widget.container.classList.add('not-editable')
 
-                this.value[i-this.start] = widget.getValue()
+                this.value[i - start] = widget.getValue()
 
             }
 
@@ -79,7 +84,6 @@ class Matrix extends _matrix_base {
         switch (propName) {
 
             case 'props':
-
 
                 for (let i = this.children.length - 1; i >= 0; i--) {
 

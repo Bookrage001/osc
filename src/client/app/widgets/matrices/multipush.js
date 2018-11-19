@@ -1,4 +1,5 @@
 var _matrix_base = require('./_matrix_base'),
+    ipc = require('../../ipc'),
     parser = require('../../parser')
 
 module.exports = class Multipush extends _matrix_base {
@@ -47,13 +48,16 @@ module.exports = class Multipush extends _matrix_base {
 
         super(options)
 
+        ipc.send('errorLog', `[Warning]\n"${this.getProp('type')}" is deprecated and will be removed in the future, please use "matrix" instead.`)
+
         this.widget.style.setProperty('--columns', this.getProp('matrix')[0])
         this.widget.style.setProperty('--rows', this.getProp('matrix')[1])
         this.widget.style.setProperty('--spacing', this.getProp('spacing') + 'rem')
 
         var strData = JSON.stringify(options.props)
+        var start = parseInt(this.getProp('start'))
 
-        for (var i = this.start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + this.start; i++) {
+        for (var i = start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + start; i++) {
 
             var data = JSON.parse(strData)
 
@@ -82,7 +86,7 @@ module.exports = class Multipush extends _matrix_base {
 
             push.container.classList.add('not-editable')
 
-            this.value[i-this.start] = this.getProp('off')
+            this.value[i - start] = this.getProp('off')
 
         }
 

@@ -1,6 +1,7 @@
 var Container = require('../common/container'),
     {enableTraversingGestures} = require('../../events/drag'),
-    html = require('nanohtml')
+    html = require('nanohtml'),
+    ipc = require('../../ipc')
 
 
 module.exports = class _matrix_base extends Container {
@@ -11,13 +12,11 @@ module.exports = class _matrix_base extends Container {
 
         this.value = []
 
-        this.start = parseInt(this.getProp('start'))
-
         this.on('change',(e)=>{
 
-            if (e.widget == this) return
+            if (e.widget === this) return
 
-            this.value[DOM.index(e.widget.container)] = e.widget.getValue()
+            this.value[e.widget._index] = e.widget.getValue()
             this.changed(e.options)
 
         })

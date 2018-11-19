@@ -46,17 +46,18 @@ module.exports = class Keyboard extends _matrix_base {
 
         super(options)
 
-        this.keys = parseInt(this.getProp('keys'))
+        var start = parseInt(this.getProp('start')),
+            keys = parseInt(this.getProp('keys'))
 
         var strData = JSON.stringify(options.props),
             pattern = 'wbwbwwbwbwbw',
             whiteKeys = 0, whiteKeys2 = 0, i
 
-        for (i = this.start; i < this.keys + this.start && i < 109; i++) {
+        for (i = start; i < keys + start && i < 109; i++) {
             if (pattern[i % 12] == 'w') whiteKeys++
         }
 
-        for (i = this.start; i < this.keys + this.start && i < 109; i++) {
+        for (i = start; i < keys + start && i < 109; i++) {
 
             var data = JSON.parse(strData)
 
@@ -82,7 +83,7 @@ module.exports = class Keyboard extends _matrix_base {
                 parentNode: this.widget,
                 parent: this
             })
-            
+
             key.container.classList.add('not-editable')
 
             if (pattern[i % 12] == 'w') {
@@ -95,7 +96,7 @@ module.exports = class Keyboard extends _matrix_base {
                 key.container.style.left = `${100 / whiteKeys * (whiteKeys2 - 3/10)}%`
             }
 
-            this.value[i-this.start] = this.getProp('off')
+            this.value[i - start] = this.getProp('off')
 
         }
 
