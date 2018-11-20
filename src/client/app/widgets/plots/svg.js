@@ -14,7 +14,7 @@ class Svg extends Widget {
 
             svg: {type: 'string', value: '', help: [
                 'Svg xml definition:',
-                '- will be wrapped in a `<svg></svg>` element',
+                '- will be wrapped in a `< svg />` element',
                 '- `<path>` commands support a special percent notation (`%x` and `%y`)'
             ]}
 
@@ -48,8 +48,13 @@ class Svg extends Widget {
         svg = svg.replace(/([0-9.]+%y)/gi, m=>(parseFloat(m) * this.height / 100).toFixed(2))
 
 
+        var newSvg = html`<svg></svg>`,
+            node = html`<div class="svg">${newSvg}</div>`
 
-        morph(this.widget, html`<div class="svg"><svg>${raw(svg)}</svg></div>`)
+        newSvg.innerHTML = svg
+
+        morph(this.widget, node)
+
     }
 
     resizeHandleProxy() {

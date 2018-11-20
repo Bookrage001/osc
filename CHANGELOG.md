@@ -4,6 +4,7 @@
 
 - bug fixes
   - editor: issue with tabs selection / edition
+  - regression breaking `svg`
 
 ## 0.40.0
 
