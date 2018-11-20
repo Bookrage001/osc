@@ -1,7 +1,6 @@
 var Widget = require('../common/widget'),
     morph = require('nanomorph'),
-    html = require('nanohtml'),
-    raw = require('nanohtml/raw')
+    html = require('nanohtml')
 
 
 class Svg extends Widget {
