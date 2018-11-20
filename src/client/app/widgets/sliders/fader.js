@@ -204,18 +204,40 @@ module.exports = class Fader extends Slider {
         }
 
         if (this.getProp('gradient')) {
+
             var colors = this.getProp('gradient')
-            if (Array.isArray(colors) && colors.length > 1) {
+
+            if (
+                (Array.isArray(colors) && colors.length > 1) ||
+                (typeof colors === 'object' && Object.keys(colors).length > 1)
+            ) {
+
+                var grad = this.ctx.createLinearGradient(0,  this.getProp('horizontal') ? 0 : this.height, 0, this.getProp('horizontal') ? this.width : 0)
+
                 try {
-                    var grad = this.ctx.createLinearGradient(0,  this.getProp('horizontal') ? 0 : this.height, 0, this.getProp('horizontal') ? this.width : 0)
-                    for (var i in colors) {
-                        grad.addColorStop(i / (colors.length - 1), colors[i])
+                    if (Array.isArray(colors)) {
+
+                        for (var i in colors) {
+                            grad.addColorStop(i / (colors.length - 1), colors[i])
+                        }
+                        this.colors.gradient = grad
+
+                    } else {
+
+                        for (var k in colors) {
+                            if (!isNaN(k)) {
+                                grad.addColorStop(clip(k, [0, 1]), colors[k])
+                            }
+                        }
+                        this.colors.gradient = grad
+
                     }
-                    this.colors.gradient = grad
                 } catch(err) {
                     this.errors.gradient = err
                 }
+
             }
+
         }
 
 

@@ -9,6 +9,7 @@
 - widgets
   - formulas: added `indexOf` function
   - **deprecated** `multifader` / `multipush` / `multitoggle` in favor of the generic `matrix` widget
+  - meter: `gradient` can be set as an object to define uneven colors breakpoints
  - mobile
   - button for preventing device sleep
 

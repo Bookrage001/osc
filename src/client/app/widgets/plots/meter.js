@@ -17,7 +17,13 @@ module.exports = class Meter extends Fader {
             horizontal: {type: 'boolean', value: false, help: 'See fader\'s `horizontal`'},
             pips: {type: 'boolean', value: false, help: 'See fader\'s `pips`'},
             dashed: {type: 'boolean', value: false, help: 'See fader\'s `dashed`'},
-            gradient: {type: 'array', value: [], help: 'When set, the meter\'s gauge will be filled with a linear color gradient : each item must be a CSS color string. Example: `[\'blue\', \'red\']`'},
+            gradient: {type: 'array|object', value: [], help: [
+                'When set, the meter\'s gauge will be filled with a linear color gradient',
+                '- each item must be a CSS color string.',
+                '- as an `object`: each key must be a number between 0 and 1',
+                '- each item must be a CSS color string.',
+                'Examples: `[\'blue\', \'red\']`, {\'0\': \'blue\', \'0.9\': \'blue\', \'1\': \'red\'} '
+            ]},
 
         }, ['target', 'precision', 'bypass'], {
 
