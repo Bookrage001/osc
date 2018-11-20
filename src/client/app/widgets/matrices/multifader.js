@@ -99,6 +99,7 @@ module.exports = class Multifader extends _matrix_base {
                 parentNode: this.widget,
                 parent: this
             })
+            fader._index = i - start
             fader.container.classList.add('not-editable')
 
             this.value[i-start] = this.getProp('range').min

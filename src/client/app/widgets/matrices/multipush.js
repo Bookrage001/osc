@@ -91,6 +91,7 @@ module.exports = class Multipush extends _matrix_base {
                 parent: this
             })
 
+            push._index = i - start
             push.container.classList.add('not-editable')
 
             this.value[i - start] = this.getProp('off')

@@ -90,6 +90,7 @@ module.exports = class Multitoggle extends _matrix_base {
                 parentNode: this.widget,
                 parent: this
             })
+            toggle._index = i - start
             toggle.container.classList.add('not-editable')
 
             this.value[i-start] = this.getProp('off')

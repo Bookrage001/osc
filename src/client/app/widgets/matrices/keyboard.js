@@ -91,6 +91,7 @@ module.exports = class Keyboard extends _matrix_base {
                 parent: this
             })
 
+            key._index = i - start
             key.container.classList.add('not-editable')
 
             if (pattern[i % 12] == 'w') {
