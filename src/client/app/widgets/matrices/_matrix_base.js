@@ -1,7 +1,6 @@
 var Container = require('../common/container'),
     {enableTraversingGestures} = require('../../events/drag'),
-    html = require('nanohtml'),
-    ipc = require('../../ipc')
+    html = require('nanohtml')
 
 
 module.exports = class _matrix_base extends Container {

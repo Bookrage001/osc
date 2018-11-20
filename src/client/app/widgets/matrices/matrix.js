@@ -1,6 +1,4 @@
 var _matrix_base = require('./_matrix_base'),
-    {enableTraversingGestures} = require('../../events/drag'),
-    html = require('nanohtml'),
     parser = require('../../parser')
 
 class Matrix extends _matrix_base {
