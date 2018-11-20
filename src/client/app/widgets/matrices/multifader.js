@@ -76,9 +76,16 @@ module.exports = class Multifader extends _matrix_base {
             data.label = i
             data.css = ''
 
+            data.target = '@{parent.target}'
+            data.precision = '@{parent.precision}'
+
             if (!this.getProp('split')) {
                 data.address = '@{parent.address}'
-                data.preArgs = '#{concat(@{parent.preArgs},[' + i + '])}'
+                data.preArgs = `#{
+                    a = @{parent.preArgs};
+                    b = typeof(a) == 'string' and a == '' ? [] : typeof(a) == 'Array' ? a : [a];
+                    concat(b, [${i}])
+                }`
             } else if (typeof this.getProp('split') === 'string' && this.getProp('split')[0] === '/' && /[^\\]\$/.test(this.getProp('split'))) {
                 data.address = this.getProp('split').replace(/([^\\])(\$)/g,'$1' + i).replace(/\\\$/g, '$')
                 data.preArgs = '@{parent.preArgs}'
