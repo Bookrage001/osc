@@ -3,14 +3,18 @@
 ## 0.40.0
 
 - bug fixes
-  - meter's properties not accessible (overridden with fader's properties)
   - `--read-only` option not properly working
   - `keyboard`: dynamic properties `target`, `precision` & `preArgs` not being updated dynamically
 - widgets
   - formulas: added `indexOf` function
   - **deprecated** `multifader` / `multipush` / `multitoggle` in favor of the generic `matrix` widget
   - meter: `gradient` can be set as an object to define uneven colors breakpoints
- - mobile
+
+## 0.39.8
+
+- bug fixes
+  - meter's properties not accessible (overridden with fader's properties)
+- mobile
   - button for preventing device sleep
 
 ## 0.39.7
