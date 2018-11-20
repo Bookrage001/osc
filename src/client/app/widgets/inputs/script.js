@@ -22,7 +22,7 @@ class Script extends Widget {
                 '- `value`: the value received by the widget',
                 '- `send(target, address, arg1, arg2, ...)`: function for sending osc messages (ignores the script\'s targets and the server\'s defaults unless `target` is `false`; ignores the script\'s `preArgs`)',
                 '- `set(id, value)`: function for setting a widget\'s value',
-                '', '* Note: `value` or `linkId` can be used to receive other widgets\' values'
+                '', '* Note: `value` or `linkId` properties can be used to receive other widgets\' values'
             ]}
 
         })
