@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.40.1
+
+- bug fixes
+  - editor: issue with tabs selection / edition
+
 ## 0.40.0
 
 - bug fixes
