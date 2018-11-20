@@ -336,7 +336,7 @@
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="svg_svg">svg<a class="headerlink" href="#svg_svg" title="Permanent link">¶</a></h4> ||||
-| <h4 id="svg_svg">svg<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#svg_svg" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | Svg xml definition:<br/>- will be wrapped in a `<svg></svg>` element<br/>- `<path>` commands support a special percent notation (`%x` and `%y`) |
+| <h4 id="svg_svg">svg<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#svg_svg" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | Svg xml definition:<br/>- will be wrapped in a `< svg />` element<br/>- `<path>` commands support a special percent notation (`%x` and `%y`) |
 
 ### frame
 
