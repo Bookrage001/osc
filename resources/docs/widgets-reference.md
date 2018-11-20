@@ -219,62 +219,6 @@
 | <h4 id="matrix_border">border<a class="headerlink" href="#matrix_border" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disables the widgets' borders |
 | <h4 id="matrix_props">props<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#matrix_props" title="Permanent link">¶</a></h4> | `object` | <code>{}</code> | Defines a set of property to override the widgets' defaults.<br/><br/>Formulas in this field are resolved with an extra variable representing each widget's index: `$` |
 
-### multifader
-
-| property | type |default | description |
-| --- | --- | --- | --- |
-| <h4 class="thead2" id="multifader_matrix">matrix<a class="headerlink" href="#multifader_matrix" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multifader_strips">strips<a class="headerlink" href="#multifader_strips" title="Permanent link">¶</a></h4> | `integer` | <code>2</code> | Number of faders in the row, each fader will inherit its parent's properties and the following ones (where i is the fader's index in the row)<br/>- `id`: same as the widget's with /i appended to it<br/>- `label`: i<br/>- `address`: see split |
-| <h4 id="multifader_start">start<a class="headerlink" href="#multifader_start" title="Permanent link">¶</a></h4> | `integer` | <code>0</code> | First widget's index |
-| <h4 id="multifader_traversing">traversing<a class="headerlink" href="#multifader_traversing" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disable traversing gestures |
-| <h4 class="thead2" id="multifader_fader">fader<a class="headerlink" href="#multifader_fader" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multifader_range">range<a class="headerlink" href="#multifader_range" title="Permanent link">¶</a></h4> | `object` | <code>{<br/>&nbsp;"min": 0,<br/>&nbsp;"max": 1<br/>}</code> | See fader's `range` |
-| <h4 id="multifader_logScale">logScale<a class="headerlink" href="#multifader_logScale" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `logScale` |
-| <h4 id="multifader_origin">origin<a class="headerlink" href="#multifader_origin" title="Permanent link">¶</a></h4> | `number` | <code>"auto"</code> | See fader's `origin` |
-| <h4 id="multifader_unit">unit<a class="headerlink" href="#multifader_unit" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | See fader's `unit` |
-| <h4 id="multifader_alignRight">alignRight<a class="headerlink" href="#multifader_alignRight" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `alignRight` |
-| <h4 id="multifader_horizontal">horizontal<a class="headerlink" href="#multifader_horizontal" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `horizontal` |
-| <h4 id="multifader_pips">pips<a class="headerlink" href="#multifader_pips" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `pips` |
-| <h4 id="multifader_dashed">dashed<a class="headerlink" href="#multifader_dashed" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `dashed` |
-| <h4 id="multifader_snap">snap<a class="headerlink" href="#multifader_snap" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | See fader's `snap` |
-| <h4 id="multifader_meter">meter<a class="headerlink" href="#multifader_meter" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `meter` |
-| <h4 id="multifader_input">input<a class="headerlink" href="#multifader_input" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | See fader's `input` |
-| <h4 id="multifader_compact">compact<a class="headerlink" href="#multifader_compact" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `compact` |
-| <h4 class="thead2" id="multifader_osc">osc<a class="headerlink" href="#multifader_osc" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multifader_split">split<a class="headerlink" href="#multifader_split" title="Permanent link">¶</a></h4> | `boolean`\|<br/>`string` | <code>false</code> | - `true`: the widget's index will be appended to the matrice's osc address<br/>- `false`: it will be prepended to the widget's preArgs<br/>- `string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)) |
-
-### multitoggle
-
-| property | type |default | description |
-| --- | --- | --- | --- |
-| <h4 class="thead2" id="multitoggle_matrix">matrix<a class="headerlink" href="#multitoggle_matrix" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multitoggle_matrix">matrix<a class="headerlink" href="#multitoggle_matrix" title="Permanent link">¶</a></h4> | `array` | <code>[<br/>&nbsp;2,<br/>&nbsp;2<br/>]</code> | Defines the number of columns and and rows in the matrix. Each cell will contain a toggle button that will inherit its parent's properties and the following ones (where i is the toggle's index)<br/>- `id`: same as the widget's with /i appended to it<br/>- `label`: i<br/>- `address`: see split |
-| <h4 id="multitoggle_start">start<a class="headerlink" href="#multitoggle_start" title="Permanent link">¶</a></h4> | `integer` | <code>0</code> | First widget's index |
-| <h4 id="multitoggle_spacing">spacing<a class="headerlink" href="#multitoggle_spacing" title="Permanent link">¶</a></h4> | `integer` | <code>0</code> | Adds space between widgets |
-| <h4 id="multitoggle_traversing">traversing<a class="headerlink" href="#multitoggle_traversing" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disable traversing gestures |
-| <h4 class="thead2" id="multitoggle_toggle">toggle<a class="headerlink" href="#multitoggle_toggle" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multitoggle_led">led<a class="headerlink" href="#multitoggle_led" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to display the toggle's state with a led |
-| <h4 id="multitoggle_on">on<a class="headerlink" href="#multitoggle_on" title="Permanent link">¶</a></h4> | `*` | <code>1</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
-| <h4 id="multitoggle_off">off<a class="headerlink" href="#multitoggle_off" title="Permanent link">¶</a></h4> | `*` | <code>0</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see `preArgs`) |
-| <h4 class="thead2" id="multitoggle_osc">osc<a class="headerlink" href="#multitoggle_osc" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multitoggle_split">split<a class="headerlink" href="#multitoggle_split" title="Permanent link">¶</a></h4> | `boolean`\|<br/>`string` | <code>false</code> | `true`: the widget's index will be appended to the matrice's osc address<br/><br/>`false`: it will be prepended to the widget's `preArgs`<br/><br/>`string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)) |
-
-### multipush
-
-| property | type |default | description |
-| --- | --- | --- | --- |
-| <h4 class="thead2" id="multipush_matrix">matrix<a class="headerlink" href="#multipush_matrix" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multipush_matrix">matrix<a class="headerlink" href="#multipush_matrix" title="Permanent link">¶</a></h4> | `array` | <code>[<br/>&nbsp;2,<br/>&nbsp;2<br/>]</code> | Defines the number of columns and and rows in the matrix. Each cell will contain a push button that will inherit its parent's properties and the following ones (where i is the push's index)<br/>- `id`: same as the widget's with /i appended to it<br/>- `label`: i<br/>- `address`: see split |
-| <h4 id="multipush_start">start<a class="headerlink" href="#multipush_start" title="Permanent link">¶</a></h4> | `integer` | <code>0</code> | First widget's index |
-| <h4 id="multipush_traversing">traversing<a class="headerlink" href="#multipush_traversing" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disable traversing gestures |
-| <h4 id="multipush_spacing">spacing<a class="headerlink" href="#multipush_spacing" title="Permanent link">¶</a></h4> | `integer` | <code>0</code> | Adds space between widgets |
-| <h4 class="thead2" id="multipush_push">push<a class="headerlink" href="#multipush_push" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multipush_on">on<a class="headerlink" href="#multipush_on" title="Permanent link">¶</a></h4> | `*` | <code>1</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
-| <h4 id="multipush_off">off<a class="headerlink" href="#multipush_off" title="Permanent link">¶</a></h4> | `*` | <code>0</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
-| <h4 id="multipush_norelease">norelease<a class="headerlink" href="#multipush_norelease" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to prevent sending any osc message when releasing the button |
-| <h4 class="thead2" id="multipush_osc">osc<a class="headerlink" href="#multipush_osc" title="Permanent link">¶</a></h4> ||||
-| <h4 id="multipush_split">split<a class="headerlink" href="#multipush_split" title="Permanent link">¶</a></h4> | `boolean`\|<br/>`string` | <code>false</code> | `true`: the widget's index will be appended to the matrice's osc address<br/><br/>`false`: it will be prepended to the widget's preArgs<br/><br/>`string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)) |
-
 ### keyboard
 
 | property | type |default | description |
@@ -354,25 +298,16 @@
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="meter_style">style<a class="headerlink" href="#meter_style" title="Permanent link">¶</a></h4> ||||
 | <h4 id="meter_css">css<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#meter_css" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | Available CSS variables:<br/>- `--color-gauge: color;`<br/>- `--color-knob: color;`<br/>- `--color-pips: color;`<br/>- `--gauge-opacity: number;` |
-| <h4 class="thead2" id="meter_fader">fader<a class="headerlink" href="#meter_fader" title="Permanent link">¶</a></h4> ||||
-| <h4 id="meter_horizontal">horizontal<a class="headerlink" href="#meter_horizontal" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to display the fader horizontally |
-| <h4 id="meter_alignRight">alignRight<a class="headerlink" href="#meter_alignRight" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to invert the pip's and fader's position |
-| <h4 id="meter_pips">pips<a class="headerlink" href="#meter_pips" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to hide the scale |
-| <h4 id="meter_input">input<a class="headerlink" href="#meter_input" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to hide the built-in input |
-| <h4 id="meter_meter">meter<a class="headerlink" href="#meter_meter" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to true to display a vu-meter next in the fader<br/>- the meter's `id` will be the same as the widget's with `/meter` appended to it<br/>- the meter's `id` will be the same as the widget's with `/meter` appended to it |
-| <h4 id="meter_compact">compact<a class="headerlink" href="#meter_compact" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display. |
-| <h4 id="meter_dashed">dashed<a class="headerlink" href="#meter_dashed" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to display a dashed gauge |
-| <h4 id="meter_snap">snap<a class="headerlink" href="#meter_snap" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | By default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position |
-| <h4 id="meter_spring">spring<a class="headerlink" href="#meter_spring" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | When set to `true`, the widget will go back to its `default` value when released |
-| <h4 id="meter_doubleTap">doubleTap<a class="headerlink" href="#meter_doubleTap" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to make the fader reset to its `default` value when receiving a double tap.<br/><br/>Can also be an osc address, in which case the widget will just send an osc message (`/<doubleTap> <preArgs>`) |
-| <h4 id="meter_range">range<a class="headerlink" href="#meter_range" title="Permanent link">¶</a></h4> | `object` | <code>{<br/>&nbsp;"min": 0,<br/>&nbsp;"max": 1<br/>}</code> | Defines the breakpoints of the fader's scale:<br/>- keys can be percentages and/or `min` / `max`<br/>- values can be `number` or `object` if a custom label is needed<br/><br/>Example: (`{min:{"-inf": 0}, "50%": 0.25, max: {"+inf": 1}}`) |
-| <h4 id="meter_steps">steps<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#meter_steps" title="Permanent link">¶</a></h4> | `string`\|<br/>`number`\|<br/>`array` | <code>""</code> | Restricts the widget's value:<br/>- `auto`: use values defined in `range`<br/>- `number`: define a number of evenly spaced steps<br/>- `array`: use arbitrary values |
-| <h4 id="meter_logScale">logScale<a class="headerlink" href="#meter_logScale" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to use logarithmic scale |
-| <h4 id="meter_unit">unit<a class="headerlink" href="#meter_unit" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | Unit will be appended to the displayed widget's value (it doesn't affect osc messages) |
-| <h4 id="meter_origin">origin<a class="headerlink" href="#meter_origin" title="Permanent link">¶</a></h4> | `number` | <code>"auto"</code> | Defines the starting point's value of the fader's gauge |
-| <h4 class="thead2" id="meter_osc">osc<a class="headerlink" href="#meter_osc" title="Permanent link">¶</a></h4> ||||
-| <h4 id="meter_touchAddress">touchAddress<a class="headerlink" href="#meter_touchAddress" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | OSC address for touched state messages: `/touchAddress [preArgs] 0/1` |
-| <h4 id="meter_meterAddress">meterAddress<a class="headerlink" href="#meter_meterAddress" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | OSC address for the built-in meter |
+| <h4 class="thead2" id="meter_meter">meter<a class="headerlink" href="#meter_meter" title="Permanent link">¶</a></h4> ||||
+| <h4 id="meter_range">range<a class="headerlink" href="#meter_range" title="Permanent link">¶</a></h4> | `object` | <code>{<br/>&nbsp;"min": 0,<br/>&nbsp;"max": 1<br/>}</code> | See fader's `range` |
+| <h4 id="meter_logScale">logScale<a class="headerlink" href="#meter_logScale" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `logScale` |
+| <h4 id="meter_origin">origin<a class="headerlink" href="#meter_origin" title="Permanent link">¶</a></h4> | `number` | <code>"auto"</code> | See fader's `origin` |
+| <h4 id="meter_unit">unit<a class="headerlink" href="#meter_unit" title="Permanent link">¶</a></h4> | `string` | <code>"auto"</code> | See fader's `unit` |
+| <h4 id="meter_alignRight">alignRight<a class="headerlink" href="#meter_alignRight" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `alignRight` |
+| <h4 id="meter_horizontal">horizontal<a class="headerlink" href="#meter_horizontal" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `horizontal` |
+| <h4 id="meter_pips">pips<a class="headerlink" href="#meter_pips" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `pips` |
+| <h4 id="meter_dashed">dashed<a class="headerlink" href="#meter_dashed" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | See fader's `dashed` |
+| <h4 id="meter_gradient">gradient<a class="headerlink" href="#meter_gradient" title="Permanent link">¶</a></h4> | `array`\|<br/>`object` | <code>[]</code> | When set, the meter's gauge will be filled with a linear color gradient<br/>- each item must be a CSS color string.<br/>- as an `object`: each key must be a number between 0 and 1<br/>- each item must be a CSS color string.<br/><br/>Examples: `['blue', 'red']`, {'0': 'blue', '0.9': 'blue', '1': 'red'}  |
 
 ### text
 
@@ -437,7 +372,7 @@
 | <h4 class="thead2" id="strip_strip">strip<a class="headerlink" href="#strip_strip" title="Permanent link">¶</a></h4> ||||
 | <h4 id="strip_scroll">scroll<a class="headerlink" href="#strip_scroll" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disable scrollbars |
 | <h4 id="strip_horizontal">horizontal<a class="headerlink" href="#strip_horizontal" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to display widgets horizontally |
-| <h4 id="strip_stretch">stretch<a class="headerlink" href="#strip_stretch" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `true` to stretch widgets evenly |
+| <h4 id="strip_stretch">stretch<a class="headerlink" href="#strip_stretch" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to stretch widgets evenly |
 | <h4 id="strip_border">border<a class="headerlink" href="#strip_border" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | By default, widgets in panels/strip have their border disabled, except for panels and strips. Set to `false` to apply this rule to the panel too |
 | <h4 id="strip_spacing">spacing<a class="headerlink" href="#strip_spacing" title="Permanent link">¶</a></h4> | `integer`\|<br/>`percentage` | <code>0</code> | Adds space between widgets. Percents are always relative to the strips width |
 | <h4 class="thead2" id="strip_children">children<a class="headerlink" href="#strip_children" title="Permanent link">¶</a></h4> ||||
