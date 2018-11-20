@@ -331,8 +331,6 @@ var Editor = class Editor {
 
     select(widget, options={}){
 
-        if (!options.fromLasso) this.unselect()
-
         if (Array.isArray(widget)) {
 
             this.selectedWidgets = widget
@@ -362,12 +360,14 @@ var Editor = class Editor {
 
         } else {
 
-            if (!options.refresh && (widget.container.classList.contains('editing'))) return
+            if (widget.container.classList.contains('editing')) return
 
             this.selectedWidgets = [widget]
 
 
         }
+
+        if (!options.fromLasso) this.unselect()
 
         if (this.selectedWidgets.length > 0 && !options.fromLasso) {
 
@@ -441,10 +441,6 @@ var Editor = class Editor {
     }
 
     createSelectionBlock(){
-
-        DOM.each(document, '.editing', (element)=>{
-            element.classList.remove('editing')
-        })
 
         for (let widget of this.selectedWidgets) {
             DOM.each(document, `[data-widget="${widget.hash}"]`, (item)=>{

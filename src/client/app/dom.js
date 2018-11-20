@@ -71,7 +71,9 @@ module.exports = {
 
         var nodes = module.exports.get(context, selector)
 
-        nodes.forEach(callback)
+        for (let i = nodes.length - 1; i !== -1; i--) {
+            callback(nodes[i], i)
+        }
 
         return nodes
 

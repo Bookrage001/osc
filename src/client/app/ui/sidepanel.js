@@ -206,7 +206,7 @@ function sidepanelOpen() {
 
     sidepaneLock = true
 
-    DOM.get('#open-toggle, #sidepanel').forEach((el)=>{
+    DOM.each(document, '#open-toggle, #sidepanel', (el)=>{
         el.classList.add('sidepanel-open')
     })
 
@@ -224,7 +224,7 @@ function sidepanelClose() {
 
     if (sidepaneLock) return
 
-    DOM.get('#open-toggle, #sidepanel, #container').forEach((el)=>{
+    DOM.each(document, '#open-toggle, #sidepanel, #container', (el)=>{
         el.classList.remove('sidepanel-open')
     })
 

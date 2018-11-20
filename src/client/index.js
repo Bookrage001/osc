@@ -1,5 +1,4 @@
 require('./app/stacktrace')
-require('./app/polyfills')
 require('./app/globals')
 
 var {loading} = require('./app/ui/utils'),
