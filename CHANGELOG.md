@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.39.8
+## 0.40.0
 
 - bug fixes
   - meter's properties not accessible (overridden with fader's properties)
