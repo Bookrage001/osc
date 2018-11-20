@@ -63,7 +63,7 @@ module.exports = {
 
         if (!nodes) nodes = context.querySelectorAll(selector)
 
-        return nodes
+        return nodes.forEach ? nodes : [...nodes]
 
     },
 
@@ -71,9 +71,7 @@ module.exports = {
 
         var nodes = module.exports.get(context, selector)
 
-        for (let i = nodes.length - 1; i !== -1; i--) {
-            callback(nodes[i], i)
-        }
+        nodes.forEach(callback)
 
         return nodes
 
