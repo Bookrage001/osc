@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.40.2
+
+- bug fixes
+  - regression reversing tabs order
+
 ## 0.40.1
 
 - bug fixes
