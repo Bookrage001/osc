@@ -22,6 +22,14 @@ The server can run on all [platforms supported by Electron](https://electron.ato
 
 Firefox is *not* supported.
 
+## Is there an Android / iOS app ?
+
+No, Open Stage Control is a *desktop* server app. Mobile devices can open the app by connecting to the server using Chrome.
+
+!!! tip "Add to home screen"
+    Once connected, mobile devices can add the server's url to the home screen and launch it from there directly.
+
+
 ## Need help ? Found a bug ?
 
 Head over the [issue tracker](https://github.com/jean-emmanuel/open-stage-control/issues) :)
