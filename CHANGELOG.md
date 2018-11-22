@@ -4,6 +4,7 @@
 
 - bug fixes
   - editor: sidepanel & dragging handles not always updated after edition
+  - widgets: parsing error when a property contains more than 10 variables
 
 ## 0.40.2
 

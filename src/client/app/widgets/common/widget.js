@@ -404,7 +404,7 @@ class Widget extends EventEmitter {
 
         var variables = {},
             mathscope = context || {},
-            varnumber = 0
+            varnumber = 999
 
         if (typeof propValue == 'string') {
 
@@ -506,7 +506,7 @@ class Widget extends EventEmitter {
                         if (subk !== undefined && r !== undefined) r = r[subk]
 
                         var varname = 'VAR_' + varnumber
-                        varnumber++
+                        varnumber--
 
                         variables[varname] = r
                         mathscope[varname] = r
