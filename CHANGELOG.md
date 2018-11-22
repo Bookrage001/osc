@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.40.3
+
+- bug fixes
+  - editor: sidepanel & dragging handles not always updated after edition
+
 ## 0.40.2
 
 - bug fixes

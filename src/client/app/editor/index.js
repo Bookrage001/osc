@@ -360,10 +360,7 @@ var Editor = class Editor {
 
         } else {
 
-            if (widget.container.classList.contains('editing')) return
-
             this.selectedWidgets = [widget]
-
 
         }
 
