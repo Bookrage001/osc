@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.40.4
+
+- bug fixes
+  - editor: widgets/tabs not properly reordered when changing a widget or tab's index by more than 1
+
 ## 0.40.3
 
 - bug fixes

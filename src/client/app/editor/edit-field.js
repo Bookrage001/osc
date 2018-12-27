@@ -181,8 +181,15 @@ module.exports = function editField(editor, widget, propName, defaultValue){
                 var index  = $(ui.item).index()
 
                 widget.props[propName].splice(index, 0, widget.props[propName].splice(oldindex, 1)[0])
-                updateWidget(widget, {removedIndexes: [index, oldindex], addedIndexes: [index, oldindex]})
-                editor.pushHistory({removedIndexes: [index, oldindex], addedIndexes: [index, oldindex]})
+
+                var indexes = [index, oldindex]
+                if (Math.abs(oldindex - index) > 1) {
+                    for (var i = Math.min(index, oldindex) + 1; i < Math.max(index, oldindex); i++) {
+                        indexes.push(i)
+                    }
+                }
+                updateWidget(widget, {removedIndexes: indexes, addedIndexes: indexes})
+                editor.pushHistory({removedIndexes: indexes, addedIndexes: indexes})
             }
         })
 
