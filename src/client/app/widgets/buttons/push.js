@@ -1,4 +1,5 @@
 var Widget = require('../common/widget'),
+    doubletab = require('../mixins/double_tap'),
     osc = require('../../osc'),
     html = require('nanohtml')
 
@@ -11,6 +12,7 @@ class Push extends Widget {
 
             _push: 'push',
 
+            doubleTap: {type: 'boolean', value: false, help: 'Set to `true` to make the button require a double tap to be pushed instead of a single tap'},
             on: {type: '*', value: 1, help: [
                 'Set to `null` to send send no argument in the osc message',
                 'Can be an `object` if the type needs to be specified (see preArgs)'
@@ -33,12 +35,24 @@ class Push extends Widget {
         this.active = 0
         this.lastChanged = 'state'
 
-        this.on('draginit',()=>{
-            if (this.active) return
-            this.setValuePrivate(this.getProp('on'),{send:true,sync:true})
-        }, {element: this.widget})
+        if (this.getProp('doubleTap')) {
+
+            doubletab(this.widget, ()=>{
+                if (this.active) return
+                this.setValuePrivate(this.getProp('on'),{send:true,sync:true})
+            })
+
+        } else {
+
+            this.on('draginit',()=>{
+                if (this.active) return
+                this.setValuePrivate(this.getProp('on'),{send:true,sync:true})
+            }, {element: this.widget})
+
+        }
 
         this.on('dragend',()=>{
+            if (!this.active) return
             this.setValuePrivate(this.getProp('off'),{send:true,sync:true})
         }, {element: this.widget})
 
