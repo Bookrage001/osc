@@ -539,7 +539,7 @@ class Widget extends EventEmitter {
                 var r = this.oscReceivers[address].value
 
                 var varname = 'VAR_' + varnumber
-                varnumber++
+                varnumber--
 
                 variables[varname] = r
                 mathscope[varname] = r

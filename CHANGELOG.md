@@ -5,9 +5,10 @@
 - bug fixes
   - editor: widgets/tabs not properly reordered when changing a widget or tab's index by more than 1
   - main: `--no-gui` switch not working when running the app from a different directory
+  - regression causing osc receivers (`OSC{}`) to conflict with property listeners (`@{}`)
 - widgets
   - push: add `doubleTap` option
-  
+
 ## 0.40.3
 
 - bug fixes
