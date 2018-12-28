@@ -90,6 +90,9 @@ var options = {
     'fullscreen':{type:'boolean', describe:'launch in fullscreen mode (only affects the default gui, F11 to exit)'}
 }
 
+// hack process.cwd to ensure yargs finds package.json
+var _cwd = process.cwd
+process.cwd = () => { return __dirname }
 
 var argv = require('yargs')
     .help('help').usage('\nUsage:\n  $0 [options]').alias('h', 'help')
@@ -110,6 +113,9 @@ var argv = require('yargs')
     .version().alias('v','version')
 
 argv = argv.argv
+
+// restore process.cwd
+process.cwd = _cwd
 
 var cli = false
 for (i in argv) {

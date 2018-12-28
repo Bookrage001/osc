@@ -4,6 +4,7 @@
 
 - bug fixes
   - editor: widgets/tabs not properly reordered when changing a widget or tab's index by more than 1
+  - main: `--no-gui` switch not working when running the app from a different directory
 
 ## 0.40.3
 
