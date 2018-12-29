@@ -526,7 +526,12 @@ class Widget extends EventEmitter {
                     })
 
                 if (!this.oscReceivers[address]) {
-                    this.oscReceivers[address] = new OscReceiver(resolvedAddress, value, this, propName)
+                    this.oscReceivers[address] = new OscReceiver({
+                        address: resolvedAddress,
+                        value: value,
+                        parent: this,
+                        propName: propName
+                    })
                     if (oscReceiverState[address]) {
                         this.oscReceivers[address].value = oscReceiverState[address]
                         delete oscReceiverState[address]
@@ -711,7 +716,15 @@ class Widget extends EventEmitter {
             case 'preArgs':
             case 'target':
             case 'noSync':
-                if (propName == 'precision') this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
+                if (propName === 'address') {
+                    for (var k in this.oscReceivers) {
+                        var receiver = this.oscReceivers[k]
+                        if (receiver.prefix !== '') {
+                            receiver.setAddress()
+                        }
+                    }
+                }
+                if (propName === 'precision') this.precision = Math.min(20,Math.max(this.getProp('precision', undefined, false),0))
                 var data = {},
                     oldData = {
                         preArgs: propName == 'preArgs' ? oldPropValue : this.getProp('preArgs'),

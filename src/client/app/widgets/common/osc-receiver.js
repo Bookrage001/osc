@@ -2,7 +2,9 @@ var osc = require('../../osc')
 
 module.exports = class OscReceiver {
 
-    constructor(address, value, parent, propName) {
+    constructor(options) {
+
+        var {prefix, address, value, parent, propName} = options
 
         try {
             this.value = JSON.parse(value)
@@ -13,6 +15,7 @@ module.exports = class OscReceiver {
         this.parent = parent
         this.propNames = [propName]
         this.bindedCallback = this.callback.bind(this)
+        this.prefix = ''
         this.setAddress(address)
 
     }
@@ -21,10 +24,16 @@ module.exports = class OscReceiver {
 
         if (this.address !== address) {
 
-            if (this.address) osc.off(this.address, this.bindedCallback, this.parent)
+            if (this.address) osc.off(this.prefix + this.address, this.bindedCallback, this.parent)
 
-            this.address = address
-            osc.on(this.address, this.bindedCallback, {context: this.parent})
+            if (address) this.address = address
+
+            if (this.address[0] !== '/') {
+                this.prefix = this.parent.getProp('address') || this.parent.resolveProp('address', undefined, false, this)
+                if (this.prefix[this.prefix.length - 1] !== '/') this.prefix += '/'
+            }
+
+            osc.on(this.prefix + this.address, this.bindedCallback, {context: this.parent})
 
         }
 

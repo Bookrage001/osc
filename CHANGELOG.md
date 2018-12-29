@@ -8,6 +8,7 @@
   - regression causing osc receivers (`OSC{}`) to conflict with property listeners (`@{}`)
 - widgets
   - push: add `doubleTap` option
+  - osc listeners (`OSC{}`) now accept relative addresses (without leading '/'), automatically prefixed with the widget's address
 
 ## 0.40.3
 

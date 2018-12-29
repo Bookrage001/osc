@@ -56,7 +56,16 @@ OSC{/address, 1}
 ```
 Will return `1` at first and listen for osc messages on address `/address`. Each time a value is received, the property will be updated.
 
+
+If the leading slash (`/`) is omitted, the address will be prefixed with the widget's `address` property:
+
+```
+OSC{color, "auto"}
+```
+Will listen for osc messages on address `/widget_address/color`.
+
 ----
+
 
 ## Formulas: `#{}`
 
