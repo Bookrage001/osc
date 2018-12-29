@@ -127,6 +127,7 @@
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="push_push">push<a class="headerlink" href="#push_push" title="Permanent link">¶</a></h4> ||||
+| <h4 id="push_doubleTap">doubleTap<a class="headerlink" href="#push_doubleTap" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to make the button require a double tap to be pushed instead of a single tap |
 | <h4 id="push_on">on<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#push_on" title="Permanent link">¶</a></h4> | `*` | <code>1</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
 | <h4 id="push_off">off<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#push_off" title="Permanent link">¶</a></h4> | `*` | <code>0</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
 | <h4 id="push_norelease">norelease<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#push_norelease" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to prevent sending any osc message when releasing the button |
