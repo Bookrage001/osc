@@ -30,6 +30,7 @@ module.exports = class Input extends Canvas {
         this.value = ''
         this.stringValue = ''
         this.focused = false
+        this.tabKeyBlur = false
 
         if (this.getProp('vertical')) this.widget.classList.add('vertical')
         if (this.getProp('align') === 'left') this.widget.classList.add('left')
@@ -41,11 +42,13 @@ module.exports = class Input extends Canvas {
             this.canvas.addEventListener('focus', this.focus.bind(this))
             this.input = html`<input class="no-keybinding"></input>`
             this.input.addEventListener('blur', (e)=>{
-                this.blur(false)
+                this.blur(this.tabKeyBlur)
+                this.tabKeyBlur = false
             })
             this.input.addEventListener('keydown', (e)=>{
-                if (e.keyCode==13) this.blur()
-                if (e.keyCode==27) this.blur(false)
+                if (e.keyCode === 13) this.blur() // enter
+                else if (e.keyCode === 27) this.blur(false) // esc
+                else if (e.keyCode === 9) this.tabKeyBlur = true // tab
             })
         } else {
             this.widget.classList.add('not-editable')
@@ -62,7 +65,8 @@ module.exports = class Input extends Canvas {
         this.input.value = this.stringValue
         this.widget.insertBefore(this.input, this.canvas)
         this.input.focus()
-
+        this.input.setSelectionRange(0, this.input.value.length)
+        
     }
 
     blur(change=true) {

@@ -24,7 +24,7 @@
         display: flex;
         flex: 1 1 100%;
         background:transparent;
-        color:var(--color-text-fade);
+        color:var(--color-text);
         overflow: hidden;
         text-align:center;
         padding:1rem;
@@ -55,7 +55,11 @@
             -webkit-user-select: text;
             user-select: text;
             &:focus {
+                color:var(--color-text-fade);
+            }
+            &:focus::selection {
                 color:var(--color-custom);
+                background: transparent;
             }
         }
         canvas {

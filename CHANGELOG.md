@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.40.5
+
+- widgets
+  - input: hitting `tab` now validates the value before focusing the next input (hitting `esc` or clicking outside the widget still cancels); when focusing an input widget, its whole value is selected by default; focused/selected text color hint changes. 
+
 ## 0.40.4
 
 - bug fixes
