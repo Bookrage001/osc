@@ -268,6 +268,27 @@ class Widget extends EventEmitter {
 
     getSplit() {}
 
+    checkLinkedProps(propNames) {
+
+        // Dynamic props cache check
+        var linkedProps = []
+
+        Object.values(this.nestedLinkedProps).forEach(l => linkedProps = linkedProps.concat(l))
+        Object.values(this.linkedProps).forEach(l => linkedProps = linkedProps.concat(l))
+        Object.values(this.linkedPropsValue).forEach(l => linkedProps = linkedProps.concat(l))
+        Object.values(this.oscReceivers).forEach(r => linkedProps = linkedProps.concat(r.propNames))
+
+        if (
+            // if prop/osc listeners have changed (@{} / OSC{})
+            // refresh the widget's props cache and update linked props bindings
+            propNames.map(x => this.props[x]).some(x => typeof x === 'string' && x.match(/OSC\{|@\{/))
+        ||  propNames.some(n => linkedProps.includes(n))
+        ) {
+            this.createPropsCache()
+        }
+
+    }
+
     createPropsCache() {
 
         // @{props} links lists
@@ -655,6 +676,10 @@ class Widget extends EventEmitter {
             return this.reCreateWidget({reCreateOptions: options})
 
         } else if (changedProps.length) {
+
+            if (options && options.fromEditor) {
+                this.checkLinkedProps(propNames)
+            }
 
             for (var i in changedProps) {
 

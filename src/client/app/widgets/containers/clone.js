@@ -78,7 +78,7 @@ class Clone extends Container {
 
             if (e.widget === this.cloneTarget || this.cloneTarget.contains(e.widget)) {
 
-                this.updateClone()
+                this.updateClone(e.options)
 
             }
 
@@ -189,7 +189,7 @@ class Clone extends Container {
 
     }
 
-    updateClone() {
+    updateClone(options) {
 
         if (this.cloneLock) return
 
@@ -214,7 +214,7 @@ class Clone extends Container {
 
             } else {
 
-                widget.updateProps(changedProps, this)
+                widget.updateProps(changedProps, this, options)
                 this.updateContainer(true)
 
             }

@@ -90,7 +90,7 @@ class Matrix extends _matrix_base {
                     if (typeof data === 'object' && data !== null) {
                         Object.assign(this.children[i].props, data)
                     }
-                    this.children[i].updateProps(Object.keys(data), this)
+                    this.children[i].updateProps(Object.keys(data), this, options)
                     // this.children[i] might have been recreated
                     this.children[i].container.classList.add('not-editable')
 
