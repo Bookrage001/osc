@@ -3,9 +3,10 @@
 ## 0.40.5
 
 - bug fixes
-  - clone: editor's selection rectangle appearing after editing the clone's target widget 
+  - clone: editor's selection rectangle appearing after editing the clone's target widget
 - widgets
-  - input: hitting `tab` now validates the value before focusing the next input (hitting `esc` or clicking outside the widget still cancels); when focusing an input widget, its whole value is selected by default; focused/selected text color hint changes. 
+  - input: hitting `tab` now validates the value before focusing the next input (hitting `esc` or clicking outside the widget still cancels); when focusing an input widget, its whole value is selected by default; focused/selected text color hint changes.
+  - matrix: widgets inherit from the matrix' `id` and osc properties by default
 
 ## 0.40.4
 

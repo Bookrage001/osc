@@ -17,7 +17,8 @@ class Matrix extends _matrix_base {
             border: {type: 'boolean', value: true, help: 'Set to `false` to disables the widgets\' borders'},
             props: {type: 'object', value: {}, help: [
                 'Defines a set of property to override the widgets\' defaults.',
-                'Formulas in this field are resolved with an extra variable representing each widget\'s index: `$`'
+                'Formulas in this field are resolved with an extra variable representing each widget\'s index: `$`',
+                'Note: by default, the widgets inherit from the matrix\' `id` and osc properties (`id` and `address` are appended with `/$`)'
             ]}
 
         }, [], {})
@@ -43,7 +44,12 @@ class Matrix extends _matrix_base {
                 var props = this.resolveProp('props', undefined, false, false, false, {'$':i})
                 var data = {
                     type: this.getProp('widgetType'),
-                    id: this.getProp('id') + '/' + i,
+                    id: '@{parent.id}/' + i,
+                    address: '@{parent.address}/' + i,
+                    preArgs: '@{parent.preArgs}',
+                    target: '@{parent.target}',
+                    precision: '@{parent.precision}',
+                    bypass: '@{parent.bypass}',
                     label: i,
                     top: 'auto',
                     left: 'auto',
