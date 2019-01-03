@@ -267,9 +267,9 @@
     z-index: 9999!important;
     // overflow: visible;
 }
-.widget.editing:after, li.editing a:before, a.editing:before, .content.editing:before, #container.editing:before{
+.widget.editing:after, li.editing a:after, a.editing:before, .content.editing:before, #container.editing:before{
     content:"";
-    z-index: 999;
+    z-index: 999!important;
     position: absolute;
     top:0;
     left:0;

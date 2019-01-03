@@ -107,7 +107,7 @@ body {
                 z-index: 0;
                 // background:var(--color-fg);
                 color: var(--color-custom);
-                &:after {
+                &:before {
                     content: "";
                     position: absolute;
                     top:0;
@@ -117,7 +117,8 @@ body {
                     opacity: 0.4;
                     background: radial-gradient( ellipse at center, transparent, var(--color-bg));
                 }
-                &:before {
+
+                &:after {
                     content:"";
                     position: absolute;
                     top:0;
@@ -127,6 +128,7 @@ body {
                     opacity: 0.3;
                     box-shadow: 0 0 0 1rem var(--color-custom) inset;
                     border-radius: inherit;
+                    z-index: -1;
                 }
             }
         }
