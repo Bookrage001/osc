@@ -1,5 +1,11 @@
 # Changelog
 
+## next
+
+- main
+  - `--send` accepts `ip:port` and `domain:port` targets
+  - removed previously deprecated `--sync` option
+
 ## 0.40.5
 
 - bug fixes
