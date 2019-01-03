@@ -17,7 +17,7 @@ Below are the available command-line options. Note that when running without any
 | `-l` | `--load` | session file to load |
 | | `--state` | state file to load (osc messages will be sent, unless there are other clients connected) |
 | `-b` | `--blank` | load a blank session and start the editor |
-| `-c` | `--custom-module` | custom module file to load |
+| `-c` | `--custom-module` | custom module file to load (custom options can be passed after the filename) |
 | `-p` | `--port` | http port of the server (default to 8080) |
 | `-o` | `--osc-port` | osc input port (default to --port) |
 | | `--tcp-port` | tcp server input port |

@@ -17,11 +17,12 @@ class OscServer {
         this.customModuleEventEmitter = new EventEmitter()
         this.customModule = (()=>{
 
-            if (!settings.read('customModule')) return false
+            var customModule = settings.read('customModule')
+            if (!customModule) return false
 
             var file = (()=>{
                     try {
-                        return fs.readFileSync(settings.read('customModule'),'utf8')
+                        return fs.readFileSync(customModule[0], 'utf8')
                     } catch(err) {
                         console.log('CustomModule Error: File not found: ' + settings.read('customModule'))
                         return false
@@ -37,7 +38,8 @@ class OscServer {
                     clearTimeout,
                     setInterval,
                     clearInterval,
-                    settings
+                    settings,
+                    options: customModule.slice(1, customModule.length)
                 }
 
             try {

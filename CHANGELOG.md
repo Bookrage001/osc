@@ -5,6 +5,7 @@
 - main
   - `--send` accepts `ip:port` and `domain:port` targets
   - removed previously deprecated `--sync` option
+  - `--custom-module` now accepts extra options that can be consumed from the custom module
 
 ## 0.40.5
 
