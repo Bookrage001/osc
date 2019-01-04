@@ -87,6 +87,7 @@ var SessionManager = class SessionManager {
                 container.classList.add('show')
                 this.lock = false
                 this.allowRemoteSave = false
+                editor.unsavedSession = false
                 if (callback) callback()
             }, 25)
 
@@ -103,6 +104,7 @@ var SessionManager = class SessionManager {
                 icon: 'save',
                 message: locales('session_savesuccess')
             })
+            editor.unsavedSession = false
 
         } else {
 

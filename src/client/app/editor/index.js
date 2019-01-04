@@ -51,9 +51,10 @@ var Editor = class Editor {
         this.idClipboard = null
 
         this.enabled = false
-        this.enabledOnce = false
+
+        this.unsavedSession = false
         window.onbeforeunload = ()=>{
-            if (this.enabledOnce) return true
+            if (this.unsavedSession) return true
         }
 
 
@@ -249,8 +250,6 @@ var Editor = class Editor {
 
         EDITING = true
         this.enabled = true
-
-        this.enabledOnce = true
 
         DOM.get('.editor-root')[0].setAttribute('data-widget', DOM.get('.root-container')[0].getAttribute('data-widget'))
         DOM.get('.editor-root')[0].classList.remove('disabled')
@@ -746,6 +745,8 @@ var Editor = class Editor {
 
 
     pushHistory(indexes) {
+
+        this.unsavedSession = true
 
         if (this.historyState > -1) {
             this.history.splice(0, this.historyState + 1)
