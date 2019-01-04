@@ -128,7 +128,9 @@ class PatchBay extends Canvas {
         this.dragging = false
         this.on('drag', (e)=>{
             this.dragging = true
-
+            if (!this.connecting.length) {
+                this.toggleConnection(e.target)
+            }
             if (e.target === this.canvas) {
                 this.mousePosition = [e.offsetX, e.offsetY]
             } else if (this.mousePosition.length) {
@@ -231,11 +233,13 @@ class PatchBay extends Canvas {
 
             if (this.mousePosition.length) {
                 var [x3, y3] = this.mousePosition,
-                    centerx = (Math.max(x3, cx) - Math.min(x3, cx)) / 2 + (side ? x3*2 : 0)
+                    centerx = Math.abs(cx - x3) / 2,
+                    bz1 = side ? cx - centerx : cx + centerx,
+                    bz2 = side ? x3 + centerx : x3 - centerx
 
                 this.ctx.beginPath()
                 this.ctx.moveTo(cx, cy)
-                this.ctx.bezierCurveTo(centerx / 2, cy, centerx / 2, y3 ,x3, y3)
+                this.ctx.bezierCurveTo(bz1, cy, bz2, y3 ,x3, y3)
                 this.ctx.stroke()
 
             }
