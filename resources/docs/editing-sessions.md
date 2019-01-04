@@ -24,7 +24,16 @@ Right clicking / long touch on a widget or on a tab will also display a context 
 
 ## Save
 
-Current session can be exported as a `.json` file. When overwriting a session file that's currently is use by other clients, they will reload it automatically.
+When working on a sessions that has been loaded from the server's filesystem, it is possible to save it remotely. When doing so, all the other clients working on the same session will be reloaded automatically.
+
+It is possible to limit this feature to specific client addresses by using the server's `--remote-saving` option. For example:
+`open-stage-control --remote-saving 127.0.0.1|192.168.0.10`
+
+Will disable remote saving except for the clients with ip addresses `127.0.0.1` (the server's local address) and `192.168.0.10`.
+
+## Save As
+
+Session can be exported as a `.json` file on the client's filesystem.
 
 ## Load
 
@@ -52,7 +61,8 @@ The following shortcuts are always available:
 | Shortcut | Description |
 |---|---|
 | `mod + e` | enable/disable editor |
-| `mod + s` | save session as... |
+| `mod + s` | save session |
+| `mod + shift s` | export session as... |
 | `mod + o` | open a session file |
 
 The following shortcuts are available only when the editor is enabled:
