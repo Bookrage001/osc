@@ -5,7 +5,8 @@ if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 var _cwd = process.cwd
 process.cwd = () => { return __dirname }
 
-var argv = require('yargs')
+var options = require('./options'),
+    argv = require('yargs')
     .help('help').usage('\nUsage:\n  $0 [options]').alias('h', 'help')
     .options(options)
     .check((argv)=>{
