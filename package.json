@@ -29,7 +29,6 @@
     "bonjour": "3.5.0",
     "browserify": "16.2.3",
     "cardinal-spline-js": "2.3.10",
-    "chokidar": "2.0.4",
     "cpr": "3.0.1",
     "deep-extend": "0.6.0",
     "electron-localshortcut": "3.1.0",
