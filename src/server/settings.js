@@ -114,7 +114,7 @@ module.exports = {
     },
     write:function(key,value,tmp) {
         config[key] = value
-        if (tmp || !configPath) return
+        if (tmp || !configPath) return
         configFile[key] = value
         fs.writeFile(configPath,JSON.stringify(configFile,null,4), function(err, data) {
             if (err) throw err
