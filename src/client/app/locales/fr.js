@@ -54,6 +54,9 @@ module.exports = {
     state_import: 'Importer',
     state_export: 'Exporter',
     state_uploaderror: 'Échec à l\'envoi du fichier d\'état.',
+    state_storesuccess: 'État de l\'interface sauvegardé',
+    state_recallsuccess: 'État de l\'interface restauré',
+    state_sendsuccess: 'État de de l\'interface envoyé',
 
     // traversing
     traversing_on: 'On',

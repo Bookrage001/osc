@@ -54,7 +54,10 @@ module.exports = { // @https://github.com/suhr
     state_import: 'Импорт',
     state_export: 'Экспорт',
     state_uploaderror: 'Не удалось загрузить файл состояния.',
-
+    state_storesuccess: 'State saved',
+    state_recallsuccess: 'State recalled',
+    state_sendsuccess: 'State sent',
+    
     // traversing
     traversing_on: 'Вкл',
     traversing_smart: 'Умный',

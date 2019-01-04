@@ -54,6 +54,9 @@ module.exports = {
     state_import: 'Import',
     state_export: 'Export',
     state_uploaderror: 'Failed to upload state file.',
+    state_storesuccess: 'State saved',
+    state_recallsuccess: 'State recalled',
+    state_sendsuccess: 'State sent',
 
     // traversing
     traversing_on: 'On',

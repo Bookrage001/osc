@@ -3,6 +3,7 @@ var state = require('../managers/state'),
     editor = require('../editor/'),
     {icon} = require('./utils'),
     fullscreen = require('./fullscreen'),
+    notifications = require('./notifications'),
     {enableTraversingGestures, disableTraversingGestures} = require('../events/drag'),
     locales = require('../locales'),
     html = require('nanohtml'),
@@ -29,16 +30,32 @@ var sidepanelData = [
                 action:()=>{
                     state.quickSave()
                     DOM.get('.quickload')[0].classList.remove('disabled')
+                    notifications.add({
+                        icon: 'sliders-h',
+                        message: locales('state_storesuccess')
+                    })
                 }
             },
             {
                 title: locales('state_recall'),
-                action:state.quickLoad.bind(state),
+                action: ()=>{
+                    state.quickLoad()
+                    notifications.add({
+                        icon: 'sliders-h',
+                        message: locales('state_recallsuccess')
+                    })
+                },
                 class:'disabled quickload'
             },
             {
                 title: locales('state_send'),
-                action:state.send.bind(state)
+                action: ()=>{
+                    state.send()
+                    notifications.add({
+                        icon: 'sliders-h',
+                        message: locales('state_sendsuccess')
+                    })
+                }
             },
             {
                 title: locales('state_import'),
