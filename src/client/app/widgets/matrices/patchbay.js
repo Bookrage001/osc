@@ -128,7 +128,7 @@ class PatchBay extends Canvas {
         this.dragging = false
         this.on('drag', (e)=>{
             this.dragging = true
-            if (!this.connecting.length) {
+            if (!this.connecting.length) {
                 this.toggleConnection(e.target)
             }
             if (e.target === this.canvas) {
