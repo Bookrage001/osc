@@ -23,6 +23,9 @@ module.exports.widgets = {
     // matrices
     matrix: require('./matrices/matrix'),
     keyboard: require('./matrices/keyboard'),
+    patchbay: require('./matrices/patchbay').PatchBay,
+    patchbaynode: require('./matrices/patchbay').PatchBayNode,
+
     // deprecated / hidden
     multitoggle: require('./matrices/multitoggle'),
     multipush: require('./matrices/multipush'),
@@ -66,7 +69,7 @@ module.exports.categories = {
     'Sliders':['fader','knob', 'encoder', 'range'],
     'Buttons':['toggle','push','switch', 'dropdown'],
     'Pads':['xy','rgb','multixy'],
-    'Matrices':['matrix', 'keyboard'],
+    'Matrices':['matrix', 'keyboard', 'patchbay'],
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg', 'frame'],
     'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['switcher','crossfader'],

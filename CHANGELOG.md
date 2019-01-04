@@ -10,6 +10,8 @@
   - added `--remote-saving` options to limit remote session saving feature to hosts that match the provided regular expression
 - ui
   - added notifications
+- widgets
+  - new `patchbay` widget
 
 ## 0.40.5
 
