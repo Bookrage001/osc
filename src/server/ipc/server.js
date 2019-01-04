@@ -21,7 +21,7 @@ class Ipc extends EventEmitter {
 
             if (!this.clients[id]) {
 
-                var client = new Client(socket, id)
+                var client = new Client(socket, id, req.connection.remoteAddress)
                 this.clients[id] = client
 
                 this.emit('connection', client)

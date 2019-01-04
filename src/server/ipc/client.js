@@ -6,11 +6,14 @@ var hearbeatInterval = 25000,
 
 class Socket extends EventEmitter {
 
-    constructor(ws, id) {
+    constructor(ws, id, address) {
 
         super()
 
         this.id = id
+
+        this.address = address.indexOf('::ffff:') === 0 ? address.replace('::ffff:', '') : address
+
         this.socket = null
 
         this.sessionPath = ''

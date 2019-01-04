@@ -79,6 +79,7 @@ var options = {
                 true : 'blank session can\'t be started in read-only mode'
         }
     },
+    'remote-saving':{type:'string',describe:'disable remote session saving for hosts that don\'t match the regular expresion'},
     'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'},
     'fullscreen':{type:'boolean', describe:'launch in fullscreen mode (only affects the default gui, F11 to exit)'}
 }
@@ -144,6 +145,7 @@ var makeDefaultConfig = function(argv){
         noVsync: argv['disable-vsync'] || false,
         noGpu: argv['disable-gpu'] || false,
         readOnly: argv['read-only'] || false,
+        remoteSaving: argv['remote-saving'] || false,
         midi: argv['midi'],
         stateFile: (function(){
             if (!argv['state']) return false
