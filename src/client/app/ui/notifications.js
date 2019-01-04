@@ -1,7 +1,6 @@
-var html = require('nanohtml'),
-    keyboardJS = require('keyboardjs')
+var html = require('nanohtml')
 
-var DURATION = 3000
+var DURATION = 3500
 
 class Notifications {
 
@@ -11,13 +10,6 @@ class Notifications {
         this.toasts = []
 
         this.loop = null
-
-        keyboardJS.bind('k', ()=>{
-            this.add({
-                message: 'bla bla bla bla'
-            })
-        })
-
 
     }
 
