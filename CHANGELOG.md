@@ -1,11 +1,14 @@
 # Changelog
 
-## next
+## 0.41.0
 
 - main
   - `--send` accepts `ip:port` and `domain:port` targets
   - removed previously deprecated `--sync` option
-  - `--custom-module` now accepts extra options that can be consumed from the custom module
+  - `--custom-module` now accepts extra options that can be consumed from the custom module's code
+  - sessions located on the server can now be saved remotely, this becomes the default behavior for keyboard shortct `mod + s`, local export is still available via `mod + shift + s`
+- ui
+  - added notifications
 
 ## 0.40.5
 
