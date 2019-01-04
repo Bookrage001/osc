@@ -6,6 +6,7 @@ module.exports = {
     editor_root: 'Root',
     editor_load: 'Charger',
     editor_save: 'Sauver',
+    editor_save_as: 'Exporter',
 
     // editor context-menu
     editor_editparent: 'Éditer parent',
@@ -36,6 +37,8 @@ module.exports = {
     session_malformed: 'Fichier de session mal formé.',
     session_parsingerror: 'Erreur à l\'ouverture de la session.',
     session_uploaderror: 'Échec à l\'envoi du fichier de session.',
+    session_savesuccess: 'Session enregistrée avec succès',
+    session_saveerror: 'La session ne peut pas être enregistrée sur le serveur, utilisez la fonction "exporter"',
 
     // sidepanel
     sidepanel_fs: 'Plein Écran',

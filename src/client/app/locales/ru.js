@@ -6,6 +6,7 @@ module.exports = { // @https://github.com/suhr
     editor_root: 'Корень',
     editor_load: 'Загрузить',
     editor_save: 'Сохранить',
+    editor_save_as: 'Экспорт',
 
     // editor context-menu
     editor_editparent: 'К родителю',
@@ -36,6 +37,8 @@ module.exports = { // @https://github.com/suhr
     session_malformed: 'Файл сессии повреждён.',
     session_parsingerror: 'Ошибка разбора.',
     session_uploaderror: 'Не удалось загрузить файл сессии.',
+    session_savesuccess: 'Session saved successfully',
+    session_saveerror: 'The session file can\'t be saved remotely, use "export" instead',
 
     // sidepanel
     sidepanel_fs: 'Полный экран',

@@ -6,6 +6,7 @@ module.exports = {
     editor_root: 'Root',
     editor_load: 'Load',
     editor_save: 'Save',
+    editor_save_as: 'Export',
 
     // editor context-menu
     editor_editparent: 'Edit parent',
@@ -36,6 +37,8 @@ module.exports = {
     session_malformed: 'Malformed session file.',
     session_parsingerror: 'Parsing error.',
     session_uploaderror: 'Failed to upload session file.',
+    session_savesuccess: 'Session saved successfully',
+    session_saveerror: 'The session file can\'t be saved remotely, use "export" instead',
 
     // sidepanel
     sidepanel_fs: 'Fullscreen',

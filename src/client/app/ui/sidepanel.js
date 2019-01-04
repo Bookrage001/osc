@@ -117,6 +117,10 @@ var sidepanelData = [
             {
                 title: locales('editor_save'),
                 action:session.save.bind(session)
+            },
+            {
+                title: locales('editor_save_as'),
+                action:session.saveAs.bind(session)
             }
         ]
     },

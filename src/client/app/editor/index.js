@@ -209,6 +209,11 @@ var Editor = class Editor {
             sessionManager.save()
         })
 
+        keyboardJS.bind('mod + shift + s', (e)=>{
+            e.preventDefault()
+            sessionManager.saveAs()
+        })
+
         keyboardJS.bind('mod + o', (e)=>{
             e.preventDefault()
             sessionManager.browse()

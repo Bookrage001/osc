@@ -45,6 +45,12 @@ module.exports = {
 
     },
 
+    sessionAllowRemoteSave: function(data){
+
+        session.allowRemoteSave = data
+
+    },
+
     stateLoad: function(data){
 
         state.set(data.state, data.send)
@@ -166,6 +172,7 @@ module.exports = {
                 DOM.get('.traversingEnable')[0].click()
             }
 
+            ipc.send('sessionSetPath', {path: data.sessionPath})
             ipc.send('deleteBackup', data.backupId)
 
         })

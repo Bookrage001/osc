@@ -17,6 +17,8 @@ var SessionManager = class SessionManager {
         this.session = []
         this.lock = false
 
+        this.allowRemoteSave = false
+
     }
 
     load(session, callback) {
@@ -83,6 +85,7 @@ var SessionManager = class SessionManager {
                 loader.close()
                 container.classList.add('show')
                 this.lock = false
+                this.allowRemoteSave = false
                 if (callback) callback()
             }, 25)
 
@@ -92,12 +95,24 @@ var SessionManager = class SessionManager {
 
     save() {
 
+        if (this.allowRemoteSave) {
+
+            ipc.send('sessionSave', JSON.stringify(this.session, null, '  '))
+
+        } else {
+
+            ipc.send('log', 'Could not save session file')
+
+        }
+
+    }
+
+    saveAs() {
+
         var sessionfile = JSON.stringify(this.session,null,'  '),
             blob = new Blob([sessionfile],{type : 'application/json'})
 
         saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.json')
-
-        ipc.send('savingSession')
 
     }
 
@@ -161,8 +176,8 @@ var SessionManager = class SessionManager {
 
     open(data) {
 
-        this.load(data,function(){
-            ipc.send('sessionOpened')
+        this.load(data.session,function(){
+            ipc.send('sessionOpened', {path: data.path})
         })
 
     }

@@ -13,6 +13,8 @@ class Socket extends EventEmitter {
         this.id = id
         this.socket = null
 
+        this.sessionPath = ''
+
         this.queue = []
 
         this.hearbeat = undefined

@@ -4,12 +4,10 @@ var path = require('path'),
     osc = require('./osc'),
     {ipc} = require('./server'),
     {deepCopy} = require('./utils'),
-    theme = require('./theme'),
-    chokidar = require('chokidar')
+    theme = require('./theme')
 
 var openedSessions = {},
     widgetHashTable = {},
-    lastSavingClient,
     sessionBackups = {}
 
 module.exports =  {
@@ -85,52 +83,7 @@ module.exports =  {
 
         if (!error) {
 
-            ipc.send('sessionOpen', session,clientId)
-
-
-            for (var i in openedSessions) {
-                if (openedSessions[i].indexOf(clientId) != -1) {
-                    openedSessions[i].splice(openedSessions[i].indexOf(clientId), 1)
-                }
-            }
-
-            if (data.path) {
-
-                if (!settings.read('readOnly')) this.sessionAddToHistory(data.path)
-
-                fs.lstat(data.path, (err, stats)=>{
-
-                    if (err || !stats.isFile()) return
-
-
-                    if (!openedSessions[data.path]) {
-
-                        openedSessions[data.path] = []
-
-                        var watchFile = ()=>{
-                            var watcher = chokidar.watch(data.path)
-                            watcher.on('change',()=>{
-                                var openedSessionsClone = deepCopy(openedSessions[data.path])
-                                for (var k in openedSessionsClone) {
-                                    if (openedSessionsClone[k] != lastSavingClient) {
-                                        module.exports.sessionOpen({path:data.path}, openedSessionsClone[k])
-                                    }
-                                }
-                                watcher.close()
-                                watchFile()
-                            })
-                        }
-
-                        watchFile()
-
-
-                    }
-
-                    openedSessions[data.path].push(clientId)
-
-                })
-
-            }
+            ipc.send('sessionOpen', {path: data.path, session: session}, clientId)
 
         } else {
 
@@ -158,11 +111,41 @@ module.exports =  {
 
         ipc.send('stateSend', null, null, clientId)
 
+        module.exports.sessionSetPath(data, clientId)
+
     },
 
-    savingSession: function(data, clientId) {
+    sessionSetPath: function(data, clientId) {
 
-        lastSavingClient = clientId
+        ipc.clients[clientId].sessionPath = ''
+        fs.lstat(data.path, (err, stats)=>{
+            if (err || !stats.isFile()) return
+            ipc.clients[clientId].sessionPath = data.path
+            if (!settings.read('readOnly')) {
+                this.sessionAddToHistory(data.path)
+                ipc.send('sessionAllowRemoteSave', true, clientId)
+            }
+        })
+
+    },
+
+    sessionSave: function(data, clientId) {
+
+        var path = ipc.clients[clientId].sessionPath
+
+        if (path) {
+
+            fs.writeFile(path, data, function(err, data) {
+                if (err) throw err
+                console.log('Session file saved in '+ path)
+                for (var id in ipc.clients) {
+                    if (id !== clientId) {
+                        module.exports.sessionOpen({path: path}, id)
+                    }
+                }
+            })
+
+        }
 
     },
 
@@ -307,9 +290,10 @@ module.exports =  {
 
     },
 
-    storeBackup: function(data) {
+    storeBackup: function(data, clientId) {
 
         sessionBackups[data.backupId] = data
+        sessionBackups[data.backupId].sessionPath = ipc.clients[clientId].sessionPath
 
     },
 
