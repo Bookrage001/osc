@@ -11,7 +11,7 @@
         animation: toast_fade-in 0.2s forwards;
         transform-origin: bottom;
         background: var(--color-notification);
-        transition: height 0.2s;
+        transition: all 0.2s;
         overflow: hidden;
         margin-top: 10rem;
         display: flex;
@@ -20,6 +20,7 @@
         &.remove {
             animation: toast_fade-out 0.2s forwards;
             height: 0!important;
+            margin-top: 0!important;
         }
         i {
             margin-left: 10rem;
