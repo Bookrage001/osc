@@ -6,8 +6,7 @@ var path = require('path'),
     {deepCopy} = require('./utils'),
     theme = require('./theme')
 
-var openedSessions = {},
-    widgetHashTable = {},
+var widgetHashTable = {},
     sessionBackups = {}
 
 module.exports =  {
