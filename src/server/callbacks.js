@@ -139,7 +139,7 @@ module.exports =  {
                 if (err) throw err
                 console.log('Session file saved in '+ path)
                 for (var id in ipc.clients) {
-                    if (id !== clientId) {
+                    if (id !== clientId && ipc.clients[id].sessionPath === path) {
                         module.exports.sessionOpen({path: path}, id)
                     }
                 }
