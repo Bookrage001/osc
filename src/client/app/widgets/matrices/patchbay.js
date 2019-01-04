@@ -94,6 +94,7 @@ class PatchBay extends Canvas {
                     address: '@{parent.address}',
                     target: '@{parent.target}',
                     preArgs: this.getProp('inputs')[i],
+                    bypass: '@{parent.bypass}',
 
                 },
                 parentNode: DOM.get(this.widget, '.inputs')[0],
