@@ -7,6 +7,7 @@ var utils = require('../ui/utils'),
     locales = require('../locales'),
     {deepCopy} = require('../utils'),
     sidepanel = require('../ui/sidepanel'),
+    notifications = require('../ui/notifications'),
     {TRAVERSING_SAMEWIDGET} = require('../events/utils'),
     raw = require('nanohtml/raw'),
     ipc = require('./')
@@ -58,7 +59,10 @@ module.exports = {
     },
 
     stateSend:function(){
-        var p = utils.loading(locales('loading_newclient'))
+        notifications.add({
+            icon: 'wifi',
+            message: locales('loading_newclient')
+        })
 
         setTimeout(function(){
 
@@ -66,8 +70,7 @@ module.exports = {
             state.send()
             osc.syncOnly = false
 
-            p.close()
-        },150)
+        },200)
 
     },
 

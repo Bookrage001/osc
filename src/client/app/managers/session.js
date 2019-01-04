@@ -3,6 +3,7 @@ var ipc = require('../ipc/'),
     editor = require('../editor/'),
     lobby = require('../ui/lobby'),
     {loading, icon, Popup, upload} = require('../ui/utils'),
+    notifications = require('../ui/notifications'),
     {saveAs} = require('file-saver'),
     widgetManager = require('./widgets'),
     html = require('nanohtml'),
@@ -98,11 +99,19 @@ var SessionManager = class SessionManager {
         if (this.allowRemoteSave) {
 
             ipc.send('sessionSave', JSON.stringify(this.session, null, '  '))
+            notifications.add({
+                icon: 'save',
+                message: locales('session_savesuccess')
+            })
 
         } else {
 
             ipc.send('log', 'Could not save session file')
-
+            notifications.add({
+                icon: 'exclamation',
+                class: 'error',
+                message: locales('session_saveerror')
+            })
         }
 
     }
