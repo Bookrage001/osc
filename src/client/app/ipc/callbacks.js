@@ -46,9 +46,9 @@ module.exports = {
 
     },
 
-    sessionAllowRemoteSave: function(data){
+    sessionSaved: function(data){
 
-        session.allowRemoteSave = data
+        editor.unsavedSession = false
 
     },
 
@@ -178,6 +178,20 @@ module.exports = {
             ipc.send('sessionSetPath', {path: data.sessionPath})
             ipc.send('deleteBackup', data.backupId)
 
+        })
+
+    },
+
+    notify: function(data) {
+
+        var message = data.message || ''
+
+        if (data.locale) message = locales(data.locale) + message
+
+        notifications.add({
+            icon: data.icon,
+            class: data.class,
+            message: message
         })
 
     }

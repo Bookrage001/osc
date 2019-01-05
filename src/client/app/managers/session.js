@@ -97,23 +97,7 @@ var SessionManager = class SessionManager {
 
     save() {
 
-        if (this.allowRemoteSave) {
-
-            ipc.send('sessionSave', JSON.stringify(this.session, null, '  '))
-            notifications.add({
-                icon: 'save',
-                message: locales('session_savesuccess')
-            })
-            editor.unsavedSession = false
-
-        } else {
-
-            ipc.send('log', 'Could not save session file')
-            notifications.add({
-                class: 'error',
-                message: locales('session_saveerror')
-            })
-        }
+        ipc.send('sessionSave', JSON.stringify(this.session, null, '  '))
 
     }
 

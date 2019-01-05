@@ -126,7 +126,6 @@ module.exports =  {
             ipc.clients[clientId].sessionPath = data.path
             if (!settings.read('readOnly')) {
                 this.sessionAddToHistory(data.path)
-                ipc.send('sessionAllowRemoteSave', true, clientId)
             }
         })
 
@@ -134,19 +133,35 @@ module.exports =  {
 
     sessionSave: function(data, clientId) {
 
-        var path = ipc.clients[clientId].sessionPath
+        var path = ipc.clients[clientId].sessionPath,
+            error
 
         if (path) {
 
             fs.writeFile(path, data, function(err, data) {
-                if (err) throw err
+                if (err) return error = err
                 console.log('Session file saved in '+ path)
+                ipc.send('sessionSaved', clientId)
+                ipc.send('notify', {
+                    icon: 'save',
+                    locale: 'session_savesuccess'
+                }, clientId)
                 for (var id in ipc.clients) {
                     if (id !== clientId && ipc.clients[id].sessionPath === path) {
                         module.exports.sessionOpen({path: path}, id)
                     }
                 }
             })
+
+        }
+
+        if (!path || error) {
+
+            ipc.send('notify', {
+                class: 'error',
+                locale: 'session_saveerror',
+                message: error
+            }, clientId)
 
         }
 
