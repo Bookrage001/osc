@@ -17,7 +17,7 @@ class Notifications {
 
         var toast = html`
             <div class="toast ${data.class || ''}">
-                <i class="fa fa-fw fa-${data.icon || 'bell'}"></i>
+                <i class="fa fa-fw fa-${data.icon || (data.class === 'error' ? 'exclamation' : 'bell')}"></i>
                 <div class="content">
                     ${data.message}
                 </div>

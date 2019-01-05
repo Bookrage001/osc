@@ -110,7 +110,6 @@ var SessionManager = class SessionManager {
 
             ipc.send('log', 'Could not save session file')
             notifications.add({
-                icon: 'exclamation',
                 class: 'error',
                 message: locales('session_saveerror')
             })

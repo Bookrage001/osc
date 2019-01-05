@@ -1,5 +1,6 @@
 var widgetManager = require('./widgets'),
-    {icon, Popup, upload} = require('../ui/utils'),
+    {upload} = require('../ui/utils'),
+    notifications = require('../ui/notifications'),
     {saveAs} = require('file-saver'),
     locales = require('../locales')
 
@@ -83,10 +84,25 @@ var StateManager = class StateManager {
 
     load() {
 
+        function stateLoadError(){
+            notifications.add({
+                class: 'error',
+                message: locales('state_uploaderror')
+            })
+        }
+
         upload('.state', (path, result)=>{
-            this.set(JSON.parse(result),true)
+            try {
+                this.set(JSON.parse(result),true)
+                notifications.add({
+                    icon: 'sliders-h',
+                    message: locales('state_recallsuccess')
+                })
+            } catch(e) {
+                stateLoadError()
+            }
         }, (e)=>{
-            new Popup({title:icon('exclamation-triangle')+'&nbsp; ' + locales('error'), content: locales('state_uploaderror'), closable:true})
+            stateLoadError()
         })
 
     }
