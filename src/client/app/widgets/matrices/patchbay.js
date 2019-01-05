@@ -70,6 +70,12 @@ class PatchBay extends Canvas {
             ]},
             outputs: {type: 'array|object', value: ['output_1', 'output_2'], help: 'List of output values the inputs can connect to (see `inputs`).'},
 
+        }, [], {
+
+            css: {type: 'string', value: '', help: [
+                'The inputs/ouputs width can be adjusted by using the  `.nodes` selector:',
+                '`.nodes { width: 25% }`',
+            ]}
         })
 
     }
