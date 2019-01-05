@@ -31,6 +31,9 @@ module.exports = {
     fs_unnavailable: 'Plein écran indisponible',
     fs_addtohome: 'Vous devez ajouter cette page à votre écran d\'accueil pour pouvoir l\'ouvrir en plein écran.',
 
+    // server
+    server_unreachable: 'La connexion avec le serveur a été interrompue',
+
     // session
     session_browse: 'Parcourir...',
     session_new: 'Nouvelle session',

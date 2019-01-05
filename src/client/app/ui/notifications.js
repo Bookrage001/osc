@@ -15,6 +15,14 @@ class Notifications {
 
     add(data) {
 
+        if (data.id) {
+            var match = this.toasts.filter(x => x.id === data.id)
+            if (match.length) {
+                match[0].date = Date.now()
+                return
+            }
+        }
+
         var toast = html`
             <div class="toast ${data.class || ''}">
                 <i class="fa fa-fw fa-${data.icon || (data.class === 'error' ? 'exclamation' : 'bell')}"></i>
@@ -24,6 +32,7 @@ class Notifications {
             </div>
         `
         toast.date = Date.now()
+        if (data.id) toast.id = data.id
         this.container.appendChild(toast)
         toast.style.height = toast.offsetHeight + 'px'
         this.toasts.push(toast)

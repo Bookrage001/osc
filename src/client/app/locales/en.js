@@ -31,6 +31,9 @@ module.exports = {
     fs_unnavailable: 'Fullscreen not available',
     fs_addtohome: 'You must add this page to your home screen to launch it in fullscreen',
 
+    // server
+    server_unreachable: 'The server is currently unreachable',
+
     // session
     session_browse: 'Browse...',
     session_new: 'New session',

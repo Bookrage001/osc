@@ -1,5 +1,12 @@
 var EventEmitter = require('../events/event-emitter'),
-    uuid = require('nanoid/generate')('0123456789abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10)
+    uuid = require('nanoid/generate')('0123456789abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10),
+    notifications,
+    locales
+
+setTimeout(()=>{
+    notifications = require('../ui/notifications')
+    locales = require('../locales')
+})
 
 var reconnectInterval = 5000,
     hearbeatInterval = 25000,
@@ -120,6 +127,12 @@ class Ipc extends EventEmitter {
             this.socket.send(packet)
         } else {
             this.queue.push(packet)
+            notifications.add({
+                icon: 'wifi',
+                class: 'error',
+                message: locales('server_unreachable'),
+                id: 'server_unreachable'
+            })
         }
 
     }

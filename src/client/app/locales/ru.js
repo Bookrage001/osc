@@ -31,6 +31,9 @@ module.exports = { // @https://github.com/suhr
     fs_unnavailable: 'Полный экран не доступен',
     fs_addtohome: 'Необходимо добавить эту страницу на главный экран чтобы запустить её в полноэкранном режиме',
 
+    // server
+    server_unreachable: 'The server is currently unreachable',
+    
     // session
     session_browse: 'Обзор...',
     session_new: 'Новая сессия',
@@ -57,7 +60,7 @@ module.exports = { // @https://github.com/suhr
     state_storesuccess: 'State saved',
     state_recallsuccess: 'State recalled',
     state_sendsuccess: 'State sent',
-    
+
     // traversing
     traversing_on: 'Вкл',
     traversing_smart: 'Умный',
