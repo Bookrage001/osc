@@ -159,9 +159,7 @@ class PatchBay extends Canvas {
 
 
         this.mousePosition = []
-        this.dragging = false
         this.on('drag', (e)=>{
-            this.dragging = true
             if (!this.connecting.length) {
                 this.toggleConnection(e.target)
             }
@@ -174,7 +172,6 @@ class PatchBay extends Canvas {
             this.batchDraw()
         }, {element: this.widget})
         this.on('dragend', (e)=>{
-            this.dragging = false
             if (this.mousePosition.length) {
                 this.mousePosition = []
                 this.toggleConnection(e.target)
@@ -224,10 +221,8 @@ class PatchBay extends Canvas {
             connections,
             i, j
 
-        this.ctx.globalAlpha = 0.7
-        this.ctx.lineWidth = 2 * PXSCALE
-        this.ctx.strokeStyle = this.colors.custom
-        this.ctx.beginPath()
+        var lines = [],
+            strongLines = []
 
         for (i = 0; i < this.inputsWidgets.length; i++) {
 
@@ -237,14 +232,19 @@ class PatchBay extends Canvas {
 
                 y1 = this.height / this.inputsValues.length * (i + 0.5)
 
-                for (j in connections) {
+                for (j = 0; j < connections.length; j++) {
 
                     if (this.outputsValues.indexOf(connections[j]) > -1) {
 
                         y2 = this.height / this.outputsValues.length * (this.outputsValues.indexOf(connections[j]) + 0.5)
 
-                        this.ctx.moveTo(x1, y1)
-                        this.ctx.bezierCurveTo(this.width / 2, y1, this.width / 2, y2 ,x2, y2)
+                        var line = [[x1, y1], [this.width / 2, y1, this.width / 2, y2 ,x2, y2]]
+
+                        if (this.connecting[0] === i || this.connecting[1] === this.outputsValues.indexOf(connections[j])) {
+                            strongLines.push(line)
+                        } else {
+                            lines.push(line)
+                        }
 
                     }
 
@@ -254,8 +254,6 @@ class PatchBay extends Canvas {
             }
 
         }
-
-        this.ctx.stroke()
 
         if (this.connecting.length) {
 
@@ -268,6 +266,8 @@ class PatchBay extends Canvas {
 
             this.ctx.arc(cx, cy, 8 * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
+            strongLines.push(null)
+
 
             if (this.mousePosition.length) {
                 var [x3, y3] = this.mousePosition,
@@ -275,12 +275,34 @@ class PatchBay extends Canvas {
                     bz1 = side ? cx - centerx : cx + centerx,
                     bz2 = side ? x3 + centerx : x3 - centerx
 
-                this.ctx.beginPath()
-                this.ctx.moveTo(cx, cy)
-                this.ctx.bezierCurveTo(bz1, cy, bz2, y3 ,x3, y3)
-                this.ctx.stroke()
+                strongLines.push([[cx, cy], [bz1, cy, bz2, y3 ,x3, y3]])
 
             }
+
+        }
+
+
+        this.ctx.strokeStyle = this.colors.custom
+        this.ctx.lineWidth = 2 * PXSCALE
+
+        this.ctx.globalAlpha = strongLines.length ? 0.3 : 0.7
+        this.ctx.beginPath()
+        for (i in lines) {
+            this.ctx.moveTo(...lines[i][0])
+            this.ctx.bezierCurveTo(...lines[i][1])
+        }
+        this.ctx.stroke()
+
+        if (strongLines.length) {
+
+            this.ctx.globalAlpha = 0.7
+            this.ctx.beginPath()
+            for (i in strongLines) {
+                if (strongLines[i] === null) continue
+                this.ctx.moveTo(...strongLines[i][0])
+                this.ctx.bezierCurveTo(...strongLines[i][1])
+            }
+            this.ctx.stroke()
 
         }
 
