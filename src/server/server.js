@@ -1,7 +1,7 @@
-var express     = require('express')(),
-    path        = require('path'),
+var path        = require('path'),
+    send        = require('send'),
     http        = require('http'),
-    server      = http.createServer(express),
+    server      = http.createServer(httpRoute),
     Ipc         = require('./ipc/server'),
     ipc         = new Ipc(server),
     settings     = require('./settings'),
@@ -11,26 +11,31 @@ var express     = require('express')(),
     osc = {},
     clients = {}
 
-express.get('/', function(req, res){
-    res.sendFile(path.resolve(__dirname + '/../client/index.html'))
-})
-
-express.get('*', function(req, res){
-    if (req.path.indexOf('theme.css') != -1) {
-        res.set('Content-Type', 'text/css')
-        if (settings.read('theme')) {
-            var str = theme.get(),
-                buf = Buffer.from && Buffer.from !== Uint8Array.from ? Buffer.from(str) : new Buffer(str)
-            res.send(buf)
-        } else {
-            res.send('')
-        }
-    } else if (/(assets|client)\//.test(req.path)){
-        res.sendFile(path.resolve(__dirname + '/..' + req.path))
-    } else {
-        res.sendFile(path.resolve(req.path))
+function httpRoute(req, res) {
+    res.sendFile = (path)=>{
+        send(req, path).pipe(res)
     }
-})
+
+    if (req.url === '/' || req.url.indexOf('/?') === 0) {
+        res.sendFile(path.resolve(__dirname + '/../client/index.html'))
+    } else {
+        if (req.url.indexOf('theme.css') != -1) {
+            res.setHeader('Content-Type', 'text/css')
+            if (settings.read('theme')) {
+                var str = theme.get(),
+                    buf = Buffer.from && Buffer.from !== Uint8Array.from ? Buffer.from(str) : new Buffer(str)
+                res.write(buf)
+            } else {
+                res.write('')
+            }
+            res.end()
+        } else if (/^\/(assets|client)\//.test(req.url)){
+            res.sendFile(path.resolve(__dirname + '/..' + req.url))
+        } else {
+            res.sendFile(path.resolve(req.url))
+        }
+    }
+}
 
 server.listen(settings.read('httpPort'))
 
