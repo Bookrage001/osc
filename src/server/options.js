@@ -76,7 +76,7 @@ module.exports = {
             var msg = true
             try {
                 RegExp(r)
-            } catch (e) {
+            } catch (e) {
                 msg = e
             }
             return msg
