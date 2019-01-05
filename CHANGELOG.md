@@ -11,7 +11,7 @@
 - ui
   - added notifications
 - widgets
-  - new `patchbay` widget
+  - `matrices`: **new** `patchbay` widget
 
 ## 0.40.5
 
