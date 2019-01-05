@@ -16,8 +16,13 @@ var SessionManager = class SessionManager {
 
         this.session = []
         this.lock = false
+        this.sessionPath = ''
 
         this.allowRemoteSave = false
+
+        ipc.on('connect', ()=>{
+            ipc.send('sessionSetPath', {path: this.sessionPath})
+        })
 
     }
 
@@ -85,8 +90,8 @@ var SessionManager = class SessionManager {
                 loader.close()
                 container.classList.add('show')
                 this.lock = false
-                this.allowRemoteSave = false
                 editor.unsavedSession = false
+                this.sessionPath = ''
                 if (callback) callback()
             }, 25)
 
@@ -169,7 +174,8 @@ var SessionManager = class SessionManager {
 
     open(data) {
 
-        this.load(data.session,function(){
+        this.load(data.session, ()=>{
+            this.sessionPath = data.path
             ipc.send('sessionOpened', {path: data.path})
         })
 
@@ -178,7 +184,7 @@ var SessionManager = class SessionManager {
     browse() {
 
         upload('.json', (path, result)=>{
-            ipc.send('sessionOpen',{file:result,path:path})
+            ipc.send('sessionOpen',{file:result, path:path})
         }, ()=>{
             new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('error'), content: locales('session_uploaderror'), closable:true})
         })
