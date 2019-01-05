@@ -71,7 +71,17 @@ module.exports = {
                 true : 'blank session can\'t be started in read-only mode'
         }
     },
-    'remote-saving':{type:'string',describe:'disable remote session saving for hosts that don\'t match the regular expresion'},
+    'remote-saving':{type:'string',describe:'disable remote session saving for hosts that don\'t match the regular expresion',
+        check: (r, argv)=>{
+            var msg = true
+            try {
+                RegExp(r)
+            } catch (e) {
+                msg = e
+            }
+            return msg
+        }
+    },
     'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'},
     'fullscreen':{type:'boolean', describe:'launch in fullscreen mode (only affects the default gui, F11 to exit)'}
 }
