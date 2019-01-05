@@ -59,15 +59,36 @@ class PatchBay extends Canvas {
 
             _patchbay:'patchbay',
 
-            inputs: {type: 'array', value: ['input_1', 'input_2'], help: [
+            inputs: {type: 'array|object', value: ['input_1', 'input_2'], help: [
+                '- `Array` of input names : `[\'input_1\', \'input_2\']`',
+                '- `Object` of `"label_1": "input_1"` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won\'t be kept',
+                '',
                 'Patchbay inputs can be connected to one or more outputs and will send messages of the following form when they are connected/disconnected: ',
                 '`/patchbay_address input_x output_x output_y etc`',
                 'If no output is connected to the input, the message will be `/patchbay_address input_x`',
-                'The inputs values can be consumed with the property inheritance syntax `@{patchbay_id/input_1}` returns an array of output names connected to `input_1`'
+                'The inputs values can be consumed with the property inheritance syntax: `@{patchbay_id/input_1}` returns an array of output names connected to `input_1`'
             ]},
-            outputs: {type: 'array', value: ['output_1', 'output_2'], help: 'List of output values the inputs can connect to.'},
+            outputs: {type: 'array|object', value: ['output_1', 'output_2'], help: 'List of output values the inputs can connect to (see `inputs`).'},
 
         })
+
+    }
+
+    static normalizeArrayObject(obj) {
+
+        if (typeof obj !== 'object' || obj === null) {
+            return PatchBay.normalizeArrayObject([obj])
+        } else if (Array.isArray(obj)) {
+            var ret = {},
+                k, i
+            for (i = 0; i < obj.length; i++) {
+                k = typeof obj[i] === 'string' ? obj[i] : JSON.stringify(obj[i])
+                ret[k] = obj[i]
+            }
+            return ret
+        } else {
+            return obj
+        }
 
     }
 
@@ -81,19 +102,25 @@ class PatchBay extends Canvas {
             </div>
         `})
 
-        this.inputs = []
+        this.inputs = PatchBay.normalizeArrayObject(this.getProp('inputs'))
+        this.outputs = PatchBay.normalizeArrayObject(this.getProp('outputs'))
+        this.inputsValues = Object.values(this.inputs)
+        this.outputsValues = Object.values(this.outputs)
+
+        this.inputsWidgets = []
         this.inputNodes = []
         this.outputNodes = []
 
-        for (let i in this.getProp('inputs')) {
+
+        for (let k in this.inputs) {
             let w = parser.parse({
                 data: {
                     type: 'patchbaynode',
-                    label: this.getProp('inputs')[i],
-                    id: this.getProp('id') + '/' + this.getProp('inputs')[i],
+                    label: k,
+                    id: this.getProp('id') + '/' + this.inputs[k],
                     address: '@{parent.address}',
                     target: '@{parent.target}',
-                    preArgs: this.getProp('inputs')[i],
+                    preArgs: this.inputs[k],
                     bypass: '@{parent.bypass}',
 
                 },
@@ -101,15 +128,15 @@ class PatchBay extends Canvas {
                 parent: this
             })
             w.container.classList.add('not-editable')
-            this.inputs.push(w)
+            this.inputsWidgets.push(w)
             this.inputNodes.push(w.container)
         }
 
-        for (let i in this.getProp('outputs')) {
-            var outputs = DOM.get(this.widget, '.outputs')[0],
-                node = html`
+        var outputs = DOM.get(this.widget, '.outputs')[0]
+        for (let k in this.outputs) {
+            var node = html`
                 <div class="widget">
-                    <div class="label">${this.getProp('outputs')[i]}</div>
+                    <div class="label">${k}</div>
                 </div>
             `
             outputs.appendChild(node)
@@ -121,6 +148,7 @@ class PatchBay extends Canvas {
 
         this.widget.addEventListener('fast-click', (e)=>{
             this.toggleConnection(e.target)
+            e.stopPropagation()
         })
 
 
@@ -164,12 +192,18 @@ class PatchBay extends Canvas {
         }
 
         if (this.connecting[0] !== undefined && this.connecting[1] !== undefined) {
-            this.inputs[this.connecting[0]].toggleValue(this.getProp('outputs')[this.connecting[1]])
+            this.inputsWidgets[this.connecting[0]].toggleValue(this.outputsValues[this.connecting[1]])
             this.connecting = []
         } else {
-
             this.batchDraw()
+        }
 
+        if (this.connecting.length) {
+            var cb = (e)=>{
+                this.toggleConnection()
+                document.removeEventListener('fast-click', cb)
+            }
+            document.addEventListener('fast-click', cb)
         }
 
     }
@@ -182,28 +216,26 @@ class PatchBay extends Canvas {
             x2 = this.width,
             y1, y2,
             connections,
-            i, j,
-            inputs = this.getProp('inputs'),
-            outputs = this.getProp('outputs')
+            i, j
 
         this.ctx.globalAlpha = 0.7
         this.ctx.lineWidth = 2 * PXSCALE
         this.ctx.strokeStyle = this.colors.custom
         this.ctx.beginPath()
 
-        for (i = 0; i < this.inputs.length; i++) {
+        for (i = 0; i < this.inputsWidgets.length; i++) {
 
-            connections = this.inputs[i].getValue()
+            connections = this.inputsWidgets[i].getValue()
 
             if (connections.length) {
 
-                y1 = this.height / inputs.length * (i + 0.5)
+                y1 = this.height / this.inputsValues.length * (i + 0.5)
 
                 for (j in connections) {
 
-                    if (outputs.indexOf(connections[j]) > -1) {
+                    if (this.outputsValues.indexOf(connections[j]) > -1) {
 
-                        y2 = this.height / outputs.length * (outputs.indexOf(connections[j]) + 0.5)
+                        y2 = this.height / this.outputsValues.length * (this.outputsValues.indexOf(connections[j]) + 0.5)
 
                         this.ctx.moveTo(x1, y1)
                         this.ctx.bezierCurveTo(this.width / 2, y1, this.width / 2, y2 ,x2, y2)
@@ -226,7 +258,7 @@ class PatchBay extends Canvas {
 
             var side = this.connecting[0] !== undefined ? 0 : 1,
                 cx = side === 0 ? 0 : this.width,
-                cy = this.height / (side === 0 ? inputs : outputs).length * (this.connecting[side] + 0.5)
+                cy = this.height / (side === 0 ? this.inputsValues : this.outputsValues).length * (this.connecting[side] + 0.5)
 
             this.ctx.arc(cx, cy, 8 * PXSCALE, Math.PI * 2, false)
             this.ctx.fill()
