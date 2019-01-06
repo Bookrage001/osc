@@ -13,7 +13,7 @@ var path        = require('path'),
 
 function httpRoute(req, res) {
     res.sendFile = (path)=>{
-        send(req, path).pipe(res)
+        send(req, path.split('?')[0]).pipe(res)
     }
 
     if (req.url === '/' || req.url.indexOf('/?') === 0) {
