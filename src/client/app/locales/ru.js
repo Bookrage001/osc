@@ -32,8 +32,9 @@ module.exports = { // @https://github.com/suhr
     fs_addtohome: 'Необходимо добавить эту страницу на главный экран чтобы запустить её в полноэкранном режиме',
 
     // server
-    server_unreachable: 'The server is currently unreachable',
-    
+    server_disconnected: 'The connection to the server has been interrupted',
+    server_connected: 'The connection to the server has been restored',
+        
     // session
     session_browse: 'Обзор...',
     session_new: 'Новая сессия',

@@ -32,7 +32,8 @@ module.exports = {
     fs_addtohome: 'You must add this page to your home screen to launch it in fullscreen',
 
     // server
-    server_unreachable: 'The server is currently unreachable',
+    server_disconnected: 'The connection to the server has been interrupted',
+    server_connected: 'The connection to the server has been restored',
 
     // session
     session_browse: 'Browse...',

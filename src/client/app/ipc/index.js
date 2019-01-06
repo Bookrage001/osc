@@ -66,6 +66,12 @@ class Ipc extends EventEmitter {
                 }, hearbeatTimeout)
             }, hearbeatInterval)
 
+            if (notifications) notifications.add({
+                icon: 'wifi',
+                message: locales('server_connected'),
+                id: 'ipc_state'
+            })
+
             this.trigger('connect')
             this.flush()
 
@@ -88,7 +94,13 @@ class Ipc extends EventEmitter {
         this.hearbeat = clearInterval(this.hearbeat)
         this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
         this.dieTimeout = clearTimeout(this.dieTimeout)
-
+        notifications.add({
+            icon: 'wifi',
+            class: 'error',
+            message: locales('server_disconnected'),
+            id: 'ipc_state',
+            duration: Infinity
+        })
         if (!this.reconnect) {
             this.reconnect = setInterval(()=>{
                 this.open()
@@ -127,12 +139,6 @@ class Ipc extends EventEmitter {
             this.socket.send(packet)
         } else {
             this.queue.push(packet)
-            notifications.add({
-                icon: 'wifi',
-                class: 'error',
-                message: locales('server_unreachable'),
-                id: 'server_unreachable'
-            })
         }
 
     }

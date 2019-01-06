@@ -32,7 +32,8 @@ module.exports = {
     fs_addtohome: 'Vous devez ajouter cette page à votre écran d\'accueil pour pouvoir l\'ouvrir en plein écran.',
 
     // server
-    server_unreachable: 'La connexion avec le serveur a été interrompue',
+    server_disconnected: 'La connexion avec le serveur a été interrompue',
+    server_connected: 'La connexion avec le serveur a été rétablie',
 
     // session
     session_browse: 'Parcourir...',
