@@ -26,7 +26,7 @@ class Toast {
             </div>
         `
         if (this.html) {
-            morph(this.html, html)
+            this.html = morph(this.html, html)
         } else {
             this.html = html
         }
