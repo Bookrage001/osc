@@ -17,7 +17,7 @@ class Toast {
 
         this.expires = Date.now() + (data.duration || DEFAULT_DURATION)
 
-        var html = html`
+        var toast = html`
             <div class="toast ${data.class || ''}">
                 <i class="fa fa-fw fa-${data.icon || (data.class === 'error' ? 'exclamation' : 'bell')}"></i>
                 <div class="content">
@@ -26,9 +26,9 @@ class Toast {
             </div>
         `
         if (this.html) {
-            this.html = morph(this.html, html)
+            this.html = morph(this.html, toast)
         } else {
-            this.html = html
+            this.html = toast
         }
 
     }
