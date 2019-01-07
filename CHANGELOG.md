@@ -12,6 +12,8 @@
   - added notifications
 - widgets
   - `matrices`: **new** `patchbay` widget
+- bug fixes
+  - prevent layout break when hitting tab with sidepanel closed and editor enabled
 
 ## 0.40.5
 

@@ -227,8 +227,12 @@ function sidepanelOpen() {
 
     sidepaneLock = true
 
-    DOM.each(document, '#open-toggle, #sidepanel', (el)=>{
-        el.classList.add('sidepanel-open')
+    DOM.get('#sidepanel')[0].classList.remove('hide')
+    
+    setTimeout(function(){
+        DOM.each(document, '#open-toggle, #sidepanel', (el)=>{
+            el.classList.add('sidepanel-open')
+        })
     })
 
     setTimeout(function(){
@@ -248,6 +252,10 @@ function sidepanelClose() {
     DOM.each(document, '#open-toggle, #sidepanel, #container', (el)=>{
         el.classList.remove('sidepanel-open')
     })
+
+    setTimeout(function(){
+        DOM.get('#sidepanel')[0].classList.add('hide')
+    }, 250)
 
     setTimeout(function(){
         DOM.dispatchEvent(window, 'resize')

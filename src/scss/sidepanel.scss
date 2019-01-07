@@ -27,6 +27,12 @@
         opacity: 1;
     }
 
+    &.hide {
+        z-index: -1;
+        pointer-events: none;
+        margin-right: 0;
+}
+
     .navigation {
         margin-bottom:2rem;
         margin-left: 0;
