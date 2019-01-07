@@ -423,7 +423,7 @@ var Editor = class Editor {
 
                 if (widget.parent !== widgetManager && widget.parent.getProp('type') === 'strip') {
                     // special case for widgets in strips
-                    if (propName === 'top' || propName === 'left' || propName === (widget.parent.getProp('horizontal') ? 'height' : 'width')) continue
+                    if (propName === 'top' || propName === 'left' || propName === (widget.parent.getProp('horizontal') ? 'height' : 'width')) continue
                 }
 
                 field = editField(this, widget, propName, props[propName])
