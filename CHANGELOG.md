@@ -3,7 +3,8 @@
 ## 0.41.1
 
 - bug fixes
-  - error when loading a session file not located on the server 
+  - error when loading a session file not located on the server
+  - prevent sidepanel issue when toggling quickly 
 
 ## 0.41.0
 

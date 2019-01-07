@@ -254,6 +254,7 @@ function sidepanelClose() {
     })
 
     setTimeout(function(){
+        if (sidepaneLock) return
         DOM.get('#sidepanel')[0].classList.add('hide')
     }, 250)
 
