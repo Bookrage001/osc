@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.41.1
+
+- bug fixes
+  - error when loading a session file not located on the server 
+
 ## 0.41.0
 
 - main
@@ -14,7 +19,7 @@
   - `matrices`: **new** `patchbay` widget
 - bug fixes
   - layout break when hitting tab with sidepanel closed and editor enabled
-  - crash when running the server in an environnement without user home folder 
+  - crash when running the server in an environnement without user home folder
 
 ## 0.40.5
 

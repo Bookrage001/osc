@@ -116,7 +116,7 @@ module.exports =  {
 
     sessionSetPath: function(data, clientId) {
 
-        if (settings.read('remoteSaving') && !settings.read('remoteSaving').test(ipc.clients[clientId].address)) {
+        if (!data.path || settings.read('remoteSaving') && !settings.read('remoteSaving').test(ipc.clients[clientId].address)) {
             return
         }
 
