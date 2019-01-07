@@ -22,6 +22,7 @@ class Ipc extends EventEmitter {
 
         this.queue = []
 
+        this.disconnectedOnce = false
         this.reconnect = undefined
 
         this.hearbeat = undefined
@@ -66,7 +67,7 @@ class Ipc extends EventEmitter {
                 }, hearbeatTimeout)
             }, hearbeatInterval)
 
-            if (notifications) notifications.add({
+            if (notifications && this.disconnectedOnce) notifications.add({
                 icon: 'wifi',
                 message: locales('server_connected'),
                 id: 'ipc_state'
@@ -101,6 +102,7 @@ class Ipc extends EventEmitter {
             id: 'ipc_state',
             duration: Infinity
         })
+        this.disconnectedOnce = true
         if (!this.reconnect) {
             this.reconnect = setInterval(()=>{
                 this.open()
