@@ -13,7 +13,8 @@
 - widgets
   - `matrices`: **new** `patchbay` widget
 - bug fixes
-  - prevent layout break when hitting tab with sidepanel closed and editor enabled
+  - layout break when hitting tab with sidepanel closed and editor enabled
+  - crash when running the server in an environnement without user home folder 
 
 ## 0.40.5
 
