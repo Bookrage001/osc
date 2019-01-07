@@ -780,11 +780,12 @@ class Widget extends EventEmitter {
                     geometry = parseFloat(val) == val ? parseFloat(val)+'rem' : val
                 }
 
-                if (geometry && geometry != 'auto') {
+                if (geometry) {
+                    if (geometry === 'auto') geometry = ''
                     this.container.style[d] = geometry
-                    if (d == 'width') this.container.style.minWidth = geometry
-                    if (d == 'height') this.container.style.minHeight = geometry
-                    if (d == 'top' || d == 'left') this.container.classList.add('absolute-position')
+                    if (d === 'width') this.container.style.minWidth = geometry
+                    if (d === 'height') this.container.style.minHeight = geometry
+                    if (d === 'top' || d === 'left') this.container.classList.add('absolute-position')
                 }
             }
 

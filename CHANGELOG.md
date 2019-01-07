@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.41.2
+
+- bug fixes
+  - geometry properties not properly applied when reset to `auto` 
+
 ## 0.41.1
 
 - bug fixes
