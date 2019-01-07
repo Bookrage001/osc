@@ -3,7 +3,8 @@
 ## 0.41.2
 
 - bug fixes
-  - geometry properties not properly applied when reset to `auto` 
+  - geometry properties not properly applied when reset to `auto`
+  - `strip` layout not properly applied when changing the widget's `horizontal` property
 
 ## 0.41.1
 

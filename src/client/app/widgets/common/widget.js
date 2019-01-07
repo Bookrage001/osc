@@ -142,13 +142,6 @@ class Widget extends EventEmitter {
         this.children = []
         this.reCreateOptions = options.reCreateOptions
 
-        // strip parent ? no position
-        if (this.parent && this.parent.props && this.parent.props.type == 'strip') {
-            delete this.props.top
-            delete this.props.left
-            delete this.props[this.parent.getProp('horizontal') ? 'height' : 'width']
-        }
-
         this.createPropsCache()
 
         if (this.getProp('id') == 'root' && !options.root) {
