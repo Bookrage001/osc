@@ -116,11 +116,12 @@ module.exports =  {
 
     sessionSetPath: function(data, clientId) {
 
+        ipc.clients[clientId].sessionPath = ''
+
         if (!data.path || settings.read('remoteSaving') && !settings.read('remoteSaving').test(ipc.clients[clientId].address)) {
             return
         }
 
-        ipc.clients[clientId].sessionPath = ''
         fs.lstat(data.path, (err, stats)=>{
             if (err || !stats.isFile()) return
             ipc.clients[clientId].sessionPath = data.path
