@@ -83,7 +83,7 @@ class Ipc extends EventEmitter {
         }
 
         this.socket.onclose = this.socket.onerror = ()=>{
-            this.close()
+            if (!this.connected()) this.close()
         }
 
     }
