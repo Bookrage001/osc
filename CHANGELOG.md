@@ -5,6 +5,7 @@
 - bug fixes
   - geometry properties not properly applied when reset to `auto`
   - `strip` layout not properly applied when changing the widget's `horizontal` property
+  - `modal` glitch on chromium v70
 
 ## 0.41.1
 

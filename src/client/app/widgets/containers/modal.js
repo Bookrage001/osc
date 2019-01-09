@@ -123,11 +123,12 @@ module.exports = class Modal extends Panel {
 
         this.bindEscKey(this.value)
 
+        if (this.init) this.fixParents()
+
         if (this.value) {
             resize.check(this.widget, true)
         }
 
-        if (this.init) this.fixParents()
 
         if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
