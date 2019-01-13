@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.41.3
+
+- osc
+  - add support for utf8 string argments (encoded/decoded as per standard https://encoding.spec.whatwg.org/#utf-8)
+
 ## 0.41.2
 
 - bug fixes

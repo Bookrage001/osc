@@ -1,4 +1,4 @@
-var osc = require('osc'),
+var osc = require('./osc'),
     EventEmitter = require('events').EventEmitter,
     settings = require('../settings'),
     zeroconf = require('../zeroconf'),

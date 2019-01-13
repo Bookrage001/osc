@@ -1,4 +1,4 @@
-var osc = require('osc'),
+var osc = require('./osc'),
     settings = require('../settings'),
     zeroconf = require('../zeroconf'),
     oscInPort = settings.read('oscInPort') || settings.read('httpPort')
