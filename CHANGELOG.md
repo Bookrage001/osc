@@ -2,6 +2,8 @@
 
 ## 0.41.3
 
+- bug fixes
+  - `rgb`: values were rounded even with `precision` different from `0`  
 - osc
   - add support for utf8 string argments (encoded/decoded as per standard https://encoding.spec.whatwg.org/#utf-8)
 

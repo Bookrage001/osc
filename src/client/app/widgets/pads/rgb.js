@@ -141,7 +141,7 @@ module.exports = class Rgb extends Pad {
 
             var rgb = hsbToRgb(this.hsb)
             for (var k in rgb) {
-                rgb[k] = mapToScale(rgb[k], [0, 255], [this.getProp('range').min, this.getProp('range').max])
+                rgb[k] = mapToScale(rgb[k], [0, 255], [this.getProp('range').min, this.getProp('range').max], false)
             }
 
             if (rgb.r != this.value[0] || rgb.g != this.value[1] || rgb.b != this.value[2]) {
