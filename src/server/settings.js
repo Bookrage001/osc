@@ -73,8 +73,8 @@ var makeDefaultConfig = function(argv){
         urlOptions: argv['url-options'] ? '?' + argv['url-options'].join('&') : '',
         noVsync: argv['disable-vsync'] || false,
         noGpu: argv['disable-gpu'] || false,
-        readOnly: argv['read-only'] ? RegExp(argv['read-only']) : false,
-        remoteSaving: argv['remote-saving'] || false,
+        readOnly: argv['read-only'] || false,
+        remoteSaving: argv['remote-saving'] ? RegExp(argv['remote-saving']) : false,
         midi: argv['midi'],
         stateFile: (function(){
             if (!argv['state']) return false

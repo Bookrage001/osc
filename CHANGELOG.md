@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.41.4
+
+- bug fixes
+  - broken `--remote-saving` option
+
 ## 0.41.3
 
 - bug fixes
