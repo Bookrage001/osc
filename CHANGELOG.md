@@ -3,7 +3,8 @@
 ## 0.41.4
 
 - bug fixes
-  - broken `--remote-saving` option
+  - broken `--remote-saving` option*
+  - `fader`: built-in `meter` not updating its `address`, `preArgs` & `color` properties 
 
 ## 0.41.3
 

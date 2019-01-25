@@ -18,7 +18,7 @@ module.exports = class Fader extends Slider {
             meter: {type: 'boolean', value: false, help: [
                 'Set to true to display a vu-meter next in the fader',
                 '- the meter\'s `id` will be the same as the widget\'s with `/meter` appended to it',
-                '- the meter\'s `id` will be the same as the widget\'s with `/meter` appended to it'
+                '- the meter\'s `address` will be the same as the widget\'s with `/meter` appended to it'
             ]},
             compact: {type: 'boolean', value: false, help: 'Set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display.'},
             dashed: {type: 'boolean', value: false, help: 'Set to `true` to display a dashed gauge'},
@@ -97,9 +97,9 @@ module.exports = class Fader extends Slider {
                 horizontal:this.getProp('horizontal'),
                 range:this.getProp('range'),
                 logScale:this.getProp('logScale'),
-                address:this.getProp('meterAddress') || this.getProp('address') + '/meter',
-                preArgs:this.getProp('preArgs'),
-                color:this.getProp('color'),
+                address: '#{@{parent.meterAddress} ? @{parent.meterAddress} : concat(@{parent.address}, "/meter")}',
+                preArgs: '@{parent.preArgs}',
+                color: '@{parent.color}',
                 pips:false,
                 dashed:true
             }
