@@ -89,7 +89,9 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             field.appendChild(input)
 
         }
-        var lock
+        var lock,
+            selectedWidgets = [...editor.selectedWidgets]
+            
         var onChange = ()=>{
 
             if (lock) return
@@ -106,9 +108,9 @@ module.exports = function editField(editor, widget, propName, defaultValue){
             }
 
             var newWidgets = []
-            for (var w of editor.selectedWidgets) {
+            for (var w of selectedWidgets) {
                 w.props[propName] = v !== '' ? v : deepCopy(defaultValue.value)
-                newWidgets.push(updateWidget(w, {changedProps: [propName], preventSelect: editor.selectedWidgets.length > 1}))
+                newWidgets.push(updateWidget(w, {changedProps: [propName], preventSelect: selectedWidgets.length > 1}))
             }
             editor.pushHistory()
             if (newWidgets.length > 1) editor.select(newWidgets)

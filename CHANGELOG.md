@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.41.5
+
+- bug fixes
+  - editor: changes applied to wrong widget when clicking on a widget while editing another widget's property
+
 ## 0.41.4
 
 - bug fixes
