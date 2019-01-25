@@ -4,7 +4,8 @@
 
 - bug fixes
   - broken `--remote-saving` option*
-  - `fader`: built-in `meter` not updating its `address`, `preArgs` & `color` properties 
+  - `fader`: built-in `meter` not updating its `address`, `preArgs` & `color` properties
+  - incorrect osc messsages when widget's `split` and `preArgs` are set
 
 ## 0.41.3
 
