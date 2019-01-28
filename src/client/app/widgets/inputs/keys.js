@@ -14,7 +14,7 @@ class Keys extends Widget {
 
             binding: {type: 'string|array', value: '', help: 'Key combo `string` or `array` of strings (see <a href="https://github.com/RobertWHurst/KeyboardJS">KeyboardJS</a> documentation)'},
             keydown: {type: 'string', value: '', help: [
-                'This property is evaluated each time the key combo is pressed. Formulas are given extras variables in this context:',
+                'This property is evaluated each time the key combo is pressed and defines the widget\'s own value. Formulas are given extras variables in this context:',
                 '- `key`: pressed key name (usefull for handling multiple keys with a single keys widget)',
                 '- `ctrl`: control key state',
                 '- `alt`: alt key state',
