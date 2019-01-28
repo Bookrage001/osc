@@ -4,7 +4,9 @@
 
 - bug fixes
   - editor: changes applied to wrong widget when clicking on a widget while editing another widget's property
-  - push: allow setting `value` property 
+  - push: allow setting `value` property
+- widgets
+  - sliders: when `steps` is set, scrolling on the widget makes it go directly from one step to another
 
 ## 0.41.4
 

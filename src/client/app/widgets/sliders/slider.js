@@ -140,9 +140,15 @@ class Slider extends Canvas {
         var direction = e.wheelDelta / Math.abs(e.wheelDelta),
             increment = e.ctrlKey?0.25:1
 
-        this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.precision + 1)) * direction, [0,100])
-
-        this.setValue(this.percentToValue(this.percent), {sync:true,send:true,dragged:true})
+        if (this.getProp('steps')) {
+            var i = this.steps.indexOf(this.value)
+            if (i > -1 && i < this.steps.length) {
+                this.setValue(this.steps[i + direction], {sync: true, send: true, fromLocal: true})
+            }
+        } else {
+            this.percent = clip(this.percent +  Math.max(increment,10/Math.pow(10,this.precision + 1)) * direction, [0,100])
+            this.setValue(this.percentToValue(this.percent), {sync: true, send: true, dragged: true})
+        }
 
     }
 
