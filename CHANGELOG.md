@@ -4,6 +4,7 @@
 
 - bug fixes
   - editor: changes applied to wrong widget when clicking on a widget while editing another widget's property
+  - push: allow setting `value` property 
 
 ## 0.41.4
 
