@@ -23,7 +23,7 @@ class Push extends Widget {
             ]},
             norelease: {type: 'boolean', value: false, help: 'Set to `true` to prevent sending any osc message when releasing the button'},
 
-        }, ['_value', 'default', 'value'])
+        }, ['default'])
 
     }
 

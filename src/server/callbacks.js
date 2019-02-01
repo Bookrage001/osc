@@ -199,8 +199,6 @@ module.exports =  {
             data[k] = shortdata[k]
         }
 
-        data.args =  data.preArgs ? data.preArgs.concat(value) : [value]
-
         if (data.target) {
 
             var targets = []
@@ -225,11 +223,13 @@ module.exports =  {
                     if (data.split) {
 
                         for (var j in data.split) {
-                            osc.send(host,port,data.split[j],data.args[j],data.precision)
+                            data.args = data.preArgs ? data.preArgs.concat(value[j]) : [value[j]]
+                            osc.send(host,port,data.split[j],data.args,data.precision)
                         }
 
                     } else {
 
+                        data.args = data.preArgs ? data.preArgs.concat(value) : [value]
                         osc.send(host,port,data.address,data.args,data.precision)
 
                     }

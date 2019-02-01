@@ -1,10 +1,20 @@
 # Changelog
 
+## 0.41.5
+
+- bug fixes
+  - editor: changes applied to wrong widget when clicking on a widget while editing another widget's property
+  - push: allow setting `value` property
+  - allow whitespaces in path for `--custom-module`
+- widgets
+  - sliders: when `steps` is set, scrolling on the widget makes it go directly from one step to another
+
 ## 0.41.4
 
 - bug fixes
-  - broken `--remote-saving` option
-  - allow whitespaces in path for `--custom-module`
+  - broken `--remote-saving` option*
+  - `fader`: built-in `meter` not updating its `address`, `preArgs` & `color` properties
+  - incorrect osc messsages when widget's `split` and `preArgs` are set
 
 ## 0.41.3
 
