@@ -20,11 +20,20 @@ class OscServer {
             var customModule = settings.read('customModule')
             if (!customModule) return false
 
+            // consolidate path containing whitespaces
+            if (!customModule[0].includes('.js')) {
+                var index = customModule.findIndex(x => typeof x === 'string' && x.includes('.js'))
+                if (index !== undefined) {
+                    var path = customModule.slice(0, index + 1).join(' ')
+                    customModule.splice(0, index + 1, path)
+                }
+            }
+
             var file = (()=>{
                     try {
                         return fs.readFileSync(customModule[0], 'utf8')
                     } catch(err) {
-                        console.log('CustomModule Error: File not found: ' + settings.read('customModule'))
+                        console.log('CustomModule Error: File not found: ' + customModule[0])
                         return false
                     }
                 })(),

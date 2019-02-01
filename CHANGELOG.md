@@ -4,6 +4,7 @@
 
 - bug fixes
   - broken `--remote-saving` option
+  - allow whitespaces in path for `--custom-module`
 
 ## 0.41.3
 
