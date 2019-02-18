@@ -7,6 +7,7 @@ process.cwd = () => { return __dirname }
 
 var options = require('./options'),
     argv = require('yargs')
+    .parserConfiguration({'boolean-negation': false})
     .help('help').usage('\nUsage:\n  $0 [options]').alias('h', 'help')
     .options(options)
     .check((argv)=>{
