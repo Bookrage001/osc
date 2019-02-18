@@ -651,7 +651,10 @@ class Widget extends EventEmitter {
 
                 if (!this.isDynamicProp(propName)) {
 
-                    reCreate = true
+                    if ((!widget || !this.contains(widget)) && widget !== this && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
+                        reCreate = true
+                        break
+                    }
 
                 } else {
 
@@ -664,7 +667,7 @@ class Widget extends EventEmitter {
             }
         }
 
-        if (reCreate && (!widget || !this.contains(widget)) && widget !== this && !(widget === this && updatedProps.length === 1 && updatedProps[0] === 'value')) {
+        if (reCreate) {
 
             return this.reCreateWidget({reCreateOptions: options})
 
