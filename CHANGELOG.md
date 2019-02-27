@@ -1,12 +1,17 @@
 # Changelog
 
+## 0.41.6
+
+- bug fixes
+  - keys: binding conflict with editor 
+
 ## 0.41.5
 
 - bug fixes
   - editor: changes applied to wrong widget when clicking on a widget while editing another widget's property
   - push: allow setting `value` property
   - allow whitespaces in path for `--custom-module`
-  - error when changing a property that's inherited by a widget to define its address and at least one non-dynamic property 
+  - error when changing a property that's inherited by a widget to define its address and at least one non-dynamic property
 - widgets
   - sliders: when `steps` is set, scrolling on the widget makes it go directly from one step to another
 
