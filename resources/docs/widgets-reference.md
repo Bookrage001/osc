@@ -39,7 +39,7 @@
 | <h4 id="fader_alignRight">alignRight<a class="headerlink" href="#fader_alignRight" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to invert the pip's and fader's position |
 | <h4 id="fader_pips">pips<a class="headerlink" href="#fader_pips" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to hide the scale |
 | <h4 id="fader_input">input<a class="headerlink" href="#fader_input" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to hide the built-in input |
-| <h4 id="fader_meter">meter<a class="headerlink" href="#fader_meter" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to true to display a vu-meter next in the fader<br/>- the meter's `id` will be the same as the widget's with `/meter` appended to it<br/>- the meter's `id` will be the same as the widget's with `/meter` appended to it |
+| <h4 id="fader_meter">meter<a class="headerlink" href="#fader_meter" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to true to display a vu-meter next in the fader<br/>- the meter's `id` will be the same as the widget's with `/meter` appended to it<br/>- the meter's `address` will be the same as the widget's with `/meter` appended to it |
 | <h4 id="fader_compact">compact<a class="headerlink" href="#fader_compact" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display. |
 | <h4 id="fader_dashed">dashed<a class="headerlink" href="#fader_dashed" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to display a dashed gauge |
 | <h4 id="fader_snap">snap<a class="headerlink" href="#fader_snap" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | By default, dragging the widget will modify it's value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position |
@@ -218,7 +218,7 @@
 | <h4 id="matrix_spacing">spacing<a class="headerlink" href="#matrix_spacing" title="Permanent link">¶</a></h4> | `integer` | <code>0</code> | Adds space between widgets |
 | <h4 id="matrix_traversing">traversing<a class="headerlink" href="#matrix_traversing" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disable traversing gestures |
 | <h4 id="matrix_border">border<a class="headerlink" href="#matrix_border" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disables the widgets' borders |
-| <h4 id="matrix_props">props<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#matrix_props" title="Permanent link">¶</a></h4> | `object` | <code>{}</code> | Defines a set of property to override the widgets' defaults.<br/><br/>Formulas in this field are resolved with an extra variable representing each widget's index: `$` |
+| <h4 id="matrix_props">props<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#matrix_props" title="Permanent link">¶</a></h4> | `object` | <code>{}</code> | Defines a set of property to override the widgets' defaults.<br/><br/>Formulas in this field are resolved with an extra variable representing each widget's index: `$`<br/><br/>Note: by default, the widgets inherit from the matrix' `id` and osc properties (`id` and `address` are appended with `/$`) |
 
 ### keyboard
 
@@ -234,6 +234,16 @@
 | <h4 id="keyboard_off">off<a class="headerlink" href="#keyboard_off" title="Permanent link">¶</a></h4> | `*` | <code>0</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
 | <h4 class="thead2" id="keyboard_osc">osc<a class="headerlink" href="#keyboard_osc" title="Permanent link">¶</a></h4> ||||
 | <h4 id="keyboard_split">split<a class="headerlink" href="#keyboard_split" title="Permanent link">¶</a></h4> | `boolean`\|<br/>`string` | <code>false</code> | `true`: the widget's index will be appended to the matrice's osc address<br/><br/>`false`: it will be prepended to the widget's preArgs<br/><br/>`string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)) |
+
+### patchbay
+
+| property | type |default | description |
+| --- | --- | --- | --- |
+| <h4 class="thead2" id="patchbay_style">style<a class="headerlink" href="#patchbay_style" title="Permanent link">¶</a></h4> ||||
+| <h4 id="patchbay_css">css<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#patchbay_css" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | The inputs/ouputs width can be adjusted by using the  `.nodes` selector:<br/><br/>`.nodes { width: 25% }` |
+| <h4 class="thead2" id="patchbay_patchbay">patchbay<a class="headerlink" href="#patchbay_patchbay" title="Permanent link">¶</a></h4> ||||
+| <h4 id="patchbay_inputs">inputs<a class="headerlink" href="#patchbay_inputs" title="Permanent link">¶</a></h4> | `array`\|<br/>`object` | <code>[<br/>&nbsp;"input_1",<br/>&nbsp;"input_2"<br/>]</code> | - `Array` of input names : `['input_1', 'input_2']`<br/>- `Object` of `"label_1": "input_1"` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won't be kept<br/><br/><br/><br/>Patchbay inputs can be connected to one or more outputs and will send messages of the following form when they are connected/disconnected: <br/><br/>`/patchbay_address input_x output_x output_y etc`<br/><br/>If no output is connected to the input, the message will be `/patchbay_address input_x`<br/><br/>The inputs values can be consumed with the property inheritance syntax: `@{patchbay_id/input_1}` returns an array of output names connected to `input_1` |
+| <h4 id="patchbay_outputs">outputs<a class="headerlink" href="#patchbay_outputs" title="Permanent link">¶</a></h4> | `array`\|<br/>`object` | <code>[<br/>&nbsp;"output_1",<br/>&nbsp;"output_2"<br/>]</code> | List of output values the inputs can connect to (see `inputs`). |
 
 ## Plots
 
@@ -326,7 +336,7 @@
 | <h4 class="thead2" id="image_image">image<a class="headerlink" href="#image_image" title="Permanent link">¶</a></h4> ||||
 | <h4 id="image_size">size<a class="headerlink" href="#image_size" title="Permanent link">¶</a></h4> | `string` | <code>"cover"</code> | CSS background-size |
 | <h4 id="image_position">position<a class="headerlink" href="#image_position" title="Permanent link">¶</a></h4> | `string` | <code>"center"</code> | CSS background-position |
-| <h4 id="image_repeat">repeat<a class="headerlink" href="#image_repeat" title="Permanent link">¶</a></h4> | `string` | <code>"no-repear"</code> | CSS background-repeat |
+| <h4 id="image_repeat">repeat<a class="headerlink" href="#image_repeat" title="Permanent link">¶</a></h4> | `string` | <code>"no-repeat"</code> | CSS background-repeat |
 | <h4 id="image_border">border<a class="headerlink" href="#image_border" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to disable the borders and background-color |
 | <h4 id="image_cache">cache<a class="headerlink" href="#image_cache" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to false to disable image caching (forces file reload when updating or editing the widget).<br/><br/>When true, sending `reload` to the widget reloads its image without changing its value |
 | <h4 class="thead2" id="image_value">value<a class="headerlink" href="#image_value" title="Permanent link">¶</a></h4> ||||
@@ -443,7 +453,7 @@
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="keys_keys">keys<a class="headerlink" href="#keys_keys" title="Permanent link">¶</a></h4> ||||
 | <h4 id="keys_binding">binding<a class="headerlink" href="#keys_binding" title="Permanent link">¶</a></h4> | `string`\|<br/>`array` | <code>""</code> | Key combo `string` or `array` of strings (see <a href="https://github.com/RobertWHurst/KeyboardJS">KeyboardJS</a> documentation) |
-| <h4 id="keys_keydown">keydown<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#keys_keydown" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | This property is evaluated each time the key combo is pressed. Formulas are given extras variables in this context:<br/>- `key`: pressed key name (usefull for handling multiple keys with a single keys widget)<br/>- `ctrl`: control key state<br/>- `alt`: alt key state<br/>- `shift`: shift key state<br/>- `super`: command/windows key state |
+| <h4 id="keys_keydown">keydown<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#keys_keydown" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | This property is evaluated each time the key combo is pressed and defines the widget's own value. Formulas are given extras variables in this context:<br/>- `key`: pressed key name (usefull for handling multiple keys with a single keys widget)<br/>- `ctrl`: control key state<br/>- `alt`: alt key state<br/>- `shift`: shift key state<br/>- `super`: command/windows key state |
 | <h4 id="keys_keyup">keyup<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#keys_keyup" title="Permanent link">¶</a></h4> | `string` | <code>""</code> | Same as `keydown`, but evaluated when releasing the key combo |
 | <h4 id="keys_repeat">repeat<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#keys_repeat" title="Permanent link">¶</a></h4> | `boolean` | <code>true</code> | Set to `false` to prevent keydown repeats when holding the key combo pressed |
 
