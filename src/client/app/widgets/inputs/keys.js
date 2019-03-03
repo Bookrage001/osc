@@ -44,7 +44,11 @@ class Keys extends Widget {
             this.keyDownHandler = this.keyDown.bind(this)
             this.keyUpHandler = this.keyUp.bind(this)
 
-            keyboardJS.bind(this.getProp('binding'), this.keyDownHandler, this.keyUpHandler)
+            keyboardJS.withContext('global', ()=>{
+
+                keyboardJS.bind(this.getProp('binding'), this.keyDownHandler, this.keyUpHandler)
+
+            })
 
         }
 
@@ -56,7 +60,11 @@ class Keys extends Widget {
 
         if (this.getProp('binding')) {
 
-            keyboardJS.unbind(this.getProp('binding'), this.keyDownHandler, this.keyUpHandler)
+            keyboardJS.withContext('global', ()=>{
+
+                keyboardJS.unbind(this.getProp('binding'), this.keyDownHandler, this.keyUpHandler)
+
+            })
 
         }
 
