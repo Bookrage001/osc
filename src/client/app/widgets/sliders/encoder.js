@@ -77,7 +77,7 @@ module.exports = class Encoder extends Widget {
             pips:false,
         }, parent: this})
 
-        this.knob.noDraw = true
+        this.knob.batchDraw = ()=>{}
 
         this.display = new DisplayKnob({props:{
             label:false,

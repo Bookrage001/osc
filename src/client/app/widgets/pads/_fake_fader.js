@@ -6,7 +6,7 @@ module.exports = class _fake_fader extends Fader {
 
         super(options)
 
-        if (arguments.cancelDraw) this.noDraw = true
+        if (options.cancelDraw) this.batchDraw = ()=>{}
     }
 
     sendValue() {

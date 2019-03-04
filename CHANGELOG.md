@@ -3,7 +3,8 @@
 ## 0.41.6
 
 - bug fixes
-  - keys: binding conflict with editor 
+  - keys: binding conflict with editor
+  - xy: drawing performance issue
 
 ## 0.41.5
 
