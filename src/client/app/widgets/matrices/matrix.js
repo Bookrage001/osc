@@ -1,5 +1,8 @@
 var _matrix_base = require('./_matrix_base'),
-    parser = require('../../parser')
+    parser = require('../../parser'),
+    {deepCopy} = require('../../utils')
+
+
 
 class Matrix extends _matrix_base {
 
@@ -35,27 +38,15 @@ class Matrix extends _matrix_base {
 
         if (this.getProp('borders') === false) this.widget.classList.add('noborders')
 
-        var start = parseInt(this.getProp('start'))
+        this.start = parseInt(this.getProp('start'))
 
         if (parser.widgets[this.getProp('widgetType')]) {
 
-            for (var i = start; i < this.getProp('matrix')[0] * this.getProp('matrix')[1] + start; i++) {
+            for (let i = 0; i < this.getProp('matrix')[0] * this.getProp('matrix')[1]; i++) {
 
-                var props = this.resolveProp('props', undefined, false, false, false, {'$':i})
-                var data = {
-                    type: this.getProp('widgetType'),
-                    id: '@{parent.id}/' + i,
-                    address: '@{parent.address}/' + i,
-                    preArgs: '@{parent.preArgs}',
-                    target: '@{parent.target}',
-                    precision: '@{parent.precision}',
-                    bypass: '@{parent.bypass}',
-                    label: i,
-                    top: 'auto',
-                    left: 'auto',
-                    height: 'auto',
-                    width: 'auto'
-                }
+                var props = this.resolveProp('props', undefined, false, false, false, {'$':i + this.start})
+                var data = this.defaultProps(i + this.start)
+
                 if (typeof props === 'object' && props !== null) {
                     Object.assign(data, props)
                 }
@@ -66,10 +57,10 @@ class Matrix extends _matrix_base {
                     parent: this
                 })
 
-                widget._index = i - start
+                widget._index = i
                 widget.container.classList.add('not-editable')
 
-                this.value[i - start] = widget.getValue()
+                this.value[i] = widget.getValue()
 
             }
 
@@ -77,6 +68,25 @@ class Matrix extends _matrix_base {
 
             this.errors.widgetType = this.getProp('widgetType') + ' is not a valid widget type'
 
+        }
+
+    }
+
+    defaultProps(i) {
+
+        return {
+            type: this.getProp('widgetType'),
+            id: '@{parent.id}/' + i,
+            address: '@{parent.address}/' + i,
+            preArgs: '@{parent.preArgs}',
+            target: '@{parent.target}',
+            precision: '@{parent.precision}',
+            bypass: '@{parent.bypass}',
+            label: i,
+            top: 'auto',
+            left: 'auto',
+            height: 'auto',
+            width: 'auto'
         }
 
     }
@@ -91,11 +101,31 @@ class Matrix extends _matrix_base {
 
                 for (let i = this.children.length - 1; i >= 0; i--) {
 
-                    let data = this.resolveProp('props', undefined, false, false, false, {'$':i})
+                    let data = this.resolveProp('props', undefined, false, false, false, {'$': i + this.start})
 
-                    if (typeof data === 'object' && data !== null) {
-                        Object.assign(this.children[i].props, data)
+                    if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+                        data = {}
                     }
+
+                    if (typeof oldPropValue === 'object' && oldPropValue !== null) {
+                        // if an overridden default props is removed, set it back to default
+                        let overriddenDefaults,
+                            widgetDefaults
+                        for (var k in oldPropValue) {
+                            if (data[k] === undefined) {
+                                if (Matrix.overriddenDefaults.indexOf(k) !== -1) {
+                                    overriddenDefaults = overriddenDefaults || this.defaultProps(i + this.start)
+                                    data[k] = overriddenDefaults[k]
+                                } else {
+                                    widgetDefaults = widgetDefaults || parser.defaults[data.type || this.getProp('widgetType')]
+                                    data[k] = deepCopy(widgetDefaults[k])
+                                }
+                            }
+                        }
+                    }
+
+                    Object.assign(this.children[i].props, data)
+
                     this.children[i].updateProps(Object.keys(data), this, options)
                     // this.children[i] might have been recreated
                     this.children[i].container.classList.add('not-editable')
@@ -110,6 +140,10 @@ class Matrix extends _matrix_base {
 
 }
 
+Matrix.overriddenDefaults = [
+    'type', 'id', 'address', 'preArgs', 'target', 'precision', 'bypass',
+    'label', 'top', 'left', 'height', 'width'
+]
 
 Matrix.dynamicProps = Matrix.prototype.constructor.dynamicProps.concat(
     'props'

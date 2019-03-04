@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.41.7
+
+- bug fixes
+  - matrix: `$` variable not starting at `start`
+  - matrix: properties not reset to default when removed from `props`
+
 ## 0.41.6
 
 - bug fixes
