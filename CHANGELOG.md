@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- editor
+  - sticky header 
+
 ## 0.41.7
 
 - bug fixes

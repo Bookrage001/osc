@@ -221,6 +221,8 @@
         align-items: center;
         border: 1rem solid var(--color-bg);
         box-shadow: 0 0 0 1rem var(--color-light) inset;
+        padding: 0 10rem;
+
         span {
             text-transform: lowercase;
             font-variant: small-caps;
@@ -229,6 +231,9 @@
             width:100%;
             text-align:center;
             pointer-events: none;
+
+            text-overflow:ellipsis;
+            overflow:hidden;
             &.accent {
                 color: var(--color-accent);
             }
@@ -261,6 +266,16 @@
     }
 }
 
+// sticky editor header
+.editor-container .form > .separator {
+    background: var(--color-fg);
+    position: sticky;
+    top:10rem;
+    box-shadow: 0 0 0 1rem var(--color-light) inset,
+                0 -10rem 0 0 var(--color-fg);
+
+    z-index: 10;
+}
 
 
 .widget.editing {

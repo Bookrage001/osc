@@ -383,12 +383,13 @@ var Editor = class Editor {
     createEditForm(){
 
         var widget = this.selectedWidgets[0],
-            props = this.defaults[widget.props.type]
+            props = this.defaults[widget.props.type],
+            multi = this.selectedWidgets.length > 1
 
         this.form.appendChild(html`
             <div class="separator">
                 <span class="${this.selectedWidgets.length > 1 ? 'accent' : ''}">
-                    ${this.selectedWidgets.length > 1 ? 'Multiple Widgets' : 'Widget'}
+                    Widget${multi ? 's' : ''}: ${multi ? this.selectedWidgets.length + ' selected': widget.getProp('id')}
                 </span>
             </div>
         `)
