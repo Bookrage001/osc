@@ -3,7 +3,8 @@
 ## next
 
 - editor
-  - sticky header 
+  - sticky header to remind selected widget's id
+  - sidepanel can now be resized by dragging its edge
 
 ## 0.41.7
 
