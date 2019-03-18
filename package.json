@@ -66,7 +66,7 @@
   },
   "optionalDependencies": {
     "electron": "1.8.8",
-    "electron-installer-debian": "1.0.1"
+    "electron-installer-debian": "github:electron-userland/electron-installer-debian#ec1dc4b"
   },
   "scripts": {
     "postinstall": "echo '\\033[36m=> Dependencies installed successfully. Run \"npm run build\" to build the assets.\\033[0m\n'",
