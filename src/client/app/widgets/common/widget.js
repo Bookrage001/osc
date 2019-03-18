@@ -534,7 +534,7 @@ class Widget extends EventEmitter {
             })
 
             propValue = propValue.replace(/OSC\{([^}]+)\}/g, (m)=>{
-                let [address, value] = m.substr(4, m.length - 5).split(',').map(x=>x.trim()),
+                let [address, value, usePreArgs] = m.substr(4, m.length - 5).split(',').map(x=>x.trim()),
                     resolvedAddress = address.replace(/VAR_[0-9]+/g, (m)=>{
                         return typeof variables[m] === 'string' ? variables[m] : JSON.stringify(variables[m])
                     })
@@ -544,7 +544,8 @@ class Widget extends EventEmitter {
                         address: resolvedAddress,
                         value: value,
                         parent: this,
-                        propName: propName
+                        propName: propName,
+                        usePreArgs: usePreArgs === 'false' ? false : true
                     })
                     if (oscReceiverState[address]) {
                         this.oscReceivers[address].value = oscReceiverState[address]
@@ -553,6 +554,7 @@ class Widget extends EventEmitter {
                 } else {
                     this.oscReceivers[address].setAddress(resolvedAddress)
                     this.oscReceivers[address].addProp(propName)
+                    this.oscReceivers[address].usePreArgs = usePreArgs === 'false' ? false : true
                 }
 
                 var r = this.oscReceivers[address].value

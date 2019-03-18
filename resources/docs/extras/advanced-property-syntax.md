@@ -54,7 +54,7 @@ The following syntax allows listening on an osc address to define a property, wi
 ```
 OSC{/address, 1}
 ```
-Will return `1` at first and listen for osc messages on address `/address`. Each time a value is received, the property will be updated.
+Will return `1` at first and listen for osc messages on address `/address [preArgs]`. Each time a value is received, the property will be updated.
 
 
 If the leading slash (`/`) is omitted, the address will be prefixed with the widget's `address` property:
@@ -62,9 +62,14 @@ If the leading slash (`/`) is omitted, the address will be prefixed with the wid
 ```
 OSC{color, "auto"}
 ```
-Will listen for osc messages on address `/widget_address/color`.
-
+Will listen for osc messages on address `/widget_address/color [preArgs]`.
 ----
+
+By default, osc listeners inherit the widget's `preArgs` and (these must be matched for the osc messages to be processed). This can be bypassed by appending a third argument to the constructor:
+
+```
+OSC{color, "auto", false}
+```
 
 
 ## Formulas: `#{}`

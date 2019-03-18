@@ -4,7 +4,7 @@ module.exports = class OscReceiver {
 
     constructor(options) {
 
-        var {address, value, parent, propName} = options
+        var {address, value, parent, propName, usePreArgs} = options
 
         try {
             this.value = JSON.parse(value)
@@ -14,6 +14,7 @@ module.exports = class OscReceiver {
 
         this.parent = parent
         this.propNames = [propName]
+        this.usePreArgs = usePreArgs
         this.bindedCallback = this.callback.bind(this)
         this.prefix = ''
         this.setAddress(address)
@@ -48,7 +49,7 @@ module.exports = class OscReceiver {
     callback(args) {
 
         if (typeof args !== 'object') args = [args]
-        var preArgs = this.parent.getProp('preArgs') || []
+        var preArgs = this.usePreArgs ? (this.parent.getProp('preArgs') || []) : []
         if (!Array.isArray(preArgs) && preArgs !== '') preArgs = [preArgs]
         if (args.length >= preArgs.length) {
             for (var i in preArgs) {

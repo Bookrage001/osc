@@ -1,7 +1,9 @@
 # Changelog
 
-## next
+## 0.42.0
 
+- widgets
+  - `OSC{}` syntax accepts an optional third argument (`false`) to bypass the host widget's `preArgs`
 - editor
   - sticky header to remind selected widget's id
   - sidepanel can now be resized by dragging its edge
