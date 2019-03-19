@@ -38,6 +38,7 @@ class MidiConverter {
 
     init(receiveOsc) {
 
+        this.receiveOsc = receiveOsc
         this.py.on('message', (message)=>{
             MidiConverter.parseIpc(message, this)
         })
@@ -60,7 +61,7 @@ class MidiConverter {
                 console.log(data)
             }
         } else if (name ==  'osc') {
-            receiveOsc(data)
+            instance.receiveOsc(data)
         } else if (name == 'error') {
             console.error('ERROR: MIDI: ' + data)
             if (instance) instance.stop()
