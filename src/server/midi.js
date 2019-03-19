@@ -1,18 +1,21 @@
 var {PythonShell} = require('python-shell'),
     settings = require('./settings')
 
-class Midi {
+var pythonOptions = {
+    scriptPath:__dirname,
+    mode:'text',
+}
+
+class MidiConverter {
 
     constructor() {
 
-        this.py = new PythonShell('midi.py', {
-            scriptPath:__dirname,
-            mode:'text',
+        this.py = new PythonShell('python/midi.py', Object.assign({
             args: [
                 settings.read('debug') ? 'debug' : '',
                 ...settings.read('midi')
             ]
-        })
+        }, pythonOptions))
 
     }
 
@@ -34,31 +37,46 @@ class Midi {
     }
 
     init(receiveOsc) {
-        this.py.on('message', function(message) {
-            // console.log(message)
-            var name, data
-            try {
-                [name, data] = JSON.parse(message)
-            } catch (err) {
-                // console.log(err)
-            }
-            if (name == 'log') {
-                if (data.indexOf('ERROR') === 0) {
-                    console.error(data)
-                } else {
-                    console.log(data)
-                }
-            } else if (name ==  'osc') {
-                receiveOsc(data)
-            } else if (name == 'error') {
-                console.error('ERROR: MIDI: ' + data)
-                this.stop()
-            }
+
+        this.py.on('message', (message)=>{
+            MidiConverter.parseIpc(message, this)
         })
+
+    }
+
+    static parseIpc(message, instance) {
+
+        // console.log(message)
+        var name, data
+        try {
+            [name, data] = JSON.parse(message)
+        } catch (err) {
+            // console.log(err)
+        }
+        if (name == 'log') {
+            if (data.indexOf('ERROR') === 0) {
+                console.error(data)
+            } else {
+                console.log(data)
+            }
+        } else if (name ==  'osc') {
+            receiveOsc(data)
+        } else if (name == 'error') {
+            console.error('ERROR: MIDI: ' + data)
+            if (instance) instance.stop()
+        }
+
+    }
+
+    static list() {
+
+        PythonShell.run('python/list.py', pythonOptions, function (err, results) {
+            if (err) console.error(err)
+            MidiConverter.parseIpc(results)
+        })
+
     }
 
 }
 
-var midi = new Midi()
-
-module.exports = midi
+module.exports = MidiConverter

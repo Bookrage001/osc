@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- launcher
+  - added context menu action to display midi device list without starting the server
+
 ## 0.42.0
 
 - widgets

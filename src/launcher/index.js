@@ -2,6 +2,7 @@ var {remote, ipcRenderer, shell} = eval('require(\'electron\')'),
     {dialog, Menu, MenuItem, app} = remote.require('electron'),
     menu = new Menu(),
     settings = remote.getGlobal('settings'),
+    midilist = remote.getGlobal('midilist'),
     packageInfos = remote.require('./package.json'),
     packageVersion = packageInfos.version,
     packageUrl = packageInfos.repository.url,
@@ -210,16 +211,16 @@ $(document).ready(()=>{
 
     // Fake console
     var terminal = $('<div class="terminal"></div>').appendTo(form).hide(),
-        autoscoll = true
+        autoscroll = true
 
     ipcRenderer.on('stdout', function(e, msg){
         terminal.append(`<div class="log">${ansiHTML(msg)}</div>`)
-        if (autoscoll) scrollBottom()
+        if (autoscroll) scrollBottom()
     })
 
     ipcRenderer.on('stderr', function(e, msg){
         terminal.append(`<div class="error">${ansiHTML(msg)}</div>`)
-        if (autoscoll) scrollBottom()
+        if (autoscroll) scrollBottom()
     })
 
 
@@ -227,6 +228,15 @@ $(document).ready(()=>{
 
     menu.append(new MenuItem({role: 'copy'}))
     menu.append(new MenuItem({role: 'paste'}))
+    menu.append(new MenuItem({type: 'submenu' , label: 'Midi', submenu: [
+        new MenuItem({
+            label: 'List Devices',
+            click: ()=>{
+                terminal.show()
+                midilist()
+            }
+        }),
+    ]}))
     menu.append(new MenuItem({type: 'submenu' , label: 'Console', submenu: [
         new MenuItem({
             label: 'Clear',
@@ -239,7 +249,7 @@ $(document).ready(()=>{
             type: 'checkbox',
             checked: true,
             click: function(e){
-                autoscoll = e.checked
+                autoscroll = e.checked
             }
         })
     ]}))

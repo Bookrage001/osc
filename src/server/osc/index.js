@@ -10,6 +10,8 @@ var ipc = require('../server').ipc,
     EventEmitter = require('events').EventEmitter
 
 
+if (midi) midi = new midi()
+
 class OscServer {
 
     constructor(){

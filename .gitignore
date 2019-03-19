@@ -5,6 +5,7 @@ app/assets/*.css*
 app/assets/*.png
 app/client/*.js*
 app/launcher/*.js*
-app/server/*.js*
+app/server/*
 app/package.json
 package-lock.json
+*.pyc
