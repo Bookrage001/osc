@@ -67,7 +67,7 @@ module.exports = class Switch extends Widget {
             var index = 0,
                 node = e.target
 
-            if (node === this.widget || !this.widget.contains(node)) return
+            if (node === this.widget || !this.widget.contains(node)) return
 
             while ( (node = node.previousSibling) ) {
                 if (node.nodeType != 3) {
@@ -82,7 +82,7 @@ module.exports = class Switch extends Widget {
         }
 
         this.on('draginit', dragCallback , {element: this.widget})
-        if (this.getProp('traversing') this.on('drag', dragCallback , {element: this.widget})
+        if (this.getProp('traversing')) this.on('drag', dragCallback , {element: this.widget})
 
     }
 

@@ -70,7 +70,7 @@ class MidiConverter {
 
     static list() {
 
-        PythonShell.run('python/list.py', pythonOptions, function (err, results) {
+        PythonShell.run('python/list.py', pythonOptions, function(err, results) {
             if (err) console.error(err)
             MidiConverter.parseIpc(results)
         })
