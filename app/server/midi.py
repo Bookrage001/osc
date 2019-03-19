@@ -1,4 +1,4 @@
-from sys import argv, stdin, stdout, version_info
+from sys import argv, stdin, stdout, version_info, version
 from binascii import hexlify, unhexlify
 import traceback
 import json as JSON
@@ -15,7 +15,7 @@ try:
     in_dev = rtmidi.RtMidiIn(API, 'MIDI->OSC probe')
     out_dev = rtmidi.RtMidiOut(API, 'OSC->MIDI probe')
 except:
-    ipcSend('error', 'pyrtmidi not found (or wrong version)')
+    ipcSend('error', 'pyrtmidi not found (or wrong version)\nRunning with python version %s' % version)
 
 
 if version_info.major == 3:
