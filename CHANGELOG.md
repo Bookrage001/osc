@@ -4,7 +4,9 @@
 
 - launcher
   - added context menu action to display midi device list without starting the server
-
+- widgets
+  - switch: add `traversing` option (`true` by default)
+  
 ## 0.42.0
 
 - widgets

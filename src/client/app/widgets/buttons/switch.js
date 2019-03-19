@@ -16,7 +16,8 @@ module.exports = class Switch extends Widget {
             values: {type: 'array|object', value: {'Value 1':1,'Value 2':2}, help: [
                 '`Array` of possible values to switch between : `[1,2,3]`',
                 '`Object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won\'t be kept',
-            ]}
+            ]},
+            traversing: {type: 'boolean', value: true, help: 'Set to `false` to disable traversing gestures'},
 
         })
 
@@ -61,10 +62,12 @@ module.exports = class Switch extends Widget {
 
         this.value = undefined
 
-        this.on('draginit', (e)=>{
+        var dragCallback = (e)=>{
 
             var index = 0,
                 node = e.target
+
+            if (node === this.widget || !this.widget.contains(node)) return
 
             while ( (node = node.previousSibling) ) {
                 if (node.nodeType != 3) {
@@ -76,7 +79,10 @@ module.exports = class Switch extends Widget {
 
             if (value!=this.value || this.value===undefined) this.setValue(value,{sync:true,send:true})
 
-        }, {element: this.widget})
+        }
+
+        this.on('draginit', dragCallback , {element: this.widget})
+        if (this.getProp('traversing') this.on('drag', dragCallback , {element: this.widget})
 
     }
 
