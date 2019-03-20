@@ -9,6 +9,7 @@
 - custom module
   - expose shorthand functions `send` and `receives`
   - expose a client object instead of just an id in `app` event handlers to allow retrieving the client's ip address as well
+  - custom modules can now be written like standard nodejs modules (using `module.exports` assignement instead of a self-invoking function pattern)
 
 ## 0.42.0
 

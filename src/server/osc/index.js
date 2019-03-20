@@ -54,11 +54,14 @@ class OscServer {
                     setTimeout, clearTimeout,
                     setInterval, clearInterval,
                     settings,
-                    options: customModule.slice(1, customModule.length)
+                    options: customModule.slice(1, customModule.length),
+                    module: {},
                 }
 
             try {
-                mod = vm.runInContext(file, vm.createContext(context))
+                var context = vm.createContext(context)
+                mod = vm.runInContext(file, context)
+                if (context.module.exports) mod = context.module.exports
             } catch(err) {
                 console.error(err)
                 return false
