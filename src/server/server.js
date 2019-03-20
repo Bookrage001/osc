@@ -51,10 +51,12 @@ var bindCallbacks = function(callbacks) {
 
     ipc.on('connection', function(client) {
 
+        var clientInfos = {address: client.address, id: client.id}
+
         for (let name in callbacks) {
             client.on(name, (data)=>{
                 if (osc.customModule) {
-                    osc.customModuleEventEmitter.emit(name, data, client.id)
+                    osc.customModuleEventEmitter.emit(name, data, clientInfos)
                 }
                 callbacks[name](data, client.id)
             })

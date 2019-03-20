@@ -6,7 +6,10 @@
   - added context menu action to display midi device list without starting the server
 - widgets
   - switch: add `traversing` option (`true` by default)
-  
+- custom module
+  - expose shorthand functions `send` and `receives`
+  - expose a client object instead of just an id in `app` event handlers to allow retrieving the client's ip address as well
+
 ## 0.42.0
 
 - widgets

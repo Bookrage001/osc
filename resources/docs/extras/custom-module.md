@@ -48,20 +48,41 @@ It must be of the following form:
 The module is executed in a restricted context, only a few globals are available :
 
 - `console`: `object`
-- `sendOsc`: `function({address, args, host, port})`
-- `receiveOsc`: `function({address, args, host, port})`
+- `sendOsc`: `function({host, port, address, args})`
+- `receiveOsc`: `function({host, port, address, args})`
+- `send`: `function(host, port, address, arg1, arg2, ...)`
+- `receive`: `function(host, port, address, arg1, arg2, ...)`
 - `setTimeout`: `function(function, delay)`
 - `clearTimeout`: `function(timeout)`
 - `setInterval`: `function(function, delay)`
 - `clearInterval`: `function(interval)`
 - `settings.read`: `function(name)`, see [settings.js](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/server/settings.js#L55-L103) for available options
-- `app`: an [event emitter](https://nodejs.org/api/events.html#events_class_eventemitter) for monitoring the events sent by the different clients. Event names can be found in [callbacks.js](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/server/callbacks.js), callbacks are called with 2 arguments: `data` (object) and `clientId` (string)
+- `app`: an [event emitter](https://nodejs.org/api/events.html#events_class_eventemitter) for monitoring the events sent by the different clients. Event names can be found in [callbacks.js](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/server/callbacks.js), callbacks are called with 2 arguments: `data` (object) and `client` (object: `{address, id}`)
 - `options`: `array` containing the extra options passed to `--custom-module` after the filename
 
 
 `sendOsc` and `receiveOsc` expect arguments formatted as follow:
 
 - `address`: `string`
-- `args`: `array` of `{type:"OSC_TYPE_LETTER", value:VALUE}` `objects`
+- `args`: `array` of `{type: "OSC_TYPE_LETTER", value: VALUE}` `objects`
 - `host`: `string` ip address, valid hostname or `midi`
 - `port`: `integer` port number or `string` midi device name
+
+`send` and `receive` are shorthands for `sendOsc` and `receiveOsc` that don't require args to be formatted as object (numbers are casted to floats by default):
+
+```js
+// calling
+send('127.0.0.1', 5555, '/test' 1, 2, {type: 'i', value: 3})
+
+// equals
+sendOsc({
+    host: '127.0.0.1',
+    port: 5555,
+    address: '/test',
+    args: [
+        {type: 'f', value: 1},
+        {type: 'f', value: 2},
+        {type: 'i', value: 3},
+    ]
+})
+```

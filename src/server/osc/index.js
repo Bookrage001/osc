@@ -44,11 +44,15 @@ class OscServer {
                     console,
                     sendOsc: this.sendOsc.bind(this),
                     receiveOsc: this.receiveOsc.bind(this),
+                    send: (host, port, address, ...args)=>{
+                        this.sendOsc({host, port, address, args:args.map(x=>this.parseArg(x))})
+                    },
+                    receive: (host, port, address, ...args)=>{
+                        this.receiveOsc({host, port, address, args:args.map(x=>this.parseArg(x))})
+                    },
                     app: this.customModuleEventEmitter,
-                    setTimeout,
-                    clearTimeout,
-                    setInterval,
-                    clearInterval,
+                    setTimeout, clearTimeout,
+                    setInterval, clearInterval,
                     settings,
                     options: customModule.slice(1, customModule.length)
                 }
