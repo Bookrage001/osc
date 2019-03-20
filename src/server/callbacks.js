@@ -285,20 +285,6 @@ module.exports =  {
 
     },
 
-    stateSave: function(data) {
-        dialog.showSaveDialog(window,{title:'Save current state to preset file',defaultPath:settings.read('presetPath').replace(settings.read('presetPath').split('/').pop(),''),filters: [ { name: 'OSC Preset', extensions: ['preset'] }]},function(file){
-
-            if (file==undefined) {return}
-            settings.write('presetPath',file)
-
-            if (file.indexOf('.preset')==-1){file+='.preset'}
-            fs.writeFile(file,data, function(err, data) {
-                if (err) throw err
-                console.log('The current state was saved in '+file)
-            })
-        })
-    },
-
     fullscreen: function(data) {
         window.setFullScreen(!window.isFullScreen())
     },
