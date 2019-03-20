@@ -40,7 +40,7 @@ class OscServer {
                     }
                 })(),
                 mod,
-                context = {
+                context = vm.createContext({
                     console,
                     sendOsc: this.sendOsc.bind(this),
                     receiveOsc: this.receiveOsc.bind(this),
@@ -56,10 +56,9 @@ class OscServer {
                     settings,
                     options: customModule.slice(1, customModule.length),
                     module: {},
-                }
+                })
 
             try {
-                var context = vm.createContext(context)
                 mod = vm.runInContext(file, context)
                 if (context.module.exports) mod = context.module.exports
             } catch(err) {
