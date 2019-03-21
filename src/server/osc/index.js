@@ -48,6 +48,13 @@ class OscServer {
                         this.sendOsc({host, port, address, args:args.map(x=>this.parseArg(x))})
                     },
                     receive: (host, port, address, ...args)=>{
+                        if (host[0] === '/') {
+                            // host and port can be skipped
+                            args.unshift(address)
+                            args.unshift(port)
+                            address = host
+                            host = port = undefined
+                        }
                         this.receiveOsc({host, port, address, args:args.map(x=>this.parseArg(x))})
                     },
                     app: this.customModuleEventEmitter,

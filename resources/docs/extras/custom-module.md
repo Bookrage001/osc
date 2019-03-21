@@ -51,6 +51,7 @@ The module is executed in a restricted context, only a few globals are available
 - `receiveOsc`: `function({host, port, address, args})`
 - `send`: `function(host, port, address, arg1, arg2, ...)`
 - `receive`: `function(host, port, address, arg1, arg2, ...)`
+- `receive`: `function(address, arg1, arg2, ...)`
 - `setTimeout`: `function(function, delay)`
 - `clearTimeout`: `function(timeout)`
 - `setInterval`: `function(function, delay)`
@@ -67,7 +68,7 @@ The module is executed in a restricted context, only a few globals are available
 - `host`: `string` ip address, valid hostname or `midi`
 - `port`: `integer` port number or `string` midi device name
 
-`send` and `receive` are shorthands for `sendOsc` and `receiveOsc` that don't require args to be formatted as object (numbers are casted to floats by default):
+`send` and `receive` are shorthands for `sendOsc` and `receiveOsc` that don't require args to be formatted as objects (numbers are casted to floats by default):
 
 ```js
 // calling
