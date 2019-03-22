@@ -76,28 +76,49 @@ module.exports = class Knob extends Slider {
         this.lastOffsetX = e.offsetX
         this.lastOffsetY = e.offsetY
 
-        if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
+        // if (!(e.traversing || this.getProp('snap'))  || e.ctrlKey) return
 
-        this.percent = this.angleToPercent(this.coordsToAngle(e.offsetX, e.offsetY))
+        if (this.getProp('snap')) {
 
-        this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
+            this.percent = this.angleToPercent(this.coordsToAngle(e.offsetX, e.offsetY))
+
+            this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
+
+        }
+
 
     }
 
     dragHandle(e) {
 
         if (!(e.traversing || this.getProp('snap')) || e.ctrlKey) {
-
+            // vertical
             this.percent = -100 * (e.movementY / e.inertia) / this.height + this.percent
 
         } else {
+            //snap
+            var offsetX = this.lastOffsetX + e.movementX / e.inertia,
+                offsetY = this.lastOffsetY + e.movementY / e.inertia
 
-            this.lastOffsetX = this.lastOffsetX + e.movementX / e.inertia
-            this.lastOffsetY = this.lastOffsetY + e.movementY / e.inertia
-            this.percent = this.angleToPercent(this.coordsToAngle(this.lastOffsetX, this.lastOffsetY))
+            if (e.traversing && !this.getProp('snap')) {
+
+                var diff = this.angleToPercent(this.coordsToAngle(offsetX, offsetY), true) - this.angleToPercent(this.coordsToAngle(this.lastOffsetX, this.lastOffsetY), true)
+                if (Math.abs(diff) < 50 && diff !== 0) this.percent += diff
+
+            } else {
+
+                // snap
+                this.percent = this.angleToPercent(this.coordsToAngle(offsetX, offsetY))
+
+            }
+
+            this.lastOffsetX = offsetX
+            this.lastOffsetY = offsetY
+
         }
 
-        this.percent = this.percent,[0,100]
+
+        this.percent = clip(this.percent,[0,100])
 
         this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 
@@ -113,9 +134,11 @@ module.exports = class Knob extends Slider {
 
     }
 
-    angleToPercent(angle) {
+    angleToPercent(angle, ignoreMaxAngle=false) {
 
-        return clip(angle - (360 - this.maxAngle) / 2, [0, this.maxAngle]) / this.maxAngle * 100
+        return ignoreMaxAngle ?
+            clip(angle, [0, 360]) / 360 * 100 :
+            clip(angle - (360 - this.maxAngle) / 2, [0, this.maxAngle]) / this.maxAngle * 100
 
     }
 

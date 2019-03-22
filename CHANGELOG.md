@@ -6,6 +6,7 @@
   - added context menu action to display midi device list without starting the server
 - widgets
   - switch: add `traversing` option (`true` by default)
+  - knob: act as a relative encoder when traversing gestures are enabled and `snap` is `false`
 - custom module
   - expose shorthand functions `send` and `receives`
   - expose a client object instead of just an id in `app` event handlers to allow retrieving the client's ip address as well
