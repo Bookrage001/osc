@@ -15,7 +15,7 @@ class Keys extends Widget {
             binding: {type: 'string|array', value: '', help: 'Key combo `string` or `array` of strings (see <a href="https://github.com/RobertWHurst/KeyboardJS">KeyboardJS</a> documentation)'},
             keydown: {type: 'string', value: '', help: [
                 'This property is evaluated each time the key combo is pressed and defines the widget\'s own value. Formulas are given extras variables in this context:',
-                '- `key`: pressed key name (usefull for handling multiple keys with a single keys widget)',
+                '- `key`: pressed key name (usefull for handling multiple keys with a single keys widget, lowercased when referencing a character key)',
                 '- `ctrl`: control key state',
                 '- `alt`: alt key state',
                 '- `shift`: shift key state',
@@ -86,6 +86,10 @@ class Keys extends Widget {
                 meta: e.metaKey
             }
 
+            if (context.key.length === 1) {
+                context.key = context.key.toLowerCase()
+            }
+
             this.setValue(this.resolveProp('keydown', undefined, false, false, false, context), {sync: true, send: true})
 
         }
@@ -108,6 +112,10 @@ class Keys extends Widget {
                 shift: e.shiftKey,
                 alt: e.altKey,
                 meta: e.metaKey
+            }
+
+            if (context.key.length === 1) {
+                context.key = context.key.toLowerCase()
             }
 
             this.setValue(this.resolveProp('keyup', undefined, false, false, false, context), {sync: true, send: true})
