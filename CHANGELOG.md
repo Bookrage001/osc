@@ -8,6 +8,7 @@
   - switch: add `traversing` option (`true` by default)
   - knob: act as a relative encoder when traversing gestures are enabled and `snap` is `false`
   - keys: `key` variable in `keydown` and `keyup` is now always lowercased when referencing a single character
+  - keys; expose `code` variable from the keyboard event object (https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code#Code_values) 
 - custom module
   - expose shorthand functions `send` and `receives`
   - expose a client object instead of just an id in `app` event handlers to allow retrieving the client's ip address as well
