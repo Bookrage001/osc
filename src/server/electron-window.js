@@ -1,5 +1,5 @@
 var path = require('path'),
-    {BrowserWindow, dialog} = require('electron'),
+    {BrowserWindow, dialog, shell} = require('electron'),
     shortcut = require('electron-localshortcut'),
     settings = require('./settings'),
     theme = require('./theme')
@@ -39,7 +39,10 @@ module.exports = function(options={}) {
     })
 
     // window.webContents.on('will-navigate', (event)=>event.preventDefault())
-    window.webContents.on('new-window', (event)=>event.preventDefault())
+    window.webContents.on('new-window', (event, url)=>{
+        event.preventDefault()
+        shell.openExternal(url)
+    })
 
     if (options.fullscreen) {
         window.webContents.on('dom-ready', ()=>{

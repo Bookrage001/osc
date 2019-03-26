@@ -520,6 +520,10 @@
         cursor: auto;
         ::selection{/* reset */}
     }
+    a {
+        text-decoration: underline;
+        cursor: pointer;
+    }
     .pre {
         white-space: pre;
         vertical-align: text-top;
