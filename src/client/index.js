@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     setTimeout(()=>{
 
-        var ipc = require('./app/ipc/')
+        var ipc = window.ipc = require('./app/ipc/')
 
         ipc.init()
 
