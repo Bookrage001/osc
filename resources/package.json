@@ -1,0 +1,17 @@
+{
+  "name": "open-stage-control-docs",
+  "version": "1.0.0",
+  "description": "```bash $ sudo apt-get install python python-pip  # python package manager $ sudo pip install mkdocs                 # docs site builder $ sudo pip install mkdocs-material        # theme",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "node-sass -h"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "spectre.css": "^0.5.8"
+  }
+}

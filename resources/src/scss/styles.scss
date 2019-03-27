@@ -1,3 +1,7 @@
+$primary-color: rgb(75, 143, 210);
+@import "node_modules/spectre.css/src/spectre";
+
+
 body {
     color: #333;
     font-family: Helvetica,Arial,sans-serif;
@@ -13,10 +17,12 @@ body {
 .wrap {
     max-width: 1110px;
 }
-@media (max-width: 570px)
-.wrap, .full-width {
-    min-width: 0;
+@media (max-width: 570px){
+    .wrap, .full-width {
+        min-width: 0;
+    }
 }
+
 .wrap {
     margin-right: auto;
     margin-left: auto;
@@ -42,7 +48,7 @@ body {
     position: fixed;
     top: 0;
     z-index: 1000;
-    background-color: #333;
+    background-color: #3c4c68;
     box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
 }
 
@@ -247,8 +253,10 @@ h1:first-child {
 }
 
 #mkdocs-search-query {
-    border: 1px solid #333;
-    background:rgba(0,0,0,0.25);
+    /* border: 1px solid rgba(255,255,255,.1); */
+    border:0;
+    box-shadow: 0 -2px 10px 0 rgba(0,0,0,0.1) inset;
+    background:rgba(0,0,0,0.15);
     border-radius: 15px;
     color: #eee;
     outline: none;

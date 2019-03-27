@@ -86,7 +86,7 @@
     "watch-client": "npm run build-client-js -- --watch",
     "watch-browser": "npm run build-client-js -- --watch",
     "watch-css": "nodemon --watch src/scss -e scss -x \"npm run build-css -- --reload\"",
-    "build-docs": "node scripts/build-widgets-reference.js > resources/docs/docs/widgets-reference.md && cd resources && mkdocs build --clean",
+    "build-docs": "node scripts/build-widgets-reference.js > resources/docs/docs/widgets-reference.md && cd resources && node scripts/build-css.js && mkdocs build --clean",
     "test": "eslint src && npm run build && node tests/test.js"
   },
   "engines": {
