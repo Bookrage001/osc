@@ -68,11 +68,11 @@
           <div class="col-left">
                   <ul class="nav">
                   {% for nav_item in ns.navigation.children %}
-                      {% if nav_item.active or nav_item.abs_url == '/docs/getting-started/' and page.abs_url == '/docs/' %}
+                      {% if nav_item.active or nav_item.url == 'docs/getting-started/' and page.url == 'docs/' %}
                           {% set active = True %}
                       {% endif %}
                       <li class="nav-item {% if active%}active{% endif %}">
-                          <a href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+                          <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
                           {% if active %}
                               {% set toc_ = page.toc %}
 
@@ -91,7 +91,7 @@
                                   {% for toc_item in toc_ %}
                                       <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                                       {% for toc_item in toc_item.children %}
-                                          <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                          <li><a href="{{ toc_item.abs_url }}">{{ toc_item.title }}</a></li>
                                       {% endfor %}
                                   {% endfor %}
                                   </ul>
