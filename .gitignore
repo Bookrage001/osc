@@ -10,3 +10,4 @@ app/server/*
 app/package.json
 package-lock.json
 *.pyc
+resources/site
