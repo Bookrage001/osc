@@ -16,11 +16,17 @@
     transition:transform .25s, opacity .25s;
     transform: translate3d(0,0,0);
     opacity: 0;
-    overflow-y: auto;
-    overflow-x: visible;
     box-shadow: 0 0 15rem 0 var(--color-bg), 0 0 0 2rem var(--color-bg);
     display: flex;
     flex-direction: column;
+
+    #sidepanel-wrapper {
+        overflow-y: auto;
+        overflow-x: visible;
+        display: flex;
+        flex-direction: column;
+        flex:1;
+    }
 
     &.sidepanel-open {
         transform: translate3d(calc(-1 * var(--sidepanel-size)),0,0);
@@ -134,32 +140,18 @@
 }
 
 #sidepanel-handle {
-    position: absolute;
-    top: 12rem!important;
-    left: 10rem!important;
-    height: auto;
-    width: auto;
-    background: transparent;
-    color: var(--color-fg);
+    width: 6rem;
+    position: fixed;
+    top:-1rem!important;
+    bottom:-1rem!important;
+    left:-1rem!important;
+    height: auto!important;
+    background-color: var(--color-custom);
     cursor: col-resize;
-    &:after {
-        content:none;
-    }
-    &:before {
-        content:"";
-        width: 5rem;
-        height: 400%;
-        top:0;
-        bottom:0;
-        position: fixed;
-        left:0;
-        top:0;
-    }
-    i {
-        transform: rotate(90deg);
-        pointer-events: none;
-        font-size:13rem;
-        display: block
+    transition: opacity .25s;
+    opacity: 0;
+    &:hover {
+        opacity: 0.2;
     }
 }
 

@@ -198,7 +198,7 @@ for (let i in sidepanelData) {
 }
 
 
-var sidepanel = document.getElementById('sidepanel')
+var sidepanel = document.getElementById('sidepanel-wrapper')
 
 sidepanel.appendChild(html`
     <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
@@ -228,7 +228,7 @@ function sidepanelOpen() {
     sidepaneLock = true
 
     DOM.get('#sidepanel')[0].classList.remove('hide')
-    
+
     setTimeout(function(){
         DOM.each(document, '#open-toggle, #sidepanel', (el)=>{
             el.classList.add('sidepanel-open')
@@ -293,17 +293,14 @@ document.addEventListener('keydown', function(e){
 
 // Sidepanel resize
 
-var resizeHandle = html`<div id="sidepanel-handle">${raw(icon('bars'))}</div>`,
-    sidepanelWidth
+var sidepanelWidth,
+    sidepanelContainer = document.getElementById('sidepanel')
 
-
-sidepanel.appendChild(resizeHandle)
-
-$(resizeHandle).draggable({
+$('#sidepanel-handle').draggable({
     cursor:'col-resize',
     start: ()=>{
-        sidepanelWidth = parseInt(sidepanel.offsetWidth) / PXSCALE
-        sidepanel.classList.add('resizing')
+        sidepanelWidth = parseInt(sidepanelContainer.offsetWidth) / PXSCALE
+        sidepanelContainer.classList.add('resizing')
     },
     drag: (event, ui)=>{
         var delta = (ui.originalPosition.left - ui.position.left) / PXSCALE,
@@ -313,7 +310,7 @@ $(resizeHandle).draggable({
         }
     },
     stop: ()=>{
-        sidepanel.classList.remove('resizing')
+        sidepanelContainer.classList.remove('resizing')
     }
 })
 
