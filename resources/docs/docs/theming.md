@@ -1,5 +1,3 @@
-# Theming
-
 ## Built-in themes
 
 Themes can be loaded with the `--theme` option. Multiple themes can be combined. Built-in themes can be loaded using their name, custom theme files can be loaded using their path.
@@ -38,7 +36,7 @@ This will change the default text color to blue for all elements in panel widget
 
 ## Scss / autoreload
 
-When running the app [from sources](../getting-started), custom themes can be written in scss:
+When running the app [from sources](/docs/getting-started), custom themes can be written in scss:
 
 - the scss file must be located in `src/browser/scss/themes/`
 - run `npm run watch-css`

@@ -1,7 +1,3 @@
-# Sending / Receiving MIDI
-
-Open Stage Control can send and receive MIDI messages.
-
 ## Requirements
 
 MIDI support requires additional software to be installed on the server's system:
@@ -33,7 +29,7 @@ In order to send MIDI messages, a widget must have at least one `target` formatt
 ## Supported MIDI messages
 
 !!! warning ""
-    Define static argument values using the [`preArgs`](/widgets/widgets/#preargs) option in order to complete the respective MIDI message.
+    Define static argument values using the [`preArgs`](/docs/widgets-reference/#preArgs) option in order to complete the respective MIDI message.
 
 
 
@@ -91,6 +87,6 @@ PitchWheel event.
 System exclusive message.
 
 - `msg`: hexadecimal sysex data string of the form `f0 ... f7`. You may include placeholders of the form `nn` which will be replaced by `v1, .., vN` respectively.
-- `v1, .., vN`: values encoded as hexadecimal data strings to include in `msg`. Most probably, you will need to sepcify a [custom module](/extras/custom-module/) in order to convert numeric widget values into the required hexadecimal format. In general, this conversion will be different for each manufacturer / device.
+- `v1, .., vN`: values encoded as hexadecimal data strings to include in `msg`. Most probably, you will need to sepcify a [custom module](/docs/custom-module/) in order to convert numeric widget values into the required hexadecimal format. In general, this conversion will be different for each manufacturer / device.
 
 For a very simple example, refer to session 'sysex.json' found in the application's sub folder 'resources/app/examples/'. Please remember to adjust the button's `target` to the `device_name` used in your MIDI setup.

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ config.site_description }}" />
+    <link rel="shortcut icon" href="{{ config.theme.favicon|url }}">
+
+    <title>{% if page.title and not page.is_homepage %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="{{ "/extensions/admonition.css"|url }}">
+    <link rel="stylesheet" href="{{ "/extensions/codehilite.css"|url }}">
+    <link rel="stylesheet" href="{{ "/styles.css"|url }}">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    {% block extrahead %}
+    {% endblock %}
+  </head>
+  <body>
+      <div class="d-header">
+          <div class="wrap">
+              <div class="contents">
+                  <div class="title">
+                      <a href="{{ "/"|url }}"><img src="{{ "/img/logo_discourse.png"|url }}"/></a>
+                  </div>
+                  <div class="header-buttons-panel">
+                      <span class="header-buttons">
+                          <div role="search">
+                              <form action="{{ "search.html"|url }}" method="get">
+                                  <input id="mkdocs-search-query" type="search" name="q" placeholder="Search" />
+                              </form>
+                          </div>
+                          <a href="{{ "/"|url}}" class="{% if page.is_homepage %}active{% endif %}">Home</a>
+                          <a href="{{ "/docs"|url }}" class="{% if not page.is_homepage %}active{% endif %}">Docs</a>
+                          <a href="https://github.com/jean-emmanuel/open-stage-control" target="_blank">Bug Tracker</a>
+                          <a href="https://openstagecontrol.discourse.group">Community</a>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      {% if page.is_homepage %}
+      <div id="jumbotron" class="bg-secondary">
+          <!-- <div class="bg" style="background-image:url({{base_url}}/img/ardour-osc.png)"></div> -->
+          <div class="wrap">
+              <h1 class="text-dark">{{ config.site_name }}</h1>
+              <h2 class="text-dark">{{ config.site_description }}</h2>
+              <br/>
+              <div class="">
+                  {% for link in config.extra.links %}
+                      <a class="btn {% if link.primary %}btn-primary{% endif %}" href="{{link.url}}">{{link.title}}</a>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+      {% endif %}
+
+      <div id="main" class="wrap">
+          {% if not page.is_homepage %}
+          {% set ns = namespace(navigation=[]) %}
+          {% for nav_item in nav %}
+              {% if nav_item.children %}
+                  {% set ns.navigation = nav_item %}
+              {% endif %}
+          {% endfor %}
+          <div class="col-left">
+                  <ul class="nav">
+                  {% for nav_item in ns.navigation.children %}
+                      {% if nav_item.active or nav_item.abs_url == '/docs/getting-started/' and page.abs_url == '/docs/' %}
+                          {% set active = True %}
+                      {% endif %}
+                      <li class="nav-item {% if active%}active{% endif %}">
+                          <a href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+                          {% if active %}
+                              {% set toc_ = page.toc %}
+
+                              <!--
+                                (@MaterialMkdocs)
+                                Hack: check whether the content contains a h1 headline. If it does, the
+                                top-level anchor must be skipped, since it would be redundant to the link
+                                to the current page that is located just above the anchor. Therefore we
+                                directly continue with the children of the anchor.
+                              -->
+                              {% if toc_ | first is defined and "\x3ch1 id=" in page.content %}
+                                {% set toc_ = (toc_ | first).children %}
+                              {% endif %}
+                              {% if toc_ | first is defined %}
+                                  <ul class="nav">
+                                  {% for toc_item in toc_ %}
+                                      <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                      {% for toc_item in toc_item.children %}
+                                          <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                      {% endfor %}
+                                  {% endfor %}
+                                  </ul>
+                              {% endif %}
+                          {% endif %}
+                      </li>
+                  {% endfor %}
+                  </ul>
+          </div>
+          {% endif %}
+
+
+          <div class="col-right">
+              {% block content %}
+              {{ page.content }}
+              {% endblock %}
+          </div>
+      </div>
+
+      <script src="{{ "/scripts.js"|url }}"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+      <script src="{{ "search/main.js"|url }}" defer></script>
+
+  </body>
+</html>

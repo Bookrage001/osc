@@ -3,6 +3,16 @@
 !!! tip ""
     Prebuilt binaries for Linux, Windows and OS X can be found on the [release](https://github.com/jean-emmanuel/open-stage-control/releases) page.
 
+## Supported platforms
+
+Open Stage Control is a *desktop* server application. It runs on all [platforms supported by Electron](https://electron.atom.io/docs/tutorial/supported-platforms/) or [Node](https://nodejs.org/en/) (in headless mode only, see [Running without Electron](#running-without-electron)). Any device running a compatible browser can connect to the server :
+
+- Chrome/Chromium version `50` or later (Linux, MacOS, Windows, Android, etc)
+- iOS version `9.3` or later
+
+!!! tip "Android / iOS native app ?"
+    There is no native mobile application. The server's url can be added to the home screen to launch the interface in fullscreen.
+
 
 ## Options
 
@@ -26,9 +36,9 @@ Below are the available command-line options. Note that when running without any
 | `-d` | `--debug` | log received osc messages in the console |
 | `-n` | `--no-gui` | disable default gui |
 | `-g` | `--gui-only` | app server's url. If true, local port (--port) is used |
-| `-t` | `--theme` | theme name or path (mutliple values allowed) see [theming](extras/theming/) |
+| `-t` | `--theme` | theme name or path (mutliple values allowed) see [theming](/docs/theming/) |
 | `-e` | `--examples` | list examples instead of recent sessions |
-| | `--url-options` | [url options](extras/url-options) (opt=value pairs) |
+| | `--url-options` | [url options](/docs/url-options) (opt=value pairs) |
 | |`--disable-vsync` | disable gui's vertical synchronization |
 | |`--disable-gpu` | disable hardware acceleration |
 | |`--read-only` | disable session editing and session history changes |

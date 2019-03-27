@@ -6,49 +6,41 @@ copyright: "Open Stage Control is an <a href='http://ammd.net'>AMMD</a> software
 site_description: "Libre and modular OSC / MIDI controller"
 
 theme:
-    name: 'material'
-    custom_dir: 'mkdocs-material/material'
-    feature:
-        tabs: true
+    name: null
+    custom_dir: 'theme/'
     favicon: 'img/logo-nobadge.png?1'
-    language: 'en'
-    logo: 'img/logo-nobadge.svg'
-    palette:
-        primary: 'blue grey'
-        accent: 'light blue'
-    font:
-        text: 'Roboto'
-        code: 'Roboto Mono'
+    include_search_page: true
+    static_templates:
+      - 404.html
 
-extra_css:
-  - 'css/extra.css'
 
-pages:
-    - OSC Control Surface: index.md
-    - Getting started: getting-started.md
-    - User interface: interface.md
-    - Editing sessions: editing-sessions.md
-    - Widgets reference: widgets-reference.md
-        # - Widget properties: widgets/widgets.md
-        # - Containers: widgets/containers.md
-        # - Sliders: widgets/sliders.md
-        # - Pads: widgets/pads.md
-        # - Buttons: widgets/buttons.md
-        # - Switchers: widgets/switchers.md
-        # - Plots: widgets/plots.md
-        # - Matrices: widgets/matrices.md
-        # - Inputs: widgets/inputs.md
-        # - Maths: widgets/maths.md
-    - Extras:
-        - Advanced property syntax: extras/advanced-property-syntax.md
-        - CSS Tips: extras/css-tips.md
-        - Theming: extras/theming.md
-        - URL options: extras/url-options.md
-        - Remote control: extras/remote-control.md
-        - Custom module: extras/custom-module.md
-        - Midi: extras/midi.md
-    - Examples: examples.md
-    - Credits: credits.md
+extra:
+    links:
+        -
+            title: Download
+            url: https://github.com/jean-emmanuel/open-stage-control/releases
+            primary: true
+        -
+            title: Demo (requires chromium 50+)
+            url : http://openstagecontrol.herokuapp.com
+
+nav:
+    - Open Stage Control: index.md
+    - Docs: docs.md
+    - Docs:
+        - Getting started: docs/getting-started.md
+        - User interface: docs/interface.md
+        - Editing sessions: docs/editing-sessions.md
+        - Widgets reference: docs/widgets-reference.md
+        - Advanced property syntax: docs/advanced-property-syntax.md
+        - CSS Tips: docs/css-tips.md
+        - Theming: docs/theming.md
+        - URL options: docs/url-options.md
+        - Remote control: docs/remote-control.md
+        - Custom module: docs/custom-module.md
+        - Midi: docs/midi.md
+        - Examples: docs/examples.md
+        - Credits: docs/credits.md
 
 markdown_extensions:
     - markdown.extensions.admonition
@@ -68,3 +60,6 @@ markdown_extensions:
     - pymdownx.superfences
     - pymdownx.tasklist(custom_checkbox=true)
     - pymdownx.tilde
+
+plugins:
+    - search

@@ -23,7 +23,7 @@ When traversing gestures are set to "Smart", these will only affect widgets that
 
 ### Editor
 
-See [Editing sessions](editing-sessions.md).
+See [Editing sessions](/docs/editing-sessions.md).
 
 ## Interactions
 
