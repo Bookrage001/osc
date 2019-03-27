@@ -1,1 +1,0 @@
-![](/img/ardour-osc.png)

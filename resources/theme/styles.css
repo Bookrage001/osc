@@ -104,7 +104,7 @@ body {
 #jumbotron {
     text-align: center;
     position: relative;
-    padding: 8em 0 4em;
+    padding: 8em 0 6em;
 }
 #jumbotron .bg {
     position: absolute;
@@ -114,6 +114,17 @@ body {
     opacity: 0.5;
     /* filter: blur(5px); */
 
+}
+
+#jumbotron-img {
+    /* width: 50%; */
+    display: block;
+    margin: -4em auto 1em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    z-index: 1;
+    position: relative;
+    image-rendering: crisp-edges;
+    -webkit-image-rendering: crisp-edges;
 }
 
 #jumbotron + #main {

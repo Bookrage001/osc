@@ -15,6 +15,7 @@ theme:
 
 
 extra:
+    screenshot: img/ardour-osc.png
     links:
         -
             title: Download

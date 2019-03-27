@@ -105,6 +105,10 @@
 
 
           <div class="col-right">
+              {% if page.is_homepage %}
+                  <img src="{{ config.extra.screenshot|url }}" id="jumbotron-img"/>
+              {% endif %}
+
               {% block content %}
               {{ page.content }}
               {% endblock %}
