@@ -33,7 +33,7 @@ In order to send MIDI messages, a widget must have at least one `target` formatt
 
 
 
-### `/note channel note velocity`
+#### `/note channel note velocity`
 
 NoteOn event or noteOff if velocity equals `0`.
 
@@ -51,7 +51,7 @@ A push button might be configured as follows in order to send a MIDI note whose 
 - `off`: 0 (to send a noteOff on button release)
 - `target`: ["midi:device_name"] (where device_name is one of the declared midi devices defined during [setup](#setup))
 
-### `/control channel cc value`
+#### `/control channel cc value`
 
 Control change event.
 
@@ -68,21 +68,21 @@ A fader might be configured as follows in order to send a MIDI control message (
 - `range`: {"min": 0, "max": 127} (MIDI values are encoded in this range)
 - `target`: ["midi:device_name"]
 
-### `/program channel program`
+#### `/program channel program`
 
 Program change event.
 
 - `channel`: integer between 1 and 16
 - `program`: integer between 0 and 127
 
-### `/pitch channel pitch`
+#### `/pitch channel pitch`
 
 PitchWheel event.
 
 - `channel`: integer between 1 and 16
 - `pitch`: integer between 0 and 16383
 
-### `/sysex msg v1 .. vN`
+#### `/sysex msg v1 .. vN`
 
 System exclusive message.
 

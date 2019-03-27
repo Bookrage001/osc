@@ -23,27 +23,26 @@ If the retreived property is an object (`[] / {}`), a subset can be defined by a
 !!! note ""
     The root panel's `id` is `root`.
 
-### Using the value
+#### Using the value
 
 The special property name `value`<i class="dynamic-prop-icon" title="dynamic"></i> refers to a widget's current value (which can be affected by its `value` *property*).
 
 When omitted, the property name defaults to `value` : `@{widgetId}` => `@{widgetId.value}`
 
-### Dynamic properties
+#### Dynamic properties
 
 Some properties, when changed, trigger a complete widget recreation that ends any ongoing user interaction. Also, updating these properties continuously (e.g. when linked to a slider's dynamic value) can be very cpu expensive.
 
 Some properties have much cheaper update routines and can be considered as `dynamic`, as in performance safe. These properties are marked in the documentation with a ` `<i class="dynamic-prop-icon" title="dynamic"></i>.
 
 
-### Circular references cases
+#### Circular references cases
 
 - container widgets can inherit their children's properties only to define `dynamic` properties
 - widgets can inherit their own `value`<i class="dynamic-prop-icon" title="dynamic"></i> property only to define `dynamic` properties
 
-----
 
-### Nesting
+#### Nesting
 
 The inheritance syntax supports 1-level nesting : `@{fader_@{toggle_1}}`
 
@@ -94,7 +93,7 @@ Additionnal functions:
 
 - `indexOf(a, x)`: returns index of item `x` in array `a`
 - `unpack(x)`: remove an array's brackets (`unpack([1,2])` returns `"1, 2"`)
-- `pad(x, padding)`: add leading zeros if the length the integer part of `x` is smaller than `padding` (`pad(1,2)` returns `"01"`)
+- `pad(x, padding)`: add leading zeros if the length of the integer part of `x` is smaller than `padding` (`pad(1,2)` returns `"01"`)
 - `length(x)`: returns the length of an array or string
 - `keys(x)`: returns an array of a given object's property names (from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys))
 - `values(x)`: returns an array of a given object's own enumerable property values (from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values))
