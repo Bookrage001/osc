@@ -198,7 +198,8 @@ for (let i in sidepanelData) {
 }
 
 
-var sidepanel = document.getElementById('sidepanel-wrapper')
+var sidepanel = document.getElementById('sidepanel-wrapper'),
+    sidepanelContainer = document.getElementById('sidepanel')
 
 sidepanel.appendChild(html`
     <div class="navigation"><ul><li><a>${PACKAGE.productName.toUpperCase()}</a></li></ul></div>
@@ -266,7 +267,7 @@ function sidepanelClose() {
 
 function sidepanelToggle() {
 
-    if (sidepanel.classList.contains('sidepanel-open')) {
+    if (sidepanelContainer.classList.contains('sidepanel-open')) {
         sidepanelClose()
     } else {
         sidepanelOpen()
@@ -293,8 +294,7 @@ document.addEventListener('keydown', function(e){
 
 // Sidepanel resize
 
-var sidepanelWidth,
-    sidepanelContainer = document.getElementById('sidepanel')
+var sidepanelWidth
 
 $('#sidepanel-handle').draggable({
     cursor:'col-resize',
