@@ -189,8 +189,13 @@ h1:first-child {
     border-radius: 15px;
     color: #eee;
     outline: none;
-    padding:6px 12px;
+    padding:3px 12px;
     margin-right: 10px;
+    transition: all .25s;
+    &:focus {
+        background: white;
+        color:#333;
+    }
 }
 
 @import 'mobile';

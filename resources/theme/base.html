@@ -27,7 +27,7 @@
                       <span id="menu" class="hide-md header-buttons">
                           <div role="search">
                               <form action="{{ "search.html"|url }}" method="get">
-                                  <input id="mkdocs-search-query" type="search" name="q" placeholder="Search" />
+                                  <input id="mkdocs-search-query" type="search" name="q" placeholder="Search" autocomplete="off"/>
                               </form>
                           </div>
                           <a href="{{ "/"|url}}" class="{% if page.is_homepage %}active{% endif %}">Home</a>
