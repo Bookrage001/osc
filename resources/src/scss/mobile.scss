@@ -1,0 +1,29 @@
+@media (max-width:840px) {
+    #menu {
+        flex-direction: column;
+        position: fixed;
+        align-items: center;
+        justify-content: center;
+        top: 4em;
+        right: 0;
+        margin: 0;
+        background: $osc-color;
+        border-bottom-left-radius: 3px;
+        box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
+
+        > * {
+            flex:1;
+            padding: 8px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        input {
+            text-align: center;
+            margin: 0;
+        }
+        &.show {
+            display: flex!important;
+        }
+    }
+}

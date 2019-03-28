@@ -1,6 +1,9 @@
+$osc-color: #3c4c68;
+
 $primary-color: rgb(75, 143, 210);
 $font-size: 0.6rem;
 @import "node_modules/spectre.css/src/spectre";
+@import "node_modules/spectre.css/src/icons";
 
 @import "admonition";
 @import "codehilite";
@@ -51,6 +54,9 @@ pre, code {
     padding-bottom: 0;
 }
 
+#logo {
+    flex-shrink: 0;
+}
 
 #main {
     padding-top: 6.5em;
@@ -75,18 +81,21 @@ pre, code {
     line-height: 1
 }
 .col-right {
-    flex: 1
+    flex: 1;
+    min-width: 0;
 }
 
 .codehilite {
     background-color: #fafafa;
     color: #37474f;
     line-height: 1em;
-    max-width: 100%
+    overflow-x: auto;
+    border-radius: 3px;
+    margin-bottom: 1.2rem;
+    padding: 12px;
 }
 
 .codehilite pre {
-    padding: 12px;
     white-space: pre;
     font-feature-settings: "kern";
     font-family: $mono-font-family;
@@ -179,3 +188,5 @@ h1:first-child {
     padding:6px 12px;
     margin-right: 10px;
 }
+
+@import 'mobile';

@@ -19,10 +19,11 @@
           <div class="wrap">
               <div class="contents">
                   <div class="title">
-                      <a href="{{ "/"|url }}"><img src="{{ "/img/logo_discourse.png"|url }}"/></a>
+                      <a id="logo" href="{{ "/"|url }}"><img src="{{ "/img/logo_discourse.png"|url }}"/></a>
                   </div>
                   <div class="header-buttons-panel">
-                      <span class="header-buttons">
+                      <button id="mobile-toggle" class="show-md btn btn-primary btn-action btn-lg"><i class="icon icon-menu"></i></button>
+                      <span id="menu" class="hide-md header-buttons">
                           <div role="search">
                               <form action="{{ "search.html"|url }}" method="get">
                                   <input id="mkdocs-search-query" type="search" name="q" placeholder="Search" />
@@ -112,6 +113,7 @@
           </div>
       </div>
 
+      <script>var base_url = "{{ base_url|url }}" </script>
       <script src="{{ "/scripts.js"|url }}"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
       <script src="{{ "search/main.js"|url }}" defer></script>
