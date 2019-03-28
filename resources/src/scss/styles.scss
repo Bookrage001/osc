@@ -12,10 +12,14 @@ $font-size: 0.6rem;
 
 body {
     color: #333;
-    font-family: $body-font-family;// Helvetica,Arial,sans-serif;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    font-weight: normal;
     background-color: #fff;
     overflow-y: scroll;
     direction: ltr;
+}
+h1,h2,h3,h4,h5 {
+    font-weight: 100;
 }
 
 pre, code {
@@ -123,7 +127,7 @@ table td {
 table h4 {
     margin: 0;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 table th {
