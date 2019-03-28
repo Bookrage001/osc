@@ -1,4 +1,5 @@
 $primary-color: rgb(75, 143, 210);
+$font-size: 0.6rem;
 @import "node_modules/spectre.css/src/spectre";
 
 @import "admonition";
@@ -8,14 +9,16 @@ $primary-color: rgb(75, 143, 210);
 
 body {
     color: #333;
-    font-family: Helvetica,Arial,sans-serif;
-    font-size: 13px;
-    line-height: 1.4;
+    font-family: $body-font-family;// Helvetica,Arial,sans-serif;
     background-color: #fff;
     overflow-y: scroll;
     direction: ltr;
 }
 
+pre, code {
+    font-size: 0.7rem;
+    font-family: $mono-font-family;
+}
 
 #jumbotron {
     text-align: center;
@@ -50,7 +53,7 @@ body {
 
 
 #main {
-    padding-top: 5.8572em;
+    padding-top: 6.5em;
     padding-bottom: 4em;
     display: flex;
 }
@@ -60,7 +63,7 @@ body {
     flex-shrink: 0;
 }
 .col-left > ul {
-    top: 5.8572em;
+    top: 6.5em;
     width: 230px;
     position: fixed;
     overflow-y: auto;

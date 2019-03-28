@@ -1,0 +1,94 @@
+
+.wrap {
+    max-width: 1110px;
+}
+@media (max-width: 570px){
+    .wrap, .full-width {
+        min-width: 0;
+    }
+}
+
+.wrap {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 8px;
+}
+.d-header>.wrap {
+    width: calc(100% - 16px);
+    height: 100%;
+    padding: 0;
+}
+
+
+.d-header {
+    left: 0;
+    height: 4em;
+    margin-bottom: 15px;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.d-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background-color: #3c4c68;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
+}
+
+.d-header>.wrap .contents {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.wrap .contents {
+    position: relative;
+}
+
+.d-header .title {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.d-header .title img {
+    height: 2.57em;
+    vertical-align: middle;
+}
+
+
+.d-header .header-buttons-panel {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    margin-left: auto;
+    align-items: center;
+}
+.d-header .header-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 0.2em;
+}
+
+.d-header .header-buttons a {
+    padding: 6px 10px;
+    color: #fff;
+    font-size: 1.1487em;
+}
+
+.d-header .header-buttons a {
+    opacity: 0.5;
+    transition: opacity .25s;
+    text-decoration: none;
+}
+.d-header .header-buttons a:hover {
+    opacity: 0.75;
+}
+.d-header .header-buttons a.active {
+    opacity: 1;
+}

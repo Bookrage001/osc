@@ -1,0 +1,57 @@
+div.admonition {
+    font-size: 0.9em;
+    border: 1px solid #cccccc;
+    background-color: #fafafa;
+    padding: 0;
+    border-radius: 3px;
+    margin: 0 0 1.2rem;
+}
+
+div.admonition p {
+    margin: 0.5em 1em 0.5em 1em;
+    padding: 0;
+}
+
+div.admonition li p {
+    margin-left: 0;
+}
+
+div.admonition pre, div.warning pre {
+    margin: 0;
+}
+
+div.admonition p.admonition-title {
+    margin: 0;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    background-color: #165e83;
+}
+
+div.danger    { border: 1px solid $error-color;}
+div.error     { border: 1px solid $error-color;}
+div.warning   { border: 1px solid $warning-color;}
+div.caution   { border: 1px solid $warning-color;}
+div.attention { border: 1px solid $warning-color;}
+div.important { border: 1px solid #f8b862;}
+div.note      { border: 1px solid #f8b862;}
+div.hint      { border: 1px solid #7ebea5;}
+div.tip       { border: 1px solid #7ebea5;}
+
+div.danger p.admonition-title, div.error p.admonition-title {
+    background-color: $error-color;
+}
+
+div.caution p.admonition-title,
+div.warning p.admonition-title,
+div.attention p.admonition-title {
+    background-color: $warning-color;
+}
+
+div.note p.admonition-title, div.important p.admonition-title {
+    background-color: #f8b862;
+}
+
+div.hint p.admonition-title, div.tip p.admonition-title {
+    background-color: #7ebea5;
+}

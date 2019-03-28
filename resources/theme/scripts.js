@@ -1,4 +1,4 @@
-var offset = 82
+var offset = 80
 function offsetScroll(){
     if (document.location.hash) {
         var el = document.getElementById(document.location.hash.substring(1))
