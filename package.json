@@ -2,7 +2,7 @@
   "name": "open-stage-control",
   "productName": "Open Stage Control",
   "description": "Libre and modular OSC / MIDI controller",
-  "version": "0.42.0",
+  "version": "0.43.0",
   "author": {
     "name": "Jean-Emmanuel Doucet",
     "email": "jean-emmanuel@ammd.net"
@@ -86,7 +86,7 @@
     "watch-client": "npm run build-client-js -- --watch",
     "watch-browser": "npm run build-client-js -- --watch",
     "watch-css": "nodemon --watch src/scss -e scss -x \"npm run build-css -- --reload\"",
-    "build-docs": "node scripts/build-widgets-reference.js > resources/docs/docs/widgets-reference.md && cd resources && node scripts/build-css.js && mkdocs build --clean",
+    "build-docs": "node scripts/build-widgets-reference.js > resources/docs/docs/widgets-reference.md && cd resources && npm run build",
     "test": "eslint src && npm run build && node tests/test.js"
   },
   "engines": {

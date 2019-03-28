@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.43.0
 
 - bug fixes
   - sidepanel: resize handle overflow issue
