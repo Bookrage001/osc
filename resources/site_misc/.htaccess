@@ -9,3 +9,5 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301]
 
 RewriteCond %{HTTP_HOST} ^osc.ammd.net
 RewriteRule ^(.*)$ https://openstagecontrol.ammd.net/$1 [L,R=301]
+
+ErrorDocument 404 /404.html
