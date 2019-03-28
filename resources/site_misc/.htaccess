@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^extras/(.*)$ docs/$1 [QSA,L,R=301]
+RewriteRule ^docs/$ docs/getting-started [QSA,L]
