@@ -32,25 +32,52 @@ pre, code {
     position: relative;
     padding: 10em 0 8em;
 }
-#jumbotron .bg {
-    position: absolute;
-    top:0px;left:0px;right:0px;bottom:0px;
-    background-size: cover;
-    z-index: -1;
-    opacity: 0.5;
-    /* filter: blur(5px); */
-
-}
-
-#jumbotron-img {
-    /* width: 50%; */
-    display: block;
+#jumbotron-showcase {
     margin: -4em auto 1em;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
     z-index: 1;
+    border-radius: 3px;
+    overflow: hidden;
     position: relative;
-    image-rendering: crisp-edges;
-    -webkit-image-rendering: crisp-edges;
+
+    #jumbotron-img {
+        display: block;
+        z-index: 2;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .icon-play {
+        $size:80px;
+        position: absolute;
+        z-index: 3;
+        top:50%;left:50%;
+        margin-left:-$size/2;
+        margin-top:-$size/2;
+        width: $size;
+        height: $size;
+        border-bottom:$size/2 solid transparent;
+        border-top:$size/2 solid transparent;
+        border-left:$size solid #fff;
+        opacity: 0.75;
+        pointer-events: none;
+    }
+
+    #showcase-frame {
+        z-index: 1;
+        opacity: 0;
+        position: absolute;
+        top: 0; left: 0;
+        width:100%;
+        height: 100%;
+        border: 0;
+        // transition: opacity 0.5s;
+        &.show {
+            z-index: 4;
+            opacity: 1;
+        }
+    }
+
 }
 
 #jumbotron + #main {

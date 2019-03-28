@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "node scripts/build-css && mkdocs build && rsync -a site_misc/ site/"
+    "build": "node scripts/build-css && mkdocs build && rsync -a --copy-links site_misc/ site/"
   },
   "author": "",
   "license": "ISC",
