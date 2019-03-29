@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.43.1
+
+- bug fixes
+  - ios: clone widget not displaying properly
+
 ## 0.43.0
 
 - bug fixes
