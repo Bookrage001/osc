@@ -597,3 +597,82 @@ body {
 }
 
 @import 'themes/default';
+
+
+
+
+
+
+.file-browser {
+    width: 540px;
+    height: 400px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .ariane {
+        height: 40rem;
+        flex-shrink: 0;
+        line-height: 40rem;
+        padding-left: 10rem;
+    }
+    .file-list {
+        overflow-y: auto;
+        flex:1;
+        background: var(--color-bg);
+        padding: 0 10rem;
+    }
+    .file {
+        position: relative;
+        height: 40rem;
+        line-height: 40rem;
+        input {
+            position: absolute;
+            width:100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .label {
+            position: absolute;
+            width:100%;
+            height: 100%;
+            pointer-events: none;
+            white-space: nowrap;
+            span {
+                display: block;
+                width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+        input:checked + .label {
+            color: var(--color-custom);
+            &:before {
+                content:"";
+                position: absolute;
+                left:-10rem;
+                right:-10rem;
+                height: 100%;
+                background: var(--color-custom);
+                opacity: 0.1;
+            }
+        }
+    }
+    .file-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-end;
+        height: 40rem;
+        flex-shrink: 0;
+        margin-top: 10rem;
+        div {
+            margin-left: 10rem;
+            text-transform: uppercase;
+        }
+        i {
+            pointer-events: none;
+        }
+    }
+}

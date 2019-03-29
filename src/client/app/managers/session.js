@@ -2,7 +2,7 @@ var ipc = require('../ipc/'),
     parser = require('../parser'),
     editor = require('../editor/'),
     lobby = require('../ui/lobby'),
-    {loading, icon, Popup, upload} = require('../ui/utils'),
+    {loading, icon, Popup, upload, remoteBrowse} = require('../ui/utils'),
     {saveAs} = require('file-saver'),
     widgetManager = require('./widgets'),
     html = require('nanohtml'),
@@ -183,6 +183,10 @@ var SessionManager = class SessionManager {
 
     browse() {
 
+        remoteBrowse('json', (path)=>{
+            ipc.send('sessionOpen',{path:path})
+        })
+        return
         upload('.json', (path, result)=>{
             ipc.send('sessionOpen',{file:result, path:path})
         }, ()=>{

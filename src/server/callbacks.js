@@ -70,6 +70,8 @@ module.exports =  {
 
     sessionOpen: function(data,clientId) {
 
+        if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
+
         var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
             error = file === false && data.path ? 'Session file "' + data.path + '" not found.' : false,
             session
@@ -327,6 +329,33 @@ module.exports =  {
 
     errorPopup: function(data) {
         ipc.send('error', data)
+    },
+
+    listDir: function(data, clientId) {
+
+        var p = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+
+        if (data.path) p = path.resolve(...data.path)
+
+        fs.readdir(p, (err, files)=>{
+            if (err) {
+                ipc.send('notify', {class: 'error', message: err.message}, clientId)
+                throw err
+            } else {
+                var list = files.filter(x=>x[0] !== '.').map((x)=>{
+                    return {
+                        name: x,
+                        folder: fs.statSync(path.resolve(p, x)).isDirectory()
+                    }
+                })
+                ipc.send('listDir', {
+                    path: p,
+                    files: list
+                }, clientId)
+            }
+        })
+
+
     }
 
 }
