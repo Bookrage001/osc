@@ -34,7 +34,12 @@ class Ipc extends EventEmitter {
             this.socket.send('["pong"]')
         })
 
-        this.open()
+        try {
+            this.open()
+        } catch(e) {
+            console.warn('Could not open a WebSocket connection')
+            console.log(e)
+        }
 
     }
 

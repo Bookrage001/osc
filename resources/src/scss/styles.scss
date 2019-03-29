@@ -44,7 +44,7 @@ pre, code {
         display: block;
         z-index: 2;
         position: relative;
-        // cursor: pointer;
+        cursor: pointer;
     }
 
     .icon-play {
@@ -56,11 +56,15 @@ pre, code {
         margin-top:-$size/2;
         width: $size;
         height: $size;
-        border-bottom:$size/2 solid transparent;
-        border-top:$size/2 solid transparent;
-        border-left:$size solid #fff;
-        opacity: 0.75;
+        border-radius: 100%;
+        box-shadow: 0 0 20px 0 rgba(black, 0.2);
+        filter: saturate(0);
+        transition: filter 1s;
         pointer-events: none;
+    }
+
+    &:hover .icon-play {
+        filter: saturate(1);
     }
 
     #showcase-frame {
