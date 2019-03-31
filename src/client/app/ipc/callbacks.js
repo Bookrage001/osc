@@ -126,6 +126,7 @@ module.exports = {
             ipc.send('storeBackup', {
                 backupId: id,
                 session: session.session || {},
+                sessionPath: session.sessionPath,
                 state: state.get(),
                 history: editor.history,
                 historyState: editor.historyState,
@@ -176,6 +177,7 @@ module.exports = {
             }
 
             ipc.send('sessionSetPath', {path: data.sessionPath})
+            session.setSessionPath(data.sessionPath)
             ipc.send('deleteBackup', data.backupId)
 
         })

@@ -338,7 +338,6 @@ module.exports =  {
     storeBackup: function(data, clientId) {
 
         sessionBackups[data.backupId] = data
-        sessionBackups[data.backupId].sessionPath = ipc.clients[clientId].sessionPath
 
     },
 

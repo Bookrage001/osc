@@ -244,6 +244,9 @@ var SessionManager = class SessionManager {
     setSessionPath(path) {
 
         this.sessionPath = path
+        if (path) {
+            document.title = this.windowTitle + ' (' + path + ')'
+        }
 
     }
 
