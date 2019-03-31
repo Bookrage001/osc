@@ -20,8 +20,6 @@ var SessionManager = class SessionManager {
 
         this.windowTitle = document.title
 
-        this.allowRemoteSave = false
-
         ipc.on('connect', ()=>{
             ipc.send('sessionSetPath', {path: this.sessionPath})
         })
@@ -133,6 +131,8 @@ var SessionManager = class SessionManager {
 
         saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.json')
 
+        edior.unsavedSession = false
+
     }
 
     list(data) {
@@ -172,10 +172,15 @@ var SessionManager = class SessionManager {
         if (!READ_ONLY) {
 
             var brw = lobby.footer.appendChild(html`<a href="#" tabindex="0" class="btn browse">${raw(icon('folder-open'))} ${locales('session_browse')}</a>`)
+            var imp = lobby.footer.appendChild(html`<a href="#" tabindex="0" class="btn import">${raw(icon('upload'))} ${locales('editor_import')}</a>`)
             var nws = lobby.footer.appendChild(html`<a href="#" tabindex="0" class="btn new">${raw(icon('file'))} ${locales('session_new')}</a>`)
 
             brw.addEventListener('click', (e)=>{
                 this.browse()
+            })
+
+            imp.addEventListener('click', (e)=>{
+                this.import()
             })
 
             nws.addEventListener('click', (e)=>{
@@ -205,6 +210,7 @@ var SessionManager = class SessionManager {
     browse() {
 
         remoteBrowse({extension: 'json'}, (path)=>{
+            if (editor.unsavedSession && !confirm(locales('session_unsaved'))) return
             ipc.send('sessionOpen',{path:path})
         })
 
@@ -213,7 +219,14 @@ var SessionManager = class SessionManager {
     import() {
 
         upload('.json', (path, result)=>{
-            ipc.send('sessionOpen',{file:result, path:path})
+            var session
+            try {
+                session = JSON.parse(result)
+            } catch (err) {
+                new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('session_parsingerror'), content: err, closable:true})
+            }
+            if (editor.unsavedSession && !confirm(locales('session_unsaved'))) return
+            if (session) sessionManager.load(session)
         }, ()=>{
             new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('error'), content: locales('session_uploaderror'), closable:true})
         })

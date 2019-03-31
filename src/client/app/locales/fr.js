@@ -45,6 +45,7 @@ module.exports = {
     session_uploaderror: 'Échec à l\'envoi du fichier de session.',
     session_savesuccess: 'Session enregistrée avec succès',
     session_saveerror: 'La session ne peut pas être enregistrée sur le serveur, utilisez la fonction "exporter"',
+    session_unsaved: 'Vos modifications seront perdues si vous fermez la session actuelle sans sauvegarder, continuer ?',
 
     // sidepanel
     sidepanel_fs: 'Plein Écran',

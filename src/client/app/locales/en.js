@@ -46,6 +46,7 @@ module.exports = {
     session_uploaderror: 'Failed to upload session file.',
     session_savesuccess: 'Session saved successfully',
     session_saveerror: 'The session file can\'t be saved remotely, use "export" instead',
+    session_unsaved: 'Your changes will be lost if you close this session without saving, continue ?',
 
     // sidepanel
     sidepanel_fs: 'Fullscreen',

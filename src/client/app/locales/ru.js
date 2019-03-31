@@ -7,6 +7,8 @@ module.exports = { // @https://github.com/suhr
     editor_load: 'Загрузить',
     editor_save: 'Сохранить',
     editor_save_as: 'Экспорт',
+    editor_import: 'Import',
+    editor_export: 'Export',
 
     // editor context-menu
     editor_editparent: 'К родителю',
@@ -34,7 +36,7 @@ module.exports = { // @https://github.com/suhr
     // server
     server_disconnected: 'The connection to the server has been interrupted',
     server_connected: 'The connection to the server has been restored',
-        
+
     // session
     session_browse: 'Обзор...',
     session_new: 'Новая сессия',
@@ -43,6 +45,7 @@ module.exports = { // @https://github.com/suhr
     session_uploaderror: 'Не удалось загрузить файл сессии.',
     session_savesuccess: 'Session saved successfully',
     session_saveerror: 'The session file can\'t be saved remotely, use "export" instead',
+    session_unsaved: 'Your changes will be lost if you close this session without saving, continue ?',
 
     // sidepanel
     sidepanel_fs: 'Полный экран',
