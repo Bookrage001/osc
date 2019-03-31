@@ -83,5 +83,6 @@ module.exports = {
         }
     },
     'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'},
-    'fullscreen':{type:'boolean', describe:'launch in fullscreen mode (only affects the default gui, F11 to exit)'}
+    'fullscreen':{type:'boolean', describe:'launch in fullscreen mode (only affects the default gui, F11 to exit)'},
+    'inspect':{type:'string', hidden: true}
 }

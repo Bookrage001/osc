@@ -66,7 +66,9 @@ class OscServer {
                 })
 
             try {
-                mod = vm.runInContext(file, context)
+                mod = vm.runInContext(file, context, {
+                    filename: customModule[0]
+                })
                 if (context.module.exports) mod = context.module.exports
             } catch(err) {
                 console.error(err)
