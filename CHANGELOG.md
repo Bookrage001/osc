@@ -1,7 +1,9 @@
 # Changelog
 
-## 0.43.1
+## 0.44.1
 
+- main
+  - sessions can be opened and saved from the server's filesystem directly
 - bug fixes
   - ios: clone widget not displaying properly
 
