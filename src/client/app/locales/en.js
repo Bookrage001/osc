@@ -35,6 +35,8 @@ module.exports = {
     fs_addtohome: 'You must add this page to your home screen to launch it in fullscreen',
 
     // remote save
+    remotesave_open: 'Open (on the server)',
+    remotesave_save: 'Save (on the server)',
     remotesave_fail: 'The file could not be saved on the server, use "export" instead',
     remotesave_success: 'File saved successfully',
     remotesave_forbidden: 'You\'re note allowed to save on server, use "export instead"',

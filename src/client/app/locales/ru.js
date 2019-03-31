@@ -34,6 +34,8 @@ module.exports = { // @https://github.com/suhr
     fs_addtohome: 'Необходимо добавить эту страницу на главный экран чтобы запустить её в полноэкранном режиме',
 
     // remote save
+    remotesave_open: 'Open (on the server)',
+    remotesave_save: 'Save (on the server)',
     remotesave_fail: 'The file could not be saved on the server, use "export" instead',
     remotesave_success: 'File saved successfully',
     remotesave_forbidden: 'You\'re note allowed to save on server, use "export instead"',

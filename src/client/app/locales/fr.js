@@ -34,6 +34,8 @@ module.exports = {
     fs_addtohome: 'Vous devez ajouter cette page à votre écran d\'accueil pour pouvoir l\'ouvrir en plein écran.',
 
     // remote save
+    remotesave_open: 'Ouvrir (sur le serveur)',
+    remotesave_save: 'Enregistrer (sur le serveur)',
     remotesave_fail: 'Le fichier n\'a pas pu être enregistré sur le serveur, utilisez la fonction "exporter"',
     remotesave_success: 'Le fichier a été enregistré avec succès',
     remotesave_forbidden: 'Vous n\'êtes pas autorisé à sauvegarder sur le serveur, utilisez la fonction "exporter"',

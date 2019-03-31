@@ -150,7 +150,7 @@ module.exports = {
 
         var popup = new module.exports.Popup({
             closable: true,
-            title: save ? `Save file` : `Open file`,
+            title: locales(save ? 'remotesave_save' : 'remotesave_open'),
             hide: true
         })
 
@@ -229,7 +229,7 @@ module.exports = {
         function keyHandler(e){
 
             if (e.keyCode === 13) {
-                setTimeout(submit)
+                setTimeout(submit, 100)
             } else if (e.target === saveInput) {
                 return
             } else if (e.keyCode === 8) {
