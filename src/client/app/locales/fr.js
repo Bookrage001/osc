@@ -33,6 +33,11 @@ module.exports = {
     fs_unnavailable: 'Plein écran indisponible',
     fs_addtohome: 'Vous devez ajouter cette page à votre écran d\'accueil pour pouvoir l\'ouvrir en plein écran.',
 
+    // remote save
+    remotesave_fail: 'Le fichier n\'a pas pu être enregistré sur le serveur, utilisez la fonction "exporter"',
+    remotesave_success: 'Le fichier a été enregistré avec succès',
+    remotesave_forbidden: 'Vous n\'êtes pas autorisé à sauvegarder sur le serveur, utilisez la fonction "exporter"',
+
     // server
     server_disconnected: 'La connexion avec le serveur a été interrompue',
     server_connected: 'La connexion avec le serveur a été rétablie',
@@ -43,8 +48,6 @@ module.exports = {
     session_malformed: 'Fichier de session mal formé.',
     session_parsingerror: 'Erreur à l\'ouverture de la session.',
     session_uploaderror: 'Échec à l\'envoi du fichier de session.',
-    session_savesuccess: 'Session enregistrée avec succès',
-    session_saveerror: 'La session ne peut pas être enregistrée sur le serveur, utilisez la fonction "exporter"',
     session_unsaved: 'Vos modifications seront perdues si vous fermez la session actuelle sans sauvegarder, continuer ?',
 
     // sidepanel

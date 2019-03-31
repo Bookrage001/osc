@@ -126,13 +126,15 @@ module.exports =  {
 
     },
 
-    sessionSave: function(data, clientId) {
+    fileSave: function(data, clientId, ok, callback) {
+
+        if (!ok) return
 
         if (!data.path || settings.read('remoteSaving') && !settings.read('remoteSaving').test(ipc.clients[clientId].address)) {
 
             return ipc.send('notify', {
                 icon: 'save',
-                locale: 'session_save',
+                locale: 'remotesave_forbidden',
                 class: 'error'
             }, clientId)
 
@@ -145,43 +147,64 @@ module.exports =  {
             try {
                 JSON.parse(data.session)
             } catch(e) {
-                throw 'Could not save: invalid session file'
-                return
+                return console.error('Could not save: invalid file')
             }
 
             fs.writeFile(data.path, data.session, function(err, fdata) {
 
                 if (err) return ipc.send('notify', {
                     class: 'error',
-                    locale: 'session_saveerror',
+                    locale: 'remotesave_fail',
                     message: err
                 }, clientId)
 
 
-                console.log('Session file saved in '+ data.path)
-                ipc.send('sessionSaved', clientId)
                 ipc.send('notify', {
                     icon: 'save',
-                    locale: 'session_savesuccess',
-                    message: ' ('+ data.path +')'
+                    locale: 'remotesave_success',
+                    message: ' ('+ path.basename(data.path) +')'
                 }, clientId)
 
-                // reload session in other clients
-                for (var id in ipc.clients) {
-                    if (id !== clientId && ipc.clients[id].sessionPath === data.path) {
-                        module.exports.sessionOpen({path: data.path}, id)
-                    }
-                }
-
-                if (!settings.read('readOnly')) {
-                    module.exports.sessionAddToHistory(data.path)
-                }
-
-                module.exports.sessionSetPath({path: data.path}, clientId)
+                callback()
 
             })
 
         }
+
+    },
+
+    sessionSave: function(data, clientId) {
+
+        module.exports.fileSave(data, clientId, true, ()=>{
+
+            console.log('Session file saved in '+ data.path)
+
+            ipc.send('sessionSaved', clientId)
+
+            // reload session in other clients
+            for (var id in ipc.clients) {
+                if (id !== clientId && ipc.clients[id].sessionPath === data.path) {
+                    module.exports.sessionOpen({path: data.path}, id)
+                }
+            }
+
+            if (!settings.read('readOnly')) {
+                module.exports.sessionAddToHistory(data.path)
+            }
+
+            module.exports.sessionSetPath({path: data.path}, clientId)
+
+        })
+
+    },
+
+    stateSave: function(data, clientId) {
+
+        module.exports.fileSave(data, clientId, true, ()=>{
+
+            console.log('State file saved in '+ data.path)
+
+        })
 
     },
 

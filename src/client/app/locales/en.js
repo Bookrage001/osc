@@ -34,6 +34,11 @@ module.exports = {
     fs_unnavailable: 'Fullscreen not available',
     fs_addtohome: 'You must add this page to your home screen to launch it in fullscreen',
 
+    // remote save
+    remotesave_fail: 'The file could not be saved on the server, use "export" instead',
+    remotesave_success: 'File saved successfully',
+    remotesave_forbidden: 'You\'re note allowed to save on server, use "export instead"',
+
     // server
     server_disconnected: 'The connection to the server has been interrupted',
     server_connected: 'The connection to the server has been restored',
@@ -44,8 +49,6 @@ module.exports = {
     session_malformed: 'Malformed session file.',
     session_parsingerror: 'Parsing error.',
     session_uploaderror: 'Failed to upload session file.',
-    session_savesuccess: 'Session saved successfully',
-    session_saveerror: 'The session file can\'t be saved remotely, use "export" instead',
     session_unsaved: 'Your changes will be lost if you close this session without saving, continue ?',
 
     // sidepanel

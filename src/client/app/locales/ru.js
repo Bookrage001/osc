@@ -33,6 +33,11 @@ module.exports = { // @https://github.com/suhr
     fs_unnavailable: 'Полный экран не доступен',
     fs_addtohome: 'Необходимо добавить эту страницу на главный экран чтобы запустить её в полноэкранном режиме',
 
+    // remote save
+    remotesave_fail: 'The file could not be saved on the server, use "export" instead',
+    remotesave_success: 'File saved successfully',
+    remotesave_forbidden: 'You\'re note allowed to save on server, use "export instead"',
+
     // server
     server_disconnected: 'The connection to the server has been interrupted',
     server_connected: 'The connection to the server has been restored',
@@ -43,8 +48,6 @@ module.exports = { // @https://github.com/suhr
     session_malformed: 'Файл сессии повреждён.',
     session_parsingerror: 'Ошибка разбора.',
     session_uploaderror: 'Не удалось загрузить файл сессии.',
-    session_savesuccess: 'Session saved successfully',
-    session_saveerror: 'The session file can\'t be saved remotely, use "export" instead',
     session_unsaved: 'Your changes will be lost if you close this session without saving, continue ?',
 
     // sidepanel
