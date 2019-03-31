@@ -1,132 +1,17 @@
 var {updateWidget} = require('./data-workers'),
     {categories} = require('../widgets/'),
     widgetManager = require('../managers/widgets'),
-    html = require('nanohtml'),
-    raw = require('nanohtml/raw'),
     {icon} = require('../ui/utils'),
     editor = require('./'),
-    locales = require('../locales')
+    locales = require('../locales'),
+    contextMenu = require('../ui/context-menu')
 
 
 var multiSelectKey = (navigator.platform || '').match('Mac') ? 'metaKey' : 'ctrlKey'
 
-
-class ContextMenu {
-
-    constructor(){
-
-        this.menu = null
-        this.event = 'fast-click'
-        this.root = document.body
-
-    }
-
-    open(e, actions, parent) {
-
-        var menu = html`<div class="context-menu"></div>`
-
-        for (let action of actions) {
-
-            if (Array.isArray(action.action)) {
-
-                let item = html`<div class="item has-sub" tabIndex="1">${raw(action.label)}</div>`
-
-                menu.appendChild(item)
-
-                this.open(e, action.action, item)
-
-
-            } else {
-
-                let item = html`<div class="item">${raw(action.label)}</div>`
-
-                menu.appendChild(item)
-
-                item.addEventListener(this.event, (e)=>{
-                    e.detail.preventOriginalEvent = true
-                    action.action()
-                    this.close()
-                })
-
-            }
-
-        }
-
-        if (parent) parent.appendChild(menu)
-
-        if (!parent) {
-
-            this.menu = menu
-
-            this.root.appendChild(menu)
-
-            DOM.each(menu, '.item', (item)=>{
-                item.addEventListener('mouseenter', ()=>{
-                    DOM.each(item.parentNode, '.focus', (focused)=>{
-                        focused.classList.remove('focus')
-                    })
-                    item.classList.add('focus')
-                })
-                item.addEventListener('mouseleave', ()=>{
-                    if (!item.classList.contains('has-sub')) item.classList.remove('focus')
-                })
-            })
-
-            menu.style.top = e.pageY + 'px'
-            menu.style.left = e.pageX + 'px'
-
-            this.correctPosition(menu)
-
-            DOM.each(menu, '.context-menu', (m)=>{
-                this.correctPosition(m, m.parentNode)
-            })
-
-        }
-
-
-    }
-
-    close() {
-
-        if (this.menu) {
-
-            this.menu.parentNode.removeChild(this.menu)
-            this.menu = null
-
-        }
-
-    }
-
-    correctPosition(menu, parent) {
-
-        var position = DOM.offset(menu),
-            width = menu.offsetWidth,
-            height = menu.offsetHeight,
-            totalWidth = this.root.offsetWidth,
-            totalHeight = this.root.offsetHeight
-
-        if (width + position.left > totalWidth) {
-            menu.style.right = parent ? '100%' : '0'
-            menu.style.left = 'auto'
-            menu.style.marginRight = '2rem'
-        }
-
-        if (height + position.top > totalHeight) {
-            menu.style.top = 'auto'
-            menu.style.bottom = '2rem'
-        }
-
-    }
-
-}
-
-var contextMenu = new ContextMenu()
-
 var handleClick = function(event) {
 
     if (!EDITING) return
-
-    if (contextMenu.menu && !contextMenu.menu.contains(event.target)) contextMenu.close()
 
     if (!event.detail[multiSelectKey] && event.type !== 'fast-right-click' && (
         event.target.classList.contains('ui-resizable-handle') ||
@@ -361,5 +246,5 @@ var handleClick = function(event) {
 
 }
 
-document.addEventListener('fast-right-click', handleClick, true)
-document.addEventListener('fast-click', handleClick, true)
+document.body.addEventListener('fast-right-click', handleClick, true)
+document.body.addEventListener('fast-click', handleClick, true)

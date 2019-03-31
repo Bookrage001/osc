@@ -98,7 +98,9 @@
 
     }
     a {
-        flex: 4 1 32%;
+        // flex: 4 1 32%;
+        flex:1;
+        min-width: 32%;
         padding:13rem 10rem;
         display: block;
         text-align: center;
@@ -106,6 +108,12 @@
         color:var(--color-text);
         overflow: visible;
         margin: 0.5rem;
+        &.narrow {
+            width: auto;
+            min-width: 40rem;
+            flex:0;
+        }
+
 
         &.on {
             z-index: 0;

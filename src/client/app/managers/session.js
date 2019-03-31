@@ -99,13 +99,28 @@ var SessionManager = class SessionManager {
 
     }
 
-    save() {
+    save(path) {
 
-        ipc.send('sessionSave', JSON.stringify(this.session, null, '  '))
+        if (path) this.sessionPath = path
+
+        if (!this.sessionPath) return this.saveAs()
+
+        ipc.send('sessionSave', {
+            session: JSON.stringify(this.session, null, '  '),
+            path: this.sessionPath
+        })
 
     }
 
     saveAs() {
+
+        remoteBrowse({extension: 'json', save:true}, (path)=>{
+            this.save(path)
+        })
+
+    }
+
+    export() {
 
         var sessionfile = JSON.stringify(this.session,null,'  '),
             blob = new Blob([sessionfile],{type : 'application/json'})
@@ -175,7 +190,7 @@ var SessionManager = class SessionManager {
     open(data) {
 
         this.load(data.session, ()=>{
-            this.sessionPath = data.path
+            this.sessionPath = data.path;
             ipc.send('sessionOpened', {path: data.path})
         })
 
@@ -183,10 +198,14 @@ var SessionManager = class SessionManager {
 
     browse() {
 
-        remoteBrowse('json', (path)=>{
+        remoteBrowse({extension: 'json'}, (path)=>{
             ipc.send('sessionOpen',{path:path})
         })
-        return
+
+    }
+
+    import() {
+
         upload('.json', (path, result)=>{
             ipc.send('sessionOpen',{file:result, path:path})
         }, ()=>{

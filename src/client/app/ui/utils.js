@@ -143,11 +143,14 @@ module.exports = {
         uploadSingleton.click()
 
     },
-    remoteBrowse: function(ext='json', callback) {
+    remoteBrowse: function(options, callback) {
+
+        var save = options.save,
+            saveInputFocus = undefined
 
         var popup = new module.exports.Popup({
             closable: true,
-            title: `Open file`,
+            title: save ? `Save file` : `Open file`,
             hide: true
         })
 
@@ -155,16 +158,40 @@ module.exports = {
             browser = html`<div class="file-browser"></div>`,
             ariane = html`<div class="ariane"></div>`,
             list = html`<form class="file-list"></form>`,
+            saveInput = html`<input type="text" class="save-as"/>`,
             actions = html`
                 <div class="file-actions">
+                    ${
+                        save ? saveInput : ''
+                    }
                     <div class="btn cancel">${raw(module.exports.icon('times'))} Cancel</div>
-                    <div class="btn open">${raw(module.exports.icon('folder-open'))} Open</div>
+                    ${
+                        save ? html`<div class="btn submit save">${raw(module.exports.icon('save'))} Save</div>` :
+                               html`<div class="btn submit open">${raw(module.exports.icon('folder-open'))} Open</div>`
+                    }
                 </div>
             `
 
         var files = [],
             path = ''
 
+        var extRe = options.extension ? new RegExp('.*\\.' + options.extension) : /.*/
+
+        if (save) {
+            saveInput.addEventListener('change', ()=>{
+                if (!saveInput.value.match(extRe)) saveInput.value += '.' + options.extension
+            })
+            saveInput.addEventListener('focus', ()=>{
+                saveInputFocus = true
+            })
+            list.addEventListener('change', ()=>{
+                saveInputFocus = false
+                var choice = DOM.get(list, ':checked')[0]
+                if (choice && choice.classList.contains('file')) {
+                    saveInput.value = choice.value
+                }
+            })
+        }
 
         doubleTap(list, submit)
 
@@ -172,30 +199,41 @@ module.exports = {
 
             var choice = DOM.get(list, ':checked')[0]
 
-            if (!choice) return
+            if (!choice && (!save || !saveInput.value)) return
 
-            if (choice.classList.contains('folder')) {
+            if (choice && choice.classList.contains('folder') && (!save || !saveInputFocus)) {
                 ipc.send('listDir', {path: [path, choice.value]})
             } else {
-                callback([path, choice.value])
-                popup.close()
+                if (save) {
+                    if (files.some(x=>x.name===saveInput.value)) {
+                        if (!confirm('Overwrite ?')) return
+                    }
+                    callback([path, saveInput.value])
+                    popup.close()
+                } else {
+                    callback([path, choice.value])
+                    popup.close()
+                }
             }
 
         }
 
         actions.addEventListener('click', (e)=>{
-            if (e.target.classList.contains('open')) {
+            if (e.target.classList.contains('submit')) {
                 submit()
-            } else {
+            } else if ((e.target.classList.contains('cancel'))){
                 popup.close()
             }
         })
 
         function keyHandler(e){
+
             if (e.keyCode === 13) {
-                submit()
+                setTimeout(submit)
+            } else if (e.target === saveInput) {
+                return
             } else if (e.keyCode === 8) {
-                list.childNodes[0].firstElementChild.click()
+                list.childNodes[0].firstElementChild.checked = true
                 submit()
             } else if (e.key.length === 1) {
                 var letter = e.key.toLowerCase()
@@ -216,11 +254,7 @@ module.exports = {
 
             ariane.innerHTML = path = data.path
 
-            if (ext) {
-                if (!Array.isArray(ext)) ext = [ext]
-                var filter = new RegExp('.*\\.(' + ext.join('|') + ')')
-                files = data.files.filter(x=>x.folder || x.name.match(filter))
-            }
+            files = data.files.filter(x=>x.folder || x.name.match(extRe))
 
             files.sort(function(a, b) {
                 // convert to strings and force lowercase
@@ -239,7 +273,7 @@ module.exports = {
                 var file = files[i]
                 list.appendChild(html`
                     <div class="file">
-                        <input type="radio" value="${file.name}" name="file" class="${file.folder ? 'folder' : ''}"/>
+                        <input type="radio" value="${file.name}" name="file" class="${file.folder ? 'folder' : 'file'}"/>
                         <div class="label"><span>${raw(module.exports.icon(file.folder ? 'folder' : 'file-alt'))} ${file.name}</span></div>
                     </div>
                 `)
@@ -254,7 +288,11 @@ module.exports = {
 
             popup.open()
 
-            list.childNodes[0].firstElementChild.focus()
+            if (save && saveInputFocus === undefined) {
+                saveInput.focus()
+            } else {
+                list.childNodes[0].firstElementChild.focus()
+            }
 
         }, {context: popup})
 

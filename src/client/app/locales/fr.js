@@ -4,9 +4,11 @@ module.exports = {
     editor_on: 'On',
     editor_off: 'Off',
     editor_root: 'Root',
-    editor_load: 'Charger',
-    editor_save: 'Sauver',
-    editor_save_as: 'Exporter',
+    editor_load: 'Ouvrir',
+    editor_save: 'Enregistrer',
+    editor_save_as: 'Enregistrer sous...',
+    editor_import: 'Importer',
+    editor_export: 'Exporter',
 
     // editor context-menu
     editor_editparent: 'Éditer parent',

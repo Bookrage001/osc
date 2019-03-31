@@ -670,9 +670,21 @@ body {
         div {
             margin-left: 10rem;
             text-transform: uppercase;
+            text-overflow: clip;
         }
         i {
             pointer-events: none;
+        }
+        .save-as {
+            flex:1;
+            height: 40rem;
+            line-height: 40rem;
+            border: 0;
+            padding: 0 10rem;
+            font-size: 120%;
+            top: -1rem;
+            position: relative;
+            background: var(--color-bg);
         }
     }
 }

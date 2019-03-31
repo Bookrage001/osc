@@ -7,13 +7,14 @@ var state = require('../managers/state'),
     {enableTraversingGestures, disableTraversingGestures} = require('../events/drag'),
     locales = require('../locales'),
     html = require('nanohtml'),
-    raw = require('nanohtml/raw')
+    raw = require('nanohtml/raw'),
+    contextMenu = require('./context-menu')
 
 var sidepanelData = [
     {
         actions: [
             {
-                title: locales('sidepanel_fs') + (ELECTRON_FULLSCREEN ? ' (F11)' : ''),
+                label: locales('sidepanel_fs') + (ELECTRON_FULLSCREEN ? ' (F11)' : ''),
                 action:()=>{
                     if (fullscreen.enabled) fullscreen.toggle()
                 },
@@ -23,10 +24,10 @@ var sidepanelData = [
         ]
     },
     {
-        title: icon('sliders-h') + '&nbsp; ' + locales('sidepanel_state'),
+        label: icon('sliders-h') + '&nbsp; ' + locales('sidepanel_state'),
         actions: [
             {
-                title: locales('state_store'),
+                label: locales('state_store'),
                 action:()=>{
                     state.quickSave()
                     DOM.get('.quickload')[0].classList.remove('disabled')
@@ -37,7 +38,7 @@ var sidepanelData = [
                 }
             },
             {
-                title: locales('state_recall'),
+                label: locales('state_recall'),
                 action: ()=>{
                     state.quickLoad()
                     notifications.add({
@@ -48,7 +49,7 @@ var sidepanelData = [
                 class:'disabled quickload'
             },
             {
-                title: locales('state_send'),
+                label: locales('state_send'),
                 action: ()=>{
                     state.send()
                     notifications.add({
@@ -58,20 +59,20 @@ var sidepanelData = [
                 }
             },
             {
-                title: locales('state_import'),
+                label: locales('state_import'),
                 action:state.load.bind(state)
             },
             {
-                title: locales('state_export'),
+                label: locales('state_export'),
                 action:state.save.bind(state)
             }
         ]
     },
     {
-        title: icon('magic') + '&nbsp; ' + locales('sidepanel_traversing'),
+        label: icon('magic') + '&nbsp; ' + locales('sidepanel_traversing'),
         actions: [
             {
-                title: locales('traversing_on'),
+                label: locales('traversing_on'),
                 action:(el)=>{
                     DOM.each(el.parentNode, 'a', (el)=>{
                         el.classList.remove('on')
@@ -84,7 +85,7 @@ var sidepanelData = [
                 class:'traversingEnable'
             },
             {
-                title: locales('traversing_smart'),
+                label: locales('traversing_smart'),
                 action:(el)=>{
                     DOM.each(el.parentNode, 'a', (el)=>{
                         el.classList.remove('on')
@@ -97,7 +98,7 @@ var sidepanelData = [
                 class:'traversingSmart'
             },
             {
-                title: locales('traversing_off'),
+                label: locales('traversing_off'),
                 action:(el)=>{
                     DOM.each(el.parentNode, 'a', (el)=>{
                         el.classList.remove('on')
@@ -110,34 +111,55 @@ var sidepanelData = [
         ]
     },
     {
-        title: icon('edit') + '&nbsp; ' + locales('sidepanel_editor'),
+        label: icon('edit') + '&nbsp; ' + locales('sidepanel_editor'),
         class:'editor-menu',
         actions: [
             {
-                title: locales('editor_on'),
+                label: locales('editor_on'),
                 action:editor.enable.bind(editor),
                 class:'enable-editor'
             },
             {
-                title: locales('editor_off'),
+                label: locales('editor_off'),
                 action:editor.disable.bind(editor),
                 class:'on disable-editor'
             },
             {
-                title: locales('editor_root'),
-                class:'editor-root disabled'
+                label: raw(icon('vector-square')),
+                class:'editor-root disabled narrow',
+                title: locales('editor_root')
             },
             {
-                title: locales('editor_load'),
+                label: locales('editor_load'),
                 action:session.browse.bind(session)
             },
             {
-                title: locales('editor_save'),
-                action:session.save.bind(session)
+                label: locales('editor_save'),
+                action:()=>{
+                    session.save()
+                }
             },
             {
-                title: locales('editor_save_as'),
-                action:session.saveAs.bind(session)
+                label: raw(icon('ellipsis-h')),
+                class: 'narrow',
+                menu: [
+                    {
+                        label: locales('editor_save_as'),
+                        action:()=>{
+                            session.saveAs()
+                        }
+                    },
+                    {
+                        label: locales('editor_import'),
+                        click: true,
+                        action: session.import
+                    },
+                    {
+                        label: locales('editor_export'),
+                        click: true,
+                        action: session.export
+                    }
+                ]
             }
         ]
     },
@@ -151,7 +173,7 @@ if (navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
         noSleepState = false
 
     sidepanelData[0].actions.push({
-        title: locales('sidepanel_nosleep'),
+        label: locales('sidepanel_nosleep'),
         class: 'toggle',
         action:(el)=>{
             noSleepState = el.classList.toggle('on')
@@ -176,7 +198,7 @@ for (let i in sidepanelData) {
             <li>
                 <div class="${data.class || ''}">
                     <div class="actions">
-                        ${data.title ? html`<div class="title">${raw(data.title)}</div>` : ''}
+                        ${data.label ? html`<div class="title">${raw(data.label)}</div>` : ''}
                     </div>
                 </div>
             </li>
@@ -186,9 +208,17 @@ for (let i in sidepanelData) {
     for (let j in data.actions) {
 
         let actionData = data.actions[j],
-            element = html`<a class="btn ${actionData.class || ''}">${actionData.title}</a>`
+            element = html`<a class="btn ${actionData.class || ''}" title="${actionData.title || ''}">${actionData.label}</a>`
 
         if (actionData.action) element.addEventListener('click', ()=>{actionData.action(element)})
+
+        if (actionData.menu) {
+
+            element.addEventListener('fast-click', (e)=>{
+                contextMenu.open(event.detail, actionData.menu)
+            })
+
+        }
 
         wrapper.appendChild(element)
     }

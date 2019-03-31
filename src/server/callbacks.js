@@ -68,6 +68,14 @@ module.exports =  {
         }
     },
 
+    sessionSetPath: function(data, clientId) {
+
+        if (Array.isArray(data.path)) path = path.resolve(...data.path)
+
+        ipc.clients[clientId].sessionPath = data.path
+
+    },
+
     sessionOpen: function(data,clientId) {
 
         if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
@@ -95,6 +103,8 @@ module.exports =  {
 
     sessionOpened: function(data, clientId) {
 
+        if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
+
         if (settings.read('stateFile')) {
             var send = true
             for (var id in ipc.clients) {
@@ -112,59 +122,64 @@ module.exports =  {
 
         ipc.send('stateSend', null, null, clientId)
 
-        module.exports.sessionSetPath(data, clientId)
-
-    },
-
-    sessionSetPath: function(data, clientId) {
-
-        ipc.clients[clientId].sessionPath = ''
-
-        if (!data.path || settings.read('remoteSaving') && !settings.read('remoteSaving').test(ipc.clients[clientId].address)) {
-            return
-        }
-
-        fs.lstat(data.path, (err, stats)=>{
-            if (err || !stats.isFile()) return
-            ipc.clients[clientId].sessionPath = data.path
-            if (!settings.read('readOnly')) {
-                this.sessionAddToHistory(data.path)
-            }
-        })
+        module.exports.sessionSetPath({path: data.path}, clientId)
 
     },
 
     sessionSave: function(data, clientId) {
 
-        var path = ipc.clients[clientId].sessionPath,
-            error
+        if (!data.path || settings.read('remoteSaving') && !settings.read('remoteSaving').test(ipc.clients[clientId].address)) {
 
-        if (path) {
-
-            fs.writeFile(path, data, function(err, data) {
-                if (err) return error = err
-                console.log('Session file saved in '+ path)
-                ipc.send('sessionSaved', clientId)
-                ipc.send('notify', {
-                    icon: 'save',
-                    locale: 'session_savesuccess'
-                }, clientId)
-                for (var id in ipc.clients) {
-                    if (id !== clientId && ipc.clients[id].sessionPath === path) {
-                        module.exports.sessionOpen({path: path}, id)
-                    }
-                }
-            })
+            return ipc.send('notify', {
+                icon: 'save',
+                locale: 'session_saveerror',
+                class: 'error'
+            }, clientId)
 
         }
 
-        if (!path || error) {
+        if (data.path) {
 
-            ipc.send('notify', {
-                class: 'error',
-                locale: 'session_saveerror',
-                message: error
-            }, clientId)
+            if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
+
+            try {
+                JSON.parse(data.session)
+            } catch(e) {
+                throw 'Could not save: invalid session file'
+                return
+            }
+
+            fs.writeFile(data.path, data.session, function(err, fdata) {
+
+                if (err) return ipc.send('notify', {
+                    class: 'error',
+                    locale: 'session_saveerror',
+                    message: err
+                }, clientId)
+
+
+                console.log('Session file saved in '+ data.path)
+                ipc.send('sessionSaved', clientId)
+                ipc.send('notify', {
+                    icon: 'save',
+                    locale: 'session_savesuccess',
+                    message: ' ('+ data.path +')'
+                }, clientId)
+
+                // reload session in other clients
+                for (var id in ipc.clients) {
+                    if (id !== clientId && ipc.clients[id].sessionPath === data.path) {
+                        module.exports.sessionOpen({path: data.path}, id)
+                    }
+                }
+
+                if (!settings.read('readOnly')) {
+                    module.exports.sessionAddToHistory(data.path)
+                }
+
+                module.exports.sessionSetPath({path: data.path}, clientId)
+
+            })
 
         }
 
