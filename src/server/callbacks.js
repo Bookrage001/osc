@@ -132,7 +132,7 @@ module.exports =  {
 
             return ipc.send('notify', {
                 icon: 'save',
-                locale: 'session_saveerror',
+                locale: 'session_save',
                 class: 'error'
             }, clientId)
 

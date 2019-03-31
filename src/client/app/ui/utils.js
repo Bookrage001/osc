@@ -256,12 +256,21 @@ module.exports = {
 
             files = data.files.filter(x=>x.folder || x.name.match(extRe))
 
-            files.sort(function(a, b) {
+
+            function alphaSort(a, b){
                 // convert to strings and force lowercase
                 a = typeof a.name === 'string' ? a.name.toLowerCase() : a.name.toString();
                 b = typeof b.name === 'string' ? b.name.toLowerCase() : b.name.toString();
                 return a.localeCompare(b);
-            })
+            }
+
+            var fo = files.filter(x=>x.folder),
+                fi = files.filter(x=>!x.folder)
+
+            fo.sort(alphaSort)
+            fi.sort(alphaSort)
+
+            files = fo.concat(fi)
 
             files.unshift({
                 name: '..',

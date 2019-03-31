@@ -14,9 +14,11 @@ var SessionManager = class SessionManager {
 
     constructor() {
 
-        this.session = []
+        this.session = null
         this.lock = false
-        this.sessionPath = ''
+        this.setSessionPath('')
+
+        this.windowTitle = document.title
 
         this.allowRemoteSave = false
 
@@ -91,7 +93,7 @@ var SessionManager = class SessionManager {
                 container.classList.add('show')
                 this.lock = false
                 editor.unsavedSession = false
-                this.sessionPath = ''
+                this.setSessionPath('')
                 if (callback) callback()
             }, 25)
 
@@ -101,7 +103,9 @@ var SessionManager = class SessionManager {
 
     save(path) {
 
-        if (path) this.sessionPath = path
+        if (!this.session) return
+
+        if (path) this.setSessionPath(path)
 
         if (!this.sessionPath) return this.saveAs()
 
@@ -113,6 +117,8 @@ var SessionManager = class SessionManager {
     }
 
     saveAs() {
+
+        if (!this.session) return
 
         remoteBrowse({extension: 'json', save:true}, (path)=>{
             this.save(path)
@@ -190,7 +196,7 @@ var SessionManager = class SessionManager {
     open(data) {
 
         this.load(data.session, ()=>{
-            this.sessionPath = data.path;
+            this.setSessionPath(data.path)
             ipc.send('sessionOpened', {path: data.path})
         })
 
@@ -220,6 +226,12 @@ var SessionManager = class SessionManager {
             editor.enable()
             editor.select(widgetManager.getWidgetById('root'))
         })
+    }
+
+    setSessionPath(path) {
+
+        this.sessionPath = path
+
     }
 
 }

@@ -115,7 +115,7 @@ module.exports = {
         // disable editor's warning
         window.onbeforeunload = null
 
-        if (!session.session.type) {
+        if (!session.session) {
             window.location.href = window.location.href
             return
         }
@@ -125,7 +125,7 @@ module.exports = {
             // store session & state backup
             ipc.send('storeBackup', {
                 backupId: id,
-                session: session.session,
+                session: session.session || {},
                 state: state.get(),
                 history: editor.history,
                 historyState: editor.historyState,
