@@ -20,8 +20,8 @@ var ignores = ['**/*.min.js', '**/jquery.ui.js', 'gyronorm.complete.min.js'],
     }
 
 var transforms = [
-    [transformWrapper(babelify)],
-    [transformWrapper(nanohtml)]
+    [transformWrapper(nanohtml)],
+    [transformWrapper(babelify)]
 ]
 
 if (prod) {
