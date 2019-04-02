@@ -58,6 +58,7 @@ module.exports.widgets = {
     keys: require('./inputs/keys'),
     script: require('./inputs/script'),
     gyroscope: require('./inputs/gyroscope'),
+    file: require('./inputs/file'),
 
     // maths
     // deprecated / hidden
@@ -73,5 +74,5 @@ module.exports.categories = {
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg', 'frame'],
     'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['switcher','crossfader'],
-    'Inputs':['input', 'keys', 'script', 'gyroscope']
+    'Inputs':['input', 'keys', 'script', 'gyroscope', 'file']
 }

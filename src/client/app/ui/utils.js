@@ -309,7 +309,7 @@ module.exports = {
             document.removeEventListener('keydown', keyHandler)
         })
 
-        ipc.send('listDir', {})
+        ipc.send('listDir', {path: [options.directory]})
 
     }
 
