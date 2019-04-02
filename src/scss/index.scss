@@ -9,7 +9,6 @@
 @import 'sidepanel';
 @import 'widgets';
 
-
 input,
 textarea,
 {
@@ -596,12 +595,13 @@ body {
     color: #ff00ff;
 }
 
-@import 'themes/default';
-
-
-
-
-
+.fa-osc:before {
+    content:"\f111";
+    color: transparent;
+    background-image: url(../assets/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 .file-browser {
     width: 540px;
@@ -688,3 +688,5 @@ body {
         }
     }
 }
+
+@import 'themes/default';

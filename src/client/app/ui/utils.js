@@ -283,7 +283,7 @@ module.exports = {
                 list.appendChild(html`
                     <div class="file">
                         <input type="radio" value="${file.name}" name="file" class="${file.folder ? 'folder' : 'file'}"/>
-                        <div class="label"><span>${raw(module.exports.icon(file.folder ? 'folder' : 'file-alt'))} ${file.name}</span></div>
+                        <div class="label"><span>${raw(module.exports.icon(file.folder ? 'folder' : 'osc'))} ${file.name}</span></div>
                     </div>
                 `)
             }
