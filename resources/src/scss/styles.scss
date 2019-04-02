@@ -222,7 +222,7 @@ h1:first-child {
     outline: none;
     padding:3px 12px;
     margin-right: 10px;
-    transition: all .25s;
+    transition: background-color .25s, color .25s;
     &:focus {
         background: white;
         color:#333;

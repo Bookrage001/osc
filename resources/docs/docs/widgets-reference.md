@@ -478,6 +478,15 @@
 | <h4 class="thead2" id="gyroscope_value">value<a class="headerlink" href="#gyroscope_value" title="Permanent link">¶</a></h4> ||||
 | <h4 id="gyroscope_value">value<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#gyroscope_value" title="Permanent link">¶</a></h4> | `object` | <code>""</code> | The gyroscope's value is an object containing multiple values, which can be used by other widgets via the property maths syntax<br/>- `value.do.alpha`: deviceorientation event alpha<br/>- `value.do.beta`: deviceorientation event beta<br/>- `value.do.gamma`: deviceorientation event gamma<br/>- `value.do.absolute`: deviceorientation event absolute<br/>- `value.dm.x`: devicemotion event acceleration x<br/>- `value.dm.y`: devicemotion event acceleration y<br/>- `value.dm.z`: devicemotion event acceleration z<br/>- `value.dm.gx`: devicemotion event accelerationIncludingGravity x<br/>- `value.dm.gy`: devicemotion event accelerationIncludingGravity y<br/>- `value.dm.gz`: devicemotion event accelerationIncludingGravity z<br/>- `value.dm.alpha`: devicemotion event rotationRate alpha<br/>- `value.dm.beta`: devicemotion event rotationRate beta<br/>- `value.dm.gamma`: devicemotion event rotationRate gamma |
 
+### file
+
+| property | type |default | description |
+| --- | --- | --- | --- |
+| <h4 class="thead2" id="file_input">input<a class="headerlink" href="#file_input" title="Permanent link">¶</a></h4> ||||
+| <h4 id="file_directory">directory<a class="headerlink" href="#file_directory" title="Permanent link">¶</a></h4> | `string` | <code>"auto"</code> | Default browsing directory |
+| <h4 id="file_extension">extension<a class="headerlink" href="#file_extension" title="Permanent link">¶</a></h4> | `string` | <code>"*"</code> | Only display files with this extension |
+| <h4 id="file_hidePath">hidePath<a class="headerlink" href="#file_hidePath" title="Permanent link">¶</a></h4> | `boolean` | <code>false</code> | Set to `true` to only display the filename (the whole path will still be used as value) |
+
 
 <script>
 document.querySelectorAll('.thead2').forEach(function(item){
