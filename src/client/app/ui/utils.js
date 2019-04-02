@@ -231,11 +231,9 @@ module.exports = {
             }
         })
 
-        function keyHandler(e){
+        function keyDownHandler(e){
 
-            if (e.keyCode === 13) {
-                setTimeout(submit, 100)
-            } else if (e.target === saveInput) {
+            if (e.target === saveInput) {
                 return
             } else if (e.keyCode === 8) {
                 list.childNodes[0].firstElementChild.checked = true
@@ -251,8 +249,16 @@ module.exports = {
                 }
             }
         }
+        function keyUpHandler(e){
 
-        document.addEventListener('keydown', keyHandler)
+            if (e.keyCode === 13) {
+                setTimeout(submit, 100)
+            }
+
+        }
+
+        document.addEventListener('keydown', keyDownHandler)
+        document.addEventListener('keyup', keyUpHandler)
 
 
         ipc.on('listDir', (data)=>{
@@ -309,7 +315,8 @@ module.exports = {
 
         popup.on('close', ()=>{
             ipc.off('listDir', null, popup)
-            document.removeEventListener('keydown', keyHandler)
+            document.removeEventListener('keydown', keyDownHandler)
+            document.removeEventListener('keyup', keyUpHandler)
         })
 
         browser.appendChild(ariane)
