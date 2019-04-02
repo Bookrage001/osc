@@ -69,35 +69,35 @@ var Editor = class Editor {
 
         keyboardJS.withContext('editing', ()=>{
             keyboardJS.bind('mod + z', (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.undo()
             })
             keyboardJS.bind(['mod + y', 'mod + shift + z'], (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.redo()
             })
             keyboardJS.bind('mod + c', (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.copyWidget()
             })
             keyboardJS.bind('mod + x', (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.cutWidget()
             })
             keyboardJS.bind('mod + v', (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, false)
             })
             keyboardJS.bind('mod + shift + v', (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
             })
             keyboardJS.bind(macOs ? 'backspace' : 'delete', (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.deleteWidget()
             })
             keyboardJS.bind(['alt + up', 'alt + down', 'alt + right', 'alt + left'], (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 if (!this.selectedWidgets.length) return
 
                 if (this.selectedWidgets[0].props.height === undefined && e.key.match(/Arrow(Up|Down)/)) return
@@ -114,7 +114,7 @@ var Editor = class Editor {
                 this.resizeWidget(deltaW, deltaH)
             })
             keyboardJS.bind(['up', 'down', 'right', 'left'], (e)=>{
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 if (!this.selectedWidgets.length) return
 
                 if (this.selectedWidgets[0].props.top === undefined && e.key.match(/Arrow(Up|Down)/)) return
@@ -132,13 +132,13 @@ var Editor = class Editor {
             })
             keyboardJS.bind('mod + shift + a', (e)=>{
                 if (!this.selectedWidgets.length) return
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.unselect()
                 this.selectedWidgets = []
             })
             keyboardJS.bind('mod + a', (e)=>{
                 if (!this.selectedWidgets.length) return
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
 
                 var curWidget = this.selectedWidgets[0]
 
@@ -149,7 +149,7 @@ var Editor = class Editor {
             keyboardJS.bind(['mod + up','mod + down','mod + left' , 'mod + right'], (e)=>{
 
                 if (!this.selectedWidgets.length) return
-                if (e.target.classList.contains('no-keybinding')) return
+                if (e.target && e.target.classList.contains('no-keybinding')) return
 
                 var curWidget = this.selectedWidgets[0],
                     toSelect = null
