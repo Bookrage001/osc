@@ -36,7 +36,13 @@ module.exports = {
             this.html = html`
                 <div class="popup show">
                     <div class="popup-wrapper">
-                        <div class="popup-title ${this.closable? 'closable' : ''}">${this.title}${this.closable? html`<span class="closer">${raw(module.exports.icon('times'))}</span>` : ''}</div>
+                        <div class="popup-title ${this.closable? 'closable' : ''}">
+                            <span class="title">
+                                ${options.icon ? raw(module.exports.icon(options.icon)) : ''}
+                                ${this.title}
+                            </span>
+                            ${this.closable? html`<span class="closer">${raw(module.exports.icon('times'))}</span>` : ''}
+                            </div>
                         <div class="popup-content">
                             ${this.content}
                         </div>

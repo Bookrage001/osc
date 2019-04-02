@@ -31,31 +31,22 @@ var SessionManager = class SessionManager {
 
         this.lock = true
 
-        var container = DOM.get('#container')[0]
-
-        container.classList.remove('show')
-        container.innerHTML = ''
-
-        lobby.close()
-
-        var loader = loading(locales('loading_session'))
+        var container = DOM.get('#container')[0],
+            loader = loading(locales('loading_session'))
 
         setTimeout(()=>{
             try {
+
+                // backward compat
+                if (Array.isArray(session)) session = session[0]
+
+                // session object must be a root widget
+                if (session.type !== 'root') throw new Error(locales('session_malformed'))
+
+                // ok
+                this.session = session
+                container.innerHTML = ''
                 parser.reset()
-
-                try {
-
-                    if (Array.isArray(session)) session = session[0]
-                    if (session.type !== 'root') throw ''
-                    this.session = session
-
-                } catch(err) {
-
-                    throw new Error(locales('session_malformed'))
-
-                }
-
                 parser.parse({
                     data: this.session,
                     parentNode: DOM.get('#container')[0]
@@ -64,8 +55,7 @@ var SessionManager = class SessionManager {
 
             } catch (err) {
                 loader.close()
-                lobby.open()
-                new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('session_parsingerror'), content: err, closable:true})
+                new Popup({title: locales('session_parsingerror'), content: err.message, icon: 'exclamation-triangle', closable:true})
                 this.lock = false
                 throw err
             }
@@ -86,6 +76,7 @@ var SessionManager = class SessionManager {
             DOM.dispatchEvent(window, 'resize')
 
             setTimeout(()=>{
+                lobby.close()
                 loader.close()
                 container.classList.add('show')
                 this.lock = false
@@ -224,12 +215,12 @@ var SessionManager = class SessionManager {
             try {
                 session = JSON.parse(result)
             } catch (err) {
-                new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('session_parsingerror'), content: err, closable:true})
+                new Popup({title: locales('session_parsingerror'), content: err, icon: 'exclamation-triangle', closable:true})
             }
             if (editor.unsavedSession && !confirm(locales('session_unsaved'))) return
             if (session) sessionManager.load(session)
         }, ()=>{
-            new Popup({title: raw(icon('exclamation-triangle')) + '&nbsp; ' + locales('error'), content: locales('session_uploaderror'), closable:true})
+            new Popup({title: locales('error'), content: locales('session_uploaderror'), icon: 'exclamation-triangle', closable:true})
         })
 
     }

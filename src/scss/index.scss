@@ -524,18 +524,23 @@ body {
         display: flex;
         padding:0 15rem;
         align-items: center;
-
+        .title {
+            flex:1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        i {
+            margin-right: 5rem;
+        }
         &.closable {
-            padding-right: 50rem;
+            padding-right: 0;
         }
         .closer {
-            position:absolute;
-            right:0rem;
-            top:0;
             padding:0 15rem;
-            bottom:0;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
+            text-align: center;
             color:var(--color-text-fade);
             cursor: pointer;
             i {
