@@ -251,7 +251,7 @@ module.exports = {
 
         ipc.on('listDir', (data)=>{
 
-            ariane.innerHTML = path = data.path
+            ariane.textContents = path = data.path
 
             files = data.files.filter(x=>x.folder || x.name.match(extRe))
 
@@ -276,6 +276,8 @@ module.exports = {
                 folder: true
             })
 
+
+            browser.removeChild(list)
             list.innerHTML = ''
             for (let i in files) {
                 var file = files[i]
@@ -288,13 +290,8 @@ module.exports = {
             }
 
 
-            container.innerHTML = ''
-            browser.appendChild(ariane)
-            browser.appendChild(list)
-            browser.appendChild(actions)
-            container.appendChild(browser)
+            browser.insertBefore(list, actions)
 
-            popup.open()
 
             if (save && saveInputFocus === undefined) {
                 saveInput.focus()
@@ -309,7 +306,14 @@ module.exports = {
             document.removeEventListener('keydown', keyHandler)
         })
 
-        ipc.send('listDir', {path: [options.directory]})
+        browser.appendChild(ariane)
+        browser.appendChild(list)
+        browser.appendChild(actions)
+        container.appendChild(browser)
+
+        ipc.send('listDir', {path: options.directory ? [options.directory] : null})
+
+        popup.open()
 
     }
 
