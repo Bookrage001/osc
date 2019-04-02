@@ -18,8 +18,6 @@ var SessionManager = class SessionManager {
         this.lock = false
         this.setSessionPath('')
 
-        this.windowTitle = document.title
-
         ipc.on('connect', ()=>{
             ipc.send('sessionSetPath', {path: this.sessionPath})
         })
@@ -244,9 +242,6 @@ var SessionManager = class SessionManager {
     setSessionPath(path) {
 
         this.sessionPath = path
-        if (path) {
-            document.title = this.windowTitle + ' (' + path + ')'
-        }
 
     }
 

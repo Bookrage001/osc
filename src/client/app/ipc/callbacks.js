@@ -10,7 +10,8 @@ var utils = require('../ui/utils'),
     notifications = require('../ui/notifications'),
     {TRAVERSING_SAMEWIDGET} = require('../events/utils'),
     raw = require('nanohtml/raw'),
-    ipc = require('./')
+    ipc = require('./'),
+    windowTitle = document.title
 
 module.exports = {
 
@@ -195,6 +196,12 @@ module.exports = {
             class: data.class,
             message: message
         })
+
+    },
+
+    setTitle: function(data) {
+
+        document.title = windowTitle + (data ? ' (' + data + ')' : '')
 
     }
 

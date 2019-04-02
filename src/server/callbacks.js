@@ -74,6 +74,8 @@ module.exports =  {
 
         ipc.clients[clientId].sessionPath = data.path
 
+        ipc.send('setTitle', path.basename(data.path), clientId)
+
     },
 
     sessionOpen: function(data,clientId) {
