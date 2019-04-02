@@ -216,6 +216,10 @@
         justify-content: center;
         padding: 0 10rem;
         text-transform: none;
+        i {
+            margin: 0 5rem;
+            pointer-events: none;
+        }
         span {
             pointer-events: none;
             text-overflow: ellipsis;

@@ -1,6 +1,7 @@
 var Widget = require('../common/widget'),
     html = require('nanohtml'),
-    {remoteBrowse} = require('../../ui/utils')
+    raw = require('nanohtml/raw'),
+    {remoteBrowse, icon} = require('../../ui/utils')
 
 module.exports = class Input extends Widget {
 
@@ -21,10 +22,10 @@ module.exports = class Input extends Widget {
     constructor(options) {
 
         super({...options, html: html`
-            <div class="file btn"><span></span></div>
+            <div class="file btn">${raw(icon('folder-open'))}<span></span></div>
         `})
 
-        this.text = this.widget.firstChild
+        this.text = DOM.get(this.widget, 'span')[0]
         this.widget.addEventListener('fast-click', (e)=>{
 
             if (e.capturedByEditor === true) return
