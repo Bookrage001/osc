@@ -7,6 +7,8 @@
 - bug fixes
   - ios: clone widget not displaying properly
   - keys: error when leaving the window with the cursor while holding a key-combbo pressed
+- widgets
+  - new `file` input widget (allows selecting a file on the the serve and sending its absolute filename)
 
 ## 0.43.0
 
