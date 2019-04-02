@@ -16,6 +16,7 @@ var SessionManager = class SessionManager {
 
         this.session = null
         this.lock = false
+        this.lastDir = null
         this.setSessionPath('')
 
         ipc.on('connect', ()=>{
@@ -116,7 +117,8 @@ var SessionManager = class SessionManager {
 
         if (!this.session) return
 
-        remoteBrowse({extension: 'json', save:true}, (path)=>{
+        remoteBrowse({extension: 'json', save:true, directory: this.lastDir}, (path)=>{
+            this.lastDir = path[0]
             this.save(path)
         })
 
@@ -207,8 +209,9 @@ var SessionManager = class SessionManager {
 
     browse() {
 
-        remoteBrowse({extension: 'json'}, (path)=>{
+        remoteBrowse({extension: 'json', directory: this.lastDir}, (path)=>{
             if (editor.unsavedSession && !confirm(locales('session_unsaved'))) return
+            this.lastDir = path[0]
             ipc.send('sessionOpen',{path:path})
         })
 
