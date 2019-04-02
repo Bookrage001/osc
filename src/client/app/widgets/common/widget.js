@@ -783,7 +783,7 @@ class Widget extends EventEmitter {
                     this.container.style[d] = geometry
                     if (d === 'width') this.container.style.minWidth = geometry
                     if (d === 'height') this.container.style.minHeight = geometry
-                    if (geometry && (d === 'top' || d === 'left')) this.container.classList.add('absolute-position')
+                    this.container.classList.toggle('absolute-position', geometry && (d === 'top' || d === 'left'))
                 }
             }
 
