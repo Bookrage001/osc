@@ -32,7 +32,8 @@ document = {
         }
     },
     body: {
-        appendChild: ()=>{}
+        appendChild: ()=>{},
+        addEventListener: ()=>{}
     }
 }
 
