@@ -175,7 +175,7 @@ module.exports = {
         var files = [],
             path = ''
 
-        var extRe = options.extension ? new RegExp('.*\\.' + options.extension) : /.*/
+        var extRe = options.extension ? new RegExp('.*\\.' + options.extension + '$') : /.*/
 
         if (save) {
             saveInput.addEventListener('change', ()=>{

@@ -70,7 +70,7 @@ module.exports =  {
 
     sessionSetPath: function(data, clientId) {
 
-        if (Array.isArray(data.path)) path = path.resolve(...data.path)
+        if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
 
         ipc.clients[clientId].sessionPath = data.path
 
@@ -174,6 +174,10 @@ module.exports =  {
     },
 
     sessionSave: function(data, clientId) {
+
+        if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
+
+        if (!path.basename(data.path).match(/.*\.json$/)) return console.error('Sessions must be saved as .json files')
 
         module.exports.fileSave(data, clientId, true, ()=>{
 
