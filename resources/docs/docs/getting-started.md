@@ -52,6 +52,7 @@ Command-line only :
 |---||---|
 | `-h` | `--help` | print available options |
 | `-v` | `--version` | print version number |
+|  | `--inspect` | enable node/electron inspector (visit chrome://inspect with chromium to access DevTools) |
 
 **Examples**
 

@@ -22,22 +22,23 @@ Right clicking / long touch on a widget or on a tab will also display a context 
 - `Add tab`: create a new tab in selected container
 - `Delete`: delete selected tab or widget
 
-## Save
+## Open / Save
 
-When working on a sessions that has been loaded from the server's filesystem, it is possible to save it remotely. When doing so, all the other clients working on the same session will be reloaded automatically.
+By default, sessions are saved and opened on the server's filesystem. When saving a session opened by mutliple clients, these will reload the session file automatically.
 
-It is possible to limit this feature to specific client addresses by using the server's `--remote-saving` option. For example:
-`open-stage-control --remote-saving 127.0.0.1|192.168.0.10`
+!!! note
+    It is possible to limit this feature to specific client addresses by using the server's `--remote-saving` option. For example:
+    `open-stage-control --remote-saving 127.0.0.1|192.168.0.10`
 
-Will disable remote saving except for the clients with ip addresses `127.0.0.1` (the server's local address) and `192.168.0.10`.
+    Will disable remote saving except for the clients with ip addresses `127.0.0.1` (the server's local address) and `192.168.0.10`.
 
-## Save As
 
-Session can be exported as a `.json` file on the client's filesystem.
 
-## Load
+## Import / Export
 
-Loading a session file doesn't affect other clients.
+Sessions can be exported/imported on the device's filesystem, doing so has a few limitations:
+- the session's name won't appear in the window's title
+- the session won't be added to the session history
 
 ## Grid
 

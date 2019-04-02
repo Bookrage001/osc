@@ -219,6 +219,7 @@ var SessionManager = class SessionManager {
             }
             if (editor.unsavedSession && !confirm(locales('session_unsaved'))) return
             if (session) sessionManager.load(session)
+            ipc.trigger('setTitle', 'imported')
         }, ()=>{
             new Popup({title: locales('error'), content: locales('session_uploaderror'), icon: 'exclamation-triangle', closable:true})
         })
