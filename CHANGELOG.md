@@ -6,6 +6,7 @@
   - sessions can be opened and saved from the server's filesystem directly
 - bug fixes
   - ios: clone widget not displaying properly
+  - keys: error when leaving the window with the cursor while holding a key-combbo pressed 
 
 ## 0.43.0
 
