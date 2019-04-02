@@ -209,7 +209,16 @@
 .file-container {
     width: 100rem;
     height:60rem;
+    padding:1rem;
+    &.nolabel {
+        --color-border:var(--color-bg);
+        padding: 0;
+        .file {
+            border: 0;
+        }
+    }
     .file {
+        border: 1rem solid var(--color-bg);
         flex: 1 1 100%;
         display: flex;
         align-items: center;
