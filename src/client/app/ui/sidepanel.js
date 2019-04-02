@@ -215,7 +215,7 @@ for (let i in sidepanelData) {
         if (actionData.menu) {
 
             element.addEventListener('fast-click', (e)=>{
-                contextMenu.open(event.detail, actionData.menu)
+                contextMenu.open(e.detail, actionData.menu)
             })
 
         }
