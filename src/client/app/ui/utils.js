@@ -251,7 +251,7 @@ module.exports = {
 
         ipc.on('listDir', (data)=>{
 
-            ariane.textContents = path = data.path
+            ariane.textContent = path = data.path
 
             files = data.files.filter(x=>x.folder || x.name.match(extRe))
 
