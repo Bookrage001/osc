@@ -199,7 +199,7 @@ module.exports = {
 
     },
 
-    setTitle: function(data) {
+    setTitle: function(data) {
 
         document.title = windowTitle + (data ? ' (' + data + ')' : '')
 
