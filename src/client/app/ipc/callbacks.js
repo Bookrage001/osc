@@ -125,7 +125,7 @@ module.exports = {
             // store session & state backup
             ipc.send('storeBackup', {
                 backupId: id,
-                session: session.session || {},
+                session: session.session || {},
                 sessionPath: session.sessionPath,
                 state: state.get(),
                 history: editor.history,

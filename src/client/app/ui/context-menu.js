@@ -1,6 +1,5 @@
 var html = require('nanohtml'),
-    raw = require('nanohtml/raw'),
-    locales = require('../locales')
+    raw = require('nanohtml/raw')
 
 class ContextMenu {
 

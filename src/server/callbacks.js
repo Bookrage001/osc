@@ -374,7 +374,7 @@ module.exports =  {
 
     listDir: function(data, clientId) {
 
-        var p = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+        var p = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME']
 
         if (data.path) p = path.resolve(...data.path)
 

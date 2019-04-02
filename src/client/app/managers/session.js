@@ -241,7 +241,7 @@ var SessionManager = class SessionManager {
         })
     }
 
-    setSessionPath(path) {
+    setSessionPath(path) {
 
         this.sessionPath = path
         if (path) {

@@ -161,13 +161,12 @@ module.exports = {
             saveInput = html`<input type="text" class="save-as"/>`,
             actions = html`
                 <div class="file-actions">
-                    ${
-                        save ? saveInput : ''
-                    }
+                    ${ save ? saveInput : '' }
                     <div class="btn cancel">${raw(module.exports.icon('times'))} Cancel</div>
                     ${
-                        save ? html`<div class="btn submit save">${raw(module.exports.icon('save'))} Save</div>` :
-                               html`<div class="btn submit open">${raw(module.exports.icon('folder-open'))} Open</div>`
+                        save ?
+                            html`<div class="btn submit save">${raw(module.exports.icon('save'))} Save</div>` :
+                            html`<div class="btn submit open">${raw(module.exports.icon('folder-open'))} Open</div>`
                     }
                 </div>
             `
@@ -232,7 +231,7 @@ module.exports = {
                 setTimeout(submit, 100)
             } else if (e.target === saveInput) {
                 return
-            } else if (e.keyCode === 8) {
+            } else if (e.keyCode === 8) {
                 list.childNodes[0].firstElementChild.checked = true
                 submit()
             } else if (e.key.length === 1) {
@@ -254,14 +253,14 @@ module.exports = {
 
             ariane.innerHTML = path = data.path
 
-            files = data.files.filter(x=>x.folder || x.name.match(extRe))
+            files = data.files.filter(x=>x.folder || x.name.match(extRe))
 
 
             function alphaSort(a, b){
                 // convert to strings and force lowercase
-                a = typeof a.name === 'string' ? a.name.toLowerCase() : a.name.toString();
-                b = typeof b.name === 'string' ? b.name.toLowerCase() : b.name.toString();
-                return a.localeCompare(b);
+                a = typeof a.name === 'string' ? a.name.toLowerCase() : a.name.toString()
+                b = typeof b.name === 'string' ? b.name.toLowerCase() : b.name.toString()
+                return a.localeCompare(b)
             }
 
             var fo = files.filter(x=>x.folder),

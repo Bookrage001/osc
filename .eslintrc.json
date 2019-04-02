@@ -40,7 +40,7 @@
         "ObjectExpression": 1,
         "ArrayExpression": 1,
         "MemberExpression": "off",
-        "ignoredNodes": ["ConditionalExpression"]
+        "ignoredNodes": ["ConditionalExpression", "TemplateElement"]
       }
     ],
     "linebreak-style": [
