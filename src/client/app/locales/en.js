@@ -37,6 +37,7 @@ module.exports = {
     // remote save
     remotesave_open: 'Open (on the server)',
     remotesave_save: 'Save (on the server)',
+    remotesave_overwrite: 'This file already exists, do you want to overwrite it ?',
     remotesave_fail: 'The file could not be saved on the server, use "export" instead',
     remotesave_success: 'File saved successfully',
     remotesave_forbidden: 'You\'re note allowed to save on server, use "export instead"',

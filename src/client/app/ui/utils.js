@@ -211,7 +211,7 @@ module.exports = {
             } else {
                 if (save) {
                     if (files.some(x=>x.name===saveInput.value)) {
-                        if (!confirm('Overwrite ?')) return
+                        if (!confirm(locales('remotesave_overwrite'))) return
                     }
                     callback([path, saveInput.value])
                     popup.close()
