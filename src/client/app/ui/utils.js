@@ -198,7 +198,7 @@ module.exports = {
             })
         }
 
-        doubleTap(list, submit)
+        doubleTap(list, submit, {click: true})
 
         function submit(){
 

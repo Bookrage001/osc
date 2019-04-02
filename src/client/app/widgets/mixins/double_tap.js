@@ -1,16 +1,16 @@
-module.exports = (element, callback)=>{
+module.exports = (element, callback, options={})=>{
 
     var lastTapTime = 0,
         lastTapX,
         lastTapY
 
-    element.addEventListener('fast-click', (event)=>{
+    element.addEventListener(options.click ? 'click' : 'fast-click', (event)=>{
 
         if (event.capturedByEditor) return
 
         var tapTime = Date.now(),
             tapLength = tapTime - lastTapTime,
-            eventData = event.detail
+            eventData = options.click ? event : event.detail
 
         if (
 
