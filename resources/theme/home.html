@@ -8,25 +8,9 @@ var frame = document.getElementById('showcase-frame'),
     play = document.getElementById('jumbotron-img')
 
 play.onclick = function(){
-    frame.src = "/showcase/client/"
+    frame.src = 'https://openstagecontrol-showcase.herokuapp.com/'
     frame.classList.add('show')
-    function load(){
-        var ipc = frame.contentWindow.ipc
-        if (!ipc) return setTimeout(load, 250)
-        // frame.contentWindow.error = function(){}
-        var request = new XMLHttpRequest()
-        request.open('GET', '/showcase/examples/ardour.json', true);
-        request.onload = function() {
-            if (this.status >= 200 && this.status < 400) {
-                var session = JSON.parse(this.response)
-                session.default = 1
-                ipc.trigger('connected')
-                ipc.trigger('sessionOpen', {session: session})
-            }
-        }
-        request.send()
-    }
-    load()
+    play.onclick = null
 }
 
 </script>
