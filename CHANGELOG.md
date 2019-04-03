@@ -1,12 +1,13 @@
 # Changelog
 
-## 0.44.1
+## 0.44.0
 
-- main
-  - sessions can be opened and saved from/to the server's filesystem directly
 - bug fixes
   - ios: clone widget not displaying properly
   - keys: error when leaving the window with the cursor while holding a key-combbo pressed
+  - session: disable saving when `--read-only` is set
+- main
+  - sessions can be opened and saved from/to the server's filesystem directly
 - widgets
   - new `file` input widget (allows selecting a file on the the serve and sending its absolute filename)
 
