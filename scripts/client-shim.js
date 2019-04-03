@@ -34,7 +34,8 @@ document = {
     body: {
         appendChild: ()=>{},
         addEventListener: ()=>{}
-    }
+    },
+    location: {}
 }
 
 window = {
