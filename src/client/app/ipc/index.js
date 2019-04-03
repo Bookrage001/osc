@@ -10,7 +10,8 @@ setTimeout(()=>{
 
 var reconnectInterval = 5000,
     hearbeatInterval = 25000,
-    hearbeatTimeout = 5000
+    hearbeatTimeout = 5000,
+    protocol = document.location.protocol === 'https:' ? 'wss://' : 'ws://'
 
 class Ipc extends EventEmitter {
 
@@ -58,7 +59,7 @@ class Ipc extends EventEmitter {
 
     open() {
 
-        this.socket = new WebSocket('ws://' + window.location.host + '/' + uuid)
+        this.socket = new WebSocket(protocol + window.location.host + '/' + uuid)
 
         this.socket.onopen = (e)=>{
 
