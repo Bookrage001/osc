@@ -122,7 +122,7 @@ var SessionManager = class SessionManager {
 
         saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.json')
 
-        edior.unsavedSession = false
+        editor.unsavedSession = false
 
     }
 
