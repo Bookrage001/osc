@@ -47,11 +47,11 @@
               <h1 class="text-dark">{{ config.site_name }}</h1>
               <h2 class="text-dark">{{ config.site_description }}</h2>
               <br/>
-              <div class="">
+              <ul class="">
                   {% for link in config.extra.links %}
-                      <a class="btn {% if link.primary %}btn-primary{% endif %}" href="{{link.url}}">{{link.title}}</a>
+                     <li><a class="btn {% if link.primary %}btn-primary{% endif %}" href="{{link.url}}" {% if link.newtab %}target="_blank"{% endif %}>{{link.title}}</a></li>
                   {% endfor %}
-              </div>
+              </ul>
           </div>
       </div>
       {% endif %}

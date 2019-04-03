@@ -31,6 +31,14 @@ pre, code {
     text-align: center;
     position: relative;
     padding: 10em 0 8em;
+    ul {
+        list-style: none;
+        margin: 0;
+        li {
+            display:inline-block;
+            margin: 0 2px;
+        }
+    }
 }
 #jumbotron-showcase {
     margin: -4em auto 1em;

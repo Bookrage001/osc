@@ -22,8 +22,13 @@ extra:
             url: https://github.com/jean-emmanuel/open-stage-control/releases
             primary: true
         -
-            title: Demo (requires chromium 50+)
+            title: Try online (requires chromium 50+)
             url : http://openstagecontrol.herokuapp.com
+        -
+            title: Donate
+            url: https://www.helloasso.com/associations/ammd/formulaires/2/widget/en
+            newtab: true
+            primary: true
 
 nav:
     - Open Stage Control: index.md
