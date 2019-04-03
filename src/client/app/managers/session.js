@@ -91,7 +91,7 @@ var SessionManager = class SessionManager {
 
     save(path) {
 
-        if (!this.session) return
+        if (!this.session || READ_ONLY) return
 
         if (path) this.setSessionPath(path)
 
@@ -106,7 +106,7 @@ var SessionManager = class SessionManager {
 
     saveAs() {
 
-        if (!this.session) return
+        if (!this.session || READ_ONLY) return
 
         remoteBrowse({extension: 'json', save:true, directory: this.lastDir}, (path)=>{
             this.lastDir = path[0]
@@ -200,6 +200,8 @@ var SessionManager = class SessionManager {
 
     browse() {
 
+        if (READ_ONLY) return
+
         remoteBrowse({extension: 'json', directory: this.lastDir}, (path)=>{
             if (editor.unsavedSession && !confirm(locales('session_unsaved'))) return
             this.lastDir = path[0]
@@ -209,6 +211,8 @@ var SessionManager = class SessionManager {
     }
 
     import() {
+
+        if (READ_ONLY) return
 
         upload('.json', (path, result)=>{
             var session
