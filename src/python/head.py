@@ -30,6 +30,4 @@ except:
 if version_info.major == 3:
     raw_input = input
 
-debug = False
-if 'debug' in argv:
-    debug = True
+debug = 'debug' in argv
