@@ -324,7 +324,7 @@ module.exports = {
         browser.appendChild(actions)
         container.appendChild(browser)
 
-        ipc.send('listDir', {path: options.directory ? [options.directory] : null})
+        ipc.send('listDir', {extension: options.extension, path: options.directory ? [options.directory] : null})
 
         popup.open()
 

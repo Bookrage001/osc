@@ -385,12 +385,14 @@ module.exports =  {
                 ipc.send('notify', {class: 'error', message: err.message}, clientId)
                 throw err
             } else {
+                var extRe = data.extension ? new RegExp('.*\\.' + data.extension + '$') : /.*/
                 var list = files.filter(x=>x[0] !== '.').map((x)=>{
                     return {
                         name: x,
                         folder: fs.statSync(path.resolve(p, x)).isDirectory()
                     }
                 })
+                list = list.filter(x=>x.folder || x.name.match(extRe))
                 ipc.send('listDir', {
                     path: p,
                     files: list
