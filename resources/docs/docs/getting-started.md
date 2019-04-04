@@ -43,6 +43,7 @@ Below are the available command-line options. Note that when running without any
 | |`--disable-gpu` | disable hardware acceleration |
 | |`--read-only` | disable session editing and session history changes |
 | |`--remote-saving` | disable remote session saving for hosts that don\'t match the regular expresion |
+| |`--remote-root` | set remote file browsing root folder |
 | |`--instance-name` | used to differenciate multiple instances in a zeroconf network |
 | |`--fullscreen` | launch in fullscreen mode (only affects the default gui, F11 to exit) |
 
