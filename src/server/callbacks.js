@@ -146,6 +146,16 @@ module.exports =  {
 
             if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
 
+            var root = settings.read('remoteRoot')
+            if (root && !data.path.includes(root)) {
+                console.error('Could not save: path outside of remote-root')
+                return ipc.send('notify', {
+                    class: 'error',
+                    locale: 'remotesave_fail',
+                    message: ' (Could not save: path outside of remote-root)'
+                }, clientId)
+            }
+
             try {
                 JSON.parse(data.session)
             } catch(e) {
