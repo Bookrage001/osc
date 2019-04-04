@@ -11,7 +11,9 @@ var cpr = require('cpr'),
     ]
 
 for (var i in files) {
-    cpr(...files[i].map(f => path.resolve(__dirname + '/' + f)), {})
+    cpr(...files[i].map(f => path.resolve(__dirname + '/' + f)), {
+        overwrite: true 
+    })
 }
 
 
