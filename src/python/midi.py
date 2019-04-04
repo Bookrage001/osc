@@ -1,5 +1,6 @@
 from head import *
 from list import *
+from utils import *
 
 if 'list' in argv:
     list()
@@ -51,18 +52,9 @@ for arg in argv:
                     ipc_send('error', 'can\'t connect to output port %i: %s' % (out_port, out_dev.get_port_name(out_port)))
 
 
-MIDI_TO_OSC = {
-    NOTE_ON: '/note',
-    NOTE_OFF: '/note',
-    CONTROL_CHANGE: '/control',
-    PROGRAM_CHANGE: '/program',
-    PITCH_BEND: '/pitch',
-    SYSTEM_EXCLUSIVE: '/sysex'
-}
-
 def create_callback(name):
 
-    def callback(event, data):
+    def receive_midi(event, data):
 
         osc = {}
         osc['args'] = []
@@ -98,13 +90,13 @@ def create_callback(name):
             ipc_send('osc', osc)
 
             if debug:
-                ipc_send('log','MIDI received: %s' % message)
+                ipc_send('log','MIDI received: %s' % midi_str(message))
 
 
     def callback_error_wrapper(event, data):
 
         try:
-            callback(event, data)
+            receive_midi(event, data)
         except:
             ipc_send('log', 'ERROR: MIDI: %s' % traceback.format_exc())
 
@@ -140,30 +132,16 @@ def send_midi(name, event, *args):
         ipc_send('log','ERROR: MIDI: unknown output (%s)' % name)
         return
 
+    if event not in OSC_TO_MIDI:
+        ipc_send('log','ERROR: MIDI: unknown output (%s)' % name)
+        return
+
     m = None
 
-    if 'note' in event and len(args) == 3:
-        args = [int(round(x)) for x in args]
-        if args[2] > 0:
-            m = midi_message(NOTE_ON, args[0], args[1], args[2])
-        else:
-            m = midi_message(NOTE_OFF, args[0], args[1])
+    mtype = OSC_TO_MIDI[event]
 
-    elif 'control' in event and len(args) == 3:
-        args = [int(round(x)) for x in args]
-        m = midi_message(CONTROL_CHANGE, *args)
+    if mtype is SYSTEM_EXCLUSIVE:
 
-    elif 'program' in event and len(args) == 2:
-        args = [int(round(x)) for x in args]
-        m = midi_message(PROGRAM_CHANGE, *args)
-
-    elif 'pitch' in event and len(args) == 2:
-        args = [int(round(x)) for x in args]
-        channel = args[0]
-        value = args[1]
-        m = midi_message(PITCH_BEND, channel, value & 0x7f, (value >> 7) & 0x7f)
-
-    elif 'sysex' in event:
         # unhexlify('f0 7e 7f 06 01 f7') creates a sysex message
         # from hex MIDI data string 'f0 7e 7f 06 01 f7'.
         # We expect all args to be hex strings! args[0] may contain placeholders of
@@ -182,6 +160,20 @@ def send_midi(name, event, *args):
         else:
             ipc_send('log', 'ERROR: MIDI: Invalid sysex string: %s' % msg)
 
+    else:
+
+        args = [int(round(x)) for x in args]
+        m = [mtype, args[0]]
+
+        if mtype is NOTE_ON:
+            if args[2] is 0:
+                mtype = NOTE_OFF
+
+        elif mtype is PITCH_BEND:
+            args = args[:1] + [args[1] & 0x7f, (args[1] >> 7) & 0x7f] # convert 0-16384 -> 0-127 pair
+
+        m = midi_message(mtype, *args)
+
     if m is None:
 
         ipc_send('log','ERROR: MIDI: could not convert osc args to midi message (%s %s)' % (event, " ".join([str(x) for x in args])))
@@ -192,15 +184,7 @@ def send_midi(name, event, *args):
 
         if debug:
 
-            if 'sysex' in event:
-                repr = 'sysex: %s' % [int(x) for x in m]
-            else:
-                repr = 'status=%s' % m[0]
-                repr += ', data1=%s' % m[1]
-                if len(m)==3:
-                    repr += ', data2=%s' % m[2]
-
-            ipc_send('log','MIDI sent: %s' % repr)
+            ipc_send('log','MIDI sent: %s' % midi_str(m))
 
 
 while True:
