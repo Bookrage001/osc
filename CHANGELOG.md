@@ -2,6 +2,19 @@
 
 ## 0.44.0
 
+:warning: **breaking change (midi)** :warning:
+
+The python dependency for MIDI support has changed, it works the same way but provides more ready-to-run binaries and should be easier to install for windows users.
+
+```
+pip uninstall rtmidi
+pip install python-rtmidi
+```
+
+Sysex messages are now discarded by default, they can be enabled by adding `sysex` to the midi options.
+
+----
+
 - bug fixes
   - ios: clone widget not displaying properly
   - keys: error when leaving the window with the cursor while holding a key-combbo pressed

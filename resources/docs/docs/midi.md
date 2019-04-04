@@ -2,8 +2,10 @@
 
 MIDI support requires additional software to be installed on the server's system:
 
-- python (2 / 3)
-- python package [rtmidi](https://pypi.python.org/pypi/rtmidi) (version 2.3.2)
+- python (2 or 3)
+- python package [python-rtmidi](https://spotlightkid.github.io/python-rtmidi/installation.html) (version 1.2.1)
+
+To install `python-rtmidi`, run `pip install python-rtmidi` in a terminal.
 
 !!! note "Why an additionnal dependency ?"
     Providing cross-platform MIDI support is not trivial, as it requires OS-specific compilation that cannot be automated within Open Stage Control's current packaging workflow. Using a python addon seems to be the best compromise so far : the core app remains easy to build, and the extra dependency is easy to install.
@@ -14,6 +16,7 @@ When running the app, the `-m / --midi` switch must be set; it accepts the follo
 
 - `list`: prints the available MIDI ports to the console; numbers in the first column may be used for `input`/`output` definition below
 - `device_name:input,output`: connect to midi ports `input` and `output`; osc messages sent to target `midi:device_name` will be processed as midi events; Multiple devices can be declared
+- `sysex`: parse incomming system exclusive messages (disabled by default)
 
 *Linux only:*
 
