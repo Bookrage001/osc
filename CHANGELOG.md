@@ -2,19 +2,6 @@
 
 ## 0.44.0
 
-:warning: **breaking change (midi)** :warning:
-
-The python dependency for MIDI support has changed, it works the same way but provides more ready-to-run binaries and should be easier to install for windows users.
-
-```
-pip uninstall rtmidi
-pip install python-rtmidi
-```
-
-Sysex messages are now discarded by default, they can be enabled by adding `sysex` to the midi options.
-
-----
-
 - bug fixes
   - ios: clone widget not displaying properly
   - keys: error when leaving the window with the cursor while holding a key-combbo pressed
@@ -23,6 +10,10 @@ Sysex messages are now discarded by default, they can be enabled by adding `syse
   - sessions can be opened and saved from/to the server's filesystem directly
 - widgets
   - new `file` input widget (allows selecting a file on the the serve and sending its absolute filename)
+- midi
+  - :warning: **breaking changes** :warning:
+  - replaced python dependency `rtmidi` with `python-rtmidi` (provides pre-compiled binaries for all major platforms)
+  - sysex messages are now discarded by default, they can be enabled by adding `sysex` to the midi options
 
 ## 0.43.0
 
