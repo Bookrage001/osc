@@ -146,19 +146,21 @@ def send_midi(name, event, *args):
         # from hex MIDI data string 'f0 7e 7f 06 01 f7'.
         # We expect all args to be hex strings! args[0] may contain placeholders of
         # the form 'nn' that are replaced using args[1..N] to create the final message.
-        midiBytes = args[0].replace(' ', '')
-        i = 1
-        for m in sysexRegex.finditer(midiBytes):
-            midiBytes = midiBytes[:m.start()] + args[i].replace(' ', '') + midiBytes[m.end():]
-            i += 1
+        try:
+            midiBytes = args[0].replace(' ', '')
+            i = 1
+            for m in sysexRegex.finditer(midiBytes):
+                midiBytes = midiBytes[:m.start()] + args[i].replace(' ', '') + midiBytes[m.end():]
+                i += 1
 
-        msg = unhexlify(midiBytes)
+            msg = unhexlify(midiBytes)
 
-        if (msg and msg.startswith(b'\xF0') and msg.endswith(b'\xF7') and
-                all((val <= 0x7F for val in msg[1:-1]))):
-            m = msg
-        else:
-            ipc_send('log', 'ERROR: MIDI: Invalid sysex string: %s' % msg)
+            if (msg and msg.startswith(b'\xF0') and msg.endswith(b'\xF7') and
+                    all((val <= 0x7F for val in msg[1:-1]))):
+                m = msg
+
+        except:
+            pass
 
     else:
 
@@ -176,7 +178,7 @@ def send_midi(name, event, *args):
 
     if m is None:
 
-        ipc_send('log','ERROR: MIDI: could not convert osc args to midi message (%s %s)' % (event, " ".join([str(x) for x in args])))
+        ipc_send('log','ERROR: MIDI: could not convert osc to midi (%s %s)' % (event, " ".join([str(x) for x in args])))
 
     else:
 
