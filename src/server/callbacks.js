@@ -380,6 +380,9 @@ module.exports =  {
 
         if (data.path) p = path.resolve(...data.path)
 
+        var root = settings.read('remoteRoot')
+        if (root && !p.includes(root)) p = root
+
         fs.readdir(p, (err, files)=>{
             if (err) {
                 ipc.send('notify', {class: 'error', message: err.message}, clientId)

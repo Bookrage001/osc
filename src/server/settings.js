@@ -76,6 +76,7 @@ var makeDefaultConfig = function(argv){
         noGpu: argv['disable-gpu'] || false,
         readOnly: argv['read-only'] || false,
         remoteSaving: argv['remote-saving'] ? RegExp(argv['remote-saving']) : false,
+        remoteRoot: argv['remote-root'] || false,
         midi: argv['midi'],
         stateFile: (function(){
             if (!argv['state']) return false

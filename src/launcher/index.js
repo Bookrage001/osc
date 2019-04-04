@@ -70,7 +70,10 @@ $(document).ready(()=>{
 
             browse.click(function(e){
                 e.preventDefault()
-                dialog.showOpenDialog({filters:[{name:option.file.name,extensions:option.file.extensions}]},function(file){
+                dialog.showOpenDialog({
+                    filters:[{name:option.file.name,extensions:option.file.extensions}],
+                    properties: option.file.folder ? ['openDirectory'] : ['openFile']
+                },function(file){
                     input.val(file).change()
                 })
             })

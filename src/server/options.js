@@ -82,6 +82,7 @@ module.exports = {
             return msg
         }
     },
+    'remote-root':{type:'string', describe:'set remote file browsing root folder', file:{folder: true}},
     'instance-name':{type:'string',describe:'used to differenciate multiple instances in a zeroconf network'},
     'fullscreen':{type:'boolean', describe:'launch in fullscreen mode (only affects the default gui, F11 to exit)'},
     'inspect':{type:'boolean', describe:'enable node/electron inspector', launcher: false}
