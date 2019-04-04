@@ -43,7 +43,7 @@ Sends back a widget's data (JSON stringified object), including its children, to
 - `target`: `string`, `ip:port` pair
 - `id`: `string`, widget's `id`
 
-Returns `/EDIT/GET id data`
+Replies `/EDIT/GET id data`
 
 - `id`: `string`
 - `data`: `string`
@@ -56,7 +56,7 @@ Sends back a widget's data (JSON stringified object), including its children, to
 - `address`: `string`, widget's `address`
 - `preArg[1...]`: `*`, widget's `preArgs`
 
-Returns `/EDIT/GET address preArg1 preArg2 ... data`
+Replies `/EDIT/GET address preArg1 preArg2 ... data`
 
 - `address`: `string`, widget's `address`
 - `preArg[1...]`: `*`, widget's `preArgs`
@@ -70,7 +70,7 @@ Sends back a widget's value to specified target.
 - `target`: `string`, `ip:port` pair
 - `id`: `string`, widget's `id`
 
-Returns `/GET id value`
+Replies `/GET id value`
 
 - `id`: `string`
 - `value`: `*`
@@ -83,7 +83,7 @@ Sends back a widget's value to specified target.
 - `address`: `string`, widget's `address`
 - `preArg[1...]`: `*`, widget's `preArgs`
 
-Returns `/GET address preArg1 preArg2 ... value`
+Replies `/GET address preArg1 preArg2 ... value`
 
 - `address`: `string`, widget's `address`
 - `preArg[1...]`: `*`, widget's `preArgs`
@@ -111,4 +111,4 @@ Set a widget's value as if it was interacted with from the interface. This is li
 
 ## `/TABS id id etc`
 
-Open the tabs designated by the `id` parameters. The target tab link must be accesible (opening a tab located in a disabled tab won't work unless you specify the parent tab's `id` before; the safest way to go is to pass the whole tab tree to enable).
+Open the tabs designated by the `id` parameters.
