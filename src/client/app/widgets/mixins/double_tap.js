@@ -16,7 +16,8 @@ module.exports = (element, callback, options={})=>{
 
             tapLength < DOUBLE_TAP_TIME &&
             Math.abs(lastTapX - eventData.pageX) < 20 &&
-            Math.abs(lastTapY - eventData.pageY) < 20
+            Math.abs(lastTapY - eventData.pageY) < 20 &&
+            (!options.click || event.pageX !== 0) // prevent fake click emitted with keyboard focus events
 
         ) {
 
