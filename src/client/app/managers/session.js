@@ -222,8 +222,10 @@ var SessionManager = class SessionManager {
                 new Popup({title: locales('session_parsingerror'), content: err, icon: 'exclamation-triangle', closable:true})
             }
             if (editor.unsavedSession && !confirm(locales('session_unsaved'))) return
-            if (session) sessionManager.load(session)
-            ipc.trigger('setTitle', 'imported')
+            if (session) sessionManager.load(session, ()=>{
+                ipc.send('sessionSetPath', {path: 'imported'})
+            })
+
         }, ()=>{
             new Popup({title: locales('error'), content: locales('session_uploaderror'), icon: 'exclamation-triangle', closable:true})
         })
