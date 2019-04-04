@@ -13,111 +13,131 @@ for arg in argv:
 
         name, ports = arg.split(':')
 
-        inputs[name] = rtmidi.RtMidiIn(API, name if not JACK else name + '_in')
-        outputs[name] = rtmidi.RtMidiOut(API, name if not JACK else name + '_out')
+        inputs[name] = rtmidi.MidiIn(API, name if not JACK else name + '_in')
+        outputs[name] = rtmidi.MidiOut(API, name if not JACK else name + '_out')
 
         if ports == 'virtual':
 
             try:
-                inputs[name].openVirtualPort('midi_in')
-                outputs[name].openVirtualPort('midi_out')
+                inputs[name].open_virtual_port('midi_in')
+                outputs[name].open_virtual_port('midi_out')
             except:
-                ipcSend('error', 'can\'t open virtual port "%s"' % name)
+                ipc_send('error', 'can\'t open virtual port "%s"' % name)
 
         elif ',' in ports:
 
             in_port, out_port = [int(x) for x in ports.split(',')]
 
-            if in_port >= in_dev.getPortCount():
-                ipcSend('error', 'can\'t connect to input port %i' % in_port)
+            if in_port >= in_dev.get_port_count():
+                ipc_send('error', 'can\'t connect to input port %i' % in_port)
                 break
 
-            if out_port >= out_dev.getPortCount():
-                ipcSend('error', 'can\'t connect to output port %i' % in_port)
+            if out_port >= out_dev.get_port_count():
+                ipc_send('error', 'can\'t connect to output port %i' % in_port)
                 break
 
             if in_port != -1:
 
                 try:
-                    inputs[name].openPort(in_port, 'midi_in')
+                    inputs[name].open_port(in_port, 'midi_in')
                 except:
-                    ipcSend('error', 'can\'t connect input to port %i: %s' % (in_port, in_dev.getPortName(in_port)))
+                    ipc_send('error', 'can\'t connect input to port %i: %s' % (in_port, in_dev.get_port_name(in_port)))
 
             if out_port != -1:
 
                 try:
-                    outputs[name].openPort(out_port, 'midi_out')
+                    outputs[name].open_port(out_port, 'midi_out')
                 except:
-                    ipcSend('error', 'can\'t connect to output port %i: %s' % (out_port, out_dev.getPortName(out_port)))
+                    ipc_send('error', 'can\'t connect to output port %i: %s' % (out_port, out_dev.get_port_name(out_port)))
 
-def createCallbackFunction(name):
 
-    def callback(midi):
+MIDI_TO_OSC = {
+    NOTE_ON: '/note',
+    NOTE_OFF: '/note',
+    CONTROL_CHANGE: '/control',
+    PROGRAM_CHANGE: '/program',
+    PITCH_BEND: '/pitch',
+    SYSTEM_EXCLUSIVE: '/sysex'
+}
+
+def create_callback(name):
+
+    def callback(event, data):
 
         osc = {}
         osc['args'] = []
         osc['host'] = 'midi'
         osc['port'] = name
 
-        if midi.getChannel() != 0:
-            osc['args'].append({'type': 'i', 'value': midi.getChannel()})
+        message, deltatime = event
+        mtype = message[0] & 0xF0
 
-        if midi.isNoteOn():
-            osc['address'] = '/note'
-            osc['args'].append({'type': 'i', 'value': midi.getNoteNumber()})
-            osc['args'].append({'type': 'i', 'value': midi.getVelocity()})
+        if mtype in MIDI_TO_OSC:
 
-        elif midi.isNoteOff():
-            osc['address'] = '/note'
-            osc['args'].append({'type': 'i', 'value': midi.getNoteNumber()})
-            osc['args'].append({'type': 'i', 'value': 0})
+            osc['address'] = MIDI_TO_OSC[mtype]
 
-        elif midi.isController():
-            osc['address'] = '/control'
-            osc['args'].append({'type': 'i', 'value': midi.getControllerNumber()})
-            osc['args'].append({'type': 'i', 'value': midi.getControllerValue()})
+            if mtype is SYSTEM_EXCLUSIVE:
+                # Parse the provided data into a hex MIDI data string of the form  'f0 7e 7f 06 01 f7'.
+                v = ' '.join([hex(x).replace('0x', '').zfill(2) for x in message])
+                osc['args'].append({'type': 'string', 'value': v})
 
-        elif midi.isProgramChange():
-            osc['address'] = '/program'
-            osc['args'].append({'type': 'i', 'value': midi.getProgramChangeNumber()})
+            else:
 
-        elif midi.isPitchWheel():
-            osc['address'] = '/pitch'
-            osc['args'].append({'type': 'i', 'value': midi.getPitchWheelValue()})
+                status = message[0]
+                channel = (status & 0xF) + 1
 
-        elif midi.isSysEx():
-            osc['address'] = '/sysex'
-            # Parse the provided data into a hex MIDI data string of the form  'f0 7e 7f 06 01 f7'.
-            v = hexlify(midi.getSysExData()).decode()
-            v = 'f0 ' + ' '.join([v[i:i+2] for i in range(0, len(v), 2)]) + ' f7'
-            osc['args'].append({'type': 'string', 'value': v})
+                osc['args'].append({'type': 'i', 'value': channel})
 
-        ipcSend('osc', osc)
+                if mtype == NOTE_OFF:
+                    message[2] = 0
 
-        if debug:
-            ipcSend('log','MIDI received: %s' % midi)
+                for data in message[1:]:
+                    osc['args'].append({'type': 'i', 'value': data})
 
 
-    def errorLoggedCallback(midi):
+            ipc_send('osc', osc)
+
+            if debug:
+                ipc_send('log','MIDI received: %s' % message)
+
+
+    def callback_error_wrapper(event, data):
 
         try:
-            callback(midi)
+            callback(event, data)
         except:
-            ipcSend('log', 'ERROR: MIDI: %s' % traceback.format_exc())
+            ipc_send('log', 'ERROR: MIDI: %s' % traceback.format_exc())
 
-    return errorLoggedCallback
+    return callback_error_wrapper
 
 for name in inputs:
 
-    inputs[name].setCallback(createCallbackFunction(name))
+    inputs[name].set_callback(create_callback(name))
+
     # Activate sysex support
-    inputs[name].ignoreTypes(False, False, True)
+    if 'sysex' in argv:
+        inputs[name].ignore_types(False, False, True)
+
+
+def midi_message(status, channel, data1=None, data2=None):
+
+    msg = [(status & 0xF0) | (channel - 1 & 0xF)]
+
+    if data1 is not None:
+        msg.append(data1 & 0x7F)
+
+        if data2 is not None:
+            msg.append(data2 & 0x7F)
+
+    return msg
+
 
 sysexRegex = re.compile(r'([^0-9A-Fa-f])\1(\1\1)*')
 
-def sendMidi(name, event, *args):
+def send_midi(name, event, *args):
 
     if name not in outputs:
+        ipc_send('log','ERROR: MIDI: unknown output (%s)' % name)
         return
 
     m = None
@@ -125,24 +145,26 @@ def sendMidi(name, event, *args):
     if 'note' in event and len(args) == 3:
         args = [int(round(x)) for x in args]
         if args[2] > 0:
-            m = rtmidi.MidiMessage.noteOn(*args)
+            m = midi_message(NOTE_ON, args[0], args[1], args[2])
         else:
-            m = rtmidi.MidiMessage.noteOff(args[0], args[1])
+            m = midi_message(NOTE_OFF, args[0], args[1])
 
     elif 'control' in event and len(args) == 3:
         args = [int(round(x)) for x in args]
-        m = rtmidi.MidiMessage.controllerEvent(*args)
+        m = midi_message(CONTROL_CHANGE, *args)
 
     elif 'program' in event and len(args) == 2:
         args = [int(round(x)) for x in args]
-        m = rtmidi.MidiMessage.programChange(*args)
+        m = midi_message(PROGRAM_CHANGE, *args)
 
     elif 'pitch' in event and len(args) == 2:
         args = [int(round(x)) for x in args]
-        m = rtmidi.MidiMessage.pitchWheel(*args)
+        channel = args[0]
+        value = args[1]
+        m = midi_message(PITCH_BEND, channel, value & 0x7f, (value >> 7) & 0x7f)
 
     elif 'sysex' in event:
-        # rtmidi.MidiMessage(unhexlify('f0 7e 7f 06 01 f7')) creates a sysex message
+        # unhexlify('f0 7e 7f 06 01 f7') creates a sysex message
         # from hex MIDI data string 'f0 7e 7f 06 01 f7'.
         # We expect all args to be hex strings! args[0] may contain placeholders of
         # the form 'nn' that are replaced using args[1..N] to create the final message.
@@ -152,21 +174,33 @@ def sendMidi(name, event, *args):
             midiBytes = midiBytes[:m.start()] + args[i].replace(' ', '') + midiBytes[m.end():]
             i += 1
 
-        if debug:
-            ipcSend('log', 'Sysex string: %s' % midiBytes)
+        msg = unhexlify(midiBytes)
 
-        m = rtmidi.MidiMessage(unhexlify(midiBytes))
+        if (msg and msg.startswith(b'\xF0') and msg.endswith(b'\xF7') and
+                all((val <= 0x7F for val in msg[1:-1]))):
+            m = msg
+        else:
+            ipc_send('log', 'ERROR: MIDI: Invalid sysex string: %s' % msg)
 
     if m is None:
 
-        ipcSend('log','ERROR: MIDI: could not convert osc args to midi message (%s %s)' % (event, " ".join([str(x) for x in args])))
+        ipc_send('log','ERROR: MIDI: could not convert osc args to midi message (%s %s)' % (event, " ".join([str(x) for x in args])))
 
     else:
 
-        outputs[name].sendMessage(m)
+        outputs[name].send_message(m)
 
         if debug:
-            ipcSend('log','MIDI sent: %s' % m)
+
+            if 'sysex' in event:
+                repr = 'sysex: %s' % [int(x) for x in m]
+            else:
+                repr = 'status=%s' % m[0]
+                repr += ', data1=%s' % m[1]
+                if len(m)==3:
+                    repr += ', data2=%s' % m[2]
+
+            ipc_send('log','MIDI sent: %s' % repr)
 
 
 while True:
@@ -179,6 +213,6 @@ while True:
     try:
         msg = JSON.loads(msg)
         msg[1] = msg[1].lower()
-        sendMidi(*msg)
+        send_midi(*msg)
     except:
-        ipcSend('log', 'ERROR: MIDI: %s' % traceback.format_exc())
+        ipc_send('log', 'ERROR: MIDI: %s' % traceback.format_exc())
