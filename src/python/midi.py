@@ -116,7 +116,7 @@ for name in inputs:
 
     # Activate sysex support
     if 'sysex' in argv:
-        inputs[name].ignore_types(False, False, True)
+        inputs[name].ignore_types(False, True, True)
 
 
 def midi_message(status, channel, data1=None, data2=None):
