@@ -9,7 +9,7 @@ def ipc_send(name, data):
     stdout.flush()
 
 try:
-    import rtmidis
+    import rtmidi
     from rtmidi.midiconstants import *
 
     API = rtmidi.API_UNIX_JACK if 'jack' in argv else rtmidi.API_UNSPECIFIED
