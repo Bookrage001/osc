@@ -25,6 +25,12 @@ var options = require('./options'),
     .strict()
     .version().alias('v','version')
 
+// litle hack to align long-only-options correctly
+var h = argv.getUsageInstance().help
+argv.getUsageInstance().help = ()=>{
+    return h().replace(/^  --([^\s]*)    (\s*)/gm, '      --$1$2')
+}
+
 argv = argv.argv
 
 // restore process.cwd
