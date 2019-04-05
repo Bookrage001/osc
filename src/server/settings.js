@@ -1,10 +1,6 @@
 // This prevents argv parsing to be breaked when the app is packaged (executed without 'electron' prefix)
 if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 
-// hack process.cwd to ensure yargs finds package.json
-var _cwd = process.cwd
-process.cwd = () => { return __dirname }
-
 var options = require('./options'),
     argv = require('yargs')
     .parserConfiguration({'boolean-negation': false})
@@ -33,9 +29,6 @@ argv.getUsageInstance().help = ()=>{
 
 argv = argv.argv
 
-// restore process.cwd
-process.cwd = _cwd
-
 // are we in a terminal ?
 var cli = false
 for (i in argv) {
@@ -43,7 +36,8 @@ for (i in argv) {
 }
 
 var fs = require('fs'),
-    ifaces = require('os').networkInterfaces()
+    ifaces = require('os').networkInterfaces(),
+    infos = require('../package.json')
 
 
 var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
@@ -60,12 +54,10 @@ if (!configPath) {
 var makeDefaultConfig = function(argv){
     defaultConfig = {
         argv:argv,
-        presetPath : process.cwd(),
-        sessionPath: process.cwd(),
         recentSessions: [],
-        appName: 'Open Stage Control',
+        appName: infos.productName,
         instanceName: argv['instance-name'] || false,
-        targets: argv['send'] || argv.sync || false,
+        targets: argv['send'] || false,
         oscInPort: argv['osc-port'] || 0,
         httpPort: argv['port'] || 8080,
         tcpInPort: argv['tcp-port'] || false,
@@ -93,19 +85,10 @@ var makeDefaultConfig = function(argv){
                 return false
             }
         })(),
-        appAddresses:function(){
-            var appAddresses = []
-
-            Object.keys(ifaces).forEach(function(ifname) {
-                for (i=0;i<ifaces[ifname].length;i++) {
-                    if (ifaces[ifname][i].family == 'IPv4') {
-                        appAddresses.push('http://' + ifaces[ifname][i].address + ':' + (argv['port'] || 8080))
-                    }
-                }
-            })
-
-            return appAddresses
-        }(),
+        appAddresses: Object.values(ifaces)
+                            .reduce((a,b)=>a.concat(b), [])
+                            .filter(i=>i.family === 'IPv4')
+                            .map(i=>'http://' + i.address + ':' + (argv['port'] || 8080)),
         examples: argv['examples'],
         theme: argv['theme'] || []
     }
