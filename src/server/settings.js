@@ -28,7 +28,7 @@ var options = require('./options'),
 // litle hack to align long-only-options correctly
 var h = argv.getUsageInstance().help
 argv.getUsageInstance().help = ()=>{
-    return h().replace(/^  --([^\s]*)    (\s*)/gm, '      --$1$2')
+    return h().replace(/^\s{2}--([^\s]*)\s{4}(\s*)/gm, '      --$1$2')
 }
 
 argv = argv.argv
