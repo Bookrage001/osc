@@ -2,7 +2,7 @@ var EventEmitter = require('../../events/event-emitter'),
     osc = require('../../osc'),
     nanoid = require('nanoid/generate'),
     widgetManager = require('../../managers/widgets'),
-    {math} = require('../utils'),
+    {math, evaljs} = require('../utils'),
     scopeCss = require('scope-css'),
     {iconify} = require('../../ui/utils'),
     resize = require('../../events/resize'),
@@ -136,6 +136,7 @@ class Widget extends EventEmitter {
         this.props = options.props
         this.errors = {}
         this.parsers = {}
+        this.jsparsers = {}
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = nanoid('abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10)
@@ -593,7 +594,17 @@ class Widget extends EventEmitter {
 
                     return typeof r != 'string' ? JSON.stringify(r) : r
                 })
-            } catch (err) {}
+            } catch (err) {console.debug('#{} parsing error:\n' + err)}
+
+            try {
+                propValue = propValue.replace(/JS\{\{([\s\S]*)\}\}/g, (m, code)=>{
+                    if (!this.jsparsers[code]) this.jsparsers[code] = evaljs(code)
+
+                    let r = this.jsparsers[code](mathscope)
+
+                    return typeof r !== 'string' ? JSON.stringify(r) : r
+                })
+            } catch (err) {console.debug('JS{{}} parsing error:\n' + err)}
 
             for (let k in variables) {
                 var v = typeof variables[k] === 'string' ? variables[k] : JSON.stringify(variables[k])

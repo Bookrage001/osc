@@ -104,6 +104,42 @@ module.exports = {
         math.expression.mathWithTransform = Object.assign({}, math)
 
         return math
+    })(),
+
+    evaljs: (function(){
+
+        var sandbox = document.createElement('iframe'),
+            loopProtect = require('loop-protect')
+
+        loopProtect.alias = '__protect'
+        loopProtect.hit = function (line) {
+          throw 'Potential infinite loop found on line ' + line
+        }
+
+        sandbox.style.display = 'none'
+        sandbox.sandbox = "allow-scripts allow-same-origin"
+        document.body.appendChild(sandbox)
+        sandbox.contentWindow.parsers = {}
+        sandbox.contentWindow.__protect = loopProtect
+
+        function evaljs(code) {
+
+            sandbox.contentWindow.parsers[code] = sandbox.contentWindow.Function(loopProtect(code))
+
+            return (context)=>{
+
+                for (var k in context) {
+                    sandbox.contentWindow[k] = context[k]
+                }
+
+                return sandbox.contentWindow.parsers[code]()
+
+            }
+
+        }
+
+        return evaljs
+
     })()
 
 }
