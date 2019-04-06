@@ -2,6 +2,8 @@
 
 document = {
     createElement: x=>({
+        style: {},
+        contentWindow: {},
         nodeName: '',
         childNodes: [],
         setAttribute: ()=>{},
