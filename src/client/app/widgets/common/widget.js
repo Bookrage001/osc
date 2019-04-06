@@ -594,7 +594,9 @@ class Widget extends EventEmitter {
 
                     return typeof r != 'string' ? JSON.stringify(r) : r
                 })
-            } catch (err) {console.debug('#{} parsing error:\n' + err)}
+            } catch (err) {
+                console.log(this.getProp('id') + '.' + propName + ': #{} error:\n' + err)
+            }
 
             try {
                 propValue = propValue.replace(/JS\{\{([\s\S]*)\}\}/g, (m, code)=>{
@@ -602,9 +604,15 @@ class Widget extends EventEmitter {
 
                     let r = this.jsparsers[code](mathscope)
 
+                    if (r === undefined) r = ''
+
                     return typeof r !== 'string' ? JSON.stringify(r) : r
                 })
-            } catch (err) {console.debug('JS{{}} parsing error:\n' + err)}
+            } catch (err) {
+                var stackline = err.stack ? err.stack.match(/>:([0-9]+):[0-9]+/) : '',
+                    line = stackline.length > 1 ? ' at line ' + (parseInt(stackline[1]) - 2) : ''
+                console.log(this.getProp('id') + '.' + propName + ': JS{{}} error:\n' + err + line)
+            }
 
             for (let k in variables) {
                 var v = typeof variables[k] === 'string' ? variables[k] : JSON.stringify(variables[k])

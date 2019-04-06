@@ -124,7 +124,10 @@ module.exports = {
 
         function evaljs(code) {
 
-            sandbox.contentWindow.parsers[code] = sandbox.contentWindow.Function(loopProtect(code))
+            sandbox.contentWindow.parsers[code] = sandbox.contentWindow.Function(
+                loopProtect('"use strict";' + code)
+                .replace(/;\n(if \(__protect.*break;)\n/g, ';$1') // prevent loop protect from breaking stack linenumber
+            )
 
             return (context)=>{
 
