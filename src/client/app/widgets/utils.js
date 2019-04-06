@@ -112,12 +112,12 @@ module.exports = {
             loopProtect = require('loop-protect')
 
         loopProtect.alias = '__protect'
-        loopProtect.hit = function (line) {
-          throw 'Potential infinite loop found on line ' + line
+        loopProtect.hit = function(line){
+            throw 'Potential infinite loop found on line ' + line
         }
 
         sandbox.style.display = 'none'
-        sandbox.sandbox = "allow-scripts allow-same-origin"
+        sandbox.sandbox = 'allow-scripts allow-same-origin'
         document.body.appendChild(sandbox)
         sandbox.contentWindow.parsers = {}
         sandbox.contentWindow.__protect = loopProtect
