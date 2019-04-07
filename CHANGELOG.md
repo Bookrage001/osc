@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.45.0
 
 - bug fixes
   - sessions not added to history when opened
