@@ -72,6 +72,10 @@ module.exports =  {
 
         if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
 
+        if (!settings.read('readOnly')) {
+            module.exports.sessionAddToHistory(data.path)
+        }
+
         ipc.clients[clientId].sessionPath = data.path
 
         ipc.send('setTitle', path.basename(data.path), clientId)
@@ -202,10 +206,6 @@ module.exports =  {
                 if (id !== clientId && ipc.clients[id].sessionPath === data.path) {
                     module.exports.sessionOpen({path: data.path}, id)
                 }
-            }
-
-            if (!settings.read('readOnly')) {
-                module.exports.sessionAddToHistory(data.path)
             }
 
             module.exports.sessionSetPath({path: data.path}, clientId)

@@ -2,6 +2,8 @@
 
 ## next
 
+- bug fixes
+  - sessions not added to history when opened
 - widgets
   - **removed** deprecated widgets `multifader`, `multitoggle`, `multipush` and `formula`
   - new `JS{{}}` property syntax for javascript lovers
