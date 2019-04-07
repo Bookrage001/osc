@@ -10,7 +10,14 @@ document = {
         appendChild: ()=>{},
         lastChild: {},
         toString: ()=>' ',
-        removeChild: ()=>{}
+        removeChild: ()=>{},
+        contentWindow: {
+            document: {
+                open: ()=>{},
+                close: ()=>{},
+                write: ()=>{},
+            }
+        }
     }),
     createTextNode: x=>({
         nodeValue: '',
@@ -37,7 +44,11 @@ document = {
         appendChild: ()=>{},
         addEventListener: ()=>{}
     },
-    location: {}
+    location: {},
+    documentElement: {
+        appendChild: ()=>{},
+        removeChild: ()=>{}
+    }
 }
 
 window = {
