@@ -610,7 +610,7 @@ class Widget extends EventEmitter {
 
                 })
             } catch (err) {
-                var stackline = err.stack ? err.stack.match(/>:([0-9]+):[0-9]+/) : '',
+                var stackline = err.stack ? (err.stack.match(/>:([0-9]+):[0-9]+/) || '') : '',
                     line = stackline.length > 1 ? ' at line ' + (parseInt(stackline[1]) - 2) : ''
                 console.log(this.getProp('id') + '.' + propName + ': JS{{}} error:\n' + err + line)
             }

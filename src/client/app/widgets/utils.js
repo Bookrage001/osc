@@ -120,12 +120,13 @@ module.exports = {
         loopProtect.hit = function(line){
             throw 'Potential infinite loop found on line ' + line
         }
-        sandbox.contentWindow.parsers = {}
+
+        sandbox.contentWindow.__parsers = {}
         sandbox.contentWindow.__protect = loopProtect
 
         function evaljs(code, defaultContext) {
 
-            sandbox.contentWindow.parsers[code] = sandbox.contentWindow.Function(
+            sandbox.contentWindow.__parsers[code] = sandbox.contentWindow.Function(
                 loopProtect('"use strict";' + code)
                 .replace(/;\n(if \(__protect.*break;)\n/g, ';$1') // prevent loop protect from breaking stack linenumber
             )
@@ -141,7 +142,7 @@ module.exports = {
 
                 // evaluate
                 try {
-                    ret = sandbox.contentWindow.parsers[code]()
+                    ret = sandbox.contentWindow.__parsers[code]()
                 } catch(e) {
                     err = e
                 }
