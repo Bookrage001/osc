@@ -48,7 +48,7 @@ class Frame extends Widget {
         var parser = document.createElement('a')
         parser.href = this.value
 
-        if (parser.hostname.match(localUrlRe)) {
+        if (this.value && parser.hostname.match(localUrlRe)) {
             this.frame.setAttribute('src', this.value)
             this.widget.classList.remove('error')
             if (this.errorTextMounted) {
