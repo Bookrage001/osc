@@ -67,7 +67,7 @@ module.exports = class Switch extends Widget {
             var index = 0,
                 node = e.target
 
-            if (touchFix && e.isTouch) {
+            if (touchFix && e.isTouch) {
                 // special traversing touch fix
                 node = document.elementFromPoint(e.clientX, e.clientY)
             }
