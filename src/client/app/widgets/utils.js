@@ -117,7 +117,7 @@ module.exports = {
 
         // block requests
         sandbox.contentWindow.document.open()
-        sandbox.contentWindow.document.write(`<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-eval';">`)
+        sandbox.contentWindow.document.write('<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-eval\';">')
         sandbox.contentWindow.document.close()
 
         // init infinite loop guard
@@ -129,9 +129,7 @@ module.exports = {
 
 
         var _Function = sandbox.contentWindow.Function,
-            parsers = {},
-            timeouts = {},
-            intervals = {}
+            parsers = {}
 
         sandbox.contentWindow.console = console
         sandbox.contentWindow.global = {}
@@ -164,7 +162,7 @@ module.exports = {
                 var ret, err, k
 
                 var __VARS = {}
-                for (var k in context) {
+                for (k in context) {
                     var index = contextKeys.indexOf(k)
                     if (index !== -1) {
                         contextValues[index] = context[k]
