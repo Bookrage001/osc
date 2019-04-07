@@ -6,7 +6,7 @@
   - sessions not added to history when opened
 - widgets
   - **removed** deprecated widgets `multifader`, `multitoggle`, `multipush` and `formula`
-  - new `JS{{}}` property syntax for javascript lovers
+  - new `JS{{}}` property syntax, allows writing formulas using javascript
   - errors encountered in `#{}` blocks are now printed to the client console (F12)  
 
 ## 0.44.0
