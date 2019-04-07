@@ -521,6 +521,7 @@ body {
         border-bottom: 1rem solid var(--color-bg);
         box-shadow: 0 0 0 1rem var(--color-light) inset;
         height:46rem;
+        flex-shrink: 0;
         display: flex;
         padding:0 15rem;
         align-items: center;
@@ -554,6 +555,7 @@ body {
         align-items: stretch;
         width:auto;
         max-width:600rem;
+        max-height: 100%;
         position: relative;
         overflow: hidden;
         box-shadow: 1rem 0 0 0 var(--color-bg),
