@@ -5,6 +5,7 @@
 - bug fixes
   - sessions not added to history when opened
   - switch: traversing mode issue
+  - remote file browser reactivity issue
 - widgets
   - **removed** deprecated widgets `multifader`, `multitoggle`, `multipush` and `formula`
   - new `JS{{}}` property syntax, allows writing formulas using javascript

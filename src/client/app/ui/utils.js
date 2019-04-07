@@ -233,7 +233,13 @@ module.exports = {
 
         function keyDownHandler(e){
 
-            if (e.target === saveInput) {
+            if (e.keyCode === 13) {
+                if (save) {
+                    document.addEventListener('keyup', keyUpHandler)
+                } else {
+                    submit()
+                }
+            } else if (e.target === saveInput) {
                 return
             } else if (e.keyCode === 8) {
                 list.childNodes[0].firstElementChild.checked = true
@@ -253,13 +259,12 @@ module.exports = {
 
             if (e.keyCode === 13) {
                 setTimeout(submit, 100)
+                document.removeEventListener('keyup', keyUpHandler)
             }
 
         }
 
         document.addEventListener('keydown', keyDownHandler)
-        document.addEventListener('keyup', keyUpHandler)
-
 
         ipc.on('listDir', (data)=>{
 
