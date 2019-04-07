@@ -43,6 +43,11 @@ var Parser = class Parser {
         // Set default widget type
         props.type =  tab ? 'tab' : props.type || 'fader'
 
+        if (!this.widgets[props.type]) {
+            console.error('[' + props.id + '] Widget type "' + props.type +'" does not exist, falling back to "fader"')
+            props.type = 'fader'
+        }
+
         // Get widget's defaults
         var defaults = this.defaults[props.type]
 
