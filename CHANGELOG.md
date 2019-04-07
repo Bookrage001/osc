@@ -9,6 +9,7 @@
   - **removed** deprecated widgets `multifader`, `multitoggle`, `multipush` and `formula`
   - new `JS{{}}` property syntax, allows writing formulas using javascript
   - errors encountered in `#{}` blocks are now printed to the client console (F12)  
+  - keys: renamed formula context variable `super` to `meta`
 
 ## 0.44.0
 

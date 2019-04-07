@@ -20,7 +20,7 @@ class Keys extends Widget {
                 '- `ctrl`: control key state',
                 '- `alt`: alt key state',
                 '- `shift`: shift key state',
-                '- `super`: command/windows key state'
+                '- `meta`: command/windows key state'
             ]},
             keyup: {type: 'string', value: '', help: 'Same as `keydown`, but evaluated when releasing the key combo'},
             repeat: {type: 'boolean', value: true, help: 'Set to `false` to prevent keydown repeats when holding the key combo pressed'},
@@ -158,7 +158,7 @@ Keys.parsersContexts.keydown = Keys.parsersContexts.keyup = {
     ctrl: false,
     alt: false,
     shift: false,
-    super: false
+    meta: false
 }
 
 Keys.dynamicProps = Keys.prototype.constructor.dynamicProps.concat(
