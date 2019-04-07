@@ -134,6 +134,7 @@ module.exports = {
             intervals = {}
 
         sandbox.contentWindow.console = console
+        sandbox.contentWindow.global = {}
 
         document.documentElement.removeChild(sandbox)
 
