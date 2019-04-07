@@ -417,7 +417,8 @@ class Widget extends EventEmitter {
         originalPropName = originalPropName || propName
 
         var variables = {},
-            mathscope = context || this.constructor.parsersContexts[propName] || {},
+            defaultScope = this.constructor.parsersContexts[propName] || {},
+            mathscope = context || {},
             varnumber = 999
 
         if (typeof propValue == 'string') {
@@ -582,6 +583,10 @@ class Widget extends EventEmitter {
 
                     if (!this.parsers[m]) this.parsers[m] = math.compile(m.substr(2, m.length - 3).trim())
 
+                    for (var k in defaultScope) {
+                        if (mathscope[k] === undefined) mathscope[k] = defaultScope[k]
+                    }
+
                     let r = this.parsers[m].eval(mathscope)
 
                     if (r instanceof math.type.ResultSet && !r.entries.length) {
@@ -601,7 +606,7 @@ class Widget extends EventEmitter {
             try {
                 propValue = propValue.replace(/JS\{\{([\s\S]*)\}\}/g, (m, code)=>{
 
-                    if (!this.parsers[code]) this.parsers[code] = evaljs(code)
+                    if (!this.parsers[code]) this.parsers[code] = evaljs(code, defaultScope)
 
                     let r = this.parsers[code](mathscope)
 

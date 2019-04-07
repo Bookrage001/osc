@@ -144,7 +144,7 @@ module.exports = {
 
             if  (defaultContext) {
                 for (var k in defaultContext) {
-                    contextInit += `var ${k} = ${k} || ${JSON.stringify(defaultContext[k])}`
+                    contextInit += `var ${k} = ${k} || ${JSON.stringify(defaultContext[k])};`
                     contextKeys.push(k)
                     contextValues.push(defaultContext[k])
                 }
