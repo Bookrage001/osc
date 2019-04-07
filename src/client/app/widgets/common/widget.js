@@ -136,7 +136,6 @@ class Widget extends EventEmitter {
         this.props = options.props
         this.errors = {}
         this.parsers = {}
-        this.jsparsers = {}
         this.parent = options.root ? widgetManager : options.parent
         this.parentNode = options.parentNode
         this.hash = nanoid('abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10)
@@ -418,7 +417,7 @@ class Widget extends EventEmitter {
         originalPropName = originalPropName || propName
 
         var variables = {},
-            mathscope = context || {},
+            mathscope = context || this.constructor.parsersContexts[propName] || {},
             varnumber = 999
 
         if (typeof propValue == 'string') {
@@ -600,13 +599,15 @@ class Widget extends EventEmitter {
 
             try {
                 propValue = propValue.replace(/JS\{\{([\s\S]*)\}\}/g, (m, code)=>{
-                    if (!this.jsparsers[code]) this.jsparsers[code] = evaljs(code)
 
-                    let r = this.jsparsers[code](mathscope)
+                    if (!this.parsers[code]) this.parsers[code] = evaljs(code)
+
+                    let r = this.parsers[code](mathscope)
 
                     if (r === undefined) r = ''
 
                     return typeof r !== 'string' ? JSON.stringify(r) : r
+
                 })
             } catch (err) {
                 var stackline = err.stack ? err.stack.match(/>:([0-9]+):[0-9]+/) : '',
@@ -909,6 +910,8 @@ class Widget extends EventEmitter {
     }
 
 }
+
+Widget.parsersContexts = {}
 
 Widget.dynamicProps = [
     'top',

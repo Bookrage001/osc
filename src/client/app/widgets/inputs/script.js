@@ -89,6 +89,16 @@ class Script extends Widget {
 
 }
 
+Script.parsersContexts.condition = {
+    value: ''
+}
+
+Script.parsersContexts.script = {
+    value: '',
+    send: ()=>{},
+    set: ()=>{}
+}
+
 Script.dynamicProps = Script.prototype.constructor.dynamicProps.concat(
     'condition',
     'script'

@@ -152,6 +152,15 @@ class Keys extends Widget {
 
 }
 
+Keys.parsersContexts.keydown = Keys.parsersContexts.keyup = {
+    key: 'x',
+    code: 'x',
+    ctrl: false,
+    alt: false,
+    shift: false,
+    super: false
+}
+
 Keys.dynamicProps = Keys.prototype.constructor.dynamicProps.concat(
     'keydown',
     'keyup',

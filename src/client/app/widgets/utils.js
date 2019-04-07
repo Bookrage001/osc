@@ -111,18 +111,19 @@ module.exports = {
         var sandbox = document.createElement('iframe'),
             loopProtect = require('loop-protect')
 
+        sandbox.style.display = 'none'
+        sandbox.sandbox = 'allow-scripts allow-same-origin'
+        document.body.appendChild(sandbox)
+
+        // init infinite loop guard
         loopProtect.alias = '__protect'
         loopProtect.hit = function(line){
             throw 'Potential infinite loop found on line ' + line
         }
-
-        sandbox.style.display = 'none'
-        sandbox.sandbox = 'allow-scripts allow-same-origin'
-        document.body.appendChild(sandbox)
         sandbox.contentWindow.parsers = {}
         sandbox.contentWindow.__protect = loopProtect
 
-        function evaljs(code) {
+        function evaljs(code, defaultContext) {
 
             sandbox.contentWindow.parsers[code] = sandbox.contentWindow.Function(
                 loopProtect('"use strict";' + code)
@@ -131,11 +132,28 @@ module.exports = {
 
             return (context)=>{
 
-                for (var k in context) {
+                var ret, err, k
+
+                // set context
+                for (k in context) {
                     sandbox.contentWindow[k] = context[k]
                 }
 
-                return sandbox.contentWindow.parsers[code]()
+                // evaluate
+                try {
+                    ret = sandbox.contentWindow.parsers[code]()
+                } catch(e) {
+                    err = e
+                }
+
+                // clean context
+                for (k in context) {
+                    delete sandbox.contentWindow[k]
+                }
+
+                if (err) throw err
+
+                return ret
 
             }
 
