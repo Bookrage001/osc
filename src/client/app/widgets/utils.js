@@ -112,8 +112,13 @@ module.exports = {
             loopProtect = require('loop-protect')
 
         sandbox.style.display = 'none'
-        sandbox.sandbox = 'allow-scripts allow-same-origin'
+        sandbox.sandbox = 'allow-same-origin'
         document.body.appendChild(sandbox)
+
+        // block requests
+        sandbox.contentWindow.document.open()
+        sandbox.contentWindow.document.write(`<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-eval';">`)
+        sandbox.contentWindow.document.close()
 
         // init infinite loop guard
         loopProtect.alias = '__protect'
