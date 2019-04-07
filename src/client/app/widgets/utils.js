@@ -113,7 +113,7 @@ module.exports = {
 
         sandbox.style.display = 'none'
         sandbox.sandbox = 'allow-same-origin'
-        document.body.appendChild(sandbox)
+        document.documentElement.appendChild(sandbox)
 
         // block requests
         sandbox.contentWindow.document.open()
@@ -125,36 +125,59 @@ module.exports = {
         loopProtect.hit = function(line){
             throw 'Potential infinite loop found on line ' + line
         }
-
-        sandbox.contentWindow.__parsers = {}
         sandbox.contentWindow.__protect = loopProtect
+
+
+        var _Function = sandbox.contentWindow.Function,
+            parsers = {},
+            timeouts = {},
+            intervals = {}
+
+        sandbox.contentWindow.console = console
+
+        document.documentElement.removeChild(sandbox)
 
         function evaljs(code, defaultContext) {
 
-            sandbox.contentWindow.__parsers[code] = sandbox.contentWindow.Function(
-                loopProtect('"use strict";' + code)
+            var contextInit = '',
+                contextKeys = [],
+                contextValues = []
+
+            if  (defaultContext) {
+                for (var k in defaultContext) {
+                    contextInit += `var ${k} = ${k} || ${JSON.stringify(defaultContext[k])}`
+                    contextKeys.push(k)
+                    contextValues.push(defaultContext[k])
+                }
+            }
+
+            parsers[code] = new _Function(
+                '__VARS', ...contextKeys,
+                loopProtect('"use strict";' + contextInit + code)
                 .replace(/;\n(if \(__protect.*break;)\n/g, ';$1') // prevent loop protect from breaking stack linenumber
+                .replace(/(VAR_[0-9]+)/g, '__VARS.$1')
             )
 
             return (context)=>{
 
                 var ret, err, k
 
-                // set context
-                for (k in context) {
-                    sandbox.contentWindow[k] = context[k]
+                var __VARS = {}
+                for (var k in context) {
+                    var index = contextKeys.indexOf(k)
+                    if (index !== -1) {
+                        contextValues[index] = context[k]
+                    } else {
+                        __VARS[k] = context[k]
+                    }
                 }
+                contextValues.unshift(__VARS)
 
                 // evaluate
                 try {
-                    ret = sandbox.contentWindow.__parsers[code]()
+                    ret = parsers[code].apply(null, contextValues)
                 } catch(e) {
                     err = e
-                }
-
-                // clean context
-                for (k in context) {
-                    delete sandbox.contentWindow[k]
                 }
 
                 if (err) throw err
