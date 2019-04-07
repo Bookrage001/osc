@@ -62,10 +62,15 @@ module.exports = class Switch extends Widget {
 
         this.value = undefined
 
-        var dragCallback = (e)=>{
+        var dragCallback = (e, touchFix)=>{
 
             var index = 0,
                 node = e.target
+
+            if (touchFix && e.isTouch) {
+                // special traversing touch fix
+                node = document.elementFromPoint(e.clientX, e.clientY)
+            }
 
             if (node === this.widget || !this.widget.contains(node)) return
 
@@ -82,7 +87,9 @@ module.exports = class Switch extends Widget {
         }
 
         this.on('draginit', dragCallback , {element: this.widget})
-        if (this.getProp('traversing')) this.on('drag', dragCallback , {element: this.widget})
+        this.on('drag', (e)=>{
+            if (this.getProp('traversing') || e.traversing) dragCallback(e, true)
+        } , {element: this.widget})
 
     }
 
