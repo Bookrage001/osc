@@ -417,7 +417,7 @@ class Widget extends EventEmitter {
         originalPropName = originalPropName || propName
 
         var variables = {},
-            mathscope = context || this.constructor.parsersContexts[propName] || {},
+            mathscope = context || this.constructor.parsersContexts[propName] || {},
             varnumber = 999
 
         if (typeof propValue == 'string') {
