@@ -3,6 +3,7 @@
 ## next
 
 - widgets
+  - **removed** deprecated widgets `multifader`, `multitoggle`, `multipush` and `formula`
   - new `JS{{}}` property syntax for javascript lovers
   - errors encountered in `#{}` blocks are now printed to the client console (F12)  
 

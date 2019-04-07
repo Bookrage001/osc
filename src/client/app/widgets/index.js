@@ -26,11 +26,6 @@ module.exports.widgets = {
     patchbay: require('./matrices/patchbay').PatchBay,
     patchbaynode: require('./matrices/patchbay').PatchBayNode,
 
-    // deprecated / hidden
-    multitoggle: require('./matrices/multitoggle'),
-    multipush: require('./matrices/multipush'),
-    multifader: require('./matrices/multifader'),
-
     // plots
     led: require('./plots/led'),
     rgbled: require('./plots/rgbled'),
@@ -59,10 +54,6 @@ module.exports.widgets = {
     script: require('./inputs/script'),
     gyroscope: require('./inputs/gyroscope'),
     file: require('./inputs/file'),
-
-    // maths
-    // deprecated / hidden
-    formula: require('./maths/formula')
 
 }
 
