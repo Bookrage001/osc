@@ -16,7 +16,7 @@ class Keys extends Widget {
             keydown: {type: 'string', value: '', help: [
                 'This property is evaluated each time the key combo is pressed and defines the widget\'s own value. Formulas are given extras variables in this context:',
                 '- `key`: pressed key name (usefull for handling multiple keys with a single keys widget, lowercased when referencing a character key)',
-                '- `code`: pressed key code name (<a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code#Code_values" target="_blank">full list</a>)',
+                '- `code`: pressed key code name (<a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code#Code_values">full list</a>)',
                 '- `ctrl`: control key state',
                 '- `alt`: alt key state',
                 '- `shift`: shift key state',

@@ -91,7 +91,7 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         }
         var lock,
             selectedWidgets = [...editor.selectedWidgets]
-            
+
         var onChange = ()=>{
 
             if (lock) return
@@ -207,6 +207,9 @@ module.exports = function editField(editor, widget, propName, defaultValue){
         var htmlHelp = Array.isArray(defaultValue.help) ? defaultValue.help.join('<br/><br/>').replace(/<br\/>-/g, '-') : defaultValue.help
         htmlHelp = htmlHelp ? html`<p class="help">${raw(htmlHelp.replace(/`([^`]*)`/g, '<code>$1</code>'))}</p>` : ''
 
+        DOM.each(htmlHelp, 'a', (el)=>{
+            el.target = '_blank'
+        })
 
         var htmlError = error ? html`<p class="error">${error}</p>` : '',
             computedValue = propName !== 'tabs' && propName !== 'widgets' ? widget.getProp(propName) : ['...']

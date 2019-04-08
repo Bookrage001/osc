@@ -65,7 +65,7 @@ class Widget extends EventEmitter {
                 'Insert icons using the prefix ^ followed by the icon\'s name : ^play, ^pause, etc'
             ]},
             color: {type: 'string', value: 'auto', help: 'Defines the widget\'s accent color (css variable `--custom-color`). Must be a valid CSS color. Set to "auto" to inherit from parent widget.'},
-            css: {type: 'string', value: '', help: 'CSS rules. See <a href="https://openstagecontrol.ammd.net/docs/css-tips/" target="_blank">documentation</a>.'},
+            css: {type: 'string', value: '', help: 'CSS rules. See <a href="https://openstagecontrol.ammd.net/docs/css-tips/">documentation</a>.'},
 
             _value: 'value',
 
