@@ -164,10 +164,10 @@ module.exports = {
             browser = html`<div class="file-browser"></div>`,
             ariane = html`<div class="ariane"></div>`,
             list = html`<form class="file-list"></form>`,
-            saveInput = html`<input type="text" class="save-as"/>`,
+            saveInput = html`<input type="text" class="save-as" placeholder="${options.extension ? '*.' + options.extension : ''}" ${options.save ? '' : 'disabled'}/>`,
             actions = html`
                 <div class="file-actions">
-                    ${ save ? saveInput : '' }
+                    ${saveInput}
                     <div class="btn cancel">${raw(module.exports.icon('times'))} Cancel</div>
                     ${
                         save ?

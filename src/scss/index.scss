@@ -692,6 +692,9 @@ body {
             top: -1rem;
             position: relative;
             background: var(--color-bg);
+            &[disabled] {
+                pointer-events: none;
+            }
         }
     }
 }
