@@ -35,7 +35,7 @@ module.exports = class Encoder extends Widget {
 
             _encoder: 'encoder',
 
-            ticks: {type: 'number', value: 'auto', help: 'defines the granularity / verbosity of the encoder (number of step for a 360° arc)'},
+            ticks: {type: 'number', value: 360, help: 'defines the granularity / verbosity of the encoder (number of step for a 360° arc)'},
             back: {type: '*', value: -1, help: 'Defines which value is sent when rotating the encoder anticlockwise'},
             forth: {type: '*', value: 1, help: 'Defines which value is sent when rotating the encoder clockwise'},
             release: {type: 'number', value: 'auto', help: [
