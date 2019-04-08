@@ -27,6 +27,15 @@ pre, code {
     font-family: $mono-font-family;
 }
 
+.dynamic-prop-icon {
+    width:12px;
+    height:12px;
+    background-image: url(img/icon-bolt.svg);
+    background-size: cover;
+    display: inline-block;
+    margin-left: 4px;
+}
+
 #jumbotron {
     text-align: center;
     position: relative;
@@ -195,6 +204,15 @@ code {
     padding: 2px;
 }
 
+h1,h2,h3,h4,h5 {
+    code {
+        vertical-align: middle;
+        font-size: 70%;
+    }
+}
+
+
+
 table code {
     white-space: nowrap;
 }
@@ -211,10 +229,10 @@ table .thead2 {
 
 
 .headerlink {
-    font-size:50%;
-    opacity: 0.25;
-    vertical-align: super;
+    // font-size:50%;
+    opacity: 0.5;
     position: relative;
+    margin-left: 4px;
 }
 
 h1:first-child {

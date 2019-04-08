@@ -54,7 +54,7 @@ markdown_extensions:
     - markdown.extensions.def_list
     - markdown.extensions.footnotes
     - markdown.extensions.meta
-    - markdown.extensions.toc(permalink=true)
+    - markdown.extensions.toc(permalink=#)
     - pymdownx.arithmatex
     - pymdownx.betterem(smart_enable=all)
     - pymdownx.caret

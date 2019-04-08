@@ -64,8 +64,8 @@ class Widget extends EventEmitter {
                 'Set to `false` to hide completely',
                 'Insert icons using the prefix ^ followed by the icon\'s name : ^play, ^pause, etc'
             ]},
-            color: {type: 'string', value: 'auto', help: 'CSS color code. Set to "auto" to inherit from parent widget.'},
-            css: {type: 'string', value: '', help: 'CSS rules'},
+            color: {type: 'string', value: 'auto', help: 'Defines the widget\'s accent color (css variable `--custom-color`). Must be a valid CSS color. Set to "auto" to inherit from parent widget.'},
+            css: {type: 'string', value: '', help: 'CSS rules. See <a href="https://openstagecontrol.ammd.net/docs/css-tips/" target="_blank">documentation</a>.'},
 
             _value: 'value',
 
