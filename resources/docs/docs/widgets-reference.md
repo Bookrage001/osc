@@ -81,7 +81,7 @@
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="encoder_encoder">encoder<a class="headerlink" href="#encoder_encoder" title="Permanent link">#</a></h4> ||||
-| <h4 id="encoder_ticks">ticks<a class="headerlink" href="#encoder_ticks" title="Permanent link">#</a></h4> | `number` | <code>"auto"</code> | defines the granularity / verbosity of the encoder (number of step for a 360° arc) |
+| <h4 id="encoder_ticks">ticks<a class="headerlink" href="#encoder_ticks" title="Permanent link">#</a></h4> | `number` | <code>360</code> | defines the granularity / verbosity of the encoder (number of step for a 360° arc) |
 | <h4 id="encoder_back">back<a class="headerlink" href="#encoder_back" title="Permanent link">#</a></h4> | `*` | <code>-1</code> | Defines which value is sent when rotating the encoder anticlockwise |
 | <h4 id="encoder_forth">forth<a class="headerlink" href="#encoder_forth" title="Permanent link">#</a></h4> | `*` | <code>1</code> | Defines which value is sent when rotating the encoder clockwise |
 | <h4 id="encoder_release">release<a class="headerlink" href="#encoder_release" title="Permanent link">#</a></h4> | `number` | <code>"auto"</code> | Defines which value is sent when releasing the encoder:<br/>- Set to `null` to send send no argument in the osc message<br/>- Can be an `object` if the type needs to be specified |
