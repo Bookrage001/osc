@@ -79,12 +79,12 @@ var sidepanelData = [
                     {
                         label: locales('state_import'),
                         click: true,
-                        action:state.load.bind(state)
+                        action:state.import.bind(state)
                     },
                     {
                         label: locales('state_export'),
                         click: true,
-                        action:state.save.bind(state)
+                        action:state.export.bind(state)
                     },
                 ]
             }
