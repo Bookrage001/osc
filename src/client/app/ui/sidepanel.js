@@ -63,7 +63,7 @@ var sidepanelData = [
             {
                 label: locales('editor_save'),
                 action:()=>{
-                    state.save()
+                    state.save(state.statePath)
                 }
             },
             {
