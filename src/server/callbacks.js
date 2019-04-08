@@ -82,29 +82,16 @@ module.exports =  {
 
     },
 
-    sessionOpen: function(data,clientId) {
+    sessionOpen: function(data, clientId) {
 
         if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
 
-        var file = data.file || (function(){try {return fs.readFileSync(data.path,'utf8')} catch(err) {return false}})(),
-            error = file === false && data.path ? 'Session file "' + data.path + '" not found.' : false,
-            session
+        module.exports.fileRead(data, clientId, true, (result)=>{
 
-        try {
-            session = JSON.parse(file)
-        } catch(err) {
-            error = err
-        }
+            ipc.send('sessionOpen', {path: data.path, session: result}, clientId)
 
-        if (!error) {
+        })
 
-            ipc.send('sessionOpen', {path: data.path, session: session}, clientId)
-
-        } else {
-
-            ipc.send('error', `Invalid session file (${error})`)
-
-        }
     },
 
     sessionOpened: function(data, clientId) {
@@ -129,6 +116,33 @@ module.exports =  {
         ipc.send('stateSend', null, null, clientId)
 
         module.exports.sessionSetPath({path: data.path}, clientId)
+
+    },
+
+    fileRead: function(data, clientId, ok, callback) {
+
+        if (!ok) return
+
+        if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
+
+        fs.readFile(data.path, 'utf8', (err, result)=>{
+
+            var error
+
+            if (err) {
+                error = err
+            } else {
+                try {
+                    result = JSON.parse(result)
+                    callback(result)
+                } catch(err) {
+                    error = err
+                }
+            }
+
+            if (error) ipc.send('error', `Could not open file (${error})`)
+
+        })
 
     },
 
@@ -189,6 +203,18 @@ module.exports =  {
 
     },
 
+    stateOpen: function(data, clientId) {
+
+        if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
+
+        module.exports.fileRead(data, clientId, true, (result)=>{
+
+            ipc.send('stateLoad', {state: result, send: true}, clientId)
+
+        })
+
+    },
+
     sessionSave: function(data, clientId) {
 
         if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
@@ -215,6 +241,10 @@ module.exports =  {
     },
 
     stateSave: function(data, clientId) {
+
+        if (Array.isArray(data.path)) data.path = path.resolve(...data.path)
+
+        if (!path.basename(data.path).match(/.*\.state/)) return console.error('Statesaves must be saved as .state files')
 
         module.exports.fileSave(data, clientId, true, ()=>{
 

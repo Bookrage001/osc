@@ -41,10 +41,6 @@ var sidepanelData = [
                 label: locales('state_recall'),
                 action: ()=>{
                     state.quickLoad()
-                    notifications.add({
-                        icon: 'sliders-h',
-                        message: locales('state_recallsuccess')
-                    })
                 },
                 class:'disabled quickload'
             },
@@ -59,12 +55,38 @@ var sidepanelData = [
                 }
             },
             {
-                label: locales('state_import'),
-                action:state.load.bind(state)
+                label: locales('editor_load'),
+                action:()=>{
+                    state.browse()
+                }
             },
             {
-                label: locales('state_export'),
-                action:state.save.bind(state)
+                label: locales('editor_save'),
+                action:()=>{
+                    state.save()
+                }
+            },
+            {
+                label: raw(icon('ellipsis-h')),
+                class: 'narrow',
+                menu: [
+                    {
+                        label: locales('editor_save_as'),
+                        action:()=>{
+                            state.saveAs()
+                        }
+                    },
+                    {
+                        label: locales('state_import'),
+                        click: true,
+                        action:state.load.bind(state)
+                    },
+                    {
+                        label: locales('state_export'),
+                        click: true,
+                        action:state.save.bind(state)
+                    },
+                ]
             }
         ]
     },

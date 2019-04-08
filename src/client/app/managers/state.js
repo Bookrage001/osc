@@ -1,5 +1,6 @@
-var widgetManager = require('./widgets'),
-    {upload} = require('../ui/utils'),
+var ipc = require('../ipc'),
+    widgetManager = require('./widgets'),
+    {upload, remoteBrowse} = require('../ui/utils'),
     notifications = require('../ui/notifications'),
     {saveAs} = require('file-saver'),
     locales = require('../locales')
@@ -8,6 +9,9 @@ var widgetManager = require('./widgets'),
 var StateManager = class StateManager {
 
     constructor() {
+
+        this.statePath = ''
+        this.lastDir = null
 
         this.quickState = []
 
@@ -82,32 +86,77 @@ var StateManager = class StateManager {
 
     }
 
-    load() {
+    save(path) {
 
-        function stateLoadError(){
-            notifications.add({
-                class: 'error',
-                message: locales('state_uploaderror')
-            })
-        }
+        if (path) this.statePath = path
 
-        upload('.state', (path, result)=>{
-            try {
-                this.set(JSON.parse(result),true)
-                notifications.add({
-                    icon: 'sliders-h',
-                    message: locales('state_recallsuccess')
-                })
-            } catch(e) {
-                stateLoadError()
-            }
-        }, (e)=>{
-            stateLoadError()
+        if (!this.statePath) return this.saveAs()
+
+        ipc.send('stateSave', {
+            session: JSON.stringify(this.get(), null, '  '),
+            path: this.statePath
         })
 
     }
 
-    save() {
+    saveAs() {
+
+        remoteBrowse({extension: 'state', save:true, directory: this.lastDir}, (path)=>{
+            this.lastDir = path[0]
+            this.save(path)
+        })
+
+    }
+
+    browse() {
+
+        remoteBrowse({extension: 'state', directory: this.lastDir}, (path)=>{
+            this.lastDir = path[0]
+            ipc.send('stateOpen',{path: path})
+        })
+
+    }
+
+    load(state, send) {
+
+        if (!state) return
+
+        try {
+            if (typeof state === 'string') {
+                state = JSON.parse(state)
+            }
+            this.set(state, send)
+            notifications.add({
+                icon: 'sliders-h',
+                message: locales('state_recallsuccess')
+            })
+        } catch(e) {
+            this.loadError()
+        }
+
+    }
+
+    loadError(){
+
+        notifications.add({
+            class: 'error',
+            message: locales('state_uploaderror')
+        })
+
+    }
+
+
+    import() {
+
+        upload('.state', (path, result)=>{
+            this.load(result, true)
+        }, (e)=>{
+            this.loadError()
+        })
+
+    }
+
+    export() {
 
         var state = JSON.stringify(this.get(),null,'    ')
         var blob = new Blob([state],{type : 'application/json'})
@@ -115,23 +164,15 @@ var StateManager = class StateManager {
 
     }
 
-    quickSave(state) {
+    quickSave() {
 
-        if (state) {
-
-            this.quickState = state
-
-        } else {
-
-            this.quickState = this.get()
-
-        }
+        this.quickState = this.get()
 
     }
 
     quickLoad() {
 
-        this.set(this.quickState,true)
+        this.load(this.quickState, true)
 
     }
 
