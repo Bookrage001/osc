@@ -229,11 +229,14 @@ table .thead2 {
 
 
 .headerlink {
-    // font-size:50%;
-    opacity: 0.5;
+    opacity: 0;
     position: relative;
     margin-left: 4px;
 }
+:hover > .headerlink {
+    opacity: 0.5;
+}
+
 
 h1:first-child {
     margin-top:0;
