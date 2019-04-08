@@ -292,6 +292,8 @@ module.exports =  {
             if (data.target.indexOf(null) === -1 && settings.read('targets') && !shortdata.target) Array.prototype.push.apply(targets, settings.read('targets'))
             if (data.target) Array.prototype.push.apply(targets, data.target)
 
+            data.args = data.preArgs ? data.preArgs.concat(value) : [value]
+
             for (var i in targets) {
 
                 if (targets[i] === 'self') {
@@ -315,7 +317,6 @@ module.exports =  {
 
                     } else {
 
-                        data.args = data.preArgs ? data.preArgs.concat(value) : [value]
                         osc.send(host,port,data.address,data.args,data.precision)
 
                     }

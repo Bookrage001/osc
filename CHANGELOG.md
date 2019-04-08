@@ -3,10 +3,11 @@
 ## 0.45.0
 
 - bug fixes
+  - regression (v0.44) breaking sync between clients 
   - sessions not added to history when opened
   - switch: traversing mode issue
   - remote file browser reactivity issue
-  - encoder: broken because `ticks` default was `auto` instead of `360` 
+  - encoder: broken because `ticks` default was `auto` instead of `360`
 - widgets
   - **removed** deprecated widgets `multifader`, `multitoggle`, `multipush` and `formula`
   - new `JS{{}}` property syntax, allows writing formulas using javascript
