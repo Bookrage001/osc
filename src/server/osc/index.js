@@ -66,6 +66,10 @@ class OscServer {
                 })
 
             try {
+                // remove require function (not needed at runtime)
+                // wrong: this.constructor.constructor("return process")().mainModule.require
+                process.mainModule.require = process.dlopen = null
+                // run
                 mod = vm.runInContext(file, context, {
                     filename: customModule[0]
                 })
