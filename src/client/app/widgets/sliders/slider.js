@@ -91,6 +91,7 @@ class Slider extends Canvas {
                 parent:this, parentNode:this.widget
             })
 
+            this.input.sendValue = ()=>{}
             this.widget.appendChild(this.input.widget)
             this.input.on('change', (e)=>{
                 e.stopPropagation = true
