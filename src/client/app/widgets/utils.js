@@ -132,6 +132,10 @@ module.exports = {
             parsers = {}
 
         sandbox.contentWindow.console = console
+        sandbox.contentWindow.setTimeout =
+        sandbox.contentWindow.setInterval = ()=>{
+            throw 'setTimeout and setInterval can\'t be used in formulas'
+        }
         sandbox.contentWindow.global = {}
 
         document.documentElement.removeChild(sandbox)

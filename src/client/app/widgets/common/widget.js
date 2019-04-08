@@ -599,7 +599,7 @@ class Widget extends EventEmitter {
                     return typeof r != 'string' ? JSON.stringify(r) : r
                 })
             } catch (err) {
-                propValue = 'ERROR'
+                propValue = 'ERROR (F12)'
                 console.log(this.getProp('id') + '.' + propName + ': #{} error:\n' + err)
             }
 
@@ -616,7 +616,7 @@ class Widget extends EventEmitter {
 
                 })
             } catch (err) {
-                propValue = 'ERROR'
+                propValue = 'ERROR (F12)'
                 var stackline = err.stack ? (err.stack.match(/>:([0-9]+):[0-9]+/) || '') : '',
                     line = stackline.length > 1 ? ' at line ' + (parseInt(stackline[1]) - 2) : ''
                 console.log(this.getProp('id') + '.' + propName + ': JS{{}} error:\n' + err + line)
