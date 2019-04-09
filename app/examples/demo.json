@@ -703,7 +703,7 @@
           "bypass": false
         },
         {
-          "type": "dropdown",
+          "type": "rgb",
           "top": 10,
           "left": 480,
           "id": "color_picker",
@@ -711,19 +711,28 @@
           "label": "Color",
           "width": 130,
           "height": 60,
-          "color": "auto",
-          "css": "",
-          "precision": 2,
-          "value": "auto",
-          "values": {
-            "Default": "auto",
-            "Orange": "orange"
-          },
+          "css": "/* Cool hack ::\nOnly display the hue slider.\nWe ensure the initial color \nby setting the default property \n*/\n.pad > :first-child{display:none;}\n.hue-wrapper{height:100%;}\n.hue-wrapper *{height:100%;}",
+          "precision": 0,
+          "value": "",
           "address": "/dropdown_1",
           "preArgs": [],
           "target": [],
-          "default": "",
-          "bypass": false
+          "default": [
+            86,
+            168,
+            255
+          ],
+          "bypass": false,
+          "snap": false,
+          "spring": false,
+          "range": {
+            "min": 0,
+            "max": 255
+          },
+          "input": true,
+          "alpha": false,
+          "split": false,
+          "pointSize": 10
         },
         {
           "type": "keyboard",
@@ -932,7 +941,7 @@
       "scroll": true
     }
   ],
-  "color": "@{color_picker}",
+  "color": "JS{{\nreturn 'rgb(' + @{color_picker}.join(',') + ')'\n}}",
   "css": "",
   "value": "",
   "precision": 0,
