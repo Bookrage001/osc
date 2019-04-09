@@ -600,7 +600,7 @@ class Widget extends EventEmitter {
                 })
             } catch (err) {
                 propValue = 'ERROR (F12)'
-                console.log(this.getProp('id') + '.' + propName + ': #{} error:\n' + err)
+                console.log((this.getProp('id') || this.props.id) + '.' + propName + ': #{} error:\n' + err)
             }
 
             try {
@@ -619,7 +619,7 @@ class Widget extends EventEmitter {
                 propValue = 'ERROR (F12)'
                 var stackline = err.stack ? (err.stack.match(/>:([0-9]+):[0-9]+/) || '') : '',
                     line = stackline.length > 1 ? ' at line ' + (parseInt(stackline[1]) - 2) : ''
-                console.log(this.getProp('id') + '.' + propName + ': JS{{}} error:\n' + err + line)
+                console.log((this.getProp('id') || this.props.id) + '.' + propName + ': JS{{}} error:\n' + err + line)
             }
 
             for (let k in variables) {
