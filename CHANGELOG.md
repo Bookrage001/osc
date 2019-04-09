@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.45.1
+
+- bug fixes
+  - broken session local export
+
 ## 0.45.0
 
 - bug fixes

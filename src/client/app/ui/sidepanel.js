@@ -174,12 +174,16 @@ var sidepanelData = [
                     {
                         label: locales('editor_import'),
                         click: true,
-                        action: session.import
+                        action: ()=>{
+                            session.import()
+                        }
                     },
                     {
                         label: locales('editor_export'),
                         click: true,
-                        action: session.export
+                        action: ()=>{
+                            session.export()
+                        }
                     }
                 ]
             }
