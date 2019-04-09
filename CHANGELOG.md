@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.45.3
+
+- bug fixes
+  - broken client sync for widgets with `split` set 
+
 ## 0.45.2
 
 - bug fixes
