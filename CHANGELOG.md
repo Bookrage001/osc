@@ -14,7 +14,7 @@
 ## 0.45.0
 
 - bug fixes
-  - regression (v0.44) breaking sync between clients
+  - regression (v0.41.4) breaking sync between clients
   - sessions not added to history when opened
   - switch: traversing mode issue
   - remote file browser reactivity issue
