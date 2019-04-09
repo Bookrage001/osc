@@ -138,13 +138,36 @@ module.exports = {
         }
         sandbox.contentWindow.global = {}
 
+        function nuke(o) {
+            // non-primitives created outside the sandbox context can leak
+            // the host window object... let's nuke that !
+            // (we only nuke function and objects/arrays because we don't pass anything else)
+            var t = typeof o
+            if (t === 'function' || (t === 'object' && o !== null)) {
+                if (o.__proto__) {
+                    if (t === 'function') {
+                        o.__proto__.constructor = _Function
+                    } else {
+                        o.__proto__.constructor.constructor = _Function
+                    }
+                }
+                for (var k in o) {
+                    nuke(o[k])
+                }
+            }
+        }
+
+        for (var imports of ['__protect', 'console', 'setTimeout', 'setInterval', 'global']) {
+            nuke(sandbox.contentWindow[imports])
+        }
+
         document.documentElement.removeChild(sandbox)
 
         function evaljs(code, defaultContext) {
 
             var contextInit = '',
-                contextKeys = [],
-                contextValues = []
+                contextKeys = ['__VARS'],
+                contextValues = [{}]
 
             if  (defaultContext) {
                 for (var k in defaultContext) {
@@ -155,7 +178,7 @@ module.exports = {
             }
 
             parsers[code] = new _Function(
-                '__VARS', ...contextKeys,
+                ...contextKeys,
                 loopProtect('"use strict";' + contextInit + code)
                 .replace(/;\n(if \(__protect.*break;)\n/g, ';$1') // prevent loop protect from breaking stack linenumber
                 .replace(/(VAR_[0-9]+)/g, '__VARS.$1')
@@ -165,7 +188,7 @@ module.exports = {
 
                 var ret, err, k
 
-                var __VARS = {}
+                var __VARS = contextValues[0]
                 for (k in context) {
                     var index = contextKeys.indexOf(k)
                     if (index !== -1) {
@@ -174,7 +197,8 @@ module.exports = {
                         __VARS[k] = context[k]
                     }
                 }
-                contextValues.unshift(__VARS)
+
+                nuke(contextValues)
 
                 // evaluate
                 try {

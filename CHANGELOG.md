@@ -1,9 +1,15 @@
 # Changelog
 
+## 0.45.2
+
+- bug fixes
+  - potential security issue in `JS{{}}` parser
+
 ## 0.45.1
 
 - bug fixes
   - broken session local export
+  - potential security issue in custom module parser
 
 ## 0.45.0
 
