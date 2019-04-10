@@ -90,7 +90,7 @@
                                   {% for toc_item in toc_ %}
                                       <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                                       {% for toc_item in toc_item.children %}
-                                          <li><a href="{{ toc_item.abs_url }}">{{ toc_item.title }}</a></li>
+                                          <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                                       {% endfor %}
                                   {% endfor %}
                                   </ul>
