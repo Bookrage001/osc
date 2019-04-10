@@ -3,7 +3,8 @@
 ## 0.45.3
 
 - bug fixes
-  - broken client sync for widgets with `split` set 
+  - broken client sync for widgets with `split` set
+  - custom module: `receive` function not working when omitting host/port and sending only one argument
 
 ## 0.45.2
 

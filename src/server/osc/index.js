@@ -50,8 +50,8 @@ class OscServer {
                     receive: (host, port, address, ...args)=>{
                         if (host[0] === '/') {
                             // host and port can be skipped
-                            args.unshift(address)
-                            args.unshift(port)
+                            if (address !== undefined) args.unshift(address)
+                            if (port !== undefined) args.unshift(port)
                             address = host
                             host = port = undefined
                         }
