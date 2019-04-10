@@ -89,9 +89,13 @@
                                   <ul class="nav">
                                   {% for toc_item in toc_ %}
                                       <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                      {% if toc_item.children | first is defined %}
+                                      <ul class="nav">
                                       {% for toc_item in toc_item.children %}
                                           <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                                       {% endfor %}
+                                      </ul>
+                                      {% endif %}
                                   {% endfor %}
                                   </ul>
                               {% endif %}
