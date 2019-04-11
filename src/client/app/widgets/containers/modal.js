@@ -8,6 +8,12 @@ var Panel = require('./panel'),
 
 module.exports = class Modal extends Panel {
 
+    static description() {
+
+        return 'A toggle button that opens a popup panel.'
+
+    }
+
     static defaults() {
 
         return Widget.defaults({

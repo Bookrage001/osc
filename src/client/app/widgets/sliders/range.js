@@ -174,6 +174,12 @@ var RangeFader = class RangeFader extends Fader {
 
 class Range extends Widget {
 
+    static description() {
+
+        return 'A fader with two heads for setting a range.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

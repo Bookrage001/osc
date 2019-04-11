@@ -2,6 +2,12 @@ var _plots_base = require('./_plots_base')
 
 module.exports = class Plot extends _plots_base {
 
+    static description() {
+
+        return 'XY coordinates plot.'
+
+    }
+
     static defaults() {
 
 

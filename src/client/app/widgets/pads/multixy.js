@@ -9,6 +9,12 @@ var xyDefaults = Xy.defaults()._props()
 
 module.exports = class MultiXy extends Pad {
 
+    static description() {
+
+        return 'Multi-point XY pad.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

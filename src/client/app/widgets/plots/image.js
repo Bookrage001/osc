@@ -2,7 +2,13 @@ var Widget = require('../common/widget'),
     ipc = require('../../ipc'),
     html = require('nanohtml')
 
-module.exports = class Led extends Widget {
+module.exports = class Image extends Widget {
+
+    static description() {
+
+        return 'Load a image (url or base64-encoded).'
+
+    }
 
     static defaults() {
 

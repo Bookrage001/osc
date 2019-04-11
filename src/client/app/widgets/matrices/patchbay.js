@@ -53,6 +53,12 @@ class PatchBayNode extends Widget {
 
 class PatchBay extends Canvas {
 
+    static description() {
+
+        return 'Connect inputs to outputs.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

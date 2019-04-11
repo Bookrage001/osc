@@ -33,6 +33,12 @@ setTimeout(()=>{
 
 class Widget extends EventEmitter {
 
+    static description() {
+
+        return ''
+
+    }
+
     static defaults(insert={}, except=[], push={}) {
 
         var defaults = {

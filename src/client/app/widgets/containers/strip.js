@@ -3,6 +3,12 @@ var Panel = require('./panel'),
 
 module.exports = class Strip extends Panel {
 
+    static description() {
+
+        return 'Widget container that display its children in a single column or row.'
+
+    }
+
     static defaults() {
 
         return Widget.defaults({

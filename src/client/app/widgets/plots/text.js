@@ -4,6 +4,12 @@ var {iconify} = require('../../ui/utils'),
 
 module.exports = class Text extends Widget {
 
+    static description() {
+
+        return 'Display text.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

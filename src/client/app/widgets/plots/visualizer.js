@@ -3,6 +3,12 @@ var {clip} = require('../utils'),
 
 module.exports = class Visualizer extends _plots_base {
 
+    static description() {
+
+        return 'Display its value over time.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

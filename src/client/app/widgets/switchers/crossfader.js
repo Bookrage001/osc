@@ -8,6 +8,12 @@ var faderDefaults = Fader.defaults()._props()
 
 module.exports = class Crossfader extends Switcher {
 
+    static description() {
+
+        return 'Switcher with linear interpolation slider.'
+
+    }
+
     static defaults(){
 
         return Widget.defaults({
@@ -21,7 +27,7 @@ module.exports = class Crossfader extends Switcher {
             horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display values horizontally'}
 
         })
-        
+
     }
 
     constructor(options) {

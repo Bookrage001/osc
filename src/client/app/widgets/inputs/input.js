@@ -4,6 +4,12 @@ var Canvas = require('../common/canvas'),
 
 module.exports = class Input extends Canvas {
 
+    static description() {
+
+        return 'Text input.'
+
+    }
+
     static defaults() {
 
         return super.defaults({
@@ -66,7 +72,7 @@ module.exports = class Input extends Canvas {
         this.widget.insertBefore(this.input, this.canvas)
         this.input.focus()
         this.input.setSelectionRange(0, this.input.value.length)
-        
+
     }
 
     blur(change=true) {

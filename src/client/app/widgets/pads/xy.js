@@ -8,6 +8,12 @@ var faderDefaults = Fader.defaults()._props()
 
 module.exports = class Xy extends Pad {
 
+    static description() {
+
+        return 'Two-dimensional slider.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

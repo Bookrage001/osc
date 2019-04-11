@@ -10,6 +10,12 @@ var faderDefaults = Fader.defaults()._props(),
 
 module.exports = class Rgb extends Pad {
 
+    static description() {
+
+        return 'Color picker with optional alpha slider.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

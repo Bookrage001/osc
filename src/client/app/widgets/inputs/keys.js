@@ -6,6 +6,12 @@ var Widget = require('../common/widget'),
 
 class Keys extends Widget {
 
+    static description() {
+
+        return 'Keyboard binding.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

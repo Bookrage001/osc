@@ -5,6 +5,12 @@ var Widget = require('../common/widget'),
 
 module.exports = class Input extends Widget {
 
+    static description() {
+
+        return 'File selector (server-side).'
+
+    }
+
     static defaults() {
 
         return super.defaults({

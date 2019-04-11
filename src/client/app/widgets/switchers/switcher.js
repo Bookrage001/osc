@@ -6,6 +6,12 @@ var switchDefaults = Switch.defaults()._props()
 
 module.exports = class Switcher extends _switchers_base {
 
+    static description() {
+
+        return 'Store other widgets\' values and recall them.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

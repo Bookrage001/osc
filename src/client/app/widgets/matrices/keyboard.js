@@ -4,6 +4,12 @@ var _matrix_base = require('./_matrix_base'),
 
 module.exports = class Keyboard extends _matrix_base {
 
+    static description() {
+
+        return 'Piano keyboard.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

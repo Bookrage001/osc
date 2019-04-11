@@ -4,6 +4,12 @@ var {clip} = require('../utils'),
 
 module.exports = class Eq extends _plots_base {
 
+    static description() {
+
+        return 'Draws frequency response between from from an array of filter objects.'
+
+    }
+
     static defaults() {
 
         return super.defaults({
@@ -17,7 +23,19 @@ module.exports = class Eq extends _plots_base {
             logScaleX: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (log10)'},
             smooth: {type: 'boolean|number', value: false, help: 'Set to `true` to make the line smooth. Float values are also acceptable (works fine between `0` and `0.5`)'},
 
-        }, ['target', 'precision', 'bypass'], {})
+        }, ['target', 'precision', 'bypass'], {
+
+            value: {type: 'array', value: '', help: [
+                'Each item must be an object with the following properties',
+                '- `type`: string ("highpass", "highshelf", "lowpass", "lowshelf", "peak" or "notch")',
+                '- `freq`: number (filter\'s resonant frequency)',
+                '- `q`: number (Q factor)',
+                '- `gain`: number',
+                '- `on`: boolean',
+
+            ]}
+
+        })
 
     }
 

@@ -6,6 +6,12 @@ var Container = require('../common/container'),
 
 class Panel extends Container {
 
+    static description() {
+
+        return 'Widget container.'
+
+    }
+
     static defaults() {
 
         return super.defaults({

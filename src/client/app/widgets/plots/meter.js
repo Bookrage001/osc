@@ -3,6 +3,12 @@ var Fader = require('../sliders/fader'),
 
 module.exports = class Meter extends Fader {
 
+    static description() {
+
+        return 'Non-interactable fader.'
+
+    }
+
     static defaults() {
 
         return Widget.defaults({

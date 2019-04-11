@@ -51,12 +51,15 @@ for (var k in widgets.categories) {
     for (var kk in category) {
         var type = category[kk],
             defaults = widgets.widgets[type].defaults(),
+            description = widgets.widgets[type].description(),
             separator = false
 
 
         doc.push(`
 
             ### ${type}
+
+            ${description}
 
             | property | type |default | description |
             | --- | --- | --- | --- |`

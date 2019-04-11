@@ -30,6 +30,8 @@
 
 ### fader
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="fader_style">style<a class="headerlink" href="#fader_style" title="Permanent link">#</a></h4> ||||
@@ -56,6 +58,8 @@
 
 ### knob
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="knob_style">style<a class="headerlink" href="#knob_style" title="Permanent link">#</a></h4> ||||
@@ -78,6 +82,8 @@
 
 ### encoder
 
+A knob that sends a relative direction infomation instead of an absolute value.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="encoder_encoder">encoder<a class="headerlink" href="#encoder_encoder" title="Permanent link">#</a></h4> ||||
@@ -91,6 +97,8 @@
 | <h4 id="encoder_touchAddress">touchAddress<a class="headerlink" href="#encoder_touchAddress" title="Permanent link">#</a></h4> | `string` | <code>""</code> | OSC address for touched state messages: `/touchAddress [preArgs] 0/1` |
 
 ### range
+
+A fader with two heads for setting a range.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -114,6 +122,8 @@
 
 ### toggle
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="toggle_toggle">toggle<a class="headerlink" href="#toggle_toggle" title="Permanent link">#</a></h4> ||||
@@ -123,6 +133,8 @@
 | <h4 id="toggle_off">off<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#toggle_off" title="Permanent link">#</a></h4> | `*` | <code>0</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
 
 ### push
+
+
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -134,6 +146,8 @@
 
 ### switch
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="switch_switch">switch<a class="headerlink" href="#switch_switch" title="Permanent link">#</a></h4> ||||
@@ -144,6 +158,8 @@
 
 ### dropdown
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="dropdown_dropdown">dropdown<a class="headerlink" href="#dropdown_dropdown" title="Permanent link">#</a></h4> ||||
@@ -152,6 +168,8 @@
 ## Pads
 
 ### xy
+
+Two-dimensional slider.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -174,6 +192,8 @@
 
 ### rgb
 
+Color picker with optional alpha slider.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="rgb_rgb">rgb<a class="headerlink" href="#rgb_rgb" title="Permanent link">#</a></h4> ||||
@@ -186,6 +206,8 @@
 | <h4 id="rgb_split">split<a class="headerlink" href="#rgb_split" title="Permanent link">#</a></h4> | `boolean`\|<br/>`object` | <code>false</code> | Set to `true` to send separate osc messages for for r and g & b. The address will be the same as the widget's with `/r`, `/g` or `/b` appended to it<br/><br/>Can be set as an `object` to specify a different address : `['/r', '/g', 'b']`<br/><br/>Note: the widget will only respond to its original osc address, not to the splitted version |
 
 ### multixy
+
+Multi-point XY pad.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -210,6 +232,8 @@
 
 ### matrix
 
+Generic matrix for creating rows/columns of widgets.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="matrix_matrix">matrix<a class="headerlink" href="#matrix_matrix" title="Permanent link">#</a></h4> ||||
@@ -222,6 +246,8 @@
 | <h4 id="matrix_props">props<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#matrix_props" title="Permanent link">#</a></h4> | `object` | <code>{}</code> | Defines a set of property to override the widgets' defaults.<br/><br/>Formulas in this field are resolved with an extra variable representing each widget's index: `$`<br/><br/>Note: by default, the widgets inherit from the matrix' `id` and osc properties (`id` and `address` are appended with `/$`) |
 
 ### keyboard
+
+Piano keyboard.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -238,6 +264,8 @@
 
 ### patchbay
 
+Connect inputs to outputs.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="patchbay_style">style<a class="headerlink" href="#patchbay_style" title="Permanent link">#</a></h4> ||||
@@ -249,6 +277,8 @@
 ## Plots
 
 ### plot
+
+XY coordinates plot.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -267,6 +297,8 @@
 
 ### eq
 
+Draws frequency response between from from an array of filter objects.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="eq_eq">eq<a class="headerlink" href="#eq_eq" title="Permanent link">#</a></h4> ||||
@@ -276,8 +308,12 @@
 | <h4 id="eq_origin">origin<a class="headerlink" href="#eq_origin" title="Permanent link">#</a></h4> | `number`\|<br/>`boolean` | <code>"auto"</code> | Defines the y axis origin. Set to `false` to disable it |
 | <h4 id="eq_logScaleX">logScaleX<a class="headerlink" href="#eq_logScaleX" title="Permanent link">#</a></h4> | `boolean` | <code>false</code> | Set to `true` to use logarithmic scale for the x axis (log10) |
 | <h4 id="eq_smooth">smooth<a class="headerlink" href="#eq_smooth" title="Permanent link">#</a></h4> | `boolean`\|<br/>`number` | <code>false</code> | Set to `true` to make the line smooth. Float values are also acceptable (works fine between `0` and `0.5`) |
+| <h4 class="thead2" id="eq_value">value<a class="headerlink" href="#eq_value" title="Permanent link">#</a></h4> ||||
+| <h4 id="eq_value">value<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#eq_value" title="Permanent link">#</a></h4> | `array` | <code>""</code> | Each item must be an object with the following properties<br/>- `type`: string ("highpass", "highshelf", "lowpass", "lowshelf", "peak" or "notch")<br/>- `freq`: number (filter's resonant frequency)<br/>- `q`: number (Q factor)<br/>- `gain`: number<br/>- `on`: boolean |
 
 ### visualizer
+
+Display its value over time.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -291,6 +327,8 @@
 
 ### led
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="led_led">led<a class="headerlink" href="#led_led" title="Permanent link">#</a></h4> ||||
@@ -299,12 +337,16 @@
 
 ### rgbled
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="rgbled_value">value<a class="headerlink" href="#rgbled_value" title="Permanent link">#</a></h4> ||||
 | <h4 id="rgbled_value">value<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#rgbled_value" title="Permanent link">#</a></h4> | `array`\|<br/>`string` | <code>""</code> | - `Array`: `[r, g, b]` (`r`, `g` and `b` between `0` and `255`)<br/>- `Array`: `[r, g, b, alpha]` (`alpha` between `0` and `255`)<br/>- `String`: CSS color |
 
 ### meter
+
+Non-interactable fader.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -323,6 +365,8 @@
 
 ### text
 
+Display text.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="text_text">text<a class="headerlink" href="#text_text" title="Permanent link">#</a></h4> ||||
@@ -331,6 +375,8 @@
 | <h4 id="text_align">align<a class="headerlink" href="#text_align" title="Permanent link">#</a></h4> | `string` | <code>""</code> | Set to `left` or `right` to change text alignment (otherwise center) |
 
 ### image
+
+Load a image (url or base64-encoded).
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -345,12 +391,16 @@
 
 ### svg
 
+
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="svg_svg">svg<a class="headerlink" href="#svg_svg" title="Permanent link">#</a></h4> ||||
 | <h4 id="svg_svg">svg<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#svg_svg" title="Permanent link">#</a></h4> | `string` | <code>""</code> | Svg xml definition:<br/>- will be wrapped in a `< svg />` element<br/>- `<path>` commands support a special percent notation (`%x` and `%y`) |
 
 ### frame
+
+Embed a page in a frame (local network only).
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -364,6 +414,8 @@
 ## Containers
 
 ### panel
+
+Widget container.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -379,6 +431,8 @@
 
 ### strip
 
+Widget container that display its children in a single column or row.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="strip_strip">strip<a class="headerlink" href="#strip_strip" title="Permanent link">#</a></h4> ||||
@@ -392,6 +446,8 @@
 | <h4 id="strip_widgets">widgets<a class="headerlink" href="#strip_widgets" title="Permanent link">#</a></h4> | `array` | <code>[]</code> | Each element of the array must be a widget object<br/>- By default, children widgets that don't have an explicit `width`/`height` set will be shrinked to respect the sizes specified by others<br/>- Adding `flex:1;` to a children's `css` will give it the ability the fill the remaining space<br/>- Multiple children can have a `flex:x;` css property (`x` will ponderate their expansion) |
 
 ### modal
+
+A toggle button that opens a popup panel.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -410,6 +466,8 @@
 
 ### clone
 
+Widget replication with overridable properties.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="clone_clone">clone<a class="headerlink" href="#clone_clone" title="Permanent link">#</a></h4> ||||
@@ -421,6 +479,8 @@
 
 ### switcher
 
+Store other widgets' values and recall them.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="switcher_switcher">switcher<a class="headerlink" href="#switcher_switcher" title="Permanent link">#</a></h4> ||||
@@ -429,6 +489,8 @@
 | <h4 id="switcher_values">values<a class="headerlink" href="#switcher_values" title="Permanent link">#</a></h4> | `array`\|<br/>`object` | <code>{<br/>&nbsp;"Value 1": 1,<br/>&nbsp;"Value 2": 2<br/>}</code> | Each item represents a bank that stores the values from the widgets listed in `linkedWidgets`<br/>- `Array` of possible values to switch between : `[1,2,3]`<br/>- `Object` of `"label":value` pairs. Numeric labels must be prepended or appended with a white space (or any other non-numeric character) otherwise the order of the values won't be kept |
 
 ### crossfader
+
+Switcher with linear interpolation slider.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -440,6 +502,8 @@
 
 ### input
 
+Text input.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="input_input">input<a class="headerlink" href="#input_input" title="Permanent link">#</a></h4> ||||
@@ -449,6 +513,8 @@
 | <h4 id="input_editable">editable<a class="headerlink" href="#input_editable" title="Permanent link">#</a></h4> | `boolean` | <code>true</code> | Set to `false` to make the input non-editable |
 
 ### keys
+
+Keyboard binding.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -460,6 +526,8 @@
 
 ### script
 
+Evaluates a script each time it receives a value.
+
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="script_script">script<a class="headerlink" href="#script_script" title="Permanent link">#</a></h4> ||||
@@ -467,6 +535,8 @@
 | <h4 id="script_script">script<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#script_script" title="Permanent link">#</a></h4> | `string` | <code>""</code> | This property is evaluated each time the widget receives a value* if condition is non-falsy. Formulas are given extras variables in this context:<br/>- `value`: the value received by the widget<br/>- `send(target, address, arg1, arg2, ...)`: function for sending osc messages (ignores the script's targets and the server's defaults unless `target` is `false`; ignores the script's `preArgs`)<br/>- `set(id, value)`: function for setting a widget's value<br/><br/><br/><br/>* Note: `value` or `linkId` properties can be used to receive other widgets' values. The `value` property must actually change to trigger the execution, where linked widgets via `linkId` can submit the same value over and over and trigger the execution |
 
 ### gyroscope
+
+Device motion/orientation sensor.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -479,6 +549,8 @@
 | <h4 id="gyroscope_value">value<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#gyroscope_value" title="Permanent link">#</a></h4> | `object` | <code>""</code> | The gyroscope's value is an object containing multiple values, which can be used by other widgets via the property maths syntax<br/>- `value.do.alpha`: deviceorientation event alpha<br/>- `value.do.beta`: deviceorientation event beta<br/>- `value.do.gamma`: deviceorientation event gamma<br/>- `value.do.absolute`: deviceorientation event absolute<br/>- `value.dm.x`: devicemotion event acceleration x<br/>- `value.dm.y`: devicemotion event acceleration y<br/>- `value.dm.z`: devicemotion event acceleration z<br/>- `value.dm.gx`: devicemotion event accelerationIncludingGravity x<br/>- `value.dm.gy`: devicemotion event accelerationIncludingGravity y<br/>- `value.dm.gz`: devicemotion event accelerationIncludingGravity z<br/>- `value.dm.alpha`: devicemotion event rotationRate alpha<br/>- `value.dm.beta`: devicemotion event rotationRate beta<br/>- `value.dm.gamma`: devicemotion event rotationRate gamma |
 
 ### file
+
+File selector (server-side).
 
 | property | type |default | description |
 | --- | --- | --- | --- |

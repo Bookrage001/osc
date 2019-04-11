@@ -5,6 +5,12 @@ var Widget = require('../common/widget'),
 
 class Frame extends Widget {
 
+    static description() {
+
+        return 'Embed a page in a frame (local network only).'
+
+    }
+
     static defaults() {
 
         return super.defaults({
