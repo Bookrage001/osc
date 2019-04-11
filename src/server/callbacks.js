@@ -430,9 +430,13 @@ module.exports =  {
             } else {
                 var extRe = data.extension ? new RegExp('.*\\.' + data.extension + '$') : /.*/
                 var list = files.filter(x=>x[0] !== '.').map((x)=>{
+                    var folder = false
+                    try {
+                        folder = fs.statSync(path.resolve(p, x)).isDirectory()
+                    } catch(e) {}
                     return {
                         name: x,
-                        folder: fs.statSync(path.resolve(p, x)).isDirectory()
+                        folder
                     }
                 })
                 list = list.filter(x=>x.folder || x.name.match(extRe))

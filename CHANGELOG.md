@@ -5,6 +5,7 @@
 - bug fixes
   - broken client sync for widgets with `split` set
   - custom module: `receive` function not working when omitting host/port and sending only one argument
+  - file browser: prevent error when files/folders cannot be read
 
 ## 0.45.2
 
