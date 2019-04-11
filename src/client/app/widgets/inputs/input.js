@@ -4,7 +4,7 @@ var Canvas = require('../common/canvas'),
 
 module.exports = class Input extends Canvas {
 
-    static description() {
+    static description() {
 
         return 'Text input.'
 

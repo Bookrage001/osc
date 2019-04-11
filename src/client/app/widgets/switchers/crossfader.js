@@ -8,7 +8,7 @@ var faderDefaults = Fader.defaults()._props()
 
 module.exports = class Crossfader extends Switcher {
 
-    static description() {
+    static description() {
 
         return 'Switcher with linear interpolation slider.'
 

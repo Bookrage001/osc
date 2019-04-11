@@ -33,7 +33,7 @@ setTimeout(()=>{
 
 class Widget extends EventEmitter {
 
-    static description() {
+    static description() {
 
         return ''
 

@@ -7,7 +7,7 @@ var Widget = require('../common/widget'),
 
 class Script extends Widget {
 
-    static description() {
+    static description() {
 
         return 'Evaluates a script each time it receives a value.'
 

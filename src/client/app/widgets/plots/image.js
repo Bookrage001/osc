@@ -4,7 +4,7 @@ var Widget = require('../common/widget'),
 
 module.exports = class Image extends Widget {
 
-    static description() {
+    static description() {
 
         return 'Load a image (url or base64-encoded).'
 

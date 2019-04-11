@@ -6,7 +6,7 @@ var _matrix_base = require('./_matrix_base'),
 
 class Matrix extends _matrix_base {
 
-    static description() {
+    static description() {
 
         return 'Generic matrix for creating rows/columns of widgets.'
 

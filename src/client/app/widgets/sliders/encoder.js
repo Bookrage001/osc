@@ -29,7 +29,7 @@ var DisplayKnob = class extends Knob {
 
 module.exports = class Encoder extends Widget {
 
-    static description() {
+    static description() {
 
         return 'A knob that sends a relative direction infomation instead of an absolute value.'
 

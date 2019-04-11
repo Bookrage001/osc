@@ -8,7 +8,7 @@ var Widget = require('../common/widget'),
 
 class Gyroscope extends Widget {
 
-    static description() {
+    static description() {
 
         return 'Device motion/orientation sensor.'
 

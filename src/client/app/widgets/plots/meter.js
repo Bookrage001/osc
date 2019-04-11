@@ -3,7 +3,7 @@ var Fader = require('../sliders/fader'),
 
 module.exports = class Meter extends Fader {
 
-    static description() {
+    static description() {
 
         return 'Non-interactable fader.'
 

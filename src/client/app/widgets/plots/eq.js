@@ -4,7 +4,7 @@ var {clip} = require('../utils'),
 
 module.exports = class Eq extends _plots_base {
 
-    static description() {
+    static description() {
 
         return 'Draws frequency response between from from an array of filter objects.'
 

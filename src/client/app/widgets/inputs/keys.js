@@ -6,7 +6,7 @@ var Widget = require('../common/widget'),
 
 class Keys extends Widget {
 
-    static description() {
+    static description() {
 
         return 'Keyboard binding.'
 

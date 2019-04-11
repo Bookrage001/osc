@@ -10,7 +10,7 @@ var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-
 
 class Clone extends Container {
 
-    static description() {
+    static description() {
 
         return 'Widget replication with overridable properties.'
 
