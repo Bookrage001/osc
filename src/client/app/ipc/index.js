@@ -8,9 +8,9 @@ setTimeout(()=>{
     locales = require('../locales')
 })
 
-var reconnectInterval = 5000,
-    hearbeatInterval = 25000,
-    hearbeatTimeout = 5000,
+var reconnectTimeout = 1000,
+    hearbeatInterval = 2000,
+    hearbeatTimeout = 1000,
     protocol = document.location.protocol === 'https:' ? 'wss://' : 'ws://'
 
 class Ipc extends EventEmitter {
@@ -23,13 +23,13 @@ class Ipc extends EventEmitter {
 
         this.queue = []
 
-        this.disconnectedOnce = false
+        this.disconnected = false
         this.reconnect = undefined
 
         this.hearbeat = undefined
         this.hearbeatTimeout = undefined
         this.on('pong', ()=>{
-            this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
+            clearTimeout(this.hearbeatTimeout)
         })
         this.on('ping', ()=>{
             this.socket.send('["pong"]')
@@ -61,19 +61,21 @@ class Ipc extends EventEmitter {
 
         this.socket = new WebSocket(protocol + window.location.host + '/' + uuid)
 
-        this.socket.onopen = (e)=>{
+        this.socket.onclose = this.socket.onerror = ()=>{
+            if (!this.connected()) this.close()
+        }
 
-            this.reconnect = clearInterval(this.reconnect)
+        this.socket.onopen = (e)=>{
 
             this.hearbeat = setInterval(()=>{
                 if (!this.connected()) return
                 this.socket.send('["ping"]')
                 this.hearbeatTimeout = setTimeout(()=>{
-                    if (this.connected()) this.socket.close()
+                    if (this.connected()) this.close()
                 }, hearbeatTimeout)
             }, hearbeatInterval)
 
-            if (notifications && this.disconnectedOnce) notifications.add({
+            if (notifications && this.disconnected) notifications.add({
                 icon: 'wifi',
                 message: locales('server_connected'),
                 id: 'ipc_state'
@@ -82,25 +84,25 @@ class Ipc extends EventEmitter {
             this.trigger('connect')
             this.flush()
 
-        }
+            this.socket.onmessage = (e)=>{
+                this.receive(e.data)
+            }
 
-        this.socket.onmessage = (e)=>{
-            this.receive(e.data)
-        }
-
-        this.socket.onclose = this.socket.onerror = ()=>{
-            if (!this.connected()) this.close()
         }
 
     }
 
     close() {
 
+        this.socket.onclose = this.socket.onerror = null
+
+        this.socket.close()
+
         this.socket = null
 
-        this.hearbeat = clearInterval(this.hearbeat)
-        this.hearbeatTimeout = clearTimeout(this.hearbeatTimeout)
-        this.dieTimeout = clearTimeout(this.dieTimeout)
+        clearInterval(this.hearbeat)
+        clearTimeout(this.hearbeatTimeout)
+
         notifications.add({
             icon: 'wifi',
             class: 'error',
@@ -108,12 +110,13 @@ class Ipc extends EventEmitter {
             id: 'ipc_state',
             duration: Infinity
         })
-        this.disconnectedOnce = true
-        if (!this.reconnect) {
-            this.reconnect = setInterval(()=>{
-                this.open()
-            }, reconnectInterval)
-        }
+        
+        this.disconnected = true
+
+        clearTimeout(this.reconnect)
+        this.reconnect = setTimeout(()=>{
+            this.open()
+        }, reconnectTimeout)
 
     }
 

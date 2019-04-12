@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.45.4
+
+- bug fixes
+  - handle network drops correctly (notify immediately and fix reconnection mechanism)
+
 ## 0.45.3
 
 - bug fixes
