@@ -146,10 +146,16 @@ class Matrix extends _matrix_base {
 
 }
 
+
+
 Matrix.overriddenDefaults = [
     'type', 'id', 'address', 'preArgs', 'target', 'precision', 'bypass',
     'label', 'top', 'left', 'height', 'width'
 ]
+
+Matrix.parsersContexts.props = {
+    $: 0
+}
 
 Matrix.dynamicProps = Matrix.prototype.constructor.dynamicProps.concat(
     'props'

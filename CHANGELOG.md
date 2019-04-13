@@ -4,6 +4,7 @@
 
 - bug fixes
   - handle network drops correctly (notify immediately and fix reconnection mechanism)
+  - matrix: regression the `$` variable
 
 ## 0.45.3
 
