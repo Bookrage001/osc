@@ -97,13 +97,13 @@ Custom modules don't let you use node's `require` function at runtime, but you c
 
 The common pattern for this is using the [browserify](http://browserify.org/) library:
 
-1. define some variable in `number.js`
+**1**. define some variable in `number.js`
 
 ```javascript
 module.exports = 42
 ```
 
-2. retreive it in your main module file (`main.js`):
+**2**. retreive it in your main module file (`main.js`):
 
 ```javascript
 var num = require('./number.js')
@@ -119,6 +119,6 @@ module.exports = {
 ```
 
 
-3. bundle your sources into `custom-module.js`:
+**3**. bundle your sources into `custom-module.js`:
 
 `browserify main.js -o custom-module.js --standalone module.exports`
