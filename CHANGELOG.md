@@ -4,7 +4,7 @@
 
 - bug fixes
   - handle network drops correctly (notify immediately and fix reconnection mechanism)
-  - matrix: regression the `$` variable
+  - formulas breaking the property update mechanism when not resolved 
   - modal: title layout issue
 
 ## 0.45.3
