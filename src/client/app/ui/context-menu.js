@@ -8,7 +8,7 @@ class ContextMenu {
         this.menu = null
         this.root = document.body
         this.clickHandler = (e)=>{
-            if (this.menu && !this.menu.contains(event.target)) this.close()
+            if (this.menu && !this.menu.contains(e.target)) this.close()
         }
 
     }
