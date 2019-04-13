@@ -536,6 +536,9 @@ body {
         &.closable {
             padding-right: 0;
         }
+        .popup-label {
+            flex:1;
+        }
         .closer {
             padding:0 15rem;
             flex-shrink: 0;
