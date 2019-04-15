@@ -429,16 +429,18 @@ class Widget extends EventEmitter {
 
         if (typeof propValue == 'string') {
 
-            propValue = propValue.replace(/@\{[^{}]*(@\{[^{}]*\})*[^{}]*\}/g, (m, nested)=>{
+            propValue = propValue.replace(/@\{[^{}]*((@\{[^{}]*\}|[^{}]*)*)\}/g, (m, nested)=>{
                 // pretty regexp:
                 // @\{
                 //     [^{}]*
-                //     (
+                //     ((
                 //         @\{
                 //             [^{}]*
                 //         \}
-                //     )*
-                //     [^{}]*
+                //         |
+                //         [^{}]*
+                //     )*)
+                //
                 // \}
 
                 if (nested) {

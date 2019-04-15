@@ -1,10 +1,15 @@
 # Changelog
 
+## 0.45.5
+
+- bug fixes
+  - nested `@{}` calls issue ([#516](https://github.com/jean-emmanuel/open-stage-control/issues/516))
+
 ## 0.45.4
 
 - bug fixes
   - handle network drops correctly (notify immediately and fix reconnection mechanism)
-  - formulas breaking the property update mechanism when not resolved 
+  - formulas breaking the property update mechanism when not resolved
   - modal: title layout issue
 
 ## 0.45.3
