@@ -46,11 +46,6 @@ module.exports = class Image extends Widget {
         this.widget.style.setProperty('background-position', this.getProp('position'))
         this.widget.style.setProperty('background-repeat', this.getProp('repeat'))
 
-        if (this.getProp('stream') !== '') {
-            this.bindedOnStreamUpdate = this.onStreamUpdate.bind(this)
-            ipc.on('video', this.bindedOnStreamUpdate)
-        }
-
     }
 
     setValue(v, options={}) {
@@ -79,15 +74,6 @@ module.exports = class Image extends Widget {
         this.widget.style.setProperty('background-image', `url(${this.value}${cache_query})`)
 
         if (options.sync) this.changed(options)
-
-    }
-
-    onStreamUpdate(event) {
-
-        var [stream, data] = event
-        if (stream === this.getProp('stream')) {
-            this.setValue('data:image/jpeg;base64,' + data)
-        }
 
     }
 
