@@ -17,7 +17,7 @@ document.addEventListener('mousewheel', function(event) {
 
         DOM.dispatchEvent(window, 'resize')
     }
-})
+}, {passive: true})
 
 document.addEventListener('keydown', function(event){
     if (event[mod] && (event.keyCode == 96 || event.keyCode == 48)) {
@@ -26,4 +26,4 @@ document.addEventListener('keydown', function(event){
 
         DOM.dispatchEvent(window, 'resize')
     }
-})
+}, {passive: true})
