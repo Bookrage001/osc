@@ -2,7 +2,7 @@ var EventEmitter = require('../../events/event-emitter'),
     osc = require('../../osc'),
     nanoid = require('nanoid/generate'),
     widgetManager = require('../../managers/widgets'),
-    {math, evaljs} = require('../utils'),
+    {math, evaljs, urlParser} = require('../utils'),
     scopeCss = require('scope-css'),
     {iconify} = require('../../ui/utils'),
     resize = require('../../events/resize'),
@@ -842,17 +842,29 @@ class Widget extends EventEmitter {
 
             // css
             var css = String(this.getProp('css')),
-                prefix = '#' + this.hash,
-                scopedCss = scopeCss(css, prefix),
-                unScopedCss = '',
                 extraCssClasses = []
-
 
             // extra css "class" property
             css = css.replace(/^[^\S\n]*class[^\S\n]*:[^\S\n]*([^;\n\s]+);?/igm, (m, c)=>{
-                if (c === 'widget' || c.includes('-container')) return
+                if (c === 'widget' || c.includes('-container')) return m
                 extraCssClasses.push(c.replace(/"'/g,''))
+                return ''
             })
+
+
+            // escpape windows absolute file paths
+            css = css.replace(/url\(([^)]*)\)/g, (m, url)=>{
+                var parser = urlParser(url)
+                if (!parser.protocol.match(/http|data/)) m = m.replace(':', '_:_')
+                m = m.replace(/\\/g, '\\\\')
+                return m
+            })
+
+
+            var prefix = '#' + this.hash,
+                scopedCss = scopeCss(css, prefix),
+                unScopedCss = ''
+
 
             try {
 

@@ -32,7 +32,13 @@ function httpRoute(req, res) {
         } else if (/^\/(assets|client)\//.test(req.url)){
             res.sendFile(path.resolve(__dirname + '/..' + req.url))
         } else {
-            res.sendFile(path.resolve(req.url))
+            var url = req.url
+
+            // windows absolute path fix
+            url = url.replace('_:_', ':') // escaped drive colon
+            url = url.replace(/^\/([^/]*):/, '$1') // strip leading slash
+
+            res.sendFile(path.resolve(url))
         }
     }
 }

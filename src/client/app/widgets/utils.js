@@ -71,6 +71,16 @@ module.exports = {
         return hsb
     },
 
+    urlParser: (()=>{
+
+        var parser = document.createElement('a')
+        return (url)=>{
+            parser.href = url
+            return parser
+        }
+
+    })(),
+
     math: (()=>{
         var math = require('mathjs/dist/math.min.js').create({
             matrix: 'Array'

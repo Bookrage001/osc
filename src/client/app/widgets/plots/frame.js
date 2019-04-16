@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
     html = require('nanohtml'),
+    {urlParser} = require('../utils'),
     locales = require('../../locales'),
     localUrlRe = /(^127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.1[6-9]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.2[0-9]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.3[0-1]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^192\.168\.[0-9]{1,3}\.[0-9]{1,3}$)/
 
@@ -51,8 +52,7 @@ class Frame extends Widget {
 
         this.value = v
 
-        var parser = document.createElement('a')
-        parser.href = this.value
+        var parser = urlParser(this.value)
 
         if (this.value && parser.hostname.match(localUrlRe)) {
             this.frame.setAttribute('src', this.value)

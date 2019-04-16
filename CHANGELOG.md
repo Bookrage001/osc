@@ -3,6 +3,7 @@
 ## 0.45.5
 
 - bug fixes
+  - absolute file paths not resolved under windows
   - nested `@{}` calls issue ([#516](https://github.com/jean-emmanuel/open-stage-control/issues/516))
 
 ## 0.45.4

@@ -1,6 +1,7 @@
 var Widget = require('../common/widget'),
     ipc = require('../../ipc'),
-    html = require('nanohtml')
+    html = require('nanohtml'),
+    {urlParser} = require('../utils')
 
 module.exports = class Image extends Widget {
 
@@ -71,7 +72,14 @@ module.exports = class Image extends Widget {
 
         }
 
-        this.widget.style.setProperty('background-image', `url(${this.value}${cache_query})`)
+        var url = this.value,
+            parser = urlParser(url)
+
+        // escpape windows absolute file paths
+        if (!parser.protocol.match(/http|data/)) url = url.replace(':', '_:_')
+        url = url.replace(/\\/g, '\\\\')
+
+        this.widget.style.setProperty('background-image', `url(${url}${cache_query})`)
 
         if (options.sync) this.changed(options)
 
