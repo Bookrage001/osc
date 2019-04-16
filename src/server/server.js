@@ -38,7 +38,13 @@ function httpRoute(req, res) {
             url = url.replace('_:_', ':') // escaped drive colon
             url = url.replace(/^\/([^/]*):/, '$1') // strip leading slash
 
-            res.sendFile(path.resolve(url))
+            if (url.match(/.(jpg|jpeg|png|apng|gif|webp|tiff|xbm|bmp|ico)(\?[0-9]*)?$/i)) {
+                res.sendFile(path.resolve(url))
+            } else {
+                res.writeHead(403)
+                res.end()
+            }
+
         }
     }
 }
