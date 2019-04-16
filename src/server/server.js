@@ -36,7 +36,7 @@ function httpRoute(req, res) {
 
             // windows absolute path fix
             url = url.replace('_:_', ':') // escaped drive colon
-            url = url.replace(/^\/([^/]*):/, '$1') // strip leading slash
+            url = url.replace(/^\/([^/]*:)/, '$1') // strip leading slash
 
             if (url.match(/.(jpg|jpeg|png|apng|gif|webp|tiff|xbm|bmp|ico)(\?[0-9]*)?$/i)) {
                 res.sendFile(path.resolve(url))
