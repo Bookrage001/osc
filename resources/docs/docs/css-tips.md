@@ -31,13 +31,13 @@ CSS selectors can be used to apply styles to specific elements:
 
 ```
 
-!!! tip ""
+!!! warning ""
     Mixing Inline and Selector syntaxes doesn't work, once you use selectors, you have to use the `:host` selector to target the widget element.
 
 ## Extra css classes: `class`
 
 This non-standard css property can be used to add custom css classes to the widget element: `class: my-custom-class;`
-Multiple classes can be added (one per `class` statement).
+Multiple classes can be added (one per `class` statement). Custom classes are always added to the widget's root element, css selectors are ignored.
 
 !!! warning ""
     Using class names that are already used in the app can be hazardous. In order to avoid that, custom class names should be prefixed with something uncommon and preferably cool, such as `xxx-myclass` or `crispy-seitan-myclass`.
@@ -55,7 +55,7 @@ To make a widget ignore interactions (ie to be able to click through it), add `p
 
 ## Responsive sizing
 
-In most cases, using percentages in `height` and `width` will do. CSS `calc()` function can help in some cases:
+In most cases, using percentages in `height` and `width` will do. CSS `calc()` function can help in some cases (set the corresponding property to `auto` to avoid conflicts):
 
 ```css
 :host {
@@ -82,7 +82,7 @@ Media queries can also be used:
 
 ## Size units
 
-- use `rem` instead of `px` (`px` values will not scale when zooming)
+- use `rem` instead of `px` (`px` values will not scale when zooming), except for media queries
 - use `%` for font-size
 
 
