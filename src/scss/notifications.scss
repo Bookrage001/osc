@@ -7,6 +7,9 @@
     z-index: 9999999;
     padding:10rem;
     width:300rem;
+    &:empty {
+        display: none;
+    }
     .toast {
         animation: toast_fade-in 0.2s forwards;
         transform-origin: bottom;

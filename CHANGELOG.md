@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.45.6
+
+- bug fixes
+  - bottom horizontal scrollbar not responding on small screens
+
 ## 0.45.5
 
 - bug fixes
