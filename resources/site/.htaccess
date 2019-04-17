@@ -2,6 +2,7 @@ RewriteEngine On
 RewriteBase /
 
 RewriteRule ^extras/(.*)$ docs/$1 [QSA,L,R=301]
+RewriteRule ^user-guide/(.*)$ docs/$1 [QSA,L,R=301]
 RewriteRule ^docs/$ docs/getting-started [QSA,L]
 
 RewriteCond %{HTTPS} !on
