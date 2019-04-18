@@ -12,18 +12,28 @@ module.exports = {
     // map a value from a scale to another input and output must be range arrays
     mapToScale: function(value,rangeIn,rangeOut,precision,log,revertlog) {
 
+        // clip in
         value = module.exports.clip(value,[rangeIn[0],rangeIn[1]])
 
-        value =  log ?
-            revertlog ?
-                (Math.pow(10,((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])))/9-1/9) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
-                :Math.log10(((value-rangeIn[0])/(rangeIn[1]-rangeIn[0]))*9+1) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
-            :((value-rangeIn[0])/(rangeIn[1]-rangeIn[0])) * (rangeOut[1]-rangeOut[0]) + rangeOut[0]
+        // normalize
+        value = (value - rangeIn[0]) / (rangeIn[1] - rangeIn[0])
 
-        value = Math.max(Math.min(rangeOut[0],rangeOut[1]),Math.min(value,Math.max(rangeOut[0],rangeOut[1])))
+        // log scale
+        if (log) {
+            if (log === true) log = 10
+            value = revertlog ?
+                Math.pow(log, value) / (log - 1) - 1 / (log - 1) :
+                Math.log(value * (log - 1) + 1) / Math.log(log)
+        }
 
+        // scale out
+        value = value * (rangeOut[1] - rangeOut[0]) + rangeOut[0]
+
+        // clip out
+        value = module.exports.clip(value,[rangeOut[0],rangeOut[1]])
+
+        // precision
         if (precision !== false) value = parseFloat(value.toFixed(precision))
-
 
         return value
 

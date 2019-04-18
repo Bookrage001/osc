@@ -17,8 +17,8 @@ module.exports = class Plot extends _plots_base {
 
             rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis'},
             rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
-            logScaleX: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (log10)'},
-            logScaleY: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (log10)'},
+            logScaleX: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (base 10). Set to a `number` to define the logarithm\'s base.'},
+            logScaleY: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (base 10). Set to a `number` to define the logarithm\'s base.'},
             origin: {type: 'number', value: 'auto', help: 'Defines the y axis origin. Set to `false` to disable it.'},
             dots: {type: 'boolean', value: true, help: ''},
             bars: {type: 'boolean', value: false, help: 'Set to `true` to use draw bars instead (disables `logScaleX` and forces `x axis` even spacing)'},

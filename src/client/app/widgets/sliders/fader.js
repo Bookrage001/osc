@@ -40,7 +40,7 @@ module.exports = class Fader extends Slider {
                 '- `number`: define a number of evenly spaced steps',
                 '- `array`: use arbitrary values',
             ]},
-            logScale: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale'},
+            logScale: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale (base 10). Set to a `number` to define the logarithm\'s base.'},
             unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
             origin: {type: 'number', value: 'auto', help: 'Defines the starting point\'s value of the fader\'s gauge'},
 

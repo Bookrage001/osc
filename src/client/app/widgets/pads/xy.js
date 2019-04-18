@@ -29,8 +29,8 @@ module.exports = class Xy extends Pad {
             pips: {type: 'boolean', value: true, help: 'Set to `false` to hide the scale'},
             rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis'},
             rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
-            logScaleX: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (log10)'},
-            logScaleY: {type: 'boolean', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (log10)'},
+            logScaleX: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (base 10). Set to a `number` to define the logarithm\'s base.'},
+            logScaleY: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (base 10). Set to a `number` to define the logarithm\'s base.'},
             input: {type: 'boolean', value: true, help: 'Set to false to hide the built-in input widget'},
             doubleTap: {type: 'boolean|string', value: false, help: [
                 'Set to `true` to make the fader reset to its default value when receiving a double tap.',
