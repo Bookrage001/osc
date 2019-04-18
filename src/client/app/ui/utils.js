@@ -245,13 +245,25 @@ module.exports = {
                 list.childNodes[0].firstElementChild.checked = true
                 submit()
             } else if (e.key.length === 1) {
-                var letter = e.key.toLowerCase()
+                var letter = e.key.toLowerCase(),
+                    current = DOM.get(list, ':checked')[0],
+                    minIndex = -1,
+                    index = -1
+
+                if (current) minIndex = DOM.index(current.parentNode)
+
                 for (let i in files) {
                     if (files[i].name[0].toLowerCase() === letter && !list.childNodes[i].firstElementChild.checked) {
-                        list.childNodes[i].firstElementChild.click()
-                        list.childNodes[i].firstElementChild.focus()
+                        if (index === -1) index = i
+                        if (minIndex !== -1 && i < minIndex) continue
+                        index = i
                         break
                     }
+                }
+                
+                if (index !== -1) {
+                    list.childNodes[index].firstElementChild.click()
+                    list.childNodes[index].firstElementChild.focus()
                 }
             }
         }
