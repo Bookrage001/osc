@@ -30,6 +30,24 @@
         border: 0!important;
     }
 
+    &.compact {
+        > .input {
+            pointer-events: none;
+            position: absolute;
+            border:0;
+            background:transparent;
+            overflow: hidden;
+            position: absolute;
+            top:50%;
+            left:50%;
+            z-index: 1;
+            width: 100rem;
+            height: 30rem;
+            margin-left:-50rem;
+            margin-top:-15rem;
+        }
+    }
+
     .wrapper {
         overflow: hidden;
         flex: 1 1 100%;

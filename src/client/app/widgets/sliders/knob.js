@@ -9,8 +9,9 @@ module.exports = class Knob extends Slider {
 
             _knob:'knob',
 
-            pips: {type: 'boolean', value: true, help: 'Set to `false` to hide the scale'},
+            pips: {type: 'boolean', value: false, help: 'Set to `true` to show the scale\'s breakpoints'},
             input: {type: 'boolean', value: true, help: 'Set to `false` to hide the built-in input'},
+            compact: {type: 'boolean', value: false, help: 'Set to `true` to display a compact alternative for the widget. If `input` is `true`, the input can be focused with a right-click (mouse only). Disables `pips` when enabled.'},
             dashed: {type: 'boolean', value: false, help: 'Set to `true` to display a dashed gauge'},
             angle: {type: 'number', value: 270, help: 'Defines the angle\'s width of the knob, in degrees'},
             snap: {type: 'boolean', value: false, help: 'By default, dragging the widget will modify it\'s value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position'},
@@ -54,8 +55,6 @@ module.exports = class Knob extends Slider {
         super(options)
 
         this.widget.classList.add('knob')
-
-        this.widget.classList.add('compact')
 
         this.lastOffsetX = 0
         this.lastOffsetY = 0
@@ -177,6 +176,13 @@ module.exports = class Knob extends Slider {
             rad = PXSCALE /  gaugeRadius / 2
 
 
+        if (this.getProp('compact')) {
+            pips = false
+            gaugeWidth = this.minDimension / 4
+            gaugeRadius = this.minDimension / 2 - gaugeWidth / 2
+        }
+
+
         this.ctx.clearRect(0,0,this.width,this.height)
 
         this.ctx.globalAlpha = 1
@@ -211,6 +217,21 @@ module.exports = class Knob extends Slider {
 
         if (dashed) this.ctx.setLineDash([])
 
+        if (this.getProp('compact')) {
+            this.ctx.globalAlpha = 1
+            let r1 = gaugeRadius - gaugeWidth / 2 + 2 * PXSCALE,
+                r2 = gaugeRadius + gaugeWidth / 2 - 2 * PXSCALE,
+                a  = 2 * Math.PI - d
+
+            this.ctx.beginPath()
+            this.ctx.moveTo(r1 * Math.cos(a) + this.width / 2, this.height / 2 - r1 * Math.sin(a))
+            this.ctx.lineTo(r2 * Math.cos(a) + this.width / 2, this.height / 2 - r2 * Math.sin(a))
+
+            this.ctx.lineWidth = PXSCALE
+            this.ctx.strokeStyle = this.colors.knob
+            this.ctx.stroke()
+            return
+        }
 
         if (pips) {
 

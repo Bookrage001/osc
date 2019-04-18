@@ -101,6 +101,18 @@ class Slider extends Canvas {
 
         }
 
+        if (this.getProp('compact')) {
+            this.widget.classList.add('compact')
+            if (this.getProp('input')) {
+                this.widget.addEventListener('fast-right-click', (e)=>{
+                    if (e.detail.button == 2 && !EDITING) {
+                        // Mouse only
+                        this.input.focus()
+                    }
+                })
+            }
+        }
+
         this.setSteps()
 
         this.setValue(this.springValue)

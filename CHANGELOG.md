@@ -6,6 +6,7 @@
   - bottom horizontal scrollbar not responding on small screens
 - widgets
   - `logScale` can be set to a number to use a logarithm base different from the default
+  - knob: `compact` mode is back
 
 ## 0.45.5
 

@@ -20,7 +20,7 @@ module.exports = class Fader extends Slider {
                 '- the meter\'s `id` will be the same as the widget\'s with `/meter` appended to it',
                 '- the meter\'s `address` will be the same as the widget\'s with `/meter` appended to it'
             ]},
-            compact: {type: 'boolean', value: false, help: 'Set to `true` to display a compact alternative for the widget. Disables default mouse/touch focusing on the value display.'},
+            compact: {type: 'boolean', value: false, help: 'Set to `true` to display a compact alternative for the widget. If `input` is `true`, the input can be focused with a right-click (mouse only). Disables `pips` when enabled.'},
             dashed: {type: 'boolean', value: false, help: 'Set to `true` to display a dashed gauge'},
             snap: {type: 'boolean', value: false, help: 'By default, dragging the widget will modify it\'s value starting from its last value. Setting this to `true` will make it snap directly to the mouse/touch position'},
             spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its `default` value when released'},
@@ -73,16 +73,7 @@ module.exports = class Fader extends Slider {
         }
 
         if (this.getProp('compact')) {
-            this.widget.classList.add('compact')
             this.margin = 0
-            if (this.getProp('input')) {
-                this.widget.addEventListener('fast-right-click', (e)=>{
-                    if (e.detail.button == 2 && !EDITING) {
-                        // Mouse only
-                        this.input.focus()
-                    }
-                })
-            }
         }
 
         if (this.getProp('alignRight') && !this.getProp('horizontal')) {
