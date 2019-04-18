@@ -41,6 +41,7 @@ module.exports = class Encoder extends Widget {
 
             _encoder: 'encoder',
 
+            compact: {type: 'boolean', value: false, help: 'Set to `true` to display a compact alternative for the widget.'},
             ticks: {type: 'number', value: 360, help: 'defines the granularity / verbosity of the encoder (number of step for a 360° arc)'},
             back: {type: '*', value: -1, help: 'Defines which value is sent when rotating the encoder anticlockwise'},
             forth: {type: '*', value: 1, help: 'Defines which value is sent when rotating the encoder clockwise'},
@@ -91,6 +92,7 @@ module.exports = class Encoder extends Widget {
             range:{min:0,max:this.ticks},
             origin:this.ticks/2,
             pips:false,
+            compact: this.getProp('compact')
         }, parent: this})
 
         this.knob.widget.classList.add('drag-knob')
