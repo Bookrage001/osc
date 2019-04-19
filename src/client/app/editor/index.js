@@ -831,6 +831,11 @@ var Editor = class Editor {
 
         updateWidget(widget, options)
 
+        if (this.selectedWidgets[0] && !widgetManager.widgets[this.selectedWidgets[0].hash]) {
+            this.unselect()
+            this.selectedWidgets = []
+        }
+
     }
 
 
