@@ -103,6 +103,11 @@ module.exports = function editField(editor, widget, propName, defaultValue){
 
             try {
                 v = JSON.parseFlex(input.value)
+                if (typeof v === 'string') {
+                    // escape backslashes in simple strings only
+                    v = JSON.parseFlex(input.value.replace(/\\/g, '__BACKSLASH__'))
+                    v = v.replace(/__BACKSLASH__/g, '\\')
+                }
             } catch(err) {
                 v = input.value
             }

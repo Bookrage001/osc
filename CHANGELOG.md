@@ -5,6 +5,7 @@
 - bug fixes
   - bottom horizontal scrollbar not responding on small screens
   - remote file browser: hitting a letter to select a file based on its name was looping on the first two matches only
+  - editor: preserve backslashes in enquoted strings (not in objects/arrays)
 - widgets
   - `logScale` can be set to a number to use a logarithm base different from the default
   - knob: `compact` mode is back
