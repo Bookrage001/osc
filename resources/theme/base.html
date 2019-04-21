@@ -31,7 +31,8 @@
                               </form>
                           </div>
                           <a href="{{ "/"|url}}" class="{% if page.is_homepage %}active{% endif %}">Home</a>
-                          <a href="{{ "/docs"|url }}" class="{% if not page.is_homepage %}active{% endif %}">Docs</a>
+                          <a href="{{ "/docs"|url }}" class="{% if 'docs' in page.url %}active{% endif %}">Docs</a>
+                          <a href="{{ "/donate"|url }}" class="{% if 'donate' in page.url %}active{% endif %}">Donate</a>
                           <a href="https://github.com/jean-emmanuel/open-stage-control" target="_blank">Bug Tracker</a>
                           <a href="https://openstagecontrol.discourse.group">Community</a>
                       </span>
@@ -57,7 +58,7 @@
       {% endif %}
 
       <div id="main" class="wrap">
-          {% if not page.is_homepage %}
+          {% if 'docs' in page.url %}
           {% set ns = namespace(navigation=[]) %}
           {% for nav_item in nav %}
               {% if nav_item.children %}

@@ -10,11 +10,3 @@ Open Stage Control relies on several other free softwares, including [Node.js](h
 ## Contributors
 
 https://github.com/jean-emmanuel/open-stage-control/graphs/contributors
-
-----
-
- <div style="width:240px">
-[![BrowserStack](/img/logo-browserstack.png)](http://browserstack.com/)
-</div>
-
-BrowserStack supports Open Stage Control by providing a complete suite of browser emulators for Android, iOS and Windows.

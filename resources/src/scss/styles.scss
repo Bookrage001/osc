@@ -27,6 +27,11 @@ pre, code {
     font-family: $mono-font-family;
 }
 
+hr {
+    border: 0;
+    border-top: 2px solid rgba(black, 0.15);
+}
+
 .dynamic-prop-icon {
     width:12px;
     height:12px;
@@ -257,6 +262,11 @@ h1:first-child {
         background: white;
         color:#333;
     }
+}
+
+.sponsor-logo {
+    display:inline-block;
+    margin-top:20px;
 }
 
 @import 'mobile';

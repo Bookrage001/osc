@@ -24,11 +24,6 @@ extra:
         -
             title: Try online (requires chromium 50+)
             url : http://openstagecontrol.herokuapp.com
-        -
-            title: Donate
-            url: https://www.helloasso.com/associations/ammd/formulaires/2/widget/en
-            newtab: true
-            primary: true
 
 nav:
     - Open Stage Control: index.md
@@ -47,6 +42,7 @@ nav:
         - Midi: docs/midi.md
         - Examples: docs/examples.md
         - Credits: docs/credits.md
+    - Donate: donate.md
 
 markdown_extensions:
     - markdown.extensions.admonition
