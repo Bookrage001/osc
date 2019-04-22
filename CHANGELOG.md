@@ -4,6 +4,7 @@
 
 - bug fixes
   - image: `cache` option inverted
+  - image: allow whitespaces in url
 
 ## 0.45.6
 
