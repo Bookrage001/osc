@@ -66,7 +66,7 @@ module.exports = class Image extends Widget {
 
         if (typeof this.value === 'string' && this.value.length) {
 
-            if ((s === 'reload' || this.getProp('cache')) && this.value.indexOf('base64') === -1) {
+            if ((s === 'reload' || !this.getProp('cache')) && this.value.indexOf('base64') === -1) {
                 cache_query = (this.value.indexOf('?') != -1 ? '&' : '?') + Date.now()
             }
 

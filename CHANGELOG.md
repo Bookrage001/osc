@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.45.7
+
+- bug fixes
+  - image: `cache` option inverted
+
 ## 0.45.6
 
 - bug fixes
