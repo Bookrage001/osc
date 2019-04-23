@@ -133,7 +133,7 @@ def send_midi(name, event, *args):
         return
 
     if event not in OSC_TO_MIDI:
-        ipc_send('log','ERROR: MIDI: unknown output (%s)' % name)
+        ipc_send('log','ERROR: MIDI: invalid address (%s)' % event )
         return
 
     m = None
