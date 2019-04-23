@@ -30,6 +30,7 @@ module.exports = class Keyboard extends _matrix_base {
                 'Set to `null` to send send no argument in the osc message',
                 'Can be an `object` if the type needs to be specified (see preArgs)'
             ]},
+            toggles: {type: 'boolean', value: false, help: 'Set to `true` to make keys bahave like toggle buttons'}
 
         }, ['_value', 'default', 'value'], {
 
@@ -68,7 +69,7 @@ module.exports = class Keyboard extends _matrix_base {
             var data = JSON.parse(strData)
 
             data.top = data.left = data.height = data.width = 'auto'
-            data.type = 'push'
+            data.type = this.getProp('toggles') ? 'toggle' : 'push'
             data.id = this.getProp('id') + '/' + i
             data.label = false
             data.css = ''

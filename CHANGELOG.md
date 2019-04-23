@@ -5,6 +5,8 @@
 - bug fixes
   - image: `cache` option inverted
   - image: allow whitespaces in url
+- widgets
+  - keyboard: `toggles` options
 
 ## 0.45.6
 
