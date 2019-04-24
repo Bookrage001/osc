@@ -16,7 +16,7 @@ Available extensions (alternative visual settings)
 
 ## Creating a custom theme
 
-Creating a custom theme is as simple as writing a tiny css file that will override the default css variables defined in [default.scss](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/browser/scss/themes/default.scss) :
+Creating a custom theme is as simple as writing a tiny css file that will override the default css variables defined in [default.scss](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/scss/themes/default.scss) :
 
 ```css
 :root {
