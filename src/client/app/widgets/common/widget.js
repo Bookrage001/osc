@@ -893,7 +893,7 @@ class Widget extends EventEmitter {
             if (oldStyle) {
                 this.container.replaceChild(style, oldStyle)
             } else if (scopedCss.length || unScopedCss.length){
-                this.container.insertBefore(style, this.widget)
+                this.container.insertBefore(style, this.container.childNodes[0] || null)
             }
 
 

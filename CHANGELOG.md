@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.45.8
+
+- bug fixes:
+  - modal: `css` not properly applied if the property was previously empty and the modal had been opened at least once
+
 ## 0.45.7
 
 - bug fixes
