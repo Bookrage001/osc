@@ -50,6 +50,8 @@ class State extends Widget {
         this.saveButton.container.classList.add('not-editable', 'value')
         this.loadButton.container.classList.add('not-editable', 'value', 'disabled')
 
+        this.saveButton.sendValue = this.loadButton.sendValue = ()=>{}
+
         this.widget.appendChild(this.saveButton.container)
         this.widget.appendChild(this.loadButton.container)
 
@@ -57,6 +59,8 @@ class State extends Widget {
 
             var {widget} = e
             if (widget === this) return
+
+            e.stopPropagation = true
 
             if (widget.active) this.setValue(widget === this.saveButton ? 'save' : 'load', {sync: true, send: true})
 
