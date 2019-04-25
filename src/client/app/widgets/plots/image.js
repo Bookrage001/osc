@@ -79,7 +79,12 @@ module.exports = class Image extends Widget {
         if (!parser.protocol.match(/http|data/)) url = url.replace(':', '_:_')
         url = url.replace(/\\/g, '\\\\')
 
-        this.widget.style.setProperty('background-image', `url("${url}${cache_query}")`)
+
+        if (url) {
+            this.widget.style.setProperty('background-image', `url("${url}${cache_query}")`)
+        } else {
+            this.widget.style.setProperty('background-image', '')
+        }
 
         if (options.sync) this.changed(options)
 
