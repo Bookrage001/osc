@@ -3,7 +3,8 @@ var ipc = require('../ipc'),
     {upload, remoteBrowse} = require('../ui/utils'),
     notifications = require('../ui/notifications'),
     {saveAs} = require('file-saver'),
-    locales = require('../locales')
+    locales = require('../locales'),
+    {deepCopy} = require('../utils')
 
 
 var StateManager = class StateManager {
@@ -22,22 +23,23 @@ var StateManager = class StateManager {
 
     }
 
-    get() {
+    get(filter) {
 
-        var data = []
+        var data = {}
 
         for (let i in widgetManager.widgets) {
 
             var widget = widgetManager.widgets[i]
 
+            if (filter && !filter(widget)) continue
+
             if (widget.setValue && widget.getValue) {
 
                 var v = widget.getValue()
 
-                if (v!=undefined) {
+                if (v !== undefined) {
 
-                    data.push([widget.getProp('id'),v])
-                    continue
+                    data[widget.getProp('id')] = v
 
                 }
 
@@ -50,18 +52,18 @@ var StateManager = class StateManager {
 
     set(preset,send) {
 
-        for (let i in preset) {
+        for (let id in preset) {
 
-            var data = preset[i],
-                widgets = widgetManager.getWidgetById(data[0])
+            var value = preset[id],
+                widgets = widgetManager.getWidgetById(id)
 
             if (widgets.length) {
 
-                for (var j=widgets.length-1;j>=0;j--) {
+                for (var j = widgets.length - 1; j >= 0; j--) {
 
                     if (widgets[j].setValue) {
 
-                        widgets[j].setValue(data[1],{send:send,sync:true})
+                        widgets[j].setValue(value, {send:send,sync:true})
 
                     }
 
@@ -125,6 +127,16 @@ var StateManager = class StateManager {
             if (typeof state === 'string') {
                 state = JSON.parse(state)
             }
+
+            if (Array.isArray(state)) {
+                // backward compatibility
+                var ostate = {}
+                for (var i in state) {
+                    ostate[state[i][0]] = state[i][1]
+                }
+                state = ostate
+            }
+
             this.set(state, send)
             notifications.add({
                 icon: 'sliders-h',
@@ -158,7 +170,7 @@ var StateManager = class StateManager {
 
     export() {
 
-        var state = JSON.stringify(this.get(),null,'    ')
+        var state = JSON.stringify(this.get(),null,'  ')
         var blob = new Blob([state],{type : 'application/json'})
         saveAs(blob, new Date().toJSON().slice(0,10)+'_'+new Date().toJSON().slice(11,16) + '.state')
 
@@ -166,7 +178,7 @@ var StateManager = class StateManager {
 
     quickSave() {
 
-        this.quickState = this.get()
+        this.quickState = deepCopy(this.get())
 
     }
 
