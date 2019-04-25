@@ -27,6 +27,9 @@ class State extends Widget {
                 '- widget id `string`',
                 '- `array` of widget id strings'
             ]},
+            saveLabel: {type: 'string', value: 'Save', help: 'Label for save button'},
+            loadLabel: {type: 'string', value: 'Load', help: 'Label for load button'},
+            horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display buttons horizontally'},
 
         }, ['_value', 'default', 'value'])
 
@@ -39,12 +42,13 @@ class State extends Widget {
 
         this._isSwitcher = true
 
-        this.saveButton = new Push({props: {...pushDefaults, type: 'push', label: 'save'}, parent: this, container: true})
-        this.loadButton = new Push({props: {...pushDefaults, type: 'push', label: 'load'}, parent: this, container: true})
+        if (this.getProp('horizontal')) this.widget.classList.add('horizontal')
 
-        this.saveButton.container.classList.add('not-editable')
-        this.loadButton.container.classList.add('not-editable')
-        this.loadButton.container.classList.add('disabled')
+        this.saveButton = new Push({props: {...pushDefaults, type: 'push', label: this.getProp('saveLabel')}, parent: this, container: true})
+        this.loadButton = new Push({props: {...pushDefaults, type: 'push', label: this.getProp('loadLabel')}, parent: this, container: true})
+
+        this.saveButton.container.classList.add('not-editable', 'value')
+        this.loadButton.container.classList.add('not-editable', 'value', 'disabled')
 
         this.widget.appendChild(this.saveButton.container)
         this.widget.appendChild(this.loadButton.container)
@@ -65,12 +69,15 @@ class State extends Widget {
 
     save() {
 
-        var filter
+        var filter = (widget)=>{
+            return !widget._isSwitcher
+        }
+
         if (this.filter) {
             var containers = this.filter.map(x=>widgetManager.getWidgetById(x)).reduce((a,b)=>a.concat(b), [])
             if (!containers.length) return
             filter = (widget)=>{
-                return !widget.isSwitcher && containers.some(x=>x.contains(widget) || x === widget)
+                return !widget._isSwitcher && containers.some(x=>x.contains(widget) || x === widget)
             }
         }
 

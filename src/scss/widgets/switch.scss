@@ -208,6 +208,16 @@
 }
 
 .state-container {
+    .push-container {
+        border:0;
+    }
+    .toggle {
+        height: 100%;
+        z-index: 1;
+        &:before {
+            box-shadow: none;
+        }
+    }
     .disabled {
         opacity: 0.65;
         pointer-events: none;
