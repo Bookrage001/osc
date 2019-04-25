@@ -54,7 +54,7 @@ class State extends Widget {
             var {widget} = e
             if (widget === this) return
 
-                if (widget.active) this.setValue(widget === this.saveButton ? 'save' : 'load', {sync: true, send: true})
+            if (widget.active) this.setValue(widget === this.saveButton ? 'save' : 'load', {sync: true, send: true})
 
         })
 
