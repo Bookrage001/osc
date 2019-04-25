@@ -1,4 +1,4 @@
-.switch-container, .switcher-container, .crossfader-container  {
+.state-container, .switch-container, .switcher-container, .crossfader-container  {
     z-index: 1;
     width:100rem;
     height:100rem;
@@ -205,4 +205,12 @@
 
     }
 
+}
+
+.state-container {
+    .disabled {
+        opacity: 0.65;
+        pointer-events: none;
+        cursor: default;
+    }
 }

@@ -47,6 +47,7 @@ module.exports.widgets = {
     // state switchers
     switcher: require('./switchers/switcher'),
     crossfader: require('./switchers/crossfader'),
+    state: require('./switchers/state'),
 
     // inputs
     input: require('./inputs/input'),
@@ -64,6 +65,6 @@ module.exports.categories = {
     'Matrices':['matrix', 'keyboard', 'patchbay'],
     'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg', 'frame'],
     'Containers':['panel','strip','modal', 'clone'],
-    'Switchers':['switcher','crossfader'],
+    'Switchers':['state', 'switcher','crossfader'],
     'Inputs':['input', 'keys', 'script', 'gyroscope', 'file']
 }
