@@ -5,6 +5,9 @@ from utils import *
 if 'list' in argv:
     list()
 
+# option: act as if displayed program is between 1-128 instead of 0-127
+PROGRAM_CHANGE_OFFSET = 'pc_offset' in argv
+
 inputs = {}
 outputs = {}
 
@@ -82,6 +85,9 @@ def create_callback(name):
 
                 if mtype == NOTE_OFF:
                     message[2] = 0
+
+                elif mtype is PROGRAM_CHANGE and PROGRAM_CHANGE_OFFSET:
+                    message[-1] = message[-1] + 1
 
                 for data in message[1:]:
                     osc['args'].append({'type': 'i', 'value': data})
@@ -173,6 +179,9 @@ def send_midi(name, event, *args):
 
         elif mtype is PITCH_BEND:
             args = args[:1] + [args[1] & 0x7f, (args[1] >> 7) & 0x7f] # convert 0-16384 -> 0-127 pair
+
+        elif mtype is PROGRAM_CHANGE and PROGRAM_CHANGE_OFFSET:
+            args[-1] = args[-1] - 1
 
         m = midi_message(mtype, *args)
 

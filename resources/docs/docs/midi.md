@@ -17,6 +17,7 @@ When running the app, the `-m / --midi` switch must be set; it accepts the follo
 - `list`: prints the available MIDI ports to the console; numbers in the first column may be used for `input`/`output` definition below
 - `device_name:input,output`: connect to midi ports `input` and `output`; osc messages sent to target `midi:device_name` will be processed as midi events; Multiple devices can be declared
 - `sysex`: parse incomming system exclusive messages (disabled by default)
+- `pc_offset`: send program changes with a `-1` offset to match some software/hardware implementations
 
 *Linux only:*
 
@@ -76,10 +77,10 @@ A fader might be configured as follows in order to send a MIDI control message (
 Program change event.
 
 - `channel`: integer between 1 and 16
-- `program`: integer between 0 and 127
+- `program`: integer between 0 and 127*
 
 !!! note
-    Some devices / softwares display the `program` value between 1 and 128, thus interpreting `program change 0` as `program change 1` and so on.
+    \* Some devices / softwares display the `program` value between 1 and 128, thus interpreting `program change 0` as `program change 1` and so on. Enable the `pc_offset` option to make Open Stage Control behave this way. 
 
 #### `/pitch channel pitch`
 

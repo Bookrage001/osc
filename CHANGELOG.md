@@ -11,6 +11,7 @@
   - added `/STATE/[GET|SET|STORE|RECALL]` methods
 - midi
   - print port name in debug messages
+  - added `pc_offset` option to act as if program change numbers where between 1 and 128
 
 ## 0.45.7
 
