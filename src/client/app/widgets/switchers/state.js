@@ -33,9 +33,11 @@ class State extends Widget {
 
         }, [], {
 
-            value: {type: 'string|object', value: '', help: [
-                '- `string`: `"save"` or `"load"`',
+            value: {type: 'object|string', value: '', help: [
                 '- `object`: `"widget_id": VALUE` pairs',
+                '- `string`: `"save"` (trigger save action), `"load"` (trigger load action) or `""` (reset value)',
+                '',
+                'Note: the widget\'s actual value is never `"save"` or `"load"`, it\'s either an empty string or an object.'
             ]}
 
         })
@@ -74,7 +76,7 @@ class State extends Widget {
         })
 
         this.filter = this.getProp('filter') ? Array.isArray(this.getProp('filter')) ? this.getProp('filter') : [this.getProp('filter')] : false
-        this.value = null
+        this.value = ''
 
     }
 
@@ -118,10 +120,10 @@ class State extends Widget {
             this.load(options.send)
             valid = true
 
-        } else if (v === null) {
+        } else if (v === '') {
 
             if (this.value) this.loadButton.container.classList.add('disabled')
-            this.value = null
+            this.value = ''
 
         } else if (typeof v === 'object' && !Array.isArray(v)) {
 
