@@ -90,7 +90,7 @@ def create_callback(name):
             ipc_send('osc', osc)
 
             if debug:
-                ipc_send('log','MIDI received: <%s> to %s' % (midi_str(message), name))
+                ipc_send('log','MIDI received: <%s> From: midi:%s' % (midi_str(message), name))
 
 
     def callback_error_wrapper(event, data):
@@ -186,7 +186,7 @@ def send_midi(name, event, *args):
 
         if debug:
 
-            ipc_send('log','MIDI sent: <%s> to %s' % (midi_str(m), name))
+            ipc_send('log','MIDI sent: <%s> To: midi:%s' % (midi_str(m), name))
 
 
 while True:
