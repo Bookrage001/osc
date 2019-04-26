@@ -261,6 +261,7 @@ Piano keyboard.
 | <h4 id="keyboard_traversing">traversing<a class="headerlink" href="#keyboard_traversing" title="Permanent link">#</a></h4> | `boolean` | <code>true</code> | Set to `false` to disable traversing gestures |
 | <h4 id="keyboard_on">on<a class="headerlink" href="#keyboard_on" title="Permanent link">#</a></h4> | `*` | <code>1</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
 | <h4 id="keyboard_off">off<a class="headerlink" href="#keyboard_off" title="Permanent link">#</a></h4> | `*` | <code>0</code> | Set to `null` to send send no argument in the osc message<br/><br/>Can be an `object` if the type needs to be specified (see preArgs) |
+| <h4 id="keyboard_toggles">toggles<a class="headerlink" href="#keyboard_toggles" title="Permanent link">#</a></h4> | `boolean` | <code>false</code> | Set to `true` to make keys bahave like toggle buttons |
 | <h4 class="thead2" id="keyboard_osc">osc<a class="headerlink" href="#keyboard_osc" title="Permanent link">#</a></h4> ||||
 | <h4 id="keyboard_split">split<a class="headerlink" href="#keyboard_split" title="Permanent link">#</a></h4> | `boolean`\|<br/>`string` | <code>false</code> | `true`: the widget's index will be appended to the matrice's osc address<br/><br/>`false`: it will be prepended to the widget's preArgs<br/><br/>`string`: will be used to define the widgets' addresses, replacing dollar signs (`$`) with their respective index (to insert the actual dollar sign, it must be escaped with a backslash (`\$`)) |
 
@@ -478,6 +479,20 @@ Widget replication with overridable properties.
 | <h4 id="clone_props">props<a class="headerlink" href="#clone_props" title="Permanent link">#</a></h4> | `object` | <code>{}</code> | Cloned widget's properties to override |
 
 ## Switchers
+
+### state
+
+Save and recall the state of other widgets.
+
+| property | type |default | description |
+| --- | --- | --- | --- |
+| <h4 class="thead2" id="state_state">state<a class="headerlink" href="#state_state" title="Permanent link">#</a></h4> ||||
+| <h4 id="state_filter">filter<a class="headerlink" href="#state_filter" title="Permanent link">#</a></h4> | `string`\|<br/>`array` | <code>""</code> | Only save state from widgets contained in widgets designated by id. If empty, the whole session's state is saved. Switchers are always ignored.<br/>- widget id `string`<br/>- `array` of widget id strings |
+| <h4 id="state_saveLabel">saveLabel<a class="headerlink" href="#state_saveLabel" title="Permanent link">#</a></h4> | `string` | <code>"Save"</code> | Label for save button |
+| <h4 id="state_loadLabel">loadLabel<a class="headerlink" href="#state_loadLabel" title="Permanent link">#</a></h4> | `string` | <code>"Load"</code> | Label for load button |
+| <h4 id="state_horizontal">horizontal<a class="headerlink" href="#state_horizontal" title="Permanent link">#</a></h4> | `boolean` | <code>false</code> | Set to `true` to display buttons horizontally |
+| <h4 class="thead2" id="state_value">value<a class="headerlink" href="#state_value" title="Permanent link">#</a></h4> ||||
+| <h4 id="state_value">value<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#state_value" title="Permanent link">#</a></h4> | `object`\|<br/>`string` | <code>""</code> | - `object`: `"widget_id": VALUE` pairs<br/>- `string`: `"save"` (trigger save action), `"load"` (trigger load action) or `""` (reset value)<br/><br/><br/><br/>Note: the widget's actual value is never `"save"` or `"load"`, it's either an empty string or an object. |
 
 ### switcher
 
