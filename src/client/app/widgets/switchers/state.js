@@ -93,7 +93,7 @@ class State extends Widget {
 
     load(send) {
 
-        stateMananer.set(this.value, send)
+        if (this.value) stateMananer.set(this.value, send)
 
     }
 
@@ -111,7 +111,12 @@ class State extends Widget {
             this.load(options.send)
             valid = true
 
-        } else if (typeof v === 'object' && v !== null && !Array.isArray(v)) {
+        } else if (v === null) {
+
+            if (this.value) this.loadButton.container.classList.add('disabled')
+            this.value = null
+
+        } else if (typeof v === 'object' && !Array.isArray(v)) {
 
             if (!this.value) this.loadButton.container.classList.remove('disabled')
             this.value = v
