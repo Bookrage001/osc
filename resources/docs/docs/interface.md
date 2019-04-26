@@ -9,8 +9,10 @@ The sidepanel can be opened by clicking the navigation icon in the upper right c
 - Store: save the state of all widgets in the temporary slot
 - Recall: reload saved state from the temporary slot
 - Send All: make all widgets send their current value
-- Export: save the state of all widgets to a `.preset` file
-- Import: load a state from a `.preset` file
+- Save / Save As: save the state of all widgets to a `.state` file on the server
+- Load: load a state from a `.state` file on the server
+- Export: save to local filesystem
+- Import: load from local filesystem
 
 ### Traversing gestures
 
