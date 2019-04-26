@@ -78,6 +78,9 @@ Program change event.
 - `channel`: integer between 1 and 16
 - `program`: integer between 0 and 127
 
+!!! note
+    Some devices / softwares display the `program` value between 1 and 128, thus interpreting `program change 0` as `program change 1` and so on.
+
 #### `/pitch channel pitch`
 
 PitchWheel event.
