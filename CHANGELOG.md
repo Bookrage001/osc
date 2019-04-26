@@ -9,6 +9,8 @@
   - switchers: new `state` widget
 - remote control
   - added `/STATE/[GET|SET|STORE|RECALL]` methods
+- midi
+  - print port name in debug messages
 
 ## 0.45.7
 
