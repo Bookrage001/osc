@@ -31,7 +31,14 @@ class State extends Widget {
             loadLabel: {type: 'string', value: 'Load', help: 'Label for load button'},
             horizontal: {type: 'boolean', value: false, help: 'Set to `true` to display buttons horizontally'},
 
-        }, ['_value', 'default', 'value'])
+        }, [], {
+
+            value: {type: 'string|object', value: '', help: [
+                '- `string`: `"save"` or `"load"`',
+                '- `object`: `"widget_id": VALUE` pairs',
+            ]}
+
+        })
 
     }
 
