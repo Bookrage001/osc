@@ -137,6 +137,11 @@ hr {
 }
 .col-left > ul ul {
     line-height: 1
+    li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 .col-right {
     flex: 1;
