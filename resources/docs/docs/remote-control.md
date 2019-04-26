@@ -109,6 +109,28 @@ Set a widget's value as if it was interacted with from the interface. This is li
 - `value`: `*`, widget's new value
 
 
+## `/STATE/GET target`
+
+Sends back the app's state to specified target
+
+- `target`: `string`, `ip:port` pair
+
+## `/STATE/GET state`
+
+Set widgets' state
+
+- `state`: `string`, json stringified object (`"widget_id": value` pairs)
+
+
+## `/STATE/STORE`
+
+Save the state of all widgets in the temporary slot.
+
+## `/STATE/RECALL`
+
+Reload saved state from the temporary slot.
+
+
 ## `/TABS id id etc`
 
 Open the tabs designated by the `id` parameters.

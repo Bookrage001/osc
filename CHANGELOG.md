@@ -5,6 +5,10 @@
 - bug fixes:
   - modal: `css` not properly applied if the property was previously empty and the modal had been opened at least once
   - image: allow overriding css background-image when value is empty
+- widgets
+  - switchers: new `state` widget
+- remote control
+  - added `/STATE/[GET|SET|STORE|RECALL]` methods
 
 ## 0.45.7
 

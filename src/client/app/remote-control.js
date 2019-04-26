@@ -1,6 +1,7 @@
 var {updateWidget} = require('./editor/data-workers'),
     editor = require('./editor'),
     widgetManager = require('./managers/widgets'),
+    stateManager = require('./managers/state'),
     deepExtend = require('deep-extend')
 
 var callbacks = {
@@ -173,6 +174,43 @@ var callbacks = {
             })
 
         }
+
+    },
+    '/STATE/GET': function(args) {
+
+        if (Array.isArray(args)) args = args[0]
+
+        var target = args,
+            root = widgetManager.getWidgetById('root')[0],
+            state = stateManager.get()
+
+        root.sendValue({
+            target: [target],
+            address: '/STATE/GET',
+            preArgs: [],
+            v: JSON.stringify(state),
+            noSync: true
+        }, {force: true})
+
+    },
+    '/STATE/SET': function(args) {
+
+        if (Array.isArray(args)) args = args[0]
+
+        var json = args,
+            data = typeof json == 'string' ? JSON.parseFlex(json) : json
+
+        stateManager.set(data)
+
+    },
+    '/STATE/STORE': function(args) {
+
+        stateManager.quickSave()
+
+    },
+    '/STATE/RECALL': function(args) {
+
+        stateManager.quickLoad()
 
     },
     '/TABS': function(args) {
