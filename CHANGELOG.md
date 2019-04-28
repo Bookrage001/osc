@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.46.1
+
+- bug fixes
+  - windows: midi debug strings not printed
+
 ## 0.46.0
 
 - bug fixes:
