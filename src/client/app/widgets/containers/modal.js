@@ -10,7 +10,7 @@ module.exports = class Modal extends Panel {
 
     static description() {
 
-        return 'A toggle button that opens a popup panel.'
+        return 'A toggle button that opens a popup panel. Cannot contain tabs directly.'
 
     }
 

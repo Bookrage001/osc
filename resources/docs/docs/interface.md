@@ -1,8 +1,25 @@
 # User interface
 
+The interface is made of two main components: the widgets and the sidepanel.
+
+## Widgets
+
+All widgets are contained in the `root` widget, a special `panel` widget that can only contain tabs.
+
+### Interacting with widgets
+
+| Mouse | Touch | Description |
+|---|---|---|
+| Click | Tap | Handled at pressing time, not releasing. |
+| Double Click | Double Tap | Some widgets handle double click / tap events. |
+| Drag | Drag | The widgets respond to mouse and touch drag gestures with a 1:1 precision ratio. |
+| `Ctrl` + Drag | | Holding the `Ctrl` key while dragging with the mouse increases the gesture's precision by 10.|
+| | Two-fingers drag (single target) | Using two fingers on a single-touch target increases the gesture's precision by 10. |
+
+
 ## Sidepanel
 
-The sidepanel can be opened by clicking the navigation icon in the upper right corner or by pressing F10.
+The sidepanel can be opened by clicking the navigation icon in the upper right corner or by pressing `F10`.
 
 ### State management
 
@@ -21,19 +38,8 @@ By default, a dragging gesture can only affect the widget it started on. Enablin
 - make gestures affect every widgets no matter where they started
 - make sliders-like widgets respond as if their `snap` option is enabled
 
-When traversing gestures are set to "Smart", these will only affect widgets that have the same type as the first touched widget.
+When traversing gestures are set to `auto`, these will only affect widgets that have the same type as the first touched widget.
 
 ### Editor
 
 See [Editing sessions](/docs/editing-sessions.md).
-
-## Interactions
-
-| Mouse | Touch | Description |
-|---|---|---|
-| Click | Tap | Handled at pressing time, not releasing. |
-| Double Click | Double Tap | Some widgets handle double click / tap events. |
-| Right-click | Long touch | Widgets that have only one value input will give focus to it when receiving this event. When the editor is enabled, Right-click / Long touch spawns the editor's context menu. |
-| Drag | Drag | The widgets respond to mouse and touch drag gestures with a 1:1 precision ratio. |
-| `Ctrl` + Drag | | Holding the `Ctrl` key while dragging with the mouse increases the gesture's precision by 10.|
-| | Two-fingers drag (single target) | Using two on a single-touch target increases the gesture's precision by 10. |

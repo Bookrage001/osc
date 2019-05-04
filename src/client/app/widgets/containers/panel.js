@@ -8,7 +8,7 @@ class Panel extends Container {
 
     static description() {
 
-        return 'Widget container.'
+        return 'Widgets or Tabs container.'
 
     }
 
