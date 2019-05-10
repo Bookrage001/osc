@@ -418,7 +418,7 @@ Embed a page in a frame (local network only).
 
 ### panel
 
-Widget container.
+Widgets or Tabs container.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
@@ -450,7 +450,7 @@ Widget container that display its children in a single column or row.
 
 ### modal
 
-A toggle button that opens a popup panel.
+A toggle button that opens a popup panel. Cannot contain tabs directly.
 
 | property | type |default | description |
 | --- | --- | --- | --- |
