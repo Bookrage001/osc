@@ -1,5 +1,9 @@
 # Changelog
 
+## next
+
+- improved canvas rendering speed on chrome v69 and above
+
 ## 0.46.1
 
 - bug fixes

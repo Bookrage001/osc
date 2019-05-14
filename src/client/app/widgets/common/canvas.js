@@ -66,7 +66,16 @@ class Canvas extends Widget {
         super(options)
 
         this.canvas = DOM.get(this.widget, 'canvas')[0]
-        this.ctx = this.canvas.getContext('2d')
+
+        this.offscreen = this.canvas.transferControlToOffscreen ?
+            this.canvas.transferControlToOffscreen() : false
+
+        this.ctx = this.offscreen ? this.offscreen.getContext('2d',{
+            singleBuffered: true,
+            lowLatency: true,
+            desynchronized: true,
+            alpha: true
+        }) : this.canvas.getContext('2d')
 
         this.height = undefined
         this.width = undefined
@@ -82,9 +91,11 @@ class Canvas extends Widget {
 
         this.ctx.arc = (x, y, r, s, e, c)=>{
 
-            CanvasRenderingContext2D.prototype.arc.call(this.ctx, x, y, Math.max(0,r), s, e, c)
+            this.ctx.__proto__.arc.call(this.ctx, x, y, Math.max(0,r), s, e, c)
 
         }
+
+        if (this.offscreen) this.ctx.curve = CanvasRenderingContext2D.prototype.curve.bind(this.ctx)
 
     }
 
@@ -104,6 +115,11 @@ class Canvas extends Widget {
 
         this.canvas.setAttribute('width', width * ratio)
         this.canvas.setAttribute('height', height * ratio)
+
+        if (this.offscreen) {
+            this.offscreen.width = width * ratio
+            this.offscreen.height = height * ratio
+        }
 
         this.clearRect = []
 
@@ -147,24 +163,32 @@ class Canvas extends Widget {
     clear() {
 
         if (!this.clearRect.length) {
-            this.ctx.clearRect(0, 0, this.width, this.height)
-            return
-        }
 
-        if (typeof this.clearRect[0] == 'object') {
+            this.ctx.clearRect(0, 0, this.width, this.height)
+
+        } else if (typeof this.clearRect[0] == 'object') {
+
             for (let i in this.clearRect) {
                 this.ctx.clearRect(...this.clearRect[i])
             }
-            return
-        }
 
-        this.ctx.clearRect(...this.clearRect)
+        } else {
+
+            this.ctx.clearRect(...this.clearRect)
+
+        }
 
     }
 
     batchDraw() {
 
-        if (this.visible) canvasQueue.push(this)
+        if (this.visible) {
+            if (this.offscreen) {
+                this.draw()
+            } else {
+                canvasQueue.push(this)
+            }
+        }
 
     }
 
