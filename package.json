@@ -26,7 +26,7 @@
     "@babel/preset-env": "7.4.4",
     "ansi-html": "0.0.7",
     "babelify": "10.0.0",
-    "bonjour": "3.5.0",
+    "bonjour": "github:jean-emmanuel/bonjour",
     "browserify": "16.2.3",
     "cardinal-spline-js": "2.3.10",
     "core-js": "3.0.1",
