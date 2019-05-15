@@ -21,7 +21,7 @@ deploy:
 before_deploy:
   - export VERSION=$(sed -nE 's/^\s*"version":\ "(.*?)",$/\1/p' package.json)
   - npm run package -- --all
-  - npm run package -- --rpi
+  - npm run package -- --ia32
   - npm run package-node
   - npm run deb32
   - npm run deb64
