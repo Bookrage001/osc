@@ -30,9 +30,11 @@ argv.getUsageInstance().help = ()=>{
 argv = argv.argv
 
 // are we in a terminal ?
-var cli = false
+var cli = false,
+    ignored = ['_', '$0', 'no-sandbox', 'noSandbox']
+
 for (i in argv) {
-    if (i != '_' && i != '$0' && (argv[i]!=undefined && argv[i]!==false)) cli = true
+    if (!ignored.includes(i) && (argv[i]!=undefined && argv[i]!==false)) cli = true
 }
 
 var fs = require('fs'),
