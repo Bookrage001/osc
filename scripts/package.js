@@ -3,16 +3,16 @@ const packager = require('electron-packager'),
       appData = require('../app/package.json'),
       safeFFMPEG = require('electron-packager-plugin-non-proprietary-codecs-ffmpeg').default
 
-var all = process.argv.includes('--all'),
-    ia32= process.argv.includes('--ia32')
+var rpi = process.argv.includes('--rpi'),
+    all = process.argv.includes('--all')
 
 packager({
     dir: path.resolve(__dirname + '/../app'),
     name: appData.name,
     all: all ? true : undefined,
-    platform: ia32 ? 'linux' : process.env.PLATFORM,
-    arch: ia32 ? 'ia32' : process.env.ARCH,
-    electronVersion:  ia32 ? '1.8.8' : electronVersion,
+    platform: rpi ? 'linux' : process.env.PLATFORM,
+    arch: rpi ? 'armv7l' : process.env.ARCH,
+    electronVersion:  rpi ? '1.7.11' : require('../package.json').optionalDependencies.electron,
     overwrite: true,
     out: path.resolve(__dirname + '/../dist'),
     icon: path.resolve(__dirname + '/../resources/images/logo'),

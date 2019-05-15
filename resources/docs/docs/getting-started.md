@@ -137,8 +137,8 @@ npm run build
 
 npm run package
 
-# For 32bit linux, run this instead
-npm run package-ia32
+# For raspberry-pi / armv7l, run this instead
+npm run package-rpi
 
 # Do one of the following if you want a deb package for debian/ubuntu
 npm run deb32
