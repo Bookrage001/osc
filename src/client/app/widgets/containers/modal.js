@@ -26,6 +26,7 @@ module.exports = class Modal extends Panel {
             popupHeight: {type: 'number|percentage', value: '80%', help: 'Modal popup\'s size'},
             popupLeft: {type: 'number|percentage', value: 'auto', help: 'Modal popup\'s position'},
             popupTop: {type: 'number|percentage', value: 'auto', help: 'Modal popup\'s position'},
+            scroll: {type: 'boolean', value: true, help: 'Set to `false` to disable scrollbars'},
 
         }, [], {
 
@@ -42,8 +43,6 @@ module.exports = class Modal extends Panel {
     }
 
     constructor(options) {
-
-        options.props.scroll = true
 
         super(options)
 

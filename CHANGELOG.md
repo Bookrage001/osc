@@ -3,6 +3,8 @@
 ## next
 
 - improved canvas rendering speed on chrome v69 and above
+- widgets
+  - modal: `scroll` option
 
 ## 0.46.1
 
