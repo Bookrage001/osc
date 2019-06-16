@@ -5,6 +5,7 @@
 - improved canvas rendering speed on chrome v69 and above
 - widgets
   - modal: `scroll` option
+  - script: `get(id)` function added in `script`execution context
 
 ## 0.46.1
 

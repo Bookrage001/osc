@@ -28,6 +28,7 @@ class Script extends Widget {
                 '- `value`: the value received by the widget',
                 '- `send(target, address, arg1, arg2, ...)`: function for sending osc messages (ignores the script\'s targets and the server\'s defaults unless `target` is `false`; ignores the script\'s `preArgs`)',
                 '- `set(id, value)`: function for setting a widget\'s value',
+                '- `get(id)`: function for getting a widget\'s value',
                 '',
                 '* Note: `value` or `linkId` properties can be used to receive other widgets\' values. The `value` property must actually change to trigger the execution, where linked widgets via `linkId` can submit the same value over and over and trigger the execution',
             ]}
@@ -59,6 +60,24 @@ class Script extends Widget {
 
     }
 
+    static scriptGet(id) {
+
+        var widgets = widgetManager.getWidgetById(id)
+
+        for (var i = widgets.length - 1; i >= 0; i--) {
+
+            if (widget.getValue) {
+
+                var v = widgets[i].getValue()
+                if (v !== undefined) return v
+
+            }
+
+        }
+
+    }
+
+
     scriptSend(target, address, ...args) {
 
         var overrides = {
@@ -73,13 +92,13 @@ class Script extends Widget {
 
     }
 
-
     setValue(v, options={} ) {
 
         var context = {
             value: v,
             send: options.send ? this.scriptSend.bind(this) : ()=>{},
             set: (id, value)=>{Script.scriptSet(id, value, options)},
+            get: (id)=>{return Script.scriptGet(id)},
             log: console.log
         }
 
@@ -102,7 +121,8 @@ Script.parsersContexts.condition = {
 Script.parsersContexts.script = {
     value: '',
     send: ()=>{},
-    set: ()=>{}
+    set: ()=>{},
+    get: ()=>{}
 }
 
 Script.dynamicProps = Script.prototype.constructor.dynamicProps.concat(
