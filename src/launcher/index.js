@@ -94,11 +94,11 @@ $(document).ready(()=>{
                     v = v == 'true' ? true : ''
                     input.val(v)
                 } else if (v && option.type == 'array'){
-                    v = v.replace(/("[^"]*"|'[^'*]*')/g, (m)=>{
-                        return m.replace(/\s/, '_SPÂCE_').substr(1, m.length - 2)
+                    v = v.replace(/("[^"]*"|'[^']*')/g, (m)=>{
+                        return m.substr(1, m.length - 2).replace(/\s/, '_SPaCE_')
                     })
                     v = v.split(' ')
-                    v = v.map(x=>x.replace(new RegExp('_SPÂCE_', 'g'), ' '))
+                    v = v.map(x=>x.replace(/_SPaCE_/g, ' '))
                 } else if (v && option.type == 'number'){
                     v = parseFloat(v)
                 }

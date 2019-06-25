@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.46.3
+
+- bug fixes
+  - launcher: spaces not properly escaped in quoted strings
+
 ## 0.46.2
 
 - improved canvas rendering speed on chrome v69 and above
