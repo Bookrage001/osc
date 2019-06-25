@@ -29,8 +29,8 @@ class Script extends Widget {
                 '- `id`: id of the widget that triggered the script',
                 '- `send(target, address, arg1, arg2, ...)`: function for sending osc messages (ignores the script\'s targets and the server\'s defaults unless `target` is `false`; ignores the script\'s `preArgs`)',
                 '- `set(id, value)`: function for setting a widget\'s value',
-                '- `get(id)`: function for getting a widget\'s value',
-                '- `getProp(id, property)`: function for getting a widget\'s property value',
+                '- `get(id)`: function for getting a widget\'s value (dynamic equivalent of @{id})',
+                '- `getProp(id, property)`: function for getting a widget\'s property value ((dynamic equivalent of @{id.property})',
                 '',
                 '* Note: `value` or `linkId` properties can be used to receive other widgets\' values. The `value` property must actually change to trigger the execution, where linked widgets via `linkId` can submit the same value over and over and trigger the execution',
             ]}
@@ -47,10 +47,14 @@ class Script extends Widget {
             </div>
         `})
 
+        this.scriptLock = false
+
     }
 
 
     static scriptSet(id, value, options) {
+
+        if (id == options.id) options.sync = false
 
         var widgets = widgetManager.getWidgetById(id)
 
@@ -68,7 +72,7 @@ class Script extends Widget {
 
         for (var i = widgets.length - 1; i >= 0; i--) {
 
-            if (widget.getValue) {
+            if (widgets[i].getValue) {
 
                 var v = widgets[i].getValue()
                 if (v !== undefined) return v
@@ -108,25 +112,30 @@ class Script extends Widget {
 
     setValue(v, options={} ) {
 
+        if (this.scriptLock) return
+
         var context = {
             value: v,
             id: options.id,
             send: options.send ? this.scriptSend.bind(this) : ()=>{},
             set: (id, value)=>{Script.scriptSet(id, value, options)},
             get: (id)=>{return Script.scriptGet(id)},
-            getProp: (id, prop)=>{return Script.scriptGetProp(id, prop)},
-            log: console.log
+            getProp: (id, prop)=>{return Script.scriptGetProp(id, prop)}
         }
 
         var condition = this.resolveProp('condition', undefined, false, false, false, {value: v})
 
-        if (condition) this.resolveProp('script', undefined, false, false, false, context)
+        if (condition) {
+            this.scriptLock = true
+            this.resolveProp('script', undefined, false, false, false, context)
+            this.scriptLock = false
+        }
+
 
         // if (options.send) this.sendValue()
         if (options.sync) this.changed(options)
 
     }
-
 
 }
 
