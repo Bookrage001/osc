@@ -29,6 +29,7 @@ class Script extends Widget {
                 '- `send(target, address, arg1, arg2, ...)`: function for sending osc messages (ignores the script\'s targets and the server\'s defaults unless `target` is `false`; ignores the script\'s `preArgs`)',
                 '- `set(id, value)`: function for setting a widget\'s value',
                 '- `get(id)`: function for getting a widget\'s value',
+                '- `getProp(id, property)`: function for getting a widget\'s property value',
                 '',
                 '* Note: `value` or `linkId` properties can be used to receive other widgets\' values. The `value` property must actually change to trigger the execution, where linked widgets via `linkId` can submit the same value over and over and trigger the execution',
             ]}
@@ -77,6 +78,18 @@ class Script extends Widget {
 
     }
 
+    static scriptGetProp(id, prop) {
+
+        var widgets = widgetManager.getWidgetById(id)
+
+        for (var i = widgets.length - 1; i >= 0; i--) {
+
+            var v = widgets[i].getProp(prop)
+            if (v !== undefined) return v
+
+        }
+
+    }
 
     scriptSend(target, address, ...args) {
 
@@ -99,6 +112,7 @@ class Script extends Widget {
             send: options.send ? this.scriptSend.bind(this) : ()=>{},
             set: (id, value)=>{Script.scriptSet(id, value, options)},
             get: (id)=>{return Script.scriptGet(id)},
+            getProp: (id, prop)=>{return Script.scriptGetProp(id, prop)},
             log: console.log
         }
 
@@ -122,7 +136,8 @@ Script.parsersContexts.script = {
     value: '',
     send: ()=>{},
     set: ()=>{},
-    get: ()=>{}
+    get: ()=>{},
+    getProp: ()=>{}
 }
 
 Script.dynamicProps = Script.prototype.constructor.dynamicProps.concat(

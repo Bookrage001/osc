@@ -6,6 +6,7 @@
 - widgets
   - modal: `scroll` option
   - script: `get(id)` function added in `script`execution context
+  - script: `getProp(id, property)` function added in `script`execution context
 
 ## 0.46.1
 
