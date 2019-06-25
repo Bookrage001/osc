@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 0.46.2
 
 - improved canvas rendering speed on chrome v69 and above
 - widgets
