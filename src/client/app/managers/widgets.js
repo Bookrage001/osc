@@ -52,7 +52,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             let v = widget.getValue()
             for (let i in widgetsById) {
                 if (widgetsById[i] !== widget) {
-                    widgetsById[i].setValue(v,{send:false,sync:false})
+                    widgetsById[i].setValue(v,{send:false,sync:false, id})
                 }
             }
         }
@@ -63,7 +63,7 @@ var WidgetManager = class WidgetManager extends EventEmitter {
             let v = widget.getValue()
             for (let i in widgetsByLinkId) {
                 if (widgetsByLinkId[i] !== widget) {
-                    widgetsByLinkId[i].setValue(v,{send: options.send,sync: true})
+                    widgetsByLinkId[i].setValue(v,{send: options.send,sync: true, id})
                 }
             }
         }

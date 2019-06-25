@@ -25,7 +25,8 @@ class Script extends Widget {
             ]},
             script: {type: 'string', value: '', help: [
                 'This property is evaluated each time the widget receives a value* if condition is non-falsy. Formulas are given extras variables in this context:',
-                '- `value`: the value received by the widget',
+                '- `value`: value received by the widget',
+                '- `id`: id of the widget that triggered the script',
                 '- `send(target, address, arg1, arg2, ...)`: function for sending osc messages (ignores the script\'s targets and the server\'s defaults unless `target` is `false`; ignores the script\'s `preArgs`)',
                 '- `set(id, value)`: function for setting a widget\'s value',
                 '- `get(id)`: function for getting a widget\'s value',
@@ -109,6 +110,7 @@ class Script extends Widget {
 
         var context = {
             value: v,
+            id: options.id,
             send: options.send ? this.scriptSend.bind(this) : ()=>{},
             set: (id, value)=>{Script.scriptSet(id, value, options)},
             get: (id)=>{return Script.scriptGet(id)},
@@ -134,6 +136,7 @@ Script.parsersContexts.condition = {
 
 Script.parsersContexts.script = {
     value: '',
+    id: '',
     send: ()=>{},
     set: ()=>{},
     get: ()=>{},

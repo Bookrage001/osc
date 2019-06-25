@@ -672,6 +672,8 @@ class Widget extends EventEmitter {
             propNames.push('value')
         }
 
+        if (widget && options) options.id = widget.getProp('id')
+
         var reCreate = false,
             changedProps = []
 
@@ -713,7 +715,6 @@ class Widget extends EventEmitter {
             }
 
             for (var i in changedProps) {
-
                 this.onPropChanged(changedProps[i].propName, options, changedProps[i].oldPropValue)
             }
 
@@ -728,12 +729,12 @@ class Widget extends EventEmitter {
 
     }
 
-    onPropChanged(propName, options, oldPropValue) {
+    onPropChanged(propName, options={}, oldPropValue) {
 
         switch(propName) {
 
             case 'value':
-                this.setValue(this.getProp('value'), {sync: true, send: options && options.send})
+                this.setValue(this.getProp('value'), {sync: true, send: options.send, id: options.id})
                 return
 
             case 'top':
