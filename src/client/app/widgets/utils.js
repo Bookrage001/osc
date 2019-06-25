@@ -1,3 +1,5 @@
+var {deepCopy} = require('../utils')
+
 module.exports = {
 
     clip: function(value,range) {
@@ -208,11 +210,12 @@ module.exports = {
 
                 var ret, err, k
 
-                var __VARS = contextValues[0]
+                var __contextValues = deepCopy(contextValues)
+                var __VARS = __contextValues[0]
                 for (k in context) {
                     var index = contextKeys.indexOf(k)
                     if (index !== -1) {
-                        contextValues[index] = context[k]
+                        __contextValues[index] = context[k]
                     } else {
                         __VARS[k] = context[k]
                     }
@@ -222,7 +225,7 @@ module.exports = {
 
                 // evaluate
                 try {
-                    ret = parsers[code].apply(null, contextValues)
+                    ret = parsers[code].apply(null, __contextValues)
                 } catch(e) {
                     err = e
                 }
