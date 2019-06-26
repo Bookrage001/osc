@@ -29,7 +29,7 @@ module.exports = class Image extends Widget {
         }, ['color', 'target', 'precision', 'bypass'], {
 
             value: {type: 'string', value: '', help: [
-                '- File `url` or `absolute path`',
+                '- File `url` or `path` (relative to the session file location by default, falling back to absolute path)',
                 '- Base64 encoded image : `data:image/...`'
             ]}
 
