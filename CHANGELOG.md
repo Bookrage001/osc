@@ -8,7 +8,9 @@
   - sliders: `default` and `spring` properties are now dynamic
 - server
   - images urls are now resolved relatively to the session path directory by default (fallback to absolute path resolution if not found)
-
+- custom module
+  - added `loadJSON` and `saveJSON` functions
+  
 ## 0.46.2
 
 - improved canvas rendering speed on chrome v69 and above

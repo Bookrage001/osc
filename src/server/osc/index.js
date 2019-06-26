@@ -1,4 +1,5 @@
-var ipc = require('../server').ipc,
+var path = require('path'),
+    ipc = require('../server').ipc,
     settings = require('../settings'),
     tcpInPort = settings.read('tcpInPort'),
     debug = settings.read('debug'),
@@ -26,8 +27,8 @@ class OscServer {
             if (!customModule[0].includes('.js')) {
                 var index = customModule.findIndex(x => typeof x === 'string' && x.includes('.js'))
                 if (index !== undefined) {
-                    var path = customModule.slice(0, index + 1).join(' ')
-                    customModule.splice(0, index + 1, path)
+                    var _path = customModule.slice(0, index + 1).join(' ')
+                    customModule.splice(0, index + 1, _path)
                 }
             }
 
@@ -56,6 +57,32 @@ class OscServer {
                             host = port = undefined
                         }
                         this.receiveOsc({host, port, address, args:args.map(x=>this.parseArg(x))})
+                    },
+                    loadJSON: (url)=>{
+                        if (url.split('.').pop() === 'json') {
+                            try {
+                                url = path.resolve(path.dirname(customModule[0]), url)
+                                return JSON.parse(fs.readFileSync(url, 'utf8'))
+                            } catch(e) {
+                                console.error('ERROR: could not load json file from ' + url)
+                                console.error(e.message)
+                            }
+                        } else {
+                            console.error('ERROR: unauthorized file type for loadJSON')
+                        }
+                    },
+                    saveJSON: (url, data)=>{
+                        if (url.split('.').pop() === 'json') {
+                            url = path.resolve(path.dirname(customModule[0]), url)
+                            try {
+                                return fs.writeFileSync(url, JSON.stringify(data, null, '  '))
+                            } catch(e) {
+                                console.error('ERROR: could not save json file to ' + url)
+                                console.error(e.message)
+                            }
+                        } else {
+                            console.error('ERROR: unauthorized file type for saveJSON')
+                        }
                     },
                     app: this.customModuleEventEmitter,
                     setTimeout, clearTimeout,

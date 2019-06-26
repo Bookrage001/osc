@@ -63,6 +63,8 @@ The module is executed in a restricted context, only a few globals are available
 - `settings.read`: `function(name)`, see [settings.js](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/server/settings.js#L55-L103) for available options
 - `app`: an [event emitter](https://nodejs.org/api/events.html#events_class_eventemitter) for monitoring the events sent by the different clients. Event names can be found in [callbacks.js](https://github.com/jean-emmanuel/open-stage-control/blob/master/src/server/callbacks.js), callbacks are called with 2 arguments: `data` (object) and `client` (object: `{address, id}`)
 - `options`: `array` containing the extra options passed to `--custom-module` after the filename
+- `loadJSON`: `function(path)` loads a json file (path is relative to the custom module location)
+- `saveJSON`: `function(path, object)` save an object/array to a json file (path is relative to the custom module location)
 
 
 `sendOsc` and `receiveOsc` expect arguments formatted as follow:
