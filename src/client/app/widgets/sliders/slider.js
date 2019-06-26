@@ -49,8 +49,6 @@ class Slider extends Canvas {
             this.rangeValsMin:
             clip(this.getProp('origin'), [this.rangeValsMin,this.rangeValsMax])
 
-        this.springValue = this.getProp('default') !== '' ? this.getProp('default') :  this.originValue
-
         if (this.getProp('doubleTap')) {
 
             if (typeof this.getProp('doubleTap') === 'string' && this.getProp('doubleTap')[0] === '/') {
@@ -62,7 +60,7 @@ class Slider extends Canvas {
             } else {
 
                 doubletab(this.widget, ()=>{
-                    this.setValue(this.springValue,{sync:true, send:true, fromLocal:true})
+                    this.setValue(this.getSpringValue(),{sync:true, send:true, fromLocal:true})
                 })
 
             }
@@ -115,7 +113,7 @@ class Slider extends Canvas {
 
         this.setSteps()
 
-        this.setValue(this.springValue)
+        this.setValue(this.getSpringValue())
 
     }
 
@@ -176,7 +174,7 @@ class Slider extends Canvas {
     dragendHandle(e, data, traversing) {
 
         if (this.getProp('spring')) {
-            this.setValue(this.springValue,{sync:true,send:true,fromLocal:true})
+            this.setValue(this.getSpringValue(),{sync:true,send:true,fromLocal:true})
         }
 
     }
@@ -192,6 +190,12 @@ class Slider extends Canvas {
         this.colors.pips = style.getPropertyValue('--color-pips') || this.colors.custom
         this.colors.gaugeOpacity = style.getPropertyValue('--gauge-opacity')
 
+
+    }
+
+    getSpringValue() {
+
+        return this.getProp('default') !== '' ? this.getProp('default') :  this.originValue
 
     }
 
@@ -297,7 +301,9 @@ class Slider extends Canvas {
 Slider.dynamicProps = Slider.prototype.constructor.dynamicProps
     .filter(n => n !== 'precision')
     .concat([
-        'steps'
+        'steps',
+        'spring',
+        'default',
     ])
 
 module.exports = Slider

@@ -4,6 +4,8 @@
 
 - bug fixes
   - launcher: spaces not properly escaped in quoted strings
+- widgets
+  - sliders: `default` and `spring` properties are now dynamic
 
 ## 0.46.2
 
