@@ -15,7 +15,7 @@ To install `python-rtmidi`, run `pip install python-rtmidi` in a terminal.
 When running the app, the `-m / --midi` switch must be set; it accepts the following options (separated by spaces):
 
 - `list`: prints the available MIDI ports to the console; numbers in the first column may be used for `input`/`output` definition below
-- `device_name:input,output`: connect to midi ports `input` and `output`; osc messages sent to target `midi:device_name` will be processed as midi events; Multiple devices can be declared
+- `device_name:input,output`: connect to midi ports `input` and `output`; osc messages sent to target `midi:device_name` will be processed as midi events; Multiple devices can be declared. If the `device_name` contains white spaces, the declaration must be enquoted (ie `"spaced name:input,output"`). `device_name` doesn't need to match the actual midi device name, it is just an identifier (see [Widget settings](#widget-settings)).
 - `sysex`: parse incomming system exclusive messages (disabled by default)
 - `pc_offset`: send program changes with a `-1` offset to match some software/hardware implementations
 
@@ -80,7 +80,7 @@ Program change event.
 - `program`: integer between 0 and 127*
 
 !!! note
-    \* Some devices / softwares display the `program` value between 1 and 128, thus interpreting `program change 0` as `program change 1` and so on. Enable the `pc_offset` option to make Open Stage Control behave this way. 
+    \* Some devices / softwares display the `program` value between 1 and 128, thus interpreting `program change 0` as `program change 1` and so on. Enable the `pc_offset` option to make Open Stage Control behave this way.
 
 #### `/pitch channel pitch`
 
