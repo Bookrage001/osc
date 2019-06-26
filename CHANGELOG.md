@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.46.3
+## 0.47.0
 
 - bug fixes
   - launcher: spaces not properly escaped in quoted strings
@@ -10,7 +10,7 @@
   - images urls are now resolved relatively to the session path directory by default (fallback to absolute path resolution if not found)
 - custom module
   - added `loadJSON` and `saveJSON` functions
-  
+
 ## 0.46.2
 
 - improved canvas rendering speed on chrome v69 and above
