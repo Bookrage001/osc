@@ -1,4 +1,5 @@
-var path        = require('path'),
+var urlparser   = require('url'),
+    path        = require('path'),
     send        = require('send'),
     http        = require('http'),
     server      = http.createServer(httpRoute),
@@ -12,14 +13,21 @@ var path        = require('path'),
     clients = {}
 
 function httpRoute(req, res) {
+
     res.sendFile = (path)=>{
         send(req, path.split('?')[0]).pipe(res)
     }
 
-    if (req.url === '/' || req.url.indexOf('/?') === 0) {
+    var url = req.url
+
+    if (url === '/' || url.indexOf('/?') === 0) {
+
         res.sendFile(path.resolve(__dirname + '/../client/index.html'))
+
     } else {
-        if (req.url.indexOf('theme.css') != -1) {
+
+        if (url.indexOf('theme.css') != -1) {
+
             res.setHeader('Content-Type', 'text/css')
             if (settings.read('theme')) {
                 var str = theme.get(),
@@ -29,23 +37,35 @@ function httpRoute(req, res) {
                 res.write('')
             }
             res.end()
-        } else if (/^\/(assets|client)\//.test(req.url)){
-            res.sendFile(path.resolve(__dirname + '/..' + req.url))
+
+        } else if (/^\/(assets|client)\//.test(url)){
+
+            res.sendFile(path.resolve(__dirname + '/..' + url))
+
         } else {
-            var url = req.url
 
             // windows absolute path fix
             url = url.replace('_:_', ':') // escaped drive colon
             url = url.replace(/^\/([^/]*:)/, '$1') // strip leading slash
 
             if (url.match(/.(jpg|jpeg|png|apng|gif|webp|tiff|xbm|bmp|ico)(\?[0-9]*)?$/i)) {
-                res.sendFile(path.resolve(url))
+                try {
+                    // relative resolution (session path)
+                    var id = urlparser.parse('?' + req.headers.cookie, true).query.client_id,
+                        sessionPath = path.dirname(ipc.clients[id].sessionPath)
+
+                    res.sendFile(path.resolve(sessionPath + url))
+                } catch(e) {
+                    // absolute resolution (session path)
+                    res.sendFile(path.resolve(url))
+                }
             } else {
                 res.writeHead(403)
                 res.end()
             }
 
         }
+
     }
 }
 

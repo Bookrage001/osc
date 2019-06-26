@@ -6,6 +6,8 @@
   - launcher: spaces not properly escaped in quoted strings
 - widgets
   - sliders: `default` and `spring` properties are now dynamic
+- server
+  - images urls are now resolved relatively to the session path directory by default (fallback to absolute path resolution if not found)
 
 ## 0.46.2
 

@@ -35,12 +35,15 @@ class Ipc extends EventEmitter {
             this.socket.send('["pong"]')
         })
 
+        document.cookie = 'client_id=' + uuid
+
         try {
             this.open()
         } catch(e) {
             console.warn('Could not open a WebSocket connection')
             console.log(e)
         }
+
 
     }
 
@@ -110,7 +113,7 @@ class Ipc extends EventEmitter {
             id: 'ipc_state',
             duration: Infinity
         })
-        
+
         this.disconnected = true
 
         clearTimeout(this.reconnect)

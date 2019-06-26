@@ -57,6 +57,7 @@ var SessionManager = class SessionManager {
                 loader.close()
                 new Popup({title: locales('session_parsingerror'), content: err.message, icon: 'exclamation-triangle', closable:true})
                 this.lock = false
+                ipc.send('sessionSetPath', {path: this.sessionPath})
                 throw err
             }
 

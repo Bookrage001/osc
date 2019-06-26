@@ -88,6 +88,7 @@ module.exports =  {
 
         module.exports.fileRead(data, clientId, true, (result)=>{
 
+            ipc.clients[clientId].sessionPath = data.path // for resolving local file requests
             ipc.send('sessionOpen', {path: data.path, session: result}, clientId)
 
         })
