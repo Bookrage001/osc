@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.47.1
+
+- bug fixes
+  - css font faces not loading from absolute/relative paths 
+
 ## 0.47.0
 
 - bug fixes
