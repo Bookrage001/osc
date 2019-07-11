@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.47.2
+
+- bug fixes
+  - midi: `path` option not applied to launcher's `list` contextual action
+
 ## 0.47.1
 
 - bug fixes
