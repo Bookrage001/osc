@@ -3,9 +3,9 @@
 MIDI support requires additional software to be installed on the server's system:
 
 - python (2 or 3)
-- python package [python-rtmidi](https://spotlightkid.github.io/python-rtmidi/installation.html) (version 1.2.1)
+- python package [python-rtmidi](https://spotlightkid.github.io/python-rtmidi/installation.html)
 
-To install `python-rtmidi`, run `pip install python-rtmidi` in a terminal.
+To install `python-rtmidi`, run `pip install python-rtmidi` (python 2) in a terminal or `pip3 install python-rtmidi` (python 3).
 
 !!! note "Why an additionnal dependency ?"
     Providing cross-platform MIDI support is not trivial, as it requires OS-specific compilation that cannot be automated within Open Stage Control's current packaging workflow. Using a python addon seems to be the best compromise so far : the core app remains easy to build, and the extra dependency is easy to install.
