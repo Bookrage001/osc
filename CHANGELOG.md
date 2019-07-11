@@ -3,7 +3,9 @@
 ## 0.47.1
 
 - bug fixes
-  - css font faces not loading from absolute/relative paths 
+  - css font faces not loading from absolute/relative paths
+- midi
+  - added `path` option for setting python binary path manually
 
 ## 0.47.0
 

@@ -10,11 +10,14 @@ class MidiConverter {
 
     constructor() {
 
+        var pythonPath = settings.read('midi').filter(x=>x.includes('path=')).map(x=>x.split('=')[1])[0]
+
         this.py = new PythonShell('python/midi.py', Object.assign({
             args: [
                 settings.read('debug') ? 'debug' : '',
                 ...settings.read('midi')
-            ]
+            ],
+            pythonPath
         }, pythonOptions))
 
     }

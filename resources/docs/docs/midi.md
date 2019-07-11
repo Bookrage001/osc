@@ -18,6 +18,7 @@ When running the app, the `-m / --midi` switch must be set; it accepts the follo
 - `device_name:input,output`: connect to midi ports `input` and `output`; osc messages sent to target `midi:device_name` will be processed as midi events; Multiple devices can be declared. If the `device_name` contains white spaces, the declaration must be enquoted (ie `"spaced name:input,output"`). `device_name` doesn't need to match the actual midi device name, it is just an identifier (see [Widget settings](#widget-settings)).
 - `sysex`: parse incomming system exclusive messages (disabled by default)
 - `pc_offset`: send program changes with a `-1` offset to match some software/hardware implementations
+- `path=/path/to/python`: indicates where to find python or python3 binary in case open stage control doesn't (`Error: spawn python3 ENOENT`)
 
 *Linux only:*
 
