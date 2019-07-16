@@ -10,7 +10,7 @@ require('../scripts/client-shim')
 
 var {widgets} = require('../src/client/app/widgets')
 for (let type in widgets) {
-    if (type !== 'tab' && type !== 'root') {
+    if (type !== 'tab' && type !== 'root' && type !== 'patchbaynode') {
         console.log(type)
         session.tabs[0].widgets.push({type: type})
     }
