@@ -39,6 +39,7 @@
         border-top-right-radius:0;
         border-bottom-right-radius:inherit;
         border-bottom-left-radius:inherit;
+        min-height: 0;
      }
      &.nolabel > .label ~ div {
          border-radius: inherit;

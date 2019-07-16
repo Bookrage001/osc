@@ -4,6 +4,7 @@
 
 - bug fixes
   - midi: `path` option not applied to launcher's `list` contextual action
+  - style: layout issues in recent chromium
 
 ## 0.47.1
 
