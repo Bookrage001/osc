@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.47.3
+
+- bug fixes
+  - regression causing errors with the `value` property
+
 ## 0.47.2
 
 - bug fixes
