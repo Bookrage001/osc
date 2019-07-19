@@ -6,6 +6,7 @@
   - midi: `path` option not applied to launcher's `list` contextual action
   - midi: pitchbend messages not received correctly
   - style: layout issues in recent chromium
+  - encoder: `0` value in `back` property not working 
 
 ## 0.47.1
 

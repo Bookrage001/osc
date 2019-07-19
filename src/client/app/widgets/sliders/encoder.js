@@ -45,7 +45,7 @@ module.exports = class Encoder extends Widget {
             ticks: {type: 'number', value: 360, help: 'defines the granularity / verbosity of the encoder (number of step for a 360° arc)'},
             back: {type: '*', value: -1, help: 'Defines which value is sent when rotating the encoder anticlockwise'},
             forth: {type: '*', value: 1, help: 'Defines which value is sent when rotating the encoder clockwise'},
-            release: {type: 'number', value: 'auto', help: [
+            release: {type: 'number', value: '', help: [
                 'Defines which value is sent when releasing the encoder:',
                 '- Set to `null` to send send no argument in the osc message',
                 '- Can be an `object` if the type needs to be specified'
@@ -127,7 +127,8 @@ module.exports = class Encoder extends Widget {
                 direction = this.getProp('forth')
 
 
-            if (direction && (Math.round(value) != Math.round(this.previousValue))) this.setValue(direction, {sync:true, send:true, dragged: e.options.dragged, draginit: e.options.draginit})
+            if (direction !== undefined && (Math.round(value) != Math.round(this.previousValue))) this.setValue(direction, {sync:true, send:true, dragged: e.options.dragged, draginit: e.options.draginit})
+
             this.previousValue = value
 
         })
