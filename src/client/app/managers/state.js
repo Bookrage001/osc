@@ -202,21 +202,22 @@ var StateManager = class StateManager {
     }
 
     flush(){
+
+        var preset = {}
+
         for (let id in this.valueStateQueue) {
             if (this.valueStateQueue[id] !== undefined) {
-                for (let w of widgetManager.getWidgetById(id)) {
-                    w.setValue(this.valueStateQueue[id], {sync: true})
-                }
+                preset[id] = this.valueStateQueue[id]
             }
         }
 
         for (let id in this.valueNewPropQueue) {
             if (this.valueNewPropQueue[id] != this.valueOldPropQueue[id]) {
-                for (let w of widgetManager.getWidgetById(id)) {
-                    w.setValue(w.getProp('value'), {sync: true})
-                }
+                preset[id] = w.getProp('value')
             }
         }
+        
+        this.set(preset)
 
         this.valueStateQueue = {}
         this.valueOldPropQueue = {}
