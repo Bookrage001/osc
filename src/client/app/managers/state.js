@@ -63,7 +63,7 @@ var StateManager = class StateManager {
 
                     if (widgets[j].setValue) {
 
-                        widgets[j].setValue(value, {send:send,sync:true})
+                        widgets[j].setValue(value, {send:send, sync:true, fromState:true})
 
                     }
 
@@ -216,7 +216,7 @@ var StateManager = class StateManager {
                 preset[id] = w.getProp('value')
             }
         }
-        
+
         this.set(preset)
 
         this.valueStateQueue = {}

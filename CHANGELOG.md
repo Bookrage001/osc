@@ -6,7 +6,9 @@
   - midi: `path` option not applied to launcher's `list` contextual action
   - midi: pitchbend messages not received correctly
   - style: layout issues in recent chromium
-  - encoder: `0` value in `back` property not working 
+  - encoder: `0` value in `back` property not working
+  - editor: state not completely restored under some conditions
+  - push: force release when the widget is removed/recreated while pressed
 
 ## 0.47.1
 
@@ -34,7 +36,6 @@
   - script: `get(id)` function added in `script`execution context
   - script: `getProp(id, property)` function added in `script`execution context
   - script: `id` variable added in `script`execution context (id of the widget that triggered the script)
-  - editor: state not completely restored under some conditions
 
 ## 0.46.1
 

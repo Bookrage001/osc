@@ -32,7 +32,7 @@ class Push extends Widget {
         super({...options, html: html`<div class="toggle"></div>`})
 
         this.state = 0
-        this.active = 0
+        this.active = null
         this.lastChanged = 'state'
 
         if (this.getProp('doubleTap')) {
@@ -76,7 +76,7 @@ class Push extends Widget {
         if (v===this.getProp('on') || (this.getProp('on') != null && v === this.getProp('on').value && v !== undefined)) {
             this.widget.classList.add('active')
             this.container.classList.add('active')
-            this.active = 1
+            this.active = options
             this.lastChanged = 'active'
             this.updateValue()
             if (options.send) this.sendValue()
@@ -84,7 +84,7 @@ class Push extends Widget {
         } else if (v===this.getProp('off') || (this.getProp('off') != null && v === this.getProp('off').value && v !== undefined)) {
             this.widget.classList.remove('active')
             this.container.classList.remove('active')
-            this.active = 0
+            this.active = null
             this.lastChanged = 'active'
             this.updateValue()
             if (options.send) this.sendValue(null, {syncOnly: this.getProp('norelease')})
@@ -96,9 +96,10 @@ class Push extends Widget {
     setValue(v,options={}) {
 
         if (!options.fromExternal) {
-            this.setValuePrivate(v,options)
+            if (!options.fromState) this.setValuePrivate(v,options)
             return
         }
+        
         if (typeof v == 'object' && v !== null) v = v.value
         if (v===this.getProp('on') || (this.getProp('on') != null && v === this.getProp('on').value && v !== undefined)) {
             this.widget.classList.add('on')
@@ -135,6 +136,12 @@ class Push extends Widget {
 
     }
 
+    onRemove() {
+
+        if (this.active) this.setValuePrivate(this.getProp('off'), this.active)
+        super.onRemove()
+
+    }
 }
 
 Push.dynamicProps = Push.prototype.constructor.dynamicProps.concat(
