@@ -86,6 +86,9 @@ def create_callback(name):
                 if mtype == NOTE_OFF:
                     message[2] = 0
 
+                elif mtype is PITCH_BEND:
+                    message = message[:1] + [message[1] + message[2] * 128] # convert  0-127 pair -> 0-16384 ->
+
                 elif mtype is PROGRAM_CHANGE and PROGRAM_CHANGE_OFFSET:
                     message[-1] = message[-1] + 1
 

@@ -42,8 +42,7 @@ def midi_str(message):
             elif mtype is PROGRAM_CHANGE:
                 s = 'PROGRAM_CHANGE: channel=%i, program=%i' % (channel, message[1])
             elif mtype is PITCH_BEND:
-                print(channel, message)
-                s = 'PITCH_BEND: channel=%i, pitch=%i' % (channel, message[1] + message[2] * 128)
+                s = 'PITCH_BEND: channel=%i, pitch=%i' % (channel, message[1] + message[2] * 128 if len(message) == 3 else message[1])
 
         except IndexError:
 
