@@ -38,33 +38,6 @@ function updateWidget(widget, options={}) {
 
     var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
 
-    // save state
-    if (stateManager.queueCounter === 0) {
-        sidepanelScroll = sidepanel.scrollTop
-        scrollState = {}
-    }
-    stateManager.incrementQueue()
-    var toSave = [widget]
-    if (!reuseChildren) {
-        toSave = toSave.concat(widget.getAllChildren())
-    }
-    for (let w of toSave) {
-        if (widgetManager.widgets[w.hash]) {
-            let id = w.getProp('id'),
-                value = w.getValue(),
-                valueProp = w.getProp('value')
-
-            stateManager.pushValueState(id, value)
-            if (valueProp !== '' && valueProp !== undefined) stateManager.pushValueOldProp(id, valueProp)
-        }
-        if (widgetManager.scrollingWidgets.indexOf(w.hash) > -1 && w.scroll) {
-            var s = w.scroll()
-            if (s[0] !== 0 || s[1] !== 0) {
-                scrollState[w.getProp('id')] = s
-            }
-        }
-    }
-
     var children = undefined,
         removedChildren = []
 
@@ -88,11 +61,35 @@ function updateWidget(widget, options={}) {
     // get widget's index
     var index = widget.parent.children.indexOf(widget)
 
-    // remove old widgets
+    // list widgets to remove
     var removedWidgets = reuseChildren ?
-            removedChildren.map(x => x.getAllChildren().concat(x)).concat(widget) :
+            removedChildren.map(x => x.getAllChildren().concat(x)).concat(widget).reduce((a,b)=>a.concat(b), []) :
             widget.getAllChildren().concat(widget)
 
+    // save state
+    if (stateManager.queueCounter === 0) {
+        sidepanelScroll = sidepanel.scrollTop
+        scrollState = {}
+    }
+    stateManager.incrementQueue()
+    for (let w of removedWidgets) {
+        if (widgetManager.widgets[w.hash]) {
+            let id = w.getProp('id'),
+                value = w.getValue(),
+                valueProp = w.getProp('value')
+
+            stateManager.pushValueState(id, value)
+            if (valueProp !== '' && valueProp !== undefined) stateManager.pushValueOldProp(id, valueProp)
+        }
+        if (widgetManager.scrollingWidgets.indexOf(w.hash) > -1 && w.scroll) {
+            var s = w.scroll()
+            if (s[0] !== 0 || s[1] !== 0) {
+                scrollState[w.getProp('id')] = s
+            }
+        }
+    }
+
+    // remove old widgets
     widgetManager.removeWidgets(removedWidgets)
 
     // create new widget

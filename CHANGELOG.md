@@ -34,6 +34,7 @@
   - script: `get(id)` function added in `script`execution context
   - script: `getProp(id, property)` function added in `script`execution context
   - script: `id` variable added in `script`execution context (id of the widget that triggered the script)
+  - editor: state not completely restored under some conditions
 
 ## 0.46.1
 
