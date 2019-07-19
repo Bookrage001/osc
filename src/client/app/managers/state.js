@@ -205,7 +205,6 @@ var StateManager = class StateManager {
 
         for (let id in this.valueStateQueue) {
             if (this.valueStateQueue[id] !== undefined) {
-                preset[id] = this.valueStateQueue[id]
                 for (let w of widgetManager.getWidgetById(id)) {
                     w.setValue(this.valueStateQueue[id], {sync: true, fromState:true})
                 }
