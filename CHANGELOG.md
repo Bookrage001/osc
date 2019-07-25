@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.47.4
+
+- bug fixes
+  - keys: prevent default browser actions when a combo is bound to a widget (for example print dialog with ctrl+p)
+
 ## 0.47.3
 
 - bug fixes

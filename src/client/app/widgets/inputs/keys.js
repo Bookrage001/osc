@@ -83,6 +83,8 @@ class Keys extends Widget {
 
         if (!this.getProp('repeat') && e) e.preventRepeat()
 
+        e.preventDefault()
+
         if (this.getProp('keydown') !== '') {
 
             var context = {
@@ -111,6 +113,8 @@ class Keys extends Widget {
     keyUp(e) {
 
         if (e.target && e.target.classList.contains('no-keybinding')) return
+
+        e.preventDefault()
 
         if (this.getProp('keyup') !== '') {
 
