@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+
+- bug fixes
+  - xy: broken `doubleTap`
+
 ## 0.47.4
 
 - bug fixes
