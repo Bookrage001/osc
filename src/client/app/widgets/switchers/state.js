@@ -2,7 +2,7 @@ var Widget = require('../common/widget'),
     Push = require('../buttons/push'),
     pushDefaults = Push.defaults()._props(),
     html = require('nanohtml'),
-    stateMananer = require('../../managers/state'),
+    stateManager = require('../../managers/state'),
     widgetManager = require('../../managers/widgets'),
     {deepCopy} = require('../../utils'),
     osc = require('../../osc')
@@ -96,13 +96,13 @@ class State extends Widget {
 
         if (!this.value) this.loadButton.container.classList.remove('disabled')
 
-        this.value = deepCopy(stateMananer.get(filter))
+        this.value = deepCopy(stateManager.get(filter))
 
     }
 
     load(send) {
 
-        if (this.value) stateMananer.set(this.value, send)
+        if (this.value) stateManager.set(this.value, send)
 
     }
 
