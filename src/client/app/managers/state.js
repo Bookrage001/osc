@@ -21,6 +21,8 @@ var StateManager = class StateManager {
         this.valueNewPropQueue = {}
         this.queueCounter = 0
 
+        this.flushTimeout = null
+
     }
 
     get(filter) {
@@ -230,7 +232,12 @@ var StateManager = class StateManager {
 
     decrementQueue() {
         this.queueCounter--
-        if (this.queueCounter == 0) this.flush()
+        if (this.queueCounter == 0) {
+            if (this.flushTimeout) clearTimeout(this.flushTimeout)
+            this.flushTimeout = setTimeout(()=>{
+                this.flush()
+            })
+        }
     }
 
 }
