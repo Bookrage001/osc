@@ -147,6 +147,7 @@ class Widget extends EventEmitter {
         this.hash = nanoid('abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ', 10)
         this.children = []
         this.reCreateOptions = options.reCreateOptions
+        this.removed = false
 
         this.createPropsCache()
 
@@ -924,12 +925,13 @@ class Widget extends EventEmitter {
 
     reCreateWidget(options={}){
 
-        return updateWidget(this, options)
+        if (!this.removed) return updateWidget(this, options)
 
     }
 
     onRemove(){
 
+        this.removed = true
         widgetManager.off(undefined, undefined, this)
         this.removeOscReceivers()
 
