@@ -6,6 +6,7 @@
   - keys: prevent default browser actions when a combo is bound to a widget (for example print dialog with ctrl+p)
   - xy: broken `doubleTap`
   - widget: error when two sibling widgets have a non-dynamic property depending on each others and on another widget at the same time
+  - cli: broken `--version` option
 
 ## 0.47.3
 

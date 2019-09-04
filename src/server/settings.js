@@ -1,6 +1,8 @@
 // This prevents argv parsing to be breaked when the app is packaged (executed without 'electron' prefix)
 if (process.argv[1]&&process.argv[1].indexOf('-')==0) process.argv.unshift('')
 
+var infos = require('../package.json')
+
 var options = require('./options'),
     argv = require('yargs')
     .parserConfiguration({'boolean-negation': false})
@@ -19,7 +21,7 @@ var options = require('./options'),
         return err.length ? err.join('\n') : true
     })
     .strict()
-    .version().alias('v','version')
+    .version(infos.version).alias('v','version')
 
 // litle hack to align long-only-options correctly
 var h = argv.getUsageInstance().help
@@ -38,8 +40,7 @@ for (i in argv) {
 }
 
 var fs = require('fs'),
-    ifaces = require('os').networkInterfaces(),
-    infos = require('../package.json')
+    ifaces = require('os').networkInterfaces()
 
 
 var baseDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
