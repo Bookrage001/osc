@@ -46,7 +46,7 @@
     "keyboardjs": "github:jean-emmanuel/KeyboardJS",
     "licensify": "3.1.3",
     "loop-protect": "github:jean-emmanuel/loop-protect#v1.0.1",
-    "mathjs": "6.2.1",
+    "mathjs": "5.10.0",
     "minimatch": "3.0.4",
     "nanohtml": "1.8.0",
     "nanoid": "2.1.0",
