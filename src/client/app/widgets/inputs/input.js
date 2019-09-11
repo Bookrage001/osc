@@ -19,7 +19,8 @@ module.exports = class Input extends Canvas {
             vertical: {type: 'boolean', value: false, help: 'Set to `true` to display the text vertically'},
             align: {type: 'string', value: '', help: 'Set to `left` or `right` to change text alignment (otherwise center)'},
             unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
-            editable: {type: 'boolean', value: true, help: 'Set to `false` to make the input non-editable'}
+            editable: {type: 'boolean', value: true, help: 'Set to `false` to make the input non-editable'},
+            asYouType: {type: 'boolean', value: false, help: 'Set to `true` to make the input send its value at each keystroke'}
 
         })
 
@@ -51,10 +52,16 @@ module.exports = class Input extends Canvas {
                 this.blur(this.tabKeyBlur)
                 this.tabKeyBlur = false
             })
+            var asYouType = this.getProp('asYouType')
             this.input.addEventListener('keydown', (e)=>{
                 if (e.keyCode === 13) this.blur() // enter
                 else if (e.keyCode === 27) this.blur(false) // esc
                 else if (e.keyCode === 9) this.tabKeyBlur = true // tab
+                else if (asYouType) {
+                    setTimeout(()=>{
+                        this.inputChange()
+                    })
+                }
             })
         } else {
             this.widget.classList.add('not-editable')
