@@ -25,8 +25,8 @@ module.exports = (element, callback, options={})=>{
             setTimeout(callback, 0)
             lastTapTime = 0
 
-            // prevent touchend 
-            event.detail.preventOriginalEvent = true
+            // prevent touchend
+            if (!options.click) event.detail.preventOriginalEvent = true
 
         } else {
 
