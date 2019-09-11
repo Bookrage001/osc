@@ -11,15 +11,6 @@ module.exports = class _matrix_base extends Container {
 
         this.value = []
 
-        this.on('change',(e)=>{
-
-            if (e.widget === this) return
-
-            this.value[e.widget._index] = e.widget.getValue()
-            this.changed(e.options)
-
-        })
-
         if (this.getProp('traversing')) enableTraversingGestures(this.widget)
 
     }

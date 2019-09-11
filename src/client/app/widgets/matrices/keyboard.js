@@ -53,6 +53,15 @@ module.exports = class Keyboard extends _matrix_base {
 
         super(options)
 
+        this.on('change',(e)=>{
+
+            if (e.widget === this) return
+
+            this.value[e.widget._index] = e.widget.getValue()
+            this.changed(e.options)
+
+        })
+
         var start = parseInt(this.getProp('start')),
             keys = parseInt(this.getProp('keys'))
 

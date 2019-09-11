@@ -7,6 +7,7 @@
   - package: broken build from sources on Windows
   - editor: incorrect position when moving a widget from an edge with the keyboard
   - modal: prevent touchend event from reaching the inner widgets when opening the container
+  - matrix: clone matrices not properly storing their children's values
 
 - widgets
   - frames: allow loading local html files without requiring a web server to serve them

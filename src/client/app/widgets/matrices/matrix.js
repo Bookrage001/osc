@@ -38,6 +38,29 @@ class Matrix extends _matrix_base {
 
         super(options)
 
+        this.on('change',(e)=>{
+
+            if (e.widget === this) return
+
+            if (this.getProp('widgetType') === 'clone') {
+
+                if (e.widget.parent.parent !== this) return
+
+                this.value[e.widget.parent._index] = e.widget.getValue()
+
+            } else {
+
+                if (e.widget.parent !== this) return
+
+                this.value[e.widget._index] = e.widget.getValue()
+
+
+            }
+
+            this.changed(e.options)
+
+        })
+
         this.widget.style.setProperty('--columns', this.getProp('matrix')[0])
         this.widget.style.setProperty('--rows', this.getProp('matrix')[1])
         this.widget.style.setProperty('--spacing', this.getProp('spacing') + 'rem')
