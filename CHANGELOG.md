@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.47.5
+
+- widgets
+  - frames: allow loading local html files without requiring a web server to serve them
+
 ## 0.47.4
 
 - bug fixes

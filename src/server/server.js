@@ -48,7 +48,7 @@ function httpRoute(req, res) {
             url = url.replace('_:_', ':') // escaped drive colon
             url = url.replace(/^\/([^/]*:)/, '$1') // strip leading slash
 
-            if (url.match(/.(jpg|jpeg|png|apng|gif|webp|tiff|xbm|bmp|ico|ttf|otf|woff|woff2)(\?[0-9]*)?$/i)) {
+            if (url.match(/.(jpg|jpeg|png|apng|gif|webp|tiff|xbm|bmp|ico|ttf|otf|woff|woff2|html|css|js)(\?[0-9]*)?$/i)) {
                 try {
                     // relative resolution (session path)
                     var id = urlparser.parse('?' + req.headers.cookie, true).query.client_id,
