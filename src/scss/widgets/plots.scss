@@ -138,7 +138,6 @@
         flex: 1 1 100%;
         background: var(--color-track);
         border:1rem solid var(--color-bg);
-        @extend .glass-effect;
         svg {
             flex: 1 1 100%;
         }
@@ -150,11 +149,45 @@
         background: transparent;
         padding: 0!important;
         .svg {
+            background: transparent;
             outline:transparent!important;
             border:0!important;
             box-shadow:none!important;
             margin: 0!important;
         }
+    }
+    &:not(.noborder) .svg {
+        @extend .glass-effect;
+    }
+}
+
+.html-container {
+    width:100rem;
+    height:100rem;
+    padding:1rem;
+    .html {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 100%;
+        background: var(--color-track);
+        border:1rem solid var(--color-bg);
+    }
+    &.noborder {
+        --color-border:transparent;
+        --color-light:transparent;
+        --color-light:transparent;
+        background: transparent;
+        padding: 0!important;
+        .html {
+            background: transparent;
+            outline:transparent!important;
+            border:0!important;
+            box-shadow:none!important;
+            margin: 0!important;
+        }
+    }
+    &:not(.noborder) .html {
+        @extend .glass-effect;
     }
 }
 
@@ -213,10 +246,11 @@
 .panel:not(.tab) > .plot-container,
 .panel:not(.tab) > .image-container,
 .panel:not(.tab) > .frame-container,
-.panel:not(.tab) > .svg-container {
+.panel:not(.tab) > .svg-container,
+.panel:not(.tab) > .html-container {
     --color-border:transparent;
     padding: 0rem;
-    .plot, .text, .led, .image, .svg, .frame {
+    .plot, .text, .led, .image, .svg, .html, .frame {
         margin: 1rem;
         box-shadow: 0 0 0 1rem var(--color-light),
                     0 0 0 1rem var(--color-fg);

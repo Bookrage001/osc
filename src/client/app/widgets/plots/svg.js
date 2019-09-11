@@ -15,7 +15,9 @@ class Svg extends Widget {
                 'Svg xml definition:',
                 '- will be wrapped in a `< svg />` element',
                 '- `<path>` commands support a special percent notation (`%x` and `%y`)'
-            ]}
+            ]},
+            border: {type: 'boolean', value: true, help: 'Set to `false` to disable the borders and background-color'},
+
 
         }, ['color', 'target', 'precision', 'bypass'], {})
 
@@ -33,6 +35,8 @@ class Svg extends Widget {
         this.width = undefined
 
         this.on('resize', this.resizeHandleProxy.bind(this), {element: this.widget})
+
+        if (!this.getProp('border')) this.container.classList.add('noborder')
 
     }
 

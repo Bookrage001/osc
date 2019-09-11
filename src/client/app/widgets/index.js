@@ -36,6 +36,7 @@ module.exports.widgets = {
     text: require('./plots/text'),
     image: require('./plots/image'),
     svg: require('./plots/svg'),
+    html: require('./plots/html'),
     frame: require('./plots/frame'),
 
     // containers
@@ -63,7 +64,7 @@ module.exports.categories = {
     'Buttons':['toggle','push','switch', 'dropdown'],
     'Pads':['xy','rgb','multixy'],
     'Matrices':['matrix', 'keyboard', 'patchbay'],
-    'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg', 'frame'],
+    'Plots':['plot','eq','visualizer','led', 'rgbled','meter','text', 'image', 'svg', 'html', 'frame'],
     'Containers':['panel','strip','modal', 'clone'],
     'Switchers':['state', 'switcher','crossfader'],
     'Inputs':['input', 'keys', 'script', 'gyroscope', 'file']
