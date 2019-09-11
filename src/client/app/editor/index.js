@@ -725,13 +725,13 @@ var Editor = class Editor {
 
         for (var w of this.selectedWidgets) {
 
-            var newTop = w.container.offsetTop / PXSCALE + deltaY
+            var newTop = parseInt(w.container.offsetTop) / PXSCALE + deltaY
             if (typeof w.props.top === 'string' && w.props.top.indexOf('%') > -1) {
                 w.props.top = (100 * PXSCALE * newTop / w.container.parentNode.offsetHeight).toFixed(2) + '%'
             } else {
                 w.props.top = newTop
             }
-            var newLeft = w.container.offsetLeft / PXSCALE + deltaX
+            var newLeft = parseInt(w.container.offsetLeft) / PXSCALE + deltaX
             if (typeof w.props.left === 'string' && w.props.left.indexOf('%') > -1) {
                 w.props.left = (100 * PXSCALE * newLeft / w.container.parentNode.offsetWidth).toFixed(2) + '%'
             } else {

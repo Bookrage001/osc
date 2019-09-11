@@ -2,11 +2,17 @@
 
 ## 0.47.5
 
+
+- bug fixes
+  - package: broken build from sources on Windows
+  - editor: incorrect position when moving a widget from an edge with the keyboard
+
 - widgets
   - frames: allow loading local html files without requiring a web server to serve them
   - text: escape html tags characters (`<` & `>`)
   - input: added `asYouType` property
-  
+
+
 ## 0.47.4
 
 - bug fixes
