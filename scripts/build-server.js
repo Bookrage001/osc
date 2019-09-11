@@ -34,7 +34,7 @@ build({
             ],
             'plugins': ['@babel/plugin-proposal-object-rest-spread'],
             'global': true,
-            'ignore': [/^(?!.*\/ws\/)/]
+            'only': ['**/ws/']
         }]
     ]
 })()
