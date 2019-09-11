@@ -57,7 +57,7 @@ module.exports = class Text extends Widget {
     setValue(v, options={}) {
 
         this.value = v==null ? this.defaultValue : v
-        this.widget.innerHTML = iconify(String(this.value).replace(/\n/g,'<br/>'))
+        this.widget.innerHTML = iconify(String(this.value).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g,'<br/>'))
 
         if (options.sync) this.changed(options)
 
