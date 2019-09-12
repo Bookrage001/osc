@@ -332,6 +332,9 @@ class Range extends Widget {
         this.on('drag',(e)=>{
 
             var i = this.touchMap[e.pointerId]
+
+            if (!i) return
+
             if (e.shiftKey) {
                 this.faders[0].trigger('drag', e)
                 this.faders[1].trigger('drag', e)
@@ -344,6 +347,9 @@ class Range extends Widget {
         this.on('dragend',(e)=>{
 
             var i = this.touchMap[e.pointerId]
+
+            if (!i) return
+
             e.stopPropagation = true
             this.faders[i].trigger('dragend', e)
             delete this.touchMap[e.pointerId]
