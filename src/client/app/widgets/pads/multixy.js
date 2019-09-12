@@ -138,6 +138,8 @@ module.exports = class MultiXy extends Pad {
 
             var i = this.touchMap[e.pointerId]
 
+            if (!i) return
+
             this.pads[i].trigger('drag', e)
 
         }, {element: this.wrapper[0], multitouch: true})
@@ -145,6 +147,8 @@ module.exports = class MultiXy extends Pad {
         this.on('dragend',(e)=>{
 
             var i = this.touchMap[e.pointerId]
+
+            if (!i) return
 
             e.stopPropagation = true
 

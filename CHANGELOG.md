@@ -8,6 +8,7 @@
   - editor: incorrect position when moving a widget from an edge with the keyboard
   - modal: prevent touchend event from reaching the inner widgets when opening the container
   - matrix: clone matrices not properly storing their children's values
+  - multipad/range: errors when dragging over when the gesture was initiated on a traversing widget (ie matrix) 
 
 - widgets
   - **new** html widget
