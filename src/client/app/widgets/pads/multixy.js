@@ -39,7 +39,8 @@ module.exports = class MultiXy extends Pad {
             rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis'},
             rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
             logScaleX: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the x axis (base 10). Set to a `number` to define the logarithm\'s base.'},
-            logScaleY: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (base 10). Set to a `number` to define the logarithm\'s base.'}
+            logScaleY: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the y axis (base 10). Set to a `number` to define the logarithm\'s base.'},
+            sensitivity: {type: 'number', value: 1, help: 'Defines the pad\'s sensitivity when `snap` is `false` '},
 
         }, [], {
 
@@ -84,6 +85,7 @@ module.exports = class MultiXy extends Pad {
                 logScaleY:this.getProp('logScaleY'),
                 pointSize: this.getProp('pointSize'),
                 pips: this.getProp('pips') && i == this.npoints-1,
+                sensitivity: this.getProp('sensitivity'),
                 input:false
             }, parent: this})
             this.pads[i].sendValue = ()=>{}

@@ -36,6 +36,7 @@ module.exports = class Xy extends Pad {
                 'Set to `true` to make the fader reset to its default value when receiving a double tap.',
                 'Can also be an osc address, which case the widget will just send an osc message: `/<doubleTap> <preArgs>`'
             ]},
+            sensitivity: {type: 'number', value: 1, help: 'Defines the pad\'s sensitivity when `snap` is `false` '},
 
         }, [], {
 
@@ -76,6 +77,7 @@ module.exports = class Xy extends Pad {
                 origin:'auto',
                 precision:this.getProp('precision'),
                 logScale:this.getProp('logScaleX'),
+                sensitivity: this.getProp('sensitivity'),
                 input:false
             }, cancelDraw: true, parent: this}),
             y: new Fader({props:{
@@ -92,6 +94,7 @@ module.exports = class Xy extends Pad {
                 origin:'auto',
                 precision:this.getProp('precision'),
                 logScale:this.getProp('logScaleY'),
+                sensitivity: this.getProp('sensitivity'),
                 input:false
             }, cancelDraw: true, parent: this}),
         }

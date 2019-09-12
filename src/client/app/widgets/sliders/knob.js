@@ -26,13 +26,14 @@ module.exports = class Knob extends Slider {
                 '- values can be `number` or `object` if a custom label is needed',
                 'Example: (`{min:{"-inf": 0}, "50%": 0.25, max: {"+inf": 1}}`)'
             ]},
+            logScale: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale (base 10). Set to a `number` to define the logarithm\'s base.'},
+            sensitivity: {type: 'number', value: 1, help: 'Defines the knob\'s sensitivity when `snap` is `false` '},
             steps: {type: 'string|number|array', value: '', help: [
                 'Restricts the widget\'s value:',
                 '- `auto`: use values defined in `range`',
                 '- `number`: define a number of evenly spaced steps',
                 '- `array`: use arbitrary values',
             ]},
-            logScale: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale (base 10). Set to a `number` to define the logarithm\'s base.'},
             unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
             origin: {type: 'number', value: 'auto', help: 'Defines the starting point\'s value of the knob\'s gauge'},
 
@@ -92,7 +93,7 @@ module.exports = class Knob extends Slider {
 
         if (!(e.traversing || this.getProp('snap')) || e.ctrlKey) {
             // vertical
-            this.percent = -100 * (e.movementY / e.inertia) / this.height + this.percent
+            this.percent = -100 * (e.movementY / e.inertia * this.getProp('sensitivity')) / this.height + this.percent
 
         } else {
             //snap

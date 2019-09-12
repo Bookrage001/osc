@@ -195,6 +195,7 @@ class Range extends Widget {
             snap: {type: 'boolean', value: false, help: 'See fader\'s `snap`'},
             spring: {type: 'boolean', value: false, help: 'See fader\'s `spring`'},
             logScale: {type: 'boolean', value: false, help: 'See fader\'s `logScale`'},
+            sensitivity: {type: 'number', value: 1, help: 'See fader\'s `sensitivity`'},
 
         }, [], {
 
@@ -242,6 +243,7 @@ class Range extends Widget {
                 origin:'auto',
                 precision:this.getProp('precision'),
                 logScale:this.getProp('logScale'),
+                sensitivity:this.getProp('sensitivity'),
                 input:false
             }, cancelDraw: true, parent: this}),
             new RangeFader({props:{
@@ -259,6 +261,7 @@ class Range extends Widget {
                 origin:'auto',
                 precision:this.getProp('precision'),
                 logScale:this.getProp('logScale'),
+                sensitivity:this.getProp('sensitivity'),
                 input:false
             }, cancelDraw: false, parent: this})
         ]

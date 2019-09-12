@@ -34,13 +34,14 @@ module.exports = class Fader extends Slider {
                 '- values can be `number` or `object` if a custom label is needed',
                 'Example: (`{min:{"-inf": 0}, "50%": 0.25, max: {"+inf": 1}}`)'
             ]},
+            logScale: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale (base 10). Set to a `number` to define the logarithm\'s base.'},
+            sensitivity: {type: 'number', value: 1, help: 'Defines the fader\'s sensitivity when `snap` is `false` '},
             steps: {type: 'string|number|array', value: '', help: [
                 'Restricts the widget\'s value:',
                 '- `auto`: use values defined in `range`',
                 '- `number`: define a number of evenly spaced steps',
                 '- `array`: use arbitrary values',
             ]},
-            logScale: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale (base 10). Set to a `number` to define the logarithm\'s base.'},
             unit: {type: 'string', value: '', help: 'Unit will be appended to the displayed widget\'s value (it doesn\'t affect osc messages)'},
             origin: {type: 'number', value: 'auto', help: 'Defines the starting point\'s value of the fader\'s gauge'},
 
@@ -159,8 +160,8 @@ module.exports = class Fader extends Slider {
         super.dragHandle(...arguments)
 
         this.percent = this.getProp('horizontal')?
-            this.percent + ( e.movementX/(this.width - this.margin * PXSCALE * 2)) * 100 / e.inertia:
-            this.percent + (-e.movementY/(this.height - this.margin * PXSCALE * 2)) * 100  / e.inertia
+            this.percent + ( e.movementX/(this.width - this.margin * PXSCALE * 2)) * 100 / e.inertia * this.getProp('sensitivity'):
+            this.percent + (-e.movementY/(this.height - this.margin * PXSCALE * 2)) * 100  / e.inertia * this.getProp('sensitivity')
 
         this.setValue(this.percentToValue(this.percent), {send:true,sync:true,dragged:true})
 

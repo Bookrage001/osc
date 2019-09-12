@@ -14,6 +14,7 @@
   - frames: allow loading local html files without requiring a web server to serve them
   - text: escape html tags characters (`<` & `>`)
   - input: added `asYouType` property
+  - sliders/pads: added `sensitivity` property
 
 
 ## 0.47.4

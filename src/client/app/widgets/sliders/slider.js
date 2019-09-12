@@ -303,6 +303,7 @@ Slider.dynamicProps = Slider.prototype.constructor.dynamicProps
     .concat([
         'steps',
         'spring',
+        'sensitivity',
         'default',
     ])
 
