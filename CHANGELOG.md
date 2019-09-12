@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.48.1
+
+- bug fixes
+  - midi: listing devices from context menu not working when the midi options is empty
+
 ## 0.48.0
 
 - bug fixes
@@ -7,7 +12,7 @@
   - editor: incorrect position when moving a widget from an edge with the keyboard
   - modal: prevent touchend event from reaching the inner widgets when opening the container
   - matrix: clone matrices not properly storing their children's values
-  - multipad/range: errors when dragging over when the gesture was initiated on a traversing widget (ie matrix) 
+  - multipad/range: errors when dragging over when the gesture was initiated on a traversing widget (ie matrix)
 
 - widgets
   - **new** html widget

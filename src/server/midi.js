@@ -74,7 +74,7 @@ class MidiConverter {
 
     static list() {
 
-        var pythonPath = settings.read('midi').filter(x=>x.includes('path=')).map(x=>x.split('=')[1])[0]
+        var pythonPath = settings.read('midi') ? settings.read('midi').filter(x=>x.includes('path=')).map(x=>x.split('=')[1])[0] : undefined
 
         PythonShell.run('python/list.py', Object.assign({pythonPath}, pythonOptions), function(err, results) {
             if (err) console.error(err)
