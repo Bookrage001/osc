@@ -1,13 +1,9 @@
 # Changelog
 
-## 0.48.1
-
-- bug fixes
-  - midi: listing devices from context menu not working when the midi options is empty
-
 ## 0.48.0
 
 - bug fixes
+  - midi: listing devices from context menu not working when the midi options is empty
   - package: broken build from sources on Windows
   - editor: incorrect position when moving a widget from an edge with the keyboard
   - modal: prevent touchend event from reaching the inner widgets when opening the container
