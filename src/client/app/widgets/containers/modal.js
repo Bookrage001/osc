@@ -6,7 +6,7 @@ var Panel = require('./panel'),
     html = require('nanohtml'),
     raw = require('nanohtml/raw')
 
-module.exports = class Modal extends Panel {
+class Modal extends Panel {
 
     static description() {
 
@@ -107,6 +107,7 @@ module.exports = class Modal extends Panel {
         this.parentScroll = [0,0]
         this.value = 0
         this.init = false
+        this.labelChange = true
 
     }
 
@@ -117,10 +118,12 @@ module.exports = class Modal extends Panel {
         this.value = v ? 1 : 0
 
         if (!this.init && this.value) {
-            var label = this.getProp('popupLabel') ? iconify(this.getProp('popupLabel')) : DOM.get(this.container, '> .label')[0].innerHTML
-            DOM.get(this.popup, '.popup-title .popup-label')[0].innerHTML = label
             DOM.get(this.popup, '.popup-content')[0].appendChild(this.widget)
             this.init = true
+        }
+
+        if (this.value && this.labelChange) {
+            this.updatePopupLabel()
         }
 
         this.popup.classList.toggle('show', this.value)
@@ -188,4 +191,38 @@ module.exports = class Modal extends Panel {
 
     }
 
+    updatePopupLabel() {
+
+        var label = this.getProp('popupLabel') ? iconify(this.getProp('popupLabel')) : DOM.get(this.container, '> .label')[0].innerHTML
+        DOM.get(this.popup, '.popup-title .popup-label')[0].innerHTML = label
+        this.labelChange = false
+        
+    }
+
+    onPropChanged(propName, options, oldPropValue) {
+
+        if (super.onPropChanged(...arguments)) return true
+
+        switch (propName) {
+
+            case 'popupLabel':
+            case 'label':
+                if (this.value) {
+                    this.updatePopupLabel()
+                } else {
+                    this.labelChange = true
+                }
+
+                return
+
+        }
+
+    }
+
 }
+
+Modal.dynamicProps = Modal.prototype.constructor.dynamicProps.concat(
+    'popupLabel'
+)
+
+module.exports = Modal

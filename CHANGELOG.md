@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.48.1
+
+- bug fixes
+  - modal: `popupLabel` update issues
+
 ## 0.48.0
 
 - bug fixes
