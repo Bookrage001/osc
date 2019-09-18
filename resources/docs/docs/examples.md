@@ -1,6 +1,6 @@
 # Community examples
 
-Feel free to submitt you own by [opening an issue](https://github.com/jean-emmanuel/open-stage-control/issues/new?title=[example]) on github.
+Feel free to submit your own by [opening an issue](https://github.com/jean-emmanuel/open-stage-control/issues/new?title=[example]) on github.
 
 ## Ardour
 
