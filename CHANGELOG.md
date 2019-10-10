@@ -4,7 +4,9 @@
 
 - bug fixes
   - modal: `popupLabel` update issues
-  - modal: `popupTop` not correctly interpreting percents 
+  - modal: `popupTop` not correctly interpreting percents
+- widgets
+  - fader: added `gradient` property  
 
 ## 0.48.0
 
