@@ -232,13 +232,13 @@
         &.x-positionned {
             justify-content: flex-start;
             > .popup-wrapper {
-                margin-left: var(--left);
+                left: var(--left);
             }
         }
         &.y-positionned {
             align-items:flex-start;
             > .popup-wrapper {
-                margin-top: var(--top);
+                top: var(--top);
             }
         }
 

@@ -4,6 +4,7 @@
 
 - bug fixes
   - modal: `popupLabel` update issues
+  - modal: `popupTop` not correctly interpreting percents 
 
 ## 0.48.0
 
