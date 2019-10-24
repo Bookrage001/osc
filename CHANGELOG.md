@@ -5,6 +5,7 @@
 - bug fixes
   - modal: `popupLabel` update issues
   - modal: `popupTop` not correctly interpreting percents 
+  - editor: scrollbar issue in editor's input fields on recent chromium
 
 ## 0.48.0
 

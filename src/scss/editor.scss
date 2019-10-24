@@ -168,14 +168,18 @@
         color:var(--color-text);
         width:100%;
         padding:5rem;
-        overflow-y: hidden;
         overflow-x: auto;
+        overflow-y: hidden;
         white-space: nowrap;
         border-top:1rem solid var(--color-fg);
         resize: none;
         font-size: 12rem!important;
         -webkit-user-select: text;
         user-select: text;
+        --scrollbar-size: 6rem;
+        &::-webkit-scrollbar-button {
+            width:1rem!important;
+        }
     }
     .error label{
         color: red;
