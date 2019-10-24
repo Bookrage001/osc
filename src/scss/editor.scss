@@ -118,8 +118,7 @@
             width: 18rem;
             position: absolute;
             right:5rem;
-            top:50%;
-            margin-top: -9rem;
+            top:6rem;
             cursor: pointer;
             background: var(--color-fg);
             text-align: center;
@@ -129,6 +128,8 @@
             justify-content: center;
             i {
                 color: transparent;
+                margin-top: -1rem;
+                margin-left: 1rem;
             }
             &.on i {
                 color:var(--color-accent);
