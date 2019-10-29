@@ -4,7 +4,7 @@ var Container = require('../common/container'),
     html = require('nanohtml'),
     raw = require('nanohtml/raw')
 
-class Panel extends Container {
+class Panel extends Container() {
 
     static description() {
 

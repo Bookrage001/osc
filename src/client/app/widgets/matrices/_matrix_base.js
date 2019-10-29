@@ -3,7 +3,7 @@ var Container = require('../common/container'),
     html = require('nanohtml')
 
 
-module.exports = class _matrix_base extends Container {
+module.exports = class _matrix_base extends Container() {
 
     constructor(options) {
 

@@ -1,5 +1,6 @@
 var Widget = require('../common/widget'),
     Canvas = require('../common/canvas'),
+    Container = require('../common/container'),
     parser = require('../../parser'),
     html = require('nanohtml')
 
@@ -51,7 +52,7 @@ class PatchBayNode extends Widget {
 
 }
 
-class PatchBay extends Canvas {
+class PatchBay extends Container(Canvas) {
 
     static description() {
 

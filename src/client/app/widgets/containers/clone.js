@@ -8,7 +8,7 @@ var Container = require('../common/container'),
 
 var excludedCloneClasses =  ['widget', 'absolute-position', 'ui-resizable', 'ui-draggable', 'not-editable', 'editing']
 
-class Clone extends Container {
+class Clone extends Container() {
 
     static description() {
 

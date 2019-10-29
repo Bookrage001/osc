@@ -4,6 +4,7 @@
 
 - bug fixes
   - editor: checkbox position in multiline fields
+  - patchbay: widget not responding to osc after being edited
 
 
 ## 0.48.1

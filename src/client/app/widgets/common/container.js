@@ -1,6 +1,6 @@
 var Widget = require('./widget')
 
-class Container extends Widget {
+var Container = (Class=Widget)=> class extends Class {
 
     constructor(options) {
 
