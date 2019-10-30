@@ -46,13 +46,16 @@ nav:
 
 markdown_extensions:
     - markdown.extensions.admonition
-    - markdown.extensions.codehilite(guess_lang=false)
+    - codehilite:
+        guess_lang: False
     - markdown.extensions.def_list
     - markdown.extensions.footnotes
     - markdown.extensions.meta
-    - markdown.extensions.toc(permalink=#)
+    - markdown.extensions.toc:
+        permalink: "#"
     - pymdownx.arithmatex
-    - pymdownx.betterem(smart_enable=all)
+    - pymdownx.betterem:
+        smart_enable: all
     - pymdownx.caret
     - pymdownx.critic
     - pymdownx.inlinehilite
@@ -60,7 +63,8 @@ markdown_extensions:
     - pymdownx.mark
     - pymdownx.smartsymbols
     - pymdownx.superfences
-    - pymdownx.tasklist(custom_checkbox=true)
+    - pymdownx.tasklist:
+        custom_checkbox: true
     - pymdownx.tilde
 
 plugins:
