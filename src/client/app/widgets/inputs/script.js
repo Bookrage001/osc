@@ -130,7 +130,7 @@ class Script extends Widget {
                 if (!parser.isLocal()) return err('httpGet error (' + url + '): non-local url')
 
                 var xhr = new XMLHttpRequest()
-                xhr.open("GET", url, true)
+                xhr.open('GET', url, true)
                 xhr.onload = (e)=>{
                     if (xhr.readyState === 4 && xhr.status === 200 && callback) {
                         callback(xhr.responseText)
