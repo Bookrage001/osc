@@ -85,7 +85,13 @@ module.exports = {
 
     urlParser: (()=>{
 
-        var parser = document.createElement('a')
+        var parser = document.createElement('a'),
+            localUrlRe = /(^127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.1[6-9]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.2[0-9]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^172\.3[0-1]{1}[0-9]{0,1}\.[0-9]{1,3}\.[0-9]{1,3}$)|(^192\.168\.[0-9]{1,3}\.[0-9]{1,3}$)/
+
+        parser.isLocal = ()=>{
+            return parser.hostname.match(localUrlRe)
+        }
+        
         return (url)=>{
             parser.href = url
             return parser

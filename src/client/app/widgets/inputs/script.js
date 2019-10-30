@@ -2,7 +2,8 @@ var Widget = require('../common/widget'),
     widgetManager = require('../../managers/widgets'),
     {icon} = require('../../ui/utils'),
     html = require('nanohtml'),
-    raw = require('nanohtml/raw')
+    raw = require('nanohtml/raw'),
+    {urlParser} = require('../utils')
 
 
 class Script extends Widget {
@@ -31,6 +32,7 @@ class Script extends Widget {
                 '- `set(id, value)`: function for setting a widget\'s value',
                 '- `get(id)`: function for getting a widget\'s value (dynamic equivalent of @{id})',
                 '- `getProp(id, property)`: function for getting a widget\'s property value ((dynamic equivalent of @{id.property})',
+                '- `httpGet(url, callback)`: function for making http requests (asynchronous "GET" request and local urls only)',
                 '',
                 '* Note: `value` or `linkId` properties can be used to receive other widgets\' values. The `value` property must actually change to trigger the execution, where linked widgets via `linkId` can submit the same value over and over and trigger the execution',
             ]}
@@ -120,7 +122,23 @@ class Script extends Widget {
             send: options.send ? this.scriptSend.bind(this) : ()=>{},
             set: (id, value)=>{Script.scriptSet(id, value, options)},
             get: (id)=>{return Script.scriptGet(id)},
-            getProp: (id, prop)=>{return Script.scriptGetProp(id, prop)}
+            getProp: (id, prop)=>{return Script.scriptGetProp(id, prop)},
+            httpGet: (url, callback)=>{
+                var parser = urlParser(url),
+                    err = (e)=>{console.error(e)}
+
+                if (!parser.isLocal()) return err('httpGet error (' + url + '): non-local url')
+
+                var xhr = new XMLHttpRequest()
+                xhr.open("GET", url, true)
+                xhr.onload = (e)=>{
+                    if (xhr.readyState === 4 && xhr.status === 200 && callback) {
+                        callback(xhr.responseText)
+                    }
+                }
+                xhr.onerror = (e)=>err('httpGet error (' + url + '): ' + xhr.statusText)
+                xhr.send(null)
+            }
         }
 
         var condition = this.resolveProp('condition', undefined, false, false, false, {value: v})
@@ -149,7 +167,8 @@ Script.parsersContexts.script = {
     send: ()=>{},
     set: ()=>{},
     get: ()=>{},
-    getProp: ()=>{}
+    getProp: ()=>{},
+    httpGet: ()=>{}
 }
 
 Script.dynamicProps = Script.prototype.constructor.dynamicProps.concat(

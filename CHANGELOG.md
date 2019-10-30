@@ -5,6 +5,8 @@
 - bug fixes
   - editor: checkbox position in multiline fields
   - patchbay: widget not responding to osc after being edited
+- widgets
+  - script: added `httpGet` function for simple local http requests
 
 
 ## 0.48.1
