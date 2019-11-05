@@ -36,6 +36,11 @@ function updateWidget(widget, options={}) {
     }
 
 
+    if (!widget.mounted) {
+        console.debug(`updateWidget prevented on ${widget.getProp('id')} (widget not mounted yet)`)
+        return
+    }
+
     var reuseChildren = options.reuseChildren !== false && widget instanceof Panel
 
     var children = undefined,

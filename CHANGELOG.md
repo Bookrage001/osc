@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.48.3
+
+- bug fixes
+  - widgets: prevent update errors when widgets are not fully initialized
+
 ## 0.48.2
 
 - bug fixes

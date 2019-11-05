@@ -148,6 +148,7 @@ class Widget extends EventEmitter {
         this.children = []
         this.reCreateOptions = options.reCreateOptions
         this.removed = false
+        this.mounted = false
 
         this.createPropsCache()
 

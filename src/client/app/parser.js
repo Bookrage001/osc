@@ -104,6 +104,7 @@ var Parser = class Parser {
 
 
         parentNode.appendChild(widget.container)
+        widget.mounted = true
 
         // Editor needs to get the container object
         return widget

@@ -62,6 +62,7 @@ class Panel extends Container() {
             for (let i = 0; i < this.children.length; i++) {
                 if (this.children[i]) {
                     this.wrapper.appendChild(this.children[i].container)
+                    this.children[i].mounted = true
                     this.children[i].parent = this
                     this.children[i].parentNode = this.wrapper
                 } else {
@@ -98,6 +99,7 @@ class Panel extends Container() {
             for (let i = 0; i < this.children.length; i++) {
                 if (this.children[i]) {
                     this.widget.appendChild(this.children[i].container)
+                    this.children[i].mounted = true
                     this.children[i].parent = this
                     this.children[i].parentNode = this.widget
                 } else {
