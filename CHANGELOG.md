@@ -4,6 +4,7 @@
 
 - bug fixes
   - widgets: prevent update errors when widgets are not fully initialized
+  - prevent pinch-zoom on touch screen
 
 ## 0.48.2
 

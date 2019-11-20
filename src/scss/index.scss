@@ -45,6 +45,9 @@ html{
 
     // prevent android's auto font-resize
     max-height: 999999px;
+
+    // prevent pinch-zoom
+    touch-action:none;
 }
 
 body {
