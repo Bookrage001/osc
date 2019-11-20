@@ -8,9 +8,9 @@ setTimeout(()=>{
     locales = require('../locales')
 })
 
-var reconnectTimeout = 1000,
-    hearbeatInterval = 2000,
-    hearbeatTimeout = 1000,
+var reconnectTimeout = 2000,
+    hearbeatInterval = 5000,
+    hearbeatTimeout = 3000,
     protocol = document.location.protocol === 'https:' ? 'wss://' : 'ws://'
 
 class Ipc extends EventEmitter {
