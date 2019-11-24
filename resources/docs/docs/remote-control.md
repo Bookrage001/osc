@@ -115,7 +115,7 @@ Sends back the app's state to specified target
 
 - `target`: `string`, `ip:port` pair
 
-## `/STATE/GET state`
+## `/STATE/SET state`
 
 Set widgets' state
 
