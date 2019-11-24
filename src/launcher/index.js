@@ -9,7 +9,8 @@ var {remote, ipcRenderer, shell} = eval('require(\'electron\')'),
     argv_remote = settings.read('argv'),
     ansiHTML = require('ansi-html'),
     argv = {},
-    $ = require('jquery/dist/jquery.slim.min.js')
+    $ = require('jquery/dist/jquery.slim.min.js'),
+    TERMINAL_LENGTH = 400
 
 for (i in argv_remote) {
     argv[i] = argv_remote[i]
@@ -216,6 +217,7 @@ $(document).ready(()=>{
     var terminal = $('<div class="terminal"></div>').appendTo(form).hide(),
         autoscroll = true
 
+
     ipcRenderer.on('stdout', function(e, msg){
         terminal.append(`<div class="log">${ansiHTML(msg)}</div>`)
         if (autoscroll) scrollBottom()
@@ -226,6 +228,18 @@ $(document).ready(()=>{
         if (autoscroll) scrollBottom()
     })
 
+
+    function purgeTerminal(){
+        var len = terminal.children().length
+        if (len > TERMINAL_LENGTH) {
+            var children = terminal.children()
+            for (var i = 0; i < len - TERMINAL_LENGTH; i++){
+                children[i].remove()
+            }
+        }
+    }
+
+    setInterval(purgeTerminal, 2000)
 
     // context-menu
 

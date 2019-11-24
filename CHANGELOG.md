@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.48.4
+
+- bug fixes
+  - launcher: limit terminal history size to prevent slowdown/freeze
+
 ## 0.48.3
 
 - bug fixes
