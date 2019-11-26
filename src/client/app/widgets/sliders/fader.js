@@ -55,7 +55,7 @@ module.exports = class Fader extends Slider {
                 '- `--color-knob: color;`',
                 '- `--color-pips: color;`',
                 '- `--gauge-opacity: number;`',
-                '- `--gauge-width: number;` (2-16, require a manual resize to take effect)'
+                '- `--gauge-width: number;` (2-16, requires a manual resize to take effect)'
             ]}
         })
 
