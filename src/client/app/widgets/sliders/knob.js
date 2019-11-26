@@ -67,6 +67,17 @@ module.exports = class Knob extends Slider {
         var a = (1 - Math.sin((Math.max(this.maxAngle,247.5) - 180) / 2 * Math.PI / 180)) / 3
         this.lostHeightFactor = a / 4
 
+
+        if (this.getProp('pips')) {
+
+            this.widget.classList.add('has-pips')
+            this.pipTexts = {}
+            for (var k in this.rangeKeys) {
+                this.pipTexts[this.rangeKeys[k]]=this.rangeLabels[k]
+            }
+
+        }
+
     }
 
     draginitHandle(e) {
@@ -184,6 +195,12 @@ module.exports = class Knob extends Slider {
         }
 
 
+        if (pips) {
+            gaugeRadius -= this.fontSize * PXSCALE * 1.5 + gaugeWidth / 2
+            knobRadius = gaugeRadius - gaugeWidth
+        }
+
+
         this.ctx.clearRect(0,0,this.width,this.height)
 
         this.ctx.globalAlpha = 1
@@ -191,7 +208,7 @@ module.exports = class Knob extends Slider {
         this.ctx.strokeStyle = this.colors.light
         this.ctx.lineWidth = gaugeWidth
         this.ctx.beginPath()
-        this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min - 4 * rad - (pips ? 3 * rad : 0), max + 4 * rad + (pips ? 3 * rad : 0))
+        this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min - 4 * rad, max + 4 * rad)
         this.ctx.stroke()
 
         this.ctx.strokeStyle = this.colors.bg
@@ -208,7 +225,7 @@ module.exports = class Knob extends Slider {
         this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, min, max)
         this.ctx.stroke()
 
-        this.ctx.globalAlpha = pips ? 0.5 : 0.7
+        this.ctx.globalAlpha = 0.7
         this.ctx.strokeStyle = this.colors.gauge
         this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
         this.ctx.beginPath()
@@ -237,24 +254,36 @@ module.exports = class Knob extends Slider {
         if (pips) {
 
             this.ctx.globalAlpha = 1
-            this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
 
             for (var pip of this.rangeKeys.concat(this.valueToPercent(this.originValue))) {
 
                 let a = this.percentToAngle(pip)
 
-                this.ctx.lineWidth = gaugeWidth - 2 * PXSCALE
-                this.ctx.strokeStyle = this.colors.bg
+                this.ctx.lineWidth = gaugeWidth + 2 * PXSCALE
                 this.ctx.beginPath()
-                this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, a - 5 * rad, a + 5 * rad)
+                this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, a - 4.5 * rad, a + 4.5 * rad)
+                this.ctx.strokeStyle = this.colors.fg
+                this.ctx.stroke()
+                this.ctx.strokeStyle = this.colors.light
                 this.ctx.stroke()
 
-                this.ctx.lineWidth = gaugeWidth - 4.5 * PXSCALE
+                this.ctx.lineWidth = gaugeWidth + 1.5 * PXSCALE
                 this.ctx.strokeStyle = this.colors.pips
                 this.ctx.beginPath()
                 this.ctx.arc(this.width / 2, this.height / 2, gaugeRadius, a - 2 * rad, a + 2 * rad)
                 this.ctx.stroke()
 
+            }
+
+            var radius = gaugeRadius + this.fontSize * PXSCALE + gaugeWidth / 2
+            this.ctx.fillStyle = this.colors.textFade
+            for (var p in this.pipTexts) {
+                if (this.pipTexts[p] == undefined) continue
+                var angle = this.percentToAngle(p),
+                    size = this.ctx.measureText(this.pipTexts[p]),
+                    x = this.width / 2 + radius * Math.cos(angle) - size.width / 2,
+                    y = this.height / 2 + radius * Math.sin(angle)
+                this.ctx.fillText(this.pipTexts[p], x, y)
             }
 
         }

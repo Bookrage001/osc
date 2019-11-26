@@ -4,6 +4,8 @@
 
 - bug fixes
   - launcher: limit terminal history size to prevent slowdown/freeze
+- widgets
+  - knob: text pips support
 
 ## 0.48.3
 

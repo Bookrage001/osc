@@ -143,6 +143,7 @@ class Canvas extends Widget {
         this.colors.custom = style.getPropertyValue('--color-custom')
         this.colors.track = style.getPropertyValue('--color-track')
         this.colors.text = style.getPropertyValue('--color-text')
+        this.colors.textFade = style.getPropertyValue('--color-text-fade')
         this.colors.raised = style.getPropertyValue('--color-raised')
         this.colors.bg = style.getPropertyValue('--color-bg')
         this.colors.fg = style.getPropertyValue('--color-fg')
