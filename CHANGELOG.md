@@ -6,6 +6,7 @@
   - launcher: limit terminal history size to prevent slowdown/freeze
 - widgets
   - knob: text pips support
+  - fader: add css variable `--gauge-width`
 
 ## 0.48.3
 

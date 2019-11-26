@@ -54,7 +54,8 @@ module.exports = class Fader extends Slider {
                 '- `--color-gauge: color;`',
                 '- `--color-knob: color;`',
                 '- `--color-pips: color;`',
-                '- `--gauge-opacity: number;`'
+                '- `--gauge-opacity: number;`',
+                '- `--gauge-width: number;` (2-16, require a manual resize to take effect)'
             ]}
         })
 
@@ -66,6 +67,7 @@ module.exports = class Fader extends Slider {
 
         this.widget.classList.add('fader')
         this.margin = 22
+        this.gaugeWidth = 2
 
 
         if (this.getProp('horizontal')) {
@@ -187,6 +189,8 @@ module.exports = class Fader extends Slider {
 
         super.resizeHandle(event)
 
+        this.gaugeWidth =  Math.max(2, Math.min(16, parseInt(event.style.getPropertyValue('--gauge-width')) || 2))
+
         if (this.getProp('horizontal')){
             this.ctx.setTransform(1, 0, 0, 1, 0, 0)
             this.ctx.rotate(-Math.PI/2)
@@ -273,7 +277,7 @@ module.exports = class Fader extends Slider {
 
         } else {
 
-            this.ctx.lineWidth = 6 * PXSCALE
+            this.ctx.lineWidth = (this.gaugeWidth + 4) * PXSCALE
 
             this.ctx.beginPath()
             this.ctx.globalAlpha = 1
@@ -282,7 +286,7 @@ module.exports = class Fader extends Slider {
             this.ctx.lineTo(m, height - this.margin * PXSCALE + 2 * PXSCALE)
             this.ctx.stroke()
 
-            this.ctx.lineWidth = 4 * PXSCALE
+            this.ctx.lineWidth = (this.gaugeWidth + 2) * PXSCALE
 
             this.ctx.beginPath()
             this.ctx.globalAlpha = 1
@@ -291,7 +295,7 @@ module.exports = class Fader extends Slider {
             this.ctx.lineTo(m, height - this.margin * PXSCALE + 1 * PXSCALE)
             this.ctx.stroke()
 
-            this.ctx.lineWidth = 2 * PXSCALE
+            this.ctx.lineWidth = this.gaugeWidth * PXSCALE
 
             this.ctx.beginPath()
             this.ctx.strokeStyle = this.colors.track
