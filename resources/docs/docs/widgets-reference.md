@@ -35,7 +35,7 @@
 | property | type |default | description |
 | --- | --- | --- | --- |
 | <h4 class="thead2" id="fader_style">style<a class="headerlink" href="#fader_style" title="Permanent link">#</a></h4> ||||
-| <h4 id="fader_css">css<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#fader_css" title="Permanent link">#</a></h4> | `string` | <code>""</code> | Available CSS variables:<br/>- `--color-gauge: color;`<br/>- `--color-knob: color;`<br/>- `--color-pips: color;`<br/>- `--gauge-opacity: number;` |
+| <h4 id="fader_css">css<i class="dynamic-prop-icon" title="dynamic"></i><a class="headerlink" href="#fader_css" title="Permanent link">#</a></h4> | `string` | <code>""</code> | Available CSS variables:<br/>- `--color-gauge: color;`<br/>- `--color-knob: color;`<br/>- `--color-pips: color;`<br/>- `--gauge-opacity: number;`<br/>- `--gauge-width: number;` (2-16, requires a manual resize to take effect) |
 | <h4 class="thead2" id="fader_fader">fader<a class="headerlink" href="#fader_fader" title="Permanent link">#</a></h4> ||||
 | <h4 id="fader_horizontal">horizontal<a class="headerlink" href="#fader_horizontal" title="Permanent link">#</a></h4> | `boolean` | <code>false</code> | Set to `true` to display the fader horizontally |
 | <h4 id="fader_alignRight">alignRight<a class="headerlink" href="#fader_alignRight" title="Permanent link">#</a></h4> | `boolean` | <code>false</code> | Set to `true` to invert the pip's and fader's position |
