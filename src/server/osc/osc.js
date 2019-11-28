@@ -10,7 +10,7 @@ osc.writeUtfString = (str)=>{
 }
 
 osc.readUtfString = (dv, offsetState)=>{
-    return utf8.decode(osc.readString(dv, offsetState))
+    return osc.readString(dv, offsetState)
 }
 
 osc.argumentTypes.s = osc.argumentTypes.S = {
