@@ -1,9 +1,14 @@
 # Changelog
 
+## 0.48.6
+
+- main
+  - detect http server silent setup failure
+
 ## 0.48.5
 
 - bug fixes
-  - regression breaking support for utf-8 strings in received osc messages 
+  - regression breaking support for utf-8 strings in received osc messages
 
 ## 0.48.4
 

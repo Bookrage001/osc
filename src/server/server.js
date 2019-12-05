@@ -10,7 +10,8 @@ var urlparser   = require('url'),
     zeroconf = require('./zeroconf'),
     appAddresses = settings.read('appAddresses'),
     osc = {},
-    clients = {}
+    clients = {},
+    httpCheckTimeout
 
 function httpRoute(req, res) {
 
@@ -59,6 +60,8 @@ function httpRoute(req, res) {
                     // absolute resolution (session path)
                     res.sendFile(path.resolve(url))
                 }
+            } else if (url.includes('/osc-ping')) {
+                httpCheck(true)
             } else {
                 res.writeHead(403)
                 res.end()
@@ -70,6 +73,19 @@ function httpRoute(req, res) {
 }
 
 server.listen(settings.read('httpPort'))
+
+http.get(settings.read('appAddresses')[0] + '/osc-ping', ()=>{}).on('error', ()=>{httpCheck(false)})
+httpCheckTimeout = setTimeout(()=>{httpCheck(false)}, 5000)
+function httpCheck(ok){
+    if (!httpCheckTimeout) return
+    clearTimeout(httpCheckTimeout)
+    httpCheckTimeout = null
+    if (ok) {
+        console.log('App available at ' + appAddresses.join(' & '))
+    } else {
+        console.error('Error: could not setup http server, maybe try a different port ?')
+    }
+}
 
 zeroconf.publish({
     name: settings.read('appName') + (settings.read('instanceName') ? ' (' + settings.read('instanceName') + ')' : ''),
@@ -103,8 +119,6 @@ var bindCallbacks = function(callbacks) {
     })
 
 }
-
-console.log('App available at ' + appAddresses.join(' & '))
 
 module.exports =  {
     ipc:ipc,
