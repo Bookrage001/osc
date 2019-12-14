@@ -134,7 +134,7 @@
         }
         .hue-wrapper {
             --color-gauge:transparent;
-            --color-knob: var(--color-white);
+            --color-knob:var(--color-white);
             .wrapper {
                 &:after {
                     content:"";

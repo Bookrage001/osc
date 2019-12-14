@@ -1,7 +1,9 @@
 .fader-container {
-    --color-pips: var(--color-custom);
-    --color-gauge: var(--color-custom);
-    --color-knob: var(--color-custom);
+    // note: ios doesn't trim css variables defined as follow
+    // we must avoid space after ":" otherwise it breaks the canvas colors
+    --color-pips:var(--color-custom);
+    --color-gauge:var(--color-custom);
+    --color-knob:var(--color-custom);
     --gauge-width: 2;
     padding: 1rem;
     width:100rem;

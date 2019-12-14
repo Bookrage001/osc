@@ -2,6 +2,8 @@
 
 ## 0.48.6
 
+- bug fixes
+  - ios: prevent color issues with sliders
 - main
   - detect http server silent setup failure
 
