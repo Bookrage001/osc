@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.48.7
+
+- bug fixes
+  - xy: broken `spring` property
+
 ## 0.48.6
 
 - bug fixes

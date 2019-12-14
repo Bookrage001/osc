@@ -137,7 +137,7 @@ module.exports = class Xy extends Pad {
             this.faders.x.trigger('dragend', e)
             this.faders.y.trigger('dragend', e)
             if (this.getProp('spring')) {
-                this.setValue([this.faders.x.springValue,this.faders.y.springValue],{sync:true,send:true})
+                this.setValue([this.faders.x.getSpringValue(),this.faders.y.getSpringValue()],{sync:true,send:true})
             } else {
                 this.batchDraw()
             }
