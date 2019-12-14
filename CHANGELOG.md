@@ -4,6 +4,7 @@
 
 - bug fixes
   - ios: prevent color issues with sliders
+  - editor: prevent all keyboard shortcuts from triggering default browser actions
 - main
   - detect http server silent setup failure
 

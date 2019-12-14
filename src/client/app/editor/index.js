@@ -68,36 +68,121 @@ var Editor = class Editor {
         this.mouveMoveHandler = this.mouseMove.bind(this)
 
         keyboardJS.withContext('editing', ()=>{
-            keyboardJS.bind('mod + z', (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+
+            var combos = [
+                'mod + z',
+                'mod + y',
+                'mod + shift + z',
+                'mod + c',
+                'mod + x',
+                'mod + v',
+                'mod + shift + v',
+                macOs ? 'backspace' : 'delete',
+                'alt + up',
+                'alt + down',
+                'alt + right',
+                'alt + left',
+                'up',
+                'down',
+                'right',
+                'left',
+                'mod + shift + a',
+                'mod + a',
+                'mod + up',
+                'mod + down',
+                'mod + left',
+                'mod + right',
+                'f2'
+            ]
+
+            for (let c of combos) {
+                keyboardJS.bind(c, (e)=>{
+                    this.handleKeyboard(c, e)
+                })
+            }
+
+        })
+
+        keyboardJS.bind('mod + s', (e)=>{
+            e.preventDefault()
+            sessionManager.save()
+        })
+
+        keyboardJS.bind('mod + shift + s', (e)=>{
+            e.preventDefault()
+            sessionManager.saveAs()
+        })
+
+        keyboardJS.bind('mod + o', (e)=>{
+            e.preventDefault()
+            sessionManager.browse()
+        })
+
+        keyboardJS.bind('mod + e', (e)=>{
+            e.preventDefault()
+            if (this.enabled) {
+                this.disable()
+            } else {
+                if (sessionManager.session.type) this.enable()
+            }
+        })
+
+
+        this.selectarea = new SelectArea('.widget:not(.not-editable), .tablink', (elements)=>{
+
+            elements = elements.map(e => widgetManager.getWidgetByElement(e, ':not(.not-editable)')).filter(e => e)
+
+            for (var i in elements) {
+                this.select(elements[i], {multi:true, fromLasso:true})
+            }
+            this.select(this.selectedWidgets)
+
+        })
+
+
+    }
+
+    handleKeyboard(combo, e){
+
+        if (e.target && e.target.classList.contains('no-keybinding')) return
+        e.preventDefault()
+
+        switch (combo) {
+
+            case 'mod + z':
                 this.undo()
-            })
-            keyboardJS.bind(['mod + y', 'mod + shift + z'], (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+                break
+
+            case 'mod + y':
+            case 'mod + shift + z':
                 this.redo()
-            })
-            keyboardJS.bind('mod + c', (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+                break
+
+            case 'mod + c':
                 this.copyWidget()
-            })
-            keyboardJS.bind('mod + x', (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+                break
+
+            case 'mod + x':
                 this.cutWidget()
-            })
-            keyboardJS.bind('mod + v', (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+                break
+
+            case 'mod + v':
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, false)
-            })
-            keyboardJS.bind('mod + shift + v', (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+                break
+
+            case 'mod + shift + v':
                 this.pasteWidget(this.mousePosition.x, this.mousePosition.y, true)
-            })
-            keyboardJS.bind(macOs ? 'backspace' : 'delete', (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+                break
+
+            case 'backspace':
+            case 'delete':
                 this.deleteWidget()
-            })
-            keyboardJS.bind(['alt + up', 'alt + down', 'alt + right', 'alt + left'], (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+                break
+
+            case 'alt + up':
+            case 'alt + down':
+            case 'alt + right':
+            case 'alt + left':
                 if (!this.selectedWidgets.length) return
 
                 if (this.selectedWidgets[0].props.height === undefined && e.key.match(/Arrow(Up|Down)/)) return
@@ -112,9 +197,13 @@ var Editor = class Editor {
                 }
 
                 this.resizeWidget(deltaW, deltaH)
-            })
-            keyboardJS.bind(['up', 'down', 'right', 'left'], (e)=>{
-                if (e.target && e.target.classList.contains('no-keybinding')) return
+
+                break
+
+            case 'up':
+            case 'down':
+            case 'right':
+            case 'left':
                 if (!this.selectedWidgets.length) return
 
                 if (this.selectedWidgets[0].props.top === undefined && e.key.match(/Arrow(Up|Down)/)) return
@@ -129,27 +218,30 @@ var Editor = class Editor {
                 }
 
                 this.moveWidget(deltaX, deltaY)
-            })
-            keyboardJS.bind('mod + shift + a', (e)=>{
+
+                break
+
+            case 'mod + shift + a':
                 if (!this.selectedWidgets.length) return
-                if (e.target && e.target.classList.contains('no-keybinding')) return
                 this.unselect()
                 this.selectedWidgets = []
-            })
-            keyboardJS.bind('mod + a', (e)=>{
+                break
+
+            case 'mod + a':
                 if (!this.selectedWidgets.length) return
-                if (e.target && e.target.classList.contains('no-keybinding')) return
 
                 var curWidget = this.selectedWidgets[0]
 
                 if (curWidget.parent !== widgetManager) {
                     this.select(curWidget.parent.children)
                 }
-            })
-            keyboardJS.bind(['mod + up','mod + down','mod + left' , 'mod + right'], (e)=>{
+                break
 
+            case 'mod + up':
+            case 'mod + down':
+            case 'mod + right':
+            case 'mod + left':
                 if (!this.selectedWidgets.length) return
-                if (e.target && e.target.classList.contains('no-keybinding')) return
 
                 var curWidget = this.selectedWidgets[0],
                     toSelect = null
@@ -191,9 +283,9 @@ var Editor = class Editor {
                     this.select(toSelect)
                 }
 
-            })
+                break
 
-            keyboardJS.bind('f2', (e)=>{
+            case 'f2':
                 var input = DOM.get(this.form, 'textarea[name="label"]')[0]
                 if (input) {
                     var folded = input.closest('.category.folded')
@@ -201,45 +293,9 @@ var Editor = class Editor {
                     input.focus()
                     input.setSelectionRange(0, input.value.length)
                 }
-            })
+                break
 
-        })
-
-        keyboardJS.bind('mod + s', (e)=>{
-            e.preventDefault()
-            sessionManager.save()
-        })
-
-        keyboardJS.bind('mod + shift + s', (e)=>{
-            e.preventDefault()
-            sessionManager.saveAs()
-        })
-
-        keyboardJS.bind('mod + o', (e)=>{
-            e.preventDefault()
-            sessionManager.browse()
-        })
-
-        keyboardJS.bind('mod + e', (e)=>{
-            e.preventDefault()
-            if (this.enabled) {
-                this.disable()
-            } else {
-                if (sessionManager.session.type) this.enable()
-            }
-        })
-
-
-        this.selectarea = new SelectArea('.widget:not(.not-editable), .tablink', (elements)=>{
-
-            elements = elements.map(e => widgetManager.getWidgetByElement(e, ':not(.not-editable)')).filter(e => e)
-
-            for (var i in elements) {
-                this.select(elements[i], {multi:true, fromLasso:true})
-            }
-            this.select(this.selectedWidgets)
-
-        })
+        }
 
 
     }
