@@ -230,10 +230,10 @@ var Editor = class Editor {
             case 'mod + a':
                 if (!this.selectedWidgets.length) return
 
-                var curWidget = this.selectedWidgets[0]
+                var curWidget1 = this.selectedWidgets[0]
 
-                if (curWidget.parent !== widgetManager) {
-                    this.select(curWidget.parent.children)
+                if (curWidget1.parent !== widgetManager) {
+                    this.select(curWidget1.parent.children)
                 }
                 break
 
