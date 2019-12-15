@@ -1,4 +1,5 @@
 const iOS = require('../ui/ios')
+const macOs = (navigator.platform || '').match('Mac')
 
 var longTouchTimer = false,
     clearLongTouchTimer = function() {
@@ -8,7 +9,16 @@ var longTouchTimer = false,
         }
     }
 
-document.body.setAttribute('oncontextmenu', 'return false')
+if (macOs) {
+    // on macOs, ctrl+click generates a contextmenu event
+    // that should be interpreted as a rightclick
+    document.body.addEventListener('contextmenu', (event)=>{
+        event.preventDefault()
+        DOM.dispatchEvent(event.target, 'fast-right-click', event)
+    })
+} else {
+    document.body.setAttribute('oncontextmenu', 'return false')
+}
 
 function mouseToFastClick(event) {
 

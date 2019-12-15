@@ -4,6 +4,7 @@
 
 - bug fixes
   - xy: broken `spring` property
+  - macOs: add support for emulated right click via `ctrl+click`
 
 ## 0.48.6
 
